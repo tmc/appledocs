@@ -1,0 +1,517 @@
+{
+  "abstract": [
+    {
+      "text": "Restore the symmetric key you use to verify payment data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.passkit/documentation/PassKit",
+        "doc://com.apple.passkit/documentation/PassKit/apple-pay",
+        "doc://com.apple.passkit/documentation/PassKit/payment-token-format-reference"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.passkit/documentation/PassKit/restoring-the-symmetric-key"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "PassKit (Apple Pay and Wallet)"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Restoring the symmetric key"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The value of the ",
+              "type": "text"
+            },
+            {
+              "code": "version",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key in the payment token structure indicates whether the Apple Pay servers encrypted the payment token using Elliptic Curve Cryptography (ECC) or Rivest–Shamir–Adleman (RSA). Follow the instructions for restoring an ECC key or an RSA key according to the value of the ",
+              "type": "text"
+            },
+            {
+              "code": "version",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For instructions on using the symmetric key, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PassKit/payment-token-format-reference",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Restore-a-symmetric-key-for-ECC",
+          "level": 3,
+          "text": "Restore a symmetric key for ECC",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To restore the key for ECC (",
+              "type": "text"
+            },
+            {
+              "code": "EC_v1)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the merchant private key and the ephemeral public key to generate the shared secret using Elliptic Curve Diffie-Hellman (id-ecDH 1.3.132.1.12).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the merchant identifier field (OID 1.2.840.113635.100.6.32) of the public key certificate and the shared secret to derive the symmetric key using the key derivation function described in NIST SP 800-56A, section 5.8.1, with the input values shown in the following table:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Input Name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Z",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "SHA-256",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Algorithm ID",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The shared secret calculated above using ECDH.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Party U Info",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ASCII string ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"Apple\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This value is a fixed-length string.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Party V Info",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The SHA-256 hash of your merchant ID string literal, which is 32 bytes in size. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " You can derive Party V Info from your payment processing certificate in either of two ways. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " Method 1: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " The UID field of the Common Name includes the plaintext merchant ID. Calculate the SHA-256 hash of that plaintext string. Use the result for Party V Info. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " Method 2: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " The OID 1.2.840.113635.100.6.32 includes the hex-encoded hash of the merchant ID . Hexadecimal-decode that hash string to produce the original (non-hex-encoded) 32-byte hash. Use the result for Party V Info.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Supplemental Public and Private Info",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Unused",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Restore-a-symmetric-key-for-RSA",
+          "level": 3,
+          "text": "Restore a symmetric key for RSA",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A merchant’s public key encrypts the symmetric key for RSA (",
+              "type": "text"
+            },
+            {
+              "code": "RSA_v1)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by using the RSA/ECB/OAEPWithSHA256AndMGF1Padding algorithm. Use your RSA private key to decrypt the cipher text in the ",
+              "type": "text"
+            },
+            {
+              "code": "wrappedKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value. After you decrypt it, the plaintext is the symmetric key material that you use to decrypt the payment token.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/PassKit/payment-token-format-reference": {
+      "abstract": [
+        {
+          "text": "Verify an Apple Pay payment token and validate a transaction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PassKit/payment-token-format-reference",
+      "kind": "article",
+      "role": "article",
+      "title": "Payment token format reference",
+      "type": "topic",
+      "url": "/documentation/PassKit/payment-token-format-reference"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.passkit/documentation/PassKit": {
+      "abstract": [
+        {
+          "text": "Process Apple Pay payments in your app, and create and distribute passes for the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PassKit (Apple Pay and Wallet)",
+      "type": "topic",
+      "url": "/documentation/passkit"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/apple-pay": {
+      "abstract": [
+        {
+          "text": "Request and process Apple Pay payments in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/apple-pay",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Pay",
+      "type": "topic",
+      "url": "/documentation/passkit/apple-pay"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/payment-token-format-reference": {
+      "abstract": [
+        {
+          "text": "Verify an Apple Pay payment token and validate a transaction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/payment-token-format-reference",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Payment token format reference",
+      "type": "topic",
+      "url": "/documentation/passkit/payment-token-format-reference"
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/passkit/restoring-the-symmetric-key"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/passkit/restoring-the-symmetric-key"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

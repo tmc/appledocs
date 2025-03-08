@@ -1,0 +1,3001 @@
+{
+  "abstract": [
+    {
+      "text": "The relationship between two user interface objects that must be satisfied by the constraint-based layout system.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSLayoutConstraint",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSLayoutConstraint"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSLayoutConstraint"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSLayoutConstraint"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSLayoutConstraint"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each constraint is a linear equation with the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "item1.attribute1 = multiplier × item2.attribute2 + constant"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this equation, ",
+              "type": "text"
+            },
+            {
+              "code": "attribute1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "attribute2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are the variables that Auto Layout can adjust when solving these constraints. The other values are defined when you create the constraint. For example, If you’re defining the relative position of two buttons, you might say “the leading edge of the second button should be 8 points after the trailing edge of the first button.” The linear equation for this relationship is shown below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// positive values move to the right in left-to-right languages like English.",
+            "button2.leading = 1.0 × button1.trailing + 8.0"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Auto Layout then modifies the values of the specified leading and trailing edges until both sides of the equation are equal. Note that Auto Layout does not simply assign the value of the right side of this equation to the left side. Instead, the system can modify either attribute or both attributes as needed to solve for this constraint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The fact that constraints are equations (and not assignment operators) means that you can switch the order of the items in the equation as needed to more clearly express the desired relationship. However, if you switch the order, you must also invert the multiplier and constant. For example, the following two equations produce identical constraints:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// These equations produce identical constraints",
+            "button2.leading = 1.0 × button1.trailing + 8.0",
+            "button1.trailing = 1.0 × button2.leading - 8.0"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A valid layout is defined as a set constraints with one and only one possible solution. Valid layouts are also referred to as a nonambiguous, nonconflicting layouts. Constraints with more than one solution are ambiguous. Constraints with no valid solutions are conflicting. For more information on resolving ambiguous and conflicting constraints, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/TypesofErrors.html#//apple_ref/doc/uid/TP40010853-CH17",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/index.html#//apple_ref/doc/uid/TP40010853",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, constraints are not limited to equality relationships. They can also use greater than or equal to (>=) or less than or equal to (<=) to describe the relationship between the two attributes. Constraints also have priorities between 1 and 1,000. Constraints with a priority of 1,000 are required. All priorities less than 1,000 are optional. By default, all constraints are required (priority = 1,000).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After solving for the required constraints, Auto Layout tries to solve all the optional constraints in priority order from highest to lowest. If it cannot solve for an optional constraint, it tries to come as close as possible to the desired result, and then moves on to the next constraint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This combination of inequalities, equalities, and priorities gives you a great amount of flexibility and power. By combining multiple constraints, you can define layouts that dynamically adapt as the size and location of the elements in your user interface change. For some example layouts, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/LayoutUsingStackViews.html#//apple_ref/doc/uid/TP40010853-CH11",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/index.html#//apple_ref/doc/uid/TP40010853",
+              "isActive": true,
+              "overridingTitle": "Auto Layout Guide",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Auto Layout Guide",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSLayoutConstraint/Orientation": {
+      "abstract": [
+        {
+          "text": "The layout constraint orientation, either horizontal or vertical, that the constraint uses to enforce layout between objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Orientation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSLayoutConstraint/Orientation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLayoutConstraint.Orientation",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSLayoutConstraint/Orientation"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSLayoutConstraint/Priority-swift.struct": {
+      "abstract": [
+        {
+          "text": "Layout priority used to indicate the relative importance of constraints, allowing Auto Layout to make appropriate tradeoffs when satisfying the constraints of the system as a whole.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Priority"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSLayoutConstraint/Priority-swift.struct",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLayoutConstraint.Priority",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSLayoutConstraint/Priority-swift.struct"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsedgeinsets": {
+      "abstract": [
+        {
+          "text": "A description of the distance between the edges of two rectangles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSEdgeInsets"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsedgeinsets",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSEdgeInsets",
+      "type": "topic",
+      "url": "/documentation/foundation/nsedgeinsets"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDictionaryOfVariableBindings": {
+      "abstract": [
+        {
+          "text": "Creates a dictionary wherein the keys are string representations of the corresponding values’ variable names.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSDictionaryOfVariableBindings"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDictionaryOfVariableBindings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDictionaryOfVariableBindings",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdictionaryofvariablebindings"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLAYOUTCONSTRAINT_H": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLAYOUTCONSTRAINT_H"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLAYOUTCONSTRAINT_H",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLAYOUTCONSTRAINT_H"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLAYOUTCONSTRAINT_H",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutconstraint_h"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint": {
+      "abstract": [
+        {
+          "text": "The relationship between two user interface objects that must be satisfied by the constraint-based layout system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLayoutConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLayoutConstraint"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLayoutConstraint",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutconstraint"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/Attribute": {
+      "abstract": [
+        {
+          "text": "The part of the object’s visual representation that should be used to get the value for the constraint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Attribute"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/Attribute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Attribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLayoutConstraint.Attribute",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutconstraint/attribute"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/Axis": {
+      "abstract": [
+        {
+          "text": "Keys that specify a horizontal or vertical layout constraint between objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Axis"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/Axis",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Axis"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLayoutConstraint.Axis",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutconstraint/axis"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/FormatOptions": {
+      "abstract": [
+        {
+          "text": "A bit mask that specifies both a part of an interface element to align and a direction for the alignment between two interface elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FormatOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/FormatOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FormatOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLayoutConstraint.FormatOptions",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutconstraint/formatoptions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/Relation-swift.enum": {
+      "abstract": [
+        {
+          "text": "The relation between the first attribute and the modified second attribute in a constraint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Relation"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/Relation-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Relation"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLayoutConstraint.Relation",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutconstraint/relation-swift.enum"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/activate(_:)": {
+      "abstract": [
+        {
+          "text": "Activates each constraint in the specified array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activate"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/activate(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activateConstraints:"
+        }
+      ],
+      "role": "symbol",
+      "title": "activate(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutconstraint/activate(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/constant": {
+      "abstract": [
+        {
+          "text": "The constant added to the multiplied second attribute participating in the constraint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "constant"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/constant",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "constant"
+        }
+      ],
+      "role": "symbol",
+      "title": "constant",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutconstraint/constant"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/constraints(withVisualFormat:options:metrics:views:)": {
+      "abstract": [
+        {
+          "text": "Creates constraints described by an ASCII art-like visual format string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "constraints"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withVisualFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSLayoutFormatOptions",
+          "text": "FormatOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "metrics"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "views"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/constraints(withVisualFormat:options:metrics:views:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "constraintsWithVisualFormat:options:metrics:views:"
+        }
+      ],
+      "role": "symbol",
+      "title": "constraints(withVisualFormat:options:metrics:views:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutconstraint/constraints(withvisualformat:options:metrics:views:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/deactivate(_:)": {
+      "abstract": [
+        {
+          "text": "Deactivates each constraint in the specified array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deactivate"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/deactivate(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deactivateConstraints:"
+        }
+      ],
+      "role": "symbol",
+      "title": "deactivate(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutconstraint/deactivate(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/firstAnchor": {
+      "abstract": [
+        {
+          "text": "The first anchor that defines the constraint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "firstAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutAnchor",
+          "text": "NSLayoutAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "<AnyObject>"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/firstAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "firstAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "firstAnchor",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutconstraint/firstanchor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/firstAttribute": {
+      "abstract": [
+        {
+          "text": "The attribute of the first object participating in the constraint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "firstAttribute"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSLayoutAttribute",
+          "text": "Attribute"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/firstAttribute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "firstAttribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "firstAttribute",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutconstraint/firstattribute"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/firstItem": {
+      "abstract": [
+        {
+          "text": "The first object participating in the constraint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "firstItem"
+        },
+        {
+          "kind": "text",
+          "text": ": AnyObject?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/firstItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "firstItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "firstItem",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutconstraint/firstitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/identifier": {
+      "abstract": [
+        {
+          "text": "The name that identifies the constraint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/identifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutconstraint/identifier"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/init(item:attribute:relatedBy:toItem:attribute:multiplier:constant:)": {
+      "abstract": [
+        {
+          "text": "Creates a constraint that defines the relationship between the specified attributes of the given views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "item"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attribute"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSLayoutAttribute",
+          "text": "Attribute"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "relatedBy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSLayoutRelation",
+          "text": "Relation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attribute"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSLayoutAttribute",
+          "text": "Attribute"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "multiplier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "constant"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/init(item:attribute:relatedBy:toItem:attribute:multiplier:constant:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(item:attribute:relatedBy:toItem:attribute:multiplier:constant:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutconstraint/init(item:attribute:relatedby:toitem:attribute:multiplier:constant:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/isActive": {
+      "abstract": [
+        {
+          "text": "The active state of the constraint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isActive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/isActive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "active"
+        }
+      ],
+      "role": "symbol",
+      "title": "isActive",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutconstraint/isactive"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/multiplier": {
+      "abstract": [
+        {
+          "text": "The multiplier applied to the second attribute participating in the constraint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "multiplier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/multiplier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "multiplier"
+        }
+      ],
+      "role": "symbol",
+      "title": "multiplier",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutconstraint/multiplier"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/priority": {
+      "abstract": [
+        {
+          "text": "The priority of the constraint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "priority"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UILayoutPriority",
+          "text": "UILayoutPriority"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/priority",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "priority"
+        }
+      ],
+      "role": "symbol",
+      "title": "priority",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutconstraint/priority"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/relation-swift.property": {
+      "abstract": [
+        {
+          "text": "The relation between the two attributes in the constraint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "relation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSLayoutRelation",
+          "text": "Relation"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/relation-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "relation"
+        }
+      ],
+      "role": "symbol",
+      "title": "relation",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutconstraint/relation-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/secondAnchor": {
+      "abstract": [
+        {
+          "text": "The second anchor that defines the constraint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "secondAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutAnchor",
+          "text": "NSLayoutAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "<AnyObject>?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/secondAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "secondAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "secondAnchor",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutconstraint/secondanchor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/secondAttribute": {
+      "abstract": [
+        {
+          "text": "The attribute of the second object participating in the constraint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "secondAttribute"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSLayoutAttribute",
+          "text": "Attribute"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/secondAttribute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "secondAttribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "secondAttribute",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutconstraint/secondattribute"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/secondItem": {
+      "abstract": [
+        {
+          "text": "The second object participating in the constraint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "secondItem"
+        },
+        {
+          "kind": "text",
+          "text": ": AnyObject?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/secondItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "secondItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "secondItem",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutconstraint/seconditem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/shouldBeArchived": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the constraint should be archived by its owning view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldBeArchived"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/shouldBeArchived",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shouldBeArchived"
+        }
+      ],
+      "role": "symbol",
+      "title": "shouldBeArchived",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutconstraint/shouldbearchived"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILayoutPriority": {
+      "abstract": [
+        {
+          "text": "The layout priority is used to indicate to the constraint-based layout system which constraints are more important, allowing the system to make appropriate tradeoffs when satisfying the constraints of the system as a whole.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILayoutPriority"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILayoutPriority",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UILayoutPriority"
+        }
+      ],
+      "role": "symbol",
+      "title": "UILayoutPriority",
+      "type": "topic",
+      "url": "/documentation/uikit/uilayoutpriority"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILayoutSupport": {
+      "abstract": [
+        {
+          "text": "A set of methods that provide layout support and access to layout anchors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILayoutSupport"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILayoutSupport",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UILayoutSupport"
+        }
+      ],
+      "role": "symbol",
+      "title": "UILayoutSupport",
+      "type": "topic",
+      "url": "/documentation/uikit/uilayoutsupport"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/positioning-content-relative-to-the-safe-area": {
+      "abstract": [
+        {
+          "text": "Position views so that they aren’t obstructed by other content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/positioning-content-relative-to-the-safe-area",
+      "kind": "article",
+      "role": "article",
+      "title": "Positioning content relative to the safe area",
+      "type": "topic",
+      "url": "/documentation/uikit/positioning-content-relative-to-the-safe-area"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/positioning-content-within-layout-margins": {
+      "abstract": [
+        {
+          "text": "Position views so that they aren’t crowded by other content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/positioning-content-within-layout-margins",
+      "kind": "article",
+      "role": "article",
+      "title": "Positioning content within layout margins",
+      "type": "topic",
+      "url": "/documentation/uikit/positioning-content-within-layout-margins"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/LayoutUsingStackViews.html#//apple_ref/doc/uid/TP40010853-CH11": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/LayoutUsingStackViews.html#//apple_ref/doc/uid/TP40010853-CH11",
+      "title": "Stack Views",
+      "titleInlineContent": [
+        {
+          "text": "Stack Views",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/LayoutUsingStackViews.html#//apple_ref/doc/uid/TP40010853-CH11"
+    },
+    "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/TypesofErrors.html#//apple_ref/doc/uid/TP40010853-CH17": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/TypesofErrors.html#//apple_ref/doc/uid/TP40010853-CH17",
+      "title": "Types of Errors",
+      "titleInlineContent": [
+        {
+          "text": "Types of Errors",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/TypesofErrors.html#//apple_ref/doc/uid/TP40010853-CH17"
+    },
+    "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/index.html#//apple_ref/doc/uid/TP40010853": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/index.html#//apple_ref/doc/uid/TP40010853",
+      "title": "Auto Layout Guide",
+      "titleInlineContent": [
+        {
+          "text": "Auto Layout Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/index.html#//apple_ref/doc/uid/TP40010853"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Constraints",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/positioning-content-within-layout-margins",
+        "doc://com.apple.uikit/documentation/UIKit/positioning-content-relative-to-the-safe-area",
+        "doc://com.apple.uikit/documentation/UIKit/UILayoutSupport"
+      ],
+      "title": "Constraints"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-constraints",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/constraints(withVisualFormat:options:metrics:views:)",
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/init(item:attribute:relatedBy:toItem:attribute:multiplier:constant:)"
+      ],
+      "title": "Creating constraints"
+    },
+    {
+      "anchor": "Activating-and-deactivating-constraints",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/isActive",
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/activate(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/deactivate(_:)"
+      ],
+      "title": "Activating and deactivating constraints"
+    },
+    {
+      "anchor": "Accessing-constraint-data",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/firstItem",
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/firstAttribute",
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/relation-swift.property",
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/secondItem",
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/secondAttribute",
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/multiplier",
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/constant",
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/firstAnchor",
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/secondAnchor"
+      ],
+      "title": "Accessing constraint data"
+    },
+    {
+      "anchor": "Getting-the-layout-priority",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/priority",
+        "doc://com.apple.uikit/documentation/UIKit/UILayoutPriority",
+        "doc://com.apple.documentation/documentation/AppKit/NSLayoutConstraint/Priority-swift.struct"
+      ],
+      "title": "Getting the layout priority"
+    },
+    {
+      "anchor": "Identifying-a-constraint",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/identifier"
+      ],
+      "title": "Identifying a constraint"
+    },
+    {
+      "anchor": "Controlling-constraint-archiving",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/shouldBeArchived"
+      ],
+      "title": "Controlling constraint archiving"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/Relation-swift.enum",
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/Attribute",
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/FormatOptions",
+        "doc://com.apple.documentation/documentation/AppKit/NSLayoutConstraint/Orientation",
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/Axis",
+        "doc://com.apple.documentation/documentation/foundation/nsedgeinsets",
+        "doc://com.apple.uikit/documentation/UIKit/NSLAYOUTCONSTRAINT_H"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSLayoutConstraint"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-constraints",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/constraints(withVisualFormat:options:metrics:views:)",
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/init(item:attribute:relatedBy:toItem:attribute:multiplier:constant:)"
+              ],
+              "title": "Creating constraints"
+            },
+            {
+              "anchor": "Activating-and-deactivating-constraints",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/isActive",
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/activate(_:)",
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/deactivate(_:)"
+              ],
+              "title": "Activating and deactivating constraints"
+            },
+            {
+              "anchor": "Accessing-constraint-data",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/firstItem",
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/firstAttribute",
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/relation-swift.property",
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/secondItem",
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/secondAttribute",
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/multiplier",
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/constant",
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/firstAnchor",
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/secondAnchor"
+              ],
+              "title": "Accessing constraint data"
+            },
+            {
+              "anchor": "Getting-the-layout-priority",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/priority",
+                "doc://com.apple.uikit/documentation/UIKit/UILayoutPriority",
+                "doc://com.apple.documentation/documentation/AppKit/NSLayoutConstraint/Priority-swift.struct"
+              ],
+              "title": "Getting the layout priority"
+            },
+            {
+              "anchor": "Identifying-a-constraint",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/identifier"
+              ],
+              "title": "Identifying a constraint"
+            },
+            {
+              "anchor": "Controlling-constraint-archiving",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/shouldBeArchived"
+              ],
+              "title": "Controlling constraint archiving"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/Relation-swift.enum",
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/Attribute",
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/FormatOptions",
+                "doc://com.apple.documentation/documentation/AppKit/NSLayoutConstraint/Orientation",
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/Axis",
+                "doc://com.apple.documentation/documentation/foundation/nsedgeinsets",
+                "doc://com.apple.uikit/documentation/UIKit/NSLAYOUTCONSTRAINT_H"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Constraints",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/positioning-content-within-layout-margins",
+                "doc://com.apple.uikit/documentation/UIKit/positioning-content-relative-to-the-safe-area",
+                "doc://com.apple.uikit/documentation/UIKit/UILayoutSupport",
+                "doc://com.apple.uikit/documentation/UIKit/NSDictionaryOfVariableBindings"
+              ],
+              "title": "Constraints"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSLayoutConstraint"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint/title",
+          "value": "NSLayoutConstraint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLAYOUTCONSTRAINT_H/title",
+          "value": "NSLAYOUTCONSTRAINT_H"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLAYOUTCONSTRAINT_H/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLAYOUTCONSTRAINT_H"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1secondAnchor/title",
+          "value": "secondAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1secondAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "secondAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1init(item:attribute:relatedBy:toItem:attribute:multiplier:constant:)/title",
+          "value": "constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1init(item:attribute:relatedBy:toItem:attribute:multiplier:constant:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1Attribute/title",
+          "value": "NSLayoutAttribute"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1Attribute/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1Attribute/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1shouldBeArchived/title",
+          "value": "shouldBeArchived"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1shouldBeArchived/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shouldBeArchived"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1Relation-swift.enum/title",
+          "value": "NSLayoutRelation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1Relation-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutRelation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1Relation-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutRelation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1identifier/title",
+          "value": "identifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1identifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "identifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1firstItem/title",
+          "value": "firstItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1firstItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "firstItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1firstAttribute/title",
+          "value": "firstAttribute"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1firstAttribute/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "firstAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILayoutPriority/title",
+          "value": "UILayoutPriority"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILayoutPriority/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILayoutPriority"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILayoutPriority/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILayoutPriority"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1activate(_:)/title",
+          "value": "activateConstraints:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1activate(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "activateConstraints:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1deactivate(_:)/title",
+          "value": "deactivateConstraints:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1deactivate(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "deactivateConstraints:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1secondItem/title",
+          "value": "secondItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1secondItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "secondItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1multiplier/title",
+          "value": "multiplier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1multiplier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "multiplier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSLayoutConstraint~1Orientation/title",
+          "value": "NSLayoutConstraintOrientation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSLayoutConstraint~1Orientation/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSLayoutConstraintOrientation"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSInteger",
+              "text": "NSInteger"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1constraints(withVisualFormat:options:metrics:views:)/title",
+          "value": "constraintsWithVisualFormat:options:metrics:views:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1constraints(withVisualFormat:options:metrics:views:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "constraintsWithVisualFormat:options:metrics:views:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1secondAttribute/title",
+          "value": "secondAttribute"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1secondAttribute/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "secondAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1FormatOptions/title",
+          "value": "NSLayoutFormatOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1FormatOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutFormatOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1FormatOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutFormatOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1Axis/title",
+          "value": "UILayoutConstraintAxis"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1Axis/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILayoutConstraintAxis"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1Axis/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILayoutConstraintAxis"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1relation-swift.property/title",
+          "value": "relation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1relation-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "relation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILayoutSupport/title",
+          "value": "UILayoutSupport"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILayoutSupport/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILayoutSupport"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILayoutSupport/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILayoutSupport"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1priority/title",
+          "value": "priority"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1priority/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "priority"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1constant/title",
+          "value": "constant"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1constant/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "constant"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1isActive/title",
+          "value": "active"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1isActive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "active"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1firstAnchor/title",
+          "value": "firstAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1firstAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "firstAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSLayoutConstraint~1Priority-swift.struct/title",
+          "value": "NSLayoutPriority"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSLayoutConstraint~1Priority-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:f",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSLayoutPriority"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/nslayoutconstraint"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/nslayoutconstraint"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

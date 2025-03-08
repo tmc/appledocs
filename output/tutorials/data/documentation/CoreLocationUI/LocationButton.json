@@ -1,0 +1,1236 @@
+{
+  "abstract": [
+    {
+      "text": "A SwiftUI button that grants one-time location authorization.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CoreLocationUI/documentation/CoreLocationUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CoreLocationUI/documentation/CoreLocationUI/LocationButton"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:021_CoreLocationUI_SwiftC00B6ButtonV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "LocationButton"
+      }
+    ],
+    "modules": [
+      {
+        "name": "CoreLocationUI",
+        "relatedModules": [
+          "SwiftUI"
+        ]
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "LocationButton"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "LocationButton"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "LocationButton"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "LocationButton",
+              "type": "codeVoice"
+            },
+            {
+              "text": " simplifies requesting one-time authorization to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "access location data. Add this button to your SwiftUI user interface in situations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when users may want to grant temporary access to their location data each time they",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use a particular feature of your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "locationbutton-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first time a user taps this button, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "asks the user to confirm that they’re comfortable using this UI element when they",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "want to grant temporary access to their location data. If the user agrees, the app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "receives temporary ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLAuthorizationStatus/authorizedWhenInUse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "authorization, like when the user chooses ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Allow Once",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " in response to your app’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "standard location authorization request. This temporary authorization expires when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app is no longer in use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the user agrees to using ",
+              "type": "text"
+            },
+            {
+              "code": "LocationButton",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the button becomes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "approved to request future authorizations without displaying an additional alert",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the user. The next time the user taps it, this button simply grants one-time authorization",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "without requiring confirmation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you receive this temporary authorization, fetch the user’s location using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API and perform any app-specific",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tasks related to that location data. Connect the button to initiate the tasks you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "want to perform after getting authorization by specifying an action when you create",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the button. Keep in mind that this action activates every time the user taps this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "button, regardless of whether the app already has location authorization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a ",
+              "type": "text"
+            },
+            {
+              "code": "LocationButton",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in SwiftUI like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "LocationButton(.currentLocation) {",
+            "    // Fetch location with Core Location.",
+            "}",
+            ".symbolVariant(.fill)",
+            ".labelStyle(.titleAndIcon)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When a user taps the button, it only provides one-time authorization",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "to fetch location data — not the location data itself. For more details about fetching",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "location data, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/CoreLocation/configuring-your-app-to-use-location-services",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure the button to display an icon, a label, or both using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/labelStyle(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier. If you include an icon, you can customize its appearance using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/symbolVariant(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "design guidance, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/ios/app-architecture/accessing-user-data/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CoreLocationUI/documentation/CoreLocationUI": {
+      "abstract": [
+        {
+          "text": "Streamline access to users’ location data through a standard, secure UI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreLocationUI/documentation/CoreLocationUI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CoreLocationUI",
+      "type": "topic",
+      "url": "/documentation/corelocationui"
+    },
+    "doc://com.apple.CoreLocationUI/documentation/CoreLocationUI/CLLocationButton": {
+      "abstract": [
+        {
+          "text": "A button that grants one-time location authorization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocationButton"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreLocationUI/documentation/CoreLocationUI/CLLocationButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLLocationButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLLocationButton",
+      "type": "topic",
+      "url": "/documentation/corelocationui/cllocationbutton"
+    },
+    "doc://com.apple.CoreLocationUI/documentation/CoreLocationUI/LocationButton": {
+      "abstract": [
+        {
+          "text": "A SwiftUI button that grants one-time location authorization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocationButton"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreLocationUI/documentation/CoreLocationUI/LocationButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LocationButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "LocationButton",
+      "type": "topic",
+      "url": "/documentation/corelocationui/locationbutton"
+    },
+    "doc://com.apple.CoreLocationUI/documentation/CoreLocationUI/LocationButton/Title": {
+      "abstract": [
+        {
+          "text": "Constants that specify the text of a button title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Title"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreLocationUI/documentation/CoreLocationUI/LocationButton/Title",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Title"
+        }
+      ],
+      "role": "symbol",
+      "title": "LocationButton.Title",
+      "type": "topic",
+      "url": "/documentation/corelocationui/locationbutton/title"
+    },
+    "doc://com.apple.CoreLocationUI/documentation/CoreLocationUI/LocationButton/init(_:action:)": {
+      "abstract": [
+        {
+          "text": "Creates a location button with the specified title and action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:021_CoreLocationUI_SwiftC00B6ButtonV",
+          "text": "LocationButton"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:021_CoreLocationUI_SwiftC00B6ButtonV5TitleV",
+          "text": "Title"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreLocationUI/documentation/CoreLocationUI/LocationButton/init(_:action:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:action:)",
+      "type": "topic",
+      "url": "/documentation/corelocationui/locationbutton/init(_:action:)"
+    },
+    "doc://com.apple.CoreLocationUI/documentation/CoreLocationUI/sharing-your-location-to-find-a-park": {
+      "abstract": [
+        {
+          "text": "Ask for location access using a customizable location button.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreLocationUI/documentation/CoreLocationUI/sharing-your-location-to-find-a-park",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Sharing Your Location to Find a Park",
+      "type": "topic",
+      "url": "/documentation/corelocationui/sharing-your-location-to-find-a-park"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation": {
+      "abstract": [
+        {
+          "text": "Obtain the geographic location and orientation of a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Location",
+      "type": "topic",
+      "url": "/documentation/CoreLocation"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/CLAuthorizationStatus/authorizedWhenInUse": {
+      "abstract": [
+        {
+          "text": "The user authorized the app to start location services while it is in use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizedWhenInUse"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLAuthorizationStatus/authorizedWhenInUse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLAuthorizationStatus.authorizedWhenInUse",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/CLAuthorizationStatus/authorizedWhenInUse"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/configuring-your-app-to-use-location-services": {
+      "abstract": [
+        {
+          "text": "Prepare your app to start collecting location data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/configuring-your-app-to-use-location-services",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring your app to use location services",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/configuring-your-app-to-use-location-services"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/labelStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for labels within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "labelStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10LabelStyleP",
+          "text": "LabelStyle"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/labelStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "labelStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/labelStyle(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/symbolVariant(_:)": {
+      "abstract": [
+        {
+          "text": "Makes symbols within the view show a particular variant.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "symbolVariant"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "variant"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI14SymbolVariantsV",
+          "text": "SymbolVariants"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/symbolVariant(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "symbolVariant(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/symbolVariant(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/ios/app-architecture/accessing-user-data/": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/ios/app-architecture/accessing-user-data/",
+      "title": "Human Interface Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/ios/app-architecture/accessing-user-data/"
+    },
+    "locationbutton-1": {
+      "alt": "Screenshot of the location button with an icon that uses the filled arrow style and a label that shows Current Location.",
+      "identifier": "locationbutton-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d9ccebc87fa27074b42df3d0e9a3e263/locationbutton-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1736f8280311161eb34c692241ba7ae7/locationbutton-1~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Location-authorization",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CoreLocationUI/documentation/CoreLocationUI/sharing-your-location-to-find-a-park",
+        "doc://com.apple.CoreLocationUI/documentation/CoreLocationUI/CLLocationButton"
+      ],
+      "title": "Location authorization"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-location-button",
+      "identifiers": [
+        "doc://com.apple.CoreLocationUI/documentation/CoreLocationUI/LocationButton/init(_:action:)",
+        "doc://com.apple.CoreLocationUI/documentation/CoreLocationUI/LocationButton/Title"
+      ],
+      "title": "Creating a location button"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLAuthorizationStatus~1authorizedWhenInUse/title",
+          "value": "kCLAuthorizationStatusAuthorizedWhenInUse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLAuthorizationStatus~1authorizedWhenInUse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCLAuthorizationStatusAuthorizedWhenInUse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.CoreLocationUI~1documentation~1CoreLocationUI~1CLLocationButton/title",
+          "value": "CLLocationButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.CoreLocationUI~1documentation~1CoreLocationUI~1CLLocationButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.CoreLocationUI~1documentation~1CoreLocationUI~1CLLocationButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationButton"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corelocationui/locationbutton"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

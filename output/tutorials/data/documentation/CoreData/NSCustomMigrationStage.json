@@ -1,0 +1,1412 @@
+{
+  "abstract": [
+    {
+      "text": "An object that enables you to participate in the migration between two versions of the same model.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coredata/documentation/CoreData"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSCustomMigrationStage",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSCustomMigrationStage"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Data"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSCustomMigrationStage"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSCustomMigrationStage"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSCustomMigrationStage"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when you have two versions of a model that Core Data can’t automatically migrate. Custom migration stages enable you to participate in the migration process by assigning handlers that the stage invokes before and after it runs. The handlers provide an opportunity to prepare the persistent store’s data for the upcoming changes before the stage runs, and perform any cleanup tasks afterward.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to support a migration that changes an optional attribute to be nonoptional, you might assign a handler to the stage’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/willMigrateHandler-5wead",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property that sets any ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instances of that attribute to a default value, thereby ensuring the migration succeeds. To access the store you’re migrating, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSStagedMigrationManager/container",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the migration manager that Core Data provides to every handler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coredata/documentation/CoreData": {
+      "abstract": [
+        {
+          "text": "Persist or cache data on a single device, or sync data to multiple devices with CloudKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Data",
+      "type": "topic",
+      "url": "/documentation/coredata"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage": {
+      "abstract": [
+        {
+          "text": "An object that enables you to participate in the migration between two versions of the same model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCustomMigrationStage"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCustomMigrationStage"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCustomMigrationStage",
+      "type": "topic",
+      "url": "/documentation/coredata/nscustommigrationstage"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/currentModel": {
+      "abstract": [
+        {
+          "text": "The reference that represents the migration’s source model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentModel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSManagedObjectModelReference",
+          "text": "NSManagedObjectModelReference"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/currentModel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentModel"
+        }
+      ],
+      "role": "symbol",
+      "title": "currentModel",
+      "type": "topic",
+      "url": "/documentation/coredata/nscustommigrationstage/currentmodel"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/didMigrateHandler-2zbss": {
+      "abstract": [
+        {
+          "text": "The handler to execute after the stage runs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didMigrateHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSStagedMigrationManager",
+          "text": "NSStagedMigrationManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCustomMigrationStage",
+          "text": "NSCustomMigrationStage"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/didMigrateHandler-2zbss",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didMigrateHandler",
+      "type": "topic",
+      "url": "/documentation/coredata/nscustommigrationstage/didmigratehandler-2zbss"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/didMigrateHandler-36uhx": {
+      "abstract": [
+        {
+          "text": "The handler to execute after the stage runs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "didMigrateHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/didMigrateHandler-36uhx",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didMigrateHandler",
+      "type": "topic",
+      "url": "/documentation/coredata/nscustommigrationstage/didmigratehandler-36uhx"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/init(migratingFrom:to:)": {
+      "abstract": [
+        {
+          "text": "Creates a custom migration stage with the specified source and destination model references.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "migratingFrom"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSManagedObjectModelReference",
+          "text": "NSManagedObjectModelReference"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSManagedObjectModelReference",
+          "text": "NSManagedObjectModelReference"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/init(migratingFrom:to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(migratingFrom:to:)",
+      "type": "topic",
+      "url": "/documentation/coredata/nscustommigrationstage/init(migratingfrom:to:)"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/initWithCurrentModelReference:nextModelReference:": {
+      "abstract": [
+        {
+          "text": "Creates a custom migration stage with the specified source and destination model references.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithCurrentModelReference:nextModelReference:"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/initWithCurrentModelReference:nextModelReference:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCurrentModelReference:nextModelReference:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithCurrentModelReference:nextModelReference:",
+      "type": "topic",
+      "url": "/documentation/coredata/nscustommigrationstage/initwithcurrentmodelreference:nextmodelreference:"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/nextModel": {
+      "abstract": [
+        {
+          "text": "The reference that represents the migration’s destination model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nextModel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSManagedObjectModelReference",
+          "text": "NSManagedObjectModelReference"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/nextModel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nextModel"
+        }
+      ],
+      "role": "symbol",
+      "title": "nextModel",
+      "type": "topic",
+      "url": "/documentation/coredata/nscustommigrationstage/nextmodel"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/willMigrateHandler-5wead": {
+      "abstract": [
+        {
+          "text": "The handler to execute before the stage runs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "willMigrateHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSStagedMigrationManager",
+          "text": "NSStagedMigrationManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCustomMigrationStage",
+          "text": "NSCustomMigrationStage"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/willMigrateHandler-5wead",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "willMigrateHandler",
+      "type": "topic",
+      "url": "/documentation/coredata/nscustommigrationstage/willmigratehandler-5wead"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/willMigrateHandler-72p73": {
+      "abstract": [
+        {
+          "text": "The handler to execute before the stage runs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "willMigrateHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/willMigrateHandler-72p73",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "willMigrateHandler",
+      "type": "topic",
+      "url": "/documentation/coredata/nscustommigrationstage/willmigratehandler-72p73"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSLightweightMigrationStage": {
+      "abstract": [
+        {
+          "text": "An object that describes a series of models suitable for lightweight migration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLightweightMigrationStage"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSLightweightMigrationStage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLightweightMigrationStage"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLightweightMigrationStage",
+      "type": "topic",
+      "url": "/documentation/coredata/nslightweightmigrationstage"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectModelReference": {
+      "abstract": [
+        {
+          "text": "An object that describes a specific version of an object model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSManagedObjectModelReference"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectModelReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSManagedObjectModelReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSManagedObjectModelReference",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobjectmodelreference"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSMigrationStage": {
+      "abstract": [
+        {
+          "text": "An abstract base class for describing an individual stage of a migration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMigrationStage"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSMigrationStage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSMigrationStage"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSMigrationStage",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmigrationstage"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSStagedMigrationManager/container": {
+      "abstract": [
+        {
+          "text": "The container that provides access to the migrating persistent store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "container"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPersistentContainer",
+          "text": "NSPersistentContainer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSStagedMigrationManager/container",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "container"
+        }
+      ],
+      "role": "symbol",
+      "title": "container",
+      "type": "topic",
+      "url": "/documentation/coredata/nsstagedmigrationmanager/container"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/NSMigrationStage"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Migration-stages",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/NSLightweightMigrationStage",
+        "doc://com.apple.coredata/documentation/CoreData/NSMigrationStage"
+      ],
+      "title": "Migration stages"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-custom-migration-stage",
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/init(migratingFrom:to:)",
+        "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectModelReference"
+      ],
+      "title": "Creating a custom migration stage"
+    },
+    {
+      "anchor": "Accessing-model-references",
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/currentModel",
+        "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/nextModel"
+      ],
+      "title": "Accessing model references"
+    },
+    {
+      "anchor": "Assigning-event-handlers",
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/willMigrateHandler-5wead",
+        "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/didMigrateHandler-2zbss"
+      ],
+      "title": "Assigning event handlers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSCustomMigrationStage"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCustomMigrationStage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCustomMigrationStage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.coredata/documentation/CoreData"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-custom-migration-stage",
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/initWithCurrentModelReference:nextModelReference:",
+                "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectModelReference"
+              ],
+              "title": "Creating a custom migration stage"
+            },
+            {
+              "anchor": "Accessing-model-references",
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/currentModel",
+                "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/nextModel"
+              ],
+              "title": "Accessing model references"
+            },
+            {
+              "anchor": "Assigning-event-handlers",
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/willMigrateHandler-72p73",
+                "doc://com.apple.coredata/documentation/CoreData/NSCustomMigrationStage/didMigrateHandler-36uhx"
+              ],
+              "title": "Assigning event handlers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/NSMigrationStage"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Migration-stages",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/NSLightweightMigrationStage",
+                "doc://com.apple.coredata/documentation/CoreData/NSMigrationStage"
+              ],
+              "title": "Migration stages"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSCustomMigrationStage"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.coredata/documentation/CoreData/NSMigrationStage",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSMigrationStage",
+                    "text": "NSMigrationStage"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectModelReference/title",
+          "value": "NSManagedObjectModelReference"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectModelReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSManagedObjectModelReference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectModelReference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSManagedObjectModelReference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSCustomMigrationStage~1nextModel/title",
+          "value": "nextModel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSCustomMigrationStage~1nextModel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nextModel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSCustomMigrationStage/title",
+          "value": "NSCustomMigrationStage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSCustomMigrationStage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCustomMigrationStage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSCustomMigrationStage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCustomMigrationStage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSCustomMigrationStage~1currentModel/title",
+          "value": "currentModel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSCustomMigrationStage~1currentModel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "currentModel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSStagedMigrationManager~1container/title",
+          "value": "container"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSStagedMigrationManager~1container/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "container"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSMigrationStage/title",
+          "value": "NSMigrationStage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSMigrationStage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMigrationStage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSMigrationStage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMigrationStage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSLightweightMigrationStage/title",
+          "value": "NSLightweightMigrationStage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSLightweightMigrationStage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLightweightMigrationStage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSLightweightMigrationStage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLightweightMigrationStage"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coredata/nscustommigrationstage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coredata/nscustommigrationstage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

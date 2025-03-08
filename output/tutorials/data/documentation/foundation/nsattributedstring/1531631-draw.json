@@ -1,0 +1,509 @@
+{
+  "abstract": [
+    {
+      "text": "Draws the attributed string inside the specified bounding rectangle in the current graphics context.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+        "doc://com.apple.documentation/documentation/foundation/nsattributedstring"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsattributedstring/1531631-draw"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1531631,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSAttributedString(im)drawInRect:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "draw"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "identifier",
+        "text": "in"
+      },
+      {
+        "kind": "text",
+        "text": ": CGRect)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      },
+      {
+        "name": "AppKit"
+      }
+    ],
+    "parent": {
+      "title": "NSAttributedString"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "6.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "6.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "draw(in:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "draw"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "in"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "rect"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGRect",
+              "text": "CGRect"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The bounding rectangle in which to draw the string. In AppKit, the origin is normally in the lower-left corner of the drawing area, but the origin is in the upper-left corner if the focused view is flipped.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "rect"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method draws as much of the string as it can inside the specified rectangle, wrapping the string text as needed to make it fit. If the string is too long to fit inside the rectangle, the method renders as much as possible and clips the rest. It is possible for a portion of a glyph to appear outside the area of ",
+              "type": "text"
+            },
+            {
+              "code": "rect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the image bounding box of the particular glyph exceeds its typographic bounding box. Text is drawn according to its line sweep direction; for example, Arabic text begins at the right edge and is potentially clipped on the left.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Layout always occurs from top to bottom. AppKit automatically adjusts the initial drawing point whether or not the view is flipped. For example, if the ",
+              "type": "text"
+            },
+            {
+              "code": "rect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument is ",
+              "type": "text"
+            },
+            {
+              "code": "{0.0, 0.0, 100.0, 100.0}",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the text origin is {0.0, 0.0} when the view coordinates are flipped and {0.0, 100.0} when the view is not flipped.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method draws the line using the attributes specified in the attributed string itself. If newline characters are present in the string, those characters are honored and cause subsequent text to be placed on the next line underneath the starting point.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There must be either a focused view or an active graphics context when you call this method. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit/NSView/lockFocus()": {
+      "abstract": [
+        {
+          "text": "Locks the focus on the view, so subsequent commands take effect in the view’s window and coordinate system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockFocus"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/lockFocus()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lockFocus()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/lockfocus()"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgrect": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRect",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgrect"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsattributedstring": {
+      "abstract": [
+        {
+          "text": "A string of text that manages data, layout, and stylistic information for ranges of characters to support rendering.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsattributedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsattributedstring/1524971-draw": {
+      "abstract": [
+        {
+          "text": "Draws the attributed string in the specified bounding rectangle using the provided options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "draw"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSStringDrawingOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": NSStringDrawingContext?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring/1524971-draw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "draw(with:options:context:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsattributedstring/1524971-draw"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsattributedstring/1529478-draw": {
+      "abstract": [
+        {
+          "text": "Draws the attributed string starting at the specified point in the current graphics context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "draw"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": CGPoint)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring/1529478-draw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "draw(at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsattributedstring/1529478-draw"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsattributedstring/1531631-draw": {
+      "abstract": [
+        {
+          "text": "Draws the attributed string inside the specified bounding rectangle in the current graphics context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "draw"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring/1531631-draw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "draw(in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsattributedstring/1531631-draw"
+    },
+    "doc://com.apple.documentation/documentation/foundation/strings_and_text": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Strings and Text",
+      "type": "topic",
+      "url": "/documentation/foundation/strings_and_text"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsattributedstring/1529478-draw",
+        "doc://com.apple.documentation/documentation/foundation/nsattributedstring/1524971-draw"
+      ],
+      "title": "Drawing the attributed string"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSView/lockFocus()"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsattributedstring/1531631-drawinrect"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsattributedstring/1531631-draw"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

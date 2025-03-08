@@ -1,0 +1,3035 @@
+{
+  "abstract": [
+    {
+      "text": "An evaluation context for rendering image processing results and performing image analysis.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreimage/cicontext"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1437893,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CIContext",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "CIContext"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Image"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "CIContext"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CIContext"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class provides an evaluation context for Core Image processing with Quartz 2D, Metal, or OpenGL. You use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects in conjunction with other Core Image classes, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to process images using Core Image filters. You also use a Core Image context with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cidetector",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to analyze images—for example, to detect faces or barcodes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects are immutable, so multiple threads can use the same ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object to render ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects. However, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects are mutable and thus cannot be shared safely among threads. Each thread must create its own ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects, but you can pass a filter’s immutable input and output ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects between threads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Image",
+      "type": "topic",
+      "url": "/documentation/coreimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolor": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIColor",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolor"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext": {
+      "abstract": [
+        {
+          "text": "An evaluation context for rendering image processing results and performing image analysis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIContext",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1437609-init": {
+      "abstract": [
+        {
+          "text": "Creates a Core Image context using the specified Metal device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "mtlDevice"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1437609-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(mtlDevice:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1437609-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1437711-init": {
+      "abstract": [
+        {
+          "text": "Creates a Core Image context using the specified Metal device and options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "mtlDevice"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIContextOption : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1437711-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(mtlDevice:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1437711-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1437758-init": {
+      "abstract": [
+        {
+          "text": "Creates an OpenGL-based Core Image context using a GPU that is not currently driving a display, with the specified options.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "forOfflineGPUAt"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt32, "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIContextOption : Any]?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "sharedContext"
+        },
+        {
+          "kind": "text",
+          "text": ": CGLContextObj?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1437758-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(forOfflineGPUAt:colorSpace:options:sharedContext:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1437758-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1437772-init": {
+      "abstract": [
+        {
+          "text": "Creates an OpenGL-based Core Image context using a GPU that is not currently driving a display.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "forOfflineGPUAt"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt32)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1437772-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(forOfflineGPUAt:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1437772-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1437778-render": {
+      "abstract": [
+        {
+          "text": "Renders a region of an image into an IOSurface object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "render"
+        },
+        {
+          "kind": "text",
+          "text": "(CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": IOSurfaceRef, "
+        },
+        {
+          "kind": "identifier",
+          "text": "bounds"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect, "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1437778-render",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "render(_:to:bounds:colorSpace:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1437778-render"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1437784-createcgimage": {
+      "abstract": [
+        {
+          "text": "Creates a Quartz 2D image from a region of a Core Image image object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "createCGImage"
+        },
+        {
+          "kind": "text",
+          "text": "(CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect) -> CGImage?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1437784-createcgimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createCGImage(_:from:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1437784-createcgimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1437786-draw": {
+      "abstract": [
+        {
+          "text": "Renders a region of an image to a rectangle in the context destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "draw"
+        },
+        {
+          "kind": "text",
+          "text": "(CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect, "
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1437786-draw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "draw(_:in:from:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1437786-draw"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1437790-clearcaches": {
+      "abstract": [
+        {
+          "text": "Frees any cached data, such as temporary images, associated with the context and runs the garbage collector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "clearCaches"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1437790-clearcaches",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clearCaches()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1437790-clearcaches"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1437817-offlinegpucount": {
+      "abstract": [
+        {
+          "text": "Returns the number of GPUs not currently driving a display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "offlineGPUCount"
+        },
+        {
+          "kind": "text",
+          "text": "() -> UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1437817-offlinegpucount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offlineGPUCount()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1437817-offlinegpucount"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1437835-render": {
+      "abstract": [
+        {
+          "text": "Renders a region of an image into a pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "render"
+        },
+        {
+          "kind": "text",
+          "text": "(CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": CVPixelBuffer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "bounds"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect, "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1437835-render",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "render(_:to:bounds:colorSpace:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1437835-render"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1437853-render": {
+      "abstract": [
+        {
+          "text": "Renders an image into a pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "render"
+        },
+        {
+          "kind": "text",
+          "text": "(CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": CVPixelBuffer)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1437853-render",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "render(_:to:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1437853-render"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1437864-init": {
+      "abstract": [
+        {
+          "text": "Creates a Core Image context from a Quartz context, using the specified options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "cgContext"
+        },
+        {
+          "kind": "text",
+          "text": ": CGContext, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIContextOption : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1437864-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cgContext:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1437864-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1437897-render": {
+      "abstract": [
+        {
+          "text": "Renders to the given bitmap. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "render"
+        },
+        {
+          "kind": "text",
+          "text": "(CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "toBitmap"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "rowBytes"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "bounds"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect, "
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": CIFormat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1437897-render",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "render(_:toBitmap:rowBytes:bounds:format:colorSpace:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1437897-render"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1437967-reclaimresources": {
+      "abstract": [
+        {
+          "text": "Runs the garbage collector to reclaim any resources that the context no longer requires.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "reclaimResources"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1437967-reclaimresources",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reclaimResources()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1437967-reclaimresources"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1437978-createcgimage": {
+      "abstract": [
+        {
+          "text": "Creates a Quartz 2D image from a region of a Core Image image object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "createCGImage"
+        },
+        {
+          "kind": "text",
+          "text": "(CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect, "
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": CIFormat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace?) -> CGImage?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1437978-createcgimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createCGImage(_:from:format:colorSpace:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1437978-createcgimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1438026-render": {
+      "abstract": [
+        {
+          "text": "Renders a region of an image to a Metal texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "render"
+        },
+        {
+          "kind": "text",
+          "text": "(CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLTexture, "
+        },
+        {
+          "kind": "identifier",
+          "text": "commandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": (any MTLCommandBuffer)?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "bounds"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect, "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1438026-render",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "render(_:to:commandBuffer:bounds:colorSpace:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1438026-render"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1438061-workingcolorspace": {
+      "abstract": [
+        {
+          "text": "The working color space of the Core Image context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "workingColorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1438061-workingcolorspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "workingColorSpace",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1438061-workingcolorspace"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1438137-init": {
+      "abstract": [
+        {
+          "text": "Creates a Core Image context from a CGL context, using the specified options, color space, and pixel format object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "cglContext"
+        },
+        {
+          "kind": "text",
+          "text": ": CGLContextObj, "
+        },
+        {
+          "kind": "identifier",
+          "text": "pixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": CGLPixelFormatObj?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIContextOption : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1438137-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cglContext:pixelFormat:colorSpace:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1438137-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1438261-init": {
+      "abstract": [
+        {
+          "text": "Initializes a context without a specific rendering destination, using the specified options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIContextOption : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1438261-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1438261-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1438267-createcglayer": {
+      "abstract": [
+        {
+          "text": "Creates a CGLayer object from the provided parameters.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "createCGLayer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": CGSize, "
+        },
+        {
+          "kind": "identifier",
+          "text": "info"
+        },
+        {
+          "kind": "text",
+          "text": ": CFDictionary?) -> CGLayer?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1438267-createcglayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createCGLayer(with:info:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1438267-createcglayer"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1473521-draw": {
+      "abstract": [
+        {
+          "text": "Renders a region of an image to a point in the context destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "draw"
+        },
+        {
+          "kind": "text",
+          "text": "(CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": CGPoint, "
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1473521-draw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "draw(_:at:from:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1473521-draw"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1620335-outputimagemaximumsize": {
+      "abstract": [
+        {
+          "text": "Returns the maximum size allowed for any image created by the context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputImageMaximumSize"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1620335-outputimagemaximumsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "outputImageMaximumSize()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1620335-outputimagemaximumsize"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1620362-init": {
+      "abstract": [
+        {
+          "text": "Creates a Core Image context from an EAGL context using the specified options.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "eaglContext"
+        },
+        {
+          "kind": "text",
+          "text": ": EAGLContext, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIContextOption : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1620362-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(eaglContext:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1620362-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1620419-init": {
+      "abstract": [
+        {
+          "text": "Creates a Core Image context from an EAGL context.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "eaglContext"
+        },
+        {
+          "kind": "text",
+          "text": ": EAGLContext)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1620419-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(eaglContext:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1620419-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1620425-inputimagemaximumsize": {
+      "abstract": [
+        {
+          "text": "Returns the maximum size allowed for any image rendered into the context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputImageMaximumSize"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1620425-inputimagemaximumsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputImageMaximumSize()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1620425-inputimagemaximumsize"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1642211-createcgimage": {
+      "abstract": [
+        {
+          "text": "Creates a Quartz 2D image from a region of a Core Image image object with deferred rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "createCGImage"
+        },
+        {
+          "kind": "text",
+          "text": "(CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect, "
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": CIFormat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "deferred"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool) -> CGImage?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1642211-createcgimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createCGImage(_:from:format:colorSpace:deferred:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1642211-createcgimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1642212-init": {
+      "abstract": [
+        {
+          "text": "Initializes a context without a specific rendering destination, using default options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1642212-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1642212-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1642213-writetiffrepresentation": {
+      "abstract": [
+        {
+          "text": "Renders the image and exports the resulting image data as a file in TIFF format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeTIFFRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": CIFormat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageRepresentationOption : Any])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1642213-writetiffrepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "writeTIFFRepresentation(of:to:format:colorSpace:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1642213-writetiffrepresentation"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1642214-jpegrepresentation": {
+      "abstract": [
+        {
+          "text": "Renders the image and exports the resulting image data in JPEG format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "jpegRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageRepresentationOption : Any]) -> Data?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1642214-jpegrepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "jpegRepresentation(of:colorSpace:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1642214-jpegrepresentation"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1642215-workingformat": {
+      "abstract": [
+        {
+          "text": "The working pixel format of the Core Image context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "workingFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": CIFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1642215-workingformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "workingFormat",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1642215-workingformat"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1642218-writejpegrepresentation": {
+      "abstract": [
+        {
+          "text": "Renders the image and exports the resulting image data as a file in JPEG format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeJPEGRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageRepresentationOption : Any])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1642218-writejpegrepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "writeJPEGRepresentation(of:to:colorSpace:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1642218-writejpegrepresentation"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1642220-tiffrepresentation": {
+      "abstract": [
+        {
+          "text": "Renders the image and exports the resulting image data in TIFF format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "tiffRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": CIFormat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageRepresentationOption : Any]) -> Data?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1642220-tiffrepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tiffRepresentation(of:format:colorSpace:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1642220-tiffrepresentation"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/2866196-pngrepresentation": {
+      "abstract": [
+        {
+          "text": "Renders the image and exports the resulting image data in PNG format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "pngRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": CIFormat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageRepresentationOption : Any]) -> Data?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/2866196-pngrepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pngRepresentation(of:format:colorSpace:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/2866196-pngrepresentation"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/2866197-writepngrepresentation": {
+      "abstract": [
+        {
+          "text": "Renders the image and exports the resulting image data as a file in PNG format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "writePNGRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": CIFormat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageRepresentationOption : Any])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/2866197-writepngrepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "writePNGRepresentation(of:to:format:colorSpace:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/2866197-writepngrepresentation"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/2875428-preparerender": {
+      "abstract": [
+        {
+          "text": "An optional call to warm up a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " so that subsequent calls to render with the same arguments run more efficiently.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareRender"
+        },
+        {
+          "kind": "text",
+          "text": "(CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": CIRenderDestination, "
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": CGPoint)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/2875428-preparerender",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepareRender(_:from:to:at:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/2875428-preparerender"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/2875429-starttask": {
+      "abstract": [
+        {
+          "text": "Renders an image to a destination so that point (0, 0) of the image maps to point (0, 0) of the destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "startTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "toRender"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": CIRenderDestination) -> CIRenderTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/2875429-starttask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startTask(toRender:to:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/2875429-starttask"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/2875448-starttask": {
+      "abstract": [
+        {
+          "text": "Renders a portion of an image to a point in the destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "startTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "toRender"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": CGRect, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": CIRenderDestination, "
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": CGPoint) -> CIRenderTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/2875448-starttask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startTask(toRender:from:to:at:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/2875448-starttask"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/2875450-starttask": {
+      "abstract": [
+        {
+          "text": "Fills the entire destination with black or clear depending on its ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875443-alphamode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "startTask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "toClear"
+        },
+        {
+          "kind": "text",
+          "text": ": CIRenderDestination) -> CIRenderTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/2875450-starttask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startTask(toClear:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/2875450-starttask"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/2902266-writeheifrepresentation": {
+      "abstract": [
+        {
+          "text": "Renders the image and exports the resulting image data as a file in HEIF format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeHEIFRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": CIFormat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageRepresentationOption : Any])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/2902266-writeheifrepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "writeHEIFRepresentation(of:to:format:colorSpace:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/2902266-writeheifrepresentation"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/2902269-heifrepresentation": {
+      "abstract": [
+        {
+          "text": "Renders the image and exports the resulting image data in HEIF format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "heifRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": CIFormat, "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageRepresentationOption : Any]) -> Data?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/2902269-heifrepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "heifRepresentation(of:format:colorSpace:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/2902269-heifrepresentation"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/3019315-depthblureffectfilter": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "depthBlurEffectFilter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "disparityImage"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "portraitEffectsMatte"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "orientation"
+        },
+        {
+          "kind": "text",
+          "text": ": CGImagePropertyOrientation, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]?) -> CIFilter?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/3019315-depthblureffectfilter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "depthBlurEffectFilter(for:disparityImage:portraitEffectsMatte:orientation:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/3019315-depthblureffectfilter"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/3019316-depthblureffectfilter": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "depthBlurEffectFilter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forImageURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]?) -> CIFilter?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/3019316-depthblureffectfilter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "depthBlurEffectFilter(forImageURL:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/3019316-depthblureffectfilter"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/3020629-depthblureffectfilter": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "depthBlurEffectFilter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forImageData"
+        },
+        {
+          "kind": "text",
+          "text": ": Data, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]?) -> CIFilter?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/3020629-depthblureffectfilter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "depthBlurEffectFilter(forImageData:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/3020629-depthblureffectfilter"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/3228045-depthblureffectfilter": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "depthBlurEffectFilter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "disparityImage"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "portraitEffectsMatte"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "hairSemanticSegmentation"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "orientation"
+        },
+        {
+          "kind": "text",
+          "text": ": CGImagePropertyOrientation, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]?) -> CIFilter?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/3228045-depthblureffectfilter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "depthBlurEffectFilter(for:disparityImage:portraitEffectsMatte:hairSemanticSegmentation:orientation:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/3228045-depthblureffectfilter"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/3365984-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "mtlCommandQueue"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLCommandQueue)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/3365984-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(mtlCommandQueue:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/3365984-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/3365985-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "mtlCommandQueue"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLCommandQueue, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIContextOption : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/3365985-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(mtlCommandQueue:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/3365985-init"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/3600105-depthblureffectfilter": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "depthBlurEffectFilter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "disparityImage"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "portraitEffectsMatte"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "hairSemanticSegmentation"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "glassesMatte"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "gainMap"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "orientation"
+        },
+        {
+          "kind": "text",
+          "text": ": CGImagePropertyOrientation, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]?) -> CIFilter?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/3600105-depthblureffectfilter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "depthBlurEffectFilter(for:disparityImage:portraitEffectsMatte:hairSemanticSegmentation:glassesMatte:gainMap:orientation:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/3600105-depthblureffectfilter"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/3762899-heif10representation": {
+      "abstract": [
+        {
+          "text": "Renders the image and exports the resulting image data in HEIF10 format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "heif10Representation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageRepresentationOption : Any]) -> Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/3762899-heif10representation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "heif10Representation(of:colorSpace:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/3762899-heif10representation"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/3762900-writeheif10representation": {
+      "abstract": [
+        {
+          "text": "Renders the image and exports the resulting image data as a file in HEIF10 format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeHEIF10Representation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorSpace, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageRepresentationOption : Any])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/3762900-writeheif10representation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "writeHEIF10Representation(of:to:colorSpace:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/3762900-writeheif10representation"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/4210204-openexrrepresentation": {
+      "abstract": [
+        {
+          "text": "Renders the image and exports the resulting image data in open EXR format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "openEXRRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageRepresentationOption : Any]) -> Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/4210204-openexrrepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "openEXRRepresentation(of:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/4210204-openexrrepresentation"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/4210205-writeopenexrrepresentation": {
+      "abstract": [
+        {
+          "text": "Renders the image and exports the resulting image data as a file in open EXR format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeOpenEXRRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": CIImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [CIImageRepresentationOption : Any])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/4210205-writeopenexrrepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "writeOpenEXRRepresentation(of:to:options:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/4210205-writeopenexrrepresentation"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontextoption": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIContextOption"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontextoption",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIContextOption",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontextoption"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cidetector": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cidetector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIDetector",
+      "type": "topic",
+      "url": "/documentation/coreimage/cidetector"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIFilter",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage": {
+      "abstract": [
+        {
+          "text": "A representation of an image to be processed or produced by Core Image filters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIImage",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimagerepresentationoption": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIImageRepresentationOption"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimagerepresentationoption",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIImageRepresentationOption",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimagerepresentationoption"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875443-alphamode": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination/2875443-alphamode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alphaMode",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirenderdestination/2875443-alphamode"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters": {
+      "abstract": [
+        {
+          "text": "Apply effects such as sepia tint, highlight strengthening, and scaling to images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters",
+      "kind": "article",
+      "role": "article",
+      "title": "Processing an Image Using Built-in Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/processing_an_image_using_built-in_filters"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/processing_an_image_using_built-in_filters",
+        "doc://com.apple.documentation/documentation/coreimage/ciimage"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1682588",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1642212-init",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1438261-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Context Without Specifying a Destination"
+    },
+    {
+      "anchor": "1682589",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1437864-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Context for CPU-Based Rendering"
+    },
+    {
+      "anchor": "1651777",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1437609-init",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1437711-init",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/3365984-init",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/3365985-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Context for GPU-Based Rendering"
+    },
+    {
+      "anchor": "1651874",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1437784-createcgimage",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1437978-createcgimage",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1642211-createcgimage",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1437897-render",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1437853-render",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1437835-render",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1437778-render",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1438026-render"
+      ],
+      "kind": "taskGroup",
+      "title": "Rendering Images"
+    },
+    {
+      "anchor": "1682591",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1473521-draw",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1437786-draw"
+      ],
+      "kind": "taskGroup",
+      "title": "Drawing Images"
+    },
+    {
+      "anchor": "1651982",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1620425-inputimagemaximumsize",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1620335-outputimagemaximumsize"
+      ],
+      "kind": "taskGroup",
+      "title": "Determining the Allowed Extents for Images Used by a Context"
+    },
+    {
+      "anchor": "1652028",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1437790-clearcaches",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1437967-reclaimresources",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1437817-offlinegpucount",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1438061-workingcolorspace",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1642215-workingformat"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing Resources"
+    },
+    {
+      "anchor": "1844526",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1642220-tiffrepresentation",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1642214-jpegrepresentation",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/2866196-pngrepresentation",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/2902269-heifrepresentation",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/3762899-heif10representation",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/4210204-openexrrepresentation",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1642213-writetiffrepresentation",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1642218-writejpegrepresentation",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/2866197-writepngrepresentation",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/2902266-writeheifrepresentation",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/3762900-writeheif10representation",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/4210205-writeopenexrrepresentation",
+        "doc://com.apple.documentation/documentation/coreimage/ciimagerepresentationoption"
+      ],
+      "kind": "taskGroup",
+      "title": "Rendering Images for Data or File Export"
+    },
+    {
+      "anchor": "4375374",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/3600105-depthblureffectfilter",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/3228045-depthblureffectfilter",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/3019315-depthblureffectfilter",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/3020629-depthblureffectfilter",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/3019316-depthblureffectfilter"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Depth Blur Filters"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Keys to be used in the ",
+          "type": "text"
+        },
+        {
+          "code": "options",
+          "type": "codeVoice"
+        },
+        {
+          "text": " dictionary when creating a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "anchor": "1652094",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cicontextoption"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "2958589",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/2875428-preparerender",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/2875450-starttask",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/2875448-starttask",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/2875429-starttask"
+      ],
+      "kind": "taskGroup",
+      "title": "Customizing Render Destination"
+    },
+    {
+      "anchor": "4390074",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1438137-init",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1620419-init",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1620362-init",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1437772-init",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1437758-init",
+        "doc://com.apple.documentation/documentation/coreimage/cicontext/1438267-createcglayer"
+      ],
+      "kind": "taskGroup",
+      "title": "Deprecated"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreimage/cicontext"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreimage/cicontext"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

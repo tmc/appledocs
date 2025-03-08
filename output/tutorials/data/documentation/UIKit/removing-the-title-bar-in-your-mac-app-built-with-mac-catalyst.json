@@ -1,0 +1,539 @@
+{
+  "abstract": [
+    {
+      "text": "Display content that fills the entire height of a window by removing the title bar.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/mac-catalyst"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/removing-the-title-bar-in-your-mac-app-built-with-mac-catalyst"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Removing the title bar in your Mac app built with Mac Catalyst"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, Mac apps built with Mac Catalyst display a title bar across the top of their windows. A horizontal line separates the title bar from the content of the window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some Mac apps such as Messages and Contacts have no title bar in their main window. Instead, the top of the window shows only the Close, Minimize, and Zoom buttons with no separator between them and the window’s content. In this UI design, the content area fills the entire height of the window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following image illustrates these styles in two windows. The first window displays a title bar, while the second has none.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3507886",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Remove-the-title-bar",
+          "level": 3,
+          "text": "Remove the title bar",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you choose to design your window without a title bar, you must remove it from the window. To remove the title bar, set the title bar’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITitlebar/titleVisibility",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITitlebarTitleVisibility/hidden",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITitlebar/toolbar",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The following code shows how to remove the title bar and its separator from the window during the setup of a new scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {",
+            "    ",
+            "    guard let windowScene = (scene as? UIWindowScene) else { return }",
+            "    ",
+            "    #if targetEnvironment(macCatalyst)",
+            "    if let titlebar = windowScene.titlebar {",
+            "        titlebar.titleVisibility = .hidden",
+            "        titlebar.toolbar = nil",
+            "    }",
+            "    #endif",
+            "",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/touch-bar": {
+      "abstract": [
+        {
+          "text": "Display interactive content and controls in the Touch Bar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/touch-bar",
+      "kind": "article",
+      "role": "article",
+      "title": "Touch Bar",
+      "type": "topic",
+      "url": "/documentation/AppKit/touch-bar"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITitlebar/titleVisibility": {
+      "abstract": [
+        {
+          "text": "A value that indicates the visibility of the title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "titleVisibility"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UITitlebarTitleVisibility",
+          "text": "UITitlebarTitleVisibility"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITitlebar/titleVisibility",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "titleVisibility"
+        }
+      ],
+      "role": "symbol",
+      "title": "titleVisibility",
+      "type": "topic",
+      "url": "/documentation/uikit/uititlebar/titlevisibility"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITitlebar/toolbar": {
+      "abstract": [
+        {
+          "text": "The toolbar displayed beneath or integrated with the title bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toolbar"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSToolbar",
+          "text": "NSToolbar"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITitlebar/toolbar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "toolbar"
+        }
+      ],
+      "role": "symbol",
+      "title": "toolbar",
+      "type": "topic",
+      "url": "/documentation/uikit/uititlebar/toolbar"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITitlebarTitleVisibility/hidden": {
+      "abstract": [
+        {
+          "text": "A state indicating that the title isn’t visible in the title bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hidden"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITitlebarTitleVisibility/hidden",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITitlebarTitleVisibilityHidden"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITitlebarTitleVisibility.hidden",
+      "type": "topic",
+      "url": "/documentation/uikit/uititlebartitlevisibility/hidden"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/building-and-improving-your-app-with-mac-catalyst": {
+      "abstract": [
+        {
+          "text": "Improve your iPadOS app with Mac Catalyst by supporting native controls, multiple windows, sharing, printing, menus and keyboard shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/building-and-improving-your-app-with-mac-catalyst",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building and improving your app with Mac Catalyst",
+      "type": "topic",
+      "url": "/documentation/uikit/building-and-improving-your-app-with-mac-catalyst"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/displaying-a-checkbox-in-your-mac-app-built-with-mac-catalyst": {
+      "abstract": [
+        {
+          "text": "Present a switch control as a Mac-style checkbox when your app runs in the Mac user interface idiom.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/displaying-a-checkbox-in-your-mac-app-built-with-mac-catalyst",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying a checkbox in your Mac app built with Mac Catalyst",
+      "type": "topic",
+      "url": "/documentation/uikit/displaying-a-checkbox-in-your-mac-app-built-with-mac-catalyst"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/mac-catalyst": {
+      "abstract": [
+        {
+          "text": "Create a version of your iPad app that users can run on a Mac device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/mac-catalyst",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Mac Catalyst",
+      "type": "topic",
+      "url": "/documentation/uikit/mac-catalyst"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/toolbar": {
+      "abstract": [
+        {
+          "text": "Provide a space for controls under a window’s title bar and above your custom content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/toolbar",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Toolbar",
+      "type": "topic",
+      "url": "/documentation/uikit/toolbar"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/uikit-catalog-creating-and-customizing-views-and-controls": {
+      "abstract": [
+        {
+          "text": "Customize your app’s user interface with views and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/uikit-catalog-creating-and-customizing-views-and-controls",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "UIKit Catalog: Creating and customizing views and controls",
+      "type": "topic",
+      "url": "/documentation/uikit/uikit-catalog-creating-and-customizing-views-and-controls"
+    },
+    "media-3507886": {
+      "alt": "Screenshot of two windows, one stacked above the other, with a dark background in the content area of each window.",
+      "identifier": "media-3507886",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/125be45fc6704d3881a3e241a6706782/media-3507886@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/125be45fc6704d3881a3e241a6706782/media-3507886~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-interface",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/uikit-catalog-creating-and-customizing-views-and-controls",
+        "doc://com.apple.uikit/documentation/UIKit/building-and-improving-your-app-with-mac-catalyst",
+        "doc://com.apple.uikit/documentation/UIKit/displaying-a-checkbox-in-your-mac-app-built-with-mac-catalyst",
+        "doc://com.apple.uikit/documentation/UIKit/toolbar",
+        "doc://com.apple.documentation/documentation/AppKit/touch-bar"
+      ],
+      "title": "User interface"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "User-interface",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/uikit-catalog-creating-and-customizing-views-and-controls",
+                "doc://com.apple.uikit/documentation/UIKit/building-and-improving-your-app-with-mac-catalyst",
+                "doc://com.apple.uikit/documentation/UIKit/displaying-a-checkbox-in-your-mac-app-built-with-mac-catalyst",
+                "doc://com.apple.uikit/documentation/UIKit/toolbar",
+                "doc://com.apple.documentation/documentation/AppKit/touch-bar"
+              ],
+              "title": "User interface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITitlebar~1titleVisibility/title",
+          "value": "titleVisibility"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITitlebar~1titleVisibility/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "titleVisibility"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITitlebar~1toolbar/title",
+          "value": "toolbar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITitlebar~1toolbar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "toolbar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITitlebarTitleVisibility~1hidden/title",
+          "value": "UITitlebarTitleVisibilityHidden"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITitlebarTitleVisibility~1hidden/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITitlebarTitleVisibilityHidden"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/removing-the-title-bar-in-your-mac-app-built-with-mac-catalyst"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/removing-the-title-bar-in-your-mac-app-built-with-mac-catalyst"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

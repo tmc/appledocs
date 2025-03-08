@@ -1,0 +1,653 @@
+{
+  "abstract": [
+    {
+      "text": "Register your iOS routing app to provide point-to-point directions to Maps and",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "other apps.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/capabilities"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/configuring-maps-support"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring Maps support"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An iOS app that’s able to display point-to-point directions can register as a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "routing app and make those directions available to Maps along with all other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "apps on a user’s device. Registering as a routing app improves the user",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "experience because other apps can access your app’s routing information,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and these apps don’t need to provide their own routing directions. Because Maps",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "displays apps in the App Store that provide directions, registering your iOS",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app as a routing app is a great way to let users know about it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A routing app provides specific directions in addition to what Maps supports,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as subway routes, hiking trails, and bike paths. Before you can select the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "routing modes that your app supports, follow the steps in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-capabilities-to-your-app#Add-a-capability",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to add the Maps",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "capability to your app’s target.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "maps",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This capability is only applicable to custom routing apps on iOS. You",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "don’t need to add the Maps capability to a macOS app to be able to use the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "MapKit framework.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Select-the-supported-routing-modes",
+          "level": 3,
+          "text": "Select the supported routing modes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before the system can distribute requests for directions to your routing app,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you must inform it of the routing modes your app supports by following these",
+              "type": "text"
+            },
+            {
+              "text": "\n",
+              "type": "text"
+            },
+            {
+              "text": "steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your project in Xcode’s Project navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the app’s target from the Targets list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Signing & Capabilities tab in the project editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Find the Maps capability.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the relevant routing modes by checking the corresponding checkboxes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "routing-modes",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode adds the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/MKDirectionsApplicationSupportedModes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "array to your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file (if not already present) and uses the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modes you select to populate the array with the necessary values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you select the necessary routing modes, there are additional",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "configuration steps you must complete before your app can start providing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "point-to-point directions, such as specifying a directions request document",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type and declaring your app’s geographic region. For more information,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/LocationAwarenessPG/ProvidingDirections/ProvidingDirections.html#//apple_ref/doc/uid/TP40009497-CH8-SW8",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-capabilities-to-your-app#Add-a-capability": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-capabilities-to-your-app#Add-a-capability",
+      "kind": "section",
+      "title": "Add a capability",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-capabilities-to-your-app#Add-a-capability"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/capabilities": {
+      "abstract": [
+        {
+          "text": "Enable services that Apple provides, such as In-App Purchase, Push Notifications,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Apple Pay, iCloud, and many others.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/capabilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Capabilities",
+      "type": "topic",
+      "url": "/documentation/xcode/capabilities"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-background-execution-modes": {
+      "abstract": [
+        {
+          "text": "Indicate the background services your app requires to continue executing in the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "background in iOS, iPadOS, tvOS, visionOS, and watchOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-background-execution-modes",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring background execution modes",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-background-execution-modes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-custom-fonts": {
+      "abstract": [
+        {
+          "text": "Register your app as a provider or consumer of systemwide custom fonts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-custom-fonts",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring custom fonts",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-custom-fonts"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-game-controllers": {
+      "abstract": [
+        {
+          "text": "Enhance gameplay input by enabling the discovery, configuration, and use of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "physical game controllers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-game-controllers",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring game controllers",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-game-controllers"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-siri-support": {
+      "abstract": [
+        {
+          "text": "Enable your app and its Intents extension to resolve, confirm, and handle",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "user-driven Siri requests for your app’s services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-siri-support",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Siri support",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-siri-support"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/MKDirectionsApplicationSupportedModes": {
+      "abstract": [
+        {
+          "text": "The modes of transportation for which the app is capable of giving directions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/MKDirectionsApplicationSupportedModes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKDirectionsApplicationSupportedModes",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/MKDirectionsApplicationSupportedModes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/LocationAwarenessPG/ProvidingDirections/ProvidingDirections.html#//apple_ref/doc/uid/TP40009497-CH8-SW8": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/LocationAwarenessPG/ProvidingDirections/ProvidingDirections.html#//apple_ref/doc/uid/TP40009497-CH8-SW8",
+      "title": "Configuring Your App to Accept Direction Requests",
+      "titleInlineContent": [
+        {
+          "text": "Configuring Your App to Accept Direction Requests",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/LocationAwarenessPG/ProvidingDirections/ProvidingDirections.html#//apple_ref/doc/uid/TP40009497-CH8-SW8"
+    },
+    "maps": {
+      "alt": "A screenshot of Xcode’s Capabilities library with a list of available capabilities on the left and an information pane on the right. The list shows a range of capabilities from Maps to Siri, and the Maps capability is in a selected state. The text on the information pane explains that, with MapKit, you can create routing apps that users can access from Maps. Your apps can provide specific directions beyond what the Maps app supports, including subway routes, hiking trails, or bike paths.",
+      "identifier": "maps",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a05f851a0639bc61e3073396ffe1e82b/maps@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d83d7d43564fab614f25577b303495e8/maps~dark@2x.png"
+        }
+      ]
+    },
+    "routing-modes": {
+      "alt": "A screenshot of the Maps capability after you add it to a target. The Airplane, Bus, and Ferry routing modes are in an enabled state.",
+      "identifier": "routing-modes",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9609f68ccf2d2e3e7a374a7cf1db3cec/routing-modes@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/262c04b00fb6228c30e5d235a8f24bd6/routing-modes~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-execution",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-background-execution-modes",
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-custom-fonts",
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-game-controllers",
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-siri-support"
+      ],
+      "title": "App execution"
+    }
+  ]
+}

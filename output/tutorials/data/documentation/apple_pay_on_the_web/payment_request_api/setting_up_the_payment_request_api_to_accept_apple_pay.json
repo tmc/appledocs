@@ -1,0 +1,956 @@
+{
+  "abstract": [
+    {
+      "text": "Support payments using Apple Pay on your website.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api/setting_up_the_payment_request_api_to_accept_apple_pay"
+  },
+  "kind": "article",
+  "legacy_identifier": 3949940,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Pay JS"
+      },
+      {
+        "name": "Payment Request API"
+      },
+      {
+        "name": "Apple Pay JS Button"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Setting up the payment request API to accept Apple Pay"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Throughout the ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-3957881",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", properties and attributes with the type ",
+              "type": "text"
+            },
+            {
+              "code": "object",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contain specific data related to payment methods. When using Apple Pay, keep in mind that these properties and attributes with the type ",
+              "type": "text"
+            },
+            {
+              "code": "object",
+              "type": "codeVoice"
+            },
+            {
+              "text": " have a concrete type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To indicate that data is specific to Apple Pay, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-3921621",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the W3C ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-3921620",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary and W3C ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-3921622",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary to the Apple Pay URL ",
+              "type": "text"
+            },
+            {
+              "code": "https://apple.com/apple-pay",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set up the payment request by setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-3921545",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the W3C ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-3921547",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary. The following is an example of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary that requires Apple Pay Version 12:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let applePayPaymentMethodData = {",
+            "    supportedMethods: \"https://apple.com/apple-pay\",",
+            "    data: {",
+            "        version: 12,",
+            "        // Add additional ApplePayRequest attributes here.",
+            "    },",
+            "};"
+          ],
+          "metadata": {
+            "anchor": "3949944",
+            "title": "Listing 1"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Customize the payment request by setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-3921550",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the W3C ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-3921553",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaymodifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary. The following is an example of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaymodifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary that only applies to credit cards:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let applePayPaymentDetailsModifier = {",
+            "    supportedMethods: \"https://apple.com/apple-pay\",",
+            "    data: {",
+            "        paymentMethodType: \"credit\",",
+            "        // Add additional ApplePayModifier attributes here.",
+            "    },",
+            "};"
+          ],
+          "metadata": {
+            "anchor": "3949941",
+            "title": "Listing 2"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Handle changes made by the user to features specific to Apple Pay by looking at the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/paymentmethodchangeevent/3820712-methoddetails",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attribute of the W3C ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/paymentmethodchangeevent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the user changes the payment method type, the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/paymentmethodchangeevent/3820712-methoddetails",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " attribute is an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentmethod",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " dictionary.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the user changes the coupon code, the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/paymentmethodchangeevent/3820712-methoddetails",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " attribute is an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaycouponcodedetails",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " dictionary.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following is an example of how to differentiate these different scenarios when handling a W3C ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/paymentmethodchangeevent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "paymentRequest.addEventListener(\"paymentmethodchange\", function(event) {",
+            "    if (event.methodName === \"https://apple.com/apple-pay\") {",
+            "        if (event.methodDetails.couponCode) {",
+            "            let applePayCouponCodeDetails = event.methodDetails;",
+            "            // Handle coupon code updates here.",
+            "            return;",
+            "        }",
+            "",
+            "        let applePayPaymentMethodDetails = event.methodDetails;",
+            "        if (applePayPaymentMethodDetails.type === \"credit\") {",
+            "            // Handle credit payment method type changes here.",
+            "        } else {",
+            "            // Handle other payment method type changes here.",
+            "        }",
+            "    }",
+            "});"
+          ],
+          "metadata": {
+            "anchor": "3949943",
+            "title": "Listing 3"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Explain issues by creating custom error messages using an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerror",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the user makes any problematic changes, set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-3921549",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property of the W3C ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-3921546",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " dictionary.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If a problem occurs during authorization, set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-3975644",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property of the W3C ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-3975643",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " dictionary.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following is an example of how to show custom error messages if the user inputs an invalid coupon code or shipping postal code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "paymentRequest.addEventListener(\"shippingaddresschange\", function(event) {",
+            "    if (event.methodName === \"https://apple.com/apple-pay\") {",
+            "        if (event.methodDetails.couponCode) {",
+            "            let applePayCouponCodeDetails = event.methodDetails;",
+            "            if (!isValidCouponCode(applePayCouponCodeDetails.couponCode) {",
+            "                event.updateWith({",
+            "                    paymentMethodErrors: [",
+            "                        new ApplePayError(\"couponCodeInvalid\", undefined, \"Coupon code is invalid\"),",
+            "                    ],",
+            "                });",
+            "                return;",
+            "            }",
+            "",
+            "            // Handle valid coupon code updates here.",
+            "            return;",
+            "        }",
+            "",
+            "        let applePayPaymentMethodDetails = event.methodDetails;",
+            "        if (applePayPaymentMethodDetails.type === \"credit\") {",
+            "            // Handle credit payment method type changes here.",
+            "        } else {",
+            "            // Handle other payment method type changes here.",
+            "        }",
+            "    }",
+            "});",
+            "",
+            "paymentRequest.show().then(function(paymentResponse) {",
+            "    if (paymentResponse.methodName === \"https://apple.com/apple-pay\") {",
+            "        if (!hasValidShippingZIPCode(paymentResponse)) {",
+            "            paymentResponse.retry({",
+            "                paymentMethod: [",
+            "                    new ApplePayError(\"shippingContactInvalid\", \"postalCode\", \"ZIP Code is invalid\"),",
+            "                ],",
+            "            });",
+            "            return;",
+            "        }",
+            "",
+            "        // Handle authorization with valid details here.",
+            "    }",
+            "});",
+            ""
+          ],
+          "metadata": {
+            "anchor": "3949963",
+            "title": "Listing 4"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Get the payment information after the user authorizes the payment request by looking at the ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-3921548",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attribute of the W3C ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-3921552",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which is an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypayment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary. The following example accesses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentcontact/1916105-postalcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " after authorization:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "function hasValidShippingZIPCode(paymentResponse) {",
+            "    if (paymentResponse.methodName === \"https://apple.com/apple-pay\") {",
+            "        let applePayPayment = paymentResponse.details;",
+            "        let shippingZIPCode = applePayPayment.shippingContact.postalCode;",
+            "        // Validate shipping ZIP code here.",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3949945",
+            "title": "Listing 5"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Pay on the Web",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaycouponcodedetails": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaycouponcodedetails",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayCouponCodeDetails",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaycouponcodedetails"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerror": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayError",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayerror"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaymodifier": {
+      "abstract": [
+        {
+          "text": "A dictionary that defines the Apple Pay modifiers for a payment type in the W3C Payment Request API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaymodifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayModifier",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaymodifier"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypayment": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypayment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayPayment",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaypayment"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentcompletedetails": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentcompletedetails",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayPaymentCompleteDetails",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaypaymentcompletedetails"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentcontact/1916105-postalcode": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentcontact/1916105-postalcode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "postalCode",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaypaymentcontact/1916105-postalcode"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentmethod": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentmethod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayPaymentMethod",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaypaymentmethod"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrequest": {
+      "abstract": [
+        {
+          "text": "A dictionary that defines the Apple Pay payment request object to use for the W3C Payment Request API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayRequest",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayrequest"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrequestbase": {
+      "abstract": [
+        {
+          "text": "A dictionary that defines basic payment and contact information that the Apple Pay payment request object uses for the W3C Payment Request API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrequestbase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayRequestBase",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayrequestbase"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Payment Request API",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/payment_request_api"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api/setting_up_the_payment_request_api_to_accept_apple_pay": {
+      "abstract": [
+        {
+          "text": "Support payments using Apple Pay on your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api/setting_up_the_payment_request_api_to_accept_apple_pay",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up the payment request API to accept Apple Pay",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/payment_request_api/setting_up_the_payment_request_api_to_accept_apple_pay"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api/setting_up_the_payment_request_api_to_accept_apple_pay#3949941": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api/setting_up_the_payment_request_api_to_accept_apple_pay#3949941",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/payment_request_api/setting_up_the_payment_request_api_to_accept_apple_pay#3949941"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api/setting_up_the_payment_request_api_to_accept_apple_pay#3949943": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api/setting_up_the_payment_request_api_to_accept_apple_pay#3949943",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/payment_request_api/setting_up_the_payment_request_api_to_accept_apple_pay#3949943"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api/setting_up_the_payment_request_api_to_accept_apple_pay#3949944": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api/setting_up_the_payment_request_api_to_accept_apple_pay#3949944",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/payment_request_api/setting_up_the_payment_request_api_to_accept_apple_pay#3949944"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api/setting_up_the_payment_request_api_to_accept_apple_pay#3949945": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api/setting_up_the_payment_request_api_to_accept_apple_pay#3949945",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/payment_request_api/setting_up_the_payment_request_api_to_accept_apple_pay#3949945"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api/setting_up_the_payment_request_api_to_accept_apple_pay#3949963": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api/setting_up_the_payment_request_api_to_accept_apple_pay#3949963",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/payment_request_api/setting_up_the_payment_request_api_to_accept_apple_pay#3949963"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/paymentmethodchangeevent": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/paymentmethodchangeevent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PaymentMethodChangeEvent",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/paymentmethodchangeevent"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/paymentmethodchangeevent/3820712-methoddetails": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/paymentmethodchangeevent/3820712-methoddetails",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "methodDetails",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/paymentmethodchangeevent/3820712-methoddetails"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-3921545": {
+      "identifier": "link-3921545",
+      "kind": "article",
+      "role": "link",
+      "title": "data",
+      "type": "section",
+      "url": "https://www.w3.org/TR/payment-request/#dom-paymentmethoddata-data"
+    },
+    "link-3921546": {
+      "identifier": "link-3921546",
+      "kind": "article",
+      "role": "link",
+      "title": "PaymentDetailsUpdate",
+      "type": "section",
+      "url": "https://www.w3.org/TR/payment-request/#paymentdetailsupdate-dictionary"
+    },
+    "link-3921547": {
+      "identifier": "link-3921547",
+      "kind": "article",
+      "role": "link",
+      "title": "PaymentMethodData",
+      "type": "section",
+      "url": "https://www.w3.org/TR/payment-request/#paymentmethoddata-dictionary"
+    },
+    "link-3921548": {
+      "identifier": "link-3921548",
+      "kind": "article",
+      "role": "link",
+      "title": "details",
+      "type": "section",
+      "url": "https://www.w3.org/TR/payment-request/#dom-paymentresponse-details"
+    },
+    "link-3921549": {
+      "identifier": "link-3921549",
+      "kind": "article",
+      "role": "link",
+      "title": "paymentMethodErrors",
+      "type": "section",
+      "url": "https://www.w3.org/TR/payment-request/#dom-paymentdetailsupdate-paymentmethoderrors"
+    },
+    "link-3921550": {
+      "identifier": "link-3921550",
+      "kind": "article",
+      "role": "link",
+      "title": "data",
+      "type": "section",
+      "url": "https://www.w3.org/TR/payment-request/#dom-paymentdetailsmodifier-data"
+    },
+    "link-3921552": {
+      "identifier": "link-3921552",
+      "kind": "article",
+      "role": "link",
+      "title": "PaymentResponse",
+      "type": "section",
+      "url": "https://www.w3.org/TR/payment-request/#paymentresponse-interface"
+    },
+    "link-3921553": {
+      "identifier": "link-3921553",
+      "kind": "article",
+      "role": "link",
+      "title": "PaymentDetailsModifier",
+      "type": "section",
+      "url": "https://www.w3.org/TR/payment-request/#paymentdetailsmodifier-dictionary"
+    },
+    "link-3921620": {
+      "identifier": "link-3921620",
+      "kind": "article",
+      "role": "link",
+      "title": "PaymentMethodData",
+      "type": "section",
+      "url": "https://www.w3.org/TR/payment-request/#paymentmethoddata-dictionary"
+    },
+    "link-3921621": {
+      "identifier": "link-3921621",
+      "kind": "article",
+      "role": "link",
+      "title": "supportedMethods",
+      "type": "section",
+      "url": "https://www.w3.org/TR/payment-request/#dom-paymentmethoddata-supportedmethods"
+    },
+    "link-3921622": {
+      "identifier": "link-3921622",
+      "kind": "article",
+      "role": "link",
+      "title": "PaymentDetailsModifier",
+      "type": "section",
+      "url": "https://www.w3.org/TR/payment-request/#paymentdetailsmodifier-dictionary"
+    },
+    "link-3957881": {
+      "identifier": "link-3957881",
+      "kind": "article",
+      "role": "link",
+      "title": "W3C Payment Request API specification",
+      "type": "topic",
+      "url": "https://www.w3.org/TR/payment-request/"
+    },
+    "link-3975643": {
+      "identifier": "link-3975643",
+      "kind": "article",
+      "role": "link",
+      "title": "PaymentValidationErrors",
+      "type": "section",
+      "url": "https://www.w3.org/TR/payment-request/#dom-paymentvalidationerrors"
+    },
+    "link-3975644": {
+      "identifier": "link-3975644",
+      "kind": "article",
+      "role": "link",
+      "title": "paymentMethod",
+      "type": "section",
+      "url": "https://www.w3.org/TR/payment-request/#dom-paymentvalidationerrors-paymentmethod"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrequestbase",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrequest",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaymodifier",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentcompletedetails"
+      ],
+      "title": "Payment request"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/apple_pay_on_the_web/payment_request_api/setting_up_the_payment_request_api_to_accept_apple_pay"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

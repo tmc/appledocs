@@ -1,0 +1,847 @@
+{
+  "abstract": [
+    {
+      "text": "Decide whether a texture that you’re creating needs mipmaps.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/textures"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/creating-a-mipmapped-texture"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a Mipmapped Texture"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Metal, the same ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object owns all of the mipmaps for a texture. When you create the texture descriptor for a new texture, you determine many of the texture’s fixed properties, including how many mipmaps it has. Set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/mipmapLevelCount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to the number of mipmap levels you want the texture to have. The default value is ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which means that Metal doesn’t create mipmaps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code below creates a texture with multiple mipmaps. It calculates the number of mipmaps needed for a full mipmap chain, from the original size down to a ",
+              "type": "text"
+            },
+            {
+              "code": "1x1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " texture, and sets that number as the mipmap count. Generating a full mipmap chain requires 33% more memory than if you just had the top image. You can choose to create a mipmap chain that has fewer mipmap levels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "/// Create a mipmap texture.",
+                    "func makeMipTexture(for device: MTLDevice, with size: MTLSize) -> MTLTexture? {",
+                    "    let descriptor = MTLTextureDescriptor()",
+                    "",
+                    "    descriptor.width = size.width",
+                    "    descriptor.height = size.height",
+                    "    descriptor.depth = size.depth",
+                    "",
+                    "    let heightLevels = ceil(log2(Double(size.height)))",
+                    "    let widthLevels = ceil(log2(Double(size.width)))",
+                    "    let mipCount = (heightLevels > widthLevels) ? heightLevels : widthLevels",
+                    "",
+                    "    descriptor.mipmapLevelCount = Int(mipCount)",
+                    "",
+                    "    return device.makeTexture(descriptor: descriptor)",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "/// Create a mipmap texture.",
+                    "- (id<MTLTexture>) makeMipTextureWithSize: (MTLSize) size",
+                    "{",
+                    "    MTLTextureDescriptor *descriptor = [MTLTextureDescriptor new];",
+                    "    ...",
+                    "    descriptor.width = size.width;",
+                    "    descriptor.height = size.height;",
+                    "    descriptor.depth = size.depth;",
+                    "",
+                    "    int heightLevels = ceil(log2(size.height));",
+                    "    int widthLevels = ceil(log2(size.width));",
+                    "    int mipCount = (heightLevels > widthLevels) ? heightLevels : widthLevels;",
+                    "",
+                    "    descriptor.mipmapLevelCount = mipCount;",
+                    "",
+                    "    return [_device newTextureWithDescriptor: descriptor];",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a texture, Metal doesn’t initialize mipmap levels. You need to provide data for any mipmap levels that the GPU accesses. Further, Metal doesn’t keep track of which mipmaps you’ve filled in, or which contain uninitialized or stale data. You’ll need to keep track of that information yourself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Load-a-Mipmapped-Texture-Using-MetalKit",
+          "level": 3,
+          "text": "Load a Mipmapped Texture Using MetalKit",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use MetalKit to create a texture, and the source data includes multiple mipmaps, MetalKit automatically creates the texture with the correct number of mipmaps and copies the source data into the appropriate mipmap levels. If the source data doesn’t include mipmaps, MetalKit creates a texture with just one texture image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can override this behavior by providing an options dictionary with one of the following keys:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKTextureLoader/Option/allocateMipmaps",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " key with a value of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " allocates a full set of mipmap levels for the texture. After loading is complete, Metal fills mipmap ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with the source data, and leaves the other mipmap contents uninitialized; you fill the other mipmaps with data. Similarly, if you provide this key with a value of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", Metal ignores any extra mipmap data and only loads the top mipmap.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKTextureLoader/Option/generateMipmaps",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " key with a value of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " allocates a full set of mipmap levels for the texture. This key has the device object generate images for the lower-level mipmaps by filtering the provided source data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/MetalKit/MTKTextureLoader/Option/allocateMipmaps": {
+      "abstract": [
+        {
+          "text": "A key used to specify whether the texture loader should allocate memory for mipmaps in the texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocateMipmaps"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTKTextureLoader",
+          "text": "MTKTextureLoader"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTKTextureLoaderOption",
+          "text": "Option"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKTextureLoader/Option/allocateMipmaps",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocateMipmaps",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKTextureLoader/Option/allocateMipmaps"
+    },
+    "doc://com.apple.documentation/documentation/MetalKit/MTKTextureLoader/Option/generateMipmaps": {
+      "abstract": [
+        {
+          "text": "A key used to specify whether the texture loader should generate mipmaps for the texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "generateMipmaps"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTKTextureLoader",
+          "text": "MTKTextureLoader"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTKTextureLoaderOption",
+          "text": "Option"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKTextureLoader/Option/generateMipmaps",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "generateMipmaps",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKTextureLoader/Option/generateMipmaps"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTexture": {
+      "abstract": [
+        {
+          "text": "A resource that holds formatted image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLTexture",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexture"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/mipmapLevelCount": {
+      "abstract": [
+        {
+          "text": "The number of mipmap levels for this texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mipmapLevelCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/mipmapLevelCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mipmapLevelCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "mipmapLevelCount",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor/mipmaplevelcount"
+    },
+    "doc://com.apple.metal/documentation/Metal/adding-mipmap-filtering-to-samplers": {
+      "abstract": [
+        {
+          "text": "Specify how the GPU samples mipmaps in your textures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/adding-mipmap-filtering-to-samplers",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Mipmap Filtering to Samplers",
+      "type": "topic",
+      "url": "/documentation/metal/adding-mipmap-filtering-to-samplers"
+    },
+    "doc://com.apple.metal/documentation/Metal/copying-data-into-or-out-of-mipmaps": {
+      "abstract": [
+        {
+          "text": "Specify which mipmaps that the data transfer affects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/copying-data-into-or-out-of-mipmaps",
+      "kind": "article",
+      "role": "article",
+      "title": "Copying Data into or out of Mipmaps",
+      "type": "topic",
+      "url": "/documentation/metal/copying-data-into-or-out-of-mipmaps"
+    },
+    "doc://com.apple.metal/documentation/Metal/dynamically-adjusting-texture-level-of-detail": {
+      "abstract": [
+        {
+          "text": "Defer generating or loading larger mipmaps until that level of detail is needed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/dynamically-adjusting-texture-level-of-detail",
+      "kind": "article",
+      "role": "article",
+      "title": "Dynamically Adjusting Texture Level of Detail",
+      "type": "topic",
+      "url": "/documentation/metal/dynamically-adjusting-texture-level-of-detail"
+    },
+    "doc://com.apple.metal/documentation/Metal/generating-mipmap-data": {
+      "abstract": [
+        {
+          "text": "Create your mipmaps either when you author content or at runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/generating-mipmap-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating Mipmap Data",
+      "type": "topic",
+      "url": "/documentation/metal/generating-mipmap-data"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-texture-sampling-quality-and-performance-with-mipmaps": {
+      "abstract": [
+        {
+          "text": "Avoid texture-rendering artifacts and reduce the GPU’s workload by creating smaller versions of a texture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-texture-sampling-quality-and-performance-with-mipmaps",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving Texture Sampling Quality and Performance with Mipmaps",
+      "type": "topic",
+      "url": "/documentation/metal/improving-texture-sampling-quality-and-performance-with-mipmaps"
+    },
+    "doc://com.apple.metal/documentation/Metal/predicting-which-mips-the-gpu-samples-with-level-of-detail-queries": {
+      "abstract": [
+        {
+          "text": "Determine in advance which mipmap levels the GPU requires to sample a texture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/predicting-which-mips-the-gpu-samples-with-level-of-detail-queries",
+      "kind": "article",
+      "role": "article",
+      "title": "Predicting Which Mips the GPU Samples with Level-of-Detail Queries",
+      "type": "topic",
+      "url": "/documentation/metal/predicting-which-mips-the-gpu-samples-with-level-of-detail-queries"
+    },
+    "doc://com.apple.metal/documentation/Metal/restricting-access-to-specific-mipmaps": {
+      "abstract": [
+        {
+          "text": "Set the range of mipmap levels that a sampler can access.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/restricting-access-to-specific-mipmaps",
+      "kind": "article",
+      "role": "article",
+      "title": "Restricting Access to Specific Mipmaps",
+      "type": "topic",
+      "url": "/documentation/metal/restricting-access-to-specific-mipmaps"
+    },
+    "doc://com.apple.metal/documentation/Metal/textures": {
+      "abstract": [
+        {
+          "text": "Create and manage typed data your app uses to exchange information with its shader functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/textures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Textures",
+      "type": "topic",
+      "url": "/documentation/metal/textures"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Texture-Mipmapping",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/improving-texture-sampling-quality-and-performance-with-mipmaps",
+        "doc://com.apple.metal/documentation/Metal/copying-data-into-or-out-of-mipmaps",
+        "doc://com.apple.metal/documentation/Metal/generating-mipmap-data",
+        "doc://com.apple.metal/documentation/Metal/adding-mipmap-filtering-to-samplers",
+        "doc://com.apple.metal/documentation/Metal/restricting-access-to-specific-mipmaps",
+        "doc://com.apple.metal/documentation/Metal/predicting-which-mips-the-gpu-samples-with-level-of-detail-queries",
+        "doc://com.apple.metal/documentation/Metal/dynamically-adjusting-texture-level-of-detail"
+      ],
+      "title": "Texture Mipmapping"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Texture-Mipmapping",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/improving-texture-sampling-quality-and-performance-with-mipmaps",
+                "doc://com.apple.metal/documentation/Metal/copying-data-into-or-out-of-mipmaps",
+                "doc://com.apple.metal/documentation/Metal/generating-mipmap-data",
+                "doc://com.apple.metal/documentation/Metal/adding-mipmap-filtering-to-samplers",
+                "doc://com.apple.metal/documentation/Metal/restricting-access-to-specific-mipmaps",
+                "doc://com.apple.metal/documentation/Metal/predicting-which-mips-the-gpu-samples-with-level-of-detail-queries",
+                "doc://com.apple.metal/documentation/Metal/dynamically-adjusting-texture-level-of-detail"
+              ],
+              "title": "Texture Mipmapping"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKTextureLoader~1Option~1generateMipmaps/title",
+          "value": "MTKTextureLoaderOptionGenerateMipmaps"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKTextureLoader~1Option~1generateMipmaps/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@MTKTextureLoaderOption",
+              "text": "MTKTextureLoaderOption"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTKTextureLoaderOptionGenerateMipmaps"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKTextureLoader~1Option~1allocateMipmaps/title",
+          "value": "MTKTextureLoaderOptionAllocateMipmaps"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKTextureLoader~1Option~1allocateMipmaps/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@MTKTextureLoaderOption",
+              "text": "MTKTextureLoaderOption"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTKTextureLoaderOptionAllocateMipmaps"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1mipmapLevelCount/title",
+          "value": "mipmapLevelCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1mipmapLevelCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mipmapLevelCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture/title",
+          "value": "MTLTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTexture/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTexture"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/creating-a-mipmapped-texture"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/creating-a-mipmapped-texture"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

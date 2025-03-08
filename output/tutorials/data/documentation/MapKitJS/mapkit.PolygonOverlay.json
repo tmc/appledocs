@@ -1,0 +1,511 @@
+{
+  "abstract": [
+    {
+      "text": "An overlay consisting of one or more points that forms a closed shape.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "MapKit JS",
+      "versions": [
+        "5.0",
+        "5.78.1"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.PolygonOverlay"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "cl/mapkit.PolygonOverlay",
+    "modules": [
+      {
+        "name": "MapKit JS"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "5.0",
+        "name": "MapKit JS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "mapkit.PolygonOverlay"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: MapKit JS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "text",
+              "text": "mapkit.PolygonOverlay"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "polygon",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a shape that consists of points connected end-to-end. Unlike polylines, polygons are closed shapes with an inside and an outside. The first and last points connect to each other to form a closed shape.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.PolygonOverlay/mapkit.PolygonOverlay",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer doesn’t limit you to whole polygons. You can combine multiple polygons to form noncontiguous shapes or shapes with regions cut out. For example, to show the boundaries of South Africa, an overlay carves out Lesotho, an enclave within South Africa. To do this, you use points to describe Lesotho as a polygon that MapKit JS subtracts from the outer polygon.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can choose whether a point falls inside or outside the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.PolygonOverlay/mapkit.PolygonOverlay",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by setting ",
+              "type": "text"
+            },
+            {
+              "code": "style.fillRule",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "nonzero",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "evenodd",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The longitude of all points in a polygon overlay needs to be within a 360-degree range. Depending on how you specify the longitude of the points, drawing a triangle between Tokyo, Los Angeles, and Sydney using a polygon overlay may take a different route. Specifying a longitude of -118º for Los Angeles, 140º for Tokyo, and 151º for Sydney results in a very wide triangle spanning 258º. Specifying a longitude of 242º (that is, -118 + 360) for Los Angeles, 140º for Tokyo, and 151º for Sydney results in a narrower triangle spanning 98º. MapKit JS may not render the polyline correctly if the range of longitudes is larger than 360º.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/StylesOverlayOptions/style",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties apply to polygon overlays except ",
+              "type": "text"
+            },
+            {
+              "code": "lineCap",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which MapKit JS ignores. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.PolygonOverlay/mapkit.PolygonOverlay",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " doesn’t implement methods of its own. For more information, see the base object, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.Overlay",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The following example uses a rectangle overlay to show the boundary lines for the state of Colorado:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var points = [ [41, -109.05], [41, -102.05], [37, -102.05], [37, -109.05] ];",
+            "",
+            "// Map the raw coordinate points to MapKit JS Coordinate objects:",
+            "points = points.map(function(point) {",
+            "    return new mapkit.Coordinate(point[0], point[1]);",
+            "});",
+            "var style = new mapkit.Style({",
+            "    strokeColor: \"#F00\",",
+            "    strokeOpacity: .2,",
+            "    lineWidth: 2,",
+            "    lineJoin: \"round\",",
+            "    lineDash: [2, 2, 6, 2, 6, 2]",
+            "});",
+            "",
+            "var rectangle = new mapkit.PolygonOverlay(points, { style: style });",
+            "map.addOverlay(rectangle);"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS": {
+      "abstract": [
+        {
+          "text": "Embed interactive Apple Maps on your website, annotate points of interest, and perform georelated searches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MapKit JS",
+      "type": "topic",
+      "url": "/documentation/mapkitjs"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/OverlayOptions": {
+      "abstract": [
+        {
+          "text": "A dictionary of options that determines an overlay’s data, and indicates whether it’s visible, in an enabled state, and in a selected state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/OverlayOptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OverlayOptions",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/overlayoptions"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/StylesOverlayOptions": {
+      "abstract": [
+        {
+          "text": "An observable set of style attributes for an overlay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/StylesOverlayOptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StylesOverlayOptions",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/stylesoverlayoptions"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/StylesOverlayOptions/style": {
+      "abstract": [
+        {
+          "text": "An object literal of style properties.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/StylesOverlayOptions/style",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "style",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/stylesoverlayoptions/style"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/adding-interactivity-to-overlays": {
+      "abstract": [
+        {
+          "text": "Configure and respond to overlays to make them interactive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/adding-interactivity-to-overlays",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding interactivity to overlays",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/adding-interactivity-to-overlays"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.CircleOverlay": {
+      "abstract": [
+        {
+          "text": "A circular overlay with a configurable radius that centers on a specific geographic coordinate.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.CircleOverlay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit.CircleOverlay",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.circleoverlay"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.Overlay": {
+      "abstract": [
+        {
+          "text": "An abstract base object that defines the methods and attributes for map overlays.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.Overlay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit.Overlay",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.overlay"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.PolygonOverlay": {
+      "abstract": [
+        {
+          "text": "An overlay consisting of one or more points that forms a closed shape.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.PolygonOverlay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit.PolygonOverlay",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.polygonoverlay"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.PolygonOverlay/mapkit.PolygonOverlay": {
+      "abstract": [
+        {
+          "text": "Creates a polygon overlay with an array of points and style options.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.PolygonOverlay/mapkit.PolygonOverlay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit.PolygonOverlay",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.polygonoverlay/mapkit.polygonoverlay"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.PolygonOverlay/points": {
+      "abstract": [
+        {
+          "text": "One or more arrays of coordinates that define the polygon overlay shape.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.PolygonOverlay/points",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "points",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.polygonoverlay/points"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.PolylineOverlay": {
+      "abstract": [
+        {
+          "text": "An overlay of connected line segments that don’t form a closed shape.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.PolylineOverlay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit.PolylineOverlay",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.polylineoverlay"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.Style": {
+      "abstract": [
+        {
+          "text": "A set of observable attributes for overlays, including the color and opacity of strokes and fills, and line styles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.Style",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit.Style",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.style"
+    },
+    "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.TileOverlay": {
+      "abstract": [
+        {
+          "text": "An overlay that covers an area of the map with bitmapped tiles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.TileOverlay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit.TileOverlay",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/mapkit.tileoverlay"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.Overlay"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Overlays",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/adding-interactivity-to-overlays",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.Overlay",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.Style",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.CircleOverlay",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.PolylineOverlay",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/OverlayOptions",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.TileOverlay"
+      ],
+      "title": "Overlays"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-polygon-overlay",
+      "identifiers": [
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.PolygonOverlay/mapkit.PolygonOverlay",
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/StylesOverlayOptions"
+      ],
+      "title": "Creating a polygon overlay"
+    },
+    {
+      "anchor": "Defining-the-polygon",
+      "identifiers": [
+        "doc://com.apple.mapkitjs/documentation/MapKitJS/mapkit.PolygonOverlay/points"
+      ],
+      "title": "Defining the polygon"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mapkitjs/mapkit.polygonoverlay"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

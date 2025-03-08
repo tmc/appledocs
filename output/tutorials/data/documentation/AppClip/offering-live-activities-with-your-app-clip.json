@@ -1,0 +1,414 @@
+{
+  "abstract": [
+    {
+      "text": "Add a widget extension to your App Clip target and use ActivityKit to display Live Activities on the Lock Screen and in the Dynamic Island.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appclip/documentation/AppClip"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appclip/documentation/AppClip/offering-live-activities-with-your-app-clip"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Clips"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Offering Live Activities with your App Clip"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With Live Activities, you can display live event data on the iPhone Lock Screen and in the Dynamic Island on supported devices. Your App Clip can’t typically include app extensions, but starting with iOS 16 you can include a widget extension that offers Live Activities and displays live event data without requiring people to install your full app. For example, a sports app could display App Clip Codes at a game location to offer an App Clip to attendees of the current game. When a person launches the App Clip from the App Clip Code, the App Clip could offer a Live Activity to track a game that happens at the same time but in another city. The Live Activity enables people who watch the game in person to stay informed about another team’s game that happens in parallel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The widget extension for your App Clip can only include Live Activities. Reserve widgets that appear on the Home Screen, Lock Screen, or in Today View for your full app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To offer a Live Activity from your App Clip:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open your project in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a widget extension target to your project and make sure to only add it to the App Clip target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make sure the widget extension only contains the Live Activity — widgets for the Home Screen, Lock Screen, or Today View aren’t available to App Clips. Remove any widget code that the Xcode template generates and only keep the Live Activity code. For example, remove the widget from the widget bundle that the template creates and only include the Live Activity in the widget bundle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the App Clip Extension capability to your new widget extension. It adds the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.on-demand-install-capable",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " entitlement to the widget extension target. This capability is a requirement that allows the App Clip to include the widget extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make sure the widget extension target uses the bundle identifier of the App Clip as a prefix to fulfill the bundle ID requirements for extensions. For example, if your App Clip has the bundle ID ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.example.exampleapp.clip",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the widget extension must use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.example.exampleapp.clip.$thing",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", where ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "$thing",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is something like ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "widgetextension",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "liveactivities",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’ve added the widget extension to your App Clip to offer Live Activities, add code for your Live Activity as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ActivityKit/displaying-live-data-with-live-activities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information about Live Activities, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ActivityKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you already bundle a widget extension with your full app, don’t add it to the App Clip target. Instead, add a second widget extension to your project and make sure to only include it in the App Clip target. As a result, you’ll have one widget extension for your full app and one widget extension for your App Clip. Then, follow the steps above to add the App Clip Extension capability and so on.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "ActivityKit-PageImage-card.png": {
+      "alt": "[A hero image of the ActivityKit framework.]",
+      "identifier": "ActivityKit-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2809f67730f457afbeb77d866e20466e/ActivityKit-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5cbca6adfca53a5472c0c9f4b7395c3e/ActivityKit-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.appclip/documentation/AppClip": {
+      "abstract": [
+        {
+          "text": "Provide people a shortcut to selected content and features of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Clips",
+      "type": "topic",
+      "url": "/documentation/appclip"
+    },
+    "doc://com.apple.documentation/documentation/ActivityKit": {
+      "abstract": [
+        {
+          "text": "Share live updates from your app as Live Activities in the Dynamic Island, on the Lock Screen, and on the Smart Stack in watchOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ActivityKit",
+      "images": [
+        {
+          "identifier": "ActivityKit-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ActivityKit",
+      "type": "topic",
+      "url": "/documentation/ActivityKit"
+    },
+    "doc://com.apple.documentation/documentation/ActivityKit/displaying-live-data-with-live-activities": {
+      "abstract": [
+        {
+          "text": "Display your app’s data in the Dynamic Island and on the Lock Screen and offer quick interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ActivityKit/displaying-live-data-with-live-activities",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying live data with Live Activities",
+      "type": "topic",
+      "url": "/documentation/ActivityKit/displaying-live-data-with-live-activities"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.on-demand-install-capable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether a bundle represents an App Clip.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.on-demand-install-capable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.on-demand-install-capable",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.on-demand-install-capable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appclip/offering-live-activities-with-your-app-clip"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appclip/offering-live-activities-with-your-app-clip"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

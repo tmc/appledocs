@@ -1,0 +1,1585 @@
+{
+  "abstract": [
+    {
+      "text": "An object that incorporates spatial tracking capabilities into your RealityKit apps.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation22SpatialTrackingSessionC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SpatialTrackingSession"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SpatialTrackingSession"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SpatialTrackingSession"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "final"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SpatialTrackingSession"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "SpatialTrackingSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " helps you manage spatial tracking capabilities, such as world and hand",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tracking, in your RealityKit app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can decide which AR data you need and how you want to use them",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by running a corresponding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/Configuration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can specify the following spatial tracking capabilities in a configuration:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The anchoring targets you want RealityKit to track, such as planes, images, and hands.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In iOS, the scene-understanding data that system behaviors have access to, such as shadows, occlusion, and physics.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In iOS, the camera feed (front or back) that ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewCamera/spatialTracking",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " uses.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following is an example of how to enable the camera, implement plane anchoring, use scene-understanding data for shadow and occlusion,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and use the back camera in iOS:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let configuration = SpatialTrackingSession.Configuration(",
+            "    tracking: [.camera, .plane],",
+            "    sceneUnderstanding: [.shadow, .occlusion],",
+            "    camera: .back)",
+            "let session = SpatialTrackingSession()",
+            "await session.run(configuration)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "SpatialTrackingSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " configures ARKit for you based on the configuration you pass in.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It also checks whether a device supports certain requested capabilities, and requests user",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "authorizations if needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As an asynchronous function call, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/run(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns an optional ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/UnavailableCapabilities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which contains both unsupported capabilities and unauthorized capabilities.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This can help you to handle errors gracefully, such as informing someone to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "turn on the relevant permissions or reduce the feature set.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Here’s an example in iOS:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let configuration = SpatialTrackingSession.Configuration(",
+            "    tracking: [.camera, .plane],",
+            "    sceneUnderstanding: [.shadow, .occlusion],",
+            "    camera: .back)",
+            "let session = SpatialTrackingSession()",
+            "if let unavailableCapabilities = await session.run(configuration) {",
+            "    if unavailableCapabilities.missingCameraAuthorization {",
+            "        print(\"Camera access requires user permission.\")",
+            "        return",
+            "    }",
+            "    if unavailableCapabilities.anchor.contains(.plane) {",
+            "        print(\"The device doesn't support plane tracking.\")",
+            "    }",
+            "    if !unavailableCapabilities.sceneUnderstanding.isEmpty {",
+            "        print(\"The device doesn't support scene understanding.\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After running ",
+              "type": "text"
+            },
+            {
+              "code": "SpatialTrackingSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", RealityKit apps start using the AR data in the following ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Anchor tracking starts to work for the chosen capabilities as follows:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "In visionOS, you can access the transform information of the entities with ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": ".",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "In iOS, entities with ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": " start to get the real-world anchors to anchor onto.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "System behavior starts to use scene-understanding data. In the example above, virtual contents start to cast shadows onto real-world meshes, and experience occlusion from those meshes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Setting ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewCameraContent/camera",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".spatialTracking",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " starts to show the configured camera feed as a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " background.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To modify the configuration, run ",
+              "type": "text"
+            },
+            {
+              "code": "SpatialTrackingSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " again with the new configuration.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To stop ",
+              "type": "text"
+            },
+            {
+              "code": "SpatialTrackingSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you can call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/stop()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "RealityKit stops ",
+                  "type": "text"
+                },
+                {
+                  "code": "SpatialTrackingSession",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " automatically when it goes out of scope",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "and deinitializes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Other-methods-for-incorporating-AR-content-in-your-apps",
+          "level": 3,
+          "text": "Other methods for incorporating AR content in your apps",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although ",
+              "type": "text"
+            },
+            {
+              "code": "SpatialTrackingSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " offers you an easy way to configure AR capabilities in your app,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "there are other options available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-the-default-spatial-tracking-session",
+          "level": 4,
+          "text": "Use the default spatial tracking session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS, if you don’t set up ",
+              "type": "text"
+            },
+            {
+              "code": "SpatialTrackingSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " manually, RealityKit runs the default session",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the following configuration:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "SpatialTrackingSession.Configuration(",
+            "    tracking: [.camera, .world, .plane, .object, .image, .face],",
+            "    sceneUnderstanding: [.occlusion, .shadow, .collision, .physics],",
+            "    camera: .back)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Use-an-anchor-entity-alone-in-visionOS",
+          "level": 4,
+          "text": "Use an anchor entity alone in visionOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In visionOS, if you don’t set up ",
+              "type": "text"
+            },
+            {
+              "code": "SpatialTrackingSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " manually, the system anchors your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchorEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in a privacy-preserving manner.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In other words, the app doesn’t get read access to any transform information from the ",
+              "type": "text"
+            },
+            {
+              "code": "AnchorEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you set up ",
+              "type": "text"
+            },
+            {
+              "code": "SpatialTrackingSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the app requests authorization, giving it the ability",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to read transform information if it has permission.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-an-ARKit-session-for-tracking",
+          "level": 4,
+          "text": "Use an ARKit session for tracking",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can set up an ARKit session manually and receive an anchor transform directly from ARKit by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "subscribing to the ARKit updates. You can then set the transform of your entities manually.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This gives you full access to the anchor properties, but requires more setup on your part.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "With ",
+              "type": "text"
+            },
+            {
+              "code": "SpatialTrackingSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", RealityKit handles that for you and maintains your ",
+              "type": "text"
+            },
+            {
+              "code": "AnchorEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "alignment to the target anchor.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In iOS, you manage and run the ARKit session if you run ",
+              "type": "text"
+            },
+            {
+              "code": "SpatialTrackingSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/run(_:session:arConfiguration:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnchorEntity": {
+      "abstract": [
+        {
+          "text": "An anchor that tethers entities to a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnchorEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchorEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnchorEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnchorEntity",
+      "type": "topic",
+      "url": "/documentation/realitykit/anchorentity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent": {
+      "abstract": [
+        {
+          "text": "A component that anchors virtual content to a real world target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnchoringComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnchoringComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnchoringComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnchoringComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/anchoringcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/RealityView": {
+      "abstract": [
+        {
+          "text": "A view that contains RealityKit content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RealityView"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RealityView"
+        }
+      ],
+      "role": "symbol",
+      "title": "RealityView",
+      "type": "topic",
+      "url": "/documentation/realitykit/realityview"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewCamera/spatialTracking": {
+      "abstract": [
+        {
+          "text": "The camera that displays virtual RealityKit content and camera passthrough, with tracking capabilities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "spatialTracking"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:19_RealityKit_SwiftUI0A10ViewCameraV",
+          "text": "RealityViewCamera"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewCamera/spatialTracking",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "spatialTracking",
+      "type": "topic",
+      "url": "/documentation/realitykit/realityviewcamera/spatialtracking"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewCameraContent/camera": {
+      "abstract": [
+        {
+          "text": "The active camera for the RealityKit scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "camera"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:19_RealityKit_SwiftUI0A10ViewCameraV",
+          "text": "RealityViewCamera"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewCameraContent/camera",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "camera",
+      "type": "topic",
+      "url": "/documentation/realitykit/realityviewcameracontent/camera"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession": {
+      "abstract": [
+        {
+          "text": "An object that incorporates spatial tracking capabilities into your RealityKit apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpatialTrackingSession"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpatialTrackingSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialTrackingSession",
+      "type": "topic",
+      "url": "/documentation/realitykit/spatialtrackingsession"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/Configuration": {
+      "abstract": [
+        {
+          "text": "A type for configuring the spatial tracking session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/Configuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialTrackingSession.Configuration",
+      "type": "topic",
+      "url": "/documentation/realitykit/spatialtrackingsession/configuration"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/Configuration/AnchorCapability": {
+      "abstract": [
+        {
+          "text": "A type that defines various anchor tracking capabilities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnchorCapability"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/Configuration/AnchorCapability",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnchorCapability"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialTrackingSession.Configuration.AnchorCapability",
+      "type": "topic",
+      "url": "/documentation/realitykit/spatialtrackingsession/configuration/anchorcapability"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/Configuration/Camera": {
+      "abstract": [
+        {
+          "text": "Defines the camera feed the RealityView renders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Camera"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/Configuration/Camera",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Camera"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialTrackingSession.Configuration.Camera",
+      "type": "topic",
+      "url": "/documentation/realitykit/spatialtrackingsession/configuration/camera"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/Configuration/SceneUnderstandingCapability": {
+      "abstract": [
+        {
+          "text": "Defines how system behaviors can use scene unerstanding data for.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SceneUnderstandingCapability"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/Configuration/SceneUnderstandingCapability",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SceneUnderstandingCapability"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialTrackingSession.Configuration.SceneUnderstandingCapability",
+      "type": "topic",
+      "url": "/documentation/realitykit/spatialtrackingsession/configuration/sceneunderstandingcapability"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/UnavailableCapabilities": {
+      "abstract": [
+        {
+          "text": "A type that contains the unavailable capabilities of the current spatial tracking session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnavailableCapabilities"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/UnavailableCapabilities",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnavailableCapabilities"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialTrackingSession.UnavailableCapabilities",
+      "type": "topic",
+      "url": "/documentation/realitykit/spatialtrackingsession/unavailablecapabilities"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/init()": {
+      "abstract": [
+        {
+          "text": "Creates a spatial tracking session with default settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/realitykit/spatialtrackingsession/init()"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/run(_:)": {
+      "abstract": [
+        {
+          "text": "Runs the spatial tracking session with the specified configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "run"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation22SpatialTrackingSessionC",
+          "text": "SpatialTrackingSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation22SpatialTrackingSessionC13ConfigurationV",
+          "text": "Configuration"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation22SpatialTrackingSessionC",
+          "text": "SpatialTrackingSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation22SpatialTrackingSessionC23UnavailableCapabilitiesV",
+          "text": "UnavailableCapabilities"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/run(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "run(_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/spatialtrackingsession/run(_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/run(_:session:arConfiguration:)": {
+      "abstract": [
+        {
+          "text": "Runs the spatial tracking session with a spatial tracking configuration, an AR session, and an AR configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "run"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation22SpatialTrackingSessionC",
+          "text": "SpatialTrackingSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation22SpatialTrackingSessionC13ConfigurationV",
+          "text": "Configuration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "arConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARConfiguration",
+          "text": "ARConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation22SpatialTrackingSessionC",
+          "text": "SpatialTrackingSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation22SpatialTrackingSessionC23UnavailableCapabilitiesV",
+          "text": "UnavailableCapabilities"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/run(_:session:arConfiguration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "run(_:session:arConfiguration:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/spatialtrackingsession/run(_:session:arconfiguration:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/stop()": {
+      "abstract": [
+        {
+          "text": "Stops the current spatial tracking session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stop"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/stop()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stop()",
+      "type": "topic",
+      "url": "/documentation/realitykit/spatialtrackingsession/stop()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Spatial-tracking",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/Configuration",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/Configuration/AnchorCapability",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/Configuration/SceneUnderstandingCapability",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/Configuration/Camera",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/UnavailableCapabilities"
+      ],
+      "title": "Spatial tracking"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/Configuration",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/UnavailableCapabilities"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/init()"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/run(_:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/run(_:session:arConfiguration:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/stop()"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/spatialtrackingsession"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

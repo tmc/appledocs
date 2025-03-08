@@ -1,0 +1,422 @@
+{
+  "abstract": [
+    {
+      "text": "The digest of an X.509 certificate’s Subject Public Key Info structure.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.bundleresources/documentation/BundleResources",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedLeafIdentities"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedLeafIdentities/SPKI-SHA256-BASE64"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "plist:Information_Property_List.NSPinnedLeafIdentities.SPKI-SHA256-BASE64",
+    "modules": [
+      {
+        "name": "Bundle Resources"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SPKI-SHA256-BASE64"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Property List Key",
+    "symbolKind": "typealias",
+    "title": "SPKI-SHA256-BASE64"
+  },
+  "primaryContentSections": [
+    {
+      "details": {
+        "name": "SPKI-SHA256-BASE64",
+        "platforms": [],
+        "titleStyle": "symbol",
+        "value": [
+          {
+            "arrayMode": false,
+            "baseType": "string"
+          }
+        ]
+      },
+      "kind": "details",
+      "title": "Details"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You represent a pinned certificate using the Base64-encoded SHA-256 digest of an X.509 certificate’s DER-encoded ASN.1 Subject Public Key Info (SPKI) structure. For a PEM-encoded public-key certificate stored in the file ",
+              "type": "text"
+            },
+            {
+              "code": "ca.pem",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you can calculate the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedLeafIdentities/SPKI-SHA256-BASE64",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value with the following ",
+              "type": "text"
+            },
+            {
+              "code": "openssl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " commands:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% cat ca.pem |",
+            "      openssl x509 -inform pem -noout -outform pem -pubkey |",
+            "      openssl pkey -pubin -inform pem -outform der |",
+            "      openssl dgst -sha256 -binary |",
+            "      openssl enc -base64"
+          ],
+          "syntax": "sh",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources": {
+      "abstract": [
+        {
+          "text": "Resources located in an app, framework, or plugin bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Bundle Resources",
+      "type": "topic",
+      "url": "/documentation/bundleresources"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List": {
+      "abstract": [
+        {
+          "text": "A resource containing key-value pairs that identify and configure a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List",
+      "kind": "symbol",
+      "name": "Information Property List",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Information Property List"
+        }
+      ],
+      "role": "symbol",
+      "title": "Information Property List",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedLeafIdentities": {
+      "abstract": [
+        {
+          "text": "A list of allowed leaf certificates for a given domain name.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedLeafIdentities",
+      "kind": "symbol",
+      "name": "NSPinnedLeafIdentities",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPinnedLeafIdentities"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPinnedLeafIdentities",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nspinnedleafidentities"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedLeafIdentities/SPKI-SHA256-BASE64": {
+      "abstract": [
+        {
+          "text": "The digest of an X.509 certificate’s Subject Public Key Info structure.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedLeafIdentities/SPKI-SHA256-BASE64",
+      "kind": "symbol",
+      "name": "SPKI-SHA256-BASE64",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SPKI-SHA256-BASE64"
+        }
+      ],
+      "role": "symbol",
+      "title": "SPKI-SHA256-BASE64",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nspinnedleafidentities/spki-sha256-base64"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Property List Key"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SPKI-SHA256-BASE64"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "typealias"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SPKI-SHA256-BASE64"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.bundleresources/documentation/BundleResources",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedLeafIdentities"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSPinnedLeafIdentities~1SPKI-SHA256-BASE64/title",
+          "value": "SPKI-SHA256-BASE64"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSPinnedLeafIdentities~1SPKI-SHA256-BASE64/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SPKI-SHA256-BASE64"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSPinnedLeafIdentities/title",
+          "value": "NSPinnedLeafIdentities"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSPinnedLeafIdentities/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPinnedLeafIdentities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/title",
+          "value": "Information Property List"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Information Property List"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/bundleresources/information-property-list/nspinnedleafidentities/spki-sha256-base64"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/bundleresources/information-property-list/nspinnedleafidentities/spki-sha256-base64"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

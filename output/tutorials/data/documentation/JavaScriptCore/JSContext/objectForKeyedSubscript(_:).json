@@ -1,0 +1,895 @@
+{
+  "abstract": [
+    {
+      "text": "Returns the value of the specified JavaScript property in the context’s global object, allowing subscript getter syntax.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.javascriptcore/documentation/JavaScriptCore",
+        "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSContext"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSContext/objectForKeyedSubscript(_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "JavaScriptCore",
+    "externalID": "c:objc(cs)JSContext(im)objectForKeyedSubscript:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "objectForKeyedSubscript"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "keyword",
+        "text": "Any"
+      },
+      {
+        "kind": "text",
+        "text": "!) -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)JSValue",
+        "text": "JSValue"
+      },
+      {
+        "kind": "text",
+        "text": "!"
+      }
+    ],
+    "modules": [
+      {
+        "name": "JavaScriptCore"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "objectForKeyedSubscript:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.5",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "objectForKeyedSubscript(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "objectForKeyedSubscript"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "key"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "keyword",
+              "text": "Any"
+            },
+            {
+              "kind": "text",
+              "text": "!) -> "
+            },
+            {
+              "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)JSValue",
+              "text": "JSValue"
+            },
+            {
+              "kind": "text",
+              "text": "!"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The name of a JavaScript property in the context’s global JavaScript object.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "key"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The JavaScript property named by ",
+              "type": "text"
+            },
+            {
+              "code": "key",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if no such field or function exists.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method first constructs a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object from the ",
+              "type": "text"
+            },
+            {
+              "code": "key",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, then uses that value in JavaScript to look up the name of a property in the context’s global object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.javascriptcore/documentation/JavaScriptCore": {
+      "abstract": [
+        {
+          "text": "Evaluate JavaScript programs from within an app, and support JavaScript scripting of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "JavaScriptCore",
+      "type": "topic",
+      "url": "/documentation/javascriptcore"
+    },
+    "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSContext": {
+      "abstract": [
+        {
+          "text": "A JavaScript execution environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "JSContext"
+        }
+      ],
+      "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JSContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "JSContext",
+      "type": "topic",
+      "url": "/documentation/javascriptcore/jscontext"
+    },
+    "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSContext/objectForKeyedSubscript(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the value of the specified JavaScript property in the context’s global object, allowing subscript getter syntax.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectForKeyedSubscript"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)JSValue",
+          "text": "JSValue"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSContext/objectForKeyedSubscript(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "objectForKeyedSubscript:"
+        }
+      ],
+      "role": "symbol",
+      "title": "objectForKeyedSubscript(_:)",
+      "type": "topic",
+      "url": "/documentation/javascriptcore/jscontext/objectforkeyedsubscript(_:)"
+    },
+    "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSContext/setObject(_:forKeyedSubscript:)": {
+      "abstract": [
+        {
+          "text": "Sets the specified JavaScript property of the context’s global object, allowing subscript setter syntax.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKeyedSubscript"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSCopying",
+          "text": "NSCopying"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ")!)"
+        }
+      ],
+      "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSContext/setObject(_:forKeyedSubscript:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setObject:forKeyedSubscript:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setObject(_:forKeyedSubscript:)",
+      "type": "topic",
+      "url": "/documentation/javascriptcore/jscontext/setobject(_:forkeyedsubscript:)"
+    },
+    "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue": {
+      "abstract": [
+        {
+          "text": "A JavaScript value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "JSValue"
+        }
+      ],
+      "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JSValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "JSValue",
+      "type": "topic",
+      "url": "/documentation/javascriptcore/jsvalue"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Accessing-JavaScript-global-state-with-subscripts",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSContext/setObject(_:forKeyedSubscript:)"
+      ],
+      "title": "Accessing JavaScript global state with subscripts"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.5",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "objectForKeyedSubscript:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "objectForKeyedSubscript:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.javascriptcore/documentation/JavaScriptCore",
+                "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSContext"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Accessing-JavaScript-global-state-with-subscripts",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSContext/setObject(_:forKeyedSubscript:)"
+              ],
+              "title": "Accessing JavaScript global state with subscripts"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "identifier": "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)JSValue",
+                    "text": "JSValue"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "objectForKeyedSubscript:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "id"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "key"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The name of a JavaScript property in the context’s global JavaScript object.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "key"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/2",
+          "value": {
+            "content": [
+              {
+                "anchor": "return-value",
+                "level": 2,
+                "text": "Return Value",
+                "type": "heading"
+              },
+              {
+                "inlineContent": [
+                  {
+                    "text": "The JavaScript property named by ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "key",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": ", or ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "nil",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " if no such field or function exists.",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "kind": "content"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSContext~1setObject(_:forKeyedSubscript:)/title",
+          "value": "setObject:forKeyedSubscript:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSContext~1setObject(_:forKeyedSubscript:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setObject:forKeyedSubscript:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSValue/title",
+          "value": "JSValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "JSValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSValue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "JSValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSContext/title",
+          "value": "JSContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "JSContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "JSContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSContext~1objectForKeyedSubscript(_:)/title",
+          "value": "objectForKeyedSubscript:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.javascriptcore~1documentation~1JavaScriptCore~1JSContext~1objectForKeyedSubscript(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "objectForKeyedSubscript:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/javascriptcore/jscontext/objectforkeyedsubscript(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/javascriptcore/jscontext/objectforkeyedsubscript(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

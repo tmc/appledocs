@@ -1,0 +1,1765 @@
+{
+  "abstract": [
+    {
+      "text": "Create macOS apps and other executables that run natively on both Apple silicon and",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "Intel-based Mac computers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Apple-Silicon/documentation/apple-silicon"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/building-a-universal-macos-binary"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Building a Universal macOS Binary"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Native apps run more efficiently than translated apps because the compiler is able",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to optimize your code for the target architecture. An app that supports only the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "x86_64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " architecture must run under Rosetta translation on Apple silicon. A universal",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "binary runs natively on both Apple silicon and Intel-based Mac computers, because",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it contains executable code for both architectures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Turn all of your compiled code into universal binaries, not just apps. The following",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "list includes the most common types of executables to turn into universal binaries.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This list is not exhaustive, but you can use it as a starting point to assess your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "projects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apps",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "App extensions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Plug-ins",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Custom frameworks",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Static libraries",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dynamic libraries",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build tools",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Command-line tools",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Daemons and launch agents",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "DriverKit extensions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Kernel extensions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can build a universal binary on either an Apple silicon or Intel-based",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Mac computer, but you cannot debug the ",
+                  "type": "text"
+                },
+                {
+                  "code": "arm64",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " slice of your binary on an Intel-based",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Mac computer. It’s possible to debug both slices of a universal binary on Apple silicon,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "but you must run the ",
+                  "type": "text"
+                },
+                {
+                  "code": "x86_64",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " slice under Rosetta translation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Download-and-Install-Xcode-on-Your-Mac-Computer",
+          "level": 3,
+          "text": "Download and Install Xcode on Your Mac Computer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode 12.2 and later is a requirement for building universal binaries. Earlier versions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of Xcode don’t contain the support needed to build and test universal versions of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your macOS code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Download the latest public version of Xcode from the App Store. Download prerelease",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "versions of Xcode from ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-the-Architecture-List-in-Your-Xcode-Projects",
+          "level": 3,
+          "text": "Update the Architecture List in Your Xcode Projects",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode 12.2 and later automatically adds the arm64 architecture to the list of standard",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "architectures for all macOS binaries, including apps and libraries. During the debugging",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and testing process, Xcode builds only for the current system architecture by default.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, it automatically builds a universal binary for the release version of your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "building-a-universal-macos-binary-1.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you customized the Architectures build setting in your Xcode project, remove your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "customizations and use the Standard Architectures setting instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional information about Xcode build settings and how to configure them,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/dev04b3a04ba",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-the-Architecture-List-of-Custom-Makefiles",
+          "level": 3,
+          "text": "Update the Architecture List of Custom Makefiles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you build your project using custom scripts or makefiles, add the ",
+              "type": "text"
+            },
+            {
+              "code": "arm64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " architecture",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the appropriate environment variables. Xcode uses the ",
+              "type": "text"
+            },
+            {
+              "code": "ARCHS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " environment variable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to define the current build architectures. Other build systems may use different",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "environment variables, but with similar purposes. After adding the variable to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "appropriate environment variable, build your code and verify that the compiler creates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an ",
+              "type": "text"
+            },
+            {
+              "code": "arm64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variant of your code. To create a universal binary for your project, merge",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the resulting executable files into a single executable binary using the ",
+              "type": "text"
+            },
+            {
+              "code": "lipo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For makefiles you create outside of Xcode, pass the appropriate architecture values",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the compiler using the ",
+              "type": "text"
+            },
+            {
+              "code": "-target",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option. The following example shows a makefile",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that compiles a single-source file twice—once for each architecture. It then creates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a universal binary by merging the resulting executable files together with the ",
+              "type": "text"
+            },
+            {
+              "code": "lipo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tool.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "x86_app: main.c",
+            "    $(CC) main.c -o x86_app -target x86_64-apple-macos10.12",
+            "arm_app: main.c",
+            "    $(CC) main.c -o arm_app -target arm64-apple-macos11",
+            "universal_app: x86_app arm_app",
+            "    lipo -create -output universal_app x86_app arm_app"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Wrap-Platform-Specific-Code-with-Conditional-Compilation-Macros",
+          "level": 3,
+          "text": "Wrap Platform-Specific Code with Conditional Compilation Macros",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When writing code for a specific platform or processor type, isolate that code using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the appropriate conditional compilation statements. For C-based code, the system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "defines a set of macros for you to use in ",
+              "type": "text"
+            },
+            {
+              "code": "/usr/include/TargetConditionals.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Swift language also supports conditional compilation using conditional compilation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "blocks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you share code across multiple platforms, you can also use compiler-specific",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "macros such as ",
+                  "type": "text"
+                },
+                {
+                  "code": "__arm64__",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "__aarch64__",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in conditional compilation statements.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "These macros don’t require you to include the ",
+                  "type": "text"
+                },
+                {
+                  "code": "TargetConditionals.h",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " header file.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For a list of compiler macros, see the compiler documentation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To distinguish code meant for a specific type of processor, add conditional compilation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "statements that target the appropriate architecture. Universal macOS apps support",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "arm64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "x86_64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " architectures, and the following example shows how to write",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "conditional code for those architectures in Swift:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Swift example",
+            "#if arch(arm64)",
+            "   // Code meant for the arm64 architecture here.",
+            "#elseif arch(x86_64)",
+            "   // Code meant for the x86_64 architecture here.",
+            "#endif"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For Objective-C, use the following code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Objective-C example",
+            "#include \"TargetConditionals.h\"",
+            "#if TARGET_CPU_ARM64",
+            "  // Code meant for the arm64 architecture here.",
+            "#elif TARGET_CPU_X86_64",
+            "  // Code meant for the x86_64 architecture here.",
+            "#endif "
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you share code between an iOS and macOS app, don’t assume that code intended for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "arm64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " architecture runs only on an iOS device. That code also runs in your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "macOS app on an Apple silicon. To isolate code specifically for macOS or iOS, use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the conditional compilation statements shown in the following example. You can also",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "combine both platform- and architecture-specific conditional compilation to further",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "refine your code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "//Swift example",
+            "#if os(macOS)",
+            "   // Put CPU-independent macOS code here.",
+            "   #if arch(arm64)",
+            "      // Put 64-bit arm64 Mac code here.",
+            "   #elseif arch(x86_64)",
+            "      // Put 64-bit x86_64 Mac code here.",
+            "   #endif",
+            "#elseif targetEnvironment(macCatalyst)",
+            "   // Put Mac Catalyst-specific code here.",
+            "#elseif os(iOS)",
+            "   // Put iOS-specific code here.",
+            "#endif"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Objective-C, implement the same code as shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Objective-C example",
+            "#include \"TargetConditionals.h\"",
+            "#if TARGET_OS_OSX",
+            "  // Put CPU-independent macOS code here.",
+            "  #if TARGET_CPU_ARM64",
+            "    // Put 64-bit Apple silicon macOS code here.",
+            "  #elif TARGET_CPU_X86_64",
+            "    // Put 64-bit Intel macOS code here.",
+            "  #endif",
+            "#elif TARGET_OS_MACCATALYST",
+            "   // Put Mac Catalyst-specific code here.",
+            "#elif TARGET_OS_IOS",
+            "  // Put iOS-specific code here.",
+            "#endif"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the complete list of conditional compilation macros, see the ",
+              "type": "text"
+            },
+            {
+              "code": "/usr/include/TargetConditionals.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "header file in the appropriate SDK. For a list of Swift compilation conditions and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "arguments, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://docs.swift.org/swift-book/ReferenceManual/Statements.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://docs.swift.org/swift-book/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-Your-Target",
+          "level": 3,
+          "text": "Build Your Target",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you build a debuggable version of your code, Xcode builds only for the current",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "architecture by default. Building for one architecture saves time when you are trying",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to debug your code and fix problems quickly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create a universal binary with debug symbols on any Mac computer by changing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Build Active Architecture Only build setting of your project. Although you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "create this binary on an Intel-based Mac computer, you can’t run or debug the ",
+              "type": "text"
+            },
+            {
+              "code": "arm64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "slice of it. Only a Mac with Apple silicon is capable of running and debugging both",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "slices of your binary; use Rosetta translation to run and debug the ",
+              "type": "text"
+            },
+            {
+              "code": "x86_64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " slice.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-Whether-Your-Binary-Is-Universal",
+          "level": 3,
+          "text": "Determine Whether Your Binary Is Universal",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To users, a universal binary looks no different than a binary built for a single",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "architecture. When you build a universal binary, Xcode compiles your source files",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "twice—once for each architecture. After linking the binaries for each architecture,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode then merges the architecture-specific binaries into a single executable file",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using the ",
+              "type": "text"
+            },
+            {
+              "code": "lipo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool. If you build the source files yourself, you must call ",
+              "type": "text"
+            },
+            {
+              "code": "lipo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as part of your build scripts to merge your architecture-specific binaries into a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "single universal binary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To see the architectures present in a built executable file, run the ",
+              "type": "text"
+            },
+            {
+              "code": "lipo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "file",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "command-line tools. When running either tool, specify the path to the actual executable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file, not to any intermediate directories such as the app bundle. For example, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "executable file of a macOS app is in the ",
+              "type": "text"
+            },
+            {
+              "code": "Contents/MacOS/",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory of its bundle.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When running the ",
+              "type": "text"
+            },
+            {
+              "code": "lipo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool, include the ",
+              "type": "text"
+            },
+            {
+              "code": "-archs",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to see the architectures.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following example shows how to use ",
+              "type": "text"
+            },
+            {
+              "code": "lipo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to view the list of architectures for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Mail app in macOS, and the results when Mail is a universal binary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% lipo -archs /System/Applications/Mail.app/Contents/MacOS/Mail",
+            "x86_64 arm64"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To obtain more information about each architecture, pass the ",
+              "type": "text"
+            },
+            {
+              "code": "-detailed_info",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to ",
+              "type": "text"
+            },
+            {
+              "code": "lipo",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about how to determine whether your app is running as a translated",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "binary, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/about-the-rosetta-translation-environment#Determine-Whether-Your-App-Is-Running-as-a-Translated-Binary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-the-Launch-Behavior-of-Your-App",
+          "level": 3,
+          "text": "Specify the Launch Behavior of Your App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For universal binaries, the system prefers to execute the slice that is native to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the current platform. On an Intel-based Mac computer, the system always executes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "x86_64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " slice of the binary. On Apple silicon, the system prefers to execute",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "arm64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " slice when one is present. Users can force the system to run the app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "under Rosetta translation by enabling the appropriate option from the app’s Get Info",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "window in the Finder.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you never want users to run your app under Rosetta translation, add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/LSRequiresNativeExecution",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "key to your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. When that key is present and set to ",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system prevents your app from running under translation. In addition, the system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "removes the Rosetta translation option from your app’s Get Info window. Don’t include",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this key until you verify that your app runs correctly on both Apple silicon and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Intel-based Mac computers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want to prioritize one architecture, without preventing users from running",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app under translation, add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/LSArchitecturePriority",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "key to your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. The value of this key is an ordered array of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "strings, which define the priority order for selecting an architecture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If an app doesn’t contain an executable binary, the system may run it under",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Rosetta translation as a precautionary measure to prevent potential runtime issues.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For example, the system runs script-only apps under Rosetta translation. If you verified",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "that your app runs correctly on both Apple silicon and Intel-based Mac computers,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "add the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/LSArchitecturePriority",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "key to your app’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file and list the ",
+                  "type": "text"
+                },
+                {
+                  "code": "arm64",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " architecture first.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "building-a-universal-macos-binary-1.png": {
+      "alt": "A screenshot of Xcode that shows the Architectures build setting with the standard architectures selected.",
+      "identifier": "building-a-universal-macos-binary-1.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d23f0e7ee03976a6c074e6f024e7d565/building-a-universal-macos-binary-1@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/about-the-rosetta-translation-environment#Determine-Whether-Your-App-Is-Running-as-a-Translated-Binary": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/about-the-rosetta-translation-environment#Determine-Whether-Your-App-Is-Running-as-a-Translated-Binary",
+      "kind": "section",
+      "title": "Determine Whether Your App Is Running as a Translated Binary",
+      "type": "topic",
+      "url": "/documentation/apple-silicon/about-the-rosetta-translation-environment#Determine-Whether-Your-App-Is-Running-as-a-Translated-Binary"
+    },
+    "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/porting-your-macos-apps-to-apple-silicon": {
+      "abstract": [
+        {
+          "text": "Create a version of your macOS app that runs on both Apple silicon and Intel-based",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Mac computers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/porting-your-macos-apps-to-apple-silicon",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Porting Your macOS Apps to Apple Silicon",
+      "type": "topic",
+      "url": "/documentation/apple-silicon/porting-your-macos-apps-to-apple-silicon"
+    },
+    "doc://com.apple.Apple-Silicon/documentation/apple-silicon": {
+      "abstract": [
+        {
+          "text": "Get the resources you need to create software for Macs with Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Apple-Silicon/documentation/apple-silicon",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple Silicon",
+      "type": "topic",
+      "url": "/documentation/apple-silicon"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/LSArchitecturePriority": {
+      "abstract": [
+        {
+          "text": "An array of the architectures that the app supports, arranged according to their preferred usage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/LSArchitecturePriority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSArchitecturePriority",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/LSArchitecturePriority"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/LSRequiresNativeExecution": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to require the execution of the app’s native architecture when multiple architectures are available.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/LSRequiresNativeExecution",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSRequiresNativeExecution",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/LSRequiresNativeExecution"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com": {
+      "identifier": "https://developer.apple.com",
+      "title": "developer.apple.com",
+      "titleInlineContent": [
+        {
+          "text": "developer.apple.com",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com"
+    },
+    "https://docs.swift.org/swift-book/": {
+      "identifier": "https://docs.swift.org/swift-book/",
+      "title": "The Swift Programming Language",
+      "titleInlineContent": [
+        {
+          "text": "The Swift Programming Language",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/"
+    },
+    "https://docs.swift.org/swift-book/ReferenceManual/Statements.html": {
+      "identifier": "https://docs.swift.org/swift-book/ReferenceManual/Statements.html",
+      "title": "Conditional Compilation Block",
+      "titleInlineContent": [
+        {
+          "text": "Conditional Compilation Block",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/ReferenceManual/Statements.html"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev04b3a04ba": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev04b3a04ba",
+      "title": "Configure build settings",
+      "titleInlineContent": [
+        {
+          "text": "Configure build settings",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev04b3a04ba"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/porting-your-macos-apps-to-apple-silicon"
+      ],
+      "title": "Essentials"
+    }
+  ]
+}

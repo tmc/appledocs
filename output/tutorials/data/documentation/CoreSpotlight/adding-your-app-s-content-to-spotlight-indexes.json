@@ -1,0 +1,2067 @@
+{
+  "abstract": [
+    {
+      "text": "Create a description for your app’s content and add it to a Spotlight",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "index to make it searchable.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corespotlight/documentation/CoreSpotlight/adding-your-app-s-content-to-spotlight-indexes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Spotlight"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding your app’s content to Spotlight indexes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Search makes your app’s content easier to find, and plays a role both",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "inside your app and for features like Spotlight Search, Handoff,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Siri Suggestions, Reminders, and more. Making your content searchable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "enhances the overall user experience of your app and improves the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "discoverability of your content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To help search find your content, create a private, on-device",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "index using the Core Spotlight framework and add your app’s data to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that index. Search works best when you index content that the person",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "cares about or interacts with directly, such as favorites, items they",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "purchased, messages they sent and received, and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the content people can see in your UI, enable the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity/1417761-iseligibleforsearch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property in relevant ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "objects that your app sends and receives. Enabling this property in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "user-initiated activities adds those activities to the on-device",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "index and includes them in subsquent searches. For more information,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Assemble-the-item-attributes",
+          "level": 3,
+          "text": "Assemble the item attributes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you identify the content you want to index, collect some details",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "about it. Regardless of whether an item is a file or some part of your app’s data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "structures, you provide metadata for that item to the Core Spotlight",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "index. You specify this metadata using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object, filling out only the properties that make sense for your content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Attribute sets include data for specific types of content, such as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "images and music. They also contain more general information about",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an item, such as its name, who created it, the subject matter, and more.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create the ",
+              "type": "text"
+            },
+            {
+              "code": "CSSearchableItemAttributeSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object and fill in as many",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "properties as makes sense for your data. Attribute sets store simple",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data types such as strings, numbers, and dates to make the information",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "easier to search. The following example shows a method to index an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app-specific data type that manages a spreadsheet document. The code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "retrieves data from the custom type to fill in the relevant attributes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create an attribute set to describe an item.",
+            "func addSpreadsheetToIndex(_ item: MySpreadsheetType) { ",
+            "    // Assemble the metadata for the spreadsheet file.",
+            "    let attributeSet = CSSearchableItemAttributeSet(contentType: UTType.spreadsheet)",
+            "    attributeSet.title = item.title",
+            "    attributeSet.contentDescription = \"Spreadsheet Document\"",
+            "    attributeSet.thumbnailData = item.thumbnailImage",
+            "    attributeSet.contentURL = item.fileURL",
+            "",
+            "    // Create the searchable item.",
+            "",
+            "    // Add the item to the index.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "class supports making a phone call",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or getting directions to a location associated with an item. To enable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "these features, set the item’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet/supportsPhoneCall",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet/supportsNavigation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and fill in the relevant phone number or latitude and longitude information.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Only enable these actions when it’s appropriate and they represent",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a primary action someone is likely to take. For example, it makes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sense to let someone call a business, but it doesn’t make sense to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "let someone call a phone number that appears on a research paper.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-searchable-item-to-find-your-content-later",
+          "level": 3,
+          "text": "Create a searchable item to find your content later",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the attributes you collect for each item, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to pass to the indexing system. For each searchable item, specify these details:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A unique identifier string for locating the item in your app’s data structures",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The attribute set with the item’s metadata",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An optional string that specifies the domain or owner of the item.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create searchable items as soon as you have the information to do so.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When someone creates a new item in your app, create a searchable item",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for it immediately and add it to the index. When someone changes the title",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of an item or other details, update the attributes and add it to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "index again. It’s very important to keep your app’s indexes up to date",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so that searches return current information. People are more likely to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "engage with your app if it returns good search results. A high level of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "engagement also helps increase the ranking of your searchable items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code builds on the previous example by creating a searchable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "item for a custom app data structure. The code uses data from the data item itself",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to fill in various attributes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create an attribute set to describe an item.",
+            "func addSpreadsheetToIndex(_ item: MySpreadsheetType) {",
+            "    // Assemble the metadata for the spreadsheet file.",
+            "    let attributeSet = CSSearchableItemAttributeSet(contentType: UTType.spreadsheet)",
+            "    attributeSet.title = item.title",
+            "    attributeSet.contentDescription = \"Spreadsheet Document\"",
+            "    attributeSet.thumbnailData = item.thumbnailImage",
+            "    attributeSet.contentURL = item.fileURL",
+            "",
+            "    // Create the searchable item.",
+            "    let item = CSSearchableItem(uniqueIdentifier: item.identifier, domainIdentifier: nil, attributeSet: attributeSet)",
+            "         ",
+            "    // Add the item to the index.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you expect an item to exist for an extended period of time, set an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "appropriate value in the item’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/expirationDate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property. The system automatically expires items after a period of time,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so setting an expiration date causes the system to preserve the item",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "until the date you specify. If the person deletes the original data from your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app, remove the associated item from the index.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-items-to-a-searchable-index",
+          "level": 3,
+          "text": "Add items to a searchable index",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make your items appear in search results, add them to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object. Indexes store your app-specific data and remain on the device.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can create multiple indexes for your app, and might do so to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protect someone’s personal information. For example, a music",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app might place the general catalog of songs in the default index and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "someone’s private playlists in an encrypted index.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default ",
+              "type": "text"
+            },
+            {
+              "code": "CSSearchableIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object supports the indexing of items",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that don’t require special protection. When indexing content that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contains more sensitive data, such as someone’s contact information,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "create a more secure index using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/init(name:protectionClass:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method. The following example creates a secure index in addition to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "retrieving the default index for data that doesn’t require any specific",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protections:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Get the default index.",
+            "let defaultIndex = CSSearchableIndex.default()",
+            "",
+            "// Create an encrypted index.",
+            "let secureIndex = CSSearchableIndex(name:”MyIndex”, protectionClass:.complete)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add new items to an index, or to update items already in an index,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/indexSearchableItems(_:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method of that index. The method incorporates the items asynchronously",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "into the index and notifies you when the work is done. Typically, you submit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "items only when they change, but you might also submit items to extend their",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "expiration date.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "secureIndex.indexSearchableItems([item]) { error in",
+            "    if error != nil {",
+            "        print(error?.localizedDescription)",
+            "    } else {",
+            "        print(\"Item indexed.\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Provide a reindexing app extension to keep the index up",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "to date even when your app isn’t running. For more information, see",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/regenerating-your-app-s-indexes-on-demand",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-multiple-items-to-the-index-in-batches",
+          "level": 3,
+          "text": "Add multiple items to the index in batches",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When adding or updating large numbers of items, consider breaking those",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "updates into multiple batches. Batch updates make it easier for your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code to recover from errors or crashes that happen during the indexing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "process. The system waits for you to specify your searchable items and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "end the batch update before it begins indexing the items. If an error",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "occurs, the metadata you add to the batch lets you determine the extent",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the indexing progress, and where the error occurred.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/default()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " index doesn’t support batch",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "operations.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows a function that indexes several items using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a batch update. You can specify any information you want for the client",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data, but must limit the total size of it to 250 bytes. If any errors",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "occur during the batch update, you can call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/fetchLastClientState(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to determine where to start indexing your content again.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func indexBatch(_ tems: [CSSearchableItem]) {",
+            "    let index = CSSearchableIndex(name: \"MyIndex\")",
+            "",
+            "    var clientData = Data()",
+            "    // Fill clientData with something to identify the current items.",
+            "        ",
+            "    index.beginBatch()",
+            "    index.indexSearchableItems(items)",
+            "    index.endBatch(withClientState: clientData) { error in",
+            "        if error != nil {",
+            "            // Handle the error.",
+            "        } else {",
+            "            // Success",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight": {
+      "abstract": [
+        {
+          "text": "Add search capabilities to your app, and index your content so",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "people can find it from Spotlight and Safari.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Spotlight",
+      "type": "topic",
+      "url": "/documentation/corespotlight"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex": {
+      "abstract": [
+        {
+          "text": "An on-device index for your app’s searchable content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSSearchableIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSSearchableIndex"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSSearchableIndex",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableindex"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/default()": {
+      "abstract": [
+        {
+          "text": "Returns the default on-device index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "`default`"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/default()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "defaultSearchableIndex"
+        }
+      ],
+      "role": "symbol",
+      "title": "default()",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableindex/default()"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/fetchLastClientState(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Fetches the app’s most recent client state information asynchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchLastClientState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/fetchLastClientState(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchLastClientStateWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchLastClientState(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableindex/fetchlastclientstate(completionhandler:)"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/indexSearchableItems(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Adds or updates items in the index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "indexSearchableItems"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CSSearchableItem",
+          "text": "CSSearchableItem"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/indexSearchableItems(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "indexSearchableItems:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "indexSearchableItems(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableindex/indexsearchableitems(_:completionhandler:)"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/init(name:protectionClass:)": {
+      "abstract": [
+        {
+          "text": "Returns an on-device index with the specified name and data protection class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "protectionClass"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSFileProtectionType",
+          "text": "FileProtectionType"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableIndex/init(name:protectionClass:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithName:protectionClass:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(name:protectionClass:)",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableindex/init(name:protectionclass:)"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem": {
+      "abstract": [
+        {
+          "text": "The details of your app-specific content that someone might search",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for on their devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSSearchableItem"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSSearchableItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSSearchableItem",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitem"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/expirationDate": {
+      "abstract": [
+        {
+          "text": "The date after which the searchable item should no longer exist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "expirationDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem/expirationDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "expirationDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "expirationDate",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitem/expirationdate"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet": {
+      "abstract": [
+        {
+          "text": "The detailed metadata for a searchable item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSSearchableItemAttributeSet"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSSearchableItemAttributeSet"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSSearchableItemAttributeSet",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitemattributeset"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet/supportsNavigation": {
+      "abstract": [
+        {
+          "text": "A value that indicates whether the item contains information sufficient to provide navigation to the location it represents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportsNavigation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet/supportsNavigation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportsNavigation"
+        }
+      ],
+      "role": "symbol",
+      "title": "supportsNavigation",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitemattributeset/supportsnavigation"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet/supportsPhoneCall": {
+      "abstract": [
+        {
+          "text": "A value that indicates whether the item contains information sufficient to allow a phone call to a number associated with the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportsPhoneCall"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItemAttributeSet/supportsPhoneCall",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportsPhoneCall"
+        }
+      ],
+      "role": "symbol",
+      "title": "supportsPhoneCall",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitemattributeset/supportsphonecall"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/enable-apple-intelligence-summaries": {
+      "abstract": [
+        {
+          "text": "Enable Apple Intelligence to summarize and prioritize app",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "content using Spotlight extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/enable-apple-intelligence-summaries",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling Apple Intelligence summarization and prioritization",
+      "type": "topic",
+      "url": "/documentation/corespotlight/enable-apple-intelligence-summaries"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/regenerating-your-app-s-indexes-on-demand": {
+      "abstract": [
+        {
+          "text": "Create an app extension to maintain your app’s indexes and regenerate",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "them as needed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/regenerating-your-app-s-indexes-on-demand",
+      "kind": "article",
+      "role": "article",
+      "title": "Regenerating your app’s indexes on demand",
+      "type": "topic",
+      "url": "/documentation/corespotlight/regenerating-your-app-s-indexes-on-demand"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity": {
+      "abstract": [
+        {
+          "text": "A representation of the state of your app at a moment in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivity",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity/1417761-iseligibleforsearch": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the activity should be added to the on-device index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEligibleForSearch"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity/1417761-iseligibleforsearch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEligibleForSearch",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity/1417761-iseligibleforsearch"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/enable-apple-intelligence-summaries"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/enable-apple-intelligence-summaries"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1fetchLastClientState(completionHandler:)/title",
+          "value": "fetchLastClientStateWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1fetchLastClientState(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchLastClientStateWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1init(name:protectionClass:)/title",
+          "value": "initWithName:protectionClass:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1init(name:protectionClass:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithName:protectionClass:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1default()/title",
+          "value": "defaultSearchableIndex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1default()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "defaultSearchableIndex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItemAttributeSet~1supportsPhoneCall/title",
+          "value": "supportsPhoneCall"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItemAttributeSet~1supportsPhoneCall/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "supportsPhoneCall"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem~1expirationDate/title",
+          "value": "expirationDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem~1expirationDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "expirationDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsuseractivity~11417761-iseligibleforsearch/title",
+          "value": "eligibleForSearch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItemAttributeSet/title",
+          "value": "CSSearchableItemAttributeSet"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItemAttributeSet/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableItemAttributeSet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItemAttributeSet/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableItemAttributeSet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex/title",
+          "value": "CSSearchableIndex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableIndex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableIndex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1indexSearchableItems(_:completionHandler:)/title",
+          "value": "indexSearchableItems:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableIndex~1indexSearchableItems(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "indexSearchableItems:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItemAttributeSet~1supportsNavigation/title",
+          "value": "supportsNavigation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItemAttributeSet~1supportsNavigation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "supportsNavigation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem/title",
+          "value": "CSSearchableItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableItem"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corespotlight/adding-your-app-s-content-to-spotlight-indexes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corespotlight/adding-your-app-s-content-to-spotlight-indexes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

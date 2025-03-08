@@ -1,0 +1,1361 @@
+{
+  "abstract": [
+    {
+      "text": "Retrieve data from the onboard accelerometers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremotion/documentation/CoreMotion"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremotion/documentation/CoreMotion/getting-raw-accelerometer-events"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Motion"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Getting raw accelerometer events"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An accelerometer measures changes in velocity along one axis. All iOS devices have a three-axis accelerometer, which delivers acceleration values in each of the three axes shown in the next illustration. The values reported by the accelerometers are measured in increments of the gravitational acceleration, with the value ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " representing an acceleration of 9.8 meters per second (per second) in the given direction. Acceleration values may be positive or negative depending on the direction of the acceleration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2904020",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You access the raw accelerometer data using the classes of the Core Motion framework. Specifically, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class provides the interfaces for enabling the accelerometer hardware. When enabling the hardware, choose the interfaces that are best suited for your app. You can pull the accelerometer data only when you need it, or you can ask the framework to push updates to your app at regular intervals. Each technique involves different configuration steps and has a different use case.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your app relies on the presence of accelerometer hardware, configure the ",
+                  "type": "text"
+                },
+                {
+                  "code": "UIRequiredDeviceCapabilities",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key of its ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file with the ",
+                  "type": "text"
+                },
+                {
+                  "code": "accelerometer",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " value. For more information about the meaning of this key, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about the coordinate axes of different device types, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-for-the-availability-of-accelerometer-data",
+          "level": 3,
+          "text": "Check for the availability of accelerometer data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Accelerometer data might be unavailable for a variety of reasons, so verify that the data is available before you try to obtain it. Check the value of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/isAccelerometerAvailable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of ",
+              "type": "text"
+            },
+            {
+              "code": "CMMotionManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and make sure it’s ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If it’s ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", starting updates doesn’t deliver any data to your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In visionOS, accelerometer data is available only when your app has an open immersive space. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersiveSpace",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Get-accelerometer-data-only-when-you-need-it",
+          "level": 3,
+          "text": "Get accelerometer data only when you need it",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For apps that process accelerometer data on their own schedule, such as games, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startAccelerometerUpdates()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to start the delivery of accelerometer data. When you call this method, the system enables the accelerometer hardware and begins updating the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/accelerometerData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. However, the system does not notify you when it updates that property. You must explicitly check the value of the property when you need the accelerometer data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you start the delivery of accelerometer updates, specify an update frequency by assigning a value to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/accelerometerUpdateInterval",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. The maximum frequency at which you can request updates is hardware-dependent but is usually at least 100 Hz. If you request a frequency that is greater than what the hardware supports, Core Motion uses the supported maximum instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below shows a method that configures accelerometer updates to occur 50 times per second. The method then configures a timer to fetch those updates at the same frequency and do something with the data. You could configure the timer to fire at a lower frequency, but doing so would waste power by causing the hardware to generate more updates than were actually used.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let motion = CMMotionManager()",
+            "",
+            "func startAccelerometers() {",
+            "   // Make sure the accelerometer hardware is available. ",
+            "   if self.motion.isAccelerometerAvailable {",
+            "      self.motion.accelerometerUpdateInterval = 1.0 / 50.0  // 50 Hz",
+            "      self.motion.startAccelerometerUpdates()",
+            "",
+            "      // Configure a timer to fetch the data.",
+            "      self.timer = Timer(fire: Date(), interval: (1.0/50.0), ",
+            "            repeats: true, block: { (timer) in",
+            "         // Get the accelerometer data.",
+            "         if let data = self.motion.accelerometerData {",
+            "            let x = data.acceleration.x",
+            "            let y = data.acceleration.y",
+            "            let z = data.acceleration.z",
+            "",
+            "            // Use the accelerometer data in your app.",
+            "         }",
+            "      })",
+            "",
+            "      // Add the timer to the current run loop.",
+            "      RunLoop.current.add(self.timer!, forMode: .defaultRunLoopMode)",
+            "   }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Process-a-steady-stream-of-accelerometer-data",
+          "level": 3,
+          "text": "Process a steady stream of accelerometer data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you want to capture all of the incoming accelerometer data, perhaps so you can analyze it for movement patterns, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startAccelerometerUpdates(to:withHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This method pushes each new set of accelerometer values to your app by executing your handler block on the specified queue. The queueing of these blocks ensures that your app receives all of the accelerometer data, even if your app becomes busy and is unable to process updates for a brief period of time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you start the delivery of accelerometer updates, specify an update frequency by assigning a value to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/accelerometerUpdateInterval",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. The maximum frequency at which you can request updates is hardware-dependent but is usually at least 100 Hz. If you request a frequency that is greater than what the hardware supports, Core Motion uses the supported maximum instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows a method from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/samplecode/MotionGraphs/Introduction/Intro.html#//apple_ref/doc/uid/DTS40012333",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample code project, which you can examine for more context. The app displays a real-time graph of accelerometer data. The user configures the update frequency for the accelerometers using a slider, the changing of which results in a call to the ",
+              "type": "text"
+            },
+            {
+              "code": "startUpdatesWithSliderValue:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method shown in the example. This method restarts the accelerometer updates with the new frequency. Each time a new sample is received, the specified block is queued on the main thread. That block updates the app’s graph view and labels with the new accelerometer values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static const NSTimeInterval accelerometerMin = 0.01;",
+            "- (void)startUpdatesWithSliderValue:(int)sliderValue {",
+            "    // Determine the update interval.",
+            "    NSTimeInterval delta = 0.005;",
+            "    NSTimeInterval updateInterval = accelerometerMin + delta * sliderValue;",
+            "    // Create a CMMotionManager object.",
+            "    CMMotionManager *mManager = [(APLAppDelegate *)",
+            "            [[UIApplication sharedApplication] delegate] sharedManager];",
+            "    APLAccelerometerGraphViewController * __weak weakSelf = self;",
+            "    // Check whether the accelerometer is available.",
+            "    if ([mManager isAccelerometerAvailable] == YES) {",
+            "        // Assign the update interval to the motion manager.",
+            "        [mManager setAccelerometerUpdateInterval:updateInterval];",
+            "        [mManager startAccelerometerUpdatesToQueue:[NSOperationQueue mainQueue]",
+            "               withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {",
+            "        [weakSelf.graphView addX:accelerometerData.acceleration.x ",
+            "                  y:accelerometerData.acceleration.y ",
+            "                  z:accelerometerData.acceleration.z];",
+            "        [weakSelf setLabelValueX:accelerometerData.acceleration.x ",
+            "                  y:accelerometerData.acceleration.y ",
+            "                  z:accelerometerData.acceleration.z];",
+            "      }];",
+            "   }",
+            "   self.updateIntervalLabel.text = [NSString stringWithFormat:@\"%f\", updateInterval];",
+            "}",
+            "- (void)stopUpdates {",
+            "   CMMotionManager *mManager = [(APLAppDelegate *)",
+            "            [[UIApplication sharedApplication] delegate] sharedManager];",
+            "   if ([mManager isAccelerometerActive] == YES) {",
+            "      [mManager stopAccelerometerUpdates];",
+            "   }",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremotion/documentation/CoreMotion": {
+      "abstract": [
+        {
+          "text": "Process accelerometer, gyroscope, pedometer, and environment-related events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Motion",
+      "type": "topic",
+      "url": "/documentation/coremotion"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAccelerometerData": {
+      "abstract": [
+        {
+          "text": "A data sample from the device’s three accelerometers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMAccelerometerData"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAccelerometerData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMAccelerometerData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMAccelerometerData",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmaccelerometerdata"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager": {
+      "abstract": [
+        {
+          "text": "The object for starting and managing motion services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMMotionManager"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMMotionManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMMotionManager",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/accelerometerData": {
+      "abstract": [
+        {
+          "text": "The latest sample of accelerometer data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accelerometerData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CMAccelerometerData",
+          "text": "CMAccelerometerData"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/accelerometerData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accelerometerData"
+        }
+      ],
+      "role": "symbol",
+      "title": "accelerometerData",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager/accelerometerdata"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/accelerometerUpdateInterval": {
+      "abstract": [
+        {
+          "text": "The interval, in seconds, for providing accelerometer updates to the block handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accelerometerUpdateInterval"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/accelerometerUpdateInterval",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accelerometerUpdateInterval"
+        }
+      ],
+      "role": "symbol",
+      "title": "accelerometerUpdateInterval",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager/accelerometerupdateinterval"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/isAccelerometerAvailable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an accelerometer is available on the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAccelerometerAvailable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/isAccelerometerAvailable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accelerometerAvailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "isAccelerometerAvailable",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager/isaccelerometeravailable"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startAccelerometerUpdates()": {
+      "abstract": [
+        {
+          "text": "Starts accelerometer updates without a handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startAccelerometerUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startAccelerometerUpdates()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startAccelerometerUpdates"
+        }
+      ],
+      "role": "symbol",
+      "title": "startAccelerometerUpdates()",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager/startaccelerometerupdates()"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startAccelerometerUpdates(to:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Starts accelerometer updates on an operation queue and with a specified handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startAccelerometerUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOperationQueue",
+          "text": "OperationQueue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMAccelerometerHandler",
+          "text": "CMAccelerometerHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionManager/startAccelerometerUpdates(to:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startAccelerometerUpdatesToQueue:withHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startAccelerometerUpdates(to:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionmanager/startaccelerometerupdates(to:withhandler:)"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMRecordedAccelerometerData": {
+      "abstract": [
+        {
+          "text": "A single piece of accelerometer data that was recorded by the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMRecordedAccelerometerData"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMRecordedAccelerometerData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMRecordedAccelerometerData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMRecordedAccelerometerData",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmrecordedaccelerometerdata"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMSensorDataList": {
+      "abstract": [
+        {
+          "text": "A list of the accelerometer data recorded by the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSensorDataList"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMSensorDataList",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSensorDataList"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSensorDataList",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmsensordatalist"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMSensorRecorder": {
+      "abstract": [
+        {
+          "text": "An object that gathers and retrieves accelerometer data from a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSensorRecorder"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMSensorRecorder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSensorRecorder"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSensorRecorder",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmsensorrecorder"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ImmersiveSpace": {
+      "abstract": [
+        {
+          "text": "A scene that presents its content in an unbounded space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImmersiveSpace"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21ImmersiveSpaceContentP",
+          "text": "ImmersiveSpaceContent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Se",
+          "text": "Decodable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SE",
+          "text": "Encodable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersiveSpace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ImmersiveSpace",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ImmersiveSpace"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/",
+      "title": "Information Property List Key Reference",
+      "titleInlineContent": [
+        {
+          "text": "Information Property List Key Reference",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/"
+    },
+    "https://developer.apple.com/library/archive/samplecode/MotionGraphs/Introduction/Intro.html#//apple_ref/doc/uid/DTS40012333": {
+      "identifier": "https://developer.apple.com/library/archive/samplecode/MotionGraphs/Introduction/Intro.html#//apple_ref/doc/uid/DTS40012333",
+      "title": "MotionGraphs",
+      "titleInlineContent": [
+        {
+          "text": "MotionGraphs",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/samplecode/MotionGraphs/Introduction/Intro.html#//apple_ref/doc/uid/DTS40012333"
+    },
+    "media-2904020": {
+      "alt": "Accelerometers measure changes in velocity along the x, y, and z axes",
+      "identifier": "media-2904020",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/92a6d07674e95cb45de48f62e3247fdd/media-2904020@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Accelerometers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMAccelerometerData",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMRecordedAccelerometerData",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMSensorRecorder",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMSensorDataList"
+      ],
+      "title": "Accelerometers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Accelerometers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMAccelerometerData",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMRecordedAccelerometerData",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMSensorRecorder",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMSensorDataList"
+              ],
+              "title": "Accelerometers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1accelerometerData/title",
+          "value": "accelerometerData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1accelerometerData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accelerometerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1startAccelerometerUpdates()/title",
+          "value": "startAccelerometerUpdates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1startAccelerometerUpdates()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startAccelerometerUpdates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1isAccelerometerAvailable/title",
+          "value": "accelerometerAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1isAccelerometerAvailable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accelerometerAvailable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMSensorRecorder/title",
+          "value": "CMSensorRecorder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMSensorRecorder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSensorRecorder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMSensorRecorder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSensorRecorder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1startAccelerometerUpdates(to:withHandler:)/title",
+          "value": "startAccelerometerUpdatesToQueue:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1startAccelerometerUpdates(to:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startAccelerometerUpdatesToQueue:withHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1accelerometerUpdateInterval/title",
+          "value": "accelerometerUpdateInterval"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager~1accelerometerUpdateInterval/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accelerometerUpdateInterval"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager/title",
+          "value": "CMMotionManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMotionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMotionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMRecordedAccelerometerData/title",
+          "value": "CMRecordedAccelerometerData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMRecordedAccelerometerData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMRecordedAccelerometerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMRecordedAccelerometerData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMRecordedAccelerometerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMSensorDataList/title",
+          "value": "CMSensorDataList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMSensorDataList/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSensorDataList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMSensorDataList/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSensorDataList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAccelerometerData/title",
+          "value": "CMAccelerometerData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAccelerometerData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAccelerometerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAccelerometerData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAccelerometerData"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremotion/getting-raw-accelerometer-events"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremotion/getting-raw-accelerometer-events"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

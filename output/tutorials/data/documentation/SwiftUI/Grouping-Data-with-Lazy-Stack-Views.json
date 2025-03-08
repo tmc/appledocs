@@ -1,0 +1,1376 @@
+{
+  "abstract": [
+    {
+      "text": "Split content into logical sections inside lazy stack views.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-fundamentals"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Grouping-Data-with-Lazy-Stack-Views"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Grouping data with lazy stack views"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyHStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyVStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " views are both able to display",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "groups of views organized into logical sections, arranging their children in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "lines that grow horizontally and vertically, respectively. These stacks are",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "“lazy” in that the stack views don’t create items until they need to be rendered",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "onscreen. Like stack views, lazy stacks don’t include any inherent support for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scrolling, and you should wrap lazy stack views in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "containers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To group content or data inside a lazy stack view, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Section",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instances as containers for collections of grouped views. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Section",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "views don’t have any visual representation themselves but can contain header and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "footer views that can either scroll with the stack’s content or that you can pin",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the top or bottom of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Section",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " views to get platform-appropriate grouping",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "inside stack views or lazy stacks, lazy grids, ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/List",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ",",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CommandMenu",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Form",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", and several other container types.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code samples in this article build a user interface for visualizing shades",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of primary colors. Each section in the stack represents a primary color,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "containing five subviews, each showing a different variation of the color.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Grouping-Data-with-Lazy-Stack-Views-1.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prepare-your-data",
+          "level": 3,
+          "text": "Prepare your data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As with views contained within a stack, each ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Section",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " must be",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "uniquely identifiable when iterated by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ForEach",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In this example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "ColorData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instances represent the sections, and ",
+              "type": "text"
+            },
+            {
+              "code": "ShadeData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instances",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "represent the shades of each color inside a section. Both ",
+              "type": "text"
+            },
+            {
+              "code": "ColorData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "ShadeData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conform to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Identifiable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ColorData: Identifiable {",
+            "    let id = UUID()",
+            "    let name: String",
+            "    let color: Color",
+            "    let variations: [ShadeData]",
+            "",
+            "    struct ShadeData: Identifiable {",
+            "        let id = UUID()",
+            "        var brightness: Double",
+            "    }",
+            "",
+            "    init(color: Color, name: String) {",
+            "        self.name = name",
+            "        self.color = color",
+            "        self.variations = stride(from: 0.0, to: 0.5, by: 0.1)",
+            "            .map { ShadeData(brightness: $0) }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Display-sections-with-headers-and-footers",
+          "level": 3,
+          "text": "Display sections with headers and footers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "ColorSelectionView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " below sets up an array containing ",
+              "type": "text"
+            },
+            {
+              "code": "ColorData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instances",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for each primary color. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyVStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " iterates over the array of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "color data to create sections, then iterates over the ",
+              "type": "text"
+            },
+            {
+              "code": "variations",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to create",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "views from the shades.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ColorSelectionView: View {",
+            "    let sections = [",
+            "        ColorData(color: .red, name: \"Reds\"),",
+            "        ColorData(color: .green, name: \"Greens\"),",
+            "        ColorData(color: .blue, name: \"Blues\")",
+            "    ]",
+            "",
+            "    var body: some View {",
+            "        ScrollView {",
+            "            LazyVStack(spacing: 1) {",
+            "                ForEach(sections) { section in",
+            "                    Section(header: SectionHeaderView(colorData: section)) {",
+            "                        ForEach(section.variations) { variation in",
+            "                            section.color",
+            "                                .brightness(variation.brightness)",
+            "                                .frame(height: 20)",
+            "                        }",
+            "                    }",
+            "                }",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Group data with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Section",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " views and pass in a header or footer view",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the ",
+              "type": "text"
+            },
+            {
+              "code": "header",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "footer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties. This example implements a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "SectionHeaderView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as a header view, containing a semi-transparent stack view",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the name of the section’s color in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " label.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct SectionHeaderView: View {",
+            "    var colorData: ColorData",
+            "",
+            "    var body: some View {",
+            "        HStack {",
+            "            Text(colorData.name)",
+            "                .font(.headline)",
+            "                .foregroundColor(colorData.color)",
+            "            Spacer()",
+            "        }",
+            "        .padding()",
+            "        .background(Color.primary",
+            "                        .colorInvert()",
+            "                        .opacity(0.75))",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ForEach",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to repeat views inside a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "stack, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Creating-Performant-Scrollable-Stacks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Keep-important-information-visible",
+          "level": 3,
+          "text": "Keep important information visible",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, section header and footer views will scroll in sync with section",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content. If you want header and footer views to always remain visible,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "regardless of whether the top or bottom of the section is visible, then specify",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a set of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PinnedScrollableViews",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the ",
+              "type": "text"
+            },
+            {
+              "code": "pinnedViews",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "lazy stack view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "LazyVStack(spacing: 1, pinnedViews: [.sectionHeaders]) {",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyVStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " containers, headers attach to the top and footers to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the bottom. In ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyHStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " containers, headers attach to the leading",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "edge and footers to the trailing edge.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With this change, section headers are pinned to the top of the view as the user",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "begins to scroll.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Grouping-Data-with-Lazy-Stack-Views-2.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Grouping-Data-with-Lazy-Stack-Views-1.png": {
+      "alt": "A screenshot showing a lazy stack view with multiple sections. Each section header contains the name of the color, followed by a set of views showing varying shades of that color.",
+      "identifier": "Grouping-Data-with-Lazy-Stack-Views-1.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c939775b61be43efe77507b4fb324b99/Grouping-Data-with-Lazy-Stack-Views-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/37dd8b621beb87b6db7dee21ddd6a15d/Grouping-Data-with-Lazy-Stack-Views-1~dark@2x.png"
+        }
+      ]
+    },
+    "Grouping-Data-with-Lazy-Stack-Views-2.png": {
+      "alt": "A screenshot showing a lazy stack view with multiple sections, configured in the same way as in the first screenshot. In this screenshot, the user has scrolled down and the colored views show behind the section header, which is pinned to the top of the container view.",
+      "identifier": "Grouping-Data-with-Lazy-Stack-Views-2.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b195c453e947e7a12840fdc2ecdc1245/Grouping-Data-with-Lazy-Stack-Views-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fa303012726144733b53582cebdd28a1/Grouping-Data-with-Lazy-Stack-Views-2~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CommandMenu": {
+      "abstract": [
+        {
+          "text": "Command menus are stand-alone, top-level containers for controls that",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "perform related, app-specific commands.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CommandMenu"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CommandMenu",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CommandMenu"
+        }
+      ],
+      "role": "symbol",
+      "title": "CommandMenu",
+      "type": "topic",
+      "url": "/documentation/swiftui/commandmenu"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Creating-Performant-Scrollable-Stacks": {
+      "abstract": [
+        {
+          "text": "Display large numbers of repeated views efficiently with scroll views, stack",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "views, and lazy stacks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Creating-Performant-Scrollable-Stacks",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating performant scrollable stacks",
+      "type": "topic",
+      "url": "/documentation/swiftui/creating-performant-scrollable-stacks"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ForEach": {
+      "abstract": [
+        {
+          "text": "A structure that computes views on demand from an underlying collection of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identified data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ForEach"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ForEach",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ForEach"
+        }
+      ],
+      "role": "symbol",
+      "title": "ForEach",
+      "type": "topic",
+      "url": "/documentation/swiftui/foreach"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Form": {
+      "abstract": [
+        {
+          "text": "A container for grouping controls used for data entry, such as in settings",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "or inspectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Form"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Form",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Form"
+        }
+      ],
+      "role": "symbol",
+      "title": "Form",
+      "type": "topic",
+      "url": "/documentation/swiftui/form"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-fundamentals": {
+      "abstract": [
+        {
+          "text": "Arrange views inside built-in layout containers like stacks and grids.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Layout fundamentals",
+      "type": "topic",
+      "url": "/documentation/swiftui/layout-fundamentals"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyHStack": {
+      "abstract": [
+        {
+          "text": "A view that arranges its children in a line that grows horizontally,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "creating items only as needed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazyHStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyHStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazyHStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyHStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/lazyhstack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyVStack": {
+      "abstract": [
+        {
+          "text": "A view that arranges its children in a line that grows vertically,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "creating items only as needed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazyVStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyVStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazyVStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyVStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/lazyvstack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/List": {
+      "abstract": [
+        {
+          "text": "A container that presents rows of data arranged in a single column,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "optionally providing the ability to select one or more members.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "List"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/List",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "List"
+        }
+      ],
+      "role": "symbol",
+      "title": "List",
+      "type": "topic",
+      "url": "/documentation/swiftui/list"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PinnedScrollableViews": {
+      "abstract": [
+        {
+          "text": "A set of view types that may be pinned to the bounds of a scroll view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PinnedScrollableViews"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PinnedScrollableViews",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PinnedScrollableViews"
+        }
+      ],
+      "role": "symbol",
+      "title": "PinnedScrollableViews",
+      "type": "topic",
+      "url": "/documentation/swiftui/pinnedscrollableviews"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollView": {
+      "abstract": [
+        {
+          "text": "A scrollable view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollView"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollView",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrollview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Section": {
+      "abstract": [
+        {
+          "text": "A container view that you can use to add hierarchy within certain views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Section"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Section",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Section"
+        }
+      ],
+      "role": "symbol",
+      "title": "Section",
+      "type": "topic",
+      "url": "/documentation/swiftui/section"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text": {
+      "abstract": [
+        {
+          "text": "A view that displays one or more lines of read-only text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "role": "symbol",
+      "title": "Text",
+      "type": "topic",
+      "url": "/documentation/swiftui/text"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Identifiable": {
+      "abstract": [
+        {
+          "text": "A class of types whose instances hold the value of an entity with stable identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Identifiable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Identifiable",
+      "type": "topic",
+      "url": "/documentation/Swift/Identifiable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Dynamically-arranging-views-in-one-dimension",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Creating-Performant-Scrollable-Stacks",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyHStack",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyVStack",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PinnedScrollableViews"
+      ],
+      "title": "Dynamically arranging views in one dimension"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/grouping-data-with-lazy-stack-views"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1041 @@
+{
+  "abstract": [
+    {
+      "text": "Use this entry point to deform a geometry’s surface or alter its vertex attributes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.scenekit/documentation/SceneKit",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNShaderModifierEntryPoint"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.scenekit/documentation/SceneKit/SCNShaderModifierEntryPoint/geometry"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "SceneKit",
+    "externalID": "c:@SCNShaderModifierEntryPointGeometry",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "static"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "let"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "geometry"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@SCNShaderModifierEntryPoint",
+        "text": "SCNShaderModifierEntryPoint"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SceneKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SCNShaderModifierEntryPointGeometry"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.9",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "property",
+    "title": "geometry"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "let"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "geometry"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNShaderModifierEntryPoint",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SCNShaderModifierEntryPoint",
+              "text": "SCNShaderModifierEntryPoint"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Shader modifiers for this entry point execute in the vertex processing stage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The geometry entry point declares the following structure:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct SCNShaderGeometry {",
+            "   vec3 position;",
+            "   vec3 normal;",
+            "   vec4 tangent;",
+            "   vec2 texcoords[kSCNTexcoordCount];",
+            "} _geometry;"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your shader modifier reads from this structure and writes new values to the same structure to alter the geometric properties of each vertex in a geometry.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "position",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "normal",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "tangent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fields are expressed in model space. You can use SceneKit’s uniforms (such as ",
+              "type": "text"
+            },
+            {
+              "code": "u_modelViewTransform",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") to operate in a different coordinate space, but you must convert back to model space before writing results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "kSCNTexcoordCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable is a constant integer corresponding to the geometry’s number of texture coordinate sources. Each set of coordinates in the ",
+              "type": "text"
+            },
+            {
+              "code": "texcoords",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field contains raw values from the geometry—SceneKit applies the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterialProperty/contentsTransform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " transformation (if any) after the geometry shader modifier completes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The below shader modifier produces an animated sinusoidal deformation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "uniform float Amplitude = 0.1;",
+            " ",
+            "_geometry.position +=",
+            "    _geometry.normal *",
+            "    (Amplitude*_geometry.position.y*_geometry.position.x) *",
+            "    sin(1.0 * u_time);"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit": {
+      "abstract": [
+        {
+          "text": "Create 3D games and add 3D content to apps using high-level scene descriptions, and easily add animations, physics simulation, particle effects, and realistic physically based rendering.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SceneKit",
+      "type": "topic",
+      "url": "/documentation/scenekit"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterialProperty/contentsTransform": {
+      "abstract": [
+        {
+          "text": "The transformation applied to the material property’s visual contents. Animatable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsTransform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SCNMatrix4",
+          "text": "SCNMatrix4"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterialProperty/contentsTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentsTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "contentsTransform",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnmaterialproperty/contentstransform"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNShadable/shaderModifiers": {
+      "abstract": [
+        {
+          "text": "A dictionary of GLSL source code snippets for customizing the shader programs provided by SceneKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shaderModifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNShaderModifierEntryPoint",
+          "text": "SCNShaderModifierEntryPoint"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNShadable/shaderModifiers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shaderModifiers"
+        }
+      ],
+      "role": "symbol",
+      "title": "shaderModifiers",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnshadable/shadermodifiers"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNShaderModifierEntryPoint": {
+      "abstract": [
+        {
+          "text": "Keys for the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNShadable/shaderModifiers",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " dictionary, each corresponding to an entry point in SceneKit’s shader programs where you can attach a custom GPU shader code snippet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNShaderModifierEntryPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNShaderModifierEntryPoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNShaderModifierEntryPoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNShaderModifierEntryPoint",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnshadermodifierentrypoint"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNShaderModifierEntryPoint/fragment": {
+      "abstract": [
+        {
+          "text": "Use this entry point to change the color of a fragment after all other shading has been performed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fragment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNShaderModifierEntryPoint",
+          "text": "SCNShaderModifierEntryPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNShaderModifierEntryPoint/fragment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNShaderModifierEntryPointFragment"
+        }
+      ],
+      "role": "symbol",
+      "title": "fragment",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnshadermodifierentrypoint/fragment"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNShaderModifierEntryPoint/geometry": {
+      "abstract": [
+        {
+          "text": "Use this entry point to deform a geometry’s surface or alter its vertex attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "geometry"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNShaderModifierEntryPoint",
+          "text": "SCNShaderModifierEntryPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNShaderModifierEntryPoint/geometry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNShaderModifierEntryPointGeometry"
+        }
+      ],
+      "role": "symbol",
+      "title": "geometry",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnshadermodifierentrypoint/geometry"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNShaderModifierEntryPoint/lightingModel": {
+      "abstract": [
+        {
+          "text": "Use this entry point to provide a custom lighting equation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lightingModel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNShaderModifierEntryPoint",
+          "text": "SCNShaderModifierEntryPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNShaderModifierEntryPoint/lightingModel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNShaderModifierEntryPointLightingModel"
+        }
+      ],
+      "role": "symbol",
+      "title": "lightingModel",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnshadermodifierentrypoint/lightingmodel"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNShaderModifierEntryPoint/surface": {
+      "abstract": [
+        {
+          "text": "Use this entry point to modify the surface properties of a material before lighting is computed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "surface"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNShaderModifierEntryPoint",
+          "text": "SCNShaderModifierEntryPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNShaderModifierEntryPoint/surface",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNShaderModifierEntryPointSurface"
+        }
+      ],
+      "role": "symbol",
+      "title": "surface",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnshadermodifierentrypoint/surface"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Type-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNShaderModifierEntryPoint/fragment",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNShaderModifierEntryPoint/lightingModel",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNShaderModifierEntryPoint/surface"
+      ],
+      "title": "Type Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.9",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Global Variable"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SCNShaderModifierEntryPointGeometry"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "var"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNShaderModifierEntryPointGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.scenekit/documentation/SceneKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Type-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNShaderModifierEntryPoint/fragment",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNShaderModifierEntryPoint/lightingModel",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNShaderModifierEntryPoint/surface"
+              ],
+              "title": "Type Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "extern"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNShaderModifierEntryPoint",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@SCNShaderModifierEntryPoint",
+                    "text": "SCNShaderModifierEntryPoint"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "const"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SCNShaderModifierEntryPointGeometry"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNShaderModifierEntryPoint~1fragment/title",
+          "value": "SCNShaderModifierEntryPointFragment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNShaderModifierEntryPoint~1fragment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNShaderModifierEntryPointFragment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNShaderModifierEntryPoint~1geometry/title",
+          "value": "SCNShaderModifierEntryPointGeometry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNShaderModifierEntryPoint~1geometry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNShaderModifierEntryPointGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNShaderModifierEntryPoint~1lightingModel/title",
+          "value": "SCNShaderModifierEntryPointLightingModel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNShaderModifierEntryPoint~1lightingModel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNShaderModifierEntryPointLightingModel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNShaderModifierEntryPoint/title",
+          "value": "SCNShaderModifierEntryPoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNShaderModifierEntryPoint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNShaderModifierEntryPoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNShaderModifierEntryPoint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNShaderModifierEntryPoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNShaderModifierEntryPoint~1surface/title",
+          "value": "SCNShaderModifierEntryPointSurface"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNShaderModifierEntryPoint~1surface/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNShaderModifierEntryPointSurface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNShadable~1shaderModifiers/title",
+          "value": "shaderModifiers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNShadable~1shaderModifiers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shaderModifiers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterialProperty~1contentsTransform/title",
+          "value": "contentsTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNMaterialProperty~1contentsTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contentsTransform"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/scenekit/scnshadermodifierentrypoint/geometry"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/scenekit/scnshadermodifierentrypoint/geometry"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3072 @@
+{
+  "abstract": [
+    {
+      "text": "An object that manages interactions between Writing Tools and",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "your custom text view.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSWritingToolsCoordinator",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSWritingToolsCoordinator"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSWritingToolsCoordinator"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.2",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSWritingToolsCoordinator"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinator"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.appkit/documentation/AppKit/adding-writing-tools-support-to-a-custom-nsview"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a ",
+              "type": "text"
+            },
+            {
+              "code": "NSWritingToolsCoordinator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object to a custom view when you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "want to add Writing Tools support to that view. The coordinator manages",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interactions between your view and the Writing Tools UI and back-end",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "capabilities. When creating a coordinator, you supply a delegate object",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to respond to requests from the system and provide needed information.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Your delegate delivers your view’s text to Writing Tools, incorporates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "suggested changes back into your text storage, and supports the animations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that Writing Tools creates to show the state of an operation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create the ",
+              "type": "text"
+            },
+            {
+              "code": "NSWritingToolsCoordinator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object when setting up your UI, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "initialize it with a custom object that adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/Delegate-swift.protocol",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol. Add the coordinator to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/writingToolsCoordinator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of your view. When a coordinator is present on a view, the system adds UI elements",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to initiate Writing Tools operations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When defining the delegate, choose an object from your app that has access",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to your view and its text storage. You can adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/Delegate-swift.protocol",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol in the view itself, or in another type that your view uses to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "manage content. During the interactions with Writing Tools, the delegate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "gets and sets the contents of the view’s text storage and supports Writing Tools behaviors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You don’t need to create an ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSWritingToolsCoordinator",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "  object",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "if you display text using a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ",",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextField",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ",",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ",",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TextField",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", or",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TextEditor",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " view.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Those views already include the required support to handle Writing Tools",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "interactions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextField": {
+      "abstract": [
+        {
+          "text": "Text the user can select or edit to send an action message to a target when the user presses the Return key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextField"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextField",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextField"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextField",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextfield"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextView": {
+      "abstract": [
+        {
+          "text": "A view that draws text and handles user interactions with that text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextView",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/writingToolsCoordinator": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWritingToolsCoordinator",
+          "text": "NSWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/writingToolsCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writingToolsCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "writingToolsCoordinator",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/writingtoolscoordinator"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator": {
+      "abstract": [
+        {
+          "text": "An object that manages interactions between Writing Tools and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your custom text view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSWritingToolsCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSWritingToolsCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWritingToolsCoordinator",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/AnimationParameters": {
+      "abstract": [
+        {
+          "text": "An object you use to configure additional tasks or animations to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "run alongside the Writing Tools animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimationParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/AnimationParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimationParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWritingToolsCoordinator.AnimationParameters",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator/animationparameters"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/Context": {
+      "abstract": [
+        {
+          "text": "A data object that you use to share your custom view’s text with Writing Tools.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Context"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/Context",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Context"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWritingToolsCoordinator.Context",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator/context"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/ContextScope": {
+      "abstract": [
+        {
+          "text": "Options that indicate how much of your content Writing Tools requested.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContextScope"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/ContextScope",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContextScope"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWritingToolsCoordinator.ContextScope",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator/contextscope"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/Delegate-swift.protocol": {
+      "abstract": [
+        {
+          "text": "An interface that you use to manage interactions between Writing Tools",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and your custom text view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Delegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/Delegate-swift.protocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWritingToolsCoordinator.Delegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator/delegate-swift.protocol"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/State-swift.enum": {
+      "abstract": [
+        {
+          "text": "The states that indicate the current activity, if any, Writing Tools",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "is performing in your view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/State-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWritingToolsCoordinator.State",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator/state-swift.enum"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/TextAnimation": {
+      "abstract": [
+        {
+          "text": "The types of animations that Writing Tools performs during an",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "interactive update of your view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/TextAnimation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWritingToolsCoordinator.TextAnimation",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator/textanimation"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/TextReplacementReason": {
+      "abstract": [
+        {
+          "text": "Options that indicate whether Writing Tools is animating changes to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your view’s text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextReplacementReason"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/TextReplacementReason",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextReplacementReason"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWritingToolsCoordinator.TextReplacementReason",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator/textreplacementreason"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/TextUpdateReason": {
+      "abstract": [
+        {
+          "text": "Constants that specify the reason you updated your view’s content",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "outside of the Writing Tools workflow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextUpdateReason"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/TextUpdateReason",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextUpdateReason"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWritingToolsCoordinator.TextUpdateReason",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator/textupdatereason"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/behavior": {
+      "abstract": [
+        {
+          "text": "The actual level of Writing Tools support the system provides for your view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "behavior"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSWritingToolsBehavior",
+          "text": "NSWritingToolsBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/behavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "behavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "behavior",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator/behavior"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/decorationContainerView": {
+      "abstract": [
+        {
+          "text": "The view that Writing Tools uses to display background decorations",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "such as proofreading marks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "decorationContainerView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/decorationContainerView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "decorationContainerView"
+        }
+      ],
+      "role": "symbol",
+      "title": "decorationContainerView",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator/decorationcontainerview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/delegate-swift.property": {
+      "abstract": [
+        {
+          "text": "The object that handles Writing Tools interactions for your view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWritingToolsCoordinator",
+          "text": "NSWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSWritingToolsCoordinatorDelegate",
+          "text": "Delegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/delegate-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator/delegate-swift.property"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/effectContainerView": {
+      "abstract": [
+        {
+          "text": "The view that Writing Tools uses to display visual effects during",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the text-rewriting process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "effectContainerView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/effectContainerView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "effectContainerView"
+        }
+      ],
+      "role": "symbol",
+      "title": "effectContainerView",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator/effectcontainerview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/init(delegate:)": {
+      "abstract": [
+        {
+          "text": "Creates a writing tools coordinator and assigns the specified",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "delegate object to it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWritingToolsCoordinator",
+          "text": "NSWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSWritingToolsCoordinatorDelegate",
+          "text": "Delegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/init(delegate:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithDelegate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(delegate:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator/init(delegate:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/isWritingToolsAvailable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether Writing Tools features are",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "currently available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isWritingToolsAvailable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/isWritingToolsAvailable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isWritingToolsAvailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "isWritingToolsAvailable",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator/iswritingtoolsavailable"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/preferredBehavior": {
+      "abstract": [
+        {
+          "text": "The level of Writing Tools support you want the system to provide",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for your view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSWritingToolsBehavior",
+          "text": "NSWritingToolsBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/preferredBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredBehavior",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator/preferredbehavior"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/preferredResultOptions": {
+      "abstract": [
+        {
+          "text": "The type of content you allow Writing Tools to generate for your custom",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "text view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredResultOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSWritingToolsResultOptions",
+          "text": "NSWritingToolsResultOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/preferredResultOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredResultOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredResultOptions",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator/preferredresultoptions"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/resultOptions": {
+      "abstract": [
+        {
+          "text": "The type of content the system generates for your custom text view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resultOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSWritingToolsResultOptions",
+          "text": "NSWritingToolsResultOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/resultOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resultOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "resultOptions",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator/resultoptions"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/state-swift.property": {
+      "abstract": [
+        {
+          "text": "The current level of Writing Tools activity in your view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWritingToolsCoordinator",
+          "text": "NSWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSWritingToolsCoordinatorState",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/state-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "state"
+        }
+      ],
+      "role": "symbol",
+      "title": "state",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator/state-swift.property"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/stopWritingTools()": {
+      "abstract": [
+        {
+          "text": "Stops the current Writing Tools operation and dismisses the system UI.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopWritingTools"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/stopWritingTools()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopWritingTools"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopWritingTools()",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator/stopwritingtools()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/updateForReflowedTextInContextWithIdentifier(_:)": {
+      "abstract": [
+        {
+          "text": "Informs the coordinator that a change occurred to the view or its text",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that requires a layout update.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateForReflowedTextInContextWithIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/updateForReflowedTextInContextWithIdentifier(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateForReflowedTextInContextWithIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "updateForReflowedTextInContextWithIdentifier(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator/updateforreflowedtextincontextwithidentifier(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/updateRange(_:with:reason:forContextWithIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Informs the coordinator about changes your app made to the text",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in the specified context object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSAttributedString",
+          "text": "NSAttributedString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "reason"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWritingToolsCoordinator",
+          "text": "NSWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSWritingToolsCoordinatorTextUpdateReason",
+          "text": "TextUpdateReason"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forContextWithIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/updateRange(_:with:reason:forContextWithIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateRange:withText:reason:forContextWithIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "updateRange(_:with:reason:forContextWithIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator/updaterange(_:with:reason:forcontextwithidentifier:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/view": {
+      "abstract": [
+        {
+          "text": "The view that currently uses the writing tools coordinator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/view",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "view"
+        }
+      ],
+      "role": "symbol",
+      "title": "view",
+      "type": "topic",
+      "url": "/documentation/appkit/nswritingtoolscoordinator/view"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/adding-writing-tools-support-to-a-custom-nsview": {
+      "abstract": [
+        {
+          "text": "Integrate Writing Tools support, including support for inline replacement",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "animations, to your custom text views on macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/adding-writing-tools-support-to-a-custom-nsview",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Writing Tools support to a custom AppKit view",
+      "type": "topic",
+      "url": "/documentation/appkit/adding-writing-tools-support-to-a-custom-nsview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/supporting-writing-tools-via-the-pasteboard": {
+      "abstract": [
+        {
+          "text": "Adopt a simplified version of the Writing Tools experience in a custom",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "view using the pasteboard and macOS services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/supporting-writing-tools-via-the-pasteboard",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Writing Tools via the pasteboard",
+      "type": "topic",
+      "url": "/documentation/appkit/supporting-writing-tools-via-the-pasteboard"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/TextEditor": {
+      "abstract": [
+        {
+          "text": "A view that can display and edit long-form text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextEditor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TextEditor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TextEditor",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/TextEditor"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/TextField": {
+      "abstract": [
+        {
+          "text": "A control that displays an editable text interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextField"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TextField",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TextField",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/TextField"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UITextView": {
+      "abstract": [
+        {
+          "text": "A scrollable, multiline text region.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITextView",
+      "type": "topic",
+      "url": "/documentation/UIKit/UITextView"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Writing-Tools-for-custom-views",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/supporting-writing-tools-via-the-pasteboard",
+        "doc://com.apple.appkit/documentation/AppKit/adding-writing-tools-support-to-a-custom-nsview",
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/Delegate-swift.protocol",
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/Context",
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/AnimationParameters"
+      ],
+      "title": "Writing Tools for custom views"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-coordinator-object",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/init(delegate:)"
+      ],
+      "title": "Creating a coordinator object"
+    },
+    {
+      "anchor": "Checking-the-availability-of-Writing-Tools",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/isWritingToolsAvailable"
+      ],
+      "title": "Checking the availability of Writing Tools"
+    },
+    {
+      "anchor": "Managing-Writing-Tools-interactions",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/delegate-swift.property",
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/Delegate-swift.protocol",
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/view"
+      ],
+      "title": "Managing Writing Tools interactions"
+    },
+    {
+      "anchor": "Getting-the-host-views-for-effects",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/effectContainerView",
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/decorationContainerView"
+      ],
+      "title": "Getting the host views for effects"
+    },
+    {
+      "anchor": "Configuring-the-experience",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/preferredBehavior",
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/behavior",
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/preferredResultOptions",
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/resultOptions"
+      ],
+      "title": "Configuring the experience"
+    },
+    {
+      "anchor": "Reporting-changes-to-Writing-Tools",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/updateRange(_:with:reason:forContextWithIdentifier:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/updateForReflowedTextInContextWithIdentifier(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/TextUpdateReason"
+      ],
+      "title": "Reporting changes to Writing Tools"
+    },
+    {
+      "anchor": "Managing-the-current-state",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/stopWritingTools()",
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/state-swift.property",
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/State-swift.enum"
+      ],
+      "title": "Managing the current state"
+    },
+    {
+      "anchor": "Getting-the-supporting-types",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/ContextScope",
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/TextReplacementReason",
+        "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/TextAnimation"
+      ],
+      "title": "Getting the supporting types"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.2",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSWritingToolsCoordinator"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-coordinator-object",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/init(delegate:)"
+              ],
+              "title": "Creating a coordinator object"
+            },
+            {
+              "anchor": "Checking-the-availability-of-Writing-Tools",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/isWritingToolsAvailable"
+              ],
+              "title": "Checking the availability of Writing Tools"
+            },
+            {
+              "anchor": "Managing-Writing-Tools-interactions",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/delegate-swift.property",
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/Delegate-swift.protocol",
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/view"
+              ],
+              "title": "Managing Writing Tools interactions"
+            },
+            {
+              "anchor": "Getting-the-host-views-for-effects",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/effectContainerView",
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/decorationContainerView"
+              ],
+              "title": "Getting the host views for effects"
+            },
+            {
+              "anchor": "Configuring-the-experience",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/preferredBehavior",
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/behavior",
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/preferredResultOptions",
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/resultOptions"
+              ],
+              "title": "Configuring the experience"
+            },
+            {
+              "anchor": "Reporting-changes-to-Writing-Tools",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/updateRange(_:with:reason:forContextWithIdentifier:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/updateForReflowedTextInContextWithIdentifier(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/TextUpdateReason"
+              ],
+              "title": "Reporting changes to Writing Tools"
+            },
+            {
+              "anchor": "Managing-the-current-state",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/stopWritingTools()",
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/state-swift.property",
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/State-swift.enum"
+              ],
+              "title": "Managing the current state"
+            },
+            {
+              "anchor": "Getting-the-supporting-types",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/ContextScope",
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/TextReplacementReason",
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/TextAnimation"
+              ],
+              "title": "Getting the supporting types"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Writing-Tools-for-custom-views",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/supporting-writing-tools-via-the-pasteboard",
+                "doc://com.apple.appkit/documentation/AppKit/adding-writing-tools-support-to-a-custom-nsview",
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/Delegate-swift.protocol",
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/Context",
+                "doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/AnimationParameters"
+              ],
+              "title": "Writing Tools for custom views"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSWritingToolsCoordinator"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1stopWritingTools()/title",
+          "value": "stopWritingTools"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1stopWritingTools()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopWritingTools"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1isWritingToolsAvailable/title",
+          "value": "isWritingToolsAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1isWritingToolsAvailable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "isWritingToolsAvailable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1ContextScope/title",
+          "value": "NSWritingToolsCoordinatorContextScope"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1ContextScope/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinatorContextScope"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1ContextScope/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinatorContextScope"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1effectContainerView/title",
+          "value": "effectContainerView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1effectContainerView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "effectContainerView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1TextUpdateReason/title",
+          "value": "NSWritingToolsCoordinatorTextUpdateReason"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1TextUpdateReason/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinatorTextUpdateReason"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1TextUpdateReason/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinatorTextUpdateReason"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1delegate-swift.property/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1delegate-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1updateForReflowedTextInContextWithIdentifier(_:)/title",
+          "value": "updateForReflowedTextInContextWithIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1updateForReflowedTextInContextWithIdentifier(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateForReflowedTextInContextWithIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UITextView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UITextView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIScrollView",
+              "text": "UIScrollView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1resultOptions/title",
+          "value": "resultOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1resultOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "resultOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1TextAnimation/title",
+          "value": "NSWritingToolsCoordinatorTextAnimation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1TextAnimation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinatorTextAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1TextAnimation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinatorTextAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1Delegate-swift.protocol/title",
+          "value": "NSWritingToolsCoordinatorDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1Delegate-swift.protocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinatorDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1Delegate-swift.protocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinatorDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1init(delegate:)/title",
+          "value": "initWithDelegate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1init(delegate:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithDelegate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1AnimationParameters/title",
+          "value": "NSWritingToolsCoordinatorAnimationParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1AnimationParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinatorAnimationParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1AnimationParameters/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinatorAnimationParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1Context/title",
+          "value": "NSWritingToolsCoordinatorContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1Context/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinatorContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1Context/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinatorContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1writingToolsCoordinator/title",
+          "value": "writingToolsCoordinator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1writingToolsCoordinator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "writingToolsCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator/title",
+          "value": "NSWritingToolsCoordinator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1updateRange(_:with:reason:forContextWithIdentifier:)/title",
+          "value": "updateRange:withText:reason:forContextWithIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1updateRange(_:with:reason:forContextWithIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateRange:withText:reason:forContextWithIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1TextReplacementReason/title",
+          "value": "NSWritingToolsCoordinatorTextReplacementReason"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1TextReplacementReason/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinatorTextReplacementReason"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1TextReplacementReason/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinatorTextReplacementReason"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1State-swift.enum/title",
+          "value": "NSWritingToolsCoordinatorState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1State-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinatorState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1State-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWritingToolsCoordinatorState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1decorationContainerView/title",
+          "value": "decorationContainerView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1decorationContainerView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "decorationContainerView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1behavior/title",
+          "value": "behavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1behavior/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "behavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1preferredBehavior/title",
+          "value": "preferredBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1preferredBehavior/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preferredBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1view/title",
+          "value": "view"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1view/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "view"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextField/title",
+          "value": "NSTextField"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextField/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextField/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1preferredResultOptions/title",
+          "value": "preferredResultOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1preferredResultOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preferredResultOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1state-swift.property/title",
+          "value": "state"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWritingToolsCoordinator~1state-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "state"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView/title",
+          "value": "NSTextView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nswritingtoolscoordinator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nswritingtoolscoordinator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

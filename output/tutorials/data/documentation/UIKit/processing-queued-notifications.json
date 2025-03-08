@@ -1,0 +1,1482 @@
+{
+  "abstract": [
+    {
+      "text": "Respond to notifications when coming out of the suspended state.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+        "doc://com.apple.uikit/documentation/UIKit/scenes",
+        "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-foreground"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/windows-and-screens",
+        "doc://com.apple.uikit/documentation/UIKit/scenes",
+        "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-foreground"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+        "doc://com.apple.uikit/documentation/UIKit/multitasking-on-ipad",
+        "doc://com.apple.uikit/documentation/UIKit/scenes",
+        "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-foreground"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/processing-queued-notifications"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Processing queued notifications"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When settings or device conditions change, the system generates notifications so that apps can respond accordingly. These notifications are delivered immediately to apps that are running, but their delivery is delayed for apps that are suspended. For a suspended app, pending notifications are delivered as soon after the app begins running again (either in the foreground or in the background).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table lists the notifications that apps can receive after they start running again. You must explicitly add an observer to these notifications to receive them. The system coalesces multiple related notifications so that the app receives only one notification with the net changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Event",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notifications",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user changed your app’s preferences",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1408206-didchangenotification",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The current language or locale settings changed",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslocale/1418141-currentlocaledidchangenotificati",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The screen mode of a display changes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScreen/modeDidChangeNotification",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An external display is connected or disconnected",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScreen/didConnectNotification",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScreen/didDisconnectNotification",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An accessory is connected or disconnected",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1613827-eaaccessorydidconnect",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " (Swift) or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ExternalAccessory/EAAccessoryDidConnectNotification",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " (Objective-C) ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1613901-eaaccessorydiddisconnect",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " (Swift) or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ExternalAccessory/EAAccessoryDidDisconnectNotification",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " (Objective-C)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The status of the user’s iCloud account changed",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1407629-nsubiquityidentitydidchange",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The device orientation changed",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/orientationDidChangeNotification",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " (UIKit automatically updates the interface orientation of your view controllers when appropriate.)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "There was a significant time change",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication/significantTimeChangeNotification",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The battery level or battery state changed",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/batteryLevelDidChangeNotification",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/batteryStateDidChangeNotification",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The device’s proximity to the user changed",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/proximityStateDidChangeNotification",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a suspended app starts running again, the system delivers any queued notifications on the app’s main thread before it delivers any touch events or user input. Handle all notifications as quickly as possible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/ExternalAccessory/EAAccessoryDidConnectNotification": {
+      "abstract": [
+        {
+          "text": "A notification that the system sends when an accessory becomes connected and available for your application to use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "extern"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSString",
+          "text": "NSString"
+        },
+        {
+          "kind": "text",
+          "text": " * "
+        },
+        {
+          "kind": "keyword",
+          "text": "const"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EAAccessoryDidConnectNotification"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ExternalAccessory/EAAccessoryDidConnectNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EAAccessoryDidConnectNotification",
+      "type": "topic",
+      "url": "/documentation/ExternalAccessory/EAAccessoryDidConnectNotification"
+    },
+    "doc://com.apple.documentation/documentation/ExternalAccessory/EAAccessoryDidDisconnectNotification": {
+      "abstract": [
+        {
+          "text": "A notification that is posted when an accessory is disconnected and no longer available for your application to use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "extern"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSString",
+          "text": "NSString"
+        },
+        {
+          "kind": "text",
+          "text": " * "
+        },
+        {
+          "kind": "keyword",
+          "text": "const"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EAAccessoryDidDisconnectNotification"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ExternalAccessory/EAAccessoryDidDisconnectNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EAAccessoryDidDisconnectNotification",
+      "type": "topic",
+      "url": "/documentation/ExternalAccessory/EAAccessoryDidDisconnectNotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslocale/1418141-currentlocaledidchangenotificati": {
+      "abstract": [
+        {
+          "text": "A notification that indicates that the user’s locale changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class let "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentLocaleDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslocale/1418141-currentlocaledidchangenotificati",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentLocaleDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nslocale/1418141-currentlocaledidchangenotificati"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1407629-nsubiquityidentitydidchange": {
+      "abstract": [
+        {
+          "text": "Sent after the iCloud (“ubiquity”) identity has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUbiquityIdentityDidChange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1407629-nsubiquityidentitydidchange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUbiquityIdentityDidChange",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1407629-nsubiquityidentitydidchange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1613827-eaaccessorydidconnect": {
+      "abstract": [
+        {
+          "text": "A notification that the system sends when an accessory becomes connected and available for your application to use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "EAAccessoryDidConnect"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1613827-eaaccessorydidconnect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EAAccessoryDidConnect",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1613827-eaaccessorydidconnect"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1613901-eaaccessorydiddisconnect": {
+      "abstract": [
+        {
+          "text": "A notification that is posted when an accessory is disconnected and no longer available for your application to use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "EAAccessoryDidDisconnect"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1613901-eaaccessorydiddisconnect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EAAccessoryDidDisconnect",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1613901-eaaccessorydiddisconnect"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1408206-didchangenotification": {
+      "abstract": [
+        {
+          "text": "Posted when user defaults are changed within the current process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class let "
+        },
+        {
+          "kind": "identifier",
+          "text": "didChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1408206-didchangenotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didChangeNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1408206-didchangenotification"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplication/significantTimeChangeNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts when there’s a significant change in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "significantTimeChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication/significantTimeChangeNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIApplicationSignificantTimeChangeNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "significantTimeChangeNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplication/significanttimechangenotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/batteryLevelDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts when the battery level changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "batteryLevelDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/batteryLevelDidChangeNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDeviceBatteryLevelDidChangeNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "batteryLevelDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/batteryleveldidchangenotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/batteryStateDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts when battery state changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "batteryStateDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/batteryStateDidChangeNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDeviceBatteryStateDidChangeNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "batteryStateDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/batterystatedidchangenotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/orientationDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts when the orientation of the device changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "orientationDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/orientationDidChangeNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDeviceOrientationDidChangeNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "orientationDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/orientationdidchangenotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDevice/proximityStateDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts when the state of the proximity sensor changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "proximityStateDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDevice/proximityStateDidChangeNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDeviceProximityStateDidChangeNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "proximityStateDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uidevice/proximitystatedidchangenotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIScreen/didConnectNotification": {
+      "abstract": [
+        {
+          "text": "A notification the system posts when a new screen connects to the device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didConnectNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScreen/didConnectNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIScreenDidConnectNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "didConnectNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscreen/didconnectnotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIScreen/didDisconnectNotification": {
+      "abstract": [
+        {
+          "text": "A notification the system posts when a screen disconnects from the device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didDisconnectNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScreen/didDisconnectNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIScreenDidDisconnectNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "didDisconnectNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscreen/diddisconnectnotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIScreen/modeDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts when a screen’s mode changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modeDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScreen/modeDidChangeNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIScreenModeDidChangeNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "modeDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscreen/modedidchangenotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/app-and-environment": {
+      "abstract": [
+        {
+          "text": "Manage life-cycle events and your app’s UI scenes, and get information about traits and the environment in which your app runs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and environment",
+      "type": "topic",
+      "url": "/documentation/uikit/app-and-environment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/multitasking-on-ipad": {
+      "abstract": [
+        {
+          "text": "Implement multitasking APIs to seamlessly integrate your app with iPadOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/multitasking-on-ipad",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Multitasking on iPad",
+      "type": "topic",
+      "url": "/documentation/uikit/multitasking-on-ipad"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-foreground": {
+      "abstract": [
+        {
+          "text": "Configure your app to appear onscreen.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-foreground",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preparing your UI to run in the foreground",
+      "type": "topic",
+      "url": "/documentation/uikit/preparing-your-ui-to-run-in-the-foreground"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/scenes": {
+      "abstract": [
+        {
+          "text": "Manage multiple instances of your app’s UI simultaneously, and direct resources to the appropriate instance of your UI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/scenes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scenes",
+      "type": "topic",
+      "url": "/documentation/uikit/scenes"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/windows-and-screens": {
+      "abstract": [
+        {
+          "text": "Provide a container for your view hierarchies and other content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/windows-and-screens",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Windows and screens",
+      "type": "topic",
+      "url": "/documentation/uikit/windows-and-screens"
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1batteryLevelDidChangeNotification/title",
+          "value": "UIDeviceBatteryLevelDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1batteryLevelDidChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDeviceBatteryLevelDidChangeNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1batteryStateDidChangeNotification/title",
+          "value": "UIDeviceBatteryStateDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1batteryStateDidChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDeviceBatteryStateDidChangeNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsnotification~1name~11407629-nsubiquityidentitydidchange/title",
+          "value": "NSUbiquityIdentityDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreen~1didConnectNotification/title",
+          "value": "UIScreenDidConnectNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreen~1didConnectNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScreenDidConnectNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nslocale~11418141-currentlocaledidchangenotificati/title",
+          "value": "NSCurrentLocaleDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreen~1didDisconnectNotification/title",
+          "value": "UIScreenDidDisconnectNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreen~1didDisconnectNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScreenDidDisconnectNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1userdefaults~11408206-didchangenotification/title",
+          "value": "NSUserDefaultsDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1orientationDidChangeNotification/title",
+          "value": "UIDeviceOrientationDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1orientationDidChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDeviceOrientationDidChangeNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreen~1modeDidChangeNotification/title",
+          "value": "UIScreenModeDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreen~1modeDidChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScreenModeDidChangeNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication~1significantTimeChangeNotification/title",
+          "value": "UIApplicationSignificantTimeChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication~1significantTimeChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationSignificantTimeChangeNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1proximityStateDidChangeNotification/title",
+          "value": "UIDeviceProximityStateDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDevice~1proximityStateDidChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDeviceProximityStateDidChangeNotification"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/processing-queued-notifications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/processing-queued-notifications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

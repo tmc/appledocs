@@ -1,0 +1,5233 @@
+{
+  "abstract": [
+    {
+      "text": "An object that monitors events and calls its action method when a predefined sequence of events occur.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSGestureRecognizer",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSGestureRecognizer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSGestureRecognizer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSGestureRecognizer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSGestureRecognizer"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A gesture recognizer might recognize a single click, a click and drag, or a sequence of events that imply rotation. You do not create instances of this class directly. This class is an abstract base class that defines the common behavior for all gesture recognizers. When using a gesture recognizer in your app, create an instance of one of the concrete subclasses.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The concrete subclasses of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " are the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSClickGestureRecognizer",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMagnificationGestureRecognizer",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPanGestureRecognizer",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPressGestureRecognizer",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSRotationGestureRecognizer",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A gesture recognizer operates on events in a specific view (or in any of that view’s subviews). After creating a gesture recognizer, attach it to one of your views using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/addGestureRecognizer(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Events received by your app are forwarded automatically to any relevant gesture recognizers before they are sent to the corresponding view. The gesture recognizer can delay the further progression of the events until recognition is complete or allow the events to be delivered normally.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A gesture recognizer can detect gestures that are either discrete or continuous in nature. A click gesture is discrete because it involves a mouse-down and mouse-up event without any mouse movements in between. By contrast, a pan or rotation gesture is continuous because it involves tracking mouse movements over a period of time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During the gesture recognition process, a gesture recognizer calls the action method of its associated target object to report the state of the recognition process. For discrete gestures, the action method is typically called only once when the gesture is recognized. For continuous gestures, it may be called multiple times depending on the current state of the gesture recognizer. In that situation, you can use your action method to perform appropriate tasks, such as creating animations for any mouse-related movements, in addition to handling the final results of the gesture recognition process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A gesture recognizer has only one action method and one target object, and the method must conform to one of the following signatures:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func handleGesture() { }",
+                    "func handleGesture(gestureRecognizer: NSGestureRecognizer) { }"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void)handleGesture;",
+                    "- (void)handleGesture:(NSGestureRecognizer *)gestureRecognizer;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your code needs additional information about the particulars of a gesture, define your action method to include the gesture recognizer parameter. You almost always want the gesture recognizer object when handling continuous gestures. For example, for a rotation gesture, you would use the gesture recognizer object to get the updated rotation value. You can also use the gesture recognizer object to get the location of where the gesture occurred.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "State-Transitions",
+          "level": 3,
+          "text": "State Transitions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Gesture recognizers operate within a predefined state machine, transitioning from state to state as they handle events. All gesture recognizers begin in the Possible (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/State-swift.enum/possible",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") state, but the possible transitions differ for continuous and discrete gestures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Discrete gestures transition from the Possible state directly to the Recognized (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/State-swift.enum/recognized",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") or Failed (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/State-swift.enum/failed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") state, depending on whether they successfully interpret the gesture. When a discrete gesture recognizer transitions to the Recognized state, it calls the action method of its target object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For continuous gestures, the state transitions are as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Possible —> Began —> [Changed] —> Cancelled",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Possible —> Began —> [Changed] —> Ended",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Changed state is optional and may occur multiple times before the Cancelled or Ended state is reached. Many state transitions cause the gesture recognizer to call its action method. Setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/state-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/State-swift.enum/changed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " while monitoring events also calls the action method. You can use these calls to update the state of your app or update any custom animations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a list of possible states, see the constants in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/State-swift.enum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Subclassing-Notes",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may create a subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSGestureRecognizer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that recognizes a distinctive gesture—for example, a “check mark” gesture. A custom gesture recognizer implements any appropriate event-related methods to detect its gesture along with a few other methods for managing state information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All gesture recognizers must update the value in the state property at appropriate times. Specifically, you must update it for all state transitions. For more information about the possible state transitions of a gesture recognizer, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer#State-Transitions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " does not support handing off event tracking to other non-gesture recognizer mechanisms (for example drag and drop and pop-up menus).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Methods-to-Override",
+          "level": 4,
+          "text": "Methods to Override",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating your own gesture recognizer subclass:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/reset()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method and any other relevant methods in Methods for Subclasses.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Override the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/location(in:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method as needed to specify an appropriate point for your gesture.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AppKit waits for a mouse-down event, magnify event, or rotation event to occur before starting the gesture recognition process. A gesture recognizer that used only key-down events to recognize its gesture would not have its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/keyDown(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method called until a mouse-down, magnify, or rotation event started the recognition process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Alternatives-to-Subclassing",
+          "level": 4,
+          "text": "Alternatives to Subclassing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSGestureRecognizer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class defines the common behaviors that can be configured for all concrete gesture recognizers. It also supports a delegate—an object that adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol—for handling finer-grained customization of some behaviors without the need for subclassing. For example, you can use the delegate to create dependencies between specific gesture recognizer objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about using the delegate to control the behavior of your gesture recognizers, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSClickGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A discrete gesture recognizer that tracks a specified number of mouse clicks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSClickGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSClickGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSClickGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSClickGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/appkit/nsclickgesturerecognizer"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "An object that monitors events and calls its action method when a predefined sequence of events occur.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer#State-Transitions": {
+      "abstract": [],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer#State-Transitions",
+      "kind": "section",
+      "title": "State Transitions",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer#State-Transitions"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/State-swift.enum": {
+      "abstract": [
+        {
+          "text": "The current state of the gesture recognizer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/State-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSGestureRecognizer.State",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/state-swift.enum"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/State-swift.enum/changed": {
+      "abstract": [
+        {
+          "text": "The gesture recognizer has detected a change to a continuous gesture. It calls its action method at the next cycle of the run loop.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "changed"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/State-swift.enum/changed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSGestureRecognizerStateChanged"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSGestureRecognizer.State.changed",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/state-swift.enum/changed"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/State-swift.enum/failed": {
+      "abstract": [
+        {
+          "text": "The gesture recognizer failed to recognize its gesture and will not call its action method. The gesture recognizer resets itself to the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/State-swift.enum/possible",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "failed"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/State-swift.enum/failed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSGestureRecognizerStateFailed"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSGestureRecognizer.State.failed",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/state-swift.enum/failed"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/State-swift.enum/possible": {
+      "abstract": [
+        {
+          "text": "The gesture recognizer has not yet recognized its gesture but may be evaluating events. This is the default state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "possible"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/State-swift.enum/possible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSGestureRecognizerStatePossible"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSGestureRecognizer.State.possible",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/state-swift.enum/possible"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/State-swift.enum/recognized": {
+      "abstract": [
+        {
+          "text": "The gesture recognizer successfully recognized its gesture. It calls its action method at the next cycle of the run loop and resets its state to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/State-swift.enum/possible",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recognized"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSGestureRecognizer",
+          "text": "NSGestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSGestureRecognizerState",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/State-swift.enum/recognized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSGestureRecognizerStateRecognized"
+        }
+      ],
+      "role": "symbol",
+      "title": "recognized",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/state-swift.enum/recognized"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/action": {
+      "abstract": [
+        {
+          "text": "The action method to call when the gesture is recognized.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/action",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "action"
+        }
+      ],
+      "role": "symbol",
+      "title": "action",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/action"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/allowedTouchTypes": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowedTouchTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTouch",
+          "text": "NSTouch"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSTouchTypeMask",
+          "text": "TouchTypeMask"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/allowedTouchTypes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowedTouchTypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowedTouchTypes",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/allowedtouchtypes"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/canBePrevented(by:)": {
+      "abstract": [
+        {
+          "text": "Overridden to indicate that the specified gesture recognizer can prevent the current object from recognizing a gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canBePrevented"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSGestureRecognizer",
+          "text": "NSGestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/canBePrevented(by:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canBePreventedByGestureRecognizer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "canBePrevented(by:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/canbeprevented(by:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/canPrevent(_:)": {
+      "abstract": [
+        {
+          "text": "Overridden to indicate that the current object can prevent the specified gesture recognizer from recognizing its gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canPrevent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSGestureRecognizer",
+          "text": "NSGestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/canPrevent(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canPreventGestureRecognizer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "canPrevent(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/canprevent(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delaysKeyEvents": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether key events are delivered only after gesture recognition fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delaysKeyEvents"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delaysKeyEvents",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delaysKeyEvents"
+        }
+      ],
+      "role": "symbol",
+      "title": "delaysKeyEvents",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/delayskeyevents"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delaysMagnificationEvents": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether magnification events are delivered only after gesture recognition fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delaysMagnificationEvents"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delaysMagnificationEvents",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delaysMagnificationEvents"
+        }
+      ],
+      "role": "symbol",
+      "title": "delaysMagnificationEvents",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/delaysmagnificationevents"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delaysOtherMouseButtonEvents": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether other mouse button events are delivered only after gesture recognition fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delaysOtherMouseButtonEvents"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delaysOtherMouseButtonEvents",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delaysOtherMouseButtonEvents"
+        }
+      ],
+      "role": "symbol",
+      "title": "delaysOtherMouseButtonEvents",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/delaysothermousebuttonevents"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delaysPrimaryMouseButtonEvents": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether primary mouse button events are delivered only after gesture recognition fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delaysPrimaryMouseButtonEvents"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delaysPrimaryMouseButtonEvents",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delaysPrimaryMouseButtonEvents"
+        }
+      ],
+      "role": "symbol",
+      "title": "delaysPrimaryMouseButtonEvents",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/delaysprimarymousebuttonevents"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delaysRotationEvents": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether rotation events are delivered only after gesture recognition fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delaysRotationEvents"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delaysRotationEvents",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delaysRotationEvents"
+        }
+      ],
+      "role": "symbol",
+      "title": "delaysRotationEvents",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/delaysrotationevents"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delaysSecondaryMouseButtonEvents": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether secondary mouse button events are delivered only after gesture recognition fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delaysSecondaryMouseButtonEvents"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delaysSecondaryMouseButtonEvents",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delaysSecondaryMouseButtonEvents"
+        }
+      ],
+      "role": "symbol",
+      "title": "delaysSecondaryMouseButtonEvents",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/delayssecondarymousebuttonevents"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delegate": {
+      "abstract": [
+        {
+          "text": "The delegate of the gesture recognizer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSGestureRecognizerDelegate",
+          "text": "NSGestureRecognizerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/delegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/flagsChanged(with:)": {
+      "abstract": [
+        {
+          "text": "Informs the current object that the user pressed or released a modifier key (Shift, Control, and so on).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "flagsChanged"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/flagsChanged(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "flagsChanged:"
+        }
+      ],
+      "role": "symbol",
+      "title": "flagsChanged(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/flagschanged(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/init(coder:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/init(coder:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCoder:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/init(coder:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/init(target:action:)": {
+      "abstract": [
+        {
+          "text": "Initializes the gesture recognizer with the specified target and action information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "target"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/init(target:action:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithTarget:action:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(target:action:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/init(target:action:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/isEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the gesture recognizer is able to handle events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/isEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isEnabled",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/isenabled"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/keyDown(with:)": {
+      "abstract": [
+        {
+          "text": "Informs the gesture recognizer that the user has pressed a key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyDown"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/keyDown(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "keyDown:"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyDown(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/keydown(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/keyUp(with:)": {
+      "abstract": [
+        {
+          "text": "Informs the gesture recognizer that the user released a key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyUp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/keyUp(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "keyUp:"
+        }
+      ],
+      "role": "symbol",
+      "title": "keyUp(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/keyup(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/location(in:)": {
+      "abstract": [
+        {
+          "text": "Returns the point computed as the location of the gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "location"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/location(in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationInView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "location(in:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/location(in:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/magnify(with:)": {
+      "abstract": [
+        {
+          "text": "Informs the gesture recognizer that the user is performing a pinch gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "magnify"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/magnify(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "magnifyWithEvent:"
+        }
+      ],
+      "role": "symbol",
+      "title": "magnify(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/magnify(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/mouseDown(with:)": {
+      "abstract": [
+        {
+          "text": "Informs the gesture recognizer that the user pressed the left mouse button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mouseDown"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/mouseDown(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mouseDown:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mouseDown(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/mousedown(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/mouseDragged(with:)": {
+      "abstract": [
+        {
+          "text": "Informs the gesture recognizer that the user moved the mouse with the left button pressed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mouseDragged"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/mouseDragged(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mouseDragged:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mouseDragged(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/mousedragged(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/mouseUp(with:)": {
+      "abstract": [
+        {
+          "text": "Informs the gesture recognizer that the user released the left mouse button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mouseUp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/mouseUp(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mouseUp:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mouseUp(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/mouseup(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/otherMouseDown(with:)": {
+      "abstract": [
+        {
+          "text": "Informs the gesture recognizer that the user pressed a mouse button other than the left or right one.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "otherMouseDown"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/otherMouseDown(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "otherMouseDown:"
+        }
+      ],
+      "role": "symbol",
+      "title": "otherMouseDown(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/othermousedown(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/otherMouseDragged(with:)": {
+      "abstract": [
+        {
+          "text": "Informs the gesture recognizer that the user moved the mouse with a button other than the left or right one pressed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "otherMouseDragged"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/otherMouseDragged(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "otherMouseDragged:"
+        }
+      ],
+      "role": "symbol",
+      "title": "otherMouseDragged(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/othermousedragged(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/otherMouseUp(with:)": {
+      "abstract": [
+        {
+          "text": "Informs the gesture recognizer that the user released a mouse button other than the left or right one.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "otherMouseUp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/otherMouseUp(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "otherMouseUp:"
+        }
+      ],
+      "role": "symbol",
+      "title": "otherMouseUp(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/othermouseup(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/pressureChange(with:)": {
+      "abstract": [
+        {
+          "text": "Informs the current object that a pressure change occurred on a system that supports pressure sensitivity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pressureChange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/pressureChange(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pressureChangeWithEvent:"
+        }
+      ],
+      "role": "symbol",
+      "title": "pressureChange(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/pressurechange(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/pressureConfiguration": {
+      "abstract": [
+        {
+          "text": "Configures the behavior and progression of the Force Touch trackpad when responding to recognized pressure gestures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pressureConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPressureConfiguration",
+          "text": "NSPressureConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/pressureConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pressureConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "pressureConfiguration",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/pressureconfiguration"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/reset()": {
+      "abstract": [
+        {
+          "text": "Overridden to reset the internal state of the gesture recognizer when an attempt completes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reset"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/reset()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reset"
+        }
+      ],
+      "role": "symbol",
+      "title": "reset()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/reset()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/rightMouseDown(with:)": {
+      "abstract": [
+        {
+          "text": "Informs the gesture recognizer that the user pressed the right mouse button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rightMouseDown"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/rightMouseDown(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rightMouseDown:"
+        }
+      ],
+      "role": "symbol",
+      "title": "rightMouseDown(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/rightmousedown(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/rightMouseDragged(with:)": {
+      "abstract": [
+        {
+          "text": "Informs the gesture recognizer that the user moved the mouse with the right button pressed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rightMouseDragged"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/rightMouseDragged(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rightMouseDragged:"
+        }
+      ],
+      "role": "symbol",
+      "title": "rightMouseDragged(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/rightmousedragged(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/rightMouseUp(with:)": {
+      "abstract": [
+        {
+          "text": "Informs the gesture recognizer that the user released the right mouse button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rightMouseUp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/rightMouseUp(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rightMouseUp:"
+        }
+      ],
+      "role": "symbol",
+      "title": "rightMouseUp(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/rightmouseup(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/rotate(with:)": {
+      "abstract": [
+        {
+          "text": "Informs the gesture recognizer that the user is performing a rotation gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rotate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/rotate(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rotateWithEvent:"
+        }
+      ],
+      "role": "symbol",
+      "title": "rotate(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/rotate(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/shouldBeRequiredToFail(by:)": {
+      "abstract": [
+        {
+          "text": "Overridden to indicate that the current object must fail before the specified gesture recognizer begins recognizing its gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldBeRequiredToFail"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSGestureRecognizer",
+          "text": "NSGestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/shouldBeRequiredToFail(by:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shouldBeRequiredToFailByGestureRecognizer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "shouldBeRequiredToFail(by:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/shouldberequiredtofail(by:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/shouldRequireFailure(of:)": {
+      "abstract": [
+        {
+          "text": "Overridden to indicate that the specified gesture recognizer must fail before the current object begins recognizing its gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldRequireFailure"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSGestureRecognizer",
+          "text": "NSGestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/shouldRequireFailure(of:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shouldRequireFailureOfGestureRecognizer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "shouldRequireFailure(of:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/shouldrequirefailure(of:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/state-swift.property": {
+      "abstract": [
+        {
+          "text": "The current state of the gesture recognizer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSGestureRecognizer",
+          "text": "NSGestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSGestureRecognizerState",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/state-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "state"
+        }
+      ],
+      "role": "symbol",
+      "title": "state",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/state-swift.property"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/tabletPoint(with:)": {
+      "abstract": [
+        {
+          "text": "Informs the user that a tablet-point event occurred.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabletPoint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/tabletPoint(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tabletPoint:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tabletPoint(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/tabletpoint(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/target": {
+      "abstract": [
+        {
+          "text": "The object that implements the action method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "target"
+        },
+        {
+          "kind": "text",
+          "text": ": AnyObject?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/target",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "target"
+        }
+      ],
+      "role": "symbol",
+      "title": "target",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/target"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/touchesBegan(with:)": {
+      "abstract": [
+        {
+          "text": "Called when one or more fingers first make contact with an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBar",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instance on the Touch Bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "touchesBegan"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/touchesBegan(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "touchesBeganWithEvent:"
+        }
+      ],
+      "role": "symbol",
+      "title": "touchesBegan(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/touchesbegan(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/touchesCancelled(with:)": {
+      "abstract": [
+        {
+          "text": "Called when a system event, such as a low-memory warning, cancels an in-progress touch event in an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBar",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "touchesCancelled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/touchesCancelled(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "touchesCancelledWithEvent:"
+        }
+      ],
+      "role": "symbol",
+      "title": "touchesCancelled(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/touchescancelled(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/touchesEnded(with:)": {
+      "abstract": [
+        {
+          "text": "Called when one or more fingers are removed from contact with an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBar",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instance on the Touch Bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "touchesEnded"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/touchesEnded(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "touchesEndedWithEvent:"
+        }
+      ],
+      "role": "symbol",
+      "title": "touchesEnded(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/touchesended(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/touchesMoved(with:)": {
+      "abstract": [
+        {
+          "text": "Called when one or more fingers, associated with an in-progress event, move within an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBar",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instance on the Touch Bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "touchesMoved"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/touchesMoved(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "touchesMovedWithEvent:"
+        }
+      ],
+      "role": "symbol",
+      "title": "touchesMoved(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/touchesmoved(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/view": {
+      "abstract": [
+        {
+          "text": "The view to which the gesture recognizer is attached.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/view",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "view"
+        }
+      ],
+      "role": "symbol",
+      "title": "view",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer/view"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizerDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods for fine-tuning a gesture recognizer’s behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSGestureRecognizerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSGestureRecognizerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSGestureRecognizerDelegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizerdelegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMagnificationGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that tracks a pinch gesture that magnifies content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMagnificationGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMagnificationGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSMagnificationGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSMagnificationGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmagnificationgesturerecognizer"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPanGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer for panning gestures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPanGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPanGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPanGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPanGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/appkit/nspangesturerecognizer"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPressGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A discrete gesture recognizer that tracks whether the user holds down a mouse button for a minimum amount of time before releasing it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPressGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPressGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPressGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPressGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/appkit/nspressgesturerecognizer"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSRotationGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that tracks two trackpad touches moving opposite each other in a circular motion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRotationGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSRotationGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSRotationGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSRotationGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/appkit/nsrotationgesturerecognizer"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTouchBar": {
+      "abstract": [
+        {
+          "text": "An object that provides dynamic contextual controls in the Touch Bar of supported models of MacBook Pro.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBar"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTouchBar"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTouchBar",
+      "type": "topic",
+      "url": "/documentation/appkit/nstouchbar"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/addGestureRecognizer(_:)": {
+      "abstract": [
+        {
+          "text": "Attaches a gesture recognizer to the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addGestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSGestureRecognizer",
+          "text": "NSGestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/addGestureRecognizer(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addGestureRecognizer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addGestureRecognizer(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/addgesturerecognizer(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSClickGestureRecognizer",
+        "doc://com.apple.appkit/documentation/AppKit/NSMagnificationGestureRecognizer",
+        "doc://com.apple.appkit/documentation/AppKit/NSPanGestureRecognizer",
+        "doc://com.apple.appkit/documentation/AppKit/NSPressGestureRecognizer",
+        "doc://com.apple.appkit/documentation/AppKit/NSRotationGestureRecognizer"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Custom-Gestures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizerDelegate"
+      ],
+      "title": "Custom Gestures"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializing-a-Gesture-Recognizer",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/init(target:action:)"
+      ],
+      "title": "Initializing a Gesture Recognizer"
+    },
+    {
+      "anchor": "Accessing-the-Target-and-Action",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/action",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/target"
+      ],
+      "title": "Accessing the Target and Action"
+    },
+    {
+      "anchor": "Getting-the-Location-of-Events",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/location(in:)"
+      ],
+      "title": "Getting the Location of Events"
+    },
+    {
+      "anchor": "Accessing-the-Recognizers-State",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/state-swift.property",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/view",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/isEnabled"
+      ],
+      "title": "Accessing the Recognizer’s State"
+    },
+    {
+      "anchor": "Delaying-Events",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delaysPrimaryMouseButtonEvents",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delaysSecondaryMouseButtonEvents",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delaysOtherMouseButtonEvents",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delaysKeyEvents",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delaysMagnificationEvents",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delaysRotationEvents"
+      ],
+      "title": "Delaying Events"
+    },
+    {
+      "anchor": "Accessing-the-Delegate",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delegate"
+      ],
+      "title": "Accessing the Delegate"
+    },
+    {
+      "anchor": "Methods-for-Subclasses",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/reset()",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/mouseDown(with:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/mouseDragged(with:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/mouseUp(with:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/otherMouseDown(with:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/otherMouseDragged(with:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/otherMouseUp(with:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/rightMouseDown(with:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/rightMouseDragged(with:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/rightMouseUp(with:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/magnify(with:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/rotate(with:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/canBePrevented(by:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/canPrevent(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/shouldBeRequiredToFail(by:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/shouldRequireFailure(of:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/keyDown(with:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/keyUp(with:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/tabletPoint(with:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/flagsChanged(with:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/pressureChange(with:)"
+      ],
+      "title": "Methods for Subclasses"
+    },
+    {
+      "anchor": "Configuring-Pressure",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/pressureConfiguration"
+      ],
+      "title": "Configuring Pressure"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/State-swift.enum"
+      ],
+      "title": "Constants"
+    },
+    {
+      "anchor": "Initializers",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/init(coder:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/allowedTouchTypes"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/touchesBegan(with:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/touchesCancelled(with:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/touchesEnded(with:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/touchesMoved(with:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.10",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Initializing-a-Gesture-Recognizer",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/init(target:action:)"
+              ],
+              "title": "Initializing a Gesture Recognizer"
+            },
+            {
+              "anchor": "Accessing-the-Target-and-Action",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/action",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/target"
+              ],
+              "title": "Accessing the Target and Action"
+            },
+            {
+              "anchor": "Getting-the-Location-of-Events",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/location(in:)"
+              ],
+              "title": "Getting the Location of Events"
+            },
+            {
+              "anchor": "Accessing-the-Recognizers-State",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/state-swift.property",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/view",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/isEnabled"
+              ],
+              "title": "Accessing the Recognizer’s State"
+            },
+            {
+              "anchor": "Delaying-Events",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delaysPrimaryMouseButtonEvents",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delaysSecondaryMouseButtonEvents",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delaysOtherMouseButtonEvents",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delaysKeyEvents",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delaysMagnificationEvents",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delaysRotationEvents"
+              ],
+              "title": "Delaying Events"
+            },
+            {
+              "anchor": "Accessing-the-Delegate",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/delegate"
+              ],
+              "title": "Accessing the Delegate"
+            },
+            {
+              "anchor": "Methods-for-Subclasses",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/reset()",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/mouseDown(with:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/mouseDragged(with:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/mouseUp(with:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/otherMouseDown(with:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/otherMouseDragged(with:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/otherMouseUp(with:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/rightMouseDown(with:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/rightMouseDragged(with:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/rightMouseUp(with:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/magnify(with:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/rotate(with:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/canBePrevented(by:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/canPrevent(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/shouldBeRequiredToFail(by:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/shouldRequireFailure(of:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/keyDown(with:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/keyUp(with:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/tabletPoint(with:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/flagsChanged(with:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/pressureChange(with:)"
+              ],
+              "title": "Methods for Subclasses"
+            },
+            {
+              "anchor": "Configuring-Pressure",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/pressureConfiguration"
+              ],
+              "title": "Configuring Pressure"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/State-swift.enum"
+              ],
+              "title": "Constants"
+            },
+            {
+              "anchor": "Initializers",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/init(coder:)"
+              ],
+              "title": "Initializers"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/allowedTouchTypes"
+              ],
+              "title": "Instance Properties"
+            },
+            {
+              "anchor": "Instance-Methods",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/touchesBegan(with:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/touchesCancelled(with:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/touchesEnded(with:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer/touchesMoved(with:)"
+              ],
+              "title": "Instance Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSClickGestureRecognizer",
+                "doc://com.apple.appkit/documentation/AppKit/NSMagnificationGestureRecognizer",
+                "doc://com.apple.appkit/documentation/AppKit/NSPanGestureRecognizer",
+                "doc://com.apple.appkit/documentation/AppKit/NSPressGestureRecognizer",
+                "doc://com.apple.appkit/documentation/AppKit/NSRotationGestureRecognizer"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Custom-Gestures",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizerDelegate"
+              ],
+              "title": "Custom Gestures"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSGestureRecognizer"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1init(target:action:)/title",
+          "value": "initWithTarget:action:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1init(target:action:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithTarget:action:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1canPrevent(_:)/title",
+          "value": "canPreventGestureRecognizer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1canPrevent(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "canPreventGestureRecognizer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1delaysSecondaryMouseButtonEvents/title",
+          "value": "delaysSecondaryMouseButtonEvents"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1delaysSecondaryMouseButtonEvents/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delaysSecondaryMouseButtonEvents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1otherMouseDragged(with:)/title",
+          "value": "otherMouseDragged:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1otherMouseDragged(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "otherMouseDragged:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1mouseDragged(with:)/title",
+          "value": "mouseDragged:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1mouseDragged(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mouseDragged:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPanGestureRecognizer/title",
+          "value": "NSPanGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPanGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPanGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPanGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPanGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1canBePrevented(by:)/title",
+          "value": "canBePreventedByGestureRecognizer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1canBePrevented(by:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "canBePreventedByGestureRecognizer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1touchesBegan(with:)/title",
+          "value": "touchesBeganWithEvent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1touchesBegan(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "touchesBeganWithEvent:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1view/title",
+          "value": "view"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1view/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "view"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1mouseUp(with:)/title",
+          "value": "mouseUp:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1mouseUp(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mouseUp:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPressGestureRecognizer/title",
+          "value": "NSPressGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPressGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPressGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPressGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPressGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1pressureChange(with:)/title",
+          "value": "pressureChangeWithEvent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1pressureChange(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pressureChangeWithEvent:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1pressureConfiguration/title",
+          "value": "pressureConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1pressureConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pressureConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1rightMouseUp(with:)/title",
+          "value": "rightMouseUp:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1rightMouseUp(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "rightMouseUp:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1State-swift.enum/title",
+          "value": "NSGestureRecognizerState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1State-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGestureRecognizerState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1State-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGestureRecognizerState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1reset()/title",
+          "value": "reset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1reset()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "reset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1rightMouseDragged(with:)/title",
+          "value": "rightMouseDragged:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1rightMouseDragged(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "rightMouseDragged:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMagnificationGestureRecognizer/title",
+          "value": "NSMagnificationGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMagnificationGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMagnificationGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMagnificationGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMagnificationGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1State-swift.enum~1possible/title",
+          "value": "NSGestureRecognizerStatePossible"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1State-swift.enum~1possible/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGestureRecognizerStatePossible"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1addGestureRecognizer(_:)/title",
+          "value": "addGestureRecognizer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1addGestureRecognizer(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addGestureRecognizer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1delaysPrimaryMouseButtonEvents/title",
+          "value": "delaysPrimaryMouseButtonEvents"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1delaysPrimaryMouseButtonEvents/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delaysPrimaryMouseButtonEvents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1touchesEnded(with:)/title",
+          "value": "touchesEndedWithEvent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1touchesEnded(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "touchesEndedWithEvent:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1isEnabled/title",
+          "value": "enabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1isEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "enabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1otherMouseUp(with:)/title",
+          "value": "otherMouseUp:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1otherMouseUp(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "otherMouseUp:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1tabletPoint(with:)/title",
+          "value": "tabletPoint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1tabletPoint(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tabletPoint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBar/title",
+          "value": "NSTouchBar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBar/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1delaysRotationEvents/title",
+          "value": "delaysRotationEvents"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1delaysRotationEvents/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delaysRotationEvents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1target/title",
+          "value": "target"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1target/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "target"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1shouldBeRequiredToFail(by:)/title",
+          "value": "shouldBeRequiredToFailByGestureRecognizer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1shouldBeRequiredToFail(by:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "shouldBeRequiredToFailByGestureRecognizer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1action/title",
+          "value": "action"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1action/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "action"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1touchesMoved(with:)/title",
+          "value": "touchesMovedWithEvent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1touchesMoved(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "touchesMovedWithEvent:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1rightMouseDown(with:)/title",
+          "value": "rightMouseDown:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1rightMouseDown(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "rightMouseDown:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSRotationGestureRecognizer/title",
+          "value": "NSRotationGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSRotationGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSRotationGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSRotationGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSRotationGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1State-swift.enum~1failed/title",
+          "value": "NSGestureRecognizerStateFailed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1State-swift.enum~1failed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGestureRecognizerStateFailed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1keyUp(with:)/title",
+          "value": "keyUp:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1keyUp(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "keyUp:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1touchesCancelled(with:)/title",
+          "value": "touchesCancelledWithEvent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1touchesCancelled(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "touchesCancelledWithEvent:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1delaysMagnificationEvents/title",
+          "value": "delaysMagnificationEvents"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1delaysMagnificationEvents/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delaysMagnificationEvents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1delaysKeyEvents/title",
+          "value": "delaysKeyEvents"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1delaysKeyEvents/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delaysKeyEvents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizerDelegate/title",
+          "value": "NSGestureRecognizerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGestureRecognizerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGestureRecognizerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1otherMouseDown(with:)/title",
+          "value": "otherMouseDown:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1otherMouseDown(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "otherMouseDown:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1magnify(with:)/title",
+          "value": "magnifyWithEvent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1magnify(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "magnifyWithEvent:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1delaysOtherMouseButtonEvents/title",
+          "value": "delaysOtherMouseButtonEvents"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1delaysOtherMouseButtonEvents/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delaysOtherMouseButtonEvents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1State-swift.enum~1recognized/title",
+          "value": "NSGestureRecognizerStateRecognized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1State-swift.enum~1recognized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGestureRecognizerStateRecognized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1shouldRequireFailure(of:)/title",
+          "value": "shouldRequireFailureOfGestureRecognizer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1shouldRequireFailure(of:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "shouldRequireFailureOfGestureRecognizer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1allowedTouchTypes/title",
+          "value": "allowedTouchTypes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1allowedTouchTypes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowedTouchTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1flagsChanged(with:)/title",
+          "value": "flagsChanged:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1flagsChanged(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "flagsChanged:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1init(coder:)/title",
+          "value": "initWithCoder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1init(coder:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithCoder:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1rotate(with:)/title",
+          "value": "rotateWithEvent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1rotate(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "rotateWithEvent:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1State-swift.enum~1changed/title",
+          "value": "NSGestureRecognizerStateChanged"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1State-swift.enum~1changed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGestureRecognizerStateChanged"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1state-swift.property/title",
+          "value": "state"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1state-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "state"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer/title",
+          "value": "NSGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1keyDown(with:)/title",
+          "value": "keyDown:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1keyDown(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "keyDown:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1location(in:)/title",
+          "value": "locationInView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1location(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationInView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1mouseDown(with:)/title",
+          "value": "mouseDown:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer~1mouseDown(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mouseDown:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSClickGestureRecognizer/title",
+          "value": "NSClickGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSClickGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSClickGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSClickGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSClickGestureRecognizer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsgesturerecognizer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsgesturerecognizer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

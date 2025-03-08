@@ -1,0 +1,914 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_5-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Xcode 11.5 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode 11.5 is available in the Mac App Store and includes SDKs for iOS 13.5,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "iPadOS 13.5, tvOS 13.4, watchOS 6.2, and macOS Catalina 10.15.4. The Xcode 11.5",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "release supports on-device debugging for iOS 8 and later, tvOS 9 and later, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "watchOS 2 and later. Xcode 11.5 requires a Mac running macOS Catalina 10.15.2 or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apple-Clang-Compiler",
+          "level": 3,
+          "text": "Apple Clang Compiler",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue with incorrect code generation when targeting armv7 devices.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(61901594)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Asset-Catalog",
+          "level": 3,
+          "text": "Asset Catalog",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "watchOS and tvOS apps with asset catalogs built with Xcode 11.4 or later may",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "experience slower image-loading performance on devices running on watchOS 6.1",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "or earlier, or when in Dark Mode on tvOS 13.3 or earlier. (62328605",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Add a symbol glyph to the app’s asset catalog.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Restored image-loading performance for apps in Dark Mode on devices running iOS",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "13.3 or earlier. (61200701) (FB7648891)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Debugging",
+          "level": 3,
+          "text": "Debugging",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Symbol names are no longer printed in stack frames in the console by default,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "as this combination can result in deadlocks when running Thread Sanitizer on",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "simulated devices.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For schemes that don’t have the option to gather code coverage enabled, you",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "can re-enable symbol names and source locations by adding a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "TSAN_OPTIONS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "environment variable with the value ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "symbolize=1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the scheme editor.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(61840387)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Interface-Builder",
+          "level": 3,
+          "text": "Interface Builder",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a crash that could occur with connect-to-source when Control-dragging an",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "object over a class with an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@end",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " keyword that shares a line with the previous",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "item. (61957256)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Localization",
+          "level": 3,
+          "text": "Localization",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "genstrings",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " continues to look for additional instances of a localization",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "token, such as “Text”, after finding it as part of an identifier. (61903372)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When performing string extraction, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "genstrings",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " only interprets SwiftUI",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "constructs within Swift files. (60440513, 61903448)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Playgrounds",
+          "level": 3,
+          "text": "Playgrounds",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Restored disclosure triangles for revealing the contents of playground books",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in Xcode’s project navigator. (61902475)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Signing-and-Distribution",
+          "level": 3,
+          "text": "Signing and Distribution",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In a Mac app or an app built with Mac Catalyst, Xcode sometimes does not",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "require a provisioning profile or include the Game Center entitlement. As a",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "result, your app may fail to communicate with Game Center services at runtime.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(62903631)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Add the following entitlement to your app’s entitlements plist:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "<key>com.apple.developer.game-center</key>",
+                    "<true/>"
+                  ],
+                  "syntax": "text",
+                  "type": "codeListing"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue that prevented automatic signing from making changes if the app",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "IDs used a seed prefix and not a team ID prefix. (59672760) (FB7593038)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Simulator",
+          "level": 3,
+          "text": "Simulator",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed some issues where Xcode would sometimes fail to run an app in a",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "simulated device, with an error “Timed out waiting for Simulator.app to become",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "ready”. (57050823, 62542482) (FB7437899)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a crash that could occur when invoking Siri in a simulated device.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(62333338)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Swift",
+          "level": 3,
+          "text": "Swift",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a crash that could occur when using an opaque result type whose",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "underlying type was not public. (60951353, 61902210) (FB7641416)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a crash that occurred when declaring a property with an attached",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "property wrapper that had the same name as another property in the same scope.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(61902377)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 11 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-11-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 11.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-11_1-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 11.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-11_2-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_2_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_2_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 11.2.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-11_2_1-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 11.3 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-11_3-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_3_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_3_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 11.3.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-11_3_1-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 11.4 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-11_4-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_4_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_4_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 11.4.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-11_4_1-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_6-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_6-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 11.6 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-11_6-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_7-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_7-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 11.7 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-11_7-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Xcode-11",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_7-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_6-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_4_1-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_4-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_3_1-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_3-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_2_1-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_2-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11_1-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-11-release-notes"
+      ],
+      "title": "Xcode 11"
+    }
+  ]
+}

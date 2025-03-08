@@ -1,0 +1,2639 @@
+{
+  "abstract": [
+    {
+      "text": "Install and run macOS in a virtual machine using the Virtualization framework.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.virtualization/documentation/Virtualization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.virtualization/documentation/Virtualization/running-macos-in-a-virtual-machine-on-apple-silicon"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Virtualization"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Running macOS in a virtual machine on Apple silicon"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project demonstrates how to install and run macOS virtual machines (VMs) on Apple silicon. The Xcode project includes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "two separate apps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "InstallationTool",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", a command line utility that installs macOS from a restore image, which is a file with a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".ipsw",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file extension, onto a VM. You can use this tool to download the restore image of the most current macOS release from the network, or with your own restore image. The utility creates a VM bundle and stores the resulting VM images in your Home directory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "macOSVirtualMachineSampleApp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is a Mac app that runs the macOS VM that ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "InstallationTool",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " installs. You use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "macOSVirtualMachineSampleApp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to launch and control the macOS VM that loads and runs macOS from the VM bundle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are four build targets in this project that represent the ",
+              "type": "text"
+            },
+            {
+              "code": "InstallationTool",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the ",
+              "type": "text"
+            },
+            {
+              "code": "macOSVirtualMachineSampleApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", one set of targets each for Swift and Objective-C versions of the apps. You can use either version, they’re functionally identical.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The default deployment target is macOS 14. If you need to build for an earlier version of macOS, you need to change the deployment target as appropriate.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You need to install the virtual machine, and ",
+              "type": "text"
+            },
+            {
+              "code": "VM.bundle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " needs exist before launching the sample app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set up code signing for each of the project’s targets by navigating to the Signing & Capabilities settings and selecting your team from the drop-down menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "InstallationTool",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from within Xcode or in Terminal to download the latest available macOS restore image from the network and create a macOS VM image on disk.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "code": "InstallationTool",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " creates a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "VM.bundle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " package in your Home directory, containing:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "Disk.img",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " — The main disk image of the installed OS.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "AuxiliaryStorage",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " — The auxiliary storage for macOS.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "MachineIdentifier",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " — The data representation of the ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "VZMacMachineIdentifier",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " object.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "HardwareModel",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " — The data representation of the ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "VZMacHardwareModel",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " object.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "RestoreImage.ipsw",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " — The restore image downloaded from the network (this file exists only if the tool runs without arguments).",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Launch ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "macOSVirtualMachineSampleApp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to run the macOS guest operating system. The sample app starts the VM and configures a graphical view that you interact with. The virtual Mac continues running until you shut it down from inside the guest OS, or quit the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To reinstall the virtual machine, delete the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "VM.bundle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " package and run ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "InstallationTool",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " again.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Install-macOS-from-a-restore-image",
+          "level": 3,
+          "text": "Install macOS from a restore image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After downloading a restore image, you can install macOS from that restore image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let installer = VZMacOSInstaller(virtualMachine: virtualMachine, restoringFromImageAt: restoreImageURL)",
+                    "",
+                    "NSLog(\"Starting installation.\")",
+                    "installer.install(completionHandler: { (result: Result<Void, Error>) in",
+                    "    if case let .failure(error) = result {",
+                    "        fatalError(error.localizedDescription)",
+                    "    } else {",
+                    "        NSLog(\"Installation succeeded.\")",
+                    "    }",
+                    "})",
+                    "",
+                    "// Observe installation progress.",
+                    "installationObserver = installer.progress.observe(\\.fractionCompleted, options: [.initial, .new]) { (progress, change) in",
+                    "    NSLog(\"Installation progress: \\(change.newValue! * 100).\")",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "VZMacOSInstaller *installer = [[VZMacOSInstaller alloc] initWithVirtualMachine:self->_virtualMachine restoreImageURL:restoreImageFileURL];",
+                    "",
+                    "NSLog(@\"Starting installation.\");",
+                    "[installer installWithCompletionHandler:^(NSError *error) {",
+                    "    if (error) {",
+                    "        abortWithErrorMessage([NSString stringWithFormat:@\"%@\", error.localizedDescription]);",
+                    "    } else {",
+                    "        NSLog(@\"Installation succeeded.\");",
+                    "    }",
+                    "}];",
+                    "",
+                    "[installer.progress addObserver:self forKeyPath:@\"fractionCompleted\" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Set-up-the-virtual-machine",
+          "level": 3,
+          "text": "Set up the virtual machine",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to configure the basic characteristics of the guest, such as the CPU count, memory size, various device configurations, and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSBootLoader",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to load the operating system from the disk image, as the following example shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let virtualMachineConfiguration = VZVirtualMachineConfiguration()",
+                    "",
+                    "virtualMachineConfiguration.platform = createMacPlaform()",
+                    "virtualMachineConfiguration.bootLoader = MacOSVirtualMachineConfigurationHelper.createBootLoader()",
+                    "virtualMachineConfiguration.cpuCount = MacOSVirtualMachineConfigurationHelper.computeCPUCount()",
+                    "virtualMachineConfiguration.memorySize = MacOSVirtualMachineConfigurationHelper.computeMemorySize()",
+                    "",
+                    "virtualMachineConfiguration.audioDevices = [MacOSVirtualMachineConfigurationHelper.createSoundDeviceConfiguration()]",
+                    "virtualMachineConfiguration.graphicsDevices = [MacOSVirtualMachineConfigurationHelper.createGraphicsDeviceConfiguration()]",
+                    "virtualMachineConfiguration.networkDevices = [MacOSVirtualMachineConfigurationHelper.createNetworkDeviceConfiguration()]",
+                    "virtualMachineConfiguration.storageDevices = [MacOSVirtualMachineConfigurationHelper.createBlockDeviceConfiguration()]",
+                    "",
+                    "virtualMachineConfiguration.pointingDevices = [MacOSVirtualMachineConfigurationHelper.createPointingDeviceConfiguration()]",
+                    "virtualMachineConfiguration.keyboards = [MacOSVirtualMachineConfigurationHelper.createKeyboardConfiguration()]",
+                    "",
+                    "try! virtualMachineConfiguration.validate()",
+                    "",
+                    "if #available(macOS 14.0, *) {",
+                    "    try! virtualMachineConfiguration.validateSaveRestoreSupport()",
+                    "}",
+                    "",
+                    "virtualMachine = VZVirtualMachine(configuration: virtualMachineConfiguration)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "VZVirtualMachineConfiguration *configuration = [VZVirtualMachineConfiguration new];",
+                    "",
+                    "configuration.platform = [self createMacPlatformConfiguration];",
+                    "configuration.CPUCount = [MacOSVirtualMachineConfigurationHelper computeCPUCount];",
+                    "configuration.memorySize = [MacOSVirtualMachineConfigurationHelper computeMemorySize];",
+                    "",
+                    "configuration.bootLoader = [MacOSVirtualMachineConfigurationHelper createBootLoader];",
+                    "",
+                    "configuration.audioDevices = @[ [MacOSVirtualMachineConfigurationHelper createSoundDeviceConfiguration] ];",
+                    "configuration.graphicsDevices = @[ [MacOSVirtualMachineConfigurationHelper createGraphicsDeviceConfiguration] ];",
+                    "configuration.networkDevices = @[ [MacOSVirtualMachineConfigurationHelper createNetworkDeviceConfiguration] ];",
+                    "configuration.storageDevices = @[ [MacOSVirtualMachineConfigurationHelper createBlockDeviceConfiguration] ];",
+                    "",
+                    "configuration.pointingDevices = @[ [MacOSVirtualMachineConfigurationHelper createPointingDeviceConfiguration] ];",
+                    "configuration.keyboards = @[ [MacOSVirtualMachineConfigurationHelper createKeyboardConfiguration] ];",
+                    "",
+                    "BOOL isValidConfiguration = [configuration validateWithError:nil];",
+                    "if (!isValidConfiguration) {",
+                    "    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@\"Invalid configuration\" userInfo:nil];",
+                    "}",
+                    "",
+                    "if (@available(macOS 14.0, *)) {",
+                    "    BOOL supportsSaveRestore = [configuration validateSaveRestoreSupportWithError:nil];",
+                    "    if (!supportsSaveRestore) {",
+                    "        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@\"Invalid configuration\" userInfo:nil];",
+                    "    }",
+                    "}",
+                    "",
+                    "_virtualMachine = [[VZVirtualMachine alloc] initWithConfiguration:configuration];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Inside the ",
+              "type": "text"
+            },
+            {
+              "code": "createVirtualMachine",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, the app also creates a platform configuration for the VM. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacPlatformConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " configures important macOS-specific data that the macOS guest needs to run, including the specific ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSConfigurationRequirements/hardwareModel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that the image supports, as well as a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacPlatformConfiguration/machineIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that uniquely identifies the current VM instance and differentiates it from any others.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let macPlatform = VZMacPlatformConfiguration()",
+                    "",
+                    "let auxiliaryStorage = VZMacAuxiliaryStorage(contentsOf: auxiliaryStorageURL)",
+                    "macPlatform.auxiliaryStorage = auxiliaryStorage",
+                    "",
+                    "if !FileManager.default.fileExists(atPath: vmBundlePath) {",
+                    "    fatalError(\"Missing Virtual Machine Bundle at \\(vmBundlePath). Run InstallationTool first to create it.\")",
+                    "}",
+                    "",
+                    "// Retrieve the hardware model and save this value to disk",
+                    "// during installation.",
+                    "guard let hardwareModelData = try? Data(contentsOf: hardwareModelURL) else {",
+                    "    fatalError(\"Failed to retrieve hardware model data.\")",
+                    "}",
+                    "",
+                    "guard let hardwareModel = VZMacHardwareModel(dataRepresentation: hardwareModelData) else {",
+                    "    fatalError(\"Failed to create hardware model.\")",
+                    "}",
+                    "",
+                    "if !hardwareModel.isSupported {",
+                    "    fatalError(\"The hardware model isn't supported on the current host\")",
+                    "}",
+                    "macPlatform.hardwareModel = hardwareModel",
+                    "",
+                    "// Retrieve the machine identifier and save this value to disk",
+                    "// during installation.",
+                    "guard let machineIdentifierData = try? Data(contentsOf: machineIdentifierURL) else {",
+                    "    fatalError(\"Failed to retrieve machine identifier data.\")",
+                    "}",
+                    "",
+                    "guard let machineIdentifier = VZMacMachineIdentifier(dataRepresentation: machineIdentifierData) else {",
+                    "    fatalError(\"Failed to create machine identifier.\")",
+                    "}",
+                    "macPlatform.machineIdentifier = machineIdentifier"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "VZMacPlatformConfiguration *macPlatformConfiguration = [[VZMacPlatformConfiguration alloc] init];",
+                    "VZMacAuxiliaryStorage *auxiliaryStorage = [[VZMacAuxiliaryStorage alloc] initWithContentsOfURL:getAuxiliaryStorageURL()];",
+                    "macPlatformConfiguration.auxiliaryStorage = auxiliaryStorage;",
+                    "",
+                    "if (![[NSFileManager defaultManager] fileExistsAtPath:getVMBundlePath()]) {",
+                    "    abortWithErrorMessage([NSString stringWithFormat:@\"Missing Virtual Machine Bundle at %@. Run InstallationTool first to create it.\", getVMBundlePath()]);",
+                    "}",
+                    "",
+                    "// Retrieve the hardware model and save this value to disk during installation.",
+                    "NSData *hardwareModelData = [[NSData alloc] initWithContentsOfURL:getHardwareModelURL()];",
+                    "if (!hardwareModelData) {",
+                    "    abortWithErrorMessage(@\"Failed to retrieve hardware model data.\");",
+                    "}",
+                    "",
+                    "VZMacHardwareModel *hardwareModel = [[VZMacHardwareModel alloc] initWithDataRepresentation:hardwareModelData];",
+                    "if (!hardwareModel) {",
+                    "    abortWithErrorMessage(@\"Failed to create hardware model.\");",
+                    "}",
+                    "",
+                    "if (!hardwareModel.supported) {",
+                    "    abortWithErrorMessage(@\"The hardware model isn't supported on the current host\");",
+                    "}",
+                    "macPlatformConfiguration.hardwareModel = hardwareModel;",
+                    "",
+                    "// Retrieve the machine identifier and save this value to disk",
+                    "// during installation.",
+                    "NSData *machineIdentifierData = [[NSData alloc] initWithContentsOfURL:getMachineIdentifierURL()];",
+                    "if (!machineIdentifierData) {",
+                    "    abortWithErrorMessage(@\"Failed to retrieve machine identifier data.\");",
+                    "}",
+                    "",
+                    "VZMacMachineIdentifier *machineIdentifier = [[VZMacMachineIdentifier alloc] initWithDataRepresentation:machineIdentifierData];",
+                    "if (!machineIdentifier) {",
+                    "    abortWithErrorMessage(@\"Failed to create machine identifier.\");",
+                    "}",
+                    "macPlatformConfiguration.machineIdentifier = machineIdentifier;"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After creating the platform configuration, the app creates an instance of  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and adds video, virtual drives, and other devices to the system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let virtualMachineConfiguration = VZVirtualMachineConfiguration()",
+                    "",
+                    "virtualMachineConfiguration.platform = createMacPlatformConfiguration(macOSConfiguration: macOSConfiguration)",
+                    "virtualMachineConfiguration.cpuCount = MacOSVirtualMachineConfigurationHelper.computeCPUCount()",
+                    "if virtualMachineConfiguration.cpuCount < macOSConfiguration.minimumSupportedCPUCount {",
+                    "    fatalError(\"CPUCount isn't supported by the macOS configuration.\")",
+                    "}",
+                    "",
+                    "virtualMachineConfiguration.memorySize = MacOSVirtualMachineConfigurationHelper.computeMemorySize()",
+                    "if virtualMachineConfiguration.memorySize < macOSConfiguration.minimumSupportedMemorySize {",
+                    "    fatalError(\"memorySize isn't supported by the macOS configuration.\")",
+                    "}",
+                    "",
+                    "// Create a 128 GB disk image.",
+                    "createDiskImage()",
+                    "",
+                    "virtualMachineConfiguration.bootLoader = MacOSVirtualMachineConfigurationHelper.createBootLoader()",
+                    "",
+                    "virtualMachineConfiguration.audioDevices = [MacOSVirtualMachineConfigurationHelper.createSoundDeviceConfiguration()]",
+                    "virtualMachineConfiguration.graphicsDevices = [MacOSVirtualMachineConfigurationHelper.createGraphicsDeviceConfiguration()]",
+                    "virtualMachineConfiguration.networkDevices = [MacOSVirtualMachineConfigurationHelper.createNetworkDeviceConfiguration()]",
+                    "virtualMachineConfiguration.storageDevices = [MacOSVirtualMachineConfigurationHelper.createBlockDeviceConfiguration()]",
+                    "",
+                    "virtualMachineConfiguration.pointingDevices = [MacOSVirtualMachineConfigurationHelper.createPointingDeviceConfiguration()]",
+                    "virtualMachineConfiguration.keyboards = [MacOSVirtualMachineConfigurationHelper.createKeyboardConfiguration()]",
+                    "",
+                    "try! virtualMachineConfiguration.validate()",
+                    "",
+                    "if #available(macOS 14.0, *) {",
+                    "    try! virtualMachineConfiguration.validateSaveRestoreSupport()",
+                    "}",
+                    "",
+                    "virtualMachine = VZVirtualMachine(configuration: virtualMachineConfiguration)",
+                    "virtualMachineResponder = MacOSVirtualMachineDelegate()",
+                    "virtualMachine.delegate = virtualMachineResponder"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "VZVirtualMachineConfiguration *configuration = [VZVirtualMachineConfiguration new];",
+                    "",
+                    "configuration.platform = [self createMacPlatformConfiguration:macOSConfiguration];",
+                    "assert(configuration.platform);",
+                    "",
+                    "configuration.CPUCount = [MacOSVirtualMachineConfigurationHelper computeCPUCount];",
+                    "if (configuration.CPUCount < macOSConfiguration.minimumSupportedCPUCount) {",
+                    "   abortWithErrorMessage(@\"CPUCount is not supported by the macOS configuration.\");",
+                    "}",
+                    "",
+                    "configuration.memorySize = [MacOSVirtualMachineConfigurationHelper computeMemorySize];",
+                    "if (configuration.memorySize < macOSConfiguration.minimumSupportedMemorySize) {",
+                    "   abortWithErrorMessage(@\"memorySize is not supported by the macOS configuration.\");",
+                    "}",
+                    "",
+                    "// Create a 128 GB disk image.",
+                    "createDiskImage();",
+                    "",
+                    "configuration.bootLoader = [MacOSVirtualMachineConfigurationHelper createBootLoader];",
+                    "",
+                    "configuration.audioDevices = @[ [MacOSVirtualMachineConfigurationHelper createSoundDeviceConfiguration] ];",
+                    "configuration.graphicsDevices = @[ [MacOSVirtualMachineConfigurationHelper createGraphicsDeviceConfiguration] ];",
+                    "configuration.networkDevices = @[ [MacOSVirtualMachineConfigurationHelper createNetworkDeviceConfiguration] ];",
+                    "configuration.storageDevices = @[ [MacOSVirtualMachineConfigurationHelper createBlockDeviceConfiguration] ];",
+                    "",
+                    "configuration.pointingDevices = @[ [MacOSVirtualMachineConfigurationHelper createPointingDeviceConfiguration] ];",
+                    "configuration.keyboards = @[ [MacOSVirtualMachineConfigurationHelper createKeyboardConfiguration] ];",
+                    "",
+                    "BOOL isValidConfiguration = [configuration validateWithError:nil];",
+                    "if (!isValidConfiguration) {",
+                    "   @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@\"Invalid configuration\" userInfo:nil];",
+                    "}",
+                    "",
+                    "if (@available(macOS 14.0, *)) {",
+                    "   BOOL supportsSaveRestore = [configuration validateSaveRestoreSupportWithError:nil];",
+                    "   if (!supportsSaveRestore) {",
+                    "       @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@\"Invalid configuration\" userInfo:nil];",
+                    "   }",
+                    "}",
+                    "",
+                    "self->_virtualMachine = [[VZVirtualMachine alloc] initWithConfiguration:configuration];",
+                    "self->_delegate = [MacOSVirtualMachineDelegate new];",
+                    "self->_virtualMachine.delegate = self->_delegate;"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Virtualization framework checks the configuration to make sure it supports saving and restoring.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Start-the-VM",
+          "level": 3,
+          "text": "Start the VM",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After building the configuration data for the VM, the sample app uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to start the execution of the macOS guest operating system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/start(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/restoreMachineStateFrom(url:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods, the sample app configures a delegate object to receive messages about the state of the virtual machine. When the macOS guest operating system shuts down, the virtual machine calls the delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineDelegate/guestDidStop(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. In response, the delegate method prints a message and exits the app. If the macOS guest stops for any reason other than a normal shutdown, the delegate prints an error message and the app exits.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "DispatchQueue.main.async { [self] in",
+                    "    createVirtualMachine()",
+                    "    virtualMachineResponder = MacOSVirtualMachineDelegate()",
+                    "    virtualMachine.delegate = virtualMachineResponder",
+                    "    virtualMachineView.virtualMachine = virtualMachine",
+                    "    virtualMachineView.capturesSystemKeys = true",
+                    "",
+                    "    if #available(macOS 14.0, *) {",
+                    "        // Configure the app to automatically respond to changes in the display size.",
+                    "        virtualMachineView.automaticallyReconfiguresDisplay = true",
+                    "    }",
+                    "",
+                    "    if #available(macOS 14.0, *) {",
+                    "        let fileManager = FileManager.default",
+                    "        if fileManager.fileExists(atPath: saveFileURL.path) {",
+                    "            restoreVirtualMachine()",
+                    "        } else {",
+                    "            startVirtualMachine()",
+                    "        }",
+                    "    } else {",
+                    "        startVirtualMachine()",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "dispatch_async(dispatch_get_main_queue(), ^{",
+                    "    [self createVirtualMachine];",
+                    "",
+                    "    self->_delegate = [MacOSVirtualMachineDelegate new];",
+                    "    self->_virtualMachine.delegate = self->_delegate;",
+                    "    self->_virtualMachineView.virtualMachine = self->_virtualMachine;",
+                    "    self->_virtualMachineView.capturesSystemKeys = YES;",
+                    "",
+                    "    if (@available(macOS 14.0, *)) {",
+                    "        // Configure the app to automatically respond to changes in the display size.",
+                    "        self->_virtualMachineView.automaticallyReconfiguresDisplay = YES;",
+                    "    }",
+                    "",
+                    "    if (@available(macOS 14.0, *)) {",
+                    "        NSFileManager *fileManager = [NSFileManager defaultManager];",
+                    "        if ([fileManager fileExistsAtPath:getSaveFileURL().path]) {",
+                    "            [self restoreVirtualMachine];",
+                    "        } else {",
+                    "            [self startVirtualMachine];",
+                    "        }",
+                    "    } else {",
+                    "        [self startVirtualMachine];",
+                    "    }",
+                    "});"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the virtual machine was running when the sample app last exited, the app calls ",
+              "type": "text"
+            },
+            {
+              "code": "restoreVirtualMachine",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to restore the state.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the virtual machine was in a shutdown state, the app calls ",
+              "type": "text"
+            },
+            {
+              "code": "startVirtualMachine",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to reboot the machine.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Both methods start the VM asynchronously in the background. The VM loads the system image and boots macOS. After macOS starts, the user interacts with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " window that displays the macOS UI and handles keyboard and mouse input through a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacGraphicsDeviceConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as though the user is interacting directly with the Mac hardware.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "VZVirtualMachineView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " automatically resizes the virtual machine display when window size changes, and to capture system keys such, as the Globe key on a Mac keyboard.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "startVirtualMachine",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method calls the VM’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/start(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func startVirtualMachine() {",
+                    "    virtualMachine.start(completionHandler: { (result) in",
+                    "        if case let .failure(error) = result {",
+                    "            fatalError(\"Virtual machine failed to start with \\(error)\")",
+                    "        }",
+                    "    })",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void)startVirtualMachine",
+                    "{",
+                    "    [_virtualMachine startWithCompletionHandler:^(NSError * _Nullable error) {",
+                    "        if (error) {",
+                    "            abortWithErrorMessage([NSString stringWithFormat:@\"%@%@\", @\"Virtual machine failed to start with \", error.localizedDescription]);",
+                    "        }",
+                    "    }];",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Or, if the app previously had the VM save its state to ",
+              "type": "text"
+            },
+            {
+              "code": "SaveFile.vzvmsave",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "restoreVirtualMachine",
+              "type": "codeVoice"
+            },
+            {
+              "text": " calls the VM’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/restoreMachineStateFrom(url:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/resume(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func resumeVirtualMachine() {",
+                    "    virtualMachine.resume(completionHandler: { (result) in",
+                    "        if case let .failure(error) = result {",
+                    "            fatalError(\"Virtual machine failed to resume with \\(error)\")",
+                    "        }",
+                    "    })",
+                    "}",
+                    "",
+                    "@available(macOS 14.0, *)",
+                    "func restoreVirtualMachine() {",
+                    "    virtualMachine.restoreMachineStateFrom(url: saveFileURL, completionHandler: { [self] (error) in",
+                    "        // Remove the saved file. Whether success or failure, the state no longer matches the VM's disk.",
+                    "        let fileManager = FileManager.default",
+                    "        try! fileManager.removeItem(at: saveFileURL)",
+                    "",
+                    "        if error == nil {",
+                    "            self.resumeVirtualMachine()",
+                    "        } else {",
+                    "            self.startVirtualMachine()",
+                    "        }",
+                    "    })",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void)resumeVirtualMachine",
+                    "{",
+                    "    [_virtualMachine resumeWithCompletionHandler:^(NSError * _Nullable error) {",
+                    "        if (error) {",
+                    "            abortWithErrorMessage([NSString stringWithFormat:@\"%@%@\", @\"Virtual machine failed to resume with \", error.localizedDescription]);",
+                    "        }",
+                    "    }];",
+                    "}",
+                    "",
+                    "- (void)restoreVirtualMachine API_AVAILABLE(macosx(14.0));",
+                    "{",
+                    "    [_virtualMachine restoreMachineStateFromURL:getSaveFileURL() completionHandler:^(NSError * _Nullable error) {",
+                    "        // Remove the saved file. Whether success or failure, the state no longer matches the VM's disk.",
+                    "        NSFileManager *fileManager = [NSFileManager defaultManager];",
+                    "        [fileManager removeItemAtURL:getSaveFileURL() error:nil];",
+                    "",
+                    "        if (!error) {",
+                    "            [self resumeVirtualMachine];",
+                    "        } else {",
+                    "            [self startVirtualMachine];",
+                    "        }",
+                    "    }];",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the restore fails, the framework causes the virtual machine to reboot.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In either case, the framework deletes ",
+              "type": "text"
+            },
+            {
+              "code": "SaveFile.vzvmsave",
+              "type": "codeVoice"
+            },
+            {
+              "text": "  after restore completes because the VM disk no longer matches the state in the file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Save-the-VM",
+          "level": 3,
+          "text": "Save the VM",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you close the sample app, it calls the VM’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/pause(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/saveMachineStateTo(url:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This captures the runtime state of the VM to ",
+              "type": "text"
+            },
+            {
+              "code": "SaveFile.vzvmsave",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which the app uses when calling ",
+              "type": "text"
+            },
+            {
+              "code": "startOrRestoreVirtualMachine",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to resume running the VM at the same point when you relaunch the sample app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "@available(macOS 14.0, *)",
+                    "func saveVirtualMachine(completionHandler: @escaping () -> Void) {",
+                    "    virtualMachine.saveMachineStateTo(url: saveFileURL, completionHandler: { (error) in",
+                    "        guard error == nil else {",
+                    "            fatalError(\"Virtual machine failed to save with \\(error!)\")",
+                    "        }",
+                    "",
+                    "        completionHandler()",
+                    "    })",
+                    "}",
+                    "",
+                    "@available(macOS 14.0, *)",
+                    "func pauseAndSaveVirtualMachine(completionHandler: @escaping () -> Void) {",
+                    "    virtualMachine.pause(completionHandler: { (result) in",
+                    "        if case let .failure(error) = result {",
+                    "            fatalError(\"Virtual machine failed to pause with \\(error)\")",
+                    "        }",
+                    "",
+                    "        self.saveVirtualMachine(completionHandler: completionHandler)",
+                    "    })",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void)saveVirtualMachine:(void (^)(void))completionHandler API_AVAILABLE(macosx(14.0));",
+                    "{",
+                    "    [_virtualMachine saveMachineStateToURL:getSaveFileURL() completionHandler:^(NSError * _Nullable error) {",
+                    "        if (error) {",
+                    "            abortWithErrorMessage([NSString stringWithFormat:@\"%@%@\", @\"Virtual machine failed to save with \", error.localizedDescription]);",
+                    "        }",
+                    "        ",
+                    "        completionHandler();",
+                    "    }];",
+                    "}",
+                    "",
+                    "- (void)pauseAndSaveVirtualMachine:(void (^)(void))completionHandler API_AVAILABLE(macosx(14.0));",
+                    "{",
+                    "    [_virtualMachine pauseWithCompletionHandler:^(NSError * _Nullable error) {",
+                    "        if (error) {",
+                    "            abortWithErrorMessage([NSString stringWithFormat:@\"%@%@\", @\"Virtual machine failed to pause with \", error.localizedDescription]);",
+                    "        }",
+                    "",
+                    "        [self saveVirtualMachine:completionHandler];",
+                    "    }];",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system defers app termination until the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/saveMachineStateTo(url:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method completes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "330e1abda57c/RunningMacOSInAVirtualMachineOnAppleSilicon.zip": {
+      "checksum": "330e1abda57ceb652cb7faa7eb03f7c188bcad209ff4be98a7e44fbe39fabcf6acb50e30e0b33a743c397287edd99f215acb5bd39844ac3c3d2f751e09c64eb0",
+      "identifier": "330e1abda57c/RunningMacOSInAVirtualMachineOnAppleSilicon.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/330e1abda57c/RunningMacOSInAVirtualMachineOnAppleSilicon.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization": {
+      "abstract": [
+        {
+          "text": "Create virtual machines and run macOS and Linux-based operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Virtualization",
+      "type": "topic",
+      "url": "/documentation/virtualization"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZMacGraphicsDeviceConfiguration": {
+      "abstract": [
+        {
+          "text": "Configuration for a display attached to a Mac graphics device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZMacGraphicsDeviceConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacGraphicsDeviceConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZMacGraphicsDeviceConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZMacGraphicsDeviceConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzmacgraphicsdeviceconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSBootLoader": {
+      "abstract": [
+        {
+          "text": "An object that loads and configures a boot loader for running macOS on Apple silicon as a guest system of your VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZMacOSBootLoader"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSBootLoader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZMacOSBootLoader"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZMacOSBootLoader",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzmacosbootloader"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSConfigurationRequirements/hardwareModel": {
+      "abstract": [
+        {
+          "text": "The hardware model for this configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hardwareModel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)VZMacHardwareModel",
+          "text": "VZMacHardwareModel"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacOSConfigurationRequirements/hardwareModel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hardwareModel"
+        }
+      ],
+      "role": "symbol",
+      "title": "hardwareModel",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzmacosconfigurationrequirements/hardwaremodel"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZMacPlatformConfiguration": {
+      "abstract": [
+        {
+          "text": "The platform configuration for booting macOS on Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZMacPlatformConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacPlatformConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZMacPlatformConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZMacPlatformConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzmacplatformconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZMacPlatformConfiguration/machineIdentifier": {
+      "abstract": [
+        {
+          "text": "The Mac machine identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "machineIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)VZMacMachineIdentifier",
+          "text": "VZMacMachineIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacPlatformConfiguration/machineIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "machineIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "machineIdentifier",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzmacplatformconfiguration/machineidentifier"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine": {
+      "abstract": [
+        {
+          "text": "An object that manages the overall state and configuration of your VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachine"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachine"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtualMachine",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachine"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/pause(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Pauses a running VM and notifies the specified completion handler of the results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pause"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/pause(completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pause(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachine/pause(completionhandler:)"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/restoreMachineStateFrom(url:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Restores a VM from a previously saved state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restoreMachineStateFrom"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/restoreMachineStateFrom(url:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "restoreMachineStateFromURL:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "restoreMachineStateFrom(url:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachine/restoremachinestatefrom(url:completionhandler:)"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/resume(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Resumes a paused VM and notifies the specified completion handler of the results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resume"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/resume(completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resume(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachine/resume(completionhandler:)"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/saveMachineStateTo(url:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Saves the state of a VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "saveMachineStateTo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/saveMachineStateTo(url:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "saveMachineStateToURL:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "saveMachineStateTo(url:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachine/savemachinestateto(url:completionhandler:)"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/start(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Starts the VM and notifies the specified completion handler if startup is successful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/start(completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "start(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachine/start(completionhandler:)"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineConfiguration": {
+      "abstract": [
+        {
+          "text": "The environment attributes and list of devices to use during the configuration of macOS or Linux VMs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachineConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachineConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtualMachineConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachineconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineDelegate/guestDidStop(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the guest operating system stopped the VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "guestDidStop"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)VZVirtualMachine",
+          "text": "VZVirtualMachine"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineDelegate/guestDidStop(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "guestDidStopVirtualMachine:"
+        }
+      ],
+      "role": "symbol",
+      "title": "guestDidStop(_:)",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachinedelegate/guestdidstop(_:)"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineView": {
+      "abstract": [
+        {
+          "text": "A view that allows user interaction with a VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachineView"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachineView"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtualMachineView",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachineview"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/accelerating-the-performance-of-rosetta": {
+      "abstract": [
+        {
+          "text": "Improve Rosetta performance by adding support for the total store ordering (TSO) memory model to your Linux kernel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/accelerating-the-performance-of-rosetta",
+      "kind": "article",
+      "role": "article",
+      "title": "Accelerating the performance of Rosetta",
+      "type": "topic",
+      "url": "/documentation/virtualization/accelerating-the-performance-of-rosetta"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/creating-and-running-a-linux-virtual-machine": {
+      "abstract": [
+        {
+          "text": "Design and run custom Linux guests on Apple silicon or Intel-based Mac Computers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/creating-and-running-a-linux-virtual-machine",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating and Running a Linux Virtual Machine",
+      "type": "topic",
+      "url": "/documentation/virtualization/creating-and-running-a-linux-virtual-machine"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/installing-macos-on-a-virtual-machine": {
+      "abstract": [
+        {
+          "text": "Download a macOS restore image and install it in a new VM.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/installing-macos-on-a-virtual-machine",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing macOS on a Virtual Machine",
+      "type": "topic",
+      "url": "/documentation/virtualization/installing-macos-on-a-virtual-machine"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac": {
+      "abstract": [
+        {
+          "text": "Install and run GUI Linux in a virtual machine using the Virtualization framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Running GUI Linux in a virtual machine on a Mac",
+      "type": "topic",
+      "url": "/documentation/virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta": {
+      "abstract": [
+        {
+          "text": "Run x86_64 Linux binaries under ARM Linux on Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta",
+      "kind": "article",
+      "role": "article",
+      "title": "Running Intel Binaries in Linux VMs with Rosetta",
+      "type": "topic",
+      "url": "/documentation/virtualization/running-intel-binaries-in-linux-vms-with-rosetta"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/running-linux-in-a-virtual-machine": {
+      "abstract": [
+        {
+          "text": "Run a Linux operating system on your Mac using the Virtualization framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/running-linux-in-a-virtual-machine",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Running Linux in a Virtual Machine",
+      "type": "topic",
+      "url": "/documentation/virtualization/running-linux-in-a-virtual-machine"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/virtualize-linux-on-a-mac": {
+      "abstract": [
+        {
+          "text": "Configure and run Linux guests on Apple silicon and Intel-based Mac computers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/virtualize-linux-on-a-mac",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Virtualize Linux on a Mac",
+      "type": "topic",
+      "url": "/documentation/virtualization/virtualize-linux-on-a-mac"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/virtualize-macos-on-a-mac": {
+      "abstract": [
+        {
+          "text": "Configure and run macOS guests on Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/virtualize-macos-on-a-mac",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Virtualize macOS on a Mac",
+      "type": "topic",
+      "url": "/documentation/virtualization/virtualize-macos-on-a-mac"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "330e1abda57c/RunningMacOSInAVirtualMachineOnAppleSilicon.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Virtual-machine-setup",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/running-linux-in-a-virtual-machine",
+        "doc://com.apple.virtualization/documentation/Virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac",
+        "doc://com.apple.virtualization/documentation/Virtualization/installing-macos-on-a-virtual-machine",
+        "doc://com.apple.virtualization/documentation/Virtualization/creating-and-running-a-linux-virtual-machine",
+        "doc://com.apple.virtualization/documentation/Virtualization/virtualize-macos-on-a-mac",
+        "doc://com.apple.virtualization/documentation/Virtualization/virtualize-linux-on-a-mac",
+        "doc://com.apple.virtualization/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta",
+        "doc://com.apple.virtualization/documentation/Virtualization/accelerating-the-performance-of-rosetta"
+      ],
+      "title": "Virtual machine setup"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Virtual-machine-setup",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/running-linux-in-a-virtual-machine",
+                "doc://com.apple.virtualization/documentation/Virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac",
+                "doc://com.apple.virtualization/documentation/Virtualization/installing-macos-on-a-virtual-machine",
+                "doc://com.apple.virtualization/documentation/Virtualization/creating-and-running-a-linux-virtual-machine",
+                "doc://com.apple.virtualization/documentation/Virtualization/virtualize-macos-on-a-mac",
+                "doc://com.apple.virtualization/documentation/Virtualization/virtualize-linux-on-a-mac",
+                "doc://com.apple.virtualization/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta",
+                "doc://com.apple.virtualization/documentation/Virtualization/accelerating-the-performance-of-rosetta"
+              ],
+              "title": "Virtual machine setup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacOSConfigurationRequirements~1hardwareModel/title",
+          "value": "hardwareModel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacOSConfigurationRequirements~1hardwareModel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hardwareModel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineView/title",
+          "value": "VZVirtualMachineView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachineView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachineView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacGraphicsDeviceConfiguration/title",
+          "value": "VZMacGraphicsDeviceConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacGraphicsDeviceConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZMacGraphicsDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacGraphicsDeviceConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZMacGraphicsDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineConfiguration/title",
+          "value": "VZVirtualMachineConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachineConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachineConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacPlatformConfiguration~1machineIdentifier/title",
+          "value": "machineIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacPlatformConfiguration~1machineIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "machineIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacPlatformConfiguration/title",
+          "value": "VZMacPlatformConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacPlatformConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZMacPlatformConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacPlatformConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZMacPlatformConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineDelegate~1guestDidStop(_:)/title",
+          "value": "guestDidStopVirtualMachine:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineDelegate~1guestDidStop(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "guestDidStopVirtualMachine:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine/title",
+          "value": "VZVirtualMachine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine~1saveMachineStateTo(url:completionHandler:)/title",
+          "value": "saveMachineStateToURL:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine~1saveMachineStateTo(url:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "saveMachineStateToURL:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacOSBootLoader/title",
+          "value": "VZMacOSBootLoader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacOSBootLoader/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZMacOSBootLoader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacOSBootLoader/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZMacOSBootLoader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine~1restoreMachineStateFrom(url:completionHandler:)/title",
+          "value": "restoreMachineStateFromURL:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine~1restoreMachineStateFrom(url:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "restoreMachineStateFromURL:completionHandler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/virtualization/running-macos-in-a-virtual-machine-on-apple-silicon"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/virtualization/running-macos-in-a-virtual-machine-on-apple-silicon"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

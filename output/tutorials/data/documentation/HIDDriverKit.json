@@ -1,0 +1,639 @@
+{
+  "abstract": [
+    {
+      "text": "Develop drivers for human-interface devices, such as keyboards, pointing devices, and digitizers like pens and touch pads.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "HIDDriverKit",
+    "modules": [
+      {
+        "name": "HIDDriverKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "19.0",
+        "name": "DriverKit"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.15",
+        "name": "macOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "HIDDriverKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The HIDDriverKit framework provides C++ classes for developing drivers for human interface devices. HIDDriverKit uses the core types defined in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and adds features specific to human interface device development.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Develop your driver with DriverKit and HIDDriverKit, and package it in an app that uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SystemExtensions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework to install and upgrade the driver on the user’s Mac.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "HIDDriverKit is available on macOS.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.device": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the driver provides a HID-related service to the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.device",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.family.hid.device",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.device"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.eventservice": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the driver provides a HID-related event service to the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.eventservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.family.hid.eventservice",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.eventservice"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.hid": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the driver communicates with human interface devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.hid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.transport.hid",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.hid"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.hid.virtual.device": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the driver creates a virtual HID device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.hid.virtual.device",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.hid.virtual.device",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.hid.virtual.device"
+    },
+    "doc://com.apple.documentation/documentation/SystemExtensions": {
+      "abstract": [
+        {
+          "text": "Install and manage user space code that extends the capabilities of macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SystemExtensions",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "System Extensions",
+      "type": "topic",
+      "url": "/documentation/SystemExtensions"
+    },
+    "doc://com.apple.documentation/documentation/driverkit": {
+      "abstract": [
+        {
+          "text": "Develop device drivers that run in user space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DriverKit",
+      "type": "topic",
+      "url": "/documentation/driverkit"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code": {
+      "abstract": [
+        {
+          "text": "Explore projects that demonstrate how to write macOS device drivers with the DriverKit family of frameworks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code",
+      "kind": "article",
+      "role": "article",
+      "title": "DriverKit sample code",
+      "type": "topic",
+      "url": "/documentation/driverkit/driverkit_sample_code"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for human-interface devices, such as keyboards, pointing devices, and digitizers like pens and touch pads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HIDDriverKit",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDDevice": {
+      "abstract": [
+        {
+          "text": "An object containing the low-level behavior for all HID device providers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDDevice",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohiddevice"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDDigitizerCollection": {
+      "abstract": [
+        {
+          "text": "A collection of elements that contain digitizer-related data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDDigitizerCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDDigitizerCollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDDigitizerCollection",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohiddigitizercollection"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDDigitizerStylusData": {
+      "abstract": [
+        {
+          "text": "A structure containing digitizer stylus data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDDigitizerStylusData"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDDigitizerStylusData",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDDigitizerStylusData",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohiddigitizerstylusdata"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDDigitizerTouchData": {
+      "abstract": [
+        {
+          "text": "A structure containing the current digitizer touch data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDDigitizerTouchData"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDDigitizerTouchData",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDDigitizerTouchData",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohiddigitizertouchdata"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement": {
+      "abstract": [
+        {
+          "text": "An object that contains parsed information from a HID input report.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDElement"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDElement",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidelement"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDEventService": {
+      "abstract": [
+        {
+          "text": "The base class for implementing a device or operating system service that dispatches events to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDEventService"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDEventService",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDEventService",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohideventservice"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface": {
+      "abstract": [
+        {
+          "text": "A provider object for a HID device’s interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDInterface"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDInterface",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidinterface"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDDevice": {
+      "abstract": [
+        {
+          "text": "A provider object for devices that support interactions with users.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserHIDDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserHIDDevice",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhiddevice"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver": {
+      "abstract": [
+        {
+          "text": "A complete driver object that dispatches keyboard, digitizer, scrolling, and pointer events originating from a HID device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserHIDEventDriver"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserHIDEventDriver",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventdriver"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService": {
+      "abstract": [
+        {
+          "text": "A service that parses HID report data into elements that you can use to dispatch events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserHIDEventService"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserHIDEventService",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhideventservice"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice": {
+      "abstract": [
+        {
+          "text": "A provider object for USB devices that support HID interactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserUSBHostHIDDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserUSBHostHIDDevice",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/handling-keyboard-events-from-a-human-interface-device": {
+      "abstract": [
+        {
+          "text": "Process keyboard-related data from a human interface device and dispatch events to the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/handling-keyboard-events-from-a-human-interface-device",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Handling Keyboard Events from a Human Interface Device",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/handling-keyboard-events-from-a-human-interface-device"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/handling-stylus-input-from-a-human-interface-device": {
+      "abstract": [
+        {
+          "text": "Process stylus-related input from a human interface device and dispatch events to the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/handling-stylus-input-from-a-human-interface-device",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Handling Stylus Input from a Human Interface Device",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/handling-stylus-input-from-a-human-interface-device"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/hid-usage-tables": {
+      "abstract": [
+        {
+          "text": "Identify the types of data that HID devices can report to your driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/hid-usage-tables",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "HID Usage Tables",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/hid-usage-tables"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/hiddriverkit-macros": {
+      "abstract": [],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/hiddriverkit-macros",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "HIDDriverKit Macros",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/hiddriverkit-macros"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/low-level-information": {
+      "abstract": [
+        {
+          "text": "Understand the underlying structures that support HID drivers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/low-level-information",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Low-Level Information",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/low-level-information"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/match-criteria": {
+      "abstract": [
+        {
+          "text": "Specify the criteria that the system uses to match your driver to a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/match-criteria",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Match Criteria",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/match-criteria"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.hid",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/handling-keyboard-events-from-a-human-interface-device",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/handling-stylus-input-from-a-human-interface-device"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Samples",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/driverkit_sample_code"
+      ],
+      "title": "Samples"
+    },
+    {
+      "anchor": "Driver-Interfaces",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.eventservice",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventDriver",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDEventService",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDEventService"
+      ],
+      "title": "Driver Interfaces"
+    },
+    {
+      "anchor": "Providers",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.device",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDDevice",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDDevice"
+      ],
+      "title": "Providers"
+    },
+    {
+      "anchor": "Events",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDDigitizerStylusData",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDDigitizerTouchData"
+      ],
+      "title": "Events"
+    },
+    {
+      "anchor": "HID-Usage-Tables",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/hid-usage-tables",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/match-criteria"
+      ],
+      "title": "HID Usage Tables"
+    },
+    {
+      "anchor": "HID-Device-Data",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDElement",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDDigitizerCollection",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.hid.virtual.device",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/low-level-information"
+      ],
+      "title": "HID Device Data"
+    },
+    {
+      "anchor": "Reference",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/hiddriverkit-macros"
+      ],
+      "title": "Reference"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/hiddriverkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

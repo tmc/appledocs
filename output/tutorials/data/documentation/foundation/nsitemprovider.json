@@ -1,0 +1,2684 @@
+{
+  "abstract": [
+    {
+      "text": "An item provider for conveying data or a file between processes during drag-and-drop or copy-and-paste activities, or from a host app to an app extension.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/app_extension_support"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsitemprovider"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1403909,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSItemProvider",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSItemProvider"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.10",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSItemProvider"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSItemProvider"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting in iOS 11, item providers play a central role in drag and drop, and in copy and paste. They continue to play a role with app extensions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system uses an internal queue when calling the completion blocks for the ",
+              "type": "text"
+            },
+            {
+              "code": "NSItemProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class. When using an item provider with drag and drop, ensure that UI updates take place on the main queue as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "DispatchQueue.main.async {",
+            "    // Work that impacts the user interface.",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "2908988",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2903778",
+          "level": 3,
+          "text": "App extension support",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app extension typically encounters item providers when examining the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensionitem/1416690-attachments",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensionitem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. During that examination, the extension can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403921-hasitemconformingtotypeidentifie",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to look for data that it recognizes. Item providers use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " values to identify the data they contain. After finding a type of data that your extension can use, it calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403900-loaditem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to load the actual data, which is delivered to the provided completion handler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create item providers to vend data to another process. An extension that modifies an original data item can create a new ",
+              "type": "text"
+            },
+            {
+              "code": "NSItemProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object to send back to the host app. When creating data items, you specify your data object and the type of that object. You can optionally use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403904-previewimagehandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to generate a preview image for your data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A single item provider may use custom blocks to provide its data in many different formats. When configuring an item provider, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403917-registeritem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to register your blocks and the formats each one supports. When a client requests data in a particular format, the item provider executes the corresponding block, which is then responsible for coercing the data to the appropriate type and returning it to the client.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit/add-functionality-to-finder-with-action-extensions": {
+      "abstract": [
+        {
+          "text": "Implement Action Extensions to provide quick access to commonly used features of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/add-functionality-to-finder-with-action-extensions",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Add Functionality to Finder with Action Extensions",
+      "type": "topic",
+      "url": "/documentation/appkit/add-functionality-to-finder-with-action-extensions"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/app_extension_support": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/app_extension_support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App Extension Support",
+      "type": "topic",
+      "url": "/documentation/foundation/app_extension_support"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsextensionitem": {
+      "abstract": [
+        {
+          "text": "An immutable collection of values representing different aspects of an item for an extension to act upon.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExtensionItem"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensionitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionItem",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensionitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsextensionitem/1416690-attachments": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensionitem/1416690-attachments",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attachments",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensionitem/1416690-attachments"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider": {
+      "abstract": [
+        {
+          "text": "An item provider for conveying data or a file between processes during drag-and-drop or copy-and-paste activities, or from a host app to an app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSItemProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSItemProvider",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider#2908988": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider#2908988",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/nsitemprovider#2908988"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403900-loaditem": {
+      "abstract": [
+        {
+          "text": "Loads the item’s data and coerces it to the specified type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forTypeIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": NSItemProvider.CompletionHandler?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403900-loaditem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadItem(forTypeIdentifier:options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/1403900-loaditem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403904-previewimagehandler": {
+      "abstract": [
+        {
+          "text": "The custom preview image handler block for the item provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "previewImageHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": NSItemProvider.LoadHandler?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403904-previewimagehandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "previewImageHandler",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/1403904-previewimagehandler"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403911-init": {
+      "abstract": [
+        {
+          "text": "Provides data-backed content from an existing file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": URL!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403911-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(contentsOf:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/1403911-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403917-registeritem": {
+      "abstract": [
+        {
+          "text": "Lazily registers an item, according to the item provider type coercion policy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forTypeIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": NSItemProvider.LoadHandler)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403917-registeritem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerItem(forTypeIdentifier:loadHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/1403917-registeritem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403921-hasitemconformingtotypeidentifie": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether an item provider contains a data representation conforming to a specified universal type identifier file options parameter with a value of zero.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasItemConformingToTypeIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "(String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403921-hasitemconformingtotypeidentifie",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasItemConformingToTypeIdentifier(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/1403921-hasitemconformingtotypeidentifie"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403923-registeredtypeidentifiers": {
+      "abstract": [
+        {
+          "text": "Returns the array of type identifiers for the item provider, in the same order they were registered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "registeredTypeIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403923-registeredtypeidentifiers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registeredTypeIdentifiers",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/1403923-registeredtypeidentifiers"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403925-loadpreviewimage": {
+      "abstract": [
+        {
+          "text": "Loads the preview image for the item that the item provider represents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadPreviewImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]!, "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": NSItemProvider.CompletionHandler!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403925-loadpreviewimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadPreviewImage(options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/1403925-loadpreviewimage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403933-init": {
+      "abstract": [
+        {
+          "text": "Creates an item provider with an object, according to the item provider type coercion policy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "item"
+        },
+        {
+          "kind": "text",
+          "text": ": (any NSSecureCoding)?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403933-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(item:typeIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/1403933-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403937-errordomain": {
+      "abstract": [
+        {
+          "text": "The error domain associated with the item provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class let "
+        },
+        {
+          "kind": "identifier",
+          "text": "errorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403937-errordomain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "errorDomain",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/1403937-errordomain"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1528569-sourceframe": {
+      "abstract": [
+        {
+          "text": "The rectangle that the item occupies in the host app’s source window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceFrame"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1528569-sourceframe",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sourceFrame",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/1528569-sourceframe"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1528571-containerframe": {
+      "abstract": [
+        {
+          "text": "The rectangle of the item’s visible content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "containerFrame"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1528571-containerframe",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "containerFrame",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/1528571-containerframe"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1528574-preferredpresentationsize": {
+      "abstract": [
+        {
+          "text": "The ideal presentation size of the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredPresentationSize"
+        },
+        {
+          "kind": "text",
+          "text": ": CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1528574-preferredpresentationsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preferredPresentationSize",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/1528574-preferredpresentationsize"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1644475-registercloudkitshare": {
+      "abstract": [
+        {
+          "text": "Registers a handler that prepares a new CloudKit share.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerCloudKitShare"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "preparationHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((CKShare?, CKContainer?, (any Error)?) -> Void) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1644475-registercloudkitshare",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerCloudKitShare(preparationHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/1644475-registercloudkitshare"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1644692-registercloudkitshare": {
+      "abstract": [
+        {
+          "text": "Registers a CloudKit share for the user to modify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerCloudKitShare"
+        },
+        {
+          "kind": "text",
+          "text": "(CKShare, "
+        },
+        {
+          "kind": "identifier",
+          "text": "container"
+        },
+        {
+          "kind": "text",
+          "text": ": CKContainer)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1644692-registercloudkitshare",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerCloudKitShare(_:container:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/1644692-registercloudkitshare"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888319-registerdatarepresentation": {
+      "abstract": [
+        {
+          "text": "Registers a data-backed representation for an item, specifiying item visibility and a load handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerDataRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forTypeIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "visibility"
+        },
+        {
+          "kind": "text",
+          "text": ": NSItemProviderRepresentationVisibility, "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((Data?, (any Error)?) -> Void) -> Progress?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888319-registerdatarepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerDataRepresentation(forTypeIdentifier:visibility:loadHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/2888319-registerdatarepresentation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888320-hasrepresentationconforming": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether an item provider contains a data representation conforming to a specified universal type identifier and to specified open-in-place behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasRepresentationConforming"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "toTypeIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": NSItemProviderFileOptions) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888320-hasrepresentationconforming",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasRepresentationConforming(toTypeIdentifier:fileOptions:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/2888320-hasrepresentationconforming"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888321-registerobject": {
+      "abstract": [
+        {
+          "text": "Adds representations of a specified object to an item provider, based on the object’s implementation of the item provider writing protocol, and adhering to a visibility specification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerObject"
+        },
+        {
+          "kind": "text",
+          "text": "(any NSItemProviderWriting, "
+        },
+        {
+          "kind": "identifier",
+          "text": "visibility"
+        },
+        {
+          "kind": "text",
+          "text": ": NSItemProviderRepresentationVisibility)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888321-registerobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerObject(_:visibility:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/2888321-registerobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888323-init": {
+      "abstract": [
+        {
+          "text": "Creates an empty item provider to which you can later register a data or file representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888323-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/2888323-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888328-init": {
+      "abstract": [
+        {
+          "text": "Creates a new item provider, employing a specified object’s type identifiers to specify the data representations eligible for the provider to load.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": ": any NSItemProviderWriting)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888328-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(object:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/2888328-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888329-registerobject": {
+      "abstract": [
+        {
+          "text": "Lazily adds representations of a specified object class to an item provider, based on the object’s implementation of the item provider writing protocol, and adhering to a visibility specification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "ofClass"
+        },
+        {
+          "kind": "text",
+          "text": ": any NSItemProviderWriting.Type, "
+        },
+        {
+          "kind": "identifier",
+          "text": "visibility"
+        },
+        {
+          "kind": "text",
+          "text": ": NSItemProviderRepresentationVisibility, "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any NSItemProviderWriting)?, (any Error)?) -> Void) -> Progress?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888329-registerobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerObject(ofClass:visibility:loadHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/2888329-registerobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888331-loaddatarepresentation": {
+      "abstract": [
+        {
+          "text": "Asynchronously copies the provided, typed data into a generic data object, returning a progress object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadDataRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forTypeIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (Data?, (any Error)?) -> Void) -> Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888331-loaddatarepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadDataRepresentation(forTypeIdentifier:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/2888331-loaddatarepresentation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888333-canloadobject": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether an item provider can load objects of a specified class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "canLoadObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "ofClass"
+        },
+        {
+          "kind": "text",
+          "text": ": any NSItemProviderReading.Type) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888333-canloadobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canLoadObject(ofClass:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/2888333-canloadobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888334-registeredtypeidentifiers": {
+      "abstract": [
+        {
+          "text": "Returns an array with a subset of type identifiers for the item provider, according to the specified file options, in the same order they were registered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "registeredTypeIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "fileOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": NSItemProviderFileOptions) -> [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888334-registeredtypeidentifiers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registeredTypeIdentifiers(fileOptions:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/2888334-registeredtypeidentifiers"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888335-loadinplacefilerepresentation": {
+      "abstract": [
+        {
+          "text": "Asynchronously opens a file in place, if possible, returning a progress object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadInPlaceFileRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forTypeIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (URL?, Bool, (any Error)?) -> Void) -> Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888335-loadinplacefilerepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadInPlaceFileRepresentation(forTypeIdentifier:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/2888335-loadinplacefilerepresentation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888336-loadobject": {
+      "abstract": [
+        {
+          "text": "Asynchronously loads an object of a specified class to an item provider, returning a progress object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "ofClass"
+        },
+        {
+          "kind": "text",
+          "text": ": any NSItemProviderReading.Type, "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any NSItemProviderReading)?, (any Error)?) -> Void) -> Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888336-loadobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadObject(ofClass:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/2888336-loadobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888337-registerfilerepresentation": {
+      "abstract": [
+        {
+          "text": "Registers a file-backed representation for an item, specifying file options, item visibility, and a load handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerFileRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forTypeIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": NSItemProviderFileOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "visibility"
+        },
+        {
+          "kind": "text",
+          "text": ": NSItemProviderRepresentationVisibility, "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((URL?, Bool, (any Error)?) -> Void) -> Progress?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888337-registerfilerepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerFileRepresentation(forTypeIdentifier:fileOptions:visibility:loadHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/2888337-registerfilerepresentation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888338-loadfilerepresentation": {
+      "abstract": [
+        {
+          "text": "Asynchronously writes a copy of the provided, typed data to a temporary file, returning a progress object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadFileRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forTypeIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (URL?, (any Error)?) -> Void) -> Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888338-loadfilerepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadFileRepresentation(forTypeIdentifier:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/2888338-loadfilerepresentation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2890244-suggestedname": {
+      "abstract": [
+        {
+          "text": "The filename to use when writing the provided data to a file on disk.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "suggestedName"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2890244-suggestedname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "suggestedName",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/2890244-suggestedname"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2909055-teamdata": {
+      "abstract": [
+        {
+          "text": "The collection of data an app uses to hold private team information during drag and drop.  ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "teamData"
+        },
+        {
+          "kind": "text",
+          "text": ": Data?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2909055-teamdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "teamData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/2909055-teamdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2921257-preferredpresentationstyle": {
+      "abstract": [
+        {
+          "text": "The preferred style for presenting the item provider's data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredPresentationStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": NSItemProvider.PreferredPresentationStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2921257-preferredpresentationstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preferredPresentationStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/2921257-preferredpresentationstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2923363-loadobject": {
+      "abstract": [
+        {
+          "text": "Asynchronously loads an object of a specified class to an item provider, returning a progress object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadObject"
+        },
+        {
+          "kind": "text",
+          "text": "<T>("
+        },
+        {
+          "kind": "identifier",
+          "text": "ofClass"
+        },
+        {
+          "kind": "text",
+          "text": ": T.Type, "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (T?, (any Error)?) -> Void) -> Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2923363-loadobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadObject(ofClass:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/2923363-loadobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2923382-registerobject": {
+      "abstract": [
+        {
+          "text": "Lazily adds representations of a specified object type to an item provider, based on the object’s implementation of the item provider writing protocol, and adhering to a visibility specification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerObject"
+        },
+        {
+          "kind": "text",
+          "text": "<T>("
+        },
+        {
+          "kind": "identifier",
+          "text": "ofClass"
+        },
+        {
+          "kind": "text",
+          "text": ": T.Type, "
+        },
+        {
+          "kind": "identifier",
+          "text": "visibility"
+        },
+        {
+          "kind": "text",
+          "text": ": NSItemProviderRepresentationVisibility, "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((T?, (any Error)?) -> Void) -> Progress?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2923382-registerobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerObject(ofClass:visibility:loadHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/2923382-registerobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2923408-canloadobject": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether an item provider can load objects of a specified class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "canLoadObject"
+        },
+        {
+          "kind": "text",
+          "text": "<T>("
+        },
+        {
+          "kind": "identifier",
+          "text": "ofClass"
+        },
+        {
+          "kind": "text",
+          "text": ": T.Type) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2923408-canloadobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canLoadObject(ofClass:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/2923408-canloadobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/3920459-registergroupactivity": {
+      "abstract": [
+        {
+          "text": "Registers a group activity instance with the specificed options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerGroupActivity"
+        },
+        {
+          "kind": "text",
+          "text": "<ActivityType>(ActivityType)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/3920459-registergroupactivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerGroupActivity(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/3920459-registergroupactivity"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/3920460-registergroupactivity": {
+      "abstract": [
+        {
+          "text": "Registers a group activity instance asynchronously with the specified options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerGroupActivity"
+        },
+        {
+          "kind": "text",
+          "text": "<ActivityType>("
+        },
+        {
+          "kind": "identifier",
+          "text": "preparationHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> ActivityType)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/3920460-registergroupactivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerGroupActivity(preparationHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/3920460-registergroupactivity"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/3951995-registerckshare": {
+      "abstract": [
+        {
+          "text": "Registers an existing collaboration object on a server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerCKShare"
+        },
+        {
+          "kind": "text",
+          "text": "(CKShare, "
+        },
+        {
+          "kind": "identifier",
+          "text": "container"
+        },
+        {
+          "kind": "text",
+          "text": ": CKContainer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowedSharingOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": CKAllowedSharingOptions)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/3951995-registerckshare",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerCKShare(_:container:allowedSharingOptions:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/3951995-registerckshare"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/3988045-loadtransferable": {
+      "abstract": [
+        {
+          "text": "Asynchronously loads an object of a specified transferable type to an item provider, returning a progress object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadTransferable"
+        },
+        {
+          "kind": "text",
+          "text": "<T>("
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": T.Type, "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (Result<T, any Error>) -> Void) -> Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/3988045-loadtransferable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadTransferable(type:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/3988045-loadtransferable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4010592-registeredcontenttypes": {
+      "abstract": [
+        {
+          "text": "Registered content types in the order the app registers each type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "registeredContentTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": [UTType]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4010592-registeredcontenttypes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registeredContentTypes",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/4010592-registeredcontenttypes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4010593-registeredcontenttypes": {
+      "abstract": [
+        {
+          "text": "Returns an array of registered content types that conform to a specified content type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "registeredContentTypes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "conformingTo"
+        },
+        {
+          "kind": "text",
+          "text": ": UTType) -> [UTType]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4010593-registeredcontenttypes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registeredContentTypes(conformingTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/4010593-registeredcontenttypes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4010594-registeredcontenttypesforopeninp": {
+      "abstract": [
+        {
+          "text": "Registered content types that the system can load as open-in-place files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "registeredContentTypesForOpenInPlace"
+        },
+        {
+          "kind": "text",
+          "text": ": [UTType]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4010594-registeredcontenttypesforopeninp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registeredContentTypesForOpenInPlace",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/4010594-registeredcontenttypesforopeninp"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4011311-init": {
+      "abstract": [
+        {
+          "text": "Provides data-backed content from an existing file with the specified parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentType"
+        },
+        {
+          "kind": "text",
+          "text": ": UTType?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "openInPlace"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "coordinated"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "visibility"
+        },
+        {
+          "kind": "text",
+          "text": ": NSItemProviderRepresentationVisibility)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4011311-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(contentsOf:contentType:openInPlace:coordinated:visibility:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/4011311-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4011312-loaddatarepresentation": {
+      "abstract": [
+        {
+          "text": "Asynchronously copies the universal type data into a generic data object, returning a progress object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadDataRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": UTType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (Data?, (any Error)?) -> Void) -> Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4011312-loaddatarepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadDataRepresentation(for:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/4011312-loaddatarepresentation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4011313-loadfilerepresentation": {
+      "abstract": [
+        {
+          "text": "Asynchronously writes a copy of the universal type data to a temporary file, returning a progress object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadFileRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": UTType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "openInPlace"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (URL?, Bool, (any Error)?) -> Void) -> Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4011313-loadfilerepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadFileRepresentation(for:openInPlace:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/4011313-loadfilerepresentation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4011314-registerdatarepresentation": {
+      "abstract": [
+        {
+          "text": "Registers a data-backed representation for an item, specifiying item visibility and a load handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerDataRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": UTType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "visibility"
+        },
+        {
+          "kind": "text",
+          "text": ": NSItemProviderRepresentationVisibility, "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((Data?, (any Error)?) -> Void) -> Progress?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4011314-registerdatarepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerDataRepresentation(for:visibility:loadHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/4011314-registerdatarepresentation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4011315-registerfilerepresentation": {
+      "abstract": [
+        {
+          "text": "Registers a file-backed representation for an item with item visibility, an open-in-place option, and a load handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerFileRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": UTType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "visibility"
+        },
+        {
+          "kind": "text",
+          "text": ": NSItemProviderRepresentationVisibility, "
+        },
+        {
+          "kind": "identifier",
+          "text": "openInPlace"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((URL?, Bool, (any Error)?) -> Void) -> Progress?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4011315-registerfilerepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerFileRepresentation(for:visibility:openInPlace:loadHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/4011315-registerfilerepresentation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4028477-registerckshare": {
+      "abstract": [
+        {
+          "text": "Creates and registers a new collaboration object using a collection of records to share.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerCKShare"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "container"
+        },
+        {
+          "kind": "text",
+          "text": ": CKContainer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowedSharingOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": CKAllowedSharingOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "preparationHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> CKShare)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4028477-registerckshare",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerCKShare(container:allowedSharingOptions:preparationHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/4028477-registerckshare"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4058750-register": {
+      "abstract": [
+        {
+          "text": "Adds representations of a specified transferable type to an item provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "register"
+        },
+        {
+          "kind": "text",
+          "text": "<T>(() -> T)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4058750-register",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "register(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/4058750-register"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/completionhandler": {
+      "abstract": [
+        {
+          "text": "A block that receives the item provider’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSItemProvider.CompletionHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/completionhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSItemProvider.CompletionHandler",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/completionhandler"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/errorcode": {
+      "abstract": [
+        {
+          "text": "The error codes that describe problems with consuming data from an item provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSItemProvider.ErrorCode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/errorcode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSItemProvider.ErrorCode",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/errorcode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/keys_for_items_accessed_in_javascript_code": {
+      "abstract": [
+        {
+          "text": "Keys in property list items that the system recieves from or sends to JavaScript code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/keys_for_items_accessed_in_javascript_code",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keys for Items Accessed in JavaScript Code",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/keys_for_items_accessed_in_javascript_code"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/loadhandler": {
+      "abstract": [
+        {
+          "text": "A block that loads the item provider’s data and coerces it to the specified type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSItemProvider.LoadHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/loadhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSItemProvider.LoadHandler",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/loadhandler"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/options_dictionary_key": {
+      "abstract": [
+        {
+          "text": "Keys indicating options to use when generating the item provider’s data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/options_dictionary_key",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Options Dictionary Key",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/options_dictionary_key"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/preferredpresentationstyle": {
+      "abstract": [
+        {
+          "text": "The presentation styles that determine how a view shows an item provider's data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSItemProvider.PreferredPresentationStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/preferredpresentationstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSItemProvider.PreferredPresentationStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/preferredpresentationstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemproviderfileoptions": {
+      "abstract": [
+        {
+          "text": "Data-access specifications that declare how to handle items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSItemProviderFileOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemproviderfileoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSItemProviderFileOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemproviderfileoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemproviderreading": {
+      "abstract": [
+        {
+          "text": "The protocol for implementing a class to allow an item provider to create an instance of the class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSItemProviderReading"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemproviderreading",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSItemProviderReading",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemproviderreading"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemproviderrepresentationvisibility": {
+      "abstract": [
+        {
+          "text": "Specifications that control which categories of processes can see an item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSItemProviderRepresentationVisibility"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemproviderrepresentationvisibility",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSItemProviderRepresentationVisibility",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemproviderrepresentationvisibility"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemproviderwriting": {
+      "abstract": [
+        {
+          "text": "The protocol for implementing a class to allow an item provider to retrieve data from an instance of the class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSItemProviderWriting"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemproviderwriting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSItemProviderWriting",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemproviderwriting"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers": {
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers",
+      "kind": "article",
+      "role": "collection",
+      "title": "Uniform Type Identifiers",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsextensionitem",
+        "doc://com.apple.appkit/documentation/AppKit/add-functionality-to-finder-with-action-extensions"
+      ],
+      "title": "Attachments"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1661312",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403911-init",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4011311-init",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403933-init",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888323-init",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888328-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating an item provider"
+    },
+    {
+      "anchor": "3737302",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1528574-preferredpresentationsize",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2921257-preferredpresentationstyle",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/preferredpresentationstyle",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2890244-suggestedname",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2909055-teamdata"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring the provider"
+    },
+    {
+      "anchor": "3737299",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888333-canloadobject",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2923408-canloadobject",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403921-hasitemconformingtotypeidentifie",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888320-hasrepresentationconforming",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403923-registeredtypeidentifiers",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888334-registeredtypeidentifiers"
+      ],
+      "kind": "taskGroup",
+      "title": "Querying the provider’s contents"
+    },
+    {
+      "anchor": "1661361",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403900-loaditem",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888331-loaddatarepresentation",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4011312-loaddatarepresentation",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888338-loadfilerepresentation",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4011313-loadfilerepresentation",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888335-loadinplacefilerepresentation",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888336-loadobject",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2923363-loadobject",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/3988045-loadtransferable"
+      ],
+      "kind": "taskGroup",
+      "title": "Loading the provider’s contents"
+    },
+    {
+      "anchor": "1661382",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403925-loadpreviewimage",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403904-previewimagehandler"
+      ],
+      "kind": "taskGroup",
+      "title": "Loading a preview image"
+    },
+    {
+      "anchor": "3737305",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1644692-registercloudkitshare",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1644475-registercloudkitshare",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/3951995-registerckshare",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4028477-registerckshare"
+      ],
+      "kind": "taskGroup",
+      "title": "Registering CloudKit shares"
+    },
+    {
+      "anchor": "4011802",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4010592-registeredcontenttypes",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4010594-registeredcontenttypesforopeninp",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4010593-registeredcontenttypes"
+      ],
+      "kind": "taskGroup",
+      "title": "Registering content types"
+    },
+    {
+      "anchor": "3737301",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888319-registerdatarepresentation",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4011314-registerdatarepresentation",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403917-registeritem"
+      ],
+      "kind": "taskGroup",
+      "title": "Registering data"
+    },
+    {
+      "anchor": "3737303",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888337-registerfilerepresentation",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4011315-registerfilerepresentation"
+      ],
+      "kind": "taskGroup",
+      "title": "Registering files"
+    },
+    {
+      "anchor": "3994569",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/3920459-registergroupactivity",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/3920460-registergroupactivity"
+      ],
+      "kind": "taskGroup",
+      "title": "Registering group activities"
+    },
+    {
+      "anchor": "3737304",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888321-registerobject",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2888329-registerobject",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/2923382-registerobject",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/4058750-register"
+      ],
+      "kind": "taskGroup",
+      "title": "Registering objects"
+    },
+    {
+      "anchor": "1661406",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1528569-sourceframe",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1528571-containerframe"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the provider’s frame"
+    },
+    {
+      "anchor": "1673928",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/completionhandler",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/loadhandler",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/options_dictionary_key",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/keys_for_items_accessed_in_javascript_code",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/1403937-errordomain",
+        "doc://com.apple.documentation/documentation/foundation/nsitemproviderfileoptions",
+        "doc://com.apple.documentation/documentation/foundation/nsitemproviderreading",
+        "doc://com.apple.documentation/documentation/foundation/nsitemproviderwriting",
+        "doc://com.apple.documentation/documentation/foundation/nsitemproviderrepresentationvisibility",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider/errorcode"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsitemprovider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsitemprovider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

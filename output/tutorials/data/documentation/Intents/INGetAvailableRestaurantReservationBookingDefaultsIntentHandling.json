@@ -1,0 +1,990 @@
+{
+  "abstract": [
+    {
+      "text": "The handler interface for providing default values to the system when pre-fetching an initial set of possible reservation times.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/Intents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/Intents/INGetAvailableRestaurantReservationBookingDefaultsIntentHandling"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)INGetAvailableRestaurantReservationBookingDefaultsIntentHandling",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "INGetAvailableRestaurantReservationBookingDefaultsIntentHandling"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "INGetAvailableRestaurantReservationBookingDefaultsIntentHandling"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "INGetAvailableRestaurantReservationBookingDefaultsIntentHandling"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INGetAvailableRestaurantReservationBookingDefaultsIntentHandling"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the methods of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetAvailableRestaurantReservationBookingDefaultsIntentHandling",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol to resolve, confirm, and handle requests for default values for the system to use when pre-fetching reservation times. The system delivers an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetAvailableRestaurantReservationBookingDefaultsIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to your handler before it asks your Intents extension for any initial reservation times. Use this intent object to provide a set of reasonable default values that are likely to yield good results when doing an initial search for available reservation times. For example, the default date provided by your handler should represent a date and time when the restaurant is open and has available tables.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Maps does not require you to resolve or confirm the contents of a get available restaurant reservation booking defaults intent before handling it. User interactions drive the selection of data in Maps, ensuring that the data Maps places into an intent object is already valid.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetAvailableRestaurantReservationBookingDefaultsIntent": {
+      "abstract": [
+        {
+          "text": "A request for the default values to use when fetching potential reservation options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INGetAvailableRestaurantReservationBookingDefaultsIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetAvailableRestaurantReservationBookingDefaultsIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INGetAvailableRestaurantReservationBookingDefaultsIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INGetAvailableRestaurantReservationBookingDefaultsIntent",
+      "type": "topic",
+      "url": "/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetAvailableRestaurantReservationBookingDefaultsIntentHandling": {
+      "abstract": [
+        {
+          "text": "The handler interface for providing default values to the system when pre-fetching an initial set of possible reservation times.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INGetAvailableRestaurantReservationBookingDefaultsIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetAvailableRestaurantReservationBookingDefaultsIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INGetAvailableRestaurantReservationBookingDefaultsIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INGetAvailableRestaurantReservationBookingDefaultsIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetAvailableRestaurantReservationBookingDefaultsIntentHandling/confirm(getAvailableRestaurantReservationBookingDefaults:completion:)": {
+      "abstract": [
+        {
+          "text": "Confirms whether you can return default values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "confirm"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "getAvailableRestaurantReservationBookingDefaults"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INGetAvailableRestaurantReservationBookingDefaultsIntent",
+          "text": "INGetAvailableRestaurantReservationBookingDefaultsIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INGetAvailableRestaurantReservationBookingDefaultsIntentResponse",
+          "text": "INGetAvailableRestaurantReservationBookingDefaultsIntentResponse"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetAvailableRestaurantReservationBookingDefaultsIntentHandling/confirm(getAvailableRestaurantReservationBookingDefaults:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "confirmGetAvailableRestaurantReservationBookingDefaults:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "confirm(getAvailableRestaurantReservationBookingDefaults:completion:)",
+      "type": "topic",
+      "url": "/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintenthandling/confirm(getavailablerestaurantreservationbookingdefaults:completion:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetAvailableRestaurantReservationBookingDefaultsIntentHandling/handle(getAvailableRestaurantReservationBookingDefaults:completion:)": {
+      "abstract": [
+        {
+          "text": "Handles returning the default values to use when pre-fetching reservations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "getAvailableRestaurantReservationBookingDefaults"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INGetAvailableRestaurantReservationBookingDefaultsIntent",
+          "text": "INGetAvailableRestaurantReservationBookingDefaultsIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INGetAvailableRestaurantReservationBookingDefaultsIntentResponse",
+          "text": "INGetAvailableRestaurantReservationBookingDefaultsIntentResponse"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetAvailableRestaurantReservationBookingDefaultsIntentHandling/handle(getAvailableRestaurantReservationBookingDefaults:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleGetAvailableRestaurantReservationBookingDefaults:completion:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "handle(getAvailableRestaurantReservationBookingDefaults:completion:)",
+      "type": "topic",
+      "url": "/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintenthandling/handle(getavailablerestaurantreservationbookingdefaults:completion:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetAvailableRestaurantReservationBookingDefaultsIntentHandling/resolveRestaurant(for:completion:)": {
+      "abstract": [
+        {
+          "text": "Resolves the restaurant for which you are providing default values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolveRestaurant"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INGetAvailableRestaurantReservationBookingDefaultsIntent",
+          "text": "INGetAvailableRestaurantReservationBookingDefaultsIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INRestaurantResolutionResult",
+          "text": "INRestaurantResolutionResult"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetAvailableRestaurantReservationBookingDefaultsIntentHandling/resolveRestaurant(for:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resolveRestaurantForGetAvailableRestaurantReservationBookingDefaults:withCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "resolveRestaurant(for:completion:)",
+      "type": "topic",
+      "url": "/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintenthandling/resolverestaurant(for:completion:)"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INGetAvailableRestaurantReservationBookingDefaultsIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to a get available restaurant reservation booking defaults intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INGetAvailableRestaurantReservationBookingDefaultsIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INGetAvailableRestaurantReservationBookingDefaultsIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INGetAvailableRestaurantReservationBookingDefaultsIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INGetAvailableRestaurantReservationBookingDefaultsIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintentresponse"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Get-Available-Restaurant-Reservation-Booking-Defaults",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INGetAvailableRestaurantReservationBookingDefaultsIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INGetAvailableRestaurantReservationBookingDefaultsIntentResponse"
+      ],
+      "title": "Get Available Restaurant Reservation Booking Defaults"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Resolving-the-Intent-Parameters",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INGetAvailableRestaurantReservationBookingDefaultsIntentHandling/resolveRestaurant(for:completion:)"
+      ],
+      "title": "Resolving the Intent Parameters"
+    },
+    {
+      "anchor": "Confirming-the-Response",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INGetAvailableRestaurantReservationBookingDefaultsIntentHandling/confirm(getAvailableRestaurantReservationBookingDefaults:completion:)"
+      ],
+      "title": "Confirming the Response"
+    },
+    {
+      "anchor": "Handling-the-Intent",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INGetAvailableRestaurantReservationBookingDefaultsIntentHandling/handle(getAvailableRestaurantReservationBookingDefaults:completion:)"
+      ],
+      "title": "Handling the Intent"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "INGetAvailableRestaurantReservationBookingDefaultsIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetAvailableRestaurantReservationBookingDefaultsIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetAvailableRestaurantReservationBookingDefaultsIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.sirikit/documentation/Intents"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Resolving-the-Intent-Parameters",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INGetAvailableRestaurantReservationBookingDefaultsIntentHandling/resolveRestaurant(for:completion:)"
+              ],
+              "title": "Resolving the Intent Parameters"
+            },
+            {
+              "anchor": "Confirming-the-Response",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INGetAvailableRestaurantReservationBookingDefaultsIntentHandling/confirm(getAvailableRestaurantReservationBookingDefaults:completion:)"
+              ],
+              "title": "Confirming the Response"
+            },
+            {
+              "anchor": "Handling-the-Intent",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INGetAvailableRestaurantReservationBookingDefaultsIntentHandling/handle(getAvailableRestaurantReservationBookingDefaults:completion:)"
+              ],
+              "title": "Handling the Intent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Get-Available-Restaurant-Reservation-Booking-Defaults",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INGetAvailableRestaurantReservationBookingDefaultsIntent",
+                "doc://com.apple.sirikit/documentation/Intents/INGetAvailableRestaurantReservationBookingDefaultsIntentResponse"
+              ],
+              "title": "Get Available Restaurant Reservation Booking Defaults"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "INGetAvailableRestaurantReservationBookingDefaultsIntentHandling"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetAvailableRestaurantReservationBookingDefaultsIntentResponse/title",
+          "value": "INGetAvailableRestaurantReservationBookingDefaultsIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetAvailableRestaurantReservationBookingDefaultsIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetAvailableRestaurantReservationBookingDefaultsIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetAvailableRestaurantReservationBookingDefaultsIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetAvailableRestaurantReservationBookingDefaultsIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetAvailableRestaurantReservationBookingDefaultsIntentHandling~1resolveRestaurant(for:completion:)/title",
+          "value": "resolveRestaurantForGetAvailableRestaurantReservationBookingDefaults:withCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetAvailableRestaurantReservationBookingDefaultsIntentHandling~1resolveRestaurant(for:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resolveRestaurantForGetAvailableRestaurantReservationBookingDefaults:withCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetAvailableRestaurantReservationBookingDefaultsIntentHandling~1confirm(getAvailableRestaurantReservationBookingDefaults:completion:)/title",
+          "value": "confirmGetAvailableRestaurantReservationBookingDefaults:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetAvailableRestaurantReservationBookingDefaultsIntentHandling~1confirm(getAvailableRestaurantReservationBookingDefaults:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "confirmGetAvailableRestaurantReservationBookingDefaults:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetAvailableRestaurantReservationBookingDefaultsIntentHandling/title",
+          "value": "INGetAvailableRestaurantReservationBookingDefaultsIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetAvailableRestaurantReservationBookingDefaultsIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetAvailableRestaurantReservationBookingDefaultsIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetAvailableRestaurantReservationBookingDefaultsIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetAvailableRestaurantReservationBookingDefaultsIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetAvailableRestaurantReservationBookingDefaultsIntentHandling~1handle(getAvailableRestaurantReservationBookingDefaults:completion:)/title",
+          "value": "handleGetAvailableRestaurantReservationBookingDefaults:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetAvailableRestaurantReservationBookingDefaultsIntentHandling~1handle(getAvailableRestaurantReservationBookingDefaults:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleGetAvailableRestaurantReservationBookingDefaults:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetAvailableRestaurantReservationBookingDefaultsIntent/title",
+          "value": "INGetAvailableRestaurantReservationBookingDefaultsIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetAvailableRestaurantReservationBookingDefaultsIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetAvailableRestaurantReservationBookingDefaultsIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INGetAvailableRestaurantReservationBookingDefaultsIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INGetAvailableRestaurantReservationBookingDefaultsIntent"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintenthandling"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintenthandling"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

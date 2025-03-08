@@ -1,0 +1,1206 @@
+{
+  "abstract": [
+    {
+      "text": "An object that modifies the content of a remote notification before it’s delivered to the user.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.usernotifications/documentation/UserNotifications"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UNNotificationServiceExtension",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UNNotificationServiceExtension"
+      }
+    ],
+    "modules": [
+      {
+        "name": "User Notifications"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UNNotificationServiceExtension"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.14",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UNNotificationServiceExtension"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UNNotificationServiceExtension"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/modifying-content-in-newly-delivered-notifications"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object provides the entry point for a notification service app extension. This object lets you customize the content of a remote notification before the system delivers it to the user. A notification service app extension doesn’t present any UI of its own. Instead, it’s launched on demand when the system delivers a notification of the appropriate type to the user’s device. You use this extension to modify the notification’s content or download content related to the extension. For example, you could use the extension to decrypt an encrypted data block or to download images associated with the notification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t create ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects yourself. Instead, the Xcode template for a notification service extension target contains a subclass for you to modify. Use the methods of that subclass to implement your app extension’s behavior. When your app receives a remote notification for your app, the system loads your extension and calls its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension/didReceive(_:withContentHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method given the following conditions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app has configured the remote notification to display an alert.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The remote notification’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "aps",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " dictionary includes the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "mutable-content",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key with the value set to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can’t modify silent notifications or those that only play a sound or badge the app’s icon.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension/didReceive(_:withContentHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method performs the main work of your extension. You use that method to make any changes to the notification’s content. That method has a limited amount of time to perform its task and execute the provided completion block. If your method doesn’t finish in time, the system calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension/serviceExtensionTimeWillExpire()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to give you one last chance to submit your changes. If you don’t update the notification content before time expires, the system displays the original content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As for any app extension, you deliver a notification service app extension class as a bundle inside your app. The template that Xcode provides configures the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file automatically for this app extension type. Specifically, it sets the value of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AppExtensionKeys.html#//apple_ref/doc/uid/TP40014212-SW15",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key to ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.usernotifications.service",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and sets the value of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AppExtensionKeys.html#//apple_ref/doc/uid/TP40014212-SW16",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key to the name of your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about how to set up and send remote notifications, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Subclassing-Notes",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Xcode templates provide a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for you to modify. You must implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension/didReceive(_:withContentHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and use it to process incoming notifications. It’s also strongly recommended that you override the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension/serviceExtensionTimeWillExpire()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "UserNotifications-PageImage-card.png": {
+      "alt": "[A notification interface displayed on the lock screen of an iOS device.]",
+      "identifier": "UserNotifications-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/074de9a9213bf2905d67fae5eb46e4f8/UserNotifications-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5733742e1c084fc202b3c92df9083686/UserNotifications-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications": {
+      "abstract": [
+        {
+          "text": "Push user-facing notifications to the user’s device from a server, or generate them locally from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications",
+      "images": [
+        {
+          "identifier": "UserNotifications-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "User Notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension": {
+      "abstract": [
+        {
+          "text": "An object that modifies the content of a remote notification before it’s delivered to the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationServiceExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationServiceExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationServiceExtension",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationserviceextension"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension/didReceive(_:withContentHandler:)": {
+      "abstract": [
+        {
+          "text": "Asks you to make any needed changes to the notification and notify the system when you’re done.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didReceive"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UNNotificationRequest",
+          "text": "UNNotificationRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withContentHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UNNotificationContent",
+          "text": "UNNotificationContent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension/didReceive(_:withContentHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didReceiveNotificationRequest:withContentHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "didReceive(_:withContentHandler:)",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationserviceextension/didreceive(_:withcontenthandler:)"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension/serviceExtensionTimeWillExpire()": {
+      "abstract": [
+        {
+          "text": "Tells you that the system is terminating your extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "serviceExtensionTimeWillExpire"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension/serviceExtensionTimeWillExpire()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "serviceExtensionTimeWillExpire"
+        }
+      ],
+      "role": "symbol",
+      "title": "serviceExtensionTimeWillExpire()",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationserviceextension/serviceextensiontimewillexpire()"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/modifying-content-in-newly-delivered-notifications": {
+      "abstract": [
+        {
+          "text": "Modify the payload of a remote notification before it’s displayed on the user’s iOS device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/modifying-content-in-newly-delivered-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Modifying content in newly delivered notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications/modifying-content-in-newly-delivered-notifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server": {
+      "abstract": [
+        {
+          "text": "Generate notifications and push them to user devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Setting up a remote notification server",
+      "type": "topic",
+      "url": "/documentation/usernotifications/setting-up-a-remote-notification-server"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AppExtensionKeys.html#//apple_ref/doc/uid/TP40014212-SW15": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AppExtensionKeys.html#//apple_ref/doc/uid/TP40014212-SW15",
+      "title": "NSExtensionPointIdentifier",
+      "titleInlineContent": [
+        {
+          "text": "NSExtensionPointIdentifier",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AppExtensionKeys.html#//apple_ref/doc/uid/TP40014212-SW15"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AppExtensionKeys.html#//apple_ref/doc/uid/TP40014212-SW16": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AppExtensionKeys.html#//apple_ref/doc/uid/TP40014212-SW16",
+      "title": "NSExtensionPrincipalClass",
+      "titleInlineContent": [
+        {
+          "text": "NSExtensionPrincipalClass",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AppExtensionKeys.html#//apple_ref/doc/uid/TP40014212-SW16"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Notification-service-app-extension",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/modifying-content-in-newly-delivered-notifications"
+      ],
+      "title": "Notification service app extension"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Processing-Notifications",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension/didReceive(_:withContentHandler:)",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension/serviceExtensionTimeWillExpire()"
+      ],
+      "title": "Processing Notifications"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.14",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UNNotificationServiceExtension"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationServiceExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationServiceExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.usernotifications/documentation/UserNotifications"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Processing-Notifications",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension/didReceive(_:withContentHandler:)",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension/serviceExtensionTimeWillExpire()"
+              ],
+              "title": "Processing Notifications"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Notification-service-app-extension",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/modifying-content-in-newly-delivered-notifications"
+              ],
+              "title": "Notification service app extension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UNNotificationServiceExtension"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationServiceExtension~1serviceExtensionTimeWillExpire()/title",
+          "value": "serviceExtensionTimeWillExpire"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationServiceExtension~1serviceExtensionTimeWillExpire()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "serviceExtensionTimeWillExpire"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationServiceExtension~1didReceive(_:withContentHandler:)/title",
+          "value": "didReceiveNotificationRequest:withContentHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationServiceExtension~1didReceive(_:withContentHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didReceiveNotificationRequest:withContentHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationServiceExtension/title",
+          "value": "UNNotificationServiceExtension"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationServiceExtension/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationServiceExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationServiceExtension/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationServiceExtension"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/usernotifications/unnotificationserviceextension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/usernotifications/unnotificationserviceextension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

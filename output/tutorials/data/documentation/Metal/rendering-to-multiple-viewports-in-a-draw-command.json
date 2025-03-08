@@ -1,0 +1,594 @@
+{
+  "abstract": [
+    {
+      "text": "Select viewports and their corresponding scissor rectangles in your vertex shader.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/render-passes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-viewports-in-a-draw-command"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Rendering to Multiple Viewports in a Draw Command"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A viewport defines a subsection of the render targets that you want a drawing command to render into. Using viewport selection, you provide multiple viewports for a drawing command, and dynamically choose one of these viewports for each primitive rendered by the drawing command. Viewport selection makes it easier to consolidate rendering to multiple viewports into fewer drawing commands. For example, you might use viewport selection when rendering stereo imagery or other images whose content is rendered to multiple parts of the render target.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3372066",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-the-Device-Object-for-Support-for-Multiple-Viewports",
+          "level": 3,
+          "text": "Check the Device Object for Support for Multiple Viewports",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All GPUs in the macOS family support multiple viewports. Multiple viewports are available in the Apple GPU family starting with family 5. Test for support using the code below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func supportsMultipleViewports() -> Bool {",
+                    "    return device.supportsFamily(MTLGPUFamily.mac2) || device.supportsFamily(MTLGPUFamily.apple5)",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (Boolean) supportsMultipleViewports",
+                    "{",
+                    "    return [_device supportsFamily: MTLGPUFamilyMac1 ] ||",
+                    "           [_device supportsFamily: MTLGPUFamilyApple5 ];",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the maximum number of viewports you can use with each GPU family, see:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/metal/metal-feature-set-tables.zip",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Add-Viewport-Selection-to-Your-Vertex-Shader",
+          "level": 3,
+          "text": "Add Viewport Selection to Your Vertex Shader",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To specify which viewport a primitive should be rendered into, add a vertex output with the ",
+              "type": "text"
+            },
+            {
+              "code": "[[viewport_array_index]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute. Your vertex shader must set this value so that Metal knows which viewport to render into.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below uses instanced rendering to primitives to multiple viewports. It adds a ",
+              "type": "text"
+            },
+            {
+              "code": "viewPort",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field to the vertex output to specify the target slice. The target viewport is passed in as part of the per-instance properties, and copied to the vertex output.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "typedef struct",
+            "{",
+            "    ...",
+            "    uint   viewport [[viewport_array_index]];",
+            "} ColorInOut;",
+            "",
+            "vertex ColorInOut vertexTransform (",
+            "    const Vertex in [[ stage_in ]],",
+            "    const uint   instanceId                       [[ instance_id ]],",
+            "    const device InstanceParams* instanceParams   [[ buffer ]],",
+            "{",
+            "    ColorInOut out;",
+            "    out.viewport = instanceParams[instanceId].viewport;",
+            "    ...",
+            "}"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your vertex function must return the same index for all vertices that make up any given primitive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The rasterization stage uses the selected viewport and associated scissor rectangle to transform the vertex outputs and then passes the data over to the fragment stage. If you need to know which viewport is being rendered to inside your fragment shader, you can reference the same field that you set in the vertex output.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-Viewports-and-Scissor-Rectangles-in-Your-Draw-Command",
+          "level": 3,
+          "text": "Specify Viewports and Scissor Rectangles in Your Draw Command",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setViewports(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to specify multiple viewports",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setScissorRects(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to specify scissor rectangles:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "renderEncoder.setViewports(viewPortsArray)",
+                    "renderEncoder.setScissorRects(scissorRectsArray)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "[renderEncoder setViewports:viewPortsArray count:4];",
+                    "[renderEncoder setScissorRects:scissorRectsArray count:4];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify the same number of scissor rectangles and viewports. Coordinate your code that encodes render commands with the code in your shaders such that the indices that your shader generates are within the range of provided values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setScissorRects(_:)": {
+      "abstract": [
+        {
+          "text": "Configures multiple rectangles for the fragment scissor test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setScissorRects"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLScissorRect",
+          "text": "MTLScissorRect"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setScissorRects(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setScissorRects(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setscissorrects(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setViewports(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the render pipeline with multiple viewports that apply transformations and clipping rectangles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setViewports"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLViewport",
+          "text": "MTLViewport"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setViewports(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setViewports(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setviewports(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/render-passes": {
+      "abstract": [
+        {
+          "text": "Encode a render pass to draw graphics into an image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/render-passes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Render Passes",
+      "type": "topic",
+      "url": "/documentation/metal/render-passes"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-texture-slices-in-a-draw-command": {
+      "abstract": [
+        {
+          "text": "Select a destination texture slice in your vertex shader.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-texture-slices-in-a-draw-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Rendering to Multiple Texture Slices in a Draw Command",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-to-multiple-texture-slices-in-a-draw-command"
+    },
+    "doc://com.apple.metal/documentation/Metal/specifying-drawing-and-dispatch-arguments-indirectly": {
+      "abstract": [
+        {
+          "text": "Use indirect commands if you don’t know your draw or dispatch call arguments when you encode the command.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/specifying-drawing-and-dispatch-arguments-indirectly",
+      "kind": "article",
+      "role": "article",
+      "title": "Specifying Drawing and Dispatch Arguments Indirectly",
+      "type": "topic",
+      "url": "/documentation/metal/specifying-drawing-and-dispatch-arguments-indirectly"
+    },
+    "https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf": {
+      "identifier": "https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf",
+      "title": "Metal feature set tables (PDF)",
+      "titleInlineContent": [
+        {
+          "text": "Metal feature set tables (PDF)",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf"
+    },
+    "https://developer.apple.com/metal/metal-feature-set-tables.zip": {
+      "identifier": "https://developer.apple.com/metal/metal-feature-set-tables.zip",
+      "title": "Metal feature set tables (Numbers)",
+      "titleInlineContent": [
+        {
+          "text": "Metal feature set tables (Numbers)",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/metal/metal-feature-set-tables.zip"
+    },
+    "media-3372066": {
+      "alt": "A block diagram that shows a render pipeline whose final destination is a single target with multiple viewports.",
+      "identifier": "media-3372066",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c028ba3b6b343c64f8f0ff8c12debc4c/media-3372066@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c1160993f7435d66288f52a16d6425ac/media-3372066~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Optimizing-Techniques",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/specifying-drawing-and-dispatch-arguments-indirectly",
+        "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-texture-slices-in-a-draw-command"
+      ],
+      "title": "Optimizing Techniques"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Optimizing-Techniques",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/specifying-drawing-and-dispatch-arguments-indirectly",
+                "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-texture-slices-in-a-draw-command"
+              ],
+              "title": "Optimizing Techniques"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/rendering-to-multiple-viewports-in-a-draw-command"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/rendering-to-multiple-viewports-in-a-draw-command"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

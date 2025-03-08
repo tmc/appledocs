@@ -1,0 +1,1757 @@
+{
+  "abstract": [
+    {
+      "text": "A tokenizer that segments natural language text into semantic units.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NLTokenizer",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NLTokenizer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Natural Language"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NLTokenizer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.14",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NLTokenizer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NLTokenizer"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/tokenizing-natural-language-text"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " creates individual units from natural language text. Define the desired unit (word, sentence, paragraph, or document as declared in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenUnit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") for tokenization, and then assign a string to tokenize. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/enumerateTokensInRange:usingBlock:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method provides the ranges of the tokens in the string based on the tokenization unit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/tokenizing-natural-language-text",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Use an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instance on one thread or one dispatch queue at a time. You do this by either serializing method calls to the tokenizer, or by creating a separate tokenizer instance for each thread and dispatch queue.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage": {
+      "abstract": [
+        {
+          "text": "Analyze natural language text and deduce its language-specific metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Natural Language",
+      "type": "topic",
+      "url": "/documentation/naturallanguage"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenUnit": {
+      "abstract": [
+        {
+          "text": "Constants representing linguistic units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NLTokenUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenUnit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NLTokenUnit"
+        }
+      ],
+      "role": "symbol",
+      "title": "NLTokenUnit",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltokenunit"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer": {
+      "abstract": [
+        {
+          "text": "A tokenizer that segments natural language text into semantic units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NLTokenizer"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NLTokenizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NLTokenizer",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltokenizer"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/Attributes": {
+      "abstract": [
+        {
+          "text": "Hints about the contents of the string for the tokenizer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Attributes"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/Attributes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Attributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "NLTokenizer.Attributes",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltokenizer/attributes"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/enumerateTokens(in:using:)": {
+      "abstract": [
+        {
+          "text": "Enumerates over a given range of the string and calls the specified block for each token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateTokens"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NLTokenizer",
+          "text": "NLTokenizer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NLTokenizerAttributes",
+          "text": "Attributes"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/enumerateTokens(in:using:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enumerateTokens(in:using:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltokenizer/enumeratetokens(in:using:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/enumerateTokensInRange:usingBlock:": {
+      "abstract": [
+        {
+          "text": "Enumerates over a given range of the string and calls the specified block for each token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateTokensInRange:usingBlock:"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/enumerateTokensInRange:usingBlock:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enumerateTokensInRange:usingBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "enumerateTokensInRange:usingBlock:",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltokenizer/enumeratetokensinrange:usingblock:"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/init(unit:)": {
+      "abstract": [
+        {
+          "text": "Creates a tokenizer with the specified unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "unit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NLTokenUnit",
+          "text": "NLTokenUnit"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/init(unit:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithUnit:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(unit:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltokenizer/init(unit:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/setLanguage(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the language of the text to be tokenized.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setLanguage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLLanguage",
+          "text": "NLLanguage"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/setLanguage(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setLanguage:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setLanguage(_:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltokenizer/setlanguage(_:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/string": {
+      "abstract": [
+        {
+          "text": "The text to be tokenized.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/string",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "string"
+        }
+      ],
+      "role": "symbol",
+      "title": "string",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltokenizer/string"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/tokenRange(at:)": {
+      "abstract": [
+        {
+          "text": "Finds the range of the token at the given index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/tokenRange(at:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tokenRange(at:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltokenizer/tokenrange(at:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/tokenRange(for:)": {
+      "abstract": [
+        {
+          "text": "Finds the entire range of all tokens contained completely or partially within the specified range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/tokenRange(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tokenRange(for:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltokenizer/tokenrange(for:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/tokenRangeAtIndex:": {
+      "abstract": [
+        {
+          "text": "Finds the range of the token at the given index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenRangeAtIndex:"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/tokenRangeAtIndex:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tokenRangeAtIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tokenRangeAtIndex:",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltokenizer/tokenrangeatindex:"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/tokenRangeForRange:": {
+      "abstract": [
+        {
+          "text": "Finds the entire range of all tokens contained completely or partially within the specified range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenRangeForRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/tokenRangeForRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tokenRangeForRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tokenRangeForRange:",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltokenizer/tokenrangeforrange:"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/tokens(for:)": {
+      "abstract": [
+        {
+          "text": "Tokenizes the string within the provided range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokens"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/tokens(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tokens(for:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltokenizer/tokens(for:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/tokensForRange:": {
+      "abstract": [
+        {
+          "text": "Tokenizes the string within the provided range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokensForRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/tokensForRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tokensForRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tokensForRange:",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltokenizer/tokensforrange:"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/unit": {
+      "abstract": [
+        {
+          "text": "The linguistic unit that this tokenizer uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NLTokenUnit",
+          "text": "NLTokenUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/unit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unit"
+        }
+      ],
+      "role": "symbol",
+      "title": "unit",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltokenizer/unit"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/tokenizing-natural-language-text": {
+      "abstract": [
+        {
+          "text": "Enumerate the words in a string.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/tokenizing-natural-language-text",
+      "kind": "article",
+      "role": "article",
+      "title": "Tokenizing natural language text",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/tokenizing-natural-language-text"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Tokenization",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/tokenizing-natural-language-text"
+      ],
+      "title": "Tokenization"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-tokenizer",
+      "identifiers": [
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/init(unit:)"
+      ],
+      "title": "Creating a tokenizer"
+    },
+    {
+      "anchor": "Configuring-a-tokenizer",
+      "identifiers": [
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/string",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/setLanguage(_:)",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/unit",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/Attributes"
+      ],
+      "title": "Configuring a tokenizer"
+    },
+    {
+      "anchor": "Enumerating-the-tokens",
+      "identifiers": [
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/enumerateTokens(in:using:)",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/tokens(for:)",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/tokenRange(at:)",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/tokenRange(for:)"
+      ],
+      "title": "Enumerating the tokens"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.14",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "5.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NLTokenizer"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLTokenizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLTokenizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-tokenizer",
+              "identifiers": [
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/init(unit:)"
+              ],
+              "title": "Creating a tokenizer"
+            },
+            {
+              "anchor": "Configuring-a-tokenizer",
+              "identifiers": [
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/string",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/setLanguage(_:)",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/unit",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/Attributes"
+              ],
+              "title": "Configuring a tokenizer"
+            },
+            {
+              "anchor": "Enumerating-the-tokens",
+              "identifiers": [
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/enumerateTokensInRange:usingBlock:",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/tokensForRange:",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/tokenRangeAtIndex:",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTokenizer/tokenRangeForRange:"
+              ],
+              "title": "Enumerating the tokens"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Tokenization",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/tokenizing-natural-language-text"
+              ],
+              "title": "Tokenization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NLTokenizer"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTokenizer~1unit/title",
+          "value": "unit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTokenizer~1unit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "unit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTokenizer~1Attributes/title",
+          "value": "NLTokenizerAttributes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTokenizer~1Attributes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLTokenizerAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTokenizer~1Attributes/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLTokenizerAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTokenizer~1setLanguage(_:)/title",
+          "value": "setLanguage:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTokenizer~1setLanguage(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setLanguage:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTokenizer~1init(unit:)/title",
+          "value": "initWithUnit:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTokenizer~1init(unit:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithUnit:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTokenizer/title",
+          "value": "NLTokenizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTokenizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLTokenizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTokenizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLTokenizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTokenUnit/title",
+          "value": "NLTokenUnit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTokenUnit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLTokenUnit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTokenUnit/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLTokenUnit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTokenizer~1string/title",
+          "value": "string"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTokenizer~1string/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/naturallanguage/nltokenizer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/naturallanguage/nltokenizer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

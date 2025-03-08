@@ -1,0 +1,2662 @@
+{
+  "abstract": [
+    {
+      "text": "Explore features, tasks, related frameworks, and constraints as you make a plan to implement widgets, watch complications, and Live Activities.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.WidgetKit/documentation/WidgetKit/Developing-a-WidgetKit-strategy"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "Developing-WidgetKit-Strategy-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "modules": [
+      {
+        "name": "WidgetKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Developing a WidgetKit strategy"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use WidgetKit to build widgets, watch complications, and Live Activities. With these features, you can create an ecosystem across platforms and devices, expanding the reach of your app. Widgets, complications, and Live Activities use WidgetKit and a set of related frameworks, including SwiftUI and App Intents, to take up limited but effective, eye-catching space. Because their design, functionality, and code are similar, they’re perfect candidates for code and design component reuse.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To avoid costly changes in your app’s development process, plan your WidgetKit adoption before you create designs and write code. As you make your plans, take into account:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Feature availability for each platform",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Frameworks to use in addition to WidgetKit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required appearances and available sizes for widgets, watch complications, and Live Activities",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Technology that powers content updates",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Animation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Interactivity with your app through deep links, buttons, and toggles",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configuration options for widgets and watch complications",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Visibility in Smart Stacks",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Functional constraints",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Offer-glanceable-experiences-in-various-sizes-and-across-platforms",
+          "level": 3,
+          "text": "Offer glanceable experiences in various sizes and across platforms",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Widgets come in many different sizes, from circular accessory widgets on the Lock Screen and complications on Apple Watch to extra-large widgets on iPad and Mac. It’s up to you to choose the sizes and complications you want to support, but consider supporting as many sizes and complications as possible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This table shows the functionality available for each platform:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Widget size or technology",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iPhone",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iPad",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apple Watch",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Mac",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Small system widgets",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Home Screen, Today View, and StandBy",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Home Screen, Today View, and Lock Screen",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Medium system widgets",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Home Screen and Today View",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Home Screen and Today View",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Large system widgets",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Home Screen and Today View",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Home Screen and Today View",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Extra large system widgets",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Home Screen and Today View",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Circular accessory widgets",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Lock Screen",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Lock Screen",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Watch complications and Smart Stack",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Corner accessory widgets",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Watch complications",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Rectangular accessory widgets",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Lock Screen",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Lock Screen",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Watch complications and Smart Stack",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Inline accessory widgets",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Lock Screen",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Lock Screen",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Watch complications",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Live Activities",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Live Activities are available on iPhone and iPad and appear on the Lock Screen. On devices that support the Dynamic Island, Live Activities appear in the Dynamic Island in compact, minimal, and extended appearances. On devices that don’t support the Dynamic Island, Live Activities appear briefly on the Home Screen, and as an overlay in other apps to notify people of updated data if you choose to alert people about the update.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You need to support all Live Activity appearances, from minimal and compact presentations to larger extended and Lock Screen presentations.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Approach WidgetKit adoption iteratively. For example, start with a nonconfigurable ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemSmall",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " widget as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-a-Widget-Extension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " because it gives your content broad exposure in the WidgetKit ecosystem on iPhone, iPad, and Mac. Then, add support for configuration, additional widget sizes, and — depending on your app’s features — Live Activities or a watchOS app with watch complications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Leverage-additional-frameworks",
+          "level": 3,
+          "text": "Leverage additional frameworks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Widgets, watch complications, and Live Activities use a widget extension you add to your Xcode project. The role of WidgetKit is to provide the infrastructure and configuration for the features it enables. Depending on features and platforms you support, you use WidgetKit in combination with other frameworks as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To create the user interface for each feature, use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To add interactivity to widgets and Live Activities, use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppIntents",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " framework.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To offer watch complications, create a watchOS app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To make widgets configurable, to offer preconfigured watch complications, and to enable functionalities like Smart Stacks and Widget Suggestions, use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppIntents",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SiriKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " intents.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To start, update, and end Live Activities, use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ActivityKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Support-different-appearances",
+          "level": 3,
+          "text": "Support different appearances",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Depending on the context, a widget or Live Activity changes its appearance to best fit its context. For example, a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemSmall",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " widget appears as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the Home Screen of iPhone and iPad, it uses the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/fullColor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/accented",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " rendering modes for light and dark appearances.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the Lock Screen of iPad and iPhone, it uses the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/vibrant",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " rendering mode that provides a vibrant, blurred appearance. On the Lock Screen of iPhone in StandBy and StandBy in Night Mode, it renders scaled up in size using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/vibrant",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " rendering mode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On Mac, it uses the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/fullColor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " rendering mode in Notification Center for light and dark appearances. On the desktop, the widget appears receded with the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/vibrant",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " appearance and changes to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/fullColor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " appearance when a person interacts with it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryRectangular",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " widget appears as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the Lock Screen of iPhone and iPad, it takes on the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/vibrant",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " appearance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On Apple Watch, it appears as a watch complication without a background and the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/accented",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " appearance and in a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/fullColor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " appearance in the Smart Stack.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With each feature you add to your app, make sure your widget, watch complication, or Live Activity supports all applicable contexts and appearances well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Preparing-widgets-for-additional-contexts-and-appearances",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/widgets",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Animate-content-updates",
+          "level": 3,
+          "text": "Animate content updates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On devices that run iOS 16, macOS 13, or earlier, widgets don’t use animations. However, Live Activities use the system’s animation timing to animate dynamic content and the addition or removal of views. For example, you can use built-in transitions for content or state changes, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/AnyTransition/move(edge:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting with iOS 17 and macOS 14, widgets can use animations, and both widgets and Live Activities can use custom animations. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Animating-data-updates-in-widgets-and-live-activities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-up-to-date-information-with-a-timeline",
+          "level": 3,
+          "text": "Provide up-to-date information with a timeline",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Widgets and watch complications use a mechanism to update their content that’s different from your app. They use a timeline of data updates that you create in your app and hand to WidgetKit. You maintain this timeline as your app receives new data, but, to optimize battery life for a device, each app has a budget to update its widgets or complications. Additionally, the system batches and schedules updates to preserve power. For more information on how timelines work and how you can keep your widgets and watch complications up to date, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-network-requests-in-a-widget-extension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Live Activities don’t use timelines to update their content. Instead, they use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ActivityKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the Apple Push Notification service (APNs) to send ActivityKit push notifications. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ActivityKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-specific-app-functionality-to-your-widgets-and-Live-Activities",
+          "level": 3,
+          "text": "Add specific app functionality to your widgets and Live Activities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, people tap a widget, watch complication, or Live Activity to launch its corresponding app. To make the experience more intuitive and require fewer interactions, you can use deep linking to launch the scene of your app that matches the widget’s visible content. Widgets that offer enough space, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemSmall",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or larger —  and Live Activities in the extended or the Lock Screen appearance —  add SwiftUI’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Link",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to your views and allow people to open different screens in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In iOS 16 and macOS 13 or earlier versions, only large and extra-large widgets can use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Link",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting with iOS 17 and macOS 14, widgets offer direct interaction with your app using   the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework and SwiftUI. Both ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Button",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Toggle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " offer dedicated initializers for this purpose. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Adding-interactivity-to-widgets-and-Live-Activities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Offer-configurable-widgets-and-watch-complications",
+          "level": 3,
+          "text": "Offer configurable widgets and watch complications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make it possible for people to select the information they want to view in the widget by offering configurable iOS and macOS widgets that provide customizable properties. For example, people might choose to stay informed about a specific stock in a stock market widget, or enter a tracking number for a package delivery widget. Configurable widgets use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework and custom intents you define — the same mechanism you use to support system-level services like Siri and the Shortcuts app. For information about creating a configurable widgets, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-a-Configurable-Widget",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On Apple Watch, offer preconfigured watch complications to people with WidgetKit and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Increase-visibility-in-Smart-Stacks",
+          "level": 3,
+          "text": "Increase visibility in Smart Stacks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On iPhone and iPad, people create stacks of widgets, swipe through them manually, and use Smart Rotate to create Smart Stacks. In a Smart Stack, WidgetKit shows the widget at the top of a stack that matches a person’s context. For example, a weather widget might appear on the top of a Smart Stack each time a person leaves their home. To make sure the system shows your widget at the top of a Smart Stack at the right moment, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On Apple Watch, the Smart Stack displays a list of default widgets and widgets a person adds to it. Like on iPhone and iPad, you use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework to make sure people can add your widget to the Smart Stack.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Widget-Suggestions-In-Smart-Stacks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Consider-user-privacy",
+          "level": 3,
+          "text": "Consider user privacy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Lock Screen and watch faces are always visible, and people can configure widgets and complications to hide sensitive information when the device is locked or supports Always On. Review data that appears on your widget, Live Activity, or complication, and make sure you support redaction of sensitive data. For additional information, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-a-Widget-Extension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Store-shared-data-in-a-group-container",
+          "level": 3,
+          "text": "Store shared data in a group container",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add widgets, watch complications, and Live Activities, you create a widget extension and add it to your app, and the extension target and your app are part of the same app group. As a result, you can store files and data in a shared container that’s accessible to the app and the widget extension. For example, your app can download data and store it in a database in the shared container, and then a widget can access the database.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional information about app groups and accessing a shared container, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/configuring-app-groups",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Respect-functional-constraints",
+          "level": 3,
+          "text": "Respect functional constraints",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Widgets, watch complications, and Live Activities are always visible. To preserve battery life and user privacy, they follow certain constraints. For example, Live Activities can’t access a person’s location. The following table shows availability features that impact battery life or user privacy for each feature:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Functionality",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Widgets",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Watch complications",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Live Activities",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Network access",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Location access",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "No",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Accessing-Location-Information-in-Widgets",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "ActivityKit-PageImage-card.png": {
+      "alt": "[A hero image of the ActivityKit framework.]",
+      "identifier": "ActivityKit-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2809f67730f457afbeb77d866e20466e/ActivityKit-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5cbca6adfca53a5472c0c9f4b7395c3e/ActivityKit-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "Developing-WidgetKit-Strategy-PageImage-card.png": {
+      "alt": null,
+      "identifier": "Developing-WidgetKit-Strategy-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3be6cd9e9843fbca08a8c9ac15fcd915/Developing-WidgetKit-Strategy-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/42a248c60d951cca0502f29a151532a0/Developing-WidgetKit-Strategy-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Extend the reach of your app by creating widgets, watch complications, Live Activities, and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WidgetKit",
+      "type": "topic",
+      "url": "/documentation/widgetkit"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Accessing-Location-Information-in-Widgets": {
+      "abstract": [
+        {
+          "text": "Incorporate location information into your widget presentation to make it",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "more relevant and contextual.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Accessing-Location-Information-in-Widgets",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing location information in widgets",
+      "type": "topic",
+      "url": "/documentation/widgetkit/accessing-location-information-in-widgets"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Adding-interactivity-to-widgets-and-Live-Activities": {
+      "abstract": [
+        {
+          "text": "Include buttons or toggles in a widget or Live Activity to offer app functionality without launching the app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Adding-interactivity-to-widgets-and-Live-Activities",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding interactivity to widgets and Live Activities",
+      "type": "topic",
+      "url": "/documentation/widgetkit/adding-interactivity-to-widgets-and-live-activities"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Animating-data-updates-in-widgets-and-live-activities": {
+      "abstract": [
+        {
+          "text": "Use SwiftUI animations to indicate data updates in your widgets and Live Activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Animating-data-updates-in-widgets-and-live-activities",
+      "kind": "article",
+      "role": "article",
+      "title": "Animating data updates in widgets and Live Activities",
+      "type": "topic",
+      "url": "/documentation/widgetkit/animating-data-updates-in-widgets-and-live-activities"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-a-Widget-Extension": {
+      "abstract": [
+        {
+          "text": "Display your app’s content in a convenient, informative widget on various devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-a-Widget-Extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a widget extension",
+      "type": "topic",
+      "url": "/documentation/widgetkit/creating-a-widget-extension"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date": {
+      "abstract": [
+        {
+          "text": "Plan your widget’s timeline to show timely, relevant information using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "dynamic views, and update the timeline when things change.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date",
+      "kind": "article",
+      "role": "article",
+      "title": "Keeping a widget up to date",
+      "type": "topic",
+      "url": "/documentation/widgetkit/keeping-a-widget-up-to-date"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-a-Configurable-Widget": {
+      "abstract": [
+        {
+          "text": "Give people the option to customize their widgets by adding a custom app intent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to your project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-a-Configurable-Widget",
+      "kind": "article",
+      "role": "article",
+      "title": "Making a configurable widget",
+      "type": "topic",
+      "url": "/documentation/widgetkit/making-a-configurable-widget"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-network-requests-in-a-widget-extension": {
+      "abstract": [
+        {
+          "text": "Update your widget with new information you fetch with a network request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-network-requests-in-a-widget-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Making network requests in a widget extension",
+      "type": "topic",
+      "url": "/documentation/widgetkit/making-network-requests-in-a-widget-extension"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Preparing-widgets-for-additional-contexts-and-appearances": {
+      "abstract": [
+        {
+          "text": "Create widgets that support additional platforms and adapt to their context.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Preparing-widgets-for-additional-contexts-and-appearances",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing widgets for additional platforms, contexts, and appearances",
+      "type": "topic",
+      "url": "/documentation/widgetkit/preparing-widgets-for-additional-contexts-and-appearances"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Widget-Suggestions-In-Smart-Stacks": {
+      "abstract": [
+        {
+          "text": "Donate intents and indicate relevance to automatically show your widget in Smart Stacks when it has useful information to display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Widget-Suggestions-In-Smart-Stacks",
+      "kind": "article",
+      "role": "article",
+      "title": "Increasing the visibility of widgets in Smart Stacks",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widget-suggestions-in-smart-stacks"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryRectangular": {
+      "abstract": [
+        {
+          "text": "A rectangular widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryRectangular"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryRectangular",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetFamily.accessoryRectangular",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily/accessoryrectangular"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemSmall": {
+      "abstract": [
+        {
+          "text": "A small widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemSmall"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemSmall",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetFamily.systemSmall",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily/systemsmall"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/accented": {
+      "abstract": [
+        {
+          "text": "The system divides the widget’s view hierarchy into an accent group and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a default group, applying a different color to each group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accented"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit0A13RenderingModeV",
+          "text": "WidgetRenderingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/accented",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accented",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetrenderingmode/accented"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/fullColor": {
+      "abstract": [
+        {
+          "text": "The system renders the widget in full color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fullColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit0A13RenderingModeV",
+          "text": "WidgetRenderingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/fullColor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fullColor",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetrenderingmode/fullcolor"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/vibrant": {
+      "abstract": [
+        {
+          "text": "The system desaturates the widget, making a monochrome version that it",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "uses to create an adaptive, vibrant effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vibrant"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit0A13RenderingModeV",
+          "text": "WidgetRenderingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/vibrant",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vibrant",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetrenderingmode/vibrant"
+    },
+    "doc://com.apple.documentation/documentation/ActivityKit": {
+      "abstract": [
+        {
+          "text": "Share live updates from your app as Live Activities in the Dynamic Island, on the Lock Screen, and on the Smart Stack in watchOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ActivityKit",
+      "images": [
+        {
+          "identifier": "ActivityKit-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ActivityKit",
+      "type": "topic",
+      "url": "/documentation/ActivityKit"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents": {
+      "abstract": [
+        {
+          "text": "Make your app’s content and actions discoverable with system experiences like Spotlight, widgets, and enhanced action capabilities of Siri, powered by Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Intents",
+      "type": "topic",
+      "url": "/documentation/AppIntents"
+    },
+    "doc://com.apple.documentation/documentation/SiriKit": {
+      "abstract": [
+        {
+          "text": "Empower users to interact with their devices through voice, intelligent suggestions, and personalized workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SiriKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "SiriKit",
+      "type": "topic",
+      "url": "/documentation/SiriKit"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/SwiftUI"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/AnyTransition/move(edge:)": {
+      "abstract": [
+        {
+          "text": "Returns a transition that moves the view away, towards the specified edge of the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "move"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "edge"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO",
+          "text": "Edge"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI13AnyTransitionV",
+          "text": "AnyTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/AnyTransition/move(edge:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "move(edge:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/AnyTransition/move(edge:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Button": {
+      "abstract": [
+        {
+          "text": "A control that initiates an action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Button"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Button",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Button",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Button"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Link": {
+      "abstract": [
+        {
+          "text": "A control for navigating to a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Link"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Link",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Link",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Link"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Toggle": {
+      "abstract": [
+        {
+          "text": "A control that toggles between on and off states.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Toggle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Toggle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Toggle",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Toggle"
+    },
+    "doc://com.apple.documentation/documentation/Updates/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes in WidgetKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Updates/WidgetKit",
+      "kind": "article",
+      "role": "article",
+      "title": "WidgetKit updates",
+      "type": "topic",
+      "url": "/documentation/Updates/WidgetKit"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/configuring-app-groups": {
+      "abstract": [
+        {
+          "text": "Enable communication and data sharing between multiple installed apps created by the same developer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/configuring-app-groups",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring app groups",
+      "type": "topic",
+      "url": "/documentation/Xcode/configuring-app-groups"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/widgets": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/widgets",
+      "title": "Human Interface Guidelines > Widgets",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines > Widgets",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/widgets"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/Updates/WidgetKit"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [],
+              "title": "Essentials"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/widgetkit/developing-a-widgetkit-strategy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/widgetkit/developing-a-widgetkit-strategy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

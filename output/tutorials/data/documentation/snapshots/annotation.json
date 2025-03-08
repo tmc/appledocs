@@ -1,0 +1,745 @@
+{
+  "abstract": [
+    {
+      "text": "An object for a Snapshot URL that describes annotation characteristics.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/snapshots"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/snapshots/annotation"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3280984,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:snapshots:Annotation",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "Annotation"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Maps Web Snapshots"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": true,
+        "current": "1.0",
+        "introducedAt": "1.0",
+        "name": "Maps Web Snapshots"
+      }
+    ],
+    "role": "dictionarySymbol",
+    "roleHeading": "Object",
+    "symbolKind": "dict",
+    "title": "Annotation"
+  },
+  "primaryContentSections": [
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "title": "Default",
+              "value": "balloon"
+            },
+            {
+              "kind": "allowedValues",
+              "title": "Possible values",
+              "values": [
+                "dot",
+                "balloon",
+                "large",
+                "img"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The style of the annotation. Supported styles include ",
+                  "type": "text"
+                },
+                {
+                  "code": "do",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "t, ",
+                  "type": "text"
+                },
+                {
+                  "code": "balloon",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "large",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", and ",
+                  "type": "text"
+                },
+                {
+                  "code": "img",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". If you use ",
+                  "type": "text"
+                },
+                {
+                  "code": "img",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", you must also specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "imgIdx",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", and may specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "offset",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "markerStyle",
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A single point that defines the location at which to place an annotation. Supported values include latitude and longitude coordinates, addresses, or the keyword ",
+                  "type": "text"
+                },
+                {
+                  "code": "center",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", which places an annotation on the map’s center point. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "point",
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The color of the annotation. Supported values are HTML color names or hexadecimal color codes. For example:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "code": [
+                "annotations=[{\"point\":\"37.78,-122.42\", \"color\":\"449944\"}]"
+              ],
+              "metadata": {
+                "anchor": "3310773",
+                "title": "Listing 1"
+              },
+              "syntax": "other",
+              "type": "codeListing"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If the annotation has an “",
+                  "type": "text"
+                },
+                {
+                  "code": "img",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "” ",
+                  "type": "text"
+                },
+                {
+                  "code": "markerStyle",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the Maps Web Snapshots API ignores this parameter.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "color",
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The tint color of the glyph. This property accepts a color name or a hexadecimal color value. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "glyphColor",
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The zero-based index of the glyph image referenced in the array of images used for a specific annotation. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Don’t set the",
+                  "type": "text"
+                },
+                {
+                  "code": " glyphText ",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "property when using this property. If the annotation has a ",
+                  "type": "text"
+                },
+                {
+                  "code": "“dot”",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "“img”",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "code": "markerStyle",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the Maps Web Snapshots API ignores this parameter. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "glyphImgIdx",
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "integer"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A single alphanumeric character from the set {",
+                  "type": "text"
+                },
+                {
+                  "code": "a",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "-",
+                  "type": "text"
+                },
+                {
+                  "code": "z",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "A",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "-",
+                  "type": "text"
+                },
+                {
+                  "code": "Z",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "-",
+                  "type": "text"
+                },
+                {
+                  "code": "9",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "}, displayed inside the annotation. If the annotation has a “",
+                  "type": "text"
+                },
+                {
+                  "code": "dot",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "” or “",
+                  "type": "text"
+                },
+                {
+                  "code": "img",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "” ",
+                  "type": "text"
+                },
+                {
+                  "code": "markerStyle",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the Maps Web Snapshots API ignores this parameter.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "glyphText",
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The zero-based index of the image referenced in the array of images to use for this annotation. The Maps Web Snapshots API requires this property if ",
+                  "type": "text"
+                },
+                {
+                  "code": "markerStyle",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "img",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "imgIdx",
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "integer"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An optional offset in scale independent pixels of the image from the bottom center. Specify the offset as a comma-separated string with x and y values. X values move the element to the left or right with positive and negative values, respectively. Y values move the element up or down with positive and negative values, respectively. For example, the following value moves the element down 5 scale-independent pixels:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "code": [
+                "\"offset\": \"0,-5\""
+              ],
+              "metadata": {
+                "anchor": "3591029",
+                "title": "Listing 2"
+              },
+              "syntax": "javascript",
+              "type": "codeListing"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The Maps Web Snapshots API ignores the offset property if ",
+                  "type": "text"
+                },
+                {
+                  "code": "markerStyle",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "dot",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "balloon",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", or ",
+                  "type": "text"
+                },
+                {
+                  "code": "large",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                },
+                {
+                  "code": "",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "offset",
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/snapshots": {
+      "identifier": "doc://com.apple.documentation/documentation/snapshots",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Maps Web Snapshots",
+      "type": "topic",
+      "url": "/documentation/snapshots"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/annotation": {
+      "abstract": [
+        {
+          "text": "An object for a Snapshot URL that describes annotation characteristics.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Annotation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/annotation",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "Annotation",
+      "type": "topic",
+      "url": "/documentation/snapshots/annotation"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/annotation#3310773": {
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/annotation#3310773",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/snapshots/annotation#3310773"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/annotation#3591029": {
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/annotation#3591029",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/snapshots/annotation#3591029"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot": {
+      "abstract": [
+        {
+          "text": "Create a Snapshot URL and generate a signature to validate the request. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating a URL and Signature to Create a Maps Web Snapshot",
+      "type": "topic",
+      "url": "/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/image": {
+      "abstract": [
+        {
+          "text": "A JSON object for a Snapshot URL that describes the characteristics of custom images to use for map annotations.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Image"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/image",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "Image",
+      "type": "topic",
+      "url": "/documentation/snapshots/image"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/overlay": {
+      "abstract": [
+        {
+          "text": "A JSON object for a Snapshot URL that describes overlay shape characteristics, including points for the overlay and styles such as width, color, and dash pattern.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Overlay"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/overlay",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "Overlay",
+      "type": "topic",
+      "url": "/documentation/snapshots/overlay"
+    },
+    "doc://com.apple.documentation/documentation/snapshots/overlaystyle": {
+      "abstract": [
+        {
+          "text": "A  JSON object that describes reusable styles for an overlay.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "OverlayStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/snapshots/overlaystyle",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "OverlayStyle",
+      "type": "topic",
+      "url": "/documentation/snapshots/overlaystyle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/snapshots/generating_a_url_and_signature_to_create_a_maps_web_snapshot",
+        "doc://com.apple.documentation/documentation/snapshots/overlay",
+        "doc://com.apple.documentation/documentation/snapshots/overlaystyle",
+        "doc://com.apple.documentation/documentation/snapshots/image"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/snapshots/annotation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

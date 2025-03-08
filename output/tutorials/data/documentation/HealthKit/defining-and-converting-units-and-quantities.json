@@ -1,0 +1,457 @@
+{
+  "abstract": [
+    {
+      "text": "Create and convert units and quantities.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit",
+        "doc://com.apple.healthkit/documentation/HealthKit/samples",
+        "doc://com.apple.healthkit/documentation/HealthKit/units-and-quantities"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/defining-and-converting-units-and-quantities"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Defining and converting units and quantities"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKUnit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class provides the representation for a single unit. It supports a wide range of metric and imperial units, as well as both simple and complex units. A simple unit represents a single measurement, such as meters, pounds, or seconds. A complex unit combines one or more simple units using mathematical operations, such as meters per second (m/s) or pounds per square foot (lb/ft2).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to convenience methods for creating all the simple units supported by HealthKit, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKUnit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides the mathematical operations needed to build complex units. You can also create complex units directly using properly formatted unit strings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on units, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKUnit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class stores a value for a given unit. You can then request the value in any compatible units, letting your app easily translate values between units.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on quantities, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/measurementformatter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to localize quantities such as length, mass, and energy. For other quantities, you need to perform the conversions and localize the data yourself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/measurementformatter": {
+      "abstract": [
+        {
+          "text": "A formatter that provides localized representations of units and measurements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MeasurementFormatter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/measurementformatter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MeasurementFormatter",
+      "type": "topic",
+      "url": "/documentation/foundation/measurementformatter"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKMetricPrefix": {
+      "abstract": [
+        {
+          "text": "Prefixes that can be added to SI units to change the order of magnitude.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKMetricPrefix"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKMetricPrefix",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKMetricPrefix"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKMetricPrefix",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkmetricprefix"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKQuantity": {
+      "abstract": [
+        {
+          "text": "An object that stores a value for a given unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKQuantity"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKQuantity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKQuantity"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKQuantity",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantity"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKUnit": {
+      "abstract": [
+        {
+          "text": "A class for managing the units of measure within HealthKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKUnit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKUnit"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKUnit",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkunit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/samples": {
+      "abstract": [
+        {
+          "text": "Create and save health and fitness samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/samples",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Samples",
+      "type": "topic",
+      "url": "/documentation/healthkit/samples"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/units-and-quantities": {
+      "abstract": [
+        {
+          "text": "Objects used to specify a quantity for a given unit, and to convert between units.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/units-and-quantities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Units and quantities",
+      "type": "topic",
+      "url": "/documentation/healthkit/units-and-quantities"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Units-and-quantities",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKQuantity",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKUnit",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKMetricPrefix"
+      ],
+      "title": "Units and quantities"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKMetricPrefix/title",
+          "value": "HKMetricPrefix"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKMetricPrefix/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKMetricPrefix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKMetricPrefix/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKMetricPrefix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKUnit/title",
+          "value": "HKUnit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKUnit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKUnit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKUnit/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKUnit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1measurementformatter/title",
+          "value": "NSMeasurementFormatter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantity/title",
+          "value": "HKQuantity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKQuantity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKQuantity"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,898 @@
+{
+  "abstract": [
+    {
+      "text": "Add metadata to your USDZ file to specify its lighting characteristics.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/specifying-a-lighting-environment-in-ar-quick-look"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Specifying a lighting environment in AR Quick Look"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AR Quick Look in iOS 16 and later enhances lighting to deliver more brightness, contrast, and visual definition for your scene’s virtual content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can set an asset’s lighting environment, or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "image-based lighting",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (IBL), by adding the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/preferrediblversion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " metadata to the file’s ",
+              "type": "text"
+            },
+            {
+              "code": ".usda",
+              "type": "codeVoice"
+            },
+            {
+              "text": " textual definition, or by generating the asset with Apple-provided tools.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-the-lighting-metadata",
+          "level": 3,
+          "text": "Set the lighting metadata",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To define the lighting environment in the asset’s ",
+              "type": "text"
+            },
+            {
+              "code": ".usda",
+              "type": "codeVoice"
+            },
+            {
+              "text": " textual format using a tool like ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://graphics.pixar.com/usd/docs/USD-Toolset.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", add the following metadata:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// asset.usda",
+            "#usda 1.0",
+            "(",
+            "    customLayerData = {",
+            "        dictionary Apple = {",
+            "            int preferredIblVersion = 2",
+            "        }",
+            "    }",
+            ")"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A value of ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicates the classic lighting environment, and a value of ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicates the new lighting environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4107511",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you omit the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/preferrediblversion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " metadata or give it a value of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the system checks the asset’s creation timestamp. A timestamp of July 1, 2022, or later results in the new lighting environment; otherwise, the scene features classic lighting for backward compatibility. The system checks the timestamp of the ",
+              "type": "text"
+            },
+            {
+              "code": ".usd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " asset within the ",
+              "type": "text"
+            },
+            {
+              "code": ".usdz",
+              "type": "codeVoice"
+            },
+            {
+              "text": " archive, not the archive’s file creation date.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-the-lighting-environment-with-Apple-provided-tools",
+          "level": 3,
+          "text": "Set the lighting environment with Apple-provided tools",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/news/?id=01132020a",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can choose a lighting preferrence for your 3D asset by previewing the available options one after the other. By default, Reality Converter previews an imported 3D asset with ",
+              "type": "text"
+            },
+            {
+              "code": "preferrediblversion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " = ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You can select the Use Classic Lighting option to set ",
+              "type": "text"
+            },
+            {
+              "code": "preferrediblversion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4087320",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can use ",
+              "type": "text"
+            },
+            {
+              "code": "usdzconvert",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the Apple ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/augmented-reality/tools/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " suite to output from another file format. Pass an integer value between ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the ",
+              "type": "text"
+            },
+            {
+              "code": "--preferrediblversion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument to add this metadata in the file, as the following example shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "usdzconvert fireHydrant.obj --useObjMtl --preferrediblversion 2 "
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Match-AR-Quick-Look-lighting-in-third-party-apps-and-tools",
+          "level": 3,
+          "text": "Match AR Quick Look lighting in third-party apps and tools",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To design your content in a third-party digital content creation tool (DCC) under the same lighting conditions as AR Quick Look’s lighting environment, configure the tool to use one of the following ",
+              "type": "text"
+            },
+            {
+              "code": ".exr",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files. Alternatively, you can apply an ",
+              "type": "text"
+            },
+            {
+              "code": ".exr",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in your third-party app, such as one that renders with RealityKit, to accommodate the new lighting environment in your app’s runtime experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/sample-code/ar/studio_lighting_objectmode_v002.exr",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " file provides reflections that match AR Quick Look’s studio object mode. This IBL is appropriate for asset creation in a third-party DCC. Consult the DCC documentation about enabling custom image-based lighting in the tool.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/sample-code/ar/studio_lighting_armode_v002.exr",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " file provides enhanced highlights according to AR Quick Look’s new lighting environment in AR mode. This IBL is appropriate for use in your AR app as a combination with an environment texture that composes captures of the user’s environment. Together, the combination enhances reflections on your app’s virtual content that feature the particular tints and hues of the real world.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4093141",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For apps that render virtual content using RealityKit, set up a skybox with the AR mode IBL to use the new lighting environment. Although AR Quick Look observes the ",
+                  "type": "text"
+                },
+                {
+                  "code": "preferrediblversion",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " metadata, RealityKit doesn’t. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/RealityKit/EnvironmentResource",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for more information about defining image-based lighting in RealityKit.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARQuickLookPreviewItem": {
+      "abstract": [
+        {
+          "text": "An object for customizing the AR Quick Look experience.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARQuickLookPreviewItem"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARQuickLookPreviewItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARQuickLookPreviewItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARQuickLookPreviewItem",
+      "type": "topic",
+      "url": "/documentation/arkit/arquicklookpreviewitem"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/adding-an-apple-pay-button-or-a-custom-action-in-ar-quick-look": {
+      "abstract": [
+        {
+          "text": "Provide a banner that users can tap to make a purchase or perform a custom action in an AR experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/adding-an-apple-pay-button-or-a-custom-action-in-ar-quick-look",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding an Apple Pay Button or a Custom Action in AR Quick Look",
+      "type": "topic",
+      "url": "/documentation/arkit/adding-an-apple-pay-button-or-a-custom-action-in-ar-quick-look"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/adding-visual-effects-in-ar-quick-look-and-realitykit": {
+      "abstract": [
+        {
+          "text": "Balance the appearance and performance of your AR experiences with modeling strategies.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/adding-visual-effects-in-ar-quick-look-and-realitykit",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Visual Effects in AR Quick Look and RealityKit",
+      "type": "topic",
+      "url": "/documentation/arkit/adding-visual-effects-in-ar-quick-look-and-realitykit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios": {
+      "abstract": [
+        {
+          "text": "Integrate iOS device camera and motion features to produce augmented reality experiences in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in iOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-ios"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/previewing-a-model-with-ar-quick-look": {
+      "abstract": [
+        {
+          "text": "Display a model or scene that the user can move, scale, and share with others.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/previewing-a-model-with-ar-quick-look",
+      "kind": "article",
+      "role": "article",
+      "title": "Previewing a Model with AR Quick Look",
+      "type": "topic",
+      "url": "/documentation/arkit/previewing-a-model-with-ar-quick-look"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/EnvironmentResource": {
+      "abstract": [
+        {
+          "text": "An environmental resource that contains background and lighting information for a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnvironmentResource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/EnvironmentResource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EnvironmentResource",
+      "type": "topic",
+      "url": "/documentation/RealityKit/EnvironmentResource"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/preferrediblversion": {
+      "abstract": [
+        {
+          "text": "Metadata that determines the lighting environment of virtual content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/preferrediblversion",
+      "kind": "article",
+      "role": "article",
+      "title": "preferredIblVersion",
+      "type": "topic",
+      "url": "/documentation/RealityKit/preferrediblversion"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/usdz-schemas-for-ar": {
+      "abstract": [
+        {
+          "text": "Add augmented reality functionality to your 3D content using USDZ schemas.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/usdz-schemas-for-ar",
+      "kind": "article",
+      "role": "article",
+      "title": "USDZ schemas for AR",
+      "type": "topic",
+      "url": "/documentation/RealityKit/usdz-schemas-for-ar"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/augmented-reality/tools/": {
+      "identifier": "https://developer.apple.com/augmented-reality/tools/",
+      "title": "USDZ Tools",
+      "titleInlineContent": [
+        {
+          "text": "USDZ Tools",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/augmented-reality/tools/"
+    },
+    "https://developer.apple.com/news/?id=01132020a": {
+      "identifier": "https://developer.apple.com/news/?id=01132020a",
+      "title": "Reality Converter",
+      "titleInlineContent": [
+        {
+          "text": "Reality Converter",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/news/?id=01132020a"
+    },
+    "https://developer.apple.com/sample-code/ar/studio_lighting_armode_v002.exr": {
+      "identifier": "https://developer.apple.com/sample-code/ar/studio_lighting_armode_v002.exr",
+      "title": "studio_lighting_armode_v002.exr",
+      "titleInlineContent": [
+        {
+          "text": "studio_lighting_armode_v002.exr",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/sample-code/ar/studio_lighting_armode_v002.exr"
+    },
+    "https://developer.apple.com/sample-code/ar/studio_lighting_objectmode_v002.exr": {
+      "identifier": "https://developer.apple.com/sample-code/ar/studio_lighting_objectmode_v002.exr",
+      "title": "studio_lighting_objectmode_v002.exr",
+      "titleInlineContent": [
+        {
+          "text": "studio_lighting_objectmode_v002.exr",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/sample-code/ar/studio_lighting_objectmode_v002.exr"
+    },
+    "https://graphics.pixar.com/usd/docs/USD-Toolset.html": {
+      "identifier": "https://graphics.pixar.com/usd/docs/USD-Toolset.html",
+      "title": "USD Toolset",
+      "titleInlineContent": [
+        {
+          "text": "USD Toolset",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://graphics.pixar.com/usd/docs/USD-Toolset.html"
+    },
+    "media-4087320": {
+      "alt": "A screenshot of the Reality Converter app displaying a 3D asset of a rocket car in the center pane. In the right pane, the Use Classic Lighting checkbox is selected. A callout for the checkbox reads Preferred IBL version.",
+      "identifier": "media-4087320",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2a2dc2f0a5117b63a9695b36dd7abad3/media-4087320@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/21d174132e51f02cde80b945e8a72cd5/media-4087320~dark@2x.png"
+        }
+      ]
+    },
+    "media-4093141": {
+      "alt": "An illustration of object and AR mode reflection pipelines side by side. The left side of the figure depicts the object mode pipeline by extending an arrow from the object mode IBL image to a 3D rendering of a pair of AirPods Max. The AirPods stand upright on a white background and feature light ambient reflections, gloss, and soft shadows commensurate with the look of the object mode IBL. The right side of the figure depicts the AR mode pipeline by displaying the AR mode IBL image above a panorama of a room that’s labeled Environment texture. An image below that combines both images so that the panorama overlays the gloss and highlights of the AR mode IBL image. An arrow extends from that image to a 3D rendering of AirPods Max on top of a camera feed that represents the user’s physical environment. The AirPods rest on a real notebook on a desk. Soft shadows and realistic hues light the AirPods to match the look of the real world while featuring the bright ambiance of the AR mode IBL image.",
+      "identifier": "media-4093141",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1086add88f08b9326dc8bfc1a5d6eca6/media-4093141@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1eb1c8291d308cad483ea61abc604eaf/media-4093141~dark@2x.png"
+        }
+      ]
+    },
+    "media-4107511": {
+      "alt": "An image of two 3D assets side by side. On the left, a 3D asset of a biplane toy features shine, refections, and a callout that reads Preferred IBL version = 1. On the right, a 3D asset of the same biplane toy features even more shine and refections, and its callout reads Preferred IBL version = 2.",
+      "identifier": "media-4107511",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/154637bb579c9c2245cd2aa987caf6a4/media-4107511@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bbe2cbb10cdc03115f475d23b501175d/media-4107511~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "AR-Quick-Look",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/previewing-a-model-with-ar-quick-look",
+        "doc://com.apple.arkit/documentation/ARKit/adding-visual-effects-in-ar-quick-look-and-realitykit",
+        "doc://com.apple.arkit/documentation/ARKit/adding-an-apple-pay-button-or-a-custom-action-in-ar-quick-look",
+        "doc://com.apple.arkit/documentation/ARKit/ARQuickLookPreviewItem",
+        "doc://com.apple.documentation/documentation/RealityKit/usdz-schemas-for-ar"
+      ],
+      "title": "AR Quick Look"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "AR-Quick-Look",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/previewing-a-model-with-ar-quick-look",
+                "doc://com.apple.arkit/documentation/ARKit/adding-visual-effects-in-ar-quick-look-and-realitykit",
+                "doc://com.apple.arkit/documentation/ARKit/adding-an-apple-pay-button-or-a-custom-action-in-ar-quick-look",
+                "doc://com.apple.arkit/documentation/ARKit/ARQuickLookPreviewItem"
+              ],
+              "title": "AR Quick Look"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARQuickLookPreviewItem/title",
+          "value": "ARQuickLookPreviewItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARQuickLookPreviewItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARQuickLookPreviewItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARQuickLookPreviewItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARQuickLookPreviewItem"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/specifying-a-lighting-environment-in-ar-quick-look"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/specifying-a-lighting-environment-in-ar-quick-look"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

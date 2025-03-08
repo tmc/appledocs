@@ -1,0 +1,671 @@
+{
+  "abstract": [
+    {
+      "text": "Reads a value stored by the plug-in authorization mechanism.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/AuthorizationCallbacks"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/GetHintValue"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@AuthorizationCallbacks@FI@GetHintValue",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "GetHintValue"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GetHintValue"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "10.4",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "GetHintValue"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:*FI(#*$@S@__OpaqueAuthorizationEngine#*1C#**1$@S@AuthorizationValue)",
+              "text": "int (*)(struct __OpaqueAuthorizationEngine *, const char *, const struct AuthorizationValue **)"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GetHintValue"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An opaque handle that is passed to your plug-in when the authorization engine calls your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismCreate",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "inEngine"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A key indicating which value you want to retrieve. This key must correspond to one you specified when you used the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetHintValue",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function to store a hint value.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "inKey"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On input, allocate a pointer to an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/AuthorizationValue",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure. On output, the structure contains the size of the data and a pointer to the data. Because your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/AuthorizationValue",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure does not own the data, you must not deallocate the structure or the data pointed to by the structure.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "outValue"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. Possible results are ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/errAuthorizationSuccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (no error) and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/errAuthorizationInternal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (Security Server internal error).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.security/documentation/Security/extending-authorization-services-with-plug-ins"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your plug-in authorization mechanism can save and retrieve auxiliary information—called hints—for use by subsequent mechanisms that are part of the same authorization. You use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetHintValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to have the Security Server store this data and the ",
+              "type": "text"
+            },
+            {
+              "code": "GetHintValue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to retrieve it. Hints are not preserved as part of the authorization result; once all mechanisms have approved the authorization or any mechanism has denied it, the security engine disposes of the hints.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The authorization engine sends you the entry point to the ",
+              "type": "text"
+            },
+            {
+              "code": "GetHintValue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure when you call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginCreate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Do not call this function after you have called the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetResult",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function. If you do so, the data retrieved by the ",
+                  "type": "text"
+                },
+                {
+                  "code": "GetHintValue",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " function might not reflect the current value even though the function returns the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/errAuthorizationSuccess",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " result code.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCallbacks": {
+      "abstract": [
+        {
+          "text": "The interface implemented by the Security Server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCallbacks"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationCallbacks",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/GetHintValue": {
+      "abstract": [
+        {
+          "text": "Reads a value stored by the plug-in authorization mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetHintValue"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/GetHintValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetHintValue",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks/gethintvalue"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetHintValue": {
+      "abstract": [
+        {
+          "text": "Stores data needed during authorization as a key-value pair.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetHintValue"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetHintValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetHintValue",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks/sethintvalue"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetResult": {
+      "abstract": [
+        {
+          "text": "Returns the result of an authorization operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetResult"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/SetResult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetResult",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks/setresult"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationPluginCreate": {
+      "abstract": [
+        {
+          "text": "Initializes the plug-in and exchanges interfaces with the authorization engine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationPluginCreate"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginCreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationPluginCreate",
+      "type": "topic",
+      "url": "/documentation/security/authorizationplugincreate"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismCreate": {
+      "abstract": [
+        {
+          "text": "Creates an authorization mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MechanismCreate"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismCreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MechanismCreate",
+      "type": "topic",
+      "url": "/documentation/security/authorizationplugininterface/mechanismcreate"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationValue": {
+      "abstract": [
+        {
+          "text": "A structure used to pass data between the authorization engine and the plug-in mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationValue"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationValue",
+      "type": "topic",
+      "url": "/documentation/security/authorizationvalue"
+    },
+    "doc://com.apple.security/documentation/Security/errAuthorizationInternal": {
+      "abstract": [
+        {
+          "text": "An unrecognized internal error occurred.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errAuthorizationInternal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/errAuthorizationInternal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "errAuthorizationInternal"
+        }
+      ],
+      "role": "symbol",
+      "title": "errAuthorizationInternal",
+      "type": "topic",
+      "url": "/documentation/security/errauthorizationinternal"
+    },
+    "doc://com.apple.security/documentation/Security/errAuthorizationSuccess": {
+      "abstract": [
+        {
+          "text": "The operation completed successfully.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errAuthorizationSuccess"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/errAuthorizationSuccess",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "errAuthorizationSuccess"
+        }
+      ],
+      "role": "symbol",
+      "title": "errAuthorizationSuccess",
+      "type": "topic",
+      "url": "/documentation/security/errauthorizationsuccess"
+    },
+    "doc://com.apple.security/documentation/Security/extending-authorization-services-with-plug-ins": {
+      "abstract": [
+        {
+          "text": "Modify the system’s authorization policy with custom code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/extending-authorization-services-with-plug-ins",
+      "kind": "article",
+      "role": "article",
+      "title": "Extending authorization services with plug-ins",
+      "type": "topic",
+      "url": "/documentation/security/extending-authorization-services-with-plug-ins"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errAuthorizationSuccess/title",
+          "value": "errAuthorizationSuccess"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errAuthorizationSuccess/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "errAuthorizationSuccess"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errAuthorizationInternal/title",
+          "value": "errAuthorizationInternal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errAuthorizationInternal/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "errAuthorizationInternal"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/authorizationcallbacks/gethintvalue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

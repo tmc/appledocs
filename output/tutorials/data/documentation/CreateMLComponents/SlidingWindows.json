@@ -1,0 +1,2077 @@
+{
+  "abstract": [
+    {
+      "text": "A sequence of windows on a time series shaped array.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:18CreateMLComponents14SlidingWindowsV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SlidingWindows"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Create ML Components"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SlidingWindows"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "SlidingWindows"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SlidingWindows"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Scalar"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Scalar"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:6CoreML19MLShapedArrayScalarP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:6CoreML19MLShapedArrayScalarP",
+              "text": "MLShapedArrayScalar"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The shape of each window in the sequence is ",
+              "type": "text"
+            },
+            {
+              "code": "[length, featureSize]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The sequence will return as many windows as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "fit in the input. For example, an input shaped array of shape ",
+              "type": "text"
+            },
+            {
+              "code": "[8, 1]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " using ",
+              "type": "text"
+            },
+            {
+              "code": "stride",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of 1 and ",
+              "type": "text"
+            },
+            {
+              "code": "length",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of 4 will",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "produce 5 examples:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[[1], [2], [3], [4]]",
+            "[[2], [3], [4], [5]]",
+            "[[3], [4], [5], [6]]",
+            "[[4], [5], [6], [7]]",
+            "[[5], [6], [7], [8]]"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents": {
+      "abstract": [
+        {
+          "text": "Create more customizable machine learning models in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML Components",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor": {
+      "abstract": [
+        {
+          "text": "A time and date feature extractor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DateFeatureExtractor"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DateFeatureExtractor"
+        }
+      ],
+      "role": "symbol",
+      "title": "DateFeatureExtractor",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/datefeatureextractor"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatures": {
+      "abstract": [
+        {
+          "text": "A set of date and time features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DateFeatures"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatures",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DateFeatures"
+        }
+      ],
+      "role": "symbol",
+      "title": "DateFeatures",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/datefeatures"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Downsampler": {
+      "abstract": [
+        {
+          "text": "A temporal transformer that down samples the input stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Downsampler"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Downsampler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Downsampler"
+        }
+      ],
+      "role": "symbol",
+      "title": "Downsampler",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/downsampler"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster": {
+      "abstract": [
+        {
+          "text": "A time-series forecasting estimator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LinearTimeSeriesForecaster"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LinearTimeSeriesForecaster"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinearTimeSeriesForecaster",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/lineartimeseriesforecaster"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecasterConfiguration": {
+      "abstract": [
+        {
+          "text": "The configuration for a linear time-series forecaster.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LinearTimeSeriesForecasterConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecasterConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LinearTimeSeriesForecasterConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinearTimeSeriesForecasterConfiguration",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/lineartimeseriesforecasterconfiguration"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindowTransformer": {
+      "abstract": [
+        {
+          "text": "A temporal transformer that groups input elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SlidingWindowTransformer"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindowTransformer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SlidingWindowTransformer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SlidingWindowTransformer",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindowtransformer"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows": {
+      "abstract": [
+        {
+          "text": "A sequence of windows on a time series shaped array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SlidingWindows"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SlidingWindows"
+        }
+      ],
+      "role": "symbol",
+      "title": "SlidingWindows",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindows"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/BidirectionalCollection-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/BidirectionalCollection-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "BidirectionalCollection Implementations",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindows/bidirectionalcollection-implementations"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/Collection-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/Collection-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collection Implementations",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindows/collection-implementations"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/Element": {
+      "abstract": [
+        {
+          "text": "A type representing the sequence’s elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Element"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/Element",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Element"
+        }
+      ],
+      "role": "symbol",
+      "title": "SlidingWindows.Element",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindows/element"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/Index": {
+      "abstract": [
+        {
+          "text": "A type that represents a position in the collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Index"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/Index",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Index"
+        }
+      ],
+      "role": "symbol",
+      "title": "SlidingWindows.Index",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindows/index"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/Indices": {
+      "abstract": [
+        {
+          "text": "A type that represents the indices that are valid for subscripting the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "collection, in ascending order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Indices"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/Indices",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Indices"
+        }
+      ],
+      "role": "symbol",
+      "title": "SlidingWindows.Indices",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindows/indices"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/Iterator": {
+      "abstract": [
+        {
+          "text": "A type that provides the collection’s iteration interface and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "encapsulates its iteration state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/Iterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "SlidingWindows.Iterator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindows/iterator"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/RandomAccessCollection-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/RandomAccessCollection-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "RandomAccessCollection Implementations",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindows/randomaccesscollection-implementations"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/Sequence-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/Sequence-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sequence Implementations",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindows/sequence-implementations"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/SubSequence": {
+      "abstract": [
+        {
+          "text": "A collection representing a contiguous subrange of this collection’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "elements. The subsequence shares indices with the original collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubSequence"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/SubSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "SlidingWindows.SubSequence",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindows/subsequence"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/endIndex": {
+      "abstract": [
+        {
+          "text": "The collection’s “past the end” position–that is, the position one greater than the last valid subscript",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "argument.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/endIndex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "endIndex",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindows/endindex"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/index(_:offsetBy:)": {
+      "abstract": [
+        {
+          "text": "Returns an index that is the specified distance from the given index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offsetBy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/index(_:offsetBy:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "index(_:offsetBy:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindows/index(_:offsetby:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/index(after:)": {
+      "abstract": [
+        {
+          "text": "Returns the position immediately after the given index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "after"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/index(after:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "index(after:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindows/index(after:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/index(before:)": {
+      "abstract": [
+        {
+          "text": "Returns the position immediately before the given index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "before"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/index(before:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "index(before:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindows/index(before:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/init(input:length:stride:)": {
+      "abstract": [
+        {
+          "text": "Creates a sliding windows sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "input"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML13MLShapedArrayV",
+          "text": "MLShapedArray"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stride"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/init(input:length:stride:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(input:length:stride:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindows/init(input:length:stride:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/input": {
+      "abstract": [
+        {
+          "text": "The input shaped array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "input"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML13MLShapedArrayV",
+          "text": "MLShapedArray"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/input",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "input",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindows/input"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/length": {
+      "abstract": [
+        {
+          "text": "The number samples in each window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/length",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "length",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindows/length"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/startIndex": {
+      "abstract": [
+        {
+          "text": "The position of the first window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/startIndex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startIndex",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindows/startindex"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/stride": {
+      "abstract": [
+        {
+          "text": "The number of samples between windows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stride"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/stride",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stride",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindows/stride"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/subscript(_:)-1x8i9": {
+      "abstract": [
+        {
+          "text": "Accesses the window at the specified position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML13MLShapedArrayV",
+          "text": "MLShapedArray"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/subscript(_:)-1x8i9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindows/subscript(_:)-1x8i9"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/subscript(_:)-26j7f": {
+      "abstract": [
+        {
+          "text": "Accesses a contiguous range of windows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SliceV",
+          "text": "Slice"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents14SlidingWindowsV",
+          "text": "SlidingWindows"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": ">>"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/subscript(_:)-26j7f",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindows/subscript(_:)-26j7f"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalFeature": {
+      "abstract": [
+        {
+          "text": "A temporal feature contains a segment identifier and a feature value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TemporalFeature"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalFeature",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TemporalFeature"
+        }
+      ],
+      "role": "symbol",
+      "title": "TemporalFeature",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/temporalfeature"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalFileSegment": {
+      "abstract": [
+        {
+          "text": "A URL and a time range identifying a specific segment of a time-based (temporal) file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TemporalFileSegment"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalFileSegment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TemporalFileSegment"
+        }
+      ],
+      "role": "symbol",
+      "title": "TemporalFileSegment",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/temporalfilesegment"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalSegmentIdentifier": {
+      "abstract": [
+        {
+          "text": "Uniquely identifiers a segment of a temporal sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TemporalSegmentIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalSegmentIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TemporalSegmentIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "TemporalSegmentIdentifier",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/temporalsegmentidentifier"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalSequence": {
+      "abstract": [
+        {
+          "text": "Async sequence for temporal features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TemporalSequence"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TemporalSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "TemporalSequence",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/temporalsequence"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TimeSeriesForecasterAnnotatedWindows": {
+      "abstract": [
+        {
+          "text": "A sequence of forecasting windows on a time series shaped array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimeSeriesForecasterAnnotatedWindows"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TimeSeriesForecasterAnnotatedWindows",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimeSeriesForecasterAnnotatedWindows"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimeSeriesForecasterAnnotatedWindows",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/timeseriesforecasterannotatedwindows"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TimeSeriesForecasterBatches": {
+      "abstract": [
+        {
+          "text": "A sequence of forecaster batches on a time series shaped array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimeSeriesForecasterBatches"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TimeSeriesForecasterBatches",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimeSeriesForecasterBatches"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimeSeriesForecasterBatches",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/timeseriesforecasterbatches"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/VideoReader": {
+      "abstract": [
+        {
+          "text": "A video file reader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VideoReader"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/VideoReader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VideoReader"
+        }
+      ],
+      "role": "symbol",
+      "title": "VideoReader",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/videoreader"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/creating-a-time-series-classifier": {
+      "abstract": [
+        {
+          "text": "Train a machine learning model to predict the class label of time-series signals.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/creating-a-time-series-classifier",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a time-series classifier",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/creating-a-time-series-classifier"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/creating-a-time-series-forecaster": {
+      "abstract": [
+        {
+          "text": "Forecast future data points by training a machine learning model using historical data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/creating-a-time-series-forecaster",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a time-series forecaster",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/creating-a-time-series-forecaster"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:6CoreML19MLShapedArrayScalarP": {
+      "abstract": [
+        {
+          "text": "A type that associates a scalar with a shaped array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLShapedArrayScalar"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:6CoreML19MLShapedArrayScalarP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLShapedArrayScalar",
+      "type": "topic",
+      "url": "/documentation/CoreML/MLShapedArrayScalar"
+    },
+    "doc://com.externally.resolved.symbol/s:SK": {
+      "abstract": [
+        {
+          "text": "A collection that supports backward as well as forward traversal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BidirectionalCollection"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SK7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": "> : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl",
+          "text": "Collection"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl7IndicesQa",
+          "text": "Indices"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SK",
+          "text": "BidirectionalCollection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl11SubSequenceQa",
+          "text": "SubSequence"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SK",
+          "text": "BidirectionalCollection"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SK",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BidirectionalCollection",
+      "type": "topic",
+      "url": "/documentation/Swift/BidirectionalCollection"
+    },
+    "doc://com.externally.resolved.symbol/s:ST": {
+      "abstract": [
+        {
+          "text": "A type that provides sequential, iterated access to its elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ST",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sequence",
+      "type": "topic",
+      "url": "/documentation/Swift/Sequence"
+    },
+    "doc://com.externally.resolved.symbol/s:Sk": {
+      "abstract": [
+        {
+          "text": "A collection that supports efficient random-access index traversal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RandomAccessCollection"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sk7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": "> : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SK",
+          "text": "BidirectionalCollection"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl7IndicesQa",
+          "text": "Indices"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sk",
+          "text": "RandomAccessCollection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl11SubSequenceQa",
+          "text": "SubSequence"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sk",
+          "text": "RandomAccessCollection"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sk",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RandomAccessCollection",
+      "type": "topic",
+      "url": "/documentation/Swift/RandomAccessCollection"
+    },
+    "doc://com.externally.resolved.symbol/s:Sl": {
+      "abstract": [
+        {
+          "text": "A sequence whose elements can be traversed multiple times, nondestructively, and accessed by an indexed subscript.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Collection"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": "> : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST",
+          "text": "Sequence"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Collection",
+      "type": "topic",
+      "url": "/documentation/Swift/Collection"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:SK",
+        "doc://com.externally.resolved.symbol/s:Sl",
+        "doc://com.externally.resolved.symbol/s:Sk",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.externally.resolved.symbol/s:ST"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Time-based-components",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/creating-a-time-series-classifier",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/creating-a-time-series-forecaster",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatures",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecasterConfiguration",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TimeSeriesForecasterBatches",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TimeSeriesForecasterAnnotatedWindows",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalFeature",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalSequence",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalSegmentIdentifier",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindowTransformer",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Downsampler",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/VideoReader",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalFileSegment"
+      ],
+      "title": "Time-based components"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/init(input:length:stride:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/endIndex",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/input",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/length",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/startIndex",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/stride"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/index(_:offsetBy:)",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/index(after:)",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/index(before:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Subscripts",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/subscript(_:)-1x8i9",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/subscript(_:)-26j7f"
+      ],
+      "title": "Subscripts"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/Element",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/Index",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/Indices",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/Iterator",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/SubSequence"
+      ],
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/BidirectionalCollection-Implementations",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/Collection-Implementations",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/RandomAccessCollection-Implementations",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows/Sequence-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createmlcomponents/slidingwindows"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

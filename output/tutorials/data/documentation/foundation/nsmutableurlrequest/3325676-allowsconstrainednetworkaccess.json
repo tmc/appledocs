@@ -1,0 +1,507 @@
+{
+  "abstract": [
+    {
+      "text": "A Boolean value that indicates whether connections may use the network when the user has specified Low Data Mode.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest/3325676-allowsconstrainednetworkaccess"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3325676,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSMutableURLRequest(py)allowsConstrainedNetworkAccess",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "var "
+      },
+      {
+        "kind": "identifier",
+        "text": "allowsConstrainedNetworkAccess"
+      },
+      {
+        "kind": "text",
+        "text": ": Bool"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSMutableURLRequest"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.15",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "6.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "allowsConstrainedNetworkAccess"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "allowsConstrainedNetworkAccess"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Bool",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sb",
+              "text": "Bool"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 13 and later, users can set their device to use Low Data Mode as one of the Cellular Data Options in the Settings app. Users can turn on Low Data Mode to reduce your app’s network data usage. This property controls the request’s behavior when the user has turned Low Data Mode on. If there are no nonconstrained network interfaces available and the request’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest/3325676-allowsconstrainednetworkaccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", any connection created from the request fails. In this case, the error provided when the connection fails has a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlerror/3329607-networkunavailablereason",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property whose value is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlerrornetworkunavailablereason/nsurlerrornetworkunavailablereasonconstrained",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Setting this property on a request overrides the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/3235751-allowsconstrainednetworkaccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For example, if the session configuration’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/3235751-allowsconstrainednetworkaccess",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " value is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", and you create a task from a request whose ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest/3325676-allowsconstrainednetworkaccess",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", the task treats the value as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Limit your app’s of use of constrained network access to user-initiated tasks, and put off discretionary tasks until a nonconstrained interface becomes available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Bool": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Bool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/swift/bool"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest": {
+      "abstract": [
+        {
+          "text": "A mutable URL load request that bridges to ",
+          "type": "text"
+        },
+        {
+          "text": " and you use when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableURLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableurlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest/3325676-allowsconstrainednetworkaccess": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether connections may use the network when the user has specified Low Data Mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsConstrainedNetworkAccess"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest/3325676-allowsconstrainednetworkaccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowsConstrainedNetworkAccess",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableurlrequest/3325676-allowsconstrainednetworkaccess"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest/3325677-allowsexpensivenetworkaccess": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether connections may use a network interface that the system considers expensive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsExpensiveNetworkAccess"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest/3325677-allowsexpensivenetworkaccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowsExpensiveNetworkAccess",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableurlrequest/3325677-allowsexpensivenetworkaccess"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlerrornetworkunavailablereason/nsurlerrornetworkunavailablereasonconstrained": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlerrornetworkunavailablereason/nsurlerrornetworkunavailablereasonconstrained",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLErrorNetworkUnavailableReason.constrained",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlerrornetworkunavailablereason/nsurlerrornetworkunavailablereasonconstrained"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlerror/3329607-networkunavailablereason": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlerror/3329607-networkunavailablereason",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "networkUnavailableReason",
+      "type": "topic",
+      "url": "/documentation/foundation/urlerror/3329607-networkunavailablereason"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/3235751-allowsconstrainednetworkaccess": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/3235751-allowsconstrainednetworkaccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowsConstrainedNetworkAccess",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration/3235751-allowsconstrainednetworkaccess"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest/3325677-allowsexpensivenetworkaccess"
+      ],
+      "title": "Supporting limited modes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsmutableurlrequest/3325676-allowsconstrainednetworkaccess"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsmutableurlrequest/3325676-allowsconstrainednetworkaccess"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

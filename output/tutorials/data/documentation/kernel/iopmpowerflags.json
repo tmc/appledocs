@@ -1,0 +1,300 @@
+{
+  "abstract": [
+    {
+      "text": "Bits are used in defining capabilityFlags, inputPowerRequirements, and outputPowerCharacter in the IOPMPowerState structure.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/iokit",
+        "doc://com.apple.documentation/documentation/iokit/iopm_h_user-space"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iopmpowerflags"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1522490,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@IOPMPowerFlags",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "tdef",
+    "title": "IOPMPowerFlags"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "unsigned"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "long"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOPMPowerFlags"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These bits may be bitwise-OR'd together in the IOPMPowerState capabilityFlags field, the outputPowerCharacter field, and/or the inputPowerRequirement field.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The comments clearly mark whether each flag should be used in the capabilityFlags field, outputPowerCharacter field, and inputPowerRequirement field, or all three.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The value of capabilityFlags, inputPowerRequirement or outputPowerCharacter may be 0. Most drivers implement their 'OFF' state, used when asleep, by defininf each of the 3 fields as 0.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The bits listed below are only the most common bits used to define a device's power states. Your device's IO family may require that your device specify other input or output power flags to interact properly. Consult family-specific documentation to determine if your IOPower plane parents or children require other power flags; they probably don't.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/iokit": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "IOKit",
+      "type": "topic",
+      "url": "/documentation/iokit"
+    },
+    "doc://com.apple.documentation/documentation/iokit/iopm_h_user-space": {
+      "identifier": "doc://com.apple.documentation/documentation/iokit/iopm_h_user-space",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOPM.h User-Space",
+      "type": "topic",
+      "url": "/documentation/iokit/iopm_h_user-space"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopmdeviceusable": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopmdeviceusable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOPMDeviceUsable",
+      "type": "topic",
+      "url": "/documentation/kernel/1645009-anonymous/kiopmdeviceusable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopminitialdevicestate": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopminitialdevicestate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOPMInitialDeviceState",
+      "type": "topic",
+      "url": "/documentation/kernel/1645009-anonymous/kiopminitialdevicestate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopmlowpower": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopmlowpower",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOPMLowPower",
+      "type": "topic",
+      "url": "/documentation/kernel/1645009-anonymous/kiopmlowpower"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopmpoweron": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopmpoweron",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOPMPowerOn",
+      "type": "topic",
+      "url": "/documentation/kernel/1645009-anonymous/kiopmpoweron"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopmpreventidlesleep": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopmpreventidlesleep",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOPMPreventIdleSleep",
+      "type": "topic",
+      "url": "/documentation/kernel/1645009-anonymous/kiopmpreventidlesleep"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopmrestart": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopmrestart",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOPMRestart",
+      "type": "topic",
+      "url": "/documentation/kernel/1645009-anonymous/kiopmrestart"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopmrestartcapability": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopmrestartcapability",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOPMRestartCapability",
+      "type": "topic",
+      "url": "/documentation/kernel/1645009-anonymous/kiopmrestartcapability"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopmsleep": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopmsleep",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOPMSleep",
+      "type": "topic",
+      "url": "/documentation/kernel/1645009-anonymous/kiopmsleep"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopmsleepcapability": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopmsleepcapability",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOPMSleepCapability",
+      "type": "topic",
+      "url": "/documentation/kernel/1645009-anonymous/kiopmsleepcapability"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopmpowerflags": {
+      "abstract": [
+        {
+          "text": "Bits are used in defining capabilityFlags, inputPowerRequirements, and outputPowerCharacter in the IOPMPowerState structure.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopmpowerflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOPMPowerFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/iopmpowerflags"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iopmpowerflags"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1770698",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopmpoweron",
+        "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopmdeviceusable",
+        "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopmlowpower",
+        "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopmpreventidlesleep",
+        "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopmsleepcapability",
+        "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopmrestartcapability",
+        "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopmsleep",
+        "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopmrestart",
+        "doc://com.apple.documentation/documentation/kernel/1645009-anonymous/kiopminitialdevicestate"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iopmpowerflags"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

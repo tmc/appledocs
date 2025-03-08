@@ -1,0 +1,1589 @@
+{
+  "abstract": [
+    {
+      "text": "A network service that broadcasts its availability using multicast DNS.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/bonjour"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/netservice"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1411546,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSNetService",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NetService"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "15.0",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "15.0",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "15.0",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "12.0",
+        "introducedAt": "10.2",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "15.0",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "deprecated": true,
+        "deprecatedAt": "1.0",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NetService"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NetService"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/netservice",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class represents a network service, either one your application publishes or is a client of. This class and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/netservicebrowser",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class use multicast DNS to convey information about network services to and from your application. The API of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/netservice",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " provides a convenient way to publish the services offered by your application and to resolve the socket address for a service.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The types of services you access using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/netservice",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " are the same types that you access directly using BSD sockets. HTTP and FTP are two services commonly provided by systems. (For a list of common services and the ports used by those services, see the file ",
+              "type": "text"
+            },
+            {
+              "code": "/etc/services",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".) Applications can also define their own custom services to provide specific data to clients.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/netservice",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class as either a publisher of a service or a client of a service. If your application publishes a service, your code must acquire a port and prepare a socket to communicate with clients. Once your socket is ready, you use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/netservice",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class to notify clients that your service is ready. If your application is the client of a network service, you can either create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/netservice",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object directly (if you know the exact host and port information) or use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/netservicebrowser",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to browse for services.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To publish a service, initialize your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/netservice",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object with the service name, domain, type, and port information. All of this information must be valid for the socket created by your application. Once initialized, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1416480-publish",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to broadcast your service information to the network.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When connecting to a service, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/netservicebrowser",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to locate the service on the network and obtain the corresponding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/netservice",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object. Once you have the object, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1416564-resolve",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to verify that the service is available and ready for your application. If it is, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1408528-addresses",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property provides the socket information you can use to connect to the service.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The methods of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/netservice",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " operate asynchronously so your application is not impacted by the speed of the network. All information about a service is returned to your application through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/netservice",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object’s delegate. You must provide a delegate object to respond to messages and to handle errors appropriately.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/bundleresources/information-property-list/nsbonjourservices": {
+      "abstract": [
+        {
+          "text": "Bonjour service types browsed by the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "label",
+          "text": "property list key "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSBonjourServices"
+        }
+      ],
+      "ideTitle": "Bonjour services",
+      "identifier": "doc://com.apple.documentation/documentation/bundleresources/information-property-list/nsbonjourservices",
+      "kind": "symbol",
+      "name": "NSBonjourServices",
+      "role": "symbol",
+      "title": "NSBonjourServices",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsbonjourservices"
+    },
+    "doc://com.apple.documentation/documentation/bundleresources/information-property-list/nslocalnetworkusagedescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the local network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "label",
+          "text": "property list key "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLocalNetworkUsageDescription"
+        }
+      ],
+      "ideTitle": "Privacy - Local Network Usage Description",
+      "identifier": "doc://com.apple.documentation/documentation/bundleresources/information-property-list/nslocalnetworkusagedescription",
+      "kind": "symbol",
+      "name": "NSLocalNetworkUsageDescription",
+      "role": "symbol",
+      "title": "NSLocalNetworkUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nslocalnetworkusagedescription"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bonjour": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bonjour",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Bonjour",
+      "type": "topic",
+      "url": "/documentation/foundation/bonjour"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice": {
+      "abstract": [
+        {
+          "text": "A network service that broadcasts its availability using multicast DNS.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NetService"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NetService",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/1408164-dictionary": {
+      "abstract": [
+        {
+          "text": "Returns a dictionary representing a TXT record given as an ",
+          "type": "text"
+        },
+        {
+          "code": "NSData",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "dictionary"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "fromTXTRecord"
+        },
+        {
+          "kind": "text",
+          "text": ": Data) -> [String : Data]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1408164-dictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dictionary(fromTXTRecord:)",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/1408164-dictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/1408528-addresses": {
+      "abstract": [
+        {
+          "text": "A read-only array containing ",
+          "type": "text"
+        },
+        {
+          "code": "NSData",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects, each of which contains a socket address for the service.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "addresses"
+        },
+        {
+          "kind": "text",
+          "text": ": [Data]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1408528-addresses",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addresses",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/1408528-addresses"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/1408827-stop": {
+      "abstract": [
+        {
+          "text": "Halts a currently running attempt to publish or resolve a service.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "stop"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1408827-stop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stop()",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/1408827-stop"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/1409022-name": {
+      "abstract": [
+        {
+          "text": "A string containing the name of this service.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1409022-name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/1409022-name"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/1409816-port": {
+      "abstract": [
+        {
+          "text": "The port on which the service is listening for connections.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "port"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1409816-port",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "port",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/1409816-port"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/1410296-delegate": {
+      "abstract": [
+        {
+          "text": "The delegate for the receiver.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any NetServiceDelegate)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1410296-delegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/1410296-delegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/1410648-settxtrecord": {
+      "abstract": [
+        {
+          "text": "Sets the TXT record for the receiver, and returns a Boolean value that indicates whether the operation was successful.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTXTRecord"
+        },
+        {
+          "kind": "text",
+          "text": "(Data?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1410648-settxtrecord",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setTXTRecord(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/1410648-settxtrecord"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/1411486-startmonitoring": {
+      "abstract": [
+        {
+          "text": "Starts the monitoring of TXT-record updates for the receiver.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "startMonitoring"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1411486-startmonitoring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startMonitoring()",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/1411486-startmonitoring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/1413150-data": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSData",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object representing a TXT record formed from a given dictionary.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "fromTXTRecord"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : Data]) -> Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1413150-data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "data(fromTXTRecord:)",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/1413150-data"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/1413300-hostname": {
+      "abstract": [
+        {
+          "text": "A string containing the DNS hostname for this service.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "hostName"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1413300-hostname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hostName",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/1413300-hostname"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/1413364-init": {
+      "abstract": [
+        {
+          "text": "Initializes the receiver for publishing a network service of type ",
+          "type": "text"
+        },
+        {
+          "code": "type",
+          "type": "codeVoice"
+        },
+        {
+          "text": " at the socket location specified by ",
+          "type": "text"
+        },
+        {
+          "code": "domain",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": "name",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", and ",
+          "type": "text"
+        },
+        {
+          "code": "port",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "domain"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "port"
+        },
+        {
+          "kind": "text",
+          "text": ": Int32)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1413364-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(domain:type:name:port:)",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/1413364-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/1413861-stopmonitoring": {
+      "abstract": [
+        {
+          "text": "Stops the monitoring of TXT-record updates for the receiver.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopMonitoring"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1413861-stopmonitoring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stopMonitoring()",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/1413861-stopmonitoring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/1414086-includespeertopeer": {
+      "abstract": [
+        {
+          "text": "Specifies whether to also publish, resolve, or monitor this service over peer-to-peer Bluetooth and Wi-Fi, if available. ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/swift/false",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " by default.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "includesPeerToPeer"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1414086-includespeertopeer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "includesPeerToPeer",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/1414086-includespeertopeer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/1414390-publish": {
+      "abstract": [
+        {
+          "text": "Attempts to advertise the receiver on the network, with the given options.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "publish"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NetService.Options)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1414390-publish",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "publish(options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/1414390-publish"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/1414495-domain": {
+      "abstract": [
+        {
+          "text": "A string containing the domain for this service.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "domain"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1414495-domain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "domain",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/1414495-domain"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/1414621-remove": {
+      "abstract": [
+        {
+          "text": "Removes the service from the given run loop for a given mode.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forMode"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.Mode)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1414621-remove",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remove(from:forMode:)",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/1414621-remove"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/1416480-publish": {
+      "abstract": [
+        {
+          "text": "Attempts to advertise the receiver’s on the network.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "publish"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1416480-publish",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "publish()",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/1416480-publish"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/1416564-resolve": {
+      "abstract": [
+        {
+          "text": "Starts a resolve process of a finite duration for the service.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolve"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withTimeout"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeInterval)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1416564-resolve",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resolve(withTimeout:)",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/1416564-resolve"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/1416595-type": {
+      "abstract": [
+        {
+          "text": "The type of the published service.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1416595-type",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "type",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/1416595-type"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/1417221-schedule": {
+      "abstract": [
+        {
+          "text": "Adds the service to the specified run loop.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "schedule"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forMode"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.Mode)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1417221-schedule",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "schedule(in:forMode:)",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/1417221-schedule"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/1417615-init": {
+      "abstract": [
+        {
+          "text": "Returns the receiver, initialized as a network service of a given type and sets the initial host information.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "domain"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1417615-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(domain:type:name:)",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/1417615-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/1417698-txtrecorddata": {
+      "abstract": [
+        {
+          "text": "Returns the TXT record for the receiver.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "txtRecordData"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Data?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1417698-txtrecorddata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "txtRecordData()",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/1417698-txtrecorddata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/1418325-getinputstream": {
+      "abstract": [
+        {
+          "text": "Creates a pair of input and output streams for the receiver and returns a Boolean value that indicates whether they were retrieved successfully.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "getInputStream"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<InputStream?>?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputStream"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutablePointer<OutputStream?>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1418325-getinputstream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getInputStream(_:outputStream:)",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/1418325-getinputstream"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/1506204-resolve": {
+      "abstract": [
+        {
+          "text": "Starts a resolve process for the service.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolve"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/1506204-resolve",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resolve()",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/1506204-resolve"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/errorcode": {
+      "abstract": [
+        {
+          "text": "These constants identify errors that can occur when accessing net services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "NetService.ErrorCode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/errorcode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NetService.ErrorCode",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/errorcode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/nsnetservices_errors": {
+      "abstract": [
+        {
+          "text": "If an error occurs, the delegate error-handling methods return a dictionary with the following keys. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/nsnetservices_errors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "NSNetServices Errors",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/nsnetservices_errors"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservice/options": {
+      "abstract": [
+        {
+          "text": "These constants specify options for a network service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NetService.Options"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservice/options",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NetService.Options",
+      "type": "topic",
+      "url": "/documentation/foundation/netservice/options"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservicebrowser": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservicebrowser",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NetServiceBrowser",
+      "type": "topic",
+      "url": "/documentation/foundation/netservicebrowser"
+    },
+    "doc://com.apple.documentation/documentation/foundation/netservicedelegate": {
+      "abstract": [
+        {
+          "text": "The interface a net service uses to inform its delegate about the state of the service it offers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NetServiceDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/netservicedelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NetServiceDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/netservicedelegate"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/netservicedelegate",
+        "doc://com.apple.documentation/documentation/bundleresources/information-property-list/nsbonjourservices",
+        "doc://com.apple.documentation/documentation/bundleresources/information-property-list/nslocalnetworkusagedescription"
+      ],
+      "title": "Local Network Services"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1653689",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/netservice/1417615-init",
+        "doc://com.apple.documentation/documentation/foundation/netservice/1413364-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Network Services"
+    },
+    {
+      "anchor": "1653725",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/netservice/1413150-data",
+        "doc://com.apple.documentation/documentation/foundation/netservice/1408164-dictionary",
+        "doc://com.apple.documentation/documentation/foundation/netservice/1408528-addresses",
+        "doc://com.apple.documentation/documentation/foundation/netservice/1414495-domain",
+        "doc://com.apple.documentation/documentation/foundation/netservice/1414086-includespeertopeer",
+        "doc://com.apple.documentation/documentation/foundation/netservice/1418325-getinputstream",
+        "doc://com.apple.documentation/documentation/foundation/netservice/1409022-name",
+        "doc://com.apple.documentation/documentation/foundation/netservice/1416595-type",
+        "doc://com.apple.documentation/documentation/foundation/netservice/1417698-txtrecorddata",
+        "doc://com.apple.documentation/documentation/foundation/netservice/1410648-settxtrecord",
+        "doc://com.apple.documentation/documentation/foundation/netservice/1410296-delegate"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring Network Services"
+    },
+    {
+      "anchor": "1653854",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/netservice/1417221-schedule",
+        "doc://com.apple.documentation/documentation/foundation/netservice/1414621-remove"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing Run Loops"
+    },
+    {
+      "anchor": "1653887",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/netservice/1416480-publish",
+        "doc://com.apple.documentation/documentation/foundation/netservice/1414390-publish",
+        "doc://com.apple.documentation/documentation/foundation/netservice/1506204-resolve",
+        "doc://com.apple.documentation/documentation/foundation/netservice/1416564-resolve",
+        "doc://com.apple.documentation/documentation/foundation/netservice/1409816-port",
+        "doc://com.apple.documentation/documentation/foundation/netservice/1411486-startmonitoring",
+        "doc://com.apple.documentation/documentation/foundation/netservice/1408827-stop",
+        "doc://com.apple.documentation/documentation/foundation/netservice/1413861-stopmonitoring"
+      ],
+      "kind": "taskGroup",
+      "title": "Using Network Services"
+    },
+    {
+      "anchor": "1653960",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/netservice/1413300-hostname"
+      ],
+      "kind": "taskGroup",
+      "title": "Obtaining the DNS Hostname"
+    },
+    {
+      "anchor": "1653979",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/netservice/nsnetservices_errors",
+        "doc://com.apple.documentation/documentation/foundation/netservice/errorcode",
+        "doc://com.apple.documentation/documentation/foundation/netservice/options"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsnetservice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/netservice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

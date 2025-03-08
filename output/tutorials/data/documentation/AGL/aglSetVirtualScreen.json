@@ -1,0 +1,665 @@
+{
+  "abstract": [
+    {
+      "text": "Forces subsequent OpenGL commands to the specified virtual screen.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.agl/documentation/AGL"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.agl/documentation/AGL/aglSetVirtualScreen"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@aglSetVirtualScreen",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "aglSetVirtualScreen"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AGL"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "aglSetVirtualScreen"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.9",
+        "introducedAt": "10.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "aglSetVirtualScreen"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@GLboolean",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@GLboolean",
+              "text": "GLboolean"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "aglSetVirtualScreen"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.agl/documentation/AGL/AGLContext",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AGLContext",
+              "text": "AGLContext"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "ctx"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@GLint",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@GLint",
+              "text": "GLint"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "screen"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A  rendering context.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "ctx"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A virtual screen number, which must be a value between ",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and the number of virtual screens minus one. You can obtain the number of virtual screens available associated with a rendering context by calling the function ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.agl/documentation/AGL/AGL-collection",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", passing in the pixel format object used to create the rendering context and the attribute constant ",
+                  "type": "text"
+                },
+                {
+                  "code": "AGL_VIRTUAL_SCREEN",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "screen"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Returns ",
+              "type": "text"
+            },
+            {
+              "code": "GL_FALSE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if it fails for any reason, ",
+              "type": "text"
+            },
+            {
+              "code": "GL_TRUE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " otherwise. If an error occurs, call the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.agl/documentation/AGL/aglGetError",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine what the error is.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You should use the ",
+              "type": "text"
+            },
+            {
+              "code": "aglSetVirtualScreen",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function only when it is necessary to override the default behavior. The current virtual screen is normally set automatically by the functions ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.agl/documentation/AGL/aglSetDrawable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.agl/documentation/AGL/aglUpdateContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Setting the virtual screen forces the renderer associated with the virtual screen to process OpenGL commands issued to the specified context. Changing the virtual screen changes the current renderer. Because the current virtual screen determines which OpenGL renderer is processing commands, the return values of all ",
+              "type": "text"
+            },
+            {
+              "code": "glGetXXX",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functions can be affected by the current virtual screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For detailed information on virtual screens, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/OpenGL-MacProgGuide/opengl_intro/opengl_intro.html#//apple_ref/doc/uid/TP40001987",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.agl/documentation/AGL": {
+      "abstract": [
+        {
+          "text": "Create and manage OpenGL rendering contexts for use in macOS, and perform operations on drawable objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AGL",
+      "type": "topic",
+      "url": "/documentation/agl"
+    },
+    "doc://com.apple.agl/documentation/AGL/AGL-collection": {
+      "abstract": [
+        {
+          "text": "Create and manage OpenGL rendering contexts for use in macOS, and perform operations on drawable objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/AGL-collection",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AGL",
+      "type": "topic",
+      "url": "/documentation/agl/agl-collection"
+    },
+    "doc://com.apple.agl/documentation/AGL/AGLContext": {
+      "abstract": [
+        {
+          "text": "Represents a pointer to an opaque AGL context object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AGLContext"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/AGLContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AGLContext",
+      "type": "topic",
+      "url": "/documentation/agl/aglcontext"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglGetError": {
+      "abstract": [
+        {
+          "text": "Returns an AGL error code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglGetError"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglGetError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglGetError",
+      "type": "topic",
+      "url": "/documentation/agl/aglgeterror"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglGetVirtualScreen": {
+      "abstract": [
+        {
+          "text": "Returns the current virtual screen number associated with a rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglGetVirtualScreen"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglGetVirtualScreen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglGetVirtualScreen",
+      "type": "topic",
+      "url": "/documentation/agl/aglgetvirtualscreen"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglSetDrawable": {
+      "abstract": [
+        {
+          "text": "Attaches a  rendering context to a Carbon window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglSetDrawable"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglSetDrawable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglSetDrawable",
+      "type": "topic",
+      "url": "/documentation/agl/aglsetdrawable"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglSetVirtualScreen": {
+      "abstract": [
+        {
+          "text": "Forces subsequent OpenGL commands to the specified virtual screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglSetVirtualScreen"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglSetVirtualScreen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglSetVirtualScreen",
+      "type": "topic",
+      "url": "/documentation/agl/aglsetvirtualscreen"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglUpdateContext": {
+      "abstract": [
+        {
+          "text": "Notifies the rendering context that the window geometry has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglUpdateContext"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglUpdateContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglUpdateContext",
+      "type": "topic",
+      "url": "/documentation/agl/aglupdatecontext"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@GLboolean": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLboolean"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@GLboolean",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GLboolean",
+      "type": "topic",
+      "url": "/documentation/OpenGLES/GLboolean"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@GLint": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLint"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@GLint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GLint",
+      "type": "topic",
+      "url": "/documentation/OpenGLES/GLint"
+    },
+    "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/OpenGL-MacProgGuide/opengl_intro/opengl_intro.html#//apple_ref/doc/uid/TP40001987": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/OpenGL-MacProgGuide/opengl_intro/opengl_intro.html#//apple_ref/doc/uid/TP40001987",
+      "title": "OpenGL Programming Guide for Mac",
+      "titleInlineContent": [
+        {
+          "text": "OpenGL Programming Guide for Mac",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/OpenGL-MacProgGuide/opengl_intro/opengl_intro.html#//apple_ref/doc/uid/TP40001987"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-Virtual-Screens",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.agl/documentation/AGL/aglGetVirtualScreen"
+      ],
+      "title": "Managing Virtual Screens"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@GLint/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@int32_t",
+              "text": "int32_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GLint"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@GLboolean/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@uint8_t",
+              "text": "uint8_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GLboolean"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/agl/aglsetvirtualscreen"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

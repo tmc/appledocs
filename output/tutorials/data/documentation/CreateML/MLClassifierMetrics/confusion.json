@@ -1,0 +1,679 @@
+{
+  "abstract": [
+    {
+      "text": "A table comparing the actual and predicted labels for each classification category.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateML/documentation/CreateML",
+        "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics/confusion"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:8CreateML19MLClassifierMetricsV9confusionAA11MLDataTableVvp",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "confusion"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:8CreateML11MLDataTableV",
+        "text": "MLDataTable"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Create ML"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "17.0",
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "17.0",
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "17.0",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "14.0",
+        "introducedAt": "10.14",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "17.0",
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "confusion"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "confusion"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:8CreateML11MLDataTableV",
+              "text": "MLDataTable"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.CreateML/documentation/CreateML/improving-your-model-s-accuracy"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The confusion data table describes how examples were mislabeled between categories. Each row contains the true",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "label, the predicted label, and the count for each possible combination of categories. For example, the table",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "below lists that “business” was labeled correctly with “business” 113 times, while “business” was confused with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "“entertainment” 2 times.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "MLClassifierMetrics-confusion-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To gain insight into the performance of your model, you can use this data table to determine what categories",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your model is most confused about (making the most mistakes on) for a given data set. For example, the code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "listing below shows how to find the mistake that happens most frequently.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let confusion = model.validationMetrics.confusion",
+            "",
+            "// Filter for rows which contain mistakes.",
+            "let errors = confusion[confusion[\"True Label\"] != confusion[\"Predicted\"]]",
+            "let mostCommonError = errors.rows.max { row1, row2 in",
+            "    row1[\"Count\", Int.self]! < row2[\"Count\", Int.self]!",
+            "}",
+            "print(mostCommonError ?? \"The confusion table is empty.\")",
+            "// [\"Predicted\": \"tech\", \"True Label\": \"business\", \"Count\": 9]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Another useful view into this data is to compare the actual and predicated labels using a matrix. Printing the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " directly displays the matrix format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "print(model.validationMetrics)",
+            "// ...",
+            "// ******CONFUSION MATRIX******",
+            "// ----------------------------------",
+            "// True\\Pred business entertainment politics sport tech",
+            "// business 113 2 3 0 9",
+            "// entertainment 1 183 3 2 3",
+            "// politics 6 8 116 0 3",
+            "// sport 0 6 1 135 3",
+            "// tech 2 7 3 0 129",
+            "// ..."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the upper left hand count shows that 113 business examples were correctly labeled as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "“business”. The second column shows that “entertainment” was predicted for 2 “business” examples. The second",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "row shows that 1 “entertainment” example was mislabeled as “business”.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "MLClassifierMetrics-confusion-1": {
+      "alt": "A table showing the format of the confusion table containing rows for the true label the label predicted by",
+      "identifier": "MLClassifierMetrics-confusion-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c9b7730d227217804dd88adf475e1069/MLClassifierMetrics-confusion-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/109cbddd3daf73c00f55edb089b273d0/MLClassifierMetrics-confusion-1~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.CreateML/documentation/CreateML": {
+      "abstract": [
+        {
+          "text": "Create machine learning models for use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML",
+      "type": "topic",
+      "url": "/documentation/createml"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics": {
+      "abstract": [
+        {
+          "text": "Metrics you use to evaluate a classifier’s performance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLClassifierMetrics"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLClassifierMetrics"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLClassifierMetrics",
+      "type": "topic",
+      "url": "/documentation/createml/mlclassifiermetrics"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics/classificationError": {
+      "abstract": [
+        {
+          "text": "The fraction of incorrectly labeled examples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "classificationError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics/classificationError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "classificationError",
+      "type": "topic",
+      "url": "/documentation/createml/mlclassifiermetrics/classificationerror"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics/confusion": {
+      "abstract": [
+        {
+          "text": "A table comparing the actual and predicted labels for each classification category.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "confusion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics/confusion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "confusion",
+      "type": "topic",
+      "url": "/documentation/createml/mlclassifiermetrics/confusion"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics/confusionDataFrame": {
+      "abstract": [
+        {
+          "text": "A data frame comparing the actual and predicted labels for each class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "confusionDataFrame"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabularData0B5FrameV",
+          "text": "DataFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics/confusionDataFrame",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "confusionDataFrame",
+      "type": "topic",
+      "url": "/documentation/createml/mlclassifiermetrics/confusiondataframe"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics/precisionRecall": {
+      "abstract": [
+        {
+          "text": "A data table listing the precision and recall percentages for each class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "precisionRecall"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics/precisionRecall",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "precisionRecall",
+      "type": "topic",
+      "url": "/documentation/createml/mlclassifiermetrics/precisionrecall"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics/precisionRecallDataFrame": {
+      "abstract": [
+        {
+          "text": "A data frame listing the precision and recall percentages for each class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "precisionRecallDataFrame"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabularData0B5FrameV",
+          "text": "DataFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics/precisionRecallDataFrame",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "precisionRecallDataFrame",
+      "type": "topic",
+      "url": "/documentation/createml/mlclassifiermetrics/precisionrecalldataframe"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable": {
+      "abstract": [
+        {
+          "text": "A table of data for training or evaluating a machine learning model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLDataTable"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLDataTable",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/improving-your-model-s-accuracy": {
+      "abstract": [
+        {
+          "text": "Use metrics to tune the performance of your machine learning model.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/improving-your-model-s-accuracy",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving Your Model’s Accuracy",
+      "type": "topic",
+      "url": "/documentation/createml/improving-your-model-s-accuracy"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Understanding-the-model",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics/classificationError",
+        "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics/precisionRecall",
+        "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics/confusionDataFrame",
+        "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics/precisionRecallDataFrame"
+      ],
+      "title": "Understanding the model"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createml/mlclassifiermetrics/confusion"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

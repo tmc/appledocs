@@ -1,0 +1,1431 @@
+{
+  "abstract": [
+    {
+      "text": "Install and run GUI Linux in a virtual machine using the Virtualization framework.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.virtualization/documentation/Virtualization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.virtualization/documentation/Virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Virtualization"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Running GUI Linux in a virtual machine on a Mac"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project demonstrates how to install and run GUI Linux virtual machines (VMs) on a Mac.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Xcode project includes a single target, ",
+              "type": "text"
+            },
+            {
+              "code": "GUILinuxVirtualMachineSampleApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which is a macOS app that installs a Linux distribution from an ISO image into a VM, and subsequently runs the installed Linux VM.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Download-a-Linux-installation-image",
+          "level": 3,
+          "text": "Download a Linux installation image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you run the sample program, you need to download an ISO installation image from a Linux distribution website. Some common Linux distributions include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://www.debian.org/distrib/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://getfedora.org/en/workstation/download/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://ubuntu.com/download/desktop",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Virtualization framework can run Linux VMs on a Mac with Apple silicon, and on an Intel-based Mac. The Linux ISO image you download must support the CPU architecture of your Mac. For a Mac with Apple silicon, download a Linux ISO image for ARM, which is usually indicated by ",
+                  "type": "text"
+                },
+                {
+                  "code": "aarch64",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "arm64",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in the image filename. For an Intel-based Mac, download a Linux ISO image for Intel-compatible CPUs, which is usually indicated by ",
+                  "type": "text"
+                },
+                {
+                  "code": "x86_64",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "amd64",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in the image filename.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you need to run Intel Linux binaries in ARM Linux on a Mac with Apple silicon, the Virtualization framework supports this capability using the Rosetta translation environment. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta",
+                  "isActive": true,
+                  "overridingTitle": "Running Intel Binaries in Linux VMs with Rosetta",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Running Intel Binaries in Linux VMs with Rosetta",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The default deployment target is macOS14, if you need to build for a different version of macOS you’ll need to change the deployment target as appropriate.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Launch Xcode and open ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "GUILinuxVirtualMachineSampleApp.xcodeproj",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Navigate to the Signing & Capabilities panel and select your team ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build and run GUILinuxVirtualMachineSampleApp. The sample app starts the VM and configures a graphical view that you interact with. The Linux VM continues running until you shut it down from the guest OS, or when you quit the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When you run the app for the first time, it displays a file picker so you can choose the Linux installation ISO image to use for installing your Linux VM. Navigate to the ISO image that you downloaded, select the file, and click Open. The VM boots into the OS installer, and the installer’s user interface appears in the app’s window. Follow the installation instructions. When the installation finishes, the Linux VM is ready to use.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "As part of the installation process, the Virtualization framework creates a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "GUI Linux VM.bundle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " package in your home directory. The sample app only supports running one VM at a time, however, the Virtualization framework supports running multiple VMs simultaneously. Running multiple VMs requires an app to manage the execution and artifacts of each individual VM.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The contents of the bundle represent the state of the Linux guest, and contain the following:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "Disk.img",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " — The main disk image of the installed Linux OS.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "MachineIdentifier",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " — The data representation of the ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "VZGenericMachineIdentifier",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " object.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "NVRAM",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " — The EFI variable store.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Subsequent launches of GUILinuxVirtualMachineSampleApp run the installed Linux VM. To reinstall the VM, delete the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "GUI Linux VM.bundle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " package and run the app again.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Install-GUI-Linux-from-an-ISO-image",
+          "level": 3,
+          "text": "Install GUI Linux from an ISO image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app configures a ",
+              "type": "text"
+            },
+            {
+              "code": "VZDiskImageStorageDeviceAttachment",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object with the downloaded ISO image attached, and creates a ",
+              "type": "text"
+            },
+            {
+              "code": "VZUSBMassStorageDeviceConfiguration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with it to emulate a USB thumb drive that’s plugged in to the VM.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func createUSBMassStorageDeviceConfiguration() -> VZUSBMassStorageDeviceConfiguration {",
+            "    guard let intallerDiskAttachment = try? VZDiskImageStorageDeviceAttachment(url: installerISOPath!, readOnly: true) else {",
+            "        fatalError(\"Failed to create installer's disk attachment.\")",
+            "    }",
+            "",
+            "    return VZUSBMassStorageDeviceConfiguration(attachment: intallerDiskAttachment)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-up-the-VM",
+          "level": 3,
+          "text": "Set up the VM",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to configure the basic characteristics of the VM, such as the CPU count, memory size, various device configurations, and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZEFIBootLoader",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to load the Linux operating system into the VM.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let virtualMachineConfiguration = VZVirtualMachineConfiguration()",
+            "",
+            "virtualMachineConfiguration.cpuCount = computeCPUCount()",
+            "virtualMachineConfiguration.memorySize = computeMemorySize()",
+            "",
+            "let platform = VZGenericPlatformConfiguration()",
+            "let bootloader = VZEFIBootLoader()",
+            "let disksArray = NSMutableArray()",
+            "",
+            "if needsInstall {",
+            "    // This is a fresh install: Create a new machine identifier and EFI variable store,",
+            "    // and configure a USB mass storage device to boot the ISO image.",
+            "    platform.machineIdentifier = createAndSaveMachineIdentifier()",
+            "    bootloader.variableStore = createEFIVariableStore()",
+            "    disksArray.add(createUSBMassStorageDeviceConfiguration())",
+            "} else {",
+            "    // The VM is booting from a disk image that already has the OS installed.",
+            "    // Retrieve the machine identifier and EFI variable store that were saved to",
+            "    // disk during installation.",
+            "    platform.machineIdentifier = retrieveMachineIdentifier()",
+            "    bootloader.variableStore = retrieveEFIVariableStore()",
+            "}",
+            "",
+            "virtualMachineConfiguration.platform = platform",
+            "virtualMachineConfiguration.bootLoader = bootloader",
+            "",
+            "disksArray.add(createBlockDeviceConfiguration())",
+            "guard let disks = disksArray as? [VZStorageDeviceConfiguration] else {",
+            "    fatalError(\"Invalid disksArray.\")",
+            "}",
+            "virtualMachineConfiguration.storageDevices = disks",
+            "",
+            "virtualMachineConfiguration.networkDevices = [createNetworkDeviceConfiguration()]",
+            "virtualMachineConfiguration.graphicsDevices = [createGraphicsDeviceConfiguration()]",
+            "virtualMachineConfiguration.audioDevices = [createInputAudioDeviceConfiguration(), createOutputAudioDeviceConfiguration()]",
+            "",
+            "virtualMachineConfiguration.keyboards = [VZUSBKeyboardConfiguration()]",
+            "virtualMachineConfiguration.pointingDevices = [VZUSBScreenCoordinatePointingDeviceConfiguration()]",
+            "virtualMachineConfiguration.consoleDevices = [createSpiceAgentConsoleDeviceConfiguration()]",
+            "",
+            "try! virtualMachineConfiguration.validate()",
+            "virtualMachine = VZVirtualMachine(configuration: virtualMachineConfiguration)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Enable-copy-and-paste-support-between-the-host-and-the-guest",
+          "level": 3,
+          "text": "Enable copy-and-paste support between the host and the guest",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS 13 and later, the Virtualization framework supports copy-and-paste of text and images between the Mac host and Linux guests through the SPICE agent clipboard-sharing capability. The example below shows the steps for configuring ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsoleDeviceConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZSpiceAgentPortAttachment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to enable this capability:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func createSpiceAgentConsoleDeviceConfiguration() -> VZVirtioConsoleDeviceConfiguration {",
+            "    let consoleDevice = VZVirtioConsoleDeviceConfiguration()",
+            "",
+            "    let spiceAgentPort = VZVirtioConsolePortConfiguration()",
+            "    spiceAgentPort.name = VZSpiceAgentPortAttachment.spiceAgentPortName",
+            "    spiceAgentPort.attachment = VZSpiceAgentPortAttachment()",
+            "    consoleDevice.ports[0] = spiceAgentPort",
+            "",
+            "    return consoleDevice",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To use the copy-and-paste capability in Linux, the user needs to install the ",
+                  "type": "text"
+                },
+                {
+                  "code": "spice-vdagent",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " package, which is available through most Linux package managers. Developers need to communicate this requirement to users of their apps.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Start-the-VM",
+          "level": 3,
+          "text": "Start the VM",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After building the configuration data for the VM, the sample app uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to start the execution of the Linux guest operating system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before calling the VM’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/start(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, the sample app configures a delegate object to receive messages about the state of the virtual machine. When the Linux operating system shuts down, the VM calls the delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineDelegate/guestDidStop(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. In response, the delegate method prints a message and exits the sample.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "self.virtualMachineView.virtualMachine = self.virtualMachine",
+            "",
+            "if #available(macOS 14.0, *) {",
+            "    // Configure the app to automatically respond changes in the display size.",
+            "    self.virtualMachineView.automaticallyReconfiguresDisplay = true",
+            "}",
+            "",
+            "self.virtualMachine.delegate = self",
+            "self.virtualMachine.start(completionHandler: { (result) in",
+            "    switch result {",
+            "    case let .failure(error):",
+            "        fatalError(\"Virtual machine failed to start with error: \\(error)\")",
+            "",
+            "    default:",
+            "        print(\"Virtual machine successfully started.\")",
+            "    }",
+            "})"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app sets the display to automatically resize when the window size changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta": {
+      "abstract": [
+        {
+          "text": "Run x86_64 Linux binaries under ARM Linux on Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta",
+      "kind": "article",
+      "role": "article",
+      "title": "Running Intel Binaries in Linux VMs with Rosetta",
+      "type": "topic",
+      "url": "/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization": {
+      "abstract": [
+        {
+          "text": "Create virtual machines and run macOS and Linux-based operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Virtualization",
+      "type": "topic",
+      "url": "/documentation/virtualization"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZEFIBootLoader": {
+      "abstract": [
+        {
+          "text": "The boot loader configuration the system uses to boot guest-operating systems that expect an Extensible Firmware Interface (EFI) ROM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZEFIBootLoader"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZEFIBootLoader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZEFIBootLoader"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZEFIBootLoader",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzefibootloader"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZSpiceAgentPortAttachment": {
+      "abstract": [
+        {
+          "text": "An attachment point that enables the Spice clipboard sharing capability.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZSpiceAgentPortAttachment"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZSpiceAgentPortAttachment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZSpiceAgentPortAttachment"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZSpiceAgentPortAttachment",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzspiceagentportattachment"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsoleDeviceConfiguration": {
+      "abstract": [
+        {
+          "text": "A console device that enables communication between the host and the guest using console ports through a Virtio interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtioConsoleDeviceConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtioConsoleDeviceConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtioConsoleDeviceConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtioConsoleDeviceConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtioconsoledeviceconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine": {
+      "abstract": [
+        {
+          "text": "An object that manages the overall state and configuration of your VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachine"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachine"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtualMachine",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachine"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/start(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Starts the VM and notifies the specified completion handler if startup is successful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine/start(completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "start(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachine/start(completionhandler:)"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineConfiguration": {
+      "abstract": [
+        {
+          "text": "The environment attributes and list of devices to use during the configuration of macOS or Linux VMs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachineConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachineConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtualMachineConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachineconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineDelegate/guestDidStop(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the guest operating system stopped the VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "guestDidStop"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)VZVirtualMachine",
+          "text": "VZVirtualMachine"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineDelegate/guestDidStop(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "guestDidStopVirtualMachine:"
+        }
+      ],
+      "role": "symbol",
+      "title": "guestDidStop(_:)",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachinedelegate/guestdidstop(_:)"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/accelerating-the-performance-of-rosetta": {
+      "abstract": [
+        {
+          "text": "Improve Rosetta performance by adding support for the total store ordering (TSO) memory model to your Linux kernel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/accelerating-the-performance-of-rosetta",
+      "kind": "article",
+      "role": "article",
+      "title": "Accelerating the performance of Rosetta",
+      "type": "topic",
+      "url": "/documentation/virtualization/accelerating-the-performance-of-rosetta"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/creating-and-running-a-linux-virtual-machine": {
+      "abstract": [
+        {
+          "text": "Design and run custom Linux guests on Apple silicon or Intel-based Mac Computers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/creating-and-running-a-linux-virtual-machine",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating and Running a Linux Virtual Machine",
+      "type": "topic",
+      "url": "/documentation/virtualization/creating-and-running-a-linux-virtual-machine"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/installing-macos-on-a-virtual-machine": {
+      "abstract": [
+        {
+          "text": "Download a macOS restore image and install it in a new VM.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/installing-macos-on-a-virtual-machine",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing macOS on a Virtual Machine",
+      "type": "topic",
+      "url": "/documentation/virtualization/installing-macos-on-a-virtual-machine"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta": {
+      "abstract": [
+        {
+          "text": "Run x86_64 Linux binaries under ARM Linux on Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta",
+      "kind": "article",
+      "role": "article",
+      "title": "Running Intel Binaries in Linux VMs with Rosetta",
+      "type": "topic",
+      "url": "/documentation/virtualization/running-intel-binaries-in-linux-vms-with-rosetta"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/running-linux-in-a-virtual-machine": {
+      "abstract": [
+        {
+          "text": "Run a Linux operating system on your Mac using the Virtualization framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/running-linux-in-a-virtual-machine",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Running Linux in a Virtual Machine",
+      "type": "topic",
+      "url": "/documentation/virtualization/running-linux-in-a-virtual-machine"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/running-macos-in-a-virtual-machine-on-apple-silicon": {
+      "abstract": [
+        {
+          "text": "Install and run macOS in a virtual machine using the Virtualization framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/running-macos-in-a-virtual-machine-on-apple-silicon",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Running macOS in a virtual machine on Apple silicon",
+      "type": "topic",
+      "url": "/documentation/virtualization/running-macos-in-a-virtual-machine-on-apple-silicon"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/virtualize-linux-on-a-mac": {
+      "abstract": [
+        {
+          "text": "Configure and run Linux guests on Apple silicon and Intel-based Mac computers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/virtualize-linux-on-a-mac",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Virtualize Linux on a Mac",
+      "type": "topic",
+      "url": "/documentation/virtualization/virtualize-linux-on-a-mac"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/virtualize-macos-on-a-mac": {
+      "abstract": [
+        {
+          "text": "Configure and run macOS guests on Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/virtualize-macos-on-a-mac",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Virtualize macOS on a Mac",
+      "type": "topic",
+      "url": "/documentation/virtualization/virtualize-macos-on-a-mac"
+    },
+    "e6d71f8335ab/RunningGUILinuxInAVirtualMachineOnAMac.zip": {
+      "checksum": "e6d71f8335abdeb93132a0dcb54472ff5bd3f7b503f99f9bff211f3ad85afc9508f75148e515d80b949e29a87a2ff18d0fd23b7676405dc8c46063d29d8b26e8",
+      "identifier": "e6d71f8335ab/RunningGUILinuxInAVirtualMachineOnAMac.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/e6d71f8335ab/RunningGUILinuxInAVirtualMachineOnAMac.zip"
+    },
+    "https://getfedora.org/en/workstation/download/": {
+      "identifier": "https://getfedora.org/en/workstation/download/",
+      "title": "Fedora",
+      "titleInlineContent": [
+        {
+          "text": "Fedora",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://getfedora.org/en/workstation/download/"
+    },
+    "https://ubuntu.com/download/desktop": {
+      "identifier": "https://ubuntu.com/download/desktop",
+      "title": "Ubuntu",
+      "titleInlineContent": [
+        {
+          "text": "Ubuntu",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://ubuntu.com/download/desktop"
+    },
+    "https://www.debian.org/distrib/": {
+      "identifier": "https://www.debian.org/distrib/",
+      "title": "Debian",
+      "titleInlineContent": [
+        {
+          "text": "Debian",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.debian.org/distrib/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "e6d71f8335ab/RunningGUILinuxInAVirtualMachineOnAMac.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Virtual-machine-setup",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/running-macos-in-a-virtual-machine-on-apple-silicon",
+        "doc://com.apple.virtualization/documentation/Virtualization/running-linux-in-a-virtual-machine",
+        "doc://com.apple.virtualization/documentation/Virtualization/installing-macos-on-a-virtual-machine",
+        "doc://com.apple.virtualization/documentation/Virtualization/creating-and-running-a-linux-virtual-machine",
+        "doc://com.apple.virtualization/documentation/Virtualization/virtualize-macos-on-a-mac",
+        "doc://com.apple.virtualization/documentation/Virtualization/virtualize-linux-on-a-mac",
+        "doc://com.apple.virtualization/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta",
+        "doc://com.apple.virtualization/documentation/Virtualization/accelerating-the-performance-of-rosetta"
+      ],
+      "title": "Virtual machine setup"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Virtual-machine-setup",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/running-macos-in-a-virtual-machine-on-apple-silicon",
+                "doc://com.apple.virtualization/documentation/Virtualization/running-linux-in-a-virtual-machine",
+                "doc://com.apple.virtualization/documentation/Virtualization/installing-macos-on-a-virtual-machine",
+                "doc://com.apple.virtualization/documentation/Virtualization/creating-and-running-a-linux-virtual-machine",
+                "doc://com.apple.virtualization/documentation/Virtualization/virtualize-macos-on-a-mac",
+                "doc://com.apple.virtualization/documentation/Virtualization/virtualize-linux-on-a-mac",
+                "doc://com.apple.virtualization/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta",
+                "doc://com.apple.virtualization/documentation/Virtualization/accelerating-the-performance-of-rosetta"
+              ],
+              "title": "Virtual machine setup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZSpiceAgentPortAttachment/title",
+          "value": "VZSpiceAgentPortAttachment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZSpiceAgentPortAttachment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZSpiceAgentPortAttachment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZSpiceAgentPortAttachment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZSpiceAgentPortAttachment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine/title",
+          "value": "VZVirtualMachine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZEFIBootLoader/title",
+          "value": "VZEFIBootLoader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZEFIBootLoader/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZEFIBootLoader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZEFIBootLoader/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZEFIBootLoader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioConsoleDeviceConfiguration/title",
+          "value": "VZVirtioConsoleDeviceConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioConsoleDeviceConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioConsoleDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtioConsoleDeviceConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtioConsoleDeviceConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineConfiguration/title",
+          "value": "VZVirtualMachineConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachineConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachineConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineDelegate~1guestDidStop(_:)/title",
+          "value": "guestDidStopVirtualMachine:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineDelegate~1guestDidStop(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "guestDidStopVirtualMachine:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

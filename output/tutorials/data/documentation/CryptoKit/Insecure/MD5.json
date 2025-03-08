@@ -1,0 +1,977 @@
+{
+  "abstract": [
+    {
+      "text": "An implementation of MD5 hashing.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "CryptoKit",
+    "externalID": "s:9CryptoKit8InsecureO3MD5V",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MD5"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Apple CryptoKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MD5"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Insecure.MD5"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MD5"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " hash implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HashFunction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol to produce an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "MD5 digest (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5Digest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can compute the digest by calling the static ",
+              "type": "text"
+            },
+            {
+              "code": "hash(data:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "once. Alternatively, if the data that you want to hash is too large to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "fit in memory, you can compute the digest iteratively by creating a new",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "hash instance, calling the ",
+              "type": "text"
+            },
+            {
+              "code": "update(data:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method repeatedly with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "blocks of data, and then calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5/finalize()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to get the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This hash algorithm isn’t considered cryptographically",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "secure, but is provided for backward compatibility with older services",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "that require it. For new services, prefer one of the secure hashes, like",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CryptoKit/documentation/CryptoKit": {
+      "abstract": [
+        {
+          "text": "Perform cryptographic operations securely and efficiently.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple CryptoKit",
+      "type": "topic",
+      "url": "/documentation/cryptokit"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/HashFunction": {
+      "abstract": [
+        {
+          "text": "A type that performs cryptographically secure hashing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HashFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/HashFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HashFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "HashFunction",
+      "type": "topic",
+      "url": "/documentation/cryptokit/hashfunction"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure": {
+      "abstract": [
+        {
+          "text": "A container for older, cryptographically insecure algorithms.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Insecure"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Insecure"
+        }
+      ],
+      "role": "symbol",
+      "title": "Insecure",
+      "type": "topic",
+      "url": "/documentation/cryptokit/insecure"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5": {
+      "abstract": [
+        {
+          "text": "An implementation of MD5 hashing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MD5"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MD5"
+        }
+      ],
+      "role": "symbol",
+      "title": "Insecure.MD5",
+      "type": "topic",
+      "url": "/documentation/cryptokit/insecure/md5"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5/Digest": {
+      "abstract": [
+        {
+          "text": "The digest type for a MD5 hash function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Digest"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5/Digest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Digest"
+        }
+      ],
+      "role": "symbol",
+      "title": "Insecure.MD5.Digest",
+      "type": "topic",
+      "url": "/documentation/cryptokit/insecure/md5/digest"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5/blockByteCount": {
+      "abstract": [
+        {
+          "text": "The number of bytes that represents the hash function’s internal",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blockByteCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5/blockByteCount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "blockByteCount",
+      "type": "topic",
+      "url": "/documentation/cryptokit/insecure/md5/blockbytecount"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5/byteCount": {
+      "abstract": [
+        {
+          "text": "The number of bytes in an MD5 digest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "byteCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5/byteCount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "byteCount",
+      "type": "topic",
+      "url": "/documentation/cryptokit/insecure/md5/bytecount"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5/finalize()": {
+      "abstract": [
+        {
+          "text": "Finalizes the hash function and returns the computed digest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "finalize"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit8InsecureO",
+          "text": "Insecure"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit8InsecureO3MD5V",
+          "text": "MD5"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9CryptoKit8InsecureO3MD5V6Digesta",
+          "text": "Digest"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5/finalize()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "finalize()",
+      "type": "topic",
+      "url": "/documentation/cryptokit/insecure/md5/finalize()"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5/init()": {
+      "abstract": [
+        {
+          "text": "Creates a MD5 hash function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/cryptokit/insecure/md5/init()"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5/update(bufferPointer:)": {
+      "abstract": [
+        {
+          "text": "Incrementally updates the hash function with the contents of the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "bufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SW",
+          "text": "UnsafeRawBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5/update(bufferPointer:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "update(bufferPointer:)",
+      "type": "topic",
+      "url": "/documentation/cryptokit/insecure/md5/update(bufferpointer:)"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5Digest": {
+      "abstract": [
+        {
+          "text": "The output of a MD5 hash.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MD5Digest"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5Digest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MD5Digest"
+        }
+      ],
+      "role": "symbol",
+      "title": "Insecure.MD5Digest",
+      "type": "topic",
+      "url": "/documentation/cryptokit/insecure/md5digest"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/SHA1": {
+      "abstract": [
+        {
+          "text": "An implementation of SHA1 hashing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHA1"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/SHA1",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHA1"
+        }
+      ],
+      "role": "symbol",
+      "title": "Insecure.SHA1",
+      "type": "topic",
+      "url": "/documentation/cryptokit/insecure/sha1"
+    },
+    "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512": {
+      "abstract": [
+        {
+          "text": "An implementation of Secure Hashing Algorithm 2 (SHA-2) hashing with a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "512-bit digest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHA512"
+        }
+      ],
+      "identifier": "doc://com.apple.CryptoKit/documentation/CryptoKit/SHA512",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHA512"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHA512",
+      "type": "topic",
+      "url": "/documentation/cryptokit/sha512"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/HashFunction",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Hashes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/SHA1"
+      ],
+      "title": "Hashes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Specifying-the-output-type",
+      "identifiers": [
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5/Digest",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5Digest"
+      ],
+      "title": "Specifying the output type"
+    },
+    {
+      "anchor": "Reporting-the-hash-length",
+      "identifiers": [
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5/byteCount"
+      ],
+      "title": "Reporting the hash length"
+    },
+    {
+      "anchor": "Computing-a-hash-iteratively",
+      "identifiers": [
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5/init()",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5/update(bufferPointer:)",
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5/finalize()"
+      ],
+      "title": "Computing a hash iteratively"
+    },
+    {
+      "anchor": "Reporting-hash-function-information",
+      "identifiers": [
+        "doc://com.apple.CryptoKit/documentation/CryptoKit/Insecure/MD5/blockByteCount"
+      ],
+      "title": "Reporting hash function information"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cryptokit/insecure/md5"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

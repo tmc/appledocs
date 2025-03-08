@@ -1,0 +1,1638 @@
+{
+  "abstract": [
+    {
+      "text": "Report the data you collect and the required reasons API you use in your app or third-party SDK.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.bundleresources/documentation/BundleResources",
+        "doc://com.apple.bundleresources/documentation/BundleResources/privacy-manifest-files"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.bundleresources/documentation/BundleResources/adding-a-privacy-manifest-to-your-app-or-third-party-sdk"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Bundle Resources"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding a privacy manifest to your app or third-party SDK"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A privacy manifest is a property list file (",
+              "type": "text"
+            },
+            {
+              "code": "PrivacyInfo.xcprivacy",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") that you add to your target’s resources.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The privacy manifest describes the privacy practices of an app or third-party SDK. To add a privacy manifest",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to your app or third-party SDK using Xcode, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/privacy-manifest-files",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". All privacy manifest files in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app must be valid, containing only the expected keys and values. For more information, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "“Describe the data your app or third-party SDK collects,” in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/describing-data-use-in-privacy-manifests",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "App Store Connect rejects app submissions that include invalid privacy manifest files. If you upload an app to App Store Connect that contains privacy manifest files with unexpected keys or values, you receive an email that includes the name and path of the invalid files in your app bundle. If an invalid file comes from a third-party SDK, contact its developer for an updated version of the SDK that includes a valid privacy manifest. To troubleshoot invalid privacy manifests, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". Starting February 12, 2025, apps you submit for review in App Store Connect must contain a valid privacy manifest file for a certain number of commonly used third-party SDKs. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/support/third-party-SDK-requirements/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you add a privacy manifest to the target that builds your app or third-party SDK in Xcode, Xcode",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "automatically places this file in the correct location based on the type of product and its target",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "platform. If you don’t use Xcode to build your product, use the information below to place the privacy",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "manifest in the correct location. Even if you use Xcode, you might find this information useful to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "verify the privacy manifest location in your product.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-privacy-manifest-to-your-app",
+          "level": 3,
+          "text": "Add a privacy manifest to your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you build an iOS, iPadOS, tvOS, visionOS, or watchOS app, place the privacy manifest at the root of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app’s bundle. The example below shows the bundle structure of an iOS app called ",
+              "type": "text"
+            },
+            {
+              "code": "Sample",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "lists ",
+              "type": "text"
+            },
+            {
+              "code": "PrivacyInfo.xcprivacy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " at ",
+              "type": "text"
+            },
+            {
+              "code": "Sample.app/PrivacyInfo.xcprivacy",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Sample.app/",
+            "    Info.plist",
+            "    Sample",
+            "    PrivacyInfo.xcprivacy ",
+            "    ..."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For macOS and Mac Catalyst apps, place the privacy manifest file in ",
+              "type": "text"
+            },
+            {
+              "code": "Contents/Resources/",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app’s bundle. The following example shows the bundle structure of a macOS app called ",
+              "type": "text"
+            },
+            {
+              "code": "MacSample",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which lists ",
+              "type": "text"
+            },
+            {
+              "code": "PrivacyInfo.xcprivacy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " at ",
+              "type": "text"
+            },
+            {
+              "code": "MacSample.app/Contents/Resources/PrivacyInfo.xcprivacy",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MacSample.app/",
+            "    Contents/",
+            "        Info.plist",
+            "        MacOS/",
+            "            MacSample",
+            "        Resources/",
+            "            PrivacyInfo.xcprivacy",
+            "        ..."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-a-privacy-manifest-to-your-framework",
+          "level": 3,
+          "text": "Add a privacy manifest to your framework",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The location where you place the privacy manifest in your framework depends on the platform. For iOS, iPadOS, tvOS, visionOS, or watchOS",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "frameworks, place the privacy manifest at the root of your framework’s bundle. The example below shows the layout of an iOS framework called ",
+              "type": "text"
+            },
+            {
+              "code": "SampleFramework",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which lists",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "PrivacyInfo.xcprivacy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " at ",
+              "type": "text"
+            },
+            {
+              "code": "SampleFramework.framework/PrivacyInfo.xcprivacy",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "SampleFramework.framework/",
+            "    Info.plist ",
+            "    SampleFramework",
+            "    PrivacyInfo.xcprivacy ",
+            "    ..."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For macOS and Mac Catalyst frameworks, place the privacy manifest file in ",
+              "type": "text"
+            },
+            {
+              "code": "Versions/A/Resources/",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "framework’s bundle. The following example shows the layout of a macOS framework named ",
+              "type": "text"
+            },
+            {
+              "code": "MacSampleFramework",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that supports",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a single version (",
+              "type": "text"
+            },
+            {
+              "code": "A)",
+              "type": "codeVoice"
+            },
+            {
+              "text": "and includes a privacy manifest file. Its bundle structure lists",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "PrivacyInfo.xcprivacy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " at ",
+              "type": "text"
+            },
+            {
+              "code": "MacSampleFramework.framework/Versions/A/Resources/PrivacyInfo.xcprivacy",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MacSampleFramework.framework/",
+            "    MacSampleFramework -> Versions/Current/MacSampleFramework",
+            "    Resources -> Versions/Current/Resources",
+            "    Versions/",
+            "        Current -> A",
+            "        A/",
+            "            MacSampleFramework",
+            "            Resources/",
+            "                Info.plist ",
+            "                PrivacyInfo.xcprivacy",
+            "            ...",
+            "    ..."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-a-privacy-manifest-to-your-Swift-package",
+          "level": 3,
+          "text": "Add a privacy manifest to your Swift package",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A Swift package’s resources can include its privacy manifest file. For more information about adding",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "resource files to Swift packages, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/bundling-resources-with-a-swift-package",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Source files reside in a subfolder of a package’s ",
+              "type": "text"
+            },
+            {
+              "code": "Sources",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory that has the same name as the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "target they belong to. This is the default location for resources. If your resource files reside in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the default location, add the privacy manifest to it. The following example shows a package manifest",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that declares the ",
+              "type": "text"
+            },
+            {
+              "code": "SomeLibrary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " target. Place your privacy manifest file in ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Sources/SomeLibrary",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " if",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you don’t specify an alternative location, as shown below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "SamplePackage/",
+            "    README.md",
+            "    Package.swift",
+            "    Sources/",
+            "        SomeLibrary/",
+            "            SomeLibrary.swift",
+            "            Product.swift",
+            "            PrivacyInfo.xcprivacy",
+            "            ...",
+            "    Tests/",
+            "        ..."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, if your resource files reside in a subfolder separate from your source files, add the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "privacy manifest to this directory. Place your privacy manifest file in ",
+              "type": "text"
+            },
+            {
+              "code": "Sources/SomeLibrary/Resources",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "if you put all your resource files into a directory named ",
+              "type": "text"
+            },
+            {
+              "code": "Resources",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "SamplePackage/",
+            "    README.md",
+            "    Package.swift",
+            "    Sources/",
+            "        SomeLibrary/",
+            "            SomeLibrary.swift",
+            "            Product.swift",
+            "            ...",
+            "            Resources/",
+            "                PrivacyInfo.xcprivacy",
+            "                ...",
+            "    Tests/",
+            "        ..."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode doesn’t recognize privacy manifest files as resources by default. After adding the manifest file",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to your package, explicitly declare the file or the directory that includes it as a package resource.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the following example, the package manifest declares ",
+              "type": "text"
+            },
+            {
+              "code": "PrivacyInfo.xcprivacy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as an explicit resource:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "targets: [",
+            "    .target(",
+            "        name: \"SomeLibrary\",",
+            "        resources: [",
+            "            .process(\"PrivacyInfo.xcprivacy\")]",
+            "    ),",
+            "]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the package manifest lists the ",
+              "type": "text"
+            },
+            {
+              "code": "Resources",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory as an explicit resource:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "targets: [",
+            "    .target(",
+            "        name: \"SomeLibrary\",",
+            "        resources: [",
+            "            .process(\"Resources\")]",
+            "    ),",
+            "]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you distribute your binary framework as a Swift package, check that your XCFramework bundle includes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a privacy manifest for each platform that you support. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/distributing-binary-frameworks-as-swift-packages",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Distribute-your-static-library-with-a-privacy-manifest",
+          "level": 3,
+          "text": "Distribute your static library with a privacy manifest",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A static library is an archive of object files with a ",
+              "type": "text"
+            },
+            {
+              "code": ".a",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file extension. It doesn’t support resources",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as the privacy manifest. If you currently distribute your SDK as a static library and want to update",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it to include a privacy manifest in Xcode, create a new static framework target that includes all your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "static library’s source files and resources, then add the privacy manifest to the target’s resource.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information on how to create a static framework, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/creating-a-static-framework",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t use Xcode to build your static library, create a static framework bundle for your static",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "library manually, then add the privacy manifest to the bundle as a resource. For more information about",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "framework bundle structure, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/placing-content-in-a-bundle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To identify the privacy manifest",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "location in the static framework, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/adding-a-privacy-manifest-to-your-app-or-third-party-sdk#Add-a-privacy-manifest-to-your-framework",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Verify-your-XCFramework-bundle-includes-the-necessary-privacy-manifests",
+          "level": 3,
+          "text": "Verify your XCFramework bundle includes the necessary privacy manifests",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An XCFramework bundle is a binary package that can include multiple platform-specific variants of a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "framework or library. It supports distribution of Swift and C-based code. For more information about",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "creating an XCFramework bundle, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/creating-a-multi-platform-binary-framework-bundle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After adding a privacy manifest to your framework, consider distributing it as a signed XCFramework",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "bundle. When you generate an XCFramework bundle with your framework, the generated bundle contains",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a privacy manifest file for each platform that your framework supports. The framework platform determines",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the location of the manifest file. When you sign your XCFramework bundle, developers who incorporate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the framework can see whether updates to the framework have compatible code signatures. For more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/verifying-the-origin-of-your-xcframeworks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After an update, ",
+              "type": "text"
+            },
+            {
+              "code": "SampleFramework",
+              "type": "codeVoice"
+            },
+            {
+              "text": " supports iOS, iOS Simulator, Mac Catalyst, and macOS. The ",
+              "type": "text"
+            },
+            {
+              "code": "MyArchives",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "directory contains archives of each variant of ",
+              "type": "text"
+            },
+            {
+              "code": "SampleFramework",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Running the following command in Terminal",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "creates an XCFramework with variants for iOS, iOS Simulator, Mac Catalyst, and macOS:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "xcodebuild -create-xcframework ",
+            "-archive MyArchives/SampleFramework-iOS.xcarchive -framework SampleFramework.framework",
+            "-archive MyArchives/SampleFramework-macOS.xcarchive -framework SampleFramework.framework",
+            "-archive MyArchives/SampleFramework-iOS_Simulator.xcarchive -framework SampleFramework.framework ",
+            "-archive MyArchives/SampleFramework-Mac_Catalyst.xcarchive -framework SampleFramework.framework ",
+            "-output xcframeworks/SampleFramework.xcframework"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each variant of ",
+              "type": "text"
+            },
+            {
+              "code": "SampleFramework",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains a privacy manifest file at the appropriate location, as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "shown below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "SampleFramework.xcframework/",
+            "    Info.plist",
+            "    ios-arm64/",
+            "       dSYMs/",
+            "           ...",
+            "       SampleFramework.framework/",
+            "           Info.plist",
+            "           SampleFramework",
+            "           PrivacyInfo.xcprivacy ",
+            "           ...",
+            "    macos-arm64_x86_64/",
+            "        dSYMs/",
+            "            ...",
+            "        SampleFramework.framework/",
+            "            SampleFramework -> Versions/Current/SampleFramework",
+            "            Resources -> Versions/Current/Resources",
+            "            Versions/",
+            "                Current -> A",
+            "                A/",
+            "                    SampleFramework",
+            "                    Resources/",
+            "                        Info.plist",
+            "                        PrivacyInfo.xcprivacy",
+            "                    ...",
+            "            ...",
+            "    ios-arm64_x86_64-simulator/",
+            "        dSYMs/",
+            "            ...",
+            "        SampleFramework.framework/",
+            "            Info.plist",
+            "            SampleFramework",
+            "            PrivacyInfo.xcprivacy ",
+            "            ...",
+            "    ios-arm64_x86_64-maccatalyst/",
+            "        dSYMs/",
+            "           ...",
+            "        SampleFramework.framework/",
+            "            SampleFramework -> Versions/Current/SampleFramework",
+            "            Resources -> Versions/Current/Resources",
+            "            Versions/",
+            "                Current -> A",
+            "                A/",
+            "                    SampleFramework",
+            "                    Resources/",
+            "                        Info.plist ",
+            "                        PrivacyInfo.xcprivacy",
+            "                    ...",
+            "            ..."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To identify the privacy manifest location in frameworks, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/adding-a-privacy-manifest-to-your-app-or-third-party-sdk#Add-a-privacy-manifest-to-your-framework",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To ship your static library with a privacy manifest, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/adding-a-privacy-manifest-to-your-app-or-third-party-sdk#Distribute-your-static-library-with-a-privacy-manifest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Locate-an-invalid-privacy-manifest-in-your-app-archive",
+          "level": 3,
+          "text": "Locate an invalid privacy manifest in your app archive",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To find an invalid privacy manifest in your app archive:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Gather the location of the file from the email you received from Apple.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, choose Window > Organizer, then click Archives.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control-click your app archive in the organizer, and choose Show in Finder from the contextual menu.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Xcode opens the Finder to the location of your archive.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Finder, control-click your archive, and choose Show Package Contents to open it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Navigate to the location of the privacy manifest in your archive.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Managing-an-invalid-privacy-manifest",
+          "level": 3,
+          "text": "Managing an invalid privacy manifest",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re unable to obtain a valid privacy manifest from a third-party SDK developer and need to submit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app, locate the invalid privacy manifest in your app archive, delete it, and submit your archive using Xcode.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Alternatively, locate the invalid privacy manifest in your app, fix the validation issues in the file,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and submit your archive using Xcode. To troubleshoot invalid privacy manifests, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Removing or modifying the invalid privacy manifest breaks the archived app’s signature. Xcode will re-sign your app when you distribute your archive from the Archives organizer. For more information, see “Select a method for distribution,” in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Xcode/distributing-your-app-for-beta-testing-and-releases",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources": {
+      "abstract": [
+        {
+          "text": "Resources located in an app, framework, or plugin bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Bundle Resources",
+      "type": "topic",
+      "url": "/documentation/bundleresources"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/App-Privacy-Configuration": {
+      "abstract": [
+        {
+          "text": "A data structure that represents the root object in a privacy manifest file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/App-Privacy-Configuration",
+      "kind": "symbol",
+      "name": "App Privacy Configuration",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "App Privacy Configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "App Privacy Configuration",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/app-privacy-configuration"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/adding-a-privacy-manifest-to-your-app-or-third-party-sdk#Add-a-privacy-manifest-to-your-framework": {
+      "abstract": [],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/adding-a-privacy-manifest-to-your-app-or-third-party-sdk#Add-a-privacy-manifest-to-your-framework",
+      "kind": "section",
+      "title": "Add a privacy manifest to your framework",
+      "type": "topic",
+      "url": "/documentation/bundleresources/adding-a-privacy-manifest-to-your-app-or-third-party-sdk#Add-a-privacy-manifest-to-your-framework"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/adding-a-privacy-manifest-to-your-app-or-third-party-sdk#Distribute-your-static-library-with-a-privacy-manifest": {
+      "abstract": [],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/adding-a-privacy-manifest-to-your-app-or-third-party-sdk#Distribute-your-static-library-with-a-privacy-manifest",
+      "kind": "section",
+      "title": "Distribute your static library with a privacy manifest",
+      "type": "topic",
+      "url": "/documentation/bundleresources/adding-a-privacy-manifest-to-your-app-or-third-party-sdk#Distribute-your-static-library-with-a-privacy-manifest"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/describing-data-use-in-privacy-manifests": {
+      "abstract": [
+        {
+          "text": "Declare the data collected by your app or by third-party SDKs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/describing-data-use-in-privacy-manifests",
+      "kind": "article",
+      "role": "article",
+      "title": "Describing data use in privacy manifests",
+      "type": "topic",
+      "url": "/documentation/bundleresources/describing-data-use-in-privacy-manifests"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/describing-use-of-required-reason-api": {
+      "abstract": [
+        {
+          "text": "Ensure your use of covered API is consistent with policy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/describing-use-of-required-reason-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Describing use of required reason API",
+      "type": "topic",
+      "url": "/documentation/bundleresources/describing-use-of-required-reason-api"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/placing-content-in-a-bundle": {
+      "abstract": [
+        {
+          "text": "Place bundle content in the correct location based on its type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/placing-content-in-a-bundle",
+      "kind": "article",
+      "role": "article",
+      "title": "Placing content in a bundle",
+      "type": "topic",
+      "url": "/documentation/bundleresources/placing-content-in-a-bundle"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/privacy-manifest-files": {
+      "abstract": [
+        {
+          "text": "Describe the data your app or third-party SDK collects and the reasons required APIs it uses.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/privacy-manifest-files",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Privacy manifest files",
+      "type": "topic",
+      "url": "/documentation/bundleresources/privacy-manifest-files"
+    },
+    "doc://com.apple.documentation/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Identify common configurations that cause unsuccessful privacy manifest validation with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3181: Debugging an invalid privacy manifest",
+      "type": "topic",
+      "url": "/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/bundling-resources-with-a-swift-package": {
+      "abstract": [
+        {
+          "text": "Add resource files to your Swift package and access them in your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/bundling-resources-with-a-swift-package",
+      "kind": "article",
+      "role": "article",
+      "title": "Bundling resources with a Swift package",
+      "type": "topic",
+      "url": "/documentation/Xcode/bundling-resources-with-a-swift-package"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/creating-a-multi-platform-binary-framework-bundle": {
+      "abstract": [
+        {
+          "text": "Combine variants of a binary framework or library into an XCFramework bundle that supports multiple platforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/creating-a-multi-platform-binary-framework-bundle",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a multiplatform binary framework bundle",
+      "type": "topic",
+      "url": "/documentation/Xcode/creating-a-multi-platform-binary-framework-bundle"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/creating-a-static-framework": {
+      "abstract": [
+        {
+          "text": "Configure your project to build a new static framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/creating-a-static-framework",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a static framework",
+      "type": "topic",
+      "url": "/documentation/Xcode/creating-a-static-framework"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/distributing-binary-frameworks-as-swift-packages": {
+      "abstract": [
+        {
+          "text": "Make binaries available to other developers by creating Swift packages that include one or more XCFrameworks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/distributing-binary-frameworks-as-swift-packages",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing binary frameworks as Swift packages",
+      "type": "topic",
+      "url": "/documentation/Xcode/distributing-binary-frameworks-as-swift-packages"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/distributing-your-app-for-beta-testing-and-releases": {
+      "abstract": [
+        {
+          "text": "Release your app to beta testers and users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/distributing-your-app-for-beta-testing-and-releases",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing your app for beta testing and releases",
+      "type": "topic",
+      "url": "/documentation/Xcode/distributing-your-app-for-beta-testing-and-releases"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/verifying-the-origin-of-your-xcframeworks": {
+      "abstract": [
+        {
+          "text": "Discover who signed a framework, and take action when that changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/verifying-the-origin-of-your-xcframeworks",
+      "kind": "article",
+      "role": "article",
+      "title": "Verifying the origin of your XCFrameworks",
+      "type": "topic",
+      "url": "/documentation/Xcode/verifying-the-origin-of-your-xcframeworks"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/support/third-party-SDK-requirements/": {
+      "identifier": "https://developer.apple.com/support/third-party-SDK-requirements/",
+      "title": "Upcoming third-party SDK requirements",
+      "titleInlineContent": [
+        {
+          "text": "Upcoming third-party SDK requirements",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/third-party-SDK-requirements/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/describing-data-use-in-privacy-manifests",
+        "doc://com.apple.bundleresources/documentation/BundleResources/describing-use-of-required-reason-api",
+        "doc://com.apple.bundleresources/documentation/BundleResources/App-Privacy-Configuration"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/describing-data-use-in-privacy-manifests",
+                "doc://com.apple.bundleresources/documentation/BundleResources/describing-use-of-required-reason-api",
+                "doc://com.apple.bundleresources/documentation/BundleResources/App-Privacy-Configuration"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1App-Privacy-Configuration/title",
+          "value": "App Privacy Configuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1App-Privacy-Configuration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "App Privacy Configuration"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/bundleresources/adding-a-privacy-manifest-to-your-app-or-third-party-sdk"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/bundleresources/adding-a-privacy-manifest-to-your-app-or-third-party-sdk"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,621 @@
+{
+  "abstract": [
+    {
+      "text": "Support adding an issued card to Apple Pay from directly within Apple Wallet",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "using Wallet Extensions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.passkit/documentation/PassKit",
+        "doc://com.apple.passkit/documentation/PassKit/wallet"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.passkit/documentation/PassKit/implementing-wallet-extensions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "PassKit (Apple Pay and Wallet)"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Implementing Wallet Extensions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Pay in-app provisioning relies on the individual to add a payment pass from within the issuer app,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and requires this person to already be in the issuer app with the intention of adding the pass. To make it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "easier for people to add a payment pass to Apple Pay directly within Apple Wallet, Apple Pay offers extensions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for in-app provisioning, called Wallet Extensions. Wallet Extensions improve discoverability of the option to add",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an issued card to Apple Wallet, as people can tap a button within Apple Wallet to begin a provisioning",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "experience that doesn’t require them to enter details manually.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this sample as a guide for developing the Wallet Extensions feature. The feature relies on two extensions,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a UI extension and a non-UI extension. The issuer app needs a non-UI extension to report on the status of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "extension and passes the app has available to add, and to perform the card data lookup—just like when adding payment",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "passes to Apple Wallet from within the issuer app via in-app provisioning.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As for the UI extension, the issuer app needs a UI extension to perform user authentication if the non-UI",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "extension reports that authentication is required. The UI extension isn’t a redirect to the issuer app, but a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "separate screen that uses the same issuer app login credentials.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The project contains four targets:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ImplementingWalletExtensionsSampleApp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " - A containing app sample",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "WUIExt",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " - A UI extension sample",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "WNonUIExt",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " - A non-UI extension sample",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ImplementingWalletExtensionsSampleAppTests",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " - A unit-testing bundle with sample tests",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on Wallet Extensions, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://applepaydemo.apple.com/wallet-extensions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because Wallet Extensions require an entitlement from Apple, you can’t run the app extensions in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this sample. You can only run the sample unit tests and the sample containing app, which has a login view that is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "repurposed for the UI extension during the Wallet Extensions process. To run this sample you’ll need the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode 15 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS 14 or later (for Wallet Extensions)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "18de717aedac/ImplementingWalletExtensions.zip": {
+      "checksum": "18de717aedac0775ae2be77ed2293d2938a1f26f7314cd04d5e8bdac22000bcc75c24f65d4fbf48e45f5c4a2ae81be22e445836950460fe2b450cbb0b9e3917e",
+      "identifier": "18de717aedac/ImplementingWalletExtensions.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/18de717aedac/ImplementingWalletExtensions.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.passkit/documentation/PassKit": {
+      "abstract": [
+        {
+          "text": "Process Apple Pay payments in your app, and create and distribute passes for the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PassKit (Apple Pay and Wallet)",
+      "type": "topic",
+      "url": "/documentation/passkit"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIssuerProvisioningExtensionAuthorizationProviding": {
+      "abstract": [
+        {
+          "text": "A protocol for a UI app extension to authorize a user to add a payment card to Wallet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKIssuerProvisioningExtensionAuthorizationProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIssuerProvisioningExtensionAuthorizationProviding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIssuerProvisioningExtensionAuthorizationProviding"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIssuerProvisioningExtensionAuthorizationProviding",
+      "type": "topic",
+      "url": "/documentation/passkit/pkissuerprovisioningextensionauthorizationproviding"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKIssuerProvisioningExtensionHandler": {
+      "abstract": [
+        {
+          "text": "An abstract superclass for an app extension to add a payment card to Wallet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKIssuerProvisioningExtensionHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKIssuerProvisioningExtensionHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKIssuerProvisioningExtensionHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKIssuerProvisioningExtensionHandler",
+      "type": "topic",
+      "url": "/documentation/passkit/pkissuerprovisioningextensionhandler"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/wallet": {
+      "abstract": [
+        {
+          "text": "Manage tickets, boarding passes, payment cards and other passes in the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/wallet",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Wallet",
+      "type": "topic",
+      "url": "/documentation/passkit/wallet"
+    },
+    "https://applepaydemo.apple.com/wallet-extensions": {
+      "identifier": "https://applepaydemo.apple.com/wallet-extensions",
+      "title": "Apple Pay Demo - Wallet Extensions documentation",
+      "titleInlineContent": [
+        {
+          "text": "Apple Pay Demo - Wallet Extensions documentation",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://applepaydemo.apple.com/wallet-extensions"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "18de717aedac/ImplementingWalletExtensions.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Extend-Wallet-to-add-issuer-cards",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKIssuerProvisioningExtensionHandler",
+        "doc://com.apple.passkit/documentation/PassKit/PKIssuerProvisioningExtensionAuthorizationProviding"
+      ],
+      "title": "Extend Wallet to add issuer cards"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Extend-Wallet-to-add-issuer-cards",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKIssuerProvisioningExtensionHandler",
+                "doc://com.apple.passkit/documentation/PassKit/PKIssuerProvisioningExtensionAuthorizationProviding"
+              ],
+              "title": "Extend Wallet to add issuer cards"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIssuerProvisioningExtensionHandler/title",
+          "value": "PKIssuerProvisioningExtensionHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIssuerProvisioningExtensionHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIssuerProvisioningExtensionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIssuerProvisioningExtensionHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIssuerProvisioningExtensionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIssuerProvisioningExtensionAuthorizationProviding/title",
+          "value": "PKIssuerProvisioningExtensionAuthorizationProviding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIssuerProvisioningExtensionAuthorizationProviding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIssuerProvisioningExtensionAuthorizationProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKIssuerProvisioningExtensionAuthorizationProviding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKIssuerProvisioningExtensionAuthorizationProviding"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/passkit/implementing-wallet-extensions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/passkit/implementing-wallet-extensions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

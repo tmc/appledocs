@@ -1,0 +1,1223 @@
+{
+  "abstract": [
+    {
+      "text": "Performs the command associated with the given event.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "added",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.webkit/documentation/WebKit",
+        "doc://com.apple.webkit/documentation/WebKit/WKWebExtensionContext"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.webkit/documentation/WebKit/WKWebExtensionContext/performCommand(for:)-8btj0"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)WKWebExtensionContext(im)performCommandForEvent:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "performCommand"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "for"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)NSEvent",
+        "text": "NSEvent"
+      },
+      {
+        "kind": "text",
+        "text": ") -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sb",
+        "text": "Bool"
+      }
+    ],
+    "modules": [
+      {
+        "name": "WebKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "performCommandForEvent:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": true,
+        "deprecated": false,
+        "introducedAt": "15.4",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "performCommand(for:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "performCommand"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "for"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "event"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSEvent",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSEvent",
+              "text": "NSEvent"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sb",
+              "text": "Bool"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The event representing the user input.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "event"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Returns ",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if a command corresponding to the event was found and performed, ",
+              "type": "text"
+            },
+            {
+              "code": "NO",
+              "type": "codeVoice"
+            },
+            {
+              "text": " otherwise.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method checks for a command corresponding to the provided event and performs it, if available. The app should use this method to perform any extension commands at an appropriate time in the app’s event handling, like in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplication/sendEvent(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplication",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/sendEvent(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclasses.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSApplication": {
+      "abstract": [
+        {
+          "text": "An object that manages an app’s main event loop and resources used by all of that app’s objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplication",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSApplication",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSApplication"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSApplication/sendEvent(_:)": {
+      "abstract": [
+        {
+          "text": "Dispatches an event to other objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendEvent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "event"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplication/sendEvent(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendEvent(_:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSApplication/sendEvent(_:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSWindow": {
+      "abstract": [
+        {
+          "text": "A window that an app displays on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSWindow"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSWindow",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSWindow"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSWindow/sendEvent(_:)": {
+      "abstract": [
+        {
+          "text": "This action method dispatches mouse and keyboard events the global application object sends to the window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendEvent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "event"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow/sendEvent(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendEvent(_:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSWindow/sendEvent(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.webkit/documentation/WebKit": {
+      "abstract": [
+        {
+          "text": "Integrate web content seamlessly into your app, and customize content interactions to meet your app’s needs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WebKit",
+      "type": "topic",
+      "url": "/documentation/webkit"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKWebExtensionContext": {
+      "abstract": [
+        {
+          "text": "An object that represents the runtime environment for a web extension.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKWebExtensionContext"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKWebExtensionContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKWebExtensionContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKWebExtensionContext",
+      "type": "topic",
+      "url": "/documentation/webkit/wkwebextensioncontext"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKWebExtensionContext/performCommand(for:)-8btj0": {
+      "abstract": [
+        {
+          "text": "Performs the command associated with the given event.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performCommand"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKWebExtensionContext/performCommand(for:)-8btj0",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "performCommandForEvent:"
+        }
+      ],
+      "role": "symbol",
+      "title": "performCommand(for:)",
+      "type": "topic",
+      "url": "/documentation/webkit/wkwebextensioncontext/performcommand(for:)-8btj0"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@BOOL": {
+      "abstract": [
+        {
+          "text": "Type to represent a Boolean value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BOOL",
+      "type": "topic",
+      "url": "/documentation/objectivec/bool"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSEvent": {
+      "abstract": [
+        {
+          "text": "An object that contains information about an input action, such as a mouse click or a key press.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSEvent"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSEvent",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSEvent"
+    },
+    "doc://com.externally.resolved.symbol/s:Sb": {
+      "abstract": [
+        {
+          "text": "A value type whose instances are either `true` or `false`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/Swift/Bool"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": true,
+              "deprecated": false,
+              "introducedAt": "15.4",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "performCommandForEvent:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "performCommandForEvent:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.webkit/documentation/WebKit",
+                "doc://com.apple.webkit/documentation/WebKit/WKWebExtensionContext"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@BOOL",
+                    "text": "BOOL"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "performCommandForEvent:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSEvent",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSEvent",
+                    "text": "NSEvent"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "event"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The event representing the user input.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "event"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/2",
+          "value": {
+            "content": [
+              {
+                "anchor": "return-value",
+                "level": 2,
+                "text": "Return Value",
+                "type": "heading"
+              },
+              {
+                "inlineContent": [
+                  {
+                    "text": "Returns ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "YES",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " if a command corresponding to the event was found and performed, ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "NO",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " otherwise.",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "kind": "content"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKWebExtensionContext~1performCommand(for:)-8btj0/title",
+          "value": "performCommandForEvent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKWebExtensionContext~1performCommand(for:)-8btj0/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "performCommandForEvent:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplication~1sendEvent(_:)/title",
+          "value": "sendEvent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplication~1sendEvent(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "sendEvent:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSEvent",
+              "text": "NSEvent"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "event"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1sendEvent(_:)/title",
+          "value": "sendEvent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow~1sendEvent(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "sendEvent:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSEvent",
+              "text": "NSEvent"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "event"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplication/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSApplication"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSResponder",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSWindow"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSResponder",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKWebExtensionContext/title",
+          "value": "WKWebExtensionContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKWebExtensionContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKWebExtensionContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKWebExtensionContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKWebExtensionContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)NSEvent/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSEvent"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/webkit/wkwebextensioncontext/performcommand(for:)-8btj0"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/webkit/wkwebextensioncontext/performcommand(for:)-8btj0"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

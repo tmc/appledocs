@@ -1,0 +1,1713 @@
+{
+  "abstract": [
+    {
+      "text": "Respond to system notifications when your app is in the foreground or background, and handle other significant system-related events.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/app-and-environment"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/managing-your-app-s-life-cycle"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Managing your app’s life cycle"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The current state of your app determines what it can and can’t do at any time. For example, a foreground app has the user’s attention, so it has priority over system resources, including the CPU. By contrast, a background app must do as little work as possible, and preferably nothing, because it’s offscreen. As your app changes from state to state, you must adjust its behavior accordingly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app’s state changes, UIKit notifies you by calling methods of the appropriate delegate object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In iOS 13 and later, use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneDelegate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects to respond to life-cycle events in a scene-based app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In iOS 12 and earlier, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object to respond to life-cycle events.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you enable scene support in your app, iOS always uses your scene delegates in iOS 13 and later. In iOS 12 and earlier, the system uses your app delegate.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Respond-to-scene-based-life-cycle-events",
+          "level": 3,
+          "text": "Respond to scene-based life-cycle events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app supports scenes, UIKit delivers separate life-cycle events for each. A scene represents one instance of your app’s UI running on a device. The user can create multiple scenes for each app, and show and hide them separately. Because each scene has its own life cycle, each can be in a different state of execution. For example, one scene might be in the foreground while others are in the background or are suspended.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Scene support is an opt-in feature. To enable basic support, add the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " key to your app’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file as described in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/specifying-the-scenes-your-app-supports",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows the state transitions for scenes. When the user or system requests a new scene for your app, UIKit creates it and puts it in the unattached state. User-requested scenes move quickly to the foreground, where they appear onscreen. A system-requested scene typically moves to the background so that it can process an event. For example, the system might launch the scene in the background to process a location event. When the user dismisses your app’s UI, UIKit moves the associated scene to the background state and eventually to the suspended state. UIKit can disconnect a background or suspended scene at any time to reclaim its resources, returning that scene to the unattached state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3233330",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use scene transitions to perform the following tasks:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When UIKit connects a scene to your app, configure your scene’s initial UI and load the data your scene needs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When transitioning to the foreground-active state, configure your UI and prepare to interact with the user. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-foreground",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Upon leaving the foreground-active state, save data and quiet your app’s behavior. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-background",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Upon entering the background state, finish crucial tasks, free up as much memory as possible, and prepare for your app snapshot. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-background",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "At scene disconnection, clean up any shared resources associated with the scene.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In addition to scene-related events, you must also respond to the launch of your app using your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object. For information about what to do at app launch, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/responding-to-the-launch-of-your-app",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Respond-to-app-based-life-cycle-events",
+          "level": 3,
+          "text": "Respond to app-based life-cycle events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 12 and earlier, and in apps that don’t support scenes, UIKit delivers all life-cycle events to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. The app delegate manages all of your app’s windows, including those displayed on separate screens. As a result, app state transitions affect your app’s entire UI, including content on external displays.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows the state transitions involving the app delegate object. After launch, the system puts the app in the inactive or background state, depending on whether the UI is about to appear onscreen. When launching to the foreground, the system transitions the app to the active state automatically. After that, the state fluctuates between active and background until the app terminates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3233333",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use app transitions to perform the following tasks:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "At launch, initialize your app’s data structures and UI. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/responding-to-the-launch-of-your-app",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "At activation, finish configuring your UI and prepare to interact with the user. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-foreground",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Upon deactivation, save data and quiet your app’s behavior. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-background",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Upon entering the background state, finish crucial tasks, free up as much memory as possible, and prepare for your app snapshot. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-background",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "At termination, stop all work immediately and release any shared resources. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationWillTerminate(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Respond-to-other-significant-events",
+          "level": 3,
+          "text": "Respond to other significant events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to handling life-cycle events, apps must also be prepared to handle the events listed in the following table. Use your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to handle most of these events. In some cases, you may also be able to handle them using notifications, allowing you to respond from other parts of your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Event",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Response",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Memory warnings",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Received when your app’s memory usage is too high. Reduce the amount of memory your app uses; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/responding-to-memory-warnings",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Protected data becomes available/unavailable",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Received when the user locks or unlocks their device. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationProtectedDataDidBecomeAvailable(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationProtectedDataWillBecomeUnavailable(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Handoff tasks",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Received when an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object needs to be processed. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:didUpdate:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Time changes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Received for several different time changes, such as when the phone carrier sends a time update. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationSignificantTimeChange(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open URLs",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Received when your app needs to open a resource. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:open:options:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest": {
+      "abstract": [
+        {
+          "text": "The information about the app’s scene-based life-cycle support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIApplicationSceneManifest",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIApplicationSceneManifest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity": {
+      "abstract": [
+        {
+          "text": "A representation of the state of your app at a moment in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivity",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplication": {
+      "abstract": [
+        {
+          "text": "The centralized point of control and coordination for apps running in iOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIApplication",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplication"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods to manage shared behaviors for your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIApplicationDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIApplicationDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIApplicationDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:didUpdate:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the activity was updated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUserActivity",
+          "text": "NSUserActivity"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:didUpdate:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "application:didUpdateUserActivity:"
+        }
+      ],
+      "role": "symbol",
+      "title": "application(_:didUpdate:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate/application(_:didupdate:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:open:options:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate to open a resource specified by a URL, and provides a dictionary of launch options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "open"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIApplicationOpenURLOptionsKey",
+          "text": "OpenURLOptionsKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:open:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "application:openURL:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "application(_:open:options:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate/application(_:open:options:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationProtectedDataDidBecomeAvailable(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that protected files are available now.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationProtectedDataDidBecomeAvailable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationProtectedDataDidBecomeAvailable(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applicationProtectedDataDidBecomeAvailable:"
+        }
+      ],
+      "role": "symbol",
+      "title": "applicationProtectedDataDidBecomeAvailable(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate/applicationprotecteddatadidbecomeavailable(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationProtectedDataWillBecomeUnavailable(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the protected files are about to become unavailable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationProtectedDataWillBecomeUnavailable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationProtectedDataWillBecomeUnavailable(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applicationProtectedDataWillBecomeUnavailable:"
+        }
+      ],
+      "role": "symbol",
+      "title": "applicationProtectedDataWillBecomeUnavailable(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate/applicationprotecteddatawillbecomeunavailable(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationSignificantTimeChange(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when there is a significant change in the time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationSignificantTimeChange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationSignificantTimeChange(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applicationSignificantTimeChange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "applicationSignificantTimeChange(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate/applicationsignificanttimechange(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationWillTerminate(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the app is about to terminate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationWillTerminate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationWillTerminate(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applicationWillTerminate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "applicationWillTerminate(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate/applicationwillterminate(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISceneDelegate": {
+      "abstract": [
+        {
+          "text": "The core methods you use to respond to life-cycle events occurring within a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISceneDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISceneDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISceneDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISceneDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscenedelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/app-and-environment": {
+      "abstract": [
+        {
+          "text": "Manage life-cycle events and your app’s UI scenes, and get information about traits and the environment in which your app runs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and environment",
+      "type": "topic",
+      "url": "/documentation/uikit/app-and-environment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-background": {
+      "abstract": [
+        {
+          "text": "Prepare your app to be suspended.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-background",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preparing your UI to run in the background",
+      "type": "topic",
+      "url": "/documentation/uikit/preparing-your-ui-to-run-in-the-background"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-foreground": {
+      "abstract": [
+        {
+          "text": "Configure your app to appear onscreen.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/preparing-your-ui-to-run-in-the-foreground",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preparing your UI to run in the foreground",
+      "type": "topic",
+      "url": "/documentation/uikit/preparing-your-ui-to-run-in-the-foreground"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/responding-to-memory-warnings": {
+      "abstract": [
+        {
+          "text": "Free up memory when asked to do so by the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/responding-to-memory-warnings",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to memory warnings",
+      "type": "topic",
+      "url": "/documentation/uikit/responding-to-memory-warnings"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/responding-to-the-launch-of-your-app": {
+      "abstract": [
+        {
+          "text": "Initialize your app’s data structures, prepare your app to run, and respond to any launch-time requests from the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/responding-to-the-launch-of-your-app",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Responding to the launch of your app",
+      "type": "topic",
+      "url": "/documentation/uikit/responding-to-the-launch-of-your-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/scenes": {
+      "abstract": [
+        {
+          "text": "Manage multiple instances of your app’s UI simultaneously, and direct resources to the appropriate instance of your UI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/scenes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scenes",
+      "type": "topic",
+      "url": "/documentation/uikit/scenes"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/specifying-the-scenes-your-app-supports": {
+      "abstract": [
+        {
+          "text": "Tell the system about your app’s scenes, including the objects you use to manage each scene and its initial user interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/specifying-the-scenes-your-app-supports",
+      "kind": "article",
+      "role": "article",
+      "title": "Specifying the scenes your app supports",
+      "type": "topic",
+      "url": "/documentation/uikit/specifying-the-scenes-your-app-supports"
+    },
+    "media-3233330": {
+      "alt": "An illustration showing the state transitions for a scene-based app. Scenes start in the unattached state and move to the foreground-active or background state. The foreground-inactive state acts as a transition state.",
+      "identifier": "media-3233330",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bb875ff5b6507138789b710fc57afaf1/media-3233330@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4caedb3f877d455a204a4a942d39f17b/media-3233330~dark@2x.png"
+        }
+      ]
+    },
+    "media-3233333": {
+      "alt": "An illustration showing the state transitions for an app without scenes. The app launches into the active or background state. An app transitions through the inactive state. ",
+      "identifier": "media-3233333",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9c1b7e06f4aafb7cb32cf9a923f84e01/media-3233333@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c77f342d24483a444994fe138737aed0/media-3233333~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Life-cycle",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/responding-to-the-launch-of-your-app",
+        "doc://com.apple.uikit/documentation/UIKit/UIApplication",
+        "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/scenes"
+      ],
+      "title": "Life cycle"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Behavioral-events",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/responding-to-memory-warnings"
+      ],
+      "title": "Behavioral events"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Behavioral-events",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/responding-to-memory-warnings"
+              ],
+              "title": "Behavioral events"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Life-cycle",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/responding-to-the-launch-of-your-app",
+                "doc://com.apple.uikit/documentation/UIKit/UIApplication",
+                "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/scenes"
+              ],
+              "title": "Life cycle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1applicationProtectedDataWillBecomeUnavailable(_:)/title",
+          "value": "applicationProtectedDataWillBecomeUnavailable:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1applicationProtectedDataWillBecomeUnavailable(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "applicationProtectedDataWillBecomeUnavailable:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1applicationSignificantTimeChange(_:)/title",
+          "value": "applicationSignificantTimeChange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1applicationSignificantTimeChange(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "applicationSignificantTimeChange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication/title",
+          "value": "UIApplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1applicationProtectedDataDidBecomeAvailable(_:)/title",
+          "value": "applicationProtectedDataDidBecomeAvailable:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1applicationProtectedDataDidBecomeAvailable(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "applicationProtectedDataDidBecomeAvailable:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneDelegate/title",
+          "value": "UISceneDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISceneDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:open:options:)/title",
+          "value": "application:openURL:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:open:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:openURL:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate/title",
+          "value": "UIApplicationDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:didUpdate:)/title",
+          "value": "application:didUpdateUserActivity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:didUpdate:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:didUpdateUserActivity:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1applicationWillTerminate(_:)/title",
+          "value": "applicationWillTerminate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1applicationWillTerminate(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "applicationWillTerminate:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/managing-your-app-s-life-cycle"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/managing-your-app-s-life-cycle"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

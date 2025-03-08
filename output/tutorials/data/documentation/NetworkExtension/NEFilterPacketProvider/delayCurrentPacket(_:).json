@@ -1,0 +1,893 @@
+{
+  "abstract": [
+    {
+      "text": "Delay a packet currently processed by a packet handler.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkextension/documentation/NetworkExtension",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketProvider"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketProvider/delayCurrentPacket(_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NEFilterPacketProvider(im)delayCurrentPacket:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "delayCurrentPacket"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)NEFilterPacketContext",
+        "text": "NEFilterPacketContext"
+      },
+      {
+        "kind": "text",
+        "text": ") -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)NEPacket",
+        "text": "NEPacket"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Network Extension"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "delayCurrentPacket:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "delayCurrentPacket(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "delayCurrentPacket"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "context"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketContext",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NEFilterPacketContext",
+              "text": "NEFilterPacketContext"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEPacket",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NEPacket",
+              "text": "NEPacket"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A context for the packet handler.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "context"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function is only valid within the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketProvider/packetHandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " Swift closure or ObjectiveC block, which must return ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketProvider/Verdict/delay",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " after delaying the packet. The framework prevents further delivery of the packet through the network stack until it’s allowed or dropped. Allow the packet by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketProvider/allow(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or drop it by releasing it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension": {
+      "abstract": [
+        {
+          "text": "Customize and extend core networking features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network Extension",
+      "type": "topic",
+      "url": "/documentation/networkextension"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketContext": {
+      "abstract": [
+        {
+          "text": "The context object provided to the filter packet handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterPacketContext"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterPacketContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterPacketContext",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterpacketcontext"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketProvider": {
+      "abstract": [
+        {
+          "text": "A filter provider that evaluates network packets and decides whether to block, allow, or delay the packets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterPacketProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterPacketProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterPacketProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterpacketprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketProvider/Verdict/delay": {
+      "abstract": [
+        {
+          "text": "A verdict to delay a packet until a future verdict.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delay"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketProvider/Verdict/delay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterPacketProviderVerdictDelay"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterPacketProvider.Verdict.delay",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterpacketprovider/verdict/delay"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketProvider/allow(_:)": {
+      "abstract": [
+        {
+          "text": "Allow delivery of a previously-delayed packet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allow"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NEPacket",
+          "text": "NEPacket"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketProvider/allow(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowPacket:"
+        }
+      ],
+      "role": "symbol",
+      "title": "allow(_:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterpacketprovider/allow(_:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketProvider/delayCurrentPacket(_:)": {
+      "abstract": [
+        {
+          "text": "Delay a packet currently processed by a packet handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delayCurrentPacket"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NEFilterPacketContext",
+          "text": "NEFilterPacketContext"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NEPacket",
+          "text": "NEPacket"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketProvider/delayCurrentPacket(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delayCurrentPacket:"
+        }
+      ],
+      "role": "symbol",
+      "title": "delayCurrentPacket(_:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterpacketprovider/delaycurrentpacket(_:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketProvider/packetHandler": {
+      "abstract": [
+        {
+          "text": "A Swift closure or an ObjectiveC block that handles each packet received by the filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "packetHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NEFilterPacketHandler",
+          "text": "NEFilterPacketHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketProvider/packetHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "packetHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "packetHandler",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterpacketprovider/packethandler"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEPacket": {
+      "abstract": [
+        {
+          "text": "A network packet and its associated properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEPacket"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEPacket",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEPacket"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEPacket",
+      "type": "topic",
+      "url": "/documentation/networkextension/nepacket"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Delaying-packets",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketProvider/allow(_:)"
+      ],
+      "title": "Delaying packets"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "delayCurrentPacket:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "delayCurrentPacket:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.networkextension/documentation/NetworkExtension",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketProvider"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Delaying-packets",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketProvider/allow(_:)"
+              ],
+              "title": "Delaying packets"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEPacket",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NEPacket",
+                    "text": "NEPacket"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "delayCurrentPacket:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketContext",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NEFilterPacketContext",
+                    "text": "NEFilterPacketContext"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "context"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A context for the packet handler.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "context"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterPacketProvider/title",
+          "value": "NEFilterPacketProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterPacketProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterPacketProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterPacketProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterPacketProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEPacket/title",
+          "value": "NEPacket"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEPacket/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEPacket"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEPacket/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEPacket"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterPacketProvider~1delayCurrentPacket(_:)/title",
+          "value": "delayCurrentPacket:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterPacketProvider~1delayCurrentPacket(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "delayCurrentPacket:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterPacketProvider~1packetHandler/title",
+          "value": "packetHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterPacketProvider~1packetHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "packetHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterPacketContext/title",
+          "value": "NEFilterPacketContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterPacketContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterPacketContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterPacketContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterPacketContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterPacketProvider~1Verdict~1delay/title",
+          "value": "NEFilterPacketProviderVerdictDelay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterPacketProvider~1Verdict~1delay/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterPacketProviderVerdictDelay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterPacketProvider~1allow(_:)/title",
+          "value": "allowPacket:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterPacketProvider~1allow(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "allowPacket:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/networkextension/nefilterpacketprovider/delaycurrentpacket(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/networkextension/nefilterpacketprovider/delaycurrentpacket(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

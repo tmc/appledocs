@@ -1,0 +1,1458 @@
+{
+  "abstract": [
+    {
+      "text": "Identify software preventing Xcode 15 from connecting to Apple devices, and modify your configuration to allow these connections.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.technotes/documentation/Technotes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.technotes/documentation/Technotes/tn3158-resolving-xcode-15-device-connection-issues"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "TN3158: Resolving Xcode 15 device connection issues"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode 15 uses a network-based interface to communicate with Apple devices connected to the Mac with a USB cable.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In some environments, network management software may interfere with Xcode’s ability to connect to these devices.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "These configurations include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "VPN apps using Packet Filter (PF) rules",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "VPN apps using a ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Network Extension",
+                      "type": "text"
+                    },
+                    {
+                      "text": " provider with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/NetworkExtension/NEVPNProtocol/includeAllNetworks",
+                      "isActive": true,
+                      "overridingTitle": "includeAllNetworks",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "includeAllNetworks",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " enabled",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Security configurations using PF",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These configurations can prevent the link-local IPv6 traffic that Xcode uses to communicate with a connected Apple device from reaching the device.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you’re a VPN developer or IT professional, follow this document to verify what parts of your configuration affect Xcode, and how to modify your configuration to avoid blocking Xcode’s device communication network traffic.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you’re an app developer in a large organization experiencing device connection issues with Xcode 15, you may need to get assistance from your IT department.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you’re an app developer using a commercial VPN or security product not administered by an IT department, contact the vendor for assistance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-test-environment",
+          "level": 2,
+          "text": "Create a test environment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an isolated test environment to confirm any device connection issues you are experiencing, and then identify the specific parts of your configuration preventing Xcode’s connection to an attached Apple device.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A complex environment may have multiple pieces of software installed that affect Xcode’s ability to communicate with connected devices, such as a VPN, a security configuration, or both.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you are a VPN developer, plan on testing your VPN product without any other software installed on the Mac other than Xcode 15.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you are an IT administrator, create a list of every configuration requirement for macOS in your organization, including VPN products and security requirements, and plan on testing each part of the configuration from the list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run your tests, create a fresh installation of macOS 14 on the Mac you will use for testing, and only install Xcode 15.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This is so that you have a clean system with no other software installed that could affect the results of your testing.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In Xcode, create a new app using one of Xcode’s templates, and select the test device connected to the Mac through USB as the build destination to prepare to run the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Before running the app for the first time, verify that Xcode’s connection to the device is through USB and not a standard network interface, such as Wi-Fi or Ethernet.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To verify the type of connection Xcode is using with the Apple device, open Window > Devices and Simulators, and locate the device in the sidebar.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the connection to the device is using a standard network interface, Xcode places a globe icon next to the device name.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To have Xcode use the USB connection instead, disconnect the Mac from the network, such as by shutting off Wi-Fi or disconnecting Ethernet.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Once Xcode has reconnected to the device through USB, the globe icon will disappear.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Once you’ve confirmed Xcode is using a USB connection to the test device, run the test app on the device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you’ve successfully run the test app for the first time on the connected device, install or enable the first item from your list of configuration requirements.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Rerun the test app from Xcode to verify that Xcode can still communicate with the device.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If Xcode cannot run the app after installing or enabling a specific item from your configuration requirements, that software needs an update to avoid blocking Xcode’s device communication.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you find a part of your configuration that blocks Xcode’s device communication, uninstall it, and continue to apply additional items from your list of configuration requirements to test for any other software in your configuration affecting Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After confirming the software affecting Xcode’s connection to a connected device, the way you proceed depends if you can modify the software’s configuration, or if you need to work with the vendor:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you’re a VPN developer or an IT professional that can modify your security configuration, proceed with this document.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you’ve identified a software product from a vendor as the source of the issue, contact the vendor for support.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Update-software-using-packet-filtering-rules",
+          "level": 2,
+          "text": "Update software using packet filtering rules",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your VPN product or security configuration uses PF to filter network packets, update your PF rules to allow traffic on the network interfaces Xcode uses for device communication.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "These rules need to be continuously updated, as the network interfaces Xcode uses to communicate with a connected device changes over time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To monitor for network interface changes, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/NWPathMonitor",
+              "isActive": true,
+              "overridingTitle": "NWPathMonitor",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NWPathMonitor",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", or create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/nw_path_monitor_t",
+              "isActive": true,
+              "overridingTitle": "nw_path_monitor_t",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "nw_path_monitor_t",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " through ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/nw_path_monitor_create()",
+              "isActive": true,
+              "overridingTitle": "nw_path_monitor_create()",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "nw_path_monitor_create()",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each time the path monitor notifies you that the network interfaces changed, use ",
+              "type": "text"
+            },
+            {
+              "code": "ioctl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with a ",
+              "type": "text"
+            },
+            {
+              "code": "SIOCGIFDIRECTLINK",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request to identify the multiple network interfaces Xcode uses for device connection traffic.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system marks these interfaces with the ",
+              "type": "text"
+            },
+            {
+              "code": "ifr_is_directlink",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Configure your PF rules to allow any IPv6 traffic on interfaces marked with this flag through the filter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/**",
+            " Tests whether an interface is a direct-link interface.",
+            " - Parameter name: The BSD interface name, for example, `en0`.",
+            " - Returns 1 if it is a direct-link interface, 0 if it’s not, and -1 if an error occurred.",
+            "    In the last case, see `errno` for the error code.",
+            " */",
+            "int isDirectLinkInterface(const char * name) {",
+            "    int fd = socket(PF_INET, SOCK_DGRAM, 0);",
+            "    if (fd < 0) {",
+            "        return -1;",
+            "    }",
+            "",
+            "    struct ifreq ifr = { 0 };",
+            "    strlcpy(ifr.ifr_name, name, sizeof(ifr.ifr_name));",
+            "    int success = ioctl(fd, SIOCGIFDIRECTLINK, &ifr) >= 0;",
+            "    if (!success) {",
+            "        int error = errno;",
+            "        (void) close(fd);",
+            "        errno = error;",
+            "        return -1;",
+            "    }",
+            "    ",
+            "    (void) close(fd);",
+            "    return ifr.ifr_ifru.ifru_is_directlink != 0;",
+            "}"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "SIOCGIFDIRECTLINK",
+              "type": "codeVoice"
+            },
+            {
+              "text": " API was added in macOS 14.4, and requires building your software with Xcode 15.3.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you’re using an older version of macOS, you need to upgrade to macOS 14.4.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you maintain a VPN product that uses PF rather than a Network Extension provider, make a plan to migrate to a Network Extension provider. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3165-packet-filter-is-not-api",
+                  "isActive": true,
+                  "overridingTitle": "TN3165: Packet Filter is not API",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "TN3165: Packet Filter is not API",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Review-if-your-VPN-requires-sending-all-network-traffic-over-the-tunnel",
+          "level": 2,
+          "text": "Review if your VPN requires sending all network traffic over the tunnel",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "VPN products based on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/NetworkExtension/NEVPNProtocol",
+              "isActive": true,
+              "overridingTitle": "NEVPNProtocol",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NEVPNProtocol",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " interface should review their use of the ",
+              "type": "text"
+            },
+            {
+              "code": "includeAllNetworks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If ",
+              "type": "text"
+            },
+            {
+              "code": "includeAllNetworks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is required for your configuration, set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/NetworkExtension/NEVPNProtocol/excludeDeviceCommunication",
+              "isActive": true,
+              "overridingTitle": "excludeDeviceCommunication",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "excludeDeviceCommunication",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " so that Xcode’s device communication is omitted from your tunnel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Revision-History",
+          "level": 2,
+          "text": "Revision History",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2024-02-27",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Updated guidance for macOS 14.4 and Xcode 15.3.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2023-12-18",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Created initial version.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Network/NWPathMonitor": {
+      "abstract": [
+        {
+          "text": "An observer that you use to monitor and react to network changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWPathMonitor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/NWPathMonitor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NWPathMonitor",
+      "type": "topic",
+      "url": "/documentation/Network/NWPathMonitor"
+    },
+    "doc://com.apple.documentation/documentation/Network/nw_path_monitor_create()": {
+      "abstract": [
+        {
+          "text": "Initializes a path monitor to observe all available interface types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_path_monitor_create"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@nw_path_monitor_t",
+          "text": "nw_path_monitor_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/nw_path_monitor_create()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nw_path_monitor_create()",
+      "type": "topic",
+      "url": "/documentation/Network/nw_path_monitor_create()"
+    },
+    "doc://com.apple.documentation/documentation/Network/nw_path_monitor_t": {
+      "abstract": [
+        {
+          "text": "An observer that you use to monitor and react to network changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_path_monitor_t"
+        },
+        {
+          "kind": "text",
+          "text": " = any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)OS_nw_path_monitor",
+          "text": "OS_nw_path_monitor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/nw_path_monitor_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nw_path_monitor_t",
+      "type": "topic",
+      "url": "/documentation/Network/nw_path_monitor_t"
+    },
+    "doc://com.apple.documentation/documentation/NetworkExtension/NEVPNProtocol": {
+      "abstract": [
+        {
+          "text": "Settings common to both IKEv2 and IPsec VPN configurations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEVPNProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/NetworkExtension/NEVPNProtocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NEVPNProtocol",
+      "type": "topic",
+      "url": "/documentation/NetworkExtension/NEVPNProtocol"
+    },
+    "doc://com.apple.documentation/documentation/NetworkExtension/NEVPNProtocol/excludeDeviceCommunication": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "excludeDeviceCommunication"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/NetworkExtension/NEVPNProtocol/excludeDeviceCommunication",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "excludeDeviceCommunication",
+      "type": "topic",
+      "url": "/documentation/NetworkExtension/NEVPNProtocol/excludeDeviceCommunication"
+    },
+    "doc://com.apple.documentation/documentation/NetworkExtension/NEVPNProtocol/includeAllNetworks": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the system sends most network traffic over the tunnel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "includeAllNetworks"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/NetworkExtension/NEVPNProtocol/includeAllNetworks",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "includeAllNetworks",
+      "type": "topic",
+      "url": "/documentation/NetworkExtension/NEVPNProtocol/includeAllNetworks"
+    },
+    "doc://com.apple.documentation/documentation/Technotes/tn3165-packet-filter-is-not-api": {
+      "abstract": [
+        {
+          "text": "Plan your migration from Packet Filter to Network Extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3165-packet-filter-is-not-api",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3165: Packet Filter is not API",
+      "type": "topic",
+      "url": "/documentation/Technotes/tn3165-packet-filter-is-not-api"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.technotes/documentation/Technotes": {
+      "abstract": [
+        {
+          "text": "Learn about specific development topics through these in-depth technical articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Technotes",
+      "type": "topic",
+      "url": "/documentation/technotes"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview": {
+      "abstract": [
+        {
+          "text": "Explore the various Wi-Fi APIs available on iOS and their expected use cases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3111: iOS Wi-Fi API overview",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3111-ios-wifi-api-overview"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations": {
+      "abstract": [
+        {
+          "text": "Learn techniques to help debug any coordinate space issue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3124: Debugging coordinate space issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3124-debugging-coordinate-transformations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store": {
+      "abstract": [
+        {
+          "text": "Learn how to configure your App Clip to prevent it from being unavailable in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3168: Making your App Clip available in the App Store",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3168-making-your-app-clip-available-app-store"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration": {
+      "abstract": [
+        {
+          "text": "Diagnose errors due to invalid Apple Pay merchant identifier configurations by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifying the underlying causes of common errors and explore their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3173: Troubleshooting issues with your Apple Pay merchant identifier configuration",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose errors received while presenting the Apple Pay payment sheet on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your website by identifying the underlying causes of common errors and explore",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "their potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3174: Diagnosing issues with the Apple Pay payment sheet on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose common errors received while displaying the Apple Pay button on your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "website by identifying the underlying causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3175: Diagnosing issues with displaying the Apple Pay button on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues": {
+      "abstract": [
+        {
+          "text": "Diagnose errors that occur when processing Apple Pay payments,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identify common causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3176: Troubleshooting Apple Pay payment processing issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files": {
+      "abstract": [
+        {
+          "text": "Learn how alternate groups collect audio tracks, and how to choose which audio track to use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3177: Understanding alternate audio track groups in movie files",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems": {
+      "abstract": [
+        {
+          "text": "Ensure that every Mach-O image has a UUID, and that every distinct Mach-O image has its own unique UUID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3178: Checking for and resolving build UUID problems",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3178-checking-for-and-resolving-build-uuid-problems"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy": {
+      "abstract": [
+        {
+          "text": "Learn how local network privacy affects your software.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3179: Understanding local network privacy",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1": {
+      "abstract": [
+        {
+          "text": "Migrate from version 2 to version 1 of App Store Server Notifications using the Modify an App endpoint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3180: Reverting to App Store Server Notifications V1",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3180-reverting-app-store-server-notifications-v1"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Identify common configurations that cause unsuccessful privacy manifest validation with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3181: Debugging an invalid privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3181-debugging-invalid-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the tracking domains you use in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3182: Adding privacy tracking keys to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the APIs that can potentially fingerprint devices in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3183: Adding required reason API entries to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the data your app or third-party SDK collects in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3184: Adding data collection details to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Latest",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+        "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+        "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+        "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+        "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+        "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+        "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+        "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+        "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations"
+      ],
+      "title": "Latest"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Network~1nw_path_monitor_t/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSObjectobjc(pl)OS_nw_path_monitor",
+              "text": "NSObject<OS_nw_path_monitor>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "nw_path_monitor_t"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1NetworkExtension~1NEVPNProtocol~1excludeDeviceCommunication/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "excludeDeviceCommunication"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1NetworkExtension~1NEVPNProtocol/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NEVPNProtocol"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1NetworkExtension~1NEVPNProtocol~1includeAllNetworks/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "includeAllNetworks"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Network~1nw_path_monitor_create()/title",
+          "value": "nw_path_monitor_create"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Network~1nw_path_monitor_create()/fragments",
+          "value": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@nw_path_monitor_t",
+              "text": "nw_path_monitor_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "nw_path_monitor_create"
+            },
+            {
+              "kind": "text",
+              "text": "();"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,812 @@
+{
+  "abstract": [
+    {
+      "text": "A collection of methods that provide additional capabilities for working with key-value coding.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/scripting_support"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/objectivec",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/objectivec/nsobject/nsscriptkeyvaluecoding"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1656476,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "NSScriptKeyValueCoding"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Cocoa scripting takes advantage of key-value coding to get and set information in scriptable objects. The methods in this category provide additional capabilities for working with key-value coding, including getting and setting key values by index in multi-value keys and coercing (or converting) a key value. Additional methods allow the implementer of a scriptable container class to provide fast access to elements that are being referenced by name and unique ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because Cocoa scripting invokes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1415969-setvalue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1416339-mutablearrayvalue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", changes to model objects made by AppleScript scripts are observable using automatic key-value observing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In OS X 10.3 and earlier, Cocoa scripting did not invoke ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1415969-setvalue",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1416339-mutablearrayvalue",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", so automatic key-value observing notification was not always done for model object changes caused by scripts. Starting in macOS 10.4, for backward binary compatibility, if it is overridden, Cocoa invokes the now-deprecated method ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1430042-takevalue",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instead of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1415969-setvalue",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1695989": {
+      "identifier": "devLink-1695989",
+      "title": "Key-Value Coding Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/index.html#//apple_ref/doc/uid/10000107i"
+    },
+    "devLink-1727275": {
+      "identifier": "devLink-1727275",
+      "title": "Cocoa Scripting Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptcoercionhandler": {
+      "abstract": [
+        {
+          "text": "A mechanism for converting one kind of scripting data to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSScriptCoercionHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcoercionhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSScriptCoercionHandler",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptcoercionhandler"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptexecutioncontext": {
+      "abstract": [
+        {
+          "text": "The context in which the current script command is executed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSScriptExecutionContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptexecutioncontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSScriptExecutionContext",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptexecutioncontext"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scripting_support": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scripting_support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scripting Support",
+      "type": "topic",
+      "url": "/documentation/foundation/scripting_support"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scripting_support/nscomparisonmethods": {
+      "abstract": [
+        {
+          "text": "A collection of default comparison methods useful for performing specifier tests. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scripting_support/nscomparisonmethods",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "NSComparisonMethods",
+      "type": "topic",
+      "url": "/documentation/foundation/scripting_support/nscomparisonmethods"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scripting_support/nsscriptobjectspecifiers": {
+      "abstract": [
+        {
+          "text": "A collection of methods providing additional object specifier functionality. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scripting_support/nsscriptobjectspecifiers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "NSScriptObjectSpecifiers",
+      "type": "topic",
+      "url": "/documentation/foundation/scripting_support/nsscriptobjectspecifiers"
+    },
+    "doc://com.apple.documentation/documentation/objectivec": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Objective-C Runtime",
+      "type": "topic",
+      "url": "/documentation/objectivec"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1407321-value": {
+      "abstract": [
+        {
+          "text": "Retrieves an object by ID from the collection specified by the passed key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withUniqueID"
+        },
+        {
+          "kind": "text",
+          "text": ": Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "inPropertyWithKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1407321-value",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "value(withUniqueID:inPropertyWithKey:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1407321-value"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1407605-value": {
+      "abstract": [
+        {
+          "text": "Retrieves an indexed object from the collection specified by the passed key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "inPropertyWithKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1407605-value",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "value(at:inPropertyWithKey:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1407605-value"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1408773-removevalue": {
+      "abstract": [
+        {
+          "text": "Removes the object at the specified index from the collection specified by the passed key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "fromPropertyWithKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1408773-removevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeValue(at:fromPropertyWithKey:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1408773-removevalue"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1411225-replacevalue": {
+      "abstract": [
+        {
+          "text": "Replaces the object at the specified index in the collection specified by the passed key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "replaceValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "inPropertyWithKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withValue"
+        },
+        {
+          "kind": "text",
+          "text": ": Any)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1411225-replacevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replaceValue(at:inPropertyWithKey:withValue:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1411225-replacevalue"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1415969-setvalue": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1415969-setvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setValue(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1415969-setvalue"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1416203-insertvalue": {
+      "abstract": [
+        {
+          "text": "Inserts an object in the collection specified by the passed key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertValue"
+        },
+        {
+          "kind": "text",
+          "text": "(Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "inPropertyWithKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1416203-insertvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "insertValue(_:inPropertyWithKey:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1416203-insertvalue"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1416339-mutablearrayvalue": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1416339-mutablearrayvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mutableArrayValue(forKey:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1416339-mutablearrayvalue"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1416527-coercevalue": {
+      "abstract": [
+        {
+          "text": "Uses type info from the class description and ",
+          "type": "text"
+        },
+        {
+          "code": "NSScriptCoercionHandler",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to attempt to convert ",
+          "type": "text"
+        },
+        {
+          "code": "value",
+          "type": "codeVoice"
+        },
+        {
+          "text": " for ",
+          "type": "text"
+        },
+        {
+          "code": "key",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to the proper type, if necessary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "coerceValue"
+        },
+        {
+          "kind": "text",
+          "text": "(Any?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1416527-coercevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "coerceValue(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1416527-coercevalue"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1417619-insertvalue": {
+      "abstract": [
+        {
+          "text": "Inserts an object at the specified index in the collection specified by the passed key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertValue"
+        },
+        {
+          "kind": "text",
+          "text": "(Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "inPropertyWithKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1417619-insertvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "insertValue(_:at:inPropertyWithKey:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1417619-insertvalue"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1418031-value": {
+      "abstract": [
+        {
+          "text": "Retrieves a named object from the collection specified by the passed key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "inPropertyWithKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418031-value",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "value(withName:inPropertyWithKey:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1418031-value"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1430042-takevalue": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1430042-takevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "takeValue(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1430042-takevalue"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/nsscriptingcomparisonmethods": {
+      "abstract": [
+        {
+          "text": "A collection of methods useful for comparing script objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/nsscriptingcomparisonmethods",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "NSScriptingComparisonMethods",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/nsscriptingcomparisonmethods"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/nsscriptkeyvaluecoding": {
+      "abstract": [
+        {
+          "text": "A collection of methods that provide additional capabilities for working with key-value coding.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/nsscriptkeyvaluecoding",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "NSScriptKeyValueCoding",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/nsscriptkeyvaluecoding"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/nsscriptkeyvaluecoding_exception_names": {
+      "abstract": [
+        {
+          "text": "Exceptions raised by key-value coding methods.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/nsscriptkeyvaluecoding_exception_names",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "NSScriptKeyValueCoding Exception Names",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/nsscriptkeyvaluecoding_exception_names"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/scripting_support/nscomparisonmethods",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/nsscriptingcomparisonmethods",
+        "doc://com.apple.documentation/documentation/foundation/scripting_support/nsscriptobjectspecifiers",
+        "doc://com.apple.documentation/documentation/foundation/nsscriptcoercionhandler",
+        "doc://com.apple.documentation/documentation/foundation/nsscriptexecutioncontext"
+      ],
+      "title": "NSObject Script Support"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "devLink-1727275",
+        "devLink-1695989"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1679867",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1417619-insertvalue",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1408773-removevalue",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1411225-replacevalue",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1407605-value"
+      ],
+      "kind": "taskGroup",
+      "title": "Indexed access"
+    },
+    {
+      "anchor": "1679890",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1416203-insertvalue",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1418031-value",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1407321-value"
+      ],
+      "kind": "taskGroup",
+      "title": "Access by name, key, or ID"
+    },
+    {
+      "anchor": "1679908",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1416527-coercevalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Coercion"
+    },
+    {
+      "anchor": "1656608",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/nsscriptkeyvaluecoding_exception_names"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/objectivec/nsobject/nsscriptkeyvaluecoding",
+        "documentation/foundation/scripting_support/nsscriptkeyvaluecoding"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/objectivec/nsobject/nsscriptkeyvaluecoding",
+        "documentation/foundation/scripting_support/nsscriptkeyvaluecoding"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

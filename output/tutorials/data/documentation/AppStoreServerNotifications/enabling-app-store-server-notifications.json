@@ -1,0 +1,636 @@
+{
+  "abstract": [
+    {
+      "text": "Configure your server and provide an HTTPS URL to receive notifications about in-app purchase events and unreported external purchase tokens.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Store Server Notifications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Enabling App Store Server Notifications"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a server-to-server service that sends real-time notifications for in-app purchase events, and notifications for unreported external purchase tokens. To enable notifications, set up an HTTPS URL on your server, and configure settings in App Store Connect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about parsing and interpreting notifications, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/receiving-app-store-server-notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-up-your-server-and-App-Store-Connect-settings",
+          "level": 3,
+          "text": "Set up your server and App Store Connect settings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To receive server notifications from the App Store, your server must support the Transport Layer Security (TLS) 1.2 protocol or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable App Store Server Notifications, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Determine the HTTPS URL on your server to receive notifications for the production environment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optionally, determine the HTTPS URL on your server to receive notifications for the sandbox environment for testing notifications. You may use the same URL for both the production and the sandbox environments.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "App Store Connect gives you the choice of receiving version 2 or version 1 notifications for each environment. To choose version 2, set up your endpoint as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configure your URL in App Store Connect. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://help.apple.com/app-store-connect/#/dev0067a330b",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you specify a port in your URL, the port must be either ",
+                  "type": "text"
+                },
+                {
+                  "code": "443",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or greater than or equal to ",
+                  "type": "text"
+                },
+                {
+                  "code": "1024",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". For example, the URL ",
+                  "type": "text"
+                },
+                {
+                  "code": "https://example.com:1234/notifications",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " specifies the port ",
+                  "type": "text"
+                },
+                {
+                  "code": "1234",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure your server to respond with HTTP status codes to indicate whether the App Store server notification ",
+              "type": "text"
+            },
+            {
+              "code": "POST",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is successful. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/responding-to-app-store-server-notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For new implementations, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To transition from using version 1 notifications to version 2, test version 2 notifications in the sandbox environment before you update your production environment to version 2.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about changes to App Store Server Notifications, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/app-store-server-notifications-changelog",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-an-allow-list",
+          "level": 3,
+          "text": "Configure an allow list",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your server requires IP addresses to be on an allow list, add the IP address subnet ",
+              "type": "text"
+            },
+            {
+              "code": "17.0.0.0/8",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to allow your server to receive notifications from the App Store server. This subnet applies to both the sandbox and the production environments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-your-server-setup",
+          "level": 3,
+          "text": "Test your server setup",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine whether your server is receiving notifications, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/POST-v1-notifications-test",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This endpoint asks the App Store server to send a notification with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/notificationType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "TEST",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/testNotificationToken",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " you receive to call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/GET-v1-notifications-test-_testNotificationToken_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint to learn how your server responds to the test notification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Store server sends the ",
+              "type": "text"
+            },
+            {
+              "code": "TEST",
+              "type": "codeVoice"
+            },
+            {
+              "text": " notification in the version 2 notification format. However, it sends it to your server regardless of whether you configure a version 1 or version 2 notification URL in App Store Connect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications": {
+      "abstract": [
+        {
+          "text": "Monitor In-App Purchase events in real time and learn of unreported external purchase tokens, with server notifications from the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2": {
+      "abstract": [
+        {
+          "text": "Specify your secure server’s URL in App Store Connect to receive version 2 notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "App Store Server Notifications V2"
+        }
+      ],
+      "role": "symbol",
+      "title": "App Store Server Notifications V2",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/app-store-server-notifications-v2"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/app-store-server-notifications-changelog": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the App Store Server Notifications service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/app-store-server-notifications-changelog",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Server Notifications changelog",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/app-store-server-notifications-changelog"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/notificationType": {
+      "abstract": [
+        {
+          "text": "The type that describes the in-app purchase or external purchase event for which the App Store sends the version 2 notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "notificationType"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/notificationType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "notificationType"
+        }
+      ],
+      "role": "symbol",
+      "title": "notificationType",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/notificationtype"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/receiving-app-store-server-notifications": {
+      "abstract": [
+        {
+          "text": "Implement server-side code to receive and parse notification posts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/receiving-app-store-server-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Receiving App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/receiving-app-store-server-notifications"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/responding-to-app-store-server-notifications": {
+      "abstract": [
+        {
+          "text": "Send HTTP status codes to indicate the success of a notification post.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/responding-to-app-store-server-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/responding-to-app-store-server-notifications"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerAPI": {
+      "abstract": [
+        {
+          "text": "Manage your customers’ App Store transactions from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server API",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerAPI"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerAPI/GET-v1-notifications-test-_testNotificationToken_": {
+      "abstract": [
+        {
+          "text": "Check the status of the test App Store server notification sent to your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/GET-v1-notifications-test-_testNotificationToken_",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Get Test Notification Status",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerAPI/GET-v1-notifications-test-_testNotificationToken_"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerAPI/POST-v1-notifications-test": {
+      "abstract": [
+        {
+          "text": "Ask App Store Server Notifications to send a test notification to your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/POST-v1-notifications-test",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Request a Test Notification",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerAPI/POST-v1-notifications-test"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerAPI/testNotificationToken": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a notification test that the App Store server sends to your server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "string "
+        },
+        {
+          "kind": "identifier",
+          "text": "testNotificationToken"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerAPI/testNotificationToken",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "testNotificationToken",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerAPI/testNotificationToken"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://help.apple.com/app-store-connect/#/dev0067a330b": {
+      "identifier": "https://help.apple.com/app-store-connect/#/dev0067a330b",
+      "title": "Enter a URL for App Store Server Notifications",
+      "titleInlineContent": [
+        {
+          "text": "Enter a URL for App Store Server Notifications",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/app-store-connect/#/dev0067a330b"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/receiving-app-store-server-notifications",
+        "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/responding-to-app-store-server-notifications",
+        "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/app-store-server-notifications-changelog"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreservernotifications/enabling-app-store-server-notifications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5533 @@
+{
+  "abstract": [
+    {
+      "text": "An object that manages an app’s documents.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSDocumentController",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSDocumentController"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSDocumentController"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSDocumentController"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSDocumentController"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As the first-responder target of New and Open menu commands, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " creates and opens documents and tracks them throughout a session of the app. When opening documents, a document controller runs and manages the modal Open panel. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects also maintain and manage the mappings of document types, extensions, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclasses as specified in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html#//apple_ref/doc/uid/20001431-101685",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property loaded from the information property list (",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use various ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods to get a list of the current documents, get the current document (which is the document whose window is currently key), get documents based on a given filename or window, and find out about a document’s extension, type, display name, and document class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In some situations, it’s worthwhile to subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in non-",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "-based apps to get some of its features. For example, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " management of the Open Recent menu is useful in apps that don’t use subclasses of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument": {
+      "abstract": [
+        {
+          "text": "An abstract class that defines the interface for macOS documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDocument",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController": {
+      "abstract": [
+        {
+          "text": "An object that manages an app’s documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDocumentController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDocumentController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDocumentController",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/addDocument(_:)": {
+      "abstract": [
+        {
+          "text": "Adds the given document to the list of open documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addDocument"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSDocument",
+          "text": "NSDocument"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/addDocument(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addDocument:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addDocument(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/adddocument(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/allowsAutomaticShareMenu": {
+      "abstract": [
+        {
+          "text": "A Boolean value that the system uses to insert a Share menu in the File menu.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsAutomaticShareMenu"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/allowsAutomaticShareMenu",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsAutomaticShareMenu"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsAutomaticShareMenu",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/allowsautomaticsharemenu"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/autosavingDelay": {
+      "abstract": [
+        {
+          "text": "The time interval (in seconds) for periodic autosaving.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autosavingDelay"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/autosavingDelay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autosavingDelay"
+        }
+      ],
+      "role": "symbol",
+      "title": "autosavingDelay",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/autosavingdelay"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/beginOpenPanel(_:forTypes:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Presents a nonmodal Open dialog that displays files you can open from a list of UTIs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginOpenPanel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOpenPanel",
+          "text": "NSOpenPanel"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/beginOpenPanel(_:forTypes:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "beginOpenPanel:forTypes:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "beginOpenPanel(_:forTypes:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/beginopenpanel(_:fortypes:completionhandler:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/beginOpenPanel(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Presents an Open dialog and delivers the results to a completion handler as an array of URLs for the chosen files (or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": ").",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginOpenPanel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/beginOpenPanel(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "beginOpenPanelWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "beginOpenPanel(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/beginopenpanel(completionhandler:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/clearRecentDocuments(_:)": {
+      "abstract": [
+        {
+          "text": "Empties the recent documents list for the application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clearRecentDocuments"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/clearRecentDocuments(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "clearRecentDocuments:"
+        }
+      ],
+      "role": "symbol",
+      "title": "clearRecentDocuments(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/clearrecentdocuments(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/closeAllDocuments(withDelegate:didCloseAllSelector:contextInfo:)": {
+      "abstract": [
+        {
+          "text": "Iterates through all the open documents and tries to close them one by one using the specified delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "closeAllDocuments"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didCloseAllSelector"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "contextInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/closeAllDocuments(withDelegate:didCloseAllSelector:contextInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "closeAllDocumentsWithDelegate:didCloseAllSelector:contextInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "closeAllDocuments(withDelegate:didCloseAllSelector:contextInfo:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/closealldocuments(withdelegate:didcloseallselector:contextinfo:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/currentDirectory": {
+      "abstract": [
+        {
+          "text": "The directory path to be used as the starting point in the Open panel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/currentDirectory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentDirectory"
+        }
+      ],
+      "role": "symbol",
+      "title": "currentDirectory",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/currentdirectory"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/currentDocument": {
+      "abstract": [
+        {
+          "text": "The document object associated with the main window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentDocument"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSDocument",
+          "text": "NSDocument"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/currentDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "currentDocument",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/currentdocument"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/defaultType": {
+      "abstract": [
+        {
+          "text": "Returns the name of the document type that should be used when creating new documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/defaultType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "defaultType"
+        }
+      ],
+      "role": "symbol",
+      "title": "defaultType",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/defaulttype"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/displayName(forType:)": {
+      "abstract": [
+        {
+          "text": "Returns the descriptive name for the specified document type, which is used in the File Format pop-up menu of the Save As dialog.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/displayName(forType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "displayNameForType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "displayName(forType:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/displayname(fortype:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/document(for:)-a5yd": {
+      "abstract": [
+        {
+          "text": "Returns the document object whose window controller owns a specified window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "document"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWindow",
+          "text": "NSWindow"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSDocument",
+          "text": "NSDocument"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/document(for:)-a5yd",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "documentForWindow:"
+        }
+      ],
+      "role": "symbol",
+      "title": "document(for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/document(for:)-a5yd"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/document(for:)-i5zi": {
+      "abstract": [
+        {
+          "text": "Returns, for a given URL, the open document whose file or file package is located by the URL, or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if there is no such open document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "document"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSDocument",
+          "text": "NSDocument"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/document(for:)-i5zi",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "documentForURL:"
+        }
+      ],
+      "role": "symbol",
+      "title": "document(for:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/document(for:)-i5zi"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/documentClass(forType:)": {
+      "abstract": [
+        {
+          "text": "Returns the ",
+          "type": "text"
+        },
+        {
+          "code": "NSDocument",
+          "type": "codeVoice"
+        },
+        {
+          "text": " subclass associated with a given document type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "documentClass"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8AnyClassa",
+          "text": "AnyClass"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/documentClass(forType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "documentClassForType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "documentClass(forType:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/documentclass(fortype:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/documentClassNames": {
+      "abstract": [
+        {
+          "text": "An array of strings representing the custom document classes supported by this app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "documentClassNames"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/documentClassNames",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "documentClassNames"
+        }
+      ],
+      "role": "symbol",
+      "title": "documentClassNames",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/documentclassnames"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/documentForFileName:": {
+      "abstract": [
+        {
+          "text": "Returns the document object for the file in which the document data is stored.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "documentForFileName:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/documentForFileName:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "documentForFileName:"
+        }
+      ],
+      "role": "symbol",
+      "title": "documentForFileName:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/documentforfilename:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/documents": {
+      "abstract": [
+        {
+          "text": "The document objects managed by the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "documents"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSDocument",
+          "text": "NSDocument"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/documents",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "documents"
+        }
+      ],
+      "role": "symbol",
+      "title": "documents",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/documents"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/duplicateDocument(withContentsOf:copying:displayName:)": {
+      "abstract": [
+        {
+          "text": "Creates a new document by reading the contents for the document from another URL, presents its user interface, and returns the document if successful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "duplicateDocument"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withContentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "copying"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "displayName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSDocument",
+          "text": "NSDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/duplicateDocument(withContentsOf:copying:displayName:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "duplicateDocumentWithContentsOfURL:copying:displayName:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "duplicateDocument(withContentsOf:copying:displayName:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/duplicatedocument(withcontentsof:copying:displayname:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/fileExtensionsFromType:": {
+      "abstract": [
+        {
+          "text": "Returns the allowable file extensions for the given document type.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileExtensionsFromType:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/fileExtensionsFromType:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fileExtensionsFromType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fileExtensionsFromType:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/fileextensionsfromtype:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/fileNamesFromRunningOpenPanel": {
+      "abstract": [
+        {
+          "text": "Returns a selection of files chosen by the user in the Open panel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileNamesFromRunningOpenPanel"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/fileNamesFromRunningOpenPanel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fileNamesFromRunningOpenPanel"
+        }
+      ],
+      "role": "symbol",
+      "title": "fileNamesFromRunningOpenPanel",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/filenamesfromrunningopenpanel"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/hasEditedDocuments": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the receiver has any documents with unsaved changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasEditedDocuments"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/hasEditedDocuments",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hasEditedDocuments"
+        }
+      ],
+      "role": "symbol",
+      "title": "hasEditedDocuments",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/hasediteddocuments"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/init()": {
+      "abstract": [
+        {
+          "text": "This method is the designated initializer for ",
+          "type": "text"
+        },
+        {
+          "code": "NSDocumentController",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/init()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/init()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/init(coder:)": {
+      "abstract": [
+        {
+          "text": "This method initializes a new NSDocumentController from the coder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/init(coder:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCoder:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/init(coder:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/makeDocument(for:withContentsOf:ofType:)": {
+      "abstract": [
+        {
+          "text": "Instantiates a document located by a URL, of a specified type, but by reading the contents for the document from another URL, and returns it if successful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeDocument"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withContentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSDocument",
+          "text": "NSDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/makeDocument(for:withContentsOf:ofType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "makeDocumentForURL:withContentsOfURL:ofType:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "makeDocument(for:withContentsOf:ofType:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/makedocument(for:withcontentsof:oftype:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/makeDocument(withContentsOf:ofType:)": {
+      "abstract": [
+        {
+          "text": "Instantiates a document located by a URL, of a specified type, and returns it if successful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeDocument"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withContentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSDocument",
+          "text": "NSDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/makeDocument(withContentsOf:ofType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "makeDocumentWithContentsOfURL:ofType:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "makeDocument(withContentsOf:ofType:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/makedocument(withcontentsof:oftype:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/makeDocumentWithContentsOfFile:ofType:": {
+      "abstract": [
+        {
+          "text": "Creates and returns a document object of a given document type from the contents of a file.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeDocumentWithContentsOfFile:ofType:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/makeDocumentWithContentsOfFile:ofType:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "makeDocumentWithContentsOfFile:ofType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "makeDocumentWithContentsOfFile:ofType:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/makedocumentwithcontentsoffile:oftype:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/makeDocumentWithContentsOfURL:ofType:": {
+      "abstract": [
+        {
+          "text": "Creates and returns a document object for the given document type from the contents of a given URL.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeDocumentWithContentsOfURL:ofType:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/makeDocumentWithContentsOfURL:ofType:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "makeDocumentWithContentsOfURL:ofType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "makeDocumentWithContentsOfURL:ofType:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/makedocumentwithcontentsofurl:oftype:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/makeUntitledDocument(ofType:)": {
+      "abstract": [
+        {
+          "text": "Instantiates a new untitled document of the specified type and returns it if successful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeUntitledDocument"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSDocument",
+          "text": "NSDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/makeUntitledDocument(ofType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "makeUntitledDocumentOfType:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "makeUntitledDocument(ofType:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/makeuntitleddocument(oftype:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/makeUntitledDocumentOfType:": {
+      "abstract": [
+        {
+          "text": "Creates and returns a document object for document type.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeUntitledDocumentOfType:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/makeUntitledDocumentOfType:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "makeUntitledDocumentOfType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "makeUntitledDocumentOfType:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/makeuntitleddocumentoftype:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/maximumRecentDocumentCount": {
+      "abstract": [
+        {
+          "text": "The maximum number of items that may be presented in the standard Open Recent menu.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumRecentDocumentCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/maximumRecentDocumentCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumRecentDocumentCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "maximumRecentDocumentCount",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/maximumrecentdocumentcount"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/newDocument(_:)": {
+      "abstract": [
+        {
+          "text": "An action method called by the New menu command, this method creates a new ",
+          "type": "text"
+        },
+        {
+          "code": "NSDocument",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object and adds it to the list of such objects managed by the document controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "newDocument"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/newDocument(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newDocument:"
+        }
+      ],
+      "role": "symbol",
+      "title": "newDocument(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/newdocument(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/noteNewRecentDocument(_:)": {
+      "abstract": [
+        {
+          "text": "Adds or replaces an Open Recent menu item corresponding to the document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "noteNewRecentDocument"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSDocument",
+          "text": "NSDocument"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/noteNewRecentDocument(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "noteNewRecentDocument:"
+        }
+      ],
+      "role": "symbol",
+      "title": "noteNewRecentDocument(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/notenewrecentdocument(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/noteNewRecentDocumentURL(_:)": {
+      "abstract": [
+        {
+          "text": "Adds or replaces an Open Recent menu item corresponding to the data located by the URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "noteNewRecentDocumentURL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/noteNewRecentDocumentURL(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "noteNewRecentDocumentURL:"
+        }
+      ],
+      "role": "symbol",
+      "title": "noteNewRecentDocumentURL(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/notenewrecentdocumenturl(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/openDocument(_:)": {
+      "abstract": [
+        {
+          "text": "An action method called by the Open menu command, it runs the modal Open panel and, based on the selected filenames, creates one or more ",
+          "type": "text"
+        },
+        {
+          "code": "NSDocument",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects from the contents of the files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openDocument"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/openDocument(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "openDocument:"
+        }
+      ],
+      "role": "symbol",
+      "title": "openDocument(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/opendocument(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/openDocument(withContentsOf:display:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Opens a document located by a URL, optionally presents its user interface, and calls the passed-in completion handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openDocument"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withContentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "display"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSDocument",
+          "text": "NSDocument"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/openDocument(withContentsOf:display:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "openDocumentWithContentsOfURL:display:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "openDocument(withContentsOf:display:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/opendocument(withcontentsof:display:completionhandler:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/openDocumentWithContentsOfFile:display:": {
+      "abstract": [
+        {
+          "text": "Returns a document object created from the contents of a given file and optionally displays it.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "openDocumentWithContentsOfFile:display:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/openDocumentWithContentsOfFile:display:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "openDocumentWithContentsOfFile:display:"
+        }
+      ],
+      "role": "symbol",
+      "title": "openDocumentWithContentsOfFile:display:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/opendocumentwithcontentsoffile:display:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/openDocumentWithContentsOfURL:display:": {
+      "abstract": [
+        {
+          "text": "Returns a document object created from the contents of a given URL and optionally displays it.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "openDocumentWithContentsOfURL:display:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/openDocumentWithContentsOfURL:display:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "openDocumentWithContentsOfURL:display:"
+        }
+      ],
+      "role": "symbol",
+      "title": "openDocumentWithContentsOfURL:display:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/opendocumentwithcontentsofurl:display:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/openDocumentWithContentsOfURL:display:error:": {
+      "abstract": [
+        {
+          "text": "Opens a document located by the given URL presents its user interface if requested, and returns the document if successful.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "openDocumentWithContentsOfURL:display:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/openDocumentWithContentsOfURL:display:error:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "openDocumentWithContentsOfURL:display:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "openDocumentWithContentsOfURL:display:error:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/opendocumentwithcontentsofurl:display:error:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/openUntitledDocumentAndDisplay(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new untitled document, presents its user interface if ",
+          "type": "text"
+        },
+        {
+          "code": "displayDocument",
+          "type": "codeVoice"
+        },
+        {
+          "text": " is ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/swift/true",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", and returns the document if successful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openUntitledDocumentAndDisplay"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSDocument",
+          "text": "NSDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/openUntitledDocumentAndDisplay(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "openUntitledDocumentAndDisplay:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "openUntitledDocumentAndDisplay(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/openuntitleddocumentanddisplay(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/openUntitledDocumentOfType:display:": {
+      "abstract": [
+        {
+          "text": "Returns a document object instantiated from the subclass of the given document type and optionally displays it.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "openUntitledDocumentOfType:display:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/openUntitledDocumentOfType:display:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "openUntitledDocumentOfType:display:"
+        }
+      ],
+      "role": "symbol",
+      "title": "openUntitledDocumentOfType:display:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/openuntitleddocumentoftype:display:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/presentError(_:)": {
+      "abstract": [
+        {
+          "text": "Presents an error alert to the user as a modal panel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentError"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/presentError(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentError(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/presenterror(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/presentError(_:modalFor:delegate:didPresent:contextInfo:)": {
+      "abstract": [
+        {
+          "text": "Presents an error alert to the user as a modal panel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentError"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "modalFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWindow",
+          "text": "NSWindow"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didPresent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "contextInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/presentError(_:modalFor:delegate:didPresent:contextInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentError:modalForWindow:delegate:didPresentSelector:contextInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentError(_:modalFor:delegate:didPresent:contextInfo:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/presenterror(_:modalfor:delegate:didpresent:contextinfo:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/recentDocumentURLs": {
+      "abstract": [
+        {
+          "text": "The list of recent-document URLs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recentDocumentURLs"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/recentDocumentURLs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "recentDocumentURLs"
+        }
+      ],
+      "role": "symbol",
+      "title": "recentDocumentURLs",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/recentdocumenturls"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/removeDocument(_:)": {
+      "abstract": [
+        {
+          "text": "Removes the given document from the list of open documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeDocument"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSDocument",
+          "text": "NSDocument"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/removeDocument(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeDocument:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeDocument(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/removedocument(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/reopenDocument(for:withContentsOf:display:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Reopens a document, optionally located by a URL, by reading the contents for the document from another URL, optionally presents its user interface, and calls the passed-in completion handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reopenDocument"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withContentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "display"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSDocument",
+          "text": "NSDocument"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/reopenDocument(for:withContentsOf:display:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reopenDocumentForURL:withContentsOfURL:display:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "reopenDocument(for:withContentsOf:display:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/reopendocument(for:withcontentsof:display:completionhandler:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/reopenDocumentForURL:withContentsOfURL:error:": {
+      "abstract": [
+        {
+          "text": "Reopens an autosaved document located by a URL, by reading the contents for the document from another URL, presents its user interface, and returns ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/swift/true",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " if successful.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "reopenDocumentForURL:withContentsOfURL:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/reopenDocumentForURL:withContentsOfURL:error:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reopenDocumentForURL:withContentsOfURL:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "reopenDocumentForURL:withContentsOfURL:error:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/reopendocumentforurl:withcontentsofurl:error:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/reviewUnsavedDocuments(withAlertTitle:cancellable:delegate:didReviewAllSelector:contextInfo:)": {
+      "abstract": [
+        {
+          "text": "Displays an alert asking if the user wants to review unsaved documents, quit regardless of unsaved documents, or cancel the save operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reviewUnsavedDocuments"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withAlertTitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "cancellable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didReviewAllSelector"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "contextInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/reviewUnsavedDocuments(withAlertTitle:cancellable:delegate:didReviewAllSelector:contextInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reviewUnsavedDocumentsWithAlertTitle:cancellable:delegate:didReviewAllSelector:contextInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "reviewUnsavedDocuments(withAlertTitle:cancellable:delegate:didReviewAllSelector:contextInfo:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/reviewunsaveddocuments(withalerttitle:cancellable:delegate:didreviewallselector:contextinfo:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/runModalOpenPanel(_:forTypes:)": {
+      "abstract": [
+        {
+          "text": "Presents a modal Open dialog and limits selection to specific file types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "runModalOpenPanel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSOpenPanel",
+          "text": "NSOpenPanel"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/runModalOpenPanel(_:forTypes:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "runModalOpenPanel:forTypes:"
+        }
+      ],
+      "role": "symbol",
+      "title": "runModalOpenPanel(_:forTypes:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/runmodalopenpanel(_:fortypes:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/saveAllDocuments(_:)": {
+      "abstract": [
+        {
+          "text": "As the action method called by the Save All command, saves all open documents of the application that need to be saved.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "saveAllDocuments"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/saveAllDocuments(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "saveAllDocuments:"
+        }
+      ],
+      "role": "symbol",
+      "title": "saveAllDocuments(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/savealldocuments(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/setShouldCreateUI:": {
+      "abstract": [
+        {
+          "text": "Sets whether the window controllers of a document should be created when the document is created.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setShouldCreateUI:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/setShouldCreateUI:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setShouldCreateUI:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setShouldCreateUI:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/setshouldcreateui:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/shared": {
+      "abstract": [
+        {
+          "text": "Returns the shared ",
+          "type": "text"
+        },
+        {
+          "code": "NSDocumentController",
+          "type": "codeVoice"
+        },
+        {
+          "text": " instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSDocumentController",
+          "text": "NSDocumentController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/shared",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sharedDocumentController"
+        }
+      ],
+      "role": "symbol",
+      "title": "shared",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/shared"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/shouldCreateUI": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the window controllers of a document should be created when the document is created.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldCreateUI"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/shouldCreateUI",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shouldCreateUI"
+        }
+      ],
+      "role": "symbol",
+      "title": "shouldCreateUI",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/shouldcreateui"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/standardShareMenuItem()": {
+      "abstract": [
+        {
+          "text": "Returns a menu item that your app uses for sharing the current document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "standardShareMenuItem"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSMenuItem",
+          "text": "NSMenuItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/standardShareMenuItem()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "standardShareMenuItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "standardShareMenuItem()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/standardsharemenuitem()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/typeForContents(of:)": {
+      "abstract": [
+        {
+          "text": "Returns, for a specified URL, the document type identifier to use when opening the document at that location, if successful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeForContents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/typeForContents(of:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "typeForContentsOfURL:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "typeForContents(of:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/typeforcontents(of:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/typeFromFileExtension:": {
+      "abstract": [
+        {
+          "text": "Returns the document type associated with files having extension ",
+          "type": "text"
+        },
+        {
+          "code": "fileExtensionOrHFSFileType",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeFromFileExtension:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/typeFromFileExtension:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "typeFromFileExtension:"
+        }
+      ],
+      "role": "symbol",
+      "title": "typeFromFileExtension:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/typefromfileextension:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/urlsFromRunningOpenPanel()": {
+      "abstract": [
+        {
+          "text": "An array of URLs corresponding to the files selected in a running open panel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "urlsFromRunningOpenPanel"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/urlsFromRunningOpenPanel()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "URLsFromRunningOpenPanel"
+        }
+      ],
+      "role": "symbol",
+      "title": "urlsFromRunningOpenPanel()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/urlsfromrunningopenpanel()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/validateUserInterfaceItem(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a given user interface item should be enabled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "validateUserInterfaceItem"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSValidatedUserInterfaceItem",
+          "text": "NSValidatedUserInterfaceItem"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/validateUserInterfaceItem(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "validateUserInterfaceItem:"
+        }
+      ],
+      "role": "symbol",
+      "title": "validateUserInterfaceItem(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/validateuserinterfaceitem(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/willPresentError(_:)": {
+      "abstract": [
+        {
+          "text": "Indicates an error condition and provides the opportunity to return the same or a different error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "willPresentError"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ") -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/willPresentError(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "willPresentError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "willPresentError(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller/willpresenterror(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMenuItemValidation": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMenuItemValidation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuItemValidation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSMenuItemValidation"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSMenuItemValidation",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmenuitemvalidation"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPersistentDocument": {
+      "abstract": [
+        {
+          "text": "A document object that can integrate with Core Data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPersistentDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPersistentDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPersistentDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPersistentDocument",
+      "type": "topic",
+      "url": "/documentation/appkit/nspersistentdocument"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations": {
+      "abstract": [
+        {
+          "text": "A protocol that a custom class can adopt to manage the enabled state of a UI element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceValidations"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceValidations"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserInterfaceValidations",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuserinterfacevalidations"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowRestoration": {
+      "abstract": [
+        {
+          "text": "A set of methods that restoration classes must implement to handle the recreation of windows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSWindowRestoration"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowRestoration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSWindowRestoration"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindowRestoration",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowrestoration"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/developing-a-document-based-app": {
+      "abstract": [
+        {
+          "text": "Write an app that creates, manages, edits, and saves text documents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/developing-a-document-based-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Developing a Document-Based App",
+      "type": "topic",
+      "url": "/documentation/appkit/developing-a-document-based-app"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html#//apple_ref/doc/uid/20001431-101685": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html#//apple_ref/doc/uid/20001431-101685",
+      "title": "CFBundleDocumentTypes",
+      "titleInlineContent": [
+        {
+          "text": "CFBundleDocumentTypes",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html#//apple_ref/doc/uid/20001431-101685"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.apple.appkit/documentation/AppKit/NSMenuItemValidation",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations",
+        "doc://com.apple.appkit/documentation/AppKit/NSWindowRestoration",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Documents",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/developing-a-document-based-app",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocument",
+        "doc://com.apple.appkit/documentation/AppKit/NSPersistentDocument"
+      ],
+      "title": "Documents"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Obtaining-the-Shared-Document-Controller",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/shared"
+      ],
+      "title": "Obtaining the Shared Document Controller"
+    },
+    {
+      "anchor": "Initializing-a-New-NSDocumentController",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/init()",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/init(coder:)"
+      ],
+      "title": "Initializing a New NSDocumentController"
+    },
+    {
+      "anchor": "Creating-and-Opening-Documents",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/document(for:)-i5zi",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/duplicateDocument(withContentsOf:copying:displayName:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/openDocument(withContentsOf:display:completionHandler:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/openUntitledDocumentAndDisplay(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/makeDocument(for:withContentsOf:ofType:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/makeDocument(withContentsOf:ofType:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/makeUntitledDocument(ofType:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/reopenDocument(for:withContentsOf:display:completionHandler:)"
+      ],
+      "title": "Creating and Opening Documents"
+    },
+    {
+      "anchor": "Managing-Documents",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/documents",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/addDocument(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/currentDocument",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/document(for:)-a5yd",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/hasEditedDocuments",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/removeDocument(_:)"
+      ],
+      "title": "Managing Documents"
+    },
+    {
+      "anchor": "Managing-Document-Types",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/documentClassNames",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/defaultType",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/documentClass(forType:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/displayName(forType:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/typeForContents(of:)"
+      ],
+      "title": "Managing Document Types"
+    },
+    {
+      "anchor": "Autosaving",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/autosavingDelay"
+      ],
+      "title": "Autosaving"
+    },
+    {
+      "anchor": "Closing-Documents",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/closeAllDocuments(withDelegate:didCloseAllSelector:contextInfo:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/reviewUnsavedDocuments(withAlertTitle:cancellable:delegate:didReviewAllSelector:contextInfo:)"
+      ],
+      "title": "Closing Documents"
+    },
+    {
+      "anchor": "Responding-to-Action-Messages",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/newDocument(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/openDocument(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/saveAllDocuments(_:)"
+      ],
+      "title": "Responding to Action Messages"
+    },
+    {
+      "anchor": "Managing-the-Open-Dialog",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/beginOpenPanel(completionHandler:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/beginOpenPanel(_:forTypes:completionHandler:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/runModalOpenPanel(_:forTypes:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/currentDirectory",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/urlsFromRunningOpenPanel()"
+      ],
+      "title": "Managing the Open Dialog"
+    },
+    {
+      "anchor": "Managing-the-Open-Recent-Menu",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/maximumRecentDocumentCount",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/clearRecentDocuments(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/noteNewRecentDocumentURL(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/noteNewRecentDocument(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/recentDocumentURLs"
+      ],
+      "title": "Managing the Open Recent Menu"
+    },
+    {
+      "anchor": "Validating-User-Interface-Items",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/validateUserInterfaceItem(_:)"
+      ],
+      "title": "Validating User Interface Items"
+    },
+    {
+      "anchor": "Sharing",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/allowsAutomaticShareMenu",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/standardShareMenuItem()"
+      ],
+      "title": "Sharing"
+    },
+    {
+      "anchor": "Handling-Errors",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/presentError(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/presentError(_:modalFor:delegate:didPresent:contextInfo:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/willPresentError(_:)"
+      ],
+      "title": "Handling Errors"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSDocumentController"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDocumentController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDocumentController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Obtaining-the-Shared-Document-Controller",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/shared"
+              ],
+              "title": "Obtaining the Shared Document Controller"
+            },
+            {
+              "anchor": "Initializing-a-New-NSDocumentController",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/init()",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/init(coder:)"
+              ],
+              "title": "Initializing a New NSDocumentController"
+            },
+            {
+              "anchor": "Creating-and-Opening-Documents",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/document(for:)-i5zi",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/duplicateDocument(withContentsOf:copying:displayName:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/openDocument(withContentsOf:display:completionHandler:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/openUntitledDocumentAndDisplay(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/makeDocument(for:withContentsOf:ofType:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/makeDocument(withContentsOf:ofType:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/makeUntitledDocument(ofType:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/reopenDocument(for:withContentsOf:display:completionHandler:)"
+              ],
+              "title": "Creating and Opening Documents"
+            },
+            {
+              "anchor": "Managing-Documents",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/documents",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/addDocument(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/currentDocument",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/document(for:)-a5yd",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/hasEditedDocuments",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/removeDocument(_:)"
+              ],
+              "title": "Managing Documents"
+            },
+            {
+              "anchor": "Managing-Document-Types",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/documentClassNames",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/defaultType",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/documentClass(forType:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/displayName(forType:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/typeForContents(of:)"
+              ],
+              "title": "Managing Document Types"
+            },
+            {
+              "anchor": "Autosaving",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/autosavingDelay"
+              ],
+              "title": "Autosaving"
+            },
+            {
+              "anchor": "Closing-Documents",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/closeAllDocuments(withDelegate:didCloseAllSelector:contextInfo:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/reviewUnsavedDocuments(withAlertTitle:cancellable:delegate:didReviewAllSelector:contextInfo:)"
+              ],
+              "title": "Closing Documents"
+            },
+            {
+              "anchor": "Responding-to-Action-Messages",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/newDocument(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/openDocument(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/saveAllDocuments(_:)"
+              ],
+              "title": "Responding to Action Messages"
+            },
+            {
+              "anchor": "Managing-the-Open-Dialog",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/beginOpenPanel(completionHandler:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/beginOpenPanel(_:forTypes:completionHandler:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/runModalOpenPanel(_:forTypes:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/currentDirectory",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/urlsFromRunningOpenPanel()"
+              ],
+              "title": "Managing the Open Dialog"
+            },
+            {
+              "anchor": "Managing-the-Open-Recent-Menu",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/maximumRecentDocumentCount",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/clearRecentDocuments(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/noteNewRecentDocumentURL(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/noteNewRecentDocument(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/recentDocumentURLs"
+              ],
+              "title": "Managing the Open Recent Menu"
+            },
+            {
+              "anchor": "Validating-User-Interface-Items",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/validateUserInterfaceItem(_:)"
+              ],
+              "title": "Validating User Interface Items"
+            },
+            {
+              "anchor": "Sharing",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/allowsAutomaticShareMenu",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/standardShareMenuItem()"
+              ],
+              "title": "Sharing"
+            },
+            {
+              "anchor": "Handling-Errors",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/presentError(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/presentError(_:modalFor:delegate:didPresent:contextInfo:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/willPresentError(_:)"
+              ],
+              "title": "Handling Errors"
+            },
+            {
+              "anchor": "Deprecated-Methods",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/documentForFileName:",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/fileExtensionsFromType:",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/fileNamesFromRunningOpenPanel",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/makeUntitledDocumentOfType:",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/makeDocumentWithContentsOfURL:ofType:",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/makeDocumentWithContentsOfFile:ofType:",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/openDocumentWithContentsOfFile:display:",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/openDocumentWithContentsOfURL:display:",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/openDocumentWithContentsOfURL:display:error:",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/openUntitledDocumentOfType:display:",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/reopenDocumentForURL:withContentsOfURL:error:",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/setShouldCreateUI:",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/shouldCreateUI",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocumentController/typeFromFileExtension:"
+              ],
+              "title": "Deprecated Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+                "doc://com.apple.appkit/documentation/AppKit/NSMenuItemValidation",
+                "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations",
+                "doc://com.apple.appkit/documentation/AppKit/NSWindowRestoration"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Documents",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/developing-a-document-based-app",
+                "doc://com.apple.appkit/documentation/AppKit/NSDocument",
+                "doc://com.apple.appkit/documentation/AppKit/NSPersistentDocument"
+              ],
+              "title": "Documents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSDocumentController"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1beginOpenPanel(_:forTypes:completionHandler:)/title",
+          "value": "beginOpenPanel:forTypes:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1beginOpenPanel(_:forTypes:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "beginOpenPanel:forTypes:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1noteNewRecentDocument(_:)/title",
+          "value": "noteNewRecentDocument:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1noteNewRecentDocument(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "noteNewRecentDocument:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1standardShareMenuItem()/title",
+          "value": "standardShareMenuItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1standardShareMenuItem()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "standardShareMenuItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1typeForContents(of:)/title",
+          "value": "typeForContentsOfURL:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1typeForContents(of:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "typeForContentsOfURL:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1openDocument(_:)/title",
+          "value": "openDocument:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1openDocument(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "openDocument:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1closeAllDocuments(withDelegate:didCloseAllSelector:contextInfo:)/title",
+          "value": "closeAllDocumentsWithDelegate:didCloseAllSelector:contextInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1closeAllDocuments(withDelegate:didCloseAllSelector:contextInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "closeAllDocumentsWithDelegate:didCloseAllSelector:contextInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1runModalOpenPanel(_:forTypes:)/title",
+          "value": "runModalOpenPanel:forTypes:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1runModalOpenPanel(_:forTypes:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "runModalOpenPanel:forTypes:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1noteNewRecentDocumentURL(_:)/title",
+          "value": "noteNewRecentDocumentURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1noteNewRecentDocumentURL(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "noteNewRecentDocumentURL:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1documents/title",
+          "value": "documents"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1documents/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "documents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1openDocument(withContentsOf:display:completionHandler:)/title",
+          "value": "openDocumentWithContentsOfURL:display:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1openDocument(withContentsOf:display:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "openDocumentWithContentsOfURL:display:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController/title",
+          "value": "NSDocumentController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDocumentController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDocumentController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1makeDocument(withContentsOf:ofType:)/title",
+          "value": "makeDocumentWithContentsOfURL:ofType:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1makeDocument(withContentsOf:ofType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "makeDocumentWithContentsOfURL:ofType:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1currentDirectory/title",
+          "value": "currentDirectory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1currentDirectory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "currentDirectory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1maximumRecentDocumentCount/title",
+          "value": "maximumRecentDocumentCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1maximumRecentDocumentCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maximumRecentDocumentCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1allowsAutomaticShareMenu/title",
+          "value": "allowsAutomaticShareMenu"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1allowsAutomaticShareMenu/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsAutomaticShareMenu"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1clearRecentDocuments(_:)/title",
+          "value": "clearRecentDocuments:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1clearRecentDocuments(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "clearRecentDocuments:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1makeDocument(for:withContentsOf:ofType:)/title",
+          "value": "makeDocumentForURL:withContentsOfURL:ofType:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1makeDocument(for:withContentsOf:ofType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "makeDocumentForURL:withContentsOfURL:ofType:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1documentClass(forType:)/title",
+          "value": "documentClassForType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1documentClass(forType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "documentClassForType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1reviewUnsavedDocuments(withAlertTitle:cancellable:delegate:didReviewAllSelector:contextInfo:)/title",
+          "value": "reviewUnsavedDocumentsWithAlertTitle:cancellable:delegate:didReviewAllSelector:contextInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1reviewUnsavedDocuments(withAlertTitle:cancellable:delegate:didReviewAllSelector:contextInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "reviewUnsavedDocumentsWithAlertTitle:cancellable:delegate:didReviewAllSelector:contextInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1init(coder:)/title",
+          "value": "initWithCoder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1init(coder:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithCoder:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1autosavingDelay/title",
+          "value": "autosavingDelay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1autosavingDelay/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "autosavingDelay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1removeDocument(_:)/title",
+          "value": "removeDocument:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1removeDocument(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeDocument:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument/title",
+          "value": "NSDocument"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocument/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1saveAllDocuments(_:)/title",
+          "value": "saveAllDocuments:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1saveAllDocuments(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "saveAllDocuments:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1defaultType/title",
+          "value": "defaultType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1defaultType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "defaultType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1displayName(forType:)/title",
+          "value": "displayNameForType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1displayName(forType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "displayNameForType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1hasEditedDocuments/title",
+          "value": "hasEditedDocuments"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1hasEditedDocuments/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hasEditedDocuments"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemValidation/title",
+          "value": "NSMenuItemValidation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemValidation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMenuItemValidation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSMenuItemValidation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSMenuItemValidation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1addDocument(_:)/title",
+          "value": "addDocument:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1addDocument(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addDocument:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1document(for:)-i5zi/title",
+          "value": "documentForURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1document(for:)-i5zi/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "documentForURL:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceValidations/title",
+          "value": "NSUserInterfaceValidations"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceValidations/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceValidations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceValidations/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceValidations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1documentClassNames/title",
+          "value": "documentClassNames"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1documentClassNames/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "documentClassNames"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1duplicateDocument(withContentsOf:copying:displayName:)/title",
+          "value": "duplicateDocumentWithContentsOfURL:copying:displayName:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1duplicateDocument(withContentsOf:copying:displayName:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "duplicateDocumentWithContentsOfURL:copying:displayName:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1presentError(_:modalFor:delegate:didPresent:contextInfo:)/title",
+          "value": "presentError:modalForWindow:delegate:didPresentSelector:contextInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1presentError(_:modalFor:delegate:didPresent:contextInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentError:modalForWindow:delegate:didPresentSelector:contextInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1reopenDocument(for:withContentsOf:display:completionHandler:)/title",
+          "value": "reopenDocumentForURL:withContentsOfURL:display:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1reopenDocument(for:withContentsOf:display:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "reopenDocumentForURL:withContentsOfURL:display:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1recentDocumentURLs/title",
+          "value": "recentDocumentURLs"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1recentDocumentURLs/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "recentDocumentURLs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1init()/title",
+          "value": "init"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1init()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "init"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1presentError(_:)/title",
+          "value": "presentError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1presentError(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1makeUntitledDocument(ofType:)/title",
+          "value": "makeUntitledDocumentOfType:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1makeUntitledDocument(ofType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "makeUntitledDocumentOfType:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1willPresentError(_:)/title",
+          "value": "willPresentError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1willPresentError(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "willPresentError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1currentDocument/title",
+          "value": "currentDocument"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1currentDocument/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "currentDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPersistentDocument/title",
+          "value": "NSPersistentDocument"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPersistentDocument/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPersistentDocument/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPersistentDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1validateUserInterfaceItem(_:)/title",
+          "value": "validateUserInterfaceItem:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1validateUserInterfaceItem(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "validateUserInterfaceItem:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1shared/title",
+          "value": "sharedDocumentController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1shared/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sharedDocumentController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1document(for:)-a5yd/title",
+          "value": "documentForWindow:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1document(for:)-a5yd/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "documentForWindow:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1openUntitledDocumentAndDisplay(_:)/title",
+          "value": "openUntitledDocumentAndDisplay:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1openUntitledDocumentAndDisplay(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "openUntitledDocumentAndDisplay:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1urlsFromRunningOpenPanel()/title",
+          "value": "URLsFromRunningOpenPanel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1urlsFromRunningOpenPanel()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "URLsFromRunningOpenPanel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowRestoration/title",
+          "value": "NSWindowRestoration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowRestoration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowRestoration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowRestoration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowRestoration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1beginOpenPanel(completionHandler:)/title",
+          "value": "beginOpenPanelWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1beginOpenPanel(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "beginOpenPanelWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1newDocument(_:)/title",
+          "value": "newDocument:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSDocumentController~1newDocument(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newDocument:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsdocumentcontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsdocumentcontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1749 @@
+{
+  "abstract": [
+    {
+      "text": "A component that configures the rendering order for an entity’s model.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation23ModelSortGroupComponentV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ModelSortGroupComponent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ModelSortGroupComponent"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "ModelSortGroupComponent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ModelSortGroupComponent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tell the renderer to draw a model on top of another by adding",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a ",
+              "type": "text"
+            },
+            {
+              "code": "ModelSortGroupComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance to both entities.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A model sort group component gives you control over the rendering",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "order for entities within the same ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can configure the group to render models in a specific order,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "even if that order contradicts their relative positions to each other in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The scenario below shows a living room scene that has two rectangular cuboids",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which overlap and form the shape of a plus symbol.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The blue cuboid is opaque and taller than it is wide.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The red cuboid is transparent and wider than it is tall.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "modelsortgroupcomponent-not-set",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 5
+            },
+            {
+              "content": [],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 7,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sections below demonstrate how to change the default behavior by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "configuring the properties of the model sort group component.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-the-draw-order",
+          "level": 3,
+          "text": "Set the draw order",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To tell the renderer to draw the red cuboid",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "before the blue one, add a ",
+              "type": "text"
+            },
+            {
+              "code": "ModelSortGroupComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance to both",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "cuboids.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then set both component’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent/order",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property so that the red cuboid’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "component has a smaller value than the blue cuboid’s component.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let redCuboid = Entity()",
+            "let blueCuboid = Entity()",
+            "",
+            "// ...",
+            "",
+            "// Create a group for both cuboids.",
+            "let group = ModelSortGroup(depthPass: nil)",
+            "",
+            "let redSortComponent = ModelSortGroupComponent(",
+            "    group: group,",
+            "    order: 1",
+            ")",
+            "",
+            "redCuboid.components.set(redSortComponent)",
+            "",
+            "let blueSortComponent = ModelSortGroupComponent(",
+            "    group: group,",
+            "    order: 2",
+            ")",
+            "blueCuboid.components.set(blueSortComponent)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The renderer draws the red cuboid first and then doesn’t draw the part of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "blue cuboid where the two cuboids overlap because the nearest face of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "red cuboid in the overlapping area is closer to the camera.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "modelsortgroupcomponent-none-redfirst",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 5
+            },
+            {
+              "content": [],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 7,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the renderer instead draws the blue cuboid first,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the translucent red cuboid second,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the blue cuboid is once again visible in the overlapping area.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "modelsortgroupcomponent-none-bluefirst",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 5
+            },
+            {
+              "content": [],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 7,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Rendering the blue cuboid produces the same result as if the two cuboids",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "weren’t in a sort group.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-the-depth-pass",
+          "level": 3,
+          "text": "Set the depth pass",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the examples in the previous section, the renderer draws each model’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "depth and color together, at the same time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To draw each entity’s color and depth separately, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup/depthPass-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance, which changes the rendering sequence",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for each model in the group that either draws their colors first or their",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "depths first.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can also set the property with the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup/init(depthPass:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " initializer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To draw each model’s color on the first pass and then the depth, set the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup/DepthPass-swift.enum/postPass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Draw the color first, depth second.",
+            "let group = ModelSortGroup(depthPass: .postPass)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "alignments": [
+            "center",
+            "center"
+          ],
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Red First",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Blue First",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "modelsortgroupcomponent-postpass-redfirst",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "modelsortgroupcomponent-postpass-bluefirst",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup/DepthPass-swift.enum/postPass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option tells the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "renderer to draw entities in reverse order, which gives the effect that the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "last model it draws appears in front.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The depth pass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup/DepthPass-swift.enum/prePass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " draws each",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entity’s depth on the first pass, then their color.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Draw the depth first, color second.",
+            "let group = ModelSortGroup(depthPass: .prePass)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "alignments": [
+            "center",
+            "center"
+          ],
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Red First",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Blue First",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "modelsortgroupcomponent-prepass-redfirst",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "modelsortgroupcomponent-prepass-bluefirst",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup/DepthPass-swift.enum/prePass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option tells the renderer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to write the depth buffer for the group’s entities first.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The renderer doesn’t draw the blue cuboid in the overlapping area, regardless",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of order, because the red cuboid has a shallower depth in all parts of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "overlapping area.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Check out ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/visionOS/swift-splash",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "which has an implementation that leverages ",
+                  "type": "text"
+                },
+                {
+                  "code": "ModelSortGroupComponent",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-Splash-intro.png": {
+      "alt": null,
+      "identifier": "Swift-Splash-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b5da9880ce266b0858346d694e3a7018/Swift-Splash-intro@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AdaptiveResolutionComponent": {
+      "abstract": [
+        {
+          "text": "A component that provides the suggested pixels per meter necessary to render an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AdaptiveResolutionComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AdaptiveResolutionComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AdaptiveResolutionComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AdaptiveResolutionComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/adaptiveresolutioncomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Component": {
+      "abstract": [
+        {
+          "text": "A representation of a geometry or a behavior that you apply to an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Component",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "role": "symbol",
+      "title": "Component",
+      "type": "topic",
+      "url": "/documentation/realitykit/component"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent": {
+      "abstract": [
+        {
+          "text": "A component that changes how RealityKit renders its entity to help with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "debugging.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelDebugOptionsComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelDebugOptionsComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelDebugOptionsComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/modeldebugoptionscomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup": {
+      "abstract": [
+        {
+          "text": "A group that you assign to multiple entities to tell the renderer what",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "order and how to render the entities in the group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelSortGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelSortGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelSortGroup",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelsortgroup"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup/DepthPass-swift.enum/postPass": {
+      "abstract": [
+        {
+          "text": "An option that instructs the renderer to draw the depth of a model",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "only after it draws the colors for all the models in the group first.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "postPass"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup/DepthPass-swift.enum/postPass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ModelSortGroup.DepthPass.postPass",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelsortgroup/depthpass-swift.enum/postpass"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup/DepthPass-swift.enum/prePass": {
+      "abstract": [
+        {
+          "text": "An option that instructs the renderer to draw the depth of all the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "models in the group before it draws any model’s color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prePass"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup/DepthPass-swift.enum/prePass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ModelSortGroup.DepthPass.prePass",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelsortgroup/depthpass-swift.enum/prepass"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup/depthPass-swift.property": {
+      "abstract": [
+        {
+          "text": "A depth pass that controls when the renderer draws the depth of model",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "entities in the group relative to their color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "depthPass"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14ModelSortGroupV",
+          "text": "ModelSortGroup"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14ModelSortGroupV9DepthPassO",
+          "text": "DepthPass"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup/depthPass-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "depthPass",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelsortgroup/depthpass-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup/init(depthPass:)": {
+      "abstract": [
+        {
+          "text": "Creates a model sort group with an optional depth pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "depthPass"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14ModelSortGroupV",
+          "text": "ModelSortGroup"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14ModelSortGroupV9DepthPassO",
+          "text": "DepthPass"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup/init(depthPass:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(depthPass:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelsortgroup/init(depthpass:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent": {
+      "abstract": [
+        {
+          "text": "A component that configures the rendering order for an entity’s model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelSortGroupComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelSortGroupComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelSortGroupComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelsortgroupcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent/Component-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent/Component-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Component Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelsortgroupcomponent/component-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent/group": {
+      "abstract": [
+        {
+          "text": "The group that the component’s entity belongs to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "group"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14ModelSortGroupV",
+          "text": "ModelSortGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent/group",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "group",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelsortgroupcomponent/group"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent/init(group:order:)": {
+      "abstract": [
+        {
+          "text": "Creates a model sort group component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "group"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation14ModelSortGroupV",
+          "text": "ModelSortGroup"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "order"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent/init(group:order:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(group:order:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelsortgroupcomponent/init(group:order:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent/order": {
+      "abstract": [
+        {
+          "text": "An integer value that represents when the renderer draws the model",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "relative to other the models in its group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "order"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent/order",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "order",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelsortgroupcomponent/order"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OpacityComponent": {
+      "abstract": [
+        {
+          "text": "A component that controls the opacity of an entity and its descendants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OpacityComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OpacityComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OpacityComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "OpacityComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/opacitycomponent"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/swift-splash": {
+      "abstract": [
+        {
+          "text": "Use RealityKit to create an interactive ride in visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/swift-splash",
+      "images": [
+        {
+          "identifier": "Swift-Splash-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Swift Splash",
+      "type": "topic",
+      "url": "/documentation/visionOS/swift-splash"
+    },
+    "modelsortgroupcomponent-none-bluefirst": {
+      "alt": "A screenshot of a living room scene with two rectangular cuboids that overlap. The vertical cuboid is an opaque blue, and the horizontal cuboid is a translucent red. The red cuboid appears in front of the blue one, which gives the area where they overlap a purple hue.",
+      "identifier": "modelsortgroupcomponent-none-bluefirst",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6b9a691bb74fce8f72d775bbe4e7bc0f/modelsortgroupcomponent-none-bluefirst.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2bdaf441fca8b5bea6e6153bdc55a605/modelsortgroupcomponent-none-bluefirst~dark.jpg"
+        }
+      ]
+    },
+    "modelsortgroupcomponent-none-redfirst": {
+      "alt": "A screenshot of a living room scene with two rectangular cuboids that overlap. The vertical cuboid is an opaque blue, and the horizontal cuboid is a translucent red. The red cuboid appears in front of the blue one, and in the area where they overlap, the blue cuboid isn't visible, which reveals the scene's background through the red one.",
+      "identifier": "modelsortgroupcomponent-none-redfirst",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a9724318f936776c04ab357fec439dec/modelsortgroupcomponent-none-redfirst.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a04f88cf54a988a2cfffabfac11c12ce/modelsortgroupcomponent-none-redfirst~dark.jpg"
+        }
+      ]
+    },
+    "modelsortgroupcomponent-not-set": {
+      "alt": "A screenshot of a living room scene with two rectangular cuboids that overlap. The vertical cuboid is an opaque blue, and the horizontal cuboid is a translucent red. The red cuboid appears in front of the blue one, which gives the area where they overlap a purple hue.",
+      "identifier": "modelsortgroupcomponent-not-set",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6b9a691bb74fce8f72d775bbe4e7bc0f/modelsortgroupcomponent-not-set.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2bdaf441fca8b5bea6e6153bdc55a605/modelsortgroupcomponent-not-set~dark.jpg"
+        }
+      ]
+    },
+    "modelsortgroupcomponent-postpass-bluefirst": {
+      "alt": "A screenshot of a living room scene with two rectangular cuboids that overlap. The vertical cuboid is an opaque blue, and the horizontal cuboid is a translucent red. The red cuboid appears in front of the blue one, which gives the area where they overlap a purple hue.",
+      "identifier": "modelsortgroupcomponent-postpass-bluefirst",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6b9a691bb74fce8f72d775bbe4e7bc0f/modelsortgroupcomponent-postpass-bluefirst.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2bdaf441fca8b5bea6e6153bdc55a605/modelsortgroupcomponent-postpass-bluefirst~dark.jpg"
+        }
+      ]
+    },
+    "modelsortgroupcomponent-postpass-redfirst": {
+      "alt": "A screenshot of a living room scene with two rectangular cuboids that overlap. The vertical cuboid is an opaque blue, and the horizontal cuboid is a translucent red. The red cuboid appears behind the blue one.",
+      "identifier": "modelsortgroupcomponent-postpass-redfirst",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/031e034d0eb21f30f257fd4f123aa6b5/modelsortgroupcomponent-postpass-redfirst.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/641a8dddbdf9bbda98fc6e8ac2c73a6a/modelsortgroupcomponent-postpass-redfirst~dark.jpg"
+        }
+      ]
+    },
+    "modelsortgroupcomponent-prepass-bluefirst": {
+      "alt": "A screenshot of a living room scene with two rectangular cuboids that overlap. The vertical cuboid is an opaque blue, and the horizontal cuboid is a translucent red. The red cuboid appears in front of the blue one, and in the area where they overlap, the blue cuboid isn’t visible, which reveals the scene’s background through the red one.",
+      "identifier": "modelsortgroupcomponent-prepass-bluefirst",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a9724318f936776c04ab357fec439dec/modelsortgroupcomponent-prepass-bluefirst.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a04f88cf54a988a2cfffabfac11c12ce/modelsortgroupcomponent-prepass-bluefirst~dark.jpg"
+        }
+      ]
+    },
+    "modelsortgroupcomponent-prepass-redfirst": {
+      "alt": "A screenshot of a living room scene with two rectangular cuboids that overlap. The vertical cuboid is an opaque blue, and the horizontal cuboid is a translucent red. The red cuboid appears in front of the blue one, and in the area where they overlap, the blue cuboid isn’t visible, which reveals the scene’s background through the red one.",
+      "identifier": "modelsortgroupcomponent-prepass-redfirst",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a9724318f936776c04ab357fec439dec/modelsortgroupcomponent-prepass-redfirst.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a04f88cf54a988a2cfffabfac11c12ce/modelsortgroupcomponent-prepass-redfirst~dark.jpg"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Component"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Render-configuration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroup",
+        "doc://com.apple.RealityKit/documentation/RealityKit/OpacityComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AdaptiveResolutionComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ModelDebugOptionsComponent"
+      ],
+      "title": "Render configuration"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent/init(group:order:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent/group",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent/order"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/ModelSortGroupComponent/Component-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/modelsortgroupcomponent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

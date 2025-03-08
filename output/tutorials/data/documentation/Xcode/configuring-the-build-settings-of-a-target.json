@@ -1,0 +1,1230 @@
+{
+  "abstract": [
+    {
+      "text": "Specify the options you use to compile, link, and produce a",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "product from a target, and identify settings inherited from",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "your project or the system.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/build-system"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/configuring-the-build-settings-of-a-target"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring the build settings of a target"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Xcode build process is highly configurable, and you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "change the build settings of a single target or all the targets",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in your project. Build settings control every aspect of the build process,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "including how Xcode compiles your source files, how it links your executable,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "whether it generates debug information, and how it packages and distributes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your code. Xcode has hundreds of build settings to support the tools and steps",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "associated with the build process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make changes to your project or target’s settings from the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Build Settings tab or with build configuration files. The following image",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "shows the Build Settings tab for a project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "build-settings-editor.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can also store settings in specially formatted text files called",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "build configuration files. These files make it easy to save your settings",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "along with your source files in your source control management system. For",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "information about build configuration files, see",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-a-build-configuration-file-to-your-project",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a complete list of build settings, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Search-and-filter-the-list-of-build-settings",
+          "level": 3,
+          "text": "Search and filter the list of build settings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To find a specific build setting quickly, use the filters and Search field",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "at the top of the Build Settings tab.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select a filter to display all settings or only the modified settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter text in the search field to display settings that contain the specified",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "string. Xcode searches all settings attributes by default.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To refine your search, click the magnifying glass and select a single attribute",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to match.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Configure-the-value-of-a-build-setting",
+          "level": 3,
+          "text": "Configure the value of a build setting",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each build setting has the following attributes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attribute",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Example",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Title",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A human-readable name for the build setting.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Build Active Architecture Only",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The programmatic name for the build setting. This name appears in the Quick Help inspector, in build configuration (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcconfig",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") files, and in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcodebuild",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " command-line tool.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ONLY_ACTIVE_ARCH",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Common types include Booleans, strings, enumerations, string lists, path strings, and a list of path strings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Boolean",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The current value of the setting.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "YES",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Build Settings tab displays a setting’s title or name, but",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "not both. When titles are visible, choose Editor > Show Setting Names",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to display the names. When names are visible, choose",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Editor > Show Setting Titles to display the titles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you find the setting you want to modify, click the value attribute",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and type the new value. Xcode applies a bold font to modified settings to help",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you find them later. To restore a setting’s original value, select it and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "press the Delete key. If you modified the setting from the Levels view,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "delete the setting at the level where you overrode the value. For example, if",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you overrode the setting in your project, delete the setting there, and not",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in a target belonging to that project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure different values for debug and release builds, click",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a setting’s disclosure triangle to reveal the configuration-specific",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "values, and make the changes there. If you modify a setting while its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "disclosure triangle is in the closed position, Xcode applies the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "change to both configurations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some settings define their values in terms of other settings.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, an attribute whose value is a path to a file might",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use the ",
+              "type": "text"
+            },
+            {
+              "code": "BUILD_DIR",
+              "type": "codeVoice"
+            },
+            {
+              "text": " setting to specify part of the path. When",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a setting’s definition is visible, choose Editor > Show Values to see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the computed final value — that is, the value without the environment",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variable. When the final value is visible, choose Editor > Show Definitions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to see the definition.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Evaluate-how-your-project-inherits-settings",
+          "level": 3,
+          "text": "Evaluate how your project inherits settings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every target inherits settings from both its parent project and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the platform SDK. This inheritance model ensures that the target",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "starts with valid baseline settings. When you create a target,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode changes some settings based on the target type, and you are",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "free to make other changes based on your needs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To help you track down the source of a setting’s value, open the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "build settings for your project or target and select the Levels",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "filter. Xcode displays the current settings hierarchy in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "build settings editor. This hierarchy includes the default SDK",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "values and any other project or target values that are active.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Resolved column shows the final resolved value Xcode uses",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to build the item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "build-setting-inheritance-hierarchy.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With levels displayed, highlighted values indicate values that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "take precedence. Xcode uses a target’s build settings before referring to build settings",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you define for the project. At each level, Xcode gives precedence to settings you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provide in the project over those you provide in build configuration files. Xcode",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "gives the lowest precedence to the default system values. The hierarchy of precedence is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Target-level values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configuration settings file values mapped to a target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Project-level values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configuration settings file mapped to the project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "System default values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When using the ",
+                  "type": "text"
+                },
+                {
+                  "code": "xcodebuild",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " command-line tool, the tool gives any settings",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "you pass to it the highest prededence.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Obtain-additional-details-about-a-build-setting",
+          "level": 3,
+          "text": "Obtain additional details about a build setting",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To see detailed information about a particular setting, select",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the setting and choose View > Inspectors > Quick Help. Xcode",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "displays a description of the setting, along with its name and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "value type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "build-setting-quick-help.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "build-setting-inheritance-hierarchy.png": {
+      "alt": "The levels option in the build settings editor shows the inheritance of default system settings, project settings, and target settings.",
+      "identifier": "build-setting-inheritance-hierarchy.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6f1f0ea843065c4fd5bceb5188cf354a/build-setting-inheritance-hierarchy@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b2efe5cbfae22e926385faa3399e616f/build-setting-inheritance-hierarchy~dark@2x.png"
+        }
+      ]
+    },
+    "build-setting-quick-help.png": {
+      "alt": "The quick help inspector shows detailed information about the selected build setting.",
+      "identifier": "build-setting-quick-help.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c40047e4289f3d112b8f553c3e70d542/build-setting-quick-help@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/50dac51a724139d8d9b96b32fe8b6c0a/build-setting-quick-help~dark@2x.png"
+        }
+      ]
+    },
+    "build-settings-editor.png": {
+      "alt": "An Xcode window shows the build settings for the selected target, and the controls you use to filter and search the list of settings.",
+      "identifier": "build-settings-editor.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/af7a7a11967dfd4ab70af3f67339364e/build-settings-editor@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a45dda1145473f138cc21609ba9bf188/build-settings-editor~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-a-build-configuration-file-to-your-project": {
+      "abstract": [
+        {
+          "text": "Specify your project’s build settings in plain-text files, and supply",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "different settings for debug and release builds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-a-build-configuration-file-to-your-project",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a build configuration file to your project",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-a-build-configuration-file-to-your-project"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference": {
+      "abstract": [
+        {
+          "text": "A detailed list of individual Xcode build settings that control or change the way a target is built.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference",
+      "kind": "article",
+      "role": "article",
+      "title": "Build settings reference",
+      "type": "topic",
+      "url": "/documentation/xcode/build-settings-reference"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/build-system": {
+      "abstract": [
+        {
+          "text": "Compile your code into a binary format, and customize your project settings to build your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Build system",
+      "type": "topic",
+      "url": "/documentation/xcode/build-system"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/identifying-and-addressing-framework-module-issues": {
+      "abstract": [
+        {
+          "text": "Detect and fix common problems found in framework modules with the module verifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-and-addressing-framework-module-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying and addressing framework module issues",
+      "type": "topic",
+      "url": "/documentation/xcode/identifying-and-addressing-framework-module-issues"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/understanding-build-product-layout-changes": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-build-product-layout-changes",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding build product layout changes in Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode/understanding-build-product-layout-changes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Build-settings",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/adding-a-build-configuration-file-to-your-project",
+        "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference",
+        "doc://com.apple.Xcode/documentation/Xcode/identifying-and-addressing-framework-module-issues",
+        "doc://com.apple.Xcode/documentation/Xcode/understanding-build-product-layout-changes"
+      ],
+      "title": "Build settings"
+    }
+  ]
+}

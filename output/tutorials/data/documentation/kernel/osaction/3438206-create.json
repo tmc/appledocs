@@ -1,0 +1,687 @@
+{
+  "abstract": [
+    {
+      "text": "Creates a new action object and configures it with your custom target object and callback method. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types",
+        "doc://com.apple.documentation/documentation/kernel/osaction"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/libkern",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types",
+        "doc://com.apple.documentation/documentation/kernel/osaction"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/driverkit",
+        "doc://com.apple.documentation/documentation/driverkit/osaction"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/osaction/3438206-create"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3438206,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@OSAction@F@Create#*$@S@OSObject#k#k#l#**$@S@OSAction#S",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "parent": {
+      "title": "OSAction"
+    },
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.15.2",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "clm",
+    "title": "Create"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/kern_return_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@kern_return_t",
+              "text": "kern_return_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Create"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSObject",
+              "text": "OSObject"
+            },
+            {
+              "kind": "text",
+              "text": " *target, "
+            },
+            {
+              "kind": "keyword",
+              "text": "uint64_t"
+            },
+            {
+              "kind": "text",
+              "text": " targetmsgid, "
+            },
+            {
+              "kind": "keyword",
+              "text": "uint64_t"
+            },
+            {
+              "kind": "text",
+              "text": " msgid, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/size_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@size_t",
+              "text": "size_t"
+            },
+            {
+              "kind": "text",
+              "text": " referenceSize, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/osaction",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSAction",
+              "text": "OSAction"
+            },
+            {
+              "kind": "text",
+              "text": " **action);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The object that contains the target method. The action object retains your target object. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "target"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The message ID for the custom method that you want the system to call. The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/driverkit/type",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " macro automatically generates a constant for this message ID that takes the form <",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Class>",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "code": "_<",
+                  "type": "codeVoice"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Method>",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "code": "_ID",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", where ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "<Class>",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " is the name of your class and ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "<Method>",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " is the name of your custom method. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "targetmsgid"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The message ID for the method the system expects to call. When using the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/driverkit/type",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " macro to declare conformance to DriverKit methods, specify the ID for the method you passed as a parameter to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/driverkit/type",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " macro. For example, if you use the type macro to specify the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe/CompleteAsyncIO",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "IOUSBHostPipe_CompleteAsyncIO_ID",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "msgid"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The additional number of bytes to allocate and store with your action object. Retrieve a pointer to this buffer later using the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/kernel/osaction/3438207-getreference",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "referenceSize"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a variable for your action object. If this method creates the action object successfully, it returns that object in this parameter. It is a programmer error to specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for this parameter. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "action"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on success, or another value if an error occurs. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/error_codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the custom constructor method generated by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/type",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " macro, instead of this method. For more information on custom constructor methods for action objects, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/type",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/driverkit": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DriverKit",
+      "type": "topic",
+      "url": "/documentation/driverkit"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/error_codes": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/error_codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Error Codes",
+      "type": "topic",
+      "url": "/documentation/driverkit/error_codes"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOReturnSuccess",
+      "type": "topic",
+      "url": "/documentation/driverkit/kioreturnsuccess"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osaction": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSAction",
+      "type": "topic",
+      "url": "/documentation/driverkit/osaction"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/type": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/type",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TYPE",
+      "type": "topic",
+      "url": "/documentation/driverkit/type"
+    },
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kern_return_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kern_return_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kern_return_t",
+      "type": "topic",
+      "url": "/documentation/kernel/kern_return_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "libkern",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern/data_types": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern/data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Types",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern/data_types"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osaction": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSAction",
+      "type": "topic",
+      "url": "/documentation/kernel/osaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osaction/3438206-create": {
+      "abstract": [
+        {
+          "text": "Creates a new action object and configures it with your custom target object and callback method. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "Create"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osaction/3438206-create",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Create",
+      "type": "topic",
+      "url": "/documentation/kernel/osaction/3438206-create"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osaction/3438207-getreference": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetReference"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osaction/3438207-getreference",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetReference",
+      "type": "topic",
+      "url": "/documentation/kernel/osaction/3438207-getreference"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osaction/3438208-setabortedhandler": {
+      "abstract": [
+        {
+          "text": "Install a handler for the system to call when no other processes reference the action object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetAbortedHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osaction/3438208-setabortedhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetAbortedHandler",
+      "type": "topic",
+      "url": "/documentation/kernel/osaction/3438208-setabortedhandler"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osaction/3438209-free": {
+      "abstract": [
+        {
+          "text": "Performs any final cleanup for the action object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osaction/3438209-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/osaction/3438209-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/size_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/size_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "size_t",
+      "type": "topic",
+      "url": "/documentation/kernel/size_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe": {
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUSBHostPipe",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostpipe"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe/CompleteAsyncIO": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "CompleteAsyncIO"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostPipe/CompleteAsyncIO",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CompleteAsyncIO",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostpipe/completeasyncio"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osaction/3438209-free",
+        "doc://com.apple.documentation/documentation/kernel/osaction/3438208-setabortedhandler"
+      ],
+      "title": "Configuring the Action"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/osaction/3438206-create"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

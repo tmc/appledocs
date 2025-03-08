@@ -1,0 +1,584 @@
+{
+  "abstract": [
+    {
+      "text": "Configure a compression session to optimize encoding for video-conferencing apps.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-low-latency-conferencing"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Video Toolbox"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.3",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Encoding video for low-latency conferencing"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project demonstrates how to configure and use a ",
+              "type": "text"
+            },
+            {
+              "code": "VTCompressionSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object to encode video for low-latency conferencing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-compression-session",
+          "level": 3,
+          "text": "Create a compression session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a ",
+              "type": "text"
+            },
+            {
+              "code": "VTCompressionSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object and specify the required dimensions and ",
+              "type": "text"
+            },
+            {
+              "code": "codecType",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For low latency use, include the ",
+              "type": "text"
+            },
+            {
+              "code": "kVTVideoEncoderSpecification_EnableLowLatencyRateControl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option and set it to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "code": "videoEncoderSpecification",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Optionally, specify ",
+              "type": "text"
+            },
+            {
+              "code": "sourceImageBufferAttributes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to provide a description of the source pixel buffers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Specify low-latency video encoding.",
+            "let videoEncoderSpecification = [kVTVideoEncoderSpecification_EnableLowLatencyRateControl: true as CFBoolean] as CFDictionary",
+            "",
+            "// Specify the pixel format of the uncompressed video.",
+            "let sourceImageBufferAttributes = [kCVPixelBufferPixelFormatTypeKey: options.pixelFormat as CFNumber] as CFDictionary",
+            "",
+            "var compressionSessionOut: VTCompressionSession?",
+            "let err = VTCompressionSessionCreate(allocator: kCFAllocatorDefault,",
+            "                                     width: Int32(options.destWidth),",
+            "                                     height: Int32(options.destHeight),",
+            "                                     codecType: options.codec,",
+            "                                     encoderSpecification: videoEncoderSpecification,",
+            "                                     imageBufferAttributes: sourceImageBufferAttributes,",
+            "                                     compressedDataAllocator: nil,",
+            "                                     outputCallback: nil,",
+            "                                     refcon: nil,",
+            "                                     compressionSessionOut: &compressionSessionOut)",
+            "guard err == noErr, let compressionSession = compressionSessionOut else {",
+            "    throw RuntimeError(\"VTCompressionSession creation failed (\\(err))!\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Configure-the-compression-session",
+          "level": 3,
+          "text": "Configure the compression session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify the codec profile and level, the expected video source frame rate, and the target average bit rate. Set ",
+              "type": "text"
+            },
+            {
+              "code": "kVTCompressionPropertyKey_RealTime",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "kCFBooleanTrue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to indicate that this is a live encoding session. The low-latency rate control that the system enables during the ",
+              "type": "text"
+            },
+            {
+              "code": "VTCompressionSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object creation takes care of the other encoder configuration for low latency.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Configures a compression session for low-latency conferencing.",
+            "/// - Parameters:",
+            "///   - session: A compression session.",
+            "///   - options: The configuration options.",
+            "///   - expectedFrameRate: The expected frame rate of the video source.",
+            "private func configureVTCompressionSession(session: VTCompressionSession, options: Options, expectedFrameRate: Float) {",
+            "    // Different encoder implementations may support different property sets, so",
+            "    // the app needs to determine the implications of a failed property setting",
+            "    // on a case-by-case basis for the encoder. If the property is essential for",
+            "    // the use case and its setting fails, the app terminates. Otherwise, the",
+            "    // encoder ignores the failed setting and uses a default value to proceed",
+            "    // with encoding.",
+            "",
+            "    var err: OSStatus = noErr",
+            "",
+            "    // Specify the profile and level for the encoded bitstream.",
+            "    if options.codec == kCMVideoCodecType_H264 {",
+            "        err = VTSessionSetProperty(session, key: kVTCompressionPropertyKey_ProfileLevel, value: kVTProfileLevel_H264_Main_AutoLevel)",
+            "    } else if options.codec == kCMVideoCodecType_HEVC {",
+            "        err = VTSessionSetProperty(session, key: kVTCompressionPropertyKey_ProfileLevel, value: kVTProfileLevel_HEVC_Main_AutoLevel)",
+            "    }",
+            "    if noErr != err {",
+            "        print(\"Warning: VTSessionSetProperty(kVTCompressionPropertyKey_ProfileLevel) failed (\\(err))\")",
+            "    }",
+            "",
+            "    // Indicate that the compression session is real-time, which conferencing",
+            "    // requires.",
+            "    err = VTSessionSetProperty(session, key: kVTCompressionPropertyKey_RealTime, value: kCFBooleanTrue)",
+            "    if noErr != err {",
+            "        print(\"Warning: VTSessionSetProperty(kVTCompressionPropertyKey_RealTime) failed (\\(err))\")",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Encode-video-frames",
+          "level": 3,
+          "text": "Encode video frames",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call ",
+              "type": "text"
+            },
+            {
+              "code": "VTCompressionSessionEncodeFrame(_:imageBuffer:presentationTimeStamp:duration:frameProperties:infoFlagsOut:outputHandler:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and submit each uncompressed frame to the ",
+              "type": "text"
+            },
+            {
+              "code": "VTCompressionSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object for encoding. The object calls the ",
+              "type": "text"
+            },
+            {
+              "code": "outputHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": " block for each encoded frame. Check whether a frame drop or error occurs after frame encoding.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call ",
+              "type": "text"
+            },
+            {
+              "code": "VTCompressionSessionCompleteFrames(_:untilPresentationTimeStamp:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to indicate to the ",
+              "type": "text"
+            },
+            {
+              "code": "VTCompressionSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object that the app submitted all uncompressed video frames for encoding.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Perform-compression-and-encoding",
+          "level": 3,
+          "text": "Perform compression and encoding",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the movie file ",
+              "type": "text"
+            },
+            {
+              "code": "/Assets/video3.m4v",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to test this app. Copy the file to your desktop or other working directory, and then open Terminal to that directory and run the following command, where ",
+              "type": "text"
+            },
+            {
+              "code": "xxx",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a unique string that Xcode generates. Use autocomplete before the ",
+              "type": "text"
+            },
+            {
+              "code": "xxx",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component to complete the path for that directory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "~/Library/Developer/Xcode/DerivedData/VTEncoderForConferencing-xxx/Build/Products/Debug/VTEncoderForConferencing-Swift video3.m4v",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pass the ",
+              "type": "text"
+            },
+            {
+              "code": "--help",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option for additional configuration options.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "a0818ea75422/EncodingVideoForLowLatencyConferencing.zip": {
+      "checksum": "a0818ea75422c633382cc709716359741e329eb7ca7581a58f1dce070f7497a8c08b41dfdb5cfecf1a25af308ca02d0b3ac3d824957ffca44ffbf0adcc288dc7",
+      "identifier": "a0818ea75422/EncodingVideoForLowLatencyConferencing.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/a0818ea75422/EncodingVideoForLowLatencyConferencing.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox": {
+      "abstract": [
+        {
+          "text": "Work directly with hardware-accelerated video encoding and decoding capabilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Video Toolbox",
+      "type": "topic",
+      "url": "/documentation/videotoolbox"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSession-api-collection": {
+      "abstract": [
+        {
+          "text": "An object that compresses video data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSession-api-collection",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "VTCompressionSession",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtcompressionsession-api-collection"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTDecompressionSession-api-collection": {
+      "abstract": [
+        {
+          "text": "An object that decompresses video data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTDecompressionSession-api-collection",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "VTDecompressionSession",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtdecompressionsession-api-collection"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSilo-api-collection": {
+      "abstract": [
+        {
+          "text": "An object that stores sample buffers from a multipass encoding session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSilo-api-collection",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "VTFrameSilo",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtframesilo-api-collection"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTMultiPassStorage-api-collection": {
+      "abstract": [
+        {
+          "text": "An object that stores video encoding metadata from a multipass encoding session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTMultiPassStorage-api-collection",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "VTMultiPassStorage",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtmultipassstorage-api-collection"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-live-streaming": {
+      "abstract": [
+        {
+          "text": "Configure a compression session to encode video for live streaming.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-live-streaming",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encoding video for live streaming",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/encoding-video-for-live-streaming"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-offline-transcoding": {
+      "abstract": [
+        {
+          "text": "Configure a compression session to transcode video in offline workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-offline-transcoding",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encoding video for offline transcoding",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/encoding-video-for-offline-transcoding"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "a0818ea75422/EncodingVideoForLowLatencyConferencing.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Compression",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-live-streaming",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-offline-transcoding",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSession-api-collection",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTDecompressionSession-api-collection",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSilo-api-collection",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTMultiPassStorage-api-collection"
+      ],
+      "title": "Compression"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Compression",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-live-streaming",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/encoding-video-for-offline-transcoding",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCompressionSession-api-collection",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTDecompressionSession-api-collection",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTFrameSilo-api-collection",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTMultiPassStorage-api-collection"
+              ],
+              "title": "Compression"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/videotoolbox/encoding-video-for-low-latency-conferencing"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/videotoolbox/encoding-video-for-low-latency-conferencing"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

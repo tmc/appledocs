@@ -1,0 +1,559 @@
+{
+  "abstract": [
+    {
+      "text": "Get information about a specific source code management provider you connected to Xcode Cloud.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.6 beta 1",
+        "3.6"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.0",
+        "3.6"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.5",
+        "3.6"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-scmProviders-_id_"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:app_store_connect_api:get:v1-scmProviders-{}",
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GET /v1/scmProviders/{id}"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.5",
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get a Source Code Management Provider"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.appstoreconnect.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/scmProviders/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{id}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The opaque resource ID that uniquely identifies the Providers resource.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "id",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "scmProviderType",
+                "url",
+                "repositories"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Additional fields to include for the Providers resource returned by the response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "fields[scmProviders]",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request completed successfully.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ScmProviderResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ScmProviderResponse",
+              "text": "ScmProviderResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An error occurred with your request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Request not authorized.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Resource not found.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example request below retrieves information about a specific source code management provider you connected to Xcode Cloud. Use the data provided in the response to read additional information; for example, repository information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example-Request-and-Response",
+          "level": 3,
+          "text": "Example Request and Response",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "GET https://api.appstoreconnect.apple.com/v1/scmProviders/d1b5479e-ce72-402c-8b9a-ea26ef6773f4"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "    \"data\": {",
+                    "        \"type\": \"scmProviders\",",
+                    "        \"id\": \"d1b5479e-ce72-402c-8b9a-ea26ef6773f4\",",
+                    "        \"attributes\": {",
+                    "            \"scmProviderType\": {",
+                    "                \"kind\": \"GITHUB_CLOUD\",",
+                    "                \"displayName\": \"GitHub\",",
+                    "                \"isOnPremise\": false",
+                    "            },",
+                    "            \"url\": \"github.com\"",
+                    "        },",
+                    "        \"relationships\": {",
+                    "            \"repositories\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/scmProviders/d1b5479e-ce72-402c-8b9a-ea26ef6773f4/relationships/repositories\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/scmProviders/d1b5479e-ce72-402c-8b9a-ea26ef6773f4/repositories\"",
+                    "                }",
+                    "            }",
+                    "        },",
+                    "        \"links\": {",
+                    "            \"self\": \"https://api.appstoreconnect.apple.com/v1/scmProviders/d1b5479e-ce72-402c-8b9a-ea26ef6773f4\"",
+                    "        }",
+                    "    },",
+                    "    \"links\": {",
+                    "        \"self\": \"https://api.appstoreconnect.apple.com/v1/scmProviders/d1b5479e-ce72-402c-8b9a-ea26ef6773f4\"",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse": {
+      "abstract": [
+        {
+          "text": "The error details that an API returns in the response body whenever the API request isn’t successful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/errorresponse"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-scmProviders": {
+      "abstract": [
+        {
+          "text": "List all source code management providers you connected to Xcode Cloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-scmProviders",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/scmProviders"
+        }
+      ],
+      "role": "symbol",
+      "title": "List All Source Code Management Providers",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-scmproviders"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-scmProviders-_id_": {
+      "abstract": [
+        {
+          "text": "Get information about a specific source code management provider you connected to Xcode Cloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-scmProviders-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/scmProviders/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Source Code Management Provider",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-scmproviders-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-scmProviders-_id_-repositories": {
+      "abstract": [
+        {
+          "text": "List all Git repositories for a specific source code management provider you connected to Xcode Cloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-scmProviders-_id_-repositories",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/scmProviders/{id}/repositories"
+        }
+      ],
+      "role": "symbol",
+      "title": "List all Repositories for a Source Code Management Provider",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-scmproviders-_id_-repositories"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ScmProviderResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains a single Providers resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScmProviderResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ScmProviderResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScmProviderResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScmProviderResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/scmproviderresponse"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-Provider-Information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-scmProviders",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-scmProviders-_id_-repositories"
+      ],
+      "title": "Getting Provider Information"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/get-v1-scmproviders-_id_"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

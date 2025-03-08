@@ -1,0 +1,2113 @@
+{
+  "abstract": [
+    {
+      "text": "Transfer data between a watchOS app and its companion iOS app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchconnectivity/documentation/WatchConnectivity"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity/transferring-data-with-watch-connectivity"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Watch Connectivity"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.0",
+        "name": "watchOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Transferring data with Watch Connectivity"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some watchOS apps rely on their companion iOS app to perform complicated tasks, and need to exchange data with the companion app even when there’s no internet connection. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity",
+              "isActive": true,
+              "overridingTitle": "Watch Connectivity",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Watch Connectivity",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " framework provides APIs for this purpose. This sample demonstrates how to use the APIs, and how to handle Watch Connectivity background tasks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use a physical iPhone and Apple Watch to test this sample code project.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before building the sample app, perform the following steps in Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify that the bundle identifiers for the watchOS app and widget targets are based on the iOS app target’s bundle identifier. For example, if the iOS app target uses ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.YourCompany.ProductName",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the watchOS app and widget targets must use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.YourCompany.ProductName.watchkitapp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.YourCompany.ProductName.watchkitapp.SimpleWatchWidget",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", respectively. To check this, select each target and click its Signing & Capabilities tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Signing & Capabilities tab for each target, set the developer team to let Xcode automatically manage the provisioning profile. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://help.apple.com/xcode/mac/current/#/dev23aab79b4",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for details.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Info tab of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SimpleWatchConnectivity Watch App",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " target, change the value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "WKCompanionAppBundleIdentifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key to the iOS app target’s bundle identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Replace the App Group container identifier ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "group.com.example.apple-samplecode.SimpleWatchConnectivity",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with one specific to your team. The identifier occurs in the entitlements for the watchOS app and the widget, and in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "WidgetSupport.swift",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Xcode/configuring-app-groups",
+                      "isActive": true,
+                      "overridingTitle": "Configuring App Groups",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Configuring App Groups",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for more details.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Transfer-data-with-Watch-Connectivity",
+          "level": 3,
+          "text": "Transfer data with Watch Connectivity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Watch Connectivity framework provides APIs that accomplish the following tasks:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Updating app context data",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sending a message",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Transferring user info and managing outstanding transfers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Transferring a file, observing the transfer progress, and managing outstanding transfers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Updating an active complication from the companion iOS app",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All APIs transfer a dictionary between the companion apps, with notable differences. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession/updateApplicationContext(_:)",
+              "isActive": true,
+              "overridingTitle": "updateApplicationContext(_:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "updateApplicationContext(_:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " sends a dictionary that represents the current app context to the companion app. It overwrites the context data currently existing in the pipeline, if any. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession/transferUserInfo(_:)",
+              "isActive": true,
+              "overridingTitle": "transferUserInfo(_:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "transferUserInfo(_:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " guarantees to deliver a dictionary. If an app performs another transfer before finishing the previous one, the system queues the transfers and delivers them in the order received. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession/sendMessage(_:replyHandler:errorHandler:)",
+              "isActive": true,
+              "overridingTitle": "sendMessage(_:replyHandler:errorHandler:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "sendMessage(_:replyHandler:errorHandler:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " sends a dictionary immediately. If the method encounters an error, it returns the error via the error handler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app can provide a reply handler to receive a response from its companion app. The reply handler runs asynchronously on a background thread, and returns quickly to avoid timeout. Sending a message from a watchOS app wakes up its companion iOS app, if the companion is reachable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-an-active-complication-from-the-companion-iOS-app",
+          "level": 3,
+          "text": "Update an active complication from the companion iOS  app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample provides a WidgetKit complication that shows a timestamp. To activate the complication:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose a Modular watch face on the Apple Watch.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Press the watch face to show the customization screen, tap the Edit button, and swipe right to show the configuration screen.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tap the large rectangular area, rotate the digital crown to find ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SimpleWatchConnectivity Watch App",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", tap it, and then select the complication.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Press the digital crown and tap the screen to finish the configuration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To update the complication, the iOS app in this sample calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession/transferCurrentComplicationUserInfo(_:)",
+              "isActive": true,
+              "overridingTitle": "transferCurrentComplicationUserInfo",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "transferCurrentComplicationUserInfo",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " if the complication is active. The system allows 50 transfers of this kind per day. Apps can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession/remainingComplicationUserInfoTransfers",
+              "isActive": true,
+              "overridingTitle": "remainingComplicationUserInfoTransfers",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "remainingComplicationUserInfoTransfers",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to retrieve the number of remaining times.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if WCSession.default.isComplicationEnabled {",
+            "    let userInfoTranser = WCSession.default.transferCurrentComplicationUserInfo(userInfo)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The watchOS app persists the data it receives to the shared ",
+              "type": "text"
+            },
+            {
+              "code": "UserDefaults",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WidgetKit/WidgetCenter/reloadTimelines(ofKind:)",
+              "isActive": true,
+              "overridingTitle": "reloadTimelines(ofKind:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "reloadTimelines(ofKind:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " for the system to reload the timelines for the widget:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "WidgetCenter.shared.getCurrentConfigurations { result in",
+            "    switch result {",
+            "    case .success(let widgetInfoList):",
+            "        for widgetInfo in widgetInfoList where widgetInfo.kind == WidgetSupport.widgetKind {",
+            "            WidgetCenter.shared.reloadTimelines(ofKind: widgetInfo.kind)",
+            "        }",
+            "    case .failure(let error):",
+            "        print(error.localizedDescription)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system requests the timeline, the widget retrieves the data from the shared ",
+              "type": "text"
+            },
+            {
+              "code": "UserDefaults",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and uses it to create and return a timeline entry:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-Watch-Connectivity-background-tasks",
+          "level": 3,
+          "text": "Handle Watch Connectivity background tasks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using Watch Connectivity, apps must complete every background task (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKWatchConnectivityRefreshBackgroundTask",
+              "isActive": true,
+              "overridingTitle": "WKWatchConnectivityRefreshBackgroundTask",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "WKWatchConnectivityRefreshBackgroundTask",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": "). An uncompleted task consumes the background-task time budget that watchOS allocates to the app, which results in a crash when the budget runs out.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample retains the tasks in an array, and completes them when:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app finishes handling the tasks.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The current ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "WCSession",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " turns to a state other than ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity/WCSessionActivationState/activated",
+                      "isActive": true,
+                      "overridingTitle": ".activated",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": ".activated",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession/hasContentPending",
+                      "isActive": true,
+                      "overridingTitle": "hasContentPending",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "hasContentPending",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " becomes ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "false",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", indicating that there’s no pending data received prior to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "WCSession",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " activation waiting for processing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code completes the tasks at the end of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKApplicationDelegate/handle(_:)-4vdjo",
+              "isActive": true,
+              "overridingTitle": "handle(_:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "handle(_:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func handle(_ backgroundTasks: Set<WKRefreshBackgroundTask>) {",
+            "    for task in backgroundTasks {",
+            "        if let wcTask = task as? WKWatchConnectivityRefreshBackgroundTask {",
+            "            wcBackgroundTasks.append(wcTask)",
+            "            Logger.shared.append(line: \"\\(#function):\\(wcTask.description) was appended!\")",
+            "        } else {",
+            "            task.setTaskCompletedWithSnapshot(false)",
+            "            Logger.shared.append(line: \"\\(#function):\\(task.description) was completed!\")",
+            "        }",
+            "    }",
+            "    completeBackgroundTasks()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code completes the tasks in the other cases:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "activationStateObservation = WCSession.default.observe(\\.activationState) { _, _ in",
+            "    DispatchQueue.main.async {",
+            "        self.completeBackgroundTasks()",
+            "    }",
+            "}",
+            "hasContentPendingObservation = WCSession.default.observe(\\.hasContentPending) { _, _ in",
+            "    DispatchQueue.main.async {",
+            "        self.completeBackgroundTasks()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On watchOS, the system suspends an  app when a person stops using the app and lowers their wrist. Later, when watchOS triggers a background task for the app, watchOS wakes the app from the suspended state. Using Xcode to run an app prevents the system from completing the suspension process, and may lead to different app behaviors. When encountering an issue related to background tasks, consider debugging it by launching the app directly from the Home Screen and analyzing the app logs. This sample uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "Shared/Logger.swift",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to write logs into a file, and transfers the file to the iOS app when a person taps the file transfer button in the watchOS app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "50d45f3a1b60/TransferringDataWithWatchConnectivity.zip": {
+      "checksum": "50d45f3a1b609af655448e90ab290f15dc09ca3bb532926d2a7ed979a28e781aa3617be5f57b5c3ff9596de6de7c5834d3a1d86db75deefdef22b188b333e184",
+      "identifier": "50d45f3a1b60/TransferringDataWithWatchConnectivity.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/50d45f3a1b60/TransferringDataWithWatchConnectivity.zip"
+    },
+    "Shared/Logger.swift": {
+      "identifier": "Shared/Logger.swift",
+      "title": "Logger",
+      "titleInlineContent": [
+        {
+          "code": "Logger",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "Shared/Logger.swift"
+    },
+    "doc://com.apple.documentation/documentation/WatchConnectivity": {
+      "abstract": [
+        {
+          "text": "Implement two-way communication between an iOS app and its paired watchOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Watch Connectivity",
+      "type": "topic",
+      "url": "/documentation/WatchConnectivity"
+    },
+    "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession/hasContentPending": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the session has more content to deliver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasContentPending"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession/hasContentPending",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasContentPending",
+      "type": "topic",
+      "url": "/documentation/WatchConnectivity/WCSession/hasContentPending"
+    },
+    "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession/remainingComplicationUserInfoTransfers": {
+      "abstract": [
+        {
+          "text": "The number of remaining times you can send complication data from the iOS app to the WatchKit extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "remainingComplicationUserInfoTransfers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession/remainingComplicationUserInfoTransfers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remainingComplicationUserInfoTransfers",
+      "type": "topic",
+      "url": "/documentation/WatchConnectivity/WCSession/remainingComplicationUserInfoTransfers"
+    },
+    "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession/sendMessage(_:replyHandler:errorHandler:)": {
+      "abstract": [
+        {
+          "text": "Sends a message immediately to the paired and active device and optionally handles a response.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendMessage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "message"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "replyHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "errorHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession/sendMessage(_:replyHandler:errorHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendMessage(_:replyHandler:errorHandler:)",
+      "type": "topic",
+      "url": "/documentation/WatchConnectivity/WCSession/sendMessage(_:replyHandler:errorHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession/transferCurrentComplicationUserInfo(_:)": {
+      "abstract": [
+        {
+          "text": "Sends complication-related data from the iOS app to the WatchKit extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transferCurrentComplicationUserInfo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "] = [:]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WCSessionUserInfoTransfer",
+          "text": "WCSessionUserInfoTransfer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession/transferCurrentComplicationUserInfo(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transferCurrentComplicationUserInfo(_:)",
+      "type": "topic",
+      "url": "/documentation/WatchConnectivity/WCSession/transferCurrentComplicationUserInfo(_:)"
+    },
+    "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession/transferUserInfo(_:)": {
+      "abstract": [
+        {
+          "text": "Sends the specified data dictionary to the counterpart.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transferUserInfo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "] = [:]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WCSessionUserInfoTransfer",
+          "text": "WCSessionUserInfoTransfer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession/transferUserInfo(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transferUserInfo(_:)",
+      "type": "topic",
+      "url": "/documentation/WatchConnectivity/WCSession/transferUserInfo(_:)"
+    },
+    "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession/updateApplicationContext(_:)": {
+      "abstract": [
+        {
+          "text": "Sends a dictionary of values that a paired and active device can use to synchronize its state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateApplicationContext"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "applicationContext"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity/WCSession/updateApplicationContext(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updateApplicationContext(_:)",
+      "type": "topic",
+      "url": "/documentation/WatchConnectivity/WCSession/updateApplicationContext(_:)"
+    },
+    "doc://com.apple.documentation/documentation/WatchConnectivity/WCSessionActivationState/activated": {
+      "abstract": [
+        {
+          "text": "The session is active and the Watch app and iOS app may communicate with each other freely.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activated"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchConnectivity/WCSessionActivationState/activated",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WCSessionActivationState.activated",
+      "type": "topic",
+      "url": "/documentation/WatchConnectivity/WCSessionActivationState/activated"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKApplicationDelegate/handle(_:)-4vdjo": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the app has received one or more background tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "backgroundTasks"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKRefreshBackgroundTask",
+          "text": "WKRefreshBackgroundTask"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKApplicationDelegate/handle(_:)-4vdjo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handle(_:)",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKApplicationDelegate/handle(_:)-4vdjo"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKWatchConnectivityRefreshBackgroundTask": {
+      "abstract": [
+        {
+          "text": "A background task used to receive background updates from the Watch Connectivity framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKWatchConnectivityRefreshBackgroundTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKWatchConnectivityRefreshBackgroundTask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKWatchConnectivityRefreshBackgroundTask",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKWatchConnectivityRefreshBackgroundTask"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit/WidgetCenter/reloadTimelines(ofKind:)": {
+      "abstract": [
+        {
+          "text": "Reloads the timelines for all widgets of a particular kind.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reloadTimelines"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofKind"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "kind"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit/WidgetCenter/reloadTimelines(ofKind:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reloadTimelines(ofKind:)",
+      "type": "topic",
+      "url": "/documentation/WidgetKit/WidgetCenter/reloadTimelines(ofKind:)"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/configuring-app-groups": {
+      "abstract": [
+        {
+          "text": "Enable communication and data sharing between multiple installed apps created by the same developer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/configuring-app-groups",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring app groups",
+      "type": "topic",
+      "url": "/documentation/Xcode/configuring-app-groups"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchconnectivity/documentation/WatchConnectivity": {
+      "abstract": [
+        {
+          "text": "Implement two-way communication between an iOS app and its paired watchOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchconnectivity/documentation/WatchConnectivity",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Watch Connectivity",
+      "type": "topic",
+      "url": "/documentation/watchconnectivity"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev23aab79b4": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev23aab79b4",
+      "title": "Assign a project to a team",
+      "titleInlineContent": [
+        {
+          "text": "Assign a project to a team",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev23aab79b4"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "50d45f3a1b60/TransferringDataWithWatchConnectivity.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchConnectivity~1WCSession~1transferUserInfo(_:)/title",
+          "value": "transferUserInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchConnectivity~1WCSession~1transferUserInfo(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)WCSessionUserInfoTransfer",
+              "text": "WCSessionUserInfoTransfer"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "transferUserInfo:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+              "text": "NSDictionary<NSString *,id>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "userInfo"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKApplicationDelegate~1handle(_:)-4vdjo/title",
+          "value": "handleBackgroundTasks:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKApplicationDelegate~1handle(_:)-4vdjo/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleBackgroundTasks:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSSet",
+              "text": "NSSet<WKRefreshBackgroundTask *>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "backgroundTasks"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchConnectivity~1WCSession~1transferCurrentComplicationUserInfo(_:)/title",
+          "value": "transferCurrentComplicationUserInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchConnectivity~1WCSession~1transferCurrentComplicationUserInfo(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)WCSessionUserInfoTransfer",
+              "text": "WCSessionUserInfoTransfer"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "transferCurrentComplicationUserInfo:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+              "text": "NSDictionary<NSString *,id>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "userInfo"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchConnectivity~1WCSession~1updateApplicationContext(_:)/title",
+          "value": "updateApplicationContext:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchConnectivity~1WCSession~1updateApplicationContext(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateApplicationContext:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+              "text": "NSDictionary<NSString *,id>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "applicationContext"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "error:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchConnectivity~1WCSession~1remainingComplicationUserInfoTransfers/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "remainingComplicationUserInfoTransfers"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchConnectivity~1WCSession~1hasContentPending/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "hasContentPending"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchConnectivity~1WCSession~1sendMessage(_:replyHandler:errorHandler:)/title",
+          "value": "sendMessage:replyHandler:errorHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchConnectivity~1WCSession~1sendMessage(_:replyHandler:errorHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "sendMessage:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+              "text": "NSDictionary<NSString *,id>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "message"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "replyHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+              "text": "NSDictionary<NSString *,id>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "replyMessage"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "replyHandler"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "errorHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "errorHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchConnectivity~1WCSessionActivationState~1activated/title",
+          "value": "WCSessionActivationStateActivated"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchConnectivity~1WCSessionActivationState~1activated/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WCSessionActivationStateActivated"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKWatchConnectivityRefreshBackgroundTask/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKWatchConnectivityRefreshBackgroundTask"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)WKRefreshBackgroundTask",
+              "text": "WKRefreshBackgroundTask"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/watchconnectivity/transferring-data-with-watch-connectivity"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/watchconnectivity/transferring-data-with-watch-connectivity"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

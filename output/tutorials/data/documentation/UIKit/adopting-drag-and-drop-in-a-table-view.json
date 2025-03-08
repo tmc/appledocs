@@ -1,0 +1,1242 @@
+{
+  "abstract": [
+    {
+      "text": "Demonstrates how to enable and implement drag and drop for a table view.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/drag-and-drop"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+        "doc://com.apple.uikit/documentation/UIKit/table-views"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/adopting-drag-and-drop-in-a-table-view"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.5",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Adopting drag and drop in a table view"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to show how to make a table view into a drag source and a drop destination.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable drag and drop, you specify the table view as its own drag delegate and drop delegate. To provide or consume data, you implement the drag and drop delegate methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adopting drag and drop in a table view differs in some important ways compared to the process you follow for a custom view. To compare the steps, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/adopting-drag-and-drop-in-a-custom-view",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Drag-text-in-the-sample-app",
+          "level": 3,
+          "text": "Drag text in the sample app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Deploy this project on iPad, which supports drag and drop between apps. When you first launch this project’s built app, you see a table with several rows, each with a text string. Use this app along with a second app that supports editing of text strings, such as Notes or Reminders. For example, configure the iPad screen to Split View, with this app side by side with Reminders. Then drag a row from this app into Reminders, or drag a reminder into this app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This app also supports rearranging rows in the table by dragging a row up or down. However, rearrangement in this app uses the traditional ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDataSource/tableView(_:canMoveRowAt:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDataSource/tableView(_:moveRowAt:to:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods rather than the drag and drop API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-drag-and-drop-interactions",
+          "level": 3,
+          "text": "Enable drag and drop interactions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable dragging, dropping, or both, specify a table view as its own drag or drop delegate. A convenient place for this code is in an app’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewDidLoad()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. This code enables both dragging and dropping:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func viewDidLoad() {",
+            "    super.viewDidLoad()",
+            "    ",
+            "    tableView.dragInteractionEnabled = true",
+            "    tableView.dragDelegate = self",
+            "    tableView.dropDelegate = self",
+            "",
+            "    navigationItem.rightBarButtonItem = editButtonItem",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike a custom view, a table view does not have an ",
+              "type": "text"
+            },
+            {
+              "code": "interactions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to which you add interactions. Instead, a table view uses a drag delegate and a drop delegate directly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-data-for-a-drag-session",
+          "level": 3,
+          "text": "Provide data for a drag session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide data for dragging from a table view, implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDragDelegate/tableView(_:itemsForBeginning:at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Here’s the model-agnostic portion of this code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {",
+            "    return model.dragItems(for: indexPath)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following helper function, used by the ",
+              "type": "text"
+            },
+            {
+              "code": "tableView(_:itemsForBeginning:at:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, serves as an interface to the data model in this sample code project:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func dragItems(for indexPath: IndexPath) -> [UIDragItem] {",
+            "    let placeName = placeNames[indexPath.row]",
+            "",
+            "    let data = placeName.data(using: .utf8)",
+            "    let itemProvider = NSItemProvider()",
+            "    ",
+            "    itemProvider.registerDataRepresentation(forTypeIdentifier: kUTTypePlainText as String, visibility: .all) { completion in",
+            "        completion(data, nil)",
+            "        return nil",
+            "    }",
+            "",
+            "    return [",
+            "        UIDragItem(itemProvider: itemProvider)",
+            "    ]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Consume-data-from-a-drop-session",
+          "level": 3,
+          "text": "Consume data from a drop session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To consume data from a drop session in a table view, you implement three delegate methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, your app can refuse the drag items based on their class, the state of your app, or other requirements. This project’s implementation allows a user to drop only instances of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+              "isActive": true,
+              "overridingTitle": "NSString",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSString",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " class. Here is the model-agnostic portion of this code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func tableView(_ tableView: UITableView, canHandle session: UIDropSession) -> Bool {",
+            "    return model.canHandle(session)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following helper function, used by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDropDelegate/tableView(_:canHandle:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, serves as the interface to the data model:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func canHandle(_ session: UIDropSession) -> Bool {",
+            "    return session.canLoadObjects(ofClass: NSString.self)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Second, you must tell the system how you want to consume the data, which is typically by copying it. You specify this choice by way of a drop proposal:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {",
+            "    var dropProposal = UITableViewDropProposal(operation: .cancel)",
+            "    ",
+            "    // Accept only one drag item.",
+            "    guard session.items.count == 1 else { return dropProposal }",
+            "    ",
+            "    // The .move drag operation is available only for dragging within this app and while in edit mode.",
+            "    if tableView.hasActiveDrag {",
+            "        if tableView.isEditing {",
+            "            dropProposal = UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)",
+            "        }",
+            "    } else {",
+            "        // Drag is coming from outside the app.",
+            "        dropProposal = UITableViewDropProposal(operation: .copy, intent: .insertAtDestinationIndexPath)",
+            "    }",
+            "",
+            "    return dropProposal",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, after the user lifts their finger from the screen, indicating their intent to drop the drag items, your table view has one opportunity to request particular data representations of the drag items:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/**",
+            "     This delegate method is the only opportunity for accessing and loading",
+            "     the data representations offered in the drag item. The drop coordinator",
+            "     supports accessing the dropped items, updating the table view, and specifying",
+            "     optional animations. Local drags with one item go through the existing",
+            "     `tableView(_:moveRowAt:to:)` method on the data source.",
+            "*/",
+            "func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {",
+            "    let destinationIndexPath: IndexPath",
+            "    ",
+            "    if let indexPath = coordinator.destinationIndexPath {",
+            "        destinationIndexPath = indexPath",
+            "    } else {",
+            "        // Get last index path of table view.",
+            "        let section = tableView.numberOfSections - 1",
+            "        let row = tableView.numberOfRows(inSection: section)",
+            "        destinationIndexPath = IndexPath(row: row, section: section)",
+            "    }",
+            "    ",
+            "    coordinator.session.loadObjects(ofClass: NSString.self) { items in",
+            "        // Consume drag items.",
+            "        let stringItems = items as! [String]",
+            "        ",
+            "        var indexPaths = [IndexPath]()",
+            "        for (index, item) in stringItems.enumerated() {",
+            "            let indexPath = IndexPath(row: destinationIndexPath.row + index, section: destinationIndexPath.section)",
+            "            self.model.addItem(item, at: indexPath.row)",
+            "            indexPaths.append(indexPath)",
+            "        }",
+            "",
+            "        tableView.insertRows(at: indexPaths, with: .automatic)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to these three methods, drag and drop offers additional API hooks for customizing your adoption of this feature for table views. For more about providing and consuming data, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/supporting-drag-and-drop-in-table-views",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "abstract": [
+        {
+          "text": "A static, plain-text Unicode string object which you use when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableView": {
+      "abstract": [
+        {
+          "text": "A view that presents data using rows in a single column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewDataSource/tableView(_:canMoveRowAt:)": {
+      "abstract": [
+        {
+          "text": "Asks the data source whether a given row can move to another location in the table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tableView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITableView",
+          "text": "UITableView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "canMoveRowAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDataSource/tableView(_:canMoveRowAt:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tableView:canMoveRowAtIndexPath:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tableView(_:canMoveRowAt:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewdatasource/tableview(_:canmoverowat:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewDataSource/tableView(_:moveRowAt:to:)": {
+      "abstract": [
+        {
+          "text": "Tells the data source to move a row at a specific location in the table view to another location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tableView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITableView",
+          "text": "UITableView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "moveRowAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDataSource/tableView(_:moveRowAt:to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tableView:moveRowAtIndexPath:toIndexPath:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tableView(_:moveRowAt:to:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewdatasource/tableview(_:moverowat:to:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewDragDelegate/tableView(_:itemsForBeginning:at:)": {
+      "abstract": [
+        {
+          "text": "Provides the initial set of items (if any) to drag.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tableView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITableView",
+          "text": "UITableView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "itemsForBeginning"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDragSession",
+          "text": "UIDragSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIDragItem",
+          "text": "UIDragItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDragDelegate/tableView(_:itemsForBeginning:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tableView:itemsForBeginningDragSession:atIndexPath:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "tableView(_:itemsForBeginning:at:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewdragdelegate/tableview(_:itemsforbeginning:at:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewDropDelegate/tableView(_:canHandle:)": {
+      "abstract": [
+        {
+          "text": "Asks your delegate whether it can accept the specified type of data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tableView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITableView",
+          "text": "UITableView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "canHandle"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDropSession",
+          "text": "UIDropSession"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDropDelegate/tableView(_:canHandle:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tableView:canHandleDropSession:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tableView(_:canHandle:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewdropdelegate/tableview(_:canhandle:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewDidLoad()": {
+      "abstract": [
+        {
+          "text": "Called after the controller’s view is loaded into memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewDidLoad"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewDidLoad()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewDidLoad"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewDidLoad()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/viewdidload()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/adopting-drag-and-drop-in-a-custom-view": {
+      "abstract": [
+        {
+          "text": "Demonstrates how to enable drag and drop for a ",
+          "type": "text"
+        },
+        {
+          "code": "UIImageView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " instance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/adopting-drag-and-drop-in-a-custom-view",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adopting drag and drop in a custom view",
+      "type": "topic",
+      "url": "/documentation/uikit/adopting-drag-and-drop-in-a-custom-view"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/drag-and-drop": {
+      "abstract": [
+        {
+          "text": "Bring drag and drop to your app by using interaction APIs with your views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/drag-and-drop",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Drag and drop",
+      "type": "topic",
+      "url": "/documentation/uikit/drag-and-drop"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/making-a-view-into-a-drag-source": {
+      "abstract": [
+        {
+          "text": "Adopt drag interaction APIs to provide items for dragging.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/making-a-view-into-a-drag-source",
+      "kind": "article",
+      "role": "article",
+      "title": "Making a view into a drag source",
+      "type": "topic",
+      "url": "/documentation/uikit/making-a-view-into-a-drag-source"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/making-a-view-into-a-drop-destination": {
+      "abstract": [
+        {
+          "text": "Adopt drop interaction APIs to selectively consume dragged content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/making-a-view-into-a-drop-destination",
+      "kind": "article",
+      "role": "article",
+      "title": "Making a view into a drop destination",
+      "type": "topic",
+      "url": "/documentation/uikit/making-a-view-into-a-drop-destination"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/supporting-drag-and-drop-in-table-views": {
+      "abstract": [
+        {
+          "text": "Initiate drags and handle drops from a table view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/supporting-drag-and-drop-in-table-views",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting drag and drop in table views",
+      "type": "topic",
+      "url": "/documentation/uikit/supporting-drag-and-drop-in-table-views"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/table-views": {
+      "abstract": [
+        {
+          "text": "Display data in a single column of customizable rows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/table-views",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Table views",
+      "type": "topic",
+      "url": "/documentation/uikit/table-views"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/understanding-a-drag-item-as-a-promise": {
+      "abstract": [
+        {
+          "text": "Use drag items to convey data representation promises between a source app and a destination app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/understanding-a-drag-item-as-a-promise",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding a drag item as a promise",
+      "type": "topic",
+      "url": "/documentation/uikit/understanding-a-drag-item-as-a-promise"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/views-and-controls": {
+      "abstract": [
+        {
+          "text": "Present your content onscreen and define the interactions allowed with that content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Views and controls",
+      "type": "topic",
+      "url": "/documentation/uikit/views-and-controls"
+    },
+    "eaf99c41437f/AdoptingDragAndDropInATableView.zip": {
+      "checksum": "eaf99c41437fab0ac5c10656ac25725c85f26283f24c551e75e2996e780e927a585f88712325aa64a684610a516281ce910c0c9ec12c304a71f73f111cece234",
+      "identifier": "eaf99c41437f/AdoptingDragAndDropInATableView.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/eaf99c41437f/AdoptingDragAndDropInATableView.zip"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "eaf99c41437f/AdoptingDragAndDropInATableView.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/understanding-a-drag-item-as-a-promise",
+        "doc://com.apple.uikit/documentation/UIKit/making-a-view-into-a-drag-source",
+        "doc://com.apple.uikit/documentation/UIKit/making-a-view-into-a-drop-destination",
+        "doc://com.apple.uikit/documentation/UIKit/adopting-drag-and-drop-in-a-custom-view"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/understanding-a-drag-item-as-a-promise",
+                "doc://com.apple.uikit/documentation/UIKit/making-a-view-into-a-drag-source",
+                "doc://com.apple.uikit/documentation/UIKit/making-a-view-into-a-drop-destination",
+                "doc://com.apple.uikit/documentation/UIKit/adopting-drag-and-drop-in-a-custom-view"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1viewDidLoad()/title",
+          "value": "viewDidLoad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1viewDidLoad()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewDidLoad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableView/title",
+          "value": "UITableView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDragDelegate~1tableView(_:itemsForBeginning:at:)/title",
+          "value": "tableView:itemsForBeginningDragSession:atIndexPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDragDelegate~1tableView(_:itemsForBeginning:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tableView:itemsForBeginningDragSession:atIndexPath:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDataSource~1tableView(_:moveRowAt:to:)/title",
+          "value": "tableView:moveRowAtIndexPath:toIndexPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDataSource~1tableView(_:moveRowAt:to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tableView:moveRowAtIndexPath:toIndexPath:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDropDelegate~1tableView(_:canHandle:)/title",
+          "value": "tableView:canHandleDropSession:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDropDelegate~1tableView(_:canHandle:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tableView:canHandleDropSession:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsstring/abstract",
+          "value": [
+            {
+              "text": "A static, plain-text Unicode string object.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDataSource~1tableView(_:canMoveRowAt:)/title",
+          "value": "tableView:canMoveRowAtIndexPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewDataSource~1tableView(_:canMoveRowAt:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tableView:canMoveRowAtIndexPath:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/adopting-drag-and-drop-in-a-table-view"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/adopting-drag-and-drop-in-a-table-view"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

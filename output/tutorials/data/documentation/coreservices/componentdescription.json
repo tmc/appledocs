@@ -1,0 +1,381 @@
+{
+  "abstract": [],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coreservices/componentdescription"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1516648,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@ComponentDescription",
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "ComponentDescription"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " ComponentDescription {"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "    ..."
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "} "
+            },
+            {
+              "kind": "identifier",
+              "text": "ComponentDescription"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ComponentDescription structure identifies the characteristics of a component, including the type of services offered by the component and its manufacturer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Applications and components use component description structures in different ways. An application that uses components specifies the selection criteria for a component in a component description structure. The functions  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1516552-findnextcomponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ,  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1516515-countcomponents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " , and  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1516438-getcomponentinfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  all use the component description structure to specify the criteria for their search.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A component uses the component description structure to specify its registration information and capabilities and identify itself to the Component Manager. If your component is stored in a component resource, the information in the component description structure must be part of that resource. See the description of the component ‘thng’ resource. If you have developed an application that registers your component, that application must supply a component description structure to the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1516537-registercomponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  function. See “Registering Components” for information about registering components.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentDescription",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data type defines the component description structure. Note that the valid values of fields in the component description structure are determined by the component type specification. For example, all image compressor components must use the ",
+              "type": "text"
+            },
+            {
+              "code": "componentSubType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field to specify the compression algorithm used by the compressor. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516438-getcomponentinfo": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516438-getcomponentinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetComponentInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516438-getcomponentinfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516515-countcomponents": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516515-countcomponents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CountComponents",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516515-countcomponents"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516537-registercomponent": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516537-registercomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RegisterComponent",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516537-registercomponent"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516552-findnextcomponent": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516552-findnextcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FindNextComponent",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516552-findnextcomponent"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Component Manager",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/component_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/componentdescription/1516339-componenttype": {
+      "abstract": [
+        {
+          "text": "A four-character code that identifies the type of component. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/componentdescription/1516339-componenttype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "componentType",
+      "type": "topic",
+      "url": "/documentation/coreservices/componentdescription/1516339-componenttype"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/componentdescription/1516402-componentflagsmask": {
+      "abstract": [
+        {
+          "text": "A 32-bit field that indicates which flags in the ",
+          "type": "text"
+        },
+        {
+          "code": "componentFlags",
+          "type": "codeVoice"
+        },
+        {
+          "text": " field are relevant to a particular component search operation. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/componentdescription/1516402-componentflagsmask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "componentFlagsMask",
+      "type": "topic",
+      "url": "/documentation/coreservices/componentdescription/1516402-componentflagsmask"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/componentdescription/1516444-componentmanufacturer": {
+      "abstract": [
+        {
+          "text": "A four-character code that identifies the manufacturer of the component. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/componentdescription/1516444-componentmanufacturer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "componentManufacturer",
+      "type": "topic",
+      "url": "/documentation/coreservices/componentdescription/1516444-componentmanufacturer"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/componentdescription/1516568-componentsubtype": {
+      "abstract": [
+        {
+          "text": "A four-character code that identifies the subtype of the component. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/componentdescription/1516568-componentsubtype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "componentSubType",
+      "type": "topic",
+      "url": "/documentation/coreservices/componentdescription/1516568-componentsubtype"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/componentdescription/1516652-componentflags": {
+      "abstract": [
+        {
+          "text": "A 32-bit field that provides additional information about a particular component.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/componentdescription/1516652-componentflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "componentFlags",
+      "type": "topic",
+      "url": "/documentation/coreservices/componentdescription/1516652-componentflags"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "2857172",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/componentdescription/1516652-componentflags",
+        "doc://com.apple.documentation/documentation/coreservices/componentdescription/1516402-componentflagsmask",
+        "doc://com.apple.documentation/documentation/coreservices/componentdescription/1516444-componentmanufacturer",
+        "doc://com.apple.documentation/documentation/coreservices/componentdescription/1516568-componentsubtype",
+        "doc://com.apple.documentation/documentation/coreservices/componentdescription/1516339-componenttype"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/componentdescription"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

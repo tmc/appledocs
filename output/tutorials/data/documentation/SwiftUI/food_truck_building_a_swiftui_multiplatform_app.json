@@ -1,0 +1,1429 @@
+{
+  "abstract": [
+    {
+      "text": "Create a single codebase and app target for Mac, iPad, and iPhone.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/swiftui"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app"
+  },
+  "kind": "article",
+  "legacy_identifier": 3978320,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "16.4",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "16.4",
+        "name": "iPadOS"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "13.3",
+        "name": "macOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "14.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Food Truck: Building a SwiftUI multiplatform app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the Food Truck app, someone who operates a food truck can keep track of orders, discover the most-popular menu items, and check the weather at their destination. The sample implements the new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to manage the app’s views, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Layout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to show the main interface and pending orders, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to show trends, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/WeatherService",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to get weather data. Food Truck also implements Live Activities to show the remaining order preparation time with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the lock screen, and with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/DynamicIsland",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the home screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can access the source code for this sample on ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-4033017",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC22 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-4030918",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Food Truck sample project contains two types of app targets:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Simple app target you can build using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-4033592",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " signing. This app runs in Simulator, and only requires a standard Apple ID to install on a device. It includes in-app purchase, and a widget extension that enable users to add a widget to their iOS Home Screen or the macOS Notification Center.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Full-featured Food Truck All app target. The full app runs in Simulator, and on devices with an Apple Developer membership.  It also allows you to create and sign in with passkeys.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "4143584",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the Food Truck app without an Apple Developer account, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Food Truck target’s Signing & Capabilities panes click Add Account, and log in with your Apple ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Chose Your Name (Personal Team) from the team menu for the Food Truck and Widgets targets.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build and run your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On iOS and iPadOS devices navigate to Settings > General > VPN & Device Management and trust your developer certificate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the Food Truck All app to run on your devices, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the sample with Xcode 14.3 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the top-level Food Truck project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For all targets, choose your team from the Team menu in the Signing & Capabilities pane, so Xcode can automatically manage your provisioning profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the Associated Domains capability, and specify your domain with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "webcredentials",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " service. For more information about the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "webcredentials",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " service, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "apple-app-site-association",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (AASA) file is present on your domain, in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".well-known",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " directory, and it contains an entry for this app’s App ID for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "webcredentials",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " service. For more information about the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "apple-app-site-association",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/supporting-associated-domains",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AccountManager.swift",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, replace all occurrences of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "example.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with the name of your domain.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To use the weather forecast feature in the sample, you need to perform additional steps to configure WeatherKit, as described in the Configure the project for WeatherKit section below, or the sample will detect an error and use static data included in the project.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "4143585",
+          "level": 3,
+          "text": "Create a multiplatform app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Food Truck is a multiplatform app, and there are no separate targets to run on macOS or iOS. Instead, there is only one app target that builds for macOS, iPadOS, and iOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4143586",
+          "level": 3,
+          "text": "Define a default navigation destination",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample’s navigation interface consists of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a ",
+              "type": "text"
+            },
+            {
+              "code": "Sidebar",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view, and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NavigationSplitView {",
+            "    Sidebar(selection: $selection)",
+            "} detail: {",
+            "    NavigationStack(path: $path) {",
+            "        DetailColumn(selection: $selection, model: model)",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4143568",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At app launch, the sample presents the ",
+              "type": "text"
+            },
+            {
+              "code": "TruckView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the default view. The ",
+              "type": "text"
+            },
+            {
+              "code": "Panel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " enum encodes the views the user can select in the sidebar, and hence appear in the detail view. The value corresponding to ",
+              "type": "text"
+            },
+            {
+              "code": "TruckView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": ".truck",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the app sets this to be the default selection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@State private var selection: Panel? = Panel.truck"
+          ],
+          "metadata": {
+            "anchor": "4143569",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "4143587",
+          "level": 3,
+          "text": "Construct a dynamic layout",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Truck view, the New Orders panel shows the five most-recent orders, and each order shows a ",
+              "type": "text"
+            },
+            {
+              "code": "DonutStackView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which is a diagonal stack of donut thumbnails. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Layout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol allows the app to define a ",
+              "type": "text"
+            },
+            {
+              "code": "DiagonalDonutStackLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that arranges the donut thumbnails into the diagonal layout. The layout’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout/placeSubviews(in:proposal:subviews:cache:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " implementation calculates the donuts’ positions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for index in subviews.indices {",
+            "    switch (index, subviews.count) {",
+            "    case (_, 1):",
+            "        subviews[index].place(",
+            "            at: center,",
+            "            anchor: .center,",
+            "            proposal: ProposedViewSize(size)",
+            "        )",
+            "        ",
+            "    case (_, 2):",
+            "        let direction = index == 0 ? -1.0 : 1.0",
+            "        let offsetX = minBound * direction * 0.15",
+            "        let offsetY = minBound * direction * 0.20",
+            "        subviews[index].place(",
+            "            at: CGPoint(x: center.x + offsetX, y: center.y + offsetY),",
+            "            anchor: .center,",
+            "            proposal: ProposedViewSize(CGSize(width: size.width * 0.7, height: size.height * 0.7))",
+            "        )",
+            "    case (1, 3):",
+            "        subviews[index].place(",
+            "            at: center,",
+            "            anchor: .center,",
+            "            proposal: ProposedViewSize(CGSize(width: size.width * 0.65, height: size.height * 0.65))",
+            "        )",
+            "        ",
+            "    case (_, 3):",
+            "        let direction = index == 0 ? -1.0 : 1.0",
+            "        let offsetX = minBound * direction * 0.15",
+            "        let offsetY = minBound * direction * 0.23",
+            "        subviews[index].place(",
+            "            at: CGPoint(x: center.x + offsetX, y: center.y + offsetY),",
+            "            anchor: .center,",
+            "            proposal: ProposedViewSize(CGSize(width: size.width * 0.7, height: size.height * 0.65))",
+            "        )"
+          ],
+          "metadata": {
+            "anchor": "4143571",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "4143588",
+          "level": 3,
+          "text": "Display a chart of popular items",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample contains several charts. The most popular items are shown on the ",
+              "type": "text"
+            },
+            {
+              "code": "TopFiveDonutsView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This chart is implemented in ",
+              "type": "text"
+            },
+            {
+              "code": "TopDonutSalesChart",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Charts/documentation/Charts/BarMark",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to construct a bar chart.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Chart {",
+            "    ForEach(sortedSales) { sale in",
+            "        BarMark(",
+            "            x: .value(\"Donut\", sale.donut.name),",
+            "            y: .value(\"Sales\", sale.sales)",
+            "        )",
+            "        .cornerRadius(6, style: .continuous)",
+            "        .foregroundStyle(.linearGradient(colors: [Color(\"BarBottomColor\"), .accentColor], startPoint: .bottom, endPoint: .top))",
+            "        .annotation(position: .top, alignment: .top) {",
+            "            Text(sale.sales.formatted())",
+            "                .padding(.vertical, 4)",
+            "                .padding(.horizontal, 8)",
+            "                .background(.quaternary.opacity(0.5), in: Capsule())",
+            "                .background(in: Capsule())",
+            "                .font(.caption)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4143573",
+            "title": "Listing 4"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "x",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " axis of the chart shows labels with the names and thumbnails of the items that correspond to each data point.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".chartXAxis {",
+            "    AxisMarks { value in",
+            "        AxisValueLabel {",
+            "            let donut = donutFromAxisValue(for: value)",
+            "            VStack {",
+            "                DonutView(donut: donut)",
+            "                    .frame(height: 35)",
+            "                    ",
+            "                Text(donut.name)",
+            "                    .lineLimit(2, reservesSpace: true)",
+            "                    .multilineTextAlignment(.center)",
+            "            }",
+            "            .frame(idealWidth: 80)",
+            "            .padding(.horizontal, 4)",
+            "            ",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4143574",
+            "title": "Listing 5"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "4143589",
+          "level": 3,
+          "text": "Obtain a weather forecast",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app shows a forecasted temperature graph in the Forecast panel in the Truck view. The app obtains this data from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".task(id: city.id) {",
+            "    for parkingSpot in city.parkingSpots {",
+            "        do {",
+            "            let weather = try await WeatherService.shared.weather(for: parkingSpot.location)",
+            "            condition = weather.currentWeather.condition",
+            "            willRainSoon = weather.minuteForecast?.contains(where: { $0.precipitationChance >= 0.3 })",
+            "            cloudCover = weather.currentWeather.cloudCover",
+            "            temperature = weather.currentWeather.temperature",
+            "            symbolName = weather.currentWeather.symbolName",
+            "            ",
+            "            let attribution = try await WeatherService.shared.attribution",
+            "            attributionLink = attribution.legalPageURL",
+            "            attributionLogo = colorScheme == .light ? attribution.combinedMarkLightURL : attribution.combinedMarkDarkURL",
+            "            ",
+            "            if willRainSoon == false {",
+            "                spot = parkingSpot",
+            "                break",
+            "            }",
+            "        } catch {",
+            "            print(\"Could not gather weather information...\", error.localizedDescription)",
+            "            condition = .clear",
+            "            willRainSoon = false",
+            "            cloudCover = 0.15",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4143576",
+            "title": "Listing 6"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "4143590",
+          "level": 3,
+          "text": "Configure the project for WeatherKit",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The data from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/WeatherService",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance in WeatherKit requires additional configuration for the Food Truck All target. If you don’t configure WeatherKit, the sample will detect an error and use static data in the project instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a unique App ID on the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-3927182",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and select the WeatherKit service on the App Services tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, for the Food Truck All target on the Signing & Capabilities tab, change the bundle ID to be the same as the App ID from step 1, and add the WeatherKit capability.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For the Widgets target on the Signing & Capabilities tab, change the bundle ID to make the part before ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".Widgets",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " the same as the bundle ID for the Food Truck All target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Wait 30 minutes while the service registers your app’s bundle ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build and run the Food Truck All target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "4143591",
+          "level": 3,
+          "text": "Track preparation time with Live Activity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app allows the food truck operator to keep track of order preparation time, which is guaranteed to be 60 seconds or less. To facilitate this, the app implements a toolbar button on the order details screen for orders with ",
+              "type": "text"
+            },
+            {
+              "code": "placed",
+              "type": "codeVoice"
+            },
+            {
+              "text": " status. Tapping this button changes the order status to ",
+              "type": "text"
+            },
+            {
+              "code": "preparing",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to start a Live Activity, which shows the countdown timer and order details on an iPhone lock screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let timerSeconds = 60",
+            "let activityAttributes = TruckActivityAttributes(",
+            "    orderID: String(order.id.dropFirst(6)),",
+            "    order: order.donuts.map(\\.id),",
+            "    sales: order.sales,",
+            "    activityName: \"Order preparation activity.\"",
+            ")",
+            "",
+            "let future = Date(timeIntervalSinceNow: Double(timerSeconds))",
+            "",
+            "let initialContentState = TruckActivityAttributes.ContentState(timerRange: Date.now...future)",
+            "",
+            "let activityContent = ActivityContent(state: initialContentState, staleDate: Calendar.current.date(byAdding: .minute, value: 2, to: Date())!)",
+            "",
+            "do {",
+            "    let myActivity = try Activity<TruckActivityAttributes>.request(attributes: activityAttributes, content: activityContent,",
+            "        pushType: nil)",
+            "    print(\" Requested MyActivity live activity. ID: \\(myActivity.id)\")",
+            "    postNotification()",
+            "} catch let error {",
+            "    print(\"Error requesting live activity: \\(error.localizedDescription)\")",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4143579",
+            "title": "Listing 7"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app also implements ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/DynamicIsland",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to show the same information as on the lock screen in the Dynamic Island on iPhone 14 Pro devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "DynamicIsland {",
+            "    DynamicIslandExpandedRegion(.leading) {",
+            "        ExpandedLeadingView()",
+            "    }",
+            "",
+            "    DynamicIslandExpandedRegion(.trailing, priority: 1) {",
+            "        ExpandedTrailingView(orderNumber: context.attributes.orderID, timerInterval: context.state.timerRange)",
+            "            .dynamicIsland(verticalPlacement: .belowIfTooWide)",
+            "    }",
+            "} compactLeading: {",
+            "    Image(\"IslandCompactIcon\")",
+            "        .padding(4)",
+            "        .background(.indigo.gradient, in: ContainerRelativeShape())",
+            "       ",
+            "} compactTrailing: {",
+            "    Text(timerInterval: context.state.timerRange, countsDown: true)",
+            "        .monospacedDigit()",
+            "        .foregroundColor(Color(\"LightIndigo\"))",
+            "        .frame(width: 40)",
+            "} minimal: {",
+            "    Image(\"IslandCompactIcon\")",
+            "        .padding(4)",
+            "        .background(.indigo.gradient, in: ContainerRelativeShape())",
+            "}",
+            ".contentMargins(.trailing, 32, for: .expanded)",
+            ".contentMargins([.leading, .top, .bottom], 6, for: .compactLeading)",
+            ".contentMargins(.all, 6, for: .minimal)",
+            ".widgetURL(URL(string: \"foodtruck://order/\\(context.attributes.orderID)\"))"
+          ],
+          "metadata": {
+            "anchor": "4143580",
+            "title": "Listing 8"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tapping the same button again changes the status to ",
+              "type": "text"
+            },
+            {
+              "code": "complete",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ends the Live Activity. This removes the Live Activity from the lock screen and from the Dynamic Island.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Task {",
+            "    for activity in Activity<TruckActivityAttributes>.activities {",
+            "        // Check if this is the activity associated with this order.",
+            "        if activity.attributes.orderID == String(order.id.dropFirst(6)) {",
+            "            await activity.end(nil, dismissalPolicy: .immediate)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4143581",
+            "title": "Listing 9"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.ActivityKit/documentation/ActivityKit": {
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "ActivityKit",
+      "type": "topic",
+      "url": "/documentation/activitykit"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity": {
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Activity",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity"
+    },
+    "doc://com.apple.Charts/documentation/Charts": {
+      "identifier": "doc://com.apple.Charts/documentation/Charts",
+      "kind": "article",
+      "role": "collection",
+      "title": "Swift Charts",
+      "type": "topic",
+      "url": "/documentation/charts"
+    },
+    "doc://com.apple.Charts/documentation/Charts/BarMark": {
+      "identifier": "doc://com.apple.Charts/documentation/Charts/BarMark",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BarMark",
+      "type": "topic",
+      "url": "/documentation/charts/barmark"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout/placeSubviews(in:proposal:subviews:cache:)": {
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout/placeSubviews(in:proposal:subviews:cache:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "placeSubviews(in:proposal:subviews:cache:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/layout/placesubviews(in:proposal:subviews:cache:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitView": {
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NavigationSplitView",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigationsplitview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationStack": {
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationStack",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NavigationStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigationstack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Layout": {
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Layout",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Layout modifiers",
+      "type": "topic",
+      "url": "/documentation/swiftui/view-layout"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit": {
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "WeatherKit",
+      "type": "topic",
+      "url": "/documentation/weatherkit"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/WeatherService": {
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/WeatherService",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WeatherService",
+      "type": "topic",
+      "url": "/documentation/weatherkit/weatherservice"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/DynamicIsland": {
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/DynamicIsland",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DynamicIsland",
+      "type": "topic",
+      "url": "/documentation/widgetkit/dynamicisland"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/supporting-associated-domains": {
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/supporting-associated-domains",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting associated domains",
+      "type": "topic",
+      "url": "/documentation/xcode/supporting-associated-domains"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Associated Domains Entitlement",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.associated-domains"
+    },
+    "doc://com.apple.documentation/documentation/swiftui": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swiftui",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143568": {
+      "identifier": "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143568",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143568"
+    },
+    "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143569": {
+      "identifier": "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143569",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143569"
+    },
+    "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143571": {
+      "identifier": "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143571",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143571"
+    },
+    "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143573": {
+      "identifier": "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143573",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143573"
+    },
+    "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143574": {
+      "identifier": "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143574",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143574"
+    },
+    "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143576": {
+      "identifier": "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143576",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 6",
+      "type": "section",
+      "url": "/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143576"
+    },
+    "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143579": {
+      "identifier": "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143579",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 7",
+      "type": "section",
+      "url": "/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143579"
+    },
+    "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143580": {
+      "identifier": "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143580",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 8",
+      "type": "section",
+      "url": "/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143580"
+    },
+    "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143581": {
+      "identifier": "doc://com.apple.documentation/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143581",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 9",
+      "type": "section",
+      "url": "/documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app#4143581"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs-assets.developer.apple.com/published/ea7c0bd405/FoodTruckBuildingASwiftUIMultiplatformApp.zip": {
+      "checksum": "ff0e5849e67139c3fe4c0963cc42f828fc4e17d10c0abaaab89906e891142680b13e3aa600e8d53ada11c59a0becf2dc81928572e6af3704b4dc41bf35ac024e",
+      "identifier": "https://docs-assets.developer.apple.com/published/ea7c0bd405/FoodTruckBuildingASwiftUIMultiplatformApp.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/ea7c0bd405/FoodTruckBuildingASwiftUIMultiplatformApp.zip"
+    },
+    "link-3927182": {
+      "identifier": "link-3927182",
+      "kind": "article",
+      "role": "link",
+      "title": "Provisioning Portal",
+      "type": "topic",
+      "url": "https://developer.apple.com/account/resources/certificates/list"
+    },
+    "link-4030918": {
+      "identifier": "link-4030918",
+      "kind": "article",
+      "role": "link",
+      "title": "110492: State of the Union",
+      "type": "topic",
+      "url": "https://developer.apple.com/wwdc22/110492/"
+    },
+    "link-4033017": {
+      "identifier": "link-4033017",
+      "kind": "article",
+      "role": "link",
+      "title": "GitHub",
+      "type": "topic",
+      "url": "https://github.com/apple/sample-food-truck"
+    },
+    "link-4033592": {
+      "identifier": "link-4033592",
+      "kind": "article",
+      "role": "link",
+      "title": "personal team",
+      "type": "section",
+      "url": "https://help.apple.com/xcode/mac/11.4/#/dev17411c009"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/ea7c0bd405/FoodTruckBuildingASwiftUIMultiplatformApp.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/swiftui/food_truck_building_a_swiftui_multiplatform_app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

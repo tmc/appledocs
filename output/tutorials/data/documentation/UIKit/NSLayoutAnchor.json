@@ -1,0 +1,3250 @@
+{
+  "abstract": [
+    {
+      "text": "A factory class for creating layout constraint objects using a fluent API.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSLayoutAnchor",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSLayoutAnchor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSLayoutAnchor"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSLayoutAnchor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSLayoutAnchor"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "AnchorType"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "AnchorType"
+            },
+            {
+              "kind": "text",
+              "text": " : AnyObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use these constraints to programatically define your layout using Auto Layout. Instead of creating ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects directly, start with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UILayoutGuide",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object you wish to constrain, and select one of that object’s anchor properties. These properties correspond to the main ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/Attribute",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " values used in Auto Layout, and provide an appropriate ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass for creating constraints to that attribute. Use the anchor’s methods to construct your constraint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " does not provide anchor properties for the layout margin attributes. Instead, the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/layoutMarginsGuide",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property provides a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UILayoutGuide",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object that represents these margins. Use the guide’s anchor properties to create your constraints.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Creating constraints using NSLayoutConstraint",
+                    "NSLayoutConstraint(item: subview,",
+                    "                   attribute: .leading,",
+                    "                   relatedBy: .equal,",
+                    "                   toItem: view,",
+                    "                   attribute: .leadingMargin,",
+                    "                   multiplier: 1.0,",
+                    "                   constant: 0.0).isActive = true",
+                    "",
+                    "NSLayoutConstraint(item: subview,",
+                    "                   attribute: .trailing,",
+                    "                   relatedBy: .equal,",
+                    "                   toItem: view,",
+                    "                   attribute: .trailingMargin,",
+                    "                   multiplier: 1.0,",
+                    "                   constant: 0.0).isActive = true",
+                    "",
+                    "",
+                    "// Creating the same constraints using Layout Anchors",
+                    "let margins = view.layoutMarginsGuide",
+                    "",
+                    "subview.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true",
+                    "subview.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true",
+                    ""
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Creating constraints using NSLayoutConstraint",
+                    "[NSLayoutConstraint",
+                    " constraintWithItem:subview",
+                    " attribute:NSLayoutAttributeLeading",
+                    " relatedBy:NSLayoutRelationEqual",
+                    " toItem:self.view",
+                    " attribute:NSLayoutAttributeLeadingMargin",
+                    " multiplier:1.0",
+                    " constant:0.0].active = YES;",
+                    " ",
+                    "[NSLayoutConstraint",
+                    " constraintWithItem:subview",
+                    " attribute:NSLayoutAttributeTrailing",
+                    " relatedBy:NSLayoutRelationEqual",
+                    " toItem:self.view",
+                    " attribute:NSLayoutAttributeTrailingMargin",
+                    " multiplier:1.0",
+                    " constant:0.0].active = YES;",
+                    " ",
+                    "// Creating the same constraints using Layout Anchors",
+                    "UILayoutGuide *margin = self.view.layoutMarginsGuide;",
+                    " ",
+                    "[subview.leadingAnchor constraintEqualToAnchor:margin.leadingAnchor].active = YES;",
+                    "[subview.trailingAnchor constraintEqualToAnchor:margin.trailingAnchor].active = YES;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As you can see from these examples, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class provides several advantages over using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API directly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The code is cleaner, more concise, and easier to read.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/Attribute",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " subclasses provide additional type checking, preventing you from creating invalid constraints.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "While the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " class provides additional type checking, it is still possible to create invalid constraints. For example, the compiler allows you to constrain one view’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/leadingAnchor",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " with another view’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/leftAnchor",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", since they are both ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutXAxisAnchor",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instances. However, Auto Layout does not allow constraints that mix leading and trailing attributes with left or right attributes. As a result, this constraint crashes at runtime.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on the anchor properties, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView/bottomAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UILayoutGuide",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You never use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " class directly. Instead, use one of its subclasses, based on the type of constraint you wish to create.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Use ",
+                          "type": "text"
+                        },
+                        {
+                          "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutXAxisAnchor",
+                          "isActive": true,
+                          "type": "reference"
+                        },
+                        {
+                          "text": " to create horizontal constraints.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Use ",
+                          "type": "text"
+                        },
+                        {
+                          "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutYAxisAnchor",
+                          "isActive": true,
+                          "type": "reference"
+                        },
+                        {
+                          "text": " to create vertical constraints.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Use ",
+                          "type": "text"
+                        },
+                        {
+                          "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutDimension",
+                          "isActive": true,
+                          "type": "reference"
+                        },
+                        {
+                          "text": " to create constraints that affect the view’s height or width.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "However, since you access ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " objects using the anchor properties of a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UILayoutGuide",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", a correct subclass is automatically provided.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSLayoutAnchor/constraintsAffectingLayout": {
+      "abstract": [
+        {
+          "text": "The constraints that impact the layout of the anchor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "constraintsAffectingLayout"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "] { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSLayoutAnchor/constraintsAffectingLayout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "constraintsAffectingLayout",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSLayoutAnchor/constraintsAffectingLayout"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSLayoutAnchor/hasAmbiguousLayout": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the constraints impacting the anchor specify its location ambiguously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasAmbiguousLayout"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSLayoutAnchor/hasAmbiguousLayout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasAmbiguousLayout",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSLayoutAnchor/hasAmbiguousLayout"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSLayoutAnchor/item": {
+      "abstract": [
+        {
+          "text": "The layout item used to calculate the anchor’s position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "weak"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "item"
+        },
+        {
+          "kind": "text",
+          "text": ": AnyObject? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSLayoutAnchor/item",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "item",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSLayoutAnchor/item"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSLayoutAnchor/name": {
+      "abstract": [
+        {
+          "text": "The name assigned to the anchor for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSLayoutAnchor/name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSLayoutAnchor/name"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSView": {
+      "abstract": [
+        {
+          "text": "The infrastructure for drawing, printing, and handling events in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSView",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSView"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSView/bottomAnchor": {
+      "abstract": [
+        {
+          "text": "A layout anchor representing the bottom edge of the view’s frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bottomAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutYAxisAnchor",
+          "text": "NSLayoutYAxisAnchor"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView/bottomAnchor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bottomAnchor",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSView/bottomAnchor"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLAYOUTANCHOR_H": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLAYOUTANCHOR_H"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLAYOUTANCHOR_H",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLAYOUTANCHOR_H"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLAYOUTANCHOR_H",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutanchor_h"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor": {
+      "abstract": [
+        {
+          "text": "A factory class for creating layout constraint objects using a fluent API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLayoutAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLayoutAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLayoutAnchor",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutanchor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraint(equalTo:)": {
+      "abstract": [
+        {
+          "text": "Returns a constraint that defines one item’s attribute as equal to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "constraint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "equalTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutAnchor",
+          "text": "NSLayoutAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "AnchorType"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraint(equalTo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "constraintEqualToAnchor:"
+        }
+      ],
+      "role": "symbol",
+      "title": "constraint(equalTo:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutanchor/constraint(equalto:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraint(equalTo:constant:)": {
+      "abstract": [
+        {
+          "text": "Returns a constraint that defines one item’s attribute as equal to another item’s attribute plus a constant offset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "constraint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "equalTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutAnchor",
+          "text": "NSLayoutAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "AnchorType"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "constant"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraint(equalTo:constant:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "constraintEqualToAnchor:constant:"
+        }
+      ],
+      "role": "symbol",
+      "title": "constraint(equalTo:constant:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutanchor/constraint(equalto:constant:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraint(greaterThanOrEqualTo:)": {
+      "abstract": [
+        {
+          "text": "Returns a constraint that defines one item’s attribute as greater than or equal to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "constraint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "greaterThanOrEqualTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutAnchor",
+          "text": "NSLayoutAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "AnchorType"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraint(greaterThanOrEqualTo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "constraintGreaterThanOrEqualToAnchor:"
+        }
+      ],
+      "role": "symbol",
+      "title": "constraint(greaterThanOrEqualTo:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutanchor/constraint(greaterthanorequalto:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraint(greaterThanOrEqualTo:constant:)": {
+      "abstract": [
+        {
+          "text": "Returns a constraint that defines one item’s attribute as greater than or equal to another item’s attribute plus a constant offset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "constraint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "greaterThanOrEqualTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutAnchor",
+          "text": "NSLayoutAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "AnchorType"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "constant"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraint(greaterThanOrEqualTo:constant:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "constraintGreaterThanOrEqualToAnchor:constant:"
+        }
+      ],
+      "role": "symbol",
+      "title": "constraint(greaterThanOrEqualTo:constant:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutanchor/constraint(greaterthanorequalto:constant:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraint(lessThanOrEqualTo:)": {
+      "abstract": [
+        {
+          "text": "Returns a constraint that defines one item’s attribute as less than or equal to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "constraint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "lessThanOrEqualTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutAnchor",
+          "text": "NSLayoutAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "AnchorType"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraint(lessThanOrEqualTo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "constraintLessThanOrEqualToAnchor:"
+        }
+      ],
+      "role": "symbol",
+      "title": "constraint(lessThanOrEqualTo:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutanchor/constraint(lessthanorequalto:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraint(lessThanOrEqualTo:constant:)": {
+      "abstract": [
+        {
+          "text": "Returns a constraint that defines one item’s attribute as less than or equal to another item’s attribute plus a constant offset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "constraint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "lessThanOrEqualTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutAnchor",
+          "text": "NSLayoutAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "AnchorType"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "constant"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraint(lessThanOrEqualTo:constant:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "constraintLessThanOrEqualToAnchor:constant:"
+        }
+      ],
+      "role": "symbol",
+      "title": "constraint(lessThanOrEqualTo:constant:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutanchor/constraint(lessthanorequalto:constant:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraintsAffectingLayout": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "constraintsAffectingLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraintsAffectingLayout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "constraintsAffectingLayout",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutanchor/constraintsaffectinglayout"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/hasAmbiguousLayout": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "hasAmbiguousLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/hasAmbiguousLayout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasAmbiguousLayout",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutanchor/hasambiguouslayout"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/item": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "item"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/item",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "item",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutanchor/item"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/name": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutanchor/name"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint": {
+      "abstract": [
+        {
+          "text": "The relationship between two user interface objects that must be satisfied by the constraint-based layout system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLayoutConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLayoutConstraint"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLayoutConstraint",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutconstraint"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/Attribute": {
+      "abstract": [
+        {
+          "text": "The part of the object’s visual representation that should be used to get the value for the constraint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Attribute"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutConstraint/Attribute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Attribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLayoutConstraint.Attribute",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutconstraint/attribute"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutDimension": {
+      "abstract": [
+        {
+          "text": "A factory class for creating size-based layout constraint objects using a fluent API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLayoutDimension"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutDimension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLayoutDimension"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLayoutDimension",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutdimension"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutXAxisAnchor": {
+      "abstract": [
+        {
+          "text": "A factory class for creating horizontal layout constraint objects using a fluent API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLayoutXAxisAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutXAxisAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLayoutXAxisAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLayoutXAxisAnchor",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutxaxisanchor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSLayoutYAxisAnchor": {
+      "abstract": [
+        {
+          "text": "A factory class for creating vertical layout constraint objects using a fluent API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLayoutYAxisAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSLayoutYAxisAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLayoutYAxisAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLayoutYAxisAnchor",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutyaxisanchor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILayoutGuide": {
+      "abstract": [
+        {
+          "text": "A rectangular area that can interact with Auto Layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILayoutGuide"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILayoutGuide",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UILayoutGuide"
+        }
+      ],
+      "role": "symbol",
+      "title": "UILayoutGuide",
+      "type": "topic",
+      "url": "/documentation/uikit/uilayoutguide"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView": {
+      "abstract": [
+        {
+          "text": "An object that manages the content for a rectangular area on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/layoutMarginsGuide": {
+      "abstract": [
+        {
+          "text": "A layout guide representing the view’s margins.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layoutMarginsGuide"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UILayoutGuide",
+          "text": "UILayoutGuide"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/layoutMarginsGuide",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layoutMarginsGuide"
+        }
+      ],
+      "role": "symbol",
+      "title": "layoutMarginsGuide",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/layoutmarginsguide"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/leadingAnchor": {
+      "abstract": [
+        {
+          "text": "A layout anchor representing the leading edge of the view’s frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "leadingAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutXAxisAnchor",
+          "text": "NSLayoutXAxisAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/leadingAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "leadingAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "leadingAnchor",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/leadinganchor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/leftAnchor": {
+      "abstract": [
+        {
+          "text": "A layout anchor representing the left edge of the view’s frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "leftAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutXAxisAnchor",
+          "text": "NSLayoutXAxisAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/leftAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "leftAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "leftAnchor",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/leftanchor"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutDimension",
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutXAxisAnchor",
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutYAxisAnchor"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Anchors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutXAxisAnchor",
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutYAxisAnchor",
+        "doc://com.apple.uikit/documentation/UIKit/NSLAYOUTANCHOR_H"
+      ],
+      "title": "Anchors"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Building-constraints",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraint(equalTo:)",
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraint(equalTo:constant:)",
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraint(greaterThanOrEqualTo:)",
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraint(greaterThanOrEqualTo:constant:)",
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraint(lessThanOrEqualTo:)",
+        "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraint(lessThanOrEqualTo:constant:)"
+      ],
+      "title": "Building constraints"
+    },
+    {
+      "anchor": "Debugging-the-anchor",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/AppKit/NSLayoutAnchor/constraintsAffectingLayout",
+        "doc://com.apple.documentation/documentation/AppKit/NSLayoutAnchor/hasAmbiguousLayout",
+        "doc://com.apple.documentation/documentation/AppKit/NSLayoutAnchor/name",
+        "doc://com.apple.documentation/documentation/AppKit/NSLayoutAnchor/item"
+      ],
+      "title": "Debugging the anchor"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSLayoutAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Building-constraints",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraint(equalTo:)",
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraint(equalTo:constant:)",
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraint(greaterThanOrEqualTo:)",
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraint(greaterThanOrEqualTo:constant:)",
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraint(lessThanOrEqualTo:)",
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraint(lessThanOrEqualTo:constant:)"
+              ],
+              "title": "Building constraints"
+            },
+            {
+              "anchor": "Debugging-the-anchor",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/AppKit/NSLayoutAnchor/constraintsAffectingLayout",
+                "doc://com.apple.documentation/documentation/AppKit/NSLayoutAnchor/hasAmbiguousLayout",
+                "doc://com.apple.documentation/documentation/AppKit/NSLayoutAnchor/name",
+                "doc://com.apple.documentation/documentation/AppKit/NSLayoutAnchor/item"
+              ],
+              "title": "Debugging the anchor"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/constraintsAffectingLayout",
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/hasAmbiguousLayout",
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/item",
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutAnchor/name"
+              ],
+              "title": "Instance Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutDimension",
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutXAxisAnchor",
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutYAxisAnchor"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Anchors",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutXAxisAnchor",
+                "doc://com.apple.uikit/documentation/UIKit/NSLayoutYAxisAnchor"
+              ],
+              "title": "Anchors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSLayoutAnchor"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutAnchor~1constraint(greaterThanOrEqualTo:)/title",
+          "value": "constraintGreaterThanOrEqualToAnchor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutAnchor~1constraint(greaterThanOrEqualTo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "constraintGreaterThanOrEqualToAnchor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1layoutMarginsGuide/title",
+          "value": "layoutMarginsGuide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1layoutMarginsGuide/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "layoutMarginsGuide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1Attribute/title",
+          "value": "NSLayoutAttribute"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1Attribute/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint~1Attribute/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutAnchor~1constraint(equalTo:constant:)/title",
+          "value": "constraintEqualToAnchor:constant:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutAnchor~1constraint(equalTo:constant:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "constraintEqualToAnchor:constant:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutAnchor~1constraint(equalTo:)/title",
+          "value": "constraintEqualToAnchor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutAnchor~1constraint(equalTo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "constraintEqualToAnchor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutAnchor~1constraint(lessThanOrEqualTo:)/title",
+          "value": "constraintLessThanOrEqualToAnchor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutAnchor~1constraint(lessThanOrEqualTo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "constraintLessThanOrEqualToAnchor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSLayoutAnchor~1hasAmbiguousLayout/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "hasAmbiguousLayout"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutAnchor~1constraint(greaterThanOrEqualTo:constant:)/title",
+          "value": "constraintGreaterThanOrEqualToAnchor:constant:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutAnchor~1constraint(greaterThanOrEqualTo:constant:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "constraintGreaterThanOrEqualToAnchor:constant:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutXAxisAnchor/title",
+          "value": "NSLayoutXAxisAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutXAxisAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutXAxisAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutXAxisAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutXAxisAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1leftAnchor/title",
+          "value": "leftAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1leftAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "leftAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSLayoutAnchor~1constraintsAffectingLayout/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<NSLayoutConstraint *>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "constraintsAffectingLayout"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLAYOUTANCHOR_H/title",
+          "value": "NSLAYOUTANCHOR_H"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLAYOUTANCHOR_H/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLAYOUTANCHOR_H"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1leadingAnchor/title",
+          "value": "leadingAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1leadingAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "leadingAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutDimension/title",
+          "value": "NSLayoutDimension"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutDimension/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutDimension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutDimension/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutDimension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSLayoutAnchor~1item/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "weak"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "keyword",
+              "text": "id"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "item"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSResponder",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/title",
+          "value": "UIView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSLayoutAnchor~1name/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "name"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutYAxisAnchor/title",
+          "value": "NSLayoutYAxisAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutYAxisAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutYAxisAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutYAxisAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutYAxisAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutAnchor/title",
+          "value": "NSLayoutAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint/title",
+          "value": "NSLayoutConstraint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutConstraint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSView~1bottomAnchor/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "strong"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSLayoutYAxisAnchor",
+              "text": "NSLayoutYAxisAnchor"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "bottomAnchor"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILayoutGuide/title",
+          "value": "UILayoutGuide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILayoutGuide/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILayoutGuide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILayoutGuide/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILayoutGuide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutAnchor~1constraint(lessThanOrEqualTo:constant:)/title",
+          "value": "constraintLessThanOrEqualToAnchor:constant:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSLayoutAnchor~1constraint(lessThanOrEqualTo:constant:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "constraintLessThanOrEqualToAnchor:constant:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/nslayoutanchor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/nslayoutanchor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

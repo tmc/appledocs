@@ -1,0 +1,1206 @@
+{
+  "abstract": [
+    {
+      "text": "A partial half-open interval up to, but not including, an upper bound.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/PartialRangeUpTo"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:s16PartialRangeUpToV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PartialRangeUpTo"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PartialRangeUpTo"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "PartialRangeUpTo"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@frozen"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PartialRangeUpTo"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Bound"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Bound"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Comparable",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SL",
+              "text": "Comparable"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create ",
+              "type": "text"
+            },
+            {
+              "code": "PartialRangeUpTo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instances by using the prefix half-open range",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "operator (prefix ",
+              "type": "text"
+            },
+            {
+              "code": "..<",
+              "type": "codeVoice"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let upToFive = ..<5.0"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use a ",
+              "type": "text"
+            },
+            {
+              "code": "PartialRangeUpTo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance to quickly check if a value is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contained in a particular range of values. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "upToFive.contains(3.14)       // true",
+            "upToFive.contains(6.28)       // false",
+            "upToFive.contains(5.0)        // false"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use a ",
+              "type": "text"
+            },
+            {
+              "code": "PartialRangeUpTo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance of a collection’s indices to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "represent the range from the start of the collection up to, but not",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "including, the partial range’s upper bound.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let numbers = [10, 20, 30, 40, 50, 60, 70]",
+            "print(numbers[..<3])",
+            "// Prints \"[10, 20, 30]\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Comparable": {
+      "abstract": [
+        {
+          "text": "A type that can be compared using the relational operators ",
+          "type": "text"
+        },
+        {
+          "code": "<",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": "<=",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": ">=",
+          "type": "codeVoice"
+        },
+        {
+          "text": ",",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and ",
+          "type": "text"
+        },
+        {
+          "code": ">",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Comparable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Comparable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Comparable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Comparable",
+      "type": "topic",
+      "url": "/documentation/swift/comparable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Copyable": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Bound",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Comparable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Copyable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/swift/copyable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Decodable": {
+      "abstract": [
+        {
+          "text": "A type that can decode itself from an external representation.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Bound",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Comparable",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Decodable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Decodable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/swift/decodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Encodable": {
+      "abstract": [
+        {
+          "text": "A type that can encode itself to an external representation.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Bound",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Comparable",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Encodable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Encodable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Encodable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/swift/encodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/PartialRangeFrom": {
+      "abstract": [
+        {
+          "text": "A partial interval extending upward from a lower bound.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PartialRangeFrom"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/PartialRangeFrom",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PartialRangeFrom"
+        }
+      ],
+      "role": "symbol",
+      "title": "PartialRangeFrom",
+      "type": "topic",
+      "url": "/documentation/swift/partialrangefrom"
+    },
+    "doc://com.apple.Swift/documentation/Swift/PartialRangeThrough": {
+      "abstract": [
+        {
+          "text": "A partial interval up to, and including, an upper bound.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PartialRangeThrough"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/PartialRangeThrough",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PartialRangeThrough"
+        }
+      ],
+      "role": "symbol",
+      "title": "PartialRangeThrough",
+      "type": "topic",
+      "url": "/documentation/swift/partialrangethrough"
+    },
+    "doc://com.apple.Swift/documentation/Swift/PartialRangeUpTo": {
+      "abstract": [
+        {
+          "text": "A partial half-open interval up to, but not including, an upper bound.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PartialRangeUpTo"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/PartialRangeUpTo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PartialRangeUpTo"
+        }
+      ],
+      "role": "symbol",
+      "title": "PartialRangeUpTo",
+      "type": "topic",
+      "url": "/documentation/swift/partialrangeupto"
+    },
+    "doc://com.apple.Swift/documentation/Swift/PartialRangeUpTo/CustomTestStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/PartialRangeUpTo/CustomTestStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomTestStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/partialrangeupto/customteststringconvertible-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/PartialRangeUpTo/Decodable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/PartialRangeUpTo/Decodable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Decodable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/partialrangeupto/decodable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/PartialRangeUpTo/Encodable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/PartialRangeUpTo/Encodable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Encodable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/partialrangeupto/encodable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/PartialRangeUpTo/RangeExpression-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/PartialRangeUpTo/RangeExpression-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "RangeExpression Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/partialrangeupto/rangeexpression-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/PartialRangeUpTo/init(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Bound"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/PartialRangeUpTo/init(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/partialrangeupto/init(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/PartialRangeUpTo/upperBound": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "upperBound"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Bound"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/PartialRangeUpTo/upperBound",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "upperBound",
+      "type": "topic",
+      "url": "/documentation/swift/partialrangeupto/upperbound"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RangeExpression": {
+      "abstract": [
+        {
+          "text": "A type that can be used to slice a collection.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Bound",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Comparable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RangeExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RangeExpression",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RangeExpression"
+        }
+      ],
+      "role": "symbol",
+      "title": "RangeExpression",
+      "type": "topic",
+      "url": "/documentation/swift/rangeexpression"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Bound",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Comparable",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Sendable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnboundedRange_": {
+      "abstract": [
+        {
+          "text": "A range expression that represents the entire range of a collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnboundedRange_"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnboundedRange_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnboundedRange_"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnboundedRange_",
+      "type": "topic",
+      "url": "/documentation/swift/unboundedrange_"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:6CoreML23MLTensorRangeExpressionP": {
+      "abstract": [
+        {
+          "text": "A type that can be used to slice a dimension of a tensor. Don’t use this type directly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLTensorRangeExpression"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:6CoreML23MLTensorRangeExpressionP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLTensorRangeExpression",
+      "type": "topic",
+      "url": "/documentation/CoreML/MLTensorRangeExpression"
+    },
+    "doc://com.externally.resolved.symbol/s:6CoreML28MLShapedArrayRangeExpressionP": {
+      "abstract": [
+        {
+          "text": "An interface for a range expression, which you typically use with subscripts of shaped array types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLShapedArrayRangeExpression"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:6CoreML28MLShapedArrayRangeExpressionP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLShapedArrayRangeExpression",
+      "type": "topic",
+      "url": "/documentation/CoreML/MLShapedArrayRangeExpression"
+    },
+    "doc://com.externally.resolved.symbol/s:7Testing27CustomTestStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A protocol describing types with a custom string representation when presented as part of a test’s output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomTestStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7Testing27CustomTestStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomTestStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Testing/CustomTestStringConvertible"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Copyable",
+        "doc://com.externally.resolved.symbol/s:7Testing27CustomTestStringConvertibleP",
+        "doc://com.apple.Swift/documentation/Swift/Decodable",
+        "doc://com.apple.Swift/documentation/Swift/Encodable",
+        "doc://com.externally.resolved.symbol/s:6CoreML28MLShapedArrayRangeExpressionP",
+        "doc://com.externally.resolved.symbol/s:6CoreML23MLTensorRangeExpressionP",
+        "doc://com.apple.Swift/documentation/Swift/RangeExpression",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Range-Expressions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/PartialRangeThrough",
+        "doc://com.apple.Swift/documentation/Swift/PartialRangeFrom",
+        "doc://com.apple.Swift/documentation/Swift/RangeExpression",
+        "doc://com.apple.Swift/documentation/Swift/UnboundedRange_"
+      ],
+      "title": "Range Expressions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/PartialRangeUpTo/init(_:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/PartialRangeUpTo/upperBound"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/PartialRangeUpTo/CustomTestStringConvertible-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/PartialRangeUpTo/Decodable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/PartialRangeUpTo/Encodable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/PartialRangeUpTo/RangeExpression-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/partialrangeupto"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

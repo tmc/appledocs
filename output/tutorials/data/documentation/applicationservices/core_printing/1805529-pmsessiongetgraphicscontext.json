@@ -1,0 +1,594 @@
+{
+  "abstract": [
+    {
+      "text": "Obtains the graphics context for the current page in a printing session.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461952-pmsessiongetcggraphicscontext",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/core_printing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/core_printing/1805529-pmsessiongetgraphicscontext"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1805529,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "role": "pseudoSymbol",
+    "symbolKind": "func",
+    "title": "PMSessionGetGraphicsContext"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "OSStatus PMSessionGetGraphicsContext ("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   PMPrintSession printSession,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   CFStringRef graphicsContextType,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   void **graphicsContext"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The printing session whose current graphics context you want to obtain.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "printSession"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The desired graphics context type. This parameter is currently ignored.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "graphicsType"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On return, a reference to the current graphics context. The graphics context returned is the one last set by a call to the function ",
+                  "type": "text"
+                },
+                {
+                  "code": "PMSessionSetDocumentFormatGeneration",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or the default (QuickDraw) if there was no call to the function. You must typecast the context to an appropriate graphics type, either ",
+                  "type": "text"
+                },
+                {
+                  "code": "grafPtr",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcontextref",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "graphicsContext"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must call this function between the creation and release of a printing session. See the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463247-pmcreatesession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You must also call the function ",
+              "type": "text"
+            },
+            {
+              "code": "PMSessionGetGraphicsContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": " within the scope of the functions ",
+              "type": "text"
+            },
+            {
+              "code": "PMSessionBeginPage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "PMSessionEndPage",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In OS X v10.3 and earlier, you should call this function for each page you draw for a print job. After each call to the function ",
+              "type": "text"
+            },
+            {
+              "code": "PMSessionBeginPage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " your application should call ",
+              "type": "text"
+            },
+            {
+              "code": "PMSessionGetGraphicsContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to obtain the current graphics context. If that context is a QuickDraw context, then set the drawing port to this port by calling the QuickDraw ",
+              "type": "text"
+            },
+            {
+              "code": "SetPort",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function. See the discussion of the function ",
+              "type": "text"
+            },
+            {
+              "code": "PMSessionBeginPage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1819410",
+          "level": 3,
+          "text": "Special Considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS 10.4 and later, Apple recommends using the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461952-pmsessiongetcggraphicscontext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead of this function. QuickDraw is deprecated and your application should be using Quartz 2D for its rendering.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1458998-pmsessiongetcurrentprinter": {
+      "abstract": [
+        {
+          "text": "Obtains the current printer associated with a printing session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1458998-pmsessiongetcurrentprinter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionGetCurrentPrinter",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1458998-pmsessiongetcurrentprinter"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460003-pmsessionerror": {
+      "abstract": [
+        {
+          "text": "Obtains the result code for any error returned by the printing session. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460003-pmsessionerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionError",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460003-pmsessionerror"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460216-pmsessionseterror": {
+      "abstract": [
+        {
+          "text": "Sets the value of the current result code for the specified printing session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460216-pmsessionseterror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionSetError",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460216-pmsessionseterror"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461096-pmsessionsetcurrentpmprinter": {
+      "abstract": [
+        {
+          "text": "Changes the current printer for a printing session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461096-pmsessionsetcurrentpmprinter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionSetCurrentPMPrinter",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461096-pmsessionsetcurrentpmprinter"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461902-pmsessionsetdatainsession": {
+      "abstract": [
+        {
+          "text": "Stores your application-specific data in a printing session object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461902-pmsessionsetdatainsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionSetDataInSession",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461902-pmsessionsetdatainsession"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461952-pmsessiongetcggraphicscontext": {
+      "abstract": [
+        {
+          "text": "Obtains the Quartz graphics context for the current page in a printing session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461952-pmsessiongetcggraphicscontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionGetCGGraphicsContext",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461952-pmsessiongetcggraphicscontext"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462964-pmsessiongetdatafromsession": {
+      "abstract": [
+        {
+          "text": "Obtains application-specific data previously stored in a printing session object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462964-pmsessiongetdatafromsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionGetDataFromSession",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462964-pmsessiongetdatafromsession"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1463247-pmcreatesession": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463247-pmcreatesession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMCreateSession",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1463247-pmcreatesession"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/core_printing": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Core Printing",
+      "type": "topic",
+      "url": "/documentation/applicationservices/core_printing"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/applicationservices/core_printing#1670007"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/core_printing/1805523-pmsessionsetcurrentprinter": {
+      "abstract": [
+        {
+          "text": "Changes the current printer for a printing session to a printer specified by name.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing/1805523-pmsessionsetcurrentprinter",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "PMSessionSetCurrentPrinter",
+      "type": "topic",
+      "url": "/documentation/applicationservices/core_printing/1805523-pmsessionsetcurrentprinter"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/core_printing/1805525-pmsessiongetdocumentformatgenera": {
+      "abstract": [
+        {
+          "text": "Obtains the spool file formats that can be generated for the specified printing session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing/1805525-pmsessiongetdocumentformatgenera",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "PMSessionGetDocumentFormatGeneration",
+      "type": "topic",
+      "url": "/documentation/applicationservices/core_printing/1805525-pmsessiongetdocumentformatgenera"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/core_printing/1805527-pmsessionsetdocumentformatgenera": {
+      "abstract": [
+        {
+          "text": "Requests a specified spool file format and supplies the graphics context type to use for drawing pages within the print loop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing/1805527-pmsessionsetdocumentformatgenera",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "PMSessionSetDocumentFormatGeneration",
+      "type": "topic",
+      "url": "/documentation/applicationservices/core_printing/1805527-pmsessionsetdocumentformatgenera"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/core_printing/1805529-pmsessiongetgraphicscontext": {
+      "abstract": [
+        {
+          "text": "Obtains the graphics context for the current page in a printing session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing/1805529-pmsessiongetgraphicscontext",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "PMSessionGetGraphicsContext",
+      "type": "topic",
+      "url": "/documentation/applicationservices/core_printing/1805529-pmsessiongetgraphicscontext"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/core_printing/1805530-pmsessiongeneral": {
+      "abstract": [
+        {
+          "text": "Maintains compatibility with the ",
+          "type": "text"
+        },
+        {
+          "code": "PrGeneral",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function in the classic Printing Manager.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing/1805530-pmsessiongeneral",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "PMSessionGeneral",
+      "type": "topic",
+      "url": "/documentation/applicationservices/core_printing/1805530-pmsessiongeneral"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgcontextref": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcontextref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGContextRef",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgcontextref"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1462964-pmsessiongetdatafromsession",
+        "doc://com.apple.documentation/documentation/applicationservices/1461902-pmsessionsetdatainsession",
+        "doc://com.apple.documentation/documentation/applicationservices/1458998-pmsessiongetcurrentprinter",
+        "doc://com.apple.documentation/documentation/applicationservices/core_printing/1805523-pmsessionsetcurrentprinter",
+        "doc://com.apple.documentation/documentation/applicationservices/1461096-pmsessionsetcurrentpmprinter",
+        "doc://com.apple.documentation/documentation/applicationservices/core_printing/1805525-pmsessiongetdocumentformatgenera",
+        "doc://com.apple.documentation/documentation/applicationservices/core_printing/1805527-pmsessionsetdocumentformatgenera",
+        "doc://com.apple.documentation/documentation/applicationservices/1461952-pmsessiongetcggraphicscontext",
+        "doc://com.apple.documentation/documentation/applicationservices/1460003-pmsessionerror",
+        "doc://com.apple.documentation/documentation/applicationservices/1460216-pmsessionseterror",
+        "doc://com.apple.documentation/documentation/applicationservices/core_printing/1805530-pmsessiongeneral"
+      ],
+      "title": "Accessing Data in Printing Session Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/core_printing/1805529-pmsessiongetgraphicscontext"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3032 @@
+{
+  "abstract": [
+    {
+      "text": "Integrate machine learning models into your app.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coreml/documentation/CoreML"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "CoreML",
+    "modules": [
+      {
+        "name": "Core ML"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "4.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Core ML"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreml/documentation/CoreML",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to integrate machine learning models into your app. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreml/documentation/CoreML",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides a unified representation for all models. Your app uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreml/documentation/CoreML",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " APIs and user data to make predictions, and to train or fine-tune models, all on a person’s device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3901331",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A model is the result of applying a machine learning algorithm to a set of training data. You use a model to make predictions based on new input data. Models can accomplish a wide variety of tasks that would be difficult or impractical to write in code. For example, you can train a model to categorize photos, or detect specific objects within a photo directly from its pixels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You build and train a model with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/machine-learning/create-ml/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " bundled with Xcode. Models trained using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CreateML",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " are in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreml/documentation/CoreML",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " model format and are ready to use in your app. Alternatively, you can use a wide variety of other machine learning libraries and then use ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://coremltools.readme.io",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to convert the model into the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreml/documentation/CoreML",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " format. Once a model is on a person’s device, you can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreml/documentation/CoreML",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to retrain or fine-tune it on-device, with that person’s data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.coreml/documentation/CoreML",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " optimizes on-device performance by leveraging the CPU, GPU, and Neural Engine while minimizing its memory footprint and power consumption. Running a model strictly on a person’s device removes any need for a network connection, which helps keep a person’s data private and your app responsive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The framework is the foundation for domain-specific frameworks and functionality. It supports ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for analyzing images, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/NaturalLanguage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for processing text, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Speech",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for converting audio to text, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SoundAnalysis",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for identifying sounds in audio. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreml/documentation/CoreML",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " itself builds on top of low-level primitives like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accelerate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accelerate/BNNS",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", as well as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3330367",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coreml/documentation/CoreML": {
+      "abstract": [
+        {
+          "text": "Integrate machine learning models into your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core ML",
+      "type": "topic",
+      "url": "/documentation/coreml"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLAllComputeDevices": {
+      "abstract": [
+        {
+          "text": "Returns an array that contains all of the compute devices that are accessible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MLAllComputeDevices"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLAllComputeDevices",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLAllComputeDevices",
+      "type": "topic",
+      "url": "/documentation/coreml/mlallcomputedevices"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLArrayBatchProvider": {
+      "abstract": [
+        {
+          "text": "A convenience wrapper for batches of feature providers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLArrayBatchProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLArrayBatchProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLArrayBatchProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLArrayBatchProvider",
+      "type": "topic",
+      "url": "/documentation/coreml/mlarraybatchprovider"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLBatchProvider": {
+      "abstract": [
+        {
+          "text": "An interface that represents a collection of feature providers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLBatchProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLBatchProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLBatchProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLBatchProvider",
+      "type": "topic",
+      "url": "/documentation/coreml/mlbatchprovider"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLCPUComputeDevice": {
+      "abstract": [
+        {
+          "text": "An object that represents a CPU compute device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLCPUComputeDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLCPUComputeDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLCPUComputeDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLCPUComputeDevice",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcpucomputedevice"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLComputeDevice": {
+      "abstract": [
+        {
+          "text": "Compute devices for framework operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLComputeDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLComputeDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLComputeDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLComputeDevice",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcomputedevice"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLComputeDeviceProtocol": {
+      "abstract": [
+        {
+          "text": "An interface that represents a compute device type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLComputeDeviceProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLComputeDeviceProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLComputeDeviceProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLComputeDeviceProtocol",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcomputedeviceprotocol"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n": {
+      "abstract": [
+        {
+          "text": "A class representing the compute plan of a model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLComputePlan"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLComputePlan"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLComputePlan",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcomputeplan-1w21n"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-85vdw": {
+      "abstract": [
+        {
+          "text": "A class describing the plan for executing a model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MLComputePlan"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-85vdw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLComputePlan",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcomputeplan-85vdw"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLComputePlanCost": {
+      "abstract": [
+        {
+          "text": "A class that represents the estimated cost of executing a layer or operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MLComputePlanCost"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLComputePlanCost",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLComputePlanCost",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcomputeplancost"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLComputePlanDeviceUsage": {
+      "abstract": [
+        {
+          "text": "The anticipated compute devices to use for executing a layer or operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MLComputePlanDeviceUsage"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLComputePlanDeviceUsage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLComputePlanDeviceUsage",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcomputeplandeviceusage"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLComputePolicy": {
+      "abstract": [
+        {
+          "text": "The compute policy determining what compute device, or compute devices, to execute ML workloads on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLComputePolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLComputePolicy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLComputePolicy"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLComputePolicy",
+      "type": "topic",
+      "url": "/documentation/coreml/mlcomputepolicy"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLDictionaryFeatureProvider": {
+      "abstract": [
+        {
+          "text": "A convenience wrapper for the given dictionary of data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLDictionaryFeatureProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLDictionaryFeatureProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLDictionaryFeatureProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLDictionaryFeatureProvider",
+      "type": "topic",
+      "url": "/documentation/coreml/mldictionaryfeatureprovider"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLFeatureProvider": {
+      "abstract": [
+        {
+          "text": "An interface that represents a collection of values for either a model’s input or its output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLFeatureProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLFeatureProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLFeatureProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLFeatureProvider",
+      "type": "topic",
+      "url": "/documentation/coreml/mlfeatureprovider"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLFeatureValue": {
+      "abstract": [
+        {
+          "text": "A generic wrapper around an underlying value and the value’s type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLFeatureValue"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLFeatureValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLFeatureValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLFeatureValue",
+      "type": "topic",
+      "url": "/documentation/coreml/mlfeaturevalue"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLGPUComputeDevice": {
+      "abstract": [
+        {
+          "text": "An object that represents a GPU compute device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLGPUComputeDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLGPUComputeDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLGPUComputeDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLGPUComputeDevice",
+      "type": "topic",
+      "url": "/documentation/coreml/mlgpucomputedevice"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModel": {
+      "abstract": [
+        {
+          "text": "An encapsulation of all the details of your machine learning model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLModel"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLModel"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLModel",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodel"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModelAsset": {
+      "abstract": [
+        {
+          "text": "An abstraction of a compiled Core ML model asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLModelAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModelAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLModelAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLModelAsset",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodelasset"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModelCollection": {
+      "abstract": [
+        {
+          "text": "A set of Core ML models from a model deployment.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLModelCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModelCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLModelCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLModelCollection",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodelcollection"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModelError-swift.struct": {
+      "abstract": [
+        {
+          "text": "Information about a Core ML model error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLModelError"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModelError-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLModelError"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLModelError",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodelerror-swift.struct"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModelError-swift.struct/Code": {
+      "abstract": [
+        {
+          "text": "Information about a Core ML model error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModelError-swift.struct/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLModelError.Code",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodelerror-swift.struct/code"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModelErrorDomain": {
+      "abstract": [
+        {
+          "text": "The domain for Core ML errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLModelErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModelErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLModelErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLModelErrorDomain",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodelerrordomain"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModelStructure-c.class": {
+      "abstract": [
+        {
+          "text": "A class representing the structure of a model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MLModelStructure"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModelStructure-c.class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLModelStructure",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodelstructure-c.class"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModelStructure-swift.enum": {
+      "abstract": [
+        {
+          "text": "An enum representing the structure of a model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLModelStructure"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModelStructure-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLModelStructure"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLModelStructure",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodelstructure-swift.enum"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModelStructureNeuralNetwork": {
+      "abstract": [
+        {
+          "text": "A class representing the structure of a NeuralNetwork model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MLModelStructureNeuralNetwork"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModelStructureNeuralNetwork",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLModelStructureNeuralNetwork",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodelstructureneuralnetwork"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModelStructureNeuralNetworkLayer": {
+      "abstract": [
+        {
+          "text": "A class representing a layer in a NeuralNetwork.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MLModelStructureNeuralNetworkLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModelStructureNeuralNetworkLayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLModelStructureNeuralNetworkLayer",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodelstructureneuralnetworklayer"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModelStructurePipeline": {
+      "abstract": [
+        {
+          "text": "A class representing the structure of a Pipeline model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MLModelStructurePipeline"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModelStructurePipeline",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLModelStructurePipeline",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodelstructurepipeline"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgram": {
+      "abstract": [
+        {
+          "text": "A class representing the structure of an ML Program model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MLModelStructureProgram"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgram",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLModelStructureProgram",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodelstructureprogram"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgramArgument": {
+      "abstract": [
+        {
+          "text": "A class representing an argument in the Program.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MLModelStructureProgramArgument"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgramArgument",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLModelStructureProgramArgument",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodelstructureprogramargument"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgramBinding": {
+      "abstract": [
+        {
+          "text": "A class representing a binding in the Program",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MLModelStructureProgramBinding"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgramBinding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLModelStructureProgramBinding",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodelstructureprogrambinding"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgramBlock": {
+      "abstract": [
+        {
+          "text": "A class representing a block in the Program.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MLModelStructureProgramBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgramBlock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLModelStructureProgramBlock",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodelstructureprogramblock"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgramFunction": {
+      "abstract": [
+        {
+          "text": "A class representing a function in the Program.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MLModelStructureProgramFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgramFunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLModelStructureProgramFunction",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodelstructureprogramfunction"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgramNamedValueType": {
+      "abstract": [
+        {
+          "text": "A class representing a named value type in a Program.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MLModelStructureProgramNamedValueType"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgramNamedValueType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLModelStructureProgramNamedValueType",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodelstructureprogramnamedvaluetype"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgramOperation": {
+      "abstract": [
+        {
+          "text": "A class representing an Operation in a Program.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MLModelStructureProgramOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgramOperation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLModelStructureProgramOperation",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodelstructureprogramoperation"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgramValue": {
+      "abstract": [
+        {
+          "text": "A class representing a constant value in the Program.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MLModelStructureProgramValue"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgramValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLModelStructureProgramValue",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodelstructureprogramvalue"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgramValueType": {
+      "abstract": [
+        {
+          "text": "A class representing the type of a value or a variable in the Program.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MLModelStructureProgramValueType"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgramValueType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLModelStructureProgramValueType",
+      "type": "topic",
+      "url": "/documentation/coreml/mlmodelstructureprogramvaluetype"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLNeuralEngineComputeDevice": {
+      "abstract": [
+        {
+          "text": "An object that represents a Neural Engine compute device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLNeuralEngineComputeDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLNeuralEngineComputeDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLNeuralEngineComputeDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLNeuralEngineComputeDevice",
+      "type": "topic",
+      "url": "/documentation/coreml/mlneuralenginecomputedevice"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLOptimizationHints-c.class": {
+      "abstract": [
+        {
+          "text": "MLOptimizationHints",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MLOptimizationHints"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLOptimizationHints-c.class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLOptimizationHints",
+      "type": "topic",
+      "url": "/documentation/coreml/mloptimizationhints-c.class"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLSendableFeatureValue": {
+      "abstract": [
+        {
+          "text": "A sendable feature value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLSendableFeatureValue"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLSendableFeatureValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLSendableFeatureValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLSendableFeatureValue",
+      "type": "topic",
+      "url": "/documentation/coreml/mlsendablefeaturevalue"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLShapedArrayBufferLayout": {
+      "abstract": [
+        {
+          "text": "Buffer layout enum",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLShapedArrayBufferLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLShapedArrayBufferLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLShapedArrayBufferLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLShapedArrayBufferLayout",
+      "type": "topic",
+      "url": "/documentation/coreml/mlshapedarraybufferlayout"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLSpecializationStrategy": {
+      "abstract": [
+        {
+          "text": "The optimization strategy for the model specialization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MLSpecializationStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLSpecializationStrategy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLSpecializationStrategy",
+      "type": "topic",
+      "url": "/documentation/coreml/mlspecializationstrategy"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLState": {
+      "abstract": [
+        {
+          "text": "Handle to the state buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLState"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLState"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLState",
+      "type": "topic",
+      "url": "/documentation/coreml/mlstate"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLStateConstraint": {
+      "abstract": [
+        {
+          "text": "Constraint of a state feature value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLStateConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLStateConstraint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLStateConstraint"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLStateConstraint",
+      "type": "topic",
+      "url": "/documentation/coreml/mlstateconstraint"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLTensor": {
+      "abstract": [
+        {
+          "text": "A multi-dimensional array of numerical or Boolean scalars tailored to ML use cases, containing methods to perform",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "transformations and mathematical operations efficiently using a ML compute device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLTensor"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLTensor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLTensor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLTensor",
+      "type": "topic",
+      "url": "/documentation/coreml/mltensor"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLTensorRangeExpression": {
+      "abstract": [
+        {
+          "text": "A type that can be used to slice a dimension of a tensor. Don’t use this type directly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLTensorRangeExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLTensorRangeExpression",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLTensorRangeExpression"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLTensorRangeExpression",
+      "type": "topic",
+      "url": "/documentation/coreml/mltensorrangeexpression"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MLTensorScalar": {
+      "abstract": [
+        {
+          "text": "A type that represents the tensor scalar types supported by the framework. Don’t use this type directly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLTensorScalar"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MLTensorScalar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLTensorScalar"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLTensorScalar",
+      "type": "topic",
+      "url": "/documentation/coreml/mltensorscalar"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/ML_EXPORT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ML_EXPORT"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/ML_EXPORT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ML_EXPORT",
+      "type": "topic",
+      "url": "/documentation/coreml/ml_export"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/MODELCOLLECTION_SUNSET": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MODELCOLLECTION_SUNSET"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/MODELCOLLECTION_SUNSET",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MODELCOLLECTION_SUNSET",
+      "type": "topic",
+      "url": "/documentation/coreml/modelcollection_sunset"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/coreml-enumerations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/coreml-enumerations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CoreML Enumerations",
+      "type": "topic",
+      "url": "/documentation/coreml/coreml-enumerations"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/downloading-and-compiling-a-model-on-the-user-s-device": {
+      "abstract": [
+        {
+          "text": "Install Core ML models on the user’s device dynamically at runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/downloading-and-compiling-a-model-on-the-user-s-device",
+      "kind": "article",
+      "role": "article",
+      "title": "Downloading and Compiling a Model on the User’s Device",
+      "type": "topic",
+      "url": "/documentation/coreml/downloading-and-compiling-a-model-on-the-user-s-device"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/encrypting-a-model-in-your-app": {
+      "abstract": [
+        {
+          "text": "Encrypt your app’s built-in model at compile time by adding a compiler flag.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/encrypting-a-model-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Encrypting a Model in Your App",
+      "type": "topic",
+      "url": "/documentation/coreml/encrypting-a-model-in-your-app"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/generating-a-model-encryption-key": {
+      "abstract": [
+        {
+          "text": "Create a model encryption key to encrypt a compiled model or model archive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/generating-a-model-encryption-key",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating a Model Encryption Key",
+      "type": "topic",
+      "url": "/documentation/coreml/generating-a-model-encryption-key"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/getting-a-core-ml-model": {
+      "abstract": [
+        {
+          "text": "Obtain a Core ML model to use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/getting-a-core-ml-model",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting a Core ML Model",
+      "type": "topic",
+      "url": "/documentation/coreml/getting-a-core-ml-model"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/integrating-a-core-ml-model-into-your-app": {
+      "abstract": [
+        {
+          "text": "Add a simple model to an app,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "pass input data to the model, and process the model’s predictions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/integrating-a-core-ml-model-into-your-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Integrating a Core ML Model into Your App",
+      "type": "topic",
+      "url": "/documentation/coreml/integrating-a-core-ml-model-into-your-app"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/making-predictions-with-a-sequence-of-inputs": {
+      "abstract": [
+        {
+          "text": "Integrate a recurrent neural network model to process sequences of inputs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/making-predictions-with-a-sequence-of-inputs",
+      "kind": "article",
+      "role": "article",
+      "title": "Making Predictions with a Sequence of Inputs",
+      "type": "topic",
+      "url": "/documentation/coreml/making-predictions-with-a-sequence-of-inputs"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/model-customization": {
+      "abstract": [
+        {
+          "text": "Expand and modify your model with new layers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/model-customization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Model Customization",
+      "type": "topic",
+      "url": "/documentation/coreml/model-customization"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/model-integration-samples": {
+      "abstract": [
+        {
+          "text": "Integrate tabular, image, and text classifcation models into your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/model-integration-samples",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Model Integration Samples",
+      "type": "topic",
+      "url": "/documentation/coreml/model-integration-samples"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/model-personalization": {
+      "abstract": [
+        {
+          "text": "Update your model to adapt to new data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/model-personalization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Model Personalization",
+      "type": "topic",
+      "url": "/documentation/coreml/model-personalization"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/pointwiseMax(_:_:)": {
+      "abstract": [
+        {
+          "text": "Computes the element-wise maximum of two tensors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pointwiseMax"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML8MLTensorV",
+          "text": "MLTensor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML8MLTensorV",
+          "text": "MLTensor"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML8MLTensorV",
+          "text": "MLTensor"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/pointwiseMax(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pointwiseMax(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreml/pointwisemax(_:_:)"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/pointwiseMin(_:_:)": {
+      "abstract": [
+        {
+          "text": "Computes the element-wise minimum of two tensors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pointwiseMin"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML8MLTensorV",
+          "text": "MLTensor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML8MLTensorV",
+          "text": "MLTensor"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML8MLTensorV",
+          "text": "MLTensor"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/pointwiseMin(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pointwiseMin(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreml/pointwisemin(_:_:)"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/updating-a-model-file-to-a-model-package": {
+      "abstract": [
+        {
+          "text": "Convert a Core ML model file into a model package in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/updating-a-model-file-to-a-model-package",
+      "kind": "article",
+      "role": "article",
+      "title": "Updating a Model File to a Model Package",
+      "type": "topic",
+      "url": "/documentation/coreml/updating-a-model-file-to-a-model-package"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/withMLTensorComputePolicy(_:_:)-6z33x": {
+      "abstract": [
+        {
+          "text": "Calls the given closure within a task-local context using the specified compute policy to influence what compute device tensor",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "operations are executed on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withMLTensorComputePolicy"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML15MLComputePolicyV",
+          "text": "MLComputePolicy"
+        },
+        {
+          "kind": "text",
+          "text": ", () "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/withMLTensorComputePolicy(_:_:)-6z33x",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withMLTensorComputePolicy(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreml/withmltensorcomputepolicy(_:_:)-6z33x"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/withMLTensorComputePolicy(_:_:)-8stx9": {
+      "abstract": [
+        {
+          "text": "Calls the given closure within a task-local context using the specified compute policy to influence what compute device tensor",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "operations are executed on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withMLTensorComputePolicy"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6CoreML15MLComputePolicyV",
+          "text": "MLComputePolicy"
+        },
+        {
+          "kind": "text",
+          "text": ", () "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/withMLTensorComputePolicy(_:_:)-8stx9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withMLTensorComputePolicy(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreml/withmltensorcomputepolicy(_:_:)-8stx9"
+    },
+    "doc://com.apple.documentation/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/Accelerate"
+    },
+    "doc://com.apple.documentation/documentation/Accelerate/BNNS": {
+      "abstract": [
+        {
+          "text": "An enumeration that acts as a namespace for Swift overlays to BNNS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNS"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accelerate/BNNS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BNNS",
+      "type": "topic",
+      "url": "/documentation/Accelerate/BNNS"
+    },
+    "doc://com.apple.documentation/documentation/CreateML": {
+      "abstract": [
+        {
+          "text": "Create machine learning models for use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CreateML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML",
+      "type": "topic",
+      "url": "/documentation/CreateML"
+    },
+    "doc://com.apple.documentation/documentation/NaturalLanguage": {
+      "abstract": [
+        {
+          "text": "Analyze natural language text and deduce its language-specific metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/NaturalLanguage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Natural Language",
+      "type": "topic",
+      "url": "/documentation/NaturalLanguage"
+    },
+    "doc://com.apple.documentation/documentation/SoundAnalysis": {
+      "abstract": [
+        {
+          "text": "Classify various sounds by analyzing audio files or streams.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SoundAnalysis",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Sound Analysis",
+      "type": "topic",
+      "url": "/documentation/SoundAnalysis"
+    },
+    "doc://com.apple.documentation/documentation/Speech": {
+      "abstract": [
+        {
+          "text": "Perform speech recognition on live or prerecorded audio, and receive transcriptions, alternative interpretations, and confidence levels of the results.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Speech",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Speech",
+      "type": "topic",
+      "url": "/documentation/Speech"
+    },
+    "doc://com.apple.documentation/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/Vision"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders": {
+      "abstract": [
+        {
+          "text": "Optimize graphics and compute performance with kernels that are fine-tuned for the unique characteristics of each Metal GPU family.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://coremltools.readme.io": {
+      "identifier": "https://coremltools.readme.io",
+      "title": "Core ML Tools",
+      "titleInlineContent": [
+        {
+          "text": "Core ML Tools",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://coremltools.readme.io"
+    },
+    "https://developer.apple.com/machine-learning/create-ml/": {
+      "identifier": "https://developer.apple.com/machine-learning/create-ml/",
+      "title": "Create ML app",
+      "titleInlineContent": [
+        {
+          "text": "Create ML app",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/machine-learning/create-ml/"
+    },
+    "media-3330367": {
+      "alt": "A block diagram of the machine learning stack. The top layer is a single block labeled “Your app,” which spans the entire width of the block diagram. The second layer has four blocks labeled “Vision,” “Natural Language,” “Speech,” and “Sound Analysis.” The third layer is labeled “Core ML,” which also spans the entire width. The fourth and final layer has two blocks, “Accelerate and BNNS” and “Metal Performance Shaders.”",
+      "identifier": "media-3330367",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2ab0327b082af0332b528cc4171ee629/media-3330367@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dc8b090ebd793a3ff336085610b0787d/media-3330367~dark@2x.png"
+        }
+      ]
+    },
+    "media-3901331": {
+      "alt": "Flow diagram going from left to right. Starting on the left is a Core ML model file icon. Next, in the center is the Core ML framework icon, and on the right is a generic app icon, labeled “your app”.",
+      "identifier": "media-3901331",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ae17ffa70ecbce075dc4b57539ec6dde/media-3901331@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1ac7f87a16a25c1edf7c34351cde41ca/media-3901331~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Core-ML-models",
+      "identifiers": [
+        "doc://com.apple.coreml/documentation/CoreML/getting-a-core-ml-model",
+        "doc://com.apple.coreml/documentation/CoreML/updating-a-model-file-to-a-model-package",
+        "doc://com.apple.coreml/documentation/CoreML/integrating-a-core-ml-model-into-your-app",
+        "doc://com.apple.coreml/documentation/CoreML/MLModel",
+        "doc://com.apple.coreml/documentation/CoreML/model-customization",
+        "doc://com.apple.coreml/documentation/CoreML/model-personalization"
+      ],
+      "title": "Core ML models"
+    },
+    {
+      "anchor": "Model-inputs-and-outputs",
+      "identifiers": [
+        "doc://com.apple.coreml/documentation/CoreML/making-predictions-with-a-sequence-of-inputs",
+        "doc://com.apple.coreml/documentation/CoreML/MLFeatureValue",
+        "doc://com.apple.coreml/documentation/CoreML/MLSendableFeatureValue",
+        "doc://com.apple.coreml/documentation/CoreML/MLFeatureProvider",
+        "doc://com.apple.coreml/documentation/CoreML/MLDictionaryFeatureProvider",
+        "doc://com.apple.coreml/documentation/CoreML/MLBatchProvider",
+        "doc://com.apple.coreml/documentation/CoreML/MLArrayBatchProvider",
+        "doc://com.apple.coreml/documentation/CoreML/MLModelAsset"
+      ],
+      "title": "Model inputs and outputs"
+    },
+    {
+      "anchor": "App-integration",
+      "identifiers": [
+        "doc://com.apple.coreml/documentation/CoreML/downloading-and-compiling-a-model-on-the-user-s-device",
+        "doc://com.apple.coreml/documentation/CoreML/model-integration-samples"
+      ],
+      "title": "App integration"
+    },
+    {
+      "anchor": "Model-encryption",
+      "identifiers": [
+        "doc://com.apple.coreml/documentation/CoreML/generating-a-model-encryption-key",
+        "doc://com.apple.coreml/documentation/CoreML/encrypting-a-model-in-your-app"
+      ],
+      "title": "Model encryption"
+    },
+    {
+      "anchor": "Compute-devices",
+      "identifiers": [
+        "doc://com.apple.coreml/documentation/CoreML/MLComputeDevice",
+        "doc://com.apple.coreml/documentation/CoreML/MLCPUComputeDevice",
+        "doc://com.apple.coreml/documentation/CoreML/MLGPUComputeDevice",
+        "doc://com.apple.coreml/documentation/CoreML/MLNeuralEngineComputeDevice",
+        "doc://com.apple.coreml/documentation/CoreML/MLComputeDeviceProtocol"
+      ],
+      "title": "Compute devices"
+    },
+    {
+      "anchor": "Compute-plan",
+      "identifiers": [
+        "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-1w21n",
+        "doc://com.apple.coreml/documentation/CoreML/MLModelStructure-swift.enum",
+        "doc://com.apple.coreml/documentation/CoreML/MLComputePolicy",
+        "doc://com.apple.coreml/documentation/CoreML/withMLTensorComputePolicy(_:_:)-8stx9",
+        "doc://com.apple.coreml/documentation/CoreML/withMLTensorComputePolicy(_:_:)-6z33x"
+      ],
+      "title": "Compute plan"
+    },
+    {
+      "anchor": "Model-state",
+      "identifiers": [
+        "doc://com.apple.coreml/documentation/CoreML/MLState",
+        "doc://com.apple.coreml/documentation/CoreML/MLStateConstraint"
+      ],
+      "title": "Model state"
+    },
+    {
+      "anchor": "Model-tensor",
+      "identifiers": [
+        "doc://com.apple.coreml/documentation/CoreML/MLTensor",
+        "doc://com.apple.coreml/documentation/CoreML/MLTensorScalar",
+        "doc://com.apple.coreml/documentation/CoreML/MLTensorRangeExpression",
+        "doc://com.apple.coreml/documentation/CoreML/pointwiseMin(_:_:)",
+        "doc://com.apple.coreml/documentation/CoreML/pointwiseMax(_:_:)"
+      ],
+      "title": "Model tensor"
+    },
+    {
+      "anchor": "Model-structure",
+      "identifiers": [
+        "doc://com.apple.coreml/documentation/CoreML/MLModelStructure-swift.enum"
+      ],
+      "title": "Model structure"
+    },
+    {
+      "anchor": "Model-errors",
+      "identifiers": [
+        "doc://com.apple.coreml/documentation/CoreML/MLModelError-swift.struct",
+        "doc://com.apple.coreml/documentation/CoreML/MLModelError-swift.struct/Code",
+        "doc://com.apple.coreml/documentation/CoreML/MLModelErrorDomain"
+      ],
+      "title": "Model errors"
+    },
+    {
+      "anchor": "Model-deployments",
+      "identifiers": [
+        "doc://com.apple.coreml/documentation/CoreML/MLModelCollection"
+      ],
+      "title": "Model deployments"
+    },
+    {
+      "anchor": "Reference",
+      "identifiers": [
+        "doc://com.apple.coreml/documentation/CoreML/coreml-enumerations"
+      ],
+      "title": "Reference"
+    },
+    {
+      "anchor": "Enumerations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coreml/documentation/CoreML/MLShapedArrayBufferLayout"
+      ],
+      "title": "Enumerations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Core-ML-models",
+              "identifiers": [
+                "doc://com.apple.coreml/documentation/CoreML/getting-a-core-ml-model",
+                "doc://com.apple.coreml/documentation/CoreML/updating-a-model-file-to-a-model-package",
+                "doc://com.apple.coreml/documentation/CoreML/integrating-a-core-ml-model-into-your-app",
+                "doc://com.apple.coreml/documentation/CoreML/MLModel",
+                "doc://com.apple.coreml/documentation/CoreML/model-customization",
+                "doc://com.apple.coreml/documentation/CoreML/model-personalization"
+              ],
+              "title": "Core ML models"
+            },
+            {
+              "anchor": "Model-inputs-and-outputs",
+              "identifiers": [
+                "doc://com.apple.coreml/documentation/CoreML/making-predictions-with-a-sequence-of-inputs",
+                "doc://com.apple.coreml/documentation/CoreML/MLFeatureValue",
+                "doc://com.apple.coreml/documentation/CoreML/MLFeatureProvider",
+                "doc://com.apple.coreml/documentation/CoreML/MLDictionaryFeatureProvider",
+                "doc://com.apple.coreml/documentation/CoreML/MLBatchProvider",
+                "doc://com.apple.coreml/documentation/CoreML/MLArrayBatchProvider",
+                "doc://com.apple.coreml/documentation/CoreML/MLModelAsset"
+              ],
+              "title": "Model inputs and outputs"
+            },
+            {
+              "anchor": "App-integration",
+              "identifiers": [
+                "doc://com.apple.coreml/documentation/CoreML/downloading-and-compiling-a-model-on-the-user-s-device",
+                "doc://com.apple.coreml/documentation/CoreML/model-integration-samples"
+              ],
+              "title": "App integration"
+            },
+            {
+              "anchor": "Model-encryption",
+              "identifiers": [
+                "doc://com.apple.coreml/documentation/CoreML/generating-a-model-encryption-key",
+                "doc://com.apple.coreml/documentation/CoreML/encrypting-a-model-in-your-app"
+              ],
+              "title": "Model encryption"
+            },
+            {
+              "anchor": "Compute-devices",
+              "identifiers": [
+                "doc://com.apple.coreml/documentation/CoreML/MLCPUComputeDevice",
+                "doc://com.apple.coreml/documentation/CoreML/MLGPUComputeDevice",
+                "doc://com.apple.coreml/documentation/CoreML/MLNeuralEngineComputeDevice",
+                "doc://com.apple.coreml/documentation/CoreML/MLComputeDeviceProtocol",
+                "doc://com.apple.coreml/documentation/CoreML/MLAllComputeDevices"
+              ],
+              "title": "Compute devices"
+            },
+            {
+              "anchor": "Compute-plan",
+              "identifiers": [
+                "doc://com.apple.coreml/documentation/CoreML/MLComputePlan-85vdw",
+                "doc://com.apple.coreml/documentation/CoreML/MLComputePlanCost",
+                "doc://com.apple.coreml/documentation/CoreML/MLComputePlanDeviceUsage"
+              ],
+              "title": "Compute plan"
+            },
+            {
+              "anchor": "Model-state",
+              "identifiers": [
+                "doc://com.apple.coreml/documentation/CoreML/MLState",
+                "doc://com.apple.coreml/documentation/CoreML/MLStateConstraint"
+              ],
+              "title": "Model state"
+            },
+            {
+              "anchor": "Model-structure",
+              "identifiers": [
+                "doc://com.apple.coreml/documentation/CoreML/MLModelStructure-c.class",
+                "doc://com.apple.coreml/documentation/CoreML/MLModelStructureNeuralNetwork",
+                "doc://com.apple.coreml/documentation/CoreML/MLModelStructureNeuralNetworkLayer",
+                "doc://com.apple.coreml/documentation/CoreML/MLModelStructurePipeline",
+                "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgram",
+                "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgramArgument",
+                "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgramBinding",
+                "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgramBlock",
+                "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgramFunction",
+                "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgramNamedValueType",
+                "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgramOperation",
+                "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgramValue",
+                "doc://com.apple.coreml/documentation/CoreML/MLModelStructureProgramValueType"
+              ],
+              "title": "Model structure"
+            },
+            {
+              "anchor": "Model-errors",
+              "identifiers": [
+                "doc://com.apple.coreml/documentation/CoreML/MLModelError-swift.struct/Code",
+                "doc://com.apple.coreml/documentation/CoreML/MLModelErrorDomain"
+              ],
+              "title": "Model errors"
+            },
+            {
+              "anchor": "Model-deployments",
+              "identifiers": [
+                "doc://com.apple.coreml/documentation/CoreML/MLModelCollection"
+              ],
+              "title": "Model deployments"
+            },
+            {
+              "anchor": "Reference",
+              "identifiers": [
+                "doc://com.apple.coreml/documentation/CoreML/coreml-enumerations"
+              ],
+              "title": "Reference"
+            },
+            {
+              "anchor": "Classes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coreml/documentation/CoreML/MLOptimizationHints-c.class"
+              ],
+              "title": "Classes"
+            },
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coreml/documentation/CoreML/ML_EXPORT",
+                "doc://com.apple.coreml/documentation/CoreML/MODELCOLLECTION_SUNSET"
+              ],
+              "title": "Macros"
+            },
+            {
+              "anchor": "Enumerations",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coreml/documentation/CoreML/MLSpecializationStrategy"
+              ],
+              "title": "Enumerations"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModelError-swift.struct~1Code/title",
+          "value": "MLModelError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModelError-swift.struct~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLModelError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModelError-swift.struct~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLModelError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLDictionaryFeatureProvider/title",
+          "value": "MLDictionaryFeatureProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLDictionaryFeatureProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLDictionaryFeatureProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLDictionaryFeatureProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLDictionaryFeatureProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModelErrorDomain/title",
+          "value": "MLModelErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModelErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLModelErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLNeuralEngineComputeDevice/title",
+          "value": "MLNeuralEngineComputeDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLNeuralEngineComputeDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLNeuralEngineComputeDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLNeuralEngineComputeDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLNeuralEngineComputeDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLArrayBatchProvider/title",
+          "value": "MLArrayBatchProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLArrayBatchProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLArrayBatchProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLArrayBatchProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLArrayBatchProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLState/title",
+          "value": "MLState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLFeatureValue/title",
+          "value": "MLFeatureValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLFeatureValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLFeatureValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLFeatureValue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLFeatureValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLComputeDeviceProtocol/title",
+          "value": "MLComputeDeviceProtocol"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLComputeDeviceProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLComputeDeviceProtocol"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLComputeDeviceProtocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLComputeDeviceProtocol"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModelCollection/title",
+          "value": "MLModelCollection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModelCollection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLModelCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModelCollection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLModelCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModel/title",
+          "value": "MLModel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLModel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLModel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLBatchProvider/title",
+          "value": "MLBatchProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLBatchProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLBatchProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLBatchProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLBatchProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLCPUComputeDevice/title",
+          "value": "MLCPUComputeDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLCPUComputeDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCPUComputeDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLCPUComputeDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCPUComputeDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModelAsset/title",
+          "value": "MLModelAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModelAsset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLModelAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLModelAsset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLModelAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLGPUComputeDevice/title",
+          "value": "MLGPUComputeDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLGPUComputeDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLGPUComputeDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLGPUComputeDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLGPUComputeDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLStateConstraint/title",
+          "value": "MLStateConstraint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLStateConstraint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLStateConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLStateConstraint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLStateConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLFeatureProvider/title",
+          "value": "MLFeatureProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLFeatureProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLFeatureProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreml~1documentation~1CoreML~1MLFeatureProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLFeatureProvider"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coreml"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coreml"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

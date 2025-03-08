@@ -1,0 +1,471 @@
+{
+  "abstract": [
+    {
+      "text": "An object that represents the total progress of the operations executing in the queue.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/task_management",
+        "doc://com.apple.documentation/documentation/foundation/operationqueue"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+        "doc://com.apple.documentation/documentation/foundation/operationqueue"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/operationqueue/3172535-progress"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3172535,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSOperationQueue(py)progress",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "var "
+      },
+      {
+        "kind": "identifier",
+        "text": "progress"
+      },
+      {
+        "kind": "text",
+        "text": ": Progress"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "OperationQueue"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.15",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "6.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "progress"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "progress"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/progress",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSProgress",
+              "text": "Progress"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/operationqueue",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " doesn’t report progress until ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/progress/1410940-totalunitcount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is set. When ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/progress/1410940-totalunitcount",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is set, the queue begins reporting progress. Each operation in the queue contributes one unit of completion to the overall progress of the queue for operations that are finished by the end of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/operation/1407732-main",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Operations that override ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/operation/1416837-start",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and don’t invoke super don’t contribute to the queue’s progress. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Be careful to avoid race conditions and backward progress when updating ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/progress/1410940-totalunitcount",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": ". Consider a queue with a progress that has a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/progress/1407934-completedunitcount",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " equal to ",
+                  "type": "text"
+                },
+                {
+                  "code": "5",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/progress/1410940-totalunitcount",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " equal to ",
+                  "type": "text"
+                },
+                {
+                  "code": "10",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", representing 50% completion. If you add 90 more operations to the queue, the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/progress/1410940-totalunitcount",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " is now ",
+                  "type": "text"
+                },
+                {
+                  "code": "100",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", and the progress completion reports 5%. If the progress object is connected to a progress bar, the bar would visibly jump backward from 50% to 5%, which may not be desirable. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "warning",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To update ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/progress/1410940-totalunitcount",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " in a thread-safe manner, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/operationqueue/3172534-addbarrierblock",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. This method ensures that the operation queue completes the operations in the queue, preventing an inadvertent backward jump in progress.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/operation/1407732-main": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/operation/1407732-main",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "main()",
+      "type": "topic",
+      "url": "/documentation/foundation/operation/1407732-main"
+    },
+    "doc://com.apple.documentation/documentation/foundation/operation/1416837-start": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/operation/1416837-start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "start()",
+      "type": "topic",
+      "url": "/documentation/foundation/operation/1416837-start"
+    },
+    "doc://com.apple.documentation/documentation/foundation/operationqueue": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/operationqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OperationQueue",
+      "type": "topic",
+      "url": "/documentation/foundation/operationqueue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/operationqueue/3172534-addbarrierblock": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/operationqueue/3172534-addbarrierblock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addBarrierBlock(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/operationqueue/3172534-addbarrierblock"
+    },
+    "doc://com.apple.documentation/documentation/foundation/operationqueue/3172535-progress": {
+      "abstract": [
+        {
+          "text": "An object that represents the total progress of the operations executing in the queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "progress"
+        },
+        {
+          "kind": "text",
+          "text": ": Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/operationqueue/3172535-progress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "progress",
+      "type": "topic",
+      "url": "/documentation/foundation/operationqueue/3172535-progress"
+    },
+    "doc://com.apple.documentation/documentation/foundation/processes_and_threads": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Processes and Threads",
+      "type": "topic",
+      "url": "/documentation/foundation/processes_and_threads"
+    },
+    "doc://com.apple.documentation/documentation/foundation/progress": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/progress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Progress",
+      "type": "topic",
+      "url": "/documentation/foundation/progress"
+    },
+    "doc://com.apple.documentation/documentation/foundation/progress/1407934-completedunitcount": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/progress/1407934-completedunitcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "completedUnitCount",
+      "type": "topic",
+      "url": "/documentation/foundation/progress/1407934-completedunitcount"
+    },
+    "doc://com.apple.documentation/documentation/foundation/progress/1410940-totalunitcount": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/progress/1410940-totalunitcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "totalUnitCount",
+      "type": "topic",
+      "url": "/documentation/foundation/progress/1410940-totalunitcount"
+    },
+    "doc://com.apple.documentation/documentation/foundation/task_management": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/task_management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Task Management",
+      "type": "topic",
+      "url": "/documentation/foundation/task_management"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsoperationqueue/3172535-progress"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/operationqueue/3172535-progress"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

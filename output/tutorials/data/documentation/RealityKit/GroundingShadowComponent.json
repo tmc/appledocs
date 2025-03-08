@@ -1,0 +1,1292 @@
+{
+  "abstract": [
+    {
+      "text": "A component that controls an entity’s grounding shadow.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation24GroundingShadowComponentV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "GroundingShadowComponent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GroundingShadowComponent"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "GroundingShadowComponent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GroundingShadowComponent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A grounding shadow is an effect that makes an entity look like it has a light source directly above it. You can add a grounding shadow to any entity that has a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in its component set by adding a grounding shadow",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "component to the entity’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/components",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let model = try? await ModelEntity(named: \"tv_retro\") {",
+            "    let shadowComponent = GroundingShadowComponent(castsShadow: true)",
+            "    model.components.set(shadowComponent)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "alignments": [
+            "center",
+            "center"
+          ],
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Without shadow",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "With shadow",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "groundingshadowcomponent-tv-off",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "groundingshadowcomponent-tv-on",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You need to add the grounding shadow component to each entity you want to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "apply the effect to, because the grounding shadow component doesn’t apply to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "hierarchies.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Neither virtual nor physical light sources affect grounding shadows.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Receiving-Shadows",
+          "level": 3,
+          "text": "Receiving Shadows",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, all entity models with a grounding shadow component can cast",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a shadow onto any other model entities in the scene.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, you can configure an entity to opt out of receiving shadows from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "other entities by setting a grounding shadow component’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent/receivesShadow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and adding",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that component to the entity that’s opting out.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let tvShadow = GroundingShadowComponent(castsShadow: true)",
+            "tvShadow.receivesShadow = false",
+            "tv.components.set(tvShadow)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can create a new grounding shadow component instance that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "opts out of receiving shadows by passing ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "code": "receivesShadow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parameter of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent/init(castsShadow:receivesShadow:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let robotShadow = GroundingShadowComponent(castsShadow: true,",
+            "                                           receivesShadow: false)",
+            "robot.components.set(robotShadow)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "alignments": [
+            "center",
+            "center"
+          ],
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Receiving shadows",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Not receiving shadows",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "groundingshadowcomponent-tv-robot-receive-on",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "groundingshadowcomponent-tv-robot-receive-off",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RealityKit generates grounding shadows from the perspective of another",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entity that receives the first entity’s shadow. One-sided geometry only",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "casts a shadow if its facets face the entity that receives the shadow,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which typically means they face downward. Make each 2D object cast a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "grounding shadow by applying a material that disables face culling, or by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "replacing it with a watertight mesh.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Component": {
+      "abstract": [
+        {
+          "text": "A representation of a geometry or a behavior that you apply to an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Component",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "role": "symbol",
+      "title": "Component",
+      "type": "topic",
+      "url": "/documentation/realitykit/component"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/DynamicLightShadowComponent": {
+      "abstract": [
+        {
+          "text": "A component that controls an entity’s shadow from dynamic (virtual) lights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DynamicLightShadowComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/DynamicLightShadowComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DynamicLightShadowComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "DynamicLightShadowComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/dynamiclightshadowcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/components": {
+      "abstract": [
+        {
+          "text": "All the components that an entity stores.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "components"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC12ComponentSetV",
+          "text": "ComponentSet"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/components",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "components",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/components"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent": {
+      "abstract": [
+        {
+          "text": "A component that controls an entity’s grounding shadow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroundingShadowComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GroundingShadowComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroundingShadowComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/groundingshadowcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent/Component-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent/Component-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Component Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/groundingshadowcomponent/component-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent/FadeBehaviorNearPhysicalObjects-swift.enum": {
+      "abstract": [
+        {
+          "text": "Describes the behavior of an entity’s grounding shadow when it’s near",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "physical objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FadeBehaviorNearPhysicalObjects"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent/FadeBehaviorNearPhysicalObjects-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FadeBehaviorNearPhysicalObjects"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroundingShadowComponent.FadeBehaviorNearPhysicalObjects",
+      "type": "topic",
+      "url": "/documentation/realitykit/groundingshadowcomponent/fadebehaviornearphysicalobjects-swift.enum"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent/castsShadow": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an entity casts a shadow onto",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "other model entities in the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "castsShadow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent/castsShadow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "castsShadow",
+      "type": "topic",
+      "url": "/documentation/realitykit/groundingshadowcomponent/castsshadow"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent/fadeBehaviorNearPhysicalObjects-swift.property": {
+      "abstract": [
+        {
+          "text": "Configures the grounding shadow’s fade behavior when the entity is near",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "physical objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fadeBehaviorNearPhysicalObjects"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24GroundingShadowComponentV",
+          "text": "GroundingShadowComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24GroundingShadowComponentV31FadeBehaviorNearPhysicalObjectsO",
+          "text": "FadeBehaviorNearPhysicalObjects"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent/fadeBehaviorNearPhysicalObjects-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fadeBehaviorNearPhysicalObjects",
+      "type": "topic",
+      "url": "/documentation/realitykit/groundingshadowcomponent/fadebehaviornearphysicalobjects-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent/init(castsShadow:)": {
+      "abstract": [
+        {
+          "text": "Creates a grounding shadow component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "castsShadow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent/init(castsShadow:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(castsShadow:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/groundingshadowcomponent/init(castsshadow:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent/init(castsShadow:receivesShadow:)": {
+      "abstract": [
+        {
+          "text": "Creates a grounding shadow component by configuring whether its entity",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "receives shadows from other model entities with the component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "castsShadow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "receivesShadow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent/init(castsShadow:receivesShadow:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(castsShadow:receivesShadow:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/groundingshadowcomponent/init(castsshadow:receivesshadow:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent/init(castsShadow:receivesShadow:fadeBehaviorNearPhysicalObjects:)": {
+      "abstract": [
+        {
+          "text": "Creates a grounding shadow component by configuring whether its entity",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "receives shadows and its fade behavior near physical objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "castsShadow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "receivesShadow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fadeBehaviorNearPhysicalObjects"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24GroundingShadowComponentV",
+          "text": "GroundingShadowComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24GroundingShadowComponentV31FadeBehaviorNearPhysicalObjectsO",
+          "text": "FadeBehaviorNearPhysicalObjects"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent/init(castsShadow:receivesShadow:fadeBehaviorNearPhysicalObjects:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(castsShadow:receivesShadow:fadeBehaviorNearPhysicalObjects:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/groundingshadowcomponent/init(castsshadow:receivesshadow:fadebehaviornearphysicalobjects:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent/receivesShadow": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an entity with the grounding",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "shadow component receives grounding shadows from other model entities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "receivesShadow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent/receivesShadow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "receivesShadow",
+      "type": "topic",
+      "url": "/documentation/realitykit/groundingshadowcomponent/receivesshadow"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent": {
+      "abstract": [
+        {
+          "text": "A component that contains a mesh and materials for the visual appearance of an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelcomponent"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "groundingshadowcomponent-tv-off": {
+      "alt": "A screenshot of a vintage-style TV near the floor of a kitchen scene, which doesn’t cast a shadow onto the floor.",
+      "identifier": "groundingshadowcomponent-tv-off",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a57f9bda1580e70d550ac8b4026fac5e/groundingshadowcomponent-tv-off.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/df8a411805973a5a255ae8eb96f8ab26/groundingshadowcomponent-tv-off~dark.jpg"
+        }
+      ]
+    },
+    "groundingshadowcomponent-tv-on": {
+      "alt": "A screenshot of a vintage-style TV near the floor of a kitchen scene, which casts a shadow onto the floor.",
+      "identifier": "groundingshadowcomponent-tv-on",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8f57b03abf162b5614b406e000856d69/groundingshadowcomponent-tv-on.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9c9bfcadcc1f4f4142597b05b3b0aaec/groundingshadowcomponent-tv-on~dark.jpg"
+        }
+      ]
+    },
+    "groundingshadowcomponent-tv-robot-receive-off": {
+      "alt": "A screenshot of a vintage toy robot on a vintage TV set in a RealityKit scene where the robot doesn’t cast a shadow on any entity in the scene, including itself.",
+      "identifier": "groundingshadowcomponent-tv-robot-receive-off",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c3a53c8ed1306ca6859138782b48f635/groundingshadowcomponent-tv-robot-receive-off.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dc681ff82432fa644452091881478c14/groundingshadowcomponent-tv-robot-receive-off~dark.jpg"
+        }
+      ]
+    },
+    "groundingshadowcomponent-tv-robot-receive-on": {
+      "alt": "A screenshot of a vintage toy robot on a vintage TV set in a RealityKit scene where the robot casts a shadow onto both the TV that it’s standing on, and onto own body.",
+      "identifier": "groundingshadowcomponent-tv-robot-receive-on",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8ce34c59e6850c3e45a336650441edec/groundingshadowcomponent-tv-robot-receive-on.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1f568fb4556ae79bbd14e6296afc8214/groundingshadowcomponent-tv-robot-receive-on~dark.jpg"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Component"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "General-shadows",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/DynamicLightShadowComponent"
+      ],
+      "title": "General shadows"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent/init(castsShadow:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent/init(castsShadow:receivesShadow:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent/init(castsShadow:receivesShadow:fadeBehaviorNearPhysicalObjects:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent/castsShadow",
+        "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent/fadeBehaviorNearPhysicalObjects-swift.property",
+        "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent/receivesShadow"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Enumerations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent/FadeBehaviorNearPhysicalObjects-swift.enum"
+      ],
+      "title": "Enumerations"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent/Component-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/groundingshadowcomponent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

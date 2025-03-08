@@ -1,0 +1,3443 @@
+{
+  "abstract": [
+    {
+      "text": "The fundamental storage mechanism of TextKit that contains the text managed by the system.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSTextStorage",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSTextStorage"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSTextStorage"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSTextStorage"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTextStorage"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a semi-concrete subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that adds behavior for managing a set of client ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. A text storage object notifies its layout managers of changes to its characters or attributes, which lets the layout managers redisplay the text as needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can access a text storage object from any thread of your app, but your app must guarantee access from only one thread at a time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS, this class also defines properties for getting and setting scriptable attributes of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. Unless you’re dealing with scriptability, you shouldn’t access these properties directly. In particular, using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/characters",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/words",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/paragraphs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties is an inefficient way to manipulate the text storage, since accessing these properties involves the creation of many objects. Instead, use the text access methods defined by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablestring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to perform character-level manipulation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Subclassing-Notes",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class implements change management through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1411853-beginediting",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1416707-endediting",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods, as well as verification of attributes, delegate handling, and layout management notification. The one aspect it doesn’t implement is managing the actual attributed string storage, which subclasses manage by overriding the two ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " primitives:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring/1412616-string",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring/1415682-attributes",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Subclasses must also override two ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " primitives:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1418451-replacecharacters",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1412179-setattributes",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These primitives should perform the change, then call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/edited(_:range:changeInLength:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to let the parent class know there are changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSATSTypesetter": {
+      "abstract": [
+        {
+          "text": "A concrete typesetter object that places glyphs during the text layout process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSATSTypesetter"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSATSTypesetter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSATSTypesetter"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSATSTypesetter",
+      "type": "topic",
+      "url": "/documentation/appkit/nsatstypesetter"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager": {
+      "abstract": [
+        {
+          "text": "An object that coordinates the layout and display of text characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLayoutManager"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLayoutManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLayoutManager",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutmanager"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLineMovementDirection": {
+      "abstract": [
+        {
+          "text": "The direction in which a line moves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSLineMovementDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLineMovementDirection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLineMovementDirection",
+      "type": "topic",
+      "url": "/documentation/appkit/nslinemovementdirection"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLineSweepDirection": {
+      "abstract": [
+        {
+          "text": "Values that describe the progression of text on a page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSLineSweepDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLineSweepDirection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLineSweepDirection",
+      "type": "topic",
+      "url": "/documentation/appkit/nslinesweepdirection"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboardReading": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines the interface for initializing an object from a pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardReading"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboardReading",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardReading"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboardReading",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboardreading"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPasteboardWriting": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines the interface for retrieving a representation of an object that can be written to a pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardWriting"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPasteboardWriting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardWriting"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPasteboardWriting",
+      "type": "topic",
+      "url": "/documentation/appkit/nspasteboardwriting"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorage": {
+      "abstract": [
+        {
+          "text": "The fundamental storage mechanism of TextKit that contains the text managed by the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextStorage"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextStorage"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextStorage",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorage"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/addLayoutManager(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a layout manager to the text storage object’s set of layout managers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addLayoutManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutManager",
+          "text": "NSLayoutManager"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/addLayoutManager(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addLayoutManager:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addLayoutManager(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorage/addlayoutmanager(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/attributeRuns": {
+      "abstract": [
+        {
+          "text": "The text storage contents as an array of attribute runs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributeRuns"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTextStorage",
+          "text": "NSTextStorage"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/attributeRuns",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attributeRuns"
+        }
+      ],
+      "role": "symbol",
+      "title": "attributeRuns",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorage/attributeruns"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/changeInLength": {
+      "abstract": [
+        {
+          "text": "The difference between the current length of the edited range and its length before editing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "changeInLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/changeInLength",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "changeInLength"
+        }
+      ],
+      "role": "symbol",
+      "title": "changeInLength",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorage/changeinlength"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/characters": {
+      "abstract": [
+        {
+          "text": "The text storage contents as an array of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "characters"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTextStorage",
+          "text": "NSTextStorage"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/characters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "characters"
+        }
+      ],
+      "role": "symbol",
+      "title": "characters",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorage/characters"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/delegate": {
+      "abstract": [
+        {
+          "text": "The delegate for the text storage object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSTextStorageDelegate",
+          "text": "NSTextStorageDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorage/delegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/didProcessEditingNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts after a text storage finishes processing edits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didProcessEditingNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/didProcessEditingNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextStorageDidProcessEditingNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "didProcessEditingNotification",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorage/didprocesseditingnotification"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/edited(_:range:changeInLength:)": {
+      "abstract": [
+        {
+          "text": "Tracks changes made to the text storage object, allowing the text storage to record the full extent of changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "edited"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSTextStorageEditActions",
+          "text": "NSTextStorageEditActions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "changeInLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/edited(_:range:changeInLength:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "edited:range:changeInLength:"
+        }
+      ],
+      "role": "symbol",
+      "title": "edited(_:range:changeInLength:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorage/edited(_:range:changeinlength:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/editedMask": {
+      "abstract": [
+        {
+          "text": "A mask that describes the kinds of edits pending for the text storage object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "editedMask"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSTextStorageEditActions",
+          "text": "NSTextStorageEditActions"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/editedMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "editedMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "editedMask",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorage/editedmask"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/editedRange": {
+      "abstract": [
+        {
+          "text": "The range of text that contains changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "editedRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/editedRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "editedRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "editedRange",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorage/editedrange"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/ensureAttributesAreFixed(in:)": {
+      "abstract": [
+        {
+          "text": "Ensures that attribute fixing occurs in the specified range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ensureAttributesAreFixed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/ensureAttributesAreFixed(in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ensureAttributesAreFixedInRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "ensureAttributesAreFixed(in:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorage/ensureattributesarefixed(in:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/fixesAttributesLazily": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the text storage object fixes attributes lazily.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fixesAttributesLazily"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/fixesAttributesLazily",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fixesAttributesLazily"
+        }
+      ],
+      "role": "symbol",
+      "title": "fixesAttributesLazily",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorage/fixesattributeslazily"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/font": {
+      "abstract": [
+        {
+          "text": "The font for the text storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "font"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFont",
+          "text": "NSFont"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/font",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "font"
+        }
+      ],
+      "role": "symbol",
+      "title": "font",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorage/font"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/foregroundColor": {
+      "abstract": [
+        {
+          "text": "The color for the text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "foregroundColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/foregroundColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "foregroundColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "foregroundColor",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorage/foregroundcolor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/invalidateAttributes(in:)": {
+      "abstract": [
+        {
+          "text": "Invalidates attributes in the specified range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidateAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/invalidateAttributes(in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "invalidateAttributesInRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "invalidateAttributes(in:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorage/invalidateattributes(in:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/layoutManagers": {
+      "abstract": [
+        {
+          "text": "The layout managers for the text storage object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layoutManagers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutManager",
+          "text": "NSLayoutManager"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/layoutManagers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "layoutManagers"
+        }
+      ],
+      "role": "symbol",
+      "title": "layoutManagers",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorage/layoutmanagers"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/paragraphs": {
+      "abstract": [
+        {
+          "text": "The text storage contents as an array of paragraphs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paragraphs"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTextStorage",
+          "text": "NSTextStorage"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/paragraphs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paragraphs"
+        }
+      ],
+      "role": "symbol",
+      "title": "paragraphs",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorage/paragraphs"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/processEditing()": {
+      "abstract": [
+        {
+          "text": "Cleans up changes to the text storage object and notifies its delegate and layout managers of changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "processEditing"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/processEditing()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "processEditing"
+        }
+      ],
+      "role": "symbol",
+      "title": "processEditing()",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorage/processediting()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/removeLayoutManager(_:)": {
+      "abstract": [
+        {
+          "text": "Removes a layout manager from the text storage object’s set of layout managers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeLayoutManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutManager",
+          "text": "NSLayoutManager"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/removeLayoutManager(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeLayoutManager:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeLayoutManager(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorage/removelayoutmanager(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/textStorageObserver": {
+      "abstract": [
+        {
+          "text": "The observer for the text storage object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textStorageObserver"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSTextStorageObserving",
+          "text": "NSTextStorageObserving"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/textStorageObserver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textStorageObserver"
+        }
+      ],
+      "role": "symbol",
+      "title": "textStorageObserver",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorage/textstorageobserver"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/willProcessEditingNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts before a text storage begins processing edits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "willProcessEditingNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/willProcessEditingNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextStorageWillProcessEditingNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "willProcessEditingNotification",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorage/willprocesseditingnotification"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/words": {
+      "abstract": [
+        {
+          "text": "The text storage contents as an array of words.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "words"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTextStorage",
+          "text": "NSTextStorage"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/words",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "words"
+        }
+      ],
+      "role": "symbol",
+      "title": "words",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorage/words"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorageDelegate": {
+      "abstract": [
+        {
+          "text": "The optional methods that delegates of text storage objects implement to handle text-edit processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextStorageDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorageDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextStorageDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextStorageDelegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstoragedelegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorageEditActions": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the types of changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextStorageEditActions"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorageEditActions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextStorageEditActions"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextStorageEditActions",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorageeditactions"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorageEditedOptions": {
+      "abstract": [
+        {
+          "text": "** Deprecations ***",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSTextStorageEditedOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorageEditedOptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTextStorageEditedOptions",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorageeditedoptions"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextStorageObserving": {
+      "abstract": [
+        {
+          "text": "Optional methods that delegates implement to handle editing and transaction processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextStorageObserving"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextStorageObserving",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextStorageObserving"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextStorageObserving",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextstorageobserving"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTypesetter": {
+      "abstract": [
+        {
+          "text": "An abstract class that performs various type layout tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTypesetter"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTypesetter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTypesetter"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTypesetter",
+      "type": "topic",
+      "url": "/documentation/appkit/nstypesetter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsattributedstring": {
+      "abstract": [
+        {
+          "text": "A string of text that manages data, layout, and stylistic information for ranges of characters to support rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsattributedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsattributedstring/1412616-string": {
+      "abstract": [
+        {
+          "text": "The character contents of the attributed string as a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring/1412616-string",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "string",
+      "type": "topic",
+      "url": "/documentation/foundation/nsattributedstring/1412616-string"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsattributedstring/1415682-attributes": {
+      "abstract": [
+        {
+          "text": "Returns the attributes for the character at the specified index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "effectiveRange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRangePointer?) -> [NSAttributedString.Key : Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring/1415682-attributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attributes(at:effectiveRange:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsattributedstring/1415682-attributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring": {
+      "abstract": [
+        {
+          "text": "A mutable string with associated attributes (such as visual style, hyperlinks, or accessibility data) for portions of its text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableAttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableAttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1411853-beginediting": {
+      "abstract": [
+        {
+          "text": "Begins the buffering of changes to the string’s characters and attributes. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginEditing"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1411853-beginediting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginEditing()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1411853-beginediting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1412179-setattributes": {
+      "abstract": [
+        {
+          "text": "Sets the attributes for the characters in the specified range to the specified attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "([NSAttributedString.Key : Any]?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1412179-setattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAttributes(_:range:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1412179-setattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1416707-endediting": {
+      "abstract": [
+        {
+          "text": "Ends the buffering of changes to the string’s characters and attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "endEditing"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1416707-endediting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "endEditing()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1416707-endediting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1418451-replacecharacters": {
+      "abstract": [
+        {
+          "text": "Replaces the characters in the given range with the characters of the given string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "replaceCharacters"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange, "
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring/1418451-replacecharacters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replaceCharacters(in:with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring/1418451-replacecharacters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablestring": {
+      "abstract": [
+        {
+          "text": "A dynamic plain-text Unicode string object, for use instead of a  variable in cases that require reference semantics. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablestring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablestring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "abstract": [
+        {
+          "text": "A static, plain-text Unicode string object which you use when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSMutableAttributedString": {
+      "abstract": [
+        {
+          "text": "A mutable string with associated attributes (such as visual style, hyperlinks, or accessibility data) for portions of its text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableAttributedString"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSMutableAttributedString",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableAttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSMutableCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that mutable objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSMutableCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSMutableAttributedString"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSMutableCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboardReading",
+        "doc://com.apple.appkit/documentation/AppKit/NSPasteboardWriting",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "TextKit-1",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager",
+        "doc://com.apple.appkit/documentation/AppKit/NSATSTypesetter",
+        "doc://com.apple.appkit/documentation/AppKit/NSTypesetter"
+      ],
+      "title": "TextKit 1"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Processing-the-editing-actions",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/delegate",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextStorageDelegate"
+      ],
+      "title": "Processing the editing actions"
+    },
+    {
+      "anchor": "Accessing-the-layout-managers",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/layoutManagers",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/addLayoutManager(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/removeLayoutManager(_:)"
+      ],
+      "title": "Accessing the layout managers"
+    },
+    {
+      "anchor": "Managing-edits",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/edited(_:range:changeInLength:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/processEditing()"
+      ],
+      "title": "Managing edits"
+    },
+    {
+      "anchor": "Fixing-the-string-attributes",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/invalidateAttributes(in:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/ensureAttributesAreFixed(in:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/fixesAttributesLazily"
+      ],
+      "title": "Fixing the string attributes"
+    },
+    {
+      "anchor": "Determining-the-nature-of-changes",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/editedMask",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/editedRange",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/changeInLength"
+      ],
+      "title": "Determining the nature of changes"
+    },
+    {
+      "anchor": "Accessing-scriptable-properties",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/attributeRuns",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/paragraphs",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/words",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/characters",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/font",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/foregroundColor"
+      ],
+      "title": "Accessing scriptable properties"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextStorageEditActions"
+      ],
+      "title": "Constants"
+    },
+    {
+      "anchor": "Notifications",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/willProcessEditingNotification",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/didProcessEditingNotification"
+      ],
+      "title": "Notifications"
+    },
+    {
+      "anchor": "Accessing-the-storage-controller",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/textStorageObserver",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextStorageObserving"
+      ],
+      "title": "Accessing the storage controller"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSTextStorage"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextStorage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextStorage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Processing-the-editing-actions",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/delegate",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextStorageDelegate"
+              ],
+              "title": "Processing the editing actions"
+            },
+            {
+              "anchor": "Accessing-the-layout-managers",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/layoutManagers",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/addLayoutManager(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/removeLayoutManager(_:)"
+              ],
+              "title": "Accessing the layout managers"
+            },
+            {
+              "anchor": "Managing-edits",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/edited(_:range:changeInLength:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/processEditing()"
+              ],
+              "title": "Managing edits"
+            },
+            {
+              "anchor": "Fixing-the-string-attributes",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/invalidateAttributes(in:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/ensureAttributesAreFixed(in:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/fixesAttributesLazily"
+              ],
+              "title": "Fixing the string attributes"
+            },
+            {
+              "anchor": "Determining-the-nature-of-changes",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/editedMask",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/editedRange",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/changeInLength"
+              ],
+              "title": "Determining the nature of changes"
+            },
+            {
+              "anchor": "Accessing-scriptable-properties",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/attributeRuns",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/paragraphs",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/words",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/characters",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/font",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/foregroundColor"
+              ],
+              "title": "Accessing scriptable properties"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextStorageEditActions",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextStorageEditedOptions"
+              ],
+              "title": "Constants"
+            },
+            {
+              "anchor": "Notifications",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/willProcessEditingNotification",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/didProcessEditingNotification"
+              ],
+              "title": "Notifications"
+            },
+            {
+              "anchor": "Accessing-the-storage-controller",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTextStorage/textStorageObserver",
+                "doc://com.apple.appkit/documentation/AppKit/NSTextStorageObserving"
+              ],
+              "title": "Accessing the storage controller"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSMutableAttributedString"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "TextKit-1",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSLayoutManager",
+                "doc://com.apple.appkit/documentation/AppKit/NSATSTypesetter",
+                "doc://com.apple.appkit/documentation/AppKit/NSTypesetter",
+                "doc://com.apple.appkit/documentation/AppKit/NSLineSweepDirection",
+                "doc://com.apple.appkit/documentation/AppKit/NSLineMovementDirection"
+              ],
+              "title": "TextKit 1"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSTextStorage"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSMutableAttributedString",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSMutableAttributedString",
+                    "text": "NSMutableAttributedString"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1processEditing()/title",
+          "value": "processEditing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1processEditing()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "processEditing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsmutableattributedstring~11412179-setattributes/title",
+          "value": "setAttributes:range:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsattributedstring~11415682-attributes/title",
+          "value": "attributesAtIndex:effectiveRange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage/title",
+          "value": "NSTextStorage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextStorage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextStorage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1addLayoutManager(_:)/title",
+          "value": "addLayoutManager:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1addLayoutManager(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addLayoutManager:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1editedMask/title",
+          "value": "editedMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1editedMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "editedMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsmutableattributedstring~11418451-replacecharacters/title",
+          "value": "replaceCharactersInRange:withString:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1changeInLength/title",
+          "value": "changeInLength"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1changeInLength/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "changeInLength"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsmutablestring/abstract",
+          "value": [
+            {
+              "text": "A dynamic plain-text Unicode string object.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1edited(_:range:changeInLength:)/title",
+          "value": "edited:range:changeInLength:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1edited(_:range:changeInLength:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "edited:range:changeInLength:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTypesetter/title",
+          "value": "NSTypesetter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTypesetter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTypesetter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTypesetter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTypesetter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsstring/abstract",
+          "value": [
+            {
+              "text": "A static, plain-text Unicode string object.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorageDelegate/title",
+          "value": "NSTextStorageDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorageDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextStorageDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorageDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextStorageDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1font/title",
+          "value": "font"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1font/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "font"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1fixesAttributesLazily/title",
+          "value": "fixesAttributesLazily"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1fixesAttributesLazily/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fixesAttributesLazily"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1textStorageObserver/title",
+          "value": "textStorageObserver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1textStorageObserver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "textStorageObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1foregroundColor/title",
+          "value": "foregroundColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1foregroundColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "foregroundColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorageEditActions/title",
+          "value": "NSTextStorageEditActions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorageEditActions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextStorageEditActions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorageEditActions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextStorageEditActions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1didProcessEditingNotification/title",
+          "value": "NSTextStorageDidProcessEditingNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1didProcessEditingNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextStorageDidProcessEditingNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1ensureAttributesAreFixed(in:)/title",
+          "value": "ensureAttributesAreFixedInRange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1ensureAttributesAreFixed(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "ensureAttributesAreFixedInRange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSATSTypesetter/title",
+          "value": "NSATSTypesetter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSATSTypesetter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSATSTypesetter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSATSTypesetter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSATSTypesetter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager/title",
+          "value": "NSLayoutManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsmutableattributedstring~11411853-beginediting/title",
+          "value": "beginEditing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1willProcessEditingNotification/title",
+          "value": "NSTextStorageWillProcessEditingNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1willProcessEditingNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextStorageWillProcessEditingNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1characters/title",
+          "value": "characters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1characters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "characters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardReading/title",
+          "value": "NSPasteboardReading"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardReading/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardReading"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardReading/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardReading"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1editedRange/title",
+          "value": "editedRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1editedRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "editedRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardWriting/title",
+          "value": "NSPasteboardWriting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardWriting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardWriting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPasteboardWriting/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardWriting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1removeLayoutManager(_:)/title",
+          "value": "removeLayoutManager:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1removeLayoutManager(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeLayoutManager:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1words/title",
+          "value": "words"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1words/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "words"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1invalidateAttributes(in:)/title",
+          "value": "invalidateAttributesInRange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1invalidateAttributes(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "invalidateAttributesInRange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsmutableattributedstring~11416707-endediting/title",
+          "value": "endEditing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorageObserving/title",
+          "value": "NSTextStorageObserving"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorageObserving/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextStorageObserving"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorageObserving/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextStorageObserving"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1layoutManagers/title",
+          "value": "layoutManagers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1layoutManagers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "layoutManagers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1paragraphs/title",
+          "value": "paragraphs"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1paragraphs/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "paragraphs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1attributeRuns/title",
+          "value": "attributeRuns"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextStorage~1attributeRuns/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "attributeRuns"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nstextstorage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nstextstorage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1042 @@
+{
+  "abstract": [
+    {
+      "text": "A type that describes the material aspects of a mesh, like color and",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "texture.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/Material"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation8MaterialP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Material"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Material"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "Material"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Material"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/applying-realistic-material-and-lighting-effects-to-entities",
+        "doc://com.apple.RealityKit/documentation/RealityKit/adding-procedural-assets-to-a-scene"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In RealityKit, a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "material",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " defines the surface properties of a 3D model. It",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specifies how RealityKit renders the entity, including its color and whether",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it’s shiny or reflective. A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " may have one material that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "defines the way RealityKit renders the entire entity, or it may have several",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that define the look of different parts of the model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RealityKit provides several different material structures for different",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "types of rendering, including ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which is a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "versatile material capable of simulating real-world objects in a highly",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "realistic manner, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/UnlitMaterial",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which RealityKit draws with no",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "lighting effects or shadows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you import a model from a USDZ file, RealityKit automatically creates one",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or more ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances from the material properties",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contained in the file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial": {
+      "abstract": [
+        {
+          "text": "A material that works with custom Metal shader functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomMaterial"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomMaterial",
+      "type": "topic",
+      "url": "/documentation/realitykit/custommaterial"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Material": {
+      "abstract": [
+        {
+          "text": "A type that describes the material aspects of a mesh, like color and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Material"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Material",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Material"
+        }
+      ],
+      "role": "symbol",
+      "title": "Material",
+      "type": "topic",
+      "url": "/documentation/realitykit/material"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Material/Color": {
+      "abstract": [
+        {
+          "text": "An alias for the color type that’s appropriate for the current platform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Color"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Material/Color",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Color"
+        }
+      ],
+      "role": "symbol",
+      "title": "Material.Color",
+      "type": "topic",
+      "url": "/documentation/realitykit/material/color"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Material/Parameters": {
+      "abstract": [
+        {
+          "text": "The parameter type that custom materials uses for properties the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "framework passes to shader functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Parameters"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Material/Parameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Parameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "Material.Parameters",
+      "type": "topic",
+      "url": "/documentation/realitykit/material/parameters"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Material/name": {
+      "abstract": [
+        {
+          "text": "Name exported with USDz or Reality File asset",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Material/name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/realitykit/material/name"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MaterialColorParameter": {
+      "abstract": [
+        {
+          "text": "The color parameter applied to a material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MaterialColorParameter"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MaterialColorParameter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MaterialColorParameter"
+        }
+      ],
+      "role": "symbol",
+      "title": "MaterialColorParameter",
+      "type": "topic",
+      "url": "/documentation/realitykit/materialcolorparameter"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MaterialParameterTypes": {
+      "abstract": [
+        {
+          "text": "A set of types that material parameters can use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MaterialParameterTypes"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MaterialParameterTypes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MaterialParameterTypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "MaterialParameterTypes",
+      "type": "topic",
+      "url": "/documentation/realitykit/materialparametertypes"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MaterialParameters": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MaterialParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MaterialParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MaterialParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "MaterialParameters",
+      "type": "topic",
+      "url": "/documentation/realitykit/materialparameters"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MaterialScalarParameter": {
+      "abstract": [
+        {
+          "text": "The scalar parameter applied to a material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MaterialScalarParameter"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MaterialScalarParameter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MaterialScalarParameter"
+        }
+      ],
+      "role": "symbol",
+      "title": "MaterialScalarParameter",
+      "type": "topic",
+      "url": "/documentation/realitykit/materialscalarparameter"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity": {
+      "abstract": [
+        {
+          "text": "A representation of a physical object that RealityKit renders and optionally",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "simulates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelEntity",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelentity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial": {
+      "abstract": [
+        {
+          "text": "An invisible material that hides objects rendered behind it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OcclusionMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OcclusionMaterial"
+        }
+      ],
+      "role": "symbol",
+      "title": "OcclusionMaterial",
+      "type": "topic",
+      "url": "/documentation/realitykit/occlusionmaterial"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial": {
+      "abstract": [
+        {
+          "text": "A material that simulates the appearance of real-world objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhysicallyBasedMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PhysicallyBasedMaterial"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicallyBasedMaterial",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PortalMaterial": {
+      "abstract": [
+        {
+          "text": "A material that makes the mesh part a portal to a different world.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PortalMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PortalMaterial",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PortalMaterial"
+        }
+      ],
+      "role": "symbol",
+      "title": "PortalMaterial",
+      "type": "topic",
+      "url": "/documentation/realitykit/portalmaterial"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ShaderGraphMaterial": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShaderGraphMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ShaderGraphMaterial",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShaderGraphMaterial"
+        }
+      ],
+      "role": "symbol",
+      "title": "ShaderGraphMaterial",
+      "type": "topic",
+      "url": "/documentation/realitykit/shadergraphmaterial"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial": {
+      "abstract": [
+        {
+          "text": "A basic material that responds to lights in the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SimpleMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SimpleMaterial"
+        }
+      ],
+      "role": "symbol",
+      "title": "SimpleMaterial",
+      "type": "topic",
+      "url": "/documentation/realitykit/simplematerial"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/UnlitMaterial": {
+      "abstract": [
+        {
+          "text": "A material that doesn’t respond to lights in the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnlitMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/UnlitMaterial",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnlitMaterial"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnlitMaterial",
+      "type": "topic",
+      "url": "/documentation/realitykit/unlitmaterial"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/VideoMaterial": {
+      "abstract": [
+        {
+          "text": "A material that supports animated textures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VideoMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/VideoMaterial",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VideoMaterial"
+        }
+      ],
+      "role": "symbol",
+      "title": "VideoMaterial",
+      "type": "topic",
+      "url": "/documentation/realitykit/videomaterial"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/adding-procedural-assets-to-a-scene": {
+      "abstract": [
+        {
+          "text": "Create procedurally generated shape primitives to your Reality Composer scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/adding-procedural-assets-to-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding procedural assets to a scene",
+      "type": "topic",
+      "url": "/documentation/realitykit/adding-procedural-assets-to-a-scene"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/applying-realistic-material-and-lighting-effects-to-entities": {
+      "abstract": [
+        {
+          "text": "Enhance the appearance of objects in a RealityKit scene with Physically Based Rendering",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "(PBR).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/applying-realistic-material-and-lighting-effects-to-entities",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying realistic material and lighting effects to entities",
+      "type": "topic",
+      "url": "/documentation/realitykit/applying-realistic-material-and-lighting-effects-to-entities"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/CustomMaterial",
+        "doc://com.apple.RealityKit/documentation/RealityKit/OcclusionMaterial",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PortalMaterial",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ShaderGraphMaterial",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SimpleMaterial",
+        "doc://com.apple.RealityKit/documentation/RealityKit/UnlitMaterial",
+        "doc://com.apple.RealityKit/documentation/RealityKit/VideoMaterial"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Material-types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Material/Color",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Material/Parameters",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MaterialParameterTypes",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MaterialParameters",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MaterialColorParameter",
+        "doc://com.apple.RealityKit/documentation/RealityKit/MaterialScalarParameter"
+      ],
+      "title": "Material types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Identifying-a-material",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Material/name"
+      ],
+      "title": "Identifying a material"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Material/Color",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Material/Parameters"
+      ],
+      "title": "Type Aliases"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/material"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1714 @@
+{
+  "abstract": [
+    {
+      "text": "Train a machine learning model to assign multiple labels to an image.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/creating-a-multi-label-image-classifier"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Create ML Components"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a multi-label image classifier"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A single-label image classifier takes an input image and assigns one label, which helps identify the most relevant subject in the image.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, there’s often additional information and context in an image that identifying the most relevant subject doesn’t consider.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A multi-label image classifier takes an input image and assigns multiple labels.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A multi-label classifier is better at describing an image where there are multiple subjects, or when the environment is relevant.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Training a multi-label image classifier is similar to training a single-label image classifier.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You collect and label images, build an estimator pipeline, train and evaluate the model, and export the model to use with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about single-label image classifiers, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CreateML/creating-an-image-classifier-model",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prepare-your-training-data",
+          "level": 3,
+          "text": "Prepare your training data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, collect images and assign labels.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Put all images in a folder and create a JSON file in the same folder.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example if you have two images, then your folder contains three files: ",
+              "type": "text"
+            },
+            {
+              "code": "image1.jpg",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "image2.jpg",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "annotations.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The JSON file contains the labels for each image.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following example includes possible labels for two images: ",
+              "type": "text"
+            },
+            {
+              "code": "image1.jpg",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is an image of a potted aloe plant on a window sill and ",
+              "type": "text"
+            },
+            {
+              "code": "image2.jpg",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is an image of a potted cactus with a person standing next to it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[",
+            "    {",
+            "        \"filename\": \"image1.jpg\",",
+            "        \"annotations\": [\"window_sill\", \"aloe\", \"pot\"]",
+            "    },",
+            "    {",
+            "        \"filename\": \"image2.jpg\",",
+            "        \"annotations\": [\"cactus\", \"pot\", \"person\"]",
+            "    }",
+            "]"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Decodable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure and populate it with the file names and labels from your JSON file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then, convert them to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeature",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Define an annotation.",
+            "struct AnnotatedFile: Decodable {",
+            "    var filename: String",
+            "    var annotations: Set<String>",
+            "}",
+            "",
+            "// Specify the input directory.",
+            "let directoryURL = URL(filePath: \"/path/to/files\", directoryHint: .isDirectory)",
+            "",
+            "// Decode the annotations.",
+            "let decoder = JSONDecoder()",
+            "let data = try Data(contentsOf: directory.appending(component: \"annotations.json\"))",
+            "let annotatedFiles = try decoder.decode([AnnotatedFile].self, from: data)",
+            "",
+            "// Convert the annotations to an array of `AnnotatedFeature`.",
+            "let annotatedFeatures = annotatedFiles.map {",
+            "    AnnotatedFeature(",
+            "        feature: directory.appending(component: $0.filename),",
+            "        annotation: $0.annotations",
+            "    )",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Build-a-multi-label-estimator-pipeline",
+          "level": 3,
+          "text": "Build a multi-label estimator pipeline",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After preparing your training data, you can create your estimator pipeline.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When using Create ML Components, you compose estimators and transformers into pipelines that you can train to produce models.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "As with a single-label image classifier, use an image reader and a feature extractor.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "But the last component is a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/FullyConnectedNetworkMultiLabelClassifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/FullyConnectedNetworkClassifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// List all the labels.",
+            "let labels = [\"aloe\", \"cactus\", \"person\", \"pot\", \"window_sill\"]",
+            "",
+            "// Compose the estimator.",
+            "let estimator = ImageReader()",
+            "    .appending(ImageFeaturePrint())",
+            "    .appending(FullyConnectedNetworkMultiLabelClassifier<Float, String>(labels: labels))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Train-and-evaluate-the-model",
+          "level": 3,
+          "text": "Train and evaluate the model",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you validate as you train, you can stop training when the validation metrics stop improving.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "So set aside some of the images for validation.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SupervisedEstimator/fitted(to:validateOn:eventHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to train.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let (training, validation) = annotatedFeatures.annotatedFiles.randomSplit(by: 0.8)",
+            "let model = try await estimator.fitted(",
+            "    to: training,",
+            "    validateOn: validation",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After training the model, evaluate it using test images.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The mean-average precision (MAP) is a good measure for a multi-label classifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let predicted = try await model.prediction(from: testAnnotatedFiles)",
+            "let metrics = try MultiLabelClassificationMetrics(",
+            "    classifications: predicted.map(\\.prediction),",
+            "    groundTruth: predicted.map(\\.annotation),",
+            "    strategy: .balancedPrecisionAndRecall,",
+            "    labels: labels",
+            ")",
+            "print(metrics.meanAveragePrecision)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Export-the-model-to-use-with-Vision",
+          "level": 3,
+          "text": "Export the model to use with Vision",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you train the model, you can export it as a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreML",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Export to Core ML",
+            "let modelURL = URL(filePath: \"/path/to/model\")",
+            "try model.export(to: modelURL)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to classify images in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import Vision",
+            "import CoreML",
+            "",
+            "let handler = VNImageRequestHandler(url: URL(filePath: \"image.jpg\"))",
+            "let visionModel = try VNCoreMLModel(for: compiledModel)",
+            "let request = VNCoreMLRequest(model: visionModel)",
+            "try handler.perform([request])",
+            "if let observations = request.results as? [VNClassificationObservation] {",
+            "    // Filter observations using a target precision and recall.",
+            "    let filteredObservations = observations.filter {",
+            "        $0.hasMinimumPrecision(0.3, forRecall: 0.7)",
+            "    }",
+            "    // Use observations.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The observations include all labels and their probabilities.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This includes labels for which the model predicted a low probability.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Including all observations results in high recall but low precision, in other words, your model prioritizes predicting additional labels.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To balance the precision and recall, include only the labels that have a high probability.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To do this you can choose a probability threshold for each label, or use one of the methods from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/VNClassificationObservation/hasMinimumPrecision(_:forRecall:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/VNClassificationObservation/hasMinimumRecall(_:forPrecision:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods allow you to choose only observations that strike a specific balance between precision and recall.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents": {
+      "abstract": [
+        {
+          "text": "Create more customizable machine learning models in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML Components",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeature": {
+      "abstract": [
+        {
+          "text": "An annotated example for fitting a supervised estimator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnnotatedFeature"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/AnnotatedFeature",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnnotatedFeature"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnnotatedFeature",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/annotatedfeature"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/FullyConnectedNetworkClassifier": {
+      "abstract": [
+        {
+          "text": "A classifier that uses a fully connected network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FullyConnectedNetworkClassifier"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/FullyConnectedNetworkClassifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FullyConnectedNetworkClassifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "FullyConnectedNetworkClassifier",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/fullyconnectednetworkclassifier"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/FullyConnectedNetworkMultiLabelClassifier": {
+      "abstract": [
+        {
+          "text": "A classifier that uses a multi-label fully-connected network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FullyConnectedNetworkMultiLabelClassifier"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/FullyConnectedNetworkMultiLabelClassifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FullyConnectedNetworkMultiLabelClassifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "FullyConnectedNetworkMultiLabelClassifier",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/fullyconnectednetworkmultilabelclassifier"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageBlur": {
+      "abstract": [
+        {
+          "text": "An image blurring transformer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageBlur"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageBlur",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageBlur"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageBlur",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/imageblur"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageColorTransformer": {
+      "abstract": [
+        {
+          "text": "An image color transformer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageColorTransformer"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageColorTransformer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageColorTransformer"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageColorTransformer",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/imagecolortransformer"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageCropper": {
+      "abstract": [
+        {
+          "text": "An image crop transformer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageCropper"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageCropper",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageCropper"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageCropper",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/imagecropper"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageExposureAdjuster": {
+      "abstract": [
+        {
+          "text": "An image exposure adjusting transformer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageExposureAdjuster"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageExposureAdjuster",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageExposureAdjuster"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageExposureAdjuster",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/imageexposureadjuster"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageFeatureExtractor": {
+      "abstract": [
+        {
+          "text": "A transformer that takes an image and outputs image features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageFeatureExtractor"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageFeatureExtractor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageFeatureExtractor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageFeatureExtractor",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/imagefeatureextractor"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageFeaturePrint": {
+      "abstract": [
+        {
+          "text": "ImageFeaturePrint image feature extractor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageFeaturePrint"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageFeaturePrint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageFeaturePrint"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageFeaturePrint",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/imagefeatureprint"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageFlipper": {
+      "abstract": [
+        {
+          "text": "An image flipper transformer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageFlipper"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageFlipper",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageFlipper"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageFlipper",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/imageflipper"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageReader": {
+      "abstract": [
+        {
+          "text": "An image file reader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageReader"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageReader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageReader"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageReader",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/imagereader"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageRotator": {
+      "abstract": [
+        {
+          "text": "An image rotating transformer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageRotator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageRotator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageRotator"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageRotator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/imagerotator"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageScaler": {
+      "abstract": [
+        {
+          "text": "An image scaling transformer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageScaler"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageScaler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageScaler"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageScaler",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/imagescaler"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/MLModelImageFeatureExtractor": {
+      "abstract": [
+        {
+          "text": "An image feature extractor provided by an MLModel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLModelImageFeatureExtractor"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/MLModelImageFeatureExtractor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLModelImageFeatureExtractor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLModelImageFeatureExtractor",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/mlmodelimagefeatureextractor"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/RandomImageNoiseGenerator": {
+      "abstract": [
+        {
+          "text": "A transformer that adds random noise to an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RandomImageNoiseGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/RandomImageNoiseGenerator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RandomImageNoiseGenerator"
+        }
+      ],
+      "role": "symbol",
+      "title": "RandomImageNoiseGenerator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/randomimagenoisegenerator"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SupervisedEstimator/fitted(to:validateOn:eventHandler:)": {
+      "abstract": [
+        {
+          "text": "Fits a transformer to a sequence of examples while validating with a validation sequence.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fitted"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Input"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Validation"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Input"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "validateOn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Validation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "eventHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents12EventHandlera",
+          "text": "EventHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents19SupervisedEstimatorP11TransformerQa",
+          "text": "Transformer"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SupervisedEstimator/fitted(to:validateOn:eventHandler:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "fitted(to:validateOn:eventHandler:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/supervisedestimator/fitted(to:validateon:eventhandler:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/augmenting-images-to-expand-your-training-data": {
+      "abstract": [
+        {
+          "text": "Improve your model by using transformed versions of your training images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/augmenting-images-to-expand-your-training-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Augmenting images to expand your training data",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/augmenting-images-to-expand-your-training-data"
+    },
+    "doc://com.apple.documentation/documentation/CoreML": {
+      "abstract": [
+        {
+          "text": "Integrate machine learning models into your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core ML",
+      "type": "topic",
+      "url": "/documentation/CoreML"
+    },
+    "doc://com.apple.documentation/documentation/CreateML/creating-an-image-classifier-model": {
+      "abstract": [
+        {
+          "text": "Train a machine learning model to classify images, and add it to your Core ML app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CreateML/creating-an-image-classifier-model",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Image Classifier Model",
+      "type": "topic",
+      "url": "/documentation/CreateML/creating-an-image-classifier-model"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Decodable": {
+      "abstract": [
+        {
+          "text": "A type that can decode itself from an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Decodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/Swift/Decodable"
+    },
+    "doc://com.apple.documentation/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/Vision"
+    },
+    "doc://com.apple.documentation/documentation/Vision/VNClassificationObservation/hasMinimumPrecision(_:forRecall:)": {
+      "abstract": [
+        {
+          "text": "Determines whether the observation for a specific recall has a minimum precision value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasMinimumPrecision"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "minimumPrecision"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forRecall"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "recall"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/VNClassificationObservation/hasMinimumPrecision(_:forRecall:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasMinimumPrecision(_:forRecall:)",
+      "type": "topic",
+      "url": "/documentation/Vision/VNClassificationObservation/hasMinimumPrecision(_:forRecall:)"
+    },
+    "doc://com.apple.documentation/documentation/Vision/VNClassificationObservation/hasMinimumRecall(_:forPrecision:)": {
+      "abstract": [
+        {
+          "text": "Determines whether the observation for a specific precision has a minimum recall value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasMinimumRecall"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "minimumRecall"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forPrecision"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "precision"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/VNClassificationObservation/hasMinimumRecall(_:forPrecision:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasMinimumRecall(_:forPrecision:)",
+      "type": "topic",
+      "url": "/documentation/Vision/VNClassificationObservation/hasMinimumRecall(_:forPrecision:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Image-components",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/augmenting-images-to-expand-your-training-data",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageReader",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageFeatureExtractor",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageCropper",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageScaler",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageFeaturePrint",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageBlur",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageColorTransformer",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageExposureAdjuster",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageFlipper",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageRotator",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/RandomImageNoiseGenerator",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/MLModelImageFeatureExtractor"
+      ],
+      "title": "Image components"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Vision~1VNClassificationObservation~1hasMinimumPrecision(_:forRecall:)/title",
+          "value": "hasMinimumPrecision:forRecall:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Vision~1VNClassificationObservation~1hasMinimumPrecision(_:forRecall:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "hasMinimumPrecision:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:f",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "minimumPrecision"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "forRecall:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:f",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "recall"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Vision~1VNClassificationObservation~1hasMinimumRecall(_:forPrecision:)/title",
+          "value": "hasMinimumRecall:forPrecision:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Vision~1VNClassificationObservation~1hasMinimumRecall(_:forPrecision:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "hasMinimumRecall:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:f",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "minimumRecall"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "forPrecision:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:f",
+              "text": "float"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "precision"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createmlcomponents/creating-a-multi-label-image-classifier"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

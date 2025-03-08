@@ -1,0 +1,780 @@
+{
+  "abstract": [
+    {
+      "text": "A constant that specifes conversion to a higher precision.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/BNNSQuantizerFunctionDequantize"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@EA@BNNSQuantizerFunction@BNNSQuantizerFunctionDequantize",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "BNNSQuantizerFunctionDequantize"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@EA@BNNSQuantizerFunction",
+        "text": "BNNSQuantizerFunction"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "BNNSQuantizerFunctionDequantize"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Global Variable",
+    "symbolKind": "var",
+    "title": "BNNSQuantizerFunctionDequantize"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "BNNSQuantizerFunctionDequantize"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSQuantizerFunction",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@EA@BNNSQuantizerFunction",
+              "text": "BNNSQuantizerFunction"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code dequantizes a 16-bit integer matrix to a single-precision matrix. The code applies the scale along the zeroth axis and, therefore, the scale tensor contains four elements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static func dequantize() {",
+            "    ",
+            "    let inputData = UnsafeMutableBufferPointer<Int16>.allocate(capacity: 8)",
+            "    _ = inputData.initialize(from: [1000, 2000, 3000, 4000,",
+            "                                    5000, 6000, 7000, 8000])",
+            "    let inputDescriptor = BNNSNDArrayDescriptor(flags: BNNSNDArrayFlags(0),",
+            "                                                layout: BNNSDataLayoutRowMajorMatrix,",
+            "                                                size: (4, 2, 0, 0, 0, 0, 0, 0),",
+            "                                                stride: (0, 0, 0, 0, 0, 0, 0, 0),",
+            "                                                data: inputData.baseAddress!,",
+            "                                                data_type: BNNSDataType.int16,",
+            "                                                table_data: nil,",
+            "                                                table_data_type: BNNSDataType.int16,",
+            "                                                data_scale: 1, data_bias: 0)",
+            "    ",
+            "    let outputData = UnsafeMutableBufferPointer<Float>.allocate(capacity: 8)",
+            "    let outputDescriptor = BNNSNDArrayDescriptor(flags: BNNSNDArrayFlags(0),",
+            "                                                 layout: BNNSDataLayoutRowMajorMatrix,",
+            "                                                 size: (4, 2, 0, 0, 0, 0, 0, 0),",
+            "                                                 stride: (0, 0, 0, 0, 0, 0, 0, 0),",
+            "                                                 data: outputData.baseAddress!,",
+            "                                                 data_type: BNNSDataType.float,",
+            "                                                 table_data: nil,",
+            "                                                 table_data_type: BNNSDataType.float,",
+            "                                                 data_scale: 1, data_bias: 0)",
+            "    ",
+            "    let scaleData = UnsafeMutableBufferPointer<Int16>.allocate(capacity: 4)",
+            "    _ = scaleData.initialize(from: [1, 10, 100, 1000])",
+            "    let scaleDescriptor = BNNSNDArrayDescriptor(flags: BNNSNDArrayFlags(0),",
+            "                                                layout: BNNSDataLayoutVector,",
+            "                                                size: (4, 0, 0, 0, 0, 0, 0, 0),",
+            "                                                stride: (0, 0, 0, 0, 0, 0, 0, 0),",
+            "                                                data: scaleData.baseAddress!,",
+            "                                                data_type: BNNSDataType.int16,",
+            "                                                table_data: nil,",
+            "                                                table_data_type: BNNSDataType.int16,",
+            "                                                data_scale: 1, data_bias: 0)",
+            "    ",
+            "    var layerParams = BNNSLayerParametersQuantization(axis_mask: 1,",
+            "                                                      function: BNNSQuantizerFunctionDequantize,",
+            "                                                      i_desc: inputDescriptor,",
+            "                                                      o_desc: outputDescriptor,",
+            "                                                      scale: scaleDescriptor,",
+            "                                                      bias: BNNSNDArrayDescriptor())",
+            "    ",
+            "    BNNSDirectApplyQuantizer(&layerParams,",
+            "                              nil,",
+            "                              1,",
+            "                              8,",
+            "                              8)",
+            "    ",
+            "    // Prints:",
+            "    //  [1000.0, 200.0, 30.0, 4.0,",
+            "    //   5000.0, 600.0, 70.0, 8.0]",
+            "    print(Array(outputData))",
+            "    ",
+            "    inputData.deallocate()",
+            "    outputData.deallocate()",
+            "    scaleData.deallocate()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSQuantizerFunction": {
+      "abstract": [
+        {
+          "text": "Constants that describe quantization functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSQuantizerFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSQuantizerFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSQuantizerFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSQuantizerFunction",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsquantizerfunction"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSQuantizerFunction/init(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new instance with the specified raw value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSQuantizerFunction/init(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsquantizerfunction/init(_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSQuantizerFunction/init(rawValue:)": {
+      "abstract": [
+        {
+          "text": "Creates a new instance with the specified raw value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "rawValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSQuantizerFunction/init(rawValue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(rawValue:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsquantizerfunction/init(rawvalue:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSQuantizerFunction/rawValue": {
+      "abstract": [
+        {
+          "text": "The corresponding value of the raw type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rawValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSQuantizerFunction/rawValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rawValue",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsquantizerfunction/rawvalue"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSQuantizerFunctionDequantize": {
+      "abstract": [
+        {
+          "text": "A constant that specifes conversion to a higher precision.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSQuantizerFunctionDequantize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@BNNSQuantizerFunction",
+          "text": "BNNSQuantizerFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSQuantizerFunctionDequantize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSQuantizerFunctionDequantize"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSQuantizerFunctionDequantize",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsquantizerfunctiondequantize"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSQuantizerFunctionQuantize": {
+      "abstract": [
+        {
+          "text": "A constant that specifes conversion to a lower precision.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSQuantizerFunctionQuantize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@BNNSQuantizerFunction",
+          "text": "BNNSQuantizerFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSQuantizerFunctionQuantize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSQuantizerFunctionQuantize"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSQuantizerFunctionQuantize",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsquantizerfunctionquantize"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Quantization-Functions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSQuantizerFunction/init(_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSQuantizerFunction/init(rawValue:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSQuantizerFunction/rawValue",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSQuantizerFunctionQuantize"
+      ],
+      "title": "Quantization Functions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Enumeration Case"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "BNNSQuantizerFunctionDequantize"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "case"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSQuantizerFunctionDequantize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.accelerate/documentation/Accelerate",
+                "doc://com.apple.accelerate/documentation/Accelerate/BNNSQuantizerFunction"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Quantization-Functions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.accelerate/documentation/Accelerate/BNNSQuantizerFunctionQuantize"
+              ],
+              "title": "Quantization Functions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "identifier",
+                    "text": "BNNSQuantizerFunctionDequantize"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSQuantizerFunction/title",
+          "value": "BNNSQuantizerFunction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSQuantizerFunction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSQuantizerFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSQuantizerFunction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSQuantizerFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSQuantizerFunctionDequantize/title",
+          "value": "BNNSQuantizerFunctionDequantize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSQuantizerFunctionDequantize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSQuantizerFunctionDequantize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSQuantizerFunctionQuantize/title",
+          "value": "BNNSQuantizerFunctionQuantize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSQuantizerFunctionQuantize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSQuantizerFunctionQuantize"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accelerate/bnnsquantizerfunctiondequantize"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/accelerate/bnnsquantizerfunctiondequantize"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

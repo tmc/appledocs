@@ -1,0 +1,6327 @@
+{
+  "abstract": [
+    {
+      "text": "The visual representation of a single row in a table view.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UITableViewCell",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UITableViewCell"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UITableViewCell"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UITableViewCell"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UITableViewCell"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.uikit/documentation/UIKit/filling-a-table-with-data",
+        "doc://com.apple.uikit/documentation/UIKit/configuring-the-cells-for-your-table",
+        "doc://com.apple.uikit/documentation/UIKit/adding-user-focusable-elements-to-a-tvos-app"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object is a specialized type of view that manages the content of a single table row. You use cells primarily to organize and present your app’s custom content, but ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides some specific customizations to support table-related behaviors, including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Applying a selection or highlight color to the cell",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Adding standard accessory views, such as a detail or disclosure control",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Putting the cell into an editable state",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Indenting the cell’s content to create a visual hierarchy in your table",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app’s content occupies most of the cell’s bounds, but the cell may adjust that space to make room for other content. Cells display accessory views on the trailing edge of their content area. When you put your table into edit mode, the cell adds a delete control to the leading edge of its content area, and optionally swaps out an accessory view for a reorder control.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3113230",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every table view must have at least one type of cell for displaying content, and tables may have multiple cell types to display different types of content. Your table’s data source object handles the creation and configuration of cells immediately before they appear onscreen. For information about how to create your table’s cells, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/filling-a-table-with-data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-your-cells-content",
+          "level": 3,
+          "text": "Configure your cell’s content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure the content and layout of your cells in your storyboard file. Tables have one cell type by default, but you can add more by changing the value in the table’s Prototype Cells attribute. In addition to configuring the cell’s content, make sure you configure the following attributes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Identifier. Use this identifier (also known as a reuse identifier) to create the cell.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Style. Choose one of the standard types or define a custom cell.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Class. Specify a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " subclass with your custom behavior.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the content and appearance of your cell, you can set its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/contentConfiguration-9ktox",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/backgroundConfiguration-24e8e",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityIdentification": {
+      "abstract": [
+        {
+          "text": "Methods that associate a unique identifier with elements in your user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityIdentification"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityIdentification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityIdentification"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAccessibilityIdentification",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibilityidentification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfigurationProviding": {
+      "abstract": [
+        {
+          "text": "An interface that provides a source for shareable content to fulfill user requests to share current content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemsConfigurationProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfigurationProviding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemsConfigurationProviding"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActivityItemsConfigurationProviding",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityitemsconfigurationproviding"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAppearance": {
+      "abstract": [
+        {
+          "text": "A collection of methods that gives you access to the appearance proxy for a class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAppearance"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAppearance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAppearance"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uiappearance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAppearanceContainer": {
+      "abstract": [
+        {
+          "text": "A protocol that a class must adopt to allow appearance customization using the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAppearance",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAppearanceContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAppearanceContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAppearanceContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAppearanceContainer",
+      "type": "topic",
+      "url": "/documentation/uikit/uiappearancecontainer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICoordinateSpace": {
+      "abstract": [
+        {
+          "text": "A set of methods for converting between different frames of reference on a screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICoordinateSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICoordinateSpace",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICoordinateSpace"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICoordinateSpace",
+      "type": "topic",
+      "url": "/documentation/uikit/uicoordinatespace"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDynamicItem": {
+      "abstract": [
+        {
+          "text": "A set of methods that can make a custom object eligible to participate in UIKit Dynamics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDynamicItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDynamicItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDynamicItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDynamicItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uidynamicitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFocusEnvironment": {
+      "abstract": [
+        {
+          "text": "A set of methods that define the focus behavior for a branch of the view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusEnvironment"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusEnvironment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFocusEnvironment"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFocusEnvironment",
+      "type": "topic",
+      "url": "/documentation/uikit/uifocusenvironment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFocusItem": {
+      "abstract": [
+        {
+          "text": "An object that can become focused.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFocusItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFocusItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uifocusitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFocusItemContainer": {
+      "abstract": [
+        {
+          "text": "The container responsible for providing geometric context to focus items within a given focus environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusItemContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusItemContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFocusItemContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFocusItemContainer",
+      "type": "topic",
+      "url": "/documentation/uikit/uifocusitemcontainer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizerDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods implemented by the delegate of a gesture recognizer to fine-tune an app’s gesture-recognition behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIGestureRecognizerDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uigesturerecognizerdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILargeContentViewerItem": {
+      "abstract": [
+        {
+          "text": "Methods that provide details about how to display your custom content in the large content viewer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILargeContentViewerItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILargeContentViewerItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UILargeContentViewerItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UILargeContentViewerItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uilargecontentvieweritem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPasteConfigurationSupporting": {
+      "abstract": [
+        {
+          "text": "The interface that determines whether a responder object supports paste configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPasteConfigurationSupporting"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPasteConfigurationSupporting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPasteConfigurationSupporting"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPasteConfigurationSupporting",
+      "type": "topic",
+      "url": "/documentation/uikit/uipasteconfigurationsupporting"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPopoverPresentationControllerSourceItem": {
+      "abstract": [
+        {
+          "text": "A type that can be an anchor for a popover presentation controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPopoverPresentationControllerSourceItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPopoverPresentationControllerSourceItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPopoverPresentationControllerSourceItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPopoverPresentationControllerSourceItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uipopoverpresentationcontrollersourceitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions": {
+      "abstract": [
+        {
+          "text": "A set of standard methods that apps can adopt to support editing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIResponderStandardEditActions"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIResponderStandardEditActions"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIResponderStandardEditActions",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponderstandardeditactions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell": {
+      "abstract": [
+        {
+          "text": "The visual representation of a single row in a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewCell"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewCell"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewCell",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/AccessoryType-swift.enum": {
+      "abstract": [
+        {
+          "text": "The type of standard accessory control used by a cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessoryType"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/AccessoryType-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccessoryType"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewCell.AccessoryType",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/accessorytype-swift.enum"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/CellStyle": {
+      "abstract": [
+        {
+          "text": "An enumeration for the various styles of cells.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CellStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/CellStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CellStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewCell.CellStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/cellstyle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/ConfigurationUpdateHandler-swift.typealias": {
+      "abstract": [
+        {
+          "text": "The type of block for handling updates to the cell’s configuration using the current state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConfigurationUpdateHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/ConfigurationUpdateHandler-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ConfigurationUpdateHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewCell.ConfigurationUpdateHandler",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/configurationupdatehandler-swift.typealias"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/DragState": {
+      "abstract": [
+        {
+          "text": "Constants indicating the current state of a row involved in a drag operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DragState"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/DragState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DragState"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewCell.DragState",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/dragstate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/EditingStyle-swift.enum": {
+      "abstract": [
+        {
+          "text": "The editing control used by a cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EditingStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/EditingStyle-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EditingStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewCell.EditingStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/editingstyle-swift.enum"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/FocusStyle-swift.enum": {
+      "abstract": [
+        {
+          "text": "The style of focused cells.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FocusStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/FocusStyle-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FocusStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewCell.FocusStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/focusstyle-swift.enum"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/SelectionStyle-swift.enum": {
+      "abstract": [
+        {
+          "text": "The style of selected cells.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SelectionStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/SelectionStyle-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SelectionStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewCell.SelectionStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/selectionstyle-swift.enum"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/SeparatorStyle": {
+      "abstract": [
+        {
+          "text": "The style for cells to use as separators.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SeparatorStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/SeparatorStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SeparatorStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewCell.SeparatorStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/separatorstyle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/StateMask": {
+      "abstract": [
+        {
+          "text": "Constants used to determine the new state of a cell as it transitions between states.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StateMask"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/StateMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StateMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewCell.StateMask",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/statemask"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/accessoryAction": {
+      "abstract": [
+        {
+          "text": "The selector defining the action message to invoke when users tap the accessory view.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "accessoryAction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/accessoryAction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessoryAction",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/accessoryaction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/accessoryType-swift.property": {
+      "abstract": [
+        {
+          "text": "The type of standard accessory view for the cell to use in the table view’s normal state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITableViewCell",
+          "text": "UITableViewCell"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UITableViewCellAccessoryType",
+          "text": "AccessoryType"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/accessoryType-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accessoryType"
+        }
+      ],
+      "role": "symbol",
+      "title": "accessoryType",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/accessorytype-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/accessoryView": {
+      "abstract": [
+        {
+          "text": "The view to use on the right side of the cell, typically as a control, in the table view’s normal state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/accessoryView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accessoryView"
+        }
+      ],
+      "role": "symbol",
+      "title": "accessoryView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/accessoryview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/automaticallyUpdatesBackgroundConfiguration": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the cell automatically updates its background configuration when its state changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automaticallyUpdatesBackgroundConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/automaticallyUpdatesBackgroundConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "automaticallyUpdatesBackgroundConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "automaticallyUpdatesBackgroundConfiguration",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/automaticallyupdatesbackgroundconfiguration"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/automaticallyUpdatesContentConfiguration": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the cell automatically updates its content configuration when its state changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automaticallyUpdatesContentConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/automaticallyUpdatesContentConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "automaticallyUpdatesContentConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "automaticallyUpdatesContentConfiguration",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/automaticallyupdatescontentconfiguration"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/backgroundConfiguration-24e8e": {
+      "abstract": [
+        {
+          "text": "The current background configuration of the cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "backgroundConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit25UIBackgroundConfigurationV",
+          "text": "UIBackgroundConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/backgroundConfiguration-24e8e",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "backgroundConfiguration",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/backgroundconfiguration-24e8e"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/backgroundConfiguration-93a2v": {
+      "abstract": [
+        {
+          "text": "The current background configuration of the cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "backgroundConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/backgroundConfiguration-93a2v",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "backgroundConfiguration",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/backgroundconfiguration-93a2v"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/backgroundView": {
+      "abstract": [
+        {
+          "text": "The view to use as the background of the cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "backgroundView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/backgroundView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "backgroundView"
+        }
+      ],
+      "role": "symbol",
+      "title": "backgroundView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/backgroundview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/configurationState-4xwj0": {
+      "abstract": [
+        {
+          "text": "The current configuration state of the cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "configurationState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit24UICellConfigurationStateV",
+          "text": "UICellConfigurationState"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/configurationState-4xwj0",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configurationState",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/configurationstate-4xwj0"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/configurationState-5gw4n": {
+      "abstract": [
+        {
+          "text": "The current configuration state of the cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "configurationState"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/configurationState-5gw4n",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configurationState",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/configurationstate-5gw4n"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/configurationUpdateHandler-746ya": {
+      "abstract": [
+        {
+          "text": "A block for handling updates to the cell’s configuration using the current state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "configurationUpdateHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/configurationUpdateHandler-746ya",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configurationUpdateHandler",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/configurationupdatehandler-746ya"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/configurationUpdateHandler-974": {
+      "abstract": [
+        {
+          "text": "A block for handling updates to the cell’s configuration using the current state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "configurationUpdateHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITableViewCell",
+          "text": "UITableViewCell"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So15UITableViewCellC5UIKitE26ConfigurationUpdateHandlera",
+          "text": "ConfigurationUpdateHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/configurationUpdateHandler-974",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configurationUpdateHandler",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/configurationupdatehandler-974"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/contentConfiguration-2lzvp": {
+      "abstract": [
+        {
+          "text": "The current content configuration of the cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "contentConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/contentConfiguration-2lzvp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentConfiguration",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/contentconfiguration-2lzvp"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/contentConfiguration-9ktox": {
+      "abstract": [
+        {
+          "text": "The current content configuration of the cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit22UIContentConfigurationP",
+          "text": "UIContentConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/contentConfiguration-9ktox",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentConfiguration",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/contentconfiguration-9ktox"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/contentView": {
+      "abstract": [
+        {
+          "text": "The content view of the cell object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/contentView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentView"
+        }
+      ],
+      "role": "symbol",
+      "title": "contentView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/contentview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/defaultBackgroundConfiguration": {
+      "abstract": [
+        {
+          "text": "Retrieves a background configuration with system default values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultBackgroundConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/defaultBackgroundConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "defaultBackgroundConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "defaultBackgroundConfiguration",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/defaultbackgroundconfiguration"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/defaultBackgroundConfiguration()": {
+      "abstract": [
+        {
+          "text": "Retrieves a background configuration with system default values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultBackgroundConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit25UIBackgroundConfigurationV",
+          "text": "UIBackgroundConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/defaultBackgroundConfiguration()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultBackgroundConfiguration()",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/defaultbackgroundconfiguration()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/defaultContentConfiguration": {
+      "abstract": [
+        {
+          "text": "Retrieves a default list content configuration for the cell’s style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultContentConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/defaultContentConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "defaultContentConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "defaultContentConfiguration",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/defaultcontentconfiguration"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/defaultContentConfiguration()": {
+      "abstract": [
+        {
+          "text": "Retrieves a default list content configuration for the cell’s style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultContentConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit26UIListContentConfigurationV",
+          "text": "UIListContentConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/defaultContentConfiguration()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultContentConfiguration()",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/defaultcontentconfiguration()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/detailTextLabel": {
+      "abstract": [
+        {
+          "text": "The secondary label of the table cell, if one exists.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detailTextLabel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UILabel",
+          "text": "UILabel"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/detailTextLabel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "detailTextLabel"
+        }
+      ],
+      "role": "symbol",
+      "title": "detailTextLabel",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/detailtextlabel"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/didTransition(to:)": {
+      "abstract": [
+        {
+          "text": "Notifies the cell that it transitioned to a new cell state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didTransition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITableViewCell",
+          "text": "UITableViewCell"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UITableViewCellStateMask",
+          "text": "StateMask"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/didTransition(to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didTransitionToState:"
+        }
+      ],
+      "role": "symbol",
+      "title": "didTransition(to:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/didtransition(to:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/dragStateDidChange(_:)": {
+      "abstract": [
+        {
+          "text": "Notifies the cell that its drag status changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dragStateDidChange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITableViewCell",
+          "text": "UITableViewCell"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UITableViewCellDragState",
+          "text": "DragState"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/dragStateDidChange(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dragStateDidChange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "dragStateDidChange(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/dragstatedidchange(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/editAction": {
+      "abstract": [
+        {
+          "text": "The selector defining the action message to invoke when users tap the insert or delete button.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "editAction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/editAction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "editAction",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/editaction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/editingAccessoryType": {
+      "abstract": [
+        {
+          "text": "The type of standard accessory view for the cell to use in the table view’s editing state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "editingAccessoryType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITableViewCell",
+          "text": "UITableViewCell"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UITableViewCellAccessoryType",
+          "text": "AccessoryType"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/editingAccessoryType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "editingAccessoryType"
+        }
+      ],
+      "role": "symbol",
+      "title": "editingAccessoryType",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/editingaccessorytype"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/editingAccessoryView": {
+      "abstract": [
+        {
+          "text": "The view to use on the right side of the cell, typically as a control, in the table view’s editing state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "editingAccessoryView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/editingAccessoryView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "editingAccessoryView"
+        }
+      ],
+      "role": "symbol",
+      "title": "editingAccessoryView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/editingaccessoryview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/editingStyle-swift.property": {
+      "abstract": [
+        {
+          "text": "The editing style of the cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "editingStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITableViewCell",
+          "text": "UITableViewCell"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UITableViewCellEditingStyle",
+          "text": "EditingStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/editingStyle-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "editingStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "editingStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/editingstyle-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/focusStyle-swift.property": {
+      "abstract": [
+        {
+          "text": "The appearance of the cell when focused.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "focusStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITableViewCell",
+          "text": "UITableViewCell"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UITableViewCellFocusStyle",
+          "text": "FocusStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/focusStyle-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "focusStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "focusStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/focusstyle-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/font": {
+      "abstract": [
+        {
+          "text": "The font of the title.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "font"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/font",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "font",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/font"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/hidesAccessoryWhenEditing": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the accessory view is hidden when the cell is being edited.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "hidesAccessoryWhenEditing"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/hidesAccessoryWhenEditing",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hidesAccessoryWhenEditing",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/hidesaccessorywhenediting"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/image": {
+      "abstract": [
+        {
+          "text": "The image to use as content for the cell.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "image"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/image",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "image",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/image"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/imageView": {
+      "abstract": [
+        {
+          "text": "The image view of the table cell.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImageView",
+          "text": "UIImageView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/imageView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageView"
+        }
+      ],
+      "role": "symbol",
+      "title": "imageView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/imageview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/indentationLevel": {
+      "abstract": [
+        {
+          "text": "The indentation level of the cell’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "indentationLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/indentationLevel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "indentationLevel"
+        }
+      ],
+      "role": "symbol",
+      "title": "indentationLevel",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/indentationlevel"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/indentationWidth": {
+      "abstract": [
+        {
+          "text": "The width for each level of indentation of a cell’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "indentationWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/indentationWidth",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "indentationWidth"
+        }
+      ],
+      "role": "symbol",
+      "title": "indentationWidth",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/indentationwidth"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/init(coder:)": {
+      "abstract": [
+        {
+          "text": "Creates a table view from data in an unarchiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/init(coder:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCoder:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/init(coder:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/init(style:reuseIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Initializes a table cell with a style and a reuse identifier and returns it to the caller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITableViewCell",
+          "text": "UITableViewCell"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UITableViewCellStyle",
+          "text": "CellStyle"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "reuseIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/init(style:reuseIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithStyle:reuseIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(style:reuseIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/init(style:reuseidentifier:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/initWithFrame:reuseIdentifier:": {
+      "abstract": [
+        {
+          "text": "Initializes and returns a table cell object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithFrame:reuseIdentifier:"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/initWithFrame:reuseIdentifier:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithFrame:reuseIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithFrame:reuseIdentifier:",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/initwithframe:reuseidentifier:"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/isEditing": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the cell is in an editable state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEditing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/isEditing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "editing"
+        }
+      ],
+      "role": "symbol",
+      "title": "isEditing",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/isediting"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/isHighlighted": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the cell is highlighted.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isHighlighted"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/isHighlighted",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "highlighted"
+        }
+      ],
+      "role": "symbol",
+      "title": "isHighlighted",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/ishighlighted"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/isSelected": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the cell is selected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSelected"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/isSelected",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selected"
+        }
+      ],
+      "role": "symbol",
+      "title": "isSelected",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/isselected"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/lineBreakMode": {
+      "abstract": [
+        {
+          "text": "The mode for wrapping and truncating text in the cell.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "lineBreakMode"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/lineBreakMode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lineBreakMode",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/linebreakmode"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/multipleSelectionBackgroundView": {
+      "abstract": [
+        {
+          "text": "The background view to use for a selected cell when the table view allows multiple row selections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "multipleSelectionBackgroundView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/multipleSelectionBackgroundView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "multipleSelectionBackgroundView"
+        }
+      ],
+      "role": "symbol",
+      "title": "multipleSelectionBackgroundView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/multipleselectionbackgroundview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/prepareForReuse()": {
+      "abstract": [
+        {
+          "text": "Prepares a reusable cell for reuse by the table view’s delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareForReuse"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/prepareForReuse()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "prepareForReuse"
+        }
+      ],
+      "role": "symbol",
+      "title": "prepareForReuse()",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/prepareforreuse()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/reuseIdentifier": {
+      "abstract": [
+        {
+          "text": "A string for identifying a reusable cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reuseIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/reuseIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reuseIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "reuseIdentifier",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/reuseidentifier"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/selectedBackgroundView": {
+      "abstract": [
+        {
+          "text": "The view to use as the background for a selected cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedBackgroundView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/selectedBackgroundView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectedBackgroundView"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectedBackgroundView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/selectedbackgroundview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/selectedImage": {
+      "abstract": [
+        {
+          "text": "The image to use a cell content when the cell is selected.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "selectedImage"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/selectedImage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "selectedImage",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/selectedimage"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/selectedTextColor": {
+      "abstract": [
+        {
+          "text": "The color of the title text when the cell is selected.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "selectedTextColor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/selectedTextColor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "selectedTextColor",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/selectedtextcolor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/selectionStyle-swift.property": {
+      "abstract": [
+        {
+          "text": "The style of selection for a cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectionStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITableViewCell",
+          "text": "UITableViewCell"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UITableViewCellSelectionStyle",
+          "text": "SelectionStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/selectionStyle-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectionStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectionStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/selectionstyle-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/separatorInset": {
+      "abstract": [
+        {
+          "text": "The inset values for the separator line drawn beneath the cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "separatorInset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@UIEdgeInsets",
+          "text": "UIEdgeInsets"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/separatorInset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "separatorInset"
+        }
+      ],
+      "role": "symbol",
+      "title": "separatorInset",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/separatorinset"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/setEditing(_:animated:)": {
+      "abstract": [
+        {
+          "text": "Toggles the cell into and out of editing mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setEditing"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/setEditing(_:animated:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setEditing:animated:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setEditing(_:animated:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/setediting(_:animated:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/setHighlighted(_:animated:)": {
+      "abstract": [
+        {
+          "text": "Sets the highlighted state of the cell, optionally animating the transition between states.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setHighlighted"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/setHighlighted(_:animated:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setHighlighted:animated:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setHighlighted(_:animated:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/sethighlighted(_:animated:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/setNeedsUpdateConfiguration()": {
+      "abstract": [
+        {
+          "text": "Informs the cell to update its configuration for its current state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setNeedsUpdateConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/setNeedsUpdateConfiguration()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setNeedsUpdateConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "setNeedsUpdateConfiguration()",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/setneedsupdateconfiguration()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/setSelected(_:animated:)": {
+      "abstract": [
+        {
+          "text": "Sets the selected state of the cell, optionally animating the transition between states.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSelected"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/setSelected(_:animated:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setSelected:animated:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setSelected(_:animated:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/setselected(_:animated:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/shouldIndentWhileEditing": {
+      "abstract": [
+        {
+          "text": "A Boolean value that controls whether the cell background is indented when the table view is in editing mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldIndentWhileEditing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/shouldIndentWhileEditing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shouldIndentWhileEditing"
+        }
+      ],
+      "role": "symbol",
+      "title": "shouldIndentWhileEditing",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/shouldindentwhileediting"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/showingDeleteConfirmation": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the cell is currently showing the delete-confirmation button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showingDeleteConfirmation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/showingDeleteConfirmation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showingDeleteConfirmation"
+        }
+      ],
+      "role": "symbol",
+      "title": "showingDeleteConfirmation",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/showingdeleteconfirmation"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/showsReorderControl": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the cell shows the reordering control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showsReorderControl"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/showsReorderControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showsReorderControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "showsReorderControl",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/showsreordercontrol"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/target": {
+      "abstract": [
+        {
+          "text": "The target object to receive action messages.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "target"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/target",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "target",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/target"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/text": {
+      "abstract": [
+        {
+          "text": "The text of the cell.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/text",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "text",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/text"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/textAlignment": {
+      "abstract": [
+        {
+          "text": "A constant that specifies the alignment of text in the cell.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "textAlignment"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/textAlignment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textAlignment",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/textalignment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/textColor": {
+      "abstract": [
+        {
+          "text": "The color of the title text.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "textColor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/textColor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textColor",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/textcolor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/textLabel": {
+      "abstract": [
+        {
+          "text": "The label to use for the main textual content of the table cell.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textLabel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UILabel",
+          "text": "UILabel"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/textLabel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textLabel"
+        }
+      ],
+      "role": "symbol",
+      "title": "textLabel",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/textlabel"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/updateConfiguration(using:)": {
+      "abstract": [
+        {
+          "text": "Updates the cell’s configuration using the current state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit24UICellConfigurationStateV",
+          "text": "UICellConfigurationState"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/updateConfiguration(using:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updateConfiguration(using:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/updateconfiguration(using:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/updateConfigurationUsingState:": {
+      "abstract": [
+        {
+          "text": "Updates the cell’s configuration using the current state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateConfigurationUsingState:"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/updateConfigurationUsingState:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateConfigurationUsingState:"
+        }
+      ],
+      "role": "symbol",
+      "title": "updateConfigurationUsingState:",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/updateconfigurationusingstate:"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/userInteractionEnabledWhileDragging": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether users can interact with a cell while it is being dragged.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInteractionEnabledWhileDragging"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/userInteractionEnabledWhileDragging",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userInteractionEnabledWhileDragging"
+        }
+      ],
+      "role": "symbol",
+      "title": "userInteractionEnabledWhileDragging",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/userinteractionenabledwhiledragging"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/willTransition(to:)": {
+      "abstract": [
+        {
+          "text": "Notifies the cell that it’s about to transition to a new cell state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "willTransition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITableViewCell",
+          "text": "UITableViewCell"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UITableViewCellStateMask",
+          "text": "StateMask"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/willTransition(to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "willTransitionToState:"
+        }
+      ],
+      "role": "symbol",
+      "title": "willTransition(to:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell/willtransition(to:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCellConfigurationUpdateHandler": {
+      "abstract": [
+        {
+          "text": "The type of block for handling updates to the cell’s configuration using the current state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewCellConfigurationUpdateHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCellConfigurationUpdateHandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITableViewCellConfigurationUpdateHandler",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcellconfigurationupdatehandler"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewHeaderFooterView": {
+      "abstract": [
+        {
+          "text": "A reusable view that you place at the top or bottom of a table section to display additional information for that section.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewHeaderFooterView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewHeaderFooterView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewHeaderFooterView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewHeaderFooterView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewheaderfooterview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitChangeObservable-67e94": {
+      "abstract": [
+        {
+          "text": "A type that calls your code in reaction to changes in the trait environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitChangeObservable"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitChangeObservable-67e94",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitChangeObservable"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitChangeObservable",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitchangeobservable-67e94"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment": {
+      "abstract": [
+        {
+          "text": "A set of methods that makes the iOS interface environment available to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitEnvironment"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitEnvironment"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitEnvironment",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitenvironment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "The protocol you adopt to restore an object’s state from a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIUserActivityRestoring"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserActivityRestoring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIUserActivityRestoring"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/uikit/uiuseractivityrestoring"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView": {
+      "abstract": [
+        {
+          "text": "An object that manages the content for a rectangular area on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/adding-headers-and-footers-to-table-sections": {
+      "abstract": [
+        {
+          "text": "Differentiate groups of rows visually by adding header and footer views to your table view’s sections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/adding-headers-and-footers-to-table-sections",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding headers and footers to table sections",
+      "type": "topic",
+      "url": "/documentation/uikit/adding-headers-and-footers-to-table-sections"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/adding-user-focusable-elements-to-a-tvos-app": {
+      "abstract": [
+        {
+          "text": "Create intuitive and easily manipulated user-interactive controls for your tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/adding-user-focusable-elements-to-a-tvos-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding user-focusable elements to a tvOS app",
+      "type": "topic",
+      "url": "/documentation/uikit/adding-user-focusable-elements-to-a-tvos-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/configuring-the-cells-for-your-table": {
+      "abstract": [
+        {
+          "text": "Specify the appearance and content of your table’s rows by defining one or more prototype cells in your storyboard.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/configuring-the-cells-for-your-table",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring the cells for your table",
+      "type": "topic",
+      "url": "/documentation/uikit/configuring-the-cells-for-your-table"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/creating-self-sizing-table-view-cells": {
+      "abstract": [
+        {
+          "text": "Create table view cells that support Dynamic Type and use system spacing constraints to adjust the spacing surrounding text labels.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/creating-self-sizing-table-view-cells",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating self-sizing table view cells",
+      "type": "topic",
+      "url": "/documentation/uikit/creating-self-sizing-table-view-cells"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/filling-a-table-with-data": {
+      "abstract": [
+        {
+          "text": "Create and configure cells for your table dynamically using a data source object, or provide them statically from your storyboard.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/filling-a-table-with-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Filling a table with data",
+      "type": "topic",
+      "url": "/documentation/uikit/filling-a-table-with-data"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)CALayerDelegate": {
+      "abstract": [
+        {
+          "text": "Methods your app can implement to respond to layer-related events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CALayerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)CALayerDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CALayerDelegate",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CALayerDelegate"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTouchBarProvider"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "media-3113230": {
+      "alt": "Illustration showing the area of a cell by itself and with an accessory view and edit control. The content area of a cell shrinks as needed to accommodate the accessory view or edit controls.",
+      "identifier": "media-3113230",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3eb9dd10bf532feaef9a5a57dc24113a/media-3113230@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/af283a25db41dae74dee3321073f3778/media-3113230~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIView"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)CALayerDelegate",
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityIdentification",
+        "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfigurationProviding",
+        "doc://com.apple.uikit/documentation/UIKit/UIAppearance",
+        "doc://com.apple.uikit/documentation/UIKit/UIAppearanceContainer",
+        "doc://com.apple.uikit/documentation/UIKit/UICoordinateSpace",
+        "doc://com.apple.uikit/documentation/UIKit/UIDynamicItem",
+        "doc://com.apple.uikit/documentation/UIKit/UIFocusEnvironment",
+        "doc://com.apple.uikit/documentation/UIKit/UIFocusItem",
+        "doc://com.apple.uikit/documentation/UIKit/UIFocusItemContainer",
+        "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizerDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UILargeContentViewerItem",
+        "doc://com.apple.uikit/documentation/UIKit/UIPasteConfigurationSupporting",
+        "doc://com.apple.uikit/documentation/UIKit/UIPopoverPresentationControllerSourceItem",
+        "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitChangeObservable-67e94",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment",
+        "doc://com.apple.uikit/documentation/UIKit/UIUserActivityRestoring"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Cells-headers-and-footers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/configuring-the-cells-for-your-table",
+        "doc://com.apple.uikit/documentation/UIKit/creating-self-sizing-table-view-cells",
+        "doc://com.apple.uikit/documentation/UIKit/adding-headers-and-footers-to-table-sections",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewHeaderFooterView"
+      ],
+      "title": "Cells, headers, and footers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-table-view-cell",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/init(style:reuseIdentifier:)",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/CellStyle",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/init(coder:)"
+      ],
+      "title": "Creating a table view cell"
+    },
+    {
+      "anchor": "Reusing-cells",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/reuseIdentifier",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/prepareForReuse()"
+      ],
+      "title": "Reusing cells"
+    },
+    {
+      "anchor": "Configuring-the-background",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/defaultBackgroundConfiguration()",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/backgroundConfiguration-24e8e",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/automaticallyUpdatesBackgroundConfiguration",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/backgroundView",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/selectedBackgroundView",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/multipleSelectionBackgroundView"
+      ],
+      "title": "Configuring the background"
+    },
+    {
+      "anchor": "Managing-the-content",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/defaultContentConfiguration()",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/contentConfiguration-9ktox",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/automaticallyUpdatesContentConfiguration",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/contentView"
+      ],
+      "title": "Managing the content"
+    },
+    {
+      "anchor": "Managing-the-state",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/configurationState-4xwj0",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/setNeedsUpdateConfiguration()",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/updateConfiguration(using:)",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/configurationUpdateHandler-974",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/ConfigurationUpdateHandler-swift.typealias"
+      ],
+      "title": "Managing the state"
+    },
+    {
+      "anchor": "Managing-accessory-views",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/accessoryType-swift.property",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/accessoryView",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/editingAccessoryType",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/editingAccessoryView",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/AccessoryType-swift.enum"
+      ],
+      "title": "Managing accessory views"
+    },
+    {
+      "anchor": "Managing-cell-selection-and-highlighting",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/selectionStyle-swift.property",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/SelectionStyle-swift.enum",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/isSelected",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/setSelected(_:animated:)",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/isHighlighted",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/setHighlighted(_:animated:)"
+      ],
+      "title": "Managing cell selection and highlighting"
+    },
+    {
+      "anchor": "Editing-the-cell",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/isEditing",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/setEditing(_:animated:)",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/editingStyle-swift.property",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/EditingStyle-swift.enum",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/showingDeleteConfirmation",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/showsReorderControl"
+      ],
+      "title": "Editing the cell"
+    },
+    {
+      "anchor": "Dragging-the-row",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/userInteractionEnabledWhileDragging",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/dragStateDidChange(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/DragState"
+      ],
+      "title": "Dragging the row"
+    },
+    {
+      "anchor": "Adjusting-to-state-transitions",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/willTransition(to:)",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/didTransition(to:)",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/StateMask"
+      ],
+      "title": "Adjusting to state transitions"
+    },
+    {
+      "anchor": "Managing-content-indentation",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/indentationLevel",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/indentationWidth",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/shouldIndentWhileEditing",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/separatorInset",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/SeparatorStyle"
+      ],
+      "title": "Managing content indentation"
+    },
+    {
+      "anchor": "Managing-focus",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/focusStyle-swift.property",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/FocusStyle-swift.enum"
+      ],
+      "title": "Managing focus"
+    },
+    {
+      "anchor": "Deprecated",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/textLabel",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/detailTextLabel",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/imageView"
+      ],
+      "title": "Deprecated"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UITableViewCell"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-table-view-cell",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/init(style:reuseIdentifier:)",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/CellStyle",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/init(coder:)"
+              ],
+              "title": "Creating a table view cell"
+            },
+            {
+              "anchor": "Reusing-cells",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/reuseIdentifier",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/prepareForReuse()"
+              ],
+              "title": "Reusing cells"
+            },
+            {
+              "anchor": "Configuring-the-background",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/defaultBackgroundConfiguration",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/backgroundConfiguration-93a2v",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/automaticallyUpdatesBackgroundConfiguration",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/backgroundView",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/selectedBackgroundView",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/multipleSelectionBackgroundView"
+              ],
+              "title": "Configuring the background"
+            },
+            {
+              "anchor": "Managing-the-content",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/defaultContentConfiguration",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/contentConfiguration-2lzvp",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/automaticallyUpdatesContentConfiguration",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/contentView"
+              ],
+              "title": "Managing the content"
+            },
+            {
+              "anchor": "Managing-the-state",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/configurationState-5gw4n",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/setNeedsUpdateConfiguration()",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/updateConfigurationUsingState:",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/configurationUpdateHandler-746ya",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCellConfigurationUpdateHandler"
+              ],
+              "title": "Managing the state"
+            },
+            {
+              "anchor": "Managing-accessory-views",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/accessoryType-swift.property",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/accessoryView",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/editingAccessoryType",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/editingAccessoryView",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/AccessoryType-swift.enum"
+              ],
+              "title": "Managing accessory views"
+            },
+            {
+              "anchor": "Managing-cell-selection-and-highlighting",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/selectionStyle-swift.property",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/SelectionStyle-swift.enum",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/isSelected",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/setSelected(_:animated:)",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/isHighlighted",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/setHighlighted(_:animated:)"
+              ],
+              "title": "Managing cell selection and highlighting"
+            },
+            {
+              "anchor": "Editing-the-cell",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/isEditing",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/setEditing(_:animated:)",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/editingStyle-swift.property",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/EditingStyle-swift.enum",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/showingDeleteConfirmation",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/showsReorderControl"
+              ],
+              "title": "Editing the cell"
+            },
+            {
+              "anchor": "Dragging-the-row",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/userInteractionEnabledWhileDragging",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/dragStateDidChange(_:)",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/DragState"
+              ],
+              "title": "Dragging the row"
+            },
+            {
+              "anchor": "Adjusting-to-state-transitions",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/willTransition(to:)",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/didTransition(to:)",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/StateMask"
+              ],
+              "title": "Adjusting to state transitions"
+            },
+            {
+              "anchor": "Managing-content-indentation",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/indentationLevel",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/indentationWidth",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/shouldIndentWhileEditing",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/separatorInset",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/SeparatorStyle"
+              ],
+              "title": "Managing content indentation"
+            },
+            {
+              "anchor": "Managing-focus",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/focusStyle-swift.property",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/FocusStyle-swift.enum"
+              ],
+              "title": "Managing focus"
+            },
+            {
+              "anchor": "Deprecated",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/textLabel",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/detailTextLabel",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/imageView",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/initWithFrame:reuseIdentifier:",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/text",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/font",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/textAlignment",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/textColor",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/selectedTextColor",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/lineBreakMode",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/image",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/selectedImage",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/hidesAccessoryWhenEditing",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/target",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/editAction",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewCell/accessoryAction"
+              ],
+              "title": "Deprecated"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIView"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+                "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizerDelegate"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Cells-headers-and-footers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/configuring-the-cells-for-your-table",
+                "doc://com.apple.uikit/documentation/UIKit/creating-self-sizing-table-view-cells",
+                "doc://com.apple.uikit/documentation/UIKit/adding-headers-and-footers-to-table-sections",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewHeaderFooterView"
+              ],
+              "title": "Cells, headers, and footers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UITableViewCell"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)UIView",
+                    "text": "UIView"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1FocusStyle-swift.enum/title",
+          "value": "UITableViewCellFocusStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1FocusStyle-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewCellFocusStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1FocusStyle-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewCellFocusStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPopoverPresentationControllerSourceItem/title",
+          "value": "UIPopoverPresentationControllerSourceItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPopoverPresentationControllerSourceItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPopoverPresentationControllerSourceItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPopoverPresentationControllerSourceItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPopoverPresentationControllerSourceItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1init(coder:)/title",
+          "value": "initWithCoder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1init(coder:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithCoder:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1AccessoryType-swift.enum/title",
+          "value": "UITableViewCellAccessoryType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1AccessoryType-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewCellAccessoryType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1AccessoryType-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewCellAccessoryType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1userInteractionEnabledWhileDragging/title",
+          "value": "userInteractionEnabledWhileDragging"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1userInteractionEnabledWhileDragging/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userInteractionEnabledWhileDragging"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1SelectionStyle-swift.enum/title",
+          "value": "UITableViewCellSelectionStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1SelectionStyle-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewCellSelectionStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1SelectionStyle-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewCellSelectionStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicItem/title",
+          "value": "UIDynamicItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDynamicItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDynamicItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICoordinateSpace/title",
+          "value": "UICoordinateSpace"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICoordinateSpace/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICoordinateSpace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICoordinateSpace/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICoordinateSpace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearanceContainer/title",
+          "value": "UIAppearanceContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearanceContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearanceContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearanceContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearanceContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1separatorInset/title",
+          "value": "separatorInset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1separatorInset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "separatorInset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1imageView/title",
+          "value": "imageView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1imageView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "imageView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/title",
+          "value": "UIView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1textLabel/title",
+          "value": "textLabel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1textLabel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "textLabel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1setNeedsUpdateConfiguration()/title",
+          "value": "setNeedsUpdateConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1setNeedsUpdateConfiguration()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setNeedsUpdateConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1shouldIndentWhileEditing/title",
+          "value": "shouldIndentWhileEditing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1shouldIndentWhileEditing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shouldIndentWhileEditing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1showsReorderControl/title",
+          "value": "showsReorderControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1showsReorderControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "showsReorderControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1setHighlighted(_:animated:)/title",
+          "value": "setHighlighted:animated:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1setHighlighted(_:animated:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setHighlighted:animated:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1isEditing/title",
+          "value": "editing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1isEditing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "editing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1indentationWidth/title",
+          "value": "indentationWidth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1indentationWidth/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "indentationWidth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1indentationLevel/title",
+          "value": "indentationLevel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1indentationLevel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "indentationLevel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1init(style:reuseIdentifier:)/title",
+          "value": "initWithStyle:reuseIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1init(style:reuseIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithStyle:reuseIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearance/title",
+          "value": "UIAppearance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearance/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizerDelegate/title",
+          "value": "UIGestureRecognizerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGestureRecognizerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGestureRecognizerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1setSelected(_:animated:)/title",
+          "value": "setSelected:animated:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1setSelected(_:animated:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setSelected:animated:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1accessoryView/title",
+          "value": "accessoryView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1accessoryView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accessoryView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1accessoryType-swift.property/title",
+          "value": "accessoryType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1accessoryType-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accessoryType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1CellStyle/title",
+          "value": "UITableViewCellStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1CellStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewCellStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1CellStyle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewCellStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusItem/title",
+          "value": "UIFocusItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfigurationProviding/title",
+          "value": "UIActivityItemsConfigurationProviding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfigurationProviding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemsConfigurationProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfigurationProviding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemsConfigurationProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1DragState/title",
+          "value": "UITableViewCellDragState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1DragState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewCellDragState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1DragState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewCellDragState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPasteConfigurationSupporting/title",
+          "value": "UIPasteConfigurationSupporting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPasteConfigurationSupporting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPasteConfigurationSupporting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPasteConfigurationSupporting/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPasteConfigurationSupporting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusItemContainer/title",
+          "value": "UIFocusItemContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusItemContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusItemContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusItemContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusItemContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1focusStyle-swift.property/title",
+          "value": "focusStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1focusStyle-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "focusStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1EditingStyle-swift.enum/title",
+          "value": "UITableViewCellEditingStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1EditingStyle-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewCellEditingStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1EditingStyle-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewCellEditingStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1editingAccessoryType/title",
+          "value": "editingAccessoryType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1editingAccessoryType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "editingAccessoryType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILargeContentViewerItem/title",
+          "value": "UILargeContentViewerItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILargeContentViewerItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILargeContentViewerItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILargeContentViewerItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILargeContentViewerItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions/title",
+          "value": "UIResponderStandardEditActions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIResponderStandardEditActions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIResponderStandardEditActions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserActivityRestoring/title",
+          "value": "UIUserActivityRestoring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserActivityRestoring/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1multipleSelectionBackgroundView/title",
+          "value": "multipleSelectionBackgroundView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1multipleSelectionBackgroundView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "multipleSelectionBackgroundView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1showingDeleteConfirmation/title",
+          "value": "showingDeleteConfirmation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1showingDeleteConfirmation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "showingDeleteConfirmation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1automaticallyUpdatesBackgroundConfiguration/title",
+          "value": "automaticallyUpdatesBackgroundConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1automaticallyUpdatesBackgroundConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "automaticallyUpdatesBackgroundConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1prepareForReuse()/title",
+          "value": "prepareForReuse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1prepareForReuse()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "prepareForReuse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1StateMask/title",
+          "value": "UITableViewCellStateMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1StateMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewCellStateMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1StateMask/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewCellStateMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1editingAccessoryView/title",
+          "value": "editingAccessoryView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1editingAccessoryView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "editingAccessoryView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1dragStateDidChange(_:)/title",
+          "value": "dragStateDidChange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1dragStateDidChange(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "dragStateDidChange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewHeaderFooterView/title",
+          "value": "UITableViewHeaderFooterView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewHeaderFooterView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewHeaderFooterView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewHeaderFooterView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewHeaderFooterView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1isHighlighted/title",
+          "value": "highlighted"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1isHighlighted/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "highlighted"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1automaticallyUpdatesContentConfiguration/title",
+          "value": "automaticallyUpdatesContentConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1automaticallyUpdatesContentConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "automaticallyUpdatesContentConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1backgroundView/title",
+          "value": "backgroundView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1backgroundView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "backgroundView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1selectedBackgroundView/title",
+          "value": "selectedBackgroundView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1selectedBackgroundView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selectedBackgroundView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityIdentification/title",
+          "value": "UIAccessibilityIdentification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityIdentification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityIdentification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityIdentification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityIdentification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1editingStyle-swift.property/title",
+          "value": "editingStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1editingStyle-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "editingStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1willTransition(to:)/title",
+          "value": "willTransitionToState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1willTransition(to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "willTransitionToState:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1SeparatorStyle/title",
+          "value": "UITableViewCellSeparatorStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1SeparatorStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewCellSeparatorStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1SeparatorStyle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewCellSeparatorStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1contentView/title",
+          "value": "contentView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1contentView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contentView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusEnvironment/title",
+          "value": "UIFocusEnvironment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusEnvironment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusEnvironment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1setEditing(_:animated:)/title",
+          "value": "setEditing:animated:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1setEditing(_:animated:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setEditing:animated:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1selectionStyle-swift.property/title",
+          "value": "selectionStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1selectionStyle-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selectionStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1reuseIdentifier/title",
+          "value": "reuseIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1reuseIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "reuseIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1didTransition(to:)/title",
+          "value": "didTransitionToState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1didTransition(to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didTransitionToState:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment/title",
+          "value": "UITraitEnvironment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITraitEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITraitEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1isSelected/title",
+          "value": "selected"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1isSelected/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selected"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell/title",
+          "value": "UITableViewCell"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)CALayerDelegate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CALayerDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1detailTextLabel/title",
+          "value": "detailTextLabel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewCell~1detailTextLabel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "detailTextLabel"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uitableviewcell"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uitableviewcell"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

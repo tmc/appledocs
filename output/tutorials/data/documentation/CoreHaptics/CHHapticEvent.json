@@ -1,0 +1,2096 @@
+{
+  "abstract": [
+    {
+      "text": "An object that describes a single haptic or audio event.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CHHapticEvent",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CHHapticEvent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Haptics"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CHHapticEvent"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CHHapticEvent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CHHapticEvent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each event represents a single haptic or audio signal. The event ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/type",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " determines whether it’s audio or haptic. Use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPatternPlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object obtained through ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEngine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " factory methods to play events. Haptic events can be transient or continuous. Transient haptic patterns are brief impulses that occur at a specific point in time, such as the haptic feedback you feel from swiping through a picker or toggling a switch. Continuous haptic patterns, like the vibration from a ringtone, take the form of lengthier feedback over a period of time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following graphic, transient haptic patterns on the left trigger at a specific time with a specific intensity. Continuous haptic patterns on the right sustain the haptic feedback over a specific duration of time, such as three seconds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3235483",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify when an event begins by setting its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/relativeTime",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Specify the length of the event by setting its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/duration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Set optional parameters to customize event properties. For example, you can specify the intensity of a haptic event by creating an event parameter with ID ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/ParameterID/hapticIntensity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corehaptics/documentation/CoreHaptics": {
+      "abstract": [
+        {
+          "text": "Compose and play haptic patterns to customize your iOS app’s haptic feedback.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Haptics",
+      "type": "topic",
+      "url": "/documentation/corehaptics"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticDynamicParameter": {
+      "abstract": [
+        {
+          "text": "A value that you send to a haptic pattern player to alter a property value during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CHHapticDynamicParameter"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticDynamicParameter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticDynamicParameter"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticDynamicParameter",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticdynamicparameter"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEngine": {
+      "abstract": [
+        {
+          "text": "An object that represents the connection to the haptic server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CHHapticEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEngine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticEngine"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticEngine",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticengine"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent": {
+      "abstract": [
+        {
+          "text": "An object that describes a single haptic or audio event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CHHapticEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticEvent",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticevent"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/EventType": {
+      "abstract": [
+        {
+          "text": "The types of audio and haptic event waveforms.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EventType"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/EventType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EventType"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticEvent.EventType",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticevent/eventtype"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/ParameterID": {
+      "abstract": [
+        {
+          "text": "An identifier for an event parameter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ParameterID"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/ParameterID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ParameterID"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticEvent.ParameterID",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticevent/parameterid"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/ParameterID/hapticIntensity": {
+      "abstract": [
+        {
+          "text": "The strength of a haptic event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hapticIntensity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CHHapticEvent",
+          "text": "CHHapticEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CHHapticEventParameterID",
+          "text": "ParameterID"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/ParameterID/hapticIntensity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticEventParameterIDHapticIntensity"
+        }
+      ],
+      "role": "symbol",
+      "title": "hapticIntensity",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticevent/parameterid/hapticintensity"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/duration": {
+      "abstract": [
+        {
+          "text": "The duration of the haptic event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/duration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "duration"
+        }
+      ],
+      "role": "symbol",
+      "title": "duration",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticevent/duration"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/eventParameters": {
+      "abstract": [
+        {
+          "text": "An array of event parameters, possibly empty.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "eventParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CHHapticEventParameter",
+          "text": "CHHapticEventParameter"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/eventParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "eventParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "eventParameters",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticevent/eventparameters"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/init(audioResourceID:parameters:relativeTime:)": {
+      "abstract": [
+        {
+          "text": "Initializes a haptic event from a previously loaded audio resource, specifying event parameters and start time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "audioResourceID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CHHapticAudioResourceID",
+          "text": "CHHapticAudioResourceID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "parameters"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CHHapticEventParameter",
+          "text": "CHHapticEventParameter"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "relativeTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/init(audioResourceID:parameters:relativeTime:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithAudioResourceID:parameters:relativeTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(audioResourceID:parameters:relativeTime:)",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticevent/init(audioresourceid:parameters:relativetime:)"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/init(audioResourceID:parameters:relativeTime:duration:)": {
+      "abstract": [
+        {
+          "text": "Initializes a haptic event from a previously loaded audio resource, specifying event parameters, start time, and duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "audioResourceID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CHHapticAudioResourceID",
+          "text": "CHHapticAudioResourceID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "parameters"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CHHapticEventParameter",
+          "text": "CHHapticEventParameter"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "relativeTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/init(audioResourceID:parameters:relativeTime:duration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithAudioResourceID:parameters:relativeTime:duration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(audioResourceID:parameters:relativeTime:duration:)",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticevent/init(audioresourceid:parameters:relativetime:duration:)"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/init(eventType:parameters:relativeTime:)": {
+      "abstract": [
+        {
+          "text": "Initializes a haptic event of the specified type, parameters, and start time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "eventType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CHHapticEvent",
+          "text": "CHHapticEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CHHapticEventType",
+          "text": "EventType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "parameters"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CHHapticEventParameter",
+          "text": "CHHapticEventParameter"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "relativeTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/init(eventType:parameters:relativeTime:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithEventType:parameters:relativeTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(eventType:parameters:relativeTime:)",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticevent/init(eventtype:parameters:relativetime:)"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/init(eventType:parameters:relativeTime:duration:)": {
+      "abstract": [
+        {
+          "text": "Initializes a haptic event of the specified type, parameters, start time, and duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "eventType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CHHapticEvent",
+          "text": "CHHapticEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CHHapticEventType",
+          "text": "EventType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "parameters"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CHHapticEventParameter",
+          "text": "CHHapticEventParameter"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "relativeTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/init(eventType:parameters:relativeTime:duration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithEventType:parameters:relativeTime:duration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(eventType:parameters:relativeTime:duration:)",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticevent/init(eventtype:parameters:relativetime:duration:)"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/relativeTime": {
+      "abstract": [
+        {
+          "text": "The start time of the event, relative to other events in the same pattern.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "relativeTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/relativeTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "relativeTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "relativeTime",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticevent/relativetime"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/type": {
+      "abstract": [
+        {
+          "text": "The type of the haptic event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CHHapticEvent",
+          "text": "CHHapticEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CHHapticEventType",
+          "text": "EventType"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/type",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "type"
+        }
+      ],
+      "role": "symbol",
+      "title": "type",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticevent/type"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEventParameter": {
+      "abstract": [
+        {
+          "text": "A static parameter value that represents a single property of the haptic pattern.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CHHapticEventParameter"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEventParameter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticEventParameter"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticEventParameter",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticeventparameter"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticParameterCurve": {
+      "abstract": [
+        {
+          "text": "A curve that you send to a haptic pattern player to alter a property value gradually during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CHHapticParameterCurve"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticParameterCurve",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticParameterCurve"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticParameterCurve",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticparametercurve"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPatternPlayer": {
+      "abstract": [
+        {
+          "text": "A protocol that defines a standard pattern player capable of playing haptic patterns with fixed parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CHHapticPatternPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticPatternPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticPatternPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticPatternPlayer",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticpatternplayer"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/delivering-rich-app-experiences-with-haptics": {
+      "abstract": [
+        {
+          "text": "Enhance your app’s experience by incorporating haptic and sound feedback into key interactive moments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/delivering-rich-app-experiences-with-haptics",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Delivering Rich App Experiences with Haptics",
+      "type": "topic",
+      "url": "/documentation/corehaptics/delivering-rich-app-experiences-with-haptics"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/playing-collision-based-haptic-patterns": {
+      "abstract": [
+        {
+          "text": "Play a custom haptic pattern whose strength depends on an object’s collision speed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/playing-collision-based-haptic-patterns",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Playing Collision-Based Haptic Patterns",
+      "type": "topic",
+      "url": "/documentation/corehaptics/playing-collision-based-haptic-patterns"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/updating-continuous-and-transient-haptic-parameters-in-real-time": {
+      "abstract": [
+        {
+          "text": "Generate continuous and transient haptic patterns in response to user touch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/updating-continuous-and-transient-haptic-parameters-in-real-time",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Updating Continuous and Transient Haptic Parameters in Real Time",
+      "type": "topic",
+      "url": "/documentation/corehaptics/updating-continuous-and-transient-haptic-parameters-in-real-time"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "media-3235483": {
+      "alt": "A transient haptic pattern on the left, and a continuous haptic pattern on the right.",
+      "identifier": "media-3235483",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5457af395d15942b22d154ae7e7fa804/media-3235483@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/56f030e44ad5fb63ca53760499edb42b/media-3235483~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Programmatic-haptics",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/delivering-rich-app-experiences-with-haptics",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/playing-collision-based-haptic-patterns",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/updating-continuous-and-transient-haptic-parameters-in-real-time",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEventParameter",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticDynamicParameter",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticParameterCurve"
+      ],
+      "title": "Programmatic haptics"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Categorizing-Haptic-Events",
+      "identifiers": [
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/type",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/EventType"
+      ],
+      "title": "Categorizing Haptic Events"
+    },
+    {
+      "anchor": "Creating-Haptic-Events",
+      "identifiers": [
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/init(audioResourceID:parameters:relativeTime:)",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/init(audioResourceID:parameters:relativeTime:duration:)",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/init(eventType:parameters:relativeTime:)",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/init(eventType:parameters:relativeTime:duration:)"
+      ],
+      "title": "Creating Haptic Events"
+    },
+    {
+      "anchor": "Configuring-Haptic-Events",
+      "identifiers": [
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/eventParameters",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/ParameterID",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/relativeTime",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/duration"
+      ],
+      "title": "Configuring Haptic Events"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CHHapticEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Categorizing-Haptic-Events",
+              "identifiers": [
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/type",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/EventType"
+              ],
+              "title": "Categorizing Haptic Events"
+            },
+            {
+              "anchor": "Creating-Haptic-Events",
+              "identifiers": [
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/init(audioResourceID:parameters:relativeTime:)",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/init(audioResourceID:parameters:relativeTime:duration:)",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/init(eventType:parameters:relativeTime:)",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/init(eventType:parameters:relativeTime:duration:)"
+              ],
+              "title": "Creating Haptic Events"
+            },
+            {
+              "anchor": "Configuring-Haptic-Events",
+              "identifiers": [
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/eventParameters",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/ParameterID",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/relativeTime",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/duration"
+              ],
+              "title": "Configuring Haptic Events"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Programmatic-haptics",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/delivering-rich-app-experiences-with-haptics",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/playing-collision-based-haptic-patterns",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/updating-continuous-and-transient-haptic-parameters-in-real-time",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEventParameter",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticDynamicParameter",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticParameterCurve"
+              ],
+              "title": "Programmatic haptics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CHHapticEvent"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1ParameterID~1hapticIntensity/title",
+          "value": "CHHapticEventParameterIDHapticIntensity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1ParameterID~1hapticIntensity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEventParameterIDHapticIntensity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1init(audioResourceID:parameters:relativeTime:duration:)/title",
+          "value": "initWithAudioResourceID:parameters:relativeTime:duration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1init(audioResourceID:parameters:relativeTime:duration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithAudioResourceID:parameters:relativeTime:duration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticParameterCurve/title",
+          "value": "CHHapticParameterCurve"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticParameterCurve/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticParameterCurve"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticParameterCurve/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticParameterCurve"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1duration/title",
+          "value": "duration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1duration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "duration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEventParameter/title",
+          "value": "CHHapticEventParameter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEventParameter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEventParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEventParameter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEventParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1relativeTime/title",
+          "value": "relativeTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1relativeTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "relativeTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1ParameterID/title",
+          "value": "CHHapticEventParameterID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1ParameterID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEventParameterID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1ParameterID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEventParameterID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEngine/title",
+          "value": "CHHapticEngine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEngine/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEngine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEngine/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEngine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1init(eventType:parameters:relativeTime:)/title",
+          "value": "initWithEventType:parameters:relativeTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1init(eventType:parameters:relativeTime:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithEventType:parameters:relativeTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent/title",
+          "value": "CHHapticEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1init(audioResourceID:parameters:relativeTime:)/title",
+          "value": "initWithAudioResourceID:parameters:relativeTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1init(audioResourceID:parameters:relativeTime:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithAudioResourceID:parameters:relativeTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1EventType/title",
+          "value": "CHHapticEventType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1EventType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEventType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1EventType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEventType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticPatternPlayer/title",
+          "value": "CHHapticPatternPlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticPatternPlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticPatternPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticPatternPlayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticPatternPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1type/title",
+          "value": "type"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1type/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "type"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1init(eventType:parameters:relativeTime:duration:)/title",
+          "value": "initWithEventType:parameters:relativeTime:duration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1init(eventType:parameters:relativeTime:duration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithEventType:parameters:relativeTime:duration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticDynamicParameter/title",
+          "value": "CHHapticDynamicParameter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticDynamicParameter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticDynamicParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticDynamicParameter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticDynamicParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1eventParameters/title",
+          "value": "eventParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1eventParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "eventParameters"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corehaptics/chhapticevent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corehaptics/chhapticevent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

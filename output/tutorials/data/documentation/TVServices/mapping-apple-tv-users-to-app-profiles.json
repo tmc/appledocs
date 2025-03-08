@@ -1,0 +1,997 @@
+{
+  "abstract": [
+    {
+      "text": "Adapt the content of your app for the current viewer by using an entitlement and simplifying sign-in flows.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.tvservices/documentation/TVServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.tvservices/documentation/TVServices/mapping-apple-tv-users-to-app-profiles"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "TV Services"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Mapping Apple TV users to app profiles"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample demonstrates how to reduce configuration dialogs for people who share an Apple TV and a service account, such as a family media subscription. To let people get to your content more directly, your app should save shared login information where it can access the credentials regardless of the current user, and your code should also remember which profile to load for each user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC22 session 110384: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc22/110384/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you run the sample code project in Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Update your Apple TV to tvOS 15 or later. This app runs in single-user mode on tvOS 15 and supports multiple users on tvOS 16 and later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add users by choosing Settings > Users and Accounts > Add New User.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To switch TV users, press and hold the TV button on your remote or choose Settings > Users and Accounts > Switch Current User.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Run-as-the-current-user",
+          "level": 3,
+          "text": "Run as the current user",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple TV supports multiple users. To opt-in to keeping separate data for each user, add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.user-management",
+              "isActive": true,
+              "overridingTitle": "User Management Entitlement",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "User Management Entitlement",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to your app or app extension, with the value ",
+              "type": "text"
+            },
+            {
+              "code": "runs-as-current-user-with-user-independent-keychain",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>com.apple.developer.user-management</key>",
+            "<array>",
+            "    <string>runs-as-current-user-with-user-independent-keychain</string>",
+            "</array>"
+          ],
+          "syntax": "plist",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This entitlement value grants your app per-user data storage on tvOS 16 and higher but maintains single-user behavior on tvOS 15 or earlier.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Save-each-users-profile",
+          "level": 3,
+          "text": "Save each user’s profile",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app or extension is running on tvOS 16 with multiple Apple TV users, you can store each person’s preferred profile directly with an API such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+              "isActive": true,
+              "overridingTitle": "UserDefaults",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "UserDefaults",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " or CloudKit; the system separates the data for each Apple TV user. Your code doesn’t have to handle any data partitioning.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+              "isActive": true,
+              "overridingTitle": "UserDefaults",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "UserDefaults",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to save the profile.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private var selectedProfileIdentifier: String? {",
+            "    didSet {",
+            "        guard oldValue != selectedProfileIdentifier else { return }",
+            "",
+            "        // If running on tvOS 16, check if the selected profile should be",
+            "        // remembered before storing it.",
+            "        if #available(tvOS 16.0, *), userManager.shouldStorePreferencesForCurrentUser {",
+            "            UserDefaults.standard.set(selectedProfileIdentifier, forKey: \"PreferredProfileIdentifierKey\")",
+            "        }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample only attempts to save the selected profile when running on tvOS 16 or later; it doesn’t run as the current user on tvOS 15 or earlier. It also checks ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/TVServices/TVUserManager/shouldStorePreferencesForCurrentUser",
+              "isActive": true,
+              "overridingTitle": "shouldStorePreferencesForCurrentUser",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "shouldStorePreferencesForCurrentUser",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " before saving to avoid remembering the selected profile in case there aren’t multiple users on the Apple TV.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Skip-the-profile-picker-dialog",
+          "level": 3,
+          "text": "Skip the profile-picker dialog",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app can skip the interstitial profile-picker dialog whenever a person who already has a saved profile launches the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func presentProfilePickerIfNeeded() {",
+            "    if #available(tvOS 16.0, *) {",
+            "        // On tvOS 16, present the profile picker only if the Apple TV",
+            "        // doesn't have multiple users, or the current user hasn't picked a",
+            "        // profile yet.",
+            "        if !userManager.shouldStorePreferencesForCurrentUser || profileData.selectedProfile == nil {",
+            "            presentProfilePicker()",
+            "        }",
+            "    } else {",
+            "        // Always present the profile picker on tvOS 15 and earlier.",
+            "        presentProfilePicker()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample still presents the profile picker if the Apple TV doesn’t have multiple users, the current user doesn’t have a saved profile, or the app is running on tvOS 15 or earlier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Store-shared-login-credentials-in-the-user-independent-Keychain",
+          "level": 3,
+          "text": "Store shared login credentials in the user-independent Keychain",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Another interstitial dialog that can get in the way of the content is the sign-in screen. Keychain data is automatically separated for each Apple TV user. To avoid having each user sign in individually, tvOS 16 adds a new Keychain API: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/kSecUseUserIndependentKeychain",
+              "isActive": true,
+              "overridingTitle": "kSecUseUserIndependentKeychain",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "kSecUseUserIndependentKeychain",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/kSecUseUserIndependentKeychain",
+              "isActive": true,
+              "overridingTitle": "kSecUseUserIndependentKeychain",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "kSecUseUserIndependentKeychain",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", signing in only needs to happen once, even when running as the current user, because items stored using this property are accessible by all Apple TV users.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var baseQuery: [CFString: Any] = [",
+            "    kSecAttrService: \"com.example.apple-samplecode.ProfilesSample\",",
+            "    kSecClass: kSecClassGenericPassword",
+            "]",
+            "if #available(tvOS 16.0, *) {",
+            "    baseQuery[kSecUseUserIndependentKeychain] = kCFBooleanTrue as AnyObject",
+            "}",
+            "self.baseQuery = baseQuery"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "loadCredentials",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method in the ",
+              "type": "text"
+            },
+            {
+              "code": "KeychainController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " shows how to use the ",
+              "type": "text"
+            },
+            {
+              "code": "baseQuery",
+              "type": "codeVoice"
+            },
+            {
+              "text": " above to read the username and password from the Keychain:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func loadCredentials() {",
+            "    var attributesQuery = baseQuery",
+            "    attributesQuery[kSecReturnAttributes] = kCFBooleanTrue",
+            "",
+            "    // Read all attributes. This is where the username comes from.",
+            "    var outAttributes: AnyObject?",
+            "    guard SecItemCopyMatching(attributesQuery as CFDictionary, &outAttributes) == errSecSuccess,",
+            "          let attributes = outAttributes as? [CFString: Any] else {",
+            "        return",
+            "    }",
+            "",
+            "    // This is where the password comes from.",
+            "    var passwordQuery = baseQuery",
+            "    passwordQuery[kSecAttrAccount] = attributes[kSecAttrAccount]",
+            "    passwordQuery[kSecReturnData] = kCFBooleanTrue",
+            "",
+            "    var outPassword: AnyObject?",
+            "    guard SecItemCopyMatching(passwordQuery as CFDictionary, &outPassword) == errSecSuccess,",
+            "          let passwordData = outPassword as? Data else {",
+            "        return",
+            "    }",
+            "",
+            "    if let username = attributes[kSecAttrAccount] as? String,",
+            "        let password = String(data: passwordData, encoding: .utf8) {",
+            "        credentials = (username: username, password: password)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also use the same ",
+              "type": "text"
+            },
+            {
+              "code": "baseQuery",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to save a new item with username and password.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func save(username: String, password: String) {",
+            "    guard let passwordData = password.data(using: .utf8) else {",
+            "        return",
+            "    }",
+            "",
+            "    let attributes: [CFString: Any] = [",
+            "        kSecAttrAccount: username,",
+            "        kSecValueData: passwordData",
+            "    ]",
+            "",
+            "    var status: OSStatus = errSecCoreFoundationUnknown",
+            "    var itemExists = SecItemCopyMatching(baseQuery as CFDictionary, nil) == errSecSuccess",
+            "",
+            "    // Try to add the item to the keychain first.",
+            "    if !itemExists {",
+            "        let addAttributes = baseQuery.merging(attributes) { (current, _) in current }",
+            "        status = SecItemAdd(addAttributes as CFDictionary, nil)",
+            "        itemExists = status == errSecDuplicateItem",
+            "    }",
+            "",
+            "    // Otherwise, update if it already exists.",
+            "    if itemExists {",
+            "        status = SecItemUpdate(baseQuery as CFDictionary, attributes as CFDictionary)",
+            "    }",
+            "",
+            "    guard status == errSecSuccess else {",
+            "        return",
+            "    }",
+            "",
+            "    credentials = (username, password)",
+            "}",
+            "",
+            "func removeCredentials() {",
+            "    SecItemDelete(baseQuery as CFDictionary)",
+            "    credentials = nil",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "d4b9171f4a3e/MappingAppleTVUsersToAppProfiles.zip": {
+      "checksum": "d4b9171f4a3eb3185e5f2a593885d069ad2d9c30b976cd83db42fdbbd5094ff2480845e55fffe4aa83c10b99710d00482fcc6f3cf250dfe5527e4e767e81aa2b",
+      "identifier": "d4b9171f4a3e/MappingAppleTVUsersToAppProfiles.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/d4b9171f4a3e/MappingAppleTVUsersToAppProfiles.zip"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.user-management": {
+      "abstract": [
+        {
+          "text": "The entitlement for distinguishing between multiple user accounts on Apple TV.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.user-management",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "User Management Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.user-management"
+    },
+    "doc://com.apple.documentation/documentation/Security/kSecUseUserIndependentKeychain": {
+      "abstract": [
+        {
+          "text": "A key with a value that indicates whether to store the data in a keychain available to anyone who uses the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecUseUserIndependentKeychain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/kSecUseUserIndependentKeychain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kSecUseUserIndependentKeychain",
+      "type": "topic",
+      "url": "/documentation/Security/kSecUseUserIndependentKeychain"
+    },
+    "doc://com.apple.documentation/documentation/TVServices/TVUserManager/shouldStorePreferencesForCurrentUser": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether your app needs to retain a selected profile.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldStorePreferencesForCurrentUser"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/TVServices/TVUserManager/shouldStorePreferencesForCurrentUser",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shouldStorePreferencesForCurrentUser",
+      "type": "topic",
+      "url": "/documentation/TVServices/TVUserManager/shouldStorePreferencesForCurrentUser"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults": {
+      "abstract": [
+        {
+          "text": "An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserDefaults"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserDefaults",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices": {
+      "abstract": [
+        {
+          "text": "Display content and descriptions, provide channel guides, and support multiple users on Apple TV.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TV Services",
+      "type": "topic",
+      "url": "/documentation/tvservices"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/TVUserManager": {
+      "abstract": [
+        {
+          "text": "An object that indicates how to store preferences for multiple people on a shared device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TVUserManager"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVUserManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TVUserManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "TVUserManager",
+      "type": "topic",
+      "url": "/documentation/tvservices/tvusermanager"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/personalizing-your-app-for-each-user-on-apple-tv": {
+      "abstract": [
+        {
+          "text": "Use account-specific storage to segregate data on a multiuser system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/personalizing-your-app-for-each-user-on-apple-tv",
+      "kind": "article",
+      "role": "article",
+      "title": "Personalizing Your App for Each User on Apple TV",
+      "type": "topic",
+      "url": "/documentation/tvservices/personalizing-your-app-for-each-user-on-apple-tv"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/supporting-multiple-users-in-your-tvos-app": {
+      "abstract": [
+        {
+          "text": "Store separate data for each user with the new Runs as Current User capability.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/supporting-multiple-users-in-your-tvos-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting Multiple Users in Your tvOS App",
+      "type": "topic",
+      "url": "/documentation/tvservices/supporting-multiple-users-in-your-tvos-app"
+    },
+    "https://developer.apple.com/wwdc22/110384/": {
+      "identifier": "https://developer.apple.com/wwdc22/110384/",
+      "title": "Support multiple users in tvOS apps",
+      "titleInlineContent": [
+        {
+          "text": "Support multiple users in tvOS apps",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc22/110384/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "d4b9171f4a3e/MappingAppleTVUsersToAppProfiles.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Multiple-users",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.tvservices/documentation/TVServices/personalizing-your-app-for-each-user-on-apple-tv",
+        "doc://com.apple.tvservices/documentation/TVServices/supporting-multiple-users-in-your-tvos-app",
+        "doc://com.apple.tvservices/documentation/TVServices/TVUserManager"
+      ],
+      "title": "Multiple users"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Multiple-users",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.tvservices/documentation/TVServices/personalizing-your-app-for-each-user-on-apple-tv",
+                "doc://com.apple.tvservices/documentation/TVServices/supporting-multiple-users-in-your-tvos-app",
+                "doc://com.apple.tvservices/documentation/TVServices/TVUserManager"
+              ],
+              "title": "Multiple users"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1kSecUseUserIndependentKeychain/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kSecUseUserIndependentKeychain"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1userdefaults/title",
+          "value": "NSUserDefaults"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVUserManager/title",
+          "value": "TVUserManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVUserManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVUserManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVUserManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVUserManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1TVServices~1TVUserManager~1shouldStorePreferencesForCurrentUser/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "assign"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "shouldStorePreferencesForCurrentUser"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/tvservices/mapping-apple-tv-users-to-app-profiles"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/tvservices/mapping-apple-tv-users-to-app-profiles"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

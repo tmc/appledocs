@@ -1,0 +1,3211 @@
+{
+  "abstract": [
+    {
+      "text": "A peer-to-peer network between a group of players that sign into Game Center.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamekit/documentation/GameKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamekit/documentation/GameKit/GKMatch"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)GKMatch",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "GKMatch"
+      }
+    ],
+    "modules": [
+      {
+        "name": "GameKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GKMatch"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.1",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.1",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.8",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "GKMatch"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GKMatch"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.gamekit/documentation/GameKit/finding-multiple-players-for-a-game",
+        "doc://com.apple.gamekit/documentation/GameKit/assigning-players-to-teams-using-rules"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Matches provide a mechanism for a player to send both game and voice data to other players.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You never create a ",
+              "type": "text"
+            },
+            {
+              "code": "GKMatch",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object directly. Instead, GameKit passes a match object to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmakerViewControllerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method or a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " handler when you set up a multiplayer game. For details, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/finding-multiple-players-for-a-game",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmakerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to find players, implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmakerViewControllerDelegate/matchmakerViewController(_:didFind:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method to set the match delegate. If you use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class, set the match delegate in the handler you pass to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/findMatch(for:withCompletionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can begin exchanging data when two or more players join the match. Implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchDelegate/match(_:player:didChange:)-8ohgr",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method to track when players connect or disconnect from the match. Then use either the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatch/sendData(toAllPlayers:with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatch/send(_:to:dataMode:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to send data. To process the data on the recipient side, implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchDelegate/match(_:didReceive:fromRemotePlayer:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To implement voice chat, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatch/voiceChat(withName:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to create one or more voice channels represented by the returned ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’re finished with a match, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatch/disconnect()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and set the match’s delegate to ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Otherwise, GameKit may send ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchDelegate/match(_:player:didChange:)-8ohgr",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the delegate until all players disconnect from the match.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit": {
+      "abstract": [
+        {
+          "text": "Enable players to interact with friends, compare leaderboard ranks, earn achievements, and participate in multiplayer games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GameKit",
+      "type": "topic",
+      "url": "/documentation/gamekit"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKInvite": {
+      "abstract": [
+        {
+          "text": "An invitation to join a match sent to the local player from another player.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKInvite"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKInvite",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKInvite"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKInvite",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkinvite"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKInviteEventListener": {
+      "abstract": [
+        {
+          "text": "A protocol that handles invite events from Game Center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKInviteEventListener"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKInviteEventListener",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKInviteEventListener"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKInviteEventListener",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkinviteeventlistener"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatch": {
+      "abstract": [
+        {
+          "text": "A peer-to-peer network between a group of players that sign into Game Center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKMatch"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKMatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKMatch",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatch"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatch/SendDataMode": {
+      "abstract": [
+        {
+          "text": "The mechanism used to transmit data to other players.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SendDataMode"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatch/SendDataMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SendDataMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKMatch.SendDataMode",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatch/senddatamode"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatch/chooseBestHostPlayer(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Determines the best player in the game to act as the server for a client-server match.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "chooseBestHostPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatch/chooseBestHostPlayer(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "chooseBestHostPlayerWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "chooseBestHostPlayer(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatch/choosebesthostplayer(completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatch/chooseBestHostingPlayer(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Determines the best player in the game to act as the server for a client-server topology.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "chooseBestHostingPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKPlayer",
+          "text": "GKPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatch/chooseBestHostingPlayer(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "chooseBestHostingPlayerWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "chooseBestHostingPlayer(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatch/choosebesthostingplayer(completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatch/delegate": {
+      "abstract": [
+        {
+          "text": "The delegate that handles communication between players in a match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)GKMatchDelegate",
+          "text": "GKMatchDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatch/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatch/delegate"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatch/disconnect()": {
+      "abstract": [
+        {
+          "text": "Disconnects the local player from the match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "disconnect"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatch/disconnect()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "disconnect"
+        }
+      ],
+      "role": "symbol",
+      "title": "disconnect()",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatch/disconnect()"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatch/expectedPlayerCount": {
+      "abstract": [
+        {
+          "text": "The remaining number of players invited but not yet connected to the match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "expectedPlayerCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatch/expectedPlayerCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "expectedPlayerCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "expectedPlayerCount",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatch/expectedplayercount"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatch/playerIDs": {
+      "abstract": [
+        {
+          "text": "The player identifiers for remote players in the match.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playerIDs"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatch/playerIDs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playerIDs"
+        }
+      ],
+      "role": "symbol",
+      "title": "playerIDs",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatch/playerids"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatch/playerProperties": {
+      "abstract": [
+        {
+          "text": "The properties for other players that matchmaking rules uses to find players, with some additions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playerProperties"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKPlayer",
+          "text": "GKPlayer"
+        },
+        {
+          "kind": "text",
+          "text": " : ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]]?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatch/playerProperties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playerProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "playerProperties",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatch/playerproperties"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatch/players": {
+      "abstract": [
+        {
+          "text": "The players that join the match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "players"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKPlayer",
+          "text": "GKPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatch/players",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "players"
+        }
+      ],
+      "role": "symbol",
+      "title": "players",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatch/players"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatch/properties": {
+      "abstract": [
+        {
+          "text": "The local player’s properties that matchmaking rules used to find the players with some additions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "properties"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatch/properties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "properties"
+        }
+      ],
+      "role": "symbol",
+      "title": "properties",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatch/properties"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatch/rematch(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Creates a new match with the players from an existing match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rematch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKMatch",
+          "text": "GKMatch"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatch/rematch(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rematchWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "rematch(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatch/rematch(completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatch/send(_:to:dataMode:)": {
+      "abstract": [
+        {
+          "text": "Transmits data to one or more players connected to the match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "send"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKPlayer",
+          "text": "GKPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dataMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKMatch",
+          "text": "GKMatch"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@GKMatchSendDataMode",
+          "text": "SendDataMode"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatch/send(_:to:dataMode:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sendData:toPlayers:dataMode:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "send(_:to:dataMode:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatch/send(_:to:datamode:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatch/send(_:toPlayers:with:)": {
+      "abstract": [
+        {
+          "text": "Transmits data to a list of connected players.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "send"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toPlayers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKMatch",
+          "text": "GKMatch"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@GKMatchSendDataMode",
+          "text": "SendDataMode"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatch/send(_:toPlayers:with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sendData:toPlayers:withDataMode:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "send(_:toPlayers:with:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatch/send(_:toplayers:with:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatch/sendData(toAllPlayers:with:)": {
+      "abstract": [
+        {
+          "text": "Transmits data to all players connected to the match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toAllPlayers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKMatch",
+          "text": "GKMatch"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@GKMatchSendDataMode",
+          "text": "SendDataMode"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatch/sendData(toAllPlayers:with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sendDataToAllPlayers:withDataMode:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sendData(toAllPlayers:with:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatch/senddata(toallplayers:with:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatch/voiceChat(withName:)": {
+      "abstract": [
+        {
+          "text": "Joins the local player to a voice channel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "voiceChat"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKVoiceChat",
+          "text": "GKVoiceChat"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatch/voiceChat(withName:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "voiceChatWithName:"
+        }
+      ],
+      "role": "symbol",
+      "title": "voiceChat(withName:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatch/voicechat(withname:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchDelegate": {
+      "abstract": [
+        {
+          "text": "An object that receives connection status and data transmitted in a multiplayer game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKMatchDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKMatchDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKMatchDelegate",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchdelegate"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchDelegate/match(_:didReceive:fromRemotePlayer:)": {
+      "abstract": [
+        {
+          "text": "Processes the data sent from another player to the local player.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "match"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKMatch",
+          "text": "GKMatch"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didReceive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromRemotePlayer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKPlayer",
+          "text": "GKPlayer"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchDelegate/match(_:didReceive:fromRemotePlayer:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "match:didReceiveData:fromRemotePlayer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "match(_:didReceive:fromRemotePlayer:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchdelegate/match(_:didreceive:fromremoteplayer:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchDelegate/match(_:player:didChange:)-8ohgr": {
+      "abstract": [
+        {
+          "text": "Handles when players connect or disconnect from a match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "match"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKMatch",
+          "text": "GKMatch"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "player"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKPlayer",
+          "text": "GKPlayer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didChange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@GKPlayerConnectionState",
+          "text": "GKPlayerConnectionState"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchDelegate/match(_:player:didChange:)-8ohgr",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "match:player:didChangeConnectionState:"
+        }
+      ],
+      "role": "symbol",
+      "title": "match(_:player:didChange:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchdelegate/match(_:player:didchange:)-8ohgr"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchProperties": {
+      "abstract": [
+        {
+          "text": "A type for game-specific properties that Game Center uses to find players when using matchmaking rules.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GKMatchProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchProperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GKMatchProperties",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchproperties"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest": {
+      "abstract": [
+        {
+          "text": "An object that encapsulates the parameters to create a real-time or turn-based match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKMatchRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKMatchRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKMatchRequest",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchrequest"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker": {
+      "abstract": [
+        {
+          "text": "An object that creates matches with other players without presenting an interface to the players.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKMatchmaker"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKMatchmaker"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKMatchmaker",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmaker"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/findMatch(for:withCompletionHandler:)": {
+      "abstract": [
+        {
+          "text": "Initiates a request to find players for a peer-to-peer match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "findMatch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKMatchRequest",
+          "text": "GKMatchRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKMatch",
+          "text": "GKMatch"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/findMatch(for:withCompletionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "findMatchForRequest:withCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "findMatch(for:withCompletionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmaker/findmatch(for:withcompletionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmakerViewController": {
+      "abstract": [
+        {
+          "text": "An interface that allows a player to invite other players to a real-time game and automatch to fill any empty slots.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKMatchmakerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmakerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKMatchmakerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKMatchmakerViewController",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmakerviewcontroller"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmakerViewControllerDelegate": {
+      "abstract": [
+        {
+          "text": "An object that handles when the status of matchmaking changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKMatchmakerViewControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmakerViewControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKMatchmakerViewControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKMatchmakerViewControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmakerviewcontrollerdelegate"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmakerViewControllerDelegate/matchmakerViewController(_:didFind:)": {
+      "abstract": [
+        {
+          "text": "Handles when the view controller finds players for a peer-to-peer match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "matchmakerViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKMatchmakerViewController",
+          "text": "GKMatchmakerViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFind"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKMatch",
+          "text": "GKMatch"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmakerViewControllerDelegate/matchmakerViewController(_:didFind:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "matchmakerViewController:didFindMatch:"
+        }
+      ],
+      "role": "symbol",
+      "title": "matchmakerViewController(_:didFind:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmakerviewcontrollerdelegate/matchmakerviewcontroller(_:didfind:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat": {
+      "abstract": [
+        {
+          "text": "A voice channel that allows players to speak with each other in a multiplayer game.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKVoiceChat"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKVoiceChat"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKVoiceChat",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkvoicechat"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/adding-voice-chat-to-multiplayer-games": {
+      "abstract": [
+        {
+          "text": "Enable players to voice chat with all, or groups of, players in a multiplayer game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/adding-voice-chat-to-multiplayer-games",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding voice chat to multiplayer games",
+      "type": "topic",
+      "url": "/documentation/gamekit/adding-voice-chat-to-multiplayer-games"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/assigning-players-to-teams-using-rules": {
+      "abstract": [
+        {
+          "text": "Set criteria for assigning players to teams in your game using matchmaking rules.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/assigning-players-to-teams-using-rules",
+      "kind": "article",
+      "role": "article",
+      "title": "Assigning players to teams using rules",
+      "type": "topic",
+      "url": "/documentation/gamekit/assigning-players-to-teams-using-rules"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/creating-real-time-games": {
+      "abstract": [
+        {
+          "text": "Develop games where multiple players interact in real time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/creating-real-time-games",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating real-time games",
+      "type": "topic",
+      "url": "/documentation/gamekit/creating-real-time-games"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/exchanging-data-between-players-in-real-time-games": {
+      "abstract": [
+        {
+          "text": "Send data between players in a real-time multiplayer game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/exchanging-data-between-players-in-real-time-games",
+      "kind": "article",
+      "role": "article",
+      "title": "Exchanging data between players in real-time games",
+      "type": "topic",
+      "url": "/documentation/gamekit/exchanging-data-between-players-in-real-time-games"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/finding-multiple-players-for-a-game": {
+      "abstract": [
+        {
+          "text": "Discover and invite other players to participate in a real-time game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/finding-multiple-players-for-a-game",
+      "kind": "article",
+      "role": "article",
+      "title": "Finding multiple players for a game",
+      "type": "topic",
+      "url": "/documentation/gamekit/finding-multiple-players-for-a-game"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/matchmaking-rules": {
+      "abstract": [
+        {
+          "text": "Game Center applies different type of rules you create in a particular order to find the best matches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/matchmaking-rules",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Matchmaking rules",
+      "type": "topic",
+      "url": "/documentation/gamekit/matchmaking-rules"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Real-time-games",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/creating-real-time-games",
+        "doc://com.apple.gamekit/documentation/GameKit/finding-multiple-players-for-a-game",
+        "doc://com.apple.gamekit/documentation/GameKit/exchanging-data-between-players-in-real-time-games",
+        "doc://com.apple.gamekit/documentation/GameKit/adding-voice-chat-to-multiplayer-games",
+        "doc://com.apple.gamekit/documentation/GameKit/matchmaking-rules",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatchmakerViewController",
+        "doc://com.apple.gamekit/documentation/GameKit/GKInviteEventListener",
+        "doc://com.apple.gamekit/documentation/GameKit/GKInvite"
+      ],
+      "title": "Real-time games"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Setting-the-delegate",
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatch/delegate",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatchDelegate"
+      ],
+      "title": "Setting the delegate"
+    },
+    {
+      "anchor": "Working-with-other-players",
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatch/expectedPlayerCount",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatch/players"
+      ],
+      "title": "Working with other players"
+    },
+    {
+      "anchor": "Sending-data-to-other-players",
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatch/chooseBestHostingPlayer(completionHandler:)",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatch/send(_:to:dataMode:)",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatch/sendData(toAllPlayers:with:)",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatch/SendDataMode"
+      ],
+      "title": "Sending data to other players"
+    },
+    {
+      "anchor": "Joining-a-voice-chat",
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatch/voiceChat(withName:)"
+      ],
+      "title": "Joining a voice chat"
+    },
+    {
+      "anchor": "Getting-matchmaking-properties",
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatch/properties",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatch/playerProperties"
+      ],
+      "title": "Getting matchmaking properties"
+    },
+    {
+      "anchor": "Finishing-the-match",
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatch/disconnect()",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatch/rematch(completionHandler:)"
+      ],
+      "title": "Finishing the match"
+    },
+    {
+      "anchor": "Deprecated-Methods-and-Properties",
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatch/chooseBestHostPlayer(completionHandler:)",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatch/playerIDs",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatch/send(_:toPlayers:with:)"
+      ],
+      "title": "Deprecated Methods and Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.1",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.1",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.8",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "GKMatch"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.gamekit/documentation/GameKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Setting-the-delegate",
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatch/delegate",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchDelegate"
+              ],
+              "title": "Setting the delegate"
+            },
+            {
+              "anchor": "Working-with-other-players",
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatch/expectedPlayerCount",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatch/players"
+              ],
+              "title": "Working with other players"
+            },
+            {
+              "anchor": "Sending-data-to-other-players",
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatch/chooseBestHostingPlayer(completionHandler:)",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatch/send(_:to:dataMode:)",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatch/sendData(toAllPlayers:with:)",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatch/SendDataMode"
+              ],
+              "title": "Sending data to other players"
+            },
+            {
+              "anchor": "Joining-a-voice-chat",
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatch/voiceChat(withName:)"
+              ],
+              "title": "Joining a voice chat"
+            },
+            {
+              "anchor": "Getting-matchmaking-properties",
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatch/properties",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatch/playerProperties",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchProperties"
+              ],
+              "title": "Getting matchmaking properties"
+            },
+            {
+              "anchor": "Finishing-the-match",
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatch/disconnect()",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatch/rematch(completionHandler:)"
+              ],
+              "title": "Finishing the match"
+            },
+            {
+              "anchor": "Deprecated-Methods-and-Properties",
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatch/chooseBestHostPlayer(completionHandler:)",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatch/playerIDs",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatch/send(_:toPlayers:with:)"
+              ],
+              "title": "Deprecated Methods and Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Real-time-games",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/creating-real-time-games",
+                "doc://com.apple.gamekit/documentation/GameKit/finding-multiple-players-for-a-game",
+                "doc://com.apple.gamekit/documentation/GameKit/exchanging-data-between-players-in-real-time-games",
+                "doc://com.apple.gamekit/documentation/GameKit/adding-voice-chat-to-multiplayer-games",
+                "doc://com.apple.gamekit/documentation/GameKit/matchmaking-rules",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchmakerViewController",
+                "doc://com.apple.gamekit/documentation/GameKit/GKInviteEventListener",
+                "doc://com.apple.gamekit/documentation/GameKit/GKInvite"
+              ],
+              "title": "Real-time games"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "GKMatch"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchDelegate/title",
+          "value": "GKMatchDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKInviteEventListener/title",
+          "value": "GKInviteEventListener"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKInviteEventListener/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKInviteEventListener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKInviteEventListener/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKInviteEventListener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1voiceChat(withName:)/title",
+          "value": "voiceChatWithName:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1voiceChat(withName:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "voiceChatWithName:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1send(_:to:dataMode:)/title",
+          "value": "sendData:toPlayers:dataMode:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1send(_:to:dataMode:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sendData:toPlayers:dataMode:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKInvite/title",
+          "value": "GKInvite"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKInvite/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKInvite"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKInvite/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKInvite"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1properties/title",
+          "value": "properties"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1properties/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch/title",
+          "value": "GKMatch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1expectedPlayerCount/title",
+          "value": "expectedPlayerCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1expectedPlayerCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "expectedPlayerCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchRequest/title",
+          "value": "GKMatchRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1findMatch(for:withCompletionHandler:)/title",
+          "value": "findMatchForRequest:withCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1findMatch(for:withCompletionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "findMatchForRequest:withCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchDelegate~1match(_:didReceive:fromRemotePlayer:)/title",
+          "value": "match:didReceiveData:fromRemotePlayer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchDelegate~1match(_:didReceive:fromRemotePlayer:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "match:didReceiveData:fromRemotePlayer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1disconnect()/title",
+          "value": "disconnect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1disconnect()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "disconnect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1sendData(toAllPlayers:with:)/title",
+          "value": "sendDataToAllPlayers:withDataMode:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1sendData(toAllPlayers:with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sendDataToAllPlayers:withDataMode:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1rematch(completionHandler:)/title",
+          "value": "rematchWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1rematch(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "rematchWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmakerViewControllerDelegate/title",
+          "value": "GKMatchmakerViewControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmakerViewControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchmakerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmakerViewControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchmakerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1chooseBestHostPlayer(completionHandler:)/title",
+          "value": "chooseBestHostPlayerWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1chooseBestHostPlayer(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "chooseBestHostPlayerWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1SendDataMode/title",
+          "value": "GKMatchSendDataMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1SendDataMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchSendDataMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1SendDataMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchSendDataMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1players/title",
+          "value": "players"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1players/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "players"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmakerViewControllerDelegate~1matchmakerViewController(_:didFind:)/title",
+          "value": "matchmakerViewController:didFindMatch:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmakerViewControllerDelegate~1matchmakerViewController(_:didFind:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "matchmakerViewController:didFindMatch:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1playerProperties/title",
+          "value": "playerProperties"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1playerProperties/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "playerProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmakerViewController/title",
+          "value": "GKMatchmakerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmakerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchmakerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmakerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchmakerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1chooseBestHostingPlayer(completionHandler:)/title",
+          "value": "chooseBestHostingPlayerWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1chooseBestHostingPlayer(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "chooseBestHostingPlayerWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker/title",
+          "value": "GKMatchmaker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchmaker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchmaker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchDelegate~1match(_:player:didChange:)-8ohgr/title",
+          "value": "match:player:didChangeConnectionState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchDelegate~1match(_:player:didChange:)-8ohgr/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "match:player:didChangeConnectionState:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1playerIDs/title",
+          "value": "playerIDs"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1playerIDs/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "playerIDs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1send(_:toPlayers:with:)/title",
+          "value": "sendData:toPlayers:withDataMode:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch~1send(_:toPlayers:with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sendData:toPlayers:withDataMode:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKVoiceChat/title",
+          "value": "GKVoiceChat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKVoiceChat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKVoiceChat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKVoiceChat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKVoiceChat"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamekit/gkmatch"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gamekit/gkmatch"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

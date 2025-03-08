@@ -1,0 +1,750 @@
+{
+  "abstract": [
+    {
+      "text": "Use account-specific storage to segregate data on a multiuser system.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.tvservices/documentation/TVServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.tvservices/documentation/TVServices/personalizing-your-app-for-each-user-on-apple-tv"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "TV Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Personalizing Your App for Each User on Apple TV"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Multiple people can log in to accounts on a single Apple TV, and you can set up your app so each member of a household can use it with their own Apple TV account. When a user logs in, your app can access their preferences and GameCenter and iCloud data. If your app is also available on iOS or iPadOS, a user can pick up where they left off on their personal device as well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app doesn’t include the ",
+              "type": "text"
+            },
+            {
+              "code": "User Management",
+              "type": "codeVoice"
+            },
+            {
+              "text": " capability, the system runs your app as the default user, instead of the current user. If you design your app with individual profiles in a single shared account, consider ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tvservices/documentation/TVServices/mapping-apple-tv-users-to-app-profiles",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Access-the-Current-Users-Data",
+          "level": 3,
+          "text": "Access the Current User’s Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In most cases, managing each user’s data in their Apple account provides the best user experience, but it requires some support in your app. In order to provide a personalized experience in your app, enable the ",
+              "type": "text"
+            },
+            {
+              "code": "Runs as Current User",
+              "type": "codeVoice"
+            },
+            {
+              "text": " privilege in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.user-management",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " capability. This entitlement grants your app access to data for the current user in keychain, preferences, iCloud, and Game Center.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/applicationWillTerminate(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to save data in case a user switch occurs while your app is in the foreground. Make sure you’re using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/applicationWillResignActive(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to save data whenever the user switches away from your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Optimize-Data-Usage",
+          "level": 3,
+          "text": "Optimize Data Usage",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app receives a push notification from CloudKit, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKNotification/subscriptionOwnerUserRecordID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to check whether the update is for the current user. If the notification is for another user on this device, you may choose to ignore the push, and get the data the next time the other user accesses your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.user-management": {
+      "abstract": [
+        {
+          "text": "The entitlement for distinguishing between multiple user accounts on Apple TV.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.user-management",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "User Management Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.user-management"
+    },
+    "doc://com.apple.documentation/documentation/CloudKit/CKNotification/subscriptionOwnerUserRecordID": {
+      "abstract": [
+        {
+          "text": "The ID of the user record that creates the subscription that generates the push notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@NSCopying"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionOwnerUserRecordID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecordID",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CloudKit/CKNotification/subscriptionOwnerUserRecordID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscriptionOwnerUserRecordID",
+      "type": "topic",
+      "url": "/documentation/CloudKit/CKNotification/subscriptionOwnerUserRecordID"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/applicationWillResignActive(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the app is about to become inactive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationWillResignActive"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/applicationWillResignActive(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applicationWillResignActive(_:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/applicationWillResignActive(_:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/applicationWillTerminate(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the app is about to terminate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationWillTerminate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/applicationWillTerminate(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applicationWillTerminate(_:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/applicationWillTerminate(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices": {
+      "abstract": [
+        {
+          "text": "Display content and descriptions, provide channel guides, and support multiple users on Apple TV.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TV Services",
+      "type": "topic",
+      "url": "/documentation/tvservices"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/TVUserManager": {
+      "abstract": [
+        {
+          "text": "An object that indicates how to store preferences for multiple people on a shared device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TVUserManager"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVUserManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TVUserManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "TVUserManager",
+      "type": "topic",
+      "url": "/documentation/tvservices/tvusermanager"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/mapping-apple-tv-users-to-app-profiles": {
+      "abstract": [
+        {
+          "text": "Adapt the content of your app for the current viewer by using an entitlement and simplifying sign-in flows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/mapping-apple-tv-users-to-app-profiles",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Mapping Apple TV users to app profiles",
+      "type": "topic",
+      "url": "/documentation/tvservices/mapping-apple-tv-users-to-app-profiles"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/supporting-multiple-users-in-your-tvos-app": {
+      "abstract": [
+        {
+          "text": "Store separate data for each user with the new Runs as Current User capability.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/supporting-multiple-users-in-your-tvos-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting Multiple Users in Your tvOS App",
+      "type": "topic",
+      "url": "/documentation/tvservices/supporting-multiple-users-in-your-tvos-app"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Multiple-users",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.tvservices/documentation/TVServices/supporting-multiple-users-in-your-tvos-app",
+        "doc://com.apple.tvservices/documentation/TVServices/mapping-apple-tv-users-to-app-profiles",
+        "doc://com.apple.tvservices/documentation/TVServices/TVUserManager"
+      ],
+      "title": "Multiple users"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Multiple-users",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.tvservices/documentation/TVServices/supporting-multiple-users-in-your-tvos-app",
+                "doc://com.apple.tvservices/documentation/TVServices/mapping-apple-tv-users-to-app-profiles",
+                "doc://com.apple.tvservices/documentation/TVServices/TVUserManager"
+              ],
+              "title": "Multiple users"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CloudKit~1CKNotification~1subscriptionOwnerUserRecordID/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CKRecordID",
+              "text": "CKRecordID"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "subscriptionOwnerUserRecordID"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1applicationWillResignActive(_:)/title",
+          "value": "applicationWillResignActive:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1applicationWillResignActive(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "applicationWillResignActive:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1applicationWillTerminate(_:)/title",
+          "value": "applicationWillTerminate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1applicationWillTerminate(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "applicationWillTerminate:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVUserManager/title",
+          "value": "TVUserManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVUserManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVUserManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVUserManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVUserManager"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/tvservices/personalizing-your-app-for-each-user-on-apple-tv"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/tvservices/personalizing-your-app-for-each-user-on-apple-tv"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

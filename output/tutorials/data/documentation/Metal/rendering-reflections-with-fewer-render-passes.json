@@ -1,0 +1,1319 @@
+{
+  "abstract": [
+    {
+      "text": "Use layer selection to reduce the number of render passes needed to generate an environment map.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/metal-sample-code-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/rendering-reflections-with-fewer-render-passes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Rendering Reflections with Fewer Render Passes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample demonstrates dynamic reflections on a chrome sphere, using layer selection to render the frame in two passes. The first pass renders the environment onto the cube map. The second pass renders the environment reflections onto the sphere; it renders additional actors in the scene; and it renders the environment itself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "reflections-with-layer-selection-1-ReflectionsWithLayerSelections",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can implement an object that reflects its environment by sampling its reflections from a cube map of the environment. A cube map is a single texture composed of six 2D texture layers arranged in the shape of a cube. The reflections vary based on the positions of other objects in the environment, so each of the cube map’s six faces must be rendered dynamically in every frame. This would normally require six separate render passes, one for each face, but Metal allows you to render an entire cube map in a single pass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "reflections-with-layer-selection-2-RenderPasses",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Getting-Started",
+          "level": 3,
+          "text": "Getting Started",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample contains macOS and iOS targets. Run the iOS scheme on a physical device because Metal isn’t supported in the simulator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Layer Selection is supported on all macOS GPUs but only iOS GPUs which support the ",
+              "type": "text"
+            },
+            {
+              "code": "MTLFeatureSet_iOS_GPUFamily5_v1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " feature set.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You check the GPU that you choose at runtime if it supports ICBs using ",
+              "type": "text"
+            },
+            {
+              "code": "MTLDevice",
+              "type": "codeVoice"
+            },
+            {
+              "text": "’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLDevice/supportsFeatureSet(_:)",
+              "isActive": true,
+              "overridingTitle": "supportsFeatureSet:",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "supportsFeatureSet:",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "supportsLayerSelection = [_view.device supportsFeatureSet:MTLFeatureSet_iOS_GPUFamily5_v1];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample calls ‘supportsFeatureSet:’ for this purpose within its view controller’s ",
+              "type": "text"
+            },
+            {
+              "code": "viewDidLoad:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " callback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Separate-the-Scene",
+          "level": 3,
+          "text": "Separate the Scene",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A cube map is represented as a render target array with six layers, one for each of its faces. The ",
+              "type": "text"
+            },
+            {
+              "code": "[[render_target_array_index]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute qualifier, specified for a structure member of a vertex function return value, identifies each array layer separately. This layer selection feature allows the sample to decide which part of the environment gets rendered to which cube map face.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLActorData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object represents an actor in the scene. In this sample, each actor is a temple model with the same mesh data but a different diffuse color. These actors sit on the XZ-plane; they’re always reflected in the X or Z direction relative to the sphere and could be rendered to any of the +X, -X, +Z, or -Z faces of the cube map.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Perform-Culling-Tests-for-the-Reflection-Pass",
+          "level": 3,
+          "text": "Perform Culling Tests for the Reflection Pass",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before rendering to the cube map, it’s useful to know which faces each actor should be rendered to. Determining this information involves a procedure known as a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "culling test",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", and it’s performed on each actor for each cube map face.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At the start of every frame, for each cube map face, a view matrix is calculated and the view’s frustum is stored in the ",
+              "type": "text"
+            },
+            {
+              "code": "culler_probe",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// 1) Get the view matrix for the face given the sphere's updated position",
+            "viewMatrix[i] = _cameraReflection.GetViewMatrixForFace_LH (i);",
+            "",
+            "// 2) Calculate the planes bounding the frustum using the updated view matrix",
+            "//    You use these planes later to test whether an actor's bounding sphere",
+            "//    intersects with the frustum, and is therefore visible in this face's viewport",
+            "culler_probe[i].Reset_LH (viewMatrix [i], _cameraReflection);"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These culler probes test the intersection between an actor and the viewing frustum of each cube map face. The test results determine how many faces the actor is rendered to (",
+              "type": "text"
+            },
+            {
+              "code": "instanceCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") in the reflection pass, and which faces (",
+              "type": "text"
+            },
+            {
+              "code": "instanceParams",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") it’s rendered to.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if (_actorData[actorIdx].passFlags & EPassFlags::Reflection)",
+            "{",
+            "    int instanceCount = 0;",
+            "    for (int faceIdx = 0; faceIdx < 6; faceIdx++)",
+            "    {",
+            "        // Check if the actor is visible in the current probe face",
+            "        if (culler_probe [faceIdx].Intersects (_actorData[actorIdx].modelPosition.xyz, _actorData[actorIdx].bSphere))",
+            "        {",
+            "            // Add this face index to the the list of faces for this actor",
+            "            InstanceParams instanceParams = {(ushort)faceIdx};",
+            "            instanceParams_reflection [MaxVisibleFaces * actorIdx + instanceCount].viewportIndex = instanceParams.viewportIndex;",
+            "            instanceCount++;",
+            "        }",
+            "    }",
+            "    _actorData[actorIdx].instanceCountInReflection = instanceCount;",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following diagram shows the results of the culling tests performed on the temple actors, based on their positions relative to the reflective sphere. Because ",
+              "type": "text"
+            },
+            {
+              "code": "_actorData[0]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "actorData[1]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " bisect two viewing frustums, their ",
+              "type": "text"
+            },
+            {
+              "code": "instanceCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property is set to 2, and there are two elements in their ",
+              "type": "text"
+            },
+            {
+              "code": "instanceParams",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array. (This array contains the cube map face indices of the viewing frustums that the actors intersect.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "reflections-with-layer-selection-3-CullingAndFaceIdxSelection",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-Render-Targets-for-the-Reflection-Pass",
+          "level": 3,
+          "text": "Configure Render Targets for the Reflection Pass",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The render target for the reflection pass is a cube map. The sample configures the render target by using a ",
+              "type": "text"
+            },
+            {
+              "code": "MTLRenderPassDescriptor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object with a color render target, a depth render target, and six layers. The ",
+              "type": "text"
+            },
+            {
+              "code": "renderTargetArrayLength",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property sets the number of cube map faces and allows the render pipeline to render into any or all of them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "reflectionPassDesc.colorAttachments[0].texture    = _reflectionCubeMap;",
+            "reflectionPassDesc.depthAttachment.texture        = _reflectionCubeMapDepth;",
+            "reflectionPassDesc.renderTargetArrayLength        = 6;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Issue-Draw-Calls-for-the-Reflection-Pass",
+          "level": 3,
+          "text": "Issue Draw Calls for the Reflection Pass",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "drawActors:pass:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method sets up the graphics rendering state for each actor. Actors are only drawn if they are visible in any of the six cube map faces, determined by the ",
+              "type": "text"
+            },
+            {
+              "code": "visibleVpCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value (accessed through the ",
+              "type": "text"
+            },
+            {
+              "code": "instanceCountInReflection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property). The value of ",
+              "type": "text"
+            },
+            {
+              "code": "visibleVpCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " determines the number of instances for the instanced draw call.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[renderEncoder drawIndexedPrimitives: metalKitSubmesh.primitiveType",
+            "                          indexCount: metalKitSubmesh.indexCount",
+            "                           indexType: metalKitSubmesh.indexType",
+            "                         indexBuffer: metalKitSubmesh.indexBuffer.buffer",
+            "                   indexBufferOffset: metalKitSubmesh.indexBuffer.offset",
+            "                       instanceCount: visibleVpCount",
+            "                          baseVertex: 0",
+            "                        baseInstance: actorIdx * MaxVisibleFaces];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this draw call, the sample sets the ",
+              "type": "text"
+            },
+            {
+              "code": "baseInstance",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to the value of ",
+              "type": "text"
+            },
+            {
+              "code": "actorIdx * 5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This setting is important because it tells the vertex function how to select the appropriate render target layer for each instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Render-the-Reflection-Pass",
+          "level": 3,
+          "text": "Render the Reflection Pass",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "code": "vertexTransform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " vertex function, the ",
+              "type": "text"
+            },
+            {
+              "code": "instanceParams",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument points to the buffer that contains the cube map faces that each actor should be rendered to. The ",
+              "type": "text"
+            },
+            {
+              "code": "instanceId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value indexes into the ",
+              "type": "text"
+            },
+            {
+              "code": "instanceParams",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "vertex ColorInOut vertexTransform (const Vertex in                               [[ stage_in ]],",
+            "                                   const uint   instanceId                       [[ instance_id ]],",
+            "                                   const device InstanceParams* instanceParams   [[ buffer     (BufferIndexInstanceParams) ]],",
+            "                                   const device ActorParams&    actorParams      [[ buffer (BufferIndexActorParams)    ]],",
+            "                                   constant     ViewportParams* viewportParams   [[ buffer (BufferIndexViewportParams) ]] )"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The output structure of the vertex function, ",
+              "type": "text"
+            },
+            {
+              "code": "ColorInOut",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", contains the ",
+              "type": "text"
+            },
+            {
+              "code": "face",
+              "type": "codeVoice"
+            },
+            {
+              "text": " member that uses the ",
+              "type": "text"
+            },
+            {
+              "code": "[[render_target_array_index]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute qualifier. The return value of ",
+              "type": "text"
+            },
+            {
+              "code": "face",
+              "type": "codeVoice"
+            },
+            {
+              "text": " determines the cube map face that the render pipeline should render to.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ColorInOut",
+            "{",
+            "    float4 position [[position]];",
+            "    float2 texCoord;",
+            "",
+            "    half3  worldPos;",
+            "    half3  tangent;",
+            "    half3  bitangent;",
+            "    half3  normal;",
+            "    uint   face [[render_target_array_index]];",
+            "};"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the value of the draw call’s ",
+              "type": "text"
+            },
+            {
+              "code": "baseInstance",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is set to ",
+              "type": "text"
+            },
+            {
+              "code": "actorIdx * 5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the ",
+              "type": "text"
+            },
+            {
+              "code": "instanceId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value of the first instance drawn in the draw call is equal to this value. Each subsequent rendering of an instance increments the ",
+              "type": "text"
+            },
+            {
+              "code": "instanceId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value by 1. The ",
+              "type": "text"
+            },
+            {
+              "code": "instanceParams",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array has five slots for each actor because an actor can be visible in up to five cube map faces. As a result, the ",
+              "type": "text"
+            },
+            {
+              "code": "instanceParams[instanceId]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element always contains one of the face indices in which the actor is visible. Therefore, the sample uses this value to select a valid render target layer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "out.face = instanceParams[instanceId].viewportIndex;"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In summary, to render each actor to the reflective cube map, the sample issues an instanced draw call for the actor. The vertex function uses the built-in ",
+              "type": "text"
+            },
+            {
+              "code": "instanceId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable to index into the ",
+              "type": "text"
+            },
+            {
+              "code": "instanceParams",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array that contains the index of the cube map face that the instance should be rendered to. Therefore, the vertex function sets this face index in the ",
+              "type": "text"
+            },
+            {
+              "code": "face",
+              "type": "codeVoice"
+            },
+            {
+              "text": " return value member, which uses the ",
+              "type": "text"
+            },
+            {
+              "code": "[[render_target_array_index]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute qualifier. This ensures that each actor is rendered to each cube map face it should appear in.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "reflections-with-layer-selection-4-InstancedRenderingWithTargetIndex",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Perform-Culling-Tests-for-the-Final-Pass",
+          "level": 3,
+          "text": "Perform Culling Tests for the Final Pass",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample performs similar view updates for the main camera in the final pass. At the start of every frame, a view matrix is calculated and the view’s frustum is stored in the ",
+              "type": "text"
+            },
+            {
+              "code": "culler_final",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "_cameraFinal.target   = SceneCenter;",
+            "",
+            "_cameraFinal.rotation = fmod ((_cameraFinal.rotation + CameraRotationSpeed), M_PI*2.f);",
+            "matrix_float3x3 rotationMatrix = matrix3x3_rotation (_cameraFinal.rotation,  CameraRotationAxis);",
+            "",
+            "_cameraFinal.position = SceneCenter;",
+            "_cameraFinal.position += matrix_multiply (rotationMatrix, CameraDistanceFromCenter);",
+            "",
+            "const matrix_float4x4 viewMatrix       = _cameraFinal.GetViewMatrix();",
+            "const matrix_float4x4 projectionMatrix = _cameraFinal.GetProjectionMatrix_LH();",
+            "",
+            "culler_final.Reset_LH (viewMatrix, _cameraFinal);",
+            "",
+            "ViewportParams *viewportBuffer = (ViewportParams *)_viewportsParamsBuffers_final[_uniformBufferIndex].contents;",
+            "viewportBuffer[0].cameraPos            = _cameraFinal.position;",
+            "viewportBuffer[0].viewProjectionMatrix = matrix_multiply (projectionMatrix, viewMatrix);"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This final culler probe is used to test the intersection between an actor and the viewing frustum of the camera. The test result simply determines whether or not each actor is visible in the final pass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if (culler_final.Intersects (_actorData[actorIdx].modelPosition.xyz, _actorData[actorIdx].bSphere))",
+            "{",
+            "    _actorData[actorIdx].visibleInFinal = YES;",
+            "}",
+            "else",
+            "{",
+            "    _actorData[actorIdx].visibleInFinal = NO;",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Configure-Render-Targets-for-the-Final-Pass",
+          "level": 3,
+          "text": "Configure Render Targets for the Final Pass",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The render target for the final pass is the view’s ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "drawable",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", a displayable resource obtained by accessing the view’s ",
+              "type": "text"
+            },
+            {
+              "code": "currentRenderPassDescriptor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property. However, you must not access this property prematurely because it implicitly retrieves a drawable. Drawables are expensive system resources created and maintained by the Core Animation framework. You should always hold a drawable as briefly as possible to avoid resource stalls. In this sample, a drawable is acquired just before the final render pass is encoded.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MTLRenderPassDescriptor* finalPassDescriptor = view.currentRenderPassDescriptor;",
+            "",
+            "if(finalPassDescriptor != nil)",
+            "{",
+            "    finalPassDescriptor.renderTargetArrayLength = 1;",
+            "    id<MTLRenderCommandEncoder> renderEncoder =",
+            "    [commandBuffer renderCommandEncoderWithDescriptor:finalPassDescriptor];",
+            "    renderEncoder.label = @\"FinalPass\";",
+            "",
+            "    [self drawActors: renderEncoder pass: EPassFlags::Final];",
+            "",
+            "    [renderEncoder endEncoding];",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Issue-Draw-Calls-for-the-Final-Pass",
+          "level": 3,
+          "text": "Issue Draw Calls for the Final Pass",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "drawActors:pass",
+              "type": "codeVoice"
+            },
+            {
+              "text": ": method sets up the graphics rendering state for each actor. Actors are only drawn if they are visible to the main camera, as determined by the ",
+              "type": "text"
+            },
+            {
+              "code": "visibleVpCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value (accessed through the ",
+              "type": "text"
+            },
+            {
+              "code": "visibleInFinal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because each actor is drawn only once in the final pass, the ",
+              "type": "text"
+            },
+            {
+              "code": "instanceCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is always set to 1 and the ",
+              "type": "text"
+            },
+            {
+              "code": "baseInstance",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is always set to 0.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Render-the-Final-Pass",
+          "level": 3,
+          "text": "Render the Final Pass",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The final pass renders the final frame directly to the view’s drawable, which is then presented onscreen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[commandBuffer presentDrawable:view.currentDrawable];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "9fcd6e032d34/RenderingReflectionsWithFewerRenderPasses.zip": {
+      "checksum": "9fcd6e032d342ae11973792289970cb3ffd6e675acf0757af6dd5d298cad5f29563fb68a5877e9af29b07ebb3875ae68271104699caee5b56d776467ed591b05",
+      "identifier": "9fcd6e032d34/RenderingReflectionsWithFewerRenderPasses.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/9fcd6e032d34/RenderingReflectionsWithFewerRenderPasses.zip"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLDevice/supportsFeatureSet(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the GPU device supports a specific feature set.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportsFeatureSet"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "featureSet"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLFeatureSet",
+          "text": "MTLFeatureSet"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLDevice/supportsFeatureSet(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "supportsFeatureSet(_:)",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLDevice/supportsFeatureSet(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-sample-code-library": {
+      "abstract": [
+        {
+          "text": "Explore the complete set of Metal samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-sample-code-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Sample Code Library",
+      "type": "topic",
+      "url": "/documentation/metal/metal-sample-code-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-c++": {
+      "abstract": [
+        {
+          "text": "Avoid expensive lighting calculations by implementing a deferred lighting renderer optimized for immediate mode and tile-based deferred renderer GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-c++",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rendering a Scene with Deferred Lighting in C++",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-a-scene-with-deferred-lighting-in-c++"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-objective-c": {
+      "abstract": [
+        {
+          "text": "Avoid expensive lighting calculations by implementing a deferred lighting renderer optimized for immediate mode and tile-based deferred renderer GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-objective-c",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rendering a Scene with Deferred Lighting in Objective-C",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-a-scene-with-deferred-lighting-in-objective-c"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-swift": {
+      "abstract": [
+        {
+          "text": "Avoid expensive lighting calculations by implementing a deferred lighting renderer optimized for immediate mode and tile-based deferred renderer GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-swift",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rendering a Scene with Deferred Lighting in Swift",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-a-scene-with-deferred-lighting-in-swift"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-forward-plus-lighting-using-tile-shaders": {
+      "abstract": [
+        {
+          "text": "Implement a forward plus renderer using the latest features on Apple GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-forward-plus-lighting-using-tile-shaders",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rendering a Scene with Forward Plus Lighting Using Tile Shaders",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-a-scene-with-forward-plus-lighting-using-tile-shaders"
+    },
+    "reflections-with-layer-selection-1-ReflectionsWithLayerSelections": {
+      "alt": "Reflections with Layer Selection",
+      "identifier": "reflections-with-layer-selection-1-ReflectionsWithLayerSelections",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e4a361c089b944adfd6aca1902e22f80/reflections-with-layer-selection-1-ReflectionsWithLayerSelections.png"
+        }
+      ]
+    },
+    "reflections-with-layer-selection-2-RenderPasses": {
+      "alt": "Render Passes",
+      "identifier": "reflections-with-layer-selection-2-RenderPasses",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/257f04c7dc2202916dc67845aa682fdc/reflections-with-layer-selection-2-RenderPasses.png"
+        }
+      ]
+    },
+    "reflections-with-layer-selection-3-CullingAndFaceIdxSelection": {
+      "alt": "Face Culling and Face Index Assignment",
+      "identifier": "reflections-with-layer-selection-3-CullingAndFaceIdxSelection",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/57d3d13eba123862fe54513ed0622919/reflections-with-layer-selection-3-CullingAndFaceIdxSelection.png"
+        }
+      ]
+    },
+    "reflections-with-layer-selection-4-InstancedRenderingWithTargetIndex": {
+      "alt": "Instanced Draw with render_target_array_index",
+      "identifier": "reflections-with-layer-selection-4-InstancedRenderingWithTargetIndex",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/866006843b2d022fc18816b0e78168b9/reflections-with-layer-selection-4-InstancedRenderingWithTargetIndex.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "9fcd6e032d34/RenderingReflectionsWithFewerRenderPasses.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Lighting-Techniques",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-forward-plus-lighting-using-tile-shaders",
+        "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-objective-c",
+        "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-swift",
+        "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-c++"
+      ],
+      "title": "Lighting Techniques"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Lighting-Techniques",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-forward-plus-lighting-using-tile-shaders",
+                "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-objective-c",
+                "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-swift",
+                "doc://com.apple.metal/documentation/Metal/rendering-a-scene-with-deferred-lighting-in-c++"
+              ],
+              "title": "Lighting Techniques"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLDevice~1supportsFeatureSet(_:)/title",
+          "value": "supportsFeatureSet:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLDevice~1supportsFeatureSet(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "supportsFeatureSet:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@MTLFeatureSet",
+              "text": "MTLFeatureSet"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "featureSet"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/rendering-reflections-with-fewer-render-passes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/rendering-reflections-with-fewer-render-passes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

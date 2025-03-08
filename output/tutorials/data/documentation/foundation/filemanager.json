@@ -1,0 +1,4372 @@
+{
+  "abstract": [
+    {
+      "text": "A convenient interface to the contents of the file system, and the primary means of interacting with it.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/file_system"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/icloud"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/filemanager"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1418449,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSFileManager",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "FileManager"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "FileManager"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "FileManager"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A file manager object lets you examine the contents of the file system and make changes to it. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class provides convenient access to a shared file manager object that is suitable for most types of file-related manipulations. A file manager object is typically your primary mode of interaction with the file system. You use it to locate, create, copy, and move files and directories. You also use it to get information about a file or directory or change some of its attributes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When specifying the location of files, you can use either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects. The use of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class is generally preferred for specifying file-system items because URLs can convert path information to a more efficient representation internally. You can also obtain a bookmark from an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object, which is similar to an alias and offers a more sure way of locating the file or directory later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you are moving, copying, linking, or removing files or directories, you can use a delegate in conjunction with a file manager object to manage those operations. The delegate’s role is to affirm the operation and to decide whether to proceed when errors occur. In macOS 10.7 and later, the delegate must conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 5.0 and later and in macOS 10.7 and later, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " includes methods for managing items stored in iCloud. Files and directories tagged for cloud storage are synced to iCloud so that they can be made available to the user’s iOS devices and Macintosh computers. Changes to an item in one location are propagated to all other locations to ensure the items stay in sync.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1651181",
+          "level": 3,
+          "text": "Threading Considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The methods of the shared ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object can be called from multiple threads safely. However, if you use a delegate to receive notifications about the status of move, copy, remove, and link operations, you should create a unique instance of the file manager object, assign your delegate to that object, and use that file manager to initiate your operations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.security.application-groups": {
+      "abstract": [
+        {
+          "text": "A list of identifiers specifying the groups your app belongs to.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "App Groups Entitlement",
+      "identifier": "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.security.application-groups",
+      "kind": "symbol",
+      "name": "com.apple.security.application-groups",
+      "role": "symbol",
+      "title": "App Groups Entitlement",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.security.application-groups"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1409211-nstemporarydirectory": {
+      "abstract": [
+        {
+          "text": "Returns the path of the temporary directory for the current user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTemporaryDirectory"
+        },
+        {
+          "kind": "text",
+          "text": "() -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1409211-nstemporarydirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTemporaryDirectory()",
+      "type": "topic",
+      "url": "/documentation/foundation/1409211-nstemporarydirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1410265-nsfullusername": {
+      "abstract": [
+        {
+          "text": "Returns a string containing the full name of the current user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFullUserName"
+        },
+        {
+          "kind": "text",
+          "text": "() -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1410265-nsfullusername",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFullUserName()",
+      "type": "topic",
+      "url": "/documentation/foundation/1410265-nsfullusername"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1412112-nsfiletypeforhfstypecode": {
+      "abstract": [
+        {
+          "text": "Returns a string encoding a file type code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileTypeForHFSTypeCode"
+        },
+        {
+          "kind": "text",
+          "text": "(OSType) -> String!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1412112-nsfiletypeforhfstypecode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileTypeForHFSTypeCode(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/1412112-nsfiletypeforhfstypecode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1413045-nshomedirectory": {
+      "abstract": [
+        {
+          "text": "Returns the path to either the user’s or application’s home directory, depending on the platform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHomeDirectory"
+        },
+        {
+          "kind": "text",
+          "text": "() -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1413045-nshomedirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHomeDirectory()",
+      "type": "topic",
+      "url": "/documentation/foundation/1413045-nshomedirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1413447-nshomedirectoryforuser": {
+      "abstract": [
+        {
+          "text": "Returns the path to a given user’s home directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHomeDirectoryForUser"
+        },
+        {
+          "kind": "text",
+          "text": "(String?) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1413447-nshomedirectoryforuser",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHomeDirectoryForUser(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/1413447-nshomedirectoryforuser"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1414132-nsopensteprootdirectory": {
+      "abstract": [
+        {
+          "text": "Returns the root directory of the user’s system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSOpenStepRootDirectory"
+        },
+        {
+          "kind": "text",
+          "text": "() -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1414132-nsopensteprootdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSOpenStepRootDirectory()",
+      "type": "topic",
+      "url": "/documentation/foundation/1414132-nsopensteprootdirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1414224-nssearchpathfordirectoriesindoma": {
+      "abstract": [
+        {
+          "text": "Creates a list of directory search paths.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSearchPathForDirectoriesInDomains"
+        },
+        {
+          "kind": "text",
+          "text": "(FileManager.SearchPathDirectory, FileManager.SearchPathDomainMask, Bool) -> [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1414224-nssearchpathfordirectoriesindoma",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSearchPathForDirectoriesInDomains(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/1414224-nssearchpathfordirectoriesindoma"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1414297-nsusername": {
+      "abstract": [
+        {
+          "text": "Returns the logon name of the current user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserName"
+        },
+        {
+          "kind": "text",
+          "text": "() -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1414297-nsusername",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserName()",
+      "type": "topic",
+      "url": "/documentation/foundation/1414297-nsusername"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1414326-nshfstypeoffile": {
+      "abstract": [
+        {
+          "text": "Returns a string encoding a file type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHFSTypeOfFile"
+        },
+        {
+          "kind": "text",
+          "text": "(String!) -> String!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1414326-nshfstypeoffile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHFSTypeOfFile(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/1414326-nshfstypeoffile"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1415466-nshfstypecodefromfiletype": {
+      "abstract": [
+        {
+          "text": "Returns a file type code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHFSTypeCodeFromFileType"
+        },
+        {
+          "kind": "text",
+          "text": "(String!) -> OSType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1415466-nshfstypecodefromfiletype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHFSTypeCodeFromFileType(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/1415466-nshfstypecodefromfiletype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File System",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system/about_apple_file_system": {
+      "abstract": [
+        {
+          "text": "Use high-level APIs to get the most out of Apple File System.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system/about_apple_file_system",
+      "kind": "article",
+      "role": "article",
+      "title": "About Apple File System",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system/about_apple_file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system/improving_performance_and_stability_when_accessing_the_file_system": {
+      "abstract": [
+        {
+          "text": "Prevent data loss and app crashes by interacting with the file system in a coordinated, asynchronous manner and by avoiding unnecessary disk I/O.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system/improving_performance_and_stability_when_accessing_the_file_system",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving performance and stability when accessing the file system",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system/improving_performance_and_stability_when_accessing_the_file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/fileattributekey": {
+      "abstract": [
+        {
+          "text": "Keys in dictionaries used to get and set file attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileAttributeKey"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/fileattributekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileAttributeKey",
+      "type": "topic",
+      "url": "/documentation/foundation/fileattributekey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/fileattributetype": {
+      "abstract": [
+        {
+          "text": "Values representing a file’s type attribute.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileAttributeType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/fileattributetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileAttributeType",
+      "type": "topic",
+      "url": "/documentation/foundation/fileattributetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager": {
+      "abstract": [
+        {
+          "text": "A convenient interface to the contents of the file system, and the primary means of interacting with it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManager",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1407229-getrelationship": {
+      "abstract": [
+        {
+          "text": "Determines the type of relationship that exists between a directory and an item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "getRelationship"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<FileManager.URLRelationship>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "ofDirectoryAt"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "toItemAt"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1407229-getrelationship",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getRelationship(_:ofDirectoryAt:toItemAt:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1407229-getrelationship"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1407347-contents": {
+      "abstract": [
+        {
+          "text": "Returns the contents of the file at the specified path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "contents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Data?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1407347-contents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contents(atPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1407347-contents"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1407693-url": {
+      "abstract": [
+        {
+          "text": "Locates and optionally creates the specified common directory in a domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": FileManager.SearchPathDirectory, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": FileManager.SearchPathDomainMask, "
+        },
+        {
+          "kind": "identifier",
+          "text": "appropriateFor"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "create"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool) -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1407693-url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url(for:in:appropriateFor:create:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1407693-url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1407726-urls": {
+      "abstract": [
+        {
+          "text": "Returns an array of URLs for the specified common directory in the requested domains.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "urls"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": FileManager.SearchPathDirectory, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": FileManager.SearchPathDomainMask) -> [URL]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1407726-urls",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urls(for:in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1407726-urls"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1407884-createdirectory": {
+      "abstract": [
+        {
+          "text": "Creates a directory with given attributes at the specified path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "createDirectory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withIntermediateDirectories"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": [FileAttributeKey : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1407884-createdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createDirectory(atPath:withIntermediateDirectories:attributes:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1407884-createdirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1407903-copyitem": {
+      "abstract": [
+        {
+          "text": "Copies the item at the specified path to a new location synchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "toPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1407903-copyitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copyItem(atPath:toPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1407903-copyitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1408036-ubiquityidentitytoken": {
+      "abstract": [
+        {
+          "text": "An opaque token that represents the current user’s iCloud Drive Documents identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "ubiquityIdentityToken"
+        },
+        {
+          "kind": "text",
+          "text": ": (any NSCoding & NSCopying & NSObjectProtocol)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1408036-ubiquityidentitytoken",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ubiquityIdentityToken",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1408036-ubiquityidentitytoken"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1408087-isdeletablefile": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the invoking object appears able to delete a specified file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDeletableFile"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1408087-isdeletablefile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isDeletableFile(atPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1408087-isdeletablefile"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1408573-removeitem": {
+      "abstract": [
+        {
+          "text": "Removes the file or directory at the specified path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1408573-removeitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeItem(atPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1408573-removeitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1408726-enumerator": {
+      "abstract": [
+        {
+          "text": "Returns a directory enumerator object that can be used to perform a deep enumeration of the directory at the specified path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> FileManager.DirectoryEnumerator?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1408726-enumerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enumerator(atPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1408726-enumerator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1409234-default": {
+      "abstract": [
+        {
+          "text": "The shared file manager object for the process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "`default`"
+        },
+        {
+          "kind": "text",
+          "text": ": FileManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1409234-default",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "default",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1409234-default"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1409626-mountedvolumeurls": {
+      "abstract": [
+        {
+          "text": "Returns an array of URLs that identify the mounted volumes available on the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "mountedVolumeURLs"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "includingResourceValuesForKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": [URLResourceKey]?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": FileManager.VolumeEnumerationOptions) -> [URL]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1409626-mountedvolumeurls",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mountedVolumeURLs(includingResourceValuesForKeys:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1409626-mountedvolumeurls"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1409640-string": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " object whose contents are derived from the specified C-string path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withFileSystemRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<CChar>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": Int) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1409640-string",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "string(withFileSystemRepresentation:length:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1409640-string"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1409696-evictubiquitousitem": {
+      "abstract": [
+        {
+          "text": "Removes the local copy of the specified item that’s stored in iCloud.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "evictUbiquitousItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1409696-evictubiquitousitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "evictUbiquitousItem(at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1409696-evictubiquitousitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1409751-displayname": {
+      "abstract": [
+        {
+          "text": "Returns the display name of the file or directory at a specified path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1409751-displayname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "displayName(atPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1409751-displayname"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1409917-unmountvolume": {
+      "abstract": [
+        {
+          "text": "Starts the process of unmounting the specified volume.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "unmountVolume"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": FileManager.UnmountOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any Error)?) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1409917-unmountvolume",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unmountVolume(at:options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1409917-unmountvolume"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1410218-isubiquitousitem": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean indicating whether the item is targeted for storage in iCloud.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isUbiquitousItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": URL) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1410218-isubiquitousitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isUbiquitousItem(at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1410218-isubiquitousitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1410277-fileexists": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a file or directory exists at a specified path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileExists"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutablePointer<ObjCBool>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1410277-fileexists",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileExists(atPath:isDirectory:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1410277-fileexists"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1410377-startdownloadingubiquitousitem": {
+      "abstract": [
+        {
+          "text": "Starts downloading (if necessary) the specified item to the local system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "startDownloadingUbiquitousItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1410377-startdownloadingubiquitousitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startDownloadingUbiquitousItem(at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1410377-startdownloadingubiquitousitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1410452-attributesofitem": {
+      "abstract": [
+        {
+          "text": "Returns the attributes of the item at a given path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributesOfItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [FileAttributeKey : Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1410452-attributesofitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attributesOfItem(atPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1410452-attributesofitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1410695-createfile": {
+      "abstract": [
+        {
+          "text": "Creates a file with the specified content and attributes at the given location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "createFile"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "contents"
+        },
+        {
+          "kind": "text",
+          "text": ": Data?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": [FileAttributeKey : Any]?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1410695-createfile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createFile(atPath:contents:attributes:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1410695-createfile"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1410766-currentdirectorypath": {
+      "abstract": [
+        {
+          "text": "The path to the program’s current directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentDirectoryPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1410766-currentdirectorypath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentDirectoryPath",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1410766-currentdirectorypath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1411007-createsymboliclink": {
+      "abstract": [
+        {
+          "text": "Creates a symbolic link that points to the specified destination. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "createSymbolicLink"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withDestinationPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1411007-createsymboliclink",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createSymbolicLink(atPath:withDestinationPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1411007-createsymboliclink"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1411206-linkitem": {
+      "abstract": [
+        {
+          "text": "Creates a hard link between the items at the specified paths.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "linkItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "toPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1411206-linkitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "linkItem(atPath:toPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1411206-linkitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1411439-getrelationship": {
+      "abstract": [
+        {
+          "text": "Determines the type of relationship that exists between a system directory and the specified item. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "getRelationship"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<FileManager.URLRelationship>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": FileManager.SearchPathDirectory, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": FileManager.SearchPathDomainMask, "
+        },
+        {
+          "kind": "identifier",
+          "text": "toItemAt"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1411439-getrelationship",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getRelationship(_:of:in:toItemAt:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1411439-getrelationship"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1411577-url": {
+      "abstract": [
+        {
+          "text": "Returns a URL that can be emailed to users to allow them to download a copy of a flat file item from iCloud.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forPublishingUbiquitousItemAt"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "expiration"
+        },
+        {
+          "kind": "text",
+          "text": ": AutoreleasingUnsafeMutablePointer<NSDate?>?) -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1411577-url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url(forPublishingUbiquitousItemAt:expiration:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1411577-url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1411653-url": {
+      "abstract": [
+        {
+          "text": "Returns the URL for the iCloud container associated with the specified identifier and establishes access to that container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forUbiquityContainerIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String?) -> URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1411653-url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url(forUbiquityContainerIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1411653-url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1411896-attributesoffilesystem": {
+      "abstract": [
+        {
+          "text": "Returns a dictionary that describes the attributes of the mounted file system on which a given path resides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributesOfFileSystem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [FileAttributeKey : Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1411896-attributesoffilesystem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attributesOfFileSystem(forPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1411896-attributesoffilesystem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1412020-changecurrentdirectorypath": {
+      "abstract": [
+        {
+          "text": "Changes the path of the current working directory to the specified path. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "changeCurrentDirectoryPath"
+        },
+        {
+          "kind": "text",
+          "text": "(String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1412020-changecurrentdirectorypath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "changeCurrentDirectoryPath(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1412020-changecurrentdirectorypath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1412432-replaceitem": {
+      "abstract": [
+        {
+          "text": "Replaces the contents of the item at the specified URL in a manner that ensures no data loss occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "replaceItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withItemAt"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "backupItemName"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": FileManager.ItemReplacementOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "resultingItemURL"
+        },
+        {
+          "kind": "text",
+          "text": ": AutoreleasingUnsafeMutablePointer<NSURL?>?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1412432-replaceitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replaceItem(at:withItemAt:backupItemName:options:resultingItemURL:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1412432-replaceitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1412643-containerurl": {
+      "abstract": [
+        {
+          "text": "Returns the container directory associated with the specified security application group identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "containerURL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forSecurityApplicationGroupIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1412643-containerurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "containerURL(forSecurityApplicationGroupIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1412643-containerurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1412957-copyitem": {
+      "abstract": [
+        {
+          "text": "Copies the file at the specified URL to a new location synchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1412957-copyitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copyItem(at:to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1412957-copyitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1413529-moveitem": {
+      "abstract": [
+        {
+          "text": "Moves the file or directory at the specified path to a new location synchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "moveItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "toPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1413529-moveitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "moveItem(atPath:toPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1413529-moveitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1413590-removeitem": {
+      "abstract": [
+        {
+          "text": "Removes the file or directory at the specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1413590-removeitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeItem(at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1413590-removeitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1413667-setattributes": {
+      "abstract": [
+        {
+          "text": "Sets the attributes of the specified file or directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "([FileAttributeKey : Any], "
+        },
+        {
+          "kind": "identifier",
+          "text": "ofItemAtPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1413667-setattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAttributes(_:ofItemAtPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1413667-setattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1413742-subpaths": {
+      "abstract": [
+        {
+          "text": "Returns an array of strings identifying the paths for all items in the specified directory. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "subpaths"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [String]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1413742-subpaths",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subpaths(atPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1413742-subpaths"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1413768-contentsofdirectory": {
+      "abstract": [
+        {
+          "text": "Performs a shallow search of the specified directory and returns URLs for the contained items. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsOfDirectory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "includingPropertiesForKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": [URLResourceKey]?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": FileManager.DirectoryEnumerationOptions) -> [URL]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1413768-contentsofdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentsOfDirectory(at:includingPropertiesForKeys:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1413768-contentsofdirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1413929-componentstodisplay": {
+      "abstract": [
+        {
+          "text": "Returns an array of strings representing the user-visible components of a given path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "componentsToDisplay"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [String]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1413929-componentstodisplay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "componentsToDisplay(forPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1413929-componentstodisplay"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1413989-setubiquitous": {
+      "abstract": [
+        {
+          "text": "Indicates whether the item at the specified URL should be stored in iCloud.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setUbiquitous"
+        },
+        {
+          "kind": "text",
+          "text": "(Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "itemAt"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "destinationURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1413989-setubiquitous",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setUbiquitous(_:itemAt:destinationURL:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1413989-setubiquitous"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1414159-isexecutablefile": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the operating system appears able to execute a specified file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isExecutableFile"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1414159-isexecutablefile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isExecutableFile(atPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1414159-isexecutablefile"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1414306-trashitem": {
+      "abstract": [
+        {
+          "text": "Moves an item to the trash.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "trashItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "resultingItemURL"
+        },
+        {
+          "kind": "text",
+          "text": ": AutoreleasingUnsafeMutablePointer<NSURL?>?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1414306-trashitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trashItem(at:resultingItemURL:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1414306-trashitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1414456-linkitem": {
+      "abstract": [
+        {
+          "text": "Creates a hard link between the items at the specified URLs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "linkItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1414456-linkitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "linkItem(at:to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1414456-linkitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1414584-contentsofdirectory": {
+      "abstract": [
+        {
+          "text": "Performs a shallow search of the specified directory and returns the paths of any contained items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsOfDirectory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1414584-contentsofdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentsOfDirectory(atPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1414584-contentsofdirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1414652-createsymboliclink": {
+      "abstract": [
+        {
+          "text": "Creates a symbolic link at the specified URL that points to an item at the given URL. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "createSymbolicLink"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withDestinationURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1414652-createsymboliclink",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createSymbolicLink(at:withDestinationURL:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1414652-createsymboliclink"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1414750-moveitem": {
+      "abstract": [
+        {
+          "text": "Moves the file or directory at the specified URL to a new location synchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "moveItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1414750-moveitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "moveItem(at:to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1414750-moveitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1415161-destinationofsymboliclink": {
+      "abstract": [
+        {
+          "text": "Returns the path of the item pointed to by a symbolic link.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "destinationOfSymbolicLink"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1415161-destinationofsymboliclink",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "destinationOfSymbolicLink(atPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1415161-destinationofsymboliclink"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1415163-delegate": {
+      "abstract": [
+        {
+          "text": "The delegate of the file manager object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any FileManagerDelegate)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1415163-delegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1415163-delegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1415275-contentsequal": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the files or directories in specified paths have the same contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsEqual"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "andPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1415275-contentsequal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentsEqual(atPath:andPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1415275-contentsequal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1415371-createdirectory": {
+      "abstract": [
+        {
+          "text": "Creates a directory with the given attributes at the specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "createDirectory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withIntermediateDirectories"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": [FileAttributeKey : Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1415371-createdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createDirectory(at:withIntermediateDirectories:attributes:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1415371-createdirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1415645-fileexists": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a file or directory exists at a specified path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileExists"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1415645-fileexists",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileExists(atPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1415645-fileexists"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1416680-iswritablefile": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the invoking object appears able to write to a specified file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isWritableFile"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1416680-iswritablefile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isWritableFile(atPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1416680-iswritablefile"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1417057-filesystemrepresentation": {
+      "abstract": [
+        {
+          "text": "Returns a C-string representation of a given path that properly encodes Unicode strings for use by the file system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileSystemRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> UnsafePointer<CChar>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1417057-filesystemrepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileSystemRepresentation(withPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1417057-filesystemrepresentation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1417353-subpathsofdirectory": {
+      "abstract": [
+        {
+          "text": "Performs a deep enumeration of the specified directory and returns the paths of all of the contained subdirectories. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "subpathsOfDirectory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1417353-subpathsofdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subpathsOfDirectory(atPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1417353-subpathsofdirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1418292-isreadablefile": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the invoking object appears able to read a specified file. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isReadableFile"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1418292-isreadablefile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isReadableFile(atPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1418292-isreadablefile"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1557000-createsymboliclink": {
+      "abstract": [
+        {
+          "text": "Creates a symbolic link identified by a given path that refers to a given location.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "createSymbolicLink"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "pathContent"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1557000-createsymboliclink",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createSymbolicLink(atPath:pathContent:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1557000-createsymboliclink"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1557001-changefileattributes": {
+      "abstract": [
+        {
+          "text": "Changes the attributes of a given file or directory. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "changeFileAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "([AnyHashable : Any], "
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1557001-changefileattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "changeFileAttributes(_:atPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1557001-changefileattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1557004-fileattributes": {
+      "abstract": [
+        {
+          "text": "Returns a dictionary that describes the POSIX attributes of the file specified at a given.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "traverseLink"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool) -> [AnyHashable : Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1557004-fileattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileAttributes(atPath:traverseLink:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1557004-fileattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1557006-pathcontentofsymboliclink": {
+      "abstract": [
+        {
+          "text": "Returns the path of the directory or file that a symbolic link at a given path refers to.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "pathContentOfSymbolicLink"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1557006-pathcontentofsymboliclink",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pathContentOfSymbolicLink(atPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1557006-pathcontentofsymboliclink"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1557007-createdirectory": {
+      "abstract": [
+        {
+          "text": "Creates a directory (without contents) at a given path with given attributes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "createDirectory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1557007-createdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createDirectory(atPath:attributes:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1557007-createdirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1557008-filesystemattributes": {
+      "abstract": [
+        {
+          "text": "Returns a dictionary that describes the attributes of the mounted file system on which a given path resides.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileSystemAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [AnyHashable : Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1557008-filesystemattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileSystemAttributes(atPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1557008-filesystemattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1557009-directorycontents": {
+      "abstract": [
+        {
+          "text": "Returns the directories and files (including symbolic links) contained in a given directory.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "directoryContents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1557009-directorycontents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "directoryContents(atPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1557009-directorycontents"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1642807-homedirectoryforcurrentuser": {
+      "abstract": [
+        {
+          "text": "The home directory for the current user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "homeDirectoryForCurrentUser"
+        },
+        {
+          "kind": "text",
+          "text": ": URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1642807-homedirectoryforcurrentuser",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "homeDirectoryForCurrentUser",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1642807-homedirectoryforcurrentuser"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1642853-homedirectory": {
+      "abstract": [
+        {
+          "text": "Returns the home directory for the specified user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "homeDirectory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forUser"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1642853-homedirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "homeDirectory(forUser:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1642853-homedirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1642996-temporarydirectory": {
+      "abstract": [
+        {
+          "text": "The temporary directory for the current user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "temporaryDirectory"
+        },
+        {
+          "kind": "text",
+          "text": ": URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1642996-temporarydirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "temporaryDirectory",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1642996-temporarydirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1780235-replaceitematurl": {
+      "abstract": [
+        {
+          "text": "Replaces the contents of the item at the specified URL in a manner that ensures no data loss occurs.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "replaceItemAtURL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "originalItemURL"
+        },
+        {
+          "kind": "text",
+          "text": ": NSURL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withItemAtURL"
+        },
+        {
+          "kind": "text",
+          "text": ": NSURL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "backupItemName"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": FileManager.ItemReplacementOptions) -> NSURL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1780235-replaceitematurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replaceItemAtURL(originalItemURL:withItemAtURL:backupItemName:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1780235-replaceitematurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/2293212-replaceitemat": {
+      "abstract": [
+        {
+          "text": "Replaces the contents of the item at the specified URL in a manner that ensures no data loss occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "replaceItemAt"
+        },
+        {
+          "kind": "text",
+          "text": "(URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withItemAt"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "backupItemName"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": FileManager.ItemReplacementOptions) -> URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/2293212-replaceitemat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replaceItemAt(_:withItemAt:backupItemName:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/2293212-replaceitemat"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/2765464-enumerator": {
+      "abstract": [
+        {
+          "text": "Returns a directory enumerator object that can be used to perform a deep enumeration of the directory at the specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "includingPropertiesForKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": [URLResourceKey]?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": FileManager.DirectoryEnumerationOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "errorHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((URL, any Error) -> Bool)?) -> FileManager.DirectoryEnumerator?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/2765464-enumerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enumerator(at:includingPropertiesForKeys:options:errorHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/2765464-enumerator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/2915262-getfileproviderservicesforitem": {
+      "abstract": [
+        {
+          "text": "Returns the services provided by the File Provider extension that manages the item at the given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "getFileProviderServicesForItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ([NSFileProviderServiceName : NSFileProviderService]?, (any Error)?) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/2915262-getfileproviderservicesforitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getFileProviderServicesForItem(at:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/2915262-getfileproviderservicesforitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/3025773-init": {
+      "abstract": [
+        {
+          "text": "Initializes a file manager object that is authorized to perform privileged file system operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "authorization"
+        },
+        {
+          "kind": "text",
+          "text": ": NSWorkspace.Authorization)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/3025773-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(authorization:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/3025773-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/directoryenumerationoptions": {
+      "abstract": [
+        {
+          "text": "Options for enumerating the contents of directories.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileManager.DirectoryEnumerationOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/directoryenumerationoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManager.DirectoryEnumerationOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/directoryenumerationoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/directoryenumerator": {
+      "abstract": [
+        {
+          "text": "An object that enumerates the contents of a directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileManager.DirectoryEnumerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/directoryenumerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManager.DirectoryEnumerator",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/directoryenumerator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/itemreplacementoptions": {
+      "abstract": [
+        {
+          "text": "Options for specifying the behavior of file replacement operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileManager.ItemReplacementOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/itemreplacementoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManager.ItemReplacementOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/itemreplacementoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/searchpathdirectory": {
+      "abstract": [
+        {
+          "text": "The location of significant directories.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileManager.SearchPathDirectory"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/searchpathdirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManager.SearchPathDirectory",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/searchpathdirectory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/searchpathdomainmask": {
+      "abstract": [
+        {
+          "text": "Domain constants specifying base locations to use when you search for significant directories.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileManager.SearchPathDomainMask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/searchpathdomainmask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManager.SearchPathDomainMask",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/searchpathdomainmask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/unmountoptions": {
+      "abstract": [
+        {
+          "text": "Options that specify the behavior of an unmount operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileManager.UnmountOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/unmountoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManager.UnmountOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/unmountoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/urlrelationship": {
+      "abstract": [
+        {
+          "text": "Constants indicating the relationship between a directory and an item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileManager.URLRelationship"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/urlrelationship",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManager.URLRelationship",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/urlrelationship"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/volumeenumerationoptions": {
+      "abstract": [
+        {
+          "text": "Options for enumerating mounted volumes with the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1409626-mountedvolumeurls",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileManager.VolumeEnumerationOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/volumeenumerationoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManager.VolumeEnumerationOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/volumeenumerationoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate": {
+      "abstract": [
+        {
+          "text": "The interface a file manager's delegate uses to intervene during operations or if an error occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileManagerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManagerDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanagerdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/fileprotectiontype": {
+      "abstract": [
+        {
+          "text": "Protection level values that can be associated with a file attribute key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileProtectionType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/fileprotectiontype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileProtectionType",
+      "type": "topic",
+      "url": "/documentation/foundation/fileprotectiontype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/icloud": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/icloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "iCloud",
+      "type": "topic",
+      "url": "/documentation/foundation/icloud"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilemanagerunmountdissentingprocessidentifiererrorkey": {
+      "abstract": [
+        {
+          "text": "The process identifier of the process that prevented a volume from unmounting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileManagerUnmountDissentingProcessIdentifierErrorKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilemanagerunmountdissentingprocessidentifiererrorkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileManagerUnmountDissentingProcessIdentifierErrorKey",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilemanagerunmountdissentingprocessidentifiererrorkey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfileproviderservice": {
+      "abstract": [
+        {
+          "text": "A service that provides a custom communication channel between your app and a File Provider extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderService"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfileproviderservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileProviderService",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfileproviderservice"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfileproviderservicename": {
+      "abstract": [
+        {
+          "text": "The name used to identify a File Provider service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderServiceName"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfileproviderservicename",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileProviderServiceName",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfileproviderservicename"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfoundationversionwithfilemanagerresourceforksupport": {
+      "abstract": [
+        {
+          "text": "The version of the Foundation framework in which ",
+          "type": "text"
+        },
+        {
+          "code": "NSFileManager",
+          "type": "codeVoice"
+        },
+        {
+          "text": " first supported resource forks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFoundationVersionWithFileManagerResourceForkSupport"
+        },
+        {
+          "kind": "text",
+          "text": ": Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfoundationversionwithfilemanagerresourceforksupport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFoundationVersionWithFileManagerResourceForkSupport",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfoundationversionwithfilemanagerresourceforksupport"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1407629-nsubiquityidentitydidchange": {
+      "abstract": [
+        {
+          "text": "Sent after the iCloud (“ubiquity”) identity has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUbiquityIdentityDidChange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1407629-nsubiquityidentitydidchange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUbiquityIdentityDidChange",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1407629-nsubiquityidentitydidchange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlfileprotection": {
+      "abstract": [
+        {
+          "text": "Protection-level values for a URL resource key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLFileProtection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlfileprotection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLFileProtection",
+      "type": "topic",
+      "url": "/documentation/foundation/urlfileprotection"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1557002-filemanager": {
+      "abstract": [
+        {
+          "text": "An ",
+          "type": "text"
+        },
+        {
+          "code": "NSFileManager",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object sends this message to a handler immediately before attempting to move, copy, rename, or delete, or before attempting to link to a given path.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileManager"
+        },
+        {
+          "kind": "text",
+          "text": "(FileManager, "
+        },
+        {
+          "kind": "identifier",
+          "text": "willProcessPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1557002-filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileManager(_:willProcessPath:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1557002-filemanager"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1557005-filemanager": {
+      "abstract": [
+        {
+          "text": "An ",
+          "type": "text"
+        },
+        {
+          "code": "NSFileManager",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object sends this message to its handler for each error it encounters when copying, moving, removing, or linking files or directories. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileManager"
+        },
+        {
+          "kind": "text",
+          "text": "(FileManager, "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldProceedAfterError"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1557005-filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileManager(_:shouldProceedAfterError:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1557005-filemanager"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/file_system/improving_performance_and_stability_when_accessing_the_file_system",
+        "doc://com.apple.documentation/documentation/foundation/filemanagerdelegate",
+        "doc://com.apple.documentation/documentation/foundation/file_system/about_apple_file_system"
+      ],
+      "title": "File system operations"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1651205",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filemanager/3025773-init",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1409234-default"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a File Manager"
+    },
+    {
+      "anchor": "1844523",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1642807-homedirectoryforcurrentuser",
+        "doc://com.apple.documentation/documentation/foundation/1413045-nshomedirectory",
+        "doc://com.apple.documentation/documentation/foundation/1414297-nsusername",
+        "doc://com.apple.documentation/documentation/foundation/1410265-nsfullusername",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1642853-homedirectory",
+        "doc://com.apple.documentation/documentation/foundation/1413447-nshomedirectoryforuser",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1642996-temporarydirectory",
+        "doc://com.apple.documentation/documentation/foundation/1409211-nstemporarydirectory"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing User Directories "
+    },
+    {
+      "anchor": "1651260",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1407693-url",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1407726-urls",
+        "doc://com.apple.documentation/documentation/foundation/1414224-nssearchpathfordirectoriesindoma",
+        "doc://com.apple.documentation/documentation/foundation/1414132-nsopensteprootdirectory"
+      ],
+      "kind": "taskGroup",
+      "title": "Locating System Directories"
+    },
+    {
+      "anchor": "1651316",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1412643-containerurl",
+        "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.security.application-groups"
+      ],
+      "kind": "taskGroup",
+      "title": "Locating Application Group Container Directories"
+    },
+    {
+      "anchor": "1651342",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1413768-contentsofdirectory",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1414584-contentsofdirectory",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/2765464-enumerator",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1408726-enumerator",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/directoryenumerator",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1409626-mountedvolumeurls",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/volumeenumerationoptions",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1417353-subpathsofdirectory",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1413742-subpaths"
+      ],
+      "kind": "taskGroup",
+      "title": "Discovering Directory Contents"
+    },
+    {
+      "anchor": "1651448",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1415371-createdirectory",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1407884-createdirectory",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1410695-createfile",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1413590-removeitem",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1408573-removeitem",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1414306-trashitem"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating and Deleting Items"
+    },
+    {
+      "anchor": "3035765",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filemanager/2293212-replaceitemat",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1412432-replaceitem",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/itemreplacementoptions"
+      ],
+      "kind": "taskGroup",
+      "title": "Replacing Items"
+    },
+    {
+      "anchor": "1651526",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1412957-copyitem",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1407903-copyitem",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1414750-moveitem",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1413529-moveitem"
+      ],
+      "kind": "taskGroup",
+      "title": "Moving and Copying Items"
+    },
+    {
+      "anchor": "1651597",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1408036-ubiquityidentitytoken",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1411653-url",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1410218-isubiquitousitem",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1413989-setubiquitous",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1410377-startdownloadingubiquitousitem",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1409696-evictubiquitousitem",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1411577-url"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing iCloud-Based Items"
+    },
+    {
+      "anchor": "2933782",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filemanager/2915262-getfileproviderservicesforitem",
+        "doc://com.apple.documentation/documentation/foundation/nsfileproviderservice",
+        "doc://com.apple.documentation/documentation/foundation/nsfileproviderservicename"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing File Provider Services"
+    },
+    {
+      "anchor": "1651673",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1414652-createsymboliclink",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1411007-createsymboliclink",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1414456-linkitem",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1411206-linkitem",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1415161-destinationofsymboliclink"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Symbolic and Hard Links"
+    },
+    {
+      "anchor": "1651740",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1415645-fileexists",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1410277-fileexists",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1418292-isreadablefile",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1416680-iswritablefile",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1414159-isexecutablefile",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1408087-isdeletablefile"
+      ],
+      "kind": "taskGroup",
+      "title": "Determining Access to Files"
+    },
+    {
+      "anchor": "1651806",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1413929-componentstodisplay",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1409751-displayname",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1410452-attributesofitem",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1411896-attributesoffilesystem",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1413667-setattributes"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting and Setting Attributes"
+    },
+    {
+      "anchor": "1651873",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1407347-contents",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1415275-contentsequal"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting and Comparing File Contents"
+    },
+    {
+      "anchor": "1651920",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1407229-getrelationship",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1411439-getrelationship",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/urlrelationship"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the Relationship Between Items"
+    },
+    {
+      "anchor": "1651953",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1417057-filesystemrepresentation",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1409640-string"
+      ],
+      "kind": "taskGroup",
+      "title": "Converting File Paths to Strings"
+    },
+    {
+      "anchor": "1651993",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1415163-delegate"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing the Delegate"
+    },
+    {
+      "anchor": "1652024",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1412020-changecurrentdirectorypath",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1410766-currentdirectorypath"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing the Current Directory"
+    },
+    {
+      "anchor": "3036286",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1409917-unmountvolume",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/unmountoptions",
+        "doc://com.apple.documentation/documentation/foundation/nsfilemanagerunmountdissentingprocessidentifiererrorkey"
+      ],
+      "kind": "taskGroup",
+      "title": "Unmounting Volumes"
+    },
+    {
+      "anchor": "1657293",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/1412112-nsfiletypeforhfstypecode",
+        "doc://com.apple.documentation/documentation/foundation/1415466-nshfstypecodefromfiletype",
+        "doc://com.apple.documentation/documentation/foundation/1414326-nshfstypeoffile"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with HFS File Types"
+    },
+    {
+      "anchor": "3036288",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsfoundationversionwithfilemanagerresourceforksupport"
+      ],
+      "kind": "taskGroup",
+      "title": "Determining Resource Fork Support"
+    },
+    {
+      "anchor": "1652398",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filemanager/directoryenumerationoptions",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/searchpathdirectory",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/searchpathdomainmask",
+        "doc://com.apple.documentation/documentation/foundation/fileattributekey",
+        "doc://com.apple.documentation/documentation/foundation/fileattributetype",
+        "doc://com.apple.documentation/documentation/foundation/fileprotectiontype",
+        "doc://com.apple.documentation/documentation/foundation/urlfileprotection"
+      ],
+      "kind": "taskGroup",
+      "title": "Supporting Types"
+    },
+    {
+      "anchor": "1770638",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1407629-nsubiquityidentitydidchange"
+      ],
+      "kind": "taskGroup",
+      "title": "Notifications"
+    },
+    {
+      "anchor": "1652080",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1557001-changefileattributes",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1557004-fileattributes",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1557008-filesystemattributes",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1557009-directorycontents",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1557007-createdirectory",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1557000-createsymboliclink",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1557006-pathcontentofsymboliclink",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1557005-filemanager",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1557002-filemanager",
+        "doc://com.apple.documentation/documentation/foundation/filemanager/1780235-replaceitematurl"
+      ],
+      "kind": "taskGroup",
+      "title": "Deprecated Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsfilemanager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/filemanager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

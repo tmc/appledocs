@@ -1,0 +1,645 @@
+{
+  "abstract": [
+    {
+      "text": "Sets a collection of RAW Processing parameters.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTRAWProcessingSessionSetProcessingParameters"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@VTRAWProcessingSessionSetProcessingParameters",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "VTRAWProcessingSessionSetProcessingParameters"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Video Toolbox"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "VTRAWProcessingSessionSetProcessingParameters"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "VTRAWProcessingSessionSetProcessingParameters"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "VTRAWProcessingSessionSetProcessingParameters"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTRAWProcessingSession",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@VTRAWProcessingSessionRef",
+              "text": "VTRAWProcessingSessionRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "session"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@CFDictionaryRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFDictionaryRef",
+              "text": "CFDictionaryRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "processingParameters"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The RAW processing session.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "session"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A dictionary of keys and values setting parameters reported by ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTRAWProcessingSessionCopyProcessingParameters",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "processingParameters"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An error if any of the provided parameters are invalid, disabled, or outside of the declared valid range. None of the provided parameters will be set on the processor if an error is returned.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This call sets a collection of RAW Processing parameters on the RAW Processor.  These are set as a dictionary where the keys match ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTRAWProcessingParameter_Key",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " values that were returned in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTRAWProcessingSessionCopyProcessingParameters",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and where values conform to the type and range defined in the ",
+              "type": "text"
+            },
+            {
+              "code": "kVTRAWProcessingParameter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary for each parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Not all parameters from the array need to be set at any given time.  Changing the parameters doesn’t change processing on frames already submitted for processing, it will only impact frames where ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTRAWProcessingSessionProcessFrame",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is called after ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTRAWProcessingSessionSetProcessingParameters",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If any parameters specified are not in the array reported by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTRAWProcessingSessionCopyProcessingParameters",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or are the wrong type or out of range,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTParameterErr",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " will be returned.  Valid key-value pairs in the dictionary will still be applied.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox": {
+      "abstract": [
+        {
+          "text": "Work directly with hardware-accelerated video encoding and decoding capabilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Video Toolbox",
+      "type": "topic",
+      "url": "/documentation/videotoolbox"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCopyRAWProcessorExtensionProperties": {
+      "abstract": [
+        {
+          "text": "Returns information about the Media Extension RAW processor supporting the specified format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "VTCopyRAWProcessorExtensionProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCopyRAWProcessorExtensionProperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VTCopyRAWProcessorExtensionProperties",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtcopyrawprocessorextensionproperties"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTRAWProcessingSession": {
+      "abstract": [
+        {
+          "text": "An object that processes frames in camera native formats such as RAW or Bayer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTRAWProcessingSession"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTRAWProcessingSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTRAWProcessingSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTRAWProcessingSession",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtrawprocessingsession"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTRAWProcessingSessionCopyProcessingParameters": {
+      "abstract": [
+        {
+          "text": "Copies an array of dictionaries describing the parameters provided by the RAW Processor for frame processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "VTRAWProcessingSessionCopyProcessingParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTRAWProcessingSessionCopyProcessingParameters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VTRAWProcessingSessionCopyProcessingParameters",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtrawprocessingsessioncopyprocessingparameters"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTRAWProcessingSessionProcessFrame": {
+      "abstract": [
+        {
+          "text": "Submits RAW frames for format-specific processing using sequence and frame level parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "VTRAWProcessingSessionProcessFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTRAWProcessingSessionProcessFrame",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VTRAWProcessingSessionProcessFrame",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtrawprocessingsessionprocessframe"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTRAWProcessingSessionSetProcessingParameters": {
+      "abstract": [
+        {
+          "text": "Sets a collection of RAW Processing parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "VTRAWProcessingSessionSetProcessingParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTRAWProcessingSessionSetProcessingParameters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VTRAWProcessingSessionSetProcessingParameters",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtrawprocessingsessionsetprocessingparameters"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTParameterErr": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kVTParameterErr"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTParameterErr",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kVTParameterErr"
+        }
+      ],
+      "role": "symbol",
+      "title": "kVTParameterErr",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/kvtparametererr"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTRAWProcessingParameter_Key": {
+      "abstract": [
+        {
+          "text": "The value corresponding to this key must match the identifier for one of the permitted processing parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "kVTRAWProcessingParameter_Key"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTRAWProcessingParameter_Key",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kVTRAWProcessingParameter_Key",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/kvtrawprocessingparameter_key"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/raw-processing-parameters": {
+      "abstract": [
+        {
+          "text": "Parameters to set on a RAW processing session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/raw-processing-parameters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "RAW processing parameters",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/raw-processing-parameters"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/raw-processing-properties": {
+      "abstract": [
+        {
+          "text": "Properties that you use to configure a RAW processing session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/raw-processing-properties",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "RAW Processing Properties",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/raw-processing-properties"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@CFDictionaryRef": {
+      "abstract": [
+        {
+          "text": "A reference to an immutable dictionary object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFDictionary"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@CFDictionaryRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFDictionary",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdictionary"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-a-session",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTRAWProcessingSessionCopyProcessingParameters",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/raw-processing-parameters",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCopyRAWProcessorExtensionProperties",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/raw-processing-properties"
+      ],
+      "title": "Configuring a session"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTParameterErr/title",
+          "value": "kVTParameterErr"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTParameterErr/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kVTParameterErr"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@CFDictionaryRef/title",
+          "value": "CFDictionaryRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTRAWProcessingSession/title",
+          "value": "VTRAWProcessingSessionRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTRAWProcessingSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTRAWProcessingSessionRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTRAWProcessingSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTRAWProcessingSessionRef"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/videotoolbox/vtrawprocessingsessionsetprocessingparameters"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

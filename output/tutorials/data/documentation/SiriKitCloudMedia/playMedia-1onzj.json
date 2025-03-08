@@ -1,0 +1,924 @@
+{
+  "abstract": [
+    {
+      "text": "Provide a playback queue from a successfully processed play media intent.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "SiriKit Cloud Media",
+      "versions": [
+        "1.1.0",
+        "1.1.1"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/playMedia-1onzj"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:sirikit_media_api:post:queues-playMedia",
+    "modules": [
+      {
+        "name": "SiriKit Cloud Media"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "playMedia"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0.2",
+        "name": "SiriKit Cloud Media"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get a Media Queue"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://cloudextension-testservice.local/api/"
+        },
+        {
+          "kind": "path",
+          "text": "queues/playMedia"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The client’s current user interface language. Respond with localized content for this language, if available.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Accept-Language",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "maximumLength",
+              "value": "250"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "/AppleCloudExtension/([0-9]+\\.[0-9]+\\.[0-9]+) *.*/"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The extension protocol running on the client. This is an RFC 7231-compliant string that contains the product name ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AppleCloudExtension",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " and the SiriKit Extension library version running on the client.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "User-Agent",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "minimum",
+              "value": "1"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of previous requests from the client. The client omits this header on the first attempt.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "x-applecloudextension-retry-count",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "uint32"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "minimumLength",
+              "value": "1"
+            },
+            {
+              "kind": "maximumLength",
+              "value": "128"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A constant session identifier to include in each request and response. Respond to each request with the session ID the client sends in that request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "x-applecloudextension-session-id",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "header",
+      "title": "Header Parameters"
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaRequest",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "data:sirikit_media_api:PlayMediaRequest",
+          "text": "PlayMediaRequest"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UserActivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and constraints for the queue your service provides.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request is successful.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Queue",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:sirikit_media_api:Queue",
+              "text": "Queue"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "No more content exists for the requested queue.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "No Content",
+          "status": 204,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request requires authorization. The client may attempt to reauthorize and then retry.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UserActivity",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " is permanently expired and invalid for requesting a queue.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Gone",
+          "status": 410,
+          "type": []
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There isn’t a default path for this endpoint. Specify the URL for this endpoint in your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ExtensionConfig/Media-data.dictionary/Queues-data.dictionary/PlayMedia-data.dictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia": {
+      "abstract": [
+        {
+          "text": "Stream music directly to HomePod speakers from your media service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SiriKit Cloud Media",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Content": {
+      "abstract": [
+        {
+          "text": "A description of a piece of playback content, such as a song, podcast, or advertisement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Content"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Content",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Content"
+        }
+      ],
+      "role": "symbol",
+      "title": "Content",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/content"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentAttributes": {
+      "abstract": [
+        {
+          "text": "Metadata for some media content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentAttributes"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentAttributes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentAttributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContentAttributes",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/contentattributes"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentIdentifier": {
+      "abstract": [
+        {
+          "text": "An identifier for a song, podcast, ad, or other media content. The identifier must be stable and unique within a queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContentIdentifier",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/contentidentifier"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ExtensionConfig/Media-data.dictionary/Queues-data.dictionary/PlayMedia-data.dictionary": {
+      "abstract": [
+        {
+          "text": "Configuration details for your service’s media playback queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtensionConfig.Media.Queues.PlayMedia"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ExtensionConfig/Media-data.dictionary/Queues-data.dictionary/PlayMedia-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtensionConfig.Media.Queues.PlayMedia"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtensionConfig.Media.Queues.PlayMedia",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/extensionconfig/media-data.dictionary/queues-data.dictionary/playmedia-data.dictionary"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaControl": {
+      "abstract": [
+        {
+          "text": "A configuration for permitted user interactions and other player behaviors during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayMediaControl"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayMediaControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayMediaControl",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmediacontrol"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaControlCommandSet": {
+      "abstract": [
+        {
+          "text": "A set of modifications to apply to the default set of available playback controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayMediaControlCommandSet"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaControlCommandSet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayMediaControlCommandSet"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayMediaControlCommandSet",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmediacontrolcommandset"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaControlScheme": {
+      "abstract": [
+        {
+          "text": "Default playback controls and settings for common content types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayMediaControlScheme"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaControlScheme",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayMediaControlScheme"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayMediaControlScheme",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmediacontrolscheme"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaRequest": {
+      "abstract": [
+        {
+          "text": "A request for a media playback queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayMediaRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayMediaRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayMediaRequest",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmediarequest"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Queue": {
+      "abstract": [
+        {
+          "text": "A sequence of media content for playback, with links to the previous and next segments of a full playback queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Queue"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Queue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Queue"
+        }
+      ],
+      "role": "symbol",
+      "title": "Queue",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/queue"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueControlMapping": {
+      "abstract": [
+        {
+          "text": "A dictionary of configuration names and the media controls they permit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "QueueControlMapping"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueControlMapping",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QueueControlMapping"
+        }
+      ],
+      "role": "symbol",
+      "title": "QueueControlMapping",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/queuecontrolmapping"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueIdentifier": {
+      "abstract": [
+        {
+          "text": "A stable identifier for a playback queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "QueueIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QueueIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "QueueIdentifier",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/queueidentifier"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueInsertPointer": {
+      "abstract": [
+        {
+          "text": "Instructions for editing the current playback queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "QueueInsertPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueInsertPointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QueueInsertPointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "QueueInsertPointer",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/queueinsertpointer"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueuePlayPointer": {
+      "abstract": [
+        {
+          "text": "A position within a playback queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "QueuePlayPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueuePlayPointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QueuePlayPointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "QueuePlayPointer",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/queueplaypointer"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UserActivity": {
+      "abstract": [
+        {
+          "text": "The context for playing a media queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UserActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UserActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "UserActivity",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/useractivity"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/playMedia-1g2o9": {
+      "abstract": [
+        {
+          "text": "Interpret the user’s request to play a media item, and provide instructions to access a corresponding playback queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/playMedia-1g2o9",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playMedia"
+        }
+      ],
+      "role": "symbol",
+      "title": "Process a Play Media Intent",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmedia-1g2o9"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/playMedia-1onzj": {
+      "abstract": [
+        {
+          "text": "Provide a playback queue from a successfully processed play media intent.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/playMedia-1onzj",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playMedia"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Media Queue",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmedia-1onzj"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Media-Play-Queues",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/playMedia-1g2o9"
+      ],
+      "title": "Media Play Queues"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Receiving-a-Queue-Request",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaRequest"
+      ],
+      "title": "Receiving a Queue Request"
+    },
+    {
+      "anchor": "Creating-or-Updating-a-Playback-Queue",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Queue",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueIdentifier",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueInsertPointer",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueuePlayPointer"
+      ],
+      "title": "Creating or Updating a Playback Queue"
+    },
+    {
+      "anchor": "Providing-Queue-Items",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Content",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentIdentifier",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/ContentAttributes"
+      ],
+      "title": "Providing Queue Items"
+    },
+    {
+      "anchor": "Customizing-Playback-Controls",
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueControlMapping",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaControl",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaControlScheme",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaControlCommandSet"
+      ],
+      "title": "Customizing Playback Controls"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/sirikitcloudmedia/playmedia-1onzj"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,858 @@
+{
+  "abstract": [
+    {
+      "text": "Get notifications when the contents of a directory hierarchy change.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreservices/file_system_events"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2934425,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "File System Events"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The file system events API provides a way for your application to ask for notification when the contents of a directory hierarchy are modified. For example, your application can use this to quickly detect when the user modifies a file within a project bundle using another application.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It also provides a lightweight way to determine whether the contents of a directory hierarchy have changed since your application last examined them. For example, a backup application can use this to determine what files have changed since a given time stamp or a given event ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1733622": {
+      "identifier": "devLink-1733622",
+      "title": "File System Events Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Darwin/Conceptual/FSEvents_ProgGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005289"
+    },
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1441727-fseventstreamflushasync": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventStreamFlushAsync"
+        },
+        {
+          "kind": "text",
+          "text": "(FSEventStreamRef) -> FSEventStreamEventId"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1441727-fseventstreamflushasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamFlushAsync(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1441727-fseventstreamflushasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1441982-fseventstreamunschedulefromrunlo": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventStreamUnscheduleFromRunLoop"
+        },
+        {
+          "kind": "text",
+          "text": "(FSEventStreamRef, CFRunLoop, CFString)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1441982-fseventstreamunschedulefromrunlo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamUnscheduleFromRunLoop(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1441982-fseventstreamunschedulefromrunlo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1442676-fseventstreamcopydescription": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventStreamCopyDescription"
+        },
+        {
+          "kind": "text",
+          "text": "(ConstFSEventStreamRef) -> CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1442676-fseventstreamcopydescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamCopyDescription(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1442676-fseventstreamcopydescription"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1442917-fseventsgetcurrenteventid": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventsGetCurrentEventId"
+        },
+        {
+          "kind": "text",
+          "text": "() -> FSEventStreamEventId"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1442917-fseventsgetcurrenteventid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventsGetCurrentEventId()",
+      "type": "topic",
+      "url": "/documentation/coreservices/1442917-fseventsgetcurrenteventid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1443980-fseventstreamcreate": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventStreamCreate"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator?, FSEventStreamCallback, UnsafeMutablePointer<FSEventStreamContext>?, CFArray, FSEventStreamEventId, CFTimeInterval, FSEventStreamCreateFlags) -> FSEventStreamRef?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1443980-fseventstreamcreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamCreate(_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1443980-fseventstreamcreate"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1444164-fseventstreamsetdispatchqueue": {
+      "abstract": [
+        {
+          "text": "Schedules the stream on the specified dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventStreamSetDispatchQueue"
+        },
+        {
+          "kind": "text",
+          "text": "(FSEventStreamRef, dispatch_queue_t?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444164-fseventstreamsetdispatchqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamSetDispatchQueue(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1444164-fseventstreamsetdispatchqueue"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1444302-fseventstreamshow": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventStreamShow"
+        },
+        {
+          "kind": "text",
+          "text": "(ConstFSEventStreamRef)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444302-fseventstreamshow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamShow(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1444302-fseventstreamshow"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1444453-fseventscopyuuidfordevice": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventsCopyUUIDForDevice"
+        },
+        {
+          "kind": "text",
+          "text": "(dev_t) -> CFUUID?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444453-fseventscopyuuidfordevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventsCopyUUIDForDevice(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1444453-fseventscopyuuidfordevice"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1444666-fseventstreamsetexclusionpaths": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventStreamSetExclusionPaths"
+        },
+        {
+          "kind": "text",
+          "text": "(FSEventStreamRef, CFArray) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444666-fseventstreamsetexclusionpaths",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamSetExclusionPaths(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1444666-fseventstreamsetexclusionpaths"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1444986-fseventstreamretain": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventStreamRetain"
+        },
+        {
+          "kind": "text",
+          "text": "(FSEventStreamRef)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444986-fseventstreamretain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamRetain(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1444986-fseventstreamretain"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1445629-fseventstreamflushsync": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventStreamFlushSync"
+        },
+        {
+          "kind": "text",
+          "text": "(FSEventStreamRef)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1445629-fseventstreamflushsync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamFlushSync(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1445629-fseventstreamflushsync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1445989-fseventstreamrelease": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventStreamRelease"
+        },
+        {
+          "kind": "text",
+          "text": "(FSEventStreamRef)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1445989-fseventstreamrelease",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamRelease(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1445989-fseventstreamrelease"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1446030-fseventstreamgetlatesteventid": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventStreamGetLatestEventId"
+        },
+        {
+          "kind": "text",
+          "text": "(ConstFSEventStreamRef) -> FSEventStreamEventId"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1446030-fseventstreamgetlatesteventid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamGetLatestEventId(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1446030-fseventstreamgetlatesteventid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1446990-fseventstreaminvalidate": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventStreamInvalidate"
+        },
+        {
+          "kind": "text",
+          "text": "(FSEventStreamRef)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1446990-fseventstreaminvalidate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamInvalidate(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1446990-fseventstreaminvalidate"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447341-fseventstreamcreaterelativetodev": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventStreamCreateRelativeToDevice"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator?, FSEventStreamCallback, UnsafeMutablePointer<FSEventStreamContext>?, dev_t, CFArray, FSEventStreamEventId, CFTimeInterval, FSEventStreamCreateFlags) -> FSEventStreamRef?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447341-fseventstreamcreaterelativetodev",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamCreateRelativeToDevice(_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447341-fseventstreamcreaterelativetodev"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447673-fseventstreamstop": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventStreamStop"
+        },
+        {
+          "kind": "text",
+          "text": "(FSEventStreamRef)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447673-fseventstreamstop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamStop(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447673-fseventstreamstop"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447824-fseventstreamschedulewithrunloop": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventStreamScheduleWithRunLoop"
+        },
+        {
+          "kind": "text",
+          "text": "(FSEventStreamRef, CFRunLoop, CFString)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447824-fseventstreamschedulewithrunloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamScheduleWithRunLoop(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447824-fseventstreamschedulewithrunloop"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447917-fseventstreamcopypathsbeingwatch": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventStreamCopyPathsBeingWatched"
+        },
+        {
+          "kind": "text",
+          "text": "(ConstFSEventStreamRef) -> CFArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447917-fseventstreamcopypathsbeingwatch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamCopyPathsBeingWatched(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447917-fseventstreamcopypathsbeingwatch"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447985-fseventspurgeeventsfordeviceupto": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventsPurgeEventsForDeviceUpToEventId"
+        },
+        {
+          "kind": "text",
+          "text": "(dev_t, FSEventStreamEventId) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447985-fseventspurgeeventsfordeviceupto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventsPurgeEventsForDeviceUpToEventId(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447985-fseventspurgeeventsfordeviceupto"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1448000-fseventstreamstart": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventStreamStart"
+        },
+        {
+          "kind": "text",
+          "text": "(FSEventStreamRef) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1448000-fseventstreamstart",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamStart(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1448000-fseventstreamstart"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1449675-fseventstreamgetdevicebeingwatch": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventStreamGetDeviceBeingWatched"
+        },
+        {
+          "kind": "text",
+          "text": "(ConstFSEventStreamRef) -> dev_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1449675-fseventstreamgetdevicebeingwatch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamGetDeviceBeingWatched(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1449675-fseventstreamgetdevicebeingwatch"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1449772-fseventsgetlasteventidfordeviceb": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventsGetLastEventIdForDeviceBeforeTime"
+        },
+        {
+          "kind": "text",
+          "text": "(dev_t, CFAbsoluteTime) -> FSEventStreamEventId"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1449772-fseventsgetlasteventidfordeviceb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventsGetLastEventIdForDeviceBeforeTime(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1449772-fseventsgetlasteventidfordeviceb"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/file_system_events/1455361-fseventstreameventflags": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/file_system_events/1455361-fseventstreameventflags",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FSEventStreamEventFlags",
+      "type": "topic",
+      "url": "/documentation/coreservices/file_system_events/1455361-fseventstreameventflags"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/file_system_events/1455376-fseventstreamcreateflags": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/file_system_events/1455376-fseventstreamcreateflags",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FSEventStreamCreateFlags",
+      "type": "topic",
+      "url": "/documentation/coreservices/file_system_events/1455376-fseventstreamcreateflags"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fseventstreamcallback": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventStreamCallback"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fseventstreamcallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamCallback",
+      "type": "topic",
+      "url": "/documentation/coreservices/fseventstreamcallback"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fseventstreamcreateflags": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventStreamCreateFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fseventstreamcreateflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamCreateFlags",
+      "type": "topic",
+      "url": "/documentation/coreservices/fseventstreamcreateflags"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fseventstreameventflags": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventStreamEventFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fseventstreameventflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamEventFlags",
+      "type": "topic",
+      "url": "/documentation/coreservices/fseventstreameventflags"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fseventstreameventid": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventStreamEventId"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fseventstreameventid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamEventId",
+      "type": "topic",
+      "url": "/documentation/coreservices/fseventstreameventid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fseventstreamref": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEventStreamRef"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fseventstreamref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSEventStreamRef",
+      "type": "topic",
+      "url": "/documentation/coreservices/fseventstreamref"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kfseventstreameventextendeddatapathkey": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFSEventStreamEventExtendedDataPathKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kfseventstreameventextendeddatapathkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kFSEventStreamEventExtendedDataPathKey",
+      "type": "topic",
+      "url": "/documentation/coreservices/kfseventstreameventextendeddatapathkey"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kfseventstreameventextendedfileidkey": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFSEventStreamEventExtendedFileIDKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kfseventstreameventextendedfileidkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kFSEventStreamEventExtendedFileIDKey",
+      "type": "topic",
+      "url": "/documentation/coreservices/kfseventstreameventextendedfileidkey"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": false,
+      "identifiers": [
+        "devLink-1733622"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2934426",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1442676-fseventstreamcopydescription",
+        "doc://com.apple.documentation/documentation/coreservices/1447917-fseventstreamcopypathsbeingwatch",
+        "doc://com.apple.documentation/documentation/coreservices/1443980-fseventstreamcreate",
+        "doc://com.apple.documentation/documentation/coreservices/1447341-fseventstreamcreaterelativetodev",
+        "doc://com.apple.documentation/documentation/coreservices/1441727-fseventstreamflushasync",
+        "doc://com.apple.documentation/documentation/coreservices/1445629-fseventstreamflushsync",
+        "doc://com.apple.documentation/documentation/coreservices/1449675-fseventstreamgetdevicebeingwatch",
+        "doc://com.apple.documentation/documentation/coreservices/1446030-fseventstreamgetlatesteventid",
+        "doc://com.apple.documentation/documentation/coreservices/1446990-fseventstreaminvalidate",
+        "doc://com.apple.documentation/documentation/coreservices/1445989-fseventstreamrelease",
+        "doc://com.apple.documentation/documentation/coreservices/1444986-fseventstreamretain",
+        "doc://com.apple.documentation/documentation/coreservices/1447824-fseventstreamschedulewithrunloop",
+        "doc://com.apple.documentation/documentation/coreservices/1444164-fseventstreamsetdispatchqueue",
+        "doc://com.apple.documentation/documentation/coreservices/1444666-fseventstreamsetexclusionpaths",
+        "doc://com.apple.documentation/documentation/coreservices/1444302-fseventstreamshow",
+        "doc://com.apple.documentation/documentation/coreservices/1448000-fseventstreamstart",
+        "doc://com.apple.documentation/documentation/coreservices/1447673-fseventstreamstop",
+        "doc://com.apple.documentation/documentation/coreservices/1441982-fseventstreamunschedulefromrunlo",
+        "doc://com.apple.documentation/documentation/coreservices/1444453-fseventscopyuuidfordevice",
+        "doc://com.apple.documentation/documentation/coreservices/1442917-fseventsgetcurrenteventid",
+        "doc://com.apple.documentation/documentation/coreservices/1449772-fseventsgetlasteventidfordeviceb",
+        "doc://com.apple.documentation/documentation/coreservices/1447985-fseventspurgeeventsfordeviceupto"
+      ],
+      "kind": "taskGroup",
+      "title": "Functions"
+    },
+    {
+      "anchor": "2934146",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/file_system_events/1455376-fseventstreamcreateflags",
+        "doc://com.apple.documentation/documentation/coreservices/file_system_events/1455361-fseventstreameventflags"
+      ],
+      "kind": "taskGroup",
+      "title": "Enumerations"
+    },
+    {
+      "anchor": "2934424",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/fseventstreamcallback",
+        "doc://com.apple.documentation/documentation/coreservices/fseventstreamcreateflags",
+        "doc://com.apple.documentation/documentation/coreservices/fseventstreameventflags",
+        "doc://com.apple.documentation/documentation/coreservices/fseventstreameventid",
+        "doc://com.apple.documentation/documentation/coreservices/fseventstreamref"
+      ],
+      "kind": "taskGroup",
+      "title": "Data Types"
+    },
+    {
+      "anchor": "2874747",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/kfseventstreameventextendeddatapathkey",
+        "doc://com.apple.documentation/documentation/coreservices/kfseventstreameventextendedfileidkey"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/file_system_events"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreservices/file_system_events"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

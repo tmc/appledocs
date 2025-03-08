@@ -1,0 +1,432 @@
+{
+  "abstract": [
+    {
+      "text": "Check regional regulations for possible requirements for your Apple Pay-based implementation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.passkit/documentation/PassKit",
+        "doc://com.apple.passkit/documentation/PassKit/apple-pay"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.passkit/documentation/PassKit/complying-with-regional-regulations"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "PassKit (Apple Pay and Wallet)"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Complying with regional regulations"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some regional regulations may require specific configurations in your Apple Pay implementation, such as including certain options in properties. Below is some guidance on configuring your implementation in current Apple Pay markets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This list may not be complete. Check with your payment service provider (PSP) or the appropriate authorities to ensure your implementation meets requirements.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Transactions that take place in the United Kingdom and European Economic Area may be subject to The Payment Services Directive 2 (PSD2). Set the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "countryCode",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " of the transaction to the region where it’s processed. Apple Pay uses the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "countryCode",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " to generate data for the transaction that complies with this regulation.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "United Kingdom and European Economic Area",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You’re also required to show a final amount on the payment sheet.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on PSD2, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/support/psd2/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Saudi Arabia requires that all domestic debit transactions use the mada network. Merchants based in Saudi Arabia that support debit cards should add the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentNetwork/mada",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " payment network to their supported payment networks. If merchants don’t include mada, Apple Pay users may not be able to use certain Saudi-issued cards when the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "countryCode",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "SA",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " (Saudi Arabia). Merchants using a PSP should confirm they support the mada network.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Saudi Arabia",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.passkit/documentation/PassKit": {
+      "abstract": [
+        {
+          "text": "Process Apple Pay payments in your app, and create and distribute passes for the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PassKit (Apple Pay and Wallet)",
+      "type": "topic",
+      "url": "/documentation/passkit"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentNetwork/mada": {
+      "abstract": [
+        {
+          "text": "A mada payment card.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mada"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@PKPaymentNetwork",
+          "text": "PKPaymentNetwork"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentNetwork/mada",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentNetworkMada"
+        }
+      ],
+      "role": "symbol",
+      "title": "mada",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentnetwork/mada"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/apple-pay": {
+      "abstract": [
+        {
+          "text": "Request and process Apple Pay payments in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/apple-pay",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Pay",
+      "type": "topic",
+      "url": "/documentation/passkit/apple-pay"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/offering-apple-pay-in-your-app": {
+      "abstract": [
+        {
+          "text": "Collect payments with iPhone and Apple Watch using Apple Pay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/offering-apple-pay-in-your-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Offering Apple Pay in Your App",
+      "type": "topic",
+      "url": "/documentation/passkit/offering-apple-pay-in-your-app"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/setting-up-apple-pay": {
+      "abstract": [
+        {
+          "text": "Fulfill the requirements to provide Apple Pay as a payment option on your website or in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/setting-up-apple-pay",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up Apple Pay",
+      "type": "topic",
+      "url": "/documentation/passkit/setting-up-apple-pay"
+    },
+    "https://developer.apple.com/support/psd2/": {
+      "identifier": "https://developer.apple.com/support/psd2/",
+      "title": "Strong Customer Authentication Transactions in the European Economic Area",
+      "titleInlineContent": [
+        {
+          "text": "Strong Customer Authentication Transactions in the European Economic Area",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/psd2/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Apple-Pay-setup",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/setting-up-apple-pay",
+        "doc://com.apple.passkit/documentation/PassKit/offering-apple-pay-in-your-app"
+      ],
+      "title": "Apple Pay setup"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Apple-Pay-setup",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/setting-up-apple-pay",
+                "doc://com.apple.passkit/documentation/PassKit/offering-apple-pay-in-your-app"
+              ],
+              "title": "Apple Pay setup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentNetwork~1mada/title",
+          "value": "PKPaymentNetworkMada"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentNetwork~1mada/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentNetworkMada"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/passkit/complying-with-regional-regulations"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/passkit/complying-with-regional-regulations"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

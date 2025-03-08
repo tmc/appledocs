@@ -1,0 +1,2919 @@
+{
+  "abstract": [
+    {
+      "text": "Display values and get user selections.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Controls-and-indicators"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Controls and indicators"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftUI provides controls that enable user interaction specific to each",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "platform and context. For example, people can initiate events with buttons",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and links, or choose among a set of discrete values with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "different kinds of pickers. You can also display information to the user",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with indicators like progress views and gauges.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "controls-and-indicators-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use these built-in controls and indicators when composing custom",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "views, and style them to match the needs of your app’s user interface.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For design guidance, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/menus-and-actions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/selection-and-input",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/status",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the Human Interface Guidelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "View-Fundamentals-PageImage-card.png": {
+      "alt": "A conceptual illustration showing a view decomposed into different components.",
+      "identifier": "View-Fundamentals-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a9155d8ac081b19cb86c95247d8b043d/View-Fundamentals-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c29763670d863f869160a7df932dc4e1/View-Fundamentals-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "components-menus-and-actions-thumbnail.png": {
+      "alt": null,
+      "identifier": "components-menus-and-actions-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ba6cd58da1da0b2c4912d84c6a2faad1/components-menus-and-actions-thumbnail@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dfbfbe4d9006c4cadc3557208cc60115/components-menus-and-actions-thumbnail~dark@2x.png"
+        }
+      ]
+    },
+    "components-selection-and-input-thumbnail.png": {
+      "alt": null,
+      "identifier": "components-selection-and-input-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ceb7ff28e72c9cce057133752b1b5c90/components-selection-and-input-thumbnail@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e006f55140963443c469de590d0fd181/components-selection-and-input-thumbnail~dark@2x.png"
+        }
+      ]
+    },
+    "components-status-thumbnail.png": {
+      "alt": null,
+      "identifier": "components-status-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/aca1ffd3171e8d788a921aa0d0164882/components-status-thumbnail@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f400ff217d55bb3ec5d0c1533a3d5e64/components-status-thumbnail~dark@2x.png"
+        }
+      ]
+    },
+    "controls-and-indicators-hero": {
+      "alt": null,
+      "identifier": "controls-and-indicators-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3d1d4d9ddf1ec58056b340ea15756488/controls-and-indicators-hero@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Animations": {
+      "abstract": [
+        {
+          "text": "Create smooth visual updates in response to state changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Animations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Animations",
+      "type": "topic",
+      "url": "/documentation/swiftui/animations"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Button": {
+      "abstract": [
+        {
+          "text": "A control that initiates an action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Button"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Button",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Button"
+        }
+      ],
+      "role": "symbol",
+      "title": "Button",
+      "type": "topic",
+      "url": "/documentation/swiftui/button"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ButtonBorderShape": {
+      "abstract": [
+        {
+          "text": "A shape used to draw a button’s border.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ButtonBorderShape"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ButtonBorderShape",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ButtonBorderShape"
+        }
+      ],
+      "role": "symbol",
+      "title": "ButtonBorderShape",
+      "type": "topic",
+      "url": "/documentation/swiftui/buttonbordershape"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ButtonRepeatBehavior": {
+      "abstract": [
+        {
+          "text": "The options for controlling the repeatability of button actions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ButtonRepeatBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ButtonRepeatBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ButtonRepeatBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "ButtonRepeatBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/buttonrepeatbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ButtonRole": {
+      "abstract": [
+        {
+          "text": "A value that describes the purpose of a button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ButtonRole"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ButtonRole",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ButtonRole"
+        }
+      ],
+      "role": "symbol",
+      "title": "ButtonRole",
+      "type": "topic",
+      "url": "/documentation/swiftui/buttonrole"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ColorPicker": {
+      "abstract": [
+        {
+          "text": "A control used to select a color from the system color picker UI.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ColorPicker"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ColorPicker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ColorPicker"
+        }
+      ],
+      "role": "symbol",
+      "title": "ColorPicker",
+      "type": "topic",
+      "url": "/documentation/swiftui/colorpicker"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ContentUnavailableView": {
+      "abstract": [
+        {
+          "text": "An interface, consisting of a label and additional content, that you",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "display when the content of your app is unavailable to users.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentUnavailableView"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ContentUnavailableView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentUnavailableView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContentUnavailableView",
+      "type": "topic",
+      "url": "/documentation/swiftui/contentunavailableview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ControlSize": {
+      "abstract": [
+        {
+          "text": "The size classes, like regular or small, that you can apply to controls",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "within a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlSize"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ControlSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ControlSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "ControlSize",
+      "type": "topic",
+      "url": "/documentation/swiftui/controlsize"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DatePicker": {
+      "abstract": [
+        {
+          "text": "A control for selecting an absolute date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DatePicker"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DatePicker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DatePicker"
+        }
+      ],
+      "role": "symbol",
+      "title": "DatePicker",
+      "type": "topic",
+      "url": "/documentation/swiftui/datepicker"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DefaultDateProgressLabel": {
+      "abstract": [
+        {
+          "text": "The default type of the current value label when used by a date-relative",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "progress view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DefaultDateProgressLabel"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DefaultDateProgressLabel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DefaultDateProgressLabel"
+        }
+      ],
+      "role": "symbol",
+      "title": "DefaultDateProgressLabel",
+      "type": "topic",
+      "url": "/documentation/swiftui/defaultdateprogresslabel"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Drawing-and-graphics": {
+      "abstract": [
+        {
+          "text": "Enhance your views with graphical effects and customized drawings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Drawing-and-graphics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Drawing and graphics",
+      "type": "topic",
+      "url": "/documentation/swiftui/drawing-and-graphics"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EditButton": {
+      "abstract": [
+        {
+          "text": "A button that toggles the edit mode environment value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EditButton"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EditButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EditButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "EditButton",
+      "type": "topic",
+      "url": "/documentation/swiftui/editbutton"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/buttonRepeatBehavior": {
+      "abstract": [
+        {
+          "text": "Whether buttons with this associated environment should repeatedly",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "trigger their actions on prolonged interactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buttonRepeatBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ButtonRepeatBehaviorV",
+          "text": "ButtonRepeatBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/buttonRepeatBehavior",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buttonRepeatBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/buttonrepeatbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/calendar": {
+      "abstract": [
+        {
+          "text": "The current calendar that views should use when handling dates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "calendar"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation8CalendarV",
+          "text": "Calendar"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/calendar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "calendar",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/calendar"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/controlSize": {
+      "abstract": [
+        {
+          "text": "The size to apply to controls within a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "controlSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11ControlSizeO",
+          "text": "ControlSize"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/controlSize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "controlSize",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/controlsize"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/defaultWheelPickerItemHeight": {
+      "abstract": [
+        {
+          "text": "The default height of an item in a wheel-style picker, such as a date",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultWheelPickerItemHeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/defaultWheelPickerItemHeight",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultWheelPickerItemHeight",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/defaultwheelpickeritemheight"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/timeZone": {
+      "abstract": [
+        {
+          "text": "The current time zone that views should use when handling dates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeZone"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation8TimeZoneV",
+          "text": "TimeZone"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/timeZone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeZone",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/timezone"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Gauge": {
+      "abstract": [
+        {
+          "text": "A view that shows a value within a range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Gauge"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Gauge",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Gauge"
+        }
+      ],
+      "role": "symbol",
+      "title": "Gauge",
+      "type": "topic",
+      "url": "/documentation/swiftui/gauge"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/HelpLink": {
+      "abstract": [
+        {
+          "text": "A button with a standard appearance that opens app-specific help",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "documentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HelpLink"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HelpLink",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HelpLink"
+        }
+      ],
+      "role": "symbol",
+      "title": "HelpLink",
+      "type": "topic",
+      "url": "/documentation/swiftui/helplink"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Images": {
+      "abstract": [
+        {
+          "text": "Add images and symbols to your app’s user interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Images",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Images",
+      "type": "topic",
+      "url": "/documentation/swiftui/images"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Link": {
+      "abstract": [
+        {
+          "text": "A control for navigating to a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Link"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Link",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Link"
+        }
+      ],
+      "role": "symbol",
+      "title": "Link",
+      "type": "topic",
+      "url": "/documentation/swiftui/link"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Menus-and-commands": {
+      "abstract": [
+        {
+          "text": "Provide space-efficient, context-dependent access to commands and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Menus-and-commands",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Menus and commands",
+      "type": "topic",
+      "url": "/documentation/swiftui/menus-and-commands"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/MultiDatePicker": {
+      "abstract": [
+        {
+          "text": "A control for picking multiple dates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MultiDatePicker"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/MultiDatePicker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MultiDatePicker"
+        }
+      ],
+      "role": "symbol",
+      "title": "MultiDatePicker",
+      "type": "topic",
+      "url": "/documentation/swiftui/multidatepicker"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PaletteSelectionEffect": {
+      "abstract": [
+        {
+          "text": "The selection effect to apply to a palette item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaletteSelectionEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PaletteSelectionEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaletteSelectionEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaletteSelectionEffect",
+      "type": "topic",
+      "url": "/documentation/swiftui/paletteselectioneffect"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PasteButton": {
+      "abstract": [
+        {
+          "text": "A system button that reads items from the pasteboard and delivers it to a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "closure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PasteButton"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PasteButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PasteButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "PasteButton",
+      "type": "topic",
+      "url": "/documentation/swiftui/pastebutton"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Picker": {
+      "abstract": [
+        {
+          "text": "A control for selecting from a set of mutually exclusive values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Picker"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Picker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Picker"
+        }
+      ],
+      "role": "symbol",
+      "title": "Picker",
+      "type": "topic",
+      "url": "/documentation/swiftui/picker"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ProgressView": {
+      "abstract": [
+        {
+          "text": "A view that shows the progress toward completion of a task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProgressView"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ProgressView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProgressView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProgressView",
+      "type": "topic",
+      "url": "/documentation/swiftui/progressview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/RenameButton": {
+      "abstract": [
+        {
+          "text": "A button that triggers a standard rename action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RenameButton"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/RenameButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RenameButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "RenameButton",
+      "type": "topic",
+      "url": "/documentation/swiftui/renamebutton"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SensoryFeedback": {
+      "abstract": [
+        {
+          "text": "Represents a type of haptic and/or audio feedback that can be played.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SensoryFeedback"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SensoryFeedback",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SensoryFeedback"
+        }
+      ],
+      "role": "symbol",
+      "title": "SensoryFeedback",
+      "type": "topic",
+      "url": "/documentation/swiftui/sensoryfeedback"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Shapes": {
+      "abstract": [
+        {
+          "text": "Trace and fill built-in and custom shapes with a color, gradient, or other pattern.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Shapes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Shapes",
+      "type": "topic",
+      "url": "/documentation/swiftui/shapes"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ShareLink": {
+      "abstract": [
+        {
+          "text": "A view that controls a sharing presentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShareLink"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ShareLink",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShareLink"
+        }
+      ],
+      "role": "symbol",
+      "title": "ShareLink",
+      "type": "topic",
+      "url": "/documentation/swiftui/sharelink"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SharePreview": {
+      "abstract": [
+        {
+          "text": "A representation of a type to display in a share preview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SharePreview"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SharePreview",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SharePreview"
+        }
+      ],
+      "role": "symbol",
+      "title": "SharePreview",
+      "type": "topic",
+      "url": "/documentation/swiftui/sharepreview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Slider": {
+      "abstract": [
+        {
+          "text": "A control for selecting a value from a bounded linear range of values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Slider"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Slider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Slider"
+        }
+      ],
+      "role": "symbol",
+      "title": "Slider",
+      "type": "topic",
+      "url": "/documentation/swiftui/slider"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Stepper": {
+      "abstract": [
+        {
+          "text": "A control that performs increment and decrement actions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Stepper"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Stepper",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Stepper"
+        }
+      ],
+      "role": "symbol",
+      "title": "Stepper",
+      "type": "topic",
+      "url": "/documentation/swiftui/stepper"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text-input-and-output": {
+      "abstract": [
+        {
+          "text": "Display formatted text and get text input from the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text-input-and-output",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Text input and output",
+      "type": "topic",
+      "url": "/documentation/swiftui/text-input-and-output"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TextFieldLink": {
+      "abstract": [
+        {
+          "text": "A control that requests text input from the user when pressed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextFieldLink"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TextFieldLink",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextFieldLink"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextFieldLink",
+      "type": "topic",
+      "url": "/documentation/swiftui/textfieldlink"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Toggle": {
+      "abstract": [
+        {
+          "text": "A control that toggles between on and off states.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Toggle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Toggle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Toggle"
+        }
+      ],
+      "role": "symbol",
+      "title": "Toggle",
+      "type": "topic",
+      "url": "/documentation/swiftui/toggle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View-configuration": {
+      "abstract": [
+        {
+          "text": "Adjust the characteristics of views in a hierarchy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-configuration",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View configuration",
+      "type": "topic",
+      "url": "/documentation/swiftui/view-configuration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View-fundamentals": {
+      "abstract": [
+        {
+          "text": "Define the visual elements of your app using a hierarchy of views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-fundamentals",
+      "images": [
+        {
+          "identifier": "View-Fundamentals-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View fundamentals",
+      "type": "topic",
+      "url": "/documentation/swiftui/view-fundamentals"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View-styles": {
+      "abstract": [
+        {
+          "text": "Apply built-in and custom appearances and behaviors to different types of views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-styles",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View styles",
+      "type": "topic",
+      "url": "/documentation/swiftui/view-styles"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/buttonBorderShape(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the border shape for buttons in this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buttonBorderShape"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17ButtonBorderShapeV",
+          "text": "ButtonBorderShape"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/buttonBorderShape(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buttonBorderShape(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/buttonbordershape(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/buttonRepeatBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Sets whether buttons in this view should repeatedly trigger their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "actions on prolonged interactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buttonRepeatBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ButtonRepeatBehaviorV",
+          "text": "ButtonRepeatBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/buttonRepeatBehavior(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buttonRepeatBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/buttonrepeatbehavior(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/buttonStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for buttons within this view to a button style with a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "custom appearance and standard interaction behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buttonStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/buttonStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buttonStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/buttonstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/controlSize(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the size for controls within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "controlSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11ControlSizeO",
+          "text": "ControlSize"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/controlSize(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "controlSize(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/controlsize(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/datePickerStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for date pickers within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "datePickerStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/datePickerStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "datePickerStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/datepickerstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/defaultWheelPickerItemHeight(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the default wheel-style picker item height.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultWheelPickerItemHeight"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/defaultWheelPickerItemHeight(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultWheelPickerItemHeight(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/defaultwheelpickeritemheight(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gaugeStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for gauges within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gaugeStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gaugeStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gaugeStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/gaugestyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/horizontalRadioGroupLayout()": {
+      "abstract": [
+        {
+          "text": "Sets the style for radio group style pickers within this view to be",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "horizontally positioned with the radio buttons inside the layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "horizontalRadioGroupLayout"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/horizontalRadioGroupLayout()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "horizontalRadioGroupLayout()",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/horizontalradiogrouplayout()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/paletteSelectionEffect(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies the selection effect to apply to a palette item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paletteSelectionEffect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI22PaletteSelectionEffectV",
+          "text": "PaletteSelectionEffect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/paletteSelectionEffect(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "paletteSelectionEffect(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/paletteselectioneffect(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/pickerStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for pickers within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pickerStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/pickerStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pickerStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/pickerstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/progressViewStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for progress views in this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "progressViewStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/progressViewStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "progressViewStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/progressviewstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/sensoryFeedback(_:trigger:)": {
+      "abstract": [
+        {
+          "text": "Plays the specified ",
+          "type": "text"
+        },
+        {
+          "code": "feedback",
+          "type": "codeVoice"
+        },
+        {
+          "text": " when the provided ",
+          "type": "text"
+        },
+        {
+          "code": "trigger",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sensoryFeedback"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15SensoryFeedbackV",
+          "text": "SensoryFeedback"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trigger"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/sensoryFeedback(_:trigger:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sensoryFeedback(_:trigger:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/sensoryfeedback(_:trigger:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/sensoryFeedback(_:trigger:condition:)": {
+      "abstract": [
+        {
+          "text": "Plays the specified ",
+          "type": "text"
+        },
+        {
+          "code": "feedback",
+          "type": "codeVoice"
+        },
+        {
+          "text": " when the provided ",
+          "type": "text"
+        },
+        {
+          "code": "trigger",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value changes",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and the ",
+          "type": "text"
+        },
+        {
+          "code": "condition",
+          "type": "codeVoice"
+        },
+        {
+          "text": " closure returns ",
+          "type": "text"
+        },
+        {
+          "code": "true",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sensoryFeedback"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15SensoryFeedbackV",
+          "text": "SensoryFeedback"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trigger"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "condition"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/sensoryFeedback(_:trigger:condition:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sensoryFeedback(_:trigger:condition:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/sensoryfeedback(_:trigger:condition:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/sensoryFeedback(trigger:_:)": {
+      "abstract": [
+        {
+          "text": "Plays feedback when returned from the ",
+          "type": "text"
+        },
+        {
+          "code": "feedback",
+          "type": "codeVoice"
+        },
+        {
+          "text": " closure after the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "provided ",
+          "type": "text"
+        },
+        {
+          "code": "trigger",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sensoryFeedback"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "trigger"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15SensoryFeedbackV",
+          "text": "SensoryFeedback"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/sensoryFeedback(trigger:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sensoryFeedback(trigger:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/sensoryfeedback(trigger:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toggleStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for toggles in a view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toggleStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toggleStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toggleStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/togglestyle(_:)"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/menus-and-actions": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/menus-and-actions",
+      "images": [
+        {
+          "identifier": "menus-and-actions.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "components-menus-and-actions-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Menus and actions",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/menus-and-actions"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/selection-and-input": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/selection-and-input",
+      "images": [
+        {
+          "identifier": "selection-and-input.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "components-selection-and-input-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Selection and input",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/selection-and-input"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/status": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/status",
+      "images": [
+        {
+          "identifier": "status.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "components-status-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Status",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/status"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "menus-and-actions.svg": {
+      "alt": null,
+      "identifier": "menus-and-actions.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "menus-and-actions",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/75ce5d52e57519f2cb4ff43bf947e464/menus-and-actions.svg"
+        }
+      ]
+    },
+    "selection-and-input.svg": {
+      "alt": null,
+      "identifier": "selection-and-input.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "selection-and-input",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6bfe82fa338513b36059645f70a7baae/selection-and-input.svg"
+        }
+      ]
+    },
+    "status.svg": {
+      "alt": null,
+      "identifier": "status.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "status",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/36102a182c11ce4e60c34205b85609aa/status.svg"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Views",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View-fundamentals",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View-configuration",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View-styles",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Animations",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text-input-and-output",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Images",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Menus-and-commands",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Shapes",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Drawing-and-graphics"
+      ],
+      "title": "Views"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-buttons",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Button",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/buttonStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/buttonBorderShape(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/buttonRepeatBehavior(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/buttonRepeatBehavior",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ButtonBorderShape",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ButtonRole",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ButtonRepeatBehavior"
+      ],
+      "title": "Creating buttons"
+    },
+    {
+      "anchor": "Creating-special-purpose-buttons",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EditButton",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PasteButton",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/RenameButton"
+      ],
+      "title": "Creating special-purpose buttons"
+    },
+    {
+      "anchor": "Linking-to-other-content",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Link",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ShareLink",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SharePreview",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TextFieldLink",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/HelpLink"
+      ],
+      "title": "Linking to other content"
+    },
+    {
+      "anchor": "Getting-numeric-inputs",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Slider",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Stepper",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Toggle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toggleStyle(_:)"
+      ],
+      "title": "Getting numeric inputs"
+    },
+    {
+      "anchor": "Choosing-from-a-set-of-options",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Picker",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/pickerStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/horizontalRadioGroupLayout()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/defaultWheelPickerItemHeight(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/defaultWheelPickerItemHeight",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/paletteSelectionEffect(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PaletteSelectionEffect"
+      ],
+      "title": "Choosing from a set of options"
+    },
+    {
+      "anchor": "Choosing-dates",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DatePicker",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/datePickerStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/MultiDatePicker",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/calendar",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/timeZone"
+      ],
+      "title": "Choosing dates"
+    },
+    {
+      "anchor": "Choosing-a-color",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ColorPicker"
+      ],
+      "title": "Choosing a color"
+    },
+    {
+      "anchor": "Indicating-a-value",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Gauge",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gaugeStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ProgressView",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/progressViewStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DefaultDateProgressLabel"
+      ],
+      "title": "Indicating a value"
+    },
+    {
+      "anchor": "Indicating-missing-content",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ContentUnavailableView"
+      ],
+      "title": "Indicating missing content"
+    },
+    {
+      "anchor": "Providing-haptic-feedback",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/sensoryFeedback(_:trigger:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/sensoryFeedback(trigger:_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/sensoryFeedback(_:trigger:condition:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SensoryFeedback"
+      ],
+      "title": "Providing haptic feedback"
+    },
+    {
+      "anchor": "Sizing-controls",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/controlSize(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/controlSize",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ControlSize"
+      ],
+      "title": "Sizing controls"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/controls-and-indicators"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

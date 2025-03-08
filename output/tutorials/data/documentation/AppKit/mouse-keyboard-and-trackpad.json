@@ -1,0 +1,1276 @@
+{
+  "abstract": [
+    {
+      "text": "Handle events related to mouse, keyboard, and trackpad input.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/mouse-keyboard-and-trackpad"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Mouse, Keyboard, and Trackpad"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class defines the responder chain, an ordered list of objects that respond to user events. When the user clicks the mouse button, taps on the trackpad, or presses a key, an event is generated and passed up the responder chain in search of an object that can respond to it. Any object that handles events must inherit from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class. The core AppKit classes, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplication",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", inherit from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplication",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object maintains a list of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects—one for each window belonging to the app—and each ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object maintains a hierarchy of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. This view hierarchy is used for both drawing the user interface and for handling events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object handles window-level events and distributes other events to its views. An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object also has a delegate allowing you to customize its behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSApplication": {
+      "abstract": [
+        {
+          "text": "An object that manages an app’s main event loop and resources used by all of that app’s objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSApplication",
+      "type": "topic",
+      "url": "/documentation/appkit/nsapplication"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSEvent": {
+      "abstract": [
+        {
+          "text": "An object that contains information about an input action, such as a mouse click or a key press.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSEvent",
+      "type": "topic",
+      "url": "/documentation/appkit/nsevent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSEvent/ButtonMask-swift.struct": {
+      "abstract": [
+        {
+          "text": "Constants you use to identify the activated tablet buttons in an event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ButtonMask"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSEvent/ButtonMask-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ButtonMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSEvent.ButtonMask",
+      "type": "topic",
+      "url": "/documentation/appkit/nsevent/buttonmask-swift.struct"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSEvent/EventTypeMask": {
+      "abstract": [
+        {
+          "text": "Constants that you use to filter out specific event types from the stream of incoming events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EventTypeMask"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSEvent/EventTypeMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EventTypeMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSEvent.EventTypeMask",
+      "type": "topic",
+      "url": "/documentation/appkit/nsevent/eventtypemask"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSEvent/EventTypeMask/init(type:)": {
+      "abstract": [
+        {
+          "text": "Returns the event mask for the specified type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSEventType",
+          "text": "EventType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSEvent/EventTypeMask/init(type:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSEventMaskFromType"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(type:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsevent/eventtypemask/init(type:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSEvent/ModifierFlags-swift.struct": {
+      "abstract": [
+        {
+          "text": "Flags that represent key states in an event object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModifierFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSEvent/ModifierFlags-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModifierFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSEvent.ModifierFlags",
+      "type": "topic",
+      "url": "/documentation/appkit/nsevent/modifierflags-swift.struct"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSEvent/Phase-swift.struct": {
+      "abstract": [
+        {
+          "text": "Constants that represent the possible phases during an event phase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Phase"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSEvent/Phase-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Phase"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSEvent.Phase",
+      "type": "topic",
+      "url": "/documentation/appkit/nsevent/phase-swift.struct"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSEvent/SwipeTrackingOptions": {
+      "abstract": [
+        {
+          "text": "Constants that specify swipe-tracking options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SwipeTrackingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSEvent/SwipeTrackingOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SwipeTrackingOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSEvent.SwipeTrackingOptions",
+      "type": "topic",
+      "url": "/documentation/appkit/nsevent/swipetrackingoptions"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSHapticFeedbackManager": {
+      "abstract": [
+        {
+          "text": "An object that provides access to the haptic feedback management attributes on a system with a Force Touch trackpad.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHapticFeedbackManager"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSHapticFeedbackManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSHapticFeedbackManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSHapticFeedbackManager",
+      "type": "topic",
+      "url": "/documentation/appkit/nshapticfeedbackmanager"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPressureConfiguration": {
+      "abstract": [
+        {
+          "text": "An encapsulation of the behavior and progression of a Force Touch trackpad as it responds to specific events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPressureConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPressureConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPressureConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPressureConfiguration",
+      "type": "topic",
+      "url": "/documentation/appkit/nspressureconfiguration"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSResponder": {
+      "abstract": [
+        {
+          "text": "An abstract class that forms the basis of event and command processing in AppKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSResponder"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSResponder"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSResponder",
+      "type": "topic",
+      "url": "/documentation/appkit/nsresponder"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTouch": {
+      "abstract": [
+        {
+          "text": "A snapshot of a particular touch at an instant in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouch"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTouch"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTouch",
+      "type": "topic",
+      "url": "/documentation/appkit/nstouch"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView": {
+      "abstract": [
+        {
+          "text": "The infrastructure for drawing, printing, and handling events in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow": {
+      "abstract": [
+        {
+          "text": "A window that an app displays on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSWindow"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSWindow"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindow",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/accessibility-for-appkit": {
+      "abstract": [
+        {
+          "text": "Make your AppKit apps accessible to everyone who uses macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/accessibility-for-appkit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessibility for AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit/accessibility-for-appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/drag-and-drop": {
+      "abstract": [
+        {
+          "text": "Support the direct manipulation of your app’s content using drag and drop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/drag-and-drop",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Drag and Drop",
+      "type": "topic",
+      "url": "/documentation/appkit/drag-and-drop"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/gestures": {
+      "abstract": [
+        {
+          "text": "Encapsulate your app’s event-handling logic in gesture recognizers so that you can reuse that code throughout your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Gestures",
+      "type": "topic",
+      "url": "/documentation/appkit/gestures"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/menus-cursors-and-the-dock": {
+      "abstract": [
+        {
+          "text": "Implement menus and cursors to facilitate interactions with your app, and use your app’s Dock tile to convey updated information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/menus-cursors-and-the-dock",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Menus, Cursors, and the Dock",
+      "type": "topic",
+      "url": "/documentation/appkit/menus-cursors-and-the-dock"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/touch-bar": {
+      "abstract": [
+        {
+          "text": "Display interactive content and controls in the Touch Bar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/touch-bar",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Touch Bar",
+      "type": "topic",
+      "url": "/documentation/appkit/touch-bar"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-Interactions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/menus-cursors-and-the-dock",
+        "doc://com.apple.appkit/documentation/AppKit/gestures",
+        "doc://com.apple.appkit/documentation/AppKit/touch-bar",
+        "doc://com.apple.appkit/documentation/AppKit/drag-and-drop",
+        "doc://com.apple.appkit/documentation/AppKit/accessibility-for-appkit"
+      ],
+      "title": "User Interactions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Responder-Objects",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSResponder"
+      ],
+      "title": "Responder Objects"
+    },
+    {
+      "anchor": "Mouse-Keyboard-and-Touch-Events",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSEvent",
+        "doc://com.apple.appkit/documentation/AppKit/NSTouch"
+      ],
+      "title": "Mouse, Keyboard, and Touch Events"
+    },
+    {
+      "anchor": "Trackpad",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPressureConfiguration",
+        "doc://com.apple.appkit/documentation/AppKit/NSHapticFeedbackManager"
+      ],
+      "title": "Trackpad"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSEvent/EventTypeMask",
+        "doc://com.apple.appkit/documentation/AppKit/NSEvent/ButtonMask-swift.struct",
+        "doc://com.apple.appkit/documentation/AppKit/NSEvent/ModifierFlags-swift.struct",
+        "doc://com.apple.appkit/documentation/AppKit/NSEvent/Phase-swift.struct",
+        "doc://com.apple.appkit/documentation/AppKit/NSEvent/SwipeTrackingOptions",
+        "doc://com.apple.appkit/documentation/AppKit/NSEvent/EventTypeMask/init(type:)"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Responder-Objects",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSResponder"
+              ],
+              "title": "Responder Objects"
+            },
+            {
+              "anchor": "Mouse-Keyboard-and-Touch-Events",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSEvent",
+                "doc://com.apple.appkit/documentation/AppKit/NSTouch"
+              ],
+              "title": "Mouse, Keyboard, and Touch Events"
+            },
+            {
+              "anchor": "Trackpad",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPressureConfiguration",
+                "doc://com.apple.appkit/documentation/AppKit/NSHapticFeedbackManager"
+              ],
+              "title": "Trackpad"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSEvent/EventTypeMask",
+                "doc://com.apple.appkit/documentation/AppKit/NSEvent/ButtonMask-swift.struct",
+                "doc://com.apple.appkit/documentation/AppKit/NSEvent/ModifierFlags-swift.struct",
+                "doc://com.apple.appkit/documentation/AppKit/NSEvent/Phase-swift.struct",
+                "doc://com.apple.appkit/documentation/AppKit/NSEvent/SwipeTrackingOptions",
+                "doc://com.apple.appkit/documentation/AppKit/NSEvent/EventTypeMask/init(type:)"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "User-Interactions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/menus-cursors-and-the-dock",
+                "doc://com.apple.appkit/documentation/AppKit/gestures",
+                "doc://com.apple.appkit/documentation/AppKit/touch-bar",
+                "doc://com.apple.appkit/documentation/AppKit/drag-and-drop",
+                "doc://com.apple.appkit/documentation/AppKit/accessibility-for-appkit"
+              ],
+              "title": "User Interactions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouch/title",
+          "value": "NSTouch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder/title",
+          "value": "NSResponder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEvent/title",
+          "value": "NSEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow/title",
+          "value": "NSWindow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEvent~1ModifierFlags-swift.struct/title",
+          "value": "NSEventModifierFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEvent~1ModifierFlags-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEventModifierFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEvent~1ModifierFlags-swift.struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEventModifierFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplication/title",
+          "value": "NSApplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEvent~1Phase-swift.struct/title",
+          "value": "NSEventPhase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEvent~1Phase-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEventPhase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEvent~1Phase-swift.struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEventPhase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/title",
+          "value": "NSView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSHapticFeedbackManager/title",
+          "value": "NSHapticFeedbackManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSHapticFeedbackManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSHapticFeedbackManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSHapticFeedbackManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSHapticFeedbackManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEvent~1ButtonMask-swift.struct/title",
+          "value": "NSEventButtonMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEvent~1ButtonMask-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEventButtonMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEvent~1ButtonMask-swift.struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEventButtonMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEvent~1EventTypeMask/title",
+          "value": "NSEventMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEvent~1EventTypeMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEventMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEvent~1EventTypeMask/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEventMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPressureConfiguration/title",
+          "value": "NSPressureConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPressureConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPressureConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPressureConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPressureConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEvent~1SwipeTrackingOptions/title",
+          "value": "NSEventSwipeTrackingOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEvent~1SwipeTrackingOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEventSwipeTrackingOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEvent~1SwipeTrackingOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEventSwipeTrackingOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEvent~1EventTypeMask~1init(type:)/title",
+          "value": "NSEventMaskFromType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEvent~1EventTypeMask~1init(type:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEventMaskFromType"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/mouse-keyboard-and-trackpad"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/mouse-keyboard-and-trackpad"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

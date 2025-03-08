@@ -1,0 +1,2700 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_2-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Xcode 12.2 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode 12.2 includes SDKs for iOS 14.2, iPadOS 14.2, tvOS 14.2, watchOS 7.1, and macOS Big Sur 11.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Xcode 12.2 release supports on-device debugging for iOS 9 and later, tvOS 9 and later, and watchOS 2 and later.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode 12.2 requires a Mac running macOS 10.15.4 or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "General",
+          "level": 3,
+          "text": "General",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When bringing iPad apps to macOS using Mac Catalyst, you can now enable the “Optimize Interface for Mac” target setting to use native Mac controls and resolution. (56344940)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode’s scheme menu now includes an Any Mac destination for Mac schemes.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "This is a new build destination that builds each target in the scheme for all of their supported architectures, regardless of the native architecture of the local Mac. (62736613)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode now supports iOS, tvOS, and watchOS development on Macs with Apple silicon. (64317985, 65077539, 65701094)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can now upload an app for App Store submission or Developer ID notarization even if Xcode’s path contains a space. (69009477)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode doesn’t prevent you from selecting a macOS destination for an iOS app when the macOS destination doesn’t support the iOS app’s deployment target. (68261281, 68714781, 68948002)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you attempt to launch the app through Xcode on an unsupported macOS destination, Xcode displays the message “The app is incompatible with the current version of macOS. Please check the app’s deployment target.”",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Change the iOS deployment target for the iOS app to a version supported by the macOS destination, or upgrade to a version of macOS that supports the iOS deployment target configured in the project.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Xcode must be running on macOS 11 or later to build an app with an iOS 14 or later deployment target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Build-System",
+          "level": 3,
+          "text": "Build System",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When building on the command line, projects now build for all of their configured architectures instead of the first architecture in the list, when ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ONLY_ACTIVE_ARCH",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is set to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "YES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-destination",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " option to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcodebuild",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " isn’t being used. (69242858)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Core-ML",
+          "level": 3,
+          "text": "Core ML",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Core ML editor’s Preview tab for sound classifier models now shows a classification result when you click on Listen.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Also, when you add an audio file, clicking the Play button updates the timeline as the file plays. (67515312)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Create-ML",
+          "level": 3,
+          "text": "Create ML",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can explore and interact with models during training using the new Training Control.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "You can pause, save, resume, or extend the training process.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "This feature requires macOS 11 or later. (45241965)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can train deep neural networks to stylize photos and videos in real time using the new Style Transfer template.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "This template requires macOS 11 or later. (55848835)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can train neural networks to classify a single person’s actions in a video clip using the new Action Classification template.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "This template requires macOS 11 or later. (56622350)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can improve model accuracy when training data is limited using the Object Detection template’s new Transfer Learning option.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "This feature requires macOS 11 or later. (58627183)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Word Tagger template’s new Transfer Learning option uses dynamic word embeddings to help improve model accuracy when training data is limited.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "This feature requires macOS 11 or later. (59281335)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Debugging",
+          "level": 3,
+          "text": "Debugging",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Improved Xcode’s error message for app-launch failures when attempting to launch multiple instances of an app built with Mac Catalyst, or an iOS app on Mac, with the same bundle identifier. (66691875)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where Quick Look popovers for variables in the Xcode debugger were sometimes too small and truncated their contents. (67580519)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode fails to install an app with multibyte UTF-8 characters in its bundle name, and presents an error of “failed to hardlink copy”. (69887557) (FB8766413)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Use only uppercase letters (A-Z), lowercase letters (a-z), hyphens (-), underscores(__), and spaces in an app’s bundle name.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "By default, an app’s bundle name matches its target name, which you can change in the project editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Note that this issue doesn’t impact an app’s Bundle ID or Bundle Display Name, only the name of the app’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".app",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " folder on disk, which isn’t usually seen by users.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When running in macOS 11, Xcode’s navigators lay out at the wrong sizes.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "The breakpoint navigator may not display the state of the breakpoint, and the breakpoint editor popover may never become visible. (70063096)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Use macOS 11.0.1 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Devices",
+          "level": 3,
+          "text": "Devices",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode may spontaneously lose device configuration information for an Apple Watch.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "This may cause Xcode to crash or display an error stating that your app “cannot be installed on (null)”. (54768855)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": On the Mac you’re using for development, run the following command in Terminal:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "sudo killall -9 usbmuxd"
+                  ],
+                  "syntax": "shell",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "After running this command, restart Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode 11 and 12 may fail to prepare a wirelessly connected iOS device for debugging with the error “Failed _shouldMakeReadyForDevelopment check”.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Even if Xcode prepares the device successfully, the Devices and Simulators window may continue to display stale errors for the device’s status. (61227501) (FB7649607)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Keep the wirelessly connected iOS device unlocked while deploying or debugging an app on the device.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Restart Xcode if you want to clear stale device preparation errors.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Whenever possible, use a USB cable instead of a wireless connection between your Mac and iOS device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode may fail to copy symbols from iOS devices, and fail to prepare the devices for debugging, then take several minutes to attach to the debugger and reach breakpoints that would normally be reached immediately on launch. (68221778) (FB8611135)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Re-copy symbols from your devices by following these steps.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Disconnect all iOS devices from your Mac.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Delete this directory: ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "~/Library/Developer/Xcode/iOS DeviceSupport",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Open the Devices and Simulators window in Xcode.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Use a USB cable to connect any arm64e iOS devices (iPhone XS, iPhone XS Max, or later).",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Wait for the Devices and Simulators window to finish copying symbols for these devices.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Use a USB cable to connect any arm64 iOS devices and copy their symbols.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "orderedList"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "After installing Xcode, you must reboot your Mac before you can use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "rvictl",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (70403127)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can now debug a WatchKit App when an App Clip is added to its paired iOS App, even if that iOS App isn’t installed. (65784374, 70152797) (FB8065876)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a crash that could occur when you click the View Device Logs button for a device you select in the Devices and Simulators window. (66303792, 70152877)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Documentation-Viewer",
+          "level": 3,
+          "text": "Documentation Viewer",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode may crash when you open the Developer Documentation window if you install and run Xcode outside of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/Applications",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (70631583)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Move Xcode to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/Applications",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and relaunch.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Interface-Builder",
+          "level": 3,
+          "text": "Interface Builder",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Interface Builder now supports Inline and Compact ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIDatePicker",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " styles. (65085323) (FB7847821)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enabled safe area relative margins by default for navigation bars of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UINavigationController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For existing navigation controllers in storyboards, you can correct clipping by selecting the navigation bar in the controller, and enable Size Inspector > Safe Area Relative Margins. (66566017) (FB8269384)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue that could cause an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTableView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to lose its Source List style when deploying to macOS versions earlier than macOS 11. (67700315) (FB8525478)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Organizer",
+          "level": 3,
+          "text": "Organizer",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can now export a watchOS app for Ad Hoc or Development distribution with thinning enabled for “All compatible device variants”. (66637482)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Previews",
+          "level": 3,
+          "text": "Previews",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The action menu has a new “Embed…” menu item that lets you specify the type of View container in which to embed the selected view hierarchy. (51152198)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The action menu has a new “Embed in ZStack” menu item. (56989502)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode provides SwiftUI previews for macOS Widget extensions. (57990060)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The SwiftUI previews canvas now automatically shows and hides based on the presence of a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/PreviewProvider",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in the file you’re editing. (67083504, 67693254)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Editor menu now includes Create Preview to create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/PreviewProvider",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and Create Library Item to create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/DeveloperToolsSupport/LibraryContentProvider",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (67110969)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue that prevented previews from loading in projects with non-ASCII characters in their names, or in symbols within the project. (57260388) (FB7451792)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Previews correctly display interpolated strings, including for localized strings. (64278576)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue that prevented previews from loading for code that contains multi-line string literals. (65735599)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The canvas now displays error details when a preview fails to launch due to the underlying app crashing, such as when the app doesn’t have an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentObject",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (67955924)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Using the device name “Mac Catalyst” in a SwiftUI ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/PreviewDevice",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " modifier may cause the preview to fail to update.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Instead, the banner displays the error “Cannot preview in this file – rendering service was interrupted”. (65305155)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Remove the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "previewDevice",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " modifier and switch to the “My Mac” run destination.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "RealityKit",
+          "level": 3,
+          "text": "RealityKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode can’t build an app with Mac Catalyst if the app imports the RealityKit framework (70102384)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Signing-and-Distribution",
+          "level": 3,
+          "text": "Signing and Distribution",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode can now sign iOS apps for development or distribution to Macs with Apple silicon.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "You must register your Mac with Apple silicon on the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in order to run Mac, iPhone, or iPad apps.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Registration requires your Mac’s hardware identifier, which you can find in Xcode’s error message or in the System Information app’s Hardware > Provisioning UDID field.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Once you’ve registered your Mac, you can use Xcode’s automatic signing or manually sign apps to run on the device. (54476962, 65752056)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode can sign and provision an archived iOS app to run on your Mac with Apple silicon.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Find the archive in the Organizer window, click on Distribute App, select either “Ad Hoc” or “Development”, choose your distribution options, select “Automatically manage signing”, and proceed through the remainder of the distribution assistant to create an IPA.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Once you’ve created the IPA, you can transfer it to your Mac with Apple silicon, and double-click on it to install.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "During the app’s first launch, macOS prompts you to open the Security & Privacy preferences pane and enable the app.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "To see the launch button in the preferences pane, make sure your Mac is configured to only allow apps from the App Store and identified developers. (68513041, 68528315).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode automatic signing includes your registered Macs with Apple silicon in your provisioning profile when exporting an archive. (66857321)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode can now distribute an archive containing an App Clip even if the parent app’s application identifier doesn’t begin with a Team ID. (67401115) (FB8461092)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Simulator",
+          "level": 3,
+          "text": "Simulator",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Simulated watchOS 7 devices support 64-bit processes.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "To verify watchOS projects are 64-bit clean in Simulator, make sure ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ARCHS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is set to its default value. (54654060, 66352876)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Projects must be 64-bit clean to run in Simulator on Macs with Apple silicon, which doesn’t support 32-bit code.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ],
+                  "name": "Note",
+                  "style": "note",
+                  "type": "aside"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue that could cause apps linking against ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreNFC",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to crash with an error of “Library not loaded” from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "dyld",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (67961203)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Simulators may not be available when running command-line tools like ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "simctl",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcodebuild",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from a non-root LaunchDaemon, or when launching as a different user from the current user (for example, with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sudo",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "launchctl",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "). (62188195)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Simulator runtimes for iOS 13, tvOS 13, and watchOS 6 and earlier don’t work on the Developer Transition Kit.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Preferences offers these runtimes for download, but creating a simulated device from one of these runtimes fails, claiming the runtime is unavailable.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Other Macs with Apple silicon support a limited set of older simulator runtimes for iOS and tvOS. (66115743, 70472441) (FB8157217)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Simulators for watchOS 6 or earlier aren’t supported on Macs with Apple silicon. (66352760)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Source-Editor",
+          "level": 3,
+          "text": "Source Editor",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The source editor properly displays errors and warnings from Run Script build phases that use relative paths; clicking the issue in the Issues navigator takes you to the issue in the source editor. (43290386, 70152655) (FB5420750)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "StoreKit",
+          "level": 3,
+          "text": "StoreKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a crash that could occur when selecting “Subscription Options” in the StoreKit transaction manager. (68354368)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Swift",
+          "level": 3,
+          "text": "Swift",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a compiler crash that could occur when a function builder body contains an empty switch statement.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "This issue could also cause a SourceKit crash while typing a switch statement in a SwiftUI view body. (65983237) (FB8111944)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a regression that caused property wrappers to leak objects during their initialization. (69023636)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Compiling a project with Mac Catalyst that imports ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/OSLog",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " from Swift may fail. (68597591)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Consider importing ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "os.log",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and similar services directly, or guarding the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "OSLog",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " import with a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "targetEnvironment",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " compiler directive.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Swift-Packages",
+          "level": 3,
+          "text": "Swift Packages",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Swift Packages may not respect the “Build Active Architecture Only” project build setting when you try to build universal binaries. (64344067)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Use the “Any Mac”, “Any iOS Device (arm64)”, “Any watchOS Device”, or “Any tvOS Device” destination to build for all applicable devices.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Testing",
+          "level": 3,
+          "text": "Testing",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode can’t run UI tests for an iOS app on Apple silicon.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "If the active scheme or test plan includes both unit and UI tests, Xcode skips the UI tests, and logs a message that the UI tests were skipped in the test-activity log. (60059698)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode doesn’t run iOS app tests in parallel on Apple silicon.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "The tests run sequentially instead. (60514529)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS unit tests fail to launch on Apple silicon if the test target’s host application is set to None. (65309328)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": In the General tab of the test target’s project settings, set the host application to an iOS application target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Test Runner fails to re-launch on older simulator runtimes when the test hangs and times out. (68288321)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Fix the test that is hanging, or use a newer simulator runtime version.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 12 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-12-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_0_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_0_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 12.0.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-12_0_1-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 12.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-12_1-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 12.3 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-12_3-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 12.4 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-12_4-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_5-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_5-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 12.5 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-12_5-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_5_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_5_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 12.5.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-12_5_1-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSTableView": {
+      "abstract": [
+        {
+          "text": "A set of related records, displayed in rows that represent individual records and columns that represent the attributes of those records.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTableView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTableView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTableView",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTableView"
+    },
+    "doc://com.apple.documentation/documentation/CoreNFC": {
+      "abstract": [
+        {
+          "text": "Detect NFC tags, read messages that contain NDEF data, and save data to writable tags.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreNFC",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core NFC",
+      "type": "topic",
+      "url": "/documentation/CoreNFC"
+    },
+    "doc://com.apple.documentation/documentation/DeveloperToolsSupport/LibraryContentProvider": {
+      "abstract": [
+        {
+          "text": "A source of Xcode library and code completion content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryContentProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DeveloperToolsSupport/LibraryContentProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LibraryContentProvider",
+      "type": "topic",
+      "url": "/documentation/DeveloperToolsSupport/LibraryContentProvider"
+    },
+    "doc://com.apple.documentation/documentation/OSLog": {
+      "abstract": [
+        {
+          "text": "A unified logging system for the reading of historical data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/OSLog",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "OSLog",
+      "type": "topic",
+      "url": "/documentation/OSLog"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentObject": {
+      "abstract": [
+        {
+          "text": "A property wrapper type for an observable object that a parent or ancestor view supplies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@propertyWrapper"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnvironmentObject"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "ObjectType"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ObjectType"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine16ObservableObjectP",
+          "text": "ObservableObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EnvironmentObject",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentObject"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/PreviewDevice": {
+      "abstract": [
+        {
+          "text": "A simulator device that runs a preview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreviewDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/PreviewDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PreviewDevice",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/PreviewDevice"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/PreviewProvider": {
+      "abstract": [
+        {
+          "text": "A type that produces view previews in Xcode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreviewProvider"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "_PreviewProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/PreviewProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PreviewProvider",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/PreviewProvider"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIDatePicker": {
+      "abstract": [
+        {
+          "text": "A control for inputting date and time values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDatePicker"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIDatePicker",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIDatePicker",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIDatePicker"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UINavigationController": {
+      "abstract": [
+        {
+          "text": "A container view controller that defines a stack-based scheme for navigating hierarchical content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UINavigationController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UINavigationController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UINavigationController",
+      "type": "topic",
+      "url": "/documentation/UIKit/UINavigationController"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com": {
+      "identifier": "https://developer.apple.com",
+      "title": "Developer website",
+      "titleInlineContent": [
+        {
+          "text": "Developer website",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Xcode-12",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_5_1-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_5-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_4-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_3-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_1-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12_0_1-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-12-release-notes"
+      ],
+      "title": "Xcode 12"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIDatePicker/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIDatePicker"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIControl",
+              "text": "UIControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSTableView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTableView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSControl",
+              "text": "NSControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UINavigationController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UINavigationController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

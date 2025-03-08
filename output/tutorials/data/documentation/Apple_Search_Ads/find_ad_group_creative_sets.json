@@ -1,0 +1,544 @@
+{
+  "abstract": [
+    {
+      "text": "Fetches all assigned Creative Sets for ad groups.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/apple_search_ads"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/apple_search_ads/find_ad_group_creative_sets"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3732673,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:search_ads:post:v4-campaigns-{}-adgroupcreativesets-find",
+    "modules": [
+      {
+        "name": "Apple Search Ads"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "5.1",
+        "deprecated": true,
+        "deprecatedAt": "4.0",
+        "introducedAt": "4.0",
+        "name": "Search Ads"
+      }
+    ],
+    "role": "restRequestSymbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpPost",
+    "title": "Find Ad Group Creative Sets"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.searchads.apple.com/api"
+        },
+        {
+          "kind": "path",
+          "text": "/v4/campaigns/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{campaignId}"
+        },
+        {
+          "kind": "path",
+          "text": "/adgroupcreativesets/find"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The unique identifier for the campaign.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "campaignId",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "int64"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "int64"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.documentation/documentation/apple_search_ads/findadgroupcreativesetrequest",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "data:search_ads:FindAdGroupCreativeSetRequest",
+          "text": "FindAdGroupCreativeSetRequest"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "The request body that includes the selector ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Condition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Selector",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects define what data the API returns when fetching resources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the call succeeds, the API returns a list of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/apple_search_ads/adgroupcreativeset",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " objects in the response payload with an HTTP status code of 200 (OK).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimetype": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_search_ads/adgroupcreativesetlistresponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:AdGroupCreativeSetListResponse",
+              "text": "AdGroupCreativeSetListResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An invalid query or missing required parameters.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimetype": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An unauthenticated call fails to get the requested response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimetype": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Insufficient rights to the resource.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimetype": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The API can’t locate the resource.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimetype": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "mimetype": "application/json",
+          "status": 429,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Apple Search Ads server is temporarily down or unreachable. The request may be valid, but you need to retry it later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimetype": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This content is marked for deprecation. For the most recent API functionality, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/custom-product-pages",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this endpoint to find all assigned Creative Sets for an ad group. Use the corresponding ",
+              "type": "text"
+            },
+            {
+              "code": "campaignId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of the ad group in the URI. Use the ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field with its corresponding ad group as a value in the request payload.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3235201",
+          "level": 3,
+          "text": "Payload Example: Find Ad Group Creative Sets",
+          "type": "heading"
+        },
+        {
+          "request": {
+            "content": [
+              {
+                "code": [
+                  "POST https://api.searchads.apple.com/api/v4/campaigns/{campaignId}/adgroupcreativesets/find",
+                  "",
+                  "{",
+                  "  \"selector\": {",
+                  "    \"conditions\": [",
+                  "      {",
+                  "        \"field\": \"id\",",
+                  "        \"operator\": \"EQUALS\",",
+                  "        \"values\": [",
+                  "          \"542317136\"",
+                  "        ]",
+                  "      }",
+                  "    ]",
+                  "  }",
+                  "}"
+                ],
+                "collapsible": false
+              }
+            ]
+          },
+          "response": {
+            "content": [
+              {
+                "code": [
+                  "{",
+                  "  \"data\": [",
+                  "    {",
+                  "      \"id\": 542317136,",
+                  "      \"adGroupId\": 542317095,",
+                  "      \"creativeSetId\": 542317136,",
+                  "      \"campaignId\": 542370539,",
+                  "      \"status\": \"ENABLED\",",
+                  "      \"servingStatus\": \"RUNNING\",",
+                  "      \"servingStatusReasons\": [],",
+                  "      \"deleted\": false,",
+                  "      \"modificationTime\": \"2020-04-08T22:12:18.270\"",
+                  "    }",
+                  "  ]",
+                  "}"
+                ],
+                "collapsible": false
+              }
+            ]
+          },
+          "type": "endpointExample"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/custom-product-pages": {
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/custom-product-pages",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Custom Product Pages",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/custom-product-pages"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse": {
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "ApiErrorResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/apierrorresponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Condition": {
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Condition",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "Condition",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/condition"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Selector": {
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Selector",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "Selector",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/selector"
+    },
+    "doc://com.apple.documentation/documentation/apple_search_ads": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_search_ads",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Search Ads",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads"
+    },
+    "doc://com.apple.documentation/documentation/apple_search_ads/adgroupcreativeset": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_search_ads/adgroupcreativeset",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "AdGroupCreativeSet",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/adgroupcreativeset"
+    },
+    "doc://com.apple.documentation/documentation/apple_search_ads/adgroupcreativesetlistresponse": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_search_ads/adgroupcreativesetlistresponse",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "AdGroupCreativeSetListResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/adgroupcreativesetlistresponse"
+    },
+    "doc://com.apple.documentation/documentation/apple_search_ads/findadgroupcreativesetrequest": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_search_ads/findadgroupcreativesetrequest",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "FindAdGroupCreativeSetRequest",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/findadgroupcreativesetrequest"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/apple_search_ads/find_ad_group_creative_sets"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

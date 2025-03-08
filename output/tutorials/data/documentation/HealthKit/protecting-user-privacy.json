@@ -1,0 +1,612 @@
+{
+  "abstract": [
+    {
+      "text": "Respect and safeguard your user’s privacy.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/protecting-user-privacy"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Protecting user privacy"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because health data can be sensitive, HealthKit provides users with fine-grained control over the information that apps can share. The user must explicitly grant each app permission to read and write data to the HealthKit store. Users can grant or deny permission separately for each type of data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, a user could let your app read step count data, but prevent it from reading blood glucose levels. To prevent possible information leaks, an app isn’t aware when the user denies permission to read data. From the app’s point of view, no data of that type exists.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Apps must include usage descriptions, or it will crash when you request authorization to access HealthKit data. Include the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthShareUsageDescription",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " key to read, and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthUpdateUsageDescription",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " key to write data to Healthkit. For projects created using Xcode 13 or later, set these keys in the Target Properties list on the app’s Info tab. For projects created with Xcode 12 or earlier, set these keys in the apps ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Access-encrypted-data",
+          "level": 3,
+          "text": "Access encrypted data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The user’s device stores all HealthKit data locally. For security, the device encrypts the HealthKit store when the user locks the device. As a result, your app may not be able to read data from the store when it runs in the background. However, your app can still write to the store, even when the phone is locked. HealthKit temporarily caches the data and saves it to the encrypted store as soon as the user unlocks the phone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-how-your-app-uses-the-health-data",
+          "level": 3,
+          "text": "Specify how your app uses the health data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition, your app must not access the HealthKit APIs unless the use is for health or fitness purposes and this usage is clear in both your marketing text and your user interface. Specifically, the following guidelines apply to all HealthKit apps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app may not use information gained through the use of the HealthKit framework for advertising or similar services. Note that you may still serve advertising in an app that uses the HealthKit framework, but you can’t use data from the HealthKit store to serve ads.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You must not disclose any information gained through HealthKit to a third party without express permission from the user. Even with permission, you can only share information to a third party if they also provide a health or fitness service to the user.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can’t sell information gained through HealthKit to advertising platforms, data brokers, or information resellers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the user consents, you may share their HealthKit data with a third party for medical research.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You must clearly disclose to the user how you and your app will use their HealthKit data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Provide-a-privacy-policy",
+          "level": 3,
+          "text": "Provide a privacy policy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must also provide a privacy policy for any app that uses the HealthKit framework. You can find guidance on creating a privacy policy at the following sites:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Personal Health Record model (for non-HIPAA apps): ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "http://www.healthit.gov/policy-researchers-implementers/personal-health-record-phr-model-privacy-notice",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "HIPAA model (for HIPAA covered apps): ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/model-notices-privacy-practices/index.html",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These models, developed by the Office of the National Coordinator for Health Information Technology (ONC), are designed to improve user experience and comprehension with plain language and approachable designs that explain how your app collects and shares user data. These models aren’t intended to replace a web-based privacy policy, and developers should consult ONC guidance regarding which model is appropriate for a given app. These models are provided for your reference only, and Apple expressly disclaims all liability for your use of such models.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "It’s essential that you understand Apple’s requirements for working with HealthKit and the user’s health-related data. To learn about these requirements, see the HealthKit section in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/app-store/review/guidelines/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and the relevant sections in the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/support/terms/apple-developer-program-license-agreement/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". The App Store Review Guidelines are also available from the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/app-store/review/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " page.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "For additional technical information about working with sensitive user data, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/UIKit/preparing-your-ui-to-run-in-the-background",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List": {
+      "abstract": [
+        {
+          "text": "A resource containing key-value pairs that identify and configure a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Information Property List",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthShareUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message to the user that explains why the app requested permission to read samples from the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthShareUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHealthShareUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSHealthShareUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthUpdateUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message to the user that explains why the app requested permission to save samples to the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHealthUpdateUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHealthUpdateUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSHealthUpdateUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/preparing-your-ui-to-run-in-the-background": {
+      "abstract": [
+        {
+          "text": "Prepare your app to be suspended.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/preparing-your-ui-to-run-in-the-background",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing your UI to run in the background",
+      "type": "topic",
+      "url": "/documentation/UIKit/preparing-your-ui-to-run-in-the-background"
+    },
+    "doc://com.apple.documentation/documentation/Updates/HealthKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to HealthKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Updates/HealthKit",
+      "kind": "article",
+      "role": "article",
+      "title": "HealthKit updates",
+      "type": "topic",
+      "url": "/documentation/Updates/HealthKit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/about-the-healthkit-framework": {
+      "abstract": [
+        {
+          "text": "Learn about the architecture and design of the HealthKit framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/about-the-healthkit-framework",
+      "kind": "article",
+      "role": "article",
+      "title": "About the HealthKit framework",
+      "type": "topic",
+      "url": "/documentation/healthkit/about-the-healthkit-framework"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/authorizing-access-to-health-data": {
+      "abstract": [
+        {
+          "text": "Request permission to read and share data in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/authorizing-access-to-health-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Authorizing access to health data",
+      "type": "topic",
+      "url": "/documentation/healthkit/authorizing-access-to-health-data"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/setting-up-healthkit": {
+      "abstract": [
+        {
+          "text": "Set up and configure your HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/setting-up-healthkit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Setting up HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit/setting-up-healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKitUI": {
+      "abstract": [
+        {
+          "text": "Display user interface that enables a person to view and interact with their health data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKitUI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKitUI",
+      "type": "topic",
+      "url": "/documentation/healthkitui"
+    },
+    "http://www.healthit.gov/policy-researchers-implementers/personal-health-record-phr-model-privacy-notice": {
+      "identifier": "http://www.healthit.gov/policy-researchers-implementers/personal-health-record-phr-model-privacy-notice",
+      "title": "http://www.healthit.gov/policy-researchers-implementers/personal-health-record-phr-model-privacy-notice",
+      "titleInlineContent": [
+        {
+          "text": "http://www.healthit.gov/policy-researchers-implementers/personal-health-record-phr-model-privacy-notice",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://www.healthit.gov/policy-researchers-implementers/personal-health-record-phr-model-privacy-notice"
+    },
+    "https://developer.apple.com/app-store/review/": {
+      "identifier": "https://developer.apple.com/app-store/review/",
+      "title": "App Review",
+      "titleInlineContent": [
+        {
+          "text": "App Review",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/review/"
+    },
+    "https://developer.apple.com/app-store/review/guidelines/": {
+      "identifier": "https://developer.apple.com/app-store/review/guidelines/",
+      "title": "App Store Review Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "App Store Review Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/review/guidelines/"
+    },
+    "https://developer.apple.com/support/terms/apple-developer-program-license-agreement/": {
+      "identifier": "https://developer.apple.com/support/terms/apple-developer-program-license-agreement/",
+      "title": "Apple Developer Program License Agreement",
+      "titleInlineContent": [
+        {
+          "text": "Apple Developer Program License Agreement",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/terms/apple-developer-program-license-agreement/"
+    },
+    "https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/model-notices-privacy-practices/index.html": {
+      "identifier": "https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/model-notices-privacy-practices/index.html",
+      "title": "https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/model-notices-privacy-practices/index.html",
+      "titleInlineContent": [
+        {
+          "text": "https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/model-notices-privacy-practices/index.html",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/model-notices-privacy-practices/index.html"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/about-the-healthkit-framework",
+        "doc://com.apple.healthkit/documentation/HealthKit/setting-up-healthkit",
+        "doc://com.apple.healthkit/documentation/HealthKit/authorizing-access-to-health-data",
+        "doc://com.apple.documentation/documentation/Updates/HealthKit",
+        "doc://com.apple.healthkit/documentation/HealthKitUI"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

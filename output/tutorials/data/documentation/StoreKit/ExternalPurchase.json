@@ -1,0 +1,723 @@
+{
+  "abstract": [
+    {
+      "text": "Enables qualifying apps to offer external purchases within the app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchase"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:8StoreKit16ExternalPurchaseO",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "enum"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ExternalPurchase"
+      }
+    ],
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ExternalPurchase"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.4",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.4",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.4",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.1",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.4",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration",
+    "symbolKind": "enum",
+    "title": "ExternalPurchase"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ExternalPurchase"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This functionality is only available to and required by apps with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.storekit.external-purchase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " entitlement. For more information, see:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/go/?id=storekit-external-purchase-eu",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/support/storekit-external-entitlement/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/support/storekit-external-entitlement-kr/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your app is running on iOS 15.4 through 17.3 or the iPadOS 15.4 through 17.3 and configured to use the External Purchase API, you must check ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppStore/canMakePayments",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " before calling the External Purchase APIs. If ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppStore/canMakePayments",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "false",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", do not call the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchaseLink",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchase",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " APIs.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.storekit.external-purchase": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether your app can offer external purchases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.storekit.external-purchase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.storekit.external-purchase",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.storekit.external-purchase"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/SKExternalPurchase": {
+      "abstract": [
+        {
+          "text": "A string array of country codes that indicates your app supports external purchases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/SKExternalPurchase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKExternalPurchase",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/SKExternalPurchase"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/AppStore/canMakePayments": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the person can make purchases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canMakePayments"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppStore/canMakePayments",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canMakePayments",
+      "type": "topic",
+      "url": "/documentation/storekit/appstore/canmakepayments"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchase": {
+      "abstract": [
+        {
+          "text": "Enables qualifying apps to offer external purchases within the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExternalPurchase"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExternalPurchase"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExternalPurchase",
+      "type": "topic",
+      "url": "/documentation/storekit/externalpurchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchase/NoticeResult": {
+      "abstract": [
+        {
+          "text": "The options available to people while viewing the external purchase notice sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NoticeResult"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchase/NoticeResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NoticeResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExternalPurchase.NoticeResult",
+      "type": "topic",
+      "url": "/documentation/storekit/externalpurchase/noticeresult"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchase/canPresent": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app can successfully present the notice sheet to inform people about external purchases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canPresent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchase/canPresent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canPresent",
+      "type": "topic",
+      "url": "/documentation/storekit/externalpurchase/canpresent"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchase/presentNoticeSheet()": {
+      "abstract": [
+        {
+          "text": "Presents a notice sheet from Apple that informs people before showing external purchases and determines whether your app can present external purchases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentNoticeSheet"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit16ExternalPurchaseO",
+          "text": "ExternalPurchase"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit16ExternalPurchaseO12NoticeResultO",
+          "text": "NoticeResult"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchase/presentNoticeSheet()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presentNoticeSheet()",
+      "type": "topic",
+      "url": "/documentation/storekit/externalpurchase/presentnoticesheet()"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchaseLink": {
+      "abstract": [
+        {
+          "text": "Enables qualifying apps to offer external purchase links.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExternalPurchaseLink"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchaseLink",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExternalPurchaseLink"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExternalPurchaseLink",
+      "type": "topic",
+      "url": "/documentation/storekit/externalpurchaselink"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "https://developer.apple.com/go/?id=storekit-external-purchase-eu": {
+      "identifier": "https://developer.apple.com/go/?id=storekit-external-purchase-eu",
+      "title": "Distributing apps using alternative payment providers in the European Union",
+      "titleInlineContent": [
+        {
+          "text": "Distributing apps using alternative payment providers in the European Union",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/go/?id=storekit-external-purchase-eu"
+    },
+    "https://developer.apple.com/support/storekit-external-entitlement-kr/": {
+      "identifier": "https://developer.apple.com/support/storekit-external-entitlement-kr/",
+      "title": "Distributing apps using a third-party payment provider in South Korea",
+      "titleInlineContent": [
+        {
+          "text": "Distributing apps using a third-party payment provider in South Korea",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/storekit-external-entitlement-kr/"
+    },
+    "https://developer.apple.com/support/storekit-external-entitlement/": {
+      "identifier": "https://developer.apple.com/support/storekit-external-entitlement/",
+      "title": "Distributing dating apps in the Netherlands",
+      "titleInlineContent": [
+        {
+          "text": "Distributing dating apps in the Netherlands",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/storekit-external-entitlement/"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Offering-external-purchases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.storekit.external-purchase",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/SKExternalPurchase"
+      ],
+      "title": "Offering external purchases"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Offering-an-external-purchase",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchase/canPresent",
+        "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchase/presentNoticeSheet()",
+        "doc://com.apple.storekit/documentation/StoreKit/ExternalPurchase/NoticeResult",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/SKExternalPurchase"
+      ],
+      "title": "Offering an external purchase"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/externalpurchase"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

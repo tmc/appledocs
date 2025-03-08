@@ -1,0 +1,686 @@
+{
+  "abstract": [
+    {
+      "text": "A container for managing an array of characters.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/driverkit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/driverkit/osstring"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3180894,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@OSString",
+    "modules": [
+      {
+        "name": "DriverKit"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "24.4",
+        "introducedAt": "19.0",
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "OSString"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "DriverKit"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "OSString"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/oscontainer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSContainer",
+              "text": "OSContainer"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "OSString is a container class for managing arrays of characters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Encodings",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "OSString makes no provisions for different character encodings and assumes that a string is a nul-terminated sequence of single-byte characters. User-space code must either assume an encoding (typically ASCII or UTF-8) or determine it in some other way (such as an IORegistryEntry property).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "OSString is immutable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/driverkit": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DriverKit",
+      "type": "topic",
+      "url": "/documentation/driverkit"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iofixed": {
+      "abstract": [
+        {
+          "text": "A fixed-point number.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iofixed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFixed",
+      "type": "topic",
+      "url": "/documentation/driverkit/iofixed"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osarray": {
+      "abstract": [
+        {
+          "text": "A container for an ordered, random-access collection of objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSArray",
+      "type": "topic",
+      "url": "/documentation/driverkit/osarray"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osboolean": {
+      "abstract": [
+        {
+          "text": "A container for a true or false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osboolean",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSBoolean",
+      "type": "topic",
+      "url": "/documentation/driverkit/osboolean"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/oscollection": {
+      "abstract": [
+        {
+          "text": "The base class for DriverKit collection objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/oscollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSCollection",
+      "type": "topic",
+      "url": "/documentation/driverkit/oscollection"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/oscontainer": {
+      "abstract": [
+        {
+          "text": "The base class for DriverKit data objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/oscontainer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSContainer",
+      "type": "topic",
+      "url": "/documentation/driverkit/oscontainer"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osdata": {
+      "abstract": [
+        {
+          "text": "A container for untyped data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSData",
+      "type": "topic",
+      "url": "/documentation/driverkit/osdata"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osdictionary": {
+      "abstract": [
+        {
+          "text": "A container for a collection with elements that are key-value pairs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSDictionary",
+      "type": "topic",
+      "url": "/documentation/driverkit/osdictionary"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osnumber": {
+      "abstract": [
+        {
+          "text": "A container for an integer value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSNumber",
+      "type": "topic",
+      "url": "/documentation/driverkit/osnumber"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osobject": {
+      "abstract": [
+        {
+          "text": "The base class for DriverKit objects",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/driverkit/osobject"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osserialization": {
+      "abstract": [
+        {
+          "text": "A container for one or more objects, serialized in a binary data format that is suitable for messaging.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osserialization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSSerialization",
+      "type": "topic",
+      "url": "/documentation/driverkit/osserialization"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osstring": {
+      "abstract": [
+        {
+          "text": "A container for managing an array of characters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSString",
+      "type": "topic",
+      "url": "/documentation/driverkit/osstring"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/osstringptr": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/osstringptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSStringPtr",
+      "type": "topic",
+      "url": "/documentation/driverkit/osstringptr"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ossymbol": {
+      "abstract": [
+        {
+          "text": "A container for managing an array of characters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ossymbol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSSymbol",
+      "type": "topic",
+      "url": "/documentation/driverkit/ossymbol"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscontainer": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscontainer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSContainer",
+      "type": "topic",
+      "url": "/documentation/kernel/oscontainer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/3180973-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/3180973-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/3180973-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/3180974-getcstringnocopy": {
+      "abstract": [
+        {
+          "text": "Returns a pointer to the OSString object's internal data buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCStringNoCopy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/3180974-getcstringnocopy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCStringNoCopy",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/3180974-getcstringnocopy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/3180975-getlength": {
+      "abstract": [
+        {
+          "text": "Returns length of string not including null terminator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getLength"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/3180975-getlength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getLength",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/3180975-getlength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/3180976-isequalto": {
+      "abstract": [
+        {
+          "text": "Compares the string with an OSString.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqualTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/3180976-isequalto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqualTo",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/3180976-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/3180977-withcstring": {
+      "abstract": [
+        {
+          "text": "Allocates an OSString object with a copy of a c-string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withCString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/3180977-withcstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withCString",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/3180977-withcstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/3180978-withcstringnocopy": {
+      "abstract": [
+        {
+          "text": "Allocates an OSString object with a copy of a c-string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withCStringNoCopy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/3180978-withcstringnocopy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withCStringNoCopy",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/3180978-withcstringnocopy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/3180979-withstring": {
+      "abstract": [
+        {
+          "text": "Allocates an OSString object with a copy of an OString object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/3180979-withstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withString",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/3180979-withstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/3433852-isequalto": {
+      "abstract": [
+        {
+          "text": "Compares the string with an OSData.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqualTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/3433852-isequalto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqualTo",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/3433852-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/3433853-isequalto": {
+      "abstract": [
+        {
+          "text": "Compares the string with a c-string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqualTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/3433853-isequalto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqualTo",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/3433853-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/3433854-withcstring": {
+      "abstract": [
+        {
+          "text": "Allocates an OSString object with a copy of a c-string, up to a given length.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withCString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/3433854-withcstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withCString",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/3433854-withcstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring/3434577-isequalto": {
+      "abstract": [
+        {
+          "text": "Compares the string with an OSObject",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqualTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring/3434577-isequalto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqualTo",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring/3434577-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/oscontainer"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/osarray",
+        "doc://com.apple.documentation/documentation/driverkit/osdictionary",
+        "doc://com.apple.documentation/documentation/driverkit/osboolean",
+        "doc://com.apple.documentation/documentation/driverkit/osdata",
+        "doc://com.apple.documentation/documentation/driverkit/osnumber",
+        "doc://com.apple.documentation/documentation/driverkit/osserialization",
+        "doc://com.apple.documentation/documentation/driverkit/oscollection",
+        "doc://com.apple.documentation/documentation/driverkit/oscontainer",
+        "doc://com.apple.documentation/documentation/driverkit/osobject",
+        "doc://com.apple.documentation/documentation/driverkit/ossymbol",
+        "doc://com.apple.documentation/documentation/driverkit/iofixed"
+      ],
+      "title": "Registry data types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3458234",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osstring/3180977-withcstring",
+        "doc://com.apple.documentation/documentation/kernel/osstring/3433854-withcstring",
+        "doc://com.apple.documentation/documentation/kernel/osstring/3180978-withcstringnocopy",
+        "doc://com.apple.documentation/documentation/kernel/osstring/3180979-withstring",
+        "doc://com.apple.documentation/documentation/kernel/osstring/3180973-free"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a String"
+    },
+    {
+      "anchor": "3458233",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osstring/3180974-getcstringnocopy",
+        "doc://com.apple.documentation/documentation/driverkit/osstringptr"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting a C String"
+    },
+    {
+      "anchor": "3458231",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osstring/3180975-getlength"
+      ],
+      "kind": "taskGroup",
+      "title": "Inspecting a String"
+    },
+    {
+      "anchor": "3458232",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osstring/3180976-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osstring/3433852-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osstring/3433853-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osstring/3434577-isequalto"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing Strings"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/driverkit/osstring"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

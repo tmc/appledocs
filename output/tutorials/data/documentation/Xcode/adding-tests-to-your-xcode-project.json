@@ -1,0 +1,1726 @@
+{
+  "abstract": [
+    {
+      "text": "Include test targets that build code to test the logic in your functions, check for integration issues, automate UI workflows, and measure performance.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/testing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/adding-tests-to-your-xcode-project"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "adding-tests-pageimage-card.png",
+        "type": "card"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding tests to your Xcode project"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating a new project in Xcode 16 and later, choose a Testing System from the pop-up menu in the options dialog and let Xcode configure your project with test bundles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode includes two testing frameworks:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A newer, modern testing framework that takes advantage of the powerful and expressive language capabilities of the Swift programming language. Writing tests requires less code to maintain and provides more actionable feedback. Use it for your unit tests and integration tests that call your code directly.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/Testing",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A widely used and well established testing framework with support to write unit tests, integration tests, UI test and performance tests.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/XCTest",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The options for testing system are Swift Test with XCTest UI Tests and XCTests for Unit and UI Tests. After making a selection, Xcode adds two types of test targets to your project, one for your unit tests with a name ending in “Tests” and one for your UI tests with a name ending in “UITests”. You’ll find the matching name for each of these targets in the Project navigator, along with a template file you can use to start writing your first tests. Your testing system choice impacts the primary framework Xcode includes in the file template for unit tests. Previous versions of Xcode included these targets when you enabled the Include Tests option when creating a new project and included file templates that use XCTest.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-new-testing-target",
+          "level": 3,
+          "text": "Add a new testing target",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to add testing to additional targets or have an existing target you want to add tests to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Chose File > New > Target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type “Test” in the template filter.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Unit Testing Bundle or UI Testing Bundle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fill out the options.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Finish.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Swift Testing and XCTest can build from the same test target and coexist inside the same test bundle. If your project already contains a test bundle with unit tests written using XCTest, you don’t need to add a new Unit Testing Bundle to your project to start writing unit test with Swift Testing. You can add additional files to the target using Swift Testing and consider converting your old tests as time allows.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Write-a-unit-test",
+          "level": 3,
+          "text": "Write a unit test",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To write a test, select a test file from your test target, and choose a type or function to write a unit test for. If you need to add a new test file to your target,  choose File > New > New File From Template, then select Swift Testing Unit Test or XCTest Unit Test to add a test file with the appropriate structure. The test function that implements the unit test has the following three steps, in order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Arrange",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " — Create any objects or data structures that the code path you’re exercising",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "uses. Replace complex dependencies with “stubs” that are easy to configure to ensure",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "that tests run quickly and are deterministic. Adopting dependency injection and",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "protocol-oriented programming ensures that relationships between objects in your",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "app are sufficiently flexible to enable substitution of real implementations for stubs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Act",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " — Call the method or function that you’re testing, using parameters and properties",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "that you configure in the Arrange phase.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Assert",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " — Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Testing/Expectations",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in Swift Testing or Test Assertions in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/XCTest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to compare the behavior of the code you exercise in the Act phase with your expectations of what should happen. Any expectation whose condition is false causes a test to fail.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Swift Testing, Test functions are just ordinary Swift functions that you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "add the the ",
+              "type": "text"
+            },
+            {
+              "code": "Test",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute to. They can be global functions or methods in a type. You can optionally identify suites, types that contain test functions, by marking them with the ",
+              "type": "text"
+            },
+            {
+              "code": "Suite",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute. You can mark them async or throws, or isolate them to a global actor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For tests you create with XCTest, create a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTestCase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to contain test methods. Add a method to your ",
+              "type": "text"
+            },
+            {
+              "code": "XCTestCase",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "subclass that takes no arguments and returns ",
+              "type": "text"
+            },
+            {
+              "code": "Void",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", giving the method a name that begins with the word “",
+              "type": "text"
+            },
+            {
+              "code": "test",
+              "type": "codeVoice"
+            },
+            {
+              "text": "”.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "struct MyAPITests {",
+                    "    @Test func myAPIWorks() {",
+                    "        // Arrange: Create the necessary dependencies.",
+                    "        // Act: Call myAPIWorks, using the dependencies created above.",
+                    "        #expect(/* … */, \"The function didn't return the expected result\")",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift Testing"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "class MyAPITests : XCTestCase {",
+                    "    func testMyAPIWorks() {",
+                    "        // Arrange: create the necessary dependencies.",
+                    "        // Act: call my API, using the dependencies created above.",
+                    "        XCTAssertTrue(/* … */, \"The function didn't return the expected result\")",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "XCTest"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Cover multiple paths and test for each scenario. For example, if a function receives an optional parameter, test the parameter as ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and test a non-",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value. Identify the boundary cases and logical branches in your code, and write a unit test to cover each combination of these cases. To test multiple paths through a function or method in your project using Swift Testing, implement parameterized test functions. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Testing/ParameterizedTesting",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In XCTest, each unit test should assert the expected behavior of a single path through a method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or function in your project. To cover multiple paths, write one test for each scenario.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on defining tests using Swift Testing, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Testing/DefiningTests",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information on defining tests using XCTest, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/XCTest/defining-test-cases-and-test-methods",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Swift access control model prevents an external entity from accessing anything declared as internal. To access items declared as internal from your test code, compile the module your test code needs to access with ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference#Enable-Testability",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and add the ",
+                  "type": "text"
+                },
+                {
+                  "code": "@testable",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " attribute to the import statement for the module. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/accesscontrol/#Access-Levels-for-Unit-Test-Targets",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Write-an-integration-test",
+          "level": 3,
+          "text": "Write an integration test",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Integration tests look very similar to unit tests, use the same APIs, and follow",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the same Arrange-Act-Assert pattern. The difference between a unit test and an integration",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "test is one of scale. While a unit test covers a very small part of your app’s logic,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an integration test examines the behavior of a larger subsystem, or combination of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "classes and functions. In the Arrange step of an integration test, widen the scope",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of real project code that’s under test, using fewer stub objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Rather than trying to cover every different condition or boundary case as with unit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tests, use integration tests to assert that components work together to achieve app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "goals in important situations. Examples include testing that a value received from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a controller is stored in the model correctly, and that an error produced by a network",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "request gets passed to and presented by the user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Write-a-UI-test",
+          "level": 3,
+          "text": "Write a UI test",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UI tests work in a different way from unit and integration tests. The XCTest UI Test template for new files contains the common starting points for UI tests.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You implement the UI tests for your app using XCTest in a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTestCase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Rather than executing your app’s code directly, they use the app’s user-interface controls",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to determine whether the user can complete a specific task using the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create UI tests to verify that the app can accomplish a tasks in response to user interactions,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and that bugs haven’t been introduced that break the behavior of UI controls. UI",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tests that replicate real user activities provide confidence that the app can be",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "used for its intended task. A UI test for a document-based app might verify that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the user can create a new document, edit its content, then delete the document.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a UI test in a method on an ",
+              "type": "text"
+            },
+            {
+              "code": "XCTestCase",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subclass, record your interaction",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the app using the Record UI Test feature in Xcode. Design UI tests to replicate the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "most critical workflows that would affect users if they",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "broke, and to replay reported bugs to avoid regressions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "adding-tests-to-your-xcode-project-ui-record",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When recording a workflow that exercises the functionality you’re testing,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use the test assertion functions to ensure that the final state of the UI is what",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you’d expect, given the actions performed during the recorded interaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class MyUITests: XCTestCase {",
+            "    let app = XCUIApplication()",
+            "",
+            "    // MARK: - Setup and Teardown",
+            "        ",
+            "    override func setUp() {",
+            "        super.setUp()",
+            "        // In UI tests, it's prudent to stop the test immediately if a failure occurs.",
+            "        continueAfterFailure = false",
+            "        // UI tests must launch the app that they test. Do this in setup to ensure that it the app launches for each test method.",
+            "        XCUIApplication().launch()",
+            "    }",
+            "",
+            "    override func tearDown() {",
+            "        // Put teardown code here. The test runner calls this method after the invocation of each test method in the class.",
+            "        super.tearDown()",
+            "    }",
+            "    ",
+            "    func testAddition() {",
+            "        // Perform UI actions to accomplish a task.",
+            "        // Check the expected state UI value.",
+            "        if let value = app.<ui_type>[<ui_identifier>].value as? String {",
+            "            XCTAssertTrue(value = /* … */, \"The function didn't return the expected result\")",
+            "        }        ",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Where UI tests imitate complex workflows with multiple distinct steps, use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTActivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to organize and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "name the shared steps. Create helper methods to share implementations of activities",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that you use in multiple tests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Write-a-performance-test",
+          "level": 3,
+          "text": "Write a performance test",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Write performance tests to gather information on time taken, memory used, or data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "written, during the execution of a region of code. XCTest runs your code multiple",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "times, measuring the requested metrics. You can set a baseline expectation for the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "metric, and if the measured value is significantly worse than the baseline, XCTest",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "reports a test failure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test time taken by your code, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTestCase/measure(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "inside your test method, and run your app’s code inside the block argument to ",
+              "type": "text"
+            },
+            {
+              "code": "measure(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To measure performance using other metrics, including memory use and amount of data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "written to disk, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTestCase/measure(metrics:block:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class PerformanceTests : XCTestCase {",
+            "    func testCodeIsFastEnough() {",
+            "        self.measure() {",
+            "          // Place performance-sensitive code here.",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "adding-tests-pageimage-card.png": {
+      "alt": null,
+      "identifier": "adding-tests-pageimage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/74aabcd2e16d1e9023a4aa6b55fec34b/adding-tests-pageimage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7d44d4f36b4bf35927e88c40edaf34ab/adding-tests-pageimage-card~dark@2x.png"
+        }
+      ]
+    },
+    "adding-tests-to-your-xcode-project-ui-record": {
+      "alt": "Image showing the Record UI Tests button in Xcode.",
+      "identifier": "adding-tests-to-your-xcode-project-ui-record",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/af3223bfb6cc09fe1d5ff0a0d0ca9912/adding-tests-to-your-xcode-project-ui-record@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/494370dc938085ef5271277999a37fef/adding-tests-to-your-xcode-project-ui-record~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference#Enable-Testability": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference#Enable-Testability",
+      "kind": "section",
+      "title": "Enable Testability",
+      "type": "topic",
+      "url": "/documentation/xcode/build-settings-reference#Enable-Testability"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/determining-how-much-code-your-tests-cover": {
+      "abstract": [
+        {
+          "text": "Use code coverage to focus new test development on areas that lack adequate testing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/determining-how-much-code-your-tests-cover",
+      "kind": "article",
+      "role": "article",
+      "title": "Determining how much code your tests cover",
+      "type": "topic",
+      "url": "/documentation/xcode/determining-how-much-code-your-tests-cover"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/organizing-tests-to-improve-feedback": {
+      "abstract": [
+        {
+          "text": "Control the information you receive from your tests at different stages in the software engineering process by creating and configuring test plans.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/organizing-tests-to-improve-feedback",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving code assessment by organizing tests into test plans",
+      "type": "topic",
+      "url": "/documentation/xcode/organizing-tests-to-improve-feedback"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/testing": {
+      "abstract": [
+        {
+          "text": "Develop and run tests to detect logic failures, UI problems, and performance regressions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/testing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Testing",
+      "type": "topic",
+      "url": "/documentation/xcode/testing"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/updating-your-existing-codebase-to-accommodate-unit-tests": {
+      "abstract": [
+        {
+          "text": "Remove coupling between components to increase test coverage and reliability.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/updating-your-existing-codebase-to-accommodate-unit-tests",
+      "kind": "article",
+      "role": "article",
+      "title": "Updating your existing codebase to accommodate unit tests",
+      "type": "topic",
+      "url": "/documentation/xcode/updating-your-existing-codebase-to-accommodate-unit-tests"
+    },
+    "doc://com.apple.documentation/documentation/Testing": {
+      "abstract": [
+        {
+          "text": "Create and run tests for your Swift packages and Xcode projects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Testing",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift Testing",
+      "type": "topic",
+      "url": "/documentation/Testing"
+    },
+    "doc://com.apple.documentation/documentation/Testing/DefiningTests": {
+      "abstract": [
+        {
+          "text": "Define a test function to validate that code is working correctly.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Testing/DefiningTests",
+      "kind": "article",
+      "role": "article",
+      "title": "Defining test functions",
+      "type": "topic",
+      "url": "/documentation/Testing/DefiningTests"
+    },
+    "doc://com.apple.documentation/documentation/Testing/Expectations": {
+      "abstract": [
+        {
+          "text": "Check for expected values, outcomes, and asynchronous events in tests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Testing/Expectations",
+      "kind": "article",
+      "role": "article",
+      "title": "Expectations and confirmations",
+      "type": "topic",
+      "url": "/documentation/Testing/Expectations"
+    },
+    "doc://com.apple.documentation/documentation/Testing/ParameterizedTesting": {
+      "abstract": [
+        {
+          "text": "Specify different input parameters to generate multiple test cases from a test function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Testing/ParameterizedTesting",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing parameterized tests",
+      "type": "topic",
+      "url": "/documentation/Testing/ParameterizedTesting"
+    },
+    "doc://com.apple.documentation/documentation/XCTest": {
+      "abstract": [
+        {
+          "text": "Create and run unit tests, performance tests, and UI tests for your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XCTest",
+      "type": "topic",
+      "url": "/documentation/XCTest"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCTActivity": {
+      "abstract": [
+        {
+          "text": "A named substep of a test method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTActivity"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTActivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTActivity",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCTActivity"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCTestCase": {
+      "abstract": [
+        {
+          "text": "The primary class for defining test cases, test methods, and performance tests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTestCase"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTestCase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTestCase",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCTestCase"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCTestCase/measure(_:)": {
+      "abstract": [
+        {
+          "text": "Measures the performance of a block of code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "measure"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "block"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTestCase/measure(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "measure(_:)",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCTestCase/measure(_:)"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCTestCase/measure(metrics:block:)": {
+      "abstract": [
+        {
+          "text": "Records the selected metrics for a block of code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "measure"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "metrics"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)XCTMetric",
+          "text": "XCTMetric"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "block"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTestCase/measure(metrics:block:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "measure(metrics:block:)",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCTestCase/measure(metrics:block:)"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/defining-test-cases-and-test-methods": {
+      "abstract": [
+        {
+          "text": "Add test cases and test methods to a test target to confirm that your code performs as expected.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/defining-test-cases-and-test-methods",
+      "kind": "article",
+      "role": "article",
+      "title": "Defining Test Cases and Test Methods",
+      "type": "topic",
+      "url": "/documentation/XCTest/defining-test-cases-and-test-methods"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/accesscontrol/#Access-Levels-for-Unit-Test-Targets": {
+      "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/accesscontrol/#Access-Levels-for-Unit-Test-Targets",
+      "title": "Access Control",
+      "titleInlineContent": [
+        {
+          "text": "Access Control",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/accesscontrol/#Access-Levels-for-Unit-Test-Targets"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Test-development",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/updating-your-existing-codebase-to-accommodate-unit-tests",
+        "doc://com.apple.Xcode/documentation/Xcode/determining-how-much-code-your-tests-cover",
+        "doc://com.apple.Xcode/documentation/Xcode/organizing-tests-to-improve-feedback"
+      ],
+      "title": "Test development"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1XCTest~1XCTActivity/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "XCTActivity"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1XCTest~1XCTestCase/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "XCTestCase"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)XCTest",
+              "text": "XCTest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1XCTest~1XCTestCase~1measure(metrics:block:)/title",
+          "value": "measureWithMetrics:block:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1XCTest~1XCTestCase~1measure(metrics:block:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "measureWithMetrics:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<id<XCTMetric>>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "metrics"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "block:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)()) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "block"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1XCTest~1XCTestCase~1measure(_:)/title",
+          "value": "measureBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1XCTest~1XCTestCase~1measure(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "measureBlock:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)()) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "block"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

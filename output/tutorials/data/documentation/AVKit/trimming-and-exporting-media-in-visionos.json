@@ -1,0 +1,1138 @@
+{
+  "abstract": [
+    {
+      "text": "Display standard controls in your app to edit the timeline of the currently playing media.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avkit/documentation/AVKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avkit/documentation/AVKit/trimming-and-exporting-media-in-visionos"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Trimming and exporting media in visionOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to present the system video-player interface in your visionOS app. In addition to its primary role, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " can also provide a media-trimming experience similar to the interface of QuickTime Player in macOS, like that below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4251549",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you enable this feature, people can specify a segment of the media timeline for display. This article describes how to adopt this feature in your app, and shows how to use AVFoundation to export the trimmed result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-whether-the-media-supports-trimming",
+          "level": 3,
+          "text": "Determine whether the media supports trimming",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps typically provide a user-interface element to put the player view controller into trimming mode. Because the player doesn’t support trimming certain media, such as HTTP Live Streaming or protected content, apps observe the state of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/canBeginTrimming",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to update the enabled state of their user interface accordingly. For example, the following code observes the state of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/canBeginTrimming",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property and updates the state of a published property, which sets the appropriate enabled state in the UI:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Published private(set) var isTrimming = true",
+            "@Published private(set) var supportsTrimming = true",
+            "",
+            "var controller: AVPlayerViewController? {",
+            "    didSet {",
+            "        // Reset the internal state variables to false and exit.",
+            "        guard let controller else {",
+            "            isTrimming = false",
+            "            supportsTrimming = false",
+            "            return",
+            "        }",
+            "        // Connect the AVPlayer object to the the view controller.",
+            "        controller.player = player",
+            "        /// Update the state of `supportsTrimming` based on the value of `canBeginTrimming`.",
+            "        controller.publisher(for: \\.canBeginTrimming)",
+            "            .removeDuplicates()",
+            "            .assign(to: &$supportsTrimming)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Enable-the-trimming-user-interface",
+          "level": 3,
+          "text": "Enable the trimming user interface",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you determine that the player view controller supports editing the current media’s timeline, call the player’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/beginTrimming(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to enable its trimming interface. Call this method from an asynchronous context:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Enables the player view controller's media trimming interface.",
+            "func startTrimming() async {",
+            "    // Exit early if the controller doesn't support trimming.",
+            "    guard let controller, controller.canBeginTrimming else { return }",
+            "    ",
+            "    isTrimming = true",
+            "    if await controller.beginTrimming() {",
+            "        // A user pinched the button to complete the trim operation.",
+            "    } else {",
+            "        // A user pinched the button to cancel their changes.",
+            "    }",
+            "    isTrimming = false",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method returns a Boolean value that indicates whether the user pinched the Done button or the Cancel button. Pinching the Done button causes the view controller to update the values of the player item’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem/reversePlaybackEndTime",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem/forwardPlaybackEndTime",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties to match the trimmed selection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Export-the-trimmed-media-selection",
+          "level": 3,
+          "text": "Export the trimmed media selection",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A convenient way to export your trimmed selection is to use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVAssetExportSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This object provides a simple preset-based approach to transcode media in various formats. Create an instance of an export session by passing it the player item’s asset and an export preset. Additionally, configure its output URL and file type:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Export the asset in the highest quality.",
+            "let preset = AVAssetExportPresetHighestQuality",
+            "// Check the compatibility of the preset to export the video to the output file type.",
+            "guard await AVAssetExportSession.compatibility(ofExportPreset: preset,",
+            "                                               with: playerItem.asset,",
+            "                                               outputFileType: .mp4) else {",
+            "    print(\"The selected preset can't export the video to the output file type.\")",
+            "    return",
+            "}",
+            "",
+            "guard let exportSession = AVAssetExportSession(asset: playerItem.asset,",
+            "                                               presetName: preset) else {",
+            "    print(\"Unable to create an export session that supports the asset and preset.\")",
+            "    return",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To export only the portion of the asset that matches your trimmed selection, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMTimeRange",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " based on the reverse and forward playback end times of the current player item:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a time range that matches the trimmed selection.",
+            "let startTime = playerItem.reversePlaybackEndTime",
+            "let endTime = playerItem.forwardPlaybackEndTime",
+            "exportSession.timeRange = CMTimeRange(start: startTime, end: endTime)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, begin the export operation to begin asynchronously transcoding the media to the output URL:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Export the content.",
+            "await exportSession.export()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avkit/documentation/AVKit": {
+      "abstract": [
+        {
+          "text": "Create user interfaces for media playback, complete with transport controls, chapter navigation, picture-in-picture support, and display of subtitles and closed captions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVKit",
+      "type": "topic",
+      "url": "/documentation/avkit"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVExperienceController": {
+      "abstract": [
+        {
+          "text": "An object that controls video experiences.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVExperienceController"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVExperienceController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVExperienceController",
+      "type": "topic",
+      "url": "/documentation/avkit/avexperiencecontroller"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVGroupExperienceCoordinator": {
+      "abstract": [
+        {
+          "text": "An object that synchronizes viewing environment state across participants in a SharePlay session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVGroupExperienceCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVGroupExperienceCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVGroupExperienceCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVGroupExperienceCoordinator",
+      "type": "topic",
+      "url": "/documentation/avkit/avgroupexperiencecoordinator"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVMultiviewManager": {
+      "abstract": [
+        {
+          "text": "An object that manages viewing multiple videos at once.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMultiviewManager"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVMultiviewManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMultiviewManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMultiviewManager",
+      "type": "topic",
+      "url": "/documentation/avkit/avmultiviewmanager"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that displays content from a player and presents a native user interface to control playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerViewController",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontroller"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/beginTrimming(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Presents the system trimming interface controls inside the player view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginTrimming"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/beginTrimming(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "beginTrimmingWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "beginTrimming(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontroller/begintrimming(completionhandler:)"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/canBeginTrimming": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the current media supports trimming.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canBeginTrimming"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/canBeginTrimming",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canBeginTrimming"
+        }
+      ],
+      "role": "symbol",
+      "title": "canBeginTrimming",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontroller/canbegintrimming"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the methods to implement to respond to player view controller events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerViewControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontrollerdelegate"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/adopting-the-system-player-interface-in-visionos": {
+      "abstract": [
+        {
+          "text": "Provide an optimized viewing experience for watching 3D video content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/adopting-the-system-player-interface-in-visionos",
+      "kind": "article",
+      "role": "article",
+      "title": "Adopting the system player interface in visionOS",
+      "type": "topic",
+      "url": "/documentation/avkit/adopting-the-system-player-interface-in-visionos"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/creating-a-multiview-video-playback-experience-in-visionos": {
+      "abstract": [
+        {
+          "text": "Build an interface that plays multiple videos simultaneously and handles transitions to different experience types gracefully.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/creating-a-multiview-video-playback-experience-in-visionos",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a multiview video playback experience in visionOS",
+      "type": "topic",
+      "url": "/documentation/avkit/creating-a-multiview-video-playback-experience-in-visionos"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVAssetExportSession": {
+      "abstract": [
+        {
+          "text": "An object that exports assets in a format that you specify using an export preset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetExportSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVAssetExportSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAssetExportSession",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVAssetExportSession"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem/forwardPlaybackEndTime": {
+      "abstract": [
+        {
+          "text": "The time at which forward playback ends.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "forwardPlaybackEndTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem/forwardPlaybackEndTime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "forwardPlaybackEndTime",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVPlayerItem/forwardPlaybackEndTime"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem/reversePlaybackEndTime": {
+      "abstract": [
+        {
+          "text": "The time at which reverse playback ends.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reversePlaybackEndTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem/reversePlaybackEndTime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reversePlaybackEndTime",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVPlayerItem/reversePlaybackEndTime"
+    },
+    "doc://com.apple.documentation/documentation/CoreMedia/CMTimeRange": {
+      "abstract": [
+        {
+          "text": "A structure that represents a time range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMTimeRange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTimeRange",
+      "type": "topic",
+      "url": "/documentation/CoreMedia/CMTimeRange"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-4251549": {
+      "alt": "An illustration of an AVPlayerViewController object’s media trimming interface. The illustration shows a rectangular video window, with media control bar along its bottom edge. On the leading edge, the control bar contains a button to toggle playback, a rectangular area that represents the media timeline, and a yellow selection interface to set the in and out points of the video selection. Below the media controls is an ornament that display the text Trim in the middle of it. On its leading edge is a cancel button to cancel the trimming operation. On its trailing edge is a Done button to complete the trimming operation.",
+      "identifier": "media-4251549",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/25ee3b6fa1bd39fcacb521b0bdd8f6a4/media-4251549@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1fdc9e89e18531810a0208b9bf47ab9e/media-4251549~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "visionOS-Playback",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avkit/documentation/AVKit/creating-a-multiview-video-playback-experience-in-visionos",
+        "doc://com.apple.avkit/documentation/AVKit/adopting-the-system-player-interface-in-visionos",
+        "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+        "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate",
+        "doc://com.apple.avkit/documentation/AVKit/AVExperienceController",
+        "doc://com.apple.avkit/documentation/AVKit/AVMultiviewManager",
+        "doc://com.apple.avkit/documentation/AVKit/AVGroupExperienceCoordinator"
+      ],
+      "title": "visionOS Playback"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "visionOS-Playback",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avkit/documentation/AVKit/adopting-the-system-player-interface-in-visionos",
+                "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+                "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate"
+              ],
+              "title": "visionOS Playback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayerItem~1forwardPlaybackEndTime/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@CMTime",
+              "text": "CMTime"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "forwardPlaybackEndTime"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController/title",
+          "value": "AVPlayerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreMedia~1CMTimeRange/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " { ... } "
+            },
+            {
+              "kind": "identifier",
+              "text": "CMTimeRange"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController~1beginTrimming(completionHandler:)/title",
+          "value": "beginTrimmingWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController~1beginTrimming(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "beginTrimmingWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate/title",
+          "value": "AVPlayerViewControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController~1canBeginTrimming/title",
+          "value": "canBeginTrimming"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController~1canBeginTrimming/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "canBeginTrimming"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVAssetExportSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAssetExportSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayerItem~1reversePlaybackEndTime/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@CMTime",
+              "text": "CMTime"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "reversePlaybackEndTime"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avkit/trimming-and-exporting-media-in-visionos"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avkit/trimming-and-exporting-media-in-visionos"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

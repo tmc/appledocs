@@ -1,0 +1,809 @@
+{
+  "abstract": [
+    {
+      "text": "Select a destination texture slice in your vertex shader.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/render-passes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-texture-slices-in-a-draw-command"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Rendering to Multiple Texture Slices in a Draw Command"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using layer selection, you can render to multiple layers (",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "slices",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ") of a texture array, cube texture, or 3D texture, choosing a destination slice for each primitive in your vertex shader. A layer is a single 1D, 2D, or 3D block of pixels, specified by a slice and mipmap level in the target texture. Load and store actions apply to every slice of the render pass’s attachments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Layer selection is useful when you need to render content to multiple related textures from the same source data, such as when rendering environment cube maps or stereo imagery for virtual reality.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3372065",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a specific example that demonstrates layer selection, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/rendering-reflections-with-fewer-render-passes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-Whether-the-Device-Object-Supports-Layer-Selection",
+          "level": 3,
+          "text": "Check Whether the Device Object Supports Layer Selection",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All GPUs in the macOS family support layer selection. Layer selection is available in the Apple GPU family starting with family 5. Test for layer selection using the following code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func supportsLayerSelection() -> Bool {",
+                    "    return device.supportsFamily(MTLGPUFamily.mac2) || device.supportsFamily(MTLGPUFamily.apple5)",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (Boolean) supportsLayerSelection",
+                    "{",
+                    "  return",
+                    "    [_device supportsFamily: MTLGPUFamilyMac1 ] ||",
+                    "    [_device supportsFamily: MTLGPUFamilyApple5 ];",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Add-Layer-Selection-to-Your-Vertex-Shader",
+          "level": 3,
+          "text": "Add Layer Selection to Your Vertex Shader",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To specify which slice to render a primitive into, add a vertex output with the ",
+              "type": "text"
+            },
+            {
+              "code": "[[render_target_array_index]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute. Your vertex shader must set this value so that Metal knows which slice to render into.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below uses instanced rendering to render primitives into multiple output slices. It adds a ",
+              "type": "text"
+            },
+            {
+              "code": "layer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field to the vertex output to specify the target slice. The code passes the target in as part of the per-instance properties, and copies it to the vertex output.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "typedef struct",
+            "{",
+            "    ...",
+            "    uint   layer [[render_target_array_index]];",
+            "} ColorInOut;",
+            "",
+            "vertex ColorInOut vertexTransform (",
+            "          const Vertex in                               [[ stage_in ]],",
+            "          const uint   instanceId                       [[ instance_id ]],",
+            "          const device InstanceParams* instanceParams   [[ buffer ]],",
+            "{",
+            "    ColorInOut out;",
+            "    out.layer = instanceParams[instanceId].layer;",
+            "    ...",
+            "}"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your vertex function must return the same index for all vertices that make up any given primitive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Pipeline-State-Object",
+          "level": 3,
+          "text": "Configure the Pipeline State Object",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Render pipelines that can render to layers must specify the type of primitive that they can render. This requirement differs from a normal render pipeline, where you can select a different primitive for each draw command.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you configure the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the render pipeline, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor/inputPrimitiveTopology",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to specify the primitive type it can render.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let descriptor = MTLRenderPipelineDescriptor()",
+                    "descriptor.inputPrimitiveTopology = .triangle",
+                    "descriptor.rasterSampleCount = 1",
+                    "..."
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "MTLRenderPipelineDescriptor *descriptor = [[MTLRenderPipelineDescriptor alloc] init];",
+                    "descriptor.inputPrimitiveTopology = MTLPrimitiveTopologyClassTriangle;",
+                    "descriptor.rasterSampleCount = 1",
+                    "..."
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Configure-the-Render-Pass",
+          "level": 3,
+          "text": "Configure the Render Pass",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you configure the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", specify a texture array, cube map texture, or 3D texture as the color attachment. You must also set the render pass descriptor’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassDescriptor/renderTargetArrayLength",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to the maximum number of slices that the shader can choose from. For example, when rendering to a cube map texture, set the length to ",
+              "type": "text"
+            },
+            {
+              "code": "6",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When rendering to texture arrays and cube maps, you can specify multiple attachments and render to all of them simultaneously. You can’t render to multiple attachments if you specify a 3D texture. Here’s an example that sets up the render pass descriptor with one cube map texture for color data and another for depth information:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let reflectionPassDesc = MTLRenderPassDescriptor()",
+                    "reflectionPassDesc.colorAttachments[0].texture = reflectionCubeMap",
+                    "reflectionPassDesc.depthAttachment.texture = reflectionCubeMapDepth",
+                    "reflectionPassDesc.renderTargetArrayLength = 6",
+                    "..."
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "MTLRenderPassDescriptor* reflectionPassDesc = [MTLRenderPassDescriptor renderPassDescriptor];",
+                    "reflectionPassDesc.colorAttachments[0].texture    = _reflectionCubeMap;",
+                    "reflectionPassDesc.depthAttachment.texture        = _reflectionCubeMapDepth;",
+                    "reflectionPassDesc.renderTargetArrayLength        = 6;",
+                    "..."
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPassDescriptor": {
+      "abstract": [
+        {
+          "text": "A group of render targets that hold the results of a render pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPassDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpassdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPassDescriptor/renderTargetArrayLength": {
+      "abstract": [
+        {
+          "text": "The number of active layers that all attachments must have for layered rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderTargetArrayLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassDescriptor/renderTargetArrayLength",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renderTargetArrayLength"
+        }
+      ],
+      "role": "symbol",
+      "title": "renderTargetArrayLength",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpassdescriptor/rendertargetarraylength"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor": {
+      "abstract": [
+        {
+          "text": "An argument of options you pass to a GPU device to get a render pipeline state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPipelineDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpipelinedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor/inputPrimitiveTopology": {
+      "abstract": [
+        {
+          "text": "The type of primitive topology the pipeline renders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputPrimitiveTopology"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPrimitiveTopologyClass",
+          "text": "MTLPrimitiveTopologyClass"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor/inputPrimitiveTopology",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inputPrimitiveTopology"
+        }
+      ],
+      "role": "symbol",
+      "title": "inputPrimitiveTopology",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpipelinedescriptor/inputprimitivetopology"
+    },
+    "doc://com.apple.metal/documentation/Metal/render-passes": {
+      "abstract": [
+        {
+          "text": "Encode a render pass to draw graphics into an image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/render-passes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Render Passes",
+      "type": "topic",
+      "url": "/documentation/metal/render-passes"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-reflections-with-fewer-render-passes": {
+      "abstract": [
+        {
+          "text": "Use layer selection to reduce the number of render passes needed to generate an environment map.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-reflections-with-fewer-render-passes",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rendering Reflections with Fewer Render Passes",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-reflections-with-fewer-render-passes"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-viewports-in-a-draw-command": {
+      "abstract": [
+        {
+          "text": "Select viewports and their corresponding scissor rectangles in your vertex shader.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-viewports-in-a-draw-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Rendering to Multiple Viewports in a Draw Command",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-to-multiple-viewports-in-a-draw-command"
+    },
+    "doc://com.apple.metal/documentation/Metal/specifying-drawing-and-dispatch-arguments-indirectly": {
+      "abstract": [
+        {
+          "text": "Use indirect commands if you don’t know your draw or dispatch call arguments when you encode the command.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/specifying-drawing-and-dispatch-arguments-indirectly",
+      "kind": "article",
+      "role": "article",
+      "title": "Specifying Drawing and Dispatch Arguments Indirectly",
+      "type": "topic",
+      "url": "/documentation/metal/specifying-drawing-and-dispatch-arguments-indirectly"
+    },
+    "media-3372065": {
+      "alt": "A block diagram that shows a render pipeline whose final destination is a set of texture slices.",
+      "identifier": "media-3372065",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1d7179e4aab7df6b2d5402c340dd0a8f/media-3372065@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/951c0f95c7b9056fdd03e393157a5128/media-3372065~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Optimizing-Techniques",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/specifying-drawing-and-dispatch-arguments-indirectly",
+        "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-viewports-in-a-draw-command"
+      ],
+      "title": "Optimizing Techniques"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Optimizing-Techniques",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/specifying-drawing-and-dispatch-arguments-indirectly",
+                "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-viewports-in-a-draw-command"
+              ],
+              "title": "Optimizing Techniques"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassDescriptor~1renderTargetArrayLength/title",
+          "value": "renderTargetArrayLength"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassDescriptor~1renderTargetArrayLength/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "renderTargetArrayLength"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor/title",
+          "value": "MTLRenderPipelineDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassDescriptor/title",
+          "value": "MTLRenderPassDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor~1inputPrimitiveTopology/title",
+          "value": "inputPrimitiveTopology"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor~1inputPrimitiveTopology/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "inputPrimitiveTopology"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/rendering-to-multiple-texture-slices-in-a-draw-command"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/rendering-to-multiple-texture-slices-in-a-draw-command"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

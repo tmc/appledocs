@@ -1,0 +1,498 @@
+{
+  "abstract": [
+    {
+      "text": "Obtains the rendering intent element data in text format usable as the parameter to the PostScript ",
+      "type": "text"
+    },
+    {
+      "code": "findRenderingIntent",
+      "type": "codeVoice"
+    },
+    {
+      "text": " operator, which specifies the color-matching option for subsequent graphics data.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805196-cmgetps2colorrenderingintent"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1805196,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "role": "pseudoSymbol",
+    "symbolKind": "func",
+    "title": "CMGetPS2ColorRenderingIntent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "CMError CMGetPS2ColorRenderingIntent ("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   CMProfileRef srcProf,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   UInt32 flags,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   CMFlattenUPP proc,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   void *refCon,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   Boolean *preferredCMMnotfound"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A profile reference to the source profile that defines the data color space and identifies the preferred CMM. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "srcProf"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the value of ",
+                  "type": "text"
+                },
+                {
+                  "code": "flags",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is equal to ",
+                  "type": "text"
+                },
+                {
+                  "code": "cmPS8bit",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the generated PostScript will utilize 8-bit encoding whenever possible to achieve higher data compaction. If the value of ",
+                  "type": "text"
+                },
+                {
+                  "code": "flags",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is not equal to ",
+                  "type": "text"
+                },
+                {
+                  "code": "cmPS8bit",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the generated data will be 7-bit safe, in either ASCII or ASCII base-85 encoding. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "flags"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A low-level data transfer function supplied by the calling application to receive the PostScript data from the CMM. For more information, see the function ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmflattenprocptr",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "proc"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An untyped pointer to arbitrary data supplied by your application. ",
+                  "type": "text"
+                },
+                {
+                  "code": "CMGetPS2ColorSpace",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " passes this data in calls to your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmflattenprocptr",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "refCon"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a flag for whether the preferred CMM was found. On return, has the value ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if the CMM corresponding to profile was not available or if it was unable to perform the function and the default CMM was used. Otherwise, has the value ",
+                  "type": "text"
+                },
+                {
+                  "code": "false",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "preferredCMMnotfound"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "CMError",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "CMGetPS2ColorRenderingIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function obtains PostScript rendering intent information from the header of the source profile. It returns data by calling your low-level data transfer procedure and passing the PostScript data to it. Typically, your low-level data transfer function returns this data to the calling application or device driver to pass to a PostScript printer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "CMGetPS2ColorRenderingIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function is dispatched to the CMM component specified by the source profile. If the designated CMM is not available or the CMM does not implement this function, then ColorSync dispatches the function to the default CMM. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmflattenprocptr": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmflattenprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMFlattenProcPtr",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmflattenprocptr"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ColorSync Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/applicationservices/colorsync_manager#1670295"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805191-cmgetps2colorspace": {
+      "abstract": [
+        {
+          "text": "Obtains color space element data in text format usable as the parameter to the PostScript ",
+          "type": "text"
+        },
+        {
+          "code": "setColorSpace",
+          "type": "codeVoice"
+        },
+        {
+          "text": " operator, which characterizes the color space of subsequent graphics data. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805191-cmgetps2colorspace",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetPS2ColorSpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805191-cmgetps2colorspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805196-cmgetps2colorrenderingintent": {
+      "abstract": [
+        {
+          "text": "Obtains the rendering intent element data in text format usable as the parameter to the PostScript ",
+          "type": "text"
+        },
+        {
+          "code": "findRenderingIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " operator, which specifies the color-matching option for subsequent graphics data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805196-cmgetps2colorrenderingintent",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetPS2ColorRenderingIntent",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805196-cmgetps2colorrenderingintent"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805202-cmgetps2colorrendering": {
+      "abstract": [
+        {
+          "text": "Obtains the color rendering dictionary (CRD) element data usable as the parameter to the PostScript ",
+          "type": "text"
+        },
+        {
+          "code": "setColorRendering",
+          "type": "codeVoice"
+        },
+        {
+          "text": " operator, which specifies the PostScript color rendering dictionary to use for the following graphics data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805202-cmgetps2colorrendering",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetPS2ColorRendering",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805202-cmgetps2colorrendering"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805206-cmgetps2colorrenderingvmsize": {
+      "abstract": [
+        {
+          "text": "Determines the virtual memory size of the color rendering dictionary (CRD) for a printer profile before your application or driver obtains the CRD and sends it to the printer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805206-cmgetps2colorrenderingvmsize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetPS2ColorRenderingVMSize",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805206-cmgetps2colorrenderingvmsize"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805191-cmgetps2colorspace",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805202-cmgetps2colorrendering",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805206-cmgetps2colorrenderingvmsize"
+      ],
+      "title": "Working With PostScript"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/colorsync_manager/1805196-cmgetps2colorrenderingintent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

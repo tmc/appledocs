@@ -1,0 +1,1106 @@
+{
+  "abstract": [
+    {
+      "text": "Fetch an activity’s relationship by using its identifier.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Apple Music",
+      "versions": [
+        "1.0",
+        "1.2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-1eqct"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:music_api:get:v1-catalog-{}-activities-{}-{}",
+    "modules": [
+      {
+        "name": "Apple Music API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Fetch a relationship on this resource by name"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "Apple Music"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get a Catalog Activity's Relationship Directly by Name"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.music.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/catalog/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{storefront}"
+        },
+        {
+          "kind": "path",
+          "text": "/activities/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{id}"
+        },
+        {
+          "kind": "path",
+          "text": "/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{relationship}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A unique identifier for the activity.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "id",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "playlists"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The name of the relationship you want to fetch for this resource.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "relationship",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An iTunes Store territory, specified by an ISO 3166 alpha-2 country code. The possible values are the ",
+                  "type": "text"
+                },
+                {
+                  "code": "id",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " attributes of ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " objects.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "storefront",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Limit is the number of objects or number of objects in the specified relationship returned.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "limit",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The localization to use, specified by a language tag. The possible values are in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "supportedLanguageTags",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " array belonging to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object specified by ",
+                  "type": "text"
+                },
+                {
+                  "code": "storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Otherwise, the default is ",
+                  "type": "text"
+                },
+                {
+                  "code": "defaultLanguageTag",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "code": "Storefront",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "l",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of relationship names to include for resources in the response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "include",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of attribute extensions to apply to resources in the response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "extend",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/RelationshipResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:RelationshipResponse",
+              "text": "RelationshipResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an incorrect ",
+                  "type": "text"
+                },
+                {
+                  "code": "Authorization",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " header.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:UnauthorizedResponse",
+              "text": "UnauthorizedResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A response indicating an error occurred on the server.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:music_api:ErrorsResponse",
+              "text": "ErrorsResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If successful, the HTTP status code is 200 (OK) and the ",
+              "type": "text"
+            },
+            {
+              "code": "data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array contains a single ",
+              "type": "text"
+            },
+            {
+              "code": "Activity.Relationships",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. If unsuccessful, the HTTP status code indicates the error and the details are in the ",
+              "type": "text"
+            },
+            {
+              "code": "errors",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "https://api.music.apple.com/v1/catalog/us/activities/976439514/playlists"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "    \"data\": [",
+                    "        {",
+                    "            \"attributes\": {",
+                    "                \"artwork\": {",
+                    "                    \"bgColor\": \"00062d\",",
+                    "                    \"height\": 1080,",
+                    "                    \"textColor1\": \"ff4bb4\",",
+                    "                    \"textColor2\": \"ff0082\",",
+                    "                    \"textColor3\": \"cb3d99\",",
+                    "                    \"textColor4\": \"cb0170\",",
+                    "                    \"url\": \"https://example.mzstatic.com/image/thumb/Features128/v4/7b/16/72/7b16722a-4ec5-b2e7-a020-dad398229872/source/{w}x{h}cc.jpeg\",",
+                    "                    \"width\": 4320",
+                    "                },",
+                    "                \"curatorName\": \"Apple Music Pop\",",
+                    "                \"description\": {",
+                    "                    \"short\": \"Seismic chart-smashes for that long weekend of partying.\",",
+                    "                    \"standard\": \"Seismic chart-smashes for that long weekend of partying. Our editors regularly update this playlist\\u2014if you hear something you like, add it to your library.\"",
+                    "                },",
+                    "                \"lastModifiedDate\": \"2017-09-29T04:22:04Z\",",
+                    "                \"name\": \"Friday Feeling\",",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"pl.91bb14d8ee10414e8fda8fb71f56db03\",",
+                    "                    \"kind\": \"playlist\"",
+                    "                },",
+                    "                \"playlistType\": \"editorial\",",
+                    "                \"url\": \"https://itunes.apple.com/us/playlist/friday-feeling/pl.91bb14d8ee10414e8fda8fb71f56db03\"",
+                    "            },",
+                    "            \"href\": \"/v1/catalog/us/playlists/pl.91bb14d8ee10414e8fda8fb71f56db03\",",
+                    "            \"id\": \"pl.91bb14d8ee10414e8fda8fb71f56db03\",",
+                    "            \"type\": \"playlists\"",
+                    "        },",
+                    "        {",
+                    "            \"attributes\": {",
+                    "                \"artwork\": {",
+                    "                    \"bgColor\": \"07050a\",",
+                    "                    \"height\": 1080,",
+                    "                    \"textColor1\": \"ffffff\",",
+                    "                    \"textColor2\": \"d8d8d8\",",
+                    "                    \"textColor3\": \"cdcccd\",",
+                    "                    \"textColor4\": \"aeaeaf\",",
+                    "                    \"url\": \"https://example.mzstatic.com/image/thumb/Features122/v4/e5/58/17/e5581768-35a7-8bc3-b529-0616626b39b7/source/{w}x{h}cc.jpeg\",",
+                    "                    \"width\": 4320",
+                    "                },",
+                    "                \"curatorName\": \"Apple Music\",",
+                    "                \"description\": {",
+                    "                    \"short\": \"Kick it off with uptempo indie, pop, and electronic.\",",
+                    "                    \"standard\": \"Kick it off with uptempo indie, pop, and electronic. We update these tracks regularly. If you like something, add it to your library.\"",
+                    "                },",
+                    "                \"lastModifiedDate\": \"2017-09-29T07:48:55Z\",",
+                    "                \"name\": \"Weekend Worthy\",",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"pl.3baaa090b668436797672b2dfd43d9ce\",",
+                    "                    \"kind\": \"playlist\"",
+                    "                },",
+                    "                \"playlistType\": \"editorial\",",
+                    "                \"url\": \"https://itunes.apple.com/us/playlist/weekend-worthy/pl.3baaa090b668436797672b2dfd43d9ce\"",
+                    "            },",
+                    "            \"href\": \"/v1/catalog/us/playlists/pl.3baaa090b668436797672b2dfd43d9ce\",",
+                    "            \"id\": \"pl.3baaa090b668436797672b2dfd43d9ce\",",
+                    "            \"type\": \"playlists\"",
+                    "        },",
+                    "        {",
+                    "            \"attributes\": {",
+                    "                \"artwork\": {",
+                    "                    \"bgColor\": \"020216\",",
+                    "                    \"height\": 1080,",
+                    "                    \"textColor1\": \"1ff7ed\",",
+                    "                    \"textColor2\": \"08b7de\",",
+                    "                    \"textColor3\": \"19c6c2\",",
+                    "                    \"textColor4\": \"0793b6\",",
+                    "                    \"url\": \"https://example.mzstatic.com/image/thumb/Features117/v4/94/17/2e/94172e16-e5d7-2d2b-66ec-e72473988168/source/{w}x{h}cc.jpeg\",",
+                    "                    \"width\": 4320",
+                    "                },",
+                    "                \"curatorName\": \"Apple Music Pop\",",
+                    "                \"description\": {",
+                    "                    \"short\": \"The tracks that we can't stop listening to.\",",
+                    "                    \"standard\": \"After a long day of searching for the hottest songs in the world, these are the tracks we can't stop listening to. This playlist is updated regularly, so if you like a song, add it to your library.\"",
+                    "                },",
+                    "                \"lastModifiedDate\": \"2017-09-29T18:49:19Z\",",
+                    "                \"name\": \"Today's Hits\",",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"pl.f4d106fed2bd41149aaacabb233eb5eb\",",
+                    "                    \"kind\": \"playlist\"",
+                    "                },",
+                    "                \"playlistType\": \"editorial\",",
+                    "                \"url\": \"https://itunes.apple.com/us/playlist/todays-hits/pl.f4d106fed2bd41149aaacabb233eb5eb\"",
+                    "            },",
+                    "            \"href\": \"/v1/catalog/us/playlists/pl.f4d106fed2bd41149aaacabb233eb5eb\",",
+                    "            \"id\": \"pl.f4d106fed2bd41149aaacabb233eb5eb\",",
+                    "            \"type\": \"playlists\"",
+                    "        },",
+                    "        {",
+                    "            \"attributes\": {",
+                    "                \"artwork\": {",
+                    "                    \"bgColor\": \"363636\",",
+                    "                    \"height\": 1080,",
+                    "                    \"textColor1\": \"ff71ad\",",
+                    "                    \"textColor2\": \"fd2773\",",
+                    "                    \"textColor3\": \"d66595\",",
+                    "                    \"textColor4\": \"d52a67\",",
+                    "                    \"url\": \"https://example.mzstatic.com/image/thumb/Features128/v4/86/80/dc/8680dc8c-eb8d-4fe7-3cc2-4639e0a44930/source/{w}x{h}cc.jpeg\",",
+                    "                    \"width\": 4320",
+                    "                },",
+                    "                \"curatorName\": \"Apple Music Hip-Hop\",",
+                    "                \"description\": {",
+                    "                    \"short\": \"Hip-hop and R&B for the club.\",",
+                    "                    \"standard\": \"Hip-hop and R&B for the club. Our editors regularly update this playlist\\u2014if you hear something you like, add it to your library.\"",
+                    "                },",
+                    "                \"lastModifiedDate\": \"2017-09-25T19:35:51Z\",",
+                    "                \"name\": \"It's Lit!!!\",",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"pl.2d4d74790f074233b82d07bfae5c219c\",",
+                    "                    \"kind\": \"playlist\"",
+                    "                },",
+                    "                \"playlistType\": \"editorial\",",
+                    "                \"url\": \"https://itunes.apple.com/us/playlist/its-lit/pl.2d4d74790f074233b82d07bfae5c219c\"",
+                    "            },",
+                    "            \"href\": \"/v1/catalog/us/playlists/pl.2d4d74790f074233b82d07bfae5c219c\",",
+                    "            \"id\": \"pl.2d4d74790f074233b82d07bfae5c219c\",",
+                    "            \"type\": \"playlists\"",
+                    "        },",
+                    "        {",
+                    "            \"attributes\": {",
+                    "                \"artwork\": {",
+                    "                    \"bgColor\": \"ef73bf\",",
+                    "                    \"height\": 1080,",
+                    "                    \"textColor1\": \"0c000d\",",
+                    "                    \"textColor2\": \"0c020d\",",
+                    "                    \"textColor3\": \"3a1730\",",
+                    "                    \"textColor4\": \"391930\",",
+                    "                    \"url\": \"https://example.mzstatic.com/image/thumb/Features62/v4/39/39/37/393937c5-7f5a-db10-a7f3-0652eac2fae0/source/{w}x{h}cc.jpeg\",",
+                    "                    \"width\": 4320",
+                    "                },",
+                    "                \"curatorName\": \"Apple Music Pop\",",
+                    "                \"description\": {",
+                    "                    \"short\": \"Our editors select the new songs you need to hear this week.\",",
+                    "                    \"standard\": \"After combing through countless releases each week, our editors select their favorites for The A-List: Pop\\u2014the hottest tracks from across the genre. This playlist is updated regularly, so if you like a song, add it to your library.\"",
+                    "                },",
+                    "                \"lastModifiedDate\": \"2017-09-29T21:15:27Z\",",
+                    "                \"name\": \"The A-List: Pop\",",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"pl.5ee8333dbe944d9f9151e97d92d1ead9\",",
+                    "                    \"kind\": \"playlist\"",
+                    "                },",
+                    "                \"playlistType\": \"editorial\",",
+                    "                \"url\": \"https://itunes.apple.com/us/playlist/the-a-list-pop/pl.5ee8333dbe944d9f9151e97d92d1ead9\"",
+                    "            },",
+                    "            \"href\": \"/v1/catalog/us/playlists/pl.5ee8333dbe944d9f9151e97d92d1ead9\",",
+                    "            \"id\": \"pl.5ee8333dbe944d9f9151e97d92d1ead9\",",
+                    "            \"type\": \"playlists\"",
+                    "        },",
+                    "        {",
+                    "            \"attributes\": {",
+                    "                \"artwork\": {",
+                    "                    \"bgColor\": \"2c6266\",",
+                    "                    \"height\": 1080,",
+                    "                    \"textColor1\": \"ffffff\",",
+                    "                    \"textColor2\": \"facc56\",",
+                    "                    \"textColor3\": \"d4dfe0\",",
+                    "                    \"textColor4\": \"d1b759\",",
+                    "                    \"url\": \"https://example.mzstatic.com/image/thumb/Features118/v4/ce/41/9d/ce419d2c-34ef-9fdc-7267-0a5013bde909/source/{w}x{h}cc.jpeg\",",
+                    "                    \"width\": 4320",
+                    "                },",
+                    "                \"curatorName\": \"Apple Music Indie\",",
+                    "                \"description\": {",
+                    "                    \"short\": \"The songs heating up festival stages.\",",
+                    "                    \"standard\": \"These are the tracks that are heating up festival stages. Our editors regularly update this playlist\\u2014if you hear something you like, add it to your library.\"",
+                    "                },",
+                    "                \"lastModifiedDate\": \"2017-09-29T16:26:31Z\",",
+                    "                \"name\": \"New Fire \\ud83d\\udd25\",",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"pl.f19f6b5be8474fe789e36a6242f6113e\",",
+                    "                    \"kind\": \"playlist\"",
+                    "                },",
+                    "                \"playlistType\": \"editorial\",",
+                    "                \"url\": \"https://itunes.apple.com/us/playlist/new-fire/pl.f19f6b5be8474fe789e36a6242f6113e\"",
+                    "            },",
+                    "            \"href\": \"/v1/catalog/us/playlists/pl.f19f6b5be8474fe789e36a6242f6113e\",",
+                    "            \"id\": \"pl.f19f6b5be8474fe789e36a6242f6113e\",",
+                    "            \"type\": \"playlists\"",
+                    "        },",
+                    "        {",
+                    "            \"attributes\": {",
+                    "                \"artwork\": {",
+                    "                    \"bgColor\": \"020216\",",
+                    "                    \"height\": 1080,",
+                    "                    \"textColor1\": \"2ee8fe\",",
+                    "                    \"textColor2\": \"16aefd\",",
+                    "                    \"textColor3\": \"25bad0\",",
+                    "                    \"textColor4\": \"128cce\",",
+                    "                    \"url\": \"https://example.mzstatic.com/image/thumb/Features127/v4/87/78/d2/8778d2bf-9cc0-2546-e803-51edf7bd55c5/source/{w}x{h}cc.jpeg\",",
+                    "                    \"width\": 4320",
+                    "                },",
+                    "                \"curatorName\": \"Apple Music Pop\",",
+                    "                \"description\": {",
+                    "                    \"short\": \"What's hot this week and what's coming next.\",",
+                    "                    \"standard\": \"What's hot this week and what's coming next. Our editors regularly update this playlist\\u2014if you hear something you like, add it to your library.\"",
+                    "                },",
+                    "                \"lastModifiedDate\": \"2017-09-29T01:19:36Z\",",
+                    "                \"name\": \"Future Hits\",",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"pl.a0214a4b459d4f79a991d1151e6f211f\",",
+                    "                    \"kind\": \"playlist\"",
+                    "                },",
+                    "                \"playlistType\": \"editorial\",",
+                    "                \"url\": \"https://itunes.apple.com/us/playlist/future-hits/pl.a0214a4b459d4f79a991d1151e6f211f\"",
+                    "            },",
+                    "            \"href\": \"/v1/catalog/us/playlists/pl.a0214a4b459d4f79a991d1151e6f211f\",",
+                    "            \"id\": \"pl.a0214a4b459d4f79a991d1151e6f211f\",",
+                    "            \"type\": \"playlists\"",
+                    "        },",
+                    "        {",
+                    "            \"attributes\": {",
+                    "                \"artwork\": {",
+                    "                    \"bgColor\": \"060c06\",",
+                    "                    \"height\": 1080,",
+                    "                    \"textColor1\": \"ffffff\",",
+                    "                    \"textColor2\": \"fe9eb2\",",
+                    "                    \"textColor3\": \"cdcecd\",",
+                    "                    \"textColor4\": \"cc818f\",",
+                    "                    \"url\": \"https://example.mzstatic.com/image/thumb/Features127/v4/9d/ea/80/9dea80ae-c73f-a692-2516-6f2e7936df7b/source/{w}x{h}cc.jpeg\",",
+                    "                    \"width\": 4320",
+                    "                },",
+                    "                \"curatorName\": \"Apple Music African\",",
+                    "                \"description\": {",
+                    "                    \"short\": \"Our editors pick the hottest tracks each week.\",",
+                    "                    \"standard\": \"The best new Afrobeats sounds represent an exciting hybrid\\u2014rhythms sourced from Africa now soundtrack an emerging shift in pop culture that's packing dance floors from Lagos to the Caribbean, London, and New York. Our editors regularly update this playlist, so if you hear something you like, add it to your library.\"",
+                    "                },",
+                    "                \"lastModifiedDate\": \"2017-09-29T06:54:36Z\",",
+                    "                \"name\": \"Afrobeats Hits\",",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"pl.dc349df19c6f410d874c197db63ecfed\",",
+                    "                    \"kind\": \"playlist\"",
+                    "                },",
+                    "                \"playlistType\": \"editorial\",",
+                    "                \"url\": \"https://itunes.apple.com/us/playlist/afrobeats-hits/pl.dc349df19c6f410d874c197db63ecfed\"",
+                    "            },",
+                    "            \"href\": \"/v1/catalog/us/playlists/pl.dc349df19c6f410d874c197db63ecfed\",",
+                    "            \"id\": \"pl.dc349df19c6f410d874c197db63ecfed\",",
+                    "            \"type\": \"playlists\"",
+                    "        },",
+                    "        {",
+                    "            \"attributes\": {",
+                    "                \"artwork\": {",
+                    "                    \"bgColor\": \"ffffff\",",
+                    "                    \"height\": 1080,",
+                    "                    \"textColor1\": \"030303\",",
+                    "                    \"textColor2\": \"231b17\",",
+                    "                    \"textColor3\": \"353535\",",
+                    "                    \"textColor4\": \"4f4846\",",
+                    "                    \"url\": \"https://example.mzstatic.com/image/thumb/Features62/v4/35/1a/37/351a37b9-c1c4-e02b-1103-c159dde1b1d2/source/{w}x{h}cc.jpeg\",",
+                    "                    \"width\": 4320",
+                    "                },",
+                    "                \"curatorName\": \"Apple Music Hip-Hop\",",
+                    "                \"description\": {",
+                    "                    \"short\": \"Where dance, hip-hop, R&B and electronic converge.\",",
+                    "                    \"standard\": \"This is where dance, hip-hop, R&B and electronic music converge. Our editors regularly update this playlist\\u2014if you hear something you like, add it to your library.\"",
+                    "                },",
+                    "                \"lastModifiedDate\": \"2017-09-02T19:36:37Z\",",
+                    "                \"name\": \"The WAVE\",",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"pl.babe25c8236549559cba13467accd264\",",
+                    "                    \"kind\": \"playlist\"",
+                    "                },",
+                    "                \"playlistType\": \"editorial\",",
+                    "                \"url\": \"https://itunes.apple.com/us/playlist/the-wave/pl.babe25c8236549559cba13467accd264\"",
+                    "            },",
+                    "            \"href\": \"/v1/catalog/us/playlists/pl.babe25c8236549559cba13467accd264\",",
+                    "            \"id\": \"pl.babe25c8236549559cba13467accd264\",",
+                    "            \"type\": \"playlists\"",
+                    "        },",
+                    "        {",
+                    "            \"attributes\": {",
+                    "                \"artwork\": {",
+                    "                    \"bgColor\": \"000000\",",
+                    "                    \"height\": 1080,",
+                    "                    \"textColor1\": \"ffffff\",",
+                    "                    \"textColor2\": \"eaf435\",",
+                    "                    \"textColor3\": \"cbcbcb\",",
+                    "                    \"textColor4\": \"bbc32b\",",
+                    "                    \"url\": \"https://example.mzstatic.com/image/thumb/Features111/v4/bb/bd/3e/bbbd3e6f-d870-d2fd-dd1a-f50ebe51c4fd/source/{w}x{h}cc.jpeg\",",
+                    "                    \"width\": 4320",
+                    "                },",
+                    "                \"curatorName\": \"Apple Music\",",
+                    "                \"description\": {",
+                    "                    \"short\": \"The infectious, genre-busting sound of the UK streets.\",",
+                    "                    \"standard\": \"The producers and MCs at the vanguard of the rapidly growing Afro swing movement all follow one rule: forget about rules. Drawing on grime, UK rap, Afrobeats, dancehall, and house in varying measures, no two songs sound the same. Our editors update this playlist regularly, so when you hear something you like, make sure you add it to your library. \"",
+                    "                },",
+                    "                \"lastModifiedDate\": \"2017-09-29T08:57:42Z\",",
+                    "                \"name\": \"Afro Swing\",",
+                    "                \"playParams\": {",
+                    "                    \"id\": \"pl.674fd462d05c47afa632fcf860332996\",",
+                    "                    \"kind\": \"playlist\"",
+                    "                },",
+                    "                \"playlistType\": \"editorial\",",
+                    "                \"url\": \"https://itunes.apple.com/us/playlist/afro-swing/pl.674fd462d05c47afa632fcf860332996\"",
+                    "            },",
+                    "            \"href\": \"/v1/catalog/us/playlists/pl.674fd462d05c47afa632fcf860332996\",",
+                    "            \"id\": \"pl.674fd462d05c47afa632fcf860332996\",",
+                    "            \"type\": \"playlists\"",
+                    "        }",
+                    "    ],",
+                    "    \"next\": \"/v1/catalog/us/activities/976439514/playlists?offset=10\"",
+                    "}",
+                    ""
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI": {
+      "abstract": [
+        {
+          "text": "Integrate streaming music with catalog and personal content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Music API",
+      "type": "topic",
+      "url": "/documentation/applemusicapi"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Activities": {
+      "abstract": [
+        {
+          "text": "A resource object that represents an activity curator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Activities"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Activities",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Activities"
+        }
+      ],
+      "role": "symbol",
+      "title": "Activities",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/activities"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ActivitiesResponse": {
+      "abstract": [
+        {
+          "text": "The response to a request for activities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActivitiesResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ActivitiesResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActivitiesResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ActivitiesResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/activitiesresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that an error occurred while processing the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ErrorsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorsResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/errorsresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-1eqct": {
+      "abstract": [
+        {
+          "text": "Fetch an activity’s relationship by using its identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Fetch-a-relationship-on-this-resource-by-name-1eqct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Fetch a relationship on this resource by name"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Catalog Activity's Relationship Directly by Name",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/fetch-a-relationship-on-this-resource-by-name-1eqct"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Catalog-Activities": {
+      "abstract": [
+        {
+          "text": "Fetch one or more activities by using their identifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Catalog-Activities",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Multiple Catalog Activities"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Multiple Catalog Activities",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-multiple-catalog-activities"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Catalog-Activity": {
+      "abstract": [
+        {
+          "text": "Fetch an activity by using its identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Catalog-Activity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a Catalog Activity"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Catalog Activity",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/get-a-catalog-activity"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/RelationshipResponse": {
+      "abstract": [
+        {
+          "text": "The response for a direct resource relationship fetch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RelationshipResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/RelationshipResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RelationshipResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "RelationshipResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/relationshipresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse": {
+      "abstract": [
+        {
+          "text": "A response object indicating that the request’s authorization is missing or invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/UnauthorizedResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnauthorizedResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnauthorizedResponse",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/unauthorizedresponse"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses": {
+      "abstract": [
+        {
+          "text": "Write a request and handle responses from the API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Requests and Responses",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/handling-requests-and-responses"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Activities",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/ActivitiesResponse"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Requesting-Catalog-Activites",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-a-Catalog-Activity",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/Get-Multiple-Catalog-Activities"
+      ],
+      "title": "Requesting Catalog Activites"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemusicapi/fetch-a-relationship-on-this-resource-by-name-1eqct"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

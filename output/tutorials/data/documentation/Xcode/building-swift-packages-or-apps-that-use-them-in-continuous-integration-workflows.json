@@ -1,0 +1,876 @@
+{
+  "abstract": [
+    {
+      "text": "Build Swift packages with an existing continuous integration setup and prepare apps",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "that consume package dependencies within an existing CI pipeline.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/swift-packages"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/building-swift-packages-or-apps-that-use-them-in-continuous-integration-workflows"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Building Swift packages or apps that use them in continuous integration workflows"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Continuous integration",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (CI) is the process of automating and streamlining the building,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "analyzing, testing, archiving, and publishing of your apps to ensure that they’re",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "always in a releasable state. Use either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or the ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "directly on other CI systems to build Swift packages and apps that use them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most projects that contain or depend on Swift packages don’t require additional configuration.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, be sure to commit your project’s ",
+              "type": "text"
+            },
+            {
+              "code": "Package.resolved",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to your Git repository.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This ensures a reliable CI workflow that always uses the expected version of a package",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dependency. If your project depends on packages that require authentication, or you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "need to use your Mac’s Git tooling instead of the tooling which comes bundled with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode, you may need to perform additional configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "While you can build a standalone Swift package locally with Xcode, Xcode",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Cloud requires the package to be part of a project or workspace. To learn about",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "building Swift packages with Xcode Cloud, see",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/building-swift-packages-or-swift-playground-app-projects-with-xcode-cloud",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Use-the-expected-version-of-a-package-dependency",
+          "level": 3,
+          "text": "Use the expected version of a package dependency",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure the CI workflow’s reliability, make sure it uses the appropriate version",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of package dependencies. Xcode stores the exact version of each package dependency",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in a file called ",
+              "type": "text"
+            },
+            {
+              "code": "Package.resolved",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The file automatically updates when package",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "requirements in your Xcode project or in the ",
+              "type": "text"
+            },
+            {
+              "code": "Package.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " manifest file change.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Commit this file to your Git repository to ensure it’s always up-to-date on the CI",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "environment to prevent the CI from building your project with unexpected versions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of package dependencies.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can find the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Package.resolved",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file inside your ",
+                  "type": "text"
+                },
+                {
+                  "code": ".xcodeproj",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " directory",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "at ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "[appName]",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "code": ".xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your CI pipeline uses the ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command directly, also pass the ",
+              "type": "text"
+            },
+            {
+              "code": "-disableAutomaticPackageResolution",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "flag. This flag ensures that the CI pipeline always uses the package dependencies",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as defined in the ",
+              "type": "text"
+            },
+            {
+              "code": "Package.resolved",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-credentials",
+          "level": 3,
+          "text": "Provide credentials",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your Xcode project only depends on publicly available Swift packages, you don’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "need to perform additional configuration steps. Xcode Cloud or the ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "command automatically resolve package dependencies for you. However, to resolve package",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dependencies that require authentication, or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "private packages",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", you need to provide",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "credentials to your CI setup. For information on granting Xcode Cloud access to private",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dependencies, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re using the ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command directly, use SSH–based Git URLs for your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "packages and configure your SSH credentials. Set up your ",
+              "type": "text"
+            },
+            {
+              "code": "known_hosts",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "~/.ssh",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory of the macOS user that runs your CI tasks. ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " honors",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your SSH configuration — there’s no additional setup required.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your SSH keys are password-protected, add them to the SSH agent before invoking",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by modifying the SSH configuration file as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/technotes/tn2449/_index.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-your-systems-Git-tooling",
+          "level": 3,
+          "text": "Use your system’s Git tooling",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you use the ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directly, it uses Xcode’s built-in Git tooling to connect",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to repositories. In many cases, you don’t need to make changes to how ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "connects to them. However, some use cases require you use the configuration you set",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for your Mac’s Git installation. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "URL remapping",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Proxy configurations",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Advanced SSH configurations, for example, disabling the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "StrictHostKeyChecking",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "setting",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To have ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " use your Mac’s Git installation and configuration, pass ",
+              "type": "text"
+            },
+            {
+              "code": "-scmProvider system",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on using ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/technotes/tn2339/_index.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Review dependencies and make them available to Xcode Cloud before you configure your project to use Xcode Cloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "Making dependencies available to Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/making-dependencies-available-to-xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Automatically build, test, and distribute your apps with Xcode Cloud to verify changes and create high-quality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/building-swift-packages-or-swift-playground-app-projects-with-xcode-cloud": {
+      "abstract": [
+        {
+          "text": "Add your Swift package or Swift Playgrounds app project to an Xcode project to build it in Xcode Cloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/building-swift-packages-or-swift-playground-app-projects-with-xcode-cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "Building Swift packages and Swift Playgrounds app projects with Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/building-swift-packages-or-swift-playground-app-projects-with-xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/swift-packages": {
+      "abstract": [
+        {
+          "text": "Create reusable code, organize it in a lightweight way, and share it across Xcode projects and with other developers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/swift-packages",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Swift packages",
+      "type": "topic",
+      "url": "/documentation/xcode/swift-packages"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/library/archive/technotes/tn2339/_index.html": {
+      "identifier": "https://developer.apple.com/library/archive/technotes/tn2339/_index.html",
+      "title": "Technical Note 2339",
+      "titleInlineContent": [
+        {
+          "text": "Technical Note 2339",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/technotes/tn2339/_index.html"
+    },
+    "https://developer.apple.com/library/archive/technotes/tn2449/_index.html": {
+      "identifier": "https://developer.apple.com/library/archive/technotes/tn2449/_index.html",
+      "title": "Tech Note 2449",
+      "titleInlineContent": [
+        {
+          "text": "Tech Note 2449",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/technotes/tn2449/_index.html"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": []
+}

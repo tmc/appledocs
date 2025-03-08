@@ -1,0 +1,845 @@
+{
+  "abstract": [
+    {
+      "text": "Streamline entering codes you send as SMS messages.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/one-time-codes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/enabling-autofill-for-domain-bound-sms-codes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Enabling AutoFill for domain-bound SMS codes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some internet services that authenticate people with passwords send verification codes using SMS. The service sends a random one-time code to the phone number that the person added to their account profile. The person enters the code into the website or app as additional evidence that they’re accessing their own account.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 14 or later and macOS Big Sur or later, format the SMS messages you send to bind your service’s one-time codes with its DNS domain. AutoFill only suggests a domain-bound code to a person when the website they’re browsing in Safari, or an associated domain for the app they’re using, matches the domain in the SMS code. This makes it harder for an attacker to trick someone into entering one-time codes into a phishing website.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-your-apps-associated-domains",
+          "level": 3,
+          "text": "Configure your app’s associated domains",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AutoFill suggests domain-bound codes in your app if the bound domain in the message is one of the app’s associated domains. For information on configuring associated domains, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-your-one-time-code-text-fields-content-type",
+          "level": 3,
+          "text": "Set your one-time code text field’s content type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For UIKit apps on iOS and Mac Catalyst, set your one-time code field’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextInputTraits/textContentType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextContentType/oneTimeCode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For AppKit apps on macOS, set your one-time code field’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTextContent/contentType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTextContentType/oneTimeCode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For SwiftUI apps, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/textContentType(_:)-ufdv",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier to set the content type to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextContentType/oneTimeCode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For your website, set the HTML ",
+              "type": "text"
+            },
+            {
+              "code": "<input>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element attribute ",
+              "type": "text"
+            },
+            {
+              "code": "autocomplete=one-time-code",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Format-your-SMS-messages",
+          "level": 3,
+          "text": "Format your SMS messages",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can present any information at the start of the SMS message, in any format. The last line of your message needs your DNS domain name, prefixed by an at sign (",
+              "type": "text"
+            },
+            {
+              "code": "@",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), and the one-time code, prefixed by a hash symbol (",
+              "type": "text"
+            },
+            {
+              "code": "#",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). Separate the two components using a space. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Your Example code is 123456.",
+            "",
+            "@example.com #123456"
+          ],
+          "syntax": "console",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your website embeds its login view in an iFrame, which uses a different DNS domain than the main website, additionally include the DNS domain name for the embedded login view, prefixed by the percent sign (",
+              "type": "text"
+            },
+            {
+              "code": "%",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Your Example code is 123456.",
+            "",
+            "@example.com #123456 %iframe-auth.example.org"
+          ],
+          "syntax": "console",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSTextContent/contentType": {
+      "abstract": [
+        {
+          "text": "The semantic meaning for a text input area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTextContentType",
+          "text": "NSTextContentType"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTextContent/contentType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentType",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTextContent/contentType"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSTextContentType/oneTimeCode": {
+      "abstract": [
+        {
+          "text": "A property that defines the content in a text input area as a one-time code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "oneTimeCode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTextContentType",
+          "text": "NSTextContentType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSTextContentType/oneTimeCode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "oneTimeCode",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTextContentType/oneTimeCode"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/textContentType(_:)-ufdv": {
+      "abstract": [
+        {
+          "text": "Sets the text content type for this view, which the system uses to offer suggestions while the user enters text on an iOS or tvOS device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textContentType"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "textContentType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UITextContentType",
+          "text": "UITextContentType"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/textContentType(_:)-ufdv",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textContentType(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/textContentType(_:)-ufdv"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UITextContentType/oneTimeCode": {
+      "abstract": [
+        {
+          "text": "A property that defines the content in a text input area as a one-time code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "oneTimeCode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UITextContentType",
+          "text": "UITextContentType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextContentType/oneTimeCode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "oneTimeCode",
+      "type": "topic",
+      "url": "/documentation/UIKit/UITextContentType/oneTimeCode"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UITextInputTraits/textContentType": {
+      "abstract": [
+        {
+          "text": "The semantic meaning for a text input area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textContentType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UITextContentType",
+          "text": "UITextContentType"
+        },
+        {
+          "kind": "text",
+          "text": "! { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UITextInputTraits/textContentType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textContentType",
+      "type": "topic",
+      "url": "/documentation/UIKit/UITextInputTraits/textContentType"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains": {
+      "abstract": [
+        {
+          "text": "Connect your app and a website to provide both a native app and a browser experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting associated domains",
+      "type": "topic",
+      "url": "/documentation/Xcode/supporting-associated-domains"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/one-time-codes": {
+      "abstract": [
+        {
+          "text": "Streamline entry of authentication and recovery codes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/one-time-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "One-time codes",
+      "type": "topic",
+      "url": "/documentation/security/one-time-codes"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UITextInputTraits~1textContentType/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@UITextContentType",
+              "text": "UITextContentType"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "textContentType"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSTextContent~1contentType/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSTextContentType",
+              "text": "NSTextContentType"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "contentType"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UITextContentType~1oneTimeCode/title",
+          "value": "UITextContentTypeOneTimeCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UITextContentType~1oneTimeCode/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@UITextContentType",
+              "text": "UITextContentType"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UITextContentTypeOneTimeCode"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSTextContentType~1oneTimeCode/title",
+          "value": "NSTextContentTypeOneTimeCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSTextContentType~1oneTimeCode/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSTextContentType",
+              "text": "NSTextContentType"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTextContentTypeOneTimeCode"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/enabling-autofill-for-domain-bound-sms-codes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/enabling-autofill-for-domain-bound-sms-codes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

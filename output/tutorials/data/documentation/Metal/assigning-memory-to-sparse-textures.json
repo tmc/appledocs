@@ -1,0 +1,953 @@
+{
+  "abstract": [
+    {
+      "text": "Use a resource state encoder to allocate and deallocate sparse tiles for a sparse texture.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/textures"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/assigning-memory-to-sparse-textures"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Assigning Memory to Sparse Textures"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A sparse texture has storage only when you explicitly provide it. Every mipmap in the texture is partitioned into tile-sized regions. Each region can be in one of three states:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Unmapped —",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " The region has no memory storage.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Uninitialized —",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " You’ve mapped a sparse tile to the region, but provided no texture data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Initialized",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " — You’ve mapped a sparse tile and provided texture data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Initially, all of the texture’s regions are unmapped. To provide data for a region, you ask the GPU to map regions in the texture to sparse tiles on the texture’s heap, and then copy or render data into those regions. When a region no longer needs memory, you unmap the region to free up its memory for future requests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Map-or-Unmap-Sparse-Tiles",
+          "level": 3,
+          "text": "Map or Unmap Sparse Tiles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To map or unmap sparse tiles, you issue commands to the GPU using a resource state command encoder (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLResourceStateCommandEncoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). Encode a command for each update, specifying the texture, a slice and mipmap within that texture, and a region inside that mipmap. Specify the region in tile coordinates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "if let encoder = commandBuffer.makeResourceStateCommandEncoder() {",
+                    "    encoder.updateTextureMapping(texture, mode: .map, region: tileRegion, mipLevel: 0, slice: 0)",
+                    "    encoder.endEncoding()",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "id<MTLResourceStateCommandEncoder> encoder = [commandBuffer resourceStateCommandEncoder];",
+                    "",
+                    "[encoder updateTextureMapping:texture",
+                    "                         mode:MTLSparseTextureMappingModeMap",
+                    "                       region:tileRegion",
+                    "                     mipLevel:0",
+                    "                        slice:0];",
+                    "",
+                    "[encoder endEncoding];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The GPU looks for free sparse tiles on the texture’s heap and assigns them to the texture. Once the mapping process is complete, future requests to read, write, or sample those regions access the assigned tiles. Metal doesn’t initialize the tiles with data, so to ensure that valid data is available, copy or render data into the newly mapped regions before you read or sample from them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The GPU fulfills mapping requests in the order that you encoded the commands. Within each command, the GPU maps the tiles in a row-major order on a first-come, first-served basis. If the heap runs out of memory, Metal skips any remaining tiles in the request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To free tiles and make additional memory available to satisfy other requests, encode commands using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLSparseTextureMappingMode/unmap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " mode instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Before you release a sparse texture, unmap all of its sparse tiles. Otherwise, the sparse heap continues to mark those tiles as mapped. However, Metal frees all mapped tile memory when you release the heap.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Map-the-Tail-Mipmaps-After-You-Create-the-Texture",
+          "level": 3,
+          "text": "Map the Tail Mipmaps After You Create the Texture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you create a complete mipmap chain for your texture, many of the lower-level mipmaps are smaller than the sparse tile size. To save memory, Metal packs all of these smaller mipmaps into one memory allocation, typically one sparse tile. To guarantee that a texture always has some data to sample, you usually want to map the tail mipmaps after you create the texture and keep the tail mapped until you’re ready to release the texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To map the tail mipmaps, ask the texture for the first mipmap in the tail and map any region within it. All of the tail mipmaps are mapped.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let tailRegion = MTLRegionMake2D(0, 0, 1, 1)",
+                    "",
+                    "encoder.updateTextureMapping(texture, mode: .map, region: tailRegion, mipLevel: texture.firstMipmapInTail, slice: 0)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "MTLRegion tailRegion = MTLRegionMake2D(0, 0, 1, 1);",
+                    "",
+                    "[encoder updateTextureMapping:texture",
+                    "                         mode:MTLSparseTextureMappingModeMap",
+                    "                       region:tailRegion",
+                    "                     mipLevel:texture.firstMipmapInTail",
+                    "                        slice:0];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, if you unmap the first mipmap in the tail, all of the tail mipmaps are unmapped.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Synchronize-Access-to-Tile-Mapping-and-Unmapping",
+          "level": 3,
+          "text": "Synchronize Access to Tile Mapping and Unmapping",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tile mapping is performed by the GPU, which means that it happens asynchronously at a future point after you commit the command buffer. Don’t change the memory assigned to a texture while the texture’s contents are being read or written. Use fences or events to ensure that these actions don’t overlap.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you use more than one resource state encoder to encode commands that access the same sparse heap, you must execute them sequentially, or your app may crash. For example, if you’ve two different command queues in your app, and both encode resource state commands for the same heap, synchronize access using shared events so that the updates happen sequentially.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about synchronizing Metal commands, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/resource-synchronization",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLMapIndirectArguments": {
+      "abstract": [
+        {
+          "text": "The data layout for mapping sparse texture regions when using indirect commands.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLMapIndirectArguments"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLMapIndirectArguments",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLMapIndirectArguments"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLMapIndirectArguments",
+      "type": "topic",
+      "url": "/documentation/metal/mtlmapindirectarguments"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResourceStateCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An encoder that encodes commands that modify resource configurations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLResourceStateCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResourceStateCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLResourceStateCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLResourceStateCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresourcestatecommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResourceStatePassDescriptor": {
+      "abstract": [
+        {
+          "text": "A configuration for a resource state pass, used to create a resource state command encoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLResourceStatePassDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResourceStatePassDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLResourceStatePassDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLResourceStatePassDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresourcestatepassdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResourceStatePassSampleBufferAttachmentDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of where to store GPU counter information at the start and end of a resource state pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLResourceStatePassSampleBufferAttachmentDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResourceStatePassSampleBufferAttachmentDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLResourceStatePassSampleBufferAttachmentDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLResourceStatePassSampleBufferAttachmentDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresourcestatepasssamplebufferattachmentdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResourceStatePassSampleBufferAttachmentDescriptorArray": {
+      "abstract": [
+        {
+          "text": "An array of sample buffer attachments for a resource state pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLResourceStatePassSampleBufferAttachmentDescriptorArray"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResourceStatePassSampleBufferAttachmentDescriptorArray",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLResourceStatePassSampleBufferAttachmentDescriptorArray"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLResourceStatePassSampleBufferAttachmentDescriptorArray",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresourcestatepasssamplebufferattachmentdescriptorarray"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSparseTextureMappingMode/unmap": {
+      "abstract": [
+        {
+          "text": "A request to remove any mappings for a region in the texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unmap"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSparseTextureMappingMode/unmap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLSparseTextureMappingModeUnmap"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLSparseTextureMappingMode.unmap",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsparsetexturemappingmode/unmap"
+    },
+    "doc://com.apple.metal/documentation/Metal/converting-between-pixel-regions-and-sparse-tile-regions": {
+      "abstract": [
+        {
+          "text": "Learn how a sparse texture’s contents are organized in memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/converting-between-pixel-regions-and-sparse-tile-regions",
+      "kind": "article",
+      "role": "article",
+      "title": "Converting Between Pixel Regions and Sparse Tile Regions",
+      "type": "topic",
+      "url": "/documentation/metal/converting-between-pixel-regions-and-sparse-tile-regions"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-sparse-heaps-and-sparse-textures": {
+      "abstract": [
+        {
+          "text": "Allocate memory for sparse textures by creating a sparse heap.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-sparse-heaps-and-sparse-textures",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating Sparse Heaps and Sparse Textures",
+      "type": "topic",
+      "url": "/documentation/metal/creating-sparse-heaps-and-sparse-textures"
+    },
+    "doc://com.apple.metal/documentation/Metal/estimating-how-often-a-texture-region-is-accessed": {
+      "abstract": [
+        {
+          "text": "Use texture access patterns to determine when you need to map a texture region.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/estimating-how-often-a-texture-region-is-accessed",
+      "kind": "article",
+      "role": "article",
+      "title": "Estimating How Often a Texture Region Is Accessed",
+      "type": "topic",
+      "url": "/documentation/metal/estimating-how-often-a-texture-region-is-accessed"
+    },
+    "doc://com.apple.metal/documentation/Metal/managing-sparse-texture-memory": {
+      "abstract": [
+        {
+          "text": "Take direct control of memory allocation for texture data by using sparse textures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/managing-sparse-texture-memory",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Sparse Texture Memory",
+      "type": "topic",
+      "url": "/documentation/metal/managing-sparse-texture-memory"
+    },
+    "doc://com.apple.metal/documentation/Metal/reading-and-writing-to-sparse-textures": {
+      "abstract": [
+        {
+          "text": "Decide how to handle access to unmapped texture regions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/reading-and-writing-to-sparse-textures",
+      "kind": "article",
+      "role": "article",
+      "title": "Reading and Writing to Sparse Textures",
+      "type": "topic",
+      "url": "/documentation/metal/reading-and-writing-to-sparse-textures"
+    },
+    "doc://com.apple.metal/documentation/Metal/resource-synchronization": {
+      "abstract": [
+        {
+          "text": "Coordinate the contents of data buffers, textures, and other resources that CPUs and GPUs share access to.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/resource-synchronization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resource Synchronization",
+      "type": "topic",
+      "url": "/documentation/metal/resource-synchronization"
+    },
+    "doc://com.apple.metal/documentation/Metal/textures": {
+      "abstract": [
+        {
+          "text": "Create and manage typed data your app uses to exchange information with its shader functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/textures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Textures",
+      "type": "topic",
+      "url": "/documentation/metal/textures"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sparse-Textures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/managing-sparse-texture-memory",
+        "doc://com.apple.metal/documentation/Metal/creating-sparse-heaps-and-sparse-textures",
+        "doc://com.apple.metal/documentation/Metal/converting-between-pixel-regions-and-sparse-tile-regions",
+        "doc://com.apple.metal/documentation/Metal/reading-and-writing-to-sparse-textures",
+        "doc://com.apple.metal/documentation/Metal/estimating-how-often-a-texture-region-is-accessed",
+        "doc://com.apple.metal/documentation/Metal/MTLResourceStatePassDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLResourceStatePassSampleBufferAttachmentDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLResourceStatePassSampleBufferAttachmentDescriptorArray",
+        "doc://com.apple.metal/documentation/Metal/MTLResourceStateCommandEncoder",
+        "doc://com.apple.metal/documentation/Metal/MTLMapIndirectArguments"
+      ],
+      "title": "Sparse Textures"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Sparse-Textures",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/managing-sparse-texture-memory",
+                "doc://com.apple.metal/documentation/Metal/creating-sparse-heaps-and-sparse-textures",
+                "doc://com.apple.metal/documentation/Metal/converting-between-pixel-regions-and-sparse-tile-regions",
+                "doc://com.apple.metal/documentation/Metal/reading-and-writing-to-sparse-textures",
+                "doc://com.apple.metal/documentation/Metal/estimating-how-often-a-texture-region-is-accessed",
+                "doc://com.apple.metal/documentation/Metal/MTLResourceStatePassDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLResourceStatePassSampleBufferAttachmentDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLResourceStatePassSampleBufferAttachmentDescriptorArray",
+                "doc://com.apple.metal/documentation/Metal/MTLResourceStateCommandEncoder",
+                "doc://com.apple.metal/documentation/Metal/MTLMapIndirectArguments"
+              ],
+              "title": "Sparse Textures"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLMapIndirectArguments/title",
+          "value": "MTLMapIndirectArguments"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLMapIndirectArguments/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLMapIndirectArguments"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLMapIndirectArguments/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLMapIndirectArguments"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSparseTextureMappingMode~1unmap/title",
+          "value": "MTLSparseTextureMappingModeUnmap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSparseTextureMappingMode~1unmap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSparseTextureMappingModeUnmap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceStateCommandEncoder/title",
+          "value": "MTLResourceStateCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceStateCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResourceStateCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceStateCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResourceStateCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceStatePassDescriptor/title",
+          "value": "MTLResourceStatePassDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceStatePassDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResourceStatePassDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceStatePassDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResourceStatePassDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceStatePassSampleBufferAttachmentDescriptor/title",
+          "value": "MTLResourceStatePassSampleBufferAttachmentDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceStatePassSampleBufferAttachmentDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResourceStatePassSampleBufferAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceStatePassSampleBufferAttachmentDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResourceStatePassSampleBufferAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceStatePassSampleBufferAttachmentDescriptorArray/title",
+          "value": "MTLResourceStatePassSampleBufferAttachmentDescriptorArray"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceStatePassSampleBufferAttachmentDescriptorArray/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResourceStatePassSampleBufferAttachmentDescriptorArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceStatePassSampleBufferAttachmentDescriptorArray/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResourceStatePassSampleBufferAttachmentDescriptorArray"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/assigning-memory-to-sparse-textures"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/assigning-memory-to-sparse-textures"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

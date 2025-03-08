@@ -1,0 +1,1845 @@
+{
+  "abstract": [
+    {
+      "text": "Prompt the user to authorize access to the camera, microphone, and photo library.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capture-setup"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/requesting-authorization-to-capture-and-save-media"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Requesting authorization to capture and save media"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS and macOS 10.14 and later, the user must explicitly grant permission for each app to access the camera and microphone. Before your app can use a capture device for the first time, the system presents an alert with an app-specific message that you specify, to ask the user to grant your app access to the capture device. For example, the following screenshots show the camera access alert in iOS and macOS 10.14 and later:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4132752",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4132753",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system remembers the user’s response to each access alert, so subsequent uses of the corresponding capture device don’t cause the alert to appear again. The user can change permission settings for your app in Settings > Privacy in iOS and in System Preferences > Security & Privacy in macOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This article outlines the steps you can take to ensure your app has permission before it attempts to capture media.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-access-alerts",
+          "level": 3,
+          "text": "Configure access alerts",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system requires that your app provides static messages to display to the user when the system asks for permission to access the camera or microphone:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your app uses device cameras, include the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " key in your app’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your app uses device microphones, include the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " key in your app’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each key, provide a message that explains to the user why your app needs to capture media so the user can feel confident granting permission to your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4132754",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-entitlements-in-macOS",
+          "level": 3,
+          "text": "Enable entitlements in macOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS, you also need to enable the following entitlements in Signing & Capabilities for your app targets:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your app uses device cameras, enable the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.camera",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your app uses device microphones, enable the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.audio-input",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4140079",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Your app needs to contain the appropriate key in its ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file, and the appropriate entitlement enabled in macOS, before it requests authorization or attempts to use a capture device. Otherwise, the system terminates your app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Verify-and-request-authorization-for-capture",
+          "level": 3,
+          "text": "Verify and request authorization for capture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Always test the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/authorizationStatus(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method before setting up a capture session. If the user hasn’t granted or denied capture permission, the authorization status is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAuthorizationStatus/notDetermined",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In this case, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/requestAccess(for:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to tell the system to prompt the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/requestAccess(for:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before starting capture, but only at a time that’s appropriate for your app. For example, if photo or video capture isn’t the main focus of your app, check for permission only when the user invokes your app’s camera-related features. Here’s an example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var isAuthorized: Bool {",
+            "    get async {",
+            "        let status = AVCaptureDevice.authorizationStatus(for: .video)",
+            "        ",
+            "        // Determine if the user previously authorized camera access.",
+            "        var isAuthorized = status == .authorized",
+            "        ",
+            "        // If the system hasn't determined the user's authorization status,",
+            "        // explicitly prompt them for approval.",
+            "        if status == .notDetermined {",
+            "            isAuthorized = await AVCaptureDevice.requestAccess(for: .video)",
+            "        }",
+            "        ",
+            "        return isAuthorized",
+            "    }",
+            "}",
+            "",
+            "func setUpCaptureSession() async {",
+            "    guard await isAuthorized else { return }",
+            "    // Set up the capture session.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Request-authorization-to-save-captured-media",
+          "level": 3,
+          "text": "Request authorization to save captured media",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app must get permission to access the photo library before it attempts to save photos or videos; otherwise the system terminates your app. Which permission you request depends on the types of media you want to save:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For most photo and video capture workflows, including Live Photos and RAW format capture, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Photos/PHPhotoLibrary",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Photos/PHAssetCreationRequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " classes. These classes require read/write access to the photo library, so you need to use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPhotoLibraryUsageDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " key in your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file to provide the user a message to request access. For additional information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your app only needs to save video to the photo library, the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UISaveVideoAtPathToSavedPhotosAlbum(_:_:_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " function is a simpler alternative to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Photos/PHPhotoLibrary",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". This function only requires write access to the library. Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPhotoLibraryAddUsageDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " key in your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file to provide the user a message to request permission to save to the photo library.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImageWriteToSavedPhotosAlbum(_:_:_:_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function isn’t recommended for use with photos captured with ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " because ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " doesn’t support the features and metadata included in photo output.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAuthorizationStatus/notDetermined": {
+      "abstract": [
+        {
+          "text": "A status that indicates the user hasn’t yet granted or denied authorization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notDetermined"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAuthorizationStatus/notDetermined",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAuthorizationStatusNotDetermined"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAuthorizationStatus.notDetermined",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avauthorizationstatus/notdetermined"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice": {
+      "abstract": [
+        {
+          "text": "An object that represents a hardware or virtual capture device like a camera or microphone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/authorizationStatus(for:)": {
+      "abstract": [
+        {
+          "text": "Returns an authorization status that indicates whether the user grants the app permission to capture media of a particular type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaType",
+          "text": "AVMediaType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVAuthorizationStatus",
+          "text": "AVAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/authorizationStatus(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationStatusForMediaType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationStatus(for:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/authorizationstatus(for:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/requestAccess(for:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Requests the user’s permission to allow the app to capture media of a particular type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAccess"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVMediaType",
+          "text": "AVMediaType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/requestAccess(for:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestAccessForMediaType:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestAccess(for:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/requestaccess(for:completionhandler:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput": {
+      "abstract": [
+        {
+          "text": "A capture output for still image, Live Photos, and other photography workflows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhotoOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotooutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capture-setup": {
+      "abstract": [
+        {
+          "text": "Configure built-in cameras and microphones, and external capture devices, for media capture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-setup",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Capture setup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capture-setup"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.audio-input": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may record audio using the built-in microphone and access audio input using Core Audio.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.audio-input",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Audio Input Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.device.audio-input"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.camera": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may interact with the built-in and external cameras, and capture movies and still images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.camera",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Camera entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.device.camera"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the device’s camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCameraUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the device’s microphone.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMicrophoneUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPhotoLibraryAddUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting add-only access to the user’s photo library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPhotoLibraryAddUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPhotoLibraryAddUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSPhotoLibraryAddUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPhotoLibraryUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s photo library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPhotoLibraryUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPhotoLibraryUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSPhotoLibraryUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app": {
+      "abstract": [
+        {
+          "text": "Adopt the latest privacy enhancements to deliver advanced user-privacy controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Delivering an Enhanced Privacy Experience in Your Photos App",
+      "type": "topic",
+      "url": "/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app"
+    },
+    "doc://com.apple.documentation/documentation/Photos/PHAssetCreationRequest": {
+      "abstract": [
+        {
+          "text": "A request to create a new Photos asset from underlying data resources, for use in a photo library change block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHAssetCreationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Photos/PHAssetCreationRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PHAssetCreationRequest",
+      "type": "topic",
+      "url": "/documentation/Photos/PHAssetCreationRequest"
+    },
+    "doc://com.apple.documentation/documentation/Photos/PHPhotoLibrary": {
+      "abstract": [
+        {
+          "text": "An object that manages access and changes to the user’s photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHPhotoLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Photos/PHPhotoLibrary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PHPhotoLibrary",
+      "type": "topic",
+      "url": "/documentation/Photos/PHPhotoLibrary"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIImage": {
+      "abstract": [
+        {
+          "text": "An object that manages image data in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIImage",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIImage"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIImageWriteToSavedPhotosAlbum(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Adds the specified image to the user’s Camera Roll album.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImageWriteToSavedPhotosAlbum"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "completionTarget"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "completionSelector"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "contextInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImageWriteToSavedPhotosAlbum(_:_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIImageWriteToSavedPhotosAlbum(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIImageWriteToSavedPhotosAlbum(_:_:_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UISaveVideoAtPathToSavedPhotosAlbum(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Adds the movie from the specified path to the user’s Camera Roll album.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISaveVideoAtPathToSavedPhotosAlbum"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "videoPath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "completionTarget"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "completionSelector"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "contextInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UISaveVideoAtPathToSavedPhotosAlbum(_:_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UISaveVideoAtPathToSavedPhotosAlbum(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UISaveVideoAtPathToSavedPhotosAlbum(_:_:_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-4132752": {
+      "alt": "A screenshot of the iOS camera access alert, with an app-specific message to request access to the camera, with two buttons: Don’t Allow and OK.",
+      "identifier": "media-4132752",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a3149daf6d169ca33f1aa814df914b62/media-4132752@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/791c02e287d500e96d61743c5f6b5a60/media-4132752~dark@2x.png"
+        }
+      ]
+    },
+    "media-4132753": {
+      "alt": "A screenshot of the macOS 10.14 and later camera access alert, with an app-specific message to request access to the camera, with two buttons: Don’t Allow and OK.",
+      "identifier": "media-4132753",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1a769bbc026235505922c7c096b89d9/media-4132753@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a980fd350ed12904956c0ed3a06f0b8b/media-4132753~dark@2x.png"
+        }
+      ]
+    },
+    "media-4132754": {
+      "alt": "A screenshot showing the Camera and Microphone usage descriptions in the Info tab of the app target.",
+      "identifier": "media-4132754",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d6a61907f312b1bf97225e3102e0fedc/media-4132754@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2b0653e1c71e0789119fe6c69c8905fe/media-4132754~dark@2x.png"
+        }
+      ]
+    },
+    "media-4140079": {
+      "alt": "A screenshot showing the macOS Camera and Audio Input entitlements enabled in the Signing & Capabilities tab of the app target.",
+      "identifier": "media-4140079",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b056f4dfa4048bbbf0d8fd4ae056679e/media-4140079@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a9f93945c1490ba26532330f086b8571/media-4140079~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1requestAccess(for:completionHandler:)/title",
+          "value": "requestAccessForMediaType:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1requestAccess(for:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestAccessForMediaType:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAuthorizationStatus~1notDetermined/title",
+          "value": "AVAuthorizationStatusNotDetermined"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAuthorizationStatus~1notDetermined/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAuthorizationStatusNotDetermined"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1authorizationStatus(for:)/title",
+          "value": "authorizationStatusForMediaType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1authorizationStatus(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "authorizationStatusForMediaType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImageWriteToSavedPhotosAlbum(_:_:_:_:)/title",
+          "value": "UIImageWriteToSavedPhotosAlbum"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImageWriteToSavedPhotosAlbum(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIImageWriteToSavedPhotosAlbum"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIImage",
+              "text": "UIImage"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "image"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "id"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionTarget"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SEL",
+              "text": "SEL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionSelector"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "contextInfo"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/title",
+          "value": "AVCaptureDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImage/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIImage"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput/title",
+          "value": "AVCapturePhotoOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Photos~1PHAssetCreationRequest/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PHAssetCreationRequest"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)PHAssetChangeRequest",
+              "text": "PHAssetChangeRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UISaveVideoAtPathToSavedPhotosAlbum(_:_:_:_:)/title",
+          "value": "UISaveVideoAtPathToSavedPhotosAlbum"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UISaveVideoAtPathToSavedPhotosAlbum(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UISaveVideoAtPathToSavedPhotosAlbum"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "videoPath"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "id"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionTarget"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SEL",
+              "text": "SEL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionSelector"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "contextInfo"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Photos~1PHPhotoLibrary/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PHPhotoLibrary"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/requesting-authorization-to-capture-and-save-media"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/requesting-authorization-to-capture-and-save-media"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

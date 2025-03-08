@@ -1,0 +1,663 @@
+{
+  "abstract": [
+    {
+      "text": "Configure Xcode to produce the symbol information for debugging and crash reports.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/building-your-app-to-include-debugging-information"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Building your app to include debugging information"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When Xcode compiles your source code into machine code, it generates a list of symbols",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in your app — class names, global variables, and method and function names. These symbols",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "correspond to the file and line numbers where they’re defined; this association creates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "debug symbol",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", so you can use the debugger in Xcode, or refer to line numbers",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "reported by a crash report. Debug builds of an app place the debug symbols inside",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the compiled binary file by default, while release builds of an app place the debug",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "symbols in a companion debug symbol (",
+              "type": "text"
+            },
+            {
+              "code": "dSYM",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") file to reduce the size of the distributed",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each binary file in an app — the main app executable, frameworks, and app extensions — has",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "its own ",
+              "type": "text"
+            },
+            {
+              "code": "dSYM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. The compiled binary and its companion ",
+              "type": "text"
+            },
+            {
+              "code": "dSYM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file are tied together",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by a build UUID that’s recorded by both the built binary and ",
+              "type": "text"
+            },
+            {
+              "code": "dSYM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. If you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "build two binaries from the same source code but with different Xcode versions or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "build settings, the build UUIDs for the two binaries won’t match. A binary and a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "dSYM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file are only compatible with each other when they have identical build UUIDs.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Keep the ",
+              "type": "text"
+            },
+            {
+              "code": "dSYM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files for the specific builds you distribute, and use them when diagnosing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "issues from crash reports.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-your-app-with-symbol-information",
+          "level": 3,
+          "text": "Build your app with symbol information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before building your app for distribution, verify that the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference#Debug-Information-Format",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "build setting is set to DWARF with dSYM File. This generates the necessary ",
+              "type": "text"
+            },
+            {
+              "code": "dSYM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files, so you can diagnose crashes after releasing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app. For instructions on configuring the build settings for your project, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-the-build-settings-of-a-target",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These ",
+              "type": "text"
+            },
+            {
+              "code": "dSYM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files are the most common type of symbol file you need when debugging",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an app after releasing it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Publish-your-app-with-symbol-information",
+          "level": 3,
+          "text": "Publish your app with symbol information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When archiving your app for distribution, Xcode gathers all binaries and ",
+              "type": "text"
+            },
+            {
+              "code": "dSYM",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "files for your app and stores them inside the Xcode archive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you distribute your app through the App Store or conduct a beta test using TestFlight,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you have the option to include the symbol files when uploading your app to App Store Connect.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You need to upload symbols with your build so the App Store can add the symbol names",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for your app to the crash reports, before delivering them to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/dev861f46ea8",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in Xcode. If you don’t include symbols with the upload to the App Store, you still",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "receive the crash reports through the Crashes organizer, but without the symbol names.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode adds symbol names to these crash reports if the correct ",
+              "type": "text"
+            },
+            {
+              "code": "dSYM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files are available",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on the Mac. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for how",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to work with crash reports using ",
+              "type": "text"
+            },
+            {
+              "code": "dSYM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You must retain the Xcode archive for each build of your app you distribute.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Without this archive, you might not be able to diagnose an issue from crash reports.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "archiving your app for distribution, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/distributing-your-app-for-beta-testing-and-releases",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference#Debug-Information-Format": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference#Debug-Information-Format",
+      "kind": "section",
+      "title": "Debug Information Format",
+      "type": "topic",
+      "url": "/documentation/xcode/build-settings-reference#Debug-Information-Format"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-the-build-settings-of-a-target": {
+      "abstract": [
+        {
+          "text": "Specify the options you use to compile, link, and produce a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "product from a target, and identify settings inherited from",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your project or the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-the-build-settings-of-a-target",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring the build settings of a target",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-the-build-settings-of-a-target"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs": {
+      "abstract": [
+        {
+          "text": "Use crash reports and device logs to debug app issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Diagnosing issues using crash reports and device logs",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-issues-using-crash-reports-and-device-logs"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/distributing-your-app-for-beta-testing-and-releases": {
+      "abstract": [
+        {
+          "text": "Release your app to beta testers and users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/distributing-your-app-for-beta-testing-and-releases",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing your app for beta testing and releases",
+      "type": "topic",
+      "url": "/documentation/xcode/distributing-your-app-for-beta-testing-and-releases"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev861f46ea8": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev861f46ea8",
+      "title": "Crashes organizer",
+      "titleInlineContent": [
+        {
+          "text": "Crashes organizer",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev861f46ea8"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Reports",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs"
+      ],
+      "title": "Reports"
+    }
+  ]
+}

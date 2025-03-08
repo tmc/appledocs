@@ -1,0 +1,488 @@
+{
+  "abstract": [
+    {
+      "text": "Classify nouns, verbs, adjectives, and other parts of speech in a string.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/identifying-parts-of-speech"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Natural Language"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Identifying parts of speech"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Identifying the parts of speech for words in natural language text can help your program understand the meaning of sentences. For example, provided the transcription of a request spoken by the user, you might programmatically determine general intent by looking at only the nouns and verbs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below shows how to use NLTagger to enumerate over natural language text and identify the part of speech for each word.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let text = \"The ripe taste of cheese improves with age.\"",
+            "let tagger = NLTagger(tagSchemes: [.lexicalClass])",
+            "tagger.string = text",
+            "let options: NLTagger.Options = [.omitPunctuation, .omitWhitespace]",
+            "tagger.enumerateTags(in: text.startIndex..<text.endIndex, unit: .word, scheme: .lexicalClass, options: options) { tag, tokenRange in",
+            "    if let tag = tag {",
+            "        print(\"\\(text[tokenRange]): \\(tag.rawValue)\")",
+            "    }",
+            "    return true",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an instance of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", specifying ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagScheme/lexicalClass",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " as the tag scheme to be used.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the string property of the linguistic tagger to the natural language text.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create the options to omit punctuation and whitespace.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enumerate over the entire range of the string, specifying ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictag/1418153-word",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " as the tag unit and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagScheme/lexicalClass",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " as the tag scheme, and the tagger options.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the enumeration block, take a substring of the original text at ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "tokenRange",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to obtain each word.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run this code to print out each word and its part of speech on a new line.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictag/1418153-word": {
+      "abstract": [
+        {
+          "text": "The token indicates a word.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "word"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTag"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictag/1418153-word",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "word",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictag/1418153-word"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage": {
+      "abstract": [
+        {
+          "text": "Analyze natural language text and deduce its language-specific metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Natural Language",
+      "type": "topic",
+      "url": "/documentation/naturallanguage"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagScheme/lexicalClass": {
+      "abstract": [
+        {
+          "text": "A scheme that classifies tokens according to class: part of speech, type of punctuation, or whitespace.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lexicalClass"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NLTagScheme",
+          "text": "NLTagScheme"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagScheme/lexicalClass",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NLTagSchemeLexicalClass"
+        }
+      ],
+      "role": "symbol",
+      "title": "lexicalClass",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagscheme/lexicalclass"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger": {
+      "abstract": [
+        {
+          "text": "A tagger that analyzes natural language text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NLTagger"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NLTagger"
+        }
+      ],
+      "role": "symbol",
+      "title": "NLTagger",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nltagger"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/identifying-people-places-and-organizations": {
+      "abstract": [
+        {
+          "text": "Use a linguistic tagger to perform named entity recognition on a string.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/identifying-people-places-and-organizations",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying people, places, and organizations",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/identifying-people-places-and-organizations"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Linguistic-tags",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/identifying-people-places-and-organizations",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger"
+      ],
+      "title": "Linguistic tags"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Linguistic-tags",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/identifying-people-places-and-organizations",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTagger"
+              ],
+              "title": "Linguistic tags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nslinguistictag~11418153-word/title",
+          "value": "NSLinguisticTagWord"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagScheme~1lexicalClass/title",
+          "value": "NLTagSchemeLexicalClass"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagScheme~1lexicalClass/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLTagSchemeLexicalClass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger/title",
+          "value": "NLTagger"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLTagger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLTagger/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLTagger"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/naturallanguage/identifying-parts-of-speech"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/naturallanguage/identifying-parts-of-speech"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

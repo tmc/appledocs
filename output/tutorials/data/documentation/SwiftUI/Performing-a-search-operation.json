@@ -1,0 +1,2030 @@
+{
+  "abstract": [
+    {
+      "text": "Update search results based on search text and optional tokens that you store.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Search"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Performing-a-search-operation"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Performing a search operation"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To conduct a search in your app’s data model, create storage for the query text",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and present it with a searchable view modifier. Because you manage the storage,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you can detect when it changes and update the search operation in response.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "By updating search results as people type, you ensure that your app’s search",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interface is responsive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also optionally provide storage for tokens, which are discrete search",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "terms that your app recognizes. Tokens provide a way to combine",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "multiple search terms, and make it easier for you to indicate that a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "search term is common or expected in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Search-tokens-0-macOS",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on how to control the placement of the search field in your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app’s interface, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Adding-a-search-interface-to-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-storage-for-a-string",
+          "level": 3,
+          "text": "Provide storage for a string",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The searchable modifiers take a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Binding",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to a string value for the ",
+              "type": "text"
+            },
+            {
+              "code": "text",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "input. The string serves as the storage for the search query field that SwiftUI",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "displays. You can create this storage inside a view using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/State",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and initialize it to an empty string:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@State private var searchText: String = \"\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make it easier to share the search query among different",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "views, you can create a published value inside an observable object that’s part",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of your app’s model:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class Model: ObservableObject {",
+            "    @Published var searchText: String = \"\"",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In either case, pass a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Binding",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to this string into the searchable view",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier by adding the dollar sign (",
+              "type": "text"
+            },
+            {
+              "code": "$",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") prefix to the value:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ContentView: View {",
+            "    @EnvironmentObject private var model: Model",
+            "    @State private var departmentId: Department.ID?",
+            "    @State private var productId: Product.ID?",
+            "",
+            "    var body: some View {",
+            "        NavigationSplitView {",
+            "            DepartmentList(departmentId: $departmentId)",
+            "        } content: {",
+            "            ProductList(departmentId: departmentId, productId: $productId)",
+            "                .searchable(text: $model.searchText)",
+            "        } detail: {",
+            "            ProductDetails(productId: productId)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Provide-storage-for-tokens",
+          "level": 3,
+          "text": "Provide storage for tokens",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to a search string, the search field can also display tokens",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when you use one of the searchable modifiers that has a ",
+              "type": "text"
+            },
+            {
+              "code": "tokens",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:tokens:placement:prompt:token:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create tokens by defining a group of values that conform to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Identifiable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "then instantiate the collection of values. For example you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "create an enumeration of fruit tokens:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "enum FruitToken: String, Identifiable, Hashable, CaseIterable {",
+            "    case apple",
+            "    case pear",
+            "    case banana",
+            "    var id: Self { self }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then add a new published property to your model to store a collection",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of tokens:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Published var tokens: [FruitToken] = []"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display tokens, provide a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Binding",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "code": "tokens",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array as the searchable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier’s ",
+              "type": "text"
+            },
+            {
+              "code": "tokens",
+              "type": "codeVoice"
+            },
+            {
+              "text": " input parameter, and describe how to draw each token",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using the ",
+              "type": "text"
+            },
+            {
+              "code": "token",
+              "type": "codeVoice"
+            },
+            {
+              "text": " closure. From the closure, return the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that represents",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the token given as an input. For example, you can use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "represent each token:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ProductList(departmentId: departmentId, productId: $productId)",
+            "    .searchable(text: $model.searchText, tokens: $model.tokens) { token in",
+            "        switch token {",
+            "        case .apple: Text(\"Apple\")",
+            "        case .pear: Text(\"Pear\")",
+            "        case .banana: Text(\"Banana\")",
+            "        }",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can represent the token with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view, as the above example",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "demonstrates. In iOS and iPadOS, you can use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Label",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Ensure the view clearly represents the corresponding search query, and if",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you use a label, that the tokens fit the search query field’s height. Tokens",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "appear at the beginning of the search field before any plain text. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "following shows how the search field looks when the ",
+              "type": "text"
+            },
+            {
+              "code": "tokens",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array contains",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "apple",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "banana",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tokens:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Search-tokens-1-macOS",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Support-tokens-that-have-a-mutable-component",
+          "level": 3,
+          "text": "Support tokens that have a mutable component",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can enable people to mutate part of the data that represents",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a token by using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Picker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "code": "token",
+              "type": "codeVoice"
+            },
+            {
+              "text": " closure. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "suppose you have fruit token data that contains both a kind and a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "hydration property:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct FruitToken: String, Identifiable, Hashable, CaseIterable {",
+            "    enum Kind {",
+            "        case apple",
+            "        case pear",
+            "        case banana",
+            "        var id: Self { self }",
+            "    }",
+            "",
+            "    enum Hydration: String, Identifiable, Hashable, CaseIterable {",
+            "        case hydrated",
+            "        case dehydrated",
+            "    }",
+            "",
+            "    var kind: Kind",
+            "    var hydration: Hydration = .hydrated",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With your new model, specify a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Binding",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the token in the ",
+              "type": "text"
+            },
+            {
+              "code": "token",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "closure by adding a dollar sign (",
+              "type": "text"
+            },
+            {
+              "code": "$",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). Use the binding to create a picker",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the ",
+              "type": "text"
+            },
+            {
+              "code": "hydration",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property and a label that uses the ",
+              "type": "text"
+            },
+            {
+              "code": "kind",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ProductList(departmentId: departmentId, productId: $productId)",
+            "    .searchable(text: $model.searchText, tokens: $model.tokens) { $token in",
+            "        Picker(selection: $token.hydration) {",
+            "            ForEach(FruitToken.Hydration.allCases) { hydration in",
+            "                switch hydration {",
+            "                case .hydrated: Text(\"Hydrated\")",
+            "                case .dehydrated: Text(\"Dehydrated\")",
+            "                }",
+            "            }",
+            "        } label: {",
+            "            switch token.kind {",
+            "            case .apple: Text(\"Apple\")",
+            "            case .pear: Text(\"Pear\")",
+            "            case .banana: Text(\"Banana\")",
+            "            }",
+            "        }",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-tokens-to-the-search",
+          "level": 3,
+          "text": "Add tokens to the search",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provide a way for people to add tokens to the search field. You can do this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in different ways. For example, you can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Suggest tokens to add to the array by using one of the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "searchable view modifiers that have a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "suggestedTokens",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " input parameter, like",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:tokens:suggestedTokens:placement:prompt:token:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "People select suggestions from a list that appears below the search field.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For more information about offering suggestions for tokens, as well as for",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "search text, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Suggesting-search-terms",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Monitor the search string as people edit it. When you detect a substring",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "that matches one of the tokens, convert the text into a token by removing",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the relevant characters from the string and add the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "corresponding token to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "tokens",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Wait until you see a dividing character in the search string, like a comma",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "or a space, and then attempt to tokenize the preceding characters.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Wait until someone submits the search, and then attempt to tokenize the entire",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "search string. For more information about submitting a search, see",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Managing-search-interface-activation",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Conduct-the-search",
+          "level": 3,
+          "text": "Conduct the search",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you detect changes in the search query, your app can begin a search. How",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you perform the search operation depends on how your app stores and presents",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data. One approach is to filter the elements that appear in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/List",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "based on whether a field in the list’s items matches the search query. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, you can create a method that returns only the items",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in an array of products with names that match the search text or one of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tokens currently in the search field:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func filteredProducts(",
+            "    products: [Product],",
+            "    searchText: String,",
+            "    tokens: [FruitToken]",
+            ") -> [Product] {",
+            "    guard !searchText.isEmpty || !tokens.isEmpty else { return products }",
+            "    return products.filter { product in",
+            "        product.name.lowercased().contains(searchText.lowercased()) ||",
+            "        tokens.map({ $0.rawValue }).contains(product.name.lowercased())",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider the complexity of the search and the cost of changing the search terms.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the cost is high, like when updates require network access, or for complex",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "filter logic, consider prefetching and caching data or reducing the frequency",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of updates. Alternatively, you can wait until someone submits the query before",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "conducting the search. For information about detecting query submission, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Managing-search-interface-activation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the search space can be broken into broad categories, you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "help people narrow the search more quickly by providing a scope. See",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scoping-a-search-operation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Search-tokens-0-macOS": {
+      "alt": "A wide rectangle with rounded corners that contains a magnifying glass on the left, followed by the three words, Apple, Banana, and Pear, each inside its own dark gray rectangle. An X in a dark gray circle appears on the far right of the bounding rectangle.",
+      "identifier": "Search-tokens-0-macOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2139de17579d7f0ab113083751fc86b8/Search-tokens-0-macOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/95b8cb462df0555f0a417ff4650fa1c3/Search-tokens-0-macOS~dark@2x.png"
+        }
+      ]
+    },
+    "Search-tokens-1-macOS": {
+      "alt": "A macOS window with three navigation panes. The pane on the left lists the items, Produce, Frozen, and Bakery. The middle pane has the placeholder text, Select a Department. The pane on the right has the placeholder text, Select a Product. The toolbar has a search field in the upper-right of the window that has the words, Apple and Banana, each inside a gray rectangle.",
+      "identifier": "Search-tokens-1-macOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4daad83077a7b788e2d116be1650b822/Search-tokens-1-macOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e80c93c930f7ec81cf4eba197b1a543a/Search-tokens-1-macOS~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Adding-a-search-interface-to-your-app": {
+      "abstract": [
+        {
+          "text": "Present an interface that people can use to search for content in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Adding-a-search-interface-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a search interface to your app",
+      "type": "topic",
+      "url": "/documentation/swiftui/adding-a-search-interface-to-your-app"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Binding": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that can read and write a value owned by a source of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "truth.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Binding"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Binding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Binding"
+        }
+      ],
+      "role": "symbol",
+      "title": "Binding",
+      "type": "topic",
+      "url": "/documentation/swiftui/binding"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Label": {
+      "abstract": [
+        {
+          "text": "A standard label for user interface items, consisting of an icon with a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Label"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Label",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Label"
+        }
+      ],
+      "role": "symbol",
+      "title": "Label",
+      "type": "topic",
+      "url": "/documentation/swiftui/label"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/List": {
+      "abstract": [
+        {
+          "text": "A container that presents rows of data arranged in a single column,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "optionally providing the ability to select one or more members.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "List"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/List",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "List"
+        }
+      ],
+      "role": "symbol",
+      "title": "List",
+      "type": "topic",
+      "url": "/documentation/swiftui/list"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Managing-search-interface-activation": {
+      "abstract": [
+        {
+          "text": "Programmatically detect and dismiss a search field.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Managing-search-interface-activation",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing search interface activation",
+      "type": "topic",
+      "url": "/documentation/swiftui/managing-search-interface-activation"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Picker": {
+      "abstract": [
+        {
+          "text": "A control for selecting from a set of mutually exclusive values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Picker"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Picker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Picker"
+        }
+      ],
+      "role": "symbol",
+      "title": "Picker",
+      "type": "topic",
+      "url": "/documentation/swiftui/picker"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scoping-a-search-operation": {
+      "abstract": [
+        {
+          "text": "Divide the search space into a few broad categories.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scoping-a-search-operation",
+      "kind": "article",
+      "role": "article",
+      "title": "Scoping a search operation",
+      "type": "topic",
+      "url": "/documentation/swiftui/scoping-a-search-operation"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Search": {
+      "abstract": [
+        {
+          "text": "Enable people to search for text or other content within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Search",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Search",
+      "type": "topic",
+      "url": "/documentation/swiftui/search"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SearchFieldPlacement": {
+      "abstract": [
+        {
+          "text": "The placement of a search field in a view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SearchFieldPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SearchFieldPlacement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SearchFieldPlacement"
+        }
+      ],
+      "role": "symbol",
+      "title": "SearchFieldPlacement",
+      "type": "topic",
+      "url": "/documentation/swiftui/searchfieldplacement"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/State": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that can read and write a value managed by SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/State",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "role": "symbol",
+      "title": "State",
+      "type": "topic",
+      "url": "/documentation/swiftui/state"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Suggesting-search-terms": {
+      "abstract": [
+        {
+          "text": "Provide suggestions to people searching for content in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Suggesting-search-terms",
+      "kind": "article",
+      "role": "article",
+      "title": "Suggesting search terms",
+      "type": "topic",
+      "url": "/documentation/swiftui/suggesting-search-terms"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text": {
+      "abstract": [
+        {
+          "text": "A view that displays one or more lines of read-only text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "role": "symbol",
+      "title": "Text",
+      "type": "topic",
+      "url": "/documentation/swiftui/text"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/swiftui/view"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:editableTokens:placement:prompt:token:)": {
+      "abstract": [
+        {
+          "text": "Marks this view as searchable, which configures the display of a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "search field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "searchable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "text"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "editableTokens"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "placement"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "prompt"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "token"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:editableTokens:placement:prompt:token:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "searchable(text:editableTokens:placement:prompt:token:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/searchable(text:editabletokens:placement:prompt:token:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:placement:prompt:)": {
+      "abstract": [
+        {
+          "text": "Marks this view as searchable, which configures the display of a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "search field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "searchable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "text"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "placement"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "prompt"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:placement:prompt:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "searchable(text:placement:prompt:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/searchable(text:placement:prompt:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:tokens:placement:prompt:token:)": {
+      "abstract": [
+        {
+          "text": "Marks this view as searchable with text and tokens.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "searchable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "text"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "tokens"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "placement"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "prompt"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "token"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:tokens:placement:prompt:token:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "searchable(text:tokens:placement:prompt:token:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/searchable(text:tokens:placement:prompt:token:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:tokens:suggestedTokens:placement:prompt:token:)": {
+      "abstract": [
+        {
+          "text": "Marks this view as searchable with text, tokens, and suggestions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "searchable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "text"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "tokens"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "suggestedTokens"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "placement"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "prompt"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "token"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:tokens:suggestedTokens:placement:prompt:token:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "searchable(text:tokens:suggestedTokens:placement:prompt:token:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/searchable(text:tokens:suggestedtokens:placement:prompt:token:)"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Identifiable": {
+      "abstract": [
+        {
+          "text": "A class of types whose instances hold the value of an entity with stable identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Identifiable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Identifiable",
+      "type": "topic",
+      "url": "/documentation/Swift/Identifiable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Searching-your-apps-data-model",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Adding-a-search-interface-to-your-app",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:placement:prompt:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:tokens:placement:prompt:token:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:editableTokens:placement:prompt:token:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SearchFieldPlacement"
+      ],
+      "title": "Searching your app’s data model"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/performing-a-search-operation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

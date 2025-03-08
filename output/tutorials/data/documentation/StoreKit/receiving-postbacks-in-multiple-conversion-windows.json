@@ -1,0 +1,1325 @@
+{
+  "abstract": [
+    {
+      "text": "Learn about the data that postbacks may contain in each conversion window.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/ad-network-attribution",
+        "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/receiving-postbacks-in-multiple-conversion-windows"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Receiving postbacks in multiple conversion windows"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SKAdNetwork supports three conversion windows that may result in up to three postbacks for a winning ad attribution. The conversion window begins when the user first launches the app. The first conversion window spans days 0 to 2; the second window spans days 3 to 7; and the third window spans days 8 to 35. Apps can update conversion values during all three time-windows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To be eligible to receive multiple postbacks, all participants need to meet the following conditions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ad network needs to sign the ad using SKAdNetwork 4 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The advertised app needs to call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updatePostbackConversionValue(_:coarseValue:lockWindow:completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updatePostbackConversionValue(_:coarseValue:completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "to update the conversion values during each conversion window.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may receive a single postback in the following cases:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the app’s postback data tier is Tier 0, the system sends only the first postback.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Nonwinning ad attributions receive only the first postback.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For ads signed using SKAdNetwork 3 or earlier, you receive only one winning postback.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Lock-conversion-values-to-receive-postbacks-sooner",
+          "level": 3,
+          "text": "Lock conversion values to receive postbacks sooner",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the system waits until the end of a conversion window to get the final conversion value. Apps can continue to update the conversion value until the end of the conversion window. When the conversion window ends, the system prepares the postback and sends it after a random delay, as the following diagram shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4103232",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The random delay is 24–48 hours for the first postback, and 24–144 hours for the second and third postbacks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updatePostbackConversionValue(_:coarseValue:lockWindow:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method provides an option for you to lock in and finalize a conversion value before the conversion window ends. You may choose to lock the conversion value in any or all conversion windows. The diagram below shows an app that locks the conversion value during the second conversion window:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4103233",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After receiving a locked conversion value, the system immediately prepares the postback and ignores any further conversion value updates in the same conversion window. The system sends the postbacks after the same random delay following the locked conversion: a 24–48-hour delay for the first postback, and a 24–144-hour delay for the second and third postbacks. The system ignores further updates to the conversion value for the remaining time in the same conversion window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The earliest you may receive the first postback is unchanged from version 3 to version 4: the total delay is 24–48 hours after the app updates its final conversion value.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In version 3, the app finalizes the conversion value when a 24-hour timer expires after the last conversion value update. Then, the device sends the postback after a random 0–24 hour delay, making the earliest postback 24–48 hours after the app sets the final conversion value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In version 4, the app may finalize the conversion value by locking it. Then, the device sends the postback after a random 24–48 hour delay.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a result, both version 3 and 4 have a total delay of 24–48 hours to receive the first postback after the app finalizes the conversion value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Receive-the-highest-level-of-data-that-ensures-crowd-anonymity",
+          "level": 3,
+          "text": "Receive the highest level of data that ensures crowd anonymity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To maintain users’ privacy and ensure crowd anonymity, the device may limit the data that SKAdNetwork sends in postbacks. Apple determines a postback data tier that it assigns to each app download. The following diagram depicts the relationship between the tiers and relative crowd sizes. It’s for illustrative purposes only.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4103234",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The postback data tier takes into account the crowd size associated with the app or domain displaying the ad, the advertised app, and the hierarchical source identifier the ad network provides. The system computes the postback data tier for the two-, three-, and four-digit hierarchical source identifiers. It selects the source identifier with the highest postback data tier. If multiple source identifiers share the highest postback data tier, the system selects the source identifier with the most digits. If the highest postback data tier is Tier 1 or Tier 0, the system always selects the two-digit source identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The postback data tier affects the following fields in the postback, which may be present or absent, or may contain a limited number of digits:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "source-identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the hierarchical source identifier that may include two, three, or four digits",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "conversion-value",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", a fine-grained conversion value available only in the first postback",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "coarse-conversion-value",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", a coarse conversion value, which the system sends instead of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "conversion-value",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in lower postback data tiers, and in the second and third postbacks",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "source-app-id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for ads that display in apps, or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "source-domain",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for attributable web ads",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The remaining postback data fields aren’t dependent on the postback date tier and appear in all postbacks, based on the SKAdNetwork version of the postback.``",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Receive-the-first-postback",
+          "level": 3,
+          "text": "Receive the first postback",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first conversion window ends two days after the user first launches the app. The system prepares the postback after the conversion window ends, unless you use a lock. If you use a lock, the system prepares the first postback when the app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updatePostbackConversionValue(_:coarseValue:lockWindow:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the lock in an enabled state. The system then sends the postback after a random 24–48-hour delay.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The postback data tier determines the data you receive in the first postback, as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For ads in Tier 3, the first postback contains:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "source-identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the hierarchical source identifer with two, three, or four digits",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "conversion-value",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the fine-grained conversion value, if the app provides one",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "source-app-id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for ads that display in apps, or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "source-domain",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for attributable web ads",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For ads in Tier 2, the first postback contains:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "source-identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the hierarchical source identifer with two, three, or four digits",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "conversion-value",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the fine-grained conversion value, if the app provides one",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For ads in Tier 1, the first postback contains:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "source-identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the hierarchical source identifer with two digits",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "coarse-conversion-value",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", a coarse value, if the app provides one",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For ads in Tier 0, the first postback contains the ",
+              "type": "text"
+            },
+            {
+              "code": "source-identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the hierarchical source identifer, with two digits.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Receive-the-second-and-third-postbacks",
+          "level": 3,
+          "text": "Receive the second and third postbacks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The second conversion window ends seven days after the user first launches the app, and the third conversion window ends after 35 days. The system prepares the second and third postbacks after their conversion windows end, and sends them after a random 24–144-hour delay.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use a lock with the second or third conversion value updates, the system prepares the postback when you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updatePostbackConversionValue(_:coarseValue:lockWindow:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the lock in an enabled state. The system sends the postback after a random 24–144-hour delay.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The postback data tier determines the data you receive in the postbacks, as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For ads in Tier 1, Tier 2, and Tier 3, the second and third postbacks contain:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "source-identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the hierarchical source identifer with two digits",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "coarse-conversion-value",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the coarse conversion value, if the app provides one",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For ads in Tier 0, the system doesn’t send a second or third postback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ads signed with version 4 and later are eligible for second and third postbacks after a winning ad impression. Ads signed with version 3 and earlier are eligible for one winning postback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork": {
+      "abstract": [
+        {
+          "text": "A class that validates advertisement-driven app installations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKAdNetwork"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKAdNetwork"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKAdNetwork",
+      "type": "topic",
+      "url": "/documentation/storekit/skadnetwork"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updatePostbackConversionValue(_:coarseValue:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Updates the fine and coarse conversion values, and calls a completion handler if the update fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updatePostbackConversionValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "coarseValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKAdNetwork",
+          "text": "SKAdNetwork"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SKAdNetworkCoarseConversionValue",
+          "text": "CoarseConversionValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updatePostbackConversionValue(_:coarseValue:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updatePostbackConversionValue:coarseValue:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "updatePostbackConversionValue(_:coarseValue:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skadnetwork/updatepostbackconversionvalue(_:coarsevalue:completionhandler:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updatePostbackConversionValue(_:coarseValue:lockWindow:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Updates the fine and coarse conversion values and indicates whether to send the postback before the conversion window ends, and calls a completion handler if the update fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updatePostbackConversionValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "coarseValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKAdNetwork",
+          "text": "SKAdNetwork"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SKAdNetworkCoarseConversionValue",
+          "text": "CoarseConversionValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lockWindow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKAdNetwork/updatePostbackConversionValue(_:coarseValue:lockWindow:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updatePostbackConversionValue:coarseValue:lockWindow:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "updatePostbackConversionValue(_:coarseValue:lockWindow:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skadnetwork/updatepostbackconversionvalue(_:coarsevalue:lockwindow:completionhandler:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/ad-network-attribution": {
+      "abstract": [
+        {
+          "text": "Validate advertisement-driven app installations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/ad-network-attribution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Ad network attribution",
+      "type": "topic",
+      "url": "/documentation/storekit/ad-network-attribution"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/receiving-ad-attributions-and-postbacks": {
+      "abstract": [
+        {
+          "text": "Learn about timeframes and priorities for ad impressions that result in ad attributions, and how additional impressions qualify for postbacks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/receiving-ad-attributions-and-postbacks",
+      "kind": "article",
+      "role": "article",
+      "title": "Receiving ad attributions and postbacks",
+      "type": "topic",
+      "url": "/documentation/storekit/receiving-ad-attributions-and-postbacks"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/signing-and-providing-ads": {
+      "abstract": [
+        {
+          "text": "Advertise apps by signing and providing StoreKit-rendered ads, view-through ads, or attributable web ads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/signing-and-providing-ads",
+      "kind": "article",
+      "role": "article",
+      "title": "Signing and providing ads",
+      "type": "topic",
+      "url": "/documentation/storekit/signing-and-providing-ads"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/skadnetwork-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about the features in each SKAdNetwork version.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/skadnetwork-release-notes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SKAdNetwork release notes",
+      "type": "topic",
+      "url": "/documentation/storekit/skadnetwork-release-notes"
+    },
+    "media-4103232": {
+      "alt": "A timeline that shows the first conversion window spans days 0 to 2, the second window spans days 3 to 7, and the third window spans days 8 to 35. At the end of the first conversion window, the system sends the postback 24 to 48 hours later. At the end of the second conversion window, the system sends the postback 24 to 144 hours later. At the end of the third conversion window, the system sends the postback 24 to 144 hours later.",
+      "identifier": "media-4103232",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f57857d70ff75c6b52c0446cc26620d9/media-4103232@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b2ad6150ec9c51f1335e00b6558eae50/media-4103232~dark@2x.png"
+        }
+      ]
+    },
+    "media-4103233": {
+      "alt": "A timeline that shows the first conversion window spans days 0 to 2, and the system sends the postback 24 to 48 hours later. The second conversion window spans days 3 to 7, but the app locks the conversion update before the window ends and the system sends the postback 24 to 144 hours after the lock. The remainder of the second conversion window is unavailable for further conversion value updates. The third window spans days 8 to 35, and the system accepts conversion value updates starting on day 8. At the end of the third conversion window, the system sends the postback 24 to 144 hours later.",
+      "identifier": "media-4103233",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7cb786d26747d27c0a25adf9476451ff/media-4103233@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2480f8e00c3cc96a6993c9c16b128f73/media-4103233~dark@2x.png"
+        }
+      ]
+    },
+    "media-4103234": {
+      "alt": "A diagram of four six-by-eight grids labeled Tier 0, Tier 1, Tier 2, and Tier 3. Each grid has one star on it that represents the app, and blue circles that represent the crowd. Tier 0 has six circles.Tier 1 has 16 circles, representing a larger crowd. Tier 2 has more circles than Tier 1. Tier 3 has circles that fill the entire grid, representing the largest crowd.",
+      "identifier": "media-4103234",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/250c512a7dfa6fa2c59c382689fac550/media-4103234@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0a9713f3e3bca68193d8aaf2df1b2dce/media-4103234~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/signing-and-providing-ads",
+        "doc://com.apple.storekit/documentation/StoreKit/receiving-ad-attributions-and-postbacks",
+        "doc://com.apple.storekit/documentation/StoreKit/skadnetwork-release-notes"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/signing-and-providing-ads",
+                "doc://com.apple.storekit/documentation/StoreKit/receiving-ad-attributions-and-postbacks",
+                "doc://com.apple.storekit/documentation/StoreKit/skadnetwork-release-notes"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork~1updatePostbackConversionValue(_:coarseValue:completionHandler:)/title",
+          "value": "updatePostbackConversionValue:coarseValue:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork~1updatePostbackConversionValue(_:coarseValue:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "updatePostbackConversionValue:coarseValue:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork~1updatePostbackConversionValue(_:coarseValue:lockWindow:completionHandler:)/title",
+          "value": "updatePostbackConversionValue:coarseValue:lockWindow:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork~1updatePostbackConversionValue(_:coarseValue:lockWindow:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "updatePostbackConversionValue:coarseValue:lockWindow:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork/title",
+          "value": "SKAdNetwork"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdNetwork"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKAdNetwork/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAdNetwork"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/receiving-postbacks-in-multiple-conversion-windows"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/receiving-postbacks-in-multiple-conversion-windows"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

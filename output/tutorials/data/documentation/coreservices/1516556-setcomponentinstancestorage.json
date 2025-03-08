@@ -1,0 +1,307 @@
+{
+  "abstract": [
+    {
+      "text": "Allows your component to associate memory with a connection. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coreservices/1516556-setcomponentinstancestorage"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1516556,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@SetComponentInstanceStorage",
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "10.8",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "SetComponentInstanceStorage"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SetComponentInstanceStorage"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/componentinstance",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ComponentInstance",
+              "text": "ComponentInstance"
+            },
+            {
+              "kind": "text",
+              "text": " aComponentInstance, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/handle",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@Handle",
+              "text": "Handle"
+            },
+            {
+              "kind": "text",
+              "text": " theStorage);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The connection to associate with the allocated memory. The Component Manager provides a component instance to your component when the connection is opened. You can use a component identifier here, but you must coerce the data type appropriately. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "aComponentInstance"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A handle to the memory that your component has allocated for the connection. Your component must allocate this memory in the current heap. The Component Manager saves this handle and provides it to your component, along with other parameters, in subsequent requests to this connection. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "theStorage"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an application or component opens a connection to your component, the Component Manager sends your component an open request. In response to this open request, your component should set up an environment to service the connection. Typically, your component should allocate some memory for the connection. Your component can then use that memory to maintain state information appropriate to the connection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your component should dispose of any allocated memory for the connection only in response to the close request. Note that whenever an open request fails, the Component Manager always issues the close request. Furthermore, the value stored with this function is always passed to the close request, so it must be valid or ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If the open request tries to dispose of its allocated memory before returning, it should call this function again with a ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " handle to keep the Component Manager from passing an invalid handle to the close request. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516394-countcomponentinstances": {
+      "abstract": [
+        {
+          "text": "Determines the number of open connections being managed by a specified component. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516394-countcomponentinstances",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CountComponentInstances",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516394-countcomponentinstances"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516517-getcomponentinstancestorage": {
+      "abstract": [
+        {
+          "text": "Allows your component to retrieve a handle to the memory associated with a connection. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516517-getcomponentinstancestorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetComponentInstanceStorage",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516517-getcomponentinstancestorage"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516556-setcomponentinstancestorage": {
+      "abstract": [
+        {
+          "text": "Allows your component to associate memory with a connection. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516556-setcomponentinstancestorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetComponentInstanceStorage",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516556-setcomponentinstancestorage"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Component Manager",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/component_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/componentinstance": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/componentinstance",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ComponentInstance",
+      "type": "topic",
+      "url": "/documentation/coreservices/componentinstance"
+    },
+    "doc://com.apple.documentation/documentation/kernel/handle": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/handle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Handle",
+      "type": "topic",
+      "url": "/documentation/kernel/handle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1516394-countcomponentinstances",
+        "doc://com.apple.documentation/documentation/coreservices/1516517-getcomponentinstancestorage"
+      ],
+      "title": "Managing Component Connections"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/1516556-setcomponentinstancestorage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

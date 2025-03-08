@@ -1,0 +1,853 @@
+{
+  "abstract": [
+    {
+      "text": "A type that stores information about a frame’s encoding, rendering, and presentation deadlines.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.compositorservices/documentation/CompositorServices",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "CompositorServices",
+    "externalID": "c:@S@cp_frame_timing_t",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Timing"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Compositor Services"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Timing"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "LayerRenderer.Frame.Timing"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Timing"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you start drawing your frame’s content, call",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/predictTiming()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to retrieve the frame’s timing information.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "That function returns the latest predicted values for you to use during planning.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After you retrieve the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type for the frame,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "get the timing information from the drawable instead using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/frameTiming",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.compositorservices/documentation/CompositorServices": {
+      "abstract": [
+        {
+          "text": "Take control of the drawing environment and render your own content using Metal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Compositor Services",
+      "type": "topic",
+      "url": "/documentation/compositorservices"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer": {
+      "abstract": [
+        {
+          "text": "A type that provides the Metal types and timing information you need to draw your content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LayerRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LayerRenderer"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable": {
+      "abstract": [
+        {
+          "text": "A type that provides the textures and information you need to draw a frame of content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Drawable"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Drawable"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer.Drawable",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/drawable"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/frameTiming": {
+      "abstract": [
+        {
+          "text": "The timing information for the drawable’s frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frameTiming"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CP_OBJECT_cp_layer_renderer",
+          "text": "LayerRenderer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@cp_frame_t",
+          "text": "Frame"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@cp_frame_timing_t",
+          "text": "Timing"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/frameTiming",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_get_frame_timing"
+        }
+      ],
+      "role": "symbol",
+      "title": "frameTiming",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/drawable/frametiming"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame": {
+      "abstract": [
+        {
+          "text": "A type that provides access to the timing information and data types you need to render a single frame of content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Frame"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Frame"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer.Frame",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing": {
+      "abstract": [
+        {
+          "text": "A type that stores information about a frame’s encoding, rendering, and presentation deadlines.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Timing"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Timing"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer.Frame.Timing",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/timing"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing/init()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/timing/init()"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing/optimalInputTime": {
+      "abstract": [
+        {
+          "text": "The optimal time to start the frame submission process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "optimalInputTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CP_OBJECT_cp_layer_renderer",
+          "text": "LayerRenderer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So27CP_OBJECT_cp_layer_rendererC18CompositorServicesE5ClockV",
+          "text": "Clock"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Instant"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing/optimalInputTime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "optimalInputTime",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/timing/optimalinputtime"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing/presentationTime": {
+      "abstract": [
+        {
+          "text": "The time at which the system displays the frame onscreen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentationTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CP_OBJECT_cp_layer_renderer",
+          "text": "LayerRenderer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So27CP_OBJECT_cp_layer_rendererC18CompositorServicesE5ClockV",
+          "text": "Clock"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Instant"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing/presentationTime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presentationTime",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/timing/presentationtime"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing/renderingDeadline": {
+      "abstract": [
+        {
+          "text": "The time at which you must finish all work for the specified frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderingDeadline"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CP_OBJECT_cp_layer_renderer",
+          "text": "LayerRenderer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So27CP_OBJECT_cp_layer_rendererC18CompositorServicesE5ClockV",
+          "text": "Clock"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Instant"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing/renderingDeadline",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "renderingDeadline",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/timing/renderingdeadline"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing/trackableAnchorTime": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trackableAnchorTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CP_OBJECT_cp_layer_renderer",
+          "text": "LayerRenderer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So27CP_OBJECT_cp_layer_rendererC18CompositorServicesE5ClockV",
+          "text": "Clock"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Instant"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing/trackableAnchorTime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trackableAnchorTime",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/timing/trackableanchortime"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/predictTiming()": {
+      "abstract": [
+        {
+          "text": "Computes and returns the predicted timing information for the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predictTiming"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CP_OBJECT_cp_layer_renderer",
+          "text": "LayerRenderer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@cp_frame_t",
+          "text": "Frame"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@cp_frame_timing_t",
+          "text": "Timing"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/predictTiming()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "predictTiming()",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/predicttiming()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Escapable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/Swift/BitwiseCopyable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-timing-information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/predictTiming()"
+      ],
+      "title": "Getting timing information"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Updating-the-frame-contents",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing/optimalInputTime"
+      ],
+      "title": "Updating the frame contents"
+    },
+    {
+      "anchor": "Rendering-the-frame",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing/renderingDeadline"
+      ],
+      "title": "Rendering the frame"
+    },
+    {
+      "anchor": "Displaying-the-frame",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing/presentationTime"
+      ],
+      "title": "Displaying the frame"
+    },
+    {
+      "anchor": "Creating-the-timing-details",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing/init()"
+      ],
+      "title": "Creating the timing details"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing/trackableAnchorTime"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Drawable~1frameTiming/title",
+          "value": "cp_drawable_get_frame_timing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Drawable~1frameTiming/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_drawable_get_frame_timing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer/title",
+          "value": "CP_OBJECT_cp_layer_renderer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CP_OBJECT_cp_layer_renderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CP_OBJECT_cp_layer_renderer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/compositorservices/layerrenderer/frame/timing"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,741 @@
+{
+  "abstract": [
+    {
+      "text": "A property wrapper that loads the view controller’s view before accessing the property.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIViewController/ViewLoading"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "UIKit",
+    "externalID": "s:So16UIViewControllerC5UIKitE11ViewLoadingV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ViewLoading"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ViewLoading"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.4",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.4",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.1",
+        "name": "Swift",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "UIViewController.ViewLoading"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@propertyWrapper"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ViewLoading"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Value"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this property wrapper on view controller properties that can be ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " before the view controller’s view loads. Wrapping view controller properties this way eliminates crashes that can occur from implicitly defining properties as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Optional",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and then referencing them before the view controller finishes loading.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/ViewLoading",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " wrapper to ensure that ",
+              "type": "text"
+            },
+            {
+              "code": "dateLabel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UILabel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " loads before referencing it in the ",
+              "type": "text"
+            },
+            {
+              "code": "didSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of the ",
+              "type": "text"
+            },
+            {
+              "code": "date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property observer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class DateViewController: UIViewController {",
+            "    @ViewLoading private var dateLabel: UILabel",
+            "    ",
+            "    var date: Date? {",
+            "        didSet {",
+            "            let dateFormatter = DateFormatter()",
+            "            dateFormatter.dateStyle = .full",
+            "            let dateString = dateFormatter.string(from: self.date ?? Date())",
+            "            // If the view controller's view hasn't loaded yet,",
+            "            // accessing the dateLabel property here causes it to load.",
+            "            self.dateLabel.text = dateString",
+            "        }",
+            "    }",
+            "",
+            "    override func viewDidLoad() {",
+            "        super.viewDidLoad()",
+            "        let label = UILabel(frame: self.view.bounds)",
+            "        self.view.addSubview(label)",
+            "        self.dateLabel = label",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After loading ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UILabel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the system can safely access and set the ",
+              "type": "text"
+            },
+            {
+              "code": "date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let dateViewController = DateViewController()",
+            "dateViewController.date = Date()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this property wrapper over implicitly unwrapped optionals for ",
+              "type": "text"
+            },
+            {
+              "code": "IBOutlets",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@IBOutlet @ViewLoading private var dateLabel: UILabel"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Swift/Optional": {
+      "abstract": [
+        {
+          "text": "A type that represents either a wrapped value or the absence of a value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Optional"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Wrapped"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Wrapped"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Copyable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Optional",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Optional",
+      "type": "topic",
+      "url": "/documentation/Swift/Optional"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIContainerBackgroundStyle": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIContainerBackgroundStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContainerBackgroundStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIContainerBackgroundStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIContainerBackgroundStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontainerbackgroundstyle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILabel": {
+      "abstract": [
+        {
+          "text": "A view that displays one or more lines of informational text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILabel"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILabel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UILabel"
+        }
+      ],
+      "role": "symbol",
+      "title": "UILabel",
+      "type": "topic",
+      "url": "/documentation/uikit/uilabel"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController": {
+      "abstract": [
+        {
+          "text": "An object that manages a view hierarchy for your UIKit app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/ViewLoading": {
+      "abstract": [
+        {
+          "text": "A property wrapper that loads the view controller’s view before accessing the property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ViewLoading"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/ViewLoading",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ViewLoading"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewController.ViewLoading",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/viewloading"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/ViewLoading/init()": {
+      "abstract": [
+        {
+          "text": "Creates an empty property wrapper that loads the view controller’s view before accessing the property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/ViewLoading/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/viewloading/init()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/ViewLoading/init(wrappedValue:)": {
+      "abstract": [
+        {
+          "text": "Creates a property wrapper that loads the view controller’s view before accessing the property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "wrappedValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/ViewLoading/init(wrappedValue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(wrappedValue:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/viewloading/init(wrappedvalue:)"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Supporting-types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIContainerBackgroundStyle"
+      ],
+      "title": "Supporting types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-ViewLoading-property-wrapper",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/ViewLoading/init()",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/ViewLoading/init(wrappedValue:)"
+      ],
+      "title": "Creating a ViewLoading property wrapper"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContainerBackgroundStyle/title",
+          "value": "UIContainerBackgroundStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContainerBackgroundStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContainerBackgroundStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContainerBackgroundStyle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContainerBackgroundStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/title",
+          "value": "UIViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILabel/title",
+          "value": "UILabel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILabel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILabel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILabel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILabel"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uiviewcontroller/viewloading"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

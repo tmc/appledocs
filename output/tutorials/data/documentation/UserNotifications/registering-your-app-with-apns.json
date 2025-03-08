@@ -1,0 +1,1817 @@
+{
+  "abstract": [
+    {
+      "text": "Communicate with Apple Push Notification service (APNs) and receive a unique device token that identifies your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.usernotifications/documentation/UserNotifications",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.usernotifications/documentation/UserNotifications/registering-your-app-with-apns"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "User Notifications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Registering your app with APNs"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Push Notification service (APNs) must know the address of a user’s device before it can send notifications to that device. This address takes the form of a device token unique to both the device and your app. At launch time, your app communicates with APNs and receives its device token, which you then forward to your provider server. Your server includes that token with any notifications it sends.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can’t use the same device token for more than one app, even when the apps are on the same device. Every app must request their own unique device token and forward it to your provider server.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Enable-the-push-notifications-capability",
+          "level": 3,
+          "text": "Enable the push notifications capability",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add the required entitlements to your app, enable the Push Notifications capability in your Xcode project, as shown in . Enabling this option in iOS adds the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/aps-environment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the app. In macOS, it adds the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.aps-environment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/devdfd3d04a1",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in Xcode help for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4321361",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In your developer account, enable the push notification service for the App ID assigned to your project. For more information about configuring your developer account, go to your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/account/#/overview/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " page.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Register-your-app-and-retrieve-your-apps-device-token",
+          "level": 3,
+          "text": "Register your app and retrieve your app’s device token",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Register your app with APNs and receive a globally unique device token, which is effectively the address of your app on the current device. Your provider server must have this token before it can deliver notifications to the device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You register your app and receive your device token each time your app launches using Apple-provided APIs. The registration process is similar across platforms:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In iOS and tvOS, call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/registerForRemoteNotifications()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to request the device token. Upon successful registration, you receive the token in your app delegate’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didRegisterForRemoteNotificationsWithDeviceToken:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In macOS, call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplication/registerForRemoteNotifications()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplication",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to request the device token. Upon successful registration, you receive the token in your app delegate’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplicationDelegate/application(_:didRegisterForRemoteNotificationsWithDeviceToken:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In watchOS, call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKApplication/registerForRemoteNotifications()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKExtension",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to request the device token. Upon successful registration, you receive the token in your extension delegate’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKApplicationDelegate/didRegisterForRemoteNotifications(withDeviceToken:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to handling successful registrations with APNs, prepare your app to handle unsuccessful registrations by implementing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didFailToRegisterForRemoteNotificationsWithError:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Registration might fail if the user’s device isn’t connected to the network, if the APNs server is unreachable for any reason, or if the app doesn’t have the proper code-signing entitlement. When a failure occurs, set a flag and try to register again at a later time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 1 shows a sample implementation of the iOS app delegate methods needed to register for remote notifications and receive the corresponding token. The ",
+              "type": "text"
+            },
+            {
+              "code": "sendDeviceTokenToServer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method is a custom method that the app uses to send the data to its provider server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 1. Communicating with APNs at launch time",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:[UIApplication.LaunchOptionsKey: Any]?) -> Bool {",
+            "    // Override point for customization after application launch.",
+            "    UIApplication.shared.registerForRemoteNotifications()",
+            "    return true",
+            "}",
+            "",
+            "func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {",
+            "    self.sendDeviceTokenToServer(data: deviceToken)",
+            "}",
+            "",
+            "func application(_ application: UIApplication,",
+            "                 didFailToRegisterForRemoteNotificationsWithError",
+            "                 error: Error) {",
+            "    // Try again later.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Never cache device tokens in local storage. APNs issues a new token when the user restores a device from a backup, when the user installs your app on a new device, and when the user reinstalls the operating system. You get an up-to-date token each time you ask the system to provide the token.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Forward-tokens-to-your-provider-server",
+          "level": 3,
+          "text": "Forward tokens to your provider server",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Upon receiving a device token, open a network connection from your app to your provider server. Securely forward the device token and any other information you need to identify the specific user to your server. For example, you might include the user’s login name or something that connects them to your service. Encrypt any information you send over the network.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On your provider server, store tokens in a secure place where you can access them to send notifications. When generating notifications, your server must be able to send notifications to specific devices. So, if you have notifications linked to a user’s account, store device tokens with the user’s account information. Because a user can have multiple devices, prepare your app to handle multiple device tokens.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about how to send payloads and device tokens to APNs, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-notification-requests-to-apns",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "UserNotifications-PageImage-card.png": {
+      "alt": "[A notification interface displayed on the lock screen of an iOS device.]",
+      "identifier": "UserNotifications-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/074de9a9213bf2905d67fae5eb46e4f8/UserNotifications-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5733742e1c084fc202b3c92df9083686/UserNotifications-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSApplication": {
+      "abstract": [
+        {
+          "text": "An object that manages an app’s main event loop and resources used by all of that app’s objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplication",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSApplication",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSApplication"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSApplication/registerForRemoteNotifications()": {
+      "abstract": [
+        {
+          "text": "Register for notifications sent by Apple Push Notification service (APNs).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerForRemoteNotifications"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplication/registerForRemoteNotifications()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerForRemoteNotifications()",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSApplication/registerForRemoteNotifications()"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSApplicationDelegate/application(_:didRegisterForRemoteNotificationsWithDeviceToken:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the app registered for Apple Push Services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSApplication",
+          "text": "NSApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didRegisterForRemoteNotificationsWithDeviceToken"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "deviceToken"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplicationDelegate/application(_:didRegisterForRemoteNotificationsWithDeviceToken:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:didRegisterForRemoteNotificationsWithDeviceToken:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSApplicationDelegate/application(_:didRegisterForRemoteNotificationsWithDeviceToken:)"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/aps-environment": {
+      "abstract": [
+        {
+          "text": "The environment for push notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/aps-environment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "APS Environment Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/aps-environment"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.aps-environment": {
+      "abstract": [
+        {
+          "text": "The environment for push notifications in macOS apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.aps-environment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "APS Environment (macOS) Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.aps-environment"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplication": {
+      "abstract": [
+        {
+          "text": "The centralized point of control and coordination for apps running in iOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIApplication",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplication"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplication/registerForRemoteNotifications()": {
+      "abstract": [
+        {
+          "text": "Registers to receive remote notifications through Apple Push Notification service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerForRemoteNotifications"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/registerForRemoteNotifications()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerForRemoteNotifications()",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplication/registerForRemoteNotifications()"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didFailToRegisterForRemoteNotificationsWithError:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when Apple Push Notification service cannot successfully complete the registration process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFailToRegisterForRemoteNotificationsWithError"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didFailToRegisterForRemoteNotificationsWithError:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:didFailToRegisterForRemoteNotificationsWithError:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/application(_:didFailToRegisterForRemoteNotificationsWithError:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didRegisterForRemoteNotificationsWithDeviceToken:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the app successfully registered with Apple Push Notification service (APNs).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didRegisterForRemoteNotificationsWithDeviceToken"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "deviceToken"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didRegisterForRemoteNotificationsWithDeviceToken:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:didRegisterForRemoteNotificationsWithDeviceToken:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/application(_:didRegisterForRemoteNotificationsWithDeviceToken:)"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKApplication/registerForRemoteNotifications()": {
+      "abstract": [
+        {
+          "text": "Register to receive remote notifications from the Apple Push Notification service (APNs).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerForRemoteNotifications"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKApplication/registerForRemoteNotifications()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerForRemoteNotifications()",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKApplication/registerForRemoteNotifications()"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKApplicationDelegate/didRegisterForRemoteNotifications(withDeviceToken:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the app successfully registered with Apple Push Notification service (APNs).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didRegisterForRemoteNotifications"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withDeviceToken"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "deviceToken"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKApplicationDelegate/didRegisterForRemoteNotifications(withDeviceToken:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didRegisterForRemoteNotifications(withDeviceToken:)",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKApplicationDelegate/didRegisterForRemoteNotifications(withDeviceToken:)"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKExtension": {
+      "abstract": [
+        {
+          "text": "The centralized point of control and coordination for extension-based apps running in watchOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKExtension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKExtension",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKExtension"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications": {
+      "abstract": [
+        {
+          "text": "Push user-facing notifications to the user’s device from a server, or generate them locally from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications",
+      "images": [
+        {
+          "identifier": "UserNotifications-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "User Notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-connection-to-apns": {
+      "abstract": [
+        {
+          "text": "Secure your communications with APNs to send API requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-connection-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Establishing a connection to Apple Push Notification service (APNs)",
+      "type": "topic",
+      "url": "/documentation/usernotifications/establishing-a-connection-to-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/generating-a-remote-notification": {
+      "abstract": [
+        {
+          "text": "Send notifications to the user’s device with a JSON payload.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/generating-a-remote-notification",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating a remote notification",
+      "type": "topic",
+      "url": "/documentation/usernotifications/generating-a-remote-notification"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/pushing-background-updates-to-your-app": {
+      "abstract": [
+        {
+          "text": "Deliver notifications that wake your app and update it in the background.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/pushing-background-updates-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Pushing background updates to your App",
+      "type": "topic",
+      "url": "/documentation/usernotifications/pushing-background-updates-to-your-app"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/sending-notification-requests-to-apns": {
+      "abstract": [
+        {
+          "text": "Transmit your remote notification payload and device token information to Apple Push Notification service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-notification-requests-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending notification requests to APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/sending-notification-requests-to-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server": {
+      "abstract": [
+        {
+          "text": "Generate notifications and push them to user devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Setting up a remote notification server",
+      "type": "topic",
+      "url": "/documentation/usernotifications/setting-up-a-remote-notification-server"
+    },
+    "https://developer.apple.com/account/#/overview/": {
+      "identifier": "https://developer.apple.com/account/#/overview/",
+      "title": "Developer Account",
+      "titleInlineContent": [
+        {
+          "text": "Developer Account",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/account/#/overview/"
+    },
+    "https://help.apple.com/xcode/mac/current/#/devdfd3d04a1": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/devdfd3d04a1",
+      "title": "Enable push notifications",
+      "titleInlineContent": [
+        {
+          "text": "Enable push notifications",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/devdfd3d04a1"
+    },
+    "media-4321361": {
+      "alt": "Add entitlements to your Xcode project by enabling the push notification capability in the Capabilities tab.",
+      "identifier": "media-4321361",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d01d47767d5a70a20a63bb93bcd68aee/media-4321361@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/42990a795383e09b51ff8a8216ec96f8/media-4321361~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Server-tasks",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/generating-a-remote-notification",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/pushing-background-updates-to-your-app",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-connection-to-apns"
+      ],
+      "title": "Server tasks"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Server-tasks",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/generating-a-remote-notification",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/pushing-background-updates-to-your-app",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-connection-to-apns"
+              ],
+              "title": "Server tasks"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKApplicationDelegate~1didRegisterForRemoteNotifications(withDeviceToken:)/title",
+          "value": "didRegisterForRemoteNotificationsWithDeviceToken:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKApplicationDelegate~1didRegisterForRemoteNotifications(withDeviceToken:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "didRegisterForRemoteNotificationsWithDeviceToken:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSData",
+              "text": "NSData"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "deviceToken"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplication~1registerForRemoteNotifications()/title",
+          "value": "registerForRemoteNotifications"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplication~1registerForRemoteNotifications()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerForRemoteNotifications"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplicationDelegate~1application(_:didRegisterForRemoteNotificationsWithDeviceToken:)/title",
+          "value": "application:didRegisterForRemoteNotificationsWithDeviceToken:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplicationDelegate~1application(_:didRegisterForRemoteNotificationsWithDeviceToken:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSApplication",
+              "text": "NSApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didRegisterForRemoteNotificationsWithDeviceToken:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSData",
+              "text": "NSData"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "deviceToken"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplication/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSApplication"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSResponder",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:didFailToRegisterForRemoteNotificationsWithError:)/title",
+          "value": "application:didFailToRegisterForRemoteNotificationsWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:didFailToRegisterForRemoteNotificationsWithError:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didFailToRegisterForRemoteNotificationsWithError:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:didRegisterForRemoteNotificationsWithDeviceToken:)/title",
+          "value": "application:didRegisterForRemoteNotificationsWithDeviceToken:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:didRegisterForRemoteNotificationsWithDeviceToken:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didRegisterForRemoteNotificationsWithDeviceToken:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSData",
+              "text": "NSData"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "deviceToken"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplication~1registerForRemoteNotifications()/title",
+          "value": "registerForRemoteNotifications"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplication~1registerForRemoteNotifications()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerForRemoteNotifications"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKApplication~1registerForRemoteNotifications()/title",
+          "value": "registerForRemoteNotifications"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKApplication~1registerForRemoteNotifications()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerForRemoteNotifications"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKExtension/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKExtension"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplication/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIResponder",
+              "text": "UIResponder"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/usernotifications/registering-your-app-with-apns"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/usernotifications/registering-your-app-with-apns"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

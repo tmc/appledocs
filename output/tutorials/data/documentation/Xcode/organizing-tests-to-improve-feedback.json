@@ -1,0 +1,2703 @@
+{
+  "abstract": [
+    {
+      "text": "Control the information you receive from your tests at different stages in the software engineering process by creating and configuring test plans.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/testing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/organizing-tests-to-improve-feedback"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Improving code assessment by organizing tests into test plans"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A mature project benefits from many tests that cover a variety of scenarios. Tests can verify code behavior or measure performance; they can test different products, or the same product on different targets or configurations. They can be long-running UI tests that exercise complex workflows or small unit tests that exercise individual functions, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/testing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Control the information you receive from your tests at different stages in the software engineering process by organizing these tests into test plans, and configuring how Xcode executes the test plans. For example, you can create a test plan to run only the unit tests for a module while developing and debugging that module, and a second test plan to run all unit, integration, and UI tests before submitting your app to the App Store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "organizing-tests-hero.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Testing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can declare and add ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "tags",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", annotations that identify tests that share common characteristics, to your tests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You might add tags to specify:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "priority level (critical, normal, low)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "kind (unit, integration, performance)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "cadence (presubmission, daily, prerelease)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "functional area",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "dependancies",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Xcode 16 and later, you can use tags in your test plans to specify which tests to include. For more information about declaring tags and adding tags to test, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Testing/AddingTags",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information about migrating your existing unit test to Swift Testing, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Testing/MigratingFromXCTest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Tags aren’t a replacement for test suites. Suites impose hierarchical structure on test functions at the source level, while tags help you associate tests from different files, suites, and targets.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-schemes-to-associate-test-targets-with-products",
+          "level": 3,
+          "text": "Create schemes to associate test targets with products",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A scheme instructs Xcode to use specific targets when you invoke the building, testing, running, analyzing, profiling, and archiving actions, shown in the figure below. In the test action for a scheme, include the target for the product under test along with the test targets that contain tests relevant to that product.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "organizing-tests-scheme.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on creating Xcode schemes and assigning targets to schemes, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-schemes-for-a-project",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your product has multiple targets — like an iOS app that contains a static library and a widget extension — create a scheme for each of the individual targets in addition to an “umbrella” scheme that builds the whole product suitable for release. Developers on your team can use the more specific scheme when working on tasks in each target, running only the tests relevant to that target to get faster feedback. When they are ready to integrate their changes, developers can get better assurance that they have not introduced regressions by running the complete collection of tests in the umbrella scheme.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-test-plans-to-organize-the-tests-for-a-scheme",
+          "level": 3,
+          "text": "Create test plans to organize the tests for a scheme",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "test plan",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a document in your Xcode project that describes which tests Xcode should run when a developer invokes the test action, shown in the figure below, and the configurations Xcode uses to run the tests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "organizing-tests-test-plan.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create multiple test plans for the same scheme and use any of them when running tests from Xcode or in Terminal. You must choose one test plan as the default plan for the scheme; Xcode uses this plan to run tests when none is explicitly specified. Xcode creates a default test plan that includes all of the tests from the test targets built by your scheme.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "organizing-tests-autocreated-test-plan.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To edit this test plan, choose Product > Scheme > Edit Test Plan. Xcode prompts you for a location to save the test plan.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create additional test plans:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Product > Test Plan > New Test Plan.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter a name for the new test plan.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose a location to save the test plan.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Create.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To select the default test plan for the current scheme:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Product > Test Plan > Manage Test Plans.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the radio button in the Default column next to the desired test plan.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "organizing-tests-new-test-plan.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Include-or-exclude-tests-from-a-test-plan",
+          "level": 3,
+          "text": "Include or exclude tests from a test plan",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify the test targets to use, along with any tags Xcode should use to determine which tests to include or exclude from a test plan:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the test plan in the Project navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Tests pane, click Choose Targets to add test targets to the test plan.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To include tests annotated with a tag, click the Include Tags text field and type the symbol name of one or more tags. Select Any Tag from the filter button to include a test when it matches any the tags you enter, and All Tags to include it only when it matches all of the tags.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To exclude tests annotated with a tag, enter the symbol name of one or more tags to exclude in the Exclude Tags field. Select Any Tag from the filter button to exclude a test when it matches any the tags you enter, and All Tags to exclude it only when it matches all of the tags.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "organizing-tests-test-plan-exclude-tags.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To include all your tests in the test plan, leave the Include Tags and  Exclude Tags fields empty.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Choose-the-test-suites-and-functions-to-run-in-a-test-plan",
+          "level": 3,
+          "text": "Choose the test suites and functions to run in a test plan",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To further filter the tests that Xcode runs for a given test plan, select the checkbox in the Included column next to an item in the test plan’s outline view. You can select or deselect any item that matches the conditions from the Include Tags and Exclude Tags fields. The items represent targets, suites, functions, and specific input parameters passed to parameterized test functions. Xcode displays the symbol names for tags under the Tags column next to the suites and functions they annotate. Hold the pointer over an item to display a right arrow button. Click the button to display the source code for that item in the Source editor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you exclude a test function or test case from a test plan, Xcode skips over the test function or test case and doesn’t provide feedback on their status. The only effect an excluded test function has on the outcome of the test action is if the test contains a build error, in which case the whole test action fails.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift Testing and XCTest support ways to modify the effect a test has on the outcome of a test action while still running it. In Swift Testing you use traits to control the runtime conditions under which test should run, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Testing/EnablingAndDisabling",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Testing/known-issues",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to indicate tests you expect to fail. To skip a test because the execution platform or configuration is inappropriate for the test in XCTest, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTSkipIf(_:_:file:line:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTSkipUnless(_:_:file:line:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To indicate that a test is expected to fail in XCTest, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTExpectFailure(_:options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Adjust-configurations-for-test-plans",
+          "level": 3,
+          "text": "Adjust configurations for test plans",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each test plan contains one or more configurations that tell Xcode how to set up the runtime environment for the tests. In the Configurations tab of the test plan editor, shown in the figure below, you can set environment variables, enable additional checks such as the address sanitizer and memory management guards, and choose different localization settings for the code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "organizing-tests-configurations.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The values you can specify in a test plan configuration are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Command-line arguments to the product under test.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Arguments Passed on Launch",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Values set in the tested product’s environment.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Environment Variables",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The target that Xcode should use as a basis for expanding build settings. For a list of the settings available, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Target for Variable Expansion",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The language used for localized strings in the product under test, or System Language to use the language specified in System Settings.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Application Language",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The region used for locale settings in the product under test, or System Region to use the region specified in System Settings.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Application Region",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The location returned when using location services during tests. Specify a location, None to use the location of the device running test, or a GPX file to simulate traveling a route during tests.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Simulated Location",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Specify whether the UI Automation test runner captures screenshots as it runs tests, and whether it deletes screenshots for passing tests.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Automatic Screen Capture",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Specify whether the UI Automation test runner captures video or screenshots.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Preferred Capture Format",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Gather screenshots of your app for localizers. For more information, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-screenshots-of-your-app-for-localizers",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Localization Screenshots",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The method of distribution to use for the product under test.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Distribution",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Gather attachments with augmented information about test behavior. For more information, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTIssueReference/attachments",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Attachments",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Collect diagnostic information in any situation where a test fails, only when testing with ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "xcodebuild",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", or never.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Collect Test Diagnostics on Failure",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Control whether Xcode runs tests in alphabetical order, or picks a random order each time. Running tests in a random order can uncover situations where your test’s behavior depends on actions taken in other tests.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Execution Order",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Control whether tests automatically fail after a set amount of time.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Test Timeouts",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The number of seconds a test runs for by default before it automatically fails. The minimum value you can set is 60 seconds. Override this setting for an individual test by calling ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTestCase/executionTimeAllowance",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ". This value is ignored if Test Timeouts is set to No.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Default Test Execution Time Allowance(s)",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The maximum number of seconds a test can run for before it automatically fails. The minimum value you can set is 60 seconds. A test times out after the maximum test execution time allowance has elapsed, even if the test requests a longer execution time using ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTestCase/executionTimeAllowance",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ". This value is ignored if Test Timeouts is set to No.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Maximum Test Execution Time Allowance(s)",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Choose whether tests are run once, repeated until they fail, repeated until they pass, or run a set number of times.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Test Repetition Mode",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The highest number of times a test is repeatedly run.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Maximum Test Repetitions",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Whether Xcode launches a new process for each test repetition.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Relaunch Tests for Each Repetition",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Collect code coverage metrics during test runs.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Code Coverage",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Detect out-of-bounds access to memory, memory used after it has been freed, and other incorrect memory use.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Address Sanitizer",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Detect thread-related race conditions.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Thread Sanitizer",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Detect issues related to undefined behavior in the C programming language.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Undefined Behavior Sanitizer",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Detect issues caused by using API on background threads that should only be used on the main thread.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Main Thread Checker",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Write a specific value to freed memory, to support detecting incorrect use of freed memory.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Malloc Scribble",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Add guard pages before and after large allocations, to support detecting out-of-bounds memory use.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Malloc Guard Edges",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Use a substitute version of the memory allocator with additional detection for incorrect memory uses.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Guard Malloc",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Replace deallocated objects with zombies that crash your app when they receive Objective-C messages.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Zombie Objects",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Record the function call stack whenever memory is allocated.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Malloc Stack Logging",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on the address sanitizer, thread sanitizer, undefined behavior sanitizer, and main thread checker, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create additional test plan configurations, click the Add button. Xcode runs the tests specified in a test plan once for each of that plan’s configurations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-test-plan-to-a-scheme",
+          "level": 3,
+          "text": "Add a test plan to a scheme",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can associate a test plan with more than one scheme, to get the same test suites and functions included with the same configurations in multiple schemes. To add an existing test plan to a scheme, do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Product > Test Plan > Manage Test Plans.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button below the list of test plans.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Add existing Test Plan.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the test plan you want to add to the scheme.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Run-the-tests-specified-in-a-test-plan-in-Xcode",
+          "level": 3,
+          "text": "Run the tests specified in a test plan in Xcode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When Xcode runs the test action, it executes the tests in the active test plan once for each configuration in the test plan. To set the active test plan and run the tests specified in that plan, do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Product > Test Plan.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the test plan you want to run.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Product > Test.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about interpreting the results of tests in Xcode, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/running-tests-and-interpreting-results",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Run-tests-from-the-command-line",
+          "level": 3,
+          "text": "Run tests from the command-line",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run tests using a specific test plan from the command-line, you must explicitly name the test plan to use. To discover the test plans for ",
+              "type": "text"
+            },
+            {
+              "code": "SampleApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", run the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcodebuild -scheme SampleApp -showTestPlans"
+          ],
+          "syntax": "zsh",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the tests specified in the “Performance Tests” test plan, run the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcodebuild -scheme SampleApp test -testPlan Performance\\ Tests"
+          ],
+          "syntax": "zsh",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the tests in the “Performance Tests” test plan, using only the configuration called “My Config”, run the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcodebuild -scheme SampleApp test -testPlan Performance\\ Tests --only-test-configuration My\\ Config"
+          ],
+          "syntax": "zsh",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the tests in the “Performance Tests” test plan, using all configurations except “My Config”, run the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcodebuild -scheme SampleApp test -testPlan Performance\\ Tests --skip-test-configuration My\\ Config"
+          ],
+          "syntax": "zsh",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "adding-tests-pageimage-card.png": {
+      "alt": "Artistic rendering of an iPhone laying face up next to a green checkmark.",
+      "identifier": "adding-tests-pageimage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/74aabcd2e16d1e9023a4aa6b55fec34b/adding-tests-pageimage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7d44d4f36b4bf35927e88c40edaf34ab/adding-tests-pageimage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-tests-to-your-xcode-project": {
+      "abstract": [
+        {
+          "text": "Include test targets that build code to test the logic in your functions, check for integration issues, automate UI workflows, and measure performance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-tests-to-your-xcode-project",
+      "images": [
+        {
+          "identifier": "adding-tests-pageimage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Adding tests to your Xcode project",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-tests-to-your-xcode-project"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference": {
+      "abstract": [
+        {
+          "text": "A detailed list of individual Xcode build settings that control or change the way a target is built.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference",
+      "kind": "article",
+      "role": "article",
+      "title": "Build settings reference",
+      "type": "topic",
+      "url": "/documentation/xcode/build-settings-reference"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/creating-screenshots-of-your-app-for-localizers": {
+      "abstract": [
+        {
+          "text": "Share screenshots of your app with localizers to provide context for translation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-screenshots-of-your-app-for-localizers",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating screenshots of your app for localizers",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-screenshots-of-your-app-for-localizers"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-schemes-for-a-project": {
+      "abstract": [
+        {
+          "text": "Specify which targets to build, and customize the settings Xcode uses",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to build, run, test, and profile those targets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-schemes-for-a-project",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the build schemes for a project",
+      "type": "topic",
+      "url": "/documentation/xcode/customizing-the-build-schemes-for-a-project"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/determining-how-much-code-your-tests-cover": {
+      "abstract": [
+        {
+          "text": "Use code coverage to focus new test development on areas that lack adequate testing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/determining-how-much-code-your-tests-cover",
+      "kind": "article",
+      "role": "article",
+      "title": "Determining how much code your tests cover",
+      "type": "topic",
+      "url": "/documentation/xcode/determining-how-much-code-your-tests-cover"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early": {
+      "abstract": [
+        {
+          "text": "Identify runtime crashes and undefined behaviors in your app during testing using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Xcode’s sanitizer tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Diagnosing memory, thread, and crash issues early",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-memory-thread-and-crash-issues-early"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/running-tests-and-interpreting-results": {
+      "abstract": [
+        {
+          "text": "Determine whether your project’s code behaves as you expect by running tests and understanding the results.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/running-tests-and-interpreting-results",
+      "kind": "article",
+      "role": "article",
+      "title": "Running tests and interpreting results",
+      "type": "topic",
+      "url": "/documentation/xcode/running-tests-and-interpreting-results"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/testing": {
+      "abstract": [
+        {
+          "text": "Develop and run tests to detect logic failures, UI problems, and performance regressions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/testing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Testing",
+      "type": "topic",
+      "url": "/documentation/xcode/testing"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/updating-your-existing-codebase-to-accommodate-unit-tests": {
+      "abstract": [
+        {
+          "text": "Remove coupling between components to increase test coverage and reliability.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/updating-your-existing-codebase-to-accommodate-unit-tests",
+      "kind": "article",
+      "role": "article",
+      "title": "Updating your existing codebase to accommodate unit tests",
+      "type": "topic",
+      "url": "/documentation/xcode/updating-your-existing-codebase-to-accommodate-unit-tests"
+    },
+    "doc://com.apple.documentation/documentation/Testing": {
+      "abstract": [
+        {
+          "text": "Create and run tests for your Swift packages and Xcode projects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Testing",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift Testing",
+      "type": "topic",
+      "url": "/documentation/Testing"
+    },
+    "doc://com.apple.documentation/documentation/Testing/AddingTags": {
+      "abstract": [
+        {
+          "text": "Use tags to provide semantic information for organization, filtering, and customizing appearances.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Testing/AddingTags",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding tags to tests",
+      "type": "topic",
+      "url": "/documentation/Testing/AddingTags"
+    },
+    "doc://com.apple.documentation/documentation/Testing/EnablingAndDisabling": {
+      "abstract": [
+        {
+          "text": "Conditionally enable or disable individual tests before they run.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Testing/EnablingAndDisabling",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling and disabling tests",
+      "type": "topic",
+      "url": "/documentation/Testing/EnablingAndDisabling"
+    },
+    "doc://com.apple.documentation/documentation/Testing/MigratingFromXCTest": {
+      "abstract": [
+        {
+          "text": "Migrate an existing test method or test class written using XCTest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Testing/MigratingFromXCTest",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating a test from XCTest",
+      "type": "topic",
+      "url": "/documentation/Testing/MigratingFromXCTest"
+    },
+    "doc://com.apple.documentation/documentation/Testing/known-issues": {
+      "abstract": [
+        {
+          "text": "Highlight known issues when running tests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Testing/known-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "Known issues",
+      "type": "topic",
+      "url": "/documentation/Testing/known-issues"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCTExpectFailure(_:options:)": {
+      "abstract": [
+        {
+          "text": "Instructs the test to expect a failure in an upcoming assertion, with options to customize expected failure checking and handling.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTExpectFailure"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "failureReason"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCTExpectedFailure",
+          "text": "XCTExpectedFailure"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCTExpectedFailureOptions",
+          "text": "Options"
+        },
+        {
+          "kind": "text",
+          "text": " = .init())"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTExpectFailure(_:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTExpectFailure(_:options:)",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCTExpectFailure(_:options:)"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCTIssueReference/attachments": {
+      "abstract": [
+        {
+          "text": "An array of data that augments a test issue, such as files, images, screenshots, data blobs, or ZIP files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attachments"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCTAttachment",
+          "text": "XCTAttachment"
+        },
+        {
+          "kind": "text",
+          "text": "] { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTIssueReference/attachments",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attachments",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCTIssueReference/attachments"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCTSkipIf(_:_:file:line:)": {
+      "abstract": [
+        {
+          "text": "Skips remaining tests in a test method if the specified condition is met.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTSkipIf"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "expression"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "message"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "file"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "keyword",
+          "text": "#filePath"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "line"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "keyword",
+          "text": "#line"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTSkipIf(_:_:file:line:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTSkipIf(_:_:file:line:)",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCTSkipIf(_:_:file:line:)"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCTSkipUnless(_:_:file:line:)": {
+      "abstract": [
+        {
+          "text": "Skips remaining tests in a test method unless the specified condition is met.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTSkipUnless"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "expression"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "message"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "file"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "keyword",
+          "text": "#filePath"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "line"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "keyword",
+          "text": "#line"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTSkipUnless(_:_:file:line:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTSkipUnless(_:_:file:line:)",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCTSkipUnless(_:_:file:line:)"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCTestCase/executionTimeAllowance": {
+      "abstract": [
+        {
+          "text": "The number of seconds, rounded up to the nearest minute, for a test to run before it fails with a timeout error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "executionTimeAllowance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTestCase/executionTimeAllowance",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executionTimeAllowance",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCTestCase/executionTimeAllowance"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "organizing-tests-autocreated-test-plan.png": {
+      "alt": "A screenshot of the scheme editor in Xcode that shows an automatically created Test plan.",
+      "identifier": "organizing-tests-autocreated-test-plan.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dbb23f1f5938ea8c7140b6059164d254/organizing-tests-autocreated-test-plan@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7a6f6db1b2928554da9d7519c78ac89b/organizing-tests-autocreated-test-plan~dark@2x.png"
+        }
+      ]
+    },
+    "organizing-tests-configurations.png": {
+      "alt": "A screenshot of Xcode, showing the test plan configuration editor.",
+      "identifier": "organizing-tests-configurations.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cbdf4697b741d31cb64de2281186a857/organizing-tests-configurations@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6d35bcd99264446d9969d92f18f13b96/organizing-tests-configurations~dark@2x.png"
+        }
+      ]
+    },
+    "organizing-tests-hero.png": {
+      "alt": "A graph that demonstrates the components of an Xcode project that Xcode uses to determine the test activities: the test plan, scheme, test target, and product target.",
+      "identifier": "organizing-tests-hero.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fb97d06a00af6ecfbd44b2bb7f03d5d6/organizing-tests-hero@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/11302eca9af8d3f588b2ce41581052e4/organizing-tests-hero~dark@2x.png"
+        }
+      ]
+    },
+    "organizing-tests-new-test-plan.png": {
+      "alt": "A screenshot of the scheme editor in Xcode with the Test pane shown. The pane include one automatically created Test plan.",
+      "identifier": "organizing-tests-new-test-plan.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cb09ef07db9a79c120f1dc5d9f1baf4c/organizing-tests-new-test-plan@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f8fc461686bf5a1b487c4ba72f3cbce3/organizing-tests-new-test-plan~dark@2x.png"
+        }
+      ]
+    },
+    "organizing-tests-scheme.png": {
+      "alt": "A graph that demonstrates that an Xcode scheme associates the product target, test targets, and test plans to define the behavior of the test action.",
+      "identifier": "organizing-tests-scheme.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5560df6f4b4819787683711587780c35/organizing-tests-scheme@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2aaa159672bc249953465fdb02882ce1/organizing-tests-scheme~dark@2x.png"
+        }
+      ]
+    },
+    "organizing-tests-test-plan-exclude-tags.png": {
+      "alt": "A screenshot of the Include Tags and Exclude Tags fields in the Test Plan editor in Xcode. The Include Tags field contains tags for formatting and unit. The Exclude Tags field contains tags for stress and release. The filter button in the Exclude Tags field is expanded to show options for Any Tag and All Tags.",
+      "identifier": "organizing-tests-test-plan-exclude-tags.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4fde76520a0d32738f8185a02142528f/organizing-tests-test-plan-exclude-tags@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/33c0e3bf0a877e280d871ddb616cf786/organizing-tests-test-plan-exclude-tags~dark@2x.png"
+        }
+      ]
+    },
+    "organizing-tests-test-plan.png": {
+      "alt": "A graph that demonstrates that a test plan defines which test suites and functions Xcode should run in the test action.",
+      "identifier": "organizing-tests-test-plan.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e0d2c677e6d19db8eb5dab4a06e54fd6/organizing-tests-test-plan@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f9d366b9ea6f44caf8f1153e78456ab2/organizing-tests-test-plan~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Test-development",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/adding-tests-to-your-xcode-project",
+        "doc://com.apple.Xcode/documentation/Xcode/updating-your-existing-codebase-to-accommodate-unit-tests",
+        "doc://com.apple.Xcode/documentation/Xcode/determining-how-much-code-your-tests-cover"
+      ],
+      "title": "Test development"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1XCTest~1XCTestCase~1executionTimeAllowance/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSTimeInterval",
+              "text": "NSTimeInterval"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "executionTimeAllowance"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1XCTest~1XCTIssueReference~1attachments/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<XCTAttachment *>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "attachments"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

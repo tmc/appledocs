@@ -1,0 +1,2817 @@
+{
+  "abstract": [
+    {
+      "text": "Samples data from an image with provisions for offsetting and tiling in UV space.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/2D-Texture"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://ShaderGraph-Docs/documentation/ShaderGraph/2D-Texture/Tiled-Image"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "Shader_ND_tiledimage_float",
+    "images": [
+      {
+        "identifier": "purple.photo.on.rectangle.png",
+        "type": "icon"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ShaderGraph"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "ShaderGraph Node",
+    "symbolKind": "subscript",
+    "title": "Tiled Image"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Parameter-Types",
+          "level": 2,
+          "text": "Parameter Types",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Input",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "File",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "AssetPath",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Default",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Texture Coordinates",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "UV Tiling",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "UV Offset",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Real World Image Size",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Real World Tile Size",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Filter Type",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "String",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Output",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Out",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Tiled Image (float)"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Input",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "File",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "AssetPath",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Default",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector4f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Texture Coordinates",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "UV Tiling",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "UV Offset",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Real World Image Size",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Real World Tile Size",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Filter Type",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "String",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Output",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Out",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector4f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Tiled Image (vector4f)"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Input",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "File",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "AssetPath",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Default",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Color4",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Texture Coordinates",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "UV Tiling",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "UV Offset",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Real World Image Size",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Real World Tile Size",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Filter Type",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "String",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Output",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Out",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Color4",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Tiled Image (color4f)"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Input",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "File",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "AssetPath",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Default",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Half",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Texture Coordinates",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "UV Tiling",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "UV Offset",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Real World Image Size",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Real World Tile Size",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Filter Type",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "String",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Output",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Out",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Half",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Tiled Image (half)"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Input",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "File",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "AssetPath",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Default",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Texture Coordinates",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "UV Tiling",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "UV Offset",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Real World Image Size",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Real World Tile Size",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Filter Type",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "String",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Output",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Out",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Tiled Image (vector2f)"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Input",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "File",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "AssetPath",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Default",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Color3",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Texture Coordinates",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "UV Tiling",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "UV Offset",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Real World Image Size",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Real World Tile Size",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Filter Type",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "String",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Output",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Out",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Color3",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Tiled Image (color3f)"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Input",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "File",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "AssetPath",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Default",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector3f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Texture Coordinates",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "UV Tiling",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "UV Offset",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Real World Image Size",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Real World Tile Size",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Filter Type",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "String",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Output",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Out",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector3f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Tiled Image (vector3f)"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Parameter-descriptions",
+          "level": 2,
+          "text": "Parameter descriptions",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The image file to use for the texture.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "File",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A default value to use if the ​file​ reference fails to resolve.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Default",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The 2D coordinate at which the data is read in order to map the texture onto a surface. The default is to use the current ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "UV",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " coordinates, in which ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "U",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " is the horizontal axis and ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "V",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " is the vertical axis.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Texture Coordinates",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The tiling rate for the given image along the ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "U",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "V",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " axes. The tiling rate is mathematically equivalent to multiplying the incoming texture coordinates by the given vector value. The rate controls how often the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "File",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " repeats in the texture.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "UV Tiling",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The offset for the given image along the U and V axes. The offset is mathematically equivalent to subtracting the given vector value from the incoming texture coordinates.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "UV Offset",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The real-world size represented by the ​file​ image.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Real World Image Size",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The real-world size of a single square ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0-1",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " UV tile.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Real World Tile Size",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The type of texture filtering to use.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Filter Type",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Tiled Image material node maps a texture onto a surface with a repeating tiled pattern. It allows you to specify a texture image and control its tiling and real-world size properties.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "UV Tiling",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter repeats the given file input to produce an image. This image’s size is determined by the ",
+              "type": "text"
+            },
+            {
+              "code": "Real World Image Size",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The resulting image is then applied to a single square 0-1 UV tile. The size of this tile is determined by the ",
+              "type": "text"
+            },
+            {
+              "code": "Real World Tile Size",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The size of the tile and the size of the image may differ. Therefore, if the image size is larger than the tile it wants to be applied to, the resulting texture will only show part of the image. On the other hand, if the size of the tile is larger than the image, you will see the image repeated in the resulting texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "While you can create a repeating texture by using the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Real World Image Size",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "Real World Tile Size",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameters, if your only goal is repeating the image, use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "UV Tiling",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter. Use the size parameters to model real-world dimensions of the image and the surface to which it is applied to.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Below is an example of a simple node graph that uses the Tiled Image node.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "TiledImage1.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the ",
+              "type": "text"
+            },
+            {
+              "code": "UV Tiling",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is (2,2) the pattern repeats twice horizontally and twice vertically.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "TiledImage2.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "TiledImage1.png": {
+      "alt": "nil",
+      "identifier": "TiledImage1.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1e7815b71b078c16fab9f0895dff0c2/TiledImage1.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f6b5b18227cf120c5ad18359a8c5aad9/TiledImage1~dark.png"
+        }
+      ]
+    },
+    "TiledImage2.png": {
+      "alt": "nil",
+      "identifier": "TiledImage2.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4852a827f845f57e396ff75ac1dad7b8/TiledImage2.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/be5cdd887f6859ab3165935462308efa/TiledImage2~dark.png"
+        }
+      ]
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph": {
+      "abstract": [
+        {
+          "text": "Create custom materials and effects for 3D content in Reality Composer Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ShaderGraph",
+      "type": "topic",
+      "url": "/documentation/shadergraph"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/2D-Texture": {
+      "abstract": [
+        {
+          "text": "Load and configure 2D texture files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/2D-Texture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "2D-Texture",
+      "type": "topic",
+      "url": "/documentation/shadergraph/2d-texture"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/2D-Texture/Image": {
+      "abstract": [
+        {
+          "text": "A texture referencing a 2D image file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/2D-Texture/Image",
+      "images": [
+        {
+          "identifier": "purple.photo.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Image",
+      "type": "topic",
+      "url": "/documentation/shadergraph/2d-texture/image"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/2D-Texture/Tiled-Image": {
+      "abstract": [
+        {
+          "text": "Samples data from an image with provisions for offsetting and tiling in UV space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/2D-Texture/Tiled-Image",
+      "images": [
+        {
+          "identifier": "purple.photo.on.rectangle.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Tiled Image",
+      "type": "topic",
+      "url": "/documentation/shadergraph/2d-texture/tiled-image"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/2D-Texture/Transform-2D": {
+      "abstract": [
+        {
+          "text": "A node that applies an affine transformation to a 2d input.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/2D-Texture/Transform-2D",
+      "images": [
+        {
+          "identifier": "purple.scribble.variable.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Transform 2D",
+      "type": "topic",
+      "url": "/documentation/shadergraph/2d-texture/transform-2d"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/2D-Texture/UV-Texture": {
+      "abstract": [
+        {
+          "text": "A MaterialX version of USD UV Texture reader.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/2D-Texture/UV-Texture",
+      "images": [
+        {
+          "identifier": "purple.checkerboard.rectangle.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UV Texture",
+      "type": "topic",
+      "url": "/documentation/shadergraph/2d-texture/uv-texture"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "purple.checkerboard.rectangle.png": {
+      "alt": "nil",
+      "identifier": "purple.checkerboard.rectangle.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d6489b5f2a281fede54ea4328771b290/purple.checkerboard.rectangle.png"
+        }
+      ]
+    },
+    "purple.photo.on.rectangle.png": {
+      "alt": "nil",
+      "identifier": "purple.photo.on.rectangle.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/01c7818bd8e906456d7a4aec961d470b/purple.photo.on.rectangle.png"
+        }
+      ]
+    },
+    "purple.photo.png": {
+      "alt": "nil",
+      "identifier": "purple.photo.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6dd5b45641ddcdb21d8b2cb3c6e7c318/purple.photo.png"
+        }
+      ]
+    },
+    "purple.scribble.variable.png": {
+      "alt": "nil",
+      "identifier": "purple.scribble.variable.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1c8425513fe53762d457b1ee08fa4dca/purple.scribble.variable.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Nodes",
+      "generated": true,
+      "identifiers": [
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/2D-Texture/Image",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/2D-Texture/UV-Texture",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/2D-Texture/Transform-2D"
+      ],
+      "title": "Nodes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/shadergraph/2d-texture/tiled-image"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

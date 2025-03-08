@@ -1,0 +1,501 @@
+{
+  "abstract": [
+    {
+      "text": "Releases the resources associated with a pixel buffer object.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.agl/documentation/AGL"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.agl/documentation/AGL/aglDestroyPBuffer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@aglDestroyPBuffer",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "aglDestroyPBuffer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AGL"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "aglDestroyPBuffer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.7",
+        "introducedAt": "10.3",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "aglDestroyPBuffer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@GLboolean",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@GLboolean",
+              "text": "GLboolean"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "aglDestroyPBuffer"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.agl/documentation/AGL/AGLPbuffer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AGLPbuffer",
+              "text": "AGLPbuffer"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "pbuffer"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The pixel buffer object whose resources you want to release.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "pbuffer"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Returns ",
+              "type": "text"
+            },
+            {
+              "code": "GL_FALSE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if it fails for any reason, ",
+              "type": "text"
+            },
+            {
+              "code": "GL_TRUE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " otherwise. If an error occurs, call the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.agl/documentation/AGL/aglGetError",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine what the error is.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call this function only after you no longer need to use the pixel buffer object. Before calling this function, you should delete all texture objects associated with the pixel buffer object. You do not need to make sure that all texturing commands have completed prior to calling this function, because the OpenGL framework manages texturing synchronization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.agl/documentation/AGL": {
+      "abstract": [
+        {
+          "text": "Create and manage OpenGL rendering contexts for use in macOS, and perform operations on drawable objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AGL",
+      "type": "topic",
+      "url": "/documentation/agl"
+    },
+    "doc://com.apple.agl/documentation/AGL/AGLPbuffer": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AGLPbuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/AGLPbuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AGLPbuffer",
+      "type": "topic",
+      "url": "/documentation/agl/aglpbuffer"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglCreatePBuffer": {
+      "abstract": [
+        {
+          "text": "Creates a  pixel buffer of the specified size, compatible with the specified texture target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglCreatePBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglCreatePBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglCreatePBuffer",
+      "type": "topic",
+      "url": "/documentation/agl/aglcreatepbuffer"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglDescribePBuffer": {
+      "abstract": [
+        {
+          "text": "Retrieves information that describes the specified pixel buffer object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglDescribePBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglDescribePBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglDescribePBuffer",
+      "type": "topic",
+      "url": "/documentation/agl/agldescribepbuffer"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglDestroyPBuffer": {
+      "abstract": [
+        {
+          "text": "Releases the resources associated with a pixel buffer object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglDestroyPBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglDestroyPBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglDestroyPBuffer",
+      "type": "topic",
+      "url": "/documentation/agl/agldestroypbuffer"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglGetError": {
+      "abstract": [
+        {
+          "text": "Returns an AGL error code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglGetError"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglGetError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglGetError",
+      "type": "topic",
+      "url": "/documentation/agl/aglgeterror"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglGetPBuffer": {
+      "abstract": [
+        {
+          "text": "Retrieves a pixel buffer and its parameters for a specified rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglGetPBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglGetPBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglGetPBuffer",
+      "type": "topic",
+      "url": "/documentation/agl/aglgetpbuffer"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglSetPBuffer": {
+      "abstract": [
+        {
+          "text": "Attaches a pixel buffer object to a rendering context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglSetPBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglSetPBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglSetPBuffer",
+      "type": "topic",
+      "url": "/documentation/agl/aglsetpbuffer"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglTexImagePBuffer": {
+      "abstract": [
+        {
+          "text": "Binds the contents of a pixel buffer to a data source for a texture object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglTexImagePBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglTexImagePBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglTexImagePBuffer",
+      "type": "topic",
+      "url": "/documentation/agl/aglteximagepbuffer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@GLboolean": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLboolean"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@GLboolean",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GLboolean",
+      "type": "topic",
+      "url": "/documentation/OpenGLES/GLboolean"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-Pixel-Buffers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.agl/documentation/AGL/aglCreatePBuffer",
+        "doc://com.apple.agl/documentation/AGL/aglDescribePBuffer",
+        "doc://com.apple.agl/documentation/AGL/aglGetPBuffer",
+        "doc://com.apple.agl/documentation/AGL/aglSetPBuffer",
+        "doc://com.apple.agl/documentation/AGL/aglTexImagePBuffer"
+      ],
+      "title": "Managing Pixel Buffers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@GLboolean/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@uint8_t",
+              "text": "uint8_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GLboolean"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/agl/agldestroypbuffer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

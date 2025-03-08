@@ -1,0 +1,1111 @@
+{
+  "abstract": [
+    {
+      "text": "Automate reading Xcode Cloud data, managing workflows, and starting builds.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.6 beta 1",
+        "3.6"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.0",
+        "3.6"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.5",
+        "3.6"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/xcode-cloud-workflows-and-builds"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Xcode Cloud Workflows and Builds"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/Xcode-Cloud",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " makes it easy to get started with continuous integration and delivery_ _(CI/CD). Using either Xcode or ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://appstoreconnect.apple.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can create custom workflows to verify the quality of your apps or frameworks. However, you may need to further automate Xcode Cloud usage and integrate Xcode Cloud into existing back-end systems — often in a corporate context. For example, you may need to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide decision makers with data about workflows and builds using custom dashboards or reports.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Integrate with other CI/CD systems that verify changes to back-end services and apps for other platforms.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create and manage numerous workflows for multiple apps.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To automate Xcode Cloud usage and integrate it with custom back-end systems, use the App Store Connect API to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Read information about Xcode Cloud products, workflows, and builds.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Manage workflows.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Start new builds.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Taking advantage of the App Store Connect API, you can combine functionality offered by the Xcode Cloud resources and other App Store Connect resources — for example, TestFlight resources — to create powerful custom tools.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re new to using the App Store Connect API, make sure to read the documentation in the Essentials section of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Read-Xcode-Cloud-Data",
+          "level": 3,
+          "text": "Read Xcode Cloud Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Store Connect API provides resources to access the following Xcode Cloud data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Products, workflows, and build environments",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Builds, artifacts, issues, and test results",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Source code management (SCM) providers, Git repositories, pull requests, and Git references",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’ve identified the data you need to access, the next step is to identify the Xcode Cloud API endpoints you need to call. This is a customized task that depends on your use case. For example, you could follow these steps to read Xcode Cloud workflow information and display it in a custom dashboard:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Access Xcode Cloud product information by reading a list of objects that represent your Xcode Cloud products using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciProducts",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose the Xcode Cloud product for which you want to display information in the custom dashboard.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pass the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " of the Xcode Cloud product you chose to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciProducts-_id_-workflows",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint and call it to read a list of workflow objects.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciWorkflows-_id_",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint for each workflow using the workflow’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to access detailed workflow information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Populate your dashboard with the detailed workflow information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Start-a-New-Build",
+          "level": 3,
+          "text": "Start a New Build",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode Cloud workflows allow you to configure a custom start condition that queues new builds based on a schedule or in response to branch changes, pull request changes, or tag changes. You can also manually start a new build using Xcode and App Store Connect, but that might not be feasible for large teams or in a corporate context. For example, your company’s back-end team likely uses a CI/CD process that frequently deploys changes to staging and production servers. As a result, you need to perform verifications in your app to ensure the app works well with the updated servers. Starting new builds in Xcode Cloud for each back-end change manually or based on a schedule might not be sufficient. To help with these scenarios, use the App Store Connect API to automatically start new Xcode Cloud builds with an API call.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To start a new build:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Read data necessary to create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiBuildRunCreateRequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "; for example, access workflow information using endpoints provided by the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/products",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/workflows",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " resources.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiBuildRunCreateRequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and perform the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-ciBuildRuns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " operation that starts a new build.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Manage-Workflows",
+          "level": 3,
+          "text": "Manage Workflows",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode and App Store Connect offer a convenient way to create, update, or delete workflows. However, large teams and companies with many teams often work on multiple apps and frameworks in parallel. As a result, they need to maintain a large number of workflows, making additional automation necessary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using endpoints provided by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/workflows",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " resource, you can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a new workflow.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Update an existing workflow.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Delete an existing workflow.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Depending on what you want to do, you likely need to first read Xcode Cloud data and use it to create the request body to perform the operation. For example, to create a new workflow, you’ll need to read Xcode Cloud data using the following resources:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/products",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/repositories",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/xcode-versions",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you’ve retrieved all necessary information, use it to create the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiWorkflowCreateRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and perform the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-ciWorkflows",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " operation to create a new workflow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiBuildRunCreateRequest": {
+      "abstract": [
+        {
+          "text": "The request body you use to start a new Xcode Cloud build.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CiBuildRunCreateRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiBuildRunCreateRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CiBuildRunCreateRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "CiBuildRunCreateRequest",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/cibuildruncreaterequest"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiWorkflowCreateRequest": {
+      "abstract": [
+        {
+          "text": "The request body you use to create a new Xcode Cloud workflow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CiWorkflowCreateRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiWorkflowCreateRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CiWorkflowCreateRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "CiWorkflowCreateRequest",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/ciworkflowcreaterequest"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciProducts": {
+      "abstract": [
+        {
+          "text": "Get a list of all products you created in Xcode Cloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciProducts",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/ciProducts"
+        }
+      ],
+      "role": "symbol",
+      "title": "List All Xcode Cloud Products",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-ciproducts"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciProducts-_id_-workflows": {
+      "abstract": [
+        {
+          "text": "List all workflows for a specific Xcode Cloud product.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciProducts-_id_-workflows",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/ciProducts/{id}/workflows"
+        }
+      ],
+      "role": "symbol",
+      "title": "List All Workflows for an Xcode Cloud Product",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-ciproducts-_id_-workflows"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciWorkflows-_id_": {
+      "abstract": [
+        {
+          "text": "Get information about a specific Xcode Cloud workflow.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciWorkflows-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/ciWorkflows/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read Xcode Cloud Workflow Information",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-ciworkflows-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-ciBuildRuns": {
+      "abstract": [
+        {
+          "text": "Start a new Xcode Cloud build for a workflow.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-ciBuildRuns",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/ciBuildRuns"
+        }
+      ],
+      "role": "symbol",
+      "title": "Start a Build",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-cibuildruns"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-ciWorkflows": {
+      "abstract": [
+        {
+          "text": "Create a new Xcode Cloud workflow for an Xcode Cloud product.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-ciWorkflows",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/ciWorkflows"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create a Workflow",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-ciworkflows"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/artifacts": {
+      "abstract": [
+        {
+          "text": "Read information about artifacts Xcode Cloud creates when it performs a build.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/artifacts",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Artifacts",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/artifacts"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/build-actions": {
+      "abstract": [
+        {
+          "text": "Read information about actions you configured for an Xcode Cloud workflow and their related data such as artifacts, issues, or test results.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/build-actions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Build Actions",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/build-actions"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/build-runs": {
+      "abstract": [
+        {
+          "text": "Read detailed build information and start new builds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/build-runs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Build Runs",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/build-runs"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/git-references": {
+      "abstract": [
+        {
+          "text": "Read information about the canonical reference for a Git branch or tag.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/git-references",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Git References",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/git-references"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/issues": {
+      "abstract": [
+        {
+          "text": "Read information about issues that occurred when Xcode Cloud performs a build.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/issues",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Issues",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/issues"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/macos-versions": {
+      "abstract": [
+        {
+          "text": "Read macOS version information you configure for an Xcode Cloud workflow.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/macos-versions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "macOS Versions",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/macos-versions"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/products": {
+      "abstract": [
+        {
+          "text": "Read information about the products Xcode Cloud detected or delete a product and all its associated information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/products",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Products",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/products"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/providers": {
+      "abstract": [
+        {
+          "text": "Read information about source code management providers you connected to Xcode Cloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/providers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Providers",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/providers"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/pull-requests": {
+      "abstract": [
+        {
+          "text": "Read pull request information such as source and destination branches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/pull-requests",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Pull Requests",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/pull-requests"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/repositories": {
+      "abstract": [
+        {
+          "text": "Read detailed information for each repository Xcode Cloud can access, including Git references and pull requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/repositories",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Repositories",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/repositories"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/test-results": {
+      "abstract": [
+        {
+          "text": "Read test results for test actions Xcode Cloud performs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/test-results",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Test Results",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/test-results"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/workflows": {
+      "abstract": [
+        {
+          "text": "Manage Xcode Cloud workflows and view workflow details like actions and start conditions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/workflows",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workflows",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/workflows"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/xcode-versions": {
+      "abstract": [
+        {
+          "text": "Read Xcode version information you configure for an Xcode Cloud workflow.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/xcode-versions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Xcode Versions",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/xcode-versions"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Automatically build, test, and distribute your apps with Xcode Cloud to verify changes and create high-quality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/Xcode-Cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/Xcode/Xcode-Cloud"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://appstoreconnect.apple.com": {
+      "identifier": "https://appstoreconnect.apple.com",
+      "title": "App Store Connect",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://appstoreconnect.apple.com"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Xcode-Cloud-Products-and-Workflows",
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/products",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/workflows",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/macos-versions",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/xcode-versions"
+      ],
+      "title": "Xcode Cloud Products and Workflows"
+    },
+    {
+      "anchor": "Build-Information",
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/build-runs",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/build-actions",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/artifacts",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/issues",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/test-results"
+      ],
+      "title": "Build Information"
+    },
+    {
+      "anchor": "Source-Code-Management",
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/providers",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/repositories",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/pull-requests",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/git-references"
+      ],
+      "title": "Source Code Management"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/xcode-cloud-workflows-and-builds"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

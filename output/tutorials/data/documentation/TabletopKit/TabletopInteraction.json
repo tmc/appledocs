@@ -1,0 +1,1528 @@
+{
+  "abstract": [
+    {
+      "text": "A protocol for objects that manage the entire flow of players interacting with equipment.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:11TabletopKit0A11InteractionC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "TabletopInteraction"
+      }
+    ],
+    "modules": [
+      {
+        "name": "TabletopKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "TabletopInteraction"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "TabletopInteraction"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "TabletopInteraction"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/Delegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol to take an appropriate action, depending on the equipment and the phase of the interaction. For example, move equipment or toss a die when a gesture ends.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MoveInteraction: TabletopInteraction.Delegate {",
+            "    func update(interaction: TabletopKit.TabletopInteraction) {",
+            "        let equipment = interaction.value.controlledEquipmentID",
+            "        guard let destination = interaction.value.proposedDestination else {",
+            "            return",
+            "        }",
+            "        ",
+            "        if interaction.value.phase == .ended {",
+            "            interaction.addAction(.moveEquipment(matching: equipment, childOf: destination.equipmentID, pose: destination.pose))",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get information about the equipment that the interaction applies to, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/value-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. To get the phase of the interaction or gesture, use the ",
+              "type": "text"
+            },
+            {
+              "code": "Value",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/Value-swift.struct/gesturePhase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/Value-swift.struct/phase-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then execute actions — for example, move equipment when the phase ends — using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/addAction(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/addActions(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To start an interaction programmatically, use the ",
+              "type": "text"
+            },
+            {
+              "code": "TabletopGame",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/startInteraction(onEquipmentID:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit": {
+      "abstract": [
+        {
+          "text": "Create multiplayer spatial games on a virtual table surface and use FaceTime to invite players.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TabletopKit",
+      "type": "topic",
+      "url": "/documentation/tabletopkit"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableCursor": {
+      "abstract": [
+        {
+          "text": "A visual indicator that represents the destination of player interactions with equipment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableCursor"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableCursor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableCursor"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableCursor",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tablecursor"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableCursorIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for cursors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableCursorIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableCursorIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableCursorIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableCursorIdentifier",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tablecursoridentifier"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSnapshot": {
+      "abstract": [
+        {
+          "text": "A snapshot of the current state of the table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableSnapshot"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSnapshot",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableSnapshot"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableSnapshot",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tablesnapshot"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TableVisualState": {
+      "abstract": [
+        {
+          "text": "A structure that represents the appearance of an object on the table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableVisualState"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TableVisualState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableVisualState"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableVisualState",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tablevisualstate"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/startInteraction(onEquipmentID:)": {
+      "abstract": [
+        {
+          "text": "Starts a local interaction. It will return ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if too many interactions are already happening at the same time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "onEquipmentID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit19EquipmentIdentifierV",
+          "text": "EquipmentIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A11InteractionC",
+          "text": "TabletopInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A11InteractionC10IdentifierV",
+          "text": "Identifier"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopGame/startInteraction(onEquipmentID:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startInteraction(onEquipmentID:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopgame/startinteraction(onequipmentid:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction": {
+      "abstract": [
+        {
+          "text": "A protocol for objects that manage the entire flow of players interacting with equipment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabletopInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabletopInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopInteraction",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopinteraction"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/AllowedDestinations": {
+      "abstract": [
+        {
+          "text": "The possible destinations of equipment in an interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AllowedDestinations"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/AllowedDestinations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AllowedDestinations"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopInteraction.AllowedDestinations",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopinteraction/alloweddestinations"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/Configuration": {
+      "abstract": [
+        {
+          "text": "A struct containing the parameters that affect the behavior of the interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/Configuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopInteraction.Configuration",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopinteraction/configuration"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/Delegate": {
+      "abstract": [
+        {
+          "text": "A protocol for objects that manage the entire flow of players interacting with equipment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Delegate"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/Delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopInteraction.Delegate",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopinteraction/delegate"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/Destination": {
+      "abstract": [
+        {
+          "text": "An object that represents the destination position and orientation of equipment in an interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Destination"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/Destination",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Destination"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopInteraction.Destination",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopinteraction/destination"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/Identifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for interactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifier"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/Identifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Identifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopInteraction.Identifier",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopinteraction/identifier"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/NewInteractionIntent": {
+      "abstract": [
+        {
+          "text": "The possible outcomes when a new interaction is about to be started.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NewInteractionIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/NewInteractionIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NewInteractionIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopInteraction.NewInteractionIntent",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopinteraction/newinteractionintent"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/Value-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure that provides the details about an interaction, such as the phase of the gesture and position of the equipment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/Value-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Value"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabletopInteraction.Value",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopinteraction/value-swift.struct"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/Value-swift.struct/gesturePhase": {
+      "abstract": [
+        {
+          "text": "the current phase of the gesture",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gesturePhase"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A11InteractionC",
+          "text": "TabletopInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A11InteractionC5ValueV",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A11InteractionC5ValueV5PhaseO",
+          "text": "Phase"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/Value-swift.struct/gesturePhase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gesturePhase",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopinteraction/value-swift.struct/gesturephase"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/Value-swift.struct/phase-swift.property": {
+      "abstract": [
+        {
+          "text": "the current phase of the overall interaction",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "phase"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A11InteractionC",
+          "text": "TabletopInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A11InteractionC5ValueV",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A11InteractionC5ValueV5PhaseO",
+          "text": "Phase"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/Value-swift.struct/phase-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "phase",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopinteraction/value-swift.struct/phase-swift.property"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/addAction(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A6ActionP",
+          "text": "TabletopAction"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/addAction(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addAction(_:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopinteraction/addaction(_:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/addActions(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addActions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST",
+          "text": "Sequence"
+        },
+        {
+          "kind": "text",
+          "text": "<any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A6ActionP",
+          "text": "TabletopAction"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/addActions(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addActions(_:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopinteraction/addactions(_:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/cancel()": {
+      "abstract": [
+        {
+          "text": "Cancels the current interaction. All actions added to the interaction will also be cancelled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancel"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/cancel()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cancel()",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopinteraction/cancel()"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/end()": {
+      "abstract": [
+        {
+          "text": "Ends the current interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/end()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "end()",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopinteraction/end()"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/setAllowedDestinations(_:)": {
+      "abstract": [
+        {
+          "text": "Sets which equipment the interaction can target.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAllowedDestinations"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A11InteractionC",
+          "text": "TabletopInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A11InteractionC19AllowedDestinationsO",
+          "text": "AllowedDestinations"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/setAllowedDestinations(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAllowedDestinations(_:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopinteraction/setalloweddestinations(_:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/setConfiguration(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the configuration of this interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A11InteractionC",
+          "text": "TabletopInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A11InteractionC13ConfigurationV",
+          "text": "Configuration"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/setConfiguration(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setConfiguration(_:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopinteraction/setconfiguration(_:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/setControlledEquipment(matching:)": {
+      "abstract": [
+        {
+          "text": "Replace the current controlled equipment with a different one",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setControlledEquipment"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "matching"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit19EquipmentIdentifierV",
+          "text": "EquipmentIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/setControlledEquipment(matching:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setControlledEquipment(matching:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopinteraction/setcontrolledequipment(matching:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/setPose(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the pose of the controlled ",
+          "type": "text"
+        },
+        {
+          "code": "Equipment",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPose"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SPPose3D",
+          "text": "Pose3D"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/setPose(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPose(_:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopinteraction/setpose(_:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/toss(equipmentID:as:linearVelocity:angularVelocity:)": {
+      "abstract": [
+        {
+          "text": "Begins a simulation of a toss of the equipment with the specificied parameters. Equipment that begins a toss in the same TabletopInteraction may interact with each other as well as the game’s boundary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toss"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "equipmentID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit19EquipmentIdentifierV",
+          "text": "EquipmentIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "as"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit22TossableRepresentationV",
+          "text": "TossableRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "linearVelocity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@UA@SPVector3D",
+          "text": "Vector3D"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "angularVelocity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@UA@SPVector3D",
+          "text": "Vector3D"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/toss(equipmentID:as:linearVelocity:angularVelocity:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toss(equipmentID:as:linearVelocity:angularVelocity:)",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopinteraction/toss(equipmentid:as:linearvelocity:angularvelocity:)"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/value-swift.property": {
+      "abstract": [
+        {
+          "text": "The current value belonging to this interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A11InteractionC",
+          "text": "TabletopInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabletopKit0A11InteractionC5ValueV",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/value-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "value",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tabletopinteraction/value-swift.property"
+    },
+    "doc://com.apple.tabletopkit/documentation/TabletopKit/TossableRepresentation": {
+      "abstract": [
+        {
+          "text": "An object that represents geometric shapes that the player can throw",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "during gameplay, such as dice.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TossableRepresentation"
+        }
+      ],
+      "identifier": "doc://com.apple.tabletopkit/documentation/TabletopKit/TossableRepresentation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TossableRepresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "TossableRepresentation",
+      "type": "topic",
+      "url": "/documentation/tabletopkit/tossablerepresentation"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Interactions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TossableRepresentation",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TableSnapshot",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TableVisualState",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TableCursor",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TableCursorIdentifier"
+      ],
+      "title": "Interactions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Performing-actions",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/Delegate",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/addAction(_:)",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/addActions(_:)",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/toss(equipmentID:as:linearVelocity:angularVelocity:)",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/end()",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/cancel()"
+      ],
+      "title": "Performing actions"
+    },
+    {
+      "anchor": "Getting-the-value-of-the-interaction",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/value-swift.property",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/Value-swift.struct"
+      ],
+      "title": "Getting the value of the interaction"
+    },
+    {
+      "anchor": "Setting-information-about-the-equipment-and-pose",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/setControlledEquipment(matching:)",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/setPose(_:)"
+      ],
+      "title": "Setting information about the equipment and pose"
+    },
+    {
+      "anchor": "Managing-the-interaction-destination",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/setAllowedDestinations(_:)",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/AllowedDestinations",
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/Destination"
+      ],
+      "title": "Managing the interaction destination"
+    },
+    {
+      "anchor": "Getting-the-interaction-identifier",
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/Identifier"
+      ],
+      "title": "Getting the interaction identifier"
+    },
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/Configuration"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/setConfiguration(_:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Enumerations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.tabletopkit/documentation/TabletopKit/TabletopInteraction/NewInteractionIntent"
+      ],
+      "title": "Enumerations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/tabletopkit/tabletopinteraction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

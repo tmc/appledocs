@@ -1,0 +1,1515 @@
+{
+  "abstract": [
+    {
+      "text": "An interface element that provides control of the audio volume from the watch or a paired iPhone.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchkit/documentation/WatchKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)WKInterfaceVolumeControl",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "WKInterfaceVolumeControl"
+      }
+    ],
+    "modules": [
+      {
+        "name": "WatchKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "WKInterfaceVolumeControl"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "WKInterfaceVolumeControl"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceVolumeControl"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure your app’s audio source and the appearance of the volume control in your storyboard file. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to change the volume’s tint color at runtime.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Do not subclass or create instances of this class yourself. Instead, define outlets in your interface controller class and connect them to the corresponding objects in your storyboard file. For example, to refer to a volume control in your interface, define a property with the following syntax in your interface controller class:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "@IBOutlet weak var myVolumeControl: WKInterfaceVolumeControl!"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "@property (weak, nonatomic) IBOutlet WKInterfaceVolumeControl* myVolumeControl;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During the initialization of your interface controller, WatchKit creates a new instance of this class and assigns it to your outlet. At that point, you can use the object in your outlet to make changes to the onscreen control.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After selecting the volume control, the user can increase or decrease the audio’s volume using the crown. The system automatically handles changing the audio source’s volume. You cannot access or change the volume programmatically in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Interface-Builder-Configuration-Options",
+          "level": 3,
+          "text": "Interface Builder Configuration Options",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode lets you configure your volume control in your storyboard file. The following table lists the attributes you can configure and their meaning.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attribute",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Controls Local Volume",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The volume control’s audio source. If checked, the control affects the volume of long-form audio playing on the watch.  If unchecked, it affects the volume of audio playing on the paired iPhone. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " You must set this value at design time. You cannot change its value programmatically.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tint Color",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The tint color for the volume control.  By default, the system uses the application’s tint color. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " The system only applies the tint color to the control’s default state (when the crown is not being used to adjust the volume). ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " You can change this value programmatically using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl/setTintColor(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/PUICAutoLaunchAudioOptOut": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether a watchOS app should opt out of automatically launching when its companion iOS app starts playing audio content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/PUICAutoLaunchAudioOptOut",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PUICAutoLaunchAudioOptOut",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/PUICAutoLaunchAudioOptOut"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that use features the app delegate monitors or controls, such as background tasks and extended runtime sessions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WatchKit",
+      "type": "topic",
+      "url": "/documentation/watchkit"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFileAsset": {
+      "abstract": [
+        {
+          "text": "An object that stores a reference to an audio file and provides metadata information about that file.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKAudioFileAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFileAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKAudioFileAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKAudioFileAsset",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkaudiofileasset"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFilePlayer": {
+      "abstract": [
+        {
+          "text": "An object that controls playback of a single audio item.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKAudioFilePlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFilePlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKAudioFilePlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKAudioFilePlayer",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkaudiofileplayer"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFilePlayerItem": {
+      "abstract": [
+        {
+          "text": "An object that manages the presentation state of an audio file while it is playing.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKAudioFilePlayerItem"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFilePlayerItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKAudioFilePlayerItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKAudioFilePlayerItem",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkaudiofileplayeritem"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFileQueuePlayer": {
+      "abstract": [
+        {
+          "text": "An object that controls playback of one or more audio items.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKAudioFileQueuePlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFileQueuePlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKAudioFileQueuePlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKAudioFileQueuePlayer",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkaudiofilequeueplayer"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject": {
+      "abstract": [
+        {
+          "text": "An object that provides information that is common to all interface objects in your watchOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceObject"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceObject",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobject"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl": {
+      "abstract": [
+        {
+          "text": "An interface element that provides control of the audio volume from the watch or a paired iPhone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceVolumeControl"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceVolumeControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceVolumeControl",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacevolumecontrol"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl/Origin": {
+      "abstract": [
+        {
+          "text": "The source of the audio managed by the volume control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Origin"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl/Origin",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Origin"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceVolumeControl.Origin",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacevolumecontrol/origin"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl/focus()": {
+      "abstract": [
+        {
+          "text": "Sets the volume control as the focus for input from the Digital Crown.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "focus"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl/focus()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "focus"
+        }
+      ],
+      "role": "symbol",
+      "title": "focus()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacevolumecontrol/focus()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl/init(origin:)": {
+      "abstract": [
+        {
+          "text": "Creates a volume control for use in SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "origin"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKInterfaceVolumeControl",
+          "text": "WKInterfaceVolumeControl"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@WKInterfaceVolumeControlOrigin",
+          "text": "Origin"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl/init(origin:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithOrigin:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(origin:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacevolumecontrol/init(origin:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl/resignFocus()": {
+      "abstract": [
+        {
+          "text": "Removes focus from the volume control, causing it to stop receiving input from the Digital Crown.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resignFocus"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl/resignFocus()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resignFocus"
+        }
+      ],
+      "role": "symbol",
+      "title": "resignFocus()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacevolumecontrol/resignfocus()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl/setTintColor(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the volume control’s tint color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTintColor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIColor",
+          "text": "UIColor"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl/setTintColor(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setTintColor:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setTintColor(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacevolumecontrol/settintcolor(_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/adding-a-now-playing-view": {
+      "abstract": [
+        {
+          "text": "Provide a view that controls the currently playing audio from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/adding-a-now-playing-view",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Now Playing View",
+      "type": "topic",
+      "url": "/documentation/watchkit/adding-a-now-playing-view"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/playing-background-audio": {
+      "abstract": [
+        {
+          "text": "Enable background audio in your app to provide a seamless playback experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/playing-background-audio",
+      "kind": "article",
+      "role": "article",
+      "title": "Playing Background Audio",
+      "type": "topic",
+      "url": "/documentation/watchkit/playing-background-audio"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Audio",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/playing-background-audio",
+        "doc://com.apple.watchkit/documentation/WatchKit/adding-a-now-playing-view",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/PUICAutoLaunchAudioOptOut",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFilePlayer",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFileQueuePlayer",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFilePlayerItem",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFileAsset"
+      ],
+      "title": "Audio"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Setting-the-Tint-Color",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl/setTintColor(_:)"
+      ],
+      "title": "Setting the Tint Color"
+    },
+    {
+      "anchor": "Managing-Input-from-the-Digital-Crown",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl/focus()",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl/resignFocus()"
+      ],
+      "title": "Managing Input from the Digital Crown"
+    },
+    {
+      "anchor": "SwiftUI",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl/init(origin:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl/Origin"
+      ],
+      "title": "SwiftUI"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "5.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "WKInterfaceVolumeControl"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceVolumeControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceVolumeControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.watchkit/documentation/WatchKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Setting-the-Tint-Color",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl/setTintColor(_:)"
+              ],
+              "title": "Setting the Tint Color"
+            },
+            {
+              "anchor": "Managing-Input-from-the-Digital-Crown",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl/focus()",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl/resignFocus()"
+              ],
+              "title": "Managing Input from the Digital Crown"
+            },
+            {
+              "anchor": "SwiftUI",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl/init(origin:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl/Origin"
+              ],
+              "title": "SwiftUI"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Audio",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/playing-background-audio",
+                "doc://com.apple.watchkit/documentation/WatchKit/adding-a-now-playing-view",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/PUICAutoLaunchAudioOptOut",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFilePlayer",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFileQueuePlayer",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFilePlayerItem",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKAudioFileAsset"
+              ],
+              "title": "Audio"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "WKInterfaceVolumeControl"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)WKInterfaceObject",
+                    "text": "WKInterfaceObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceVolumeControl~1focus()/title",
+          "value": "focus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceVolumeControl~1focus()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "focus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceVolumeControl~1Origin/title",
+          "value": "WKInterfaceVolumeControlOrigin"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceVolumeControl~1Origin/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceVolumeControlOrigin"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceVolumeControl~1Origin/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceVolumeControlOrigin"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAudioFilePlayer/title",
+          "value": "WKAudioFilePlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAudioFilePlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAudioFilePlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAudioFilePlayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAudioFilePlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceVolumeControl~1resignFocus()/title",
+          "value": "resignFocus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceVolumeControl~1resignFocus()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resignFocus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceVolumeControl~1init(origin:)/title",
+          "value": "initWithOrigin:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceVolumeControl~1init(origin:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithOrigin:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject/title",
+          "value": "WKInterfaceObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceVolumeControl~1setTintColor(_:)/title",
+          "value": "setTintColor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceVolumeControl~1setTintColor(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setTintColor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceVolumeControl/title",
+          "value": "WKInterfaceVolumeControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceVolumeControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceVolumeControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceVolumeControl/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceVolumeControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAudioFileAsset/title",
+          "value": "WKAudioFileAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAudioFileAsset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAudioFileAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAudioFileAsset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAudioFileAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAudioFileQueuePlayer/title",
+          "value": "WKAudioFileQueuePlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAudioFileQueuePlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAudioFileQueuePlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAudioFileQueuePlayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAudioFileQueuePlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAudioFilePlayerItem/title",
+          "value": "WKAudioFilePlayerItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAudioFilePlayerItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAudioFilePlayerItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKAudioFilePlayerItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKAudioFilePlayerItem"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/watchkit/wkinterfacevolumecontrol"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/watchkit/wkinterfacevolumecontrol"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

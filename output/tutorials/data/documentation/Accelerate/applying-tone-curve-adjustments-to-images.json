@@ -1,0 +1,1510 @@
+{
+  "abstract": [
+    {
+      "text": "Use the vImage library’s polynomial transform to apply tone curve adjustments to images.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations",
+        "doc://com.apple.accelerate/documentation/Accelerate/transforming-with-polynomials"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/applying-tone-curve-adjustments-to-images"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.3",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Applying tone curve adjustments to images"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vImage library provides a suite of functions for applying polynomials to images. The results of these functions are similar to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/en-gb/guide/photos/pht7875d6b19/7.0/mac/12.0",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " tool in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.apple.com/uk/macos/photos/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " app. You can use the polynomial adjustment functions to adjust the overall look of a photo, change the look of specific colors (red, green, and blue), and adjust settings for the black point, midtones, and white point.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project calculates the polynomial coefficients from a set of values that the user defines using handles in the user interface. The vImage polynomial functions evaluate the polynomial coefficients to define the tone curve. The technique that calculates the coefficients is the Vandermonde method. To learn more about this technique, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/finding-an-interpolating-polynomial-using-the-vandermonde-method",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To generate the smooth curves in the user interface, the app passes the same coefficients that the vImage polynomial transform function uses to the vDSP ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/evaluatePolynomial(usingCoefficients:withVariables:)-31vi2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following image shows the sample code project’s app. The circles on the curves are the handles that the user can drag vertically, and the image changes to show the effect of the polynomial transform.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "vImagePolynomial_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Convert-the-interleaved-source-image-to-planar-buffers",
+          "level": 3,
+          "text": "Convert the interleaved source image to planar buffers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code project accepts source images that it converts to RGB, 32-bit per channel format. Because the vImage polynomial transform functions work on planar buffers, the code creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PlanarFx3",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " multiple-plane ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure that contains the separate red, green, and blue channels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After creating ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structures that store the interleaved and planar representations of the source image, the ",
+              "type": "text"
+            },
+            {
+              "code": "populatePlanarSourceBuffers()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function copies and deinterleaves the interleaved image to the planar buffers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func populatePlanarSourceBuffers() {",
+            "    srcInterleavedBuffer.deinterleave(destination: srcPlanarBuffers)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about working with planar buffers in vImage, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-default-curve-control-points",
+          "level": 3,
+          "text": "Create the default curve control points",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code project defines five data points for each color channel that control the tone curve. By default, these form a linear ramp from ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The code calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/ramp(withInitialValue:increment:count:)-3cast",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to populate the ",
+              "type": "text"
+            },
+            {
+              "code": "redHandleValues",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "greenHandleValues",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "blueHandleValues",
+              "type": "codeVoice"
+            },
+            {
+              "text": " arrays. The following shows the code that populates the ",
+              "type": "text"
+            },
+            {
+              "code": "greenHandleValues",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "greenHandleValues = vDSP.ramp(",
+            "    in: 0 ... 1,",
+            "    count: PolynomialTransformer.count)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the sample code app first launches, the default values form a linear tone curve that renders as a stright line in the user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "tone_curve.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default control points create an output image that’s identical to the input image. That is, for each pixel, the transformed output value is equal to the input value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-the-polynomial-transform",
+          "level": 3,
+          "text": "Apply the polynomial transform",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user adjusts the control points in the user interface, a ",
+              "type": "text"
+            },
+            {
+              "code": "didSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property observer applies the polynomial to the corresponding planar buffer. For example, the following shows the code for the green values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Published var greenHandleValues: [Double]! {",
+            "    didSet {",
+            "        greenCoefficients = calculateAndApplyPolynomial(",
+            "            forHandleValues: greenHandleValues,",
+            "            at: 1,",
+            "            source: srcPlanarBuffers,",
+            "            destination: destPlanarBuffers)",
+            "        ",
+            "        displayPlanarDestinationBuffers()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "calculateAndApplyPolynomial()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function calls ",
+              "type": "text"
+            },
+            {
+              "code": "calculateCoefficients()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to calculate the coefficients using the Vandermonde method. It then passes the coefficients to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-26zom",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The vImage polynomial function effectively creates a polynomial curve from the specified coefficients and uses that as the tone curve. For each point on the curve, the horizontal position represents the input value, and the vertical position represents the output value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func calculateAndApplyPolynomial(",
+            "    forHandleValues values: [Double],",
+            "    at planeIndex: Int,",
+            "    source: vImage.PixelBuffer<vImage.PlanarFx4>,",
+            "    destination: vImage.PixelBuffer<vImage.PlanarFx4>) -> [Float] {",
+            "        ",
+            "        let coefficients = calculateCoefficients(values: values.map { Float($0) })",
+            "        ",
+            "        source.withUnsafePixelBuffer(at: planeIndex) { src in",
+            "            destination.withUnsafePixelBuffer(at: planeIndex) { dest in",
+            "                ",
+            "                src.applyPolynomial(",
+            "                    coefficientSegments: [coefficients],",
+            "                    boundaries: [-.infinity, .infinity],",
+            "                    destination: dest)",
+            "            }",
+            "        }",
+            "        ",
+            "        return coefficients",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the transform, the ",
+              "type": "text"
+            },
+            {
+              "code": "displayPlanarDestinationBuffers()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(destination:)-46cgi",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to generate an interleaved image that the sample code displays in the user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-the-tone-curve-in-the-user-interface",
+          "level": 3,
+          "text": "Display the tone curve in the user interface",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "PolynomialEditor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class uses the coefficients that the ",
+              "type": "text"
+            },
+            {
+              "code": "applyPolynomial()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function computes to render a representation of the response curve.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "updatePath()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/evaluatePolynomial(usingCoefficients:withVariables:result:)-2ncdh",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to build a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgpath",
+              "isActive": true,
+              "overridingTitle": "CGPath",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CGPath",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " instance that the editor uses to render a smooth curve in the user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static func updatePath(path: inout Path,",
+            "                       size: CGSize,",
+            "                       coefficients: [Float]) {",
+            "    ",
+            "    let polynomialResult = [Float](unsafeUninitializedCapacity: ramp.count) {",
+            "        buffer, initializedCount in",
+            "        ",
+            "        vDSP.evaluatePolynomial(usingCoefficients: coefficients.reversed(),",
+            "                                withVariables: ramp,",
+            "                                result: &buffer)",
+            "        ",
+            "        vDSP.clip(buffer,",
+            "                  to: 0 ... 1,",
+            "                  result: &buffer)",
+            "        ",
+            "        initializedCount = ramp.count",
+            "    }",
+            "",
+            "    let cgPath = CGMutablePath()",
+            "    let hScale = size.width / 256",
+            "    let points: [CGPoint] = polynomialResult.enumerated().map {",
+            "        CGPoint(x: CGFloat($0.offset) * hScale,",
+            "                y: size.height - (size.height * CGFloat($0.element) ))",
+            "    }",
+            "",
+            "    cgPath.addLines(between: points)",
+            "    ",
+            "    path = Path(cgPath)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "a4ddc72d3634/ApplyingToneCurveAdjustmentsToImages.zip": {
+      "checksum": "a4ddc72d3634f0f0db5a26b0db2c0e279d33f56c6fcda9a5ce86c3bc8e7cb4e5e59a70f8c74b2a225c4e533138cf2d5d28650bc0e5ab9a6f8fe8230e70f01696",
+      "identifier": "a4ddc72d3634/ApplyingToneCurveAdjustmentsToImages.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/a4ddc72d3634/ApplyingToneCurveAdjustmentsToImages.zip"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/adjusting-saturation-and-applying-tone-mapping": {
+      "abstract": [
+        {
+          "text": "Convert an RGB image to discrete luminance and chrominance channels, and apply color and contrast treatments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/adjusting-saturation-and-applying-tone-mapping",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adjusting saturation and applying tone mapping",
+      "type": "topic",
+      "url": "/documentation/accelerate/adjusting-saturation-and-applying-tone-mapping"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-brightness-and-contrast-of-an-image": {
+      "abstract": [
+        {
+          "text": "Use a gamma function to apply a linear or exponential curve.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-brightness-and-contrast-of-an-image",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adjusting the brightness and contrast of an image",
+      "type": "topic",
+      "url": "/documentation/accelerate/adjusting-the-brightness-and-contrast-of-an-image"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-hue-of-an-image": {
+      "abstract": [
+        {
+          "text": "Convert an image to L*a*b* color space and apply hue adjustment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-hue-of-an-image",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adjusting the hue of an image",
+      "type": "topic",
+      "url": "/documentation/accelerate/adjusting-the-hue-of-an-image"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/enhancing-image-contrast-with-histogram-manipulation": {
+      "abstract": [
+        {
+          "text": "Enhance and adjust the contrast of an image with histogram equalization and contrast stretching.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/enhancing-image-contrast-with-histogram-manipulation",
+      "kind": "article",
+      "role": "article",
+      "title": "Enhancing image contrast with histogram manipulation",
+      "type": "topic",
+      "url": "/documentation/accelerate/enhancing-image-contrast-with-histogram-manipulation"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/finding-an-interpolating-polynomial-using-the-vandermonde-method": {
+      "abstract": [
+        {
+          "text": "Use LAPACK to solve a linear system and find an interpolating polynomial to construct new points between a series of known data points.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/finding-an-interpolating-polynomial-using-the-vandermonde-method",
+      "kind": "article",
+      "role": "article",
+      "title": "Finding an interpolating polynomial using the Vandermonde method",
+      "type": "topic",
+      "url": "/documentation/accelerate/finding-an-interpolating-polynomial-using-the-vandermonde-method"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/histogram": {
+      "abstract": [
+        {
+          "text": "Calculate or manipulate an image’s histogram.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/histogram",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Histogram",
+      "type": "topic",
+      "url": "/documentation/accelerate/histogram"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance": {
+      "abstract": [
+        {
+          "text": "Improve your app’s performance by converting image buffer formats from interleaved to planar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing image-processing performance",
+      "type": "topic",
+      "url": "/documentation/accelerate/optimizing-image-processing-performance"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/specifying-histograms-with-vimage": {
+      "abstract": [
+        {
+          "text": "Calculate the histogram of one image, and apply it to a second image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/specifying-histograms-with-vimage",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Specifying histograms with vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/specifying-histograms-with-vimage"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/transforming-with-polynomials": {
+      "abstract": [
+        {
+          "text": "Use polynomials to apply color transformations to images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/transforming-with-polynomials",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Transforming with polynomials",
+      "type": "topic",
+      "url": "/documentation/accelerate/transforming-with-polynomials"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/evaluatePolynomial(usingCoefficients:withVariables:)-31vi2": {
+      "abstract": [
+        {
+          "text": "Returns a double-precision evaluated polynomial using specified coefficients and variables.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "evaluatePolynomial"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "usingCoefficients"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withVariables"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/evaluatePolynomial(usingCoefficients:withVariables:)-31vi2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "evaluatePolynomial(usingCoefficients:withVariables:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/evaluatepolynomial(usingcoefficients:withvariables:)-31vi2"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/evaluatePolynomial(usingCoefficients:withVariables:result:)-2ncdh": {
+      "abstract": [
+        {
+          "text": "Evaluates a double-precision polynomial using specified coefficients and variables.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "evaluatePolynomial"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "usingCoefficients"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withVariables"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/evaluatePolynomial(usingCoefficients:withVariables:result:)-2ncdh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "evaluatePolynomial(usingCoefficients:withVariables:result:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/evaluatepolynomial(usingcoefficients:withvariables:result:)-2ncdh"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/ramp(withInitialValue:increment:count:)-3cast": {
+      "abstract": [
+        {
+          "text": "Returns a double-precision vector that contains monotonically incrementing or decrementing values using an initial value and increment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ramp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withInitialValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "increment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/ramp(withInitialValue:increment:count:)-3cast",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ramp(withInitialValue:increment:count:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/ramp(withinitialvalue:increment:count:)-3cast"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer": {
+      "abstract": [
+        {
+          "text": "An image buffer that stores an image’s pixel data, dimensions, bit depth, and number of channels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.PixelBuffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-26zom": {
+      "abstract": [
+        {
+          "text": "Applies a set of piecewise polynomials to a 3-channel, 32-bit interleaved buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.InterleavedFx3",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyPolynomial"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coefficientSegments"
+        },
+        {
+          "kind": "text",
+          "text": ": [["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "boundaries"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/applyPolynomial(coefficientSegments:boundaries:destination:)-26zom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applyPolynomial(coefficientSegments:boundaries:destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/applypolynomial(coefficientsegments:boundaries:destination:)-26zom"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(destination:)-46cgi": {
+      "abstract": [
+        {
+          "text": "Interleaves the 8-bit-per-channel, three-channel multiple-plane buffer and writes the result to an interleaved pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Planar8x3",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interleave"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO14Interleaved8x3V",
+          "text": "Interleaved8x3"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/interleave(destination:)-46cgi",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interleave(destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/interleave(destination:)-46cgi"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PlanarFx3": {
+      "abstract": [
+        {
+          "text": "A pixel buffer that contains three homogeneous 32-bit, floating-point planes, for example, RGB.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlanarFx3"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PlanarFx3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlanarFx3"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.PlanarFx3",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/planarfx3"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-library": {
+      "abstract": [
+        {
+          "text": "Manipulate large images using the CPU’s vector processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-library"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations": {
+      "abstract": [
+        {
+          "text": "Apply image manipulation operations to vImage buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-operations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage Operations",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-operations"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgpath": {
+      "abstract": [
+        {
+          "text": "An immutable graphics path: a mathematical description of shapes or lines to be drawn in a graphics context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGPath"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPath",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgpath"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://support.apple.com/en-gb/guide/photos/pht7875d6b19/7.0/mac/12.0": {
+      "identifier": "https://support.apple.com/en-gb/guide/photos/pht7875d6b19/7.0/mac/12.0",
+      "title": "Curves adjustment",
+      "titleInlineContent": [
+        {
+          "text": "Curves adjustment",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-gb/guide/photos/pht7875d6b19/7.0/mac/12.0"
+    },
+    "https://www.apple.com/uk/macos/photos/": {
+      "identifier": "https://www.apple.com/uk/macos/photos/",
+      "title": "Mac Photos",
+      "titleInlineContent": [
+        {
+          "text": "Mac Photos",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.apple.com/uk/macos/photos/"
+    },
+    "tone_curve.png": {
+      "alt": "A screenshot showing the sample code app with the original unadjusted photograph on the left, and the three linear tone controls on the right for the red, green, and blue channels.",
+      "identifier": "tone_curve.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/be0076c7c847f81d910518064d785e2a/tone_curve.png"
+        }
+      ]
+    },
+    "vImagePolynomial_2x.png": {
+      "alt": "A screenshot showing the sample code app with the transformed photograph on the left after adjustment, and the three tone curve controls on the right for the red, green, and blue channels.",
+      "identifier": "vImagePolynomial_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dc8351ac3a9e7073974d9decfac88e97/vImagePolynomial_2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "a4ddc72d3634/ApplyingToneCurveAdjustmentsToImages.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Color-and-Tone-Adjustment",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-brightness-and-contrast-of-an-image",
+        "doc://com.apple.accelerate/documentation/Accelerate/adjusting-saturation-and-applying-tone-mapping",
+        "doc://com.apple.accelerate/documentation/Accelerate/adjusting-the-hue-of-an-image",
+        "doc://com.apple.accelerate/documentation/Accelerate/specifying-histograms-with-vimage",
+        "doc://com.apple.accelerate/documentation/Accelerate/enhancing-image-contrast-with-histogram-manipulation",
+        "doc://com.apple.accelerate/documentation/Accelerate/histogram"
+      ],
+      "title": "Color and Tone Adjustment"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgpath/title",
+          "value": "CGPathRef"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,372 @@
+{
+  "abstract": [
+    {
+      "text": "Contains profile and other information needed to set up a color world.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/cmconcatprofileset"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1560604,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@CMConcatProfileSet",
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "10.6",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "CMConcatProfileSet"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " CMConcatProfileSet {"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "    ..."
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "} "
+            },
+            {
+              "kind": "identifier",
+              "text": "CMConcatProfileSet"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can call the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805079-ncwnewcolorworld",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create a color world for operations such as color matching and color conversion. A color world is normally based on two profiles—source and destination. But it can include a series of profiles that describe the processing for a work-flow sequence, such as scanning, printing, and previewing an image. To create a color world that includes a series of profiles, you use the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805087-cwconcatcolorworld",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The array specified in the ",
+              "type": "text"
+            },
+            {
+              "code": "profileSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field identifies a concatenated profile set your application can use to establish a color world in which the sequential relationship among the profiles exists until your application disposes of the color world. Alternatively, you can create a device link profile composed of a series of linked profiles that remains intact and available for use again after your application disposes of the concatenated color world. In either case, you use a data structure of type ",
+              "type": "text"
+            },
+            {
+              "code": "CMConcatProfileSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to define the profile set. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A device link profile accommodates users who use a specific configuration requiring a combination of device profiles and possibly non-device profiles repeatedly over time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set up a color world that includes a concatenated set of profiles, your application uses the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805087-cwconcatcolorworld",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " , passing it a structure of type ",
+              "type": "text"
+            },
+            {
+              "code": "CMConcatProfileSet.",
+              "type": "codeVoice"
+            },
+            {
+              "text": " The array you pass may contain a set of profile references or it may contain only the profile reference of a device link profile. To create a device link profile, your application calls the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804915-cwnewlinkprofile",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", passing a structure of type ",
+              "type": "text"
+            },
+            {
+              "code": "CMConcatProfileSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmconcatprofileset/1560151-profileset": {
+      "abstract": [
+        {
+          "text": "A variable-length array of profile references. The references must be in processing order from source to destination. The rules governing the types of profiles you can specify in a profile array differ depending on whether you are creating a profile set for the function ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805087-cwconcatcolorworld",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " or for the function ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804915-cwnewlinkprofile",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ". See the function descriptions for details. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmconcatprofileset/1560151-profileset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "profileSet",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmconcatprofileset/1560151-profileset"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmconcatprofileset/1560608-keyindex": {
+      "abstract": [
+        {
+          "text": "A zero-based index into the array of profile references identifying the profile whose CMM is used for the entire session. The profile’s ",
+          "type": "text"
+        },
+        {
+          "code": "CMMType",
+          "type": "codeVoice"
+        },
+        {
+          "text": " field identifies the CMM.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmconcatprofileset/1560608-keyindex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keyIndex",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmconcatprofileset/1560608-keyindex"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmconcatprofileset/1560649-count": {
+      "abstract": [
+        {
+          "text": "The one-based count of profiles in the profile array. A minimum of one profile is required.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmconcatprofileset/1560649-count",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "count",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmconcatprofileset/1560649-count"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ColorSync Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804915-cwnewlinkprofile": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804915-cwnewlinkprofile",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CWNewLinkProfile",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804915-cwnewlinkprofile"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805079-ncwnewcolorworld": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805079-ncwnewcolorworld",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "NCWNewColorWorld",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805079-ncwnewcolorworld"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805087-cwconcatcolorworld": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805087-cwconcatcolorworld",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CWConcatColorWorld",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805087-cwconcatcolorworld"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "2974079",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/cmconcatprofileset/1560649-count",
+        "doc://com.apple.documentation/documentation/applicationservices/cmconcatprofileset/1560608-keyindex",
+        "doc://com.apple.documentation/documentation/applicationservices/cmconcatprofileset/1560151-profileset"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/cmconcatprofileset"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

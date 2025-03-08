@@ -1,0 +1,1111 @@
+{
+  "abstract": [
+    {
+      "text": "A Boolean value indicating whether the depth map contains temporally smoothed data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/isDepthDataFiltered"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AVDepthData(py)depthDataFiltered",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "isDepthDataFiltered"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sb",
+        "text": "Bool"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "depthDataFiltered"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.13",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "isDepthDataFiltered"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "isDepthDataFiltered"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sb",
+              "text": "Bool"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The capture system can smooth noise and fill in missing values (caused by low light or lens occlusion) in depth data maps by temporally interpolating between previous and subsequent frames of captured depth data. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDepthDataOutput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDepthDataOutput/isFilteringEnabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to control filtering for streaming depth capture, or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/isDepthDataFiltered",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to control filtering for depth data captured alongside photo capture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Filtering depth data makes it more useful for applying visual effects to a companion image, but alters the data such that it may no longer be suitable for computer vision tasks. (In an unfiltered depth map, missing values are represented as ",
+              "type": "text"
+            },
+            {
+              "code": "NaN",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDepthDataOutput": {
+      "abstract": [
+        {
+          "text": "A capture output that records scene depth information on compatible camera devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDepthDataOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDepthDataOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDepthDataOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDepthDataOutput",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedepthdataoutput"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDepthDataOutput/isFilteringEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the depth data output should filter depth data to smooth out noise and fill invalid values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isFilteringEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDepthDataOutput/isFilteringEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "filteringEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isFilteringEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedepthdataoutput/isfilteringenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings": {
+      "abstract": [
+        {
+          "text": "A specification of the features and settings to use for a single photo capture request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCapturePhotoSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCapturePhotoSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCapturePhotoSettings",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturephotosettings"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData": {
+      "abstract": [
+        {
+          "text": "A container for per-pixel distance or disparity information captured by compatible camera devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVDepthData"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVDepthData"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVDepthData",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/Accuracy": {
+      "abstract": [
+        {
+          "text": "Values indicating the general accuracy of a depth data map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Accuracy"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/Accuracy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Accuracy"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVDepthData.Accuracy",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata/accuracy"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/Quality": {
+      "abstract": [
+        {
+          "text": "Values indicating the overall quality of a depth data map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Quality"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/Quality",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Quality"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVDepthData.Quality",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata/quality"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/depthDataAccuracy": {
+      "abstract": [
+        {
+          "text": "The general accuracy of depth data map values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "depthDataAccuracy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVDepthData",
+          "text": "AVDepthData"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVDepthDataAccuracy",
+          "text": "Accuracy"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/depthDataAccuracy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "depthDataAccuracy"
+        }
+      ],
+      "role": "symbol",
+      "title": "depthDataAccuracy",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata/depthdataaccuracy"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/depthDataQuality": {
+      "abstract": [
+        {
+          "text": "The overall quality of the depth map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "depthDataQuality"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVDepthData",
+          "text": "AVDepthData"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVDepthDataQuality",
+          "text": "Quality"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/depthDataQuality",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "depthDataQuality"
+        }
+      ],
+      "role": "symbol",
+      "title": "depthDataQuality",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata/depthdataquality"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/isDepthDataFiltered": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the depth map contains temporally smoothed data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDepthDataFiltered"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/isDepthDataFiltered",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "depthDataFiltered"
+        }
+      ],
+      "role": "symbol",
+      "title": "isDepthDataFiltered",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata/isdepthdatafiltered"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@BOOL": {
+      "abstract": [
+        {
+          "text": "Type to represent a Boolean value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BOOL",
+      "type": "topic",
+      "url": "/documentation/objectivec/bool"
+    },
+    "doc://com.externally.resolved.symbol/s:Sb": {
+      "abstract": [
+        {
+          "text": "A value type whose instances are either `true` or `false`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/Swift/Bool"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Evaluating-Depth-Data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/depthDataAccuracy",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/Accuracy",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/depthDataQuality",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/Quality"
+      ],
+      "title": "Evaluating Depth Data"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.13",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "depthDataFiltered"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "depthDataFiltered"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfoundation/documentation/AVFoundation",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Evaluating-Depth-Data",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/depthDataAccuracy",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/Accuracy",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/depthDataQuality",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData/Quality"
+              ],
+              "title": "Evaluating Depth Data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "readonly"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "getter"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "="
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "isDepthDataFiltered"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@BOOL",
+                    "text": "BOOL"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "depthDataFiltered"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1depthDataAccuracy/title",
+          "value": "depthDataAccuracy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1depthDataAccuracy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "depthDataAccuracy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1depthDataQuality/title",
+          "value": "depthDataQuality"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1depthDataQuality/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "depthDataQuality"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData/title",
+          "value": "AVDepthData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDepthData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDepthData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDepthDataOutput~1isFilteringEnabled/title",
+          "value": "filteringEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDepthDataOutput~1isFilteringEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "filteringEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1Quality/title",
+          "value": "AVDepthDataQuality"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1Quality/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDepthDataQuality"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1Quality/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDepthDataQuality"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings/title",
+          "value": "AVCapturePhotoSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCapturePhotoSettings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCapturePhotoSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1isDepthDataFiltered/title",
+          "value": "depthDataFiltered"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1isDepthDataFiltered/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "depthDataFiltered"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDepthDataOutput/title",
+          "value": "AVCaptureDepthDataOutput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDepthDataOutput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDepthDataOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDepthDataOutput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDepthDataOutput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1Accuracy/title",
+          "value": "AVDepthDataAccuracy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1Accuracy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDepthDataAccuracy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData~1Accuracy/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDepthDataAccuracy"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/avdepthdata/isdepthdatafiltered"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/avdepthdata/isdepthdatafiltered"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

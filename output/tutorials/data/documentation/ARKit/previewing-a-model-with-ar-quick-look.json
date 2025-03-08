@@ -1,0 +1,745 @@
+{
+  "abstract": [
+    {
+      "text": "Display a model or scene that the user can move, scale, and share with others.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/previewing-a-model-with-ar-quick-look"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Previewing a Model with AR Quick Look"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AR Quick Look enables the user to place virtual content that you provide on any surface that ARKit finds in the real-world environment. Users can interact with your virtual content by moving and scaling it using touch gestures, or by sharing it with others through the iOS share sheet.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3226920",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Choose-an-Input-Format",
+          "level": 3,
+          "text": "Choose an Input Format",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You provide content for your AR experience in ",
+              "type": "text"
+            },
+            {
+              "code": ".usdz",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": ".reality",
+              "type": "codeVoice"
+            },
+            {
+              "text": " format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To browse a library of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".usdz",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " files, see the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/arkit/gallery/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To browse a library of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".reality",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " assets, use Reality Composer. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Creating 3D Content with Reality Composer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you include a Reality Composer file (",
+                  "type": "text"
+                },
+                {
+                  "code": ".rcproject",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ") in your app’s Copy Files build phase, Xcode automatically outputs a converted ",
+                  "type": "text"
+                },
+                {
+                  "code": ".reality",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file in your app bundle at build time.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Display-an-AR-Experience-in-Your-App",
+          "level": 3,
+          "text": "Display an AR Experience in Your App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your app, you enable AR Quick Look by providing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuickLook/QLPreviewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a supported input file. The following code demonstrates previewing a scene named ",
+              "type": "text"
+            },
+            {
+              "code": "myScene",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from the app bundle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import UIKit",
+            "import QuickLook",
+            "import ARKit",
+            "",
+            "class ViewController: UIViewController, QLPreviewControllerDataSource {",
+            "",
+            "    override func viewDidAppear(_ animated: Bool) {",
+            "        let previewController = QLPreviewController()",
+            "        previewController.dataSource = self",
+            "        present(previewController, animated: true, completion: nil)",
+            "    }",
+            "",
+            "    func numberOfPreviewItems(in controller: QLPreviewController) -> Int { return 1 }",
+            "",
+            "    func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {",
+            "        guard let path = Bundle.main.path(forResource: \"myScene\", ofType: \"reality\") else { fatalError(\"Couldn't find the supported input file.\") }",
+            "        let url = URL(fileURLWithPath: path)",
+            "        return url as QLPreviewItem",
+            "    }    ",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To prevent the user from scaling your virtual content or to customize the default share sheet behavior, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARQuickLookPreviewItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuickLook/QLPreviewItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-an-AR-Experience-in-Your-Web-Page",
+          "level": 3,
+          "text": "Display an AR Experience in Your Web Page",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your web page, you enable AR Quick Look by linking a supported input file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<div>",
+            "    <a rel=\"ar\" href=\"/assets/models/my-model.usdz\">",
+            "        <img src=\"/assets/models/my-model-thumbnail.jpg\">",
+            "    </a>",
+            "</div>"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user clicks the link in Safari or within a web view that’s displayed in your app, iOS presents your scene in an AR Quick Look view on your behalf. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://webkit.org/blog/8421/viewing-augmented-reality-assets-in-safari-for-ios/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARQuickLookPreviewItem": {
+      "abstract": [
+        {
+          "text": "An object for customizing the AR Quick Look experience.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARQuickLookPreviewItem"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARQuickLookPreviewItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARQuickLookPreviewItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARQuickLookPreviewItem",
+      "type": "topic",
+      "url": "/documentation/arkit/arquicklookpreviewitem"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/adding-an-apple-pay-button-or-a-custom-action-in-ar-quick-look": {
+      "abstract": [
+        {
+          "text": "Provide a banner that users can tap to make a purchase or perform a custom action in an AR experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/adding-an-apple-pay-button-or-a-custom-action-in-ar-quick-look",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding an Apple Pay Button or a Custom Action in AR Quick Look",
+      "type": "topic",
+      "url": "/documentation/arkit/adding-an-apple-pay-button-or-a-custom-action-in-ar-quick-look"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/adding-visual-effects-in-ar-quick-look-and-realitykit": {
+      "abstract": [
+        {
+          "text": "Balance the appearance and performance of your AR experiences with modeling strategies.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/adding-visual-effects-in-ar-quick-look-and-realitykit",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Visual Effects in AR Quick Look and RealityKit",
+      "type": "topic",
+      "url": "/documentation/arkit/adding-visual-effects-in-ar-quick-look-and-realitykit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios": {
+      "abstract": [
+        {
+          "text": "Integrate iOS device camera and motion features to produce augmented reality experiences in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in iOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-ios"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/specifying-a-lighting-environment-in-ar-quick-look": {
+      "abstract": [
+        {
+          "text": "Add metadata to your USDZ file to specify its lighting characteristics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/specifying-a-lighting-environment-in-ar-quick-look",
+      "kind": "article",
+      "role": "article",
+      "title": "Specifying a lighting environment in AR Quick Look",
+      "type": "topic",
+      "url": "/documentation/arkit/specifying-a-lighting-environment-in-ar-quick-look"
+    },
+    "doc://com.apple.documentation/documentation/QuickLook/QLPreviewController": {
+      "abstract": [
+        {
+          "text": "A specialized view controller for previewing an item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLPreviewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuickLook/QLPreviewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "QLPreviewController",
+      "type": "topic",
+      "url": "/documentation/QuickLook/QLPreviewController"
+    },
+    "doc://com.apple.documentation/documentation/QuickLook/QLPreviewItem": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLPreviewItem"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuickLook/QLPreviewItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "QLPreviewItem",
+      "type": "topic",
+      "url": "/documentation/QuickLook/QLPreviewItem"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/usdz-schemas-for-ar": {
+      "abstract": [
+        {
+          "text": "Add augmented reality functionality to your 3D content using USDZ schemas.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/usdz-schemas-for-ar",
+      "kind": "article",
+      "role": "article",
+      "title": "USDZ schemas for AR",
+      "type": "topic",
+      "url": "/documentation/RealityKit/usdz-schemas-for-ar"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/arkit/gallery/": {
+      "identifier": "https://developer.apple.com/arkit/gallery/",
+      "title": "AR Quick Look Gallery",
+      "titleInlineContent": [
+        {
+          "text": "AR Quick Look Gallery",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/arkit/gallery/"
+    },
+    "https://webkit.org/blog/8421/viewing-augmented-reality-assets-in-safari-for-ios/": {
+      "identifier": "https://webkit.org/blog/8421/viewing-augmented-reality-assets-in-safari-for-ios/",
+      "title": "Viewing Augmented Reality Assets in Safari for iOS",
+      "titleInlineContent": [
+        {
+          "text": "Viewing Augmented Reality Assets in Safari for iOS",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://webkit.org/blog/8421/viewing-augmented-reality-assets-in-safari-for-ios/"
+    },
+    "media-3226920": {
+      "alt": "Screenshot of a virtual guitar that’s placed in the real world environment via AR Quick Look.  ",
+      "identifier": "media-3226920",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7687b2dae46a3ccf6f9f3c99946e0d2d/media-3226920@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "AR-Quick-Look",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/adding-visual-effects-in-ar-quick-look-and-realitykit",
+        "doc://com.apple.arkit/documentation/ARKit/adding-an-apple-pay-button-or-a-custom-action-in-ar-quick-look",
+        "doc://com.apple.arkit/documentation/ARKit/ARQuickLookPreviewItem",
+        "doc://com.apple.documentation/documentation/RealityKit/usdz-schemas-for-ar",
+        "doc://com.apple.arkit/documentation/ARKit/specifying-a-lighting-environment-in-ar-quick-look"
+      ],
+      "title": "AR Quick Look"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "AR-Quick-Look",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/adding-visual-effects-in-ar-quick-look-and-realitykit",
+                "doc://com.apple.arkit/documentation/ARKit/adding-an-apple-pay-button-or-a-custom-action-in-ar-quick-look",
+                "doc://com.apple.arkit/documentation/ARKit/ARQuickLookPreviewItem",
+                "doc://com.apple.arkit/documentation/ARKit/specifying-a-lighting-environment-in-ar-quick-look"
+              ],
+              "title": "AR Quick Look"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARQuickLookPreviewItem/title",
+          "value": "ARQuickLookPreviewItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARQuickLookPreviewItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARQuickLookPreviewItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARQuickLookPreviewItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARQuickLookPreviewItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuickLook~1QLPreviewItem/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "QLPreviewItem"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuickLook~1QLPreviewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "QLPreviewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/previewing-a-model-with-ar-quick-look"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/previewing-a-model-with-ar-quick-look"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

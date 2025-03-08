@@ -1,0 +1,2125 @@
+{
+  "abstract": [
+    {
+      "text": "A ",
+      "type": "text"
+    },
+    {
+      "code": "CBIdentity",
+      "type": "codeVoice"
+    },
+    {
+      "text": " object is used for accessing the attributes of an identity stored in an identity authority. You can use an identity object for finding identities, and storing them in an access control list (ACL). If you need to edit these attributes, take advantage of the ",
+      "type": "text"
+    },
+    {
+      "code": "CSIdentity",
+      "type": "codeVoice"
+    },
+    {
+      "text": " class in Core Services.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.collaboration/documentation/Collaboration"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CBIdentity",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CBIdentity"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Collaboration"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CBIdentity"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.5",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CBIdentity"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CBIdentity"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can obtain a ",
+              "type": "text"
+            },
+            {
+              "code": "CBIdentity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object from one of the following class factory methods: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/init(name:authority:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/init(uuidString:authority:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/init(persistentReference:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/identityWithCSIdentity:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "CBIdentity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object has methods to support for interoperability with the Core Services Identity API. Send ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/CSIdentity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to your ",
+              "type": "text"
+            },
+            {
+              "code": "CBIdentity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object to return an opaque object for use in the Core Services Identity API. Similarly, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/identityWithCSIdentity:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to use an Core Services Identity opaque object in the Collaboration framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two subclasses of ",
+              "type": "text"
+            },
+            {
+              "code": "CBIdentity",
+              "type": "codeVoice"
+            },
+            {
+              "text": ": ",
+              "type": "text"
+            },
+            {
+              "code": "CBGroupIdentity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "CBUserIdentity",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If you are working specifically with a group identity, use ",
+              "type": "text"
+            },
+            {
+              "code": "CBGroupIdentity",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Similarly, if you are working with a user identity, use ",
+              "type": "text"
+            },
+            {
+              "code": "CBUserIdentity",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.collaboration/documentation/Collaboration": {
+      "abstract": [
+        {
+          "text": "Find and access identities, that is, users and groups. Display the Identity Picker, which lets users create and select identities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.collaboration/documentation/Collaboration",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Collaboration",
+      "type": "topic",
+      "url": "/documentation/collaboration"
+    },
+    "doc://com.apple.collaboration/documentation/Collaboration/CBGroupIdentity": {
+      "abstract": [
+        {
+          "text": "An object of the ",
+          "type": "text"
+        },
+        {
+          "code": "CBGroupIdentity",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class represents a group identity and is used for viewing the attributes of group identities from an identity authority. The principal attributes of a ",
+          "type": "text"
+        },
+        {
+          "code": "CBGroupIdentity",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object are a POSIX group identifier (GID) and a list of members.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBGroupIdentity"
+        }
+      ],
+      "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBGroupIdentity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CBGroupIdentity"
+        }
+      ],
+      "role": "symbol",
+      "title": "CBGroupIdentity",
+      "type": "topic",
+      "url": "/documentation/collaboration/cbgroupidentity"
+    },
+    "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity": {
+      "abstract": [
+        {
+          "text": "A ",
+          "type": "text"
+        },
+        {
+          "code": "CBIdentity",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object is used for accessing the attributes of an identity stored in an identity authority. You can use an identity object for finding identities, and storing them in an access control list (ACL). If you need to edit these attributes, take advantage of the ",
+          "type": "text"
+        },
+        {
+          "code": "CSIdentity",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class in Core Services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBIdentity"
+        }
+      ],
+      "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CBIdentity"
+        }
+      ],
+      "role": "symbol",
+      "title": "CBIdentity",
+      "type": "topic",
+      "url": "/documentation/collaboration/cbidentity"
+    },
+    "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/CSIdentity": {
+      "abstract": [
+        {
+          "text": "Returns an opaque object for use with the Core Services Identity API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CSIdentity"
+        }
+      ],
+      "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/CSIdentity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentity",
+      "type": "topic",
+      "url": "/documentation/collaboration/cbidentity/csidentity"
+    },
+    "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/aliases": {
+      "abstract": [
+        {
+          "text": "Returns an array of aliases (alternate names) for the identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "aliases"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/aliases",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "aliases"
+        }
+      ],
+      "role": "symbol",
+      "title": "aliases",
+      "type": "topic",
+      "url": "/documentation/collaboration/cbidentity/aliases"
+    },
+    "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/authority": {
+      "abstract": [
+        {
+          "text": "Returns the identity authority where the identity is stored.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authority"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBIdentityAuthority",
+          "text": "CBIdentityAuthority"
+        }
+      ],
+      "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/authority",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authority"
+        }
+      ],
+      "role": "symbol",
+      "title": "authority",
+      "type": "topic",
+      "url": "/documentation/collaboration/cbidentity/authority"
+    },
+    "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/emailAddress": {
+      "abstract": [
+        {
+          "text": "Returns the email address of an identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "emailAddress"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/emailAddress",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "emailAddress"
+        }
+      ],
+      "role": "symbol",
+      "title": "emailAddress",
+      "type": "topic",
+      "url": "/documentation/collaboration/cbidentity/emailaddress"
+    },
+    "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/fullName": {
+      "abstract": [
+        {
+          "text": "Returns the full name of the identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fullName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/fullName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fullName"
+        }
+      ],
+      "role": "symbol",
+      "title": "fullName",
+      "type": "topic",
+      "url": "/documentation/collaboration/cbidentity/fullname"
+    },
+    "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/identityWithCSIdentity:": {
+      "abstract": [
+        {
+          "text": "Returns an identity object created from the specified Core Services Identity opaque object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "identityWithCSIdentity:"
+        }
+      ],
+      "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/identityWithCSIdentity:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identityWithCSIdentity:"
+        }
+      ],
+      "role": "symbol",
+      "title": "identityWithCSIdentity:",
+      "type": "topic",
+      "url": "/documentation/collaboration/cbidentity/identitywithcsidentity:"
+    },
+    "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/image": {
+      "abstract": [
+        {
+          "text": "Returns the image associated with an identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImage",
+          "text": "NSImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/image",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "image"
+        }
+      ],
+      "role": "symbol",
+      "title": "image",
+      "type": "topic",
+      "url": "/documentation/collaboration/cbidentity/image"
+    },
+    "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/init(name:authority:)": {
+      "abstract": [
+        {
+          "text": "Returns the identity object with the given name from the specified identity authority.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "authority"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBIdentityAuthority",
+          "text": "CBIdentityAuthority"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/init(name:authority:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identityWithName:authority:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(name:authority:)",
+      "type": "topic",
+      "url": "/documentation/collaboration/cbidentity/init(name:authority:)"
+    },
+    "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/init(persistentReference:)": {
+      "abstract": [
+        {
+          "text": "Returns the identity object matching the persistent reference data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "persistentReference"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/init(persistentReference:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identityWithPersistentReference:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(persistentReference:)",
+      "type": "topic",
+      "url": "/documentation/collaboration/cbidentity/init(persistentreference:)"
+    },
+    "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/init(uniqueIdentifier:authority:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "uniqueIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "authority"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBIdentityAuthority",
+          "text": "CBIdentityAuthority"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/init(uniqueIdentifier:authority:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identityWithUniqueIdentifier:authority:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(uniqueIdentifier:authority:)",
+      "type": "topic",
+      "url": "/documentation/collaboration/cbidentity/init(uniqueidentifier:authority:)"
+    },
+    "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/init(uuidString:authority:)": {
+      "abstract": [
+        {
+          "text": "Returns the identity object with the given UUID from the specified identity authority.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "uuidString"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "authority"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBIdentityAuthority",
+          "text": "CBIdentityAuthority"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/init(uuidString:authority:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identityWithUUIDString:authority:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(uuidString:authority:)",
+      "type": "topic",
+      "url": "/documentation/collaboration/cbidentity/init(uuidstring:authority:)"
+    },
+    "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/isHidden": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating the state of the identity’s hidden property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isHidden"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/isHidden",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hidden"
+        }
+      ],
+      "role": "symbol",
+      "title": "isHidden",
+      "type": "topic",
+      "url": "/documentation/collaboration/cbidentity/ishidden"
+    },
+    "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/isMember(ofGroup:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the identity is a member of the specified group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isMember"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofGroup"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBGroupIdentity",
+          "text": "CBGroupIdentity"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/isMember(ofGroup:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isMemberOfGroup:"
+        }
+      ],
+      "role": "symbol",
+      "title": "isMember(ofGroup:)",
+      "type": "topic",
+      "url": "/documentation/collaboration/cbidentity/ismember(ofgroup:)"
+    },
+    "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/persistentReference": {
+      "abstract": [
+        {
+          "text": "Returns a persistent reference to store a reference to an identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "persistentReference"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/persistentReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "persistentReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "persistentReference",
+      "type": "topic",
+      "url": "/documentation/collaboration/cbidentity/persistentreference"
+    },
+    "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/posixName": {
+      "abstract": [
+        {
+          "text": "Returns the POSIX name of the identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "posixName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/posixName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "posixName"
+        }
+      ],
+      "role": "symbol",
+      "title": "posixName",
+      "type": "topic",
+      "url": "/documentation/collaboration/cbidentity/posixname"
+    },
+    "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/uniqueIdentifier": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uniqueIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        }
+      ],
+      "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/uniqueIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "uniqueIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "uniqueIdentifier",
+      "type": "topic",
+      "url": "/documentation/collaboration/cbidentity/uniqueidentifier"
+    },
+    "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/uuidString": {
+      "abstract": [
+        {
+          "text": "Returns the UUID of the identity as a string.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uuidString"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/uuidString",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UUIDString"
+        }
+      ],
+      "role": "symbol",
+      "title": "uuidString",
+      "type": "topic",
+      "url": "/documentation/collaboration/cbidentity/uuidstring"
+    },
+    "doc://com.apple.collaboration/documentation/Collaboration/CBUserIdentity": {
+      "abstract": [
+        {
+          "text": "An object of the ",
+          "type": "text"
+        },
+        {
+          "code": "CBUserIdentity",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class represents a user identity and is used for accessing the attributes of a user identity from an identity authority. The principal attributes of ",
+          "type": "text"
+        },
+        {
+          "code": "CBUserIdentity",
+          "type": "codeVoice"
+        },
+        {
+          "text": " are a POSIX user identifier (UID), password, and certificate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBUserIdentity"
+        }
+      ],
+      "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBUserIdentity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CBUserIdentity"
+        }
+      ],
+      "role": "symbol",
+      "title": "CBUserIdentity",
+      "type": "topic",
+      "url": "/documentation/collaboration/cbuseridentity"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.collaboration/documentation/Collaboration/CBGroupIdentity",
+        "doc://com.apple.collaboration/documentation/Collaboration/CBUserIdentity"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Finding-Identities",
+      "identifiers": [
+        "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/init(name:authority:)",
+        "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/init(persistentReference:)",
+        "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/init(uuidString:authority:)"
+      ],
+      "title": "Finding Identities"
+    },
+    {
+      "anchor": "Getting-Identity-Attributes",
+      "identifiers": [
+        "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/aliases",
+        "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/authority",
+        "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/emailAddress",
+        "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/fullName",
+        "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/image",
+        "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/isHidden",
+        "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/isMember(ofGroup:)",
+        "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/posixName",
+        "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/uuidString"
+      ],
+      "title": "Getting Identity Attributes"
+    },
+    {
+      "anchor": "Storing-Identities",
+      "identifiers": [
+        "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/persistentReference"
+      ],
+      "title": "Storing Identities"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/init(uniqueIdentifier:authority:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/uniqueIdentifier"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.5",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CBIdentity"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBIdentity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBIdentity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.collaboration/documentation/Collaboration"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Finding-Identities",
+              "identifiers": [
+                "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/identityWithCSIdentity:",
+                "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/init(name:authority:)",
+                "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/init(persistentReference:)",
+                "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/init(uuidString:authority:)"
+              ],
+              "title": "Finding Identities"
+            },
+            {
+              "anchor": "Getting-Identity-Attributes",
+              "identifiers": [
+                "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/aliases",
+                "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/authority",
+                "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/emailAddress",
+                "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/fullName",
+                "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/image",
+                "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/isHidden",
+                "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/isMember(ofGroup:)",
+                "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/posixName",
+                "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/uuidString"
+              ],
+              "title": "Getting Identity Attributes"
+            },
+            {
+              "anchor": "Storing-Identities",
+              "identifiers": [
+                "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/CSIdentity",
+                "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/persistentReference"
+              ],
+              "title": "Storing Identities"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/uniqueIdentifier"
+              ],
+              "title": "Instance Properties"
+            },
+            {
+              "anchor": "Type-Methods",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity/init(uniqueIdentifier:authority:)"
+              ],
+              "title": "Type Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.collaboration/documentation/Collaboration/CBGroupIdentity",
+                "doc://com.apple.collaboration/documentation/Collaboration/CBUserIdentity"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CBIdentity"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1uuidString/title",
+          "value": "UUIDString"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1uuidString/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UUIDString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1aliases/title",
+          "value": "aliases"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1aliases/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "aliases"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1isHidden/title",
+          "value": "hidden"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1isHidden/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hidden"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity/title",
+          "value": "CBIdentity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBIdentity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBIdentity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBUserIdentity/title",
+          "value": "CBUserIdentity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBUserIdentity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBUserIdentity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBUserIdentity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBUserIdentity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1emailAddress/title",
+          "value": "emailAddress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1emailAddress/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "emailAddress"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1image/title",
+          "value": "image"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1image/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "image"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1persistentReference/title",
+          "value": "persistentReference"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1persistentReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "persistentReference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1init(uuidString:authority:)/title",
+          "value": "identityWithUUIDString:authority:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1init(uuidString:authority:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "identityWithUUIDString:authority:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1uniqueIdentifier/title",
+          "value": "uniqueIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1uniqueIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "uniqueIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1fullName/title",
+          "value": "fullName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1fullName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fullName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1posixName/title",
+          "value": "posixName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1posixName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "posixName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1init(name:authority:)/title",
+          "value": "identityWithName:authority:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1init(name:authority:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "identityWithName:authority:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1authority/title",
+          "value": "authority"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1authority/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "authority"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1isMember(ofGroup:)/title",
+          "value": "isMemberOfGroup:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1isMember(ofGroup:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "isMemberOfGroup:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1init(persistentReference:)/title",
+          "value": "identityWithPersistentReference:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1init(persistentReference:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "identityWithPersistentReference:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1init(uniqueIdentifier:authority:)/title",
+          "value": "identityWithUniqueIdentifier:authority:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBIdentity~1init(uniqueIdentifier:authority:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "identityWithUniqueIdentifier:authority:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBGroupIdentity/title",
+          "value": "CBGroupIdentity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBGroupIdentity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBGroupIdentity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.collaboration~1documentation~1Collaboration~1CBGroupIdentity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBGroupIdentity"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/collaboration/cbidentity"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/collaboration/cbidentity"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

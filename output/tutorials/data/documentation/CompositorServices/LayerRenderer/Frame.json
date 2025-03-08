@@ -1,0 +1,1363 @@
+{
+  "abstract": [
+    {
+      "text": "A type that provides access to the timing information and data types you need to render a single frame of content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.compositorservices/documentation/CompositorServices",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "CompositorServices",
+    "externalID": "c:@S@cp_frame_t",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Frame"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Compositor Services"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Frame"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "LayerRenderer.Frame"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Frame"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A frame represents a snapshot of your app’s content at a single moment in time.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In your rendering loop, you render your content into static images many times a second to create the illusion of animation.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides the Metal textures and information you need to render one of those images.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During each iteration of your app’s rendering loop, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/queryNextFrame()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to retrieve the next frame to render.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system manages a finite number of frames and recycles them to maximize efficiency.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You typically draw only one frame at a time, starting work on each new frame only after completing the previous frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Separate the work you do for each frame into two phases: the update phase and the encode phase.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the update phase to perform tasks that don’t depend on the current device pose.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, you might update your app’s data structures to reflect recent interactions with your content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the submission phase to retrieve the current pose and render the frame’s content using that information.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each frame provides a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type with access to the specific textures and rendering details for that frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.compositorservices/documentation/CompositorServices": {
+      "abstract": [
+        {
+          "text": "Take control of the drawing environment and render your own content using Metal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Compositor Services",
+      "type": "topic",
+      "url": "/documentation/compositorservices"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorFrameIndex": {
+      "abstract": [
+        {
+          "text": "The sequential index for a frame in the compositor’s timeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CompositorFrameIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorFrameIndex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CompositorFrameIndex"
+        }
+      ],
+      "role": "symbol",
+      "title": "CompositorFrameIndex",
+      "type": "topic",
+      "url": "/documentation/compositorservices/compositorframeindex"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerFrameIndex": {
+      "abstract": [
+        {
+          "text": "A frame index in the layer’s timeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LayerFrameIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerFrameIndex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LayerFrameIndex"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerFrameIndex",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerframeindex"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer": {
+      "abstract": [
+        {
+          "text": "A type that provides the Metal types and timing information you need to draw your content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LayerRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LayerRenderer"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable": {
+      "abstract": [
+        {
+          "text": "A type that provides the textures and information you need to draw a frame of content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Drawable"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Drawable"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer.Drawable",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/drawable"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame": {
+      "abstract": [
+        {
+          "text": "A type that provides access to the timing information and data types you need to render a single frame of content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Frame"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Frame"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer.Frame",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing": {
+      "abstract": [
+        {
+          "text": "A type that stores information about a frame’s encoding, rendering, and presentation deadlines.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Timing"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Timing"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer.Frame.Timing",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/timing"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/binocularFrustumMatrix(convention:increaseTangents:depthRange:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "binocularFrustumMatrix"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "convention"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@cp_axis_direction_convention",
+          "text": "AxisDirectionConvention"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "increaseTangents"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD4V",
+          "text": "SIMD4"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "depthRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD2V",
+          "text": "SIMD2"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@matrix_float4x4",
+          "text": "matrix_float4x4"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/binocularFrustumMatrix(convention:increaseTangents:depthRange:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "binocularFrustumMatrix(convention:increaseTangents:depthRange:)",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/binocularfrustummatrix(convention:increasetangents:depthrange:)"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/endSubmission()": {
+      "abstract": [
+        {
+          "text": "Notifies Compositor Services that you finished generating the GPU commands to render the specified frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endSubmission"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/endSubmission()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_end_submission"
+        }
+      ],
+      "role": "symbol",
+      "title": "endSubmission()",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/endsubmission()"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/endUpdate()": {
+      "abstract": [
+        {
+          "text": "Notifies Compositor Services that you finished updating the app-specific content",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "you need to render the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endUpdate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/endUpdate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_end_update"
+        }
+      ],
+      "role": "symbol",
+      "title": "endUpdate()",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/endupdate()"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/frameIndex": {
+      "abstract": [
+        {
+          "text": "The sequential index number of a frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frameIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@cp_layer_frame_index_t",
+          "text": "LayerFrameIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/frameIndex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_get_frame_index"
+        }
+      ],
+      "role": "symbol",
+      "title": "frameIndex",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/frameindex"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/init()": {
+      "abstract": [
+        {
+          "text": "Creates an uninitialized frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/init()"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/monocularFrustumMatrix(convention:viewIndex:increaseTangents:depthRange:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "monocularFrustumMatrix"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "convention"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@cp_axis_direction_convention",
+          "text": "AxisDirectionConvention"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "viewIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "increaseTangents"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD4V",
+          "text": "SIMD4"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "depthRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD2V",
+          "text": "SIMD2"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@matrix_float4x4",
+          "text": "matrix_float4x4"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/monocularFrustumMatrix(convention:viewIndex:increaseTangents:depthRange:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "monocularFrustumMatrix(convention:viewIndex:increaseTangents:depthRange:)",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/monocularfrustummatrix(convention:viewindex:increasetangents:depthrange:)"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/predictTiming()": {
+      "abstract": [
+        {
+          "text": "Computes and returns the predicted timing information for the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predictTiming"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CP_OBJECT_cp_layer_renderer",
+          "text": "LayerRenderer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@cp_frame_t",
+          "text": "Frame"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@cp_frame_timing_t",
+          "text": "Timing"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/predictTiming()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "predictTiming()",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/predicttiming()"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/queryDrawable()": {
+      "abstract": [
+        {
+          "text": "Retrieves the frame’s drawable, which contains the textures and drawing environment for the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "queryDrawable"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CP_OBJECT_cp_layer_renderer",
+          "text": "LayerRenderer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@cp_drawable_t",
+          "text": "Drawable"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/queryDrawable()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "queryDrawable()",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/querydrawable()"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/startSubmission()": {
+      "abstract": [
+        {
+          "text": "Notifies Compositor Services that you’re ready to generate the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Metal commands to render the specified frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startSubmission"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/startSubmission()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_start_submission"
+        }
+      ],
+      "role": "symbol",
+      "title": "startSubmission()",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/startsubmission()"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/startUpdate()": {
+      "abstract": [
+        {
+          "text": "Notifies Compositor Services that you started updating the app-specific content for the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startUpdate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/startUpdate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_start_update"
+        }
+      ],
+      "role": "symbol",
+      "title": "startUpdate()",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/startupdate()"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/queryNextFrame()": {
+      "abstract": [
+        {
+          "text": "Returns the next frame to use for drawing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "queryNextFrame"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CP_OBJECT_cp_layer_renderer",
+          "text": "LayerRenderer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@cp_frame_t",
+          "text": "Frame"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/queryNextFrame()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "queryNextFrame()",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/querynextframe()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Escapable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/Swift/BitwiseCopyable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Render-loop-setup",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer"
+      ],
+      "title": "Render-loop setup"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-timing-information",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/predictTiming()",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing"
+      ],
+      "title": "Getting timing information"
+    },
+    {
+      "anchor": "Reporting-frame-update-times",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/startUpdate()",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/endUpdate()"
+      ],
+      "title": "Reporting frame update times"
+    },
+    {
+      "anchor": "Getting-the-drawable-environment",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/queryDrawable()"
+      ],
+      "title": "Getting the drawable environment"
+    },
+    {
+      "anchor": "Reporting-frame-submission-times",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/startSubmission()",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/endSubmission()"
+      ],
+      "title": "Reporting frame submission times"
+    },
+    {
+      "anchor": "Getting-frame-related-details",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/frameIndex",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerFrameIndex",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/CompositorFrameIndex"
+      ],
+      "title": "Getting frame-related details"
+    },
+    {
+      "anchor": "Creating-a-frame",
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/init()"
+      ],
+      "title": "Creating a frame"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/binocularFrustumMatrix(convention:increaseTangents:depthRange:)",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/monocularFrustumMatrix(convention:viewIndex:increaseTangents:depthRange:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer/title",
+          "value": "CP_OBJECT_cp_layer_renderer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CP_OBJECT_cp_layer_renderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CP_OBJECT_cp_layer_renderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1endUpdate()/title",
+          "value": "cp_frame_end_update"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1endUpdate()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_frame_end_update"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1CompositorFrameIndex/title",
+          "value": "cp_compositor_frame_index_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1CompositorFrameIndex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_compositor_frame_index_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1CompositorFrameIndex/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_compositor_frame_index_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1frameIndex/title",
+          "value": "cp_frame_get_frame_index"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1frameIndex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_frame_get_frame_index"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1startSubmission()/title",
+          "value": "cp_frame_start_submission"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1startSubmission()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_frame_start_submission"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1endSubmission()/title",
+          "value": "cp_frame_end_submission"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1endSubmission()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_frame_end_submission"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerFrameIndex/title",
+          "value": "cp_layer_frame_index_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerFrameIndex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_layer_frame_index_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerFrameIndex/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_layer_frame_index_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1startUpdate()/title",
+          "value": "cp_frame_start_update"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1startUpdate()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_frame_start_update"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/compositorservices/layerrenderer/frame"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

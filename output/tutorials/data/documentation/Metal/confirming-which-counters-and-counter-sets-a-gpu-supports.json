@@ -1,0 +1,955 @@
+{
+  "abstract": [
+    {
+      "text": "Check whether a GPU produces the runtime performance data you want to sample.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/gpu-counters-and-counter-sample-buffers"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/confirming-which-counters-and-counter-sets-a-gpu-supports"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Confirming which Counters and Counter Sets a GPU Supports"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can check to see which counters a GPU device supports before attempting to programmatically sample data from them. A GPU ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "counter",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is typically a hardware feature that tracks a specific performance metric, such as timestamps before and after an important rendering stage. Checking which counters a GPU supports at runtime avoids assumptions that may trigger an error or a crash on a person’s device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "counter set",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a collection of related counters. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommonCounterSet",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type defines the name of each set, and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommonCounter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type defines the name of each individual counter. Check which counter sets an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance supports before you request one by checking its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/counterSets",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func getCounterSet(_ commonCounterSetName: MTLCommonCounterSet,",
+                    "                   from device: MTLDevice) -> MTLCounterSet? {",
+                    "    let counterSetName = commonCounterSetName.rawValue",
+                    "",
+                    "    guard let counterSets = device.counterSets else {",
+                    "        print(\"GPU device \\\"\\(device.name)\\\" doesn't support any counter sets.\")",
+                    "        return nil",
+                    "    }",
+                    "",
+                    "    for counterSet in counterSets {",
+                    "        guard counterSet.name == counterSetName else { continue }",
+                    "",
+                    "        print(\"GPU device \\\"\\(device.name)\\\" supports the \\\"\\(counterSetName)\\\" counter set.\")",
+                    "        return counterSet",
+                    "    }",
+                    "",
+                    "    print(\"GPU device \\\"\\(device.name)\\\" doesn't support the \\\"\\(counterSetName)\\\" counter set.\")",
+                    "    return nil",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "+ (nullable id<MTLCounterSet>) getCounterSet:(MTLCommonCounterSet)counterSetName",
+                    "                                  fromDevice:(id<MTLDevice>)device",
+                    "{",
+                    "    for (id<MTLCounterSet> counterSet in device.counterSets ){",
+                    "        if ([counterSetName isEqualToString:counterSetName])",
+                    "        {",
+                    "            printf(\"GPU device \\\"%s\\\" supports the \\\"%s\\\" counter set.\\n\",",
+                    "                   device.name.UTF8String,",
+                    "                   counterSetName.UTF8String);",
+                    "",
+                    "            return counterSet;",
+                    "        }",
+                    "    }",
+                    "",
+                    "    printf(\"GPU device \\\"%s\\\" doesn't support the \\\"%s\\\" counter set.\\n\",",
+                    "           device.name.UTF8String,",
+                    "           counterSetName.UTF8String);",
+                    "",
+                    "    return nil;",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method iterates through each counter set the device supports, and compares its name to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommonCounterSet",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Even though a GPU device supports a counter set, it may only support some of the counters in that set. You can check which individual counters a device supports by checking the elements of a counter set’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCounterSet/counters",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "static func counterSet(_ counterSet: MTLCounterSet,",
+                    "                       contains commonCounterName: MTLCommonCounter) -> Bool {",
+                    "",
+                    "    let counterName = commonCounterName.rawValue",
+                    "    for counter in counterSet.counters {",
+                    "        guard counter.name == counterName else { continue }",
+                    "",
+                    "        print(\"Counter set \\\"\\(counterSet.name)\\\" contains the \\\"\\(counterName)\\\" counter.\")",
+                    "        return true",
+                    "    }",
+                    "",
+                    "    print(\"Counter set \\\"\\(counterSet.name)\\\" doesn't contain the \\\"\\(counterName)\\\" counter.\")",
+                    "    return false",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "+ (bool)counterSet:(id<MTLCounterSet>)counterSet",
+                    "          contains:(MTLCommonCounter)counterName",
+                    "{",
+                    "    for (id<MTLCounter> counter in counterSet.counters )",
+                    "    {",
+                    "        if ([counter.name isEqualToString:counterName])",
+                    "        {",
+                    "            printf(\"Counter set \\\"%s\\\" supports the \\\"%s\\\" counter set.\\n\",",
+                    "                   counterSet.name.UTF8String,",
+                    "                   counterName.UTF8String);",
+                    "            return YES;",
+                    "        }",
+                    "    }",
+                    "",
+                    "    printf(\"Counter set \\\"%s\\\" doesn't support the \\\"%s\\\" counter set.\\n\",",
+                    "           counterSet.name.UTF8String,",
+                    "           counterName.UTF8String);",
+                    "",
+                    "    return NO;",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The method iterates through each counter in the device’s counter set, and compares its name to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommonCounter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you know a GPU supports a counter, your app can create and safely use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCounterSampleBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to store that counter’s data. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/creating-a-counter-sample-buffer-to-store-a-gpus-counter-data-during-a-pass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information and next steps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommonCounter": {
+      "abstract": [
+        {
+          "text": "The name of a specific counter that can appear in a GPU device’s counter sets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommonCounter"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommonCounter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommonCounter"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommonCounter",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommoncounter"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommonCounterSet": {
+      "abstract": [
+        {
+          "text": "The name of a specific counter set that a GPU device can support.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommonCounterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommonCounterSet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommonCounterSet"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommonCounterSet",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommoncounterset"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCounter": {
+      "abstract": [
+        {
+          "text": "An individual counter a GPU device lists within one of its counter sets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCounter"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCounter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCounter"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCounter",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcounter"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCounterSampleBuffer": {
+      "abstract": [
+        {
+          "text": "A specialized memory buffer that stores a GPU’s counter set data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCounterSampleBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCounterSampleBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCounterSampleBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCounterSampleBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcountersamplebuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCounterSet": {
+      "abstract": [
+        {
+          "text": "A collection of individual counters a GPU device supports for a counter set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCounterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCounterSet",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCounterSet"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCounterSet",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcounterset"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCounterSet/counters": {
+      "abstract": [
+        {
+          "text": "An array of the counter instances a GPU device supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "counters"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCounter",
+          "text": "MTLCounter"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCounterSet/counters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "counters"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "counters",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcounterset/counters"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice": {
+      "abstract": [
+        {
+          "text": "The main Metal interface to a GPU that apps use to draw graphics and run computations in parallel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDevice",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/counterSets": {
+      "abstract": [
+        {
+          "text": "The counter sets supported by the device object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "counterSets"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCounterSet",
+          "text": "MTLCounterSet"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/counterSets",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "counterSets"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "counterSets",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/countersets"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-a-counter-sample-buffer-to-store-a-gpus-counter-data-during-a-pass": {
+      "abstract": [
+        {
+          "text": "Make a buffer that provides a place for a GPU to save its runtime performance metrics as it runs a pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-a-counter-sample-buffer-to-store-a-gpus-counter-data-during-a-pass",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Counter Sample Buffer to Store a GPU’s Counter Data During a Pass",
+      "type": "topic",
+      "url": "/documentation/metal/creating-a-counter-sample-buffer-to-store-a-gpus-counter-data-during-a-pass"
+    },
+    "doc://com.apple.metal/documentation/Metal/gpu-counters-and-counter-sample-buffers": {
+      "abstract": [
+        {
+          "text": "Retrieve runtime data from a GPU device by sampling one or more of its counters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/gpu-counters-and-counter-sample-buffers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GPU Counters and Counter Sample Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/gpu-counters-and-counter-sample-buffers"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Counters-and-Counter-Sets",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLCounterSet",
+        "doc://com.apple.metal/documentation/Metal/MTLCommonCounterSet",
+        "doc://com.apple.metal/documentation/Metal/MTLCounter",
+        "doc://com.apple.metal/documentation/Metal/MTLCommonCounter"
+      ],
+      "title": "Counters and Counter Sets"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Counters-and-Counter-Sets",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLCounterSet",
+                "doc://com.apple.metal/documentation/Metal/MTLCommonCounterSet",
+                "doc://com.apple.metal/documentation/Metal/MTLCounter",
+                "doc://com.apple.metal/documentation/Metal/MTLCommonCounter"
+              ],
+              "title": "Counters and Counter Sets"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterSet~1counters/title",
+          "value": "counters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterSet~1counters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "counters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterSampleBuffer/title",
+          "value": "MTLCounterSampleBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterSampleBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCounterSampleBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterSampleBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCounterSampleBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/title",
+          "value": "MTLDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommonCounterSet/title",
+          "value": "MTLCommonCounterSet"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommonCounterSet/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommonCounterSet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommonCounterSet/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommonCounterSet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommonCounter/title",
+          "value": "MTLCommonCounter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommonCounter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommonCounter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommonCounter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommonCounter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounter/title",
+          "value": "MTLCounter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCounter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCounter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1counterSets/title",
+          "value": "counterSets"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1counterSets/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "counterSets"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterSet/title",
+          "value": "MTLCounterSet"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterSet/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCounterSet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCounterSet/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCounterSet"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/confirming-which-counters-and-counter-sets-a-gpu-supports"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/confirming-which-counters-and-counter-sets-a-gpu-supports"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

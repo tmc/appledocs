@@ -1,0 +1,1242 @@
+{
+  "abstract": [
+    {
+      "text": "Retrieve the attribution dictionary.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.iad/documentation/iAd"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.iad/documentation/iAd/setting-up-apple-search-ads-attribution"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "iAd"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Setting Up Apple Search Ads Attribution"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "After February 7, 2023, all requests made to the Apple Search Ads iAd Attribution API will return with a value of ",
+                  "type": "text"
+                },
+                {
+                  "code": "\"iad-attribution\"",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "code": "=",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "code": "false",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", or errors. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.iad/documentation/iAd/ADClient/requestAttributionDetails(_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". Use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AdServices",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " framework for current attribution integration with the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/apple_search_ads",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " Campaign Management API for devices using iOS 14.3 and later. Attribution isn’t available for downloads and redownloads from devices using iOS 14.2 or earlier.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Warning",
+          "style": "warning",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The attribution dictionary contains attribution data that the system retrieves from user interaction with ads originating from ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://searchads.apple.com/advanced/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " campaigns.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3692726",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To retrieve the attribution dictionary, use the following process in sequence.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Retrieve-the-Attribution-Dictionary",
+          "level": 3,
+          "text": "Retrieve the Attribution Dictionary",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.iad/documentation/iAd/ADClient/requestAttributionDetails(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method for the conditions to retrieve the dictionary that contains the attribution object. Next, check for Apple Search Ads attribution, such as at app first open or when registration is complete. Store the data locally, so you don’t need to repeat the method call.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Check for iOS 10 attribution implementation",
+            "if ([[ADClient sharedClient] respondsToSelector:@selector(requestAttributionDetailsWithBlock:)]) { ",
+            "NSLog(@\"iOS 10 call exists\"); ",
+            "[[ADClient sharedClient] requestAttributionDetailsWithBlock:^(NSDictionary *attributionDetails, NSError *error) { ",
+            "// Look inside of the returned dictionary for all attribution details",
+            "NSLog(@\"Attribution Dictionary: %@\", attributionDetails); ",
+            "}];",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows the dictionary structure you receive when you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.iad/documentation/iAd/ADClient/requestAttributionDetails(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{ ",
+            "\"Version3.1\" = { ",
+            "\"iad-attribution\" = true; ",
+            "\"iad-org-name\" = \"org name\";",
+            "\"iad-org-id\" = \"40669820\";",
+            "\"iad-campaign-id\" = \"542370539\"; ",
+            "\"iad-campaign-name\" = \"campaign name\"; ",
+            "\"iad-purchase-date\" = \"2020-08-04T17:18:07Z\" ",
+            "\"iad-conversion-date\" = \"2020-08-04T17:18:07Z\"; ",
+            "\"iad-conversion-type\" = \"newdownload\"; ",
+            "\"iad-click-date\" = \"2020-08-04T17:17:00Z\"; ",
+            "\"iad-adgroup-id\" = \"542317095\"; ",
+            "\"iad-adgroup-name\" = \"adgroup name\"; ",
+            "\"iad-country-or-region\" = \"US\"; ",
+            "\"iad-keyword\" = \"keyword\";",
+            "\"iad-keyword-id\" = \"87675432\";",
+            "\"iad-keyword-matchtype\" = \"Broad\";",
+            "\"iad-ad-id\" = \"542317136\";",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Download-Attribution-Data",
+          "level": 3,
+          "text": "Download Attribution Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After your app retrieves the attribution dictionary, upload the attribution data to your server using the method of your choice. Next, check for Apple Search Ads attribution. Store the data locally, so you don’t need to repeat the method call.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following list contains the data dictionary keys and data types the iAd framework returns:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Boolean. ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "True",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " if the user clicks an Apple Search Ads impression up to 30 days before app download or redownload.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "iad-attribution",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "String. The organization that owns the campaign that the corresponding ad belongs to.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "iad-org-name",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Integer. The ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "Id",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " of the organization that owns the campaign that the corresponding ad belongs to.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "iad-org-id",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Integer. The ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "Id",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " of the campaign that the corresponding ad belongs to.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "iad-campaign-id",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "String. The name of the campaign that the corresponding ad belongs to.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "iad-campaign-name",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Date/Time string. The date and time when the user clicks a corresponding ad.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "iad-click-date",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Date/Time string. The date and time when the user first downloads your app. When the value of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "iad-conversion-type",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "redownload",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", this string represents the original purchase date. The purchase may or may not be associated with an Apple Search Ad.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "iad-purchase-date",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Date/Time string. The date and time when the user downloads or redownloads your app by clicking an Apple Search Ad.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "iad-conversion-date",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "String. The type of conversion is either a ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "newdownload",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " or a ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "redownload",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". A ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "redownload",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " is a download of an app by users who have previously installed your app.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "iad-conversion-type",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Integer. The ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "Id",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " of the ad group that the corresponding ad belongs to.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "iad-adgroup-id",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "String. The name of the ad group that the corresponding ad belongs to. See ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/Apple_Search_Ads/ad-groups",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " for more information.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "iad-adgroup-name",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "String. The country or region associated with the campaign that results in an installation.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "iad-country-or-region",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "String. The keyword for the ad impression that led to the corresponding ad click.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "iad-keyword",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "String. The ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "Id",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " of the keyword for the ad impression.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "iad-keyword-id",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "String. The match type of the keyword for the ad impression. Values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "Broad",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "Exact",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", or search match. See ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/Apple_Search_Ads/ad-groups",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " for more information.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "iad-keyword-matchtype",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Integer. The ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "Id",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " of the ad that the corresponding ad belongs to.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "iad-ad-id",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Report-Attribution-Data",
+          "level": 4,
+          "text": "Report Attribution Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Attribution data reporting helps you track performance of your campaigns. The following conditions apply to attribution data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "All actions need to occur on the same device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attribution only applies to users running iOS 10 or later, and who have downloaded or redownloaded the app within the previous 30 days.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apple Search Ads reports a download or a redownload as it happens, and up to 30 days later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A download or a redownload needs to occur from an App Store listing or an Apple Search Ads impression.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you integrate your data-reporting strategy with a Mobile Measurement Provider (MMP), note the differences with MMP methodology when compared to Apple Search Ads:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apple Search Ads uses a 30-day attribution window. Third-party attribution may only allow an attribution window of 7 to 28 days.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "App open latency",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " may be one of the reasons for a difference in the total installation count. App open latency is the delay between an installation and first launch. MMPs typically report an installation when the app opens for the first time. Apple Search Ads reports an installation when a download or redownload is complete.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Third parties may not count redownloads as installations. Third parties don’t have visibility to know whether an app has been previously removed from a device. They may attribute a redownload as another app open latency or user engagement.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AdServices": {
+      "abstract": [
+        {
+          "text": "Attribute app-download campaigns that originate from the App Store, Apple News, or Stocks on iOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AdServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AdServices",
+      "type": "topic",
+      "url": "/documentation/AdServices"
+    },
+    "doc://com.apple.documentation/documentation/Apple_Search_Ads/ad-groups": {
+      "abstract": [
+        {
+          "text": "Create and manage ad groups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Apple_Search_Ads/ad-groups",
+      "kind": "article",
+      "role": "article",
+      "title": "Ad Groups",
+      "type": "topic",
+      "url": "/documentation/Apple_Search_Ads/ad-groups"
+    },
+    "doc://com.apple.documentation/documentation/apple_search_ads": {
+      "abstract": [
+        {
+          "text": "Drive app discovery by creating and managing campaigns with the Apple Search Ads Campaign Management API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_search_ads",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Search Ads",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.iad/documentation/iAd": {
+      "abstract": [
+        {
+          "text": "The Apple Search Ads iAd Attribution API is a legacy framework for attributing app data that originates from Apple Search Ads campaigns on iOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.iad/documentation/iAd",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "iAd",
+      "type": "topic",
+      "url": "/documentation/iad"
+    },
+    "doc://com.apple.iad/documentation/iAd/ADClient": {
+      "abstract": [
+        {
+          "text": "The parent class you use to request an attribution response.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ADClient"
+        }
+      ],
+      "identifier": "doc://com.apple.iad/documentation/iAd/ADClient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ADClient"
+        }
+      ],
+      "role": "symbol",
+      "title": "ADClient",
+      "type": "topic",
+      "url": "/documentation/iad/adclient"
+    },
+    "doc://com.apple.iad/documentation/iAd/ADClient/requestAttributionDetails(_:)": {
+      "abstract": [
+        {
+          "text": "Gets an attribution response.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAttributionDetails"
+        },
+        {
+          "kind": "text",
+          "text": "((["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSObject",
+          "text": "NSObject"
+        },
+        {
+          "kind": "text",
+          "text": "]?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.iad/documentation/iAd/ADClient/requestAttributionDetails(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestAttributionDetailsWithBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestAttributionDetails(_:)",
+      "type": "topic",
+      "url": "/documentation/iad/adclient/requestattributiondetails(_:)"
+    },
+    "doc://com.apple.iad/documentation/iAd/iad-changelog": {
+      "abstract": [
+        {
+          "text": "Learn what’s new in the Apple Search Ads iAd Attribution API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.iad/documentation/iAd/iad-changelog",
+      "kind": "article",
+      "role": "article",
+      "title": "iAd Changelog",
+      "type": "topic",
+      "url": "/documentation/iad/iad-changelog"
+    },
+    "https://searchads.apple.com/advanced/": {
+      "identifier": "https://searchads.apple.com/advanced/",
+      "title": "Apple Search Ads",
+      "titleInlineContent": [
+        {
+          "text": "Apple Search Ads",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://searchads.apple.com/advanced/"
+    },
+    "media-3692726": {
+      "alt": "An illustration that shows a developer or Mobile Measurement Provider requesting an attribution record from the iAd framework, and the iAd framework returning the attribution record.",
+      "identifier": "media-3692726",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5c913495ef8be10934920a582cc242c9/media-3692726@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6ae8dec5c2e2506b97282fe8af06eebe/media-3692726~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.iad/documentation/iAd/iad-changelog",
+        "doc://com.apple.iad/documentation/iAd/ADClient"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.iad/documentation/iAd/iad-changelog",
+                "doc://com.apple.iad/documentation/iAd/ADClient"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iad~1documentation~1iAd~1ADClient~1requestAttributionDetails(_:)/title",
+          "value": "requestAttributionDetailsWithBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iad~1documentation~1iAd~1ADClient~1requestAttributionDetails(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestAttributionDetailsWithBlock:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iad~1documentation~1iAd~1ADClient/title",
+          "value": "ADClient"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iad~1documentation~1iAd~1ADClient/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ADClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.iad~1documentation~1iAd~1ADClient/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ADClient"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/iad/setting-up-apple-search-ads-attribution"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/iad/setting-up-apple-search-ads-attribution"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3320 @@
+{
+  "abstract": [
+    {
+      "text": "A result builder that creates table row content from closures.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI15TableRowBuilderV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "TableRowBuilder"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "TableRowBuilder"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "TableRowBuilder"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@resultBuilder"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "TableRowBuilder"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Value"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Value"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s12IdentifiableP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s12IdentifiableP",
+              "text": "Identifiable"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "buildBlock",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods in this type create ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowContent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instances based on the number and types of sources provided as parameters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t use this type directly; instead, SwiftUI annotates the ",
+              "type": "text"
+            },
+            {
+              "code": "rows",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parameter of the various ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Table",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializers with the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "@TableRowBuilder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " annotation, implicitly calling this builder for you.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DynamicTableRowContent": {
+      "abstract": [
+        {
+          "text": "A type of table row content that generates table rows from an underlying",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "collection of data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DynamicTableRowContent"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DynamicTableRowContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DynamicTableRowContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "DynamicTableRowContent",
+      "type": "topic",
+      "url": "/documentation/swiftui/dynamictablerowcontent"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyTableRowContent": {
+      "abstract": [
+        {
+          "text": "A table row content that doesn’t produce any rows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EmptyTableRowContent"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyTableRowContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EmptyTableRowContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "EmptyTableRowContent",
+      "type": "topic",
+      "url": "/documentation/swiftui/emptytablerowcontent"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Table": {
+      "abstract": [
+        {
+          "text": "A container that presents rows of data arranged in one or more columns,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "optionally providing the ability to select one or more members.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Table"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Table",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Table"
+        }
+      ],
+      "role": "symbol",
+      "title": "Table",
+      "type": "topic",
+      "url": "/documentation/swiftui/table"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableForEachContent": {
+      "abstract": [
+        {
+          "text": "A type of table row content that creates table rows created by iterating",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "over a collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableForEachContent"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableForEachContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableForEachContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableForEachContent",
+      "type": "topic",
+      "url": "/documentation/swiftui/tableforeachcontent"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableHeaderRowContent": {
+      "abstract": [
+        {
+          "text": "A table row that displays a single view instead of columned content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableHeaderRowContent"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableHeaderRowContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableHeaderRowContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableHeaderRowContent",
+      "type": "topic",
+      "url": "/documentation/swiftui/tableheaderrowcontent"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRow": {
+      "abstract": [
+        {
+          "text": "A row that represents a data value in a table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableRow"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableRow"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableRow",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablerow"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder": {
+      "abstract": [
+        {
+          "text": "A result builder that creates table row content from closures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableRowBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableRowBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableRowBuilder",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablerowbuilder"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a single row result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buildBlock"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buildBlock(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablerowbuilder/buildblock(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a row result from two sources.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Identifiable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buildBlock"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20TupleTableRowContentV",
+          "text": "TupleTableRowContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ")>"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buildBlock(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablerowbuilder/buildblock(_:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a row result from three sources.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Identifiable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buildBlock"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C2"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C2"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20TupleTableRowContentV",
+          "text": "TupleTableRowContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C2"
+        },
+        {
+          "kind": "text",
+          "text": ")>"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buildBlock(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablerowbuilder/buildblock(_:_:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a row result from four sources.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Identifiable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buildBlock"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C2"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C3"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C2"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C3"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20TupleTableRowContentV",
+          "text": "TupleTableRowContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C2"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C3"
+        },
+        {
+          "kind": "text",
+          "text": ")>"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buildBlock(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablerowbuilder/buildblock(_:_:_:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a row result from five sources.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Identifiable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buildBlock"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C2"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C4"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C2"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C4"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20TupleTableRowContentV",
+          "text": "TupleTableRowContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C2"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C4"
+        },
+        {
+          "kind": "text",
+          "text": ")>"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buildBlock(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablerowbuilder/buildblock(_:_:_:_:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a row result from six sources.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Identifiable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buildBlock"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C2"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C4"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C5"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C2"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C4"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C5"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20TupleTableRowContentV",
+          "text": "TupleTableRowContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C2"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C4"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C5"
+        },
+        {
+          "kind": "text",
+          "text": ")>"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buildBlock(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablerowbuilder/buildblock(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a row result from seven sources.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Identifiable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buildBlock"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C2"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C4"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C5"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C6"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C2"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C4"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C5"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C6"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20TupleTableRowContentV",
+          "text": "TupleTableRowContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C2"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C4"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C5"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C6"
+        },
+        {
+          "kind": "text",
+          "text": ")>"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buildBlock(_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablerowbuilder/buildblock(_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a row result from eight sources.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Identifiable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buildBlock"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C2"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C4"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C5"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C6"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C7"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C2"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C4"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C5"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C6"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C7"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20TupleTableRowContentV",
+          "text": "TupleTableRowContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C2"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C4"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C5"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C6"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C7"
+        },
+        {
+          "kind": "text",
+          "text": ")>"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buildBlock(_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablerowbuilder/buildblock(_:_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a row result from nine sources.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Identifiable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buildBlock"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C2"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C4"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C5"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C6"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C7"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C8"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C2"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C4"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C5"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C6"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C7"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C8"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20TupleTableRowContentV",
+          "text": "TupleTableRowContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C2"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C4"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C5"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C6"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C7"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C8"
+        },
+        {
+          "kind": "text",
+          "text": ")>"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buildBlock(_:_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablerowbuilder/buildblock(_:_:_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:_:_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a row result from ten sources.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Identifiable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buildBlock"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C2"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C4"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C5"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C6"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C7"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C8"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C9"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C2"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C4"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C5"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C6"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C7"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C8"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C9"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20TupleTableRowContentV",
+          "text": "TupleTableRowContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C0"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C1"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C2"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C4"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C5"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C6"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C7"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C8"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C9"
+        },
+        {
+          "kind": "text",
+          "text": ")>"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:_:_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buildBlock(_:_:_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablerowbuilder/buildblock(_:_:_:_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildEither(first:)": {
+      "abstract": [
+        {
+          "text": "Creates a row result for the first of two row content alternatives.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Identifiable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buildEither"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "first"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "_ConditionalContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildEither(first:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buildEither(first:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablerowbuilder/buildeither(first:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildEither(second:)": {
+      "abstract": [
+        {
+          "text": "Creates a row result for the second of two row content alternatives.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Identifiable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buildEither"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "second"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "_ConditionalContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "F"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildEither(second:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buildEither(second:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablerowbuilder/buildeither(second:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildExpression(_:)": {
+      "abstract": [
+        {
+          "text": "Builds an expression within the builder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buildExpression"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildExpression(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buildExpression(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablerowbuilder/buildexpression(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildIf(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a row result for conditional statements.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Value",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Identifiable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buildIf"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildIf(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buildIf(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablerowbuilder/buildif(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowContent": {
+      "abstract": [
+        {
+          "text": "A type used to represent table rows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableRowContent"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TableRowContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "TableRowContent",
+      "type": "topic",
+      "url": "/documentation/swiftui/tablerowcontent"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TupleTableRowContent": {
+      "abstract": [
+        {
+          "text": "A type of table column content that creates table rows created from a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Swift tuple of table rows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TupleTableRowContent"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TupleTableRowContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TupleTableRowContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "TupleTableRowContent",
+      "type": "topic",
+      "url": "/documentation/swiftui/tupletablerowcontent"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s12IdentifiableP": {
+      "abstract": [
+        {
+          "text": "A class of types whose instances hold the value of an entity with stable identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s12IdentifiableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Identifiable",
+      "type": "topic",
+      "url": "/documentation/Swift/Identifiable"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-rows",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRow",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowContent",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableHeaderRowContent",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TupleTableRowContent",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableForEachContent",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EmptyTableRowContent",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DynamicTableRowContent"
+      ],
+      "title": "Creating rows"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Building-a-row-from-sources",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:_:_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:_:_:_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:_:_:_:_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:_:_:_:_:_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:_:_:_:_:_:_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:_:_:_:_:_:_:_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildBlock(_:_:_:_:_:_:_:_:_:_:)"
+      ],
+      "title": "Building a row from sources"
+    },
+    {
+      "anchor": "Building-a-row-from-conditionals",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildIf(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildEither(first:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildEither(second:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TableRowBuilder/buildExpression(_:)"
+      ],
+      "title": "Building a row from conditionals"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/tablerowbuilder"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

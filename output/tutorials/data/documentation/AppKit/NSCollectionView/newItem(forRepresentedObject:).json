@@ -1,0 +1,1640 @@
+{
+  "abstract": [
+    {
+      "text": "Returns the collection view item that is used for the specified object.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use -[NSCollectionViewDataSource collectionView:itemForRepresentedObjectAtIndexPath:] instead",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionView"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/newItem(forRepresentedObject:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "AppKit",
+    "externalID": "c:objc(cs)NSCollectionView(im)newItemForRepresentedObject:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "newItem"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "forRepresentedObject"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "keyword",
+        "text": "Any"
+      },
+      {
+        "kind": "text",
+        "text": ") -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)NSCollectionViewItem",
+        "text": "NSCollectionViewItem"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "newItemForRepresentedObject:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.14",
+        "introducedAt": "10.5",
+        "message": "Use -[NSCollectionViewDataSource collectionView:itemForRepresentedObjectAtIndexPath:] instead",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "newItem(forRepresentedObject:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "newItem"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "forRepresentedObject"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "object"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "keyword",
+              "text": "Any"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewItem",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSCollectionViewItem",
+              "text": "NSCollectionViewItem"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The content object that the collection view item will represent.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "object"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An initialized collection view item with the specified object and the appropriate view set. The collection view item should not be autoreleased.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Whenever possible, register classes or nib files for your items instead of using this property. For more information, see Creating Collection View Items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Subclasses can override this method if the collection view items are not generated from a prototype or if the prototype view needs to be modified. The subclass is responsible for setting the ",
+              "type": "text"
+            },
+            {
+              "code": "view",
+              "type": "codeVoice"
+            },
+            {
+              "text": "  and representedObject of the new collection view item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionView": {
+      "abstract": [
+        {
+          "text": "An ordered collection of data items displayed in a customizable layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCollectionView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCollectionView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCollectionView",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/draggingImageForItems(at:with:offset:)-951w7": {
+      "abstract": [
+        {
+          "text": "This method computes and returns an image to use for dragging.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "draggingImageForItems"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation8IndexSetV",
+          "text": "IndexSet"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPointPointer",
+          "text": "NSPointPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImage",
+          "text": "NSImage"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/draggingImageForItems(at:with:offset:)-951w7",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "draggingImageForItemsAtIndexes:withEvent:offset:"
+        }
+      ],
+      "role": "symbol",
+      "title": "draggingImageForItems(at:with:offset:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionview/draggingimageforitems(at:with:offset:)-951w7"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/frameForItem(at:)": {
+      "abstract": [
+        {
+          "text": "Returns the frame of the collection view item at the specified index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frameForItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/frameForItem(at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "frameForItemAtIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "frameForItem(at:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionview/frameforitem(at:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/frameForItem(at:withNumberOfItems:)": {
+      "abstract": [
+        {
+          "text": "Returns the frame of an item based on the number of items in the collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frameForItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withNumberOfItems"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/frameForItem(at:withNumberOfItems:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "frameForItemAtIndex:withNumberOfItems:"
+        }
+      ],
+      "role": "symbol",
+      "title": "frameForItem(at:withNumberOfItems:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionview/frameforitem(at:withnumberofitems:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/item(at:)-80xze": {
+      "abstract": [
+        {
+          "text": "Returns the collection view item for the represented object at the specified index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "item"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCollectionViewItem",
+          "text": "NSCollectionViewItem"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/item(at:)-80xze",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "itemAtIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "item(at:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionview/item(at:)-80xze"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/itemPrototype": {
+      "abstract": [
+        {
+          "text": "The receiver’s collection view item prototype.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "itemPrototype"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCollectionViewItem",
+          "text": "NSCollectionViewItem"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/itemPrototype",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "itemPrototype"
+        }
+      ],
+      "role": "symbol",
+      "title": "itemPrototype",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionview/itemprototype"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/maxItemSize": {
+      "abstract": [
+        {
+          "text": "The maximum size (in points) of items in the collection view grid.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maxItemSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSize",
+          "text": "NSSize"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/maxItemSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maxItemSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "maxItemSize",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionview/maxitemsize"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/maxNumberOfColumns": {
+      "abstract": [
+        {
+          "text": "The maximum number of columns that the collection view displays.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maxNumberOfColumns"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/maxNumberOfColumns",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maxNumberOfColumns"
+        }
+      ],
+      "role": "symbol",
+      "title": "maxNumberOfColumns",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionview/maxnumberofcolumns"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/maxNumberOfRows": {
+      "abstract": [
+        {
+          "text": "The maximum number of rows that the collection view displays.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maxNumberOfRows"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/maxNumberOfRows",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maxNumberOfRows"
+        }
+      ],
+      "role": "symbol",
+      "title": "maxNumberOfRows",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionview/maxnumberofrows"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/minItemSize": {
+      "abstract": [
+        {
+          "text": "The minimum size (in points) of items in the collection view grid.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minItemSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSize",
+          "text": "NSSize"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/minItemSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "minItemSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "minItemSize",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionview/minitemsize"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/newItem(forRepresentedObject:)": {
+      "abstract": [
+        {
+          "text": "Returns the collection view item that is used for the specified object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "newItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forRepresentedObject"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCollectionViewItem",
+          "text": "NSCollectionViewItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/newItem(forRepresentedObject:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newItemForRepresentedObject:"
+        }
+      ],
+      "role": "symbol",
+      "title": "newItem(forRepresentedObject:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionview/newitem(forrepresentedobject:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/selectionIndexes": {
+      "abstract": [
+        {
+          "text": "The indexes of the currently selected items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectionIndexes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation8IndexSetV",
+          "text": "IndexSet"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/selectionIndexes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectionIndexes"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectionIndexes",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionview/selectionindexes"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/setDraggingSourceOperationMask(_:forLocal:)": {
+      "abstract": [
+        {
+          "text": "Configures the default value returned from ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1415984-draggingsourceoperationmaskforlo",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDraggingSourceOperationMask"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSDragOperation",
+          "text": "NSDragOperation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forLocal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/setDraggingSourceOperationMask(_:forLocal:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setDraggingSourceOperationMask:forLocal:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setDraggingSourceOperationMask(_:forLocal:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionview/setdraggingsourceoperationmask(_:forlocal:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewItem": {
+      "abstract": [
+        {
+          "text": "The visual representation for a single data element in a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCollectionViewItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCollectionViewItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCollectionViewItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewitem"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1415984-draggingsourceoperationmaskforlo": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1415984-draggingsourceoperationmaskforlo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "draggingSourceOperationMaskForLocal:",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1415984-draggingsourceoperationmaskforlo"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Legacy-Collection-View-Support",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/itemPrototype",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/selectionIndexes",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/maxNumberOfRows",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/maxNumberOfColumns",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/minItemSize",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/maxItemSize",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/item(at:)-80xze",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/frameForItem(at:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/frameForItem(at:withNumberOfItems:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/draggingImageForItems(at:with:offset:)-951w7",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/setDraggingSourceOperationMask(_:forLocal:)"
+      ],
+      "title": "Legacy Collection View Support"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "10.14",
+              "introducedAt": "10.5",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "newItemForRepresentedObject:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newItemForRepresentedObject:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit",
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionView"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Legacy-Collection-View-Support",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/itemPrototype",
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/selectionIndexes",
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/maxNumberOfRows",
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/maxNumberOfColumns",
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/minItemSize",
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/maxItemSize",
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/item(at:)-80xze",
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/frameForItem(at:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/frameForItem(at:withNumberOfItems:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/draggingImageForItems(at:with:offset:)-951w7",
+                "doc://com.apple.appkit/documentation/AppKit/NSCollectionView/setDraggingSourceOperationMask(_:forLocal:)"
+              ],
+              "title": "Legacy Collection View Support"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewItem",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSCollectionViewItem",
+                    "text": "NSCollectionViewItem"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "newItemForRepresentedObject:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "id"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "object"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The content object that the collection view item will represent.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "object"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/2",
+          "value": {
+            "content": [
+              {
+                "anchor": "return-value",
+                "level": 2,
+                "text": "Return Value",
+                "type": "heading"
+              },
+              {
+                "inlineContent": [
+                  {
+                    "text": "An initialized collection view item with the specified object and the appropriate view set. The collection view item should not be autoreleased.",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "kind": "content"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use -[NSCollectionViewDataSource collectionView:itemForRepresentedObjectAtIndexPath:] instead",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView~1frameForItem(at:)/title",
+          "value": "frameForItemAtIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView~1frameForItem(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "frameForItemAtIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView~1maxNumberOfColumns/title",
+          "value": "maxNumberOfColumns"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView~1maxNumberOfColumns/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maxNumberOfColumns"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView~1maxNumberOfRows/title",
+          "value": "maxNumberOfRows"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView~1maxNumberOfRows/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maxNumberOfRows"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView~1newItem(forRepresentedObject:)/title",
+          "value": "newItemForRepresentedObject:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView~1newItem(forRepresentedObject:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newItemForRepresentedObject:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView/title",
+          "value": "NSCollectionView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCollectionView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCollectionView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView~1itemPrototype/title",
+          "value": "itemPrototype"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView~1itemPrototype/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "itemPrototype"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView~1maxItemSize/title",
+          "value": "maxItemSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView~1maxItemSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maxItemSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView~1frameForItem(at:withNumberOfItems:)/title",
+          "value": "frameForItemAtIndex:withNumberOfItems:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView~1frameForItem(at:withNumberOfItems:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "frameForItemAtIndex:withNumberOfItems:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewItem/title",
+          "value": "NSCollectionViewItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCollectionViewItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionViewItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCollectionViewItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView~1selectionIndexes/title",
+          "value": "selectionIndexes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView~1selectionIndexes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selectionIndexes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView~1minItemSize/title",
+          "value": "minItemSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView~1minItemSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "minItemSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView~1setDraggingSourceOperationMask(_:forLocal:)/title",
+          "value": "setDraggingSourceOperationMask:forLocal:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView~1setDraggingSourceOperationMask(_:forLocal:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setDraggingSourceOperationMask:forLocal:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView~1draggingImageForItems(at:with:offset:)-951w7/title",
+          "value": "draggingImageForItemsAtIndexes:withEvent:offset:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView~1draggingImageForItems(at:with:offset:)-951w7/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "draggingImageForItemsAtIndexes:withEvent:offset:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView~1item(at:)-80xze/title",
+          "value": "itemAtIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCollectionView~1item(at:)-80xze/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "itemAtIndex:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nscollectionview/newitem(forrepresentedobject:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nscollectionview/newitem(forrepresentedobject:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

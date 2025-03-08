@@ -1,0 +1,937 @@
+{
+  "abstract": [
+    {
+      "text": "Enable communication and data sharing between multiple installed apps created",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "by the same developer.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/capabilities"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/configuring-app-groups"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring app groups"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "app group",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " allows multiple apps developed by the same team to access one or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "more shared containers. It also enables additional interprocess communication (IPC)",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "between those apps using Mach IPC, POSIX semaphores and shared memory, and UNIX",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "domain sockets, among other IPC mechanisms. In macOS, app groups can facilitate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "communication between sandboxed apps, and between sandboxed and nonsandboxed",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "apps. Apps can belong to one or more app groups. You can also use an app group",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to share data between an app extension or App Clip and its host app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before creating an app group, follow the steps in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-capabilities-to-your-app#Add-a-capability",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.application-groups",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to your app’s target.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "app-groups",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-app-groups",
+          "level": 3,
+          "text": "Create app groups",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After adding the app groups capability to your app,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode retrieves any existing groups from your developer account and displays",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "them in the capability’s section. Use the Refresh button below the app groups",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "list to re-fetch your account’s groups at any time. Each developer account can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "register a maximum of 1,000 app groups.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To register an app group, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/manage-identifiers/register-an-app-group",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You need to register app groups for iOS, iPadOS, tvOS, visionOS, and watchOS apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Enable one or more groups in the list by selecting their checkboxes to add your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app as a member of those groups. Conversely, uncheck a group’s checkbox to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "revoke your app’s membership.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an app group for your app, perform the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button (+) below the App Groups list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter a container ID in the dialog that appears. A container ID must begin",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "group.",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and then a custom string.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click OK to save the new app group.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "add-app-group",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode automatically selects the new app group in the App Groups list; this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "selection indicates that your app is now a member of that app group.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "app-group-other",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can also create macOS app groups using the naming convention",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "code": "<Developer team ID>.<group name>",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "By using this naming scheme, macOS checks that the code",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "signature of processes that try to access the app group",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "container contains the same ",
+                  "type": "text"
+                },
+                {
+                  "code": "Developer-Team-ID",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " as app",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "group container ID.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Access-an-app-groups-shared-container",
+          "level": 3,
+          "text": "Access an app group’s shared container",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app becomes a member of an app group, there are a number of APIs you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can use to read and write data to that group’s shared container, such as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sharing preferences and other limited data by using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1409957-init",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "method to access the app group’s shared user defaults database.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Retrieving the physical location of the app group’s shared container by",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "calling the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1412643-containerurl",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "method, which you can later use to read and write data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1409450-sharedcontaineridentifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "property on the configuration of a background URL session to download files",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "directly into the app group’s shared container.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "add-app-group": {
+      "alt": "A screenshot of the Add a new container dialog that Xcode displays after you click the Add button, which states Xcode will create a new container if the named container doesn’t already exist, add it to your App ID, and add the new container to your app’s entitlements. The text box contains the value group.com.example.mygroup.",
+      "identifier": "add-app-group",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d9955cd1f522778ccf573c0ed08ce893/add-app-group@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c137080ae96f9288c68c9231d2d3533f/add-app-group~dark@2x.png"
+        }
+      ]
+    },
+    "app-group-other": {
+      "alt": "A screenshot of the App Groups capability after you add it to a target. The groups list contains a single app group with the name group.com.example.mygroup.",
+      "identifier": "app-group-other",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c11dad97a87ea3b1a10f8709275065f3/app-group-other@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/80671ec2a67a815af831019064edd514/app-group-other~dark@2x.png"
+        }
+      ]
+    },
+    "app-groups": {
+      "alt": "A screenshot of Xcode’s Capabilities library with a list of available capabilities on the left and an information pane on the right. The list shows a range of capabilities from App Groups to Custom Network Protocol, and the App Groups capability is in a selected state. The text on the information pane explains that App Groups allow access to group containers that are shared among multiple related apps, and allow certain additional interprocess communication between the apps.",
+      "identifier": "app-groups",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/593f221f639b7c3d4719cc4480788c2a/app-groups@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7d8e50c8b81e7341ca4fe8733b98db55/app-groups~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-capabilities-to-your-app#Add-a-capability": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-capabilities-to-your-app#Add-a-capability",
+      "kind": "section",
+      "title": "Add a capability",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-capabilities-to-your-app#Add-a-capability"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/capabilities": {
+      "abstract": [
+        {
+          "text": "Enable services that Apple provides, such as In-App Purchase, Push Notifications,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Apple Pay, iCloud, and many others.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/capabilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Capabilities",
+      "type": "topic",
+      "url": "/documentation/xcode/capabilities"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-an-associated-domain": {
+      "abstract": [
+        {
+          "text": "Create a two-way association between your app and your website to enable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "universal links, Handoff, App Clips, and shared web credentials.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-an-associated-domain",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring an associated domain",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-an-associated-domain"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-icloud-services": {
+      "abstract": [
+        {
+          "text": "Share user or app data among multiple instances of your app running on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "different devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-icloud-services",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring iCloud services",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-icloud-services"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.application-groups": {
+      "abstract": [
+        {
+          "text": "A list of identifiers specifying the groups your app belongs to.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.application-groups",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App Groups Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.application-groups"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1412643-containerurl": {
+      "abstract": [
+        {
+          "text": "Returns the container directory associated with the specified security application group identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "containerURL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forSecurityApplicationGroupIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1412643-containerurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "containerURL(forSecurityApplicationGroupIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1412643-containerurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1409450-sharedcontaineridentifier": {
+      "abstract": [
+        {
+          "text": "The identifier for the shared container into which files in background URL sessions should be downloaded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "sharedContainerIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1409450-sharedcontaineridentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sharedContainerIdentifier",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration/1409450-sharedcontaineridentifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1409957-init": {
+      "abstract": [
+        {
+          "text": "Creates a user defaults object initialized with the defaults for the specified database name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "suiteName"
+        },
+        {
+          "kind": "text",
+          "text": ": String?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1409957-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(suiteName:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1409957-init"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/help/account/manage-identifiers/register-an-app-group": {
+      "identifier": "https://developer.apple.com/help/account/manage-identifiers/register-an-app-group",
+      "title": "Register an app group",
+      "titleInlineContent": [
+        {
+          "text": "Register an app",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "group",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/manage-identifiers/register-an-app-group"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Data-management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-an-associated-domain",
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-icloud-services"
+      ],
+      "title": "Data management"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1userdefaults~11409957-init/title",
+          "value": "initWithSuiteName:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1filemanager~11412643-containerurl/title",
+          "value": "containerURLForSecurityApplicationGroupIdentifier:"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

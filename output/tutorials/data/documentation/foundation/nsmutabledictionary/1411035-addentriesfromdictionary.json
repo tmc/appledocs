@@ -1,0 +1,499 @@
+{
+  "abstract": [
+    {
+      "text": "Adds to the receiving dictionary the entries from another dictionary.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/collections",
+        "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary/1411035-addentriesfromdictionary"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1411035,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSMutableDictionary(im)addEntriesFromDictionary:",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSMutableDictionary"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "addEntriesFromDictionary:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "identifier",
+              "text": "addEntriesFromDictionary:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSDictionary",
+              "text": "NSDictionary"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "KeyType"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "ObjectType"
+            },
+            {
+              "kind": "text",
+              "text": "> *"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "otherDictionary"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The dictionary from which to add entries",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "otherDictionary"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each value object from ",
+              "type": "text"
+            },
+            {
+              "code": "otherDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is sent a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject/1571946-retain",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " message before being added to the receiving dictionary. In contrast, each key object is copied (using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying/1410311-copywithzone",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "—keys must conform to the ",
+              "type": "text"
+            },
+            {
+              "code": "NSCopying",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol), and the copy is added to the receiving dictionary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If both dictionaries contain the same key, the receiving dictionary’s previous value object for that key is sent a ",
+              "type": "text"
+            },
+            {
+              "code": "release",
+              "type": "codeVoice"
+            },
+            {
+              "text": " message, and the new value object takes its place.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/collections": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/collections",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collections",
+      "type": "topic",
+      "url": "/documentation/foundation/collections"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying/1410311-copywithzone": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyWithZone:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying/1410311-copywithzone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copyWithZone:",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying/1410311-copywithzone"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary": {
+      "abstract": [
+        {
+          "text": "A dynamic collection of objects associated with unique keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutabledictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary/1409566-setdictionary": {
+      "abstract": [
+        {
+          "text": "Sets the contents of the receiving dictionary to entries in a given dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDictionary:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary/1409566-setdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDictionary:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutabledictionary/1409566-setdictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary/1411035-addentriesfromdictionary": {
+      "abstract": [
+        {
+          "text": "Adds to the receiving dictionary the entries from another dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addEntriesFromDictionary:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary/1411035-addentriesfromdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addEntriesFromDictionary:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutabledictionary/1411035-addentriesfromdictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary/1411616-setobject": {
+      "abstract": [
+        {
+          "text": "Adds a given key-value pair to the dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObject:forKey:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary/1411616-setobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setObject:forKey:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutabledictionary/1411616-setobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary/1416335-setvalue": {
+      "abstract": [
+        {
+          "text": "Adds a given key-value pair to the dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setValue:forKey:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary/1416335-setvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setValue:forKey:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutabledictionary/1416335-setvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary/1574187-setobject": {
+      "abstract": [
+        {
+          "text": "Adds a given key-value pair to the dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObject:forKeyedSubscript:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary/1574187-setobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setObject:forKeyedSubscript:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutabledictionary/1574187-setobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject/1571946-retain": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "retain"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject/1571946-retain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "retain",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418956-nsobject/1571946-retain"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary/1411616-setobject",
+        "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary/1574187-setobject",
+        "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary/1416335-setvalue",
+        "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary/1409566-setdictionary"
+      ],
+      "title": "Adding Entries to a Mutable Dictionary"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsmutabledictionary/1411035-addentriesfromdictionary"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsmutabledictionary/1411035-addentries"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,577 @@
+{
+  "abstract": [
+    {
+      "text": "Display an interface that lets users connect a tvOS app to a mobile device over the local network.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "DeviceDiscoveryUI",
+    "modules": [
+      {
+        "name": "DeviceDiscoveryUI"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "tvOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "DeviceDiscoveryUI"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The DeviceDiscoveryUI framework provides an encrypted connection between your tvOS app and your iOS, iPadOS, or watchOS app using the local network. For example, users could control a tvOS game from their iPad. Or, a fitness tvOS app could connect to the watchOS version, which records the workout session and passes heart rate and calorie data back to the tvOS app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On Apple TV, you start by presenting a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DevicePicker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view or a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DDDevicePickerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This view displays a list of all the devices your tvOS app can connect to on the local network. When the user selects a device, the system attempts to launch your app on that device. If your app is already installed, the system asks the user if they want to connect to Apple TV. If your app isn’t installed, the system prompts the user to install it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use DeviceDiscoveryUI to present a view that lists available devices, and then use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework to create the listeners, create the connections, and send and receive messages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "DeviceDiscoveryUI provides several advantages over creating a connection using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework directly. It automatically sets up an optimized, encrypted connection between versions of your app running on different local devices. It helps preserve the user’s privacy by only providing access to iOS, iPadOS, and watchOS devices on the local network. Also, because the system securely manages the connection, your users don’t need to authorize full access to their local network.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following requirements apply:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "DeviceDiscoveryUI is supported only on Apple TV 4K.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your tvOS app can only connect to one device at a time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your tvOS app can only connect to other copies of your app running on iOS, iPadOS, or watchOS.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You must distribute your app as a universal purchase, so that all copies of your app share the same bundle ID. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/support/universal-purchase/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "DeviceDiscoveryUI uses the iCloud account of the default user on Apple TV. If Apple TV has more than one user, the user who manages Family Sharing is the default user. DeviceDiscoveryUI only shows devices logged into that user’s iCloud account, or accounts from the user’s Family Sharing group.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI": {
+      "abstract": [
+        {
+          "text": "Display an interface that lets users connect a tvOS app to a mobile device over the local network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DeviceDiscoveryUI",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryui"
+    },
+    "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DDDevicePickerViewController": {
+      "abstract": [
+        {
+          "text": "A UIKit view that displays other devices on the network, and creates an encrypted connection to a copy of your app running on that device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDDevicePickerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DDDevicePickerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDDevicePickerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDDevicePickerViewController",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryui/dddevicepickerviewcontroller"
+    },
+    "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DeviceDiscoveryUI_EXTERN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DeviceDiscoveryUI_EXTERN"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DeviceDiscoveryUI_EXTERN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DeviceDiscoveryUI_EXTERN",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryui/devicediscoveryui_extern"
+    },
+    "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DevicePicker": {
+      "abstract": [
+        {
+          "text": "A SwiftUI view that displays other devices on the network, and creates an encrypted connection to a copy of your app running on that device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DevicePicker"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DevicePicker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DevicePicker"
+        }
+      ],
+      "role": "symbol",
+      "title": "DevicePicker",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryui/devicepicker"
+    },
+    "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DevicePickerSupportedAction": {
+      "abstract": [
+        {
+          "text": "An environment value that indicates whether the current device supports device discovery.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DevicePickerSupportedAction"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DevicePickerSupportedAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DevicePickerSupportedAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "DevicePickerSupportedAction",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryui/devicepickersupportedaction"
+    },
+    "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/PreviewImageFrameReporting": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreviewImageFrameReporting"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/PreviewImageFrameReporting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreviewImageFrameReporting"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreviewImageFrameReporting",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryui/previewimageframereporting"
+    },
+    "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/connecting-a-tvos-app-to-other-devices-over-the-local-network": {
+      "abstract": [
+        {
+          "text": "Display a view in your tvOS app that lists available iOS, iPadOS, and watchOS devices that the user can connect to over their local network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/connecting-a-tvos-app-to-other-devices-over-the-local-network",
+      "kind": "article",
+      "role": "article",
+      "title": "Connecting a tvOS app to other devices over the local network",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryui/connecting-a-tvos-app-to-other-devices-over-the-local-network"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSApplicationServices": {
+      "abstract": [
+        {
+          "text": "A list of service providers and the devices that they support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSApplicationServices",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSApplicationServices",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSApplicationServices"
+    },
+    "doc://com.apple.documentation/documentation/Network": {
+      "abstract": [
+        {
+          "text": "Create network connections to send and receive data using transport and security protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/Network"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/support/universal-purchase/": {
+      "identifier": "https://developer.apple.com/support/universal-purchase/",
+      "title": "Offering Universal Purchase",
+      "titleInlineContent": [
+        {
+          "text": "Offering Universal Purchase",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/universal-purchase/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Selecting-nearby-devices",
+      "identifiers": [
+        "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/connecting-a-tvos-app-to-other-devices-over-the-local-network",
+        "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DevicePicker",
+        "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DDDevicePickerViewController",
+        "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DevicePickerSupportedAction",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSApplicationServices"
+      ],
+      "title": "Selecting nearby devices"
+    },
+    {
+      "anchor": "Protocols",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/PreviewImageFrameReporting"
+      ],
+      "title": "Protocols"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Selecting-nearby-devices",
+              "identifiers": [
+                "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/connecting-a-tvos-app-to-other-devices-over-the-local-network",
+                "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DDDevicePickerViewController",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSApplicationServices"
+              ],
+              "title": "Selecting nearby devices"
+            },
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DeviceDiscoveryUI_EXTERN"
+              ],
+              "title": "Macros"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryui~1documentation~1DeviceDiscoveryUI~1DDDevicePickerViewController/title",
+          "value": "DDDevicePickerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryui~1documentation~1DeviceDiscoveryUI~1DDDevicePickerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDevicePickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryui~1documentation~1DeviceDiscoveryUI~1DDDevicePickerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDevicePickerViewController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicediscoveryui"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/devicediscoveryui"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

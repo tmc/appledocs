@@ -1,0 +1,1296 @@
+{
+  "abstract": [
+    {
+      "text": "Play Live Photos on the web.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "LivePhotosKitJS",
+    "modules": [
+      {
+        "name": "LivePhotosKit JS"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "LivePhotosKit JS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "LivePhotosKit JS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the LivePhotosKit JS library to play Live Photos on your web pages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The JavaScript API presents the player in the form of a DOM element, much like an image or video tag, which can be configured with photo and video resources and other options, and have its playback controlled either programmatically by the consuming developer, or via pre-provided controls by the browsing end-user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Before-You-Begin",
+          "level": 3,
+          "text": "Before You Begin",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Embed LivePhotosKit JS in your webpage.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the script tag and link to Apple’s hosted version of LivePhotosKit JS at ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://cdn.apple-livephotoskit.com/lpk/1/livephotoskit.js",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "code": ".",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<script src=\"https://cdn.apple-livephotoskit.com/lpk/1/livephotoskit.js\"></script>"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The LivePhotosKit JS version number is in the URL. For example, 1 specifies LivePhotosKit JS 1.0.0.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable JavaScript strict mode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "start": 2,
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable strict mode for an entire script, put ‘use strict’ before any other statements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " 'use strict';"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "LivePhotosKit JS is also available through NPM at ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://www.npmjs.com/package/livephotoskit",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The install command is:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "code": "npm install --save livephotoskit",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Declarative-HTML",
+          "level": 3,
+          "text": "Declarative HTML",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By including the LivePhotosKit JS script on your page, you can create players by simply adding declarative markup to your HTML. As the page loads, LivePhotosKit JS will determine what player instances are on the page and initialize them. You can use any HTML tag that supports child nodes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At minimum, each tag requires the ",
+              "type": "text"
+            },
+            {
+              "code": "data-live-photo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute as well as a non-zero height and width. Doing this allows LivePhotosKit JS to find the DOM elements to be initialized as players.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then you can specify the locations of the photo and video components by setting the ",
+              "type": "text"
+            },
+            {
+              "code": "data-photo-src",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "data-video-src",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attributes, respectively.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Optionally, you can use the following additional data attributes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "data-photo-time",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The timestamp from the beginning of the provided video component, at which the still photo was captured.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "data-proactively-loads-video",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": Whether or not the Player will download the bytes at the provided data-video-src prior to the user or developer attempting to begin playback.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "data-shows-native-controls",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": Whether or not the playback controls are enabled for the user.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each DOM element assigned to be a Player will be decorated with a playback control.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<!DOCTYPE html>",
+            "<html>",
+            "    <head>",
+            "        <meta charset=\"utf-8\">",
+            "        <script src=\"https://cdn.apple-livephotoskit.com/lpk/1/livephotoskit.js\"></script>",
+            "    </head>",
+            "    <body>",
+            "        <div",
+            "            data-live-photo",
+            "            data-photo-src=\"https://...\"",
+            "            data-video-src=\"https://...\"",
+            "            style=\"width: 320px; height: 320px\">            ",
+            "        </div>",
+            "    </body>",
+            "</html>"
+          ],
+          "syntax": "html",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "JavaScript-API",
+          "level": 3,
+          "text": "JavaScript API",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Player/LivePhotosKit.Player",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by invoking it either as a wrapper around a pre-existing DOM element, or by calling it without an argument, which will create a new DOM element.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// A Player built from a new DIV:",
+            "const myNewPlayer = LivePhotosKit.Player();",
+            "document.body.appendChild(myNewPlayer);",
+            "// A Player built from a pre-existing element:",
+            "LivePhotosKit.Player(document.getElementById('myExistingElement'));"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After a Player is created, use the properties and methods to set it up and use it, just as you would with a native image or video element.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The player will emit these events:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Player#canplay",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " when the Player has obtained just enough video frames and is obtaining them quickly enough for smooth playback.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Player#error",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " when loading of either the photo or video components of the Live Photo has failed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Player#ended",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " when playback of the Live Photo has completed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Player#videoload",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " when the video component of the Live Photo has finished loading.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Player#photoload",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " when the photo component of the Live Photo has finished loading.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "// Create the player using a pre-existing DOM element.",
+            "const player = LivePhotosKit.Player(document.getElementById('my-live-photo-target-element'));",
+            "player.photoSrc = 'https://...';",
+            "player.videoSrc = 'https://...';",
+            "// Listen to events the player emits.",
+            "player.addEventListener('canplay', evt => console.log('player ready', evt));",
+            "player.addEventListener('error', evt => console.log('player load error', evt));",
+            "player.addEventListener('ended', evt => console.log('player finished playing through', evt));",
+            "// Use the playback controls.",
+            "player.playbackStyle = LivePhotosKit.PlaybackStyle.HINT;",
+            "player.playbackStyle = LivePhotosKit.PlaybackStyle.FULL;",
+            "player.play();",
+            "player.pause();",
+            "player.toggle();",
+            "player.stop();",
+            "// Seek the animation to one quarter through.",
+            "player.currentTime = 0.25 * player.duration;",
+            "// Seek the animation to 0.1 seconds into the Live Photo.",
+            "player.currentTime = 0.1;"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Error-Handling",
+          "level": 3,
+          "text": "Error Handling",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A Player will emit error events, if and when errors occur while attempting to load or play. If a Player does experience an error, it will also publish the error to its public property ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Player/errors",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as a way to convey whether or not it is in an error state, and, if so, what the errors were.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The error states can be seen here ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Errors",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "player.addEventListener('error', (ev) => {",
+            "    if (typeof ev.detail.errorCode === 'number') {",
+            "        switch (ev.detail.errorCode) {",
+            "        case LivePhotosKit.Errors.IMAGE_FAILED_TO_LOAD:",
+            "            // Do something",
+            "            break;",
+            "        case LivePhotosKit.Errors.VIDEO_FAILED_TO_LOAD:",
+            "            // Do something",
+            "            break;",
+            "        }",
+            "    } else {",
+            "        // Extract error.",
+            "        console.error(ev.detail.error);",
+            "    }",
+            "})"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Browser-Compatibility",
+          "level": 3,
+          "text": "Browser Compatibility",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The LivePhotosKit JS player is supported on the following browsers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Device",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Browser",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Safari, Chrome",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Safari, Chrome, Firefox",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Android (performance depends on device)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Chrome (beta)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Windows",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Chrome, Firefox, Edge, Internet Explorer 11",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "How-to-obtain-Live-Photo-assets",
+          "level": 3,
+          "text": "How to obtain Live Photo assets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Live Photos consist of two components: a still photo and a video of the moments just before and after the photo is taken. Using one of the following methods will let you obtain the still photo as a JPG and the video as a MOV file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If the assets are large, they will take a long time to download. If the photo takes too long, it will not be able to show the progress badge. To avoid this problem, the element that is being decorated to be a player should explicitly specify its height and width. Downsizing assets will greatly improve performance and reduce bandwidth usage.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A sample project is also ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/content/samplecode/UsingPhotosFramework/Introduction/Intro.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Using-macOS-Photos",
+          "level": 4,
+          "text": "Using macOS Photos",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Connect your iOS device to your Mac.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Import your photos into the Photos application.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Live Photo you wish to export.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use File > Export > Export Unmodified Original to export to your file system.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Using-macOS-Image-Capture",
+          "level": 4,
+          "text": "Using macOS Image Capture",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Connect your iOS device to your Mac.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Live Photo you wish to import from your device to your local file system.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose the destination folder and click on Import.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Using-Windows-10-File-Explorer",
+          "level": 4,
+          "text": "Using Windows 10 File Explorer",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure that iTunes for Windows is installed. You can download it from here: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "http://www.apple.com/itunes/download/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open File Explorer. This can be opened by pressing the Windows Key and E at the same time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Connect your iOS device to your PC.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You should see your iOS device in the “This PC” folder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Navigate to the following folder: (your device) > Internal Storage > DCIM and look for the Live Photo you wish to import.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your Live Photo will be stored as a pair of files: a JPG file and a MOV file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag the pair of files to your local file system.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS": {
+      "abstract": [
+        {
+          "text": "Play Live Photos on the web.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "LivePhotosKit JS",
+      "type": "topic",
+      "url": "/documentation/livephotoskitjs"
+    },
+    "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit": {
+      "abstract": [
+        {
+          "text": "The namespace for the LivePhotosKit library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LivePhotosKit",
+      "type": "topic",
+      "url": "/documentation/livephotoskitjs/livephotoskit"
+    },
+    "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.EffectType": {
+      "abstract": [],
+      "identifier": "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.EffectType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LivePhotosKit.EffectType",
+      "type": "topic",
+      "url": "/documentation/livephotoskitjs/livephotoskit.effecttype"
+    },
+    "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Errors": {
+      "abstract": [
+        {
+          "text": "The errors that can occur when playing a LivePhoto.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Errors",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LivePhotosKit.Errors",
+      "type": "topic",
+      "url": "/documentation/livephotoskitjs/livephotoskit.errors"
+    },
+    "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.PlaybackStyle": {
+      "abstract": [
+        {
+          "text": "Possible playback styles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.PlaybackStyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LivePhotosKit.PlaybackStyle",
+      "type": "topic",
+      "url": "/documentation/livephotoskitjs/livephotoskit.playbackstyle"
+    },
+    "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Player": {
+      "abstract": [
+        {
+          "text": "A player for Live Photos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Player",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LivePhotosKit.Player",
+      "type": "topic",
+      "url": "/documentation/livephotoskitjs/livephotoskit.player"
+    },
+    "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Player#canplay": {
+      "abstract": [],
+      "identifier": "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Player#canplay",
+      "kind": "section",
+      "title": "canplay",
+      "type": "topic",
+      "url": "/documentation/livephotoskitjs/livephotoskit.player#canplay"
+    },
+    "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Player#ended": {
+      "abstract": [],
+      "identifier": "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Player#ended",
+      "kind": "section",
+      "title": "ended",
+      "type": "topic",
+      "url": "/documentation/livephotoskitjs/livephotoskit.player#ended"
+    },
+    "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Player#error": {
+      "abstract": [],
+      "identifier": "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Player#error",
+      "kind": "section",
+      "title": "error",
+      "type": "topic",
+      "url": "/documentation/livephotoskitjs/livephotoskit.player#error"
+    },
+    "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Player#photoload": {
+      "abstract": [],
+      "identifier": "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Player#photoload",
+      "kind": "section",
+      "title": "photoload",
+      "type": "topic",
+      "url": "/documentation/livephotoskitjs/livephotoskit.player#photoload"
+    },
+    "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Player#videoload": {
+      "abstract": [],
+      "identifier": "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Player#videoload",
+      "kind": "section",
+      "title": "videoload",
+      "type": "topic",
+      "url": "/documentation/livephotoskitjs/livephotoskit.player#videoload"
+    },
+    "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Player/LivePhotosKit.Player": {
+      "abstract": [
+        {
+          "text": "Creates ",
+          "type": "text"
+        },
+        {
+          "code": "LivePhotosKit.Player",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Player/LivePhotosKit.Player",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LivePhotosKit.Player",
+      "type": "topic",
+      "url": "/documentation/livephotoskitjs/livephotoskit.player/livephotoskit.player"
+    },
+    "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Player/errors": {
+      "abstract": [
+        {
+          "text": "An array of errors that occurred when attempting to load resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Player/errors",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "errors",
+      "type": "topic",
+      "url": "/documentation/livephotoskitjs/livephotoskit.player/errors"
+    },
+    "http://www.apple.com/itunes/download/": {
+      "identifier": "http://www.apple.com/itunes/download/",
+      "title": "http://www.apple.com/itunes/download/",
+      "titleInlineContent": [
+        {
+          "text": "http://www.apple.com/itunes/download/",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://www.apple.com/itunes/download/"
+    },
+    "https://cdn.apple-livephotoskit.com/lpk/1/livephotoskit.js": {
+      "identifier": "https://cdn.apple-livephotoskit.com/lpk/1/livephotoskit.js",
+      "title": "https://cdn.apple-livephotoskit.com/lpk/1/livephotoskit.js",
+      "titleInlineContent": [
+        {
+          "text": "https://cdn.apple-livephotoskit.com/lpk/1/livephotoskit.js",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://cdn.apple-livephotoskit.com/lpk/1/livephotoskit.js"
+    },
+    "https://developer.apple.com/library/content/samplecode/UsingPhotosFramework/Introduction/Intro.html": {
+      "identifier": "https://developer.apple.com/library/content/samplecode/UsingPhotosFramework/Introduction/Intro.html",
+      "title": "available",
+      "titleInlineContent": [
+        {
+          "text": "available",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/content/samplecode/UsingPhotosFramework/Introduction/Intro.html"
+    },
+    "https://www.npmjs.com/package/livephotoskit": {
+      "identifier": "https://www.npmjs.com/package/livephotoskit",
+      "title": "https://www.npmjs.com/package/livephotoskit",
+      "titleInlineContent": [
+        {
+          "text": "https://www.npmjs.com/package/livephotoskit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.npmjs.com/package/livephotoskit"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Classes",
+      "identifiers": [
+        "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit",
+        "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Player"
+      ],
+      "title": "Classes"
+    },
+    {
+      "anchor": "Enumerations",
+      "identifiers": [
+        "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.Errors",
+        "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.PlaybackStyle",
+        "doc://com.apple.livephotoskitjs/documentation/LivePhotosKitJS/LivePhotosKit.EffectType"
+      ],
+      "title": "Enumerations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/livephotoskitjs"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

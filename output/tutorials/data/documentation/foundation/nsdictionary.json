@@ -1,0 +1,3543 @@
+{
+  "abstract": [
+    {
+      "text": "An object representing a static collection of key-value pairs, for use instead of a ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Dictionary",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": " constant in cases that require reference semantics.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime/classes_bridged_to_swift_standard_library_value_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsdictionary"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1415595,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSDictionary",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSDictionary"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSDictionary"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSDictionary"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class declares the programmatic interface to objects that manage immutable associations of keys and values. For example, an interactive form could be represented as a dictionary, with the field names as keys, corresponding to user-entered values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this class or its subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when you need a convenient and efficient way to retrieve data associated with an arbitrary key. ",
+              "type": "text"
+            },
+            {
+              "code": "NSDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " creates static dictionaries, and ",
+              "type": "text"
+            },
+            {
+              "code": "NSMutableDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " creates dynamic dictionaries. (For convenience, the term ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "dictionary",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " refers to any instance of one of these classes without specifying its exact class membership.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A key-value pair within a dictionary is called an entry. Each entry consists of one object that represents the key and a second object that is that key’s value. Within a dictionary, the keys are unique. That is, no two keys in a single dictionary are equal (as determined by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol/1418795-isequal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). In general, a key can be any object (provided that it conforms to the ",
+              "type": "text"
+            },
+            {
+              "code": "NSCopying",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol—see below), but note that when using key-value coding the key must be a string (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1699050",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). Neither a key nor a value can be ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; if you need to represent a null value in a dictionary, you should use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnull",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is “toll-free bridged” with its Core Foundation counterpart, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". See ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1745091",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information on toll-free bridging.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2530698",
+          "level": 3,
+          "text": "Creating NSDictionary Objects Using Dictionary Literals",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the provided initializers, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1410010-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can create an ",
+              "type": "text"
+            },
+            {
+              "code": "NSDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object using a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "dictionary literal",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let dictionary: NSDictionary = [",
+            "    \"anObject\" : someObject,",
+            "    \"helloString\" : \"Hello, World!\",",
+            "    \"magicNumber\" : 42,",
+            "    \"aValue\" : someValue",
+            "]"
+          ],
+          "metadata": {
+            "anchor": "2555582",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Objective-C, the compiler generates code that makes an underlying call to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1574184-dictionarywithobjects",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "id objects[] = { someObject, @\"Hello, World!\", @42, someValue };",
+            "id keys[] = { @\"anObject\", @\"helloString\", @\"magicNumber\", @\"aValue\" };",
+            "NSUInteger count = sizeof(objects) / sizeof(id);",
+            "NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:objects",
+            "                                                       forKeys:keys",
+            "                                                         count:count];"
+          ],
+          "metadata": {
+            "anchor": "2555586",
+            "title": "Listing 2"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1574181-dictionarywithobjectsandkeys",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and other initializers, dictionary literals specify entries in key-value order. You should not terminate the list of objects with ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when using this literal syntax, and in fact ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is an invalid value. For more information about object literals in Objective-C, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1746083",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1746020",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Swift, the ",
+              "type": "text"
+            },
+            {
+              "code": "NSDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class conforms to the ",
+              "type": "text"
+            },
+            {
+              "code": "DictionaryLiteralConvertible",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol, which allows it to be initialized with dictionary literals. For more information about object literals in Swift, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1751374",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1750951",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2530699",
+          "level": 3,
+          "text": "Accessing Values Using Subscripting",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the provided instance methods, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1414347-object",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can access ",
+              "type": "text"
+            },
+            {
+              "code": "NSDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values by their keys using ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "subscripting",
+                  "type": "text"
+                }
+              ],
+              "type": "newTerm"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let value = dictionary[\"helloString\"]"
+          ],
+          "metadata": {
+            "anchor": "2555591",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "2530700",
+          "level": 3,
+          "text": "Enumerating Entries Using for-in Loops",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the provided instance methods, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1414570-enumeratekeysandobjects",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can enumerate ",
+              "type": "text"
+            },
+            {
+              "code": "NSDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entries using ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "for-in loops",
+                  "type": "text"
+                }
+              ],
+              "type": "newTerm"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for (key, value) in dictionary {",
+            "    print(\"Value: \\(value) for key: \\(key)\")",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "2555597",
+            "title": "Listing 4"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Objective-C, ",
+              "type": "text"
+            },
+            {
+              "code": "NSDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfastenumeration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Swift, ",
+              "type": "text"
+            },
+            {
+              "code": "NSDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conforms to the ",
+              "type": "text"
+            },
+            {
+              "code": "SequenceType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1776558",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You generally shouldn’t need to subclass ",
+              "type": "text"
+            },
+            {
+              "code": "NSDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Custom behavior can usually be achieved through composition rather than subclassing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1776559",
+          "level": 4,
+          "text": "Methods to Override",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you do need to subclass ",
+              "type": "text"
+            },
+            {
+              "code": "NSDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", take into account that it is a ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1737802",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Any subclass must override the following primitive methods:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1412631-init",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1409628-count",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1414347-object",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1411011-keyenumerator",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The other methods of ",
+              "type": "text"
+            },
+            {
+              "code": "NSDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " operate by invoking one or more of these primitives. The non-primitive methods provide convenient ways of accessing multiple entries at once.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1651226",
+          "level": 4,
+          "text": "Alternatives to Subclassing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before making a custom class of ",
+              "type": "text"
+            },
+            {
+              "code": "NSDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", investigate ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the corresponding Core Foundation type, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Because ",
+              "type": "text"
+            },
+            {
+              "code": "NSDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "CFDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are “toll-free bridged,” you can substitute a ",
+              "type": "text"
+            },
+            {
+              "code": "CFDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object for a ",
+              "type": "text"
+            },
+            {
+              "code": "NSDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object in your code (with appropriate casting). Although they are corresponding types, ",
+              "type": "text"
+            },
+            {
+              "code": "CFDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "NSDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " do not have identical interfaces or implementations, and you can sometimes do things with ",
+              "type": "text"
+            },
+            {
+              "code": "CFDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that you cannot easily do with ",
+              "type": "text"
+            },
+            {
+              "code": "NSDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the behavior you want to add supplements that of the existing class, you could write a category on ",
+              "type": "text"
+            },
+            {
+              "code": "NSDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Keep in mind, however, that this category will be in effect for all instances of ",
+              "type": "text"
+            },
+            {
+              "code": "NSDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that you use, and this might have unintended consequences. Alternatively, you could use composition to achieve the desired behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1699050": {
+      "identifier": "devLink-1699050",
+      "title": "Accessing Object Properties",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/BasicPrinciples.html#//apple_ref/doc/uid/20002170"
+    },
+    "devLink-1737802": {
+      "identifier": "devLink-1737802",
+      "title": "Class cluster",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/ClassCluster.html#//apple_ref/doc/uid/TP40008195-CH7"
+    },
+    "devLink-1745091": {
+      "identifier": "devLink-1745091",
+      "title": "Toll-Free Bridging",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2"
+    },
+    "devLink-1746020": {
+      "identifier": "devLink-1746020",
+      "title": "Programming with Objective-C",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011210"
+    },
+    "devLink-1746083": {
+      "identifier": "devLink-1746083",
+      "title": "Working with Objects",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/WorkingwithObjects/WorkingwithObjects.html#//apple_ref/doc/uid/TP40011210-CH4"
+    },
+    "devLink-1750951": {
+      "identifier": "devLink-1750951",
+      "title": "The Swift Programming Language (Swift 4.1)",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097"
+    },
+    "devLink-1751374": {
+      "identifier": "devLink-1751374",
+      "title": "Literal Expression",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/Swift_Programming_Language/Expressions.html#//apple_ref/doc/uid/TP40014097-CH32-ID390"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomReflectable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomReflectable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomReflectable",
+      "type": "topic",
+      "url": "/documentation/swift/customreflectable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Dictionary": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Dictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Dictionary",
+      "type": "topic",
+      "url": "/documentation/swift/dictionary"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ExpressibleByDictionaryLiteral": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ExpressibleByDictionaryLiteral",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExpressibleByDictionaryLiteral",
+      "type": "topic",
+      "url": "/documentation/swift/expressiblebydictionaryliteral"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sequence": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sequence",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sequence",
+      "type": "topic",
+      "url": "/documentation/swift/sequence"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSFetchRequestResult": {
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSFetchRequestResult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFetchRequestResult",
+      "type": "topic",
+      "url": "/documentation/coredata/nsfetchrequestresult"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdictionary": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFDictionary",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdictionary"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFDictionary",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdictionary-rum"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManager",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1410452-attributesofitem": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1410452-attributesofitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attributesOfItem(atPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1410452-attributesofitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary": {
+      "abstract": [
+        {
+          "text": "An object representing a static collection of key-value pairs, for use instead of a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.Swift/documentation/Swift/Dictionary",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " constant in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary#2555582": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary#2555582",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/nsdictionary#2555582"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary#2555586": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary#2555586",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/nsdictionary#2555586"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary#2555591": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary#2555591",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/foundation/nsdictionary#2555591"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary#2555597": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary#2555597",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/foundation/nsdictionary#2555597"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1407186-keysofentries": {
+      "abstract": [
+        {
+          "text": "Returns the set of keys whose corresponding value satisfies a constraint described by a block object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "keysOfEntries"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "passingTest"
+        },
+        {
+          "kind": "text",
+          "text": ": (Any, Any, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Set<AnyHashable>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1407186-keysofentries",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keysOfEntries(passingTest:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1407186-keysofentries"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1408190-sharedkeyset": {
+      "abstract": [
+        {
+          "text": "Creates a shared key set object for the specified keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sharedKeySet"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": [any NSCopying]) -> Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1408190-sharedkeyset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sharedKeySet(forKeys:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1408190-sharedkeyset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1408396-filesystemfilenumber": {
+      "abstract": [
+        {
+          "text": "Returns the filesystem file number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileSystemFileNumber"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1408396-filesystemfilenumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileSystemFileNumber()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1408396-filesystemfilenumber"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1408769-objects": {
+      "abstract": [
+        {
+          "text": "Returns as a static array the set of objects from the dictionary that corresponds to the specified keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any], "
+        },
+        {
+          "kind": "identifier",
+          "text": "notFoundMarker"
+        },
+        {
+          "kind": "text",
+          "text": ": Any) -> [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1408769-objects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objects(forKeys:notFoundMarker:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1408769-objects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1408811-filemodificationdate": {
+      "abstract": [
+        {
+          "text": "Returns file’s modification date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileModificationDate"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1408811-filemodificationdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileModificationDate()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1408811-filemodificationdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1408915-allvalues": {
+      "abstract": [
+        {
+          "text": "A new array containing the dictionary’s values, or an empty array if the dictionary has no entries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "allValues"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1408915-allvalues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allValues",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1408915-allvalues"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1409150-allkeys": {
+      "abstract": [
+        {
+          "text": "A new array containing the dictionary’s keys, or an empty array if the dictionary has no entries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "allKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1409150-allkeys",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allKeys",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1409150-allkeys"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1409446-fileposixpermissions": {
+      "abstract": [
+        {
+          "text": "Returns the file’s POSIX permissions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "filePosixPermissions"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1409446-fileposixpermissions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "filePosixPermissions()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1409446-fileposixpermissions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1409600-objectenumerator": {
+      "abstract": [
+        {
+          "text": "Returns an enumerator object that lets you access each value in the dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectEnumerator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSEnumerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1409600-objectenumerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objectEnumerator()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1409600-objectenumerator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1409628-count": {
+      "abstract": [
+        {
+          "text": "The number of entries in the dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1409628-count",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "count",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1409628-count"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1409634-write": {
+      "abstract": [
+        {
+          "text": "Writes a property list representation of the contents of the dictionary to a given URL.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "atomically"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1409634-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(to:atomically:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1409634-write"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1409739-enumeratekeysandobjects": {
+      "abstract": [
+        {
+          "text": "Applies a given block object to the entries of the dictionary, with options specifying how the enumeration is performed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateKeysAndObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSEnumerationOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": (Any, Any, UnsafeMutablePointer<ObjCBool>) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1409739-enumeratekeysandobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enumerateKeysAndObjects(options:using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1409739-enumeratekeysandobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1410010-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated dictionary with key-value pairs constructed from the provided arrays of keys and objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "objects"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any], "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": [any NSCopying])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1410010-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(objects:forKeys:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1410010-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1410124-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated dictionary using the objects contained in another given dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "dictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any], "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyItems"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1410124-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(dictionary:copyItems:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1410124-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1410210-value": {
+      "abstract": [
+        {
+          "text": "Returns the value associated with a given key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1410210-value",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "value(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1410210-value"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1410799-description": {
+      "abstract": [
+        {
+          "text": "A string that represents the contents of the dictionary, formatted as a property list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1410799-description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1410799-description"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1411011-keyenumerator": {
+      "abstract": [
+        {
+          "text": "Provides an enumerator to access the keys in the dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyEnumerator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSEnumerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1411011-keyenumerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keyEnumerator()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1411011-keyenumerator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1411105-keyssortedbyvalue": {
+      "abstract": [
+        {
+          "text": "Returns an array of the dictionary’s keys, in the order they would be in if the dictionary were sorted by its values using a given comparator block. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "keysSortedByValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "comparator"
+        },
+        {
+          "kind": "text",
+          "text": ": (Any, Any) -> ComparisonResult) -> [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1411105-keyssortedbyvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keysSortedByValue(comparator:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1411105-keyssortedbyvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1412281-fileowneraccountid": {
+      "abstract": [
+        {
+          "text": "Returns the file’s owner account ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileOwnerAccountID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSNumber?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1412281-fileowneraccountid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileOwnerAccountID()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1412281-fileowneraccountid"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1412484-keyssortedbyvalue": {
+      "abstract": [
+        {
+          "text": "Returns an array of the dictionary’s keys, in the order they would be in if the dictionary were sorted by its values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "keysSortedByValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": Selector) -> [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1412484-keyssortedbyvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keysSortedByValue(using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1412484-keyssortedbyvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1412631-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated dictionary with the specified number of key-value pairs constructed from the provided C arrays of keys and objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "objects"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<AnyObject>?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<any NSCopying>?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1412631-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(objects:forKeys:count:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1412631-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1412690-description": {
+      "abstract": [
+        {
+          "text": "Returns a string object that represents the contents of the dictionary, formatted as a property list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withLocale"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "indent"
+        },
+        {
+          "kind": "text",
+          "text": ": Int) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1412690-description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description(withLocale:indent:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1412690-description"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1413177-fileextensionhidden": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the file hides its extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileExtensionHidden"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1413177-fileextensionhidden",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileExtensionHidden()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1413177-fileextensionhidden"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1413282-descriptioninstringsfileformat": {
+      "abstract": [
+        {
+          "text": "A string that represents the contents of the dictionary, formatted in ",
+          "type": "text"
+        },
+        {
+          "code": ".strings",
+          "type": "codeVoice"
+        },
+        {
+          "text": " file format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "descriptionInStringsFileFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1413282-descriptioninstringsfileformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "descriptionInStringsFileFormat",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1413282-descriptioninstringsfileformat"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1413465-filesize": {
+      "abstract": [
+        {
+          "text": "Returns the file’s size, in bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileSize"
+        },
+        {
+          "kind": "text",
+          "text": "() -> UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1413465-filesize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileSize()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1413465-filesize"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1413626-filegroupowneraccountid": {
+      "abstract": [
+        {
+          "text": "Returns file’s group owner account ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileGroupOwnerAccountID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSNumber?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1413626-filegroupowneraccountid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileGroupOwnerAccountID()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1413626-filegroupowneraccountid"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1414347-object": {
+      "abstract": [
+        {
+          "text": "Returns the value associated with a given key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": Any) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1414347-object",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "object(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1414347-object"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1414570-enumeratekeysandobjects": {
+      "abstract": [
+        {
+          "text": "Applies a given block object to the entries of the dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateKeysAndObjects"
+        },
+        {
+          "kind": "text",
+          "text": "((Any, Any, UnsafeMutablePointer<ObjCBool>) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1414570-enumeratekeysandobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enumerateKeysAndObjects(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1414570-enumeratekeysandobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1414949-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated dictionary using the keys and values found in a file at a given path.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsOfFile"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1414949-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(contentsOfFile:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1414949-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1414965-init": {
+      "abstract": [
+        {
+          "text": "Creates a dictionary containing a given key and value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": ": Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": any NSCopying)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1414965-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(object:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1414965-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1415065-filehfscreatorcode": {
+      "abstract": [
+        {
+          "text": "Returns the file’s HFS creator code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileHFSCreatorCode"
+        },
+        {
+          "kind": "text",
+          "text": "() -> OSType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1415065-filehfscreatorcode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileHFSCreatorCode()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1415065-filehfscreatorcode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1415294-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated dictionary from the given key-value pairs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "dictionaryLiteral"
+        },
+        {
+          "kind": "text",
+          "text": ": (Any, Any)...)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1415294-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(dictionaryLiteral:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1415294-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1415329-filesystemnumber": {
+      "abstract": [
+        {
+          "text": "Returns the filesystem number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileSystemNumber"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1415329-filesystemnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileSystemNumber()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1415329-filesystemnumber"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1415430-subscript": {
+      "abstract": [
+        {
+          "text": "Returns the value associated with a given key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "(any NSCopying) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1415430-subscript",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1415430-subscript"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1415445-isequal": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the contents of the receiving dictionary are equal to the contents of another given dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqual"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1415445-isequal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqual(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1415445-isequal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1415717-keyssortedbyvalue": {
+      "abstract": [
+        {
+          "text": "Returns an array of the dictionary’s keys, in the order they would be in if the dictionary were sorted by its values using a given comparator block and a specified set of options. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "keysSortedByValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSSortOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "usingComparator"
+        },
+        {
+          "kind": "text",
+          "text": ": (Any, Any) -> ComparisonResult) -> [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1415717-keyssortedbyvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keysSortedByValue(options:usingComparator:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1415717-keyssortedbyvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1415753-write": {
+      "abstract": [
+        {
+          "text": "Writes a property list representation of the contents of the dictionary to a given path.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "toFile"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "atomically"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1415753-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(toFile:atomically:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1415753-write"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1416069-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated dictionary using the keys and values found at a given URL.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1416069-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(contentsOf:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1416069-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1416083-fileisappendonly": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the file is append only.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileIsAppendOnly"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1416083-fileisappendonly",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileIsAppendOnly()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1416083-fileisappendonly"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1416500-fileisimmutable": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the file is immutable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileIsImmutable"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1416500-fileisimmutable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileIsImmutable()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1416500-fileisimmutable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1416706-keysofentries": {
+      "abstract": [
+        {
+          "text": "Returns the set of keys whose corresponding value satisfies a constraint described by a block object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "keysOfEntries"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSEnumerationOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "passingTest"
+        },
+        {
+          "kind": "text",
+          "text": ": (Any, Any, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Set<AnyHashable>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1416706-keysofentries",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keysOfEntries(options:passingTest:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1416706-keysofentries"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1416788-filegroupowneraccountname": {
+      "abstract": [
+        {
+          "text": "Returns the file’s group owner account name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileGroupOwnerAccountName"
+        },
+        {
+          "kind": "text",
+          "text": "() -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1416788-filegroupowneraccountname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileGroupOwnerAccountName()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1416788-filegroupowneraccountname"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1416809-filetype": {
+      "abstract": [
+        {
+          "text": "Returns the file type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileType"
+        },
+        {
+          "kind": "text",
+          "text": "() -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1416809-filetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileType()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1416809-filetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1417071-filecreationdate": {
+      "abstract": [
+        {
+          "text": "Returns the file’s creation date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileCreationDate"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1417071-filecreationdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileCreationDate()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1417071-filecreationdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1417147-allkeys": {
+      "abstract": [
+        {
+          "text": "Returns a new array containing the keys corresponding to all occurrences of a given object in the dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "allKeys"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": Any) -> [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1417147-allkeys",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allKeys(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1417147-allkeys"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1417215-filehfstypecode": {
+      "abstract": [
+        {
+          "text": "Returns file’s HFS type code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileHFSTypeCode"
+        },
+        {
+          "kind": "text",
+          "text": "() -> OSType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1417215-filehfstypecode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileHFSTypeCode()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1417215-filehfstypecode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1417533-fileowneraccountname": {
+      "abstract": [
+        {
+          "text": "Returns the file’s owner account name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileOwnerAccountName"
+        },
+        {
+          "kind": "text",
+          "text": "() -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1417533-fileowneraccountname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileOwnerAccountName()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1417533-fileowneraccountname"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1417665-description": {
+      "abstract": [
+        {
+          "text": "Returns a string object that represents the contents of the dictionary, formatted as a property list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withLocale"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1417665-description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description(withLocale:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1417665-description"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1417987-init": {
+      "abstract": [
+        {
+          "text": "Creates a dictionary initialized from data in the provided unarchiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1417987-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1417987-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1418147-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1418147-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1418147-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1418434-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated dictionary by placing in it the keys and values contained in another given dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "dictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1418434-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(dictionary:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1418434-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1574181-dictionarywithobjectsandkeys": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "dictionaryWithObjectsAndKeys:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1574181-dictionarywithobjectsandkeys",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dictionaryWithObjectsAndKeys:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1574181-dictionarywithobjectsandkeys"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1574184-dictionarywithobjects": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "init(objects:forKeys:count:)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1574184-dictionarywithobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(objects:forKeys:count:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1574184-dictionarywithobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1643061-makeiterator": {
+      "abstract": [
+        {
+          "text": "Returns an iterator over the elements of this sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeIterator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSDictionary.Iterator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1643061-makeiterator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeIterator()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1643061-makeiterator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/1643191-custommirror": {
+      "abstract": [
+        {
+          "text": "A mirror that reflects the dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "customMirror"
+        },
+        {
+          "kind": "text",
+          "text": ": Mirror"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/1643191-custommirror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "customMirror",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/1643191-custommirror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/2451647-subscript": {
+      "abstract": [
+        {
+          "text": "Accesses the value associated with a given key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "(Any) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/2451647-subscript",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/2451647-subscript"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/2879139-write": {
+      "abstract": [
+        {
+          "text": "Writes a property list representation of the contents of the dictionary to a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/2879139-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/2879139-write"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/2879140-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated dictionary using the keys and values found at a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": ())"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/2879140-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(contentsOf:error:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/2879140-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/3126724-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "dictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": NSDictionary)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/3126724-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(dictionary:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/3126724-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/3767108-underestimatedcount": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "underestimatedCount"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/3767108-underestimatedcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "underestimatedCount",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/3767108-underestimatedcount"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/element": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDictionary.Element"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/element",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDictionary.Element",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/element"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/iterator": {
+      "abstract": [
+        {
+          "text": "A class that you use to provide members of a dictionary, one-by-one.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDictionary.Iterator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/iterator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDictionary.Iterator",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/iterator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/key": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDictionary.Key"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/key",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDictionary.Key",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/key"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary/value": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDictionary.Value"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary/value",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDictionary.Value",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary/value"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfastenumeration": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfastenumeration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFastEnumeration",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfastenumeration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmaptable": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaptable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMapTable",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmaptable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary": {
+      "abstract": [
+        {
+          "text": "An object representing a dynamic collection of key-value pairs, for use instead of a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.Swift/documentation/Swift/Dictionary",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " variable in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutabledictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnull": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnull",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNull",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnull"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime/classes_bridged_to_swift_standard_library_value_types": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime/classes_bridged_to_swift_standard_library_value_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Classes Bridged to Swift Standard Library Value Types",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime/classes_bridged_to_swift_standard_library_value_types"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol/1418795-isequal": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol/1418795-isequal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqual(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol/1418795-isequal"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/CustomReflectable",
+        "doc://com.apple.Swift/documentation/Swift/ExpressibleByDictionaryLiteral",
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nsfastenumeration",
+        "doc://com.apple.coredata/documentation/CoreData/NSFetchRequestResult",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+        "doc://com.apple.Swift/documentation/Swift/Sequence"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutabledictionary"
+      ],
+      "title": "Dictionaries"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3014458",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1418147-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating an Empty Dictionary"
+    },
+    {
+      "anchor": "3014461",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1410010-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1412631-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1414965-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Dictionary from Objects and Keys"
+    },
+    {
+      "anchor": "3014459",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1418434-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1410124-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1415294-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Dictionary from Another Dictionary"
+    },
+    {
+      "anchor": "3014460",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/2879140-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1416069-init",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1414949-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Dictionary from an External Source"
+    },
+    {
+      "anchor": "1651309",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1417987-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Dictionary from an NSCoder"
+    },
+    {
+      "anchor": "1651415",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1408190-sharedkeyset"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Key Sets for Shared-Key Optimized Dictionaries"
+    },
+    {
+      "anchor": "1651441",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1409628-count"
+      ],
+      "kind": "taskGroup",
+      "title": "Counting Entries"
+    },
+    {
+      "anchor": "1651454",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1415445-isequal"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing Dictionaries"
+    },
+    {
+      "anchor": "1651472",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1409150-allkeys",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1417147-allkeys",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1408915-allvalues",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1410210-value",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1408769-objects",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1414347-object",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1415430-subscript",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/2451647-subscript"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Keys and Values"
+    },
+    {
+      "anchor": "1651973",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1411011-keyenumerator",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1409600-objectenumerator",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1414570-enumeratekeysandobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1409739-enumeratekeysandobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1643061-makeiterator"
+      ],
+      "kind": "taskGroup",
+      "title": "Enumerating Dictionaries"
+    },
+    {
+      "anchor": "1652015",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1412484-keyssortedbyvalue",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1411105-keyssortedbyvalue",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1415717-keyssortedbyvalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Sorting Dictionaries"
+    },
+    {
+      "anchor": "1652107",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1407186-keysofentries",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1416706-keysofentries"
+      ],
+      "kind": "taskGroup",
+      "title": "Filtering Dictionaries"
+    },
+    {
+      "anchor": "1652144",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/2879139-write",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1409634-write",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1415753-write"
+      ],
+      "kind": "taskGroup",
+      "title": "Storing Dictionaries"
+    },
+    {
+      "abstract": [
+        {
+          "text": "These convenience methods are for use with dictionaries returned by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " method ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1410452-attributesofitem",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", and allow you to access POSIX and HFS attributes for files and directories.",
+          "type": "text"
+        }
+      ],
+      "anchor": "1652175",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1413465-filesize",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1416809-filetype",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1417071-filecreationdate",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1408811-filemodificationdate",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1409446-fileposixpermissions",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1412281-fileowneraccountid",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1417533-fileowneraccountname",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1413626-filegroupowneraccountid",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1416788-filegroupowneraccountname",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1413177-fileextensionhidden",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1416500-fileisimmutable",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1416083-fileisappendonly",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1408396-filesystemfilenumber",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1415329-filesystemnumber",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1417215-filehfstypecode",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1415065-filehfscreatorcode"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing File Attributes"
+    },
+    {
+      "anchor": "1652371",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1410799-description",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1413282-descriptioninstringsfileformat",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1417665-description",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1412690-description",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/1643191-custommirror"
+      ],
+      "kind": "taskGroup",
+      "title": "Describing a Dictionary"
+    },
+    {
+      "anchor": "3013662",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/iterator"
+      ],
+      "kind": "taskGroup",
+      "title": "Supporting Types"
+    },
+    {
+      "anchor": "3358611",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/element",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/key",
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/value"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "3129748",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/3126724-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "3780577",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdictionary/3767108-underestimatedcount"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsdictionary"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsdictionary"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

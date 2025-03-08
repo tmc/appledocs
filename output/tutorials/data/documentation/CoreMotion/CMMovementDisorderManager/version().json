@@ -1,0 +1,800 @@
+{
+  "abstract": [
+    {
+      "text": "Returns a string that describes the movement disorder algorithm’s current version.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremotion/documentation/CoreMotion",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager/version()"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CMMovementDisorderManager(cm)version",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "version"
+      },
+      {
+        "kind": "text",
+        "text": "() -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:SS",
+        "text": "String"
+      },
+      {
+        "kind": "text",
+        "text": "?"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Motion"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "version"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "method",
+    "title": "version()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "version"
+            },
+            {
+              "kind": "text",
+              "text": "() -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SS",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SS",
+              "text": "String"
+            },
+            {
+              "kind": "text",
+              "text": "?"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/movement-disorder-algorithm-changelog"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this method to determine the algorithm used by the movement disorder manager. If the current device supports gathering movement disorder data, this method returns a string with the version number in ",
+              "type": "text"
+            },
+            {
+              "code": "<major>.<minor>.<fix>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " format. It returns ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " anytime ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager/isAvailable()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For information about the current version, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/movement-disorder-algorithm-changelog",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Your app uses the version of the algorithm provided by the current operating system running on the device. This means the algorithm your app uses might change, without requiring you to rebuild and resubmit your app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set up tests that notify you when the version changes, create a unit test that checks the current version against the expected value. You can then use continuous integration to automatically monitor this value with each new release.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func testForVersionChange() throws {",
+            "    let expectedVersion = \"1.0.0\"",
+            "    let currentVersion = CMMovementDisorderManager.version()",
+            "    XCTAssertEqual(expectedVersion, currentVersion, \"*** The version has changes to \\(String(describing: currentVersion)). ***\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremotion/documentation/CoreMotion": {
+      "abstract": [
+        {
+          "text": "Process accelerometer, gyroscope, pedometer, and environment-related events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Motion",
+      "type": "topic",
+      "url": "/documentation/coremotion"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager": {
+      "abstract": [
+        {
+          "text": "A manager for recording and querying movement disorder data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMMovementDisorderManager"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMMovementDisorderManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMMovementDisorderManager",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmovementdisordermanager"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager/authorizationStatus()": {
+      "abstract": [
+        {
+          "text": "A value indicating whether the user has authorized the app to monitor and query for movement disorder data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CMAuthorizationStatus",
+          "text": "CMAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager/authorizationStatus()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationStatus()",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmovementdisordermanager/authorizationstatus()"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager/isAvailable()": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the current device supports the movement disorder manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAvailable"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager/isAvailable()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isAvailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "isAvailable()",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmovementdisordermanager/isavailable()"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager/version()": {
+      "abstract": [
+        {
+          "text": "Returns a string that describes the movement disorder algorithm’s current version.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "version"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager/version()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "version"
+        }
+      ],
+      "role": "symbol",
+      "title": "version()",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmovementdisordermanager/version()"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/movement-disorder-algorithm-changelog": {
+      "abstract": [
+        {
+          "text": "A chronological log of notable changes to the movement disorder algorithm.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/movement-disorder-algorithm-changelog",
+      "kind": "article",
+      "role": "article",
+      "title": "Movement disorder algorithm changelog",
+      "type": "topic",
+      "url": "/documentation/coremotion/movement-disorder-algorithm-changelog"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SS": {
+      "abstract": [
+        {
+          "text": "A Unicode string value that is a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/Swift/String"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Checking-Availablility",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager/isAvailable()",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager/authorizationStatus()"
+      ],
+      "title": "Checking Availablility"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "5.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Type Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "version"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "version"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.coremotion/documentation/CoreMotion",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Checking-Availablility",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager/isAvailable()",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager/authorizationStatus()"
+              ],
+              "title": "Checking Availablility"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "+ ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSString",
+                    "text": "NSString"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "version"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMovementDisorderManager~1authorizationStatus()/title",
+          "value": "authorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMovementDisorderManager~1authorizationStatus()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "authorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMovementDisorderManager~1version()/title",
+          "value": "version"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMovementDisorderManager~1version()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "version"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMovementDisorderManager/title",
+          "value": "CMMovementDisorderManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMovementDisorderManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMovementDisorderManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMovementDisorderManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMovementDisorderManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMovementDisorderManager~1isAvailable()/title",
+          "value": "isAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMovementDisorderManager~1isAvailable()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "isAvailable"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremotion/cmmovementdisordermanager/version()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremotion/cmmovementdisordermanager/version()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

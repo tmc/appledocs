@@ -1,0 +1,2685 @@
+{
+  "abstract": [
+    {
+      "text": "An object you use for audio generation, processing, or an I/O block.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfaudio/documentation/AVFAudio"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AVAudioNode",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AVAudioNode"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFAudio"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AVAudioNode"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AVAudioNode"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioNode"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object contains instances of audio nodes that you attach, and this base class provides common functionality. Instances of this class don’t provide useful functionality until you attach them to an engine.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Nodes have input and output busses that serve as connection points. For example, an effect has one input bus and one output bus, and a mixer has multiple input busses and one output bus.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A bus contains a format the framework expresses in terms of sample rate and channel count. Formats must match exactly when making connections between nodes, excluding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioMixerNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioOutputNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfaudio/documentation/AVFAudio": {
+      "abstract": [
+        {
+          "text": "Play, record, and process audio; configure your app’s system audio behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFAudio",
+      "type": "topic",
+      "url": "/documentation/avfaudio"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine": {
+      "abstract": [
+        {
+          "text": "An object that manages a graph of audio nodes, controls playback, and configures real-time rendering constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEngine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioEngine"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioEngine",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioengine"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEnvironmentNode": {
+      "abstract": [
+        {
+          "text": "An object that simulates a 3D audio environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioEnvironmentNode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEnvironmentNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioEnvironmentNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioEnvironmentNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioenvironmentnode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioIONode": {
+      "abstract": [
+        {
+          "text": "An object that performs audio input or output in the engine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioIONode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioIONode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioIONode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioIONode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioionode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode": {
+      "abstract": [
+        {
+          "text": "An object that connects to the system’s audio input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioInputNode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioInputNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioInputNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioinputnode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioMixerNode": {
+      "abstract": [
+        {
+          "text": "An object that takes any number of inputs and converts them into a single output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioMixerNode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioMixerNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioMixerNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioMixerNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiomixernode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode": {
+      "abstract": [
+        {
+          "text": "An object you use for audio generation, processing, or an I/O block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioNode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudionode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/auAudioUnit": {
+      "abstract": [
+        {
+          "text": "An audio unit object that wraps or underlies the implementation’s audio unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "auAudioUnit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AUAudioUnit",
+          "text": "AUAudioUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/auAudioUnit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AUAudioUnit"
+        }
+      ],
+      "role": "symbol",
+      "title": "auAudioUnit",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudionode/auaudiounit"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/engine": {
+      "abstract": [
+        {
+          "text": "The audio engine that manages the node, if any.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "engine"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioEngine",
+          "text": "AVAudioEngine"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/engine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "engine"
+        }
+      ],
+      "role": "symbol",
+      "title": "engine",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudionode/engine"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/inputFormat(forBus:)": {
+      "abstract": [
+        {
+          "text": "Gets the input format for the bus you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputFormat"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forBus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVAudioNodeBus",
+          "text": "AVAudioNodeBus"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioFormat",
+          "text": "AVAudioFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/inputFormat(forBus:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inputFormatForBus:"
+        }
+      ],
+      "role": "symbol",
+      "title": "inputFormat(forBus:)",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudionode/inputformat(forbus:)"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/installTap(onBus:bufferSize:format:block:)": {
+      "abstract": [
+        {
+          "text": "Installs an audio tap on a bus you specify to record, monitor, and observe the output of the node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "installTap"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "onBus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVAudioNodeBus",
+          "text": "AVAudioNodeBus"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bufferSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVAudioFrameCount",
+          "text": "AVAudioFrameCount"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioFormat",
+          "text": "AVAudioFormat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "block"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVAudioNodeTapBlock",
+          "text": "AVAudioNodeTapBlock"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/installTap(onBus:bufferSize:format:block:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "installTapOnBus:bufferSize:format:block:"
+        }
+      ],
+      "role": "symbol",
+      "title": "installTap(onBus:bufferSize:format:block:)",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudionode/installtap(onbus:buffersize:format:block:)"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/lastRenderTime": {
+      "abstract": [
+        {
+          "text": "The most recent render time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lastRenderTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioTime",
+          "text": "AVAudioTime"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/lastRenderTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lastRenderTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "lastRenderTime",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudionode/lastrendertime"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/latency": {
+      "abstract": [
+        {
+          "text": "The processing latency of the node, in seconds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "latency"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/latency",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "latency"
+        }
+      ],
+      "role": "symbol",
+      "title": "latency",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudionode/latency"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/name(forInputBus:)": {
+      "abstract": [
+        {
+          "text": "Gets the name of the input bus you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forInputBus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVAudioNodeBus",
+          "text": "AVAudioNodeBus"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/name(forInputBus:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nameForInputBus:"
+        }
+      ],
+      "role": "symbol",
+      "title": "name(forInputBus:)",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudionode/name(forinputbus:)"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/name(forOutputBus:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the name of the output bus you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forOutputBus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVAudioNodeBus",
+          "text": "AVAudioNodeBus"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/name(forOutputBus:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nameForOutputBus:"
+        }
+      ],
+      "role": "symbol",
+      "title": "name(forOutputBus:)",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudionode/name(foroutputbus:)"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/numberOfInputs": {
+      "abstract": [
+        {
+          "text": "The number of input busses for the node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberOfInputs"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/numberOfInputs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "numberOfInputs"
+        }
+      ],
+      "role": "symbol",
+      "title": "numberOfInputs",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudionode/numberofinputs"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/numberOfOutputs": {
+      "abstract": [
+        {
+          "text": "The number of output busses for the node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberOfOutputs"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/numberOfOutputs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "numberOfOutputs"
+        }
+      ],
+      "role": "symbol",
+      "title": "numberOfOutputs",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudionode/numberofoutputs"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/outputFormat(forBus:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the output format for the bus you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputFormat"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forBus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVAudioNodeBus",
+          "text": "AVAudioNodeBus"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioFormat",
+          "text": "AVAudioFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/outputFormat(forBus:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outputFormatForBus:"
+        }
+      ],
+      "role": "symbol",
+      "title": "outputFormat(forBus:)",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudionode/outputformat(forbus:)"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/outputPresentationLatency": {
+      "abstract": [
+        {
+          "text": "The maximum render pipeline latency downstream of the node, in seconds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputPresentationLatency"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/outputPresentationLatency",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outputPresentationLatency"
+        }
+      ],
+      "role": "symbol",
+      "title": "outputPresentationLatency",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudionode/outputpresentationlatency"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/removeTap(onBus:)": {
+      "abstract": [
+        {
+          "text": "Removes an audio tap on a bus you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeTap"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "onBus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVAudioNodeBus",
+          "text": "AVAudioNodeBus"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/removeTap(onBus:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeTapOnBus:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeTap(onBus:)",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudionode/removetap(onbus:)"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/reset()": {
+      "abstract": [
+        {
+          "text": "Clears a unit’s previous processing state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reset"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/reset()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reset"
+        }
+      ],
+      "role": "symbol",
+      "title": "reset()",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudionode/reset()"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNodeBus": {
+      "abstract": [
+        {
+          "text": "The index of a bus on an audio node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioNodeBus"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNodeBus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioNodeBus"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioNodeBus",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudionodebus"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNodeCompletionHandler": {
+      "abstract": [
+        {
+          "text": "A general callback handler for an audio node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioNodeCompletionHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNodeCompletionHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioNodeCompletionHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioNodeCompletionHandler",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudionodecompletionhandler"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNodeTapBlock": {
+      "abstract": [
+        {
+          "text": "The block that receives copies of the output of an audio node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioNodeTapBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNodeTapBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioNodeTapBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioNodeTapBlock",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudionodetapblock"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioOutputNode": {
+      "abstract": [
+        {
+          "text": "An object that connects to the system’s audio output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioOutputNode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioOutputNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioOutputNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioOutputNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiooutputnode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioPlayerNode": {
+      "abstract": [
+        {
+          "text": "An object for scheduling the playback of buffers or segments of audio files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioPlayerNode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioPlayerNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioPlayerNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioPlayerNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioplayernode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSinkNode": {
+      "abstract": [
+        {
+          "text": "An object that receives audio data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSinkNode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSinkNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSinkNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioSinkNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosinknode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSourceNode": {
+      "abstract": [
+        {
+          "text": "An object that supplies audio data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSourceNode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSourceNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSourceNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioSourceNode",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosourcenode"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioUnit": {
+      "abstract": [
+        {
+          "text": "A subclass of the audio node class that, processes audio either in real time or nonreal time, depending on the type of the audio unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioUnit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioUnit"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioUnit",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiounit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEnvironmentNode",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioIONode",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioMixerNode",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioPlayerNode",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSinkNode",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSourceNode",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioUnit"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Nodes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioOutputNode",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioIONode"
+      ],
+      "title": "Nodes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Configuring-an-Input-Format-Bus",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNodeBus",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/inputFormat(forBus:)",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/name(forInputBus:)",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/numberOfInputs"
+      ],
+      "title": "Configuring an Input Format Bus"
+    },
+    {
+      "anchor": "Creating-an-Output-Format-Bus",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/outputFormat(forBus:)",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/name(forOutputBus:)",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/numberOfOutputs"
+      ],
+      "title": "Creating an Output Format Bus"
+    },
+    {
+      "anchor": "Installing-and-Removing-an-Audio-Tap",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/installTap(onBus:bufferSize:format:block:)",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/removeTap(onBus:)",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNodeTapBlock"
+      ],
+      "title": "Installing and Removing an Audio Tap"
+    },
+    {
+      "anchor": "Getting-the-Audio-Engine-for-the-Node",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/engine"
+      ],
+      "title": "Getting the Audio Engine for the Node"
+    },
+    {
+      "anchor": "Getting-the-Latest-Node-Render-Time",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/lastRenderTime"
+      ],
+      "title": "Getting the Latest Node Render Time"
+    },
+    {
+      "anchor": "Getting-Audio-Node-Properties",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/auAudioUnit",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/latency",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/outputPresentationLatency"
+      ],
+      "title": "Getting Audio Node Properties"
+    },
+    {
+      "anchor": "Resetting-the-Audio-Node",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/reset()"
+      ],
+      "title": "Resetting the Audio Node"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNodeCompletionHandler"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.10",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AVAudioNode"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfaudio/documentation/AVFAudio"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Configuring-an-Input-Format-Bus",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNodeBus",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/inputFormat(forBus:)",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/name(forInputBus:)",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/numberOfInputs"
+              ],
+              "title": "Configuring an Input Format Bus"
+            },
+            {
+              "anchor": "Creating-an-Output-Format-Bus",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/outputFormat(forBus:)",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/name(forOutputBus:)",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/numberOfOutputs"
+              ],
+              "title": "Creating an Output Format Bus"
+            },
+            {
+              "anchor": "Installing-and-Removing-an-Audio-Tap",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/installTap(onBus:bufferSize:format:block:)",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/removeTap(onBus:)",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNodeTapBlock"
+              ],
+              "title": "Installing and Removing an Audio Tap"
+            },
+            {
+              "anchor": "Getting-the-Audio-Engine-for-the-Node",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/engine"
+              ],
+              "title": "Getting the Audio Engine for the Node"
+            },
+            {
+              "anchor": "Getting-the-Latest-Node-Render-Time",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/lastRenderTime"
+              ],
+              "title": "Getting the Latest Node Render Time"
+            },
+            {
+              "anchor": "Getting-Audio-Node-Properties",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/auAudioUnit",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/latency",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/outputPresentationLatency"
+              ],
+              "title": "Getting Audio Node Properties"
+            },
+            {
+              "anchor": "Resetting-the-Audio-Node",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNode/reset()"
+              ],
+              "title": "Resetting the Audio Node"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioNodeCompletionHandler"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioEnvironmentNode",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioIONode",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioMixerNode",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioPlayerNode",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSinkNode",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSourceNode",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioUnit"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Nodes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioInputNode",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioOutputNode",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioIONode"
+              ],
+              "title": "Nodes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AVAudioNode"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioIONode/title",
+          "value": "AVAudioIONode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioIONode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioIONode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioIONode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioIONode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioOutputNode/title",
+          "value": "AVAudioOutputNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioOutputNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioOutputNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioOutputNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioOutputNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioMixerNode/title",
+          "value": "AVAudioMixerNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioMixerNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioMixerNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioMixerNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioMixerNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1auAudioUnit/title",
+          "value": "AUAudioUnit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1auAudioUnit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUAudioUnit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEnvironmentNode/title",
+          "value": "AVAudioEnvironmentNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEnvironmentNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioEnvironmentNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEnvironmentNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioEnvironmentNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSinkNode/title",
+          "value": "AVAudioSinkNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSinkNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSinkNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSinkNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSinkNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1reset()/title",
+          "value": "reset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1reset()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "reset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1removeTap(onBus:)/title",
+          "value": "removeTapOnBus:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1removeTap(onBus:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeTapOnBus:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNodeBus/title",
+          "value": "AVAudioNodeBus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNodeBus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioNodeBus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNodeBus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioNodeBus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1inputFormat(forBus:)/title",
+          "value": "inputFormatForBus:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1inputFormat(forBus:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "inputFormatForBus:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1lastRenderTime/title",
+          "value": "lastRenderTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1lastRenderTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lastRenderTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1numberOfInputs/title",
+          "value": "numberOfInputs"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1numberOfInputs/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "numberOfInputs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNodeTapBlock/title",
+          "value": "AVAudioNodeTapBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNodeTapBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioNodeTapBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNodeTapBlock/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioNodeTapBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1installTap(onBus:bufferSize:format:block:)/title",
+          "value": "installTapOnBus:bufferSize:format:block:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1installTap(onBus:bufferSize:format:block:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "installTapOnBus:bufferSize:format:block:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSourceNode/title",
+          "value": "AVAudioSourceNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSourceNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSourceNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSourceNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSourceNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1name(forInputBus:)/title",
+          "value": "nameForInputBus:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1name(forInputBus:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "nameForInputBus:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioPlayerNode/title",
+          "value": "AVAudioPlayerNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioPlayerNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioPlayerNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioPlayerNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioPlayerNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1outputFormat(forBus:)/title",
+          "value": "outputFormatForBus:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1outputFormat(forBus:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "outputFormatForBus:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1latency/title",
+          "value": "latency"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1latency/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "latency"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEngine/title",
+          "value": "AVAudioEngine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEngine/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioEngine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioEngine/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioEngine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioUnit/title",
+          "value": "AVAudioUnit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioUnit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioUnit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioUnit/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioUnit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioInputNode/title",
+          "value": "AVAudioInputNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioInputNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioInputNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioInputNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioInputNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1outputPresentationLatency/title",
+          "value": "outputPresentationLatency"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1outputPresentationLatency/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "outputPresentationLatency"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1name(forOutputBus:)/title",
+          "value": "nameForOutputBus:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1name(forOutputBus:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "nameForOutputBus:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode/title",
+          "value": "AVAudioNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1numberOfOutputs/title",
+          "value": "numberOfOutputs"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1numberOfOutputs/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "numberOfOutputs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1engine/title",
+          "value": "engine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNode~1engine/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "engine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNodeCompletionHandler/title",
+          "value": "AVAudioNodeCompletionHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNodeCompletionHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioNodeCompletionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioNodeCompletionHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioNodeCompletionHandler"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfaudio/avaudionode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfaudio/avaudionode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

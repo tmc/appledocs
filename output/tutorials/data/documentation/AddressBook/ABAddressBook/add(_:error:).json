@@ -1,0 +1,1359 @@
+{
+  "abstract": [
+    {
+      "text": "Adds an ",
+      "type": "text"
+    },
+    {
+      "code": "ABPerson",
+      "type": "codeVoice"
+    },
+    {
+      "text": " or ",
+      "type": "text"
+    },
+    {
+      "code": "ABGroup",
+      "type": "codeVoice"
+    },
+    {
+      "text": " record to the Address Book database.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.addressbook/documentation/AddressBook",
+        "doc://com.apple.addressbook/documentation/AddressBook/ABAddressBook"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.addressbook/documentation/AddressBook/ABAddressBook/add(_:error:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)ABAddressBook(im)addRecord:error:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "add"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)ABRecord",
+        "text": "ABRecord"
+      },
+      {
+        "kind": "text",
+        "text": "!, "
+      },
+      {
+        "kind": "externalParam",
+        "text": "error"
+      },
+      {
+        "kind": "text",
+        "text": ": ()) "
+      },
+      {
+        "kind": "keyword",
+        "text": "throws"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Address Book"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "addRecord:error:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.7",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "add(_:error:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "add"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "record"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.addressbook/documentation/AddressBook/ABRecord-swift.class",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)ABRecord",
+              "text": "ABRecord"
+            },
+            {
+              "kind": "text",
+              "text": "!, "
+            },
+            {
+              "kind": "externalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ": ()) "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The record to add.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "record"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to an error object that is set to an ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSError",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " instance if an error occurs.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "error"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the ",
+              "type": "text"
+            },
+            {
+              "code": "record",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", this method raises an exception. Your changes are not committed until you call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.addressbook/documentation/AddressBook/ABAddressBook/save()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It is more efficient to use the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.addressbook/documentation/AddressBook/ABRecord-swift.class",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.addressbook/documentation/AddressBook/ABRecord-swift.class/init(addressBook:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when possible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In Swift, this method returns ",
+                  "type": "text"
+                },
+                {
+                  "code": "Void",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and is marked with the ",
+                  "type": "text"
+                },
+                {
+                  "code": "throws",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " keyword to indicate that it throws an error in cases of failure.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "You call this method in a ",
+                  "type": "text"
+                },
+                {
+                  "code": "try",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " expression and handle any errors in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "catch",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " clauses of a ",
+                  "type": "text"
+                },
+                {
+                  "code": "do",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " statement, as described in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://docs.swift.org/swift-book/LanguageGuide/ErrorHandling.html",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://docs.swift.org/swift-book/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "About Imported Cocoa Error Parameters",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Handling Errors in Swift",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.addressbook/documentation/AddressBook": {
+      "abstract": [
+        {
+          "text": "Access the centralized database for storing users’ contacts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.addressbook/documentation/AddressBook",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Address Book",
+      "type": "topic",
+      "url": "/documentation/addressbook"
+    },
+    "doc://com.apple.addressbook/documentation/AddressBook/ABAddressBook": {
+      "abstract": [
+        {
+          "text": "The main object you use to access the Address Book database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ABAddressBook"
+        }
+      ],
+      "identifier": "doc://com.apple.addressbook/documentation/AddressBook/ABAddressBook",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ABAddressBook"
+        }
+      ],
+      "role": "symbol",
+      "title": "ABAddressBook",
+      "type": "topic",
+      "url": "/documentation/addressbook/abaddressbook"
+    },
+    "doc://com.apple.addressbook/documentation/AddressBook/ABAddressBook/add(_:)": {
+      "abstract": [
+        {
+          "text": "Adds an ",
+          "type": "text"
+        },
+        {
+          "code": "ABPerson",
+          "type": "codeVoice"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "code": "ABGroup",
+          "type": "codeVoice"
+        },
+        {
+          "text": " record to the Address Book database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ABRecord",
+          "text": "ABRecord"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.addressbook/documentation/AddressBook/ABAddressBook/add(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addRecord:"
+        }
+      ],
+      "role": "symbol",
+      "title": "add(_:)",
+      "type": "topic",
+      "url": "/documentation/addressbook/abaddressbook/add(_:)"
+    },
+    "doc://com.apple.addressbook/documentation/AddressBook/ABAddressBook/add(_:error:)": {
+      "abstract": [
+        {
+          "text": "Adds an ",
+          "type": "text"
+        },
+        {
+          "code": "ABPerson",
+          "type": "codeVoice"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "code": "ABGroup",
+          "type": "codeVoice"
+        },
+        {
+          "text": " record to the Address Book database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ABRecord",
+          "text": "ABRecord"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": ()) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.addressbook/documentation/AddressBook/ABAddressBook/add(_:error:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addRecord:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "add(_:error:)",
+      "type": "topic",
+      "url": "/documentation/addressbook/abaddressbook/add(_:error:)"
+    },
+    "doc://com.apple.addressbook/documentation/AddressBook/ABAddressBook/remove(_:)": {
+      "abstract": [
+        {
+          "text": "Removes an ",
+          "type": "text"
+        },
+        {
+          "code": "ABPerson",
+          "type": "codeVoice"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "code": "ABGroup",
+          "type": "codeVoice"
+        },
+        {
+          "text": " record from the Address Book database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ABRecord",
+          "text": "ABRecord"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.addressbook/documentation/AddressBook/ABAddressBook/remove(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeRecord:"
+        }
+      ],
+      "role": "symbol",
+      "title": "remove(_:)",
+      "type": "topic",
+      "url": "/documentation/addressbook/abaddressbook/remove(_:)"
+    },
+    "doc://com.apple.addressbook/documentation/AddressBook/ABAddressBook/remove(_:error:)": {
+      "abstract": [
+        {
+          "text": "Removes an ",
+          "type": "text"
+        },
+        {
+          "code": "ABPerson",
+          "type": "codeVoice"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "code": "ABGroup",
+          "type": "codeVoice"
+        },
+        {
+          "text": " record from the Address Book database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ABRecord",
+          "text": "ABRecord"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": ()) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.addressbook/documentation/AddressBook/ABAddressBook/remove(_:error:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeRecord:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "remove(_:error:)",
+      "type": "topic",
+      "url": "/documentation/addressbook/abaddressbook/remove(_:error:)"
+    },
+    "doc://com.apple.addressbook/documentation/AddressBook/ABAddressBook/save()": {
+      "abstract": [
+        {
+          "text": "Saves all the changes made since the last save.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "save"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.addressbook/documentation/AddressBook/ABAddressBook/save()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "save"
+        }
+      ],
+      "role": "symbol",
+      "title": "save()",
+      "type": "topic",
+      "url": "/documentation/addressbook/abaddressbook/save()"
+    },
+    "doc://com.apple.addressbook/documentation/AddressBook/ABRecord-swift.class": {
+      "abstract": [
+        {
+          "text": "An abstract class that defines the common properties for all Address Book records.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ABRecord"
+        }
+      ],
+      "identifier": "doc://com.apple.addressbook/documentation/AddressBook/ABRecord-swift.class",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ABRecord"
+        }
+      ],
+      "role": "symbol",
+      "title": "ABRecord",
+      "type": "topic",
+      "url": "/documentation/addressbook/abrecord-swift.class"
+    },
+    "doc://com.apple.addressbook/documentation/AddressBook/ABRecord-swift.class/init(addressBook:)": {
+      "abstract": [
+        {
+          "text": "Initializes a record using the given address book.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "!("
+        },
+        {
+          "kind": "externalParam",
+          "text": "addressBook"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ABAddressBook",
+          "text": "ABAddressBook"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.addressbook/documentation/AddressBook/ABRecord-swift.class/init(addressBook:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithAddressBook:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(addressBook:)",
+      "type": "topic",
+      "url": "/documentation/addressbook/abrecord-swift.class/init(addressbook:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs.swift.org/swift-book/": {
+      "identifier": "https://docs.swift.org/swift-book/",
+      "title": "The Swift Programming Language",
+      "titleInlineContent": [
+        {
+          "text": "The Swift Programming Language",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/"
+    },
+    "https://docs.swift.org/swift-book/LanguageGuide/ErrorHandling.html": {
+      "identifier": "https://docs.swift.org/swift-book/LanguageGuide/ErrorHandling.html",
+      "title": "Error Handling",
+      "titleInlineContent": [
+        {
+          "text": "Error Handling",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/LanguageGuide/ErrorHandling.html"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Adding-and-Removing-Records",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.addressbook/documentation/AddressBook/ABAddressBook/add(_:)",
+        "doc://com.apple.addressbook/documentation/AddressBook/ABAddressBook/remove(_:error:)",
+        "doc://com.apple.addressbook/documentation/AddressBook/ABAddressBook/remove(_:)"
+      ],
+      "title": "Adding and Removing Records"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.7",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "addRecord:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addRecord:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.addressbook/documentation/AddressBook",
+                "doc://com.apple.addressbook/documentation/AddressBook/ABAddressBook"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Adding-and-Removing-Records",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.addressbook/documentation/AddressBook/ABAddressBook/add(_:)",
+                "doc://com.apple.addressbook/documentation/AddressBook/ABAddressBook/remove(_:error:)",
+                "doc://com.apple.addressbook/documentation/AddressBook/ABAddressBook/remove(_:)"
+              ],
+              "title": "Adding and Removing Records"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@BOOL",
+                    "text": "BOOL"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "addRecord:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.addressbook/documentation/AddressBook/ABRecord-swift.class",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)ABRecord",
+                    "text": "ABRecord"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "record"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "error:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSError",
+                    "text": "NSError"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "error"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The record to add.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "record"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A pointer to an error object that is set to an ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "NSError",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " instance if an error occurs.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "error"
+              }
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/primaryContentSections/2",
+          "value": {
+            "content": [
+              {
+                "anchor": "return-value",
+                "level": 2,
+                "text": "Return Value",
+                "type": "heading"
+              },
+              {
+                "inlineContent": [
+                  {
+                    "text": "",
+                    "type": "text"
+                  },
+                  {
+                    "code": "true",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " if the record was added successfully; otherwise ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "false",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": ".",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "kind": "content"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.addressbook~1documentation~1AddressBook~1ABAddressBook~1remove(_:error:)/title",
+          "value": "removeRecord:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.addressbook~1documentation~1AddressBook~1ABAddressBook~1remove(_:error:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeRecord:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.addressbook~1documentation~1AddressBook~1ABAddressBook/title",
+          "value": "ABAddressBook"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.addressbook~1documentation~1AddressBook~1ABAddressBook/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ABAddressBook"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.addressbook~1documentation~1AddressBook~1ABAddressBook/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ABAddressBook"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.addressbook~1documentation~1AddressBook~1ABAddressBook~1save()/title",
+          "value": "save"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.addressbook~1documentation~1AddressBook~1ABAddressBook~1save()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "save"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.addressbook~1documentation~1AddressBook~1ABAddressBook~1add(_:)/title",
+          "value": "addRecord:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.addressbook~1documentation~1AddressBook~1ABAddressBook~1add(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addRecord:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.addressbook~1documentation~1AddressBook~1ABRecord-swift.class/title",
+          "value": "ABRecord"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.addressbook~1documentation~1AddressBook~1ABRecord-swift.class/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ABRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.addressbook~1documentation~1AddressBook~1ABRecord-swift.class/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ABRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.addressbook~1documentation~1AddressBook~1ABRecord-swift.class~1init(addressBook:)/title",
+          "value": "initWithAddressBook:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.addressbook~1documentation~1AddressBook~1ABRecord-swift.class~1init(addressBook:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithAddressBook:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.addressbook~1documentation~1AddressBook~1ABAddressBook~1add(_:error:)/title",
+          "value": "addRecord:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.addressbook~1documentation~1AddressBook~1ABAddressBook~1add(_:error:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addRecord:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.addressbook~1documentation~1AddressBook~1ABAddressBook~1remove(_:)/title",
+          "value": "removeRecord:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.addressbook~1documentation~1AddressBook~1ABAddressBook~1remove(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeRecord:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/addressbook/abaddressbook/add(_:error:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/addressbook/abaddressbook/add(_:error:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

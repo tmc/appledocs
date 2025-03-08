@@ -1,0 +1,4377 @@
+{
+  "abstract": [
+    {
+      "text": "Integrate your custom collaboration app with Messages.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sharedwithyou/documentation/SharedWithYou"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/adding-custom-collaboration-to-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Shared With You"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding custom collaboration to your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app uses iCloud to store shared content, you can use the steps in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/adding-shared-content-collaboration-to-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to add collaboration. To share content without using iCloud, the Shared with You framework provides an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationMetadata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object wrapped in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to implement a custom collaboration infrastructure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can use this collaboration infrastructure, your app needs to support universal links to share content with other apps. For more details about implementing universal links, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/making-your-app-content-shareable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4110288",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Session 10093: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc22/10093",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related sessions from WWDC22",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-the-metadata-object",
+          "level": 3,
+          "text": "Create the metadata object",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a user decides to share a collaboration from your app through the Messages app, you first create metadata to represent the content. The metadata includes share options the user can configure prior to sending the message, and many other properties you can customize. Next, you provide that metadata to the share sheet, or to drag and drop using the steps below in the “Present a collaboration view” section.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The string you pass to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWLocalCollaborationIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " doesn’t need to be unique across devices, it’s only for your app to use locally. Similarly, the system displays the initiator’s account handle and name that your app retrieves from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/personnamecomponentsformatter/1642979-personnamecomponents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " locally so the collaborator can confirm their account.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Configure the SWCollaborationMetadata.",
+            "",
+            "let localIdentifier = SWLocalCollaborationIdentifier(rawValue: \"identifier\")",
+            "let metadata = SWCollaborationMetadata(localIdentifier: localIdentifier)",
+            "metadata.title = \"Content Title\"",
+            "metadata.initiatorHandle = \"user@example.com\"",
+            "",
+            "let formatter = PersonNameComponentsFormatter()",
+            "if let components = formatter.personNameComponents(from: \"Devin\") {",
+            "    metadata.initiatorNameComponents = components",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After your app sets the identifier and initiator for the metadata, configure ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationShareOptions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Share options are the settings a person configures on the collaboration in Messages or the share sheet. Options represent individual switches, or mutually exclusive values for a setting. Options have a title and an identifier, and are either in a selected or an unselected state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two classes to represent a group of options: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationOptionsGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationOptionsPickerGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Use ",
+              "type": "text"
+            },
+            {
+              "code": "SWCollaborationOptionsGroup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to represent a collection of switches, and use ",
+              "type": "text"
+            },
+            {
+              "code": "SWCollaborationOptionsPickerGroup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to represent mutually exclusive values for a setting.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the example below, a person can choose either the “Can make changes” or the “Read only” option. The collaborator can choose “Allow mentions” and the “Allow comments” options independent of each other. The app then passes both the option groups to ",
+              "type": "text"
+            },
+            {
+              "code": "SWCollaborationShareOptions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to initialize the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationMetadata/defaultShareOptions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Configure the SWCollaborationShareOptions.",
+            "",
+            "let permission = SWCollaborationOptionsPickerGroup(identifier: UUID().uuidString, ",
+            "                                                   options: [",
+            "    SWCollaborationOption(title: \"Can make changes\", identifier: UUID().uuidString),",
+            "    SWCollaborationOption(title: \"Read only\", identifier: UUID().uuidString)",
+            "])",
+            "permission.options[0].isSelected = true",
+            "permission.title = \"Permission\"",
+            "",
+            "let additionalOptions = SWCollaborationOptionsGroup(identifier: UUID().uuidString, ",
+            "                                                    options: [",
+            "    SWCollaborationOption(title: \"Allow mentions\", identifier: UUID().uuidString),",
+            "    SWCollaborationOption(title: \"Allow comments\", identifier: UUID().uuidString)",
+            "])",
+            "additionalOptions.title = \"Additional Settings\"",
+            "let optionsGroups = [permission, additionalOptions]",
+            "metadata.defaultShareOptions = SWCollaborationShareOptions(optionsGroups: optionsGroups)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Present-a-collaboration-view",
+          "level": 3,
+          "text": "Present a collaboration view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app uses SwiftUI, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationMetadata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is compatible with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/Transferable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ShareLink",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view. In the example below, the app defines a ",
+              "type": "text"
+            },
+            {
+              "code": "Transferable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " model object and creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/ProxyRepresentation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to return a collaboration metadata instance. Then, the app passes that model object to a ",
+              "type": "text"
+            },
+            {
+              "code": "ShareLink",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance in the view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Configure the SwiftUI TransferRepresentation object.",
+            "",
+            "struct CustomCollaboration: Transferable {",
+            "    var name: String",
+            "",
+            "    static var transferRepresentation: some TransferRepresentation {",
+            "        ProxyRepresentation { customCollaboration in",
+            "            SWCollaborationMetadata(",
+            "                localIdentifier: .init(rawValue: \"com.example.customcollaboration\"),",
+            "                title: customCollaboration.name,",
+            "                defaultShareOptions: nil,",
+            "                initiatorHandle: \"johnappleseed@apple.com\",",
+            "                initiatorNameComponents: nil",
+            "            )",
+            "        }",
+            "    }",
+            "}",
+            "",
+            "// Initialize ShareLink with the custom collaboration model object.",
+            "",
+            "struct ContentView: View {",
+            "    var body: some View {",
+            "        ShareLink(item: CustomCollaboration(name: \"Example\"), preview: .init(\"Example\"))",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s good practice to register multiple representations of the content to support sharing through as many channels as possible. For example, Messages automatically offers an option to send the content as a copy if you provide a file representation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For UIKit and AppKit apps, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to support content sharing. ",
+              "type": "text"
+            },
+            {
+              "code": "SWCollaborationMetadata",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemproviderreading",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemproviderwriting",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocols, so you can register a metadata instance with an item provider to support collaboration. Use ",
+              "type": "text"
+            },
+            {
+              "code": "NSItemProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIDragItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in iOS and iPadOS, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSSharingServicePicker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in macOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the example code below, the app registers the collaboration metadata in an ",
+              "type": "text"
+            },
+            {
+              "code": "NSItemProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance. Then the app creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityItemsConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object with the item provider object and passes that to the ",
+              "type": "text"
+            },
+            {
+              "code": "UIActivityViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Finally, the app presents the share sheet.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Present the iOS share sheet.",
+            "",
+            "func presentActivityViewController(metadata: SWCollaborationMetadata) {",
+            "    let itemProvider = NSItemProvider()",
+            "    itemProvider.registerObject(metadata, visibility: .all)",
+            "    let activityConfig = UIActivityItemsConfiguration(itemProviders: [itemProvider])",
+            "    let shareSheet = UIActivityViewController(activityItemsConfiguration: activityConfig)",
+            "    present(shareSheet, animated: true)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support drag and drop in iOS, initialize ",
+              "type": "text"
+            },
+            {
+              "code": "NSItemProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and register the metadata the same way as in the previous code example, then create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIDragItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the item provider.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Support iOS drag and drop.",
+            "",
+            "func createDragItem(metadata: SWCollaborationMetadata) -> UIDragItem {",
+            "    let itemProvider = NSItemProvider()",
+            "    itemProvider.registerObject(metadata, visibility: .all)",
+            "    return UIDragItem(itemProvider: itemProvider)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The API is similar in macOS for the sharing popover. Use the item provider to initialize an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSSharingServicePicker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and show the picker relative to a target view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Show the macOS sharing popover.",
+            "",
+            "func showSharingServicePicker(view: NSView, metadata: SWCollaborationMetadata) {",
+            "    let itemProvider = NSItemProvider()",
+            "    itemProvider.registerObject(metadata, visibility: .all)",
+            "    let picker = NSSharingServicePicker(items: [itemProvider])",
+            "    picker.show(relativeTo: view.bounds, of: view, preferredEdge: .minY)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support drag and drop in macOS, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSPasteboardItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead of ",
+              "type": "text"
+            },
+            {
+              "code": "NSItemProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Assign the collaboration metadata to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSPasteboardItem/collaborationMetadata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on a new ",
+              "type": "text"
+            },
+            {
+              "code": "NSPasteboardItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Support macOS drag and drop.",
+            "",
+            "func createPasteboardItem(metadata: SWCollaborationMetadata) -> NSPasteboardItem {",
+            "    let pasteboardItem = NSPasteboardItem()",
+            "    pasteboardItem.collaborationMetadata = metadata",
+            "    return pasteboardItem",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system stages a draft of your collaborative content in Messages. After a person taps the Send button, the system coordinates with your app to create the share.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prepare-the-collaboration-coordinator",
+          "level": 3,
+          "text": "Prepare the collaboration coordinator",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "SWCollaborationCoordinator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a singleton, meaning there’s a global shared instance that your app uses to respond to action requests. Your app defines an action handler that conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationActionHandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. Because the collaboration coordinator runs in the background and can send requests for actions to your app at any time, define your action handler early in the launch process. The app in the example below registers the handler in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Assign your action handler to the SWCollaborationCoordinator.",
+            "",
+            "private let collaborationCoordinator = SWCollaborationCoordinator.shared",
+            "",
+            "func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]?) -> Bool {",
+            "    // Conform to the SWCollaborationActionHandler protocol.",
+            "    collaborationCoordinator.actionHandler = self",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your action handler is responsible for responding to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " requests from the system. An ",
+              "type": "text"
+            },
+            {
+              "code": "SWAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represents work your app needs to handle during a collaboration. Your app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWAction/fulfill()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " after it completes a request. If your app can’t complete an action, it responds with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWAction/fail()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". It’s important to respond to ",
+              "type": "text"
+            },
+            {
+              "code": "SWAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " requests quickly to avoid a system timeout.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example code below retrieves the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationMetadata/localIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationMetadata/userSelectedShareOptions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationMetadata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the action. The ",
+              "type": "text"
+            },
+            {
+              "code": "APIRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object in this example is the API for processing collaboration requests on a web server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Handle a system request for an SWStartCollaborationAction.",
+            "",
+            "func collaborationCoordinator(_ coordinator: SWCollaborationCoordinator, ",
+            "                              handle action: SWStartCollaborationAction) {",
+            "    let localID = action.collaborationMetadata.localIdentifier.rawValue",
+            "    let selectedOptions = action.collaborationMetadata.userSelectedShareOptions",
+            "    let prepareRequest = APIRequest.PrepareCollaboration(localID: localID, selectedOptions)",
+            "    Task {",
+            "        do {            ",
+            "            let response = try await apiController.send(request: prepareRequest)",
+            "            let identifier = response.deviceIndependentIdentifier",
+            "            action.fulfill(using: response.url, collaborationIdentifier: identifier)",
+            "        } catch {",
+            "            Log.error(\"Caught an error while preparing the collaboration: \\(error)\")",
+            "            action.fail() // Cancels the message.",
+            "        }",
+            "    }",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWStartCollaborationAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is successful, the system sends your app a second action to update the collaboration participants. Before you can add or remove participants, your app needs to have a way to verify participants.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Verify-participant-access",
+          "level": 3,
+          "text": "Verify participant access",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWUpdateCollaborationParticipantsAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " contains the cryptographic identities for the participants. The system derives the identities from the collaboration identifier that ",
+              "type": "text"
+            },
+            {
+              "code": "SWStartCollaborationAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " provides. Your shared content server is responsible for identity storage and verification of recipient devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To verify a participant, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWPerson/Identity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWPerson/Identity/rootHash",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. A root hash is a secure value your app sends to your server to uniquely identify a participant on their devices. To perform a verification, your server needs to compute a root hash.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system sends a collaboration message for a participant, it actually sends individual messages to each device for that participant. The Messages app identifies each device using a cryptographic public key. Because the goal is to allow access only on this participant’s set of devices, the system derives the root hash from the set of public keys registered to each recipient.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The root hash is the root node of a data structure called a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Merkle tree",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". A Merkle tree is a binary tree that the system builds by performing a sequence of hashing operations. To derive an identity for the participant based on their public keys, the system uses the keys as the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "leaves",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " of this tree. The hashing algorithm that the system uses in the Merkle tree ensures that the system can only compute the root node from that set of keys.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the example below, the user has three devices and three public keys. The keys are unique for each collaboration identifier that your app provides, using a process called key diversification. To prevent tracking the number of devices registered to a user, the system pads the set with random keys up to a fixed size. Your server hashes the padded set of diversified keys to create the leaf nodes of the tree with a SHA-256 algorithm.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4110140",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your server then concatenates and hashes each pair of leaf nodes to derive their predecessor nodes. Repeat this process with the predecessor nodes until a single root node remains. This is the root hash that the system uses to uniquely represent this recipient’s identity across their devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The figure below shows that it’s possible to generate a root hash using a subset of the nodes from a complete Merkle tree. Your server can use the hashes H4, H7, and H11, along with the diversified public key P3, to reproduce the root hash in this tree. First, hash the public key to get the missing leaf node H3. Then use H3 and H4 to generate H8. Next, use the given H7 node with H8 to generate H10. Finally, use H10 and H11 to produce the root hash.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4110141",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s important to note that you can prove the system uses the public key P3 to generate a given root hash, without needing to reconstruct the entire tree. The subset of nodes necessary to do this is a proof of inclusion. Verification begins when your app opens a universal link. To do this, you first need to check that the link is collaborative.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Verify-a-collaboration-link",
+          "level": 3,
+          "text": "Verify a collaboration link",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWCollaborationHighlight",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " represents a collaborative link that your app retrieves from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightCenter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Use that collaboration highlight to generate the proof of inclusion. To represent a proof of inclusion, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWPerson/IdentityProof",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To perform verification, first generate this object along with a cryptographic signature to send to your server. Retrieve the proof using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightCenter/getSignedIdentityProof(for:using:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method on ",
+              "type": "text"
+            },
+            {
+              "code": "SWHighlightCenter",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the signature to ensure that a bad actor can’t send the request to gain access to your collaboration. The data can be a challenge you request from your server, or a nonce that the device generates. The example below uses the challenge approach.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system passes the URL, which is the universal link associated with a collaboration, to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Use this URL to fetch the associated ",
+              "type": "text"
+            },
+            {
+              "code": "SWCollaborationHighlight",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from the ",
+              "type": "text"
+            },
+            {
+              "code": "SWHighlightCenter",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Request the challenge from the server, and pass the returned data to the ",
+              "type": "text"
+            },
+            {
+              "code": "getSignedIdentityProof",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method on ",
+              "type": "text"
+            },
+            {
+              "code": "SWHighlightCenter",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", along with the highlight. This method returns a signed identity proof that the app sends to the server for verification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app sends the proof to the server, along with the public key and the signed data. Your app signs the data using the Elliptic Curve Digital Signature Algorithm over the P-256 elliptic curve. Verify the signature on the data using the public key in the identity proof. You can do this with most common encryption libraries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Retrieve a signed identity proof for a highlight.",
+            "",
+            "func application(_ app: UIApplication, open url: URL, ",
+            "               options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {",
+            "    let highlightCenter: SWHighlightCenter = self.highlightCenter",
+            "    let challengeRequest = APIRequest.GetChallengeData()",
+            "    Task {",
+            "        do {",
+            "            let highlight = try highlightCenter.collaborationHighlight(for: url)",
+            "            let challenge = try await apiController.send(request: challengeRequest)",
+            "            let proof = try await highlightCenter.getSignedIdentityProof(for: highlight, ",
+            "                                                                       using: challenge.data)",
+            "    let proofOfInclusionRequest = APIRequest.SubmitProofOfInclusion(for: proof)",
+            "            let result = try await apiController.send(request: proofOfInclusionRequest)",
+            "            documentController.update(currentDocument, with: result)",
+            "        } catch {",
+            "            Log.error(\"Caught an error while generating the proof of inclusion: \\(error)\")",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you verify the signature, you can trust that the identity proof the system sends is from the device associated with that public key. Next, use the identity proof to recompute the root hash. A recursive algorithm works well with tree data structures, as in the code example below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Recursive code for root hash generation.",
+            "",
+            "func generateRootHashFromArray(localHash: SHA256Digest, inclusionHashes: [SHA256Digest], ",
+            "                       publicKeyIndex: Int) -> SHA256Digest {",
+            "    guard let firstHash = inclusionHashes.first else { return localHash }",
+            "    // Check whether the node is the left or the right successor.",
+            "    let isLeft = publicKeyIndex.isMultiple(of: 2)",
+            "    // Calculate the combined hash.",
+            "    var rootHash: SHA256Digest",
+            "    if isLeft {",
+            "        rootHash = hash(concatenate([localHash, firstHash]), using: .sha256)",
+            "    } else {",
+            "        rootHash = hash(concatenate([firstHash, localHash]), using: .sha256)",
+            "    }",
+            "    // Recursively pass in elements and move up the Merkle tree.",
+            "    let newInclusionHashes = inclusionHashes.dropFirst()",
+            "    rootHash = generateRootHashFromArray(",
+            "        localHash: rootHash,",
+            "        inclusionHashes: Array(newInclusionHashes),",
+            "        publicKeyIndex: (publicKeyIndex / 2)",
+            "    )",
+            "    return rootHash",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On the initial invocation, pass in the hash of the public key, the set of inclusion hashes, and the public key index. Next, remove the first inclusion hash. Check the public key index to see whether the key is on the left or the right of its sibling. Concatenate and hash the selected hashes in the correct order. Next, remove the consumed node in the ",
+              "type": "text"
+            },
+            {
+              "code": "inclusionHashes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array, and pass the rest to a recursive call to this same function. The public key index then updates so that it’s ready for the next node in the tree.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With this simple function, you can quickly compute a root hash given an identity proof. The server can check that this generated root hash is in the list of root hashes the owner of the document uploads during sending. The hash is present in the list of known hashes, so the server can grant access to the document.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, sign some data and retrieve the proof of inclusion. Send the signed data and proof to your server. Verify the signature on the data. Using the proof of inclusion, generate the root hash. Finally, compare the root hash to the list of known identities associated with that content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-participant",
+          "level": 3,
+          "text": "Add a participant",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below shows how to handle the update participants action. First, retrieve the collaboration identifier from the action’s metadata — this is the identifier you supply to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWAction/fulfill()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method while handling ",
+              "type": "text"
+            },
+            {
+              "code": "SWStartCollaborationAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, use the action’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWUpdateCollaborationParticipantsAction/addedIdentities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to retrieve the participant data to store on your content server. Each identity has a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWPerson/Identity/rootHash",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property, which is the data you store on your server to validate participants during the collaboration process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you retrieve this data, create another server request to add the participants to the collaboration with the target identifier. Then, send the request to your server, and fulfill or fail the action. This time, the fulfill method doesn’t take any parameters. After you set up the collaboration, your app has everything it needs to grant immediate access to the recipients of the message.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Add a participant.",
+            "",
+            "func collaborationCoordinator(_ coordinator: SWCollaborationCoordinator, ",
+            "                              handle action: SWUpdateCollaborationParticipantsAction) {",
+            "    let identifier = action.collaborationMetadata.collaborationIdentifier",
+            "    let participants: [Data] = action.addedIdentities.compactMap { $0.rootHash }",
+            "    let addParticipants = APIRequest.AddParticipants(identifier: identifier, participants)",
+            "    Task {",
+            "        do {            ",
+            "            try await apiController.send(request: addParticipants)",
+            "            action.fulfill() // Sends the URL that the start action provides.",
+            "        } catch {",
+            "            Log.error(\"Caught an error while adding participants to the collaboration: \\(error)\")",
+            "            action.fail() // Cancels the message.",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Remove-a-participant",
+          "level": 3,
+          "text": "Remove a participant",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To remove a participant, look up any account associated with a removed identity and revoke their access. If your app doesn’t have any associated accounts for this collaboration, delete the root hash from your database. The example code below uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWUpdateCollaborationParticipantsAction/removedIdentities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property on the action and passes it to a similar removal API request:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Remove a participant.",
+            "",
+            "func collaborationCoordinator(_ coordinator: SWCollaborationCoordinator, ",
+            "                              handle action: SWUpdateCollaborationParticipantsAction) {",
+            "    // This is an example of removing participants only. Handle the added identities here too.",
+            "    let identifier = action.collaborationMetadata.collaborationIdentifier",
+            "    let removed: [Data] = action.removedIdentities.compactMap { $0.rootHash }",
+            "    let removeParticipants = APIRequest.RemoveParticipants(identifier: identifier, removed)",
+            "    Task {",
+            "        do {            ",
+            "            try await apiController.send(request: removeParticipants)",
+            "            action.fulfill()",
+            "        } catch {",
+            "            log.error(\"Caught an error while adding participants to the collaboration: \\(error)\")",
+            "            action.fail()",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Post-a-change-event-notice",
+          "level": 3,
+          "text": "Post a change event notice",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a participant makes changes to a collaboration, your app posts notices about those changes. The system displays those notices in Messages as a banner in the shared conversation. The banner includes a description of the changes, as well as the name of the person who makes each change.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app posts a change event for content updates or comments, and it posts a membership event when a participant joins or leaves. When a person mentions another person in a collaboration, post a mention event. Post a persistence event when a collaborator moves or deletes content. The example code below shows how to post a change event for an edit to a collaboration:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Post a change event notice.",
+            "",
+            "func postContentEditEvent(identifier: SWCollaborationIdentifier) throws {",
+            "    let highlightCenter: SWHighlightCenter = self.highlightCenter",
+            "    let highlight = try highlightCenter.collaborationHighlight(forIdentifier: identifier)",
+            "",
+            "    let editEvent = SWHighlightChangeEvent(highlight: highlight, trigger: .edit)",
+            "",
+            "    highlightCenter.postNotice(for: editEvent)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Post-a-membership-event-notice",
+          "level": 3,
+          "text": "Post a membership event notice",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For participant changes, your app posts a membership event and passes either the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightMembershipEventTrigger/addedCollaborator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightMembershipEventTrigger/removedCollaborator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " trigger type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Post a membership event notice.",
+            "",
+            "func postMembershipEvent(identifier: SWCollaborationIdentifier) throws {",
+            "    let highlightCenter: SWHighlightCenter = self.highlightCenter",
+            "    let highlight = try highlightCenter.collaborationHighlight(forIdentifier: identifier)",
+            "",
+            "    let membershipEvent = SWHighlightMembershipEvent(highlight: highlight, trigger: .addCollaborator)",
+            "",
+            "    highlightCenter.postNotice(for: membershipEvent)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Post-a-mention-event-notice",
+          "level": 3,
+          "text": "Post a mention event notice",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app supports user mentions, you can post a mention event. Initialize a person identity with the root hash of the mentioned user. Next, pass the mentioned identity to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightMentionEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and post the mention event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system shows this notice only to the mentioned user in the Messages app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Post a mention event notice.",
+            "",
+            "func postMentionEvent(identifier: SWCollaborationIdentifier, mentionedRootHash: Data) throws {",
+            "    let mentionedIdentity = SWPerson.Identity(rootHash: mentionedRootHash)",
+            "",
+            "    let highlightCenter: SWHighlightCenter = self.highlightCenter",
+            "    let highlight = try highlightCenter.collaborationHighlight(forIdentifier: identifier)",
+            "",
+            "    let mentionEvent = SWHighlightMentionEvent(highlight: highlight,",
+            "                                               mentionedPersonIdentity: mentionedIdentity)",
+            "    highlightCenter.postNotice(for: mentionEvent)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Post-a-persistence-event-notice",
+          "level": 3,
+          "text": "Post a persistence event notice",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app posts the persistence event type when a participant moves, renames, or deletes content. In the example below, the app uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightPersistenceEventTrigger/renamed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to indicate that the participant changed the name of the content:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Post a persistent event notice.",
+            "",
+            "func postContentRenamedEvent(identifier: SWCollaborationIdentifier) throws {",
+            "    let highlightCenter: SWHighlightCenter = self.highlightCenter",
+            "    let highlight = try highlightCenter.collaborationHighlight(forIdentifier: identifier)",
+            "",
+            "    let renamedEvent = SWHighlightPersistenceEvent(highlight: highlight, trigger: .renamed)",
+            "    highlightCenter.postNotice(for: renamedEvent)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSPasteboardItem": {
+      "abstract": [
+        {
+          "text": "An item on a pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPasteboardItem"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSPasteboardItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPasteboardItem",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSPasteboardItem"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSPasteboardItem/collaborationMetadata": {
+      "abstract": [
+        {
+          "text": "A model object you use for conveying data during a collaboration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@NSCopying"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "collaborationMetadata"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SWCollaborationMetadata",
+          "text": "SWCollaborationMetadata"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSPasteboardItem/collaborationMetadata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "collaborationMetadata",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSPasteboardItem/collaborationMetadata"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSSharingServicePicker": {
+      "abstract": [
+        {
+          "text": "A list of sharing services that the user can choose from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSharingServicePicker"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSSharingServicePicker",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSharingServicePicker",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSSharingServicePicker"
+    },
+    "doc://com.apple.documentation/documentation/CoreTransferable/ProxyRepresentation": {
+      "abstract": [
+        {
+          "text": "A transfer representation that uses another type’s transfer representation as its own.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProxyRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "ProxyRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable0B0P",
+          "text": "Transferable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ProxyRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable0B0P",
+          "text": "Transferable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/ProxyRepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ProxyRepresentation",
+      "type": "topic",
+      "url": "/documentation/CoreTransferable/ProxyRepresentation"
+    },
+    "doc://com.apple.documentation/documentation/CoreTransferable/Transferable": {
+      "abstract": [
+        {
+          "text": "A protocol that describes how a type interacts with transport APIs such as drag and drop or copy and paste.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transferable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/Transferable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Transferable",
+      "type": "topic",
+      "url": "/documentation/CoreTransferable/Transferable"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ShareLink": {
+      "abstract": [
+        {
+          "text": "A view that controls a sharing presentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShareLink"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "PreviewImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "PreviewIcon"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sk",
+          "text": "RandomAccessCollection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "PreviewImage"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable0B0P",
+          "text": "Transferable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "PreviewIcon"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable0B0P",
+          "text": "Transferable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable0B0P",
+          "text": "Transferable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ShareLink",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ShareLink",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ShareLink"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIActivityItemsConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that allows a responder to export data through a variety of interactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemsConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityItemsConfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIActivityItemsConfiguration",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIActivityItemsConfiguration"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that you use to offer standard services from your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIActivityViewController",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIActivityViewController"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the launch process is almost done and the app is almost ready to run.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFinishLaunchingWithOptions"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "launchOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIApplicationLaunchOptionsKey",
+          "text": "LaunchOptionsKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]? = nil) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:didFinishLaunchingWithOptions:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIDragItem": {
+      "abstract": [
+        {
+          "text": "A representation of an underlying data item as a person drags it from one location to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDragItem"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIDragItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIDragItem",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIDragItem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider": {
+      "abstract": [
+        {
+          "text": "An item provider for conveying data or a file between processes during drag-and-drop or copy-and-paste activities, or from a host app to an app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSItemProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSItemProvider",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemproviderreading": {
+      "abstract": [
+        {
+          "text": "The protocol for implementing a class to allow an item provider to create an instance of the class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSItemProviderReading"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemproviderreading",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSItemProviderReading",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemproviderreading"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemproviderwriting": {
+      "abstract": [
+        {
+          "text": "The protocol for implementing a class to allow an item provider to retrieve data from an instance of the class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSItemProviderWriting"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemproviderwriting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSItemProviderWriting",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemproviderwriting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/personnamecomponentsformatter/1642979-personnamecomponents": {
+      "abstract": [
+        {
+          "text": "Returns a person name components object from a given string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "personNameComponents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> PersonNameComponents?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/personnamecomponentsformatter/1642979-personnamecomponents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "personNameComponents(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/personnamecomponentsformatter/1642979-personnamecomponents"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou": {
+      "abstract": [
+        {
+          "text": "Surface shared content and collaborate in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Shared With You",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWCollaborationHighlight": {
+      "abstract": [
+        {
+          "text": "A highlight object that represents an active collaboration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationHighlight"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWCollaborationHighlight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationHighlight"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWCollaborationHighlight",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/swcollaborationhighlight"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightCenter": {
+      "abstract": [
+        {
+          "text": "An object that contains a priority-ordered list of universal links to share with the current user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWHighlightCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightCenter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWHighlightCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWHighlightCenter",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/swhighlightcenter"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightCenter/getSignedIdentityProof(for:using:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Signs passed-in data with the local device’s private key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getSignedIdentityProof"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SWCollaborationHighlight",
+          "text": "SWCollaborationHighlight"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SWPerson",
+          "text": "SWPerson"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SWSignedPersonIdentityProof",
+          "text": "SignedIdentityProof"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightCenter/getSignedIdentityProof(for:using:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getSignedIdentityProofForCollaborationHighlight:usingData:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getSignedIdentityProof(for:using:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/swhighlightcenter/getsignedidentityproof(for:using:completionhandler:)"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightMembershipEventTrigger/addedCollaborator": {
+      "abstract": [
+        {
+          "text": "Signifies the system added a collaborator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addedCollaborator"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightMembershipEventTrigger/addedCollaborator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWHighlightMembershipEventTriggerAddedCollaborator"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWHighlightMembershipEventTrigger.addedCollaborator",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/swhighlightmembershipeventtrigger/addedcollaborator"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightMembershipEventTrigger/removedCollaborator": {
+      "abstract": [
+        {
+          "text": "Signifies the system removed a collaborator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removedCollaborator"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightMembershipEventTrigger/removedCollaborator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWHighlightMembershipEventTriggerRemovedCollaborator"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWHighlightMembershipEventTrigger.removedCollaborator",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/swhighlightmembershipeventtrigger/removedcollaborator"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightMentionEvent": {
+      "abstract": [
+        {
+          "text": "An object that represents mention activity for a highlight.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWHighlightMentionEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightMentionEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWHighlightMentionEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWHighlightMentionEvent",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/swhighlightmentionevent"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightPersistenceEventTrigger/renamed": {
+      "abstract": [
+        {
+          "text": "Signifies a rename event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renamed"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/SWHighlightPersistenceEventTrigger/renamed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWHighlightPersistenceEventTriggerRenamed"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWHighlightPersistenceEventTrigger.renamed",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/swhighlightpersistenceeventtrigger/renamed"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/adding-shared-content-collaboration-to-your-app": {
+      "abstract": [
+        {
+          "text": "Manage shared content collaboration in your app using CloudKit and iCloud Drive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/adding-shared-content-collaboration-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding shared content collaboration to your app",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/adding-shared-content-collaboration-to-your-app"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/collaboration-views": {
+      "abstract": [
+        {
+          "text": "Create and customize a collaboration view to manage the shared content actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/collaboration-views",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collaboration views",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/collaboration-views"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYou/making-your-app-content-shareable": {
+      "abstract": [
+        {
+          "text": "Add support for universal links and a Shared with You shelf to support shared content in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYou/making-your-app-content-shareable",
+      "kind": "article",
+      "role": "article",
+      "title": "Making your app content shareable",
+      "type": "topic",
+      "url": "/documentation/sharedwithyou/making-your-app-content-shareable"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWAction": {
+      "abstract": [
+        {
+          "text": "An object that represents a collaboration action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWAction"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWAction",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swaction"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWAction/fail()": {
+      "abstract": [
+        {
+          "text": "Reports a failed execution of the action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fail"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWAction/fail()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fail"
+        }
+      ],
+      "role": "symbol",
+      "title": "fail()",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swaction/fail()"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWAction/fulfill()": {
+      "abstract": [
+        {
+          "text": "Reports a successful execution of the action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fulfill"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWAction/fulfill()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fulfill"
+        }
+      ],
+      "role": "symbol",
+      "title": "fulfill()",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swaction/fulfill()"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationActionHandler": {
+      "abstract": [
+        {
+          "text": "A delegate to handle incoming collaboration actions from a collaboration coordinator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationActionHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationActionHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationActionHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWCollaborationActionHandler",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swcollaborationactionhandler"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationMetadata": {
+      "abstract": [
+        {
+          "text": "A model object for conveying data during a collaboration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWCollaborationMetadata",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swcollaborationmetadata"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationMetadata/defaultShareOptions": {
+      "abstract": [
+        {
+          "text": "The collaboration options that the content supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultShareOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SWCollaborationShareOptions",
+          "text": "SWCollaborationShareOptions"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationMetadata/defaultShareOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "defaultShareOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "defaultShareOptions",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swcollaborationmetadata/defaultshareoptions"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationMetadata/localIdentifier": {
+      "abstract": [
+        {
+          "text": "A locally unique identifier for the item the metadata represents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SWLocalCollaborationIdentifier",
+          "text": "SWLocalCollaborationIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationMetadata/localIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "localIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "localIdentifier",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swcollaborationmetadata/localidentifier"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationMetadata/userSelectedShareOptions": {
+      "abstract": [
+        {
+          "text": "The selected collaboration options from the person who sends the invitation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userSelectedShareOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SWCollaborationShareOptions",
+          "text": "SWCollaborationShareOptions"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationMetadata/userSelectedShareOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userSelectedShareOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "userSelectedShareOptions",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swcollaborationmetadata/userselectedshareoptions"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationOptionsGroup": {
+      "abstract": [
+        {
+          "text": "An object that represents a group of collaboration options that the system displays together.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationOptionsGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationOptionsGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationOptionsGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWCollaborationOptionsGroup",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swcollaborationoptionsgroup"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationOptionsPickerGroup": {
+      "abstract": [
+        {
+          "text": "An object that represents a group of collaboration options that the system displays together with mutually exclusive options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationOptionsPickerGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationOptionsPickerGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationOptionsPickerGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWCollaborationOptionsPickerGroup",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swcollaborationoptionspickergroup"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationShareOptions": {
+      "abstract": [
+        {
+          "text": "An object that represents the state of the collaboration options for the document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationShareOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationShareOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationShareOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWCollaborationShareOptions",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swcollaborationshareoptions"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWLocalCollaborationIdentifier": {
+      "abstract": [
+        {
+          "text": "A local identifier for a collaboration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWLocalCollaborationIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWLocalCollaborationIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWLocalCollaborationIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWLocalCollaborationIdentifier",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swlocalcollaborationidentifier"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWPerson/Identity": {
+      "abstract": [
+        {
+          "text": "The unique identity for a person.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identity"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWPerson/Identity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Identity"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWPerson.Identity",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swperson/identity"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWPerson/Identity/rootHash": {
+      "abstract": [
+        {
+          "text": "The root hash of the tree that represents the individual’s identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rootHash"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWPerson/Identity/rootHash",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rootHash"
+        }
+      ],
+      "role": "symbol",
+      "title": "rootHash",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swperson/identity/roothash"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWPerson/IdentityProof": {
+      "abstract": [
+        {
+          "text": "An object that represents proof of inclusion to a Merkle tree.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IdentityProof"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWPerson/IdentityProof",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IdentityProof"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWPerson.IdentityProof",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swperson/identityproof"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWStartCollaborationAction": {
+      "abstract": [
+        {
+          "text": "An object that represents the first action sent to an app when the user shares a collaboration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWStartCollaborationAction"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWStartCollaborationAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWStartCollaborationAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWStartCollaborationAction",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swstartcollaborationaction"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWUpdateCollaborationParticipantsAction": {
+      "abstract": [
+        {
+          "text": "An action that contains the cryptographic identities the system uses to add to or remove from an existing collaboration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWUpdateCollaborationParticipantsAction"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWUpdateCollaborationParticipantsAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWUpdateCollaborationParticipantsAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWUpdateCollaborationParticipantsAction",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swupdatecollaborationparticipantsaction"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWUpdateCollaborationParticipantsAction/addedIdentities": {
+      "abstract": [
+        {
+          "text": "An array of added identities in a collaboration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addedIdentities"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SWPerson",
+          "text": "SWPerson"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SWPersonIdentity",
+          "text": "Identity"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWUpdateCollaborationParticipantsAction/addedIdentities",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addedIdentities"
+        }
+      ],
+      "role": "symbol",
+      "title": "addedIdentities",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swupdatecollaborationparticipantsaction/addedidentities"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWUpdateCollaborationParticipantsAction/removedIdentities": {
+      "abstract": [
+        {
+          "text": "An array of removed identities in a collaboration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removedIdentities"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SWPerson",
+          "text": "SWPerson"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SWPersonIdentity",
+          "text": "Identity"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWUpdateCollaborationParticipantsAction/removedIdentities",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removedIdentities"
+        }
+      ],
+      "role": "symbol",
+      "title": "removedIdentities",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swupdatecollaborationparticipantsaction/removedidentities"
+    },
+    "https://developer.apple.com/wwdc22/10093": {
+      "identifier": "https://developer.apple.com/wwdc22/10093",
+      "title": "Integrate your custom collaboration app with Messages",
+      "titleInlineContent": [
+        {
+          "text": "Integrate your custom collaboration app with Messages",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc22/10093"
+    },
+    "media-4110140": {
+      "alt": "A tree diagram of rectangles and connecting lines that represent nodes and their relationships. The node at the top is labeled with a hexidecimal hash number and has two nodes below it labeled H10 and H11. The H10 node on the left has two nodes below it labeled H7 and H8. Node H7 has two nodes below it labeled H1 and H2. H1 has a dimmed rectangle below it labeled P1. H2 has a dimmed rectangle below it labeled P2. Node H8 has two nodes below it labeled H3 and H4. H3 has a dimmed rectangle below it labeled P3. H4 has a dimmed rectangle below it labeled R1. Node H11 has a node below it labeled H9. Node H9 has two nodes below it labeled H5 and H6. H5 has a dimmed rectangle below it labeled R2. H6 has a dimmed rectangle below it labeled R3.",
+      "identifier": "media-4110140",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a23d8777e31365b9627c4cdba003556b/media-4110140@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1927580bafe646cb41aa794cc78509f0/media-4110140~dark@2x.png"
+        }
+      ]
+    },
+    "media-4110141": {
+      "alt": "A tree diagram of rectangles and connecting lines that represent nodes and their relationships. Green nodes represent a known device. Orange represents a calculated node. Unknown devices are dimmed. The node at the top is orange and labeled with a hexidecimal hash number and has two nodes below it labeled H10 and H11. The H10 node on the left is orange and has two nodes below it labeled H7 and H8. Node H7 is green and has two dimmed nodes below it labeled H1 and H2. H1 has a dimmed rectangle below it labeled P1. H2 has a dimmed rectangle below it labeled P2. H3 has a dimmed rectangle below it labeled P3. H4 has a dimmed rectangle below it labeled R1. The H8 node is orange and has two nodes below it labeled H3 and H4. H3 is orange and has a green rectangle below it labeled P3. H4 has a dimmed rectangle below it labeled R1. The H11 node is green and has a node below it labeled H9. The H9 node is dimmed and has two dimmed nodes below it labeled H5 and H6. H5 has a dimmed rectangle below it labeled R2. H6 has a dimmed rectangle below it labeled R3.",
+      "identifier": "media-4110141",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b91b4a58d6e501c0632c863326585769/media-4110141@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ac93a9541deaebf266e74064ecb7ecac/media-4110141~dark@2x.png"
+        }
+      ]
+    },
+    "media-4110288": {
+      "alt": "An illustration of a horizontal iPhone labeled Sending Device. At the top center of the device screen is an app icon with an arrow labeled Share pointing right to a rectangle labeled Collaboration Metadata. An arrow points down from that rectangle to a rectangle labeled Share Sheet/Drag & Drop. From there, an arrow points left to a Messages app icon. The app icon at the top also has a line pointing left and down to two stacked rectangles. The top rectangle is labeled Universal Link and the bottom one is labeled Identifier. The bottom rectangle has an arrow pointing down and right to the Messages app icon. An arrow points up from the Messages app icon to a square with a ? in it. That square has an arrow pointing up to the app icon. The app icon has an arrow pointing up to a square with a ? in it that sits above the device. The square above the device has an arrow pointing right to a Server icon.",
+      "identifier": "media-4110288",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3901cbcbc6321c17cec79fa745082f0f/media-4110288@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e873abc977d657ee653fb4a1f85a1802/media-4110288~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Collaboration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sharedwithyou/documentation/SharedWithYou/adding-shared-content-collaboration-to-your-app",
+        "doc://com.apple.sharedwithyou/documentation/SharedWithYou/collaboration-views"
+      ],
+      "title": "Collaboration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWAction/title",
+          "value": "SWAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWUpdateCollaborationParticipantsAction/title",
+          "value": "SWUpdateCollaborationParticipantsAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWUpdateCollaborationParticipantsAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWUpdateCollaborationParticipantsAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWUpdateCollaborationParticipantsAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWUpdateCollaborationParticipantsAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWPerson~1Identity~1rootHash/title",
+          "value": "rootHash"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWPerson~1Identity~1rootHash/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rootHash"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWUpdateCollaborationParticipantsAction~1addedIdentities/title",
+          "value": "addedIdentities"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWUpdateCollaborationParticipantsAction~1addedIdentities/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "addedIdentities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationActionHandler/title",
+          "value": "SWCollaborationActionHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationActionHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationActionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationActionHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationActionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:didFinishLaunchingWithOptions:)/title",
+          "value": "application:didFinishLaunchingWithOptions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:didFinishLaunchingWithOptions:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didFinishLaunchingWithOptions:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+              "text": "NSDictionary<NSString *,id>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "launchOptions"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightPersistenceEventTrigger~1renamed/title",
+          "value": "SWHighlightPersistenceEventTriggerRenamed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightPersistenceEventTrigger~1renamed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWHighlightPersistenceEventTriggerRenamed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationShareOptions/title",
+          "value": "SWCollaborationShareOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationShareOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationShareOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationShareOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationShareOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWLocalCollaborationIdentifier/title",
+          "value": "SWLocalCollaborationIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWLocalCollaborationIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWLocalCollaborationIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWLocalCollaborationIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWLocalCollaborationIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightMembershipEventTrigger~1removedCollaborator/title",
+          "value": "SWHighlightMembershipEventTriggerRemovedCollaborator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightMembershipEventTrigger~1removedCollaborator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWHighlightMembershipEventTriggerRemovedCollaborator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWAction~1fulfill()/title",
+          "value": "fulfill"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWAction~1fulfill()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fulfill"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWCollaborationHighlight/title",
+          "value": "SWCollaborationHighlight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWCollaborationHighlight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationHighlight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWCollaborationHighlight/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationHighlight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSSharingServicePicker/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSSharingServicePicker"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationMetadata/title",
+          "value": "SWCollaborationMetadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationMetadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationMetadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWUpdateCollaborationParticipantsAction~1removedIdentities/title",
+          "value": "removedIdentities"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWUpdateCollaborationParticipantsAction~1removedIdentities/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "removedIdentities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightCenter~1getSignedIdentityProof(for:using:completionHandler:)/title",
+          "value": "getSignedIdentityProofForCollaborationHighlight:usingData:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightCenter~1getSignedIdentityProof(for:using:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getSignedIdentityProofForCollaborationHighlight:usingData:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightMentionEvent/title",
+          "value": "SWHighlightMentionEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightMentionEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWHighlightMentionEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightMentionEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWHighlightMentionEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSPasteboardItem/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSPasteboardItem"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWPerson~1Identity/title",
+          "value": "SWPersonIdentity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWPerson~1Identity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWPersonIdentity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWPerson~1Identity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWPersonIdentity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationMetadata~1localIdentifier/title",
+          "value": "localIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationMetadata~1localIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "localIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightMembershipEventTrigger~1addedCollaborator/title",
+          "value": "SWHighlightMembershipEventTriggerAddedCollaborator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightMembershipEventTrigger~1addedCollaborator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWHighlightMembershipEventTriggerAddedCollaborator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightCenter/title",
+          "value": "SWHighlightCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightCenter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWHighlightCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYou~1SWHighlightCenter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWHighlightCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1personnamecomponentsformatter~11642979-personnamecomponents/title",
+          "value": "personNameComponentsFromString:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIActivityItemsConfiguration/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemsConfiguration"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWStartCollaborationAction/title",
+          "value": "SWStartCollaborationAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWStartCollaborationAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWStartCollaborationAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWStartCollaborationAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWStartCollaborationAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIActivityViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIActivityViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationOptionsGroup/title",
+          "value": "SWCollaborationOptionsGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationOptionsGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationOptionsGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationOptionsGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationOptionsGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWPerson~1IdentityProof/title",
+          "value": "SWPersonIdentityProof"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWPerson~1IdentityProof/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWPersonIdentityProof"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWPerson~1IdentityProof/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWPersonIdentityProof"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationOptionsPickerGroup/title",
+          "value": "SWCollaborationOptionsPickerGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationOptionsPickerGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationOptionsPickerGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationOptionsPickerGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationOptionsPickerGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWAction~1fail()/title",
+          "value": "fail"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWAction~1fail()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fail"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationMetadata~1userSelectedShareOptions/title",
+          "value": "userSelectedShareOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationMetadata~1userSelectedShareOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userSelectedShareOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIDragItem/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIDragItem"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSPasteboardItem~1collaborationMetadata/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readwrite"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)SWCollaborationMetadata",
+              "text": "SWCollaborationMetadata"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "collaborationMetadata"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationMetadata~1defaultShareOptions/title",
+          "value": "defaultShareOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationMetadata~1defaultShareOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "defaultShareOptions"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

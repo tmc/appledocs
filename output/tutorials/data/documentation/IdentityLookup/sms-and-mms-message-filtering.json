@@ -1,0 +1,828 @@
+{
+  "abstract": [
+    {
+      "text": "Create an app extension that identifies and filters unwanted SMS and MMS messages while preserving user privacy.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.identitylookup/documentation/IdentityLookup"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.identitylookup/documentation/IdentityLookup/sms-and-mms-message-filtering"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SMS and Call Reporting"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "SMS and MMS Message Filtering"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a user receives an SMS or MMS message from an unknown sender, the Messages app can ask your Message Filter app extension to determine whether the message is unsolicited or otherwise unwanted. Your app extension can make this determination by using its own built-in data and logic or by deferring to analysis done by your associated server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "IdentityLookup works only with SMS and MMS messages from unknown senders; it doesn’t work with messages from senders in a user’s Contacts list or with iMessage messages from any source.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To find out if a message from an unknown sender is unwanted, the Messages app launches the currently enabled Message Filter app extension and queries it, as shown in the figure below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2994280",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Messages app uses an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterQueryRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to pass information about the message to your Message Filter app extension. If your app extension can determine whether the message is unwanted, it returns its decision to Messages in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterQueryResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app extension can’t make this determination by itself, it tells Messages to send the information about the message to a server associated with your app. Your server examines the message information and sends a response to Messages, which passes the response to your app extension. The app extension parses the server’s response and returns the final decision to Messages in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterQueryResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, as shown in the figure below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2994281",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For privacy reasons, the system handles all communication with your associated server; your Message Filter app extension can’t access the network directly.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Your app extension also can’t write data to containers shared with the containing app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup": {
+      "abstract": [
+        {
+          "text": "Create app extensions to manage and report unwanted SMS messages and spam calls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SMS and Call Reporting",
+      "type": "topic",
+      "url": "/documentation/identitylookup"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterAction": {
+      "abstract": [
+        {
+          "text": "Responds to a received message with a filter action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterAction"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILMessageFilterAction",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilmessagefilteraction"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterError-swift.struct": {
+      "abstract": [
+        {
+          "text": "An error type that indicates problems with network requests and responses related to IdentityLookup APIs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterError"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterError-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterError"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILMessageFilterError",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilmessagefiltererror-swift.struct"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterErrorDomain": {
+      "abstract": [
+        {
+          "text": "The error domain for errors associated with the IdentityLookup APIs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILMessageFilterErrorDomain",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilmessagefiltererrordomain"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterExtension": {
+      "abstract": [
+        {
+          "text": "The abstract base class for the principal class of a Message Filter app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILMessageFilterExtension",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilmessagefilterextension"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterExtensionContext": {
+      "abstract": [
+        {
+          "text": "The extension context for a Message Filter app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterExtensionContext"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterExtensionContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterExtensionContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILMessageFilterExtensionContext",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilmessagefilterextensioncontext"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterQueryHandling": {
+      "abstract": [
+        {
+          "text": "A set of methods implemented by a Message Filter app extension to handle query requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterQueryHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterQueryHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterQueryHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILMessageFilterQueryHandling",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilmessagefilterqueryhandling"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterQueryRequest": {
+      "abstract": [
+        {
+          "text": "A request for a Message Filter app extension to determine the status of a message received from an unknown sender.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterQueryRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterQueryRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterQueryRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILMessageFilterQueryRequest",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilmessagefilterqueryrequest"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterQueryResponse": {
+      "abstract": [
+        {
+          "text": "A response to a message filter query request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterQueryResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterQueryResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterQueryResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILMessageFilterQueryResponse",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilmessagefilterqueryresponse"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILNetworkResponse": {
+      "abstract": [
+        {
+          "text": "A response to an HTTPS network request performed on behalf of a Message Filter app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ILNetworkResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILNetworkResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILNetworkResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILNetworkResponse",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilnetworkresponse"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/creating-a-message-filter-app-extension": {
+      "abstract": [
+        {
+          "text": "Create an app extension that helps identify unwanted messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/creating-a-message-filter-app-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Message Filter App Extension",
+      "type": "topic",
+      "url": "/documentation/identitylookup/creating-a-message-filter-app-extension"
+    },
+    "media-2994280": {
+      "alt": "On the left, a box represents the Message Filter app extension in the containing app. On the right, a box shows an SMS or MMS message from an unknown sender coming in to the Messages app icon. Below the sets of boxes, on arrow indicates a query request coming from the message to the app, while another indicates the decision being sent back from the containing app to the Messages app. ",
+      "identifier": "media-2994280",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/735a851d52c84c8b92c463348f6bbb6e/media-2994280@2x.png"
+        }
+      ]
+    },
+    "media-2994281": {
+      "alt": "On the left, a box represents the Message Filter app extension in the containing app. In the center, a box shows an SMS or MMS message from an unknown sender coming in to the Messages app icon. On the right, a box represents the Server associated with the app. Below the sets of boxes, on arrow indicates a query request coming from the message to the app, while another indicates the decision being sent back from the containing app to the Messages app. ",
+      "identifier": "media-2994281",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bb74d2a6d375628c8f818782249185fe/media-2994281@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "First-Steps",
+      "identifiers": [
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/creating-a-message-filter-app-extension"
+      ],
+      "title": "First Steps"
+    },
+    {
+      "anchor": "App-Extension",
+      "identifiers": [
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterExtensionContext",
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterExtension"
+      ],
+      "title": "App Extension"
+    },
+    {
+      "anchor": "Queries",
+      "identifiers": [
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterQueryRequest",
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterQueryHandling"
+      ],
+      "title": "Queries"
+    },
+    {
+      "anchor": "Responses",
+      "identifiers": [
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterQueryResponse",
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/ILNetworkResponse",
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterAction"
+      ],
+      "title": "Responses"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterError-swift.struct",
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterErrorDomain"
+      ],
+      "title": "Errors"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterQueryHandling/title",
+          "value": "ILMessageFilterQueryHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterQueryHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageFilterQueryHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterQueryHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageFilterQueryHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterQueryRequest/title",
+          "value": "ILMessageFilterQueryRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterQueryRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageFilterQueryRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterQueryRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageFilterQueryRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterExtension/title",
+          "value": "ILMessageFilterExtension"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterExtension/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageFilterExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterExtension/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageFilterExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterAction/title",
+          "value": "ILMessageFilterAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageFilterAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageFilterAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILNetworkResponse/title",
+          "value": "ILNetworkResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILNetworkResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILNetworkResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILNetworkResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILNetworkResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterQueryResponse/title",
+          "value": "ILMessageFilterQueryResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterQueryResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageFilterQueryResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterQueryResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageFilterQueryResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterExtensionContext/title",
+          "value": "ILMessageFilterExtensionContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterExtensionContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageFilterExtensionContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterExtensionContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageFilterExtensionContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterErrorDomain/title",
+          "value": "ILMessageFilterErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageFilterErrorDomain"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

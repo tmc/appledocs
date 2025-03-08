@@ -1,0 +1,624 @@
+{
+  "abstract": [
+    {
+      "text": "An array of dependencies for this system.",
+      "type": "text"
+    }
+  ],
+  "defaultImplementationsSections": [
+    {
+      "anchor": "System-Implementations",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/System/dependencies-2d7zt"
+      ],
+      "title": "System Implementations"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/System"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/System/dependencies"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation6SystemP12dependenciesSayAA0C10DependencyOGvpZ",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "static"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "dependencies"
+      },
+      {
+        "kind": "text",
+        "text": ": ["
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:17RealityFoundation16SystemDependencyO",
+        "text": "SystemDependency"
+      },
+      {
+        "kind": "text",
+        "text": "]"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "required": true,
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "property",
+    "title": "dependencies"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "dependencies"
+            },
+            {
+              "kind": "text",
+              "text": ": ["
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SystemDependency",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:17RealityFoundation16SystemDependencyO",
+              "text": "SystemDependency"
+            },
+            {
+              "kind": "text",
+              "text": "] { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/implementing-systems-for-entities-in-a-scene"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to specify the update order between your system and other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "systems in your app, you can do that using this property.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If your system has no dependencies, you don’t need to declare this property.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "RealityKit provides a default implementation for systems with no dependencies.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example where one other system updates before this system,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and another system updates after it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class SystemB : RealityKit.System {",
+            "    static var dependencies: [SystemDependency] {",
+            "        [.after(SystemA.self),        // Run SystemB after SystemA.",
+            "         .before(SystemC.self)]       // Run SystemB before SystemC.",
+            "     }",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app runs, RealityKit calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/System/update(context:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "SystemA",
+              "type": "codeVoice"
+            },
+            {
+              "text": " first, then on ",
+              "type": "text"
+            },
+            {
+              "code": "SystemB",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and then on ",
+              "type": "text"
+            },
+            {
+              "code": "SystemC",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/System": {
+      "abstract": [
+        {
+          "text": "An object that affects multiple entities in every update of a RealityKit",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "System"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/System",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "System"
+        }
+      ],
+      "role": "symbol",
+      "title": "System",
+      "type": "topic",
+      "url": "/documentation/realitykit/system"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/System/dependencies": {
+      "abstract": [
+        {
+          "text": "An array of dependencies for this system.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dependencies"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation16SystemDependencyO",
+          "text": "SystemDependency"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/System/dependencies",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "dependencies",
+      "type": "topic",
+      "url": "/documentation/realitykit/system/dependencies"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/System/dependencies-2d7zt": {
+      "abstract": [
+        {
+          "text": "A default implementation of the dependencies array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dependencies"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation16SystemDependencyO",
+          "text": "SystemDependency"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/System/dependencies-2d7zt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dependencies",
+      "type": "topic",
+      "url": "/documentation/realitykit/system/dependencies-2d7zt"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/System/update(context:)": {
+      "abstract": [
+        {
+          "text": "Updates entities up to once every scene update.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation18SceneUpdateContextV",
+          "text": "SceneUpdateContext"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/System/update(context:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "update(context:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/system/update(context:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SystemDependency": {
+      "abstract": [
+        {
+          "text": "Defines update order relative to other systems.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "An object that specifies the update order between multiple systems.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SystemDependency"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SystemDependency",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SystemDependency"
+        }
+      ],
+      "role": "symbol",
+      "title": "SystemDependency",
+      "type": "topic",
+      "url": "/documentation/realitykit/systemdependency"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/implementing-systems-for-entities-in-a-scene": {
+      "abstract": [
+        {
+          "text": "Apply behaviors and physical effects to the objects and characters in a RealityKit",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "scene with the Entity Component System (ECS).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/implementing-systems-for-entities-in-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing systems for entities in a scene",
+      "type": "topic",
+      "url": "/documentation/realitykit/implementing-systems-for-entities-in-a-scene"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Specifying-dependencies",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/SystemDependency"
+      ],
+      "title": "Specifying dependencies"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/system/dependencies"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

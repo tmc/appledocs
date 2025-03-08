@@ -1,0 +1,1722 @@
+{
+  "abstract": [
+    {
+      "text": "Specify your project’s build settings in plain-text files, and supply",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "different settings for debug and release builds.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/build-system"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/adding-a-build-configuration-file-to-your-project"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding a build configuration file to your project"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A build configuration file is a plain-text file you use to specify the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "build settings for a specific target or your entire project. Build",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "configuration files make it easier to manage build settings yourself,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and to change build settings automatically for different architectures and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "platforms. With a build configuration file, you place only the settings you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "want to modify in a text file. You can create multiple files,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "each with different combinations of build settings, and you can change the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "settings quickly for your target or project. Xcode layers your settings on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "top of other project-related settings to create the final build configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Build configuration files are particularly useful in the following situations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You want different build settings based on the current platform, architecture, or build type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You want to store build settings in a way that is easier to inspect.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You want to edit build settings outside of Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about how build configuration files integrate with your project’s other settings values, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-the-build-settings-of-a-target",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-build-configuration-file-to-your-project",
+          "level": 3,
+          "text": "Add a build configuration file to your project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A build configuration file is a text file with an ",
+              "type": "text"
+            },
+            {
+              "code": ".xcconfig",
+              "type": "codeVoice"
+            },
+            {
+              "text": " filename extension",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that you add to your project. You can create as many build configuration files",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as you want, and you configure different settings in each one. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you might use one build configuration file for debug settings and another",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for release settings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a build configuration file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select File > New File.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Configuration Settings File.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter a name and location for your build configuration file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Deselect all targets to prevent Xcode from embedding the file as a resource",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in the target’s bundle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Create to add it to your project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "build-configuration-creation.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Map-build-settings-to-a-build-configuration",
+          "level": 3,
+          "text": "Map build settings to a build configuration",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can specify different build configuration files for debug and release builds,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and you can specify layer configuration files on top of other settings. To",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specify build configuration files:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your project in the project editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Info tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the disclosure triangles to expand the Debug and Release build",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "configurations in the Configurations area.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose configuration settings files for your Debug and Release builds",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "from the pop-up menus. You can also select a file that applies to both build types.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "build-configuration-mapping.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode applies settings from a build configuration file before the corresponding",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "settings from the project’s or target’s Build Settings tab. For example, if you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provide a build configuration file for your target, Xcode applies the project settings,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "then the build configuration settings, then the target settings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the order in which Xcode applies settings,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-the-build-settings-of-a-target",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Assign-a-value-to-a-setting",
+          "level": 3,
+          "text": "Assign a value to a setting",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To specify a new value for a setting, add that setting to your configuration file",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<SettingName> = <SettingValue>"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Place each setting on a separate line, and include only the settings you want",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to change in your build configuration file. Xcode ignores leading and trailing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "spaces, so you can indent settings as needed. If you add the same setting multiple",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "times, Xcode uses the last instance of the setting and ignores previous instances.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many value types are possible for settings, but the following table lists the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "most common ones:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Boolean",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "YES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NO",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "string",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A text string.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "enumeration (string)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A predefined text string. See the settings reference for a list of valid values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "string list",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A space-separated list of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "string",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " values. If a string within the list contains spaces, surround that string with quotes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "path",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A file or directory path, in POSIX form.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "path list",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A space-separated list of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "path",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " values. If a path within the list contains spaces, surround the path with quotes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some examples of settings include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ONLY_ACTIVE_ARCH = YES",
+            "MACOSX_DEPLOYMENT_TARGET = 11.0",
+            "OTHER_LDFLAGS = -lncurses"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a list of build settings, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Augment-a-setting-with-additional-values",
+          "level": 3,
+          "text": "Augment a setting with additional values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In some cases, you might want to extend a setting rather than overwrite",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "its current value. For example, you might want to add more flags to a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "compiler instead of replacing the existing flags. To extend a setting’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "existing value, add the ",
+              "type": "text"
+            },
+            {
+              "code": "$(inherited)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keyword to the value of your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "setting, as shown in the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "OTHER_SWIFT_FLAGS = $(inherited) -v"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Refer-to-the-value-of-another-setting",
+          "level": 3,
+          "text": "Refer to the value of another setting",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To reuse an existing build setting’s value, place the name of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "setting in a string of the form ",
+              "type": "text"
+            },
+            {
+              "code": "$(SettingName)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". When evaluating",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your build settings, Xcode replaces these references with the values",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the corresponding settings. For example, the following definition",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "assigns the value of the ",
+              "type": "text"
+            },
+            {
+              "code": "SYMROOT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " build setting to the ",
+              "type": "text"
+            },
+            {
+              "code": "OBJROOT",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "setting:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "OBJROOT = $(SYMROOT)"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When replacing references, Xcode inserts the setting’s value at the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "same location as the original reference. You can insert references",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the middle of a new value, or you can define a setting using multiple other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "values, as shown in the following examples:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "DSTROOT = /tmp/$(PROJECT_NAME).dst",
+            "CONFIGURATION_BUILD_DIR = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Apply-a-setting-conditionally-to-a-platform-or-architecture",
+          "level": 3,
+          "text": "Apply a setting conditionally to a platform or architecture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a conditional expression after a build setting to apply that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "setting only when a specific platform or architecture is active.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To specify a conditional expression, enclose it in square brackets",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "after the build setting name, as shown in the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "OTHER_LDFLAGS[arch=x86_64] = -lncurses"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode applies a build setting only when the setting’s conditional expression",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "evaluates to true. Xcode supports the following conditions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Condition",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Values",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "sdk",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An SDK, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "macosx12.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "iphoneos15.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". To match all versions of a specific platform, replace the version number with an asterisk (*). For example, specify ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "macosx*",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to match any macOS SDK.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "arch",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A CPU architecture, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "arm64",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x86_64",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "config",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The build configuration, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Debug",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Release",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add multiple conditions to the same build setting, place each",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "condition in separate brackets after that setting’s name, as shown",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "OTHER_LDFLAGS[sdk=macos*][arch=x86_64] = -lncurses"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Include-settings-from-other-build-configuration-files",
+          "level": 3,
+          "text": "Include settings from other build configuration files",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you specify the build configuration file for your target, you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "must select only one file, but that file can include settings from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "other configuration files. To import the settings from a different",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "configuration file, add an ",
+              "type": "text"
+            },
+            {
+              "code": "#include",
+              "type": "codeVoice"
+            },
+            {
+              "text": " statement:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#include \"MyOtherConfigFile.xcconfig\""
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If Xcode can’t find an included build configuration file, it generates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "build warnings. To suppress these warnings, add a question mark (?)",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the ",
+              "type": "text"
+            },
+            {
+              "code": "#include",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command, as shown in the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#include? \"MyOtherConfigFile.xcconfig\""
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode looks for included build configuration files in the same",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "directory as the current file. If your build configuration file",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is in a different directory, specify a relative path or an absolute",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "path, as shown in the following examples:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#include \"../MyOtherConfigFile.xcconfig\"    // In the parent directory.",
+            "#include \"/Users/MyUserName/Desktop/MyOtherConfigFile.xcconfig\" // At the specific path."
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-comments-to-your-settings",
+          "level": 3,
+          "text": "Add comments to your settings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add comments to your build configuration files to include notes or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "other information that’s relevant to you. Specify your comments on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a single line preceded by two forward slashes (",
+              "type": "text"
+            },
+            {
+              "code": "//",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). The build system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ignores everything from the comment delimiter to the end of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "current line. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "//",
+            "//  Base Settings.xcconfig",
+            "//  Base Settings",
+            "//",
+            "//  Created by Johnny Appleseed on 7/21/21.",
+            "//"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also place a comment at the end of a line that contains a build",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "setting definition, as in the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ASSETCATALOG_COMPILER_APPICON_NAME = MyAppIcon // This is a comment. "
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "build-configuration-creation.png": {
+      "alt": "A figure that shows the selection of the Configuration Settings File template in Xcode’s file template chooser.",
+      "identifier": "build-configuration-creation.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2644ce60d016773eec58777b20fa0216/build-configuration-creation@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1e86e5b43250823f51cfb03a7011b6a3/build-configuration-creation~dark@2x.png"
+        }
+      ]
+    },
+    "build-configuration-mapping.png": {
+      "alt": "A figure that shows the Info tab of the project editor. The Configurations section shows build configuration files assigned to the debug and release builds of a target and its project.",
+      "identifier": "build-configuration-mapping.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0923c1e0e0a76674a2cbdd81ca108379/build-configuration-mapping@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f280166666f9e59c3b3eef2ee9bf126e/build-configuration-mapping~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference": {
+      "abstract": [
+        {
+          "text": "A detailed list of individual Xcode build settings that control or change the way a target is built.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference",
+      "kind": "article",
+      "role": "article",
+      "title": "Build settings reference",
+      "type": "topic",
+      "url": "/documentation/xcode/build-settings-reference"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/build-system": {
+      "abstract": [
+        {
+          "text": "Compile your code into a binary format, and customize your project settings to build your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Build system",
+      "type": "topic",
+      "url": "/documentation/xcode/build-system"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-the-build-settings-of-a-target": {
+      "abstract": [
+        {
+          "text": "Specify the options you use to compile, link, and produce a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "product from a target, and identify settings inherited from",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your project or the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-the-build-settings-of-a-target",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring the build settings of a target",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-the-build-settings-of-a-target"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/identifying-and-addressing-framework-module-issues": {
+      "abstract": [
+        {
+          "text": "Detect and fix common problems found in framework modules with the module verifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-and-addressing-framework-module-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying and addressing framework module issues",
+      "type": "topic",
+      "url": "/documentation/xcode/identifying-and-addressing-framework-module-issues"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/understanding-build-product-layout-changes": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-build-product-layout-changes",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding build product layout changes in Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode/understanding-build-product-layout-changes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Build-settings",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-the-build-settings-of-a-target",
+        "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference",
+        "doc://com.apple.Xcode/documentation/Xcode/identifying-and-addressing-framework-module-issues",
+        "doc://com.apple.Xcode/documentation/Xcode/understanding-build-product-layout-changes"
+      ],
+      "title": "Build settings"
+    }
+  ]
+}

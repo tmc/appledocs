@@ -1,0 +1,1813 @@
+{
+  "abstract": [
+    {
+      "text": "Secure the data your app manages, and control access to your app.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "Security",
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Security"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the Security framework to protect information, establish trust, and control access to software. Broadly, security services support these goals:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Establish a user’s identity (authentication) and then selectively grant access to resources (authorization).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Secure data, both on disk and in motion across a network connection.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure the validity of code to be executed for a particular purpose.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As shown in the image below, you can also use lower level cryptographic resources to create new secure services. Cryptography is difficult and the cost of bugs typically so high that it’s rarely a good idea to implement your own cryptography solution. Rely on the Security framework when you need cryptography in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2891898",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Always use the highest level API that meets your needs. The Security framework is not always your best option. For example, to conduct secure network communications, start by considering the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " framework’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", which builds on the Security framework. Only if your app requires lower level access to security protocol functions would you use the secure transport API directly.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles": {
+      "abstract": [
+        {
+          "text": "Learn how provisioning profiles enable third-party code to run on Apple platforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3125: Inside Code Signing: Provisioning Profiles",
+      "type": "topic",
+      "url": "/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles"
+    },
+    "doc://com.apple.documentation/documentation/Updates/Security": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Security.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Updates/Security",
+      "kind": "article",
+      "role": "article",
+      "title": "Security updates",
+      "type": "topic",
+      "url": "/documentation/Updates/Security"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/using-the-latest-code-signature-format": {
+      "abstract": [
+        {
+          "text": "Update legacy app code signatures so your app runs on current OS releases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/using-the-latest-code-signature-format",
+      "kind": "article",
+      "role": "article",
+      "title": "Using the latest code signature format",
+      "type": "topic",
+      "url": "/documentation/Xcode/using-the-latest-code-signature-format"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "abstract": [
+        {
+          "text": "Access essential data types, collections, and operating-system services to define the base layer of functionality for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "abstract": [
+        {
+          "text": "Interact with URLs and communicate with servers using standard Internet protocols. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "article",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/CSSMACI": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CSSMACI"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CSSMACI",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSSMACI",
+      "type": "topic",
+      "url": "/documentation/security/cssmaci"
+    },
+    "doc://com.apple.security/documentation/Security/CSSMAPI": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CSSMAPI"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CSSMAPI",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSSMAPI",
+      "type": "topic",
+      "url": "/documentation/security/cssmapi"
+    },
+    "doc://com.apple.security/documentation/Security/CSSMCLI": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CSSMCLI"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CSSMCLI",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSSMCLI",
+      "type": "topic",
+      "url": "/documentation/security/cssmcli"
+    },
+    "doc://com.apple.security/documentation/Security/CSSMCSPI": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CSSMCSPI"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CSSMCSPI",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSSMCSPI",
+      "type": "topic",
+      "url": "/documentation/security/cssmcspi"
+    },
+    "doc://com.apple.security/documentation/Security/CSSMDLI": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CSSMDLI"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CSSMDLI",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSSMDLI",
+      "type": "topic",
+      "url": "/documentation/security/cssmdli"
+    },
+    "doc://com.apple.security/documentation/Security/CSSMKRI": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CSSMKRI"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CSSMKRI",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSSMKRI",
+      "type": "topic",
+      "url": "/documentation/security/cssmkri"
+    },
+    "doc://com.apple.security/documentation/Security/CSSMSPI": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CSSMSPI"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CSSMSPI",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSSMSPI",
+      "type": "topic",
+      "url": "/documentation/security/cssmspi"
+    },
+    "doc://com.apple.security/documentation/Security/CSSMTPI": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CSSMTPI"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CSSMTPI",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSSMTPI",
+      "type": "topic",
+      "url": "/documentation/security/cssmtpi"
+    },
+    "doc://com.apple.security/documentation/Security/TLS_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TLS_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLCipherSuite",
+          "text": "SSLCipherSuite"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/TLS_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TLS_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256"
+        }
+      ],
+      "role": "symbol",
+      "title": "TLS_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256",
+      "type": "topic",
+      "url": "/documentation/security/tls_ecdhe_psk_with_chacha20_poly1305_sha256"
+    },
+    "doc://com.apple.security/documentation/Security/app-sandbox": {
+      "abstract": [
+        {
+          "text": "Restrict access to system resources and user data in macOS apps to contain damage if an app becomes compromised.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/app-sandbox",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App Sandbox",
+      "type": "topic",
+      "url": "/documentation/security/app-sandbox"
+    },
+    "doc://com.apple.security/documentation/Security/applying-launch-environment-and-library-constraints": {
+      "abstract": [
+        {
+          "text": "Limit the libraries your process loads, and the situations where it runs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/applying-launch-environment-and-library-constraints",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying launch environment and library constraints",
+      "type": "topic",
+      "url": "/documentation/security/applying-launch-environment-and-library-constraints"
+    },
+    "doc://com.apple.security/documentation/Security/asn-1": {
+      "abstract": [
+        {
+          "text": "Encode and decode Distinguished Encoding Rules (DER) and Basic Encoding Rules (BER) data streams.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/asn-1",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ASN.1",
+      "type": "topic",
+      "url": "/documentation/security/asn-1"
+    },
+    "doc://com.apple.security/documentation/Security/authorization-plug-ins": {
+      "abstract": [
+        {
+          "text": "Extend the authorization services API by creating plug-ins that can participate in authorization decisions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/authorization-plug-ins",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Authorization Plug-ins",
+      "type": "topic",
+      "url": "/documentation/security/authorization-plug-ins"
+    },
+    "doc://com.apple.security/documentation/Security/authorization-services": {
+      "abstract": [
+        {
+          "text": "Access restricted areas of the operating system, and control access to particular features of your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/authorization-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Authorization Services",
+      "type": "topic",
+      "url": "/documentation/security/authorization-services"
+    },
+    "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services": {
+      "abstract": [
+        {
+          "text": "Establish trust using certificates and cryptographic keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Certificate, Key, and Trust Services",
+      "type": "topic",
+      "url": "/documentation/security/certificate-key-and-trust-services"
+    },
+    "doc://com.apple.security/documentation/Security/code-signing-services": {
+      "abstract": [
+        {
+          "text": "Examine and validate signed code running on the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/code-signing-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Code Signing Services",
+      "type": "topic",
+      "url": "/documentation/security/code-signing-services"
+    },
+    "doc://com.apple.security/documentation/Security/common-security-services-manager": {
+      "abstract": [
+        {
+          "text": "A set of open source modules underpinning the legacy implementation of the Security framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/common-security-services-manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Common Security Services Manager",
+      "type": "topic",
+      "url": "/documentation/security/common-security-services-manager"
+    },
+    "doc://com.apple.security/documentation/Security/complying-with-encryption-export-regulations": {
+      "abstract": [
+        {
+          "text": "Declare the use of encryption in your app to streamline the app submission process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/complying-with-encryption-export-regulations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Complying with Encryption Export Regulations",
+      "type": "topic",
+      "url": "/documentation/security/complying-with-encryption-export-regulations"
+    },
+    "doc://com.apple.security/documentation/Security/constraining-a-tool's-launch-environment": {
+      "abstract": [
+        {
+          "text": "Improve the security of your macOS app by limiting the ways its components can run.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/constraining-a-tool's-launch-environment",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Constraining a tool’s launch environment",
+      "type": "topic",
+      "url": "/documentation/security/constraining-a-tool's-launch-environment"
+    },
+    "doc://com.apple.security/documentation/Security/cryptographic-message-syntax-services": {
+      "abstract": [
+        {
+          "text": "Cryptographically sign and encrypt S/MIME messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/cryptographic-message-syntax-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Cryptographic Message Syntax Services",
+      "type": "topic",
+      "url": "/documentation/security/cryptographic-message-syntax-services"
+    },
+    "doc://com.apple.security/documentation/Security/defining-launch-environment-and-library-constraints": {
+      "abstract": [
+        {
+          "text": "Restrict your app’s components to their expected contexts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/defining-launch-environment-and-library-constraints",
+      "kind": "article",
+      "role": "article",
+      "title": "Defining launch environment and library constraints",
+      "type": "topic",
+      "url": "/documentation/security/defining-launch-environment-and-library-constraints"
+    },
+    "doc://com.apple.security/documentation/Security/disabling-and-enabling-system-integrity-protection": {
+      "abstract": [
+        {
+          "text": "Disable system protections only temporarily during development to test drivers, kernel extensions, and other low-level code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/disabling-and-enabling-system-integrity-protection",
+      "kind": "article",
+      "role": "article",
+      "title": "Disabling and Enabling System Integrity Protection",
+      "type": "topic",
+      "url": "/documentation/security/disabling-and-enabling-system-integrity-protection"
+    },
+    "doc://com.apple.security/documentation/Security/errSecMissingQualifiedCertStatement": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errSecMissingQualifiedCertStatement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/errSecMissingQualifiedCertStatement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "errSecMissingQualifiedCertStatement"
+        }
+      ],
+      "role": "symbol",
+      "title": "errSecMissingQualifiedCertStatement",
+      "type": "topic",
+      "url": "/documentation/security/errsecmissingqualifiedcertstatement"
+    },
+    "doc://com.apple.security/documentation/Security/errSecureDownloadInvalidDownload": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "errSecureDownloadInvalidDownload"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/errSecureDownloadInvalidDownload",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "errSecureDownloadInvalidDownload",
+      "type": "topic",
+      "url": "/documentation/security/errsecuredownloadinvaliddownload"
+    },
+    "doc://com.apple.security/documentation/Security/errSecureDownloadInvalidTicket": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "errSecureDownloadInvalidTicket"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/errSecureDownloadInvalidTicket",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "errSecureDownloadInvalidTicket",
+      "type": "topic",
+      "url": "/documentation/security/errsecuredownloadinvalidticket"
+    },
+    "doc://com.apple.security/documentation/Security/hardened-runtime": {
+      "abstract": [
+        {
+          "text": "Manage security protections and resource access for your macOS apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/hardened-runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardened Runtime",
+      "type": "topic",
+      "url": "/documentation/security/hardened-runtime"
+    },
+    "doc://com.apple.security/documentation/Security/kAuthorizationCallbacksVersion": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "kAuthorizationCallbacksVersion"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kAuthorizationCallbacksVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAuthorizationCallbacksVersion",
+      "type": "topic",
+      "url": "/documentation/security/kauthorizationcallbacksversion"
+    },
+    "doc://com.apple.security/documentation/Security/kAuthorizationPluginInterfaceVersion": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "kAuthorizationPluginInterfaceVersion"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kAuthorizationPluginInterfaceVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAuthorizationPluginInterfaceVersion",
+      "type": "topic",
+      "url": "/documentation/security/kauthorizationplugininterfaceversion"
+    },
+    "doc://com.apple.security/documentation/Security/kSecPolicyAppleEAPClient": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecPolicyAppleEAPClient"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecPolicyAppleEAPClient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecPolicyAppleEAPClient"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecPolicyAppleEAPClient",
+      "type": "topic",
+      "url": "/documentation/security/ksecpolicyappleeapclient"
+    },
+    "doc://com.apple.security/documentation/Security/kSecPolicyAppleEAPServer": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecPolicyAppleEAPServer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecPolicyAppleEAPServer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecPolicyAppleEAPServer"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecPolicyAppleEAPServer",
+      "type": "topic",
+      "url": "/documentation/security/ksecpolicyappleeapserver"
+    },
+    "doc://com.apple.security/documentation/Security/kSecPolicyAppleIPSecClient": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecPolicyAppleIPSecClient"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecPolicyAppleIPSecClient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecPolicyAppleIPSecClient"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecPolicyAppleIPSecClient",
+      "type": "topic",
+      "url": "/documentation/security/ksecpolicyappleipsecclient"
+    },
+    "doc://com.apple.security/documentation/Security/kSecPolicyAppleIPSecServer": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecPolicyAppleIPSecServer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecPolicyAppleIPSecServer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecPolicyAppleIPSecServer"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecPolicyAppleIPSecServer",
+      "type": "topic",
+      "url": "/documentation/security/ksecpolicyappleipsecserver"
+    },
+    "doc://com.apple.security/documentation/Security/kSecPolicyAppleSSLClient": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecPolicyAppleSSLClient"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecPolicyAppleSSLClient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecPolicyAppleSSLClient"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecPolicyAppleSSLClient",
+      "type": "topic",
+      "url": "/documentation/security/ksecpolicyapplesslclient"
+    },
+    "doc://com.apple.security/documentation/Security/kSecPolicyAppleSSLServer": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecPolicyAppleSSLServer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecPolicyAppleSSLServer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecPolicyAppleSSLServer"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecPolicyAppleSSLServer",
+      "type": "topic",
+      "url": "/documentation/security/ksecpolicyapplesslserver"
+    },
+    "doc://com.apple.security/documentation/Security/kSecTrustQCStatements": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecTrustQCStatements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecTrustQCStatements",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecTrustQCStatements"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecTrustQCStatements",
+      "type": "topic",
+      "url": "/documentation/security/ksectrustqcstatements"
+    },
+    "doc://com.apple.security/documentation/Security/kSecTrustQWACValidation": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecTrustQWACValidation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecTrustQWACValidation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecTrustQWACValidation"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecTrustQWACValidation",
+      "type": "topic",
+      "url": "/documentation/security/ksectrustqwacvalidation"
+    },
+    "doc://com.apple.security/documentation/Security/keychain-services": {
+      "abstract": [
+        {
+          "text": "Securely store small chunks of data on behalf of the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/keychain-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keychain services",
+      "type": "topic",
+      "url": "/documentation/security/keychain-services"
+    },
+    "doc://com.apple.security/documentation/Security/notarizing-macos-software-before-distribution": {
+      "abstract": [
+        {
+          "text": "Give users even more confidence in your macOS software by submitting it to Apple for notarization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/notarizing-macos-software-before-distribution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Notarizing macOS software before distribution",
+      "type": "topic",
+      "url": "/documentation/security/notarizing-macos-software-before-distribution"
+    },
+    "doc://com.apple.security/documentation/Security/one-time-codes": {
+      "abstract": [
+        {
+          "text": "Streamline entry of authentication and recovery codes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/one-time-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "One-time codes",
+      "type": "topic",
+      "url": "/documentation/security/one-time-codes"
+    },
+    "doc://com.apple.security/documentation/Security/password-autofill": {
+      "abstract": [
+        {
+          "text": "Streamline your app’s login and onboarding procedures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/password-autofill",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Password AutoFill",
+      "type": "topic",
+      "url": "/documentation/security/password-autofill"
+    },
+    "doc://com.apple.security/documentation/Security/preparing-your-app-to-work-with-pointer-authentication": {
+      "abstract": [
+        {
+          "text": "Test your app against the arm64e architecture to ensure that it works seamlessly with enhanced security features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/preparing-your-app-to-work-with-pointer-authentication",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing your app to work with pointer authentication",
+      "type": "topic",
+      "url": "/documentation/security/preparing-your-app-to-work-with-pointer-authentication"
+    },
+    "doc://com.apple.security/documentation/Security/preventing-insecure-network-connections": {
+      "abstract": [
+        {
+          "text": "Enforce secure network links in your app by relying on App Transport Security.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/preventing-insecure-network-connections",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preventing Insecure Network Connections",
+      "type": "topic",
+      "url": "/documentation/security/preventing-insecure-network-connections"
+    },
+    "doc://com.apple.security/documentation/Security/randomization-services": {
+      "abstract": [
+        {
+          "text": "Generate cryptographically secure random numbers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/randomization-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Randomization Services",
+      "type": "topic",
+      "url": "/documentation/security/randomization-services"
+    },
+    "doc://com.apple.security/documentation/Security/secure-download": {
+      "abstract": [
+        {
+          "text": "Implement Apple’s Secure Download System in macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/secure-download",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Secure Download",
+      "type": "topic",
+      "url": "/documentation/security/secure-download"
+    },
+    "doc://com.apple.security/documentation/Security/secure-transport": {
+      "abstract": [
+        {
+          "text": "Secure network communication using standardized transport layer security mechanisms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/secure-transport",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Secure Transport",
+      "type": "topic",
+      "url": "/documentation/security/secure-transport"
+    },
+    "doc://com.apple.security/documentation/Security/security-constants": {
+      "abstract": [],
+      "identifier": "doc://com.apple.security/documentation/Security/security-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Security Constants",
+      "type": "topic",
+      "url": "/documentation/security/security-constants"
+    },
+    "doc://com.apple.security/documentation/Security/security-data-types": {
+      "abstract": [],
+      "identifier": "doc://com.apple.security/documentation/Security/security-data-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Security Data Types",
+      "type": "topic",
+      "url": "/documentation/security/security-data-types"
+    },
+    "doc://com.apple.security/documentation/Security/security-framework-result-codes": {
+      "abstract": [
+        {
+          "text": "Evaluate result codes common to many Security framework functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/security-framework-result-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Security Framework Result Codes",
+      "type": "topic",
+      "url": "/documentation/security/security-framework-result-codes"
+    },
+    "doc://com.apple.security/documentation/Security/security-functions": {
+      "abstract": [],
+      "identifier": "doc://com.apple.security/documentation/Security/security-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Security Functions",
+      "type": "topic",
+      "url": "/documentation/security/security-functions"
+    },
+    "doc://com.apple.security/documentation/Security/security-legacy-reference": {
+      "abstract": [
+        {
+          "text": "Learn about legacy APIs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/security-legacy-reference",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Security legacy reference",
+      "type": "topic",
+      "url": "/documentation/security/security-legacy-reference"
+    },
+    "doc://com.apple.security/documentation/Security/security-structures": {
+      "abstract": [],
+      "identifier": "doc://com.apple.security/documentation/Security/security-structures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Security Structures",
+      "type": "topic",
+      "url": "/documentation/security/security-structures"
+    },
+    "doc://com.apple.security/documentation/Security/security-transforms": {
+      "abstract": [
+        {
+          "text": "Perform cryptographic functions like encoding, encryption, signing, and signature verification.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/security-transforms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Security Transforms",
+      "type": "topic",
+      "url": "/documentation/security/security-transforms"
+    },
+    "doc://com.apple.security/documentation/Security/sessions": {
+      "abstract": [
+        {
+          "text": "Manage login, authorization, and security sessions in macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/sessions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sessions",
+      "type": "topic",
+      "url": "/documentation/security/sessions"
+    },
+    "doc://com.apple.security/documentation/Security/shared-web-credentials": {
+      "abstract": [
+        {
+          "text": "Share credentials between iOS apps and their website counterparts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/shared-web-credentials",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Shared Web Credentials",
+      "type": "topic",
+      "url": "/documentation/security/shared-web-credentials"
+    },
+    "doc://com.apple.security/documentation/Security/updating-mac-software": {
+      "abstract": [
+        {
+          "text": "Implement Mac software updates without causing code-signing crashes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/updating-mac-software",
+      "kind": "article",
+      "role": "article",
+      "title": "Updating Mac Software",
+      "type": "topic",
+      "url": "/documentation/security/updating-mac-software"
+    },
+    "media-2891898": {
+      "alt": "Diagram showing your app sitting above the Security framework, which provides tools to enable secure interaction with users, data, and code.",
+      "identifier": "media-2891898",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c89145031becb4c02e98769e238d4f25/media-2891898@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/Updates/Security"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Authorization-and-authentication",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/password-autofill",
+        "doc://com.apple.security/documentation/Security/shared-web-credentials",
+        "doc://com.apple.security/documentation/Security/authorization-services",
+        "doc://com.apple.security/documentation/Security/authorization-plug-ins",
+        "doc://com.apple.security/documentation/Security/sessions",
+        "doc://com.apple.security/documentation/Security/one-time-codes"
+      ],
+      "title": "Authorization and authentication"
+    },
+    {
+      "anchor": "Secure-data",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/keychain-services",
+        "doc://com.apple.security/documentation/Security/preventing-insecure-network-connections"
+      ],
+      "title": "Secure data"
+    },
+    {
+      "anchor": "Secure-code",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/code-signing-services",
+        "doc://com.apple.security/documentation/Security/notarizing-macos-software-before-distribution",
+        "doc://com.apple.security/documentation/Security/preparing-your-app-to-work-with-pointer-authentication",
+        "doc://com.apple.security/documentation/Security/app-sandbox",
+        "doc://com.apple.security/documentation/Security/hardened-runtime",
+        "doc://com.apple.security/documentation/Security/disabling-and-enabling-system-integrity-protection",
+        "doc://com.apple.documentation/documentation/Xcode/using-the-latest-code-signature-format",
+        "doc://com.apple.security/documentation/Security/updating-mac-software",
+        "doc://com.apple.documentation/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles"
+      ],
+      "title": "Secure code"
+    },
+    {
+      "anchor": "Launch-environment-constraints",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/applying-launch-environment-and-library-constraints",
+        "doc://com.apple.security/documentation/Security/defining-launch-environment-and-library-constraints",
+        "doc://com.apple.security/documentation/Security/constraining-a-tool's-launch-environment"
+      ],
+      "title": "Launch environment constraints"
+    },
+    {
+      "anchor": "Cryptography",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/complying-with-encryption-export-regulations",
+        "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+        "doc://com.apple.security/documentation/Security/cryptographic-message-syntax-services",
+        "doc://com.apple.security/documentation/Security/randomization-services",
+        "doc://com.apple.security/documentation/Security/security-transforms",
+        "doc://com.apple.security/documentation/Security/asn-1"
+      ],
+      "title": "Cryptography"
+    },
+    {
+      "anchor": "Result-codes",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/security-framework-result-codes"
+      ],
+      "title": "Result codes"
+    },
+    {
+      "anchor": "Legacy-interfaces",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/common-security-services-manager",
+        "doc://com.apple.security/documentation/Security/secure-transport",
+        "doc://com.apple.security/documentation/Security/secure-download",
+        "doc://com.apple.security/documentation/Security/security-legacy-reference"
+      ],
+      "title": "Legacy interfaces"
+    },
+    {
+      "anchor": "Reference",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/security-structures",
+        "doc://com.apple.security/documentation/Security/security-constants",
+        "doc://com.apple.security/documentation/Security/security-functions",
+        "doc://com.apple.security/documentation/Security/security-data-types"
+      ],
+      "title": "Reference"
+    },
+    {
+      "anchor": "Variables",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/TLS_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256",
+        "doc://com.apple.security/documentation/Security/errSecMissingQualifiedCertStatement",
+        "doc://com.apple.security/documentation/Security/kSecPolicyAppleEAPClient",
+        "doc://com.apple.security/documentation/Security/kSecPolicyAppleEAPServer",
+        "doc://com.apple.security/documentation/Security/kSecPolicyAppleIPSecClient",
+        "doc://com.apple.security/documentation/Security/kSecPolicyAppleIPSecServer",
+        "doc://com.apple.security/documentation/Security/kSecPolicyAppleSSLClient",
+        "doc://com.apple.security/documentation/Security/kSecPolicyAppleSSLServer",
+        "doc://com.apple.security/documentation/Security/kSecTrustQCStatements",
+        "doc://com.apple.security/documentation/Security/kSecTrustQWACValidation"
+      ],
+      "title": "Variables"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/Updates/Security"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Authorization-and-authentication",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/password-autofill",
+                "doc://com.apple.security/documentation/Security/shared-web-credentials",
+                "doc://com.apple.security/documentation/Security/authorization-services",
+                "doc://com.apple.security/documentation/Security/authorization-plug-ins",
+                "doc://com.apple.security/documentation/Security/sessions",
+                "doc://com.apple.security/documentation/Security/one-time-codes"
+              ],
+              "title": "Authorization and authentication"
+            },
+            {
+              "anchor": "Secure-data",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/keychain-services",
+                "doc://com.apple.security/documentation/Security/preventing-insecure-network-connections"
+              ],
+              "title": "Secure data"
+            },
+            {
+              "anchor": "Secure-code",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/code-signing-services",
+                "doc://com.apple.security/documentation/Security/notarizing-macos-software-before-distribution",
+                "doc://com.apple.security/documentation/Security/preparing-your-app-to-work-with-pointer-authentication",
+                "doc://com.apple.security/documentation/Security/app-sandbox",
+                "doc://com.apple.security/documentation/Security/hardened-runtime",
+                "doc://com.apple.security/documentation/Security/disabling-and-enabling-system-integrity-protection",
+                "doc://com.apple.documentation/documentation/Xcode/using-the-latest-code-signature-format",
+                "doc://com.apple.security/documentation/Security/updating-mac-software",
+                "doc://com.apple.documentation/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles"
+              ],
+              "title": "Secure code"
+            },
+            {
+              "anchor": "Launch-environment-constraints",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/applying-launch-environment-and-library-constraints",
+                "doc://com.apple.security/documentation/Security/defining-launch-environment-and-library-constraints",
+                "doc://com.apple.security/documentation/Security/constraining-a-tool's-launch-environment"
+              ],
+              "title": "Launch environment constraints"
+            },
+            {
+              "anchor": "Cryptography",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/complying-with-encryption-export-regulations",
+                "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+                "doc://com.apple.security/documentation/Security/cryptographic-message-syntax-services",
+                "doc://com.apple.security/documentation/Security/randomization-services",
+                "doc://com.apple.security/documentation/Security/security-transforms",
+                "doc://com.apple.security/documentation/Security/asn-1"
+              ],
+              "title": "Cryptography"
+            },
+            {
+              "anchor": "Result-codes",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/security-framework-result-codes"
+              ],
+              "title": "Result codes"
+            },
+            {
+              "anchor": "Legacy-interfaces",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/common-security-services-manager",
+                "doc://com.apple.security/documentation/Security/secure-transport",
+                "doc://com.apple.security/documentation/Security/secure-download",
+                "doc://com.apple.security/documentation/Security/security-legacy-reference"
+              ],
+              "title": "Legacy interfaces"
+            },
+            {
+              "anchor": "Reference",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/security-structures",
+                "doc://com.apple.security/documentation/Security/security-constants",
+                "doc://com.apple.security/documentation/Security/security-functions",
+                "doc://com.apple.security/documentation/Security/security-data-types"
+              ],
+              "title": "Reference"
+            },
+            {
+              "anchor": "Variables",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/kSecPolicyAppleEAPClient",
+                "doc://com.apple.security/documentation/Security/kSecPolicyAppleEAPServer",
+                "doc://com.apple.security/documentation/Security/kSecPolicyAppleIPSecClient",
+                "doc://com.apple.security/documentation/Security/kSecPolicyAppleIPSecServer",
+                "doc://com.apple.security/documentation/Security/kSecPolicyAppleSSLClient",
+                "doc://com.apple.security/documentation/Security/kSecPolicyAppleSSLServer",
+                "doc://com.apple.security/documentation/Security/kSecTrustQCStatements",
+                "doc://com.apple.security/documentation/Security/kSecTrustQWACValidation"
+              ],
+              "title": "Variables"
+            },
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/CSSMACI",
+                "doc://com.apple.security/documentation/Security/CSSMAPI",
+                "doc://com.apple.security/documentation/Security/CSSMCLI",
+                "doc://com.apple.security/documentation/Security/CSSMCSPI",
+                "doc://com.apple.security/documentation/Security/CSSMDLI",
+                "doc://com.apple.security/documentation/Security/CSSMKRI",
+                "doc://com.apple.security/documentation/Security/CSSMSPI",
+                "doc://com.apple.security/documentation/Security/CSSMTPI"
+              ],
+              "title": "Macros"
+            },
+            {
+              "anchor": "Enumeration-Cases",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/TLS_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256",
+                "doc://com.apple.security/documentation/Security/errSecMissingQualifiedCertStatement",
+                "doc://com.apple.security/documentation/Security/errSecureDownloadInvalidDownload",
+                "doc://com.apple.security/documentation/Security/errSecureDownloadInvalidTicket",
+                "doc://com.apple.security/documentation/Security/kAuthorizationCallbacksVersion",
+                "doc://com.apple.security/documentation/Security/kAuthorizationPluginInterfaceVersion"
+              ],
+              "title": "Enumeration Cases"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecPolicyAppleSSLServer/title",
+          "value": "kSecPolicyAppleSSLServer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecPolicyAppleSSLServer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecPolicyAppleSSLServer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecPolicyAppleIPSecClient/title",
+          "value": "kSecPolicyAppleIPSecClient"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecPolicyAppleIPSecClient/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecPolicyAppleIPSecClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errSecMissingQualifiedCertStatement/title",
+          "value": "errSecMissingQualifiedCertStatement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errSecMissingQualifiedCertStatement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "errSecMissingQualifiedCertStatement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecPolicyAppleEAPClient/title",
+          "value": "kSecPolicyAppleEAPClient"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecPolicyAppleEAPClient/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecPolicyAppleEAPClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1TLS_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256/title",
+          "value": "TLS_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1TLS_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TLS_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecTrustQCStatements/title",
+          "value": "kSecTrustQCStatements"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecTrustQCStatements/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecTrustQCStatements"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecPolicyAppleIPSecServer/title",
+          "value": "kSecPolicyAppleIPSecServer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecPolicyAppleIPSecServer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecPolicyAppleIPSecServer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecTrustQWACValidation/title",
+          "value": "kSecTrustQWACValidation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecTrustQWACValidation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecTrustQWACValidation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecPolicyAppleSSLClient/title",
+          "value": "kSecPolicyAppleSSLClient"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecPolicyAppleSSLClient/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecPolicyAppleSSLClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecPolicyAppleEAPServer/title",
+          "value": "kSecPolicyAppleEAPServer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecPolicyAppleEAPServer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecPolicyAppleEAPServer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

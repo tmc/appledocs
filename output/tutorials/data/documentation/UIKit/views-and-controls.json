@@ -1,0 +1,3932 @@
+{
+  "abstract": [
+    {
+      "text": "Present your content onscreen and define the interactions allowed with that content.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/views-and-controls"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Views and controls"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Views and controls are the visual building blocks of your app’s user interface. Use them to draw and organize your app’s content onscreen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2939323",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Views can host other views. Embedding one view inside another creates a containment relationship between the host view (known as the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "superview",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ") and the embedded view (known as the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "subview",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "). View hierarchies make it easier to manage views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also use views to do any of the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Respond to touches and other events (either directly or in coordination with gesture recognizers).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Draw custom content using Core Graphics or UIKit classes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Support drag and drop interactions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Respond to focus changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Animate the size, position, and appearance attributes of the view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is the root class for all views and defines their common behavior. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIControl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " defines additional behaviors that are specific to buttons, switches, and other views designed for user interactions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional information about how to use views and controls, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/components/all-components",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To see examples of UIKit controls, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/uikit-catalog-creating-and-customizing-views-and-controls",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAdvertisingAttributionReportEndpoint": {
+      "abstract": [
+        {
+          "text": "The URL where Private Click Measurement and SKAdNetwork send attribution information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAdvertisingAttributionReportEndpoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAdvertisingAttributionReportEndpoint",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSAdvertisingAttributionReportEndpoint"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/xcode/autosizing_views_for_localization_in_ios": {
+      "abstract": [
+        {
+          "text": "Add auto layout constraints to your app to achieve localizable views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/xcode/autosizing_views_for_localization_in_ios",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Autosizing Views for Localization in iOS",
+      "type": "topic",
+      "url": "/documentation/xcode/autosizing_views_for_localization_in_ios"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDirectionalEdgeInsets": {
+      "abstract": [
+        {
+          "text": "The inset distances for views, taking the user interface layout direction into account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDirectionalEdgeInsets"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDirectionalEdgeInsets",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDirectionalEdgeInsets"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDirectionalEdgeInsets",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdirectionaledgeinsets"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDirectionalRectEdge": {
+      "abstract": [
+        {
+          "text": "Constants that specify an edge or a set of edges, taking the user interface layout direction into account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDirectionalRectEdge"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDirectionalRectEdge",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDirectionalRectEdge"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDirectionalRectEdge",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdirectionalrectedge"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSRectAlignment": {
+      "abstract": [
+        {
+          "text": "Constants that specify alignment to an edge or a set of edges depending on the user interface layout direction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRectAlignment"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSRectAlignment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSRectAlignment"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSRectAlignment",
+      "type": "topic",
+      "url": "/documentation/uikit/nsrectalignment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityIndicatorView": {
+      "abstract": [
+        {
+          "text": "A view that shows that a task is in progress.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityIndicatorView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityIndicatorView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIActivityIndicatorView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActivityIndicatorView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityindicatorview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAxis": {
+      "abstract": [
+        {
+          "text": "A structure that specifies the layout axes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAxis"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAxis",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAxis"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAxis",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaxis"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItem": {
+      "abstract": [
+        {
+          "text": "A specialized button for placement on a toolbar, navigation bar, or shortcuts bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIBarButtonItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIBarButtonItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIBarButtonItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup": {
+      "abstract": [
+        {
+          "text": "A group of one or more bar button items for placement on a navigation bar or shortcuts bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIBarButtonItemGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIBarButtonItemGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIBarButtonItemGroup",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitemgroup"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarItem": {
+      "abstract": [
+        {
+          "text": "An abstract superclass for items that you can add to a bar that appears at the bottom of the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIBarItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIBarItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIBarItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uibaritem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarPositioning": {
+      "abstract": [
+        {
+          "text": "A set of methods for defining the positioning of bars in iOS apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIBarPositioning"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarPositioning",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIBarPositioning"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIBarPositioning",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarpositioning"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarPositioningDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods that support the positioning of a bar that conforms to the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarPositioning",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIBarPositioningDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarPositioningDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIBarPositioningDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIBarPositioningDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarpositioningdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBlurEffect": {
+      "abstract": [
+        {
+          "text": "An object that applies a blurring effect to the content layered behind a visual effect view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIBlurEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBlurEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIBlurEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIBlurEffect",
+      "type": "topic",
+      "url": "/documentation/uikit/uiblureffect"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIButton": {
+      "abstract": [
+        {
+          "text": "A control that executes your custom code in response to user interactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIButton"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIButton",
+      "type": "topic",
+      "url": "/documentation/uikit/uibutton"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICalendarView": {
+      "abstract": [
+        {
+          "text": "A view that displays a calendar with date-specific decorations, and provides for user selection of a single date or multiple dates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICalendarView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICalendarView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICalendarView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICalendarView",
+      "type": "topic",
+      "url": "/documentation/uikit/uicalendarview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIColorWell": {
+      "abstract": [
+        {
+          "text": "A control that displays a color picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIColorWell"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIColorWell",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIColorWell"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIColorWell",
+      "type": "topic",
+      "url": "/documentation/uikit/uicolorwell"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIContentUnavailableView": {
+      "abstract": [
+        {
+          "text": "A view that indicates there’s no content to display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIContentUnavailableView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContentUnavailableView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIContentUnavailableView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIContentUnavailableView",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontentunavailableview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIControl": {
+      "abstract": [
+        {
+          "text": "The base class for controls, which are visual elements that convey a specific action or intention in response to user interactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIControl"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIControl",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontrol"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDatePicker": {
+      "abstract": [
+        {
+          "text": "A control for inputting date and time values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDatePicker"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDatePicker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDatePicker"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDatePicker",
+      "type": "topic",
+      "url": "/documentation/uikit/uidatepicker"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDirectionalRectEdge": {
+      "abstract": [
+        {
+          "text": "Constants that specify an edge or a set of edges, taking the user interface layout direction into account.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDirectionalRectEdge"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDirectionalRectEdge",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDirectionalRectEdge"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDirectionalRectEdge",
+      "type": "topic",
+      "url": "/documentation/uikit/uidirectionalrectedge"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIEdgeInsets": {
+      "abstract": [
+        {
+          "text": "The inset distances for views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIEdgeInsets"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIEdgeInsets",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIEdgeInsets"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIEdgeInsets",
+      "type": "topic",
+      "url": "/documentation/uikit/uiedgeinsets"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIEventAttribution": {
+      "abstract": [
+        {
+          "text": "An object that contains event attribution information for Web AdAttributionKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIEventAttribution"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIEventAttribution",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIEventAttribution"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIEventAttribution",
+      "type": "topic",
+      "url": "/documentation/uikit/uieventattribution"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIEventAttributionView": {
+      "abstract": [
+        {
+          "text": "An overlay view that verifies user interaction for Web AdAttributionKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIEventAttributionView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIEventAttributionView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIEventAttributionView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIEventAttributionView",
+      "type": "topic",
+      "url": "/documentation/uikit/uieventattributionview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImageView": {
+      "abstract": [
+        {
+          "text": "A view that displays a single image or a sequence of animated images in your interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImageView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImageView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIImageView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImageView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimageview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILabel": {
+      "abstract": [
+        {
+          "text": "A view that displays one or more lines of informational text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILabel"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILabel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UILabel"
+        }
+      ],
+      "role": "symbol",
+      "title": "UILabel",
+      "type": "topic",
+      "url": "/documentation/uikit/uilabel"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILargeContentViewerInteraction": {
+      "abstract": [
+        {
+          "text": "An interaction that enables a gesture to present the large content viewer for cases when supporting the largest dynamic type sizes isn’t appropriate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILargeContentViewerInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILargeContentViewerInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UILargeContentViewerInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UILargeContentViewerInteraction",
+      "type": "topic",
+      "url": "/documentation/uikit/uilargecontentviewerinteraction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILargeContentViewerInteractionDelegate": {
+      "abstract": [
+        {
+          "text": "An object that customizes the behavior of the large content viewer interactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILargeContentViewerInteractionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILargeContentViewerInteractionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UILargeContentViewerInteractionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UILargeContentViewerInteractionDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uilargecontentviewerinteractiondelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILargeContentViewerItem": {
+      "abstract": [
+        {
+          "text": "Methods that provide details about how to display your custom content in the large content viewer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILargeContentViewerItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILargeContentViewerItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UILargeContentViewerItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UILargeContentViewerItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uilargecontentvieweritem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationBar": {
+      "abstract": [
+        {
+          "text": "Navigational controls that display in a bar along the top of the screen, usually in conjunction with a navigation controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UINavigationBar"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationBar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UINavigationBar"
+        }
+      ],
+      "role": "symbol",
+      "title": "UINavigationBar",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationbar"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIOffset": {
+      "abstract": [
+        {
+          "text": "A structure that specifies an amount to offset a position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIOffset"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIOffset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIOffset"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIOffset",
+      "type": "topic",
+      "url": "/documentation/uikit/uioffset"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPageControl": {
+      "abstract": [
+        {
+          "text": "A control that displays a horizontal series of dots, each of which corresponds to a page in the app’s document or other data-model entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPageControl"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPageControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPageControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPageControl",
+      "type": "topic",
+      "url": "/documentation/uikit/uipagecontrol"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPickerView": {
+      "abstract": [
+        {
+          "text": "A view that uses a spinning-wheel or slot-machine metaphor to show one or more sets of values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPickerView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPickerView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPickerView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPickerView",
+      "type": "topic",
+      "url": "/documentation/uikit/uipickerview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIProgressView": {
+      "abstract": [
+        {
+          "text": "A view that depicts the progress of a task over time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIProgressView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIProgressView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIProgressView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIProgressView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprogressview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIScrollView": {
+      "abstract": [
+        {
+          "text": "A view that allows the scrolling and zooming of its contained views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIScrollView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScrollView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIScrollView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIScrollView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscrollview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchBar": {
+      "abstract": [
+        {
+          "text": "A specialized view for receiving search-related information from the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchBar"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchBar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchBar"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchBar",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchbar"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchTextField": {
+      "abstract": [
+        {
+          "text": "A view for displaying and editing text and search tokens.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchTextField"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchTextField",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchTextField"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchTextField",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchtextfield"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchTextFieldDelegate": {
+      "abstract": [
+        {
+          "text": "The interface for the delegate of a search field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchTextFieldDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchTextFieldDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchTextFieldDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchTextFieldDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchtextfielddelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchToken": {
+      "abstract": [
+        {
+          "text": "Search criteria in a search text field, represented by text and an optional icon.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchToken"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchToken",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchtoken"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISegmentedControl": {
+      "abstract": [
+        {
+          "text": "A horizontal control that consists of multiple segments, each segment functioning as a discrete button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISegmentedControl"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISegmentedControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISegmentedControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISegmentedControl",
+      "type": "topic",
+      "url": "/documentation/uikit/uisegmentedcontrol"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISlider": {
+      "abstract": [
+        {
+          "text": "A control for selecting a single value from a continuous range of values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISlider"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISlider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISlider"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISlider",
+      "type": "topic",
+      "url": "/documentation/uikit/uislider"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIStackView": {
+      "abstract": [
+        {
+          "text": "A streamlined interface for laying out a collection of views in either a column or a row.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIStackView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStackView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIStackView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIStackView",
+      "type": "topic",
+      "url": "/documentation/uikit/uistackview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIStepper": {
+      "abstract": [
+        {
+          "text": "A control for incrementing or decrementing a value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIStepper"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStepper",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIStepper"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIStepper",
+      "type": "topic",
+      "url": "/documentation/uikit/uistepper"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISwitch": {
+      "abstract": [
+        {
+          "text": "A control that offers a binary choice, such as on/off.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISwitch"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISwitch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISwitch"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISwitch",
+      "type": "topic",
+      "url": "/documentation/uikit/uiswitch"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBar": {
+      "abstract": [
+        {
+          "text": "A control that displays one or more buttons in a tab bar for selecting between different subtasks, views, or modes in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITabBar"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITabBar"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITabBar",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbar"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarItem": {
+      "abstract": [
+        {
+          "text": "An object that describes an item in a tab bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITabBarItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITabBarItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITabBarItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbaritem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextField": {
+      "abstract": [
+        {
+          "text": "An object that displays an editable text area in your interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextField"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextField",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextField"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextField",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfield"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextView": {
+      "abstract": [
+        {
+          "text": "A scrollable, multiline text region.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIToolbar": {
+      "abstract": [
+        {
+          "text": "A control that displays one or more buttons along the bottom edge of your interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIToolbar"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIToolbar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIToolbar"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIToolbar",
+      "type": "topic",
+      "url": "/documentation/uikit/uitoolbar"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIVibrancyEffect": {
+      "abstract": [
+        {
+          "text": "An object that amplifies and adjusts the color of the content layered behind a visual effect view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIVibrancyEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIVibrancyEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIVibrancyEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIVibrancyEffect",
+      "type": "topic",
+      "url": "/documentation/uikit/uivibrancyeffect"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView": {
+      "abstract": [
+        {
+          "text": "An object that manages the content for a rectangular area on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIVisualEffect": {
+      "abstract": [
+        {
+          "text": "An initializer for visual effect views and blur and vibrancy effect objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIVisualEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIVisualEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIVisualEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIVisualEffect",
+      "type": "topic",
+      "url": "/documentation/uikit/uivisualeffect"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIVisualEffectView": {
+      "abstract": [
+        {
+          "text": "An object that implements some complex visual effects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIVisualEffectView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIVisualEffectView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIVisualEffectView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIVisualEffectView",
+      "type": "topic",
+      "url": "/documentation/uikit/uivisualeffectview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWebView": {
+      "abstract": [
+        {
+          "text": "A view that embeds web content in your app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIWebView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWebView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIWebView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIWebView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwebview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/animation-and-haptics": {
+      "abstract": [
+        {
+          "text": "Provide feedback to users using view-based animations and haptics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/animation-and-haptics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Animation and haptics",
+      "type": "topic",
+      "url": "/documentation/uikit/animation-and-haptics"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/appearance-customization": {
+      "abstract": [
+        {
+          "text": "Add Dark Mode support to your app, customize the appearance of bars, and use appearance proxies to modify your UI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/appearance-customization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Appearance customization",
+      "type": "topic",
+      "url": "/documentation/uikit/appearance-customization"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/collection-views": {
+      "abstract": [
+        {
+          "text": "Display nested views using a configurable and highly customizable layout.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/collection-views",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collection views",
+      "type": "topic",
+      "url": "/documentation/uikit/collection-views"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/drag-and-drop-customization": {
+      "abstract": [
+        {
+          "text": "Extend the standard drag and drop support for text views to include custom types of content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/drag-and-drop-customization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Drag and drop customization",
+      "type": "topic",
+      "url": "/documentation/uikit/drag-and-drop-customization"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/responding-to-control-based-events-using-target-action": {
+      "abstract": [
+        {
+          "text": "Handle user input by connecting buttons, sliders, and other controls to your app’s code using the target-action design pattern.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/responding-to-control-based-events-using-target-action",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to control-based events using target-action",
+      "type": "topic",
+      "url": "/documentation/uikit/responding-to-control-based-events-using-target-action"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/table-views": {
+      "abstract": [
+        {
+          "text": "Display data in a single column of customizable rows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/table-views",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Table views",
+      "type": "topic",
+      "url": "/documentation/uikit/table-views"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/uikit-catalog-creating-and-customizing-views-and-controls": {
+      "abstract": [
+        {
+          "text": "Customize your app’s user interface with views and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/uikit-catalog-creating-and-customizing-views-and-controls",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "UIKit Catalog: Creating and customizing views and controls",
+      "type": "topic",
+      "url": "/documentation/uikit/uikit-catalog-creating-and-customizing-views-and-controls"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/uikit-macros": {
+      "abstract": [
+        {
+          "text": "Macros that UIKit defines.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/uikit-macros",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "UIKit macros",
+      "type": "topic",
+      "url": "/documentation/uikit/uikit-macros"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/using-swiftui-with-uikit": {
+      "abstract": [
+        {
+          "text": "Learn how to incorporate SwiftUI views into a UIKit app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/using-swiftui-with-uikit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using SwiftUI with UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit/using-swiftui-with-uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/view-controllers": {
+      "abstract": [
+        {
+          "text": "Manage your interface using view controllers and facilitate navigation around your app’s content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View controllers",
+      "type": "topic",
+      "url": "/documentation/uikit/view-controllers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/view-layout": {
+      "abstract": [
+        {
+          "text": "Use stack views to lay out the views of your interface automatically. Use Auto Layout when you require precise placement of your views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/view-layout",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View layout",
+      "type": "topic",
+      "url": "/documentation/uikit/view-layout"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/windows-and-screens": {
+      "abstract": [
+        {
+          "text": "Provide a container for your view hierarchies and other content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/windows-and-screens",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Windows and screens",
+      "type": "topic",
+      "url": "/documentation/uikit/windows-and-screens"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/components/all-components": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/components/all-components",
+      "title": "Human Interface Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/components/all-components"
+    },
+    "media-2939323": {
+      "alt": "The screen for creating a new event in the Calendar app includes labels, switches, date pickers, and many other kinds of views.",
+      "identifier": "media-2939323",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a696336d3d8468c587a0d8291adc0862/media-2939323@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f2b1ee4325ea9e437bc518db5fd04237/media-2939323~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-interface",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+        "doc://com.apple.uikit/documentation/UIKit/view-layout",
+        "doc://com.apple.uikit/documentation/UIKit/appearance-customization",
+        "doc://com.apple.uikit/documentation/UIKit/animation-and-haptics",
+        "doc://com.apple.uikit/documentation/UIKit/windows-and-screens"
+      ],
+      "title": "User interface"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "View-fundamentals",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIView",
+        "doc://com.apple.uikit/documentation/UIKit/uikit-catalog-creating-and-customizing-views-and-controls"
+      ],
+      "title": "View fundamentals"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Organize and present large data sets using container views.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Container-views",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/xcode/autosizing_views_for_localization_in_ios",
+        "doc://com.apple.uikit/documentation/UIKit/collection-views",
+        "doc://com.apple.uikit/documentation/UIKit/table-views",
+        "doc://com.apple.uikit/documentation/UIKit/UIStackView",
+        "doc://com.apple.uikit/documentation/UIKit/UIScrollView"
+      ],
+      "title": "Container views"
+    },
+    {
+      "anchor": "Content-views",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIActivityIndicatorView",
+        "doc://com.apple.uikit/documentation/UIKit/UICalendarView",
+        "doc://com.apple.uikit/documentation/UIKit/UIContentUnavailableView",
+        "doc://com.apple.uikit/documentation/UIKit/UIImageView",
+        "doc://com.apple.uikit/documentation/UIKit/UIPickerView",
+        "doc://com.apple.uikit/documentation/UIKit/UIProgressView",
+        "doc://com.apple.uikit/documentation/UIKit/UIWebView"
+      ],
+      "title": "Content views"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Gather input and respond to user interactions with controls.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Controls",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/responding-to-control-based-events-using-target-action",
+        "doc://com.apple.uikit/documentation/UIKit/UIControl",
+        "doc://com.apple.uikit/documentation/UIKit/UIButton",
+        "doc://com.apple.uikit/documentation/UIKit/UIColorWell",
+        "doc://com.apple.uikit/documentation/UIKit/UIDatePicker",
+        "doc://com.apple.uikit/documentation/UIKit/UIPageControl",
+        "doc://com.apple.uikit/documentation/UIKit/UISegmentedControl",
+        "doc://com.apple.uikit/documentation/UIKit/UISlider",
+        "doc://com.apple.uikit/documentation/UIKit/UIStepper",
+        "doc://com.apple.uikit/documentation/UIKit/UISwitch"
+      ],
+      "title": "Controls"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Display and edit text using text views.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Text-views",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UILabel",
+        "doc://com.apple.uikit/documentation/UIKit/UITextField",
+        "doc://com.apple.uikit/documentation/UIKit/UITextView",
+        "doc://com.apple.uikit/documentation/UIKit/drag-and-drop-customization"
+      ],
+      "title": "Text views"
+    },
+    {
+      "anchor": "Search-field",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UISearchTextField",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchToken",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchTextFieldDelegate"
+      ],
+      "title": "Search field"
+    },
+    {
+      "anchor": "Visual-effects",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIVisualEffect",
+        "doc://com.apple.uikit/documentation/UIKit/UIVisualEffectView",
+        "doc://com.apple.uikit/documentation/UIKit/UIVibrancyEffect",
+        "doc://com.apple.uikit/documentation/UIKit/UIBlurEffect"
+      ],
+      "title": "Visual effects"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Manage the items displayed on navigation bars, tab bars, search bars, and toolbars.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Bars",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIBarItem",
+        "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItem",
+        "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationBar",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchBar",
+        "doc://com.apple.uikit/documentation/UIKit/UIToolbar",
+        "doc://com.apple.uikit/documentation/UIKit/UITabBar",
+        "doc://com.apple.uikit/documentation/UIKit/UITabBarItem",
+        "doc://com.apple.uikit/documentation/UIKit/UIBarPositioning",
+        "doc://com.apple.uikit/documentation/UIKit/UIBarPositioningDelegate"
+      ],
+      "title": "Bars"
+    },
+    {
+      "anchor": "Content-viewer",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UILargeContentViewerInteraction",
+        "doc://com.apple.uikit/documentation/UIKit/UILargeContentViewerInteractionDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UILargeContentViewerItem"
+      ],
+      "title": "Content viewer"
+    },
+    {
+      "anchor": "Private-Click-Measurement-PCM",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIEventAttributionView",
+        "doc://com.apple.uikit/documentation/UIKit/UIEventAttribution",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAdvertisingAttributionReportEndpoint"
+      ],
+      "title": "Private Click Measurement (PCM)"
+    },
+    {
+      "anchor": "SwiftUI",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/using-swiftui-with-uikit"
+      ],
+      "title": "SwiftUI"
+    },
+    {
+      "anchor": "Related-types",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIOffset",
+        "doc://com.apple.uikit/documentation/UIKit/UIAxis",
+        "doc://com.apple.uikit/documentation/UIKit/UIEdgeInsets",
+        "doc://com.apple.uikit/documentation/UIKit/NSDirectionalEdgeInsets",
+        "doc://com.apple.uikit/documentation/UIKit/NSDirectionalRectEdge",
+        "doc://com.apple.uikit/documentation/UIKit/NSRectAlignment",
+        "doc://com.apple.uikit/documentation/UIKit/UIDirectionalRectEdge",
+        "doc://com.apple.uikit/documentation/UIKit/uikit-macros"
+      ],
+      "title": "Related types"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "View-fundamentals",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIView",
+                "doc://com.apple.uikit/documentation/UIKit/uikit-catalog-creating-and-customizing-views-and-controls"
+              ],
+              "title": "View fundamentals"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Organize and present large data sets using container views.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Container-views",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/xcode/autosizing_views_for_localization_in_ios",
+                "doc://com.apple.uikit/documentation/UIKit/collection-views",
+                "doc://com.apple.uikit/documentation/UIKit/table-views",
+                "doc://com.apple.uikit/documentation/UIKit/UIStackView",
+                "doc://com.apple.uikit/documentation/UIKit/UIScrollView"
+              ],
+              "title": "Container views"
+            },
+            {
+              "anchor": "Content-views",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIActivityIndicatorView",
+                "doc://com.apple.uikit/documentation/UIKit/UICalendarView",
+                "doc://com.apple.uikit/documentation/UIKit/UIContentUnavailableView",
+                "doc://com.apple.uikit/documentation/UIKit/UIImageView",
+                "doc://com.apple.uikit/documentation/UIKit/UIPickerView",
+                "doc://com.apple.uikit/documentation/UIKit/UIProgressView",
+                "doc://com.apple.uikit/documentation/UIKit/UIWebView"
+              ],
+              "title": "Content views"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Gather input and respond to user interactions with controls.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Controls",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/responding-to-control-based-events-using-target-action",
+                "doc://com.apple.uikit/documentation/UIKit/UIControl",
+                "doc://com.apple.uikit/documentation/UIKit/UIButton",
+                "doc://com.apple.uikit/documentation/UIKit/UIColorWell",
+                "doc://com.apple.uikit/documentation/UIKit/UIDatePicker",
+                "doc://com.apple.uikit/documentation/UIKit/UIPageControl",
+                "doc://com.apple.uikit/documentation/UIKit/UISegmentedControl",
+                "doc://com.apple.uikit/documentation/UIKit/UISlider",
+                "doc://com.apple.uikit/documentation/UIKit/UIStepper",
+                "doc://com.apple.uikit/documentation/UIKit/UISwitch"
+              ],
+              "title": "Controls"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Display and edit text using text views.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Text-views",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UILabel",
+                "doc://com.apple.uikit/documentation/UIKit/UITextField",
+                "doc://com.apple.uikit/documentation/UIKit/UITextView",
+                "doc://com.apple.uikit/documentation/UIKit/drag-and-drop-customization"
+              ],
+              "title": "Text views"
+            },
+            {
+              "anchor": "Search-field",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UISearchTextField",
+                "doc://com.apple.uikit/documentation/UIKit/UISearchToken",
+                "doc://com.apple.uikit/documentation/UIKit/UISearchTextFieldDelegate"
+              ],
+              "title": "Search field"
+            },
+            {
+              "anchor": "Visual-effects",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIVisualEffect",
+                "doc://com.apple.uikit/documentation/UIKit/UIVisualEffectView",
+                "doc://com.apple.uikit/documentation/UIKit/UIVibrancyEffect",
+                "doc://com.apple.uikit/documentation/UIKit/UIBlurEffect"
+              ],
+              "title": "Visual effects"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Manage the items displayed on navigation bars, tab bars, search bars, and toolbars.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Bars",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIBarItem",
+                "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItem",
+                "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup",
+                "doc://com.apple.uikit/documentation/UIKit/UINavigationBar",
+                "doc://com.apple.uikit/documentation/UIKit/UISearchBar",
+                "doc://com.apple.uikit/documentation/UIKit/UIToolbar",
+                "doc://com.apple.uikit/documentation/UIKit/UITabBar",
+                "doc://com.apple.uikit/documentation/UIKit/UITabBarItem",
+                "doc://com.apple.uikit/documentation/UIKit/UIBarPositioning",
+                "doc://com.apple.uikit/documentation/UIKit/UIBarPositioningDelegate"
+              ],
+              "title": "Bars"
+            },
+            {
+              "anchor": "Content-viewer",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UILargeContentViewerInteraction",
+                "doc://com.apple.uikit/documentation/UIKit/UILargeContentViewerInteractionDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UILargeContentViewerItem"
+              ],
+              "title": "Content viewer"
+            },
+            {
+              "anchor": "Private-Click-Measurement-PCM",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIEventAttributionView",
+                "doc://com.apple.uikit/documentation/UIKit/UIEventAttribution",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAdvertisingAttributionReportEndpoint"
+              ],
+              "title": "Private Click Measurement (PCM)"
+            },
+            {
+              "anchor": "SwiftUI",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/using-swiftui-with-uikit"
+              ],
+              "title": "SwiftUI"
+            },
+            {
+              "anchor": "Related-types",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIOffset",
+                "doc://com.apple.uikit/documentation/UIKit/UIAxis",
+                "doc://com.apple.uikit/documentation/UIKit/UIEdgeInsets",
+                "doc://com.apple.uikit/documentation/UIKit/NSDirectionalEdgeInsets",
+                "doc://com.apple.uikit/documentation/UIKit/NSDirectionalRectEdge",
+                "doc://com.apple.uikit/documentation/UIKit/NSRectAlignment",
+                "doc://com.apple.uikit/documentation/UIKit/UIDirectionalRectEdge",
+                "doc://com.apple.uikit/documentation/UIKit/uikit-macros"
+              ],
+              "title": "Related types"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "User-interface",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+                "doc://com.apple.uikit/documentation/UIKit/view-layout",
+                "doc://com.apple.uikit/documentation/UIKit/appearance-customization",
+                "doc://com.apple.uikit/documentation/UIKit/animation-and-haptics",
+                "doc://com.apple.uikit/documentation/UIKit/windows-and-screens"
+              ],
+              "title": "User interface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPickerView/title",
+          "value": "UIPickerView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPickerView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPickerView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPickerView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPickerView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarView/title",
+          "value": "UICalendarView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICalendarView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICalendarView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICalendarView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStepper/title",
+          "value": "UIStepper"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStepper/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStepper"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStepper/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStepper"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBlurEffect/title",
+          "value": "UIBlurEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBlurEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBlurEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBlurEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBlurEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILargeContentViewerInteractionDelegate/title",
+          "value": "UILargeContentViewerInteractionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILargeContentViewerInteractionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILargeContentViewerInteractionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILargeContentViewerInteractionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILargeContentViewerInteractionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImageView/title",
+          "value": "UIImageView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImageView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImageView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImageView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImageView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColorWell/title",
+          "value": "UIColorWell"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColorWell/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIColorWell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColorWell/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIColorWell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItem/title",
+          "value": "UIBarButtonItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIOffset/title",
+          "value": "UIOffset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIOffset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIOffset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIOffset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIOffset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDirectionalEdgeInsets/title",
+          "value": "NSDirectionalEdgeInsets"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDirectionalEdgeInsets/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDirectionalEdgeInsets"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDirectionalEdgeInsets/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDirectionalEdgeInsets"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarItem/title",
+          "value": "UIBarItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISlider/title",
+          "value": "UISlider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISlider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISlider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISlider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISlider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField/title",
+          "value": "UITextField"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextFieldDelegate/title",
+          "value": "UISearchTextFieldDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextFieldDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchTextFieldDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextFieldDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchTextFieldDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchToken/title",
+          "value": "UISearchToken"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchToken/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchToken/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEventAttribution/title",
+          "value": "UIEventAttribution"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEventAttribution/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIEventAttribution"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEventAttribution/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIEventAttribution"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIVisualEffect/title",
+          "value": "UIVisualEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIVisualEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIVisualEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIVisualEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIVisualEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISegmentedControl/title",
+          "value": "UISegmentedControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISegmentedControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISegmentedControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISegmentedControl/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISegmentedControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarPositioning/title",
+          "value": "UIBarPositioning"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarPositioning/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarPositioning"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarPositioning/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarPositioning"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDatePicker/title",
+          "value": "UIDatePicker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDatePicker/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDatePicker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDatePicker/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDatePicker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDirectionalRectEdge/title",
+          "value": "NSDirectionalRectEdge"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDirectionalRectEdge/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDirectionalRectEdge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDirectionalRectEdge/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDirectionalRectEdge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBar/title",
+          "value": "UITabBar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBar/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwitch/title",
+          "value": "UISwitch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwitch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISwitch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwitch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISwitch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchBar/title",
+          "value": "UISearchBar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchBar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchBar/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIProgressView/title",
+          "value": "UIProgressView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIProgressView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIProgressView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIProgressView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIProgressView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILabel/title",
+          "value": "UILabel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILabel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILabel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILabel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILabel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentUnavailableView/title",
+          "value": "UIContentUnavailableView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentUnavailableView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContentUnavailableView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentUnavailableView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContentUnavailableView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationBar/title",
+          "value": "UINavigationBar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationBar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationBar/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEdgeInsets/title",
+          "value": "UIEdgeInsets"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEdgeInsets/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIEdgeInsets"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEdgeInsets/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIEdgeInsets"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILargeContentViewerItem/title",
+          "value": "UILargeContentViewerItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILargeContentViewerItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILargeContentViewerItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILargeContentViewerItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILargeContentViewerItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEventAttributionView/title",
+          "value": "UIEventAttributionView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEventAttributionView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIEventAttributionView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEventAttributionView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIEventAttributionView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScrollView/title",
+          "value": "UIScrollView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScrollView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScrollView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScrollView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScrollView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILargeContentViewerInteraction/title",
+          "value": "UILargeContentViewerInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILargeContentViewerInteraction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILargeContentViewerInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILargeContentViewerInteraction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILargeContentViewerInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarPositioningDelegate/title",
+          "value": "UIBarPositioningDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarPositioningDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarPositioningDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarPositioningDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarPositioningDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIButton/title",
+          "value": "UIButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextView/title",
+          "value": "UITextView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIVibrancyEffect/title",
+          "value": "UIVibrancyEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIVibrancyEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIVibrancyEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIVibrancyEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIVibrancyEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemGroup/title",
+          "value": "UIBarButtonItemGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonItemGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIBarButtonItemGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIBarButtonItemGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDirectionalRectEdge/title",
+          "value": "UIDirectionalRectEdge"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDirectionalRectEdge/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDirectionalRectEdge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDirectionalRectEdge/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDirectionalRectEdge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPageControl/title",
+          "value": "UIPageControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPageControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPageControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPageControl/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPageControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIVisualEffectView/title",
+          "value": "UIVisualEffectView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIVisualEffectView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIVisualEffectView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIVisualEffectView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIVisualEffectView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSRectAlignment/title",
+          "value": "NSRectAlignment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSRectAlignment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSRectAlignment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSRectAlignment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSRectAlignment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityIndicatorView/title",
+          "value": "UIActivityIndicatorView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityIndicatorView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityIndicatorView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityIndicatorView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityIndicatorView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarItem/title",
+          "value": "UITabBarItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITabBarItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITabBarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAxis/title",
+          "value": "UIAxis"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAxis/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAxis"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAxis/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAxis"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIControl/title",
+          "value": "UIControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIControl/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWebView/title",
+          "value": "UIWebView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWebView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWebView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWebView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWebView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/title",
+          "value": "UIView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIToolbar/title",
+          "value": "UIToolbar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIToolbar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIToolbar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIToolbar/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIToolbar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStackView/title",
+          "value": "UIStackView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStackView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStackView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStackView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStackView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField/title",
+          "value": "UISearchTextField"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchTextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchTextField"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/views-and-controls"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/views-and-controls"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

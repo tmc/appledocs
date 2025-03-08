@@ -1,0 +1,1159 @@
+{
+  "abstract": [
+    {
+      "text": "Configure your food-ordering app to work with CarPlay.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.carplay/documentation/CarPlay"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.carplay/documentation/CarPlay/integrating-carplay-with-your-quick-ordering-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "CarPlay"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.2",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.4",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Integrating CarPlay with your quick-ordering app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project demonstrates how to display custom ordering options in a vehicle using CarPlay. The sample app integrates with the CarPlay framework by implementing ",
+              "type": "text"
+            },
+            {
+              "code": "CPTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subclasses, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CarPlay/CPPointOfInterestTemplate",
+              "isActive": true,
+              "overridingTitle": "CPPointOfInterestTemplate",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CPPointOfInterestTemplate",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CarPlay/CPListTemplate",
+              "isActive": true,
+              "overridingTitle": "CPListTemplate",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CPListTemplate",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". This sample’s iOS app component provides a logging interface to help you understand the life cycle of a CarPlay app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CarPlay quick-ordering apps require a CarPlay quick-ordering entitlement, which you can request ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/contact/carplay",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". After Apple grants the entitlement, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Log in to your account on the Apple Developer website and create a new provisioning profile that includes the CarPlay quick ordering-app entitlement.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Import the newly created provisioning profile into Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Entitlements.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file in the project, if you don’t have one already.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a key for the CarPlay quick-ordering app entitlement as a Boolean. Make sure that the target project setting ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CODE_SIGN_ENTITLEMENTS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " has the path of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Entitlements.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Handle-communication-with-CarPlay",
+          "level": 3,
+          "text": "Handle communication with CarPlay",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After a device connects to CarPlay and the sample app launches, it sets a root template to display content onscreen. The system sets the root template on the ",
+              "type": "text"
+            },
+            {
+              "code": "CPInterfaceController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when the app connects to CarPlay. In this sample, the root template is an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "CPTabBarTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with a ",
+              "type": "text"
+            },
+            {
+              "code": "CPPointOfInterestTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the template that initially displays.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func interfaceControllerDidConnect(_ interfaceController: CPInterfaceController, scene: CPTemplateApplicationScene) {",
+            "    MemoryLogger.shared.appendEvent(\"Connected to CarPlay window.\")",
+            "    carplayInterfaceController = interfaceController",
+            "    carplayScene = scene",
+            "    carplayInterfaceController?.delegate = self",
+            "    sessionConfiguration = CPSessionConfiguration(delegate: self)",
+            "    locationManager.delegate = self",
+            "    requestLocation()",
+            "    setupMap()",
+            "}",
+            "",
+            "func setupMap() {",
+            "    let pointOfInterestTemplate = CPPointOfInterestTemplate(",
+            "        title: \"Hoagie Options\",",
+            "        pointsOfInterest: [],",
+            "        selectedIndex: NSNotFound)",
+            "    pointOfInterestTemplate.pointOfInterestDelegate = self",
+            "    pointOfInterestTemplate.tabTitle = \"Map\"",
+            "    pointOfInterestTemplate.tabImage = UIImage(systemName: \"car\")!",
+            "    ",
+            "    let tabTemplate = CPTabBarTemplate(templates: [pointOfInterestTemplate])",
+            "    ",
+            "    carplayInterfaceController?.setRootTemplate(tabTemplate, animated: true, completion: { (done, error) in",
+            "        // Note: Ensure that 12 is the maximum POI locations that appear on the display.",
+            "        self.search(for: \"Hoagies\")",
+            "    })",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Keep-the-map-in-focus",
+          "level": 3,
+          "text": "Keep the map in focus",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CarPlay/CPPointOfInterestTemplateDelegate/pointOfInterestTemplate(_:didChangeMapRegion:)",
+              "isActive": true,
+              "overridingTitle": "func pointOfInterestTemplate(_ aTemplate: CPPointOfInterestTemplate, didChangeMapRegion region: MKCoordinateRegion)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "func pointOfInterestTemplate(_ aTemplate: CPPointOfInterestTemplate, didChangeMapRegion region: MKCoordinateRegion)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to keep the map in focus. The data that ",
+              "type": "text"
+            },
+            {
+              "code": "CLLocationManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": " provides for a given location can change as a person is moving. This means the results need to update as the map region changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension TemplateManager: CPPointOfInterestTemplateDelegate {",
+            "    func pointOfInterestTemplate(_ aTemplate: CPPointOfInterestTemplate, didChangeMapRegion region: MKCoordinateRegion) {",
+            "        MemoryLogger.shared.appendEvent(\"Region Changed: \\(region).\")",
+            "        // In your app, you need to update your search results when this triggers.",
+            "        boundingRegion = region",
+            "        search(for: \"hoagies\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After someone selects an item, options to place an order and open Maps for directions, or to call the point of interest, appear onscreen, depending on metadata availability.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Make ordering the primary button.",
+            "let button = CPTextButton(title: \"Order\", textStyle: .normal, handler: { (button) in",
+            "    MemoryLogger.shared.appendEvent(\"Order tapped \\(place).\")",
+            "    self.showOrderTemplate(place: place)",
+            "})",
+            "place.primaryButton = button",
+            "// Try directions or a phone number as the secondary button.",
+            "if let address = place.summary,",
+            "   let encodedAddress = address.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics),",
+            "   let lon = place.location.placemark.location?.coordinate.longitude,",
+            "   let lat = place.location.placemark.location?.coordinate.latitude,",
+            "   let url = URL(string: \"maps://?q=\\(encodedAddress)&ll=\\(lon),\\(lat)\") {",
+            "    place.secondaryButton = CPTextButton(title: \"Directions\", textStyle: .normal, handler: { (button) in",
+            "        MemoryLogger.shared.appendEvent(\"Opening Maps with \\(address).\")",
+            "        self.carplayScene?.open(url, options: nil, completionHandler: nil)",
+            "    })",
+            "} else if let phoneNumber = place.subtitle, let url = URL(string: \"tel://\" + phoneNumber.replacingOccurrences(of: \" \", with: \"\")) {",
+            "    place.secondaryButton = CPTextButton(title: \"Call\", textStyle: .normal, handler: { (button) in",
+            "        MemoryLogger.shared.appendEvent(\"Calling \\(phoneNumber).\")",
+            "        self.carplayScene?.open(url, options: nil, completionHandler: nil)",
+            "    })",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the sample relies on a person’s location to provide relevant results, handle permission issues gracefully. The sample removes any presented view controllers and presents a message that the location isn’t available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {",
+            "    switch manager.authorizationStatus {",
+            "    case .denied, .restricted, .notDetermined:",
+            "        let alert = CPAlertTemplate(",
+            "            titleVariants: [\"Please enable location services.\"],",
+            "            actions: [",
+            "                CPAlertAction(",
+            "                    title: \"Ok\",",
+            "                    style: .default,",
+            "                    handler: { [weak self] (action) in",
+            "                        self?.carplayInterfaceController?.setRootTemplate(",
+            "                            CPTabBarTemplate(templates: []), animated: false, completion: { (done, error) in",
+            "                                MemoryLogger.shared.appendEvent(\"Error setting root template.\")",
+            "                            }",
+            "                        )",
+            "                    }",
+            "                )",
+            "            ])",
+            "        ",
+            "        // Check for a presented template and dismiss it for this important message.",
+            "        if carplayInterfaceController?.presentedTemplate != nil {",
+            "            dismissAlertAndPopToRootTemplate {",
+            "                self.carplayInterfaceController?.presentTemplate(alert, animated: false, completion: { [weak self] (done, error) in",
+            "                    self?.handleError(error, prependedMessage: \"Error presenting \\(alert.classForCoder)\")",
+            "                })",
+            "            }",
+            "        } else {",
+            "            carplayInterfaceController?.presentTemplate(alert, animated: false, completion: { [weak self] (done, error) in",
+            "                self?.handleError(error, prependedMessage: \"Error presenting \\(alert.classForCoder)\")",
+            "            })",
+            "        }",
+            "    default:",
+            "        dismissAlertAndPopToRootTemplate {",
+            "            self.setupMap()",
+            "        }",
+            "        return",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Provide-updates",
+          "level": 3,
+          "text": "Provide updates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After a person places an order, the system starts a Live Activity to show the order’s status. Live Activities don’t display in CarPlay, but do provide a glanceable view on the person’s Lock Screen to inform them about updates to their order.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "            MemoryLogger.shared.appendEvent(\"Placing Order\")",
+            "            do {",
+            "                ",
+            "//             Simulate a scenario where a person using the app enters a tunnel with no service just as they",
+            "//             place an order. The test API can't confirm the order in sendOrderToHoagieMakers(), and then the app loses service.",
+            "//             The Live Activity starts manually.",
+            "                let attrs = OrderStatusAttributes(hoagieOrder: hoagieOrder)",
+            "                let initialState = OrderStatusAttributes.ContentState(",
+            "                    isPickedUp: false,",
+            "                    isReady: false,",
+            "                    isPreparing: false,",
+            "                    isConfirmed: true)",
+            "                ",
+            "                try saveOrderState(state: initialState)",
+            "                ",
+            "                MemoryLogger.shared.appendEvent(\"Starting Live Activity\")",
+            "                OrderingService.service.orderActivity = try Activity.request(",
+            "                    attributes: attrs,",
+            "                    content: .init(state: initialState, staleDate: Date(timeIntervalSinceNow: 60 * 30)),",
+            "                    pushType: .token",
+            "                )",
+            "                try await finalizeOrder(hoagieOrder: hoagieOrder)",
+            "            } catch {",
+            "                throw OrderingError.errorOrdering",
+            "            }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the Live Activity is running, you need to create a listener for updates to the state of the activity and token changes. Your app can update Live Activities, but only in the foreground. If your app spends significant amounts of time in the background, such as in a quick-ordering app, you need to use notifications to provide updates to people using the app. The code example below shows one way to listen for updates to the Live Activity token. Your app doesn’t need to support background updates, or use any ",
+              "type": "text"
+            },
+            {
+              "code": "UIApplication",
+              "type": "codeVoice"
+            },
+            {
+              "text": " cycle methods. The system wakes the process that contains your Live Activity when the token changes and calls the attached block of code on the listener.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "//      For the purposes of this demonstration, hoagies are ready in 10 minutes or less.",
+            "//      Here, a push notification indicates whether an order is ready earlier.",
+            "//      Spin off another thread to listen for updates.",
+            "        Task { @MainActor in",
+            "            MemoryLogger.shared.appendEvent(\"Change Listener Task Started\")",
+            "            for await change in activity.contentUpdates {",
+            "                MemoryLogger.shared.appendEvent(\"Content update change \\(change.description)\")",
+            "                try saveOrderState(state: change.state)",
+            "                WidgetCenter.shared.reloadAllTimelines()",
+            "            }",
+            "        }",
+            "        ",
+            "        Task { @MainActor in",
+            "            MemoryLogger.shared.appendEvent(\"State Listener Task Started\")",
+            "            for await state in activity.activityStateUpdates {",
+            "                MemoryLogger.shared.appendEvent(\"Content update change \\(state)\")",
+            "                if state == .dismissed || state == .ended {",
+            "                    await activity.end(nil, dismissalPolicy: .immediate)",
+            "                    OrderingService.service.updateTokens[activity.id] = nil",
+            "                }",
+            "                WidgetCenter.shared.reloadAllTimelines()",
+            "            }",
+            "        }",
+            "        ",
+            "        Task { @MainActor in",
+            "            MemoryLogger.shared.appendEvent(\"Push Token Update Listener Task Started\")",
+            "            for await pushToken in activity.pushTokenUpdates {",
+            "                let pushTokenString = pushToken.reduce(\"\") {",
+            "                    $0 + String(format: \"%02x\", $1)",
+            "                }",
+            "                ",
+            "                OrderingService.service.updateTokens[activity.id] = pushTokenString",
+            "                try await self.sendPushToken(hoagieOrder: hoagieOrder, pushTokenString: pushTokenString)",
+            "            }",
+            "        }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample includes a macOS target that provides a mock order status app. This is similar to what a service provider uses to convey updates to an order. The service app needs a JSON Web Token (JWT) to create push notifications for use with Live Activities. The following code example shows how the sample creates the JWT for use with the payload to send to Apple, which in turn sends a push notification to the associated device:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private static func createJWT() throws -> String {",
+            "    if TestHoagieData.hoagieDefaults.string(forKey: savedTokenKey) == nil {",
+            "        let symKey = try P256.Signing.PrivateKey(pemRepresentation: privateKey)",
+            "        let headerJSONData = try JSONEncoder().encode(Header())",
+            "        let headerBase64String = headerJSONData.urlSafeBase64EncodedString()",
+            "        let payloadJSONData = try JSONEncoder().encode(Payload())",
+            "        let payloadBase64String = payloadJSONData.urlSafeBase64EncodedString()",
+            "        let toSign = Data((headerBase64String + \".\" + payloadBase64String).utf8)",
+            "        let signature = try symKey.signature(for: toSign)",
+            "        let signatureBase64String = signature.rawRepresentation.urlSafeBase64EncodedString()",
+            "        let token = [headerBase64String, payloadBase64String, signatureBase64String].joined(separator: \".\")",
+            "        TestHoagieData.hoagieDefaults.set(Date.now, forKey: lastTokenCreationDate)",
+            "        TestHoagieData.hoagieDefaults.set(token, forKey: savedTokenKey)",
+            "        print(token)",
+            "        return token",
+            "    } else if",
+            "        let savedDate = TestHoagieData.hoagieDefaults.object(forKey: lastTokenCreationDate) as? Date,",
+            "        Date.now.timeIntervalSince(savedDate) > TestHoagieData.tenMinutes {",
+            "        TestHoagieData.hoagieDefaults.set(nil, forKey: lastTokenCreationDate)",
+            "        TestHoagieData.hoagieDefaults.set(nil, forKey: savedTokenKey)",
+            "        return try createJWT()",
+            "    } else if let token = TestHoagieData.hoagieDefaults.string(forKey: savedTokenKey) {",
+            "        print(token)",
+            "        return token",
+            "    } else {",
+            "        fatalError()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "51654e33d2be/IntegratingCarPlayWithYourQuickOrderingApp.zip": {
+      "checksum": "51654e33d2bec1cf638fe273e0f5a38db6e1a3276971a2379efbc3ac1b2149e1d9d570ac1264dec8f9268de183c1e49e72bc451fc980ec9b1ba759cac49484b5",
+      "identifier": "51654e33d2be/IntegratingCarPlayWithYourQuickOrderingApp.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/51654e33d2be/IntegratingCarPlayWithYourQuickOrderingApp.zip"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay": {
+      "abstract": [
+        {
+          "text": "Integrate CarPlay in apps related to audio, communication, navigation, parking, EV charging, food ordering, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CarPlay",
+      "type": "topic",
+      "url": "/documentation/carplay"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPInformationTemplate": {
+      "abstract": [
+        {
+          "text": "A template that provides information for a point of interest, food order, parking location, or charging location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPInformationTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPInformationTemplate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPInformationTemplate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPInformationTemplate",
+      "type": "topic",
+      "url": "/documentation/carplay/cpinformationtemplate"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPPointOfInterestTemplate": {
+      "abstract": [
+        {
+          "text": "A template that displays a map with selectable points of interest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPPointOfInterestTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPPointOfInterestTemplate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPPointOfInterestTemplate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPPointOfInterestTemplate",
+      "type": "topic",
+      "url": "/documentation/carplay/cppointofinteresttemplate"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTextButton": {
+      "abstract": [
+        {
+          "text": "A button that displays a stylized title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPTextButton"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTextButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPTextButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPTextButton",
+      "type": "topic",
+      "url": "/documentation/carplay/cptextbutton"
+    },
+    "doc://com.apple.documentation/documentation/CarPlay/CPListTemplate": {
+      "abstract": [
+        {
+          "text": "A template that displays and manages a list of items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPListTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CarPlay/CPListTemplate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CPListTemplate",
+      "type": "topic",
+      "url": "/documentation/CarPlay/CPListTemplate"
+    },
+    "doc://com.apple.documentation/documentation/CarPlay/CPPointOfInterestTemplate": {
+      "abstract": [
+        {
+          "text": "A template that displays a map with selectable points of interest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPPointOfInterestTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CarPlay/CPPointOfInterestTemplate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CPPointOfInterestTemplate",
+      "type": "topic",
+      "url": "/documentation/CarPlay/CPPointOfInterestTemplate"
+    },
+    "doc://com.apple.documentation/documentation/CarPlay/CPPointOfInterestTemplateDelegate/pointOfInterestTemplate(_:didChangeMapRegion:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate about changes to the visible region of the template’s map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pointOfInterestTemplate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "pointOfInterestTemplate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CPPointOfInterestTemplate",
+          "text": "CPPointOfInterestTemplate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didChangeMapRegion"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "region"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MKCoordinateRegion",
+          "text": "MKCoordinateRegion"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CarPlay/CPPointOfInterestTemplateDelegate/pointOfInterestTemplate(_:didChangeMapRegion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pointOfInterestTemplate(_:didChangeMapRegion:)",
+      "type": "topic",
+      "url": "/documentation/CarPlay/CPPointOfInterestTemplateDelegate/pointOfInterestTemplate(_:didChangeMapRegion:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/contact/carplay": {
+      "identifier": "https://developer.apple.com/contact/carplay",
+      "title": "here",
+      "titleInlineContent": [
+        {
+          "text": "here",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/contact/carplay"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "51654e33d2be/IntegratingCarPlayWithYourQuickOrderingApp.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Location-and-Information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.carplay/documentation/CarPlay/CPPointOfInterestTemplate",
+        "doc://com.apple.carplay/documentation/CarPlay/CPInformationTemplate",
+        "doc://com.apple.carplay/documentation/CarPlay/CPTextButton"
+      ],
+      "title": "Location and Information"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Location-and-Information",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.carplay/documentation/CarPlay/CPPointOfInterestTemplate",
+                "doc://com.apple.carplay/documentation/CarPlay/CPInformationTemplate",
+                "doc://com.apple.carplay/documentation/CarPlay/CPTextButton"
+              ],
+              "title": "Location and Information"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CarPlay~1CPListTemplate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CPListTemplate"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CPTemplate",
+              "text": "CPTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPInformationTemplate/title",
+          "value": "CPInformationTemplate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPInformationTemplate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPInformationTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPInformationTemplate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPInformationTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CarPlay~1CPPointOfInterestTemplate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CPPointOfInterestTemplate"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CPTemplate",
+              "text": "CPTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CarPlay~1CPPointOfInterestTemplateDelegate~1pointOfInterestTemplate(_:didChangeMapRegion:)/title",
+          "value": "pointOfInterestTemplate:didChangeMapRegion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CarPlay~1CPPointOfInterestTemplateDelegate~1pointOfInterestTemplate(_:didChangeMapRegion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "pointOfInterestTemplate:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CPPointOfInterestTemplate",
+              "text": "CPPointOfInterestTemplate"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "pointOfInterestTemplate"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didChangeMapRegion:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@MKCoordinateRegion",
+              "text": "MKCoordinateRegion"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "region"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTextButton/title",
+          "value": "CPTextButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTextButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTextButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTextButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTextButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPPointOfInterestTemplate/title",
+          "value": "CPPointOfInterestTemplate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPPointOfInterestTemplate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPPointOfInterestTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPPointOfInterestTemplate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPPointOfInterestTemplate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/carplay/integrating-carplay-with-your-quick-ordering-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/carplay/integrating-carplay-with-your-quick-ordering-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

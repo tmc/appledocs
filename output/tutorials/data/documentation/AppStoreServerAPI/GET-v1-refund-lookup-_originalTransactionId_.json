@@ -1,0 +1,1057 @@
+{
+  "abstract": [
+    {
+      "text": "Get a list of up to 50 of a customer’s refunded in-app purchases for your app.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v2-refund-lookup-_transactionId_",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "added",
+      "platform": "App Store Server API",
+      "versions": [
+        "1.0 beta 1",
+        "1.13"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-refund-lookup-_originalTransactionId_"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:app_store_server_api:get:v1-refund-lookup-{}",
+    "modules": [
+      {
+        "name": "App Store Server API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GET /v1/refund/lookup/{originalTransactionId}"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecatedAt": "1.6",
+        "introducedAt": "1.1",
+        "name": "App Store Server API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get Refund History V1"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.storekit.itunes.apple.com/inApps/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/refund/lookup/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{originalTransactionId}"
+        }
+      ]
+    },
+    {
+      "kind": "restEndpoint",
+      "title": "Sandbox URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.storekit-sandbox.itunes.apple.com/inApps/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/refund/lookup/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{originalTransactionId}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The original transaction identifier for a transaction that belongs to the customer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "originalTransactionId",
+          "required": true,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/originalTransactionId",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:originalTransactionId",
+              "text": "originalTransactionId"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Request succeeded.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/RefundLookupResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:RefundLookupResponse",
+              "text": "RefundLookupResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request is invalid. Check the specific error message for further information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidOriginalTransactionIdError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:InvalidOriginalTransactionIdError",
+              "text": "InvalidOriginalTransactionIdError"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The JSON Web Token (JWT) in the authorization header is invalid. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/generating-json-web-tokens-for-api-requests",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request is invalid. Check the specific error message for further information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/OriginalTransactionIdNotFoundError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:OriginalTransactionIdNotFoundError",
+              "text": "OriginalTransactionIdNotFoundError"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "status": 429,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/RateLimitExceededError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:RateLimitExceededError",
+              "text": "RateLimitExceededError"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request failed. This may be due to a temporary outage. Check the specific error message for further information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GeneralInternalError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:GeneralInternalError",
+              "text": "GeneralInternalError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GeneralInternalRetryableError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:GeneralInternalRetryableError",
+              "text": "GeneralInternalRetryableError"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/app-store-server-api-changelog",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/identifying-rate-limits"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call this endpoint to get a customer’s refund history for your app. The response (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/RefundLookupResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") includes up to 50 of the customer’s most-recently refunded transactions, based on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/revocationDate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To get the complete refund history, use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v2-refund-lookup-_transactionId_",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To call this endpoint, provide any original transaction identifier (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction/originalID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") for any of the customer’s in-app purchases. The response only includes App Store-approved refunds for any product type: consumable, non-consumable, auto-renewable subscriptions, and non-renewing subscriptions. For more information about product types, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/in-app-purchase/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The information in the response is the same as the information in one or more ",
+              "type": "text"
+            },
+            {
+              "code": "REFUND",
+              "type": "codeVoice"
+            },
+            {
+              "text": " notifications (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Use this API to retrieve any refund notifications you may have missed, such as during a server outage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A successful response may have an empty ",
+              "type": "text"
+            },
+            {
+              "code": "signedTransactions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array if the customer hasn’t received any App Store-approved refunds. To identify the date and reason code for a refund, see ",
+              "type": "text"
+            },
+            {
+              "code": "revocationDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "revocationReason",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/JWSTransactionDecodedPayload",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Store Server API returns information based on the customer’s in-app purchase history regardless of whether the customer installs, removes, or reinstalls the app on their devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI": {
+      "abstract": [
+        {
+          "text": "Manage your customers’ App Store transactions from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server API",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-refund-lookup-_originalTransactionId_": {
+      "abstract": [
+        {
+          "text": "Get a list of up to 50 of a customer’s refunded in-app purchases for your app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-refund-lookup-_originalTransactionId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/refund/lookup/{originalTransactionId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Refund History V1",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/get-v1-refund-lookup-_originaltransactionid_"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v2-refund-lookup-_transactionId_": {
+      "abstract": [
+        {
+          "text": "Get a paginated list of all of a customer’s refunded in-app purchases for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v2-refund-lookup-_transactionId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v2/refund/lookup/{transactionId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Refund History",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/get-v2-refund-lookup-_transactionid_"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GeneralInternalError": {
+      "abstract": [
+        {
+          "text": "An error that indicates a general internal error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GeneralInternalError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GeneralInternalError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GeneralInternalError"
+        }
+      ],
+      "role": "symbol",
+      "title": "GeneralInternalError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/generalinternalerror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GeneralInternalRetryableError": {
+      "abstract": [
+        {
+          "text": "An error response that indicates an unknown error occurred, but you can try again.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GeneralInternalRetryableError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GeneralInternalRetryableError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GeneralInternalRetryableError"
+        }
+      ],
+      "role": "symbol",
+      "title": "GeneralInternalRetryableError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/generalinternalretryableerror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidOriginalTransactionIdError": {
+      "abstract": [
+        {
+          "text": "An error that indicates an invalid original transaction identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvalidOriginalTransactionIdError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/InvalidOriginalTransactionIdError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvalidOriginalTransactionIdError"
+        }
+      ],
+      "role": "symbol",
+      "title": "InvalidOriginalTransactionIdError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/invalidoriginaltransactioniderror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/JWSTransactionDecodedPayload": {
+      "abstract": [
+        {
+          "text": "A decoded payload that contains transaction information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "JWSTransactionDecodedPayload"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/JWSTransactionDecodedPayload",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JWSTransactionDecodedPayload"
+        }
+      ],
+      "role": "symbol",
+      "title": "JWSTransactionDecodedPayload",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/jwstransactiondecodedpayload"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/OriginalTransactionIdNotFoundError": {
+      "abstract": [
+        {
+          "text": "An error that indicates an original transaction identifier wasn’t found.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "OriginalTransactionIdNotFoundError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/OriginalTransactionIdNotFoundError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OriginalTransactionIdNotFoundError"
+        }
+      ],
+      "role": "symbol",
+      "title": "OriginalTransactionIdNotFoundError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/originaltransactionidnotfounderror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/RateLimitExceededError": {
+      "abstract": [
+        {
+          "text": "An error that indicates the request exceeded the rate limit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RateLimitExceededError"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/RateLimitExceededError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RateLimitExceededError"
+        }
+      ],
+      "role": "symbol",
+      "title": "RateLimitExceededError",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/ratelimitexceedederror"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/RefundHistoryResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains an array of signed JSON Web Signature (JWS) refunded transactions, and paging information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RefundHistoryResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/RefundHistoryResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RefundHistoryResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "RefundHistoryResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/refundhistoryresponse"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/RefundLookupResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains an array of signed JSON Web Signature (JWS) transactions.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RefundLookupResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/RefundLookupResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RefundLookupResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "RefundLookupResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/refundlookupresponse"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/app-store-server-api-changelog": {
+      "abstract": [
+        {
+          "text": "Learn about new features and updates in the App Store Server API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/app-store-server-api-changelog",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Server API changelog",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/app-store-server-api-changelog"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/generating-json-web-tokens-for-api-requests": {
+      "abstract": [
+        {
+          "text": "Create JSON Web Tokens signed with your private key to authorize requests for App Store Server API and External Purchase Server API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/generating-json-web-tokens-for-api-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating JSON Web Tokens for API requests",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/generating-json-web-tokens-for-api-requests"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/identifying-rate-limits": {
+      "abstract": [
+        {
+          "text": "Recognize the rate limits that apply to App Store Server API endpoints and handle them in your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/identifying-rate-limits",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying rate limits",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/identifying-rate-limits"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/originalTransactionId": {
+      "abstract": [
+        {
+          "text": "The original transaction identifier of a purchase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "originalTransactionId"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/originalTransactionId",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "originalTransactionId"
+        }
+      ],
+      "role": "symbol",
+      "title": "originalTransactionId",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/originaltransactionid"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/revocationDate": {
+      "abstract": [
+        {
+          "text": "The UNIX time, in milliseconds, that the App Store refunded the transaction or revoked it from Family Sharing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "revocationDate"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/revocationDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "revocationDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "revocationDate",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/revocationdate"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications": {
+      "abstract": [
+        {
+          "text": "Monitor In-App Purchase events in real time and learn of unreported external purchase tokens, with server notifications from the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType": {
+      "abstract": [
+        {
+          "text": "The type that describes the in-app purchase or external purchase event for which the App Store sends the version 2 notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "string "
+        },
+        {
+          "kind": "identifier",
+          "text": "notificationType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "notificationType",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/notificationType"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/Transaction/originalID": {
+      "abstract": [
+        {
+          "text": "The original transaction identifier of a purchase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "originalID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/Transaction/originalID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "originalID",
+      "type": "topic",
+      "url": "/documentation/StoreKit/Transaction/originalID"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/in-app-purchase/": {
+      "identifier": "https://developer.apple.com/in-app-purchase/",
+      "title": "In-app purchase",
+      "titleInlineContent": [
+        {
+          "text": "In-app purchase",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/in-app-purchase/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Refund-lookup",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v2-refund-lookup-_transactionId_",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/RefundHistoryResponse",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/RefundLookupResponse"
+      ],
+      "title": "Refund lookup"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreserverapi/get-v1-refund-lookup-_originaltransactionid_"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1015 @@
+{
+  "abstract": [
+    {
+      "text": "Display images for specific times within the media timeline by generating images from a video’s frames.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/media-reading-and-writing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/creating-images-from-a-video-asset"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating images from a video asset"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A common requirement when you build video apps is to display images of a video’s content. You may want to show a single thumbnail next to a video in a list, or show several images spanning a video’s duration that you use to build a visual scrubbing or selection user interface. AVFoundation makes it simple to produce images from your app’s video content by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetImageGenerator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4009055",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetImageGenerator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a utility class that creates images from assets that contain one or more video tracks. You can use it to generate an image for a single point in time, or a series of images by passing it an array of times.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-an-image-generator",
+          "level": 3,
+          "text": "Configure an image generator",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetImageGenerator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by passing it a video asset to retrieve images from. A generator supports creating images from local and remote file–based media, and also from HTTP Live Streaming (HLS) video that provides I-frame only renditions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let asset: AVAsset = // A video asset.",
+            "let generator = AVAssetImageGenerator(asset: asset)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can generate images from an HLS stream that provides a media playlist with the ",
+                  "type": "text"
+                },
+                {
+                  "code": "EXT-X-I-FRAMES-ONLY",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " tag. The durations the playlist specifies between I-frames determines the time resolution of image-generation requests.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An image generator is ready to produce images when you create it, but it also provides configurable properties that you can use to customize its behavior. One property that you typically set is its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetImageGenerator/maximumSize",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". By default, a generator produces images at the video’s native resolution, which is often larger than required, and can be CPU and memory intensive. Instead, set a value for its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetImageGenerator/maximumSize",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to constrain the size of its output. For example, you can constrain the width to a specific value, and specify ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to proportionally scale the height, by setting a maximum size as follows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Generate the equivalent of a 150-pixel-wide @2x image.",
+            "generator.maximumSize = CGSize(width: 300, height: 0)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Specify-the-time-precision",
+          "level": 3,
+          "text": "Specify the time precision",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, an image generator creates images near the time you request, but its actual time may be slightly before or after for efficiency sake. To change the amount of time you allow the generator to deviate from the requested time, set the value of its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetImageGenerator/requestedTimeToleranceBefore",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetImageGenerator/requestedTimeToleranceAfter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties. For example, to allow image generation to occur over a time range that starts no earlier than your requested time, and no later than two seconds after, set its tolerance values as shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Configure the generator's time tolerance values.",
+            "generator.requestedTimeToleranceBefore = .zero",
+            "generator.requestedTimeToleranceAfter = CMTime(seconds: 2, preferredTimescale: 600)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can request frame-accurate image generation by setting the values of the before and after tolerances to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMTime/zero",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". However, configuring the generator this way requires it to perform additional frame decoding, which impacts its image generation speed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Generate-images",
+          "level": 3,
+          "text": "Generate images",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Retrieving and decoding the media data that a generator requires to produce images takes an unknown amount of time. It’s not safe to perform image generation synchronously because it blocks the calling thread, which can degrade your app’s user experience and may even result in a crash. Instead, perform image generation asynchronously.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a single image from the video timeline, call the asynchronous ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetImageGenerator/image(at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, passing it your requested time. The following example shows how to create an image for the first frame in the video.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Generate an image at time zero.",
+            "let (image, actualTime) = try await generator.image(at: .zero)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the time at which it creates an image may vary from your requested time, the method returns the actual image-generation time along with the image in a tuple. If you don’t require this information, you can retrieve the image more succinctly as shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Generate an image at time zero. Access the image alone.",
+            "let image = try await generator.image(at: .zero).image"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also use an image generator to create a sequence of images from the video timeline. To generate multiple images from a video asset, call the asynchronous ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetImageGenerator/images(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method as shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let times: [CMTime] = // An array of times at which to create images.",
+            "for await result in generator.images(for: times) {",
+            "    switch result {",
+            "    case .success(requestedTime: let requested, image: let image, actualTime: let actual):",
+            "        // Process the image for the requested time.",
+            "    case .failed(requestedTime: let requested, error: let error):",
+            "        // Handle the failure for the requested time.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method returns an asynchronous sequence of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetImageGenerator/Images",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that you iterate over and await results from. If image generation for a requested time succeeds, the result provides the image, along with the requested and actual image generation times. If a requested time fails, the result provides the time and an error that describes the failure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetImageGenerator": {
+      "abstract": [
+        {
+          "text": "An object that generates images from a video asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAssetImageGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetImageGenerator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAssetImageGenerator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetImageGenerator",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetimagegenerator"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetImageGenerator/Images": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence of images created by an image generator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Images"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetImageGenerator/Images",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Images"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAssetImageGenerator.Images",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetimagegenerator/images"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetImageGenerator/image(at:)": {
+      "abstract": [
+        {
+          "text": "Generates an image for a requested time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> (image"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": ", actualTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetImageGenerator/image(at:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "image(at:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetimagegenerator/image(at:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetImageGenerator/images(for:)": {
+      "abstract": [
+        {
+          "text": "Generates images for times within the video timeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "images"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAssetImageGenerator",
+          "text": "AVAssetImageGenerator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So21AVAssetImageGeneratorC12AVFoundationE6ImagesV",
+          "text": "Images"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetImageGenerator/images(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "images(for:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetimagegenerator/images(for:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetImageGenerator/maximumSize": {
+      "abstract": [
+        {
+          "text": "The maximum size of images to generate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetImageGenerator/maximumSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "maximumSize",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetimagegenerator/maximumsize"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetImageGenerator/requestedTimeToleranceAfter": {
+      "abstract": [
+        {
+          "text": "A maximum length of time after the requested time to allow image generation to occur.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestedTimeToleranceAfter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetImageGenerator/requestedTimeToleranceAfter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestedTimeToleranceAfter"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestedTimeToleranceAfter",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetimagegenerator/requestedtimetoleranceafter"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetImageGenerator/requestedTimeToleranceBefore": {
+      "abstract": [
+        {
+          "text": "A maximum length of time before the requested time to allow image generation to occur.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestedTimeToleranceBefore"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetImageGenerator/requestedTimeToleranceBefore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestedTimeToleranceBefore"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestedTimeToleranceBefore",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avassetimagegenerator/requestedtimetolerancebefore"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/media-reading-and-writing": {
+      "abstract": [
+        {
+          "text": "Read images from video, export to alternative formats, and perform sample-level reading and writing of media data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/media-reading-and-writing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media reading and writing",
+      "type": "topic",
+      "url": "/documentation/avfoundation/media-reading-and-writing"
+    },
+    "doc://com.apple.documentation/documentation/CoreMedia/CMTime/zero": {
+      "abstract": [
+        {
+          "text": "A value that represents time zero.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zero"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMTime/zero",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "zero",
+      "type": "topic",
+      "url": "/documentation/CoreMedia/CMTime/zero"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-4009055": {
+      "alt": "A top-down illustration that shows the data flow when using an AVAssetImageGenerator. At the top of the diagram is a rectangle that represents an AVAsset object. From the asset, there’s an arrowed-line that points to another rectangle in the middle of the diagram that represents an AVAssetImageGenerator. Below the image generator are five rectangles, arranged horizontally, that represent the image-generation requests. There is an arrowed line from the image generator to each image request that shows it’s generated three images and has two more to process.",
+      "identifier": "media-4009055",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/801bc39c84e570688e33d7858a00f84d/media-4009055@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/af692620c09aad50a19f5317ff2784b8/media-4009055~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Image-generation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetImageGenerator"
+      ],
+      "title": "Image generation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Image-generation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVAssetImageGenerator"
+              ],
+              "title": "Image generation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetImageGenerator~1requestedTimeToleranceAfter/title",
+          "value": "requestedTimeToleranceAfter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetImageGenerator~1requestedTimeToleranceAfter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "requestedTimeToleranceAfter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetImageGenerator~1requestedTimeToleranceBefore/title",
+          "value": "requestedTimeToleranceBefore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetImageGenerator~1requestedTimeToleranceBefore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "requestedTimeToleranceBefore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetImageGenerator/title",
+          "value": "AVAssetImageGenerator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetImageGenerator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetImageGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetImageGenerator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAssetImageGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetImageGenerator~1maximumSize/title",
+          "value": "maximumSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVAssetImageGenerator~1maximumSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maximumSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreMedia~1CMTime~1zero/title",
+          "value": "kCMTimeZero"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreMedia~1CMTime~1zero/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@CMTime",
+              "text": "CMTime"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCMTimeZero"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/creating-images-from-a-video-asset"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/creating-images-from-a-video-asset"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1162 @@
+{
+  "abstract": [
+    {
+      "text": "An abstract class that represents a communication channel.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsport"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1399495,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSPort",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSPort"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSPort"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Communication occurs between ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsport",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects, which typically reside in different threads or tasks. The distributed objects system uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsport",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects to send ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsportmessage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects back and forth. Implement interapplication communication using distributed objects whenever possible and use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsport",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects only when necessary. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To receive incoming messages, add ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsport",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects to an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsrunloop",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as input sources. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsconnection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects automatically add their receive port when initialized.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsport",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object receives a port message, it forwards the message to its delegate in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachportdelegate/1399509-handlemachmessage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsportdelegate/1399513-handleportmessage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " message. The delegate should implement only one of these methods to process the incoming message in whatever form desired. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachportdelegate/1399509-handlemachmessage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides a message as a raw Mach message beginning with a ",
+              "type": "text"
+            },
+            {
+              "code": "msg_header_t",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsportdelegate/1399513-handleportmessage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides a message as an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsportmessage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which is an object-oriented wrapper for a Mach message. If a delegate has not been set, the ",
+              "type": "text"
+            },
+            {
+              "code": "NSPort",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object handles the message itself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you are finished using a port object, you must explicitly invalidate the port object prior to sending it a ",
+              "type": "text"
+            },
+            {
+              "code": "release",
+              "type": "codeVoice"
+            },
+            {
+              "text": " message. Similarly, if your application uses garbage collection, you must invalidate the port object before removing any strong references to it. If you do not invalidate the port, the resulting port object may linger and create a memory leak. To invalidate the port object, invoke its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsport/1399521-invalidate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Foundation defines three concrete subclasses of ",
+              "type": "text"
+            },
+            {
+              "code": "NSPort",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachport",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmessageport",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " allow local (on the same machine) communication only. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nssocketport",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " allows for both local and remote communication, but may be more expensive than the others for the local case. When creating an ",
+              "type": "text"
+            },
+            {
+              "code": "NSPort",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object, using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsport/1807189-allocwithzone",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsport/1399515-port",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachport",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object is created instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsport",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " conforms to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " protocol, but only supports coding by an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsportcoder",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsport",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " and its subclasses do not support archiving.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsconnection": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsconnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSConnection",
+      "type": "topic",
+      "url": "/documentation/foundation/nsconnection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshost": {
+      "abstract": [
+        {
+          "text": "A representation of an individual host on the network.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshost",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHost",
+      "type": "topic",
+      "url": "/documentation/foundation/nshost"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmachport": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMachPort",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmachport"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmachportdelegate/1399509-handlemachmessage": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleMachMessage:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachportdelegate/1399509-handlemachmessage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleMachMessage:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmachportdelegate/1399509-handlemachmessage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmessageport": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmessageport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMessagePort",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmessageport"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsport": {
+      "abstract": [
+        {
+          "text": "An abstract class that represents a communication channel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPort",
+      "type": "topic",
+      "url": "/documentation/foundation/nsport"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsport/1399482-sendbeforedate": {
+      "abstract": [
+        {
+          "text": "This method is provided for subclasses that have custom types of ",
+          "type": "text"
+        },
+        {
+          "code": "NSPort",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendBeforeDate:msgid:components:from:reserved:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsport/1399482-sendbeforedate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendBeforeDate:msgid:components:from:reserved:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsport/1399482-sendbeforedate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsport/1399501-removeconnection": {
+      "abstract": [
+        {
+          "text": "Removes the receiver from the list of ports monitored by ",
+          "type": "text"
+        },
+        {
+          "code": "runLoop",
+          "type": "codeVoice"
+        },
+        {
+          "text": " in the given input mode, ",
+          "type": "text"
+        },
+        {
+          "code": "mode",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeConnection:fromRunLoop:forMode:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsport/1399501-removeconnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeConnection:fromRunLoop:forMode:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsport/1399501-removeconnection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsport/1399503-valid": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the receiver is valid.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsport/1399503-valid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "valid",
+      "type": "topic",
+      "url": "/documentation/foundation/nsport/1399503-valid"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsport/1399515-port": {
+      "abstract": [
+        {
+          "text": "Creates and returns a new ",
+          "type": "text"
+        },
+        {
+          "code": "NSPort",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object capable of both sending and receiving messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "port"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsport/1399515-port",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "port",
+      "type": "topic",
+      "url": "/documentation/foundation/nsport/1399515-port"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsport/1399517-scheduleinrunloop": {
+      "abstract": [
+        {
+          "text": "This method should be implemented by a subclass to set up monitoring of a port when added to a given run loop in a given input mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheduleInRunLoop:forMode:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsport/1399517-scheduleinrunloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scheduleInRunLoop:forMode:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsport/1399517-scheduleinrunloop"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsport/1399521-invalidate": {
+      "abstract": [
+        {
+          "text": "Marks the receiver as invalid and posts an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsportdidbecomeinvalidnotification",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " to the default notification center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsport/1399521-invalidate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invalidate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsport/1399521-invalidate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsport/1399525-removefromrunloop": {
+      "abstract": [
+        {
+          "text": "This method should be implemented by a subclass to stop monitoring of a port when removed from a give run loop in a given input mode. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeFromRunLoop:forMode:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsport/1399525-removefromrunloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeFromRunLoop:forMode:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsport/1399525-removefromrunloop"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsport/1399527-setdelegate": {
+      "abstract": [
+        {
+          "text": "Sets the receiver’s delegate to a given object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDelegate:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsport/1399527-setdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDelegate:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsport/1399527-setdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsport/1399529-reservedspacelength": {
+      "abstract": [
+        {
+          "text": "The number of bytes of space reserved by the receiver for sending data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsport/1399529-reservedspacelength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reservedSpaceLength",
+      "type": "topic",
+      "url": "/documentation/foundation/nsport/1399529-reservedspacelength"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsport/1399537-sendbeforedate": {
+      "abstract": [
+        {
+          "text": "This method is provided for subclasses that have custom types of ",
+          "type": "text"
+        },
+        {
+          "code": "NSPort",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendBeforeDate:components:from:reserved:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsport/1399537-sendbeforedate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendBeforeDate:components:from:reserved:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsport/1399537-sendbeforedate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsport/1399545-delegate": {
+      "abstract": [
+        {
+          "text": "Returns the receiver’s delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsport/1399545-delegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsport/1399545-delegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsport/1399553-addconnection": {
+      "abstract": [
+        {
+          "text": "Adds the receiver to the list of ports monitored by a given run loop for the given input mode.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addConnection:toRunLoop:forMode:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsport/1399553-addconnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addConnection:toRunLoop:forMode:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsport/1399553-addconnection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsport/1807189-allocwithzone": {
+      "abstract": [
+        {
+          "text": "Returns an instance of the ",
+          "type": "text"
+        },
+        {
+          "code": "NSMachPort",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsport/1807189-allocwithzone",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "allocWithZone:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsport/1807189-allocwithzone"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsportcoder": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsportcoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPortCoder",
+      "type": "topic",
+      "url": "/documentation/foundation/nsportcoder"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsportdelegate/1399513-handleportmessage": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handlePortMessage:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsportdelegate/1399513-handleportmessage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handlePortMessage:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsportdelegate/1399513-handleportmessage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsportdidbecomeinvalidnotification": {
+      "abstract": [
+        {
+          "text": "Posted from the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsport/1399521-invalidate",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " method, which is invoked when the ",
+          "type": "text"
+        },
+        {
+          "code": "NSPort",
+          "type": "codeVoice"
+        },
+        {
+          "text": " is deallocated or when it notices that its communication channel has been damaged. The notification object is the ",
+          "type": "text"
+        },
+        {
+          "code": "NSPort",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object that has become invalid. This notification does not contain a ",
+          "type": "text"
+        },
+        {
+          "code": "userInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " dictionary.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsportdidbecomeinvalidnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPortDidBecomeInvalidNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nsportdidbecomeinvalidnotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsportmessage": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsportmessage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPortMessage",
+      "type": "topic",
+      "url": "/documentation/foundation/nsportmessage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsrunloop": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsrunloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRunLoop",
+      "type": "topic",
+      "url": "/documentation/foundation/nsrunloop"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssocketnativehandle": {
+      "abstract": [
+        {
+          "text": "Type for the platform-specific native socket handle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssocketnativehandle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSocketNativeHandle",
+      "type": "topic",
+      "url": "/documentation/foundation/nssocketnativehandle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssocketport": {
+      "abstract": [
+        {
+          "text": "A port that represents a BSD socket.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssocketport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSocketPort",
+      "type": "topic",
+      "url": "/documentation/foundation/nssocketport"
+    },
+    "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Streams, Sockets, and Ports",
+      "type": "topic",
+      "url": "/documentation/foundation/streams_sockets_and_ports"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418956-nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscoding",
+        "doc://com.apple.documentation/documentation/foundation/nscopying"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nshost",
+        "doc://com.apple.documentation/documentation/foundation/nssocketport"
+      ],
+      "title": "Sockets"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1653473",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsport/1807189-allocwithzone",
+        "doc://com.apple.documentation/documentation/foundation/nsport/1399515-port"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Instances"
+    },
+    {
+      "anchor": "1653522",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsport/1399521-invalidate",
+        "doc://com.apple.documentation/documentation/foundation/nsport/1399503-valid"
+      ],
+      "kind": "taskGroup",
+      "title": "Validation"
+    },
+    {
+      "anchor": "1653566",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsport/1399527-setdelegate",
+        "doc://com.apple.documentation/documentation/foundation/nsport/1399545-delegate"
+      ],
+      "kind": "taskGroup",
+      "title": "Setting the Delegate"
+    },
+    {
+      "anchor": "1653611",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsport/1399553-addconnection",
+        "doc://com.apple.documentation/documentation/foundation/nsport/1399501-removeconnection"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Connections"
+    },
+    {
+      "anchor": "1653648",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsport/1399537-sendbeforedate",
+        "doc://com.apple.documentation/documentation/foundation/nsport/1399482-sendbeforedate",
+        "doc://com.apple.documentation/documentation/foundation/nsport/1399529-reservedspacelength"
+      ],
+      "kind": "taskGroup",
+      "title": "Setting Information"
+    },
+    {
+      "anchor": "1653695",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsport/1399525-removefromrunloop",
+        "doc://com.apple.documentation/documentation/foundation/nsport/1399517-scheduleinrunloop"
+      ],
+      "kind": "taskGroup",
+      "title": "Port Monitoring"
+    },
+    {
+      "anchor": "1653757",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsportdidbecomeinvalidnotification"
+      ],
+      "kind": "taskGroup",
+      "title": "Notifications"
+    },
+    {
+      "anchor": "2881042",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nssocketnativehandle"
+      ],
+      "kind": "taskGroup",
+      "title": "Data Types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsport"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/port"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

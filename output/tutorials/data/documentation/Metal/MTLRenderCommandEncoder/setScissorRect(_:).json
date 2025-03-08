@@ -1,0 +1,968 @@
+{
+  "abstract": [
+    {
+      "text": "Configures a rectangle for the fragment scissor test.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setScissorRect(_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MTLRenderCommandEncoder(im)setScissorRect:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "setScissorRect"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@SA@MTLScissorRect",
+        "text": "MTLScissorRect"
+      },
+      {
+        "kind": "text",
+        "text": ")"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "setScissorRect:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "required": true,
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "setScissorRect(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "setScissorRect"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "rect"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLScissorRect",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@MTLScissorRect",
+              "text": "MTLScissorRect"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLScissorRect",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instance that represents a rectangle that needs to lie completely within the current render attachment.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "rect"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The rendering pipeline discards any fragments that lie outside the scissor rectangle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The default scissor rectangle is the same size as the current render attachment, with its origin coordinates in the upper-left corner at ",
+              "type": "text"
+            },
+            {
+              "code": "(0, 0)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can change the render pass’s scissor rectangle configuration by calling this method again or by calling the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setScissorRects(_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An interface that encodes a render pass into a command buffer, including all its draw calls and configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setScissorRect(_:)": {
+      "abstract": [
+        {
+          "text": "Configures a rectangle for the fragment scissor test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setScissorRect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLScissorRect",
+          "text": "MTLScissorRect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setScissorRect(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setScissorRect:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setScissorRect(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setscissorrect(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setScissorRects(_:)": {
+      "abstract": [
+        {
+          "text": "Configures multiple rectangles for the fragment scissor test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setScissorRects"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLScissorRect",
+          "text": "MTLScissorRect"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setScissorRects(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setScissorRects(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setscissorrects(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setScissorRects:count:": {
+      "abstract": [
+        {
+          "text": "Configures multiple rectangles for the fragment scissor test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setScissorRects:count:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setScissorRects:count:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setScissorRects:count:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setScissorRects:count:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setscissorrects:count:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setViewport(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the render pipeline with a viewport that applies a transformation and a clipping rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setViewport"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLViewport",
+          "text": "MTLViewport"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setViewport(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setViewport:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setViewport(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setviewport(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setViewports(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the render pipeline with multiple viewports that apply transformations and clipping rectangles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setViewports"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLViewport",
+          "text": "MTLViewport"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setViewports(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setViewports(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setviewports(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setViewports:count:": {
+      "abstract": [
+        {
+          "text": "Configures the render pipeline with multiple viewports that apply transformations and clipping rectangles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setViewports:count:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setViewports:count:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setViewports:count:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setViewports:count:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setviewports:count:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLScissorRect": {
+      "abstract": [
+        {
+          "text": "A rectangle for the scissor fragment test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLScissorRect"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLScissorRect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLScissorRect"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLScissorRect",
+      "type": "topic",
+      "url": "/documentation/metal/mtlscissorrect"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-Viewport-and-Scissor-Behavior",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setViewport(_:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setViewports(_:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setScissorRects(_:)"
+      ],
+      "title": "Configuring Viewport and Scissor Behavior"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "setScissorRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setScissorRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.metal/documentation/Metal",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Configuring-Viewport-and-Scissor-Behavior",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setViewport(_:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setViewports:count:",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setScissorRects:count:"
+              ],
+              "title": "Configuring Viewport and Scissor Behavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "setScissorRect:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.metal/documentation/Metal/MTLScissorRect",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@SA@MTLScissorRect",
+                    "text": "MTLScissorRect"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "rect"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.metal/documentation/Metal/MTLScissorRect",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " instance that represents a rectangle that needs to lie completely within the current render attachment.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "rect"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setViewport(_:)/title",
+          "value": "setViewport:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setViewport(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setViewport:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setScissorRect(_:)/title",
+          "value": "setScissorRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setScissorRect(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setScissorRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/title",
+          "value": "MTLRenderCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLScissorRect/title",
+          "value": "MTLScissorRect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLScissorRect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLScissorRect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLScissorRect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLScissorRect"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mtlrendercommandencoder/setscissorrect(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/mtlrendercommandencoder/setscissorrect(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

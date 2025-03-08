@@ -1,0 +1,1035 @@
+{
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/corefoundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1666669,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Foundation"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "CFNumber"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CFNumber encapsulates C scalar (numeric) types. It provides functions for setting and accessing the value as any basic C type. It also provides a compare function to determine the ordering of two CFNumber objects. CFNumber objects are used to wrap numerical values for use in Core Foundation property lists and collections.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CFNumber objects are not intended as a replacement for C scalar values and should not be used in APIs or implementations where scalar values are more appropriate and efficient.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In order to improve performance, some commonly-used numbers (such as ",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ") are uniqued. You should not expect that allocating multiple CFNumber instances will necessarily result in distinct objects.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CFNumber is “toll-free bridged” with its Cocoa Foundation counterpart, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This means that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. Therefore, in a method where you see an ",
+              "type": "text"
+            },
+            {
+              "code": "NSNumber *",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, you can pass in a ",
+              "type": "text"
+            },
+            {
+              "code": "CFNumberRef",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and in a function where you see a ",
+              "type": "text"
+            },
+            {
+              "code": "CFNumberRef",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, you can pass in an NSNumber instance. This fact also applies to concrete subclasses of NSNumber. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1744898",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information on toll-free bridging.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1696123": {
+      "identifier": "devLink-1696123",
+      "title": "Property List Programming Topics for Core Foundation",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFPropertyLists/CFPropertyLists.html#//apple_ref/doc/uid/10000130i"
+    },
+    "devLink-1744898": {
+      "identifier": "devLink-1744898",
+      "title": "Toll-Free Bridged Types",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Foundation",
+      "type": "topic",
+      "url": "/documentation/corefoundation"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1541730-cfnumbergettypeid": {
+      "abstract": [
+        {
+          "text": "Returns the type identifier for the CFNumber opaque type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFNumberGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1541730-cfnumbergettypeid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFNumberGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1541730-cfnumbergettypeid"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542018-cfnumbercompare": {
+      "abstract": [
+        {
+          "text": "Compares two CFNumber objects and returns a comparison result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFNumberCompare"
+        },
+        {
+          "kind": "text",
+          "text": "(CFNumber!, CFNumber!, UnsafeMutableRawPointer!) -> CFComparisonResult"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542018-cfnumbercompare",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFNumberCompare(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542018-cfnumbercompare"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542080-cfnumbergetbytesize": {
+      "abstract": [
+        {
+          "text": "Returns the number of bytes used by a CFNumber object to store its value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFNumberGetByteSize"
+        },
+        {
+          "kind": "text",
+          "text": "(CFNumber!) -> CFIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542080-cfnumbergetbytesize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFNumberGetByteSize(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542080-cfnumbergetbytesize"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542182-cfnumbercreate": {
+      "abstract": [
+        {
+          "text": "Creates a CFNumber object using a specified value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFNumberCreate"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFNumberType, UnsafeRawPointer!) -> CFNumber!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542182-cfnumbercreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFNumberCreate(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542182-cfnumbercreate"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543114-cfnumbergetvalue": {
+      "abstract": [
+        {
+          "text": "Obtains the value of a CFNumber object cast to a specified type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFNumberGetValue"
+        },
+        {
+          "kind": "text",
+          "text": "(CFNumber!, CFNumberType, UnsafeMutableRawPointer!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543114-cfnumbergetvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFNumberGetValue(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543114-cfnumbergetvalue"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543131-cfnumberisfloattype": {
+      "abstract": [
+        {
+          "text": "Determines whether a CFNumber object contains a value stored as one of the defined floating point types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFNumberIsFloatType"
+        },
+        {
+          "kind": "text",
+          "text": "(CFNumber!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543131-cfnumberisfloattype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFNumberIsFloatType(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543131-cfnumberisfloattype"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543388-cfnumbergettype": {
+      "abstract": [
+        {
+          "text": "Returns the type used by a CFNumber object to store its value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFNumberGetType"
+        },
+        {
+          "kind": "text",
+          "text": "(CFNumber!) -> CFNumberType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543388-cfnumbergettype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFNumberGetType(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543388-cfnumbergettype"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfallocator-s29": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfallocator-s29",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFAllocator",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfallocator-s29"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfarray-s28": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfarray-s28",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFArray",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfarray-s28"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfattributedstring-s1s": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfattributedstring-s1s",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFAttributedString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfattributedstring-s1s"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbag-s1l": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbag-s1l",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBag",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbag-s1l"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbinaryheap-s11": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbinaryheap-s11",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBinaryHeap",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbinaryheap-s11"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbitvector-s0t": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbitvector-s0t",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBitVector",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbitvector-s0t"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfboolean-s0p": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfboolean-s0p",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBoolean",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfboolean-s0p"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfbundle-s0a": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfbundle-s0a",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFBundle",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfbundle-s0a"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfcalendar-s01": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfcalendar-s01",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFCalendar",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfcalendar-s01"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfcharacterset-rvm": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfcharacterset-rvm",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFCharacterSet",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfcharacterset-rvm"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdata-rv9": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdata-rv9",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFData",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdata-rv9"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdate-rv5": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdate-rv5",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFDate",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdate-rv5"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdateformatter-rv6": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdateformatter-rv6",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFDateFormatter",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdateformatter-rv6"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFDictionary",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdictionary-rum"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cferror-ru8": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cferror-ru8",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFError",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cferror-ru8"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cffiledescriptor-ru3": {
+      "abstract": [
+        {
+          "text": "The CFFileDescriptor provides an opaque type to monitor file descriptors for read and write activity via CFRunLoop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cffiledescriptor-ru3",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFFileDescriptor",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cffiledescriptor-ru3"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cflocale-rsj": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cflocale-rsj",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFLocale",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cflocale-rsj"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmachport-rsc": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmachport-rsc",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMachPort",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmachport-rsc"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmessageport-rs2": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmessageport-rs2",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMessagePort",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmessageport-rs2"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablearray-rrk": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablearray-rrk",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableArray",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablearray-rrk"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutableattributedstring-rqp": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutableattributedstring-rqp",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableAttributedString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutableattributedstring-rqp"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablebag-rqn": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablebag-rqn",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableBag",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablebag-rqn"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablebitvector-rqf": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablebitvector-rqf",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableBitVector",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablebitvector-rqf"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablecharacterset-rq3": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablecharacterset-rq3",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableCharacterSet",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablecharacterset-rq3"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutabledata-rps": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutabledata-rps",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableData",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutabledata-rps"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutabledictionary-rpl": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutabledictionary-rpl",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableDictionary",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutabledictionary-rpl"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutableset-rpe": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutableset-rpe",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableSet",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutableset-rpe"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablestring-rn7": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablestring-rn7",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFMutableString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablestring-rn7"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfnotificationcenter-rkv": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfnotificationcenter-rkv",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFNotificationCenter",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfnotificationcenter-rkv"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfnull-rkr": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfnull-rkr",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFNull",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfnull-rkr"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfnumber": {
+      "abstract": [
+        {
+          "text": "A reference to a CFNumber object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFNumber",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfnumber"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFNumber",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfnumber-rjd"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfnumber/predefined_values": {
+      "abstract": [
+        {
+          "text": "CFNumber provides some predefined number values. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfnumber/predefined_values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Predefined Values",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfnumber/predefined_values"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfnumberformatter-rjs": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfnumberformatter-rjs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFNumberFormatter",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfnumberformatter-rjs"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfnumbertype": {
+      "abstract": [
+        {
+          "text": "Flags used by CFNumber to indicate the data type of a value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFNumberType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfnumbertype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFNumberType",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfnumbertype"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfplugin-rip": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfplugin-rip",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFPlugIn",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfplugin-rip"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfplugininstance-rja": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfplugininstance-rja",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFPlugInInstance",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfplugininstance-rja"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfpropertylist-rif": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfpropertylist-rif",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFPropertyList",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfpropertylist-rif"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfreadstream-ri6": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfreadstream-ri6",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFReadStream",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfreadstream-ri6"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunloop-rht": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunloop-rht",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFRunLoop",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunloop-rht"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunloopobserver-ri3": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunloopobserver-ri3",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFRunLoopObserver",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunloopobserver-ri3"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunloopsource-rhr": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunloopsource-rhr",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFRunLoopSource",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunloopsource-rhr"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimer-rhk": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimer-rhk",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFRunLoopTimer",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunlooptimer-rhk"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfset-rgt": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfset-rgt",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFSet",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfset-rgt"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfsocket-rg7": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfsocket-rg7",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFSocket",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfsocket-rg7"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstring-rfh"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfstringtokenizer-rf8": {
+      "abstract": [
+        {
+          "text": "CFStringTokenizer allows you to tokenize strings into words, sentences or paragraphs in a language-neutral way. It supports languages such as Japanese and Chinese that do not delimit words by spaces, as well as de-compounding German compounds. You can obtain Latin transcription for tokens. It also provides language identification API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstringtokenizer-rf8",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFStringTokenizer",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstringtokenizer-rf8"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cftimezone-rec": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cftimezone-rec",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFTimeZone",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cftimezone-rec"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cftree-rds": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cftree-rds",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFTree",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cftree-rds"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cftype": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cftype",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFType",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cftype"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfurl-rd7": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfurl-rd7",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFURL",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfurl-rd7"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfusernotification-rd5": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfusernotification-rd5",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFUserNotification",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfusernotification-rd5"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfuuid-rci": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfuuid-rci",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFUUID",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfuuid-rci"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfwritestream-rc8": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfwritestream-rc8",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFWriteStream",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfwritestream-rc8"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfxmlnode-rbu": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfxmlnode-rbu",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFXMLNode",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfxmlnode-rbu"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfxmlparser-rc1": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfxmlparser-rc1",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFXMLParser",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfxmlparser-rc1"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfxmltree-rbh": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfxmltree-rbh",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFXMLTree",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfxmltree-rbh"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumber": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNumber",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumber"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/cfallocator-s29",
+        "doc://com.apple.documentation/documentation/corefoundation/cfarray-s28",
+        "doc://com.apple.documentation/documentation/corefoundation/cfattributedstring-s1s",
+        "doc://com.apple.documentation/documentation/corefoundation/cfbag-s1l",
+        "doc://com.apple.documentation/documentation/corefoundation/cfbinaryheap-s11",
+        "doc://com.apple.documentation/documentation/corefoundation/cfbitvector-s0t",
+        "doc://com.apple.documentation/documentation/corefoundation/cfboolean-s0p",
+        "doc://com.apple.documentation/documentation/corefoundation/cfbundle-s0a",
+        "doc://com.apple.documentation/documentation/corefoundation/cfcalendar-s01",
+        "doc://com.apple.documentation/documentation/corefoundation/cfcharacterset-rvm",
+        "doc://com.apple.documentation/documentation/corefoundation/cfdata-rv9",
+        "doc://com.apple.documentation/documentation/corefoundation/cfdate-rv5",
+        "doc://com.apple.documentation/documentation/corefoundation/cfdateformatter-rv6",
+        "doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum",
+        "doc://com.apple.documentation/documentation/corefoundation/cferror-ru8",
+        "doc://com.apple.documentation/documentation/corefoundation/cffiledescriptor-ru3",
+        "doc://com.apple.documentation/documentation/corefoundation/cflocale-rsj",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmachport-rsc",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmessageport-rs2",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutablearray-rrk",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutableattributedstring-rqp",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutablebag-rqn",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutablebitvector-rqf",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutablecharacterset-rq3",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutabledata-rps",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutabledictionary-rpl",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutableset-rpe",
+        "doc://com.apple.documentation/documentation/corefoundation/cfmutablestring-rn7",
+        "doc://com.apple.documentation/documentation/corefoundation/cfnotificationcenter-rkv",
+        "doc://com.apple.documentation/documentation/corefoundation/cfnull-rkr",
+        "doc://com.apple.documentation/documentation/corefoundation/cfnumberformatter-rjs",
+        "doc://com.apple.documentation/documentation/corefoundation/cfplugin-rip",
+        "doc://com.apple.documentation/documentation/corefoundation/cfplugininstance-rja",
+        "doc://com.apple.documentation/documentation/corefoundation/cfpropertylist-rif",
+        "doc://com.apple.documentation/documentation/corefoundation/cfreadstream-ri6",
+        "doc://com.apple.documentation/documentation/corefoundation/cfrunloop-rht",
+        "doc://com.apple.documentation/documentation/corefoundation/cfrunloopobserver-ri3",
+        "doc://com.apple.documentation/documentation/corefoundation/cfrunloopsource-rhr",
+        "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimer-rhk",
+        "doc://com.apple.documentation/documentation/corefoundation/cfset-rgt",
+        "doc://com.apple.documentation/documentation/corefoundation/cfsocket-rg7",
+        "doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh",
+        "doc://com.apple.documentation/documentation/corefoundation/cfstringtokenizer-rf8",
+        "doc://com.apple.documentation/documentation/corefoundation/cftimezone-rec",
+        "doc://com.apple.documentation/documentation/corefoundation/cftree-rds",
+        "doc://com.apple.documentation/documentation/corefoundation/cftype",
+        "doc://com.apple.documentation/documentation/corefoundation/cfurl-rd7",
+        "doc://com.apple.documentation/documentation/corefoundation/cfusernotification-rd5",
+        "doc://com.apple.documentation/documentation/corefoundation/cfuuid-rci",
+        "doc://com.apple.documentation/documentation/corefoundation/cfwritestream-rc8",
+        "doc://com.apple.documentation/documentation/corefoundation/cfxmlnode-rbu",
+        "doc://com.apple.documentation/documentation/corefoundation/cfxmlparser-rc1",
+        "doc://com.apple.documentation/documentation/corefoundation/cfxmltree-rbh"
+      ],
+      "title": "Opaque Types"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "devLink-1696123"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1677345",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1542182-cfnumbercreate"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Number"
+    },
+    {
+      "anchor": "1677353",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1542080-cfnumbergetbytesize",
+        "doc://com.apple.documentation/documentation/corefoundation/1543388-cfnumbergettype",
+        "doc://com.apple.documentation/documentation/corefoundation/1543114-cfnumbergetvalue",
+        "doc://com.apple.documentation/documentation/corefoundation/1543131-cfnumberisfloattype"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Information About Numbers"
+    },
+    {
+      "anchor": "1677397",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1542018-cfnumbercompare"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing Numbers"
+    },
+    {
+      "anchor": "1677410",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1541730-cfnumbergettypeid"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the CFNumber Type ID"
+    },
+    {
+      "anchor": "1666804",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/cfnumber"
+      ],
+      "kind": "taskGroup",
+      "title": "Data Types"
+    },
+    {
+      "anchor": "1666846",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/cfnumbertype",
+        "doc://com.apple.documentation/documentation/corefoundation/cfnumber/predefined_values"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/corefoundation/cfnumber"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/corefoundation/cfnumber-rjd"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

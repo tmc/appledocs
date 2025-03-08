@@ -1,0 +1,1748 @@
+{
+  "abstract": [
+    {
+      "text": "Make your AppKit apps accessible to everyone who uses macOS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/accessibility-for-appkit"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Accessibility for AppKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Making your app accessible means making it usable by everyone. By designing your app with accessibility in mind, you make it possible for everyone to enjoy your app. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accessibility",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AppKit controls and views come with built-in accessibility, providing an accessible user experience by default. Typically, you don’t need to do extra work to enable the standard accessibility features.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In some cases, you might want to modify the default values to better represent your app, to provide additional context, or to modify the user’s flow through the app. AppKit makes these customizations straightforward, involving a few lines of code or Interface Builder adjustments as you define your user interface. For more information about customizing accessibility for AppKit elements, see  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityProtocol",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app contains custom user interface elements that subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", enhance the accessibility of those elements using the role-based protocols in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/custom-controls",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If your app contains custom user interface elements that don’t inherit from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or one of the other AppKit classes with built-in accessibility, make those elements accessible by subclassing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElement-swift.class",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you build your app with SwiftUI, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View-Accessibility",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Accessibility-PageImage-card.png": {
+      "alt": "",
+      "identifier": "Accessibility-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/718b8a161d77a3423dde2dd53ac35ffb/Accessibility-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ed433f19cfa41ebf0c9f495a066b6bbd/Accessibility-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct": {
+      "abstract": [
+        {
+          "text": "A namespace for accessibility symbols for AppKit apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibility"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibility"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibility",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Action": {
+      "abstract": [
+        {
+          "text": "Constants that describe types of actions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Action"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Action",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Action"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibility.Action",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct/action"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/AnnotationAttributeKey": {
+      "abstract": [
+        {
+          "text": "Keys for annotation attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnnotationAttributeKey"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/AnnotationAttributeKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnnotationAttributeKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibility.AnnotationAttributeKey",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct/annotationattributekey"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Attribute": {
+      "abstract": [
+        {
+          "text": "Constants that describe attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Attribute"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Attribute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Attribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibility.Attribute",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct/attribute"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/FontAttributeKey": {
+      "abstract": [
+        {
+          "text": "Keys for font attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FontAttributeKey"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/FontAttributeKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FontAttributeKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibility.FontAttributeKey",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct/fontattributekey"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/OrientationValue": {
+      "abstract": [
+        {
+          "text": "Values that indicate the orientation of user interface elements, such as scroll bars and split views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OrientationValue"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/OrientationValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OrientationValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibility.OrientationValue",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct/orientationvalue"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/ParameterizedAttribute": {
+      "abstract": [
+        {
+          "text": "Values that describe parameterized attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ParameterizedAttribute"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/ParameterizedAttribute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ParameterizedAttribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibility.ParameterizedAttribute",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Role": {
+      "abstract": [
+        {
+          "text": "Values that describe types of objects that accessibility elements represent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Role"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Role",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Role"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibility.Role",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct/role"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/RulerMarkerTypeValue": {
+      "abstract": [
+        {
+          "text": "Values that describe ruler marker types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RulerMarkerTypeValue"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/RulerMarkerTypeValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RulerMarkerTypeValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibility.RulerMarkerTypeValue",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct/rulermarkertypevalue"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/RulerUnitValue": {
+      "abstract": [
+        {
+          "text": "Values that indicate the unit values of a ruler or layout area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RulerUnitValue"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/RulerUnitValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RulerUnitValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibility.RulerUnitValue",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct/rulerunitvalue"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/SortDirectionValue": {
+      "abstract": [
+        {
+          "text": "Values that indicate the sort direction of a column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SortDirectionValue"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/SortDirectionValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SortDirectionValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibility.SortDirectionValue",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct/sortdirectionvalue"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Subrole": {
+      "abstract": [
+        {
+          "text": "Values that describe specialized object subtypes that accessibility elements represent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Subrole"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Subrole",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Subrole"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibility.Subrole",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility-swift.struct/subrole"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityAnnotationPosition": {
+      "abstract": [
+        {
+          "text": "Constants that specify the position where the annotation applies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityAnnotationPosition"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityAnnotationPosition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityAnnotationPosition"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityAnnotationPosition",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilityannotationposition"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElement-swift.class": {
+      "abstract": [
+        {
+          "text": "The basic infrastructure necessary for interacting with an assistive app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityElement"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElement-swift.class",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityElement",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilityelement-swift.class"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityOrientation": {
+      "abstract": [
+        {
+          "text": "Values that indicate the orientation of accessibility elements, such as scroll bars and split views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityOrientation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityOrientation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityOrientation"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityOrientation",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilityorientation"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityProtocol": {
+      "abstract": [
+        {
+          "text": "The complete list of properties and methods for accessible elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityProtocol",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilityprotocol"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityRulerMarkerType": {
+      "abstract": [
+        {
+          "text": "Values that indicate the marker type of an accessibility element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityRulerMarkerType"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityRulerMarkerType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityRulerMarkerType"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityRulerMarkerType",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilityrulermarkertype"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilitySortDirection": {
+      "abstract": [
+        {
+          "text": "Values that indicate the sort direction of a column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilitySortDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilitySortDirection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilitySortDirection"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilitySortDirection",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilitysortdirection"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityUnits": {
+      "abstract": [
+        {
+          "text": "Values that indicate the unit values of a ruler or layout area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityUnits"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityUnits",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityUnits"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAccessibilityUnits",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibilityunits"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView": {
+      "abstract": [
+        {
+          "text": "The infrastructure for drawing, printing, and handling events in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/accessibility-functions": {
+      "abstract": [
+        {
+          "text": "Global accessibility functions for custom views and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/accessibility-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessibility Functions",
+      "type": "topic",
+      "url": "/documentation/appkit/accessibility-functions"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/custom-controls": {
+      "abstract": [
+        {
+          "text": "Support accessibility for custom user interface elements by adopting a role-specific protocol and implementing its methods.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/custom-controls",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Custom Controls",
+      "type": "topic",
+      "url": "/documentation/appkit/custom-controls"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/drag-and-drop": {
+      "abstract": [
+        {
+          "text": "Support the direct manipulation of your app’s content using drag and drop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/drag-and-drop",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Drag and Drop",
+      "type": "topic",
+      "url": "/documentation/appkit/drag-and-drop"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/gestures": {
+      "abstract": [
+        {
+          "text": "Encapsulate your app’s event-handling logic in gesture recognizers so that you can reuse that code throughout your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Gestures",
+      "type": "topic",
+      "url": "/documentation/appkit/gestures"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/menus-cursors-and-the-dock": {
+      "abstract": [
+        {
+          "text": "Implement menus and cursors to facilitate interactions with your app, and use your app’s Dock tile to convey updated information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/menus-cursors-and-the-dock",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Menus, Cursors, and the Dock",
+      "type": "topic",
+      "url": "/documentation/appkit/menus-cursors-and-the-dock"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/mouse-keyboard-and-trackpad": {
+      "abstract": [
+        {
+          "text": "Handle events related to mouse, keyboard, and trackpad input.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/mouse-keyboard-and-trackpad",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Mouse, Keyboard, and Trackpad",
+      "type": "topic",
+      "url": "/documentation/appkit/mouse-keyboard-and-trackpad"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/touch-bar": {
+      "abstract": [
+        {
+          "text": "Display interactive content and controls in the Touch Bar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/touch-bar",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Touch Bar",
+      "type": "topic",
+      "url": "/documentation/appkit/touch-bar"
+    },
+    "doc://com.apple.documentation/documentation/Accessibility": {
+      "abstract": [
+        {
+          "text": "Make your apps accessible to everyone who uses Apple devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accessibility",
+      "images": [
+        {
+          "identifier": "Accessibility-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accessibility",
+      "type": "topic",
+      "url": "/documentation/Accessibility"
+    },
+    "doc://com.apple.documentation/documentation/Accessibility/accessibility_design_for_mac_catalyst": {
+      "abstract": [
+        {
+          "text": "Improve navigation in your app by using keyboard shortcuts and accessibility containers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accessibility/accessibility_design_for_mac_catalyst",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Accessibility design for Mac Catalyst",
+      "type": "topic",
+      "url": "/documentation/Accessibility/accessibility_design_for_mac_catalyst"
+    },
+    "doc://com.apple.documentation/documentation/Accessibility/integrating_accessibility_into_your_app": {
+      "abstract": [
+        {
+          "text": "Make your app more accessible to users with disabilities by adding accessibility features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accessibility/integrating_accessibility_into_your_app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Integrating accessibility into your app",
+      "type": "topic",
+      "url": "/documentation/Accessibility/integrating_accessibility_into_your_app"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View-Accessibility": {
+      "abstract": [
+        {
+          "text": "Make your SwiftUI apps accessible to everyone, including people with disabilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View-Accessibility",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessibility modifiers",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View-Accessibility"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-Interactions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/mouse-keyboard-and-trackpad",
+        "doc://com.apple.appkit/documentation/AppKit/menus-cursors-and-the-dock",
+        "doc://com.apple.appkit/documentation/AppKit/gestures",
+        "doc://com.apple.appkit/documentation/AppKit/touch-bar",
+        "doc://com.apple.appkit/documentation/AppKit/drag-and-drop"
+      ],
+      "title": "User Interactions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/Accessibility/integrating_accessibility_into_your_app",
+        "doc://com.apple.documentation/documentation/Accessibility/accessibility_design_for_mac_catalyst"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "abstract": [
+        {
+          "text": "If you’re using a standard AppKit user interface element, you can override its existing accessibility attributes or use it as-is.",
+          "type": "text"
+        }
+      ],
+      "anchor": "AppKit-Elements",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityProtocol",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct"
+      ],
+      "title": "AppKit Elements"
+    },
+    {
+      "abstract": [
+        {
+          "text": "If you’re subclassing an AppKit view to create a custom user interface element, you can adopt one or more role-specific protocols to enhance that element’s accessibility.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Custom-View-Subclasses",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/custom-controls",
+        "doc://com.apple.appkit/documentation/AppKit/accessibility-functions"
+      ],
+      "title": "Custom View Subclasses"
+    },
+    {
+      "abstract": [
+        {
+          "text": "If you’re designing a completely custom user interface element that doesn’t subclass an AppKit view, you must subclass the accessibility element class.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Custom-Elements",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElement-swift.class"
+      ],
+      "title": "Custom Elements"
+    },
+    {
+      "anchor": "Accessibility-Types",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Action",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/AnnotationAttributeKey",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityAnnotationPosition",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Attribute",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/FontAttributeKey",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityOrientation",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/OrientationValue",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/ParameterizedAttribute",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Role",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityRulerMarkerType",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/RulerMarkerTypeValue",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/RulerUnitValue",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/SortDirectionValue",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilitySortDirection",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Subrole",
+        "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityUnits"
+      ],
+      "title": "Accessibility Types"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/Accessibility/integrating_accessibility_into_your_app",
+                "doc://com.apple.documentation/documentation/Accessibility/accessibility_design_for_mac_catalyst"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "If you’re using a standard AppKit user interface element, you can override its existing accessibility attributes or use it as-is.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "AppKit-Elements",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityProtocol"
+              ],
+              "title": "AppKit Elements"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "If you’re subclassing an AppKit view to create a custom user interface element, you can adopt one or more role-specific protocols to enhance that element’s accessibility.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Custom-View-Subclasses",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/custom-controls",
+                "doc://com.apple.appkit/documentation/AppKit/accessibility-functions"
+              ],
+              "title": "Custom View Subclasses"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "If you’re designing a completely custom user interface element that doesn’t subclass an AppKit view, you must subclass the accessibility element class.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Custom-Elements",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElement-swift.class"
+              ],
+              "title": "Custom Elements"
+            },
+            {
+              "anchor": "Accessibility-Types",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Action",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/AnnotationAttributeKey",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityAnnotationPosition",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Attribute",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/FontAttributeKey",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityOrientation",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/OrientationValue",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/ParameterizedAttribute",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Role",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityRulerMarkerType",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/RulerMarkerTypeValue",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/RulerUnitValue",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/SortDirectionValue",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilitySortDirection",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibility-swift.struct/Subrole",
+                "doc://com.apple.appkit/documentation/AppKit/NSAccessibilityUnits"
+              ],
+              "title": "Accessibility Types"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "User-Interactions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/mouse-keyboard-and-trackpad",
+                "doc://com.apple.appkit/documentation/AppKit/menus-cursors-and-the-dock",
+                "doc://com.apple.appkit/documentation/AppKit/gestures",
+                "doc://com.apple.appkit/documentation/AppKit/touch-bar",
+                "doc://com.apple.appkit/documentation/AppKit/drag-and-drop"
+              ],
+              "title": "User Interactions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1SortDirectionValue/title",
+          "value": "NSAccessibilitySortDirectionValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1SortDirectionValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilitySortDirectionValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1SortDirectionValue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilitySortDirectionValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1ParameterizedAttribute/title",
+          "value": "NSAccessibilityParameterizedAttributeName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1ParameterizedAttribute/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityParameterizedAttributeName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1ParameterizedAttribute/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityParameterizedAttributeName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityOrientation/title",
+          "value": "NSAccessibilityOrientation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityOrientation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityOrientation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityOrientation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityOrientation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/title",
+          "value": "NSView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1Subrole/title",
+          "value": "NSAccessibilitySubrole"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1Subrole/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilitySubrole"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1Subrole/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilitySubrole"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityUnits/title",
+          "value": "NSAccessibilityUnits"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityUnits/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityUnits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityUnits/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityUnits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilitySortDirection/title",
+          "value": "NSAccessibilitySortDirection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilitySortDirection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilitySortDirection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilitySortDirection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilitySortDirection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1RulerMarkerTypeValue/title",
+          "value": "NSAccessibilityRulerMarkerTypeValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1RulerMarkerTypeValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityRulerMarkerTypeValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1RulerMarkerTypeValue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityRulerMarkerTypeValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1OrientationValue/title",
+          "value": "NSAccessibilityOrientationValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1OrientationValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityOrientationValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1OrientationValue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityOrientationValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityProtocol/title",
+          "value": "NSAccessibility"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibility"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityProtocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibility"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1RulerUnitValue/title",
+          "value": "NSAccessibilityRulerUnitValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1RulerUnitValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityRulerUnitValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1RulerUnitValue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityRulerUnitValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityAnnotationPosition/title",
+          "value": "NSAccessibilityAnnotationPosition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityAnnotationPosition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityAnnotationPosition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityAnnotationPosition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityAnnotationPosition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityElement-swift.class/title",
+          "value": "NSAccessibilityElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityElement-swift.class/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityElement-swift.class/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityRulerMarkerType/title",
+          "value": "NSAccessibilityRulerMarkerType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityRulerMarkerType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityRulerMarkerType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibilityRulerMarkerType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityRulerMarkerType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1Action/title",
+          "value": "NSAccessibilityActionName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1Action/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityActionName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1Action/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityActionName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1FontAttributeKey/title",
+          "value": "NSAccessibilityFontAttributeKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1FontAttributeKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityFontAttributeKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1FontAttributeKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityFontAttributeKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1AnnotationAttributeKey/title",
+          "value": "NSAccessibilityAnnotationAttributeKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1AnnotationAttributeKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityAnnotationAttributeKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1AnnotationAttributeKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityAnnotationAttributeKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1Role/title",
+          "value": "NSAccessibilityRole"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1Role/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityRole"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1Role/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityRole"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1Attribute/title",
+          "value": "NSAccessibilityAttributeName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1Attribute/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityAttributeName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAccessibility-swift.struct~1Attribute/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityAttributeName"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/accessibility-for-appkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/accessibility-for-appkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

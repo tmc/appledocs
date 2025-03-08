@@ -1,0 +1,1536 @@
+{
+  "abstract": [
+    {
+      "text": "A structure that defines the placement of a toolbar item.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI20ToolbarItemPlacementV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ToolbarItemPlacement"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ToolbarItemPlacement"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "ToolbarItemPlacement"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ToolbarItemPlacement"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two types of placements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Semantic placements, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/principal",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/navigation",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", denote the intent of the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "item being added. SwiftUI determines the appropriate placement for",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the item based on this intent and its surrounding context, like the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "current platform.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Positional placements, such as",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/navigationBarLeading",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", denote a precise",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "placement for the item, usually for a particular platform.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS, iPadOS, and macOS, the system uses the space available to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "toolbar when determining how many items to render in the toolbar. If not",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "all items fit in the available space, an overflow menu may be created",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and remaining items placed in that menu.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarContent": {
+      "abstract": [
+        {
+          "text": "Conforming types represent items that can be placed in various locations",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in a toolbar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ToolbarContent"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ToolbarContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ToolbarContent",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbarcontent"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarContentBuilder": {
+      "abstract": [
+        {
+          "text": "Constructs a toolbar item set from multi-expression closures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ToolbarContentBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarContentBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ToolbarContentBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "ToolbarContentBuilder",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbarcontentbuilder"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItem": {
+      "abstract": [
+        {
+          "text": "A model that represents an item which can be placed in the toolbar",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "or navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ToolbarItem"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ToolbarItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "ToolbarItem",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbaritem"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemGroup": {
+      "abstract": [
+        {
+          "text": "A model that represents a group of ",
+          "type": "text"
+        },
+        {
+          "code": "ToolbarItem",
+          "type": "codeVoice"
+        },
+        {
+          "text": "s which can be placed in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the toolbar or navigation bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ToolbarItemGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ToolbarItemGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "ToolbarItemGroup",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbaritemgroup"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement": {
+      "abstract": [
+        {
+          "text": "A structure that defines the placement of a toolbar item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ToolbarItemPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ToolbarItemPlacement"
+        }
+      ],
+      "role": "symbol",
+      "title": "ToolbarItemPlacement",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbaritemplacement"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/accessoryBar(id:)": {
+      "abstract": [
+        {
+          "text": "Creates a unique accessory bar placement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryBar"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ToolbarItemPlacementV",
+          "text": "ToolbarItemPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/accessoryBar(id:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessoryBar(id:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbaritemplacement/accessorybar(id:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/automatic": {
+      "abstract": [
+        {
+          "text": "The system places the item automatically, depending on many factors",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "including the platform, size class, or presence of other items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automatic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ToolbarItemPlacementV",
+          "text": "ToolbarItemPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/automatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "automatic",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbaritemplacement/automatic"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/bottomBar": {
+      "abstract": [
+        {
+          "text": "Places the item in the bottom toolbar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bottomBar"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ToolbarItemPlacementV",
+          "text": "ToolbarItemPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/bottomBar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bottomBar",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbaritemplacement/bottombar"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/bottomOrnament": {
+      "abstract": [
+        {
+          "text": "Places the item in an ornament under the window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bottomOrnament"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ToolbarItemPlacementV",
+          "text": "ToolbarItemPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/bottomOrnament",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bottomOrnament",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbaritemplacement/bottomornament"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/cancellationAction": {
+      "abstract": [
+        {
+          "text": "The item represents a cancellation action for a modal interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancellationAction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ToolbarItemPlacementV",
+          "text": "ToolbarItemPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/cancellationAction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cancellationAction",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbaritemplacement/cancellationaction"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/confirmationAction": {
+      "abstract": [
+        {
+          "text": "The item represents a confirmation action for a modal interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "confirmationAction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ToolbarItemPlacementV",
+          "text": "ToolbarItemPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/confirmationAction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "confirmationAction",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbaritemplacement/confirmationaction"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/destructiveAction": {
+      "abstract": [
+        {
+          "text": "The item represents a destructive action for a modal interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "destructiveAction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ToolbarItemPlacementV",
+          "text": "ToolbarItemPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/destructiveAction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "destructiveAction",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbaritemplacement/destructiveaction"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/init(id:)": {
+      "abstract": [
+        {
+          "text": "Creates a custom accessory bar item placement.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/init(id:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(id:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbaritemplacement/init(id:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/keyboard": {
+      "abstract": [
+        {
+          "text": "The item is placed in the keyboard section.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboard"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ToolbarItemPlacementV",
+          "text": "ToolbarItemPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/keyboard",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keyboard",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbaritemplacement/keyboard"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/navigation": {
+      "abstract": [
+        {
+          "text": "The item represents a navigation action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ToolbarItemPlacementV",
+          "text": "ToolbarItemPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/navigation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigation",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbaritemplacement/navigation"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/navigationBarLeading": {
+      "abstract": [
+        {
+          "text": "Places the item in the leading edge of the navigation bar.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationBarLeading"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ToolbarItemPlacementV",
+          "text": "ToolbarItemPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/navigationBarLeading",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationBarLeading",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbaritemplacement/navigationbarleading"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/navigationBarTrailing": {
+      "abstract": [
+        {
+          "text": "Places the item in the trailing edge of the navigation bar.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationBarTrailing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ToolbarItemPlacementV",
+          "text": "ToolbarItemPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/navigationBarTrailing",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationBarTrailing",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbaritemplacement/navigationbartrailing"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/primaryAction": {
+      "abstract": [
+        {
+          "text": "The item represents a primary action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "primaryAction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ToolbarItemPlacementV",
+          "text": "ToolbarItemPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/primaryAction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "primaryAction",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbaritemplacement/primaryaction"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/principal": {
+      "abstract": [
+        {
+          "text": "The system places the item in the principal item section.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "principal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ToolbarItemPlacementV",
+          "text": "ToolbarItemPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/principal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "principal",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbaritemplacement/principal"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/secondaryAction": {
+      "abstract": [
+        {
+          "text": "The item represents a secondary action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "secondaryAction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ToolbarItemPlacementV",
+          "text": "ToolbarItemPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/secondaryAction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "secondaryAction",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbaritemplacement/secondaryaction"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/status": {
+      "abstract": [
+        {
+          "text": "The item represents a change in status for the current context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "status"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ToolbarItemPlacementV",
+          "text": "ToolbarItemPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/status",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "status",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbaritemplacement/status"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/topBarLeading": {
+      "abstract": [
+        {
+          "text": "Places the item in the leading edge of the top bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "topBarLeading"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ToolbarItemPlacementV",
+          "text": "ToolbarItemPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/topBarLeading",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "topBarLeading",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbaritemplacement/topbarleading"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/topBarTrailing": {
+      "abstract": [
+        {
+          "text": "Places the item in the trailing edge of the top bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "topBarTrailing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ToolbarItemPlacementV",
+          "text": "ToolbarItemPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/topBarTrailing",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "topBarTrailing",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbaritemplacement/topbartrailing"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbar(content:)": {
+      "abstract": [
+        {
+          "text": "Populates the toolbar or navigation bar with the specified items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toolbar"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbar(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toolbar(content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/toolbar(content:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Populating-a-toolbar",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbar(content:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItem",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemGroup",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarContent",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarContentBuilder"
+      ],
+      "title": "Populating a toolbar"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-semantic-placement",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/automatic",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/principal",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/status"
+      ],
+      "title": "Getting semantic placement"
+    },
+    {
+      "anchor": "Getting-placement-for-specific-actions",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/primaryAction",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/secondaryAction",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/confirmationAction",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/cancellationAction",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/destructiveAction",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/navigation"
+      ],
+      "title": "Getting placement for specific actions"
+    },
+    {
+      "anchor": "Getting-explicit-placement",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/topBarLeading",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/topBarTrailing",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/bottomBar",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/bottomOrnament",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/keyboard",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/accessoryBar(id:)"
+      ],
+      "title": "Getting explicit placement"
+    },
+    {
+      "anchor": "Deprecated-symbols",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/init(id:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/navigationBarLeading",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ToolbarItemPlacement/navigationBarTrailing"
+      ],
+      "title": "Deprecated symbols"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/toolbaritemplacement"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3387 @@
+{
+  "abstract": [
+    {
+      "text": "Automatically and transparently convert accounts to Sign in with Apple or to use strong passwords for improved security.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/upgrading-account-security-with-an-account-authentication-modification-extension"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Authentication Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Upgrading Account Security With an Account Authentication Modification Extension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When accounts have weak, easily guessed passwords, or if an account is breached, the iOS Security Recommendations help users update account passwords. Adding an Account Authentication Modification Extension to your app lets users easily switch to a strong, complex password, or upgrade to Sign in with Apple. The experience for users is simple and painless, often only requiring the tap of a button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You configure your extension to support upgrading to strong passwords, upgrading to Sign in with Apple, or both. Users initiate upgrades from the following places:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Settings > Passwords, when viewing a security recommendation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your app, when the user signs in to their account using a weak or breached password.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your app, using a dedicated interface you implement.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your account security policy requires additional steps, such as two-factor authentication, your extension can include these steps in the upgrade process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-an-Associated-Domain",
+          "level": 3,
+          "text": "Configure an Associated Domain",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To upgrade user accounts stored in the iOS password manager, you must first establish an association between your app and the domains that to which your account belongs. To make this association, add an associated domain file to your website that includes a ",
+              "type": "text"
+            },
+            {
+              "code": "webcredential",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entry, and configure a matching ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information about how to configure associated domains, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-an-Account-Authentication-Modification-Extension-to-Your-App",
+          "level": 3,
+          "text": "Add an Account Authentication Modification Extension to Your App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode provides a starting point to create your extension. To add the Account Authentication Modification extension to your project:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open your app project in Xcode and choose File > New > Target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From the Application Extension group, select Account Authentication, and then click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter the name of your extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Finish.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3682821",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Declare-Supported-Upgrade-Types",
+          "level": 3,
+          "text": "Declare Supported Upgrade Types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file specifies the types of upgrades your app supports. To support upgrading weak passwords to strong passwords, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/ASAccountAuthenticationModificationSupportsStrongPasswordChange",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key to ",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". To support upgrading accounts from using passwords to using Sign in with Apple, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/ASAccountAuthenticationModificationSupportsUpgradeToSignInWithApple",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system begins a strong password upgrade, it generates a new strong password. If the system-generated password doesn’t meet your needs, optionally add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/ASAccountAuthenticationModificationPasswordGenerationRequirements",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key with a string value that describes your requirements. For details about the format of this string, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/customizing-password-autofill-rules",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/password-rules/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to verify the passwords the system generates with your requirements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Support-Automatic-Strong-Password-Upgrades",
+          "level": 3,
+          "text": "Support Automatic Strong Password Upgrades",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user initiates a strong password upgrade, the system invokes your extension to perform the upgrade. To perform a one-tap automatic upgrade to strong passwords, the system loads your extension and instantiates a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The system calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController/changePasswordWithoutUserInteraction(for:existingCredential:newPassword:userInfo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method you implement in the view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class AccountAuthenticationModificationViewController: ASAccountAuthenticationModificationViewController {",
+            "    override func changePasswordWithoutUserInteraction(",
+            "        for serviceIdentifier: ASCredentialServiceIdentifier,",
+            "        existingCredential: ASPasswordCredential,",
+            "        newPassword: String,",
+            "        userInfo: [AnyHashable : Any]?)",
+            "    {",
+            "        // Verify with your server that the user is authorized to",
+            "        // update the password.",
+            "",
+            "        // Once confirmed, send the user data to your server.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method receives the following parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASCredentialServiceIdentifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to identify the service to update, for example a website account.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The service’s current password.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A system-generated strong password, conforming to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/ASAccountAuthenticationModificationPasswordGenerationRequirements",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", if specified.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A user-info dictionary that contains app-specific information, if your app initiates the request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To perform the automatic upgrade, the extension communicates with your server to authorize and perform the upgrade. Use the current password, existing token, or credential information from your app to confirm with your server that the user is authorized to perform the password upgrade. Once the server confirms the user authorization, send the new password to your server to perform the upgrade. If the system-generated password doesn’t satisfy your server’s requirements, you can use a different password than the one the system provides.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After completing the password change on your server, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationExtensionContext/completeChangePasswordRequest(updatedCredential:userInfo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController/extensionContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", passing the new credential for the service. The system stores the new credential in the Keychain, and removes the old credential.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let newCredential = ASPasswordCredential(",
+            "    user: existingCredential.user,",
+            "    password: newPassword",
+            ")",
+            "self.extensionContext.completeChangePasswordRequest(updatedCredential: newCredential)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user isn’t authorized to perform the upgrade, or the update fails, cancel the request as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let error = ASExtensionError(.failed)",
+            "self.extensionContext.cancelRequest(withError: error)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display a custom error message to the user, initialize an ",
+              "type": "text"
+            },
+            {
+              "code": "ASExtensionError",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASExtensionError/Code/failed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and specify an error string, as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let error = ASExtensionError(.failed, userInfo: [",
+            "    ASExtensionLocalizedFailureReasonErrorKey: \"Authentication failed.\"",
+            "])",
+            "self.extensionContext.cancelRequest(withError: error)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Support-Automatic-Upgrades-to-Sign-in-with-Apple",
+          "level": 3,
+          "text": "Support Automatic Upgrades to Sign in with Apple",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The steps to implement automatic upgrades to Sign in with Apple are very similar to the ones to upgrade to a strong password. To support upgrading to Sign in with Apple, your app must support Sign in with Apple. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/sign-in-with-apple/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/implementing-user-authentication-with-sign-in-with-apple",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user initiates an upgrade to Sign in with Apple, the system loads your extension, and invokes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController/convertAccountToSignInWithAppleWithoutUserInteraction(for:existingCredential:userInfo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of your view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method receives the following parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASCredentialServiceIdentifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " that identifies the service to update, for example a website account.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The service’s current password.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A user-info dictionary that contains app-specific information, if your app initiates the request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the current password to authorize with your server that the user can perform the upgrade. If not, fail the request as described above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To perform the upgrade, request the Sign in with Apple credentials from the extensionContext by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationExtensionContext/getSignInWithAppleUpgradeAuthorization(state:nonce:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If the system provides a Sign in with Apple credential, send the credential information to your server, and then complete the request by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationExtensionContext/completeUpgradeToSignInWithApple(userInfo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Once complete, the system removes the old password from the Keychain.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let myState: String = ...",
+            "let myNonce: String = ...",
+            "",
+            "self.extensionContext.getSignInWithAppleUpgradeAuthorization(",
+            "    state: myState,",
+            "    nonce: myNonce",
+            ") { appleIDCredential, error in",
+            "    guard let appleIDCredential = appleIDCredential else {",
+            "        self.extensionContext.cancelRequest(",
+            "            withError: ASExtensionError(.failed)",
+            "        )",
+            "        return",
+            "    }",
+            "",
+            "    // Verify with your server that the user is authorized to",
+            "    // convert the account to Sign in with Apple.",
+            "",
+            "    let userIdentifier = appleIDCredential.user",
+            "    let fullName = appleIDCredential.fullName",
+            "    let email = appleIDCredential.email",
+            "    // Once confirmed, send the user data to your server.",
+            "",
+            "    self.extensionContext.completeUpgradeToSignInWithApple()",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create the Sign in with Apple credential, the system prompts the user and communicates with Apple. If the user cancels the request, the system calls the completion handler with an error that specifies a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASExtensionError/Code/userCanceled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " code. In that case, cancel the request using the same error code and no failure reason, and don’t show any additional user interface. If the device can’t communicate with Apple’s servers, the completion handler may be passed ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nil-2gl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " credentials. In this case, cancel the request with an error that specifies ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASExtensionError/Code/failed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the error code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Perform-Upgrades-With-Additional-Security-Requirements",
+          "level": 3,
+          "text": "Perform Upgrades With Additional Security Requirements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user initiates an account authentication upgrade but you require additional security steps, such as using two-factor authentication, fail the initial automatic request with an error that specifies user interaction is required.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let error = ASExtensionError(.userInteractionRequired)",
+            "self.extensionContext.cancelRequest(withError: error)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system initiates a new request that includes presenting the view controller’s view by calling either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController/prepareInterfaceToChangePassword(for:existingCredential:newPassword:userInfo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController/prepareInterfaceToConvertAccountToSignInWithApple(for:existingCredential:userInfo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", depending on the type of the original request. Configure your view controller’s view appropriately for the request and return from the method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After your method returns, the system presents your view controller’s view with a system-provided navigation bar, including a cancel button. Once the system presents the view, guide the user through performing the additional steps. When the user completes the steps, continue the upgrade process. For a strong password upgrade, commit the new strong password, provided in the original request, to your server. For an upgrade to Sign in with Apple, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationExtensionContext/getSignInWithAppleUpgradeAuthorization(state:nonce:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to request a new Sign in with Apple credential as described earlier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user fails to complete the additional steps, or the upgrade fails for any other reason, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationExtensionContext/cancelRequest(withError:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to cancel the request as described in earlier examples. The system dismisses the view controller’s view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user taps the system-provided cancel button, the system dismisses the interface and calls your view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController/cancelRequest()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. If you need to perform any cleanup work, override this method and call the superclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController/cancelRequest()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to complete the process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Initiate-Security-Upgrades-From-Within-Your-App",
+          "level": 3,
+          "text": "Initiate Security Upgrades From Within Your App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To initiate upgrades to strong passwords or to use Sign in with Apple from within your app, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app initiates an upgrade request, the work your extension does is the same as the previous sections describe. To configure the request, instantiate either an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, passing the following parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user name for the user’s account.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASCredentialServiceIdentifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to identify the service to update, for example a website account.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A user info dictionary that contains any authentication information the extension needs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike the system-initiated upgrades, your extension doesn’t receive an existing password in the calls to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController/changePasswordWithoutUserInteraction(for:existingCredential:newPassword:userInfo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController/convertAccountToSignInWithAppleWithoutUserInteraction(for:existingCredential:userInfo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If your extension needs existing password or authentication information to perform the authorization with your server, include it in the user info dictionary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To perform the request:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Instantiate an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the controller’s delegate property to an object that conforms to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationControllerDelegate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the controller’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationController/presentationContextProvider",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property to an object that conforms to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationControllerPresentationContextProviding",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationController/perform(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " on the controller to initiate the request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows how to configure and initiate a request to upgrade to a strong password:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let username = \"jappleseed\"",
+            "let serviceIdentifier = ASCredentialServiceIdentifier(",
+            "    identifier: \"myservice.example.com\",",
+            "    type: .domain",
+            ")",
+            "",
+            "let userInfo = [\"com.example.authTokenKey\": authToken]",
+            "let upgradeRequest = ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest(",
+            "    user: username,",
+            "    serviceIdentifier: serviceIdentifier,",
+            "    userInfo: userInfo",
+            ")",
+            "",
+            "let requestController = ASAccountAuthenticationModificationController()",
+            "requestController.delegate = self",
+            "requestController.presentationContextProvider = self",
+            "requestController.perform(upgradeRequest)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For upgrading to Sign in with Apple, the process is the same, except you instantiate an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object instead:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let upgradeRequest = ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest(",
+            "    user: username,",
+            "    serviceIdentifier: serviceIdentifier,",
+            "    userInfo: userInfo",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the request completes, the controller calls either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationControllerDelegate/accountAuthenticationModificationController(_:didSuccessfullyComplete:userInfo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationControllerDelegate/accountAuthenticationModificationController(_:didFail:error:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", depending on result of the upgrade. Inform the user of the results accordingly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices": {
+      "abstract": [
+        {
+          "text": "Make it easy for users to log into apps and services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Authentication Services",
+      "type": "topic",
+      "url": "/documentation/authenticationservices"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationController": {
+      "abstract": [
+        {
+          "text": "An object that performs a request to modify an account’s authentication properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAccountAuthenticationModificationController"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAccountAuthenticationModificationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAccountAuthenticationModificationController",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asaccountauthenticationmodificationcontroller"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationController/perform(_:)": {
+      "abstract": [
+        {
+          "text": "Performs a request to upgrade the authentication credentials for an account to a strong password, or to use Sign in with Apple.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAccountAuthenticationModificationRequest",
+          "text": "ASAccountAuthenticationModificationRequest"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationController/perform(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "performRequest:"
+        }
+      ],
+      "role": "symbol",
+      "title": "perform(_:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asaccountauthenticationmodificationcontroller/perform(_:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationController/presentationContextProvider": {
+      "abstract": [
+        {
+          "text": "An object that provides a presentation context for the account modification request’s user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentationContextProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)ASAccountAuthenticationModificationControllerPresentationContextProviding",
+          "text": "ASAccountAuthenticationModificationControllerPresentationContextProviding"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationController/presentationContextProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentationContextProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentationContextProvider",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asaccountauthenticationmodificationcontroller/presentationcontextprovider"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationControllerDelegate": {
+      "abstract": [
+        {
+          "text": "An interface you implement for receiving success and failure statuses about modification of an account’s authentication properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAccountAuthenticationModificationControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAccountAuthenticationModificationControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAccountAuthenticationModificationControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asaccountauthenticationmodificationcontrollerdelegate"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationControllerDelegate/accountAuthenticationModificationController(_:didFail:error:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate an account modification request failed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accountAuthenticationModificationController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAccountAuthenticationModificationController",
+          "text": "ASAccountAuthenticationModificationController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFail"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAccountAuthenticationModificationRequest",
+          "text": "ASAccountAuthenticationModificationRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationControllerDelegate/accountAuthenticationModificationController(_:didFail:error:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accountAuthenticationModificationController:didFailRequest:withError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "accountAuthenticationModificationController(_:didFail:error:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asaccountauthenticationmodificationcontrollerdelegate/accountauthenticationmodificationcontroller(_:didfail:error:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationControllerDelegate/accountAuthenticationModificationController(_:didSuccessfullyComplete:userInfo:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate an account modification request completed successfully.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accountAuthenticationModificationController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAccountAuthenticationModificationController",
+          "text": "ASAccountAuthenticationModificationController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didSuccessfullyComplete"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAccountAuthenticationModificationRequest",
+          "text": "ASAccountAuthenticationModificationRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationControllerDelegate/accountAuthenticationModificationController(_:didSuccessfullyComplete:userInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accountAuthenticationModificationController:didSuccessfullyCompleteRequest:withUserInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "accountAuthenticationModificationController(_:didSuccessfullyComplete:userInfo:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asaccountauthenticationmodificationcontrollerdelegate/accountauthenticationmodificationcontroller(_:didsuccessfullycomplete:userinfo:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationControllerPresentationContextProviding": {
+      "abstract": [
+        {
+          "text": "An interface you implement to coordinate presentation of the user interface when modifying an account’s authentication properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAccountAuthenticationModificationControllerPresentationContextProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationControllerPresentationContextProviding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAccountAuthenticationModificationControllerPresentationContextProviding"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAccountAuthenticationModificationControllerPresentationContextProviding",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asaccountauthenticationmodificationcontrollerpresentationcontextproviding"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationExtensionContext": {
+      "abstract": [
+        {
+          "text": "An object that you interact with to change an account’s password or to upgrade to Sign in with Apple.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAccountAuthenticationModificationExtensionContext"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationExtensionContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAccountAuthenticationModificationExtensionContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAccountAuthenticationModificationExtensionContext",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asaccountauthenticationmodificationextensioncontext"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationExtensionContext/cancelRequest(withError:)": {
+      "abstract": [
+        {
+          "text": "Cancels a request with an error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancelRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withError"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationExtensionContext/cancelRequest(withError:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cancelRequestWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "cancelRequest(withError:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asaccountauthenticationmodificationextensioncontext/cancelrequest(witherror:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationExtensionContext/completeChangePasswordRequest(updatedCredential:userInfo:)": {
+      "abstract": [
+        {
+          "text": "Completes a request to update an account’s authentication credentials from using a weak password to using a strong password.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "completeChangePasswordRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "updatedCredential"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASPasswordCredential",
+          "text": "ASPasswordCredential"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationExtensionContext/completeChangePasswordRequest(updatedCredential:userInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "completeChangePasswordRequestWithUpdatedCredential:userInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "completeChangePasswordRequest(updatedCredential:userInfo:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asaccountauthenticationmodificationextensioncontext/completechangepasswordrequest(updatedcredential:userinfo:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationExtensionContext/completeUpgradeToSignInWithApple(userInfo:)": {
+      "abstract": [
+        {
+          "text": "Completes the process of upgrading an account’s authentication credentials from using passwords to using Sign in with Apple.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "completeUpgradeToSignInWithApple"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationExtensionContext/completeUpgradeToSignInWithApple(userInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "completeUpgradeToSignInWithAppleWithUserInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "completeUpgradeToSignInWithApple(userInfo:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asaccountauthenticationmodificationextensioncontext/completeupgradetosigninwithapple(userinfo:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationExtensionContext/getSignInWithAppleUpgradeAuthorization(state:nonce:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the user’s current Sign in with Apple authorization credentials.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getSignInWithAppleUpgradeAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "nonce"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationAppleIDCredential",
+          "text": "ASAuthorizationAppleIDCredential"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationExtensionContext/getSignInWithAppleUpgradeAuthorization(state:nonce:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getSignInWithAppleUpgradeAuthorizationWithState:nonce:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getSignInWithAppleUpgradeAuthorization(state:nonce:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asaccountauthenticationmodificationextensioncontext/getsigninwithappleupgradeauthorization(state:nonce:completionhandler:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest": {
+      "abstract": [
+        {
+          "text": "A request to upgrade from using a password to using Sign in with Apple.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asaccountauthenticationmodificationreplacepasswordwithsigninwithapplerequest"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest": {
+      "abstract": [
+        {
+          "text": "A request to automatically upgrade from a weak password to a strong password.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asaccountauthenticationmodificationupgradepasswordtostrongpasswordrequest"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that can upgrade user passwords to strong passwords, or convert accounts to use Sign in with Apple.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAccountAuthenticationModificationViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAccountAuthenticationModificationViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAccountAuthenticationModificationViewController",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asaccountauthenticationmodificationviewcontroller"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController/cancelRequest()": {
+      "abstract": [
+        {
+          "text": "Cancels a request that the user initiated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancelRequest"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController/cancelRequest()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cancelRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "cancelRequest()",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asaccountauthenticationmodificationviewcontroller/cancelrequest()"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController/changePasswordWithoutUserInteraction(for:existingCredential:newPassword:userInfo:)": {
+      "abstract": [
+        {
+          "text": "Upgrades a user’s weak password to a strong password.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "changePasswordWithoutUserInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASCredentialServiceIdentifier",
+          "text": "ASCredentialServiceIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "existingCredential"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASPasswordCredential",
+          "text": "ASPasswordCredential"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "newPassword"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController/changePasswordWithoutUserInteraction(for:existingCredential:newPassword:userInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "changePasswordWithoutUserInteractionForServiceIdentifier:existingCredential:newPassword:userInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "changePasswordWithoutUserInteraction(for:existingCredential:newPassword:userInfo:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asaccountauthenticationmodificationviewcontroller/changepasswordwithoutuserinteraction(for:existingcredential:newpassword:userinfo:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController/convertAccountToSignInWithAppleWithoutUserInteraction(for:existingCredential:userInfo:)": {
+      "abstract": [
+        {
+          "text": "Converts an account’s authentication mechanism from using passwords to using Sign in with Apple.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertAccountToSignInWithAppleWithoutUserInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASCredentialServiceIdentifier",
+          "text": "ASCredentialServiceIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "existingCredential"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASPasswordCredential",
+          "text": "ASPasswordCredential"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController/convertAccountToSignInWithAppleWithoutUserInteraction(for:existingCredential:userInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertAccountToSignInWithAppleWithoutUserInteractionForServiceIdentifier:existingCredential:userInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "convertAccountToSignInWithAppleWithoutUserInteraction(for:existingCredential:userInfo:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asaccountauthenticationmodificationviewcontroller/convertaccounttosigninwithapplewithoutuserinteraction(for:existingcredential:userinfo:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController/extensionContext": {
+      "abstract": [
+        {
+          "text": "The context your account authentication modification extension uses to provide information to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "extensionContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAccountAuthenticationModificationExtensionContext",
+          "text": "ASAccountAuthenticationModificationExtensionContext"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController/extensionContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "extensionContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "extensionContext",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asaccountauthenticationmodificationviewcontroller/extensioncontext"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController/prepareInterfaceToChangePassword(for:existingCredential:newPassword:userInfo:)": {
+      "abstract": [
+        {
+          "text": "Prepares the view controller’s interface that displays when upgrading from a weak password to a strong password.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareInterfaceToChangePassword"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASCredentialServiceIdentifier",
+          "text": "ASCredentialServiceIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "existingCredential"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASPasswordCredential",
+          "text": "ASPasswordCredential"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "newPassword"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController/prepareInterfaceToChangePassword(for:existingCredential:newPassword:userInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "prepareInterfaceToChangePasswordForServiceIdentifier:existingCredential:newPassword:userInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "prepareInterfaceToChangePassword(for:existingCredential:newPassword:userInfo:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asaccountauthenticationmodificationviewcontroller/prepareinterfacetochangepassword(for:existingcredential:newpassword:userinfo:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController/prepareInterfaceToConvertAccountToSignInWithApple(for:existingCredential:userInfo:)": {
+      "abstract": [
+        {
+          "text": "Prepares the view controller’s interface that displays when converting an account that uses password authentication to use Sign in with Apple.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareInterfaceToConvertAccountToSignInWithApple"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASCredentialServiceIdentifier",
+          "text": "ASCredentialServiceIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "existingCredential"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASPasswordCredential",
+          "text": "ASPasswordCredential"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController/prepareInterfaceToConvertAccountToSignInWithApple(for:existingCredential:userInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "prepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifier:existingCredential:userInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "prepareInterfaceToConvertAccountToSignInWithApple(for:existingCredential:userInfo:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asaccountauthenticationmodificationviewcontroller/prepareinterfacetoconvertaccounttosigninwithapple(for:existingcredential:userinfo:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASCredentialServiceIdentifier": {
+      "abstract": [
+        {
+          "text": "An identifier representing a particular service for which the user needs a credential, like a web site.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASCredentialServiceIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASCredentialServiceIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASCredentialServiceIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASCredentialServiceIdentifier",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/ascredentialserviceidentifier"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASExtensionError/Code/failed": {
+      "abstract": [
+        {
+          "text": "The operation failed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "failed"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASExtensionError/Code/failed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASExtensionErrorCodeFailed"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASExtensionError.Code.failed",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asextensionerror/code/failed"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASExtensionError/Code/userCanceled": {
+      "abstract": [
+        {
+          "text": "The user canceled the operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userCanceled"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASExtensionError/Code/userCanceled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASExtensionErrorCodeUserCanceled"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASExtensionError.Code.userCanceled",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asextensionerror/code/usercanceled"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/implementing-user-authentication-with-sign-in-with-apple": {
+      "abstract": [
+        {
+          "text": "Provide a way for users of your app to set up an account and start using your services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/implementing-user-authentication-with-sign-in-with-apple",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing User Authentication with Sign in with Apple",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/implementing-user-authentication-with-sign-in-with-apple"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains": {
+      "abstract": [
+        {
+          "text": "The associated domains for specific services, such as shared web credentials, universal links, and App Clips.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Associated Domains Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/ASAccountAuthenticationModificationPasswordGenerationRequirements": {
+      "abstract": [
+        {
+          "text": "The rules the system satisfies when generating a strong password for your extension during an automatic upgrade.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/ASAccountAuthenticationModificationPasswordGenerationRequirements",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ASAccountAuthenticationModificationPasswordGenerationRequirements",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSExtension/ASAccountAuthenticationModificationPasswordGenerationRequirements"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/ASAccountAuthenticationModificationSupportsStrongPasswordChange": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the extension supports upgrading a user’s password to a strong password.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/ASAccountAuthenticationModificationSupportsStrongPasswordChange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ASAccountAuthenticationModificationSupportsStrongPasswordChange",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSExtension/ASAccountAuthenticationModificationSupportsStrongPasswordChange"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/ASAccountAuthenticationModificationSupportsUpgradeToSignInWithApple": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the extension supports upgrading from using password authentication to using Sign in with Apple.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/ASAccountAuthenticationModificationSupportsUpgradeToSignInWithApple",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ASAccountAuthenticationModificationSupportsUpgradeToSignInWithApple",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSExtension/ASAccountAuthenticationModificationSupportsUpgradeToSignInWithApple"
+    },
+    "doc://com.apple.documentation/documentation/Security/customizing-password-autofill-rules": {
+      "abstract": [
+        {
+          "text": "Modify the strong password rules for your app by adding your own restrictions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/customizing-password-autofill-rules",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing Password AutoFill rules",
+      "type": "topic",
+      "url": "/documentation/Security/customizing-password-autofill-rules"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains": {
+      "abstract": [
+        {
+          "text": "Connect your app and a website to provide both a native app and a browser experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting associated domains",
+      "type": "topic",
+      "url": "/documentation/Xcode/supporting-associated-domains"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nil-2gl": {
+      "abstract": [
+        {
+          "text": "Defines the `id` of a null instance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nil-2gl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nil",
+      "type": "topic",
+      "url": "/documentation/objectivec/nil-2gl"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/password-rules/": {
+      "identifier": "https://developer.apple.com/password-rules/",
+      "title": "Password Rules Validation Tool",
+      "titleInlineContent": [
+        {
+          "text": "Password Rules Validation Tool",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/password-rules/"
+    },
+    "https://developer.apple.com/sign-in-with-apple/": {
+      "identifier": "https://developer.apple.com/sign-in-with-apple/",
+      "title": "Sign in with Apple",
+      "titleInlineContent": [
+        {
+          "text": "Sign in with Apple",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/sign-in-with-apple/"
+    },
+    "media-3682821": {
+      "alt": "A screenshot showing Xcode’s new target sheet with Account Authentication selected",
+      "identifier": "media-3682821",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9950a923318cdc966f9fb51301608ade/media-3682821@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Automatic-security-upgrades",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationController",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationExtensionContext"
+      ],
+      "title": "Automatic security upgrades"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Automatic-security-upgrades",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationController",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAccountAuthenticationModificationExtensionContext"
+              ],
+              "title": "Automatic security upgrades"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationViewController~1changePasswordWithoutUserInteraction(for:existingCredential:newPassword:userInfo:)/title",
+          "value": "changePasswordWithoutUserInteractionForServiceIdentifier:existingCredential:newPassword:userInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationViewController~1changePasswordWithoutUserInteraction(for:existingCredential:newPassword:userInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "changePasswordWithoutUserInteractionForServiceIdentifier:existingCredential:newPassword:userInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationExtensionContext~1completeChangePasswordRequest(updatedCredential:userInfo:)/title",
+          "value": "completeChangePasswordRequestWithUpdatedCredential:userInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationExtensionContext~1completeChangePasswordRequest(updatedCredential:userInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "completeChangePasswordRequestWithUpdatedCredential:userInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationExtensionContext~1completeUpgradeToSignInWithApple(userInfo:)/title",
+          "value": "completeUpgradeToSignInWithAppleWithUserInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationExtensionContext~1completeUpgradeToSignInWithApple(userInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "completeUpgradeToSignInWithAppleWithUserInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest/title",
+          "value": "ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationControllerDelegate~1accountAuthenticationModificationController(_:didSuccessfullyComplete:userInfo:)/title",
+          "value": "accountAuthenticationModificationController:didSuccessfullyCompleteRequest:withUserInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationControllerDelegate~1accountAuthenticationModificationController(_:didSuccessfullyComplete:userInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "accountAuthenticationModificationController:didSuccessfullyCompleteRequest:withUserInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationExtensionContext~1getSignInWithAppleUpgradeAuthorization(state:nonce:completionHandler:)/title",
+          "value": "getSignInWithAppleUpgradeAuthorizationWithState:nonce:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationExtensionContext~1getSignInWithAppleUpgradeAuthorization(state:nonce:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getSignInWithAppleUpgradeAuthorizationWithState:nonce:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationViewController/title",
+          "value": "ASAccountAuthenticationModificationViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccountAuthenticationModificationViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccountAuthenticationModificationViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASCredentialServiceIdentifier/title",
+          "value": "ASCredentialServiceIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASCredentialServiceIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASCredentialServiceIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASCredentialServiceIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASCredentialServiceIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationControllerDelegate/title",
+          "value": "ASAccountAuthenticationModificationControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccountAuthenticationModificationControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccountAuthenticationModificationControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationViewController~1prepareInterfaceToChangePassword(for:existingCredential:newPassword:userInfo:)/title",
+          "value": "prepareInterfaceToChangePasswordForServiceIdentifier:existingCredential:newPassword:userInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationViewController~1prepareInterfaceToChangePassword(for:existingCredential:newPassword:userInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "prepareInterfaceToChangePasswordForServiceIdentifier:existingCredential:newPassword:userInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationViewController~1extensionContext/title",
+          "value": "extensionContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationViewController~1extensionContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "extensionContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationControllerPresentationContextProviding/title",
+          "value": "ASAccountAuthenticationModificationControllerPresentationContextProviding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationControllerPresentationContextProviding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccountAuthenticationModificationControllerPresentationContextProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationControllerPresentationContextProviding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccountAuthenticationModificationControllerPresentationContextProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationController/title",
+          "value": "ASAccountAuthenticationModificationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccountAuthenticationModificationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccountAuthenticationModificationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationExtensionContext/title",
+          "value": "ASAccountAuthenticationModificationExtensionContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationExtensionContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccountAuthenticationModificationExtensionContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationExtensionContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccountAuthenticationModificationExtensionContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationViewController~1prepareInterfaceToConvertAccountToSignInWithApple(for:existingCredential:userInfo:)/title",
+          "value": "prepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifier:existingCredential:userInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationViewController~1prepareInterfaceToConvertAccountToSignInWithApple(for:existingCredential:userInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "prepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifier:existingCredential:userInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest/title",
+          "value": "ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASExtensionError~1Code~1failed/title",
+          "value": "ASExtensionErrorCodeFailed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASExtensionError~1Code~1failed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASExtensionErrorCodeFailed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationViewController~1cancelRequest()/title",
+          "value": "cancelRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationViewController~1cancelRequest()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "cancelRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASExtensionError~1Code~1userCanceled/title",
+          "value": "ASExtensionErrorCodeUserCanceled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASExtensionError~1Code~1userCanceled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASExtensionErrorCodeUserCanceled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationController~1perform(_:)/title",
+          "value": "performRequest:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationController~1perform(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "performRequest:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationExtensionContext~1cancelRequest(withError:)/title",
+          "value": "cancelRequestWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationExtensionContext~1cancelRequest(withError:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "cancelRequestWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationControllerDelegate~1accountAuthenticationModificationController(_:didFail:error:)/title",
+          "value": "accountAuthenticationModificationController:didFailRequest:withError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationControllerDelegate~1accountAuthenticationModificationController(_:didFail:error:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "accountAuthenticationModificationController:didFailRequest:withError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationViewController~1convertAccountToSignInWithAppleWithoutUserInteraction(for:existingCredential:userInfo:)/title",
+          "value": "convertAccountToSignInWithAppleWithoutUserInteractionForServiceIdentifier:existingCredential:userInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationViewController~1convertAccountToSignInWithAppleWithoutUserInteraction(for:existingCredential:userInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertAccountToSignInWithAppleWithoutUserInteractionForServiceIdentifier:existingCredential:userInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationController~1presentationContextProvider/title",
+          "value": "presentationContextProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAccountAuthenticationModificationController~1presentationContextProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "presentationContextProvider"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/authenticationservices/upgrading-account-security-with-an-account-authentication-modification-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/authenticationservices/upgrading-account-security-with-an-account-authentication-modification-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

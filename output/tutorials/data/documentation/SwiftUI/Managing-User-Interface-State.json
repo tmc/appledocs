@@ -1,0 +1,1509 @@
+{
+  "abstract": [
+    {
+      "text": "Encapsulate view-specific data within your app’s view hierarchy to make your",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "views reusable.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Model-data"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Managing-User-Interface-State"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Managing user interface state"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Store data as state in the least common ancestor of the views that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "need the data to establish a single ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "source of truth",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " that’s shared across",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "views. Provide the data as read-only through a Swift property, or create a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "two-way connection to the state with a binding. SwiftUI watches for changes in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the data, and updates any affected views as needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Managing-User-Interface-State-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t use state properties for persistent storage because the life cycle of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "state variables mirrors the view life cycle. Instead, use them to manage",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "transient state that only affects the user interface, like the highlight state",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of a button, filter settings, or the currently selected list item. You might",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "also find this kind of storage convenient while you prototype, before you’re",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ready to make changes to your app’s data model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Manage-mutable-values-as-state",
+          "level": 3,
+          "text": "Manage mutable values as state",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a view needs to store data that it can modify, declare a variable with the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/State",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property wrapper. For example, you can create an ",
+              "type": "text"
+            },
+            {
+              "code": "isPlaying",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Boolean inside a podcast player view to keep track of when a podcast is running:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct PlayerView: View {",
+            "    @State private var isPlaying: Bool = false",
+            "    ",
+            "    var body: some View {",
+            "        // ...",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Marking the property as state tells the framework to manage the underlying",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "storage. Your view reads and writes the data, found in the state’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/State/wrappedValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property, by using the property name. When you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "change the value, SwiftUI updates the affected parts of the view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, you can add a button to the ",
+              "type": "text"
+            },
+            {
+              "code": "PlayerView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that toggles the stored",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "value when tapped, and that displays a different image depending on the stored",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "value:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Button(action: {",
+            "    self.isPlaying.toggle()",
+            "}) {",
+            "    Image(systemName: isPlaying ? \"pause.circle\" : \"play.circle\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Limit the scope of state variables by declaring them as private. This ensures",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that the variables remain encapsulated in the view hierarchy that declares them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Declare-Swift-properties-to-store-immutable-values",
+          "level": 3,
+          "text": "Declare Swift properties to store immutable values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide a view with data that the view doesn’t modify, declare a standard",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Swift property. For example, you can extend the podcast player to have an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "input structure that contains strings for the episode title and the show name:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct PlayerView: View {",
+            "    let episode: Episode // The queued episode.",
+            "    @State private var isPlaying: Bool = false",
+            "    ",
+            "    var body: some View {",
+            "        VStack {",
+            "            // Display information about the episode.",
+            "            Text(episode.title)",
+            "            Text(episode.showTitle)",
+            "",
+            "            Button(action: {",
+            "                self.isPlaying.toggle()",
+            "            }) {",
+            "                Image(systemName: isPlaying ? \"pause.circle\" : \"play.circle\")",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While the value of the episode property is a constant for ",
+              "type": "text"
+            },
+            {
+              "code": "PlayerView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "doesn’t need to be constant in this view’s parent view. When the user selects a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "different episode in the parent, SwiftUI detects the state change and recreates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "PlayerView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with a new input.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Share-access-to-state-with-bindings",
+          "level": 3,
+          "text": "Share access to state with bindings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a view needs to share control of state with a child view, declare a property",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the child with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Binding",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property wrapper. A binding represents",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a reference to existing storage, preserving a single source of truth for the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "underlying data. For example, if you refactor the podcast player view’s button",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "into a child view called ",
+              "type": "text"
+            },
+            {
+              "code": "PlayButton",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you can give it a binding to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "isPlaying",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct PlayButton: View {",
+            "    @Binding var isPlaying: Bool",
+            "    ",
+            "    var body: some View {",
+            "        Button(action: {",
+            "            self.isPlaying.toggle()",
+            "        }) {",
+            "            Image(systemName: isPlaying ? \"pause.circle\" : \"play.circle\")",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As shown above, you read and write the binding’s wrapped value by referring",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "directly to the property, just like state. But unlike a state property, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "binding doesn’t have its own storage. Instead, it references a state property",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "stored somewhere else, and provides a two-way connection to that storage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you instantiate ",
+              "type": "text"
+            },
+            {
+              "code": "PlayButton",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", provide a binding to the corresponding state",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variable declared in the parent view by prefixing it with the dollar sign (",
+              "type": "text"
+            },
+            {
+              "code": "$",
+              "type": "codeVoice"
+            },
+            {
+              "text": "):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct PlayerView: View {",
+            "    var episode: Episode",
+            "    @State private var isPlaying: Bool = false",
+            "    ",
+            "    var body: some View {",
+            "        VStack {",
+            "            Text(episode.title)",
+            "            Text(episode.showTitle)",
+            "            PlayButton(isPlaying: $isPlaying) // Pass a binding.",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "$",
+              "type": "codeVoice"
+            },
+            {
+              "text": " prefix asks a wrapped property for its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/State/projectedValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which for state is a binding to the underlying storage. Similarly, you can get a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "binding from a binding using the ",
+              "type": "text"
+            },
+            {
+              "code": "$",
+              "type": "codeVoice"
+            },
+            {
+              "text": " prefix, allowing you to pass a binding",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "through an arbitrary number of levels of view hierarchy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also get a binding to a scoped value within a state variable. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, if you declare ",
+              "type": "text"
+            },
+            {
+              "code": "episode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as a state variable in the player’s parent",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view, and the episode structure also contains an ",
+              "type": "text"
+            },
+            {
+              "code": "isFavorite",
+              "type": "codeVoice"
+            },
+            {
+              "text": " Boolean that you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "want to control with a toggle, then you can refer to ",
+              "type": "text"
+            },
+            {
+              "code": "$episode.isFavorite",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "get a binding to the episode’s favorite status:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Podcaster: View {",
+            "    @State private var episode = Episode(title: \"Some Episode\",",
+            "                                         showTitle: \"Great Show\",",
+            "                                         isFavorite: false)",
+            "    var body: some View {",
+            "        VStack {",
+            "            Toggle(\"Favorite\", isOn: $episode.isFavorite) // Bind to the Boolean.",
+            "            PlayerView(episode: episode)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Animate-state-transitions",
+          "level": 3,
+          "text": "Animate state transitions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the view state changes, SwiftUI updates affected views right away. If you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "want to smooth visual transitions, you can tell SwiftUI to animate them by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "wrapping the state change that triggers them in a call to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/withAnimation(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. For example, you can animate changes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "controlled by the ",
+              "type": "text"
+            },
+            {
+              "code": "isPlaying",
+              "type": "codeVoice"
+            },
+            {
+              "text": " Boolean:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "withAnimation(.easeInOut(duration: 1)) {",
+            "    self.isPlaying.toggle()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By changing ",
+              "type": "text"
+            },
+            {
+              "code": "isPlaying",
+              "type": "codeVoice"
+            },
+            {
+              "text": " inside the animation function’s trailing closure, you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tell SwiftUI to animate anything that depends on the wrapped value, like a scale",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "effect on the button’s image:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Image(systemName: isPlaying ? \"pause.circle\" : \"play.circle\")",
+            "    .scaleEffect(isPlaying ? 1 : 1.5)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftUI transitions the scale effect input over time between the given values of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "1.5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", using the curve and duration that you specify, or reasonable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "default values if you provide none. On the other hand, the image content isn’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "affected by the animation, even though the same Boolean dictates which system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "image to display. That’s because SwiftUI can’t incrementally transition in a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "meaningful way between the two strings ",
+              "type": "text"
+            },
+            {
+              "code": "pause.circle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "play.circle",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can add animation to a state property, or as in the above example, to a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "binding. Either way, SwiftUI animates any view changes that happen when the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "underlying stored value changes. For example, if you add a background color to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "PlayerView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " — at a level of view hierarchy above the location of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "animation block — SwiftUI animates that as well:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "VStack {",
+            "    Text(episode.title)",
+            "    Text(episode.showTitle)",
+            "    PlayButton(isPlaying: $isPlaying)",
+            "}",
+            ".background(isPlaying ? Color.green : Color.red) // Transitions with animation."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you want to apply animations to specific views, rather than across all",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "views triggered by a change in state, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/animation(_:value:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view modifier instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Managing-User-Interface-State-1": {
+      "alt": "A diagram showing state stored in one view, shared with another view through a binding that provides a two-way connection, and shared with yet another view as a property providing a one-way connection.",
+      "identifier": "Managing-User-Interface-State-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d98251c2fac9fc4f6843be1e4836cb93/Managing-User-Interface-State-1@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Bindable": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that supports creating bindings to the mutable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "properties of observable objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bindable"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Bindable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Bindable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Bindable",
+      "type": "topic",
+      "url": "/documentation/swiftui/bindable"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Binding": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that can read and write a value owned by a source of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "truth.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Binding"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Binding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Binding"
+        }
+      ],
+      "role": "symbol",
+      "title": "Binding",
+      "type": "topic",
+      "url": "/documentation/swiftui/binding"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Model-data": {
+      "abstract": [
+        {
+          "text": "Manage the data that your app uses to drive its interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Model-data",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Model data",
+      "type": "topic",
+      "url": "/documentation/swiftui/model-data"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/State": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that can read and write a value managed by SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/State",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "role": "symbol",
+      "title": "State",
+      "type": "topic",
+      "url": "/documentation/swiftui/state"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/State/projectedValue": {
+      "abstract": [
+        {
+          "text": "A binding to the state value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "projectedValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/State/projectedValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "projectedValue",
+      "type": "topic",
+      "url": "/documentation/swiftui/state/projectedvalue"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/State/wrappedValue": {
+      "abstract": [
+        {
+          "text": "The underlying value referenced by the state variable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wrappedValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/State/wrappedValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "wrappedValue",
+      "type": "topic",
+      "url": "/documentation/swiftui/state/wrappedvalue"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/animation(_:value:)": {
+      "abstract": [
+        {
+          "text": "Applies the given animation to this view when the specified value",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "animation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/animation(_:value:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "animation(_:value:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/animation(_:value:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/withAnimation(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the result of recomputing the view’s body with the provided",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withAnimation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        },
+        {
+          "kind": "text",
+          "text": "?, () "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/withAnimation(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withAnimation(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/withanimation(_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-and-sharing-view-state",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/State",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Bindable",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Binding"
+      ],
+      "title": "Creating and sharing view state"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/managing-user-interface-state"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

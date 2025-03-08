@@ -1,0 +1,2056 @@
+{
+  "abstract": [
+    {
+      "text": "The state in a world-tracking AR session during which a device maps the user’s position in physical space and proximity to anchor objects.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/ARWorldMap"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)ARWorldMap",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ARWorldMap"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ARWorldMap"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "ARWorldMap"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ARWorldMap"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.arkit/documentation/ARKit/managing-session-life-cycle-and-tracking-quality"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The session state in a world map includes ARKit’s awareness of the physical space in which the user moves the device. ARKit uses the details of the user’s physical space to determine the device’s position and orientation, as well as any ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects added to the session that can represent detected real-world features or virtual content placed by your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Serialize-and-Deserialize-a-World-Map",
+          "level": 3,
+          "text": "Serialize and Deserialize a World Map",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app quits, you can save the current world map (acquired using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/getCurrentWorldMap(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). Because ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldMap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " conforms to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you serialize it using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func writeWorldMap(_ worldMap: ARWorldMap, to url: URL) throws {",
+            "    let data = try NSKeyedArchiver.archivedData(withRootObject: worldMap, requiringSecureCoding: true)",
+            "    try data.write(to: url)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To restore the world map the next time your app launches, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func loadWorldMap(from url: URL) throws -> ARWorldMap {",
+            "    let mapData = try Data(contentsOf: url)",
+            "    guard let worldMap = try NSKeyedUnarchiver.unarchivedObject(ofClass: ARWorldMap.self, from: mapData)",
+            "        else { throw ARError(.invalidWorldMap) }",
+            "    return worldMap",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use anchors from a resumed world map to place the same virtual content at the same positions from the saved session, if the app launches in the same physical environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/saving-and-loading-world-data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Share-a-Saved-World-Map",
+          "level": 3,
+          "text": "Share a Saved World Map",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With two devices tracking the same world map, you can build a networked experience in which both users can see and interact with the same virtual content. To send an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldMap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to another device:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On one device, use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to convert the world map to a data object. You don’t need to write the data to a file to send it over the network.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the networking technology of your choice to send the resulting data to another device. For example, in a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " session, call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCSession/send(_:toPeers:with:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to send data, and implement ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCSessionDelegate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " methods on the other device to receive data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the receiving device, use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to instantiate an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldMap",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " from the data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/creating-a-multiuser-ar-experience",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Run-a-Deserialized-World-Map",
+          "level": 3,
+          "text": "Run a Deserialized World Map",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To begin a new session from an existing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldMap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", set a world-tracking configuration’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/initialWorldMap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property and use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/run(_:options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This starts a new session using the same spatial awareness and anchors loaded from the saved world map.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARAnchor": {
+      "abstract": [
+        {
+          "text": "An object that specifies the position and orientation of an item in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/aranchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession/getCurrentWorldMap(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Returns an object encapsulating the world-tracking session’s space-mapping state and set of anchors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCurrentWorldMap"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARWorldMap",
+          "text": "ARWorldMap"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/getCurrentWorldMap(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getCurrentWorldMapWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getCurrentWorldMap(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession/getcurrentworldmap(completionhandler:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession/run(_:options:)": {
+      "abstract": [
+        {
+          "text": "Starts AR processing for the session with the specified configuration and options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "run"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARConfiguration",
+          "text": "ARConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARSessionRunOptions",
+          "text": "RunOptions"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/run(_:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "runWithConfiguration:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "run(_:options:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession/run(_:options:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldMap": {
+      "abstract": [
+        {
+          "text": "The state in a world-tracking AR session during which a device maps the user’s position in physical space and proximity to anchor objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARWorldMap"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARWorldMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARWorldMap",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldmap"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldMap/anchors": {
+      "abstract": [
+        {
+          "text": "The set of anchors recorded in the world map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "anchors"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARAnchor",
+          "text": "ARAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldMap/anchors",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "anchors"
+        }
+      ],
+      "role": "symbol",
+      "title": "anchors",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldmap/anchors"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldMap/center": {
+      "abstract": [
+        {
+          "text": "The center point of the world map’s space-mapping data, relative to the world coordinate origin of the session the map was recorded in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "center"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_float3",
+          "text": "simd_float3"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldMap/center",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "center"
+        }
+      ],
+      "role": "symbol",
+      "title": "center",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldmap/center"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldMap/extent": {
+      "abstract": [
+        {
+          "text": "The size of the world map’s space-mapping data, relative to the world coordinate origin of the session the map was recorded in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "extent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_float3",
+          "text": "simd_float3"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldMap/extent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "extent"
+        }
+      ],
+      "role": "symbol",
+      "title": "extent",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldmap/extent"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldMap/rawFeaturePoints": {
+      "abstract": [
+        {
+          "text": "A coarse representation of the space-mapping data recorded in the world map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rawFeaturePoints"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARPointCloud",
+          "text": "ARPointCloud"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldMap/rawFeaturePoints",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rawFeaturePoints"
+        }
+      ],
+      "role": "symbol",
+      "title": "rawFeaturePoints",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldmap/rawfeaturepoints"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/initialWorldMap": {
+      "abstract": [
+        {
+          "text": "The state from a previous AR session to attempt to resume with this session configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "initialWorldMap"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARWorldMap",
+          "text": "ARWorldMap"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/initialWorldMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initialWorldMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "initialWorldMap",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/initialworldmap"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/creating-a-multiuser-ar-experience": {
+      "abstract": [
+        {
+          "text": "Enable nearby devices to share an AR experience by using a host-guest multiuser strategy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/creating-a-multiuser-ar-experience",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a multiuser AR experience",
+      "type": "topic",
+      "url": "/documentation/arkit/creating-a-multiuser-ar-experience"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/managing-session-life-cycle-and-tracking-quality": {
+      "abstract": [
+        {
+          "text": "Keep the user informed on the current session state and recover from interruptions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/managing-session-life-cycle-and-tracking-quality",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Session Life Cycle and Tracking Quality",
+      "type": "topic",
+      "url": "/documentation/arkit/managing-session-life-cycle-and-tracking-quality"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/saving-and-loading-world-data": {
+      "abstract": [
+        {
+          "text": "Serialize a world-tracking session to resume it later on.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/saving-and-loading-world-data",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Saving and loading world data",
+      "type": "topic",
+      "url": "/documentation/arkit/saving-and-loading-world-data"
+    },
+    "doc://com.apple.documentation/documentation/MultipeerConnectivity": {
+      "abstract": [
+        {
+          "text": "Support peer-to-peer connectivity and the discovery of nearby devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Multipeer Connectivity",
+      "type": "topic",
+      "url": "/documentation/MultipeerConnectivity"
+    },
+    "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCSession/send(_:toPeers:with:)": {
+      "abstract": [
+        {
+          "text": "Sends a message to nearby peers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "send"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toPeers"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "peerIDs"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MCPeerID",
+          "text": "MCPeerID"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "mode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MCSessionSendDataMode",
+          "text": "MCSessionSendDataMode"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCSession/send(_:toPeers:with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "send(_:toPeers:with:)",
+      "type": "topic",
+      "url": "/documentation/MultipeerConnectivity/MCSession/send(_:toPeers:with:)"
+    },
+    "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCSessionDelegate": {
+      "abstract": [
+        {
+          "text": "The `MCSessionDelegate` protocol defines methods that a delegate of the `MCSession` class can implement to handle session-related events. For more information, see [`MCSession`](doc://com.apple.multipeerconnectivity/documentation/MultipeerConnectivity/MCSession).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MCSessionDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity/MCSessionDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MCSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/MultipeerConnectivity/MCSessionDelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver": {
+      "abstract": [
+        {
+          "text": "An encoder that stores an object’s data to an archive referenced by keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSKeyedArchiver"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSKeyedArchiver",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedarchiver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver": {
+      "abstract": [
+        {
+          "text": "A decoder that restores data from an archive referenced by keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSKeyedUnarchiver"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSKeyedUnarchiver",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "World-Data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/saving-and-loading-world-data"
+      ],
+      "title": "World Data"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Examining-a-World-Map",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldMap/anchors",
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldMap/center",
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldMap/extent"
+      ],
+      "title": "Examining a World Map"
+    },
+    {
+      "anchor": "Debugging-a-World-Map",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldMap/rawFeaturePoints"
+      ],
+      "title": "Debugging a World Map"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "ARWorldMap"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.arkit/documentation/ARKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Examining-a-World-Map",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldMap/anchors",
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldMap/center",
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldMap/extent"
+              ],
+              "title": "Examining a World Map"
+            },
+            {
+              "anchor": "Debugging-a-World-Map",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldMap/rawFeaturePoints"
+              ],
+              "title": "Debugging a World Map"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "World-Data",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/saving-and-loading-world-data"
+              ],
+              "title": "World Data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "ARWorldMap"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldMap~1anchors/title",
+          "value": "anchors"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldMap~1anchors/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "anchors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor/title",
+          "value": "ARAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1run(_:options:)/title",
+          "value": "runWithConfiguration:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1run(_:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "runWithConfiguration:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldMap~1center/title",
+          "value": "center"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldMap~1center/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "center"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldMap~1extent/title",
+          "value": "extent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldMap~1extent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "extent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1initialWorldMap/title",
+          "value": "initialWorldMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1initialWorldMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "initialWorldMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MultipeerConnectivity~1MCSession~1send(_:toPeers:with:)/title",
+          "value": "sendData:toPeers:withMode:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MultipeerConnectivity~1MCSession~1send(_:toPeers:with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "sendData:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSData",
+              "text": "NSData"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "data"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "toPeers:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<MCPeerID *>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "peerIDs"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "withMode:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@MCSessionSendDataMode",
+              "text": "MCSessionSendDataMode"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "mode"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "error:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldMap/title",
+          "value": "ARWorldMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldMap/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldMap~1rawFeaturePoints/title",
+          "value": "rawFeaturePoints"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldMap~1rawFeaturePoints/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rawFeaturePoints"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1getCurrentWorldMap(completionHandler:)/title",
+          "value": "getCurrentWorldMapWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1getCurrentWorldMap(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getCurrentWorldMapWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MultipeerConnectivity~1MCSessionDelegate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MCSessionDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/arworldmap"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/arworldmap"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

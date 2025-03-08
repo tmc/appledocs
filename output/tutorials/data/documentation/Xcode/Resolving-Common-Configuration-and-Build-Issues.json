@@ -1,0 +1,795 @@
+{
+  "abstract": [
+    {
+      "text": "Review common configuration and build issues and learn how you can resolve them.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Resolving-Common-Configuration-and-Build-Issues"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Resolving common configuration and build issues"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode guides you through the process of configuring your project to use Xcode Cloud and of creating workflows. However, there’s a chance that you run into issues. This is more likely for complex codebases and projects that have many dependencies. To help you diagnose build failure, view logs in the build report in Xcode or on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://appstoreconnect.apple.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " website and download build reports.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "View-build-logs",
+          "level": 3,
+          "text": "View build logs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To understand why a build failed, open your project or workspace and navigate to the Report navigator. Select a build, expand a failed action, and select Logs to see the build logs. To download the build logs and any other build artifacts — for example, a result bundle — choose Artifacts for the failed action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, select a build in the Xcode Cloud tab on the App Store Connect website to view detailed information about the build.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Reproduce-a-build-failure-locally",
+          "level": 3,
+          "text": "Reproduce a build failure locally",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reproducing a build failure locally is often key to fixing its cause. To quickly replicate a failing build’s source state locally:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open your Xcode project or workspace, navigate to the Report navigator, and select a build to view its Build Report overview.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Switch To in the top-right corner of the overview and follow the on screen prompts to either switch to the latest commit of the branch or check out the specific commit of the failing build.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reproduce the issue locally by performing the action that failed in Xcode Cloud and resolve the issue.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your workflow doesn’t automatically start a new build with the latest change, manually start a new build as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Resolving-Common-Configuration-and-Build-Issues#Start-a-new-build",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Resolve-configuration-issues",
+          "level": 3,
+          "text": "Resolve configuration issues",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To resolve issues when first configuring your project or workspace to use Xcode Cloud:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If Xcode doesn’t list your product, enable the archive action for the scheme that builds your app or framework in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you can’t grant Xcode Cloud access to your Git repository, check if you have the required permission or role to connect Xcode Cloud to your Git repository. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow#Grant-Xcode-Cloud-access-to-your-source-code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If a workflow’s action doesn’t list a scheme, make sure you shared the scheme. For information on sharing a scheme, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://help.apple.com/xcode/mac/#/dev5426ddfcf",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolve-build-issues",
+          "level": 3,
+          "text": "Resolve build issues",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To resolve build issues:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control-click your workflow in the Report navigator, click Edit Workflow, and verify that the environment setting uses the macOS and Xcode versions you require to build your project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check if your project or workspace uses Xcode’s new build system. For more information about the new build system, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/build-system-release-notes-for-xcode-10",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". For details about how to turn on the new build system, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://help.apple.com/xcode/mac/#/dev396bc94c7",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Review your project’s dependencies and required additional tools to make sure they are accessible to Xcode Cloud. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://cocoapods.org",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to manage your dependencies, check if you committed your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Podfile",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Podfile.lock",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " files to Git and installed CocoaPods correctly as explained in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud#Make-CocoaPods-dependencies-available-to-Xcode-Cloud",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If a third-party tool indicates networking issues, configure it to respect the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "HTTP_PROXY",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "HTTPS_PROXY",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " environment variables and adjust its proxy settings as needed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your build fails with an error that indicates a missing app capability, check if the app ID you used when you configured your first Xcode Cloud workflow has all required capabilities enabled. For more information about capabilities, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/help/account/manage-identifiers/enable-app-capabilities",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolve-Swift-package-dependency-issues",
+          "level": 3,
+          "text": "Resolve Swift package dependency issues",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode Cloud supports using Swift package dependencies in your project. Be sure to read ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud#Use-Swift-package-dependencies-and-Git-submodules",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if your project requires Swift package dependencies to build successfully.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A common cause of failing builds is that Xcode Cloud can’t access the ",
+              "type": "text"
+            },
+            {
+              "code": "Package.resolved",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file that it needs to resolve your Swift Package dependencies. To resolve issues related to the ",
+              "type": "text"
+            },
+            {
+              "code": "Package.resolved",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, make sure:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To commit and push the file to your Git repository.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".gitignore",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file doesn’t include the file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Start-a-new-build",
+          "level": 3,
+          "text": "Start a new build",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’ve made changes to your project or workspace to resolve a build issue, start a new build to verify that the change resolved it:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To manually start a new build that includes any new changes, Control-click the workflow in the Report navigator and click Start Build.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To start a build from the same Git commit, Control-click the build in the Report navigator and choose Rebuild.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow#Grant-Xcode-Cloud-access-to-your-source-code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow#Grant-Xcode-Cloud-access-to-your-source-code",
+      "kind": "section",
+      "title": "Grant Xcode Cloud access to your source code",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-your-first-xcode-cloud-workflow#Grant-Xcode-Cloud-access-to-your-source-code"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Review dependencies and make them available to Xcode Cloud before you configure your project to use Xcode Cloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "Making dependencies available to Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/making-dependencies-available-to-xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud#Make-CocoaPods-dependencies-available-to-Xcode-Cloud": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud#Make-CocoaPods-dependencies-available-to-Xcode-Cloud",
+      "kind": "section",
+      "title": "Make CocoaPods dependencies available to Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/making-dependencies-available-to-xcode-cloud#Make-CocoaPods-dependencies-available-to-Xcode-Cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud#Use-Swift-package-dependencies-and-Git-submodules": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud#Use-Swift-package-dependencies-and-Git-submodules",
+      "kind": "section",
+      "title": "Use Swift package dependencies and Git submodules",
+      "type": "topic",
+      "url": "/documentation/xcode/making-dependencies-available-to-xcode-cloud#Use-Swift-package-dependencies-and-Git-submodules"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Reporting-feedback-for-xcode-cloud": {
+      "abstract": [
+        {
+          "text": "Provide feedback on issues you encounter when building with Xcode Cloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Reporting-feedback-for-xcode-cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "Reporting feedback for Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/reporting-feedback-for-xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Resolve-GitHub-Enterprise-connection-issues": {
+      "abstract": [
+        {
+          "text": "Verify that Xcode Cloud can access your GitHub Enterprise repository and fix configuration issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Resolve-GitHub-Enterprise-connection-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "Resolve GitHub Enterprise connection issues",
+      "type": "topic",
+      "url": "/documentation/xcode/resolve-github-enterprise-connection-issues"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Resolving-Common-Configuration-and-Build-Issues#Start-a-new-build": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Resolving-Common-Configuration-and-Build-Issues#Start-a-new-build",
+      "kind": "section",
+      "title": "Start a new build",
+      "type": "topic",
+      "url": "/documentation/xcode/resolving-common-configuration-and-build-issues#Start-a-new-build"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Automatically build, test, and distribute your apps with Xcode Cloud to verify changes and create high-quality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/xcode-cloud"
+    },
+    "doc://com.apple.documentation/documentation/Xcode-Release-Notes/build-system-release-notes-for-xcode-10": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/build-system-release-notes-for-xcode-10",
+      "kind": "article",
+      "role": "article",
+      "title": "Build System Release Notes for Xcode 10",
+      "type": "topic",
+      "url": "/documentation/Xcode-Release-Notes/build-system-release-notes-for-xcode-10"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://appstoreconnect.apple.com": {
+      "identifier": "https://appstoreconnect.apple.com",
+      "title": "App Store Connect",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://appstoreconnect.apple.com"
+    },
+    "https://cocoapods.org": {
+      "identifier": "https://cocoapods.org",
+      "title": "CocoaPods",
+      "titleInlineContent": [
+        {
+          "text": "CocoaPods",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://cocoapods.org"
+    },
+    "https://developer.apple.com/help/account/manage-identifiers/enable-app-capabilities": {
+      "identifier": "https://developer.apple.com/help/account/manage-identifiers/enable-app-capabilities",
+      "title": "Enable app capabilities",
+      "titleInlineContent": [
+        {
+          "text": "Enable app capabilities",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/manage-identifiers/enable-app-capabilities"
+    },
+    "https://help.apple.com/xcode/mac/#/dev396bc94c7": {
+      "identifier": "https://help.apple.com/xcode/mac/#/dev396bc94c7",
+      "title": "Choose the build system",
+      "titleInlineContent": [
+        {
+          "text": "Choose the build system",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/#/dev396bc94c7"
+    },
+    "https://help.apple.com/xcode/mac/#/dev5426ddfcf": {
+      "identifier": "https://help.apple.com/xcode/mac/#/dev5426ddfcf",
+      "title": "Xcode Help",
+      "titleInlineContent": [
+        {
+          "text": "Xcode Help",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/#/dev5426ddfcf"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Troubleshooting",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Resolve-GitHub-Enterprise-connection-issues",
+        "doc://com.apple.Xcode/documentation/Xcode/Reporting-feedback-for-xcode-cloud"
+      ],
+      "title": "Troubleshooting"
+    }
+  ]
+}

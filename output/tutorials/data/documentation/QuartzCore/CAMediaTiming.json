@@ -1,0 +1,2665 @@
+{
+  "abstract": [
+    {
+      "text": "Methods that model a hierarchical timing system, allowing objects to map time between their parent and local time.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.quartzcore/documentation/QuartzCore"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)CAMediaTiming",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CAMediaTiming"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Animation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CAMediaTiming"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.5",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "CAMediaTiming"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CAMediaTiming"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Absolute time is defined as mach time converted to seconds. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CACurrentMediaTime()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function is provided as a convenience for getting the current absolute time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The conversion from parent time to local time has two stages:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Conversion to “active local time.” This includes the point at which the object appears in the parent object’s timeline and how fast it plays relative to the parent.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Conversion from “active local time” to “basic local time.” The timing model allows for objects to repeat their basic duration multiple times and, optionally, to play backwards before repeating.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore": {
+      "abstract": [
+        {
+          "text": "Render, compose, and animate visual elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Animation",
+      "type": "topic",
+      "url": "/documentation/quartzcore"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimation": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for animations in Core Animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAAnimation",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caanimation"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimationGroup": {
+      "abstract": [
+        {
+          "text": "An object that allows multiple animations to be grouped and run concurrently.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAAnimationGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimationGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAAnimationGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAAnimationGroup",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caanimationgroup"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CABasicAnimation": {
+      "abstract": [
+        {
+          "text": "An object that provides basic, single-keyframe animation capabilities for a layer property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CABasicAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CABasicAnimation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CABasicAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CABasicAnimation",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cabasicanimation"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CACurrentMediaTime()": {
+      "abstract": [
+        {
+          "text": "Returns the current absolute time, in seconds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CACurrentMediaTime"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTimeInterval",
+          "text": "CFTimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CACurrentMediaTime()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CACurrentMediaTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "CACurrentMediaTime()",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cacurrentmediatime()"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink": {
+      "abstract": [
+        {
+          "text": "A timer object that allows your app to synchronize its drawing to the refresh rate of the display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CADisplayLink"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CADisplayLink"
+        }
+      ],
+      "role": "symbol",
+      "title": "CADisplayLink",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cadisplaylink"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAEAGLLayer": {
+      "abstract": [
+        {
+          "text": "A layer that supports drawing OpenGL content in iOS and tvOS applications.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAEAGLLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAEAGLLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAEAGLLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAEAGLLayer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caeagllayer"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAEmitterCell": {
+      "abstract": [
+        {
+          "text": "The definition of a particle emitted by a particle layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAEmitterCell"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAEmitterCell",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAEmitterCell"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAEmitterCell",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caemittercell"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAEmitterLayer": {
+      "abstract": [
+        {
+          "text": "A layer that emits, animates, and renders a particle system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAEmitterLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAEmitterLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAEmitterLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAEmitterLayer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caemitterlayer"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAGradientLayer": {
+      "abstract": [
+        {
+          "text": "A layer that draws a color gradient over its background color, filling the shape of the layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAGradientLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAGradientLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAGradientLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAGradientLayer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cagradientlayer"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation": {
+      "abstract": [
+        {
+          "text": "An object that provides keyframe animation capabilities for a layer object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAKeyframeAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAKeyframeAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAKeyframeAnimation",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cakeyframeanimation"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer": {
+      "abstract": [
+        {
+          "text": "An object that manages image-based content and allows you to perform animations on that content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CALayer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CALayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CALayer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/calayer"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming": {
+      "abstract": [
+        {
+          "text": "Methods that model a hierarchical timing system, allowing objects to map time between their parent and local time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAMediaTiming"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAMediaTiming"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAMediaTiming",
+      "type": "topic",
+      "url": "/documentation/quartzcore/camediatiming"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/autoreverses": {
+      "abstract": [
+        {
+          "text": "Determines if the receiver plays in the reverse upon completion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autoreverses"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/autoreverses",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autoreverses"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "autoreverses",
+      "type": "topic",
+      "url": "/documentation/quartzcore/camediatiming/autoreverses"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/beginTime": {
+      "abstract": [
+        {
+          "text": "Specifies the begin time of the receiver in relation to its parent object, if applicable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTimeInterval",
+          "text": "CFTimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/beginTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "beginTime"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "beginTime",
+      "type": "topic",
+      "url": "/documentation/quartzcore/camediatiming/begintime"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/duration": {
+      "abstract": [
+        {
+          "text": "Specifies the basic duration of the animation, in seconds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTimeInterval",
+          "text": "CFTimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/duration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "duration"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "duration",
+      "type": "topic",
+      "url": "/documentation/quartzcore/camediatiming/duration"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/fillMode": {
+      "abstract": [
+        {
+          "text": "Determines if the receiver’s presentation is frozen or removed once its active duration has completed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fillMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CAMediaTimingFillMode",
+          "text": "CAMediaTimingFillMode"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/fillMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fillMode"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "fillMode",
+      "type": "topic",
+      "url": "/documentation/quartzcore/camediatiming/fillmode"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/repeatCount": {
+      "abstract": [
+        {
+          "text": "Determines the number of times the animation will repeat.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "repeatCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/repeatCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "repeatCount"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "repeatCount",
+      "type": "topic",
+      "url": "/documentation/quartzcore/camediatiming/repeatcount"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/repeatDuration": {
+      "abstract": [
+        {
+          "text": "Determines how many seconds the animation will repeat for.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "repeatDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTimeInterval",
+          "text": "CFTimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/repeatDuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "repeatDuration"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "repeatDuration",
+      "type": "topic",
+      "url": "/documentation/quartzcore/camediatiming/repeatduration"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/speed": {
+      "abstract": [
+        {
+          "text": "Specifies how time is mapped to receiver’s time space from the parent time space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "speed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/speed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "speed"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "speed",
+      "type": "topic",
+      "url": "/documentation/quartzcore/camediatiming/speed"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/timeOffset": {
+      "abstract": [
+        {
+          "text": "Specifies an additional time offset in active local time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTimeInterval",
+          "text": "CFTimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/timeOffset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "timeOffset"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "timeOffset",
+      "type": "topic",
+      "url": "/documentation/quartzcore/camediatiming/timeoffset"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTimingFunction": {
+      "abstract": [
+        {
+          "text": "A function that defines the pacing of an animation as a timing curve.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAMediaTimingFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTimingFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAMediaTimingFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAMediaTimingFunction",
+      "type": "topic",
+      "url": "/documentation/quartzcore/camediatimingfunction"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDisplayLink": {
+      "abstract": [
+        {
+          "text": "A class your Metal app uses to register for callbacks to synchronize its animations for a display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAMetalDisplayLink"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDisplayLink",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAMetalDisplayLink"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAMetalDisplayLink",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametaldisplaylink"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDisplayLink/Update": {
+      "abstract": [
+        {
+          "text": "Stores information about a single update from a Metal display link instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Update"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDisplayLink/Update",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Update"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAMetalDisplayLink.Update",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametaldisplaylink/update"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDisplayLinkDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol your app implements to respond to callbacks from Core Animation for a Metal display link.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAMetalDisplayLinkDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDisplayLinkDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAMetalDisplayLinkDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAMetalDisplayLinkDelegate",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametaldisplaylinkdelegate"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer": {
+      "abstract": [
+        {
+          "text": "A Core Animation layer that Metal can render into, typically displayed onscreen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAMetalLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAMetalLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAMetalLayer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametallayer"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAOpenGLLayer": {
+      "abstract": [
+        {
+          "text": "A layer that provides a layer suitable for rendering OpenGL content.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAOpenGLLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAOpenGLLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAOpenGLLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAOpenGLLayer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caopengllayer"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAPropertyAnimation": {
+      "abstract": [
+        {
+          "text": "An abstract subclass for creating animations that manipulate the value of layer properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAPropertyAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAPropertyAnimation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAPropertyAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAPropertyAnimation",
+      "type": "topic",
+      "url": "/documentation/quartzcore/capropertyanimation"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAReplicatorLayer": {
+      "abstract": [
+        {
+          "text": "A layer that creates a specified number of sublayer copies with varying geometric, temporal, and color transformations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAReplicatorLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAReplicatorLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAReplicatorLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAReplicatorLayer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/careplicatorlayer"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAScrollLayer": {
+      "abstract": [
+        {
+          "text": "A layer that displays scrollable content larger than its own bounds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAScrollLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAScrollLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAScrollLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAScrollLayer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cascrolllayer"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer": {
+      "abstract": [
+        {
+          "text": "A layer that draws a cubic Bezier spline in its coordinate space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAShapeLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAShapeLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAShapeLayer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cashapelayer"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CASpringAnimation": {
+      "abstract": [
+        {
+          "text": "An animation that applies a spring-like force to a layer’s properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CASpringAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CASpringAnimation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CASpringAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CASpringAnimation",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caspringanimation"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATextLayer": {
+      "abstract": [
+        {
+          "text": "A layer that provides simple text layout and rendering of plain or attributed strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CATextLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATextLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CATextLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CATextLayer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catextlayer"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATiledLayer": {
+      "abstract": [
+        {
+          "text": "A layer that provides a way to asynchronously provide tiles of the layer’s content, potentially cached at multiple levels of detail.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CATiledLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATiledLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CATiledLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CATiledLayer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catiledlayer"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATransformLayer": {
+      "abstract": [
+        {
+          "text": "Objects used to create true 3D layer hierarchies, rather than the flattened hierarchy rendering model used by other layer types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CATransformLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransformLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CATransformLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CATransformLayer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catransformlayer"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition": {
+      "abstract": [
+        {
+          "text": "An object that provides an animated transition between a layer’s states.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CATransition"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CATransition"
+        }
+      ],
+      "role": "symbol",
+      "title": "CATransition",
+      "type": "topic",
+      "url": "/documentation/quartzcore/catransition"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/fill-modes": {
+      "abstract": [
+        {
+          "text": "These constants determine how the timed object behaves once its active duration has completed. They are used with the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/fillMode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/fill-modes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Fill Modes",
+      "type": "topic",
+      "url": "/documentation/quartzcore/fill-modes"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimation",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimationGroup",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CABasicAnimation",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAEAGLLayer",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAEmitterCell",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAEmitterLayer",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAGradientLayer",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAKeyframeAnimation",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAOpenGLLayer",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAPropertyAnimation",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAReplicatorLayer",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAScrollLayer",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAShapeLayer",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CASpringAnimation",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CATextLayer",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CATiledLayer",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CATransformLayer",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CATransition"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Animation-Timing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CACurrentMediaTime()",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTimingFunction",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDisplayLink",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDisplayLink/Update",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDisplayLinkDelegate"
+      ],
+      "title": "Animation Timing"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Animation-Start-Time",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/beginTime",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/timeOffset"
+      ],
+      "title": "Animation Start Time"
+    },
+    {
+      "anchor": "Repeating-Animations",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/repeatCount",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/repeatDuration"
+      ],
+      "title": "Repeating Animations"
+    },
+    {
+      "anchor": "Duration-and-Speed",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/duration",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/speed"
+      ],
+      "title": "Duration and Speed"
+    },
+    {
+      "anchor": "Playback-Modes",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/autoreverses",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/fillMode"
+      ],
+      "title": "Playback Modes"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/fill-modes"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.5",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CAMediaTiming"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMediaTiming"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMediaTiming"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.quartzcore/documentation/QuartzCore"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Animation-Start-Time",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/beginTime",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/timeOffset"
+              ],
+              "title": "Animation Start Time"
+            },
+            {
+              "anchor": "Repeating-Animations",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/repeatCount",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/repeatDuration"
+              ],
+              "title": "Repeating Animations"
+            },
+            {
+              "anchor": "Duration-and-Speed",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/duration",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/speed"
+              ],
+              "title": "Duration and Speed"
+            },
+            {
+              "anchor": "Playback-Modes",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/autoreverses",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming/fillMode"
+              ],
+              "title": "Playback Modes"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/fill-modes"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAAnimation",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAEmitterCell",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer"
+              ],
+              "kind": "relationships",
+              "title": "Conforming Types",
+              "type": "conformingTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Animation-Timing",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CACurrentMediaTime()",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTimingFunction",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CADisplayLink",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDisplayLink",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDisplayLink/Update",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDisplayLinkDelegate"
+              ],
+              "title": "Animation Timing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CAMediaTiming"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAOpenGLLayer/title",
+          "value": "CAOpenGLLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAOpenGLLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAOpenGLLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAOpenGLLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAOpenGLLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransition/title",
+          "value": "CATransition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CATransition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CATransition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming~1autoreverses/title",
+          "value": "autoreverses"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming~1autoreverses/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "autoreverses"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAEAGLLayer/title",
+          "value": "CAEAGLLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAEAGLLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAEAGLLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAEAGLLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAEAGLLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming~1duration/title",
+          "value": "duration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming~1duration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "duration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming~1repeatDuration/title",
+          "value": "repeatDuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming~1repeatDuration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "repeatDuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAPropertyAnimation/title",
+          "value": "CAPropertyAnimation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAPropertyAnimation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAPropertyAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAPropertyAnimation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAPropertyAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAGradientLayer/title",
+          "value": "CAGradientLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAGradientLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAGradientLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAGradientLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAGradientLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CABasicAnimation/title",
+          "value": "CABasicAnimation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CABasicAnimation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CABasicAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CABasicAnimation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CABasicAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransformLayer/title",
+          "value": "CATransformLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransformLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CATransformLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATransformLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CATransformLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming~1timeOffset/title",
+          "value": "timeOffset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming~1timeOffset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "timeOffset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATiledLayer/title",
+          "value": "CATiledLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATiledLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CATiledLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATiledLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CATiledLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer/title",
+          "value": "CAMetalLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMetalLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMetalLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAEmitterLayer/title",
+          "value": "CAEmitterLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAEmitterLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAEmitterLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAEmitterLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAEmitterLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAKeyframeAnimation/title",
+          "value": "CAKeyframeAnimation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAKeyframeAnimation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAKeyframeAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAKeyframeAnimation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAKeyframeAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming~1fillMode/title",
+          "value": "fillMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming~1fillMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fillMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming/title",
+          "value": "CAMediaTiming"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMediaTiming"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMediaTiming"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATextLayer/title",
+          "value": "CATextLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATextLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CATextLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CATextLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CATextLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalDisplayLink~1Update/title",
+          "value": "CAMetalDisplayLinkUpdate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalDisplayLink~1Update/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMetalDisplayLinkUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalDisplayLink~1Update/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMetalDisplayLinkUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CASpringAnimation/title",
+          "value": "CASpringAnimation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CASpringAnimation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CASpringAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CASpringAnimation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CASpringAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CALayer/title",
+          "value": "CALayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CALayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CALayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CALayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CALayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink/title",
+          "value": "CADisplayLink"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CADisplayLink"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CADisplayLink/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CADisplayLink"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming~1repeatCount/title",
+          "value": "repeatCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming~1repeatCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "repeatCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTimingFunction/title",
+          "value": "CAMediaTimingFunction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTimingFunction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMediaTimingFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTimingFunction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMediaTimingFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAnimation/title",
+          "value": "CAAnimation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAnimation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAnimation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming~1beginTime/title",
+          "value": "beginTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming~1beginTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "beginTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAReplicatorLayer/title",
+          "value": "CAReplicatorLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAReplicatorLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAReplicatorLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAReplicatorLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAReplicatorLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAEmitterCell/title",
+          "value": "CAEmitterCell"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAEmitterCell/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAEmitterCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAEmitterCell/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAEmitterCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalDisplayLinkDelegate/title",
+          "value": "CAMetalDisplayLinkDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalDisplayLinkDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMetalDisplayLinkDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalDisplayLinkDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMetalDisplayLinkDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAnimationGroup/title",
+          "value": "CAAnimationGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAnimationGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAAnimationGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAAnimationGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAAnimationGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer/title",
+          "value": "CAShapeLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAShapeLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAShapeLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAShapeLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalDisplayLink/title",
+          "value": "CAMetalDisplayLink"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalDisplayLink/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMetalDisplayLink"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalDisplayLink/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMetalDisplayLink"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming~1speed/title",
+          "value": "speed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming~1speed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "speed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CACurrentMediaTime()/title",
+          "value": "CACurrentMediaTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CACurrentMediaTime()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CACurrentMediaTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAScrollLayer/title",
+          "value": "CAScrollLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAScrollLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAScrollLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAScrollLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAScrollLayer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quartzcore/camediatiming"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/quartzcore/camediatiming"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

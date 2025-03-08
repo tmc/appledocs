@@ -1,0 +1,788 @@
+{
+  "abstract": [
+    {
+      "text": "Perform computations on small vectors and matrices.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/simd-library"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "simd"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "simd provides types and functions for small vector and matrix computations. The types include integer and floating-point vectors and matrices, and the functions provide basic arithmetic operations, element-wise mathematical operations, and geometric and linear algebra operations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "simd supports vectors containing up to 16 elements (for single-precision values) or 8 elements (for double-precision values), and matrices up to 4 x 4 elements in size. Other frameworks, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/accelerate/veclib/vforce",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", allow you to work with larger vectors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/16-bit-signed-integer-vectors": {
+      "abstract": [
+        {
+          "text": "Perform operations on vectors that contain signed 16-bit integer elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/16-bit-signed-integer-vectors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "16-Bit Signed Integer Vectors",
+      "type": "topic",
+      "url": "/documentation/accelerate/16-bit-signed-integer-vectors"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/16-bit-unsigned-integer-vectors": {
+      "abstract": [
+        {
+          "text": "Perform operations on vectors that contain unsigned 16-bit integer elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/16-bit-unsigned-integer-vectors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "16-Bit Unsigned Integer Vectors",
+      "type": "topic",
+      "url": "/documentation/accelerate/16-bit-unsigned-integer-vectors"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/32-bit-signed-integer-vectors": {
+      "abstract": [
+        {
+          "text": "Perform operations on vectors that contain signed 32-bit integer elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/32-bit-signed-integer-vectors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "32-Bit Signed Integer Vectors",
+      "type": "topic",
+      "url": "/documentation/accelerate/32-bit-signed-integer-vectors"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/32-bit-unsigned-integer-vectors": {
+      "abstract": [
+        {
+          "text": "Perform operations on vectors that contain unsigned 32-bit integer elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/32-bit-unsigned-integer-vectors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "32-Bit Unsigned Integer Vectors",
+      "type": "topic",
+      "url": "/documentation/accelerate/32-bit-unsigned-integer-vectors"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/64-bit-signed-integer-vectors": {
+      "abstract": [
+        {
+          "text": "Perform operations on vectors that contain signed 64-bit integer elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/64-bit-signed-integer-vectors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "64-Bit Signed Integer Vectors",
+      "type": "topic",
+      "url": "/documentation/accelerate/64-bit-signed-integer-vectors"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/64-bit-unsigned-integer-vectors": {
+      "abstract": [
+        {
+          "text": "Perform operations on vectors that contain unsigned 64-bit integer elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/64-bit-unsigned-integer-vectors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "64-Bit Unsigned Integer Vectors",
+      "type": "topic",
+      "url": "/documentation/accelerate/64-bit-unsigned-integer-vectors"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/8-bit-signed-integer-vectors": {
+      "abstract": [
+        {
+          "text": "Perform operations on vectors that contain signed 8-bit integer elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/8-bit-signed-integer-vectors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "8-Bit Signed Integer Vectors",
+      "type": "topic",
+      "url": "/documentation/accelerate/8-bit-signed-integer-vectors"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/8-bit-unsigned-integer-vectors": {
+      "abstract": [
+        {
+          "text": "Perform operations on vectors that contain unsigned 8-bit integer elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/8-bit-unsigned-integer-vectors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "8-Bit Unsigned Integer Vectors",
+      "type": "topic",
+      "url": "/documentation/accelerate/8-bit-unsigned-integer-vectors"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/double-precision-floating-point-matrices": {
+      "abstract": [
+        {
+          "text": "Perform operations on matrices that contain double-precision floating-point elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/double-precision-floating-point-matrices",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Double-precision floating-point matrices",
+      "type": "topic",
+      "url": "/documentation/accelerate/double-precision-floating-point-matrices"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/double-precision-floating-point-vectors": {
+      "abstract": [
+        {
+          "text": "Perform operations on vectors that contain double-precision floating-point elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/double-precision-floating-point-vectors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Double-precision floating-point vectors",
+      "type": "topic",
+      "url": "/documentation/accelerate/double-precision-floating-point-vectors"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/half-precision-floating-point-matrices": {
+      "abstract": [
+        {
+          "text": "Perform operations on matrices that contain half-precision floating-point elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/half-precision-floating-point-matrices",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Half-precision floating-point matrices",
+      "type": "topic",
+      "url": "/documentation/accelerate/half-precision-floating-point-matrices"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/half-precision-floating-point-vectors": {
+      "abstract": [
+        {
+          "text": "Perform operations on vectors that contain half-precision floating-point elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/half-precision-floating-point-vectors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Half-precision floating-point vectors",
+      "type": "topic",
+      "url": "/documentation/accelerate/half-precision-floating-point-vectors"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/rotating-a-cube-by-transforming-its-vertices": {
+      "abstract": [
+        {
+          "text": "Rotate a cube through a series of keyframes using quaternion interpolation to transition between them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/rotating-a-cube-by-transforming-its-vertices",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rotating a cube by transforming its vertices",
+      "type": "topic",
+      "url": "/documentation/accelerate/rotating-a-cube-by-transforming-its-vertices"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/simd-macros": {
+      "abstract": [],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/simd-macros",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "simd Macros",
+      "type": "topic",
+      "url": "/documentation/accelerate/simd-macros"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/single-precision-floating-point-matrices": {
+      "abstract": [
+        {
+          "text": "Perform operations on matrices that contain single-precision floating-point elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/single-precision-floating-point-matrices",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Single-precision floating-point matrices",
+      "type": "topic",
+      "url": "/documentation/accelerate/single-precision-floating-point-matrices"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/single-precision-floating-point-vectors": {
+      "abstract": [
+        {
+          "text": "Perform operations on vectors that contain single-precision floating-point elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/single-precision-floating-point-vectors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Single-precision floating-point vectors",
+      "type": "topic",
+      "url": "/documentation/accelerate/single-precision-floating-point-vectors"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vforce-library": {
+      "abstract": [
+        {
+          "text": "Perform transcendental and trigonometric functions on vectors of any length.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vforce-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vForce",
+      "type": "topic",
+      "url": "/documentation/accelerate/vforce-library"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/working-with-matrices": {
+      "abstract": [
+        {
+          "text": "Solve simultaneous equations and transform points in space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/working-with-matrices",
+      "kind": "article",
+      "role": "article",
+      "title": "Working with Matrices",
+      "type": "topic",
+      "url": "/documentation/accelerate/working-with-matrices"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/working-with-quaternions": {
+      "abstract": [
+        {
+          "text": "Rotate points around the surface of a sphere, and interpolate between them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/working-with-quaternions",
+      "kind": "article",
+      "role": "article",
+      "title": "Working with Quaternions",
+      "type": "topic",
+      "url": "/documentation/accelerate/working-with-quaternions"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/working-with-vectors": {
+      "abstract": [
+        {
+          "text": "Use vectors to calculate geometric values, calculate dot products and cross products, and interpolate between values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/working-with-vectors",
+      "kind": "article",
+      "role": "article",
+      "title": "Working with Vectors",
+      "type": "topic",
+      "url": "/documentation/accelerate/working-with-vectors"
+    },
+    "doc://com.apple.accelerate/documentation/simd/SIMD_COMPILER_HAS_REQUIRED_FEATURES": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SIMD_COMPILER_HAS_REQUIRED_FEATURES"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/simd/SIMD_COMPILER_HAS_REQUIRED_FEATURES",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SIMD_COMPILER_HAS_REQUIRED_FEATURES"
+        }
+      ],
+      "role": "symbol",
+      "title": "SIMD_COMPILER_HAS_REQUIRED_FEATURES",
+      "type": "topic",
+      "url": "/documentation/simd/simd_compiler_has_required_features"
+    },
+    "doc://com.apple.accelerate/documentation/simd/SIMD_LIBRARY_VERSION": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SIMD_LIBRARY_VERSION"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/simd/SIMD_LIBRARY_VERSION",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SIMD_LIBRARY_VERSION"
+        }
+      ],
+      "role": "symbol",
+      "title": "SIMD_LIBRARY_VERSION",
+      "type": "topic",
+      "url": "/documentation/simd/simd_library_version"
+    },
+    "doc://com.apple.accelerate/documentation/simd/simd_bool": {
+      "abstract": [
+        {
+          "text": "A Boolean scalar value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simd_bool"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/simd/simd_bool",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "simd_bool"
+        }
+      ],
+      "role": "symbol",
+      "title": "simd_bool",
+      "type": "topic",
+      "url": "/documentation/simd/simd_bool"
+    },
+    "doc://com.apple.accelerate/documentation/simd/simd_quatd": {
+      "abstract": [
+        {
+          "text": "A double-precision quaternion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simd_quatd"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/simd/simd_quatd",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "simd_quatd"
+        }
+      ],
+      "role": "symbol",
+      "title": "simd_quatd",
+      "type": "topic",
+      "url": "/documentation/simd/simd_quatd"
+    },
+    "doc://com.apple.accelerate/documentation/simd/simd_quatf": {
+      "abstract": [
+        {
+          "text": "A single-precision quaternion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simd_quatf"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/simd/simd_quatf",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "simd_quatf"
+        }
+      ],
+      "role": "symbol",
+      "title": "simd_quatf",
+      "type": "topic",
+      "url": "/documentation/simd/simd_quatf"
+    },
+    "doc://com.apple.documentation/documentation/accelerate/veclib/vforce": {
+      "abstract": [
+        {
+          "text": "Perform transcendental and trigonometric functions on vectors of any length.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/accelerate/veclib/vforce",
+      "kind": "article",
+      "role": "article",
+      "title": "vForce",
+      "type": "topic",
+      "url": "/documentation/accelerate/veclib/vforce"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Vectors-Matrices-and-Quaternions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/working-with-vectors",
+        "doc://com.apple.accelerate/documentation/Accelerate/working-with-matrices",
+        "doc://com.apple.accelerate/documentation/Accelerate/working-with-quaternions",
+        "doc://com.apple.accelerate/documentation/Accelerate/rotating-a-cube-by-transforming-its-vertices",
+        "doc://com.apple.accelerate/documentation/Accelerate/vforce-library"
+      ],
+      "title": "Vectors, Matrices, and Quaternions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Boolean-Scalar-Data-Type",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/simd/simd_bool"
+      ],
+      "title": "Boolean Scalar Data Type"
+    },
+    {
+      "anchor": "Signed-Integer-Vectors",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/8-bit-signed-integer-vectors",
+        "doc://com.apple.accelerate/documentation/Accelerate/16-bit-signed-integer-vectors",
+        "doc://com.apple.accelerate/documentation/Accelerate/32-bit-signed-integer-vectors",
+        "doc://com.apple.accelerate/documentation/Accelerate/64-bit-signed-integer-vectors"
+      ],
+      "title": "Signed Integer Vectors"
+    },
+    {
+      "anchor": "Unsigned-Integer-Vectors",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/8-bit-unsigned-integer-vectors",
+        "doc://com.apple.accelerate/documentation/Accelerate/16-bit-unsigned-integer-vectors",
+        "doc://com.apple.accelerate/documentation/Accelerate/32-bit-unsigned-integer-vectors",
+        "doc://com.apple.accelerate/documentation/Accelerate/64-bit-unsigned-integer-vectors"
+      ],
+      "title": "Unsigned Integer Vectors"
+    },
+    {
+      "anchor": "Floating-Point-Vectors",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/working-with-vectors",
+        "doc://com.apple.accelerate/documentation/Accelerate/half-precision-floating-point-vectors",
+        "doc://com.apple.accelerate/documentation/Accelerate/single-precision-floating-point-vectors",
+        "doc://com.apple.accelerate/documentation/Accelerate/double-precision-floating-point-vectors"
+      ],
+      "title": "Floating-Point Vectors"
+    },
+    {
+      "anchor": "Matrices",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/working-with-matrices",
+        "doc://com.apple.accelerate/documentation/Accelerate/half-precision-floating-point-matrices",
+        "doc://com.apple.accelerate/documentation/Accelerate/single-precision-floating-point-matrices",
+        "doc://com.apple.accelerate/documentation/Accelerate/double-precision-floating-point-matrices"
+      ],
+      "title": "Matrices"
+    },
+    {
+      "anchor": "Quaternions",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/working-with-quaternions",
+        "doc://com.apple.accelerate/documentation/Accelerate/rotating-a-cube-by-transforming-its-vertices",
+        "doc://com.apple.accelerate/documentation/simd/simd_quatf",
+        "doc://com.apple.accelerate/documentation/simd/simd_quatd"
+      ],
+      "title": "Quaternions"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/simd/SIMD_COMPILER_HAS_REQUIRED_FEATURES",
+        "doc://com.apple.accelerate/documentation/simd/SIMD_LIBRARY_VERSION"
+      ],
+      "title": "Constants"
+    },
+    {
+      "anchor": "Macros",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/simd-macros"
+      ],
+      "title": "Macros"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_quatf/title",
+          "value": "simd_quatf"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_quatf/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_quatf"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_quatf/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_quatf"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1SIMD_LIBRARY_VERSION/title",
+          "value": "SIMD_LIBRARY_VERSION"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1SIMD_LIBRARY_VERSION/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SIMD_LIBRARY_VERSION"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1SIMD_COMPILER_HAS_REQUIRED_FEATURES/title",
+          "value": "SIMD_COMPILER_HAS_REQUIRED_FEATURES"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1SIMD_COMPILER_HAS_REQUIRED_FEATURES/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SIMD_COMPILER_HAS_REQUIRED_FEATURES"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_quatd/title",
+          "value": "simd_quatd"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_quatd/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_quatd"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_quatd/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_quatd"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_bool/title",
+          "value": "simd_bool"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_bool/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_bool"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1simd~1simd_bool/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "simd_bool"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

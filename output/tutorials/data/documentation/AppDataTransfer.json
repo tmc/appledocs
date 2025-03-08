@@ -1,0 +1,1323 @@
+{
+  "abstract": [
+    {
+      "text": "Download App Store information and app-install activity about your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "AppDataTransfer",
+    "modules": [
+      {
+        "name": "App Data Transfer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "App Data Transfer"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "App Data Transfer"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the App Data Transfer web API to request and download App Store information and app-install activity data about your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The data available relates to a user’s use of Apple’s App Store and includes information such as previous transactions and downloads.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you have multiple apps, integrate each app with the API separately to enable users to transfer their data to you.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To access the data, you need to acquire an access token with the ",
+              "type": "text"
+            },
+            {
+              "code": "appstore-user-profile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " read-only scope, and at least one of these scopes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "appstore-info-readonly",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "app-install-activity-readonly",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AccountOrganizationalDataSharing/Request-an-authorization",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get permission for your App ID or Services ID to request these scopes, follow the instructions at ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/share-account-data/share-account-and-organizational-data/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This API returns app-related data about users in the EU and UK.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you are a third party authorized by a user, you may request access to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AccountDataTransfer",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " API to enable the portability of relevant user data from Apple on behalf of your users.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If you have any questions about the data made available in this API, including about how Apple applies privacy measures to protect user privacy and complies with legal obligations, contact Apple through Feedback Assistant by selecting the following option:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Developer Tools & Resources > App Data Transfer API > Data Request",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "identifier": "https://support.apple.com/guide/feedback-assistant/welcome/mac",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " about how to use Feedback Assistant.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Set-required-HTTP-headers",
+          "level": 3,
+          "text": "Set required HTTP headers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you make requests for your app’s App Store information or app-install activity, using any of the endpoints listed below, set the following HTTP headers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Set the value to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "Bearer <ACCESS_TOKEN>",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " to assert that your app is authorized to fetch data with the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "appstore-info-readonly",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " or ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "app-install-activity-readonly",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " scope.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Authorization",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Set the value to a UUID that uniquely identifies the request. If you need to contact Apple to get support, quote the UUID of the request for which you need help.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "X-Apple-Transaction-Id",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Set the value to the IP address of the user on behalf of whom you’re making the request.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "X-Forwarded-For",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Submit-a-request",
+          "level": 3,
+          "text": "Submit a request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make an HTTP ",
+              "type": "text"
+            },
+            {
+              "code": "POST",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Submit-request",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint, requesting the ",
+              "type": "text"
+            },
+            {
+              "code": "app-store",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data type.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To make a one-time request, set the ",
+              "type": "text"
+            },
+            {
+              "code": "mode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to ",
+              "type": "text"
+            },
+            {
+              "code": "ONE_TIME",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To make recurring requests, use one of the following values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "One recurring request every day for 30 days",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "DAILY_30",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "One recurring request every week for 180 days",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "WEEKLY_180",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Apple server returns a request ID, which you use when you get the request status, request download URLs, or cancel the request.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For recurring requests, the Apple server returns a request ID, along with the parent ID that identifies the series of recurring requests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The response from the server also contains a ",
+              "type": "text"
+            },
+            {
+              "code": "statusCheckDelay",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which is the number of seconds you need to wait before checking the status of the request.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can cancel a request before this time by making a ",
+              "type": "text"
+            },
+            {
+              "code": "POST",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Cancel-request",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you submit a recurring request and don’t resubmit the recurring instances, for example, you request a ",
+              "type": "text"
+            },
+            {
+              "code": "DAILY_30",
+              "type": "codeVoice"
+            },
+            {
+              "text": " recurrence and don’t resubmit the request each subsequent day, the recurring request expires and you need to submit another request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Find-the-request-status",
+          "level": 3,
+          "text": "Find the request status",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The data corresponding to the request you submitted isn’t available immediately.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After the status-check delay expires, make a ",
+              "type": "text"
+            },
+            {
+              "code": "GET",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-one-time-request-status",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-recurring-request-status",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", including the request identifier in the path.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the job status is ",
+              "type": "text"
+            },
+            {
+              "code": "completed",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "completed_with_error",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the data associated with the request is ready to download.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Transfer-data",
+          "level": 3,
+          "text": "Transfer data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Get the download URLs for a completed request by making a ",
+              "type": "text"
+            },
+            {
+              "code": "GET",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-one-time-request-download-URLs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-recurring-request-download-URLs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", including the request identifier in the path.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The response contains a list of URLs to which you make ",
+              "type": "text"
+            },
+            {
+              "code": "GET",
+              "type": "codeVoice"
+            },
+            {
+              "text": " requests, to retrieve the person’s data specific to your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Download URLs are available for 3 days after the download request completes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The URLs you receive are valid for 15 minutes after you request them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on the content and terms used in the files you download, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://privacy.apple.com/file-guides/transfer/appdata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Resubmit-recurring-requests",
+          "level": 3,
+          "text": "Resubmit recurring requests",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Enqueue the next instance of a recurring request by making a ",
+              "type": "text"
+            },
+            {
+              "code": "POST",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Resubmit-request",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint, passing the parent request identifier and the request identifier of the most recent instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The server’s response contains the request identifier of the new request, and a delay to wait before you can check the new request’s status.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AccountDataTransfer": {
+      "abstract": [
+        {
+          "text": "Download App Store information and app-install activity on behalf of your app’s users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AccountDataTransfer",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Account Data Transfer",
+      "type": "topic",
+      "url": "/documentation/AccountDataTransfer"
+    },
+    "doc://com.apple.documentation/documentation/AccountOrganizationalDataSharing/Request-an-authorization": {
+      "abstract": [
+        {
+          "text": "Request a user authorization to Account & Organizational Data Sharing apps and web services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AccountOrganizationalDataSharing/Request-an-authorization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Request an authorization",
+      "type": "topic",
+      "url": "/documentation/AccountOrganizationalDataSharing/Request-an-authorization"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer": {
+      "abstract": [
+        {
+          "text": "Download App Store information and app-install activity about your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Data Transfer",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Cancel-request": {
+      "abstract": [
+        {
+          "text": "Tells the server to stop processing an active request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Cancel-request",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Cancel request"
+        }
+      ],
+      "role": "symbol",
+      "title": "Cancel request",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/cancel-request"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/CancellationRequest": {
+      "abstract": [
+        {
+          "text": "An object that identifies a one-time request, or an individual instance of a recurring request, to cancel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CancellationRequest"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/CancellationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CancellationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "CancellationRequest",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/cancellationrequest"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/CancellationResponse": {
+      "abstract": [
+        {
+          "text": "An object that describes the outcome of canceling a download request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CancellationResponse"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/CancellationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CancellationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "CancellationResponse",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/cancellationresponse"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/CreatedJob": {
+      "abstract": [
+        {
+          "text": "An object that represents a newly created download request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CreatedJob"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/CreatedJob",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CreatedJob"
+        }
+      ],
+      "role": "symbol",
+      "title": "CreatedJob",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/createdjob"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/DownloadError": {
+      "abstract": [
+        {
+          "text": "An object that describes an error the server encounters while preparing download URLs for a request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DownloadError"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/DownloadError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DownloadError"
+        }
+      ],
+      "role": "symbol",
+      "title": "DownloadError",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/downloaderror"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/DownloadLinks": {
+      "abstract": [
+        {
+          "text": "An object that contains URLs to download someone’s data specific to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DownloadLinks"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/DownloadLinks",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DownloadLinks"
+        }
+      ],
+      "role": "symbol",
+      "title": "DownloadLinks",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/downloadlinks"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-one-time-request-download-URLs": {
+      "abstract": [
+        {
+          "text": "Get URLs to retrieve someone’s data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-one-time-request-download-URLs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get one-time request download URLs"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get one-time request download URLs",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/get-one-time-request-download-urls"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-one-time-request-status": {
+      "abstract": [
+        {
+          "text": "Find the status of a one-time download request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-one-time-request-status",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get one-time request status"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get one-time request status",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/get-one-time-request-status"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-recurring-request-download-URLs": {
+      "abstract": [
+        {
+          "text": "Get URLs to download a snapshot of someone’s data specific to your app from a recurring series.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-recurring-request-download-URLs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get recurring request download URLs"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get recurring request download URLs",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/get-recurring-request-download-urls"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-recurring-request-status": {
+      "abstract": [
+        {
+          "text": "Get the status of an instance of a recurring download request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-recurring-request-status",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get recurring request status"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get recurring request status",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/get-recurring-request-status"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/JobSubmission": {
+      "abstract": [
+        {
+          "text": "An object that describes a submission that requests someone’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "JobSubmission"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/JobSubmission",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JobSubmission"
+        }
+      ],
+      "role": "symbol",
+      "title": "JobSubmission",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/jobsubmission"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/RequestStatus": {
+      "abstract": [
+        {
+          "text": "An object that represents the status of a download request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RequestStatus"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/RequestStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RequestStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "RequestStatus",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/requeststatus"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/ResubmissionRequest": {
+      "abstract": [
+        {
+          "text": "An object that describes a request to resubmit a recurring download request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ResubmissionRequest"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/ResubmissionRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ResubmissionRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ResubmissionRequest",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/resubmissionrequest"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/ResubmissionResponse": {
+      "abstract": [
+        {
+          "text": "An object that represents a resubmitted recurring download request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ResubmissionResponse"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/ResubmissionResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ResubmissionResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ResubmissionResponse",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/resubmissionresponse"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Resubmit-request": {
+      "abstract": [
+        {
+          "text": "Enqueue the next instance of a recurring request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Resubmit-request",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Resubmit request"
+        }
+      ],
+      "role": "symbol",
+      "title": "Resubmit request",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/resubmit-request"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Submit-request": {
+      "abstract": [
+        {
+          "text": "Starts preparing someone’s data for download.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Submit-request",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Submit request"
+        }
+      ],
+      "role": "symbol",
+      "title": "Submit request",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/submit-request"
+    },
+    "https://developer.apple.com/help/account/share-account-data/share-account-and-organizational-data/": {
+      "identifier": "https://developer.apple.com/help/account/share-account-data/share-account-and-organizational-data/",
+      "title": "Account & Organizational Data Sharing",
+      "titleInlineContent": [
+        {
+          "text": "Account & Organizational Data Sharing",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/share-account-data/share-account-and-organizational-data/"
+    },
+    "https://privacy.apple.com/file-guides/transfer/appdata": {
+      "identifier": "https://privacy.apple.com/file-guides/transfer/appdata",
+      "title": "Data and Privacy",
+      "titleInlineContent": [
+        {
+          "text": "Data and Privacy",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://privacy.apple.com/file-guides/transfer/appdata"
+    },
+    "https://support.apple.com/guide/feedback-assistant/welcome/mac": {
+      "identifier": "https://support.apple.com/guide/feedback-assistant/welcome/mac",
+      "title": "Learn more",
+      "titleInlineContent": [
+        {
+          "text": "Learn more",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/feedback-assistant/welcome/mac"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Request-creation",
+      "identifiers": [
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Submit-request",
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/JobSubmission",
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/CreatedJob",
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Resubmit-request",
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/ResubmissionRequest",
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/ResubmissionResponse"
+      ],
+      "title": "Request creation"
+    },
+    {
+      "anchor": "Status",
+      "identifiers": [
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-one-time-request-status",
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-recurring-request-status",
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/RequestStatus"
+      ],
+      "title": "Status"
+    },
+    {
+      "anchor": "Downloads",
+      "identifiers": [
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-one-time-request-download-URLs",
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-recurring-request-download-URLs",
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/DownloadLinks",
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/DownloadError"
+      ],
+      "title": "Downloads"
+    },
+    {
+      "anchor": "Cancellation",
+      "identifiers": [
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Cancel-request",
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/CancellationRequest",
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/CancellationResponse"
+      ],
+      "title": "Cancellation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appdatatransfer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

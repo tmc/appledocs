@@ -1,0 +1,575 @@
+{
+  "abstract": [
+    {
+      "text": "Perform custom control of the dock accessory.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.DockKit/documentation/DockKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.DockKit/documentation/DockKit/Modify-rotation-and-positioning-behavior-programmatically"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "DockKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Modify rotation and positioning programmatically"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can implement your own inference and tracking to directly control the velocity or position of the docking station. To do this, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessoryManager/setSystemTrackingEnabled(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to prevent system from automatically tracking subjects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do {",
+            "    try await DockAccessoryManager.shared.setSystemTrackingEnabled(false)",
+            "} catch {",
+            "   // Handle any errors.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After disabling tracking, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessoryManager/accessoryStateChanges",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to iterate through the available accessories and find the one you wish to interact with.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you identify the accessory of interest use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setAngularVelocity(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setOrientation(_:duration:relative:)-2epe2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setOrientation(_:duration:relative:)-6b0fl",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to directly control the speed and position of the accessory:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do {",
+            "    // Set angular velocity in radians per second.",
+            "    // On iOS, pitch is downwards.",
+            "    let vector = Vector3D(x: pitch, y: yaw, z: roll)",
+            "    try await dockAccessory.setAngularVelocity(vector)",
+            "",
+            "    // Set rotational position and wait for updates as the accessory executes a trajectory.",
+            "    let rotation = Rotation3D(eulerAngles: EulerAngles(x: Angle2D(radians: yaw), y: Angle2D(radians: pitch), z: Angle2D(radians: roll), order: __SPEulerAngleOrder.xyz))",
+            "    // NOTE: You can also initialize from quaternions:",
+            "    // let pos = Rotation3D(quaternion: simd_quatd)",
+            "    // Monitor or KVO-observe progress toward the orientation goal.",
+            "    let progress = try dockAccessory.setOrientation(rotation, duration: .seconds(duration), relative: relative)",
+            "       // Do something with orientation progress.",
+            "    }",
+            "} catch {",
+            "    // Handle any errors.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system tracking enabled state isn’t guaranteed to persist across reboots, app launch/termination, or background/foreground states. Enable or disable system tracking whenever your app needs the value to change.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Changes to the tracking are local to the app, and are changeable dynamically anytime during app lifecycle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.DockKit/documentation/DockKit": {
+      "abstract": [
+        {
+          "text": "Interact with accessories that track subjects on camera as they move around.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DockKit",
+      "type": "topic",
+      "url": "/documentation/dockkit"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setAngularVelocity(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the angular velocity of each axis of orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAngularVelocity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@UA@SPVector3D",
+          "text": "Vector3D"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setAngularVelocity(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAngularVelocity(_:)",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/setangularvelocity(_:)"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setOrientation(_:duration:relative:)-2epe2": {
+      "abstract": [
+        {
+          "text": "Sets the position of each axis of orientation to radians for pitch, yaw, and roll.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOrientation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@UA@SPVector3D",
+          "text": "Vector3D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "relative"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSProgress",
+          "text": "Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setOrientation(_:duration:relative:)-2epe2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setOrientation(_:duration:relative:)",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/setorientation(_:duration:relative:)-2epe2"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setOrientation(_:duration:relative:)-6b0fl": {
+      "abstract": [
+        {
+          "text": "Sets the position of each axis of orientation to radians for pitch, yaw, and roll.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOrientation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@UA@SPRotation3D",
+          "text": "Rotation3D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "relative"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSProgress",
+          "text": "Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setOrientation(_:duration:relative:)-6b0fl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setOrientation(_:duration:relative:)",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/setorientation(_:duration:relative:)-6b0fl"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessoryManager/accessoryStateChanges": {
+      "abstract": [
+        {
+          "text": "Obtain a reference to a dock accessory and receive notifications about its state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryStateChanges"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC",
+          "text": "DockAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC12StateChangesV",
+          "text": "StateChanges"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessoryManager/accessoryStateChanges",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessoryStateChanges",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessorymanager/accessorystatechanges"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessoryManager/setSystemTrackingEnabled(_:)": {
+      "abstract": [
+        {
+          "text": "Enable and disable system tracking for camera-enabled apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSystemTrackingEnabled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessoryManager/setSystemTrackingEnabled(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setSystemTrackingEnabled(_:)",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessorymanager/setsystemtrackingenabled(_:)"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/Track-custom-objects-in-a-frame": {
+      "abstract": [
+        {
+          "text": "Use your machine learning model to focus on a specific subject.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/Track-custom-objects-in-a-frame",
+      "kind": "article",
+      "role": "article",
+      "title": "Track custom objects in a frame",
+      "type": "topic",
+      "url": "/documentation/dockkit/track-custom-objects-in-a-frame"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Customizing-tracking-behavior",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.DockKit/documentation/DockKit/Track-custom-objects-in-a-frame"
+      ],
+      "title": "Customizing tracking behavior"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/dockkit/modify-rotation-and-positioning-behavior-programmatically"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

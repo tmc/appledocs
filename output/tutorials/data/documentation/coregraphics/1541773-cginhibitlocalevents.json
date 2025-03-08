@@ -1,0 +1,340 @@
+{
+  "abstract": [
+    {
+      "text": "Turns off local hardware events in the current session.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coregraphics",
+        "doc://com.apple.documentation/documentation/coregraphics/core_graphics_functions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coregraphics/1541773-cginhibitlocalevents"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1541773,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@CGInhibitLocalEvents",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "CGInhibitLocalEvents"
+      },
+      {
+        "kind": "text",
+        "text": "(boolean_t) -> CGError"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Graphics"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "13.1",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "10.6",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "CGInhibitLocalEvents(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CGInhibitLocalEvents"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "inhibit"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@boolean_t",
+              "text": "boolean_t"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgerror",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@CGError",
+              "text": "CGError"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Pass ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to specify that local hardware events on the remote system should be inhibited; otherwise, pass ",
+                  "type": "text"
+                },
+                {
+                  "code": "false",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "doInhibit"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. See the result codes described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/quartz_display_services",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function is typically used during remote operation of a system to disconnect the keyboard and mouse for a short period of time, as in automated system testing or telecommuting applications. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "CGInhibitLocalEvents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function is not recommended for general use because of undocumented special cases and undesirable side effects. For example, this function can permanently disable the keyboard and mouse, rendering the system unusable. The recommended replacement for this function is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgeventsource/1408770-setlocaleventsfilterduringsuppre",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1677006",
+          "level": 3,
+          "text": "Special Considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In OS X v10.2 and earlier, this function inhibits local events only after a synthetic keyboard or mouse event is posted by the calling application. In macOS 10.3 and later, event inhibition takes effect immediately. If your application terminates for any reason, event inhibition on the remote system is immediately turned off.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coregraphics": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Graphics",
+      "type": "topic",
+      "url": "/documentation/coregraphics"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgerror": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGError",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgerror"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgeventsource/1408770-setlocaleventsfilterduringsuppre": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgeventsource/1408770-setlocaleventsfilterduringsuppre",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setLocalEventsFilterDuringSuppressionState(_:state:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgeventsource/1408770-setlocaleventsfilterduringsuppre"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/core_graphics_functions": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/core_graphics_functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Core Graphics Functions",
+      "type": "topic",
+      "url": "/documentation/coregraphics/core_graphics_functions"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/quartz_display_services": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/quartz_display_services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Quartz Display Services",
+      "type": "topic",
+      "url": "/documentation/coregraphics/quartz_display_services"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coregraphics/1541773-cginhibitlocalevents"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coregraphics/1541773-cginhibitlocalevents"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

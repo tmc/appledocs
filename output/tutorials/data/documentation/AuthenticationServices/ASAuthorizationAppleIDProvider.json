@@ -1,0 +1,1812 @@
+{
+  "abstract": [
+    {
+      "text": "A mechanism for generating requests to authenticate users based on their Apple ID.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)ASAuthorizationAppleIDProvider",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ASAuthorizationAppleIDProvider"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Authentication Services"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ASAuthorizationAppleIDProvider"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "ASAuthorizationAppleIDProvider"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationAppleIDProvider"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use a provider to create a request (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), which you then use to initialize a controller (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") that performs the request:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let provider = ASAuthorizationAppleIDProvider()",
+            "let request = provider.createRequest()",
+            "let controller = ASAuthorizationController(authorizationRequests: [request])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On success, the controller’s delegate receives an authorization (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorization",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") containing a credential (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") that has an opaque ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/user",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " identifier. You can use that identifier to later check the user’s credential state—for example, to see if authorization has been revoked—by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/getCredentialState(forUserID:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let user = authorization.credential.user",
+            "provider.getCredentialState(forUserID: user) { state, error in",
+            "    // Check for error and examine the state.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices": {
+      "abstract": [
+        {
+          "text": "Make it easy for users to log into apps and services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Authentication Services",
+      "type": "topic",
+      "url": "/documentation/authenticationservices"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorization": {
+      "abstract": [
+        {
+          "text": "The encapsulation of a successful authorization by a controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorization"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorization"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorization",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorization"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDButton": {
+      "abstract": [
+        {
+          "text": "A control you add to your interface that enables users to initiate the Sign In with Apple flow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationAppleIDButton"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationAppleIDButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationAppleIDButton",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationappleidbutton"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential": {
+      "abstract": [
+        {
+          "text": "A credential that results from a successful Apple ID authentication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationAppleIDCredential"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationAppleIDCredential"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationAppleIDCredential",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationappleidcredential"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/user": {
+      "abstract": [
+        {
+          "text": "An identifier for the authenticated user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "user"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/user",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "user"
+        }
+      ],
+      "role": "symbol",
+      "title": "user",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationappleidcredential/user"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider": {
+      "abstract": [
+        {
+          "text": "A mechanism for generating requests to authenticate users based on their Apple ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationAppleIDProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationAppleIDProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationAppleIDProvider",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationappleidprovider"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/CredentialState": {
+      "abstract": [
+        {
+          "text": "Possible values for the credential state of a user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CredentialState"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/CredentialState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CredentialState"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationAppleIDProvider.CredentialState",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationappleidprovider/credentialstate"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/createRequest()": {
+      "abstract": [
+        {
+          "text": "Creates a new Apple ID authorization request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "createRequest"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationAppleIDRequest",
+          "text": "ASAuthorizationAppleIDRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/createRequest()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "createRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "createRequest()",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationappleidprovider/createrequest()"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/credentialRevokedNotification": {
+      "abstract": [
+        {
+          "text": "A notification that indicates the user’s credentials have been revoked and they should be signed out.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "credentialRevokedNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/credentialRevokedNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationAppleIDProviderCredentialRevokedNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "credentialRevokedNotification",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationappleidprovider/credentialrevokednotification"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/getCredentialState(forUserID:completion:)": {
+      "abstract": [
+        {
+          "text": "Returns the credential state for the given user in a completion handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCredentialState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forUserID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationAppleIDProvider",
+          "text": "ASAuthorizationAppleIDProvider"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ASAuthorizationAppleIDProviderCredentialState",
+          "text": "CredentialState"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/getCredentialState(forUserID:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getCredentialStateForUserID:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getCredentialState(forUserID:completion:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationappleidprovider/getcredentialstate(foruserid:completion:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDRequest": {
+      "abstract": [
+        {
+          "text": "An OpenID authorization request that relies on the user’s Apple ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationAppleIDRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationAppleIDRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationAppleIDRequest",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationappleidrequest"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController": {
+      "abstract": [
+        {
+          "text": "A controller that manages authorization requests that a provider creates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationController"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationController",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationcontroller"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest": {
+      "abstract": [
+        {
+          "text": "An OpenID authorization request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationOpenIDRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationOpenIDRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationOpenIDRequest",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationopenidrequest"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProvider": {
+      "abstract": [
+        {
+          "text": "An interface that authorization providers must implement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationProvider",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationprovider"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/SignInWithAppleButton": {
+      "abstract": [
+        {
+          "text": "The view that creates the Sign in with Apple button for display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SignInWithAppleButton"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/SignInWithAppleButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SignInWithAppleButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "SignInWithAppleButton",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/signinwithapplebutton"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/implementing-user-authentication-with-sign-in-with-apple": {
+      "abstract": [
+        {
+          "text": "Provide a way for users of your app to set up an account and start using your services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/implementing-user-authentication-with-sign-in-with-apple",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing User Authentication with Sign in with Apple",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/implementing-user-authentication-with-sign-in-with-apple"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/simplifying-user-authentication-in-a-tvos-app": {
+      "abstract": [
+        {
+          "text": "Build a fluid sign-in experience for your tvOS apps using AuthenticationServices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/simplifying-user-authentication-in-a-tvos-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Simplifying User Authentication in a tvOS App",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/simplifying-user-authentication-in-a-tvos-app"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.applesignin": {
+      "abstract": [
+        {
+          "text": "An entitlement that lets your app use Sign in with Apple.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.applesignin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sign in with Apple Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.applesignin"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceAuthorizationAppleIDButton": {
+      "abstract": [
+        {
+          "text": "A button that you can use to trigger a Sign in with Apple request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceAuthorizationAppleIDButton"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceAuthorizationAppleIDButton",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKInterfaceAuthorizationAppleIDButton",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKInterfaceAuthorizationAppleIDButton"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProvider",
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sign-In-with-Apple",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/implementing-user-authentication-with-sign-in-with-apple",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/simplifying-user-authentication-in-a-tvos-app",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/SignInWithAppleButton",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.applesignin",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential"
+      ],
+      "title": "Sign In with Apple"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Offering-Sign-In-with-Apple",
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDButton",
+        "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceAuthorizationAppleIDButton"
+      ],
+      "title": "Offering Sign In with Apple"
+    },
+    {
+      "anchor": "Creating-Requests",
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/createRequest()",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDRequest",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest"
+      ],
+      "title": "Creating Requests"
+    },
+    {
+      "anchor": "Getting-State",
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/getCredentialState(forUserID:completion:)",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/CredentialState",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/credentialRevokedNotification"
+      ],
+      "title": "Getting State"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "ASAuthorizationAppleIDProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationAppleIDProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationAppleIDProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Offering-Sign-In-with-Apple",
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDButton",
+                "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceAuthorizationAppleIDButton"
+              ],
+              "title": "Offering Sign In with Apple"
+            },
+            {
+              "anchor": "Creating-Requests",
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/createRequest()",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDRequest",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest"
+              ],
+              "title": "Creating Requests"
+            },
+            {
+              "anchor": "Getting-State",
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/getCredentialState(forUserID:completion:)",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/CredentialState",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/credentialRevokedNotification"
+              ],
+              "title": "Getting State"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProvider"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Sign-In-with-Apple",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/implementing-user-authentication-with-sign-in-with-apple",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/simplifying-user-authentication-in-a-tvos-app",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.applesignin",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential"
+              ],
+              "title": "Sign In with Apple"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "ASAuthorizationAppleIDProvider"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDButton/title",
+          "value": "ASAuthorizationAppleIDButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationAppleIDButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationAppleIDButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider/title",
+          "value": "ASAuthorizationAppleIDProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationAppleIDProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationAppleIDProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider~1createRequest()/title",
+          "value": "createRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider~1createRequest()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "createRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDCredential/title",
+          "value": "ASAuthorizationAppleIDCredential"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDCredential/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationAppleIDCredential"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDCredential/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationAppleIDCredential"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationOpenIDRequest/title",
+          "value": "ASAuthorizationOpenIDRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationOpenIDRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationOpenIDRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationOpenIDRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationOpenIDRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider~1getCredentialState(forUserID:completion:)/title",
+          "value": "getCredentialStateForUserID:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider~1getCredentialState(forUserID:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getCredentialStateForUserID:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDRequest/title",
+          "value": "ASAuthorizationAppleIDRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationAppleIDRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationAppleIDRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorization/title",
+          "value": "ASAuthorization"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorization/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorization/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationController/title",
+          "value": "ASAuthorizationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKInterfaceAuthorizationAppleIDButton/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceAuthorizationAppleIDButton"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)WKInterfaceObject",
+              "text": "WKInterfaceObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider~1credentialRevokedNotification/title",
+          "value": "ASAuthorizationAppleIDProviderCredentialRevokedNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider~1credentialRevokedNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationAppleIDProviderCredentialRevokedNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProvider/title",
+          "value": "ASAuthorizationProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider~1CredentialState/title",
+          "value": "ASAuthorizationAppleIDProviderCredentialState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider~1CredentialState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationAppleIDProviderCredentialState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider~1CredentialState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationAppleIDProviderCredentialState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDCredential~1user/title",
+          "value": "user"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDCredential~1user/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "user"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/authenticationservices/asauthorizationappleidprovider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/authenticationservices/asauthorizationappleidprovider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

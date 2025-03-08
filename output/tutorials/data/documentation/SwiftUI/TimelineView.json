@@ -1,0 +1,1636 @@
+{
+  "abstract": [
+    {
+      "text": "A view that updates according to a schedule that you provide.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineView"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI12TimelineViewV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "TimelineView"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "TimelineView"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "TimelineView"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "TimelineView"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Schedule"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Content"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Schedule"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineSchedule",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7SwiftUI16TimelineScheduleP",
+              "text": "TimelineSchedule"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A timeline view acts as a container with no appearance of its own. Instead,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it redraws the content it contains at scheduled points in time.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, you can update the face of an analog timer once per second:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "TimelineView(.periodic(from: startDate, by: 1)) { context in",
+            "    AnalogTimerView(date: context.date)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The closure that creates the content receives an input of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineView/Context",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that you can use to customize the content’s appearance. The context includes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineView/Context/date",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that triggered the update. In the example above,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the timeline view sends that date to an analog timer that you create so the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "timer view knows how to draw the hands on its face.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The context also includes a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineView/Context/cadence-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property that you can use to hide unnecessary detail. For example, you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can use the cadence to decide when it’s appropriate to display the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "timer’s second hand:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "TimelineView(.periodic(from: startDate, by: 1.0)) { context in",
+            "    AnalogTimerView(",
+            "        date: context.date,",
+            "        showSeconds: context.cadence <= .seconds)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system might use a cadence that’s slower than the schedule’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "update rate. For example, a view on watchOS might remain visible when the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "user lowers their wrist, but update less frequently, and thus require",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "less detail.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can define a custom schedule by creating a type that conforms to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineSchedule",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, or use one of the built-in schedule types:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineSchedule/everyMinute",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " schedule to update at the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "beginning of each minute.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineSchedule/periodic(from:by:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " schedule to update",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "periodically with a custom start time and interval between updates.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineSchedule/explicit(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " schedule when you need a finite number, or",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "irregular set of updates.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a schedule containing only dates in the past,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the timeline view shows the last date in the schedule.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For a schedule containing only dates in the future,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the timeline draws its content using the current date",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "until the first scheduled date arrives.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineSchedule": {
+      "abstract": [
+        {
+          "text": "A type that provides a sequence of dates for use as a schedule.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimelineSchedule"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineSchedule",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimelineSchedule"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimelineSchedule",
+      "type": "topic",
+      "url": "/documentation/swiftui/timelineschedule"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineSchedule/everyMinute": {
+      "abstract": [
+        {
+          "text": "A schedule for updating a timeline view at the start of every minute.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "EveryMinuteTimelineSchedule",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "everyMinute"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI27EveryMinuteTimelineScheduleV",
+          "text": "EveryMinuteTimelineSchedule"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineSchedule/everyMinute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "everyMinute",
+      "type": "topic",
+      "url": "/documentation/swiftui/timelineschedule/everyminute"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineSchedule/explicit(_:)": {
+      "abstract": [
+        {
+          "text": "A schedule for updating a timeline view at explicit points in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "explicit"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI24ExplicitTimelineScheduleV",
+          "text": "ExplicitTimelineSchedule"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineSchedule/explicit(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "explicit(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/timelineschedule/explicit(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineSchedule/periodic(from:by:)": {
+      "abstract": [
+        {
+          "text": "A schedule for updating a timeline view at regular intervals.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "PeriodicTimelineSchedule",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "periodic"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI24PeriodicTimelineScheduleV",
+          "text": "PeriodicTimelineSchedule"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineSchedule/periodic(from:by:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "periodic(from:by:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/timelineschedule/periodic(from:by:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineView": {
+      "abstract": [
+        {
+          "text": "A view that updates according to a schedule that you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimelineView"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimelineView"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimelineView",
+      "type": "topic",
+      "url": "/documentation/swiftui/timelineview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineView/Context": {
+      "abstract": [
+        {
+          "text": "Information passed to a timeline view’s content callback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Context"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineView/Context",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Context"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimelineView.Context",
+      "type": "topic",
+      "url": "/documentation/swiftui/timelineview/context"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineView/Context/cadence-swift.property": {
+      "abstract": [
+        {
+          "text": "The rate at which the timeline updates the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cadence"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12TimelineViewV",
+          "text": "TimelineView"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Schedule"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12TimelineViewV7ContextV",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12TimelineViewV7ContextV7CadenceO",
+          "text": "Cadence"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineView/Context/cadence-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cadence",
+      "type": "topic",
+      "url": "/documentation/swiftui/timelineview/context/cadence-swift.property"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineView/Context/date": {
+      "abstract": [
+        {
+          "text": "The date from the schedule that triggered the current view update.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "date"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineView/Context/date",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "date",
+      "type": "topic",
+      "url": "/documentation/swiftui/timelineview/context/date"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineView/init(_:content:)": {
+      "abstract": [
+        {
+          "text": "Creates a new timeline view that uses the given schedule.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Schedule",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "TimelineSchedule",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Content",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "View",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineView/init(_:content:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(_:content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/timelineview/init(_:content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineView/init(_:content:)-1mlmj": {
+      "abstract": [
+        {
+          "text": "Creates a new timeline view that uses the given schedule.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Schedule",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "TimelineSchedule",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Content",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "View",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Schedule"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI26TimelineViewDefaultContexta",
+          "text": "TimelineViewDefaultContext"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineView/init(_:content:)-1mlmj",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/timelineview/init(_:content:)-1mlmj"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineView/init(_:content:)-67h35": {
+      "abstract": [
+        {
+          "text": "Creates a new timeline view that uses the given schedule.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Schedule",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "TimelineSchedule",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Content",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "View",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Schedule"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12TimelineViewV",
+          "text": "TimelineView"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Schedule"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12TimelineViewV7ContextV",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineView/init(_:content:)-67h35",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/timelineview/init(_:content:)-67h35"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineViewDefaultContext": {
+      "abstract": [
+        {
+          "text": "Information passed to a timeline view’s content callback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimelineViewDefaultContext"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineViewDefaultContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimelineViewDefaultContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimelineViewDefaultContext",
+      "type": "topic",
+      "url": "/documentation/swiftui/timelineviewdefaultcontext"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Schedule",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "TimelineSchedule",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Content",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "View",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/swiftui/view"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/watchOS-Apps/updating-watchos-apps-with-timelines": {
+      "abstract": [
+        {
+          "text": "Seamlessly schedule updates to your user interface, even while it’s inactive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/watchOS-Apps/updating-watchos-apps-with-timelines",
+      "kind": "article",
+      "role": "article",
+      "title": "Updating watchOS apps with timelines",
+      "type": "topic",
+      "url": "/documentation/watchOS-Apps/updating-watchos-apps-with-timelines"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Updating-a-view-on-a-schedule",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/watchOS-Apps/updating-watchos-apps-with-timelines",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineSchedule",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineViewDefaultContext"
+      ],
+      "title": "Updating a view on a schedule"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-timeline",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineView/init(_:content:)-1mlmj",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineView/Context"
+      ],
+      "title": "Creating a timeline"
+    },
+    {
+      "anchor": "Deprecated-symbols",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineView/init(_:content:)-67h35"
+      ],
+      "title": "Deprecated symbols"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TimelineView/init(_:content:)"
+      ],
+      "title": "Initializers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/timelineview"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

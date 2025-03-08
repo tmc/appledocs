@@ -1,0 +1,1699 @@
+{
+  "abstract": [
+    {
+      "text": "Give players the ability to connect and interact with friends in your game.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamekit/documentation/GameKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamekit/documentation/GameKit/connecting-players-with-their-friends-in-your-game"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "GameKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Connecting players with their friends in your game"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Friends are such an important part of social play that GameKit gives you privacy-friendly access to a player’s Game Center friends. For example, you can show what level friends are on in your game, launch a mission together with friends, or show a friends-only recurring leaderboard.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the player has friends, you can access the list with their permission. The first time a player tries to use functionality in your game that requires Game Center friends access, the system displays a prompt asking the player whether your game can access their friends list. If the player grants access to their friends, you’ll have access only to friends who also grant access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if a player grants access, then only the friends who also grant your game access to their friends appear in the friends list. When a player grants access to their friends, GameKit syncs the permission across the player’s devices so the player only needs to respond to this system prompt once.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3880129",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The code listings in this article use GameKit asynchronous methods that you invoke within a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Swift/Task",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure in SwiftUI. For details on asynchronous flows, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Swift/concurrency",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Sending-friend-requests",
+          "level": 3,
+          "text": "Sending friend requests",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Game Center provides an interface for sending and receiving friend requests including an inbox that shows requests that a player may have missed. Players can also send friend requests within your game. For example, use this feature to encourage players to add more friends in your multiplayer game.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a friend request button to your interface using an add person SF Symbol (for example, ",
+              "type": "text"
+            },
+            {
+              "code": "person.crop.circle.badge.plus",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") for the button image. For details on using SF Symbols, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/configuring-and-displaying-symbol-images-in-your-ui",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement the button’s action to call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/presentFriendRequestCreator(from:)-7j1kn",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method that presents the Game Center request friend view controller. After the player sends the friend request using this interface, this method dismisses the view controller and returns control to your game. Before continuing, check whether an error occurs sending the friend request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do {",
+            "    try GKLocalPlayer.local.presentFriendRequestCreator(from: rootViewController!)",
+            "} catch {",
+            "    print(\"Error: \\(error.localizedDescription).\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Providing-a-reason-to-access-the-friends-list",
+          "level": 3,
+          "text": "Providing a reason to access the friends list",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must provide a reason to access a player’s friends by adding the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSGKFriendListUsageDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key to the information property list. The system displays the reason in the prompt it presents to the player to grant your game access. If you don’t provide this key, an error occurs when you attempt to access the friends.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For details on the system prompt, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/requesting-access-to-protected-resources",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Checking-whether-the-player-grants-access",
+          "level": 3,
+          "text": "Checking whether the player grants access",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Display the prompt to access friends when it’s convenient for the player by checking whether the player grants you permission to access their friends using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/loadFriendsAuthorizationStatus(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if the player hasn’t denied or authorized access yet, you may want to delay accessing their friends until there’s a good moment to prompt the player for permission. To ensure you allow enough time for the player to make a decision, don’t display the prompt during game play.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement the completion handler you pass to this method to take the appropriate action:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the status is ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKFriendsAuthorizationStatus/authorized",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", you can access the friends list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the status is ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKFriendsAuthorizationStatus/notDetermined",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", the system prompts the player when you access the friends.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the status is ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKFriendsAuthorizationStatus/denied",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKFriendsAuthorizationStatus/restricted",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", the system won’t prompt the player and you need to delete any friends data you previously collected for this player.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "do {",
+            "    let authorizationStatus = try await GKLocalPlayer.local.loadFriendsAuthorizationStatus()",
+            "    ",
+            "    // Handle GKFriendsAuthorizationStatus.",
+            "    switch authorizationStatus {",
+            "      case .notDetermined:",
+            "        // The player hasn't denied or authorized access to their friends.",
+            "        let friends = try await GKLocalPlayer.local.loadFriends()",
+            "        // Insert your friends code here.",
+            "      case .denied:",
+            "        // The player denies your request to access their friends.",
+            "      case .restricted:",
+            "        // Delete friends data from your game.",
+            "      case .authorized:",
+            "        // The player authorizes your request to access their friends.",
+            "        let friends = try await GKLocalPlayer.local.loadFriends()",
+            "        // Insert your friends code here.",
+            "    @unknown default:",
+            "        print(\"Status unknown.\")",
+            "    }",
+            "} catch {",
+            "    print(\"Error: \\(error.localizedDescription).\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Accessing-the-players-friends",
+          "level": 3,
+          "text": "Accessing the player’s friends",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once the player grants access, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/loadFriends(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to get the friends who also grant you access to their friends.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do {",
+            "    let friends = try await GKLocalPlayer.local.loadFriends()",
+            "    // Insert your friends code here.",
+            "}",
+            "catch {",
+            "    print(\"Error: \\(error.localizedDescription).\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, you can display details on their friends leaderboard scores to a player. Pass the friends array to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/loadEntries(for:timeScope:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " leaderboard method to get their avatar, display name, and score on the leaderboard.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSGKFriendListUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app needs access to their Game Center friends list.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSGKFriendListUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSGKFriendListUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSGKFriendListUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Task": {
+      "abstract": [
+        {
+          "text": "A unit of asynchronous work.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Task"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Success"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Success"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Task",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Task",
+      "type": "topic",
+      "url": "/documentation/Swift/Task"
+    },
+    "doc://com.apple.documentation/documentation/Swift/concurrency": {
+      "abstract": [
+        {
+          "text": "Perform asynchronous and parallel operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/concurrency",
+      "kind": "article",
+      "role": "article",
+      "title": "Concurrency",
+      "type": "topic",
+      "url": "/documentation/Swift/concurrency"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/configuring-and-displaying-symbol-images-in-your-ui": {
+      "abstract": [
+        {
+          "text": "Create scalable images that integrate with your app’s text, and adjust the appearance of those images dynamically.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/configuring-and-displaying-symbol-images-in-your-ui",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring and displaying symbol images in your UI",
+      "type": "topic",
+      "url": "/documentation/UIKit/configuring-and-displaying-symbol-images-in-your-ui"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/requesting-access-to-protected-resources": {
+      "abstract": [
+        {
+          "text": "Provide a purpose string that explains to a person why you need access to protected resources on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/requesting-access-to-protected-resources",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting access to protected resources",
+      "type": "topic",
+      "url": "/documentation/UIKit/requesting-access-to-protected-resources"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1515396-gkplayerauthenticationdidchangen": {
+      "abstract": [
+        {
+          "text": "A notification that posts after GameKit authenticates the local player. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKPlayerAuthenticationDidChangeNotificationName"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1515396-gkplayerauthenticationdidchangen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GKPlayerAuthenticationDidChangeNotificationName",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1515396-gkplayerauthenticationdidchangen"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1520710-gkplayerdidchangenotificationnam": {
+      "abstract": [
+        {
+          "text": "A notification that posts when a player object’s data changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKPlayerDidChangeNotificationName"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1520710-gkplayerdidchangenotificationnam",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GKPlayerDidChangeNotificationName",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1520710-gkplayerdidchangenotificationnam"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit": {
+      "abstract": [
+        {
+          "text": "Enable players to interact with friends, compare leaderboard ranks, earn achievements, and participate in multiplayer games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GameKit",
+      "type": "topic",
+      "url": "/documentation/gamekit"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKBasePlayer": {
+      "abstract": [
+        {
+          "text": "A class that provides common data and methods for the different player objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKBasePlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKBasePlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKBasePlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKBasePlayer",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkbaseplayer"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKFriendsAuthorizationStatus/authorized": {
+      "abstract": [
+        {
+          "text": "The player authorized your game to access their list of friends.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorized"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKFriendsAuthorizationStatus/authorized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKFriendsAuthorizationStatusAuthorized"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKFriendsAuthorizationStatus.authorized",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkfriendsauthorizationstatus/authorized"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKFriendsAuthorizationStatus/denied": {
+      "abstract": [
+        {
+          "text": "Access to the player’s friends’ data denied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "denied"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKFriendsAuthorizationStatus/denied",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKFriendsAuthorizationStatusDenied"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKFriendsAuthorizationStatus.denied",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkfriendsauthorizationstatus/denied"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKFriendsAuthorizationStatus/notDetermined": {
+      "abstract": [
+        {
+          "text": "The player hasn’t choosen whether your game may access their friends list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notDetermined"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKFriendsAuthorizationStatus/notDetermined",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKFriendsAuthorizationStatusNotDetermined"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKFriendsAuthorizationStatus.notDetermined",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkfriendsauthorizationstatus/notdetermined"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKFriendsAuthorizationStatus/restricted": {
+      "abstract": [
+        {
+          "text": "Access to the player’s list of friends restricted.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restricted"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKFriendsAuthorizationStatus/restricted",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKFriendsAuthorizationStatusRestricted"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKFriendsAuthorizationStatus.restricted",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkfriendsauthorizationstatus/restricted"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/loadEntries(for:timeScope:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Returns the scores for the local player and other players for the specified time period.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadEntries"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKPlayer",
+          "text": "GKPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timeScope"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKLeaderboard",
+          "text": "GKLeaderboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@GKLeaderboardTimeScope",
+          "text": "TimeScope"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKLeaderboard",
+          "text": "GKLeaderboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKLeaderboardEntry",
+          "text": "Entry"
+        },
+        {
+          "kind": "text",
+          "text": "?, ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKLeaderboard",
+          "text": "GKLeaderboard"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKLeaderboardEntry",
+          "text": "Entry"
+        },
+        {
+          "kind": "text",
+          "text": "]?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/loadEntries(for:timeScope:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadEntriesForPlayers:timeScope:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadEntries(for:timeScope:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkleaderboard/loadentries(for:timescope:completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer": {
+      "abstract": [
+        {
+          "text": "The local player who signs in to Game Center on the device running the game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKLocalPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKLocalPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKLocalPlayer",
+      "type": "topic",
+      "url": "/documentation/gamekit/gklocalplayer"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/loadFriends(_:)": {
+      "abstract": [
+        {
+          "text": "Loads the local player’s friends list if the local player and their friends grant access.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadFriends"
+        },
+        {
+          "kind": "text",
+          "text": "((["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKPlayer",
+          "text": "GKPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "]?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/loadFriends(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadFriends:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadFriends(_:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gklocalplayer/loadfriends(_:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/loadFriendsAuthorizationStatus(_:)": {
+      "abstract": [
+        {
+          "text": "Returns whether the player authorizes your game to access their friends list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadFriendsAuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@GKFriendsAuthorizationStatus",
+          "text": "GKFriendsAuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/loadFriendsAuthorizationStatus(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadFriendsAuthorizationStatus:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadFriendsAuthorizationStatus(_:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gklocalplayer/loadfriendsauthorizationstatus(_:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/presentFriendRequestCreator(from:)-7j1kn": {
+      "abstract": [
+        {
+          "text": "Presents a view controller with a Messages sheet for the player to request friends.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentFriendRequestCreator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/presentFriendRequestCreator(from:)-7j1kn",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentFriendRequestCreatorFromViewController:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentFriendRequestCreator(from:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gklocalplayer/presentfriendrequestcreator(from:)-7j1kn"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayerListener": {
+      "abstract": [
+        {
+          "text": "A protocol that handles events for Game Center players.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKLocalPlayerListener"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayerListener",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKLocalPlayerListener"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKLocalPlayerListener",
+      "type": "topic",
+      "url": "/documentation/gamekit/gklocalplayerlistener"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKPlayer": {
+      "abstract": [
+        {
+          "text": "A remote player who the local player running your game can invite and communicate with through Game Center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKPlayer",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkplayer"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKPlayerAuthenticationDidChangeNotificationName": {
+      "abstract": [
+        {
+          "text": "A notification that posts after GameKit authenticates the local player.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GKPlayerAuthenticationDidChangeNotificationName"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKPlayerAuthenticationDidChangeNotificationName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GKPlayerAuthenticationDidChangeNotificationName",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkplayerauthenticationdidchangenotificationname"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKPlayerDidChangeNotificationName": {
+      "abstract": [
+        {
+          "text": "A notification that posts when a player object’s data changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GKPlayerDidChangeNotificationName"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKPlayerDidChangeNotificationName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GKPlayerDidChangeNotificationName",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkplayerdidchangenotificationname"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/protecting-the-player-s-privacy-using-scoped-identifiers": {
+      "abstract": [
+        {
+          "text": "Use the scoped identifiers that GameKit provides you as player IDs when transmitting or saving player data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/protecting-the-player-s-privacy-using-scoped-identifiers",
+      "kind": "article",
+      "role": "article",
+      "title": "Protecting the player’s privacy using scoped identifiers",
+      "type": "topic",
+      "url": "/documentation/gamekit/protecting-the-player-s-privacy-using-scoped-identifiers"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/saving-the-player-s-game-data-to-an-icloud-account": {
+      "abstract": [
+        {
+          "text": "Save game data during play or after a game in the player’s iCloud account that’s accessible from any device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/saving-the-player-s-game-data-to-an-icloud-account",
+      "kind": "article",
+      "role": "article",
+      "title": "Saving the player’s game data to an iCloud account",
+      "type": "topic",
+      "url": "/documentation/gamekit/saving-the-player-s-game-data-to-an-icloud-account"
+    },
+    "media-3880129": {
+      "alt": "An illustration of loading friends where Game Center only returns friends who authorize access to their friends.",
+      "identifier": "media-3880129",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1cd6ccb56ecc6d65c3661cca667dba56/media-3880129@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/55e007e3791e3592ae979ae966117371/media-3880129~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Players",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/saving-the-player-s-game-data-to-an-icloud-account",
+        "doc://com.apple.gamekit/documentation/GameKit/protecting-the-player-s-privacy-using-scoped-identifiers",
+        "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer",
+        "doc://com.apple.gamekit/documentation/GameKit/GKPlayer",
+        "doc://com.apple.gamekit/documentation/GameKit/GKBasePlayer",
+        "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayerListener",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1515396-gkplayerauthenticationdidchangen",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1520710-gkplayerdidchangenotificationnam"
+      ],
+      "title": "Players"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Players",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/saving-the-player-s-game-data-to-an-icloud-account",
+                "doc://com.apple.gamekit/documentation/GameKit/protecting-the-player-s-privacy-using-scoped-identifiers",
+                "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer",
+                "doc://com.apple.gamekit/documentation/GameKit/GKPlayer",
+                "doc://com.apple.gamekit/documentation/GameKit/GKBasePlayer",
+                "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayerListener",
+                "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1515396-gkplayerauthenticationdidchangen",
+                "doc://com.apple.gamekit/documentation/GameKit/GKPlayerAuthenticationDidChangeNotificationName",
+                "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1520710-gkplayerdidchangenotificationnam",
+                "doc://com.apple.gamekit/documentation/GameKit/GKPlayerDidChangeNotificationName"
+              ],
+              "title": "Players"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKFriendsAuthorizationStatus~1notDetermined/title",
+          "value": "GKFriendsAuthorizationStatusNotDetermined"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKFriendsAuthorizationStatus~1notDetermined/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKFriendsAuthorizationStatusNotDetermined"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1loadEntries(for:timeScope:completionHandler:)/title",
+          "value": "loadEntriesForPlayers:timeScope:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1loadEntries(for:timeScope:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadEntriesForPlayers:timeScope:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKPlayer/title",
+          "value": "GKPlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKPlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKPlayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKFriendsAuthorizationStatus~1denied/title",
+          "value": "GKFriendsAuthorizationStatusDenied"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKFriendsAuthorizationStatus~1denied/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKFriendsAuthorizationStatusDenied"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKBasePlayer/title",
+          "value": "GKBasePlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKBasePlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKBasePlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKBasePlayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKBasePlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayerListener/title",
+          "value": "GKLocalPlayerListener"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayerListener/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLocalPlayerListener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayerListener/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLocalPlayerListener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer~1presentFriendRequestCreator(from:)-7j1kn/title",
+          "value": "presentFriendRequestCreatorFromViewController:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer~1presentFriendRequestCreator(from:)-7j1kn/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentFriendRequestCreatorFromViewController:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer~1loadFriendsAuthorizationStatus(_:)/title",
+          "value": "loadFriendsAuthorizationStatus:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer~1loadFriendsAuthorizationStatus(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadFriendsAuthorizationStatus:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKFriendsAuthorizationStatus~1restricted/title",
+          "value": "GKFriendsAuthorizationStatusRestricted"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKFriendsAuthorizationStatus~1restricted/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKFriendsAuthorizationStatusRestricted"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer~1loadFriends(_:)/title",
+          "value": "loadFriends:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer~1loadFriends(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadFriends:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKFriendsAuthorizationStatus~1authorized/title",
+          "value": "GKFriendsAuthorizationStatusAuthorized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKFriendsAuthorizationStatus~1authorized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKFriendsAuthorizationStatusAuthorized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer/title",
+          "value": "GKLocalPlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLocalPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLocalPlayer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamekit/connecting-players-with-their-friends-in-your-game"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gamekit/connecting-players-with-their-friends-in-your-game"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

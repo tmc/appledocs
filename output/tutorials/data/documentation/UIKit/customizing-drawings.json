@@ -1,0 +1,560 @@
+{
+  "abstract": [
+    {
+      "text": "Create custom colors and patterns for drawing in your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/drawing",
+        "doc://com.apple.uikit/documentation/UIKit/UIColor"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/customizing-drawings"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Customizing drawings"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can customize the colors in your app, including the background and tint colors and the drawing styles available to users of your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-custom-background-and-tint-colors",
+          "level": 3,
+          "text": "Set custom background and tint colors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The most common way to use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIColor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object is to include it with some other object in UIKit. Including ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIColor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with an object in UIKit allows you to create and customize the UI of your app. For example, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class (and its descendants) includes background and tint colors to affect how they’re drawn onscreen. The following code example sets the background and tint color of a view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "backgroundView.backgroundColor = UIColor.systemGray",
+            "backgroundView.tintColor = UIColor.systemBlue"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-custom-colors-and-drawing-styles",
+          "level": 3,
+          "text": "Create custom colors and drawing styles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When customizing drawings in your app, a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIColor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object provides methods that set the fill or stroke colors of the current graphics context. These methods can set the color of an object and create various patterns and styles. The following code shows a simple example of a custom drawing inside a view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class CircleView: UIView {",
+            "    ",
+            "    override func draw(_ rect: CGRect) {",
+            "        let ovalBounds = self.bounds.insetBy(dx: 10, dy: 10)",
+            "        let oval = UIBezierPath(ovalIn: ovalBounds)",
+            "        let brightRed = UIColor(displayP3Red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)",
+            "        brightRed.setFill()",
+            "        oval.fill()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIColor": {
+      "abstract": [
+        {
+          "text": "An object that stores color data and sometimes opacity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIColor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIColor",
+      "type": "topic",
+      "url": "/documentation/uikit/uicolor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIColor/set()": {
+      "abstract": [
+        {
+          "text": "Sets the color of subsequent stroke and fill operations to the color that the receiver represents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIColor/set()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "set"
+        }
+      ],
+      "role": "symbol",
+      "title": "set()",
+      "type": "topic",
+      "url": "/documentation/uikit/uicolor/set()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIColor/setFill()": {
+      "abstract": [
+        {
+          "text": "Sets the color of subsequent fill operations to the color that the receiver represents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFill"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIColor/setFill()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setFill"
+        }
+      ],
+      "role": "symbol",
+      "title": "setFill()",
+      "type": "topic",
+      "url": "/documentation/uikit/uicolor/setfill()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIColor/setStroke()": {
+      "abstract": [
+        {
+          "text": "Sets the color of subsequent stroke operations to the color that the receiver represents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setStroke"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIColor/setStroke()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setStroke"
+        }
+      ],
+      "role": "symbol",
+      "title": "setStroke()",
+      "type": "topic",
+      "url": "/documentation/uikit/uicolor/setstroke()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView": {
+      "abstract": [
+        {
+          "text": "An object that manages the content for a rectangular area on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/drawing": {
+      "abstract": [
+        {
+          "text": "Configure your app’s drawing environment using colors, renderers, draw paths, strings, and shadows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/drawing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Drawing",
+      "type": "topic",
+      "url": "/documentation/uikit/drawing"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Applying-the-color-to-the-drawing-environment",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIColor/set()",
+        "doc://com.apple.uikit/documentation/UIKit/UIColor/setFill()",
+        "doc://com.apple.uikit/documentation/UIKit/UIColor/setStroke()"
+      ],
+      "title": "Applying the color to the drawing environment"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Applying-the-color-to-the-drawing-environment",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIColor/set()",
+                "doc://com.apple.uikit/documentation/UIKit/UIColor/setFill()",
+                "doc://com.apple.uikit/documentation/UIKit/UIColor/setStroke()"
+              ],
+              "title": "Applying the color to the drawing environment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor~1set()/title",
+          "value": "set"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor~1set()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "set"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor/title",
+          "value": "UIColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor~1setFill()/title",
+          "value": "setFill"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor~1setFill()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setFill"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/title",
+          "value": "UIView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor~1setStroke()/title",
+          "value": "setStroke"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor~1setStroke()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setStroke"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/customizing-drawings"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/customizing-drawings"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2553 @@
+{
+  "abstract": [
+    {
+      "text": "Configure your app to use Tap to Pay on iPhone to read contactless payment cards.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ProximityReader/documentation/ProximityReader/adding-support-for-tap-to-pay-on-iphone-to-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "adding-support-for-tap-to-pay-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ProximityReader"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding support for Tap to Pay on iPhone to your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tap to Pay on iPhone lets an app use the person’s iPhone to read contactless",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "payment cards without any additional hardware. Merchants use your app to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "request payments from customers, and process the financial transactions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using the back-end payment services you offer. Your app uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "framework to read the payment method someone presents. You then pass that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "payment method and transaction details to the payment service provider",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you use to handle financial transactions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Apps must have the appropriate entitlements to use",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Tap to Pay on iPhone. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/setting-up-the-entitlement-for-tap-to-pay-on-iPhone",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The region or payment service provider may require a specific iOS version",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for merchants using Tap to Pay on iPhone. Make sure merchants are aware",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of any restrictions as part of your app materials.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For a list of supported regions and payment service providers, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/tap-to-pay/#regions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For additional merchant-related information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://register.apple.com/tap-to-pay-on-iphone/faq/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for Tap to Pay on iPhone.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Verify-the-current-device-supports-Tap-to-Pay-on-iPhone",
+          "level": 3,
+          "text": "Verify the current device supports Tap to Pay on iPhone",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you attempt to use Tap to Pay on iPhone, verify that the current",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "device supports the feature. Tap to Pay on iPhone is available only on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "iPhone, starting with iPhone XS. To determine if the feature is available",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on the current device, check the value of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/isSupported",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "static property before you do anything else. If the feature is available,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to manage further interactions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and to start sessions to read payment cards.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows a custom type that allocates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object only if the current device supports Tap to Pay on iPhone. Other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "methods of this type throw errors if the reader object isn’t available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "public class MyPaymentProcessor {",
+            "    ",
+            "    var reader: PaymentCardReader?",
+            "    ",
+            "    init() {",
+            "        guard PaymentCardReader.isSupported else {",
+            "            // This device doesn't support Tap to Pay on iPhone.",
+            "            return",
+            "        }",
+            "        reader = PaymentCardReader()",
+            "    }",
+            "}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Display-the-Terms-and-Conditions-interface-to-the-merchant",
+          "level": 3,
+          "text": "Display the Terms and Conditions interface to the merchant",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first time a merchant runs your app, present an interface for them",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to accept the Terms and Conditions for Tap to Pay on iPhone. Accepting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the terms and conditions registers that merchant with Tap to Pay on iPhone,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and allows them to begin using the feature. Merchants need to accept the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "terms and conditions only once for a given merchant identifier, even if",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "they use the feature on a different device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display the Terms and Conditions for Tap to Pay on iPhone, get a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "JSON web token (JWT) from your payment service provider that includes the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "merchant’s unique identifier. Store the token in a secure location so you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can access it later. Pass the token to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/linkAccount(using:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. This method presents a system sheet",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that displays the Terms and Conditions for Tap to Pay for iPhone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code extends the ",
+              "type": "text"
+            },
+            {
+              "code": "MyPaymentProcessor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class from the previous",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example with an additional function to present the terms and conditions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension MyPaymentProcessor {",
+            "       ",
+            "    public func presentTermsAndConditions(tokenData: String) async throws {",
+            "        let token = PaymentCardReader.Token(rawValue: tokenData)",
+            "        ",
+            "        // Display the UI only if the merchant hasn’t accepted the terms and conditions yet. ",
+            "        if !reader.isAccountLinked(using:token) {",
+            "            // Confirm that the user is an admin. Otherwise, display a message that",
+            "            // states only admins may accept the Terms and Conditions.",
+            "            do {",
+            "                try await reader?.linkAccount(using: token)",
+            "            } catch {",
+            "                // Handle any errors that occur during linking.",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-session-to-read-payment-cards-from-the-current-device",
+          "level": 3,
+          "text": "Create a session to read payment cards from the current device",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each time your app launches, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "handle the reading of payment card information. You create this session",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/prepare(using:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. The initial configuration of the device can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "take up to two minutes, but subsequent requests typically take only a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "few seconds. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/events",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property provides an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "asynchronous stream of events that you can use to display a progress",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "UI to the merchant.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example configures a task to monitor progress events and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "then calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/prepare(using:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to configure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the device. After the successful configuration of the device, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/prepare(using:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object that you can use to start reading payment cards. If an error",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "occurs, the method throws a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderError",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for you to handle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension MyPaymentProcessor {",
+            "    ",
+            "    var session: PaymentCardReaderSession?",
+            "",
+            "    public func configureDevice(tokenData: String) async throws {",
+            "        guard let reader = self.reader else {",
+            "            return",
+            "        }",
+            "        guard let token = PaymentCardReader.Token(rawValue: tokenData) else {",
+            "            return",
+            "        }",
+            "",
+            "        let events = reader.events",
+            "        do {",
+            "",
+            "            // Create a task to monitor progress events. ",
+            "            Task { @MainActor in",
+            "                for await event in events {",
+            "                    if case .updateProgress = event {",
+            "                        // Update the UI with the current progress value.",
+            "                    }",
+            "                }",
+            "            }",
+            "",
+            "            // Prepare the device.",
+            "            session = try await reader.prepare(using: token)",
+            "        } catch {",
+            "            // Handle any errors that occur during preparation.",
+            "            // (see PaymentCardReaderError).",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the merchant closes your app while configuration is in progress,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/prepare(using:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method throws a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderError/serviceConnectionError",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "error, but configuration continues in the background. When your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app returns to the foreground, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/prepare(using:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "again to finish the previous configuration process and retrieve a new",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "session object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When your app goes into the background, the current session",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "ends. When that happens, set any variables that contain the session to ",
+                  "type": "text"
+                },
+                {
+                  "code": "nil",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When your app returns to the foreground, call ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/prepare(using:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "every time to create a new session.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Present-the-UI-to-request-someones-payment-details",
+          "level": 3,
+          "text": "Present the UI to request someone’s payment details",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you have a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " you can use it to display a sheet",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the merchant’s customer asking them for their payment method. The sheet",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "displays a standard system payment UI and waits for the customer to present",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "their card or other payment method to the merchant’s iPhone. As soon as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the iPhone collects the payment information, the sheet closes and the session",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReadResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to your app. If the sheet wasn’t able",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to collect a payment information, it returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession/ReadError",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to let you know that a problem occurred. Make sure your app handles the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "different types of errors that can occur for transactions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReadResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure contains important information that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your payment service provider needs to complete the transaction. For each",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "transaction, send the encrypted data in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReadResult/paymentCardData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property to your payment service provider. Send this data regardless of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "whether or not the transaction completed successfully. The encrypted data is valid",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for only 60 seconds, so send it immediately to your provider.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows a template for a function that initiates a payment",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "request for a session. The method creates a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardTransactionRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the transaction amount and uses the session to read the customer’s payment",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "card. The method also monitors card reader events asynchronously and provides",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an appropriate response. For example, you might use events for your own",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "analytics or to take appropriate actions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension MyPaymentProcessor {",
+            "    ",
+            "    public func readCard(for amount: Decimal) async throws {",
+            "        guard let reader else { return }",
+            "",
+            "        let request = PaymentCardTransactionRequest(amount: amount,",
+            "                                                    currencyCode: \"USD\",",
+            "                                                    for: .purchase)",
+            "        let events = reader.events",
+            "        do {",
+            "            Task {",
+            "                for await event in events {",
+            "                    // Handle events that happen while the sheet is up.",
+            "                }",
+            "            }",
+            " ",
+            "            // Present the payment interface and wait for the result.",
+            "            let result = try await session?.readPaymentCard(request)",
+            "",
+            "            // Send result.paymentCardData to your payment service provider.",
+            "        } catch {",
+            "            // Handle any errors that occur during read",
+            "            // (see PaymentCardReaderSession.ReadError).",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Catch any errors that happen during a payment read operation and take",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "appropriate action. For more information about the errors that can occur,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession/ReadError",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Capture-PIN-information-as-part-of-a-transaction",
+          "level": 3,
+          "text": "Capture PIN information as part of a transaction",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some cards require the customer to enter an associated personal identification",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "number (PIN) to complete a transaction. If the current card requires a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "PIN, the system UI automatically asks the person to enter it after reading",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the card. After the person enters the PIN and completes the transaction,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the session returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReadResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure that contains",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the encrypted PIN data along with the rest of the transaction data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A card issuer can also require a person to enter a PIN to complete a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "transaction. After reading the card and sending the transaction data to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your payment service provider, you might get a subsequent request for the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "person’s PIN data. Call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession/capturePIN(using:cardReaderTransactionID:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method to display a new sheet to ask for the person’s PIN. Upon successful",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "completion of this method, the session returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReadResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with both the encrypted payment card data and the encrypted PIN data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "After you read a person’s payment card data, you have only",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "55 seconds to call ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession/capturePIN(using:cardReaderTransactionID:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "to capture the person’s PIN. If you don’t call the method within this",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "timeframe, the method returns ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession/ReadError/pinNotAllowed",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a read operation requires a separate PIN capture, the payment service",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provider must provide a secure PIN token for that specific operation. Use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this token to create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession/PINToken",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and display the capture UI. The following method captures the PIN for a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "previous read operation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension MyPaymentProcessor {",
+            "",
+            "    public func capturePIN(for previousData: PaymentCardReadResult, with rawPINTokenFromPSP: String) async throws {",
+            "        guard let reader else { return }",
+            "",
+            "        let transactionId = previousData.id",
+            "        let token = PaymentCardReaderSession.PINToken(rawValue: rawPINTokenFromPSP)",
+            "",
+            "        let events = reader.events",
+            "        do {",
+            "            Task {",
+            "                for await event in events {",
+            "                    // Handle events that happen while the sheet is up.",
+            "                }",
+            "            }",
+            "",
+            "            // Display the PIN capture interface.",
+            "            let result = try await session?.capturePIN(using: token, cardReaderTransactionID: transactionId)",
+            "",
+            "            // Send result.paymentCardData to your payment service provider.",
+            "        } catch {",
+            "            // Handle any errors that occur during PIN capture",
+            "            // (see PaymentCardReaderSession.ReadError).",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When capturing a PIN from a merchant’s customer, do not",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "display any correlatable data in an unsecure manner. A nonexhaustive",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "list of correlatable data includes: phone numbers, email addresses,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "last 4 digits of payment cards with the expiry date, and so on. If you",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "must display any correlatable data during PIN capture, the best",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "practice is to show only a portion of the data. For example, show",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "only the last 4 digits of the person’s phone number: XXX-XXX-1234.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Turn-off-card-reader-functionality-when-not-in-use",
+          "level": 3,
+          "text": "Turn off card reader functionality when not in use",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If payment processing is one of several features of your app, you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "turn off the card reader functionality when not in use. The simplest",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "way to turn off this functionality is to deallocate the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects you currently have. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "following method sets the ",
+              "type": "text"
+            },
+            {
+              "code": "reader",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "session",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variables of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "previously defined ",
+              "type": "text"
+            },
+            {
+              "code": "MyPaymentProcessor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class to ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension MyPaymentProcessor {",
+            "    ",
+            "    public func cleanup() {",
+            "        session = nil",
+            "        reader = nil",
+            "    }",
+            "}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you delete the reader and session objects, the system clears",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "out the current session information but retains some system-level",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "details and configuration data. Creating a new reader and session",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "later requires a network connection, because the reader requires",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information on the server to create any new sessions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "adding-support-for-tap-to-pay-PageImage-card.png": {
+      "alt": null,
+      "identifier": "adding-support-for-tap-to-pay-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e00a45db446b415a6f963fde477927bb/adding-support-for-tap-to-pay-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d72a97caaff209593b35adaa4b804377/adding-support-for-tap-to-pay-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader": {
+      "abstract": [
+        {
+          "text": "Read contactless physical and digital wallet cards using your iPhone.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ProximityReader",
+      "type": "topic",
+      "url": "/documentation/proximityreader"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReadResult": {
+      "abstract": [
+        {
+          "text": "The result of a payment card read operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReadResult"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReadResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReadResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentCardReadResult",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreadresult"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReadResult/paymentCardData": {
+      "abstract": [
+        {
+          "text": "A Base64-encoded string that contains the encrypted payment information",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to send to your payment provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentCardData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReadResult/paymentCardData",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "paymentCardData",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreadresult/paymentcarddata"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader": {
+      "abstract": [
+        {
+          "text": "An object you use to configure Tap to Pay on iPhone on the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReader"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReader"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentCardReader",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreader"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/events": {
+      "abstract": [
+        {
+          "text": "A stream of events you receive indicating the activities of the payment card reader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "events"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScS",
+          "text": "AsyncStream"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ProximityReader011PaymentCardB0C",
+          "text": "PaymentCardReader"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ProximityReader011PaymentCardB0C5EventO",
+          "text": "Event"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/events",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "events",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreader/events"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/isSupported": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether this device model supports Tap to Pay on iPhone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/isSupported",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isSupported",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreader/issupported"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/linkAccount(using:)": {
+      "abstract": [
+        {
+          "text": "Presents a sheet for the merchant to accept Tap to Pay on iPhone’s Terms and Conditions on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "linkAccount"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ProximityReader011PaymentCardB0C",
+          "text": "PaymentCardReader"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ProximityReader011PaymentCardB0C5TokenV",
+          "text": "Token"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/linkAccount(using:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "linkAccount(using:)",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreader/linkaccount(using:)"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/prepare(using:)": {
+      "abstract": [
+        {
+          "text": "Configures the pipeline for reading payment or loyalty cards.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepare"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ProximityReader011PaymentCardB0C",
+          "text": "PaymentCardReader"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ProximityReader011PaymentCardB0C5TokenV",
+          "text": "Token"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ProximityReader011PaymentCardB7SessionC",
+          "text": "PaymentCardReaderSession"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader/prepare(using:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepare(using:)",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreader/prepare(using:)"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderError": {
+      "abstract": [
+        {
+          "text": "An error type that indicates problems with the configuration of the reader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReaderError"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReaderError"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentCardReaderError",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreadererror"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderError/serviceConnectionError": {
+      "abstract": [
+        {
+          "text": "An error that indicates an internal service is unavailable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "serviceConnectionError"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderError/serviceConnectionError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PaymentCardReaderError.serviceConnectionError",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreadererror/serviceconnectionerror"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession": {
+      "abstract": [
+        {
+          "text": "The object you use to start reading a contactless payment or loyalty card.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReaderSession"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReaderSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentCardReaderSession",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreadersession"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession/PINToken": {
+      "abstract": [
+        {
+          "text": "A secure PIN token that you receive from your participating payment service provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PINToken"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession/PINToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PINToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentCardReaderSession.PINToken",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreadersession/pintoken"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession/ReadError": {
+      "abstract": [
+        {
+          "text": "Errors that can occur during a card read.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReadError"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession/ReadError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ReadError"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentCardReaderSession.ReadError",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreadersession/readerror"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession/ReadError/pinNotAllowed": {
+      "abstract": [
+        {
+          "text": "The time window allowed for a PIN capture after a card read has expired or",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "requesting the PIN is simply not supported by your current configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pinNotAllowed"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession/ReadError/pinNotAllowed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PaymentCardReaderSession.ReadError.pinNotAllowed",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreadersession/readerror/pinnotallowed"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession/capturePIN(using:cardReaderTransactionID:)": {
+      "abstract": [
+        {
+          "text": "Presents a sheet to capture the PIN when required by the payment card issuer,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and returns the previously encrypted card data including newly captured PIN data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "capturePIN"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ProximityReader011PaymentCardB7SessionC",
+          "text": "PaymentCardReaderSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ProximityReader011PaymentCardB7SessionC8PINTokenV",
+          "text": "PINToken"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "cardReaderTransactionID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ProximityReader21PaymentCardReadResultV",
+          "text": "PaymentCardReadResult"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession/capturePIN(using:cardReaderTransactionID:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "capturePIN(using:cardReaderTransactionID:)",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreadersession/capturepin(using:cardreadertransactionid:)"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardTransactionRequest": {
+      "abstract": [
+        {
+          "text": "A request for a contactless purchase or refund that includes the purchase amount and currency information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaymentCardTransactionRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardTransactionRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaymentCardTransactionRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentCardTransactionRequest",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardtransactionrequest"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/setting-up-the-entitlement-for-tap-to-pay-on-iPhone": {
+      "abstract": [
+        {
+          "text": "Request and configure the required entitlement to support Tap to Pay on iPhone.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/setting-up-the-entitlement-for-tap-to-pay-on-iPhone",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up Tap to Pay on iPhone",
+      "type": "topic",
+      "url": "/documentation/proximityreader/setting-up-the-entitlement-for-tap-to-pay-on-iphone"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/tap-to-pay/#regions": {
+      "identifier": "https://developer.apple.com/tap-to-pay/#regions",
+      "title": "https://developer.apple.com/tap-to-pay/#regions",
+      "titleInlineContent": [
+        {
+          "text": "https://developer.apple.com/tap-to-pay/#regions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/tap-to-pay/#regions"
+    },
+    "https://register.apple.com/tap-to-pay-on-iphone/faq/": {
+      "identifier": "https://register.apple.com/tap-to-pay-on-iphone/faq/",
+      "title": "Frequently asked questions",
+      "titleInlineContent": [
+        {
+          "text": "Frequently asked questions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://register.apple.com/tap-to-pay-on-iphone/faq/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Payment-card-reader",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/setting-up-the-entitlement-for-tap-to-pay-on-iPhone",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession"
+      ],
+      "title": "Payment card reader"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Payment-card-reader",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.ProximityReader/documentation/ProximityReader/setting-up-the-entitlement-for-tap-to-pay-on-iPhone"
+              ],
+              "title": "Payment card reader"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/proximityreader/adding-support-for-tap-to-pay-on-iphone-to-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/proximityreader/adding-support-for-tap-to-pay-on-iphone-to-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

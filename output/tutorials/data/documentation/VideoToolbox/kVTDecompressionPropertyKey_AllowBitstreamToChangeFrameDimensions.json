@@ -1,0 +1,1347 @@
+{
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_AllowBitstreamToChangeFrameDimensions"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@kVTDecompressionPropertyKey_AllowBitstreamToChangeFrameDimensions",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "let"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "kVTDecompressionPropertyKey_AllowBitstreamToChangeFrameDimensions"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@CFStringRef",
+        "text": "CFString"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Video Toolbox"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "kVTDecompressionPropertyKey_AllowBitstreamToChangeFrameDimensions"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Global Variable",
+    "symbolKind": "var",
+    "title": "kVTDecompressionPropertyKey_AllowBitstreamToChangeFrameDimensions"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "let"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kVTDecompressionPropertyKey_AllowBitstreamToChangeFrameDimensions"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@CFStringRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFString"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "@constant\tkVTDecompressionPropertyKey_AllowBitstreamToChangeFrameDimensions",
+            "@abstract",
+            "\tTrue if decoder is allowed to output buffers matching reduced frame dimensions in the bitstream rather than",
+            "\tunder-filling them.",
+            "@discussion",
+            "\tThis is an optional property only supported by video decoders for bitstream formats which have a provision",
+            "\tfor specifying output dimensions per-frame, such as AV1.",
+            "",
+            "\tIf a decoder does not support this property or if the property value is set to `kCFBooleanFalse`, all decoded",
+            "\tframes will have the same dimensions as specified in the format description. In this case, if the bitstream",
+            "\tchanges the frame dimensions, the output buffer will be padded to the dimensions specified in the format",
+            "\tdescription.",
+            "",
+            "\tWhen this property is set to `kCFBooleanTrue`, the decoder will set the dimensions of each output buffer to",
+            "\tmatch the dimensions specified in the bitstream for that frame.",
+            "",
+            "\tIn all cases, output buffer dimensions will never exceed the dimensions specified in the format description.",
+            "",
+            "\tIn apps linked to SDK versions before this property was added, the AV1 decoder will behave as if this property",
+            "\tis set to `kCFBooleanFalse`. Otherwise, value of this property defaults to `kCFBooleanTrue` where supported."
+          ],
+          "syntax": "not specified",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox": {
+      "abstract": [
+        {
+          "text": "Work directly with hardware-accelerated video encoding and decoding capabilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Video Toolbox",
+      "type": "topic",
+      "url": "/documentation/videotoolbox"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_AllowBitstreamToChangeFrameDimensions": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_AllowBitstreamToChangeFrameDimensions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_AllowBitstreamToChangeFrameDimensions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_AllowBitstreamToChangeFrameDimensions"
+        }
+      ],
+      "role": "symbol",
+      "title": "kVTDecompressionPropertyKey_AllowBitstreamToChangeFrameDimensions",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/kvtdecompressionpropertykey_allowbitstreamtochangeframedimensions"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_DeinterlaceMode": {
+      "abstract": [
+        {
+          "text": "Modes for requesting a specific deinterlacing technique.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_DeinterlaceMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_DeinterlaceMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_DeinterlaceMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "kVTDecompressionPropertyKey_DeinterlaceMode",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/kvtdecompressionpropertykey_deinterlacemode"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_FieldMode": {
+      "abstract": [
+        {
+          "text": "Modes for special handling of interlaced content (optional).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_FieldMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_FieldMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_FieldMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "kVTDecompressionPropertyKey_FieldMode",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/kvtdecompressionpropertykey_fieldmode"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_MaximizePowerEfficiency": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_MaximizePowerEfficiency"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_MaximizePowerEfficiency",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_MaximizePowerEfficiency"
+        }
+      ],
+      "role": "symbol",
+      "title": "kVTDecompressionPropertyKey_MaximizePowerEfficiency",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/kvtdecompressionpropertykey_maximizepowerefficiency"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_OnlyTheseFrames": {
+      "abstract": [
+        {
+          "text": "Requests that frames be filtered by type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_OnlyTheseFrames"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_OnlyTheseFrames",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_OnlyTheseFrames"
+        }
+      ],
+      "role": "symbol",
+      "title": "kVTDecompressionPropertyKey_OnlyTheseFrames",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/kvtdecompressionpropertykey_onlytheseframes"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_PixelFormatsWithReducedResolutionSupport": {
+      "abstract": [
+        {
+          "text": "Pixel formats that support reduced-resolution decoding (optional).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_PixelFormatsWithReducedResolutionSupport"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_PixelFormatsWithReducedResolutionSupport",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_PixelFormatsWithReducedResolutionSupport"
+        }
+      ],
+      "role": "symbol",
+      "title": "kVTDecompressionPropertyKey_PixelFormatsWithReducedResolutionSupport",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/kvtdecompressionpropertykey_pixelformatswithreducedresolutionsupport"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_RealTime": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether it’s recommended that the video decoder perform decompression in real time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_RealTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_RealTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_RealTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "kVTDecompressionPropertyKey_RealTime",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/kvtdecompressionpropertykey_realtime"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_ReducedCoefficientDecode": {
+      "abstract": [
+        {
+          "text": "Requests approximation during decoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_ReducedCoefficientDecode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_ReducedCoefficientDecode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_ReducedCoefficientDecode"
+        }
+      ],
+      "role": "symbol",
+      "title": "kVTDecompressionPropertyKey_ReducedCoefficientDecode",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/kvtdecompressionpropertykey_reducedcoefficientdecode"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_ReducedFrameDelivery": {
+      "abstract": [
+        {
+          "text": "The proportion of frames that should be delivered, indicating that the rest may be dropped.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_ReducedFrameDelivery"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_ReducedFrameDelivery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_ReducedFrameDelivery"
+        }
+      ],
+      "role": "symbol",
+      "title": "kVTDecompressionPropertyKey_ReducedFrameDelivery",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/kvtdecompressionpropertykey_reducedframedelivery"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_ReducedResolutionDecode": {
+      "abstract": [
+        {
+          "text": "Request decoding at smaller resolutions than full-size (optional).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_ReducedResolutionDecode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_ReducedResolutionDecode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_ReducedResolutionDecode"
+        }
+      ],
+      "role": "symbol",
+      "title": "kVTDecompressionPropertyKey_ReducedResolutionDecode",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/kvtdecompressionpropertykey_reducedresolutiondecode"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_SuggestedQualityOfServiceTiers": {
+      "abstract": [
+        {
+          "text": "An array of dictionaries that describe decreasing quality-of-service levels that clients can use to maintain realtime playback (optional).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_SuggestedQualityOfServiceTiers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_SuggestedQualityOfServiceTiers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_SuggestedQualityOfServiceTiers"
+        }
+      ],
+      "role": "symbol",
+      "title": "kVTDecompressionPropertyKey_SuggestedQualityOfServiceTiers",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/kvtdecompressionpropertykey_suggestedqualityofservicetiers"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByPerformance": {
+      "abstract": [
+        {
+          "text": "An array indicating speed tradeoffs between pixel formats (optional).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByPerformance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByPerformance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByPerformance"
+        }
+      ],
+      "role": "symbol",
+      "title": "kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByPerformance",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/kvtdecompressionpropertykey_supportedpixelformatsorderedbyperformance"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByQuality": {
+      "abstract": [
+        {
+          "text": "An array indicating quality levels among pixel formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByQuality"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByQuality",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByQuality"
+        }
+      ],
+      "role": "symbol",
+      "title": "kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByQuality",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/kvtdecompressionpropertykey_supportedpixelformatsorderedbyquality"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_ThreadCount": {
+      "abstract": [
+        {
+          "text": "The number of threads used by a codec or the suggested number of threads to use (optional).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_ThreadCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_ThreadCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionPropertyKey_ThreadCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "kVTDecompressionPropertyKey_ThreadCount",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/kvtdecompressionpropertykey_threadcount"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionProperty_TemporalLevelLimit": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionProperty_TemporalLevelLimit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionProperty_TemporalLevelLimit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kVTDecompressionProperty_TemporalLevelLimit"
+        }
+      ],
+      "role": "symbol",
+      "title": "kVTDecompressionProperty_TemporalLevelLimit",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/kvtdecompressionproperty_temporallevellimit"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@CFStringRef": {
+      "abstract": [
+        {
+          "text": "A reference to a CFString object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@CFStringRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFString",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstring"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Decoder-Behavior",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_RealTime",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_MaximizePowerEfficiency",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_ThreadCount",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_FieldMode",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_DeinterlaceMode",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_ReducedResolutionDecode",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_ReducedCoefficientDecode",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_ReducedFrameDelivery",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_OnlyTheseFrames",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionProperty_TemporalLevelLimit",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_SuggestedQualityOfServiceTiers",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByQuality",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByPerformance",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_PixelFormatsWithReducedResolutionSupport"
+      ],
+      "title": "Decoder Behavior"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "18.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "18.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "18.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "18.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Global Variable"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "kVTDecompressionPropertyKey_AllowBitstreamToChangeFrameDimensions"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "var"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kVTDecompressionPropertyKey_AllowBitstreamToChangeFrameDimensions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Decoder-Behavior",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_RealTime",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_MaximizePowerEfficiency",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_ThreadCount",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_FieldMode",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_DeinterlaceMode",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_ReducedResolutionDecode",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_ReducedCoefficientDecode",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_ReducedFrameDelivery",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_OnlyTheseFrames",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionProperty_TemporalLevelLimit",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_SuggestedQualityOfServiceTiers",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByQuality",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByPerformance",
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTDecompressionPropertyKey_PixelFormatsWithReducedResolutionSupport"
+              ],
+              "title": "Decoder Behavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "extern"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@CFStringRef",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@CFStringRef",
+                    "text": "CFStringRef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "const"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "kVTDecompressionPropertyKey_AllowBitstreamToChangeFrameDimensions"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_ReducedCoefficientDecode/title",
+          "value": "kVTDecompressionPropertyKey_ReducedCoefficientDecode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_ReducedCoefficientDecode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kVTDecompressionPropertyKey_ReducedCoefficientDecode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_FieldMode/title",
+          "value": "kVTDecompressionPropertyKey_FieldMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_FieldMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kVTDecompressionPropertyKey_FieldMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_PixelFormatsWithReducedResolutionSupport/title",
+          "value": "kVTDecompressionPropertyKey_PixelFormatsWithReducedResolutionSupport"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_PixelFormatsWithReducedResolutionSupport/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kVTDecompressionPropertyKey_PixelFormatsWithReducedResolutionSupport"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_ThreadCount/title",
+          "value": "kVTDecompressionPropertyKey_ThreadCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_ThreadCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kVTDecompressionPropertyKey_ThreadCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_AllowBitstreamToChangeFrameDimensions/title",
+          "value": "kVTDecompressionPropertyKey_AllowBitstreamToChangeFrameDimensions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_AllowBitstreamToChangeFrameDimensions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kVTDecompressionPropertyKey_AllowBitstreamToChangeFrameDimensions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_SuggestedQualityOfServiceTiers/title",
+          "value": "kVTDecompressionPropertyKey_SuggestedQualityOfServiceTiers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_SuggestedQualityOfServiceTiers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kVTDecompressionPropertyKey_SuggestedQualityOfServiceTiers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@CFStringRef/title",
+          "value": "CFStringRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_OnlyTheseFrames/title",
+          "value": "kVTDecompressionPropertyKey_OnlyTheseFrames"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_OnlyTheseFrames/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kVTDecompressionPropertyKey_OnlyTheseFrames"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_DeinterlaceMode/title",
+          "value": "kVTDecompressionPropertyKey_DeinterlaceMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_DeinterlaceMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kVTDecompressionPropertyKey_DeinterlaceMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_RealTime/title",
+          "value": "kVTDecompressionPropertyKey_RealTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_RealTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kVTDecompressionPropertyKey_RealTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionProperty_TemporalLevelLimit/title",
+          "value": "kVTDecompressionProperty_TemporalLevelLimit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionProperty_TemporalLevelLimit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kVTDecompressionProperty_TemporalLevelLimit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByQuality/title",
+          "value": "kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByQuality"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByQuality/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByQuality"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_MaximizePowerEfficiency/title",
+          "value": "kVTDecompressionPropertyKey_MaximizePowerEfficiency"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_MaximizePowerEfficiency/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kVTDecompressionPropertyKey_MaximizePowerEfficiency"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_ReducedFrameDelivery/title",
+          "value": "kVTDecompressionPropertyKey_ReducedFrameDelivery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_ReducedFrameDelivery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kVTDecompressionPropertyKey_ReducedFrameDelivery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByPerformance/title",
+          "value": "kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByPerformance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByPerformance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByPerformance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_ReducedResolutionDecode/title",
+          "value": "kVTDecompressionPropertyKey_ReducedResolutionDecode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTDecompressionPropertyKey_ReducedResolutionDecode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kVTDecompressionPropertyKey_ReducedResolutionDecode"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/videotoolbox/kvtdecompressionpropertykey_allowbitstreamtochangeframedimensions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/videotoolbox/kvtdecompressionpropertykey_allowbitstreamtochangeframedimensions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

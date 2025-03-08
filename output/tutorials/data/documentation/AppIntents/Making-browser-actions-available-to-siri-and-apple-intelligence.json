@@ -1,0 +1,980 @@
+{
+  "abstract": [
+    {
+      "text": "Create app intents and entities to integrate your app’s web browsing functionality with Siri and Apple Intelligence.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AppIntents/documentation/AppIntents",
+        "doc://com.apple.AppIntents/documentation/AppIntents/app-intent-domains"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AppIntents/documentation/AppIntents",
+        "doc://com.apple.AppIntents/documentation/AppIntents/app-intents",
+        "doc://com.apple.AppIntents/documentation/AppIntents/app-intent-domains"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AppIntents/documentation/AppIntents/Making-browser-actions-available-to-siri-and-apple-intelligence"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Intents"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Making browser actions available to Siri and Apple Intelligence"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To integrate your app’s web browsing functionality with Siri and Apple Intelligence, you use Swift macros that generate additional",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "properties and add protocol conformance for your app intent, app entity, and app enumeration implementation that Apple Intelligence needs. For example, if your app allows a person to open a website in a new tab, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantIntent(schema:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro and provide the assistant schema",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that consists of the ",
+              "type": "text"
+            },
+            {
+              "code": ".browser",
+              "type": "codeVoice"
+            },
+            {
+              "text": " domain and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BrowserIntent/createTab",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " schema:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@AssistantIntent(schema: .browser.createTab)",
+            "struct CreateTabIntent: AppIntent {",
+            "    var url: URL?",
+            "    var isPrivate: Bool",
+            "",
+            "    // Return a TabEntity instance.",
+            "    func perform() async throws -> some ReturnsValue<TabEntity> {",
+            "       .result(value: TabEntity())",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about assistant schemas, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Integrating-actions-with-siri-and-apple-intelligence",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For a list of available app intents in the ",
+              "type": "text"
+            },
+            {
+              "code": ".browser",
+              "type": "codeVoice"
+            },
+            {
+              "text": " domain, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BrowserIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Make-sure-your-entity-meets-requirements",
+          "level": 3,
+          "text": "Make sure your entity meets requirements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use app entities to describe custom data types, annotate the app entity implementation with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantEntity(schema:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "macro. This makes sure Siri and Apple Intelligence can understand your data. For example, the intent in the previous section uses ",
+              "type": "text"
+            },
+            {
+              "code": "TabEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following code snippet shows how the ",
+              "type": "text"
+            },
+            {
+              "code": "TabEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implementation uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantEntity(schema:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@AssistantEntity(schema: .browser.tab)",
+            "struct TabEntity {",
+            "    struct Query: EntityStringQuery {",
+            "        func entities(for identifiers: [TabEntity.ID]) async throws -> [TabEntity] { [] }",
+            "        func entities(matching string: String) async throws -> [TabEntity] { [] }",
+            "    }",
+            "    static var defaultQuery = Query()",
+            "    ",
+            "    var displayRepresentation: AppIntents.DisplayRepresentation { \"TabEntity\" }",
+            "",
+            "    let id = UUID()",
+            "",
+            "    var url: URL?",
+            "    var name: String",
+            "    var isPrivate: Bool",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The assistant schema for the ",
+              "type": "text"
+            },
+            {
+              "code": "TabEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " consists of the ",
+              "type": "text"
+            },
+            {
+              "code": ".browser",
+              "type": "codeVoice"
+            },
+            {
+              "text": " domain and the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BrowserEntity/tab",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " schema.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a list of available app entity schemas in the ",
+              "type": "text"
+            },
+            {
+              "code": ".browser",
+              "type": "codeVoice"
+            },
+            {
+              "text": " domain, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BrowserEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Make-sure-your-enumeration-meets-requirements",
+          "level": 3,
+          "text": "Make sure your enumeration meets requirements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make sure Siri and Apple Intelligence understand custom static types for your intent parameters,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "annotate app enumerations with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantEnum(schema:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro. Then, pass the ",
+              "type": "text"
+            },
+            {
+              "code": ".browser",
+              "type": "codeVoice"
+            },
+            {
+              "text": " domain",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and a schema to it. The following example uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BrowserEnum/clearHistoryTimeFrame",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " schema:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@AssistantEnum(schema: .browser.clearHistoryTimeFrame)",
+            "struct ClearHistoryTimeFrameEnum: String, AppEnum {",
+            "    case today",
+            "    case lastFourHours",
+            "    case todayAndYesterday",
+            "    case allTime",
+            "",
+            "static var caseDisplayRepresentations: [ClearHistoryTimeFrame: DisplayRepresentation] = [:]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a list of available app enumeration schemas in the ",
+              "type": "text"
+            },
+            {
+              "code": ".browser",
+              "type": "codeVoice"
+            },
+            {
+              "text": " domain, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BrowserEnum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "app-intents-PageImage-card.png": {
+      "alt": "[A hero image of an App Intents framework icon.]",
+      "identifier": "app-intents-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f45fa3b20a1dca9bc37dc1052bdd8f0b/app-intents-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8bc71c773b4be518f0665536bee92d34/app-intents-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents": {
+      "abstract": [
+        {
+          "text": "Make your app’s content and actions discoverable with system experiences like Spotlight, widgets, and enhanced action capabilities of Siri, powered by Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Intents",
+      "type": "topic",
+      "url": "/documentation/appintents"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantEntity(schema:)": {
+      "abstract": [
+        {
+          "text": "A Swift macro you use to make sure your app entity conforms to an assistant schema.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AssistantEntity"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "schema"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantEntity(schema:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AssistantEntity(schema:)",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantentity(schema:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantEnum(schema:)": {
+      "abstract": [
+        {
+          "text": "A Swift macro you use to make sure your app enum conforms to an assistant schema.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AssistantEnum"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "schema"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantEnum(schema:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AssistantEnum(schema:)",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantenum(schema:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantIntent(schema:)": {
+      "abstract": [
+        {
+          "text": "A Swift macro you use to make sure your app intent conforms to an assistant schema.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AssistantIntent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "schema"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantIntent(schema:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AssistantIntent(schema:)",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantintent(schema:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BrowserEntity": {
+      "abstract": [
+        {
+          "text": "Assistant schema conformance for app entities that describe data for web browsing functionality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BrowserEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BrowserEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BrowserEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssistantSchemas.BrowserEntity",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantschemas/browserentity"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BrowserEntity/tab": {
+      "abstract": [
+        {
+          "text": "The app entity describes a browser tab.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tab"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents16AssistantSchemasO",
+          "text": "AssistantSchemas"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents16AssistantSchemasO6EntityP",
+          "text": "Entity"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BrowserEntity/tab",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tab",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantschemas/browserentity/tab"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BrowserEnum": {
+      "abstract": [
+        {
+          "text": "Assistant schema conformance for types you use for web browsing functionality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BrowserEnum"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BrowserEnum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BrowserEnum"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssistantSchemas.BrowserEnum",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantschemas/browserenum"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BrowserEnum/clearHistoryTimeFrame": {
+      "abstract": [
+        {
+          "text": "The time frame for clearing the browser history",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clearHistoryTimeFrame"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents16AssistantSchemasO",
+          "text": "AssistantSchemas"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents16AssistantSchemasO4EnumP",
+          "text": "Enum"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BrowserEnum/clearHistoryTimeFrame",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clearHistoryTimeFrame",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantschemas/browserenum/clearhistorytimeframe"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BrowserIntent": {
+      "abstract": [
+        {
+          "text": "Assistant schema conformance for app intents that offer web browsing functionality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BrowserIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BrowserIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BrowserIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AssistantSchemas.BrowserIntent",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantschemas/browserintent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BrowserIntent/createTab": {
+      "abstract": [
+        {
+          "text": "The app intent conforms to the schema for creating a browser tab.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "createTab"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents16AssistantSchemasO",
+          "text": "AssistantSchemas"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents16AssistantSchemasO6IntentP",
+          "text": "Intent"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BrowserIntent/createTab",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createTab",
+      "type": "topic",
+      "url": "/documentation/appintents/assistantschemas/browserintent/createtab"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/Integrating-actions-with-siri-and-apple-intelligence": {
+      "abstract": [
+        {
+          "text": "Create app intents, entities, and enumerations that conform to assistant schemas to tap into the enhanced action capabilities of Siri and Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Integrating-actions-with-siri-and-apple-intelligence",
+      "images": [
+        {
+          "identifier": "app-intents-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Integrating actions with Siri and Apple Intelligence",
+      "type": "topic",
+      "url": "/documentation/appintents/integrating-actions-with-siri-and-apple-intelligence"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/app-intent-domains": {
+      "abstract": [
+        {
+          "text": "Make your app’s actions and content available to Siri and Apple Intelligence with assistant schemas.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/app-intent-domains",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App intent domains",
+      "type": "topic",
+      "url": "/documentation/appintents/app-intent-domains"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/app-intents": {
+      "abstract": [
+        {
+          "text": "Define the custom actions your app exposes to the system, and incorporate",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "support for existing SiriKit intents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/app-intents",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App intents",
+      "type": "topic",
+      "url": "/documentation/appintents/app-intents"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Browser",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BrowserIntent",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BrowserEntity",
+        "doc://com.apple.AppIntents/documentation/AppIntents/AssistantSchemas/BrowserEnum"
+      ],
+      "title": "Browser"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appintents/making-browser-actions-available-to-siri-and-apple-intelligence"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

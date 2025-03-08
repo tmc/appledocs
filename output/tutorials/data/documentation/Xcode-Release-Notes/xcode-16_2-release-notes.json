@@ -1,0 +1,1195 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-16_2-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Xcode 16.2 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode 16.2 includes SDKs for iOS 18.2, iPadOS 18.2, tvOS 18.2, watchOS 11.2, macOS Sequoia 15.2, and visionOS 2.2.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Xcode 16.2 release supports on-device debugging in iOS 15 and later, tvOS 15 and later, watchOS 7 and later, and visionOS.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode 16.2 requires a Mac running macOS Sonoma 14.5 or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Downloadable-Hardware-Support",
+          "level": 3,
+          "text": "Downloadable Hardware Support",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Starting with Xcode 16.2, Xcode can add support for new hardware without needing to update the entire Xcode app.  Xcode will check when launching the app if a hardware support update is available and will install it.  For the equivalent from the command-line, run ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcodebuild -runFirstLaunch -checkForNewerComponents",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When there is hardware support available, the installer package will be stored in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "~/Library/Developer/Packages",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and can be copied for installation and setup purposes for other machines.  (138789379)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode 16.2 with iPhone 16e, iPad Air (M3), and iPad (A16) Device Support is unable to thin for these device during ad-hoc distribution.  (136340970)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When using Xcode 16.2 with iPhone 16e, iPad Air (M3), and iPad (A16) Device Support, these new devices are not available in the device selector.  (138526898)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Use iPhone 14 as an alternative to iPhone 16e.  Use iPad Air (M2) as an alternative to iPad Air (M3).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When creating an asset for iPhone 16e using Xcode 16.2 and iPhone 16e Device Support, the warning “Warning: Could not get trait set for device iPhone17,5 with version 18.3” will be displayed although it will still work.  When deploying large asset catalogs for iPhone 16e, it may take longer.  (139181651)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In order to use iPhone 16e in the simulator with Xcode 16.2, download both the iPhone 16e Device Support and the iOS 18.3 Simulator Runtime from Xcode > Settings > Components.  iPhone 16e is not currently compatible with iOS 18.4 beta.  (143996070)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In order to use iPad Air (M3) or iPad (A16) in the simulator with Xcode 16.2, download both the iPhone 16e, iPad Air (M3), and iPad (A16) Device Support and the iOS 18.3.1 Simulator Runtime from Xcode > Settings > Components.  iPad Air (M3) and iPad (A16) are not currently compatible with iOS 18.4 beta 2.  (143996162)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "General",
+          "level": 3,
+          "text": "General",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Command Line Tools package now supports using the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "swift test",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " command to build and run package tests written with Swift Testing.  (136424541)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sometimes running parallel Tests on macOS run destinations never finishes.  (138772707)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Localization",
+          "level": 3,
+          "text": "Localization",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed crashes and other anomalies that could occur in the String Catalog editor when multiple editor tabs are open to the same file with different sort or filter criteria. (FB14665353)  (136257968)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Predictive-Code-Completion",
+          "level": 3,
+          "text": "Predictive Code Completion",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Improved predictive completions that start with type names and initializer calls. Please note, this improvement requires macOS 15.1 or later.  (128085056)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Improved predictive completions when steered by an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "override",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " completion.  (129624498)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where predictions starting with certain Swift keywords, like ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "func",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "struct",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", might be expanded to words like “function” and “structure”.   (134784783)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Predictive Code Completion more consistently calls functions with the correct parameters and ordering.  (138219794)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Improved predictive completion accuracy in situations where a property name is being predicted or fed to the model by the selection in the code completion window.  (138437280)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where a predictive completion never loads.  (138784998)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Previews",
+          "level": 3,
+          "text": "Previews",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Previews should now work fine without permissions errors if you place derived data in protected locations like Downloads, Desktop, or Documents.  (129866404)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Projects that built object files as universal could sometimes fail to preview.  (133653290)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Targets using ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "internal import SwiftUI",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " would fail to preview.  (136173813)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Previews could fail to find bundled resources for some targets that produced very large binaries.  (136292512) (FB15176682)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Previews could have crashed with unknown selector errors if ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-ObjC",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-all_load",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " were passed as linker flags for the previewed module.  (136970660)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Processing crash reports for user code could sometimes cause PreviewShell to crash instead if an address was interpreted as a negative number.  (137644422)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: In Xcode 16.0, unoptimized debug builds implicitly wrap usages of SwiftUI ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "some View",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " types (such as the return type from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "body",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AnyView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This is done to allow SwiftUI Previews to dynamically replace the implementation of methods like ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "body",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " without building separate copies of the entire project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "While functionally equivalent, using ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AnyView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in some cases can lead to slower SwiftUI performance when a view returning ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "some View",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from its ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "body",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is used as a direct child of a lazy container. This can be worked around by wrapping those views in an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "HStack",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "VStack",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " , for example:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    " List {",
+                    "     ForEach(…) {",
+                    "         HStack {",
+                    "             MyRowView()",
+                    "         }",
+                    "     }",
+                    " }"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Alternatively, there is a new build setting ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SWIFT_ENABLE_OPAQUE_TYPE_ERASURE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " that controls the implicit wrapping of views in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AnyView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". To get fast SwiftUI previews, the setting defaults to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "YES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", but can be set to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NO",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " if you want to experiment with how this affects debug-time performance in specific targets in your project. This will have no effect on release builds, which is where performance should be accurately evaluated. Xcode 16.2 adds experimental support for disabling the build setting while retaining preview usage, though preview performance will degrade significantly.  (138952991)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS projects that use hardened runtime but no sandboxing may run into timeout errors when attempting to preview if the project is complex enough.   (139070284)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Enable sandboxing or disable hardened runtime while developing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Simulator",
+          "level": 3,
+          "text": "Simulator",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "CoreSimulator now supports a mode in which the developer has full control over devices in the default device set.  The system won’t create default devices nor manage pairing relationships between watches and phones in that set when placed into this mode.  To do this, please set the following preference:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    " defaults write com.apple.CoreSimulator EnableDefaultSetCreation -bool NO"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "(139023701)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: CoreSimulatorService may increase in memory usage over time, with usage of simulator processes.  (140213488)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On systems that do not have Internet access, Xcode cannot reach the index for SDK to Simulator runtime mapping information. This will cause Xcode to list current simulators as ‘Other Installed Platforms’ and consider the current platform as missing.  (135367176)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " To download a copy of the latest index run:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    " curl -O https://devimages-cdn.apple.com/downloads/xcode/simulators/index2.dvtdownloadableindex"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Then copy the index to the offline system and run the following command to set the index:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    " defaults write com.apple.dt.Xcode DVTDownloadableIndex <path/to/the/copied/index2.dvtdownloadableindex>"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Remember to repeat this workaround when upgrading to newer simulator runtimes, or newer Xcode, on systems without Internet access.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Simulator process launch may stall for around 3-5 minutes per runtime as GateKeeper scans the simulator dyld shared cache.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "GateKeeper will need to scan the simulator dyld shared cache whenever:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "The simulator dyld shared cache is rebuilt.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "An Xprotect update is installed (~weekly).",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The simulator dyld shared cache will need to be rebuilt whenver:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "macOS is updated.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "A new or updated simulator runtime is installed.  (138219140)",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " You will need to wait for scananing to complete, which is easiest to do by monitoring CPU activity of the syspolicyd process on the system.  There is currently no visual indication of this progress.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Swift",
+          "level": 3,
+          "text": "Swift",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Apps using Swift/C++ interoperability may not be back deployable to operating systems earlier than iOS 16, watchOS 9, and tvOS 16.  (140823785)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Memory leaks can occur when calling async functions bridged from Objective-C and building in the Swift 6 language mode.  (134442168)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Pass ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-checked-async-objc-bridging=off",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to the Swift compiler using “Other Swift Flags” in Xcode build settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode targets using Swift/C++ interoperability and having a deployment target of less than iOS 16 or tvOS 16 may not build for iOS or tvOS simulators.  (141232269)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Swift-Package-Manager",
+          "level": 3,
+          "text": "Swift Package Manager",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where lldb couldn’t attach to the Swift Testing host binary.  (136630386)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-16-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-16-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 16 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-16-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-16_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-16_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 16.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-16_1-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-16_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-16_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 16.3 Beta 2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-16_3-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Xcode-16",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-16_3-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-16_1-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-16-release-notes"
+      ],
+      "title": "Xcode 16"
+    }
+  ]
+}

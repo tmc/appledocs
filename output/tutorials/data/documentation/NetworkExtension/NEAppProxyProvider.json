@@ -1,0 +1,2468 @@
+{
+  "abstract": [
+    {
+      "text": "The principal class for an app proxy provider app extension.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkextension/documentation/NetworkExtension"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NEAppProxyProvider",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NEAppProxyProvider"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Network Extension"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NEAppProxyProvider"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NEAppProxyProvider"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyProvider"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/handling-flow-copying"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class provides access to flows of network data in the form of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. Each ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object corresponds to a socket opened by an app that matches the app rules specified in the current App Proxy configuration. Your App Proxy Provider acts as a transparent network proxy for the flows of network data that it receives.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "com.apple.developer.networking.networkextension",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " entitlement is required to use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " class. Enable this entitlement when creating an App ID in your developer account.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "DNS-Handling",
+          "level": 3,
+          "text": "DNS Handling",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to flows of raw network data from applications, the App Proxy Provider also receives flows of DNS queries in the form of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyUDPFlow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. DNS query flows are received only for applications that use low-level DNS resolution APIs such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/dnssd/DNSServiceGetAddrInfo(_:_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "(). The App Proxy Provider can specify the DNS resolver configuration that will be used by these applications using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider/setTunnelNetworkSettings(_:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Applications that use higher-level networking APIs such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " do not generate DNS queries. Instead the destination hostname for the connection is included in the endpoint information of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Creating-an-App-Proxy-Provider-Extension",
+          "level": 3,
+          "text": "Creating an App Proxy Provider Extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "App Proxy Providers run as App Extensions for the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.networkextension.app-proxy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension point.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a App Proxy Provider extension, first create a new App Extension target in your project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an example of an Xcode build target for this app extension, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/samplecode/SimpleTunnel/Introduction/Intro.html#//apple_ref/doc/uid/TP40016140",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample code project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you have a App Proxy Provider extension target, create a sub-class of ",
+              "type": "text"
+            },
+            {
+              "code": "NEAppProxyProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Then, set the ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtensionPrincipalClass",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key in the the extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the name of your sub-class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If it is not already done, set the ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtensionPointIdentifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key in the extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.networkextension.app-proxy",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here is an example of the NSExtension dictionary in a App Proxy Provider extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>NSExtension</key>",
+            "<dict>",
+            "    <key>NSExtensionPointIdentifier</key>",
+            "    <string>com.apple.networkextension.app-proxy</string>",
+            "    <key>NSExtensionPrincipalClass</key>",
+            "    <string>MyCustomAppProxyProvider</string>",
+            "</dict>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, add your App Proxy Provider extension target to your app’s Embed App Extensions build phase.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Subclassing-Notes",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In order to create a App Proxy Provider extension, you must create a subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NEAppProxyProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and override the methods listed below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Methods-to-Override",
+          "level": 4,
+          "text": "Methods to Override",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/startProxy(options:completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/stopProxy(with:completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/handleNewFlow(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/dnssd/DNSServiceGetAddrInfo(_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Queries for the IP address of a hostname by using either Multicast or Unicast DNS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DNSServiceGetAddrInfo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "sdRef"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceRef",
+          "text": "DNSServiceRef"
+        },
+        {
+          "kind": "text",
+          "text": "?>!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceFlags",
+          "text": "DNSServiceFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "interfaceIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceProtocol",
+          "text": "DNSServiceProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "hostname"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "callBack"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceGetAddrInfoReply",
+          "text": "DNSServiceGetAddrInfoReply"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceErrorType",
+          "text": "DNSServiceErrorType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/dnssd/DNSServiceGetAddrInfo(_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DNSServiceGetAddrInfo(_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/dnssd/DNSServiceGetAddrInfo(_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection": {
+      "abstract": [
+        {
+          "text": "An object that enables you to start and stop URL requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURLConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLConnection",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension": {
+      "abstract": [
+        {
+          "text": "Customize and extend core networking features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network Extension",
+      "type": "topic",
+      "url": "/documentation/networkextension"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow": {
+      "abstract": [
+        {
+          "text": "An abstract base class shared by NEAppProxyTCPFlow and NEAppProxyUDPFlow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyFlow"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyFlow"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppProxyFlow",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyflow"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider": {
+      "abstract": [
+        {
+          "text": "The principal class for an app proxy provider app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppProxyProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/cancelProxyWithError(_:)": {
+      "abstract": [
+        {
+          "text": "Stop the network proxy from the App Proxy Provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancelProxyWithError"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/cancelProxyWithError(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cancelProxyWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "cancelProxyWithError(_:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyprovider/cancelproxywitherror(_:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/handleNewFlow(_:)": {
+      "abstract": [
+        {
+          "text": "Handle a new flow of network data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleNewFlow"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NEAppProxyFlow",
+          "text": "NEAppProxyFlow"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/handleNewFlow(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleNewFlow:"
+        }
+      ],
+      "role": "symbol",
+      "title": "handleNewFlow(_:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyprovider/handlenewflow(_:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/handleNewUDPFlow(_:initialRemoteEndpoint:)": {
+      "abstract": [
+        {
+          "text": "Handle a new UDP flow of network data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleNewUDPFlow"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NEAppProxyUDPFlow",
+          "text": "NEAppProxyUDPFlow"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "initialRemoteEndpoint"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NWEndpoint",
+          "text": "NWEndpoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/handleNewUDPFlow(_:initialRemoteEndpoint:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleNewUDPFlow:initialRemoteEndpoint:"
+        }
+      ],
+      "role": "symbol",
+      "title": "handleNewUDPFlow(_:initialRemoteEndpoint:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyprovider/handlenewudpflow(_:initialremoteendpoint:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/handleNewUDPFlow:initialRemoteFlowEndpoint:": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleNewUDPFlow:initialRemoteFlowEndpoint:"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/handleNewUDPFlow:initialRemoteFlowEndpoint:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleNewUDPFlow:initialRemoteFlowEndpoint:"
+        }
+      ],
+      "role": "symbol",
+      "title": "handleNewUDPFlow:initialRemoteFlowEndpoint:",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyprovider/handlenewudpflow:initialremoteflowendpoint:"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/startProxy(options:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Start the network proxy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startProxy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/startProxy(options:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startProxyWithOptions:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startProxy(options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyprovider/startproxy(options:completionhandler:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/stopProxy(with:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Stop the network proxy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopProxy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NEProviderStopReason",
+          "text": "NEProviderStopReason"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/stopProxy(with:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopProxyWithReason:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopProxy(with:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyprovider/stopproxy(with:completionhandler:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyUDPFlow": {
+      "abstract": [
+        {
+          "text": "An object for reading and writing data to and from a UDP conversation being proxied by the provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyUDPFlow"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyUDPFlow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyUDPFlow"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppProxyUDPFlow",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyudpflow"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider": {
+      "abstract": [
+        {
+          "text": "An abstract base class for all NetworkExtension providers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/neprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyProvider": {
+      "abstract": [
+        {
+          "text": "An object that implements the client side of a custom transparent network proxy solution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NETransparentProxyProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NETransparentProxyProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NETransparentProxyProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/netransparentproxyprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelNetworkSettings": {
+      "abstract": [
+        {
+          "text": "The configuration for a tunnel provider’s virtual interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NETunnelNetworkSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelNetworkSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NETunnelNetworkSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "NETunnelNetworkSettings",
+      "type": "topic",
+      "url": "/documentation/networkextension/netunnelnetworksettings"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider": {
+      "abstract": [
+        {
+          "text": "An abstract base class shared by NEPacketTunnelProvider and NEAppProxyProvider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NETunnelProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NETunnelProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NETunnelProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/netunnelprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider/setTunnelNetworkSettings(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Specify the network settings for the current tunneling session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTunnelNetworkSettings"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NETunnelNetworkSettings",
+          "text": "NETunnelNetworkSettings"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider/setTunnelNetworkSettings(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setTunnelNetworkSettings:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setTunnelNetworkSettings(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/netunnelprovider/settunnelnetworksettings(_:completionhandler:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/handling-flow-copying": {
+      "abstract": [
+        {
+          "text": "Exchange data streams by using proxy-provider classes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/handling-flow-copying",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Flow Copying",
+      "type": "topic",
+      "url": "/documentation/networkextension/handling-flow-copying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "https://developer.apple.com/library/archive/samplecode/SimpleTunnel/Introduction/Intro.html#//apple_ref/doc/uid/TP40016140": {
+      "identifier": "https://developer.apple.com/library/archive/samplecode/SimpleTunnel/Introduction/Intro.html#//apple_ref/doc/uid/TP40016140",
+      "title": "SimpleTunnel: Customized Networking Using the NetworkExtension Framework",
+      "titleInlineContent": [
+        {
+          "text": "SimpleTunnel: Customized Networking Using the NetworkExtension Framework",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/samplecode/SimpleTunnel/Introduction/Intro.html#//apple_ref/doc/uid/TP40016140"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyProvider"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-proxy-provider",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelNetworkSettings"
+      ],
+      "title": "App proxy provider"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Managing-the-app-proxy-life-cycle",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/startProxy(options:completionHandler:)",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/stopProxy(with:completionHandler:)",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/cancelProxyWithError(_:)"
+      ],
+      "title": "Managing the app proxy life cycle"
+    },
+    {
+      "anchor": "Handling-proxied-flows",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/handleNewFlow(_:)",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/handleNewUDPFlow(_:initialRemoteEndpoint:)"
+      ],
+      "title": "Handling proxied flows"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NEAppProxyProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.networkextension/documentation/NetworkExtension"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Managing-the-app-proxy-life-cycle",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/startProxy(options:completionHandler:)",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/stopProxy(with:completionHandler:)",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/cancelProxyWithError(_:)"
+              ],
+              "title": "Managing the app proxy life cycle"
+            },
+            {
+              "anchor": "Handling-proxied-flows",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/handleNewFlow(_:)",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/handleNewUDPFlow(_:initialRemoteEndpoint:)"
+              ],
+              "title": "Handling proxied flows"
+            },
+            {
+              "anchor": "Instance-Methods",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProvider/handleNewUDPFlow:initialRemoteFlowEndpoint:"
+              ],
+              "title": "Instance Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NETransparentProxyProvider"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "App-proxy-provider",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEProvider",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelNetworkSettings"
+              ],
+              "title": "App proxy provider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NEAppProxyProvider"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NETunnelProvider",
+                    "text": "NETunnelProvider"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyUDPFlow/title",
+          "value": "NEAppProxyUDPFlow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyUDPFlow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyUDPFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyUDPFlow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyUDPFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEProvider/title",
+          "value": "NEProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProvider/title",
+          "value": "NEAppProxyProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProvider~1startProxy(options:completionHandler:)/title",
+          "value": "startProxyWithOptions:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProvider~1startProxy(options:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startProxyWithOptions:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProvider~1stopProxy(with:completionHandler:)/title",
+          "value": "stopProxyWithReason:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProvider~1stopProxy(with:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopProxyWithReason:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProvider~1handleNewUDPFlow(_:initialRemoteEndpoint:)/title",
+          "value": "handleNewUDPFlow:initialRemoteEndpoint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProvider~1handleNewUDPFlow(_:initialRemoteEndpoint:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleNewUDPFlow:initialRemoteEndpoint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyFlow/title",
+          "value": "NEAppProxyFlow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyFlow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyFlow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProvider~1cancelProxyWithError(_:)/title",
+          "value": "cancelProxyWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProvider~1cancelProxyWithError(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "cancelProxyWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1dnssd~1DNSServiceGetAddrInfo(_:_:_:_:_:_:_:)/title",
+          "value": "DNSServiceGetAddrInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1dnssd~1DNSServiceGetAddrInfo(_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@DNSServiceErrorType",
+              "text": "DNSServiceErrorType"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "DNSServiceGetAddrInfo"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@DNSServiceRef",
+              "text": "DNSServiceRef"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "sdRef"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@DNSServiceFlags",
+              "text": "DNSServiceFlags"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "flags"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@uint32_t",
+              "text": "uint32_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "interfaceIndex"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@DNSServiceProtocol",
+              "text": "DNSServiceProtocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:C",
+              "text": "char"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "hostname"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@DNSServiceGetAddrInfoReply",
+              "text": "DNSServiceGetAddrInfoReply"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "callBack"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "context"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProvider/title",
+          "value": "NETunnelProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETunnelProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETunnelProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETransparentProxyProvider/title",
+          "value": "NETransparentProxyProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETransparentProxyProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETransparentProxyProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETransparentProxyProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETransparentProxyProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelNetworkSettings/title",
+          "value": "NETunnelNetworkSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelNetworkSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETunnelNetworkSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelNetworkSettings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETunnelNetworkSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProvider~1setTunnelNetworkSettings(_:completionHandler:)/title",
+          "value": "setTunnelNetworkSettings:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProvider~1setTunnelNetworkSettings(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setTunnelNetworkSettings:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsession/title",
+          "value": "NSURLSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProvider~1handleNewFlow(_:)/title",
+          "value": "handleNewFlow:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProvider~1handleNewFlow(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleNewFlow:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/networkextension/neappproxyprovider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/networkextension/neappproxyprovider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

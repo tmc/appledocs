@@ -1,0 +1,1766 @@
+{
+  "abstract": [
+    {
+      "text": "The ",
+      "type": "text"
+    },
+    {
+      "code": "MLMediaGroup",
+      "type": "codeVoice"
+    },
+    {
+      "text": " class provides groupings for media objects from a single source of media, such as iTunes or Aperture. The media objects—individual files containing a piece of media such as a photo, song, or movie—are referenced by one or more groups within each media source. These groupings serve as filters, providing hierarchical structure to the collection of objects in each source.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.medialibrary/documentation/MediaLibrary"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MLMediaGroup",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MLMediaGroup"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Media Library"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MLMediaGroup"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.15",
+        "introducedAt": "10.9",
+        "message": "MediaLibrary.framework will be removed in a future OS version. Use Photos.framework or iTunesLibrary.framework instead.",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "MLMediaGroup"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MLMediaGroup"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The structure of the group hierarchy is specific to each media source, but all sources have certain commonalities. For example, every source has a single root media group, which contains all groups and objects within that source. It is the highest-level parent group in the hierarchy and each of its descendant groups contains its own subgroups and their objects. All groups have a reference to their parent within the hierarchy. A group with no descendants contains only its own objects. If a media group does not contain any objects, it is not visible in the hierarchy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A media group has an array of attributes which can change at any point. For example, a media group may have certain attributes that describe its objects, but these attributes appear only after the objects for that group have been loaded. When any media group attribute changes, observers are notified via KVO notification. For information about handling attributes that change, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaBindings/CocoaBindings.html#//apple_ref/doc/uid/10000167i",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every media group has a unique identifier as well as a type identifier. In certain cases, multiple groups within a source can have the same type identifier. For descriptions of group type identifiers, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.medialibrary/documentation/MediaLibrary/medialibrary-constants",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All ",
+              "type": "text"
+            },
+            {
+              "code": "MLMediaGroup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties are read-only, so this information can be accessed but not altered.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.medialibrary/documentation/MediaLibrary": {
+      "abstract": [
+        {
+          "text": "Access read-only collections of the user’s multimedia content.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.medialibrary/documentation/MediaLibrary",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Media Library",
+      "type": "topic",
+      "url": "/documentation/medialibrary"
+    },
+    "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "MLMediaGroup",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class provides groupings for media objects from a single source of media, such as iTunes or Aperture. The media objects—individual files containing a piece of media such as a photo, song, or movie—are referenced by one or more groups within each media source. These groupings serve as filters, providing hierarchical structure to the collection of objects in each source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLMediaGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLMediaGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLMediaGroup",
+      "type": "topic",
+      "url": "/documentation/medialibrary/mlmediagroup"
+    },
+    "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/attributes": {
+      "abstract": [
+        {
+          "text": "A dictionary of attributes describing the media group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/attributes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "attributes",
+      "type": "topic",
+      "url": "/documentation/medialibrary/mlmediagroup/attributes"
+    },
+    "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/childGroups": {
+      "abstract": [
+        {
+          "text": "A list of child groups contained in the media group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "childGroups"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLMediaGroup",
+          "text": "MLMediaGroup"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/childGroups",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "childGroups"
+        }
+      ],
+      "role": "symbol",
+      "title": "childGroups",
+      "type": "topic",
+      "url": "/documentation/medialibrary/mlmediagroup/childgroups"
+    },
+    "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/iconImage": {
+      "abstract": [
+        {
+          "text": "The media group’s icon.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "iconImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImage",
+          "text": "NSImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/iconImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "iconImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "iconImage",
+      "type": "topic",
+      "url": "/documentation/medialibrary/mlmediagroup/iconimage"
+    },
+    "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/identifier": {
+      "abstract": [
+        {
+          "text": "An identifier for the media group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/identifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/medialibrary/mlmediagroup/identifier"
+    },
+    "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/mediaLibrary": {
+      "abstract": [
+        {
+          "text": "A pointer to the media library instance that loaded the media group’s source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaLibrary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLMediaLibrary",
+          "text": "MLMediaLibrary"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/mediaLibrary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mediaLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "mediaLibrary",
+      "type": "topic",
+      "url": "/documentation/medialibrary/mlmediagroup/medialibrary"
+    },
+    "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/mediaObjects": {
+      "abstract": [
+        {
+          "text": "A list of media objects in the media group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaObjects"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLMediaObject",
+          "text": "MLMediaObject"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/mediaObjects",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mediaObjects"
+        }
+      ],
+      "role": "symbol",
+      "title": "mediaObjects",
+      "type": "topic",
+      "url": "/documentation/medialibrary/mlmediagroup/mediaobjects"
+    },
+    "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/mediaSourceIdentifier": {
+      "abstract": [
+        {
+          "text": "An identifier for the source that loaded the media group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaSourceIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/mediaSourceIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mediaSourceIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "mediaSourceIdentifier",
+      "type": "topic",
+      "url": "/documentation/medialibrary/mlmediagroup/mediasourceidentifier"
+    },
+    "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/modificationDate": {
+      "abstract": [
+        {
+          "text": "The date and time when the media group was last altered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modificationDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/modificationDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "modificationDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "modificationDate",
+      "type": "topic",
+      "url": "/documentation/medialibrary/mlmediagroup/modificationdate"
+    },
+    "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/name": {
+      "abstract": [
+        {
+          "text": "The name of the media group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/name",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "name"
+        }
+      ],
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/medialibrary/mlmediagroup/name"
+    },
+    "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/parent": {
+      "abstract": [
+        {
+          "text": "The media group’s parent group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLMediaGroup",
+          "text": "MLMediaGroup"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/parent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "parent"
+        }
+      ],
+      "role": "symbol",
+      "title": "parent",
+      "type": "topic",
+      "url": "/documentation/medialibrary/mlmediagroup/parent"
+    },
+    "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/typeIdentifier": {
+      "abstract": [
+        {
+          "text": "An identifier for the media group’s type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "typeIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/typeIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "typeIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "typeIdentifier",
+      "type": "topic",
+      "url": "/documentation/medialibrary/mlmediagroup/typeidentifier"
+    },
+    "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/url": {
+      "abstract": [
+        {
+          "text": "The location of the media group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/url",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "URL"
+        }
+      ],
+      "role": "symbol",
+      "title": "url",
+      "type": "topic",
+      "url": "/documentation/medialibrary/mlmediagroup/url"
+    },
+    "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaLibrary": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "MLMediaLibrary",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class provides an interface for accessing a collection of media objects from various sources. It serves as the initial access point of the Media Library framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLMediaLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaLibrary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLMediaLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLMediaLibrary",
+      "type": "topic",
+      "url": "/documentation/medialibrary/mlmedialibrary"
+    },
+    "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaObject": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "MLMediaObject",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class describes a single media file, such as a photo, song, or movie. Each media object contains basic metadata including a name, media type, URL, and so on. Additional information about each object is stored in its list of attributes. For a list of possible object attribute keys, see ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.medialibrary/documentation/MediaLibrary/media-object-attribute-keys",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLMediaObject"
+        }
+      ],
+      "identifier": "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLMediaObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLMediaObject",
+      "type": "topic",
+      "url": "/documentation/medialibrary/mlmediaobject"
+    },
+    "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaSource": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "MLMediaSource",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class identifies a specific provider of media. Conceptually, a media source respresents a single app, such as iTunes or Aperture. Each media source contains multiple groups of media objects—individual files containing a piece of media such as a photo, song, or movie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLMediaSource"
+        }
+      ],
+      "identifier": "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLMediaSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLMediaSource",
+      "type": "topic",
+      "url": "/documentation/medialibrary/mlmediasource"
+    },
+    "doc://com.apple.medialibrary/documentation/MediaLibrary/media-object-attribute-keys": {
+      "abstract": [
+        {
+          "text": "Attribute keys for a media object. These constants are used to specify keys within a media object’s ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaObject/attributes",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " dictionary.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.medialibrary/documentation/MediaLibrary/media-object-attribute-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media Object Attribute Keys",
+      "type": "topic",
+      "url": "/documentation/medialibrary/media-object-attribute-keys"
+    },
+    "doc://com.apple.medialibrary/documentation/MediaLibrary/medialibrary-constants": {
+      "abstract": [],
+      "identifier": "doc://com.apple.medialibrary/documentation/MediaLibrary/medialibrary-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MediaLibrary Constants",
+      "type": "topic",
+      "url": "/documentation/medialibrary/medialibrary-constants"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaBindings/CocoaBindings.html#//apple_ref/doc/uid/10000167i": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaBindings/CocoaBindings.html#//apple_ref/doc/uid/10000167i",
+      "title": "Cocoa Bindings Programming Topics",
+      "titleInlineContent": [
+        {
+          "text": "Cocoa Bindings Programming Topics",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaBindings/CocoaBindings.html#//apple_ref/doc/uid/10000167i"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Classes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaLibrary",
+        "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaObject",
+        "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaSource"
+      ],
+      "title": "Classes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Identifying-the-Group",
+      "identifiers": [
+        "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/identifier",
+        "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/typeIdentifier",
+        "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/mediaSourceIdentifier",
+        "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/mediaLibrary"
+      ],
+      "title": "Identifying the Group"
+    },
+    {
+      "anchor": "Accessing-Group-Attributes",
+      "identifiers": [
+        "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/attributes",
+        "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/name",
+        "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/iconImage",
+        "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/url",
+        "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/modificationDate"
+      ],
+      "title": "Accessing Group Attributes"
+    },
+    {
+      "anchor": "Accessing-the-Group-Hierarchy",
+      "identifiers": [
+        "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/parent",
+        "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/childGroups",
+        "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/mediaObjects"
+      ],
+      "title": "Accessing the Group Hierarchy"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "10.15",
+              "introducedAt": "10.9",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MLMediaGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLMediaGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLMediaGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.medialibrary/documentation/MediaLibrary"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Identifying-the-Group",
+              "identifiers": [
+                "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/identifier",
+                "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/typeIdentifier",
+                "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/mediaSourceIdentifier",
+                "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/mediaLibrary"
+              ],
+              "title": "Identifying the Group"
+            },
+            {
+              "anchor": "Accessing-Group-Attributes",
+              "identifiers": [
+                "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/attributes",
+                "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/name",
+                "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/iconImage",
+                "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/url",
+                "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/modificationDate"
+              ],
+              "title": "Accessing Group Attributes"
+            },
+            {
+              "anchor": "Accessing-the-Group-Hierarchy",
+              "identifiers": [
+                "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/parent",
+                "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/childGroups",
+                "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaGroup/mediaObjects"
+              ],
+              "title": "Accessing the Group Hierarchy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Classes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaLibrary",
+                "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaObject",
+                "doc://com.apple.medialibrary/documentation/MediaLibrary/MLMediaSource"
+              ],
+              "title": "Classes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MLMediaGroup"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup~1identifier/title",
+          "value": "identifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup~1identifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "identifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup~1typeIdentifier/title",
+          "value": "typeIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup~1typeIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "typeIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup~1childGroups/title",
+          "value": "childGroups"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup~1childGroups/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "childGroups"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup~1mediaLibrary/title",
+          "value": "mediaLibrary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup~1mediaLibrary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mediaLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup/title",
+          "value": "MLMediaGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLMediaGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLMediaGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaObject/title",
+          "value": "MLMediaObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLMediaObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaObject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLMediaObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup~1modificationDate/title",
+          "value": "modificationDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup~1modificationDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "modificationDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaLibrary/title",
+          "value": "MLMediaLibrary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaLibrary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLMediaLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaLibrary/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLMediaLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup~1url/title",
+          "value": "URL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup~1url/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "URL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaSource/title",
+          "value": "MLMediaSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLMediaSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLMediaSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup~1name/title",
+          "value": "name"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup~1name/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "name"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup~1parent/title",
+          "value": "parent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup~1parent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "parent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup~1attributes/title",
+          "value": "attributes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup~1attributes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "attributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup~1mediaObjects/title",
+          "value": "mediaObjects"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup~1mediaObjects/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mediaObjects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup~1mediaSourceIdentifier/title",
+          "value": "mediaSourceIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup~1mediaSourceIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mediaSourceIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup~1iconImage/title",
+          "value": "iconImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.medialibrary~1documentation~1MediaLibrary~1MLMediaGroup~1iconImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "iconImage"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/medialibrary/mlmediagroup"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/medialibrary/mlmediagroup"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,883 @@
+{
+  "abstract": [
+    {
+      "text": "Discover features and best practices for building rear-camera AR experiences.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+        "doc://com.apple.arkit/documentation/ARKit/configuration-objects"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/understanding-world-tracking"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Understanding World Tracking"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The basic requirement for any AR experience—and the defining feature of ARKit—is the ability to create and track a correspondence between the real-world space the user inhabits and a virtual space where you can model visual content. When your app displays that content together with a live camera image, the user experiences augmented reality: the illusion that your virtual content is part of the real world.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2909114",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In all AR experiences, ARKit uses world and camera coordinate systems following a right-handed convention: the y-axis points upward, and (when relevant) the z-axis points toward the viewer and the x-axis points toward the viewer’s right.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Session configurations can change the origin and orientation of the coordinate system with respect to the real world (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/worldAlignment-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). Each anchor in an AR session defines its own local coordinate system, also following the right-handed, z-towards-viewer convention;  for example, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class defines a system for locating facial features.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Combine-Motion-Sensing-and-Scene-Analysis",
+          "level": 3,
+          "text": "Combine Motion Sensing and Scene Analysis",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a correspondence between real and virtual spaces, ARKit uses a technique called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "visual-inertial odometry",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". This process combines information from the iOS device’s motion sensing hardware with computer vision analysis of the scene visible to the device’s camera. ARKit recognizes notable features in the scene image, tracks differences in the positions of those features across video frames, and compares that information with motion sensing data. The result is a high-precision model of the device’s position and motion.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "World tracking also analyzes and understands the contents of a scene. Use ray-casting methods (see ",
+              "type": "text"
+            },
+            {
+              "code": "Raycasting and Hit-Testing",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") to find real-world surfaces corresponding to a point in the camera image. If you enable the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/planeDetection-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " setting in your session configuration, ARKit detects flat surfaces in the camera image and reports their position and sizes. You can use ray-cast results or detected planes to place or interact with virtual content in your scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Craft-an-Exceptional-AR-Experience",
+          "level": 3,
+          "text": "Craft an Exceptional AR Experience",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although world tracking can produce realistic AR experiences with accuracy and precision, it relies on details of the device’s physical environment that are not always consistent and can be difficult to measure in real time without a degree of error. To build high-quality AR experiences, be aware of these caveats and tips.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Design AR experiences for predictable lighting conditions.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " World tracking involves image analysis, which requires a clear image. Tracking quality is reduced when the camera can’t see details, such as when the camera is pointed at a blank wall or the scene is too dark.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use tracking quality information to provide user feedback",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": ". World tracking correlates image analysis with device motion. ARKit develops a better understanding of the scene if the device is moving, even if the device moves only subtly. Excessive motion—too far, too fast, or shaking too vigorously—results in a blurred image or too much distance for tracking features between video frames, reducing tracking quality. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class provides tracking state reason information, which you can use to develop UI that tells a user how to resolve low-quality tracking situations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Allow time for plane detection to produce clear results, and disable plane detection when you have the results you need.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Plane detection results vary over time—when a plane is first detected, its position and extent may be inaccurate. As the plane remains in the scene over time, ARKit refines its estimate of position and extent. When a large flat surface is in the scene, ARKit may continue changing the plane anchor’s position, extent, and transform after you’ve already used the plane to place content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARCamera": {
+      "abstract": [
+        {
+          "text": "Information about the camera position and imaging characteristics for a given frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARCamera"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARCamera"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARCamera",
+      "type": "topic",
+      "url": "/documentation/arkit/arcamera"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/worldAlignment-swift.property": {
+      "abstract": [
+        {
+          "text": "A value specifying how the session maps real-world device motion into a 3D scene coordinate system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "worldAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARConfiguration",
+          "text": "ARConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARWorldAlignment",
+          "text": "WorldAlignment"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/worldAlignment-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "worldAlignment"
+        }
+      ],
+      "role": "symbol",
+      "title": "worldAlignment",
+      "type": "topic",
+      "url": "/documentation/arkit/arconfiguration/worldalignment-swift.property"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor": {
+      "abstract": [
+        {
+          "text": "An anchor for a unique face that is visible in the front-facing camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARFaceAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARFaceAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARFaceAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/arfaceanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that tracks locations with GPS, map data, and a device’s compass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARGeoTrackingConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARGeoTrackingConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARGeoTrackingConfiguration",
+      "type": "topic",
+      "url": "/documentation/arkit/argeotrackingconfiguration"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/AROrientationTrackingConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that tracks only the device’s orientation using the rear-facing camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AROrientationTrackingConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/AROrientationTrackingConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AROrientationTrackingConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "AROrientationTrackingConfiguration",
+      "type": "topic",
+      "url": "/documentation/arkit/arorientationtrackingconfiguration"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPositionalTrackingConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that tracks only the device’s position in 3D space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARPositionalTrackingConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPositionalTrackingConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARPositionalTrackingConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARPositionalTrackingConfiguration",
+      "type": "topic",
+      "url": "/documentation/arkit/arpositionaltrackingconfiguration"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that tracks the position of a device in relation to objects in the environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARWorldTrackingConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARWorldTrackingConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARWorldTrackingConfiguration",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/planeDetection-swift.property": {
+      "abstract": [
+        {
+          "text": "The configuration’s plane detection options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "planeDetection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARWorldTrackingConfiguration",
+          "text": "ARWorldTrackingConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARPlaneDetection",
+          "text": "PlaneDetection"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/planeDetection-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "planeDetection"
+        }
+      ],
+      "role": "symbol",
+      "title": "planeDetection",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/planedetection-swift.property"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios": {
+      "abstract": [
+        {
+          "text": "Integrate iOS device camera and motion features to produce augmented reality experiences in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in iOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-ios"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/configuration-objects": {
+      "abstract": [
+        {
+          "text": "Configure your augmented reality session to detect and track specific types of content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/configuration-objects",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Configuration Objects",
+      "type": "topic",
+      "url": "/documentation/arkit/configuration-objects"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-2909114": {
+      "alt": "Illustration of an iPhone running an app that displays an AR experience using the rear camera. The physical environment is depicted as a living room with a couch, on which, the app displays a virtual character.",
+      "identifier": "media-2909114",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/06a229139b82f0be0d378e910a318a8b/media-2909114@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6ffa9f2b734cc02d0eef4195bb3b5de1/media-2909114~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Spatial-Tracking",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration",
+        "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration",
+        "doc://com.apple.arkit/documentation/ARKit/AROrientationTrackingConfiguration",
+        "doc://com.apple.arkit/documentation/ARKit/ARPositionalTrackingConfiguration"
+      ],
+      "title": "Spatial Tracking"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Spatial-Tracking",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration",
+                "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration",
+                "doc://com.apple.arkit/documentation/ARKit/AROrientationTrackingConfiguration",
+                "doc://com.apple.arkit/documentation/ARKit/ARPositionalTrackingConfiguration"
+              ],
+              "title": "Spatial Tracking"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCamera/title",
+          "value": "ARCamera"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCamera/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARCamera"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCamera/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARCamera"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor/title",
+          "value": "ARFaceAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFaceAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFaceAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1AROrientationTrackingConfiguration/title",
+          "value": "AROrientationTrackingConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1AROrientationTrackingConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AROrientationTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1AROrientationTrackingConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AROrientationTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPositionalTrackingConfiguration/title",
+          "value": "ARPositionalTrackingConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPositionalTrackingConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARPositionalTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPositionalTrackingConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARPositionalTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingConfiguration/title",
+          "value": "ARGeoTrackingConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeoTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeoTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/title",
+          "value": "ARWorldTrackingConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1worldAlignment-swift.property/title",
+          "value": "worldAlignment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1worldAlignment-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "worldAlignment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1planeDetection-swift.property/title",
+          "value": "planeDetection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1planeDetection-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "planeDetection"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/understanding-world-tracking"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/understanding-world-tracking"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

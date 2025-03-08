@@ -1,0 +1,387 @@
+{
+  "abstract": [
+    {
+      "text": "Use your machine learning model to focus on a specific subject.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.DockKit/documentation/DockKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.DockKit/documentation/DockKit/Track-custom-objects-in-a-frame"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "DockKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Track custom objects in a frame"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use your own custom machine learning model, also known as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "inference",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". This allows DockKit to track a custom subject, such as a dog or a cat. Once you’ve applied your machine learning model on a set of video frames, use DockKit to generate and provide tracking vectors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Obtain-video-images",
+          "level": 2,
+          "text": "Obtain video images",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Begin by obtaining images from the video capture source.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection)",
+            "",
+            "let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Provide-observations",
+          "level": 2,
+          "text": "Provide observations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you’ve passed your video frames to your custom machine learning model, supply these observations to the accessory using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/track(_:cameraInformation:)-4yl9b",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let cameraInfo = DockAccessory.CameraInformation(captureDevice: cameraDevice!.deviceType, cameraPosition: cameraDevice!.position, orientation: .LandscapeRight, cameraIntrinsics: self.intrinsics, referenceDimensions: self.referenceDimensions)",
+            "let obs = DockAccessory.Observation(identifier: 0, type: .humanFace, rect: rect, faceYawAngle: Measurement(value: self.faceYaw, unit: UnitAngle.radians))",
+            "let observations = [obs]",
+            "",
+            "try await dockAccessory.track(observations, cameraInformation: cameraInfo)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Format the output of your object detections as an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/Observation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  objects. If you want to write your own custom tracking logic, or generate your own position and velocity-based vectors, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DockKit/documentation/DockKit/Modify-rotation-and-positioning-behavior-programmatically",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/track(_:cameraInformation:)-4yl9b",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " at an interval between 10 and 30 times per second. When calling this method , the tracking system analyzes the subjects and determines which one to focus on and how to frame it. The tracking vector derives from these two choices, and the accessory keeps the subjects framed appropriately.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The tracking vector arrives at the accessory which controls the motors. This work occurs in the background and can take some time to complete.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In some cases, the call to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/track(_:cameraInformation:)-4yl9b",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " might not generate a vector, or the vector may only keep the accessory at rest.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.DockKit/documentation/DockKit": {
+      "abstract": [
+        {
+          "text": "Interact with accessories that track subjects on camera as they move around.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DockKit",
+      "type": "topic",
+      "url": "/documentation/dockkit"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/Observation": {
+      "abstract": [
+        {
+          "text": "An observation of the contents of a single video frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Observation"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/Observation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Observation"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory.Observation",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/observation"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/track(_:cameraInformation:)-4yl9b": {
+      "abstract": [
+        {
+          "text": "Automatically generate and send tracking vectors to the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "track"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMetadataObject",
+          "text": "AVMetadataObject"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "cameraInformation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC",
+          "text": "DockAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC17CameraInformationV",
+          "text": "CameraInformation"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/track(_:cameraInformation:)-4yl9b",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "track(_:cameraInformation:)",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/track(_:camerainformation:)-4yl9b"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/Modify-rotation-and-positioning-behavior-programmatically": {
+      "abstract": [
+        {
+          "text": "Perform custom control of the dock accessory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/Modify-rotation-and-positioning-behavior-programmatically",
+      "kind": "article",
+      "role": "article",
+      "title": "Modify rotation and positioning programmatically",
+      "type": "topic",
+      "url": "/documentation/dockkit/modify-rotation-and-positioning-behavior-programmatically"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Customizing-tracking-behavior",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.DockKit/documentation/DockKit/Modify-rotation-and-positioning-behavior-programmatically"
+      ],
+      "title": "Customizing tracking behavior"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/dockkit/track-custom-objects-in-a-frame"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

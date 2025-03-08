@@ -1,0 +1,1819 @@
+{
+  "abstract": [
+    {
+      "text": "A label that displays a countdown or count-up timer.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchkit/documentation/WatchKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTimer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)WKInterfaceTimer",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "WKInterfaceTimer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "WatchKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "WKInterfaceTimer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "WKInterfaceTimer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceTimer"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a timer object to configure the amount of time and the appearance of the timer text. When you start the timer, WatchKit updates the displayed text automatically on the user’s Apple Watch without further interactions from your extension. To know when the timer reaches 0, configure a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/timer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object with the same target date you used to set up the timer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Do not subclass or create instances of this class yourself. Instead, define outlets in your interface controller class and connect them to the corresponding objects in your storyboard file. For example, to refer to a timer object in your interface, define a property with the following syntax in your interface controller class:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "@IBOutlet weak var myTimer: WKInterfaceTimer!"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "@property (weak, nonatomic) IBOutlet WKInterfaceTimer* myTimer;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During the initialization of your interface controller, WatchKit creates any needed timer objects and assigns them to their connected outlets. At that point, you can use those objects to reconfigure the corresponding timers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This class provides methods for configuring interface objects at initialization time or while an interface controller is active on the user’s Apple Watch. WatchKit coalesces the data from all setter method calls made during the same run loop iteration and transmits it to the device at the end of the run loop. If you set an attribute to different values in the same run loop iteration,  only the last value is transmitted. If you set an attribute to the same value in the same run loop iteration, WatchKit generates a log message so that you can track down the duplicate change.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Interface-Builder-Configuration-Options",
+          "level": 3,
+          "text": "Interface Builder Configuration Options",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode lets you configure information about your timer interface object in your storyboard file. The following table lists the attributes you can configure and their meaning.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attribute",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Format",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The format of the timer string. Select different options to update the appearance of the timer label in your storyboard scene.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enabled",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A checkbox indicating whether the timer starts running as soon as your interface is initialized.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Units",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The units to be displayed in the label. Enabling checkboxes in this section causes the timer to display the corresponding units that are in range of the time. In other words, a timer with 2 minutes remaining displays minutes and seconds only; it does not display hours, days, or any larger units.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Preview Secs",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The initial number of seconds for the timer. You can change this value programmatically using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTimer/setDate(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A date object is a custom label whose text you cannot set directly. However, you can customize the appearance of the date object as you would for a label using the Attributes inspector in Xcode. For information about the label attributes you can configure, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceLabel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/timer": {
+      "abstract": [
+        {
+          "text": "A timer that fires after a certain time interval has elapsed, sending a specified message to a target object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Timer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/timer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Timer",
+      "type": "topic",
+      "url": "/documentation/foundation/timer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that use features the app delegate monitors or controls, such as background tasks and extended runtime sessions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WatchKit",
+      "type": "topic",
+      "url": "/documentation/watchkit"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceActivityRing": {
+      "abstract": [
+        {
+          "text": "A view that displays data from a HealthKit activity summary object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceActivityRing"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceActivityRing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceActivityRing"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceActivityRing",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceactivityring"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceAuthorizationAppleIDButton": {
+      "abstract": [
+        {
+          "text": "A button that you can use to trigger a Sign in with Apple request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceAuthorizationAppleIDButton"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceAuthorizationAppleIDButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceAuthorizationAppleIDButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceAuthorizationAppleIDButton",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceauthorizationappleidbutton"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceButton": {
+      "abstract": [
+        {
+          "text": "A button in the user interface of your watchOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceButton"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceButton",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacebutton"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceDate": {
+      "abstract": [
+        {
+          "text": "A label that displays the current date or time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceDate"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceDate",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacedate"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceLabel": {
+      "abstract": [
+        {
+          "text": "An interface element that displays static text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceLabel"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceLabel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceLabel"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceLabel",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacelabel"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceMap": {
+      "abstract": [
+        {
+          "text": "An interface element that displays a noninteractive map for the location you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceMap"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceMap",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacemap"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject": {
+      "abstract": [
+        {
+          "text": "An object that provides information that is common to all interface objects in your watchOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceObject"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceObject",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceobject"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfacePaymentButton": {
+      "abstract": [
+        {
+          "text": "A button that you can use to trigger payments through Apple Pay.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfacePaymentButton"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfacePaymentButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfacePaymentButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfacePaymentButton",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacepaymentbutton"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSlider": {
+      "abstract": [
+        {
+          "text": "An interface element that lets users select a single floating-point value from a range of values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceSlider"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSlider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceSlider"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceSlider",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceslider"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSwitch": {
+      "abstract": [
+        {
+          "text": "An interface element that toggles between an On and Off state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceSwitch"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSwitch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceSwitch"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceSwitch",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfaceswitch"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTextField": {
+      "abstract": [
+        {
+          "text": "An interface element that displays an editable text area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceTextField"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTextField",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceTextField"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceTextField",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacetextfield"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTimer": {
+      "abstract": [
+        {
+          "text": "A label that displays a countdown or count-up timer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceTimer"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTimer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceTimer"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceTimer",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacetimer"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTimer/setDate(_:)": {
+      "abstract": [
+        {
+          "text": "Changes the start time for the timer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTimer/setDate(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setDate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setDate(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacetimer/setdate(_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTimer/setTextColor(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the color of the timer’s text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTextColor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIColor",
+          "text": "UIColor"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTimer/setTextColor(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setTextColor:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setTextColor(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacetimer/settextcolor(_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTimer/start()": {
+      "abstract": [
+        {
+          "text": "Begins updates to the timer’s display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTimer/start()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "start"
+        }
+      ],
+      "role": "symbol",
+      "title": "start()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacetimer/start()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTimer/stop()": {
+      "abstract": [
+        {
+          "text": "Stops updates to the timer’s display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stop"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTimer/stop()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stop"
+        }
+      ],
+      "role": "symbol",
+      "title": "stop()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacetimer/stop()"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Controls",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceLabel",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceDate",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceButton",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceAuthorizationAppleIDButton",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfacePaymentButton",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTextField",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSwitch",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSlider",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceActivityRing",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceMap"
+      ],
+      "title": "Controls"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Configuring-the-Timer-Attributes",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTimer/setDate(_:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTimer/setTextColor(_:)"
+      ],
+      "title": "Configuring the Timer Attributes"
+    },
+    {
+      "anchor": "Starting-and-Stopping-the-Timer",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTimer/start()",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTimer/stop()"
+      ],
+      "title": "Starting and Stopping the Timer"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "WKInterfaceTimer"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceTimer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceTimer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.watchkit/documentation/WatchKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Configuring-the-Timer-Attributes",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTimer/setDate(_:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTimer/setTextColor(_:)"
+              ],
+              "title": "Configuring the Timer Attributes"
+            },
+            {
+              "anchor": "Starting-and-Stopping-the-Timer",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTimer/start()",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTimer/stop()"
+              ],
+              "title": "Starting and Stopping the Timer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Controls",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceLabel",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceDate",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceButton",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceAuthorizationAppleIDButton",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfacePaymentButton",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTextField",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSwitch",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSlider",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceActivityRing",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceMap"
+              ],
+              "title": "Controls"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "WKInterfaceTimer"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)WKInterfaceObject",
+                    "text": "WKInterfaceObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1timer/title",
+          "value": "NSTimer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceButton/title",
+          "value": "WKInterfaceButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceTextField/title",
+          "value": "WKInterfaceTextField"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceTextField/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceTextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceTextField/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceTextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceSwitch/title",
+          "value": "WKInterfaceSwitch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceSwitch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceSwitch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceSwitch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceSwitch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceTimer/title",
+          "value": "WKInterfaceTimer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceTimer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceTimer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceTimer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceTimer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject/title",
+          "value": "WKInterfaceObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceObject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceTimer~1stop()/title",
+          "value": "stop"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceTimer~1stop()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stop"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceLabel/title",
+          "value": "WKInterfaceLabel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceLabel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceLabel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceLabel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceLabel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceTimer~1setDate(_:)/title",
+          "value": "setDate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceTimer~1setDate(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setDate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceMap/title",
+          "value": "WKInterfaceMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceMap/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceSlider/title",
+          "value": "WKInterfaceSlider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceSlider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceSlider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceSlider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceSlider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceDate/title",
+          "value": "WKInterfaceDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceDate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceAuthorizationAppleIDButton/title",
+          "value": "WKInterfaceAuthorizationAppleIDButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceAuthorizationAppleIDButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceAuthorizationAppleIDButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceAuthorizationAppleIDButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceAuthorizationAppleIDButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfacePaymentButton/title",
+          "value": "WKInterfacePaymentButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfacePaymentButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfacePaymentButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfacePaymentButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfacePaymentButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceTimer~1setTextColor(_:)/title",
+          "value": "setTextColor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceTimer~1setTextColor(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setTextColor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceActivityRing/title",
+          "value": "WKInterfaceActivityRing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceActivityRing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceActivityRing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceActivityRing/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceActivityRing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceTimer~1start()/title",
+          "value": "start"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceTimer~1start()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "start"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/watchkit/wkinterfacetimer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/watchkit/wkinterfacetimer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

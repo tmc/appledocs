@@ -1,0 +1,1005 @@
+{
+  "abstract": [
+    {
+      "text": "The URL string you use to deep link to your app’s custom settings in the Settings app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/UIApplication"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIApplication/openSettingsURLString"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "UIKit",
+    "externalID": "c:@UIApplicationOpenSettingsURLString",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "let"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "openSettingsURLString"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:SS",
+        "text": "String"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIApplicationOpenSettingsURLString"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "property",
+    "title": "openSettingsURLString"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "nonisolated"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "let"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "openSettingsURLString"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SS",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SS",
+              "text": "String"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a URL from this value and pass it to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication/open(_:options:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to launch the Settings app and display your app’s custom settings, if it has any.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Create the URL that deep links to your app's custom settings.",
+                    "if let url = URL(string: UIApplication.openSettingsURLString) {",
+                    "    // Ask the system to open that URL.",
+                    "    await UIApplication.shared.open(url)",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Create the URL that deep links to your app's custom settings.",
+                    "NSURL *url = [[NSURL alloc] initWithString:UIApplicationOpenSettingsURLString];",
+                    "// Ask the system to open that URL.",
+                    "[[UIApplication sharedApplication] openURL:url",
+                    "                                   options:@{}",
+                    "                         completionHandler:nil];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/ios/app-architecture/settings/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplication": {
+      "abstract": [
+        {
+          "text": "The centralized point of control and coordination for apps running in iOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIApplication",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplication"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplication/open(_:options:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Attempts to asynchronously open the resource at the specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "open"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIApplicationOpenExternalURLOptionsKey",
+          "text": "OpenExternalURLOptionsKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication/open(_:options:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "openURL:options:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "open(_:options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplication/open(_:options:completionhandler:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplication/openDefaultApplicationsSettingsURLString": {
+      "abstract": [
+        {
+          "text": "The URL string used to select a default app in the Settings app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openDefaultApplicationsSettingsURLString"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication/openDefaultApplicationsSettingsURLString",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIApplicationOpenDefaultApplicationsSettingsURLString"
+        }
+      ],
+      "role": "symbol",
+      "title": "openDefaultApplicationsSettingsURLString",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplication/opendefaultapplicationssettingsurlstring"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplication/openNotificationSettingsURLString": {
+      "abstract": [
+        {
+          "text": "The URL string you use to deep link to your app’s notification settings in the Settings app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openNotificationSettingsURLString"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication/openNotificationSettingsURLString",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "openNotificationSettingsURLString",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplication/opennotificationsettingsurlstring"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplication/openSettingsURLString": {
+      "abstract": [
+        {
+          "text": "The URL string you use to deep link to your app’s custom settings in the Settings app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openSettingsURLString"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication/openSettingsURLString",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIApplicationOpenSettingsURLString"
+        }
+      ],
+      "role": "symbol",
+      "title": "openSettingsURLString",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplication/opensettingsurlstring"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationOpenNotificationSettingsURLString": {
+      "abstract": [
+        {
+          "text": "A constant that provides the URL string you use to deep link to your app’s notification settings in the Settings app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIApplicationOpenNotificationSettingsURLString"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationOpenNotificationSettingsURLString",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIApplicationOpenNotificationSettingsURLString"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIApplicationOpenNotificationSettingsURLString",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationopennotificationsettingsurlstring"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSString": {
+      "abstract": [
+        {
+          "text": "A static, plain-text Unicode string object which you use when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSString"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSString",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.externally.resolved.symbol/s:SS": {
+      "abstract": [
+        {
+          "text": "A Unicode string value that is a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/Swift/String"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/ios/app-architecture/settings/": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/ios/app-architecture/settings/",
+      "title": "Human Interface Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/ios/app-architecture/settings/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Deep-linking-to-custom-settings",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIApplication/openNotificationSettingsURLString",
+        "doc://com.apple.uikit/documentation/UIKit/UIApplicationOpenNotificationSettingsURLString",
+        "doc://com.apple.uikit/documentation/UIKit/UIApplication/openDefaultApplicationsSettingsURLString"
+      ],
+      "title": "Deep linking to custom settings"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Global Variable"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UIApplicationOpenSettingsURLString"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "var"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationOpenSettingsURLString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Deep-linking-to-custom-settings",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIApplicationOpenNotificationSettingsURLString",
+                "doc://com.apple.uikit/documentation/UIKit/UIApplication/openDefaultApplicationsSettingsURLString"
+              ],
+              "title": "Deep linking to custom settings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "extern"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSString",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSString",
+                    "text": "NSString"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "const"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UIApplicationOpenSettingsURLString"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication~1open(_:options:completionHandler:)/title",
+          "value": "openURL:options:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication~1open(_:options:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "openURL:options:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication/title",
+          "value": "UIApplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)NSString/abstract",
+          "value": [
+            {
+              "text": "A static, plain-text Unicode string object.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationOpenNotificationSettingsURLString/title",
+          "value": "UIApplicationOpenNotificationSettingsURLString"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationOpenNotificationSettingsURLString/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationOpenNotificationSettingsURLString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication~1openDefaultApplicationsSettingsURLString/title",
+          "value": "UIApplicationOpenDefaultApplicationsSettingsURLString"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication~1openDefaultApplicationsSettingsURLString/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationOpenDefaultApplicationsSettingsURLString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication~1openSettingsURLString/title",
+          "value": "UIApplicationOpenSettingsURLString"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication~1openSettingsURLString/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationOpenSettingsURLString"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uiapplication/opensettingsurlstring"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uiapplication/opensettingsurlstring"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

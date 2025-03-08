@@ -1,0 +1,1770 @@
+{
+  "abstract": [
+    {
+      "text": "Understand the Apple Haptic and Audio Pattern (AHAP) file format.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corehaptics/documentation/CoreHaptics/representing-haptic-patterns-in-ahap-files"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Haptics"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Representing haptic patterns in AHAP files"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AHAP is a JSON-like file format that specifies a haptic pattern through key-value pairs, analogous to a dictionary literal, except in a text file. You add an AHAP file to your Xcode project bundle like any other file resource, such as an audio file or an image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3261350",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An AHAP file doesn’t need an entry for every key. When Core Haptics loads an AHAP file, it sets missing entries to their default value and clamps out-of-range values to their minimum or maximum values, whichever is closer. The framework ignores unsupported keys. Indentation of nested levels is also not required; you don’t need to indent the various subdictionaries, but doing so helps you visually distinguish the levels. You can create these files in Xcode or another text editor, like TextEdit. For several example AHAP files and guidance for playing them, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/playing-a-custom-haptic-pattern-from-a-file",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This document lists the various keys and describes their effect on the resulting haptic pattern. Where applicable, this document also lists the default value for each parameter. The subsections cover keys at different levels of nesting, from top to bottom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-patterns-at-the-top-level",
+          "level": 3,
+          "text": "Define patterns at the top level",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The only top-level keys are ",
+              "type": "text"
+            },
+            {
+              "code": "Pattern",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "Version",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The value for ",
+              "type": "text"
+            },
+            {
+              "code": "Pattern",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is an array of subdictionaries. Each AHAP file can contain a single pattern. ",
+              "type": "text"
+            },
+            {
+              "code": "Version",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicates the lowest version of Core Haptics that can support loading and playing the file. Later versions, indicated by a higher version number, may contain keys that aren’t supported in older versions of the framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Array of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "Event",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " dictionaries representing a segment of the haptic to play.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Pattern",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The Core Haptics version that supports the file.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Version",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Build-a-pattern-from-events",
+          "level": 3,
+          "text": "Build a pattern from events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each pattern contains one or more events, defined by the ",
+              "type": "text"
+            },
+            {
+              "code": "Event",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key at the top level of the pattern dictionary. An event is a segment of the pattern with some duration and a set of properties, such as intensity or sharpness. Each event starts at its own time and can overlap other events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Dictionary of event type, start time, duration, and optional event parameters.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Event",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can define two other keys in the pattern dictionary:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A key in the pattern dictionary that you use to define a dynamic parameter.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Parameter",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A key in the pattern dictionary that you use to define a parameter curve.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "ParameterCurve",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/representing-haptic-patterns-in-ahap-files#Add-dynamic-parameters-to-change-the-pattern-during-playback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information on dynamic parameters, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/representing-haptic-patterns-in-ahap-files#Define-parameter-curves-to-automate-dynamic-parameter-changes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information on parameter curves.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-events-by-their-type-start-time-and-parameters",
+          "level": 3,
+          "text": "Define events by their type, start time, and parameters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each pattern can have several events, which can overlap. For example, an AHAP file could describe a series of transient haptics that build in intensity, with each transient represented as an event. Likewise, an AHAP file that describes audio playing alongside the haptic could consist of an event of type ",
+              "type": "text"
+            },
+            {
+              "code": "AudioCustom",
+              "type": "codeVoice"
+            },
+            {
+              "text": " along with an event of type ",
+              "type": "text"
+            },
+            {
+              "code": "HapticContinuous",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Each event starts at a specific time, with its own specific parameters, like haptic intensity and sharpness for haptic events, or audio volume and pitch for audio events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The type of event described in the subdictionary, corresponding to its ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/EventType",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " object. This string determines whether the pattern is a ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "HapticTransient",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "HapticContinuous",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "AudioContinuous",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", or ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "AudioCustom",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " pattern.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "EventType",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The floating-point start time, relative to the beginning of the pattern.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Time",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The floating-point duration of the pattern.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Duration",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An array of parameter dictionaries, each with ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "ParameterID",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "Value",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "EventParameters",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The path string for the custom audio file, relative to the top of your bundle, such as ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "MyAudioContent/Explosion.caf",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " or its direct filename.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "EventWaveformPath",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "EventWaveformPath",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is specific to audio events. When your app designates an audio file to play alongside a haptic, use an audio event with a waveform path and audio-specific properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3558816",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-an-event-parameter",
+          "level": 3,
+          "text": "Define an event parameter",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "EventParameters",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key leads to an array of parameter subdictionaries. Each parameter describes one property of the event, like its haptic intensity or haptic sharpness. All parameters are optional. If you don’t include a parameter, the Core Haptics engine assumes its default value for that event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/ParameterID",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " string constant that indicates the type of parameter being defined.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "ParameterID",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The numeric value of the associated parameter. These values are normalized to a range between 0 and 1 to represent the minimum and maximum the system supports.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "ParameterValue",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Specify-the-parameter-by-ID",
+          "level": 3,
+          "text": "Specify the parameter by ID",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each parameter has a ",
+              "type": "text"
+            },
+            {
+              "code": "ParameterID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " string and an associated value. The range of possible values may vary from parameter to parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The strength of the haptic event. The value is between 0 and 1.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "HapticIntensity",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The degree to which the haptic event feels tingly, or persistent. The value is between 0 and 1.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "HapticSharpness",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The amount of time it takes for the event’s intensity envelope to reach its full strength. The value is between 0 and 1.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "AttackTime",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The amount of time it takes for the event’s intensity envelope to reach zero. The value is between 0 and 1. This applies only to events without sustained envelopes.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "DecayTime",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The amount of time it takes for a sustained intensity envelope to reach zero after the event finishes. The value is between 0 and 1.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "ReleaseTime",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A value of 1 to indicate a sustained intensity envelope, or 0 to indicate an unsustained intensity envelope.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Sustained",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The high-frequency content of the sound. This value is between 0 and 1.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "AudioBrightness",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The distribution of the audio signal. This value is between -1 and 1.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "AudioPan",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The pitch of the audio signal. This value is between -1 and 1.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "AudioPitch",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The volume or loudness of the sound. This value is between 0 and 1.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "AudioVolume",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "A value of 0 doesn’t mean that the parameter has no effect, or that the absolute value of the parameter is zero. It’s a normalized value that maps to the minimum value the system supports. Likewise, a value of 1 doesn’t indicate 1 second; rather, it maps to the maximum supported value.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-dynamic-parameters-to-change-the-pattern-during-playback",
+          "level": 3,
+          "text": "Add dynamic parameters to change the pattern during playback",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Like event parameters, each dynamic parameter has a ",
+              "type": "text"
+            },
+            {
+              "code": "ParameterID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " string and an associated value. Unlike event parameters, dynamic parameters affect the entire pattern, across all events. You indicate a dynamic parameter in the AHAP file with an entry labeled ",
+              "type": "text"
+            },
+            {
+              "code": "Parameter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " at the same level as ",
+              "type": "text"
+            },
+            {
+              "code": "Event",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The factor by which to modulate the intensity of the haptic. The value is between 0 and 1 and is applied multiplicatively.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "HapticIntensityControl",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The amount by which to increase or decrease the sharpness of the haptic. The value is between -1 and 1. This dynamic parameter affects only continuous haptics and is applied additively.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "HapticSharpnessControl",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The amount by which to increase or decrease the attack time of the haptic pattern’s events. The value is between -1 and 1 and is applied additively.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "HapticAttackTimeControl",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The amount by which to increase or decrease the decay time of the haptic pattern’s events. The value is between -1 and 1 and is applied additively.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "HapticDecayTimeControl",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The amount by which to increase or decrease the release time of the haptic pattern’s events. The value is between -1 and 1 and is applied additively.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "HapticReleaseTimeControl",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The factor by which to increase or decrease the audio brightness (high-frequency content) of the sound. The value is between -1 and 1 and is applied additively.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "AudioBrightnessControl",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The amount by which to increase or decrease the audio signal’s pan. The value is between -1 and 1 and is applied additively.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "AudioPanControl",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The amount by which to increase or decrease the audio signal’s pitch. The value is between -1 and 1 and is applied additively.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "AudioPitchControl",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The factor by which to modulate the volume of the sound. The value is between 0 and 1 and is applied multiplicatively.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "AudioVolumeControl",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The amount by which to increase or decrease the attack time of the audio pattern’s events. The value is between -1 and 1 and is applied additively.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "AudioAttackTimeControl",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The amount by which to increase or decrease the decay time of the audio pattern’s event. The value is between -1 and 1 and is applied additively.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "AudioDecayTimeControl",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The amount by which to increase or decrease the release time of the audio pattern’s event. The value is between -1 and 1 and is applied additively.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "AudioReleaseTimeControl",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Define-parameter-curves-to-automate-dynamic-parameter-changes",
+          "level": 3,
+          "text": "Define parameter curves to automate dynamic parameter changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Like dynamic parameters, parameter curves change the parameter values of the haptic pattern during its playback. Unlike with dynamic parameters, the changes are scheduled over time, and each value transitions to the next one linearly. You indicate a parameter curve in the AHAP file with an entry labeled ",
+              "type": "text"
+            },
+            {
+              "code": "ParameterCurve",
+              "type": "codeVoice"
+            },
+            {
+              "text": " at the same level as ",
+              "type": "text"
+            },
+            {
+              "code": "Event",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Parameter curves modify the same parameters as dynamic parameters modify, and they share all of the same ",
+              "type": "text"
+            },
+            {
+              "code": "ParameterID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " strings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A string constant that indicates the parameter that the curve changes.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "ParameterID",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The time at which to begin applying the parameter curve.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Time",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Control points that define the shape of the curve. Each point takes the form (",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "time",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "value",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": "). Time is relative to the start of the curve.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "ParameterCurveControlPoints",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about parameter curves, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticParameterCurve",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corehaptics/documentation/CoreHaptics": {
+      "abstract": [
+        {
+          "text": "Compose and play haptic patterns to customize your iOS app’s haptic feedback.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Haptics",
+      "type": "topic",
+      "url": "/documentation/corehaptics"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/EventType": {
+      "abstract": [
+        {
+          "text": "The types of audio and haptic event waveforms.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EventType"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/EventType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EventType"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticEvent.EventType",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticevent/eventtype"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/ParameterID": {
+      "abstract": [
+        {
+          "text": "An identifier for an event parameter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ParameterID"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent/ParameterID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ParameterID"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticEvent.ParameterID",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticevent/parameterid"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticParameterCurve": {
+      "abstract": [
+        {
+          "text": "A curve that you send to a haptic pattern player to alter a property value gradually during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CHHapticParameterCurve"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticParameterCurve",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticParameterCurve"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticParameterCurve",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticparametercurve"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/playing-a-custom-haptic-pattern-from-a-file": {
+      "abstract": [
+        {
+          "text": "Sample predesigned Apple Haptic Audio Pattern files, and learn how to play your own.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/playing-a-custom-haptic-pattern-from-a-file",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Playing a Custom Haptic Pattern from a File",
+      "type": "topic",
+      "url": "/documentation/corehaptics/playing-a-custom-haptic-pattern-from-a-file"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/representing-haptic-patterns-in-ahap-files#Add-dynamic-parameters-to-change-the-pattern-during-playback": {
+      "abstract": [],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/representing-haptic-patterns-in-ahap-files#Add-dynamic-parameters-to-change-the-pattern-during-playback",
+      "kind": "section",
+      "title": "Add dynamic parameters to change the pattern during playback",
+      "type": "topic",
+      "url": "/documentation/corehaptics/representing-haptic-patterns-in-ahap-files#Add-dynamic-parameters-to-change-the-pattern-during-playback"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/representing-haptic-patterns-in-ahap-files#Define-parameter-curves-to-automate-dynamic-parameter-changes": {
+      "abstract": [],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/representing-haptic-patterns-in-ahap-files#Define-parameter-curves-to-automate-dynamic-parameter-changes",
+      "kind": "section",
+      "title": "Define parameter curves to automate dynamic parameter changes",
+      "type": "topic",
+      "url": "/documentation/corehaptics/representing-haptic-patterns-in-ahap-files#Define-parameter-curves-to-automate-dynamic-parameter-changes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3261350": {
+      "alt": "A diagram showing n’t structure of an AHAP file representing a haptic pattern.",
+      "identifier": "media-3261350",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ef5e2bacc8ae9eda11fc8d34ce578651/media-3261350@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/40d91932d079a571d1c08c4f1a4b4087/media-3261350~dark@2x.png"
+        }
+      ]
+    },
+    "media-3558816": {
+      "alt": "A diagram showing the structure of an audio event in an AHAP file.",
+      "identifier": "media-3558816",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/47226d969747c0a2fa290b94a3402417/media-3558816@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/929e8b5f8a5e8f1b2882769be208dd99/media-3558816~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "File-based-haptics",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/playing-a-custom-haptic-pattern-from-a-file"
+      ],
+      "title": "File-based haptics"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "File-based-haptics",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/playing-a-custom-haptic-pattern-from-a-file"
+              ],
+              "title": "File-based haptics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1EventType/title",
+          "value": "CHHapticEventType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1EventType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEventType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1EventType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEventType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticParameterCurve/title",
+          "value": "CHHapticParameterCurve"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticParameterCurve/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticParameterCurve"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticParameterCurve/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticParameterCurve"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1ParameterID/title",
+          "value": "CHHapticEventParameterID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1ParameterID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEventParameterID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent~1ParameterID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEventParameterID"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corehaptics/representing-haptic-patterns-in-ahap-files"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corehaptics/representing-haptic-patterns-in-ahap-files"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

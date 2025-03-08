@@ -1,0 +1,2721 @@
+{
+  "abstract": [
+    {
+      "text": "An object that represents the result of calculating the minimum, maximum, average, or sum over a set of samples from the HealthKit store.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)HKStatistics",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "HKStatistics"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "HKStatistics"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "HKStatistics"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "HKStatistics"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "HealthKit creates statistic objects using either a statistics query or a statistics collection query. For the statistics query, it performs the specified calculations over all the samples that match the query. For the statistics collection query, it partitions the matching samples into a set of time intervals and performs the calculations over each interval separately.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, these queries automatically merge the data from all of your data sources before performing the calculations. If you want to merge the data yourself, you can set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsOptions/separateBySource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option. You can then request the statistical data for each source separately.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When requesting data from a statistics object, your request must match the options you used when creating the query. For example, if you create a query using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsOptions/discreteAverage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option, you must access the results using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/averageQuantity()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on calculating statistical data, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsQuery",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " Class Reference. To calculate the statistics over a series of time intervals, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollectionQuery",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " Class Reference.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics": {
+      "abstract": [
+        {
+          "text": "An object that represents the result of calculating the minimum, maximum, average, or sum over a set of samples from the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKStatistics"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKStatistics"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKStatistics",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatistics"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/averageQuantity()": {
+      "abstract": [
+        {
+          "text": "Returns the average value from all the samples that match the query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "averageQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/averageQuantity()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "averageQuantity"
+        }
+      ],
+      "role": "symbol",
+      "title": "averageQuantity()",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatistics/averagequantity()"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/averageQuantity(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the average value from all the samples that match the query and that were created by the specified source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "averageQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKSource",
+          "text": "HKSource"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/averageQuantity(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "averageQuantityForSource:"
+        }
+      ],
+      "role": "symbol",
+      "title": "averageQuantity(for:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatistics/averagequantity(for:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/duration()": {
+      "abstract": [
+        {
+          "text": "Returns the total duration covering all the samples that match the query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/duration()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "duration"
+        }
+      ],
+      "role": "symbol",
+      "title": "duration()",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatistics/duration()"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/duration(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the total duration covering all the samples created by the specified source that also match the query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKSource",
+          "text": "HKSource"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/duration(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "durationForSource:"
+        }
+      ],
+      "role": "symbol",
+      "title": "duration(for:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatistics/duration(for:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/endDate": {
+      "abstract": [
+        {
+          "text": "The end of the time period included in these statistics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/endDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "endDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "endDate",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatistics/enddate"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/maximumQuantity()": {
+      "abstract": [
+        {
+          "text": "Returns the maximum value from all the samples that match the query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/maximumQuantity()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumQuantity"
+        }
+      ],
+      "role": "symbol",
+      "title": "maximumQuantity()",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatistics/maximumquantity()"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/maximumQuantity(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the maximum value from all the samples that match the query and that were created by the specified source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKSource",
+          "text": "HKSource"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/maximumQuantity(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumQuantityForSource:"
+        }
+      ],
+      "role": "symbol",
+      "title": "maximumQuantity(for:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatistics/maximumquantity(for:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/minimumQuantity()": {
+      "abstract": [
+        {
+          "text": "Returns the minimum value from all the samples that match the query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minimumQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/minimumQuantity()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "minimumQuantity"
+        }
+      ],
+      "role": "symbol",
+      "title": "minimumQuantity()",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatistics/minimumquantity()"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/minimumQuantity(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the minimum value from all the samples that match the query and that were created by the specified source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minimumQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKSource",
+          "text": "HKSource"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/minimumQuantity(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "minimumQuantityForSource:"
+        }
+      ],
+      "role": "symbol",
+      "title": "minimumQuantity(for:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatistics/minimumquantity(for:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/mostRecentQuantity()": {
+      "abstract": [
+        {
+          "text": "Returns the most recent value from all the samples that match the query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mostRecentQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/mostRecentQuantity()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mostRecentQuantity"
+        }
+      ],
+      "role": "symbol",
+      "title": "mostRecentQuantity()",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatistics/mostrecentquantity()"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/mostRecentQuantity(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the most recent value from all the samples that match the query and were created by the specified source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mostRecentQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKSource",
+          "text": "HKSource"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/mostRecentQuantity(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mostRecentQuantityForSource:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mostRecentQuantity(for:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatistics/mostrecentquantity(for:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/mostRecentQuantityDateInterval()": {
+      "abstract": [
+        {
+          "text": "Returns the date interval of the most recent sample that matches the query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mostRecentQuantityDateInterval"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation12DateIntervalV",
+          "text": "DateInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/mostRecentQuantityDateInterval()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mostRecentQuantityDateInterval"
+        }
+      ],
+      "role": "symbol",
+      "title": "mostRecentQuantityDateInterval()",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatistics/mostrecentquantitydateinterval()"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/mostRecentQuantityDateInterval(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the date interval of the most recent sample that matches the query and was created by the specified source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mostRecentQuantityDateInterval"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKSource",
+          "text": "HKSource"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation12DateIntervalV",
+          "text": "DateInterval"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/mostRecentQuantityDateInterval(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mostRecentQuantityDateIntervalForSource:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mostRecentQuantityDateInterval(for:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatistics/mostrecentquantitydateinterval(for:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/quantityType": {
+      "abstract": [
+        {
+          "text": "The quantity type of the samples used to calculate these statistics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "quantityType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantityType",
+          "text": "HKQuantityType"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/quantityType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "quantityType"
+        }
+      ],
+      "role": "symbol",
+      "title": "quantityType",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatistics/quantitytype"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/sources": {
+      "abstract": [
+        {
+          "text": "An array containing all the sources contributing to these statistics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sources"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKSource",
+          "text": "HKSource"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/sources",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sources"
+        }
+      ],
+      "role": "symbol",
+      "title": "sources",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatistics/sources"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/startDate": {
+      "abstract": [
+        {
+          "text": "The start of the time period included in these statistics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/startDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "startDate",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatistics/startdate"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/sumQuantity()": {
+      "abstract": [
+        {
+          "text": "Returns the sum of all the samples that match the query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sumQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/sumQuantity()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sumQuantity"
+        }
+      ],
+      "role": "symbol",
+      "title": "sumQuantity()",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatistics/sumquantity()"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/sumQuantity(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the sum of all the samples that match the query and that were created by the specified source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sumQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKSource",
+          "text": "HKSource"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantity",
+          "text": "HKQuantity"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/sumQuantity(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sumQuantityForSource:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sumQuantity(for:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatistics/sumquantity(for:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollection": {
+      "abstract": [
+        {
+          "text": "An object that manages a collection of statistics, representing the results calculated over separate time intervals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKStatisticsCollection",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatisticscollection"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollectionQuery": {
+      "abstract": [
+        {
+          "text": "A query that performs multiple statistics queries over a series of fixed-length time intervals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsCollectionQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollectionQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsCollectionQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKStatisticsCollectionQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatisticscollectionquery"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollectionQueryDescriptor": {
+      "abstract": [
+        {
+          "text": "A query descriptor that gathers a collection of statistics calculated over a series of fixed-length time intervals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsCollectionQueryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollectionQueryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsCollectionQueryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKStatisticsCollectionQueryDescriptor",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatisticscollectionquerydescriptor"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsOptions": {
+      "abstract": [
+        {
+          "text": "Options for specifying the statistic to calculate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKStatisticsOptions",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatisticsoptions"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsOptions/discreteAverage": {
+      "abstract": [
+        {
+          "text": "An option indicating that the system calculates the average quantity for the samples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "discreteAverage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKStatisticsOptions",
+          "text": "HKStatisticsOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsOptions/discreteAverage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsOptionDiscreteAverage"
+        }
+      ],
+      "role": "symbol",
+      "title": "discreteAverage",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatisticsoptions/discreteaverage"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsOptions/separateBySource": {
+      "abstract": [
+        {
+          "text": "An option indicating that the system calculates the specified statistics separately for each source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "separateBySource"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKStatisticsOptions",
+          "text": "HKStatisticsOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsOptions/separateBySource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsOptionSeparateBySource"
+        }
+      ],
+      "role": "symbol",
+      "title": "separateBySource",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatisticsoptions/separatebysource"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsQuery": {
+      "abstract": [
+        {
+          "text": "A query that performs statistical calculations over a set of matching quantity samples, and returns the results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKStatisticsQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatisticsquery"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsQueryDescriptor": {
+      "abstract": [
+        {
+          "text": "A query descriptor that calculates the minimum, maximum, average, or sum over a set of samples from the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsQueryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsQueryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKStatisticsQueryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKStatisticsQueryDescriptor",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkstatisticsquerydescriptor"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/executing-statistical-queries": {
+      "abstract": [
+        {
+          "text": "Create and run statistical queries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/executing-statistical-queries",
+      "kind": "article",
+      "role": "article",
+      "title": "Executing Statistical Queries",
+      "type": "topic",
+      "url": "/documentation/healthkit/executing-statistical-queries"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/executing-statistics-collection-queries": {
+      "abstract": [
+        {
+          "text": "Calculate statistical data for graphs and charts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/executing-statistics-collection-queries",
+      "kind": "article",
+      "role": "article",
+      "title": "Executing Statistics Collection Queries",
+      "type": "topic",
+      "url": "/documentation/healthkit/executing-statistics-collection-queries"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Statistics",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/executing-statistical-queries",
+        "doc://com.apple.healthkit/documentation/HealthKit/executing-statistics-collection-queries",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsQueryDescriptor",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsQuery",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollectionQueryDescriptor",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollectionQuery",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollection",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsOptions"
+      ],
+      "title": "Statistics"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-Property-Data",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/startDate",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/endDate",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/quantityType",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/sources"
+      ],
+      "title": "Getting Property Data"
+    },
+    {
+      "anchor": "Getting-Statistics-Data",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/averageQuantity()",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/averageQuantity(for:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/maximumQuantity()",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/maximumQuantity(for:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/minimumQuantity()",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/minimumQuantity(for:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/sumQuantity()",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/sumQuantity(for:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/duration()",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/duration(for:)"
+      ],
+      "title": "Getting Statistics Data"
+    },
+    {
+      "anchor": "Getting-the-Most-Recent-Quantity",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/mostRecentQuantity()",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/mostRecentQuantity(for:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/mostRecentQuantityDateInterval()",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/mostRecentQuantityDateInterval(for:)"
+      ],
+      "title": "Getting the Most Recent Quantity"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "HKStatistics"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKStatistics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKStatistics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.healthkit/documentation/HealthKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Getting-Property-Data",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/startDate",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/endDate",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/quantityType",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/sources"
+              ],
+              "title": "Getting Property Data"
+            },
+            {
+              "anchor": "Getting-Statistics-Data",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/averageQuantity()",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/averageQuantity(for:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/maximumQuantity()",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/maximumQuantity(for:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/minimumQuantity()",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/minimumQuantity(for:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/sumQuantity()",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/sumQuantity(for:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/duration()",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/duration(for:)"
+              ],
+              "title": "Getting Statistics Data"
+            },
+            {
+              "anchor": "Getting-the-Most-Recent-Quantity",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/mostRecentQuantity()",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/mostRecentQuantity(for:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/mostRecentQuantityDateInterval()",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKStatistics/mostRecentQuantityDateInterval(for:)"
+              ],
+              "title": "Getting the Most Recent Quantity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Statistics",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsQuery",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollectionQuery",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsCollection",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKStatisticsOptions"
+              ],
+              "title": "Statistics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "HKStatistics"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsOptions~1separateBySource/title",
+          "value": "HKStatisticsOptionSeparateBySource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsOptions~1separateBySource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKStatisticsOptionSeparateBySource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1averageQuantity()/title",
+          "value": "averageQuantity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1averageQuantity()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "averageQuantity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1minimumQuantity(for:)/title",
+          "value": "minimumQuantityForSource:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1minimumQuantity(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "minimumQuantityForSource:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1sumQuantity(for:)/title",
+          "value": "sumQuantityForSource:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1sumQuantity(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sumQuantityForSource:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsCollectionQuery/title",
+          "value": "HKStatisticsCollectionQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsCollectionQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKStatisticsCollectionQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsCollectionQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKStatisticsCollectionQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1minimumQuantity()/title",
+          "value": "minimumQuantity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1minimumQuantity()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "minimumQuantity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsOptions~1discreteAverage/title",
+          "value": "HKStatisticsOptionDiscreteAverage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsOptions~1discreteAverage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKStatisticsOptionDiscreteAverage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1mostRecentQuantity()/title",
+          "value": "mostRecentQuantity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1mostRecentQuantity()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mostRecentQuantity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1maximumQuantity()/title",
+          "value": "maximumQuantity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1maximumQuantity()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "maximumQuantity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1mostRecentQuantityDateInterval()/title",
+          "value": "mostRecentQuantityDateInterval"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1mostRecentQuantityDateInterval()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mostRecentQuantityDateInterval"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsCollection/title",
+          "value": "HKStatisticsCollection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsCollection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKStatisticsCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsCollection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKStatisticsCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1startDate/title",
+          "value": "startDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1startDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "startDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1duration()/title",
+          "value": "duration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1duration()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "duration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsQuery/title",
+          "value": "HKStatisticsQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKStatisticsQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKStatisticsQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics/title",
+          "value": "HKStatistics"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKStatistics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKStatistics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1duration(for:)/title",
+          "value": "durationForSource:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1duration(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "durationForSource:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1quantityType/title",
+          "value": "quantityType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1quantityType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "quantityType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1sources/title",
+          "value": "sources"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1sources/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sources"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1endDate/title",
+          "value": "endDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1endDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "endDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1averageQuantity(for:)/title",
+          "value": "averageQuantityForSource:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1averageQuantity(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "averageQuantityForSource:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsOptions/title",
+          "value": "HKStatisticsOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKStatisticsOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatisticsOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKStatisticsOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1mostRecentQuantityDateInterval(for:)/title",
+          "value": "mostRecentQuantityDateIntervalForSource:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1mostRecentQuantityDateInterval(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mostRecentQuantityDateIntervalForSource:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1sumQuantity()/title",
+          "value": "sumQuantity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1sumQuantity()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sumQuantity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1maximumQuantity(for:)/title",
+          "value": "maximumQuantityForSource:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1maximumQuantity(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "maximumQuantityForSource:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1mostRecentQuantity(for:)/title",
+          "value": "mostRecentQuantityForSource:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKStatistics~1mostRecentQuantity(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mostRecentQuantityForSource:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/healthkit/hkstatistics"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/healthkit/hkstatistics"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

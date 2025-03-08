@@ -1,0 +1,890 @@
+{
+  "abstract": [
+    {
+      "text": "Review account, project, and source control requirements before configuring your project or workspace to use Xcode Cloud.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Setting-up-your-project-to-use-Xcode-Cloud"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Setting up your project to use Xcode Cloud"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode helps you configure your project or workspace to use Xcode Cloud. For a smooth configuration process, review the requirements for using Xcode Cloud and make changes as needed. Then, configure your project or workspace to use Xcode Cloud and start practicing continuous integration and delivery (CI/CD).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-up-your-App-Store-Connect-account",
+          "level": 3,
+          "text": "Set up your App Store Connect account",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use Xcode Cloud, you need to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Be enrolled in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/programs/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use Xcode 15 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add your Apple Account under Accounts in Xcode Settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Have an app record for your app in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/help/app-store-connect/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or have the required role or permission to create one.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an app record, you need to have the App Manager, Admin, or Account Holder role for your team. If you have the Developer role, you need the Create Apps permission. If you don’t have the required role or permission, work with a team member who does. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Xcode-Cloud-for-Your-Team#Create-an-app-record-in-App-Store-Connect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Depending on how much you use Xcode Cloud, you may need an optional Xcode Cloud subscription plan. To manage Xcode Cloud subscription plans, you need the Account Holder role. For more information on subscription plans, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/xcode-cloud/get-started/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about roles in App Store Connect, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/reference/role-permissions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-your-project-and-workspace",
+          "level": 3,
+          "text": "Configure your project and workspace",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you create a project from a template, the default settings automatically meet Xcode Cloud requirements. If you have an existing project, be sure it meets the following project and workspace requirements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use a consistent Xcode project or workspace.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use shared schemes. For information on sharing a scheme, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-schemes-for-a-project",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable the archive action for the scheme that builds your app or framework.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure your dependencies and additional third-party tools are available to Xcode Cloud. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allow Xcode to manage signing for you. To use automatic code signing, toggle the “Automatically manage signing” checkbox in the Signing & Capabilities pane in the project editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the bundle identifier for your app target in the Signing & Capabilities pane of your Xcode project or workspace. If you use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".xcconfig",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " files to set the bundle identifier, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow#Review-Xcode-Cloud-workflows",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for more information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Xcode Cloud requires a consistent Xcode project or workspace that’s continuously present. If you use a third-party tool that dynamically generates or edits your project or workspace, the initial configuration of Xcode Cloud and subsequent builds may fail.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Use-a-remote-source-control-repository",
+          "level": 3,
+          "text": "Use a remote source control repository",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You need a remote repository using Git to use Xcode Cloud. To learn more about using source control with Git in Xcode, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/source-control-management",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode Cloud supports the following source code management (SCM) providers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://bitbucket.org",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://bitbucket.org/product/enterprise",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://github.com",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://github.com/enterprise",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://gitlab.com",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://about.gitlab.com/install",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you use an IP allow list either on a self-hosted or cloud SCM provider — such as Bitbucket Server or GitHub Enterprise — make sure Xcode Cloud has access to your Git server. Check your firewall’s inbound HTTPS allow list and grant Xcode Cloud access to your Git server by adding the IP address ranges ",
+                  "type": "text"
+                },
+                {
+                  "code": "17.58.0.0/18",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "17.58.192.0/18",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", and ",
+                  "type": "text"
+                },
+                {
+                  "code": "57.103.0.0/22",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, you need a certain permission or role to connect Xcode Cloud to your Git repository. The exact permission depends on the SCM provider you use:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you host your code on Bitbucket Cloud or Bitbucket Server, you need the administrator permission.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you host your code on GitHub or GitHub Enterprise, you need to be an organization owner, or need the admin permission if you don’t use a GitHub organization.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you host your code on GitLab, or on a self-managed GitLab instance, you need the maintainer permission.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t have the required role or permission, work with a team member who does. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Xcode-Cloud-for-Your-Team#Connect-Xcode-Cloud-to-an-admin-managed-Git-repository",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/About-Continuous-Integration-and-Delivery-with-Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Learn how continuous integration and delivery with Xcode Cloud helps you create high-quality apps and frameworks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/About-Continuous-Integration-and-Delivery-with-Xcode-Cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "About continuous integration and delivery with Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/about-continuous-integration-and-delivery-with-xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Configuring-Xcode-Cloud-for-Your-Team#Connect-Xcode-Cloud-to-an-admin-managed-Git-repository": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Xcode-Cloud-for-Your-Team#Connect-Xcode-Cloud-to-an-admin-managed-Git-repository",
+      "kind": "section",
+      "title": "Connect Xcode Cloud to an admin-managed Git repository",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-xcode-cloud-for-your-team#Connect-Xcode-Cloud-to-an-admin-managed-Git-repository"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Configuring-Xcode-Cloud-for-Your-Team#Create-an-app-record-in-App-Store-Connect": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Xcode-Cloud-for-Your-Team#Create-an-app-record-in-App-Store-Connect",
+      "kind": "section",
+      "title": "Create an app record in App Store Connect",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-xcode-cloud-for-your-team#Create-an-app-record-in-App-Store-Connect"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow": {
+      "abstract": [
+        {
+          "text": "Set up your project or workspace to use Xcode Cloud and adopt continuous integration and delivery.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring your first Xcode Cloud workflow",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-your-first-xcode-cloud-workflow"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow#Review-Xcode-Cloud-workflows": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow#Review-Xcode-Cloud-workflows",
+      "kind": "section",
+      "title": "Review Xcode Cloud workflows",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-your-first-xcode-cloud-workflow#Review-Xcode-Cloud-workflows"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Review dependencies and make them available to Xcode Cloud before you configure your project to use Xcode Cloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "Making dependencies available to Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/making-dependencies-available-to-xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Automatically build, test, and distribute your apps with Xcode Cloud to verify changes and create high-quality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-schemes-for-a-project": {
+      "abstract": [
+        {
+          "text": "Specify which targets to build, and customize the settings Xcode uses",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to build, run, test, and profile those targets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-schemes-for-a-project",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the build schemes for a project",
+      "type": "topic",
+      "url": "/documentation/xcode/customizing-the-build-schemes-for-a-project"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/source-control-management": {
+      "abstract": [
+        {
+          "text": "Back up your files, collaborate with others, and tag your releases with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "source control support in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/source-control-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Source control management",
+      "type": "topic",
+      "url": "/documentation/xcode/source-control-management"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://about.gitlab.com/install": {
+      "identifier": "https://about.gitlab.com/install",
+      "title": "self-managed GitLab instances",
+      "titleInlineContent": [
+        {
+          "text": "self-managed GitLab instances",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://about.gitlab.com/install"
+    },
+    "https://bitbucket.org": {
+      "identifier": "https://bitbucket.org",
+      "title": "Bitbucket Cloud",
+      "titleInlineContent": [
+        {
+          "text": "Bitbucket Cloud",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://bitbucket.org"
+    },
+    "https://bitbucket.org/product/enterprise": {
+      "identifier": "https://bitbucket.org/product/enterprise",
+      "title": "Bitbucket Server",
+      "titleInlineContent": [
+        {
+          "text": "Bitbucket Server",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://bitbucket.org/product/enterprise"
+    },
+    "https://developer.apple.com/help/app-store-connect/": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/",
+      "title": "App Store Connect",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/"
+    },
+    "https://developer.apple.com/help/app-store-connect/reference/role-permissions": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/reference/role-permissions",
+      "title": "Role permissions",
+      "titleInlineContent": [
+        {
+          "text": "Role permissions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/reference/role-permissions"
+    },
+    "https://developer.apple.com/programs/": {
+      "identifier": "https://developer.apple.com/programs/",
+      "title": "Apple Developer Program",
+      "titleInlineContent": [
+        {
+          "text": "Apple Developer Program",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/programs/"
+    },
+    "https://developer.apple.com/xcode-cloud/get-started/": {
+      "identifier": "https://developer.apple.com/xcode-cloud/get-started/",
+      "title": "Get started with Xcode Cloud",
+      "titleInlineContent": [
+        {
+          "text": "Get started with Xcode Cloud",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/xcode-cloud/get-started/"
+    },
+    "https://github.com": {
+      "identifier": "https://github.com",
+      "title": "GitHub",
+      "titleInlineContent": [
+        {
+          "text": "GitHub",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com"
+    },
+    "https://github.com/enterprise": {
+      "identifier": "https://github.com/enterprise",
+      "title": "GitHub Enterprise",
+      "titleInlineContent": [
+        {
+          "text": "GitHub Enterprise",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/enterprise"
+    },
+    "https://gitlab.com": {
+      "identifier": "https://gitlab.com",
+      "title": "GitLab",
+      "titleInlineContent": [
+        {
+          "text": "GitLab",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://gitlab.com"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/About-Continuous-Integration-and-Delivery-with-Xcode-Cloud",
+        "doc://com.apple.Xcode/documentation/Xcode/Configuring-Your-First-Xcode-Cloud-Workflow"
+      ],
+      "title": "Essentials"
+    }
+  ]
+}

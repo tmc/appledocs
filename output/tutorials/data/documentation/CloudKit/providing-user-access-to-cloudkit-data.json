@@ -1,0 +1,450 @@
+{
+  "abstract": [
+    {
+      "text": "Provide users access to the data your app stores on their behalf.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cloudkit/documentation/CloudKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.cloudkit/documentation/CloudKit/providing-user-access-to-cloudkit-data"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "CloudKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Providing User Access to CloudKit Data"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "User data in CloudKit belongs to the user. For this reason, apps that integrate with CloudKit need to provide users with a way to view and export their data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-Containers-and-Record-Types",
+          "level": 3,
+          "text": "Identify Containers and Record Types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To be sure that you’re querying all of the data that your app stores, cross-reference the list of containers your app has access to in Xcode, and assemble a list of those containers’ identifiers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The CloudKit Dashboard lists the different record types you define for each container in your app. Assemble a list of these types and make sure that each type has a queryable index on its ",
+              "type": "text"
+            },
+            {
+              "code": "recordName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Associate-Record-Types-with-Containers",
+          "level": 3,
+          "text": "Associate Record Types with Containers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Associate the record types with the container they appear in. The example below uses a dictionary to represent the relationship between containers and the record types they contain:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let defaultContainer = CKContainer.default()",
+            "let documents = CKContainer(identifier: \"iCloud.com.example.myexampleapp.documents\")",
+            "let settings = CKContainer(identifier: \"iCloud.com.example.myexampleapp.settings\")",
+            "",
+            "let containerRecordTypes: [CKContainer: [String]] = [",
+            "    defaultContainer: [\"log\", \"verboseLog\"],",
+            "    documents: [\"textDocument\", \"spreadsheet\"],",
+            "    settings: [\"preference\", \"profile\"]",
+            "]",
+            "",
+            "let containers = Array(containerRecordTypes.keys)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Find-and-List-All-Records",
+          "level": 3,
+          "text": "Find and List All Records",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Store user data in a container’s private database. Use the containers in the example above to find all record zones in the private database for each container that your app uses.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below shows how to iterate over the containers, record zones, and records. It also shows how to list the fields for each record, which you use to show the data in those records:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Utility function to display records.",
+            "// Customize it to display records appropriately",
+            "// according to your app's unique record types.",
+            "func printRecords(_ records: [CKRecord]) {",
+            "    for record in records {",
+            "        for key in record.allKeys() {",
+            "            let value = record[key]",
+            "            print(key + \" = \" + (value?.description ?? \"\") + \")\")",
+            "        }",
+            "    }",
+            "}",
+            "",
+            "for container in containers {",
+            "    // User data should be stored in the private database.",
+            "    let database = container.privateCloudDatabase",
+            "    ",
+            "    database.fetchAllRecordZones { zones, error in",
+            "        guard let zones = zones, error == nil else {",
+            "            print(error!)",
+            "            return",
+            "        }",
+            "        ",
+            "        // The true predicate represents a query for all records.",
+            "        let alwaysTrue = NSPredicate(value: true)",
+            "        for zone in zones {",
+            "            for recordType in containerRecordTypes[container] ?? [] {",
+            "                let query = CKQuery(recordType: recordType, predicate: alwaysTrue)",
+            "                database.perform(query, inZoneWith: zone.zoneID) { records, error in",
+            "                    guard let records = records, error == nil else {",
+            "                        print(\"An error occurred fetching these records.\")",
+            "                        return",
+            "                    }",
+            "                    ",
+            "                    printRecords(records)",
+            "                }",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use each field’s keys and values to give users an accessible report of the data your app stores in CloudKit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your app uses CloudKit subscriptions to maintain an on-device copy of user data, you can use that copy to generate the report rather than querying CloudKit.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cloudkit/documentation/CloudKit": {
+      "abstract": [
+        {
+          "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit",
+      "type": "topic",
+      "url": "/documentation/cloudkit"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchWebAuthTokenOperation": {
+      "abstract": [
+        {
+          "text": "An operation that creates an authentication token for use with CloudKit web services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKFetchWebAuthTokenOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchWebAuthTokenOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKFetchWebAuthTokenOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKFetchWebAuthTokenOperation",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckfetchwebauthtokenoperation"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/changing-access-controls-on-user-data": {
+      "abstract": [
+        {
+          "text": "Restrict access to or remove restrictions from a user’s data at their request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/changing-access-controls-on-user-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Changing Access Controls on User Data",
+      "type": "topic",
+      "url": "/documentation/cloudkit/changing-access-controls-on-user-data"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/encrypting-user-data": {
+      "abstract": [
+        {
+          "text": "Deploy industry-standard security technologies using CloudKit encryption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/encrypting-user-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Encrypting User Data",
+      "type": "topic",
+      "url": "/documentation/cloudkit/encrypting-user-data"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/identifying-an-app-s-containers": {
+      "abstract": [
+        {
+          "text": "Use Xcode’s Project navigator to find the identifiers of active CloudKit containers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/identifying-an-app-s-containers",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying an App’s Containers",
+      "type": "topic",
+      "url": "/documentation/cloudkit/identifying-an-app-s-containers"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/responding-to-requests-to-delete-data": {
+      "abstract": [
+        {
+          "text": "Provide options for users to delete their CloudKit data from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/responding-to-requests-to-delete-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to Requests to Delete Data",
+      "type": "topic",
+      "url": "/documentation/cloudkit/responding-to-requests-to-delete-data"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Privacy",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/encrypting-user-data",
+        "doc://com.apple.cloudkit/documentation/CloudKit/changing-access-controls-on-user-data",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchWebAuthTokenOperation",
+        "doc://com.apple.cloudkit/documentation/CloudKit/responding-to-requests-to-delete-data",
+        "doc://com.apple.cloudkit/documentation/CloudKit/identifying-an-app-s-containers"
+      ],
+      "title": "Privacy"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Privacy",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/encrypting-user-data",
+                "doc://com.apple.cloudkit/documentation/CloudKit/changing-access-controls-on-user-data",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchWebAuthTokenOperation",
+                "doc://com.apple.cloudkit/documentation/CloudKit/responding-to-requests-to-delete-data",
+                "doc://com.apple.cloudkit/documentation/CloudKit/identifying-an-app-s-containers"
+              ],
+              "title": "Privacy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchWebAuthTokenOperation/title",
+          "value": "CKFetchWebAuthTokenOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchWebAuthTokenOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKFetchWebAuthTokenOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchWebAuthTokenOperation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKFetchWebAuthTokenOperation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cloudkit/providing-user-access-to-cloudkit-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/cloudkit/providing-user-access-to-cloudkit-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

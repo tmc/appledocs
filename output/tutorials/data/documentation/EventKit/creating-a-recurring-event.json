@@ -1,0 +1,1753 @@
+{
+  "abstract": [
+    {
+      "text": "Set up an event or reminder that repeats.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.eventkit/documentation/EventKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.eventkit/documentation/EventKit/creating-a-recurring-event"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "EventKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a recurring event"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Recurring events repeat over a specified interval of time. To make an event recurring, assign it a recurrence rule that describes when the event occurs. Recurrence rules are represented by instances of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKRecurrenceRule",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Recurrence is applicable to both calendar events and reminders. Unlike with recurring events, only the first incomplete reminder of a recurring set is obtainable. This is true with EventKit as well as the Reminders app. When the reminder is completed, the next reminder in the recurrence set becomes available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-Basic-Rule",
+          "level": 3,
+          "text": "Create a Basic Rule",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create a recurrence rule with a simple daily, weekly, monthly, or yearly pattern using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKRecurrenceRule/init(recurrenceWith:interval:end:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. You provide three values to this method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "The recurrence frequency.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " This is a value of type ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKRecurrenceFrequency",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " that indicates whether the recurrence rule is daily, weekly, monthly, or yearly.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "The recurrence interval.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " This is an integer greater than ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " that specifies how often a pattern repeats. For example, if the recurrence rule is a weekly recurrence rule and its interval is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", then the pattern repeats every week. If the recurrence rule is a monthly recurrence rule and its interval is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "3",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", then the pattern repeats every three months.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "The recurrence end.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " This optional parameter is an instance of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKRecurrenceEnd",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class, which indicates when the recurrence rule ends. The recurrence end can be based on a specific end date or on an amount of occurrences. If you don’t want to specify an end for the recurrence rule, pass ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Create-a-Complex-Rule",
+          "level": 3,
+          "text": "Create a Complex Rule",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create a recurrence rule with a complex pattern using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKRecurrenceRule/init(recurrenceWith:interval:daysOfTheWeek:daysOfTheMonth:monthsOfTheYear:weeksOfTheYear:daysOfTheYear:setPositions:end:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. As for a basic recurrence rule, you provide a frequency, interval, and optional end for the recurring event. In addition, you can provide a combination of optional values describing a custom rule, as listed in the table below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Parameter name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Accepted values",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Can be combined with",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Example",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "days",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKRecurrenceDayOfWeek",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "All recurrence rules except for daily recurrence rules.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array containing ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKWeekday/EKTuesday",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKWeekday/EKFriday",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects will create a recurrence that occurs every Tuesday and Friday.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "monthDays",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array of nonzero ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects ranging from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "–31",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "31",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Negative values indicate counting backward from the end of the month.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Monthly recurrence rules only.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array containing the values ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "–1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " will create a recurrence that occurs on the first and last day of every month.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "months",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects with values ranging from 1 to 12, corresponding to Gregorian calendar months.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yearly recurrence rules only.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your originating event occurs on January 10, you can provide an array containing the values ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to create a recurrence that occurs every January 10 and February 10.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "weeksOfTheYear",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array of nonzero ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects ranging from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "–53",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "53",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Negative values indicate counting backward from the end of the year.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yearly recurrence rules only.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your originating event occurs on a Wednesday, you can provide an array containing the values ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "–1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to create a recurrence that occurs on the Wednesday of the first and last weeks of every year. If a specified week does not contain a Wednesday in the current year, as can be the case for the first or last week of a year, the event does not occur.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "daysOfTheYear",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array of nonzero ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects ranging from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "–366",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "366",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Negative values indicate counting backward from the end of the year.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Yearly recurrence rules only.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can provide an array containing the values ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "–1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to create a recurrence that occurs on the first and last day of every year.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "setPositions",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array of nonzero ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects ranging from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "–366",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "366",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Negative values indicate counting backward from the end of the list of occurrences.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "All recurrence rules except for daily recurrence rules.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you provide an array containing the values ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "–1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to a yearly recurrence rule that has specified Monday through Friday as its value for days of the week, the recurrence occurs only on the first and last weekday of every year.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can provide values for any number of the parameters in the table. Parameters that don’t apply to a particular recurrence rule are ignored. If you provide a value for more than one of the parameters, the recurrence occurs only on days that apply to all provided values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you have created a recurrence rule, you can apply it to a calendar event or reminder with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKCalendarItem/addRecurrenceRule(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKCalendarItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nsnumber": {
+      "abstract": [
+        {
+          "text": "An object wrapper for primitive scalar numeric values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNumber",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumber"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit": {
+      "abstract": [
+        {
+          "text": "Create, view, and edit calendar and reminder events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "EventKit",
+      "type": "topic",
+      "url": "/documentation/eventkit"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKCalendarItem": {
+      "abstract": [
+        {
+          "text": "An abstract superclass for calendar events and reminders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EKCalendarItem"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKCalendarItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EKCalendarItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "EKCalendarItem",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekcalendaritem"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKCalendarItem/addRecurrenceRule(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a recurrence rule to the recurrence rule array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addRecurrenceRule"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EKRecurrenceRule",
+          "text": "EKRecurrenceRule"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKCalendarItem/addRecurrenceRule(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addRecurrenceRule:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addRecurrenceRule(_:)",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekcalendaritem/addrecurrencerule(_:)"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKRecurrenceDayOfWeek": {
+      "abstract": [
+        {
+          "text": "A class that represents the day of the week.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EKRecurrenceDayOfWeek"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKRecurrenceDayOfWeek",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EKRecurrenceDayOfWeek"
+        }
+      ],
+      "role": "symbol",
+      "title": "EKRecurrenceDayOfWeek",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekrecurrencedayofweek"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKRecurrenceEnd": {
+      "abstract": [
+        {
+          "text": "A class that defines the end of a recurrence rule.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EKRecurrenceEnd"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKRecurrenceEnd",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EKRecurrenceEnd"
+        }
+      ],
+      "role": "symbol",
+      "title": "EKRecurrenceEnd",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekrecurrenceend"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKRecurrenceFrequency": {
+      "abstract": [
+        {
+          "text": "The frequency for recurrence rules.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EKRecurrenceFrequency"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKRecurrenceFrequency",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EKRecurrenceFrequency"
+        }
+      ],
+      "role": "symbol",
+      "title": "EKRecurrenceFrequency",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekrecurrencefrequency"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKRecurrenceRule": {
+      "abstract": [
+        {
+          "text": "A class that describes the pattern for a recurring event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EKRecurrenceRule"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKRecurrenceRule",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EKRecurrenceRule"
+        }
+      ],
+      "role": "symbol",
+      "title": "EKRecurrenceRule",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekrecurrencerule"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKRecurrenceRule/init(recurrenceWith:interval:daysOfTheWeek:daysOfTheMonth:monthsOfTheYear:weeksOfTheYear:daysOfTheYear:setPositions:end:)": {
+      "abstract": [
+        {
+          "text": "Initializes and returns a recurrence rule with a given frequency and additional scheduling information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "recurrenceWith"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@EKRecurrenceFrequency",
+          "text": "EKRecurrenceFrequency"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "interval"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "daysOfTheWeek"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EKRecurrenceDayOfWeek",
+          "text": "EKRecurrenceDayOfWeek"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "daysOfTheMonth"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "monthsOfTheYear"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "weeksOfTheYear"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "daysOfTheYear"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "setPositions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EKRecurrenceEnd",
+          "text": "EKRecurrenceEnd"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKRecurrenceRule/init(recurrenceWith:interval:daysOfTheWeek:daysOfTheMonth:monthsOfTheYear:weeksOfTheYear:daysOfTheYear:setPositions:end:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initRecurrenceWithFrequency:interval:daysOfTheWeek:daysOfTheMonth:monthsOfTheYear:weeksOfTheYear:daysOfTheYear:setPositions:end:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(recurrenceWith:interval:daysOfTheWeek:daysOfTheMonth:monthsOfTheYear:weeksOfTheYear:daysOfTheYear:setPositions:end:)",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekrecurrencerule/init(recurrencewith:interval:daysoftheweek:daysofthemonth:monthsoftheyear:weeksoftheyear:daysoftheyear:setpositions:end:)"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKRecurrenceRule/init(recurrenceWith:interval:end:)": {
+      "abstract": [
+        {
+          "text": "Initializes and returns a simple recurrence rule with a given frequency, interval, and end.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "recurrenceWith"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@EKRecurrenceFrequency",
+          "text": "EKRecurrenceFrequency"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "interval"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EKRecurrenceEnd",
+          "text": "EKRecurrenceEnd"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKRecurrenceRule/init(recurrenceWith:interval:end:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initRecurrenceWithFrequency:interval:end:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(recurrenceWith:interval:end:)",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekrecurrencerule/init(recurrencewith:interval:end:)"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKWeekday/EKFriday": {
+      "abstract": [
+        {
+          "text": "The value for Friday.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EKFriday"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@EKWeekday",
+          "text": "EKWeekday"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKWeekday/EKFriday",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EKFriday"
+        }
+      ],
+      "role": "symbol",
+      "title": "EKFriday",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekweekday/ekfriday"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKWeekday/EKTuesday": {
+      "abstract": [
+        {
+          "text": "The value for Tuesday.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EKTuesday"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@EKWeekday",
+          "text": "EKWeekday"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKWeekday/EKTuesday",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EKTuesday"
+        }
+      ],
+      "role": "symbol",
+      "title": "EKTuesday",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekweekday/ektuesday"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Recurrence",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.eventkit/documentation/EventKit/EKRecurrenceDayOfWeek",
+        "doc://com.apple.eventkit/documentation/EventKit/EKRecurrenceEnd",
+        "doc://com.apple.eventkit/documentation/EventKit/EKRecurrenceRule"
+      ],
+      "title": "Recurrence"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Recurrence",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.eventkit/documentation/EventKit/EKRecurrenceDayOfWeek",
+                "doc://com.apple.eventkit/documentation/EventKit/EKRecurrenceEnd",
+                "doc://com.apple.eventkit/documentation/EventKit/EKRecurrenceRule"
+              ],
+              "title": "Recurrence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKRecurrenceDayOfWeek/title",
+          "value": "EKRecurrenceDayOfWeek"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKRecurrenceDayOfWeek/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKRecurrenceDayOfWeek"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKRecurrenceDayOfWeek/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKRecurrenceDayOfWeek"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKWeekday~1EKTuesday/title",
+          "value": "EKTuesday"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKWeekday~1EKTuesday/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKTuesday"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKWeekday~1EKFriday/title",
+          "value": "EKFriday"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKWeekday~1EKFriday/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKFriday"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKRecurrenceEnd/title",
+          "value": "EKRecurrenceEnd"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKRecurrenceEnd/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKRecurrenceEnd"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKRecurrenceEnd/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKRecurrenceEnd"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKRecurrenceRule~1init(recurrenceWith:interval:end:)/title",
+          "value": "initRecurrenceWithFrequency:interval:end:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKRecurrenceRule~1init(recurrenceWith:interval:end:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initRecurrenceWithFrequency:interval:end:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKCalendarItem/title",
+          "value": "EKCalendarItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKCalendarItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKCalendarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKCalendarItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKCalendarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKRecurrenceFrequency/title",
+          "value": "EKRecurrenceFrequency"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKRecurrenceFrequency/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKRecurrenceFrequency"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKRecurrenceFrequency/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKRecurrenceFrequency"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKRecurrenceRule~1init(recurrenceWith:interval:daysOfTheWeek:daysOfTheMonth:monthsOfTheYear:weeksOfTheYear:daysOfTheYear:setPositions:end:)/title",
+          "value": "initRecurrenceWithFrequency:interval:daysOfTheWeek:daysOfTheMonth:monthsOfTheYear:weeksOfTheYear:daysOfTheYear:setPositions:end:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKRecurrenceRule~1init(recurrenceWith:interval:daysOfTheWeek:daysOfTheMonth:monthsOfTheYear:weeksOfTheYear:daysOfTheYear:setPositions:end:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initRecurrenceWithFrequency:interval:daysOfTheWeek:daysOfTheMonth:monthsOfTheYear:weeksOfTheYear:daysOfTheYear:setPositions:end:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKCalendarItem~1addRecurrenceRule(_:)/title",
+          "value": "addRecurrenceRule:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKCalendarItem~1addRecurrenceRule(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addRecurrenceRule:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKRecurrenceRule/title",
+          "value": "EKRecurrenceRule"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKRecurrenceRule/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKRecurrenceRule"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKRecurrenceRule/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKRecurrenceRule"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/eventkit/creating-a-recurring-event"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/eventkit/creating-a-recurring-event"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

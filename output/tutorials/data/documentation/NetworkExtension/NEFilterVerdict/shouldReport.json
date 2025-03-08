@@ -1,0 +1,1066 @@
+{
+  "abstract": [
+    {
+      "text": "A Boolean value that indicates whether to send a report to the control provider when processing this verdict.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkextension/documentation/NetworkExtension",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterVerdict"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterVerdict/shouldReport"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NEFilterVerdict(py)shouldReport",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "shouldReport"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sb",
+        "text": "Bool"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Network Extension"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "shouldReport"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "shouldReport"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "shouldReport"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sb",
+              "text": "Bool"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the property is equal to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system sends a report to the control provider’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProvider/handle(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when processing this verdict in the data provider.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This property has no effect if the verdict originates in the control provider.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The data provider doesn’t need to wait for a response from the control provider",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "before continuing to process the flow.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Therefore, calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProvider/handle(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method is a more efficient way",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to report a flow to the control provider than returning a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterDataVerdict/needRules()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " verdict.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This property applies when the action taken on a flow is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterAction/allow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterAction/drop",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterAction/remediate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterAction/filterData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(the last of which is only for new flows).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension": {
+      "abstract": [
+        {
+          "text": "Customize and extend core networking features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network Extension",
+      "type": "topic",
+      "url": "/documentation/networkextension"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterAction/allow": {
+      "abstract": [
+        {
+          "text": "Allow the flow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allow"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterAction/allow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterActionAllow"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterAction.allow",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilteraction/allow"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterAction/drop": {
+      "abstract": [
+        {
+          "text": "Drop the flow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "drop"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterAction/drop",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterActionDrop"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterAction.drop",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilteraction/drop"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterAction/filterData": {
+      "abstract": [
+        {
+          "text": "Filter data on the flow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "filterData"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterAction/filterData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterActionFilterData"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterAction.filterData",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilteraction/filterdata"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterAction/remediate": {
+      "abstract": [
+        {
+          "text": "Remediate the flow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "remediate"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterAction/remediate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterActionRemediate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterAction.remediate",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilteraction/remediate"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterDataVerdict/needRules()": {
+      "abstract": [
+        {
+          "text": "Creates a verdict that tells the system that the Filter Control Provider needs to update the rules before making a decision about the flow’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "needRules"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NEFilterDataVerdict",
+          "text": "NEFilterDataVerdict"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterDataVerdict/needRules()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "needRulesVerdict"
+        }
+      ],
+      "role": "symbol",
+      "title": "needRules()",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterdataverdict/needrules()"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProvider/handle(_:)": {
+      "abstract": [
+        {
+          "text": "Receives a report from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NEFilterReport",
+          "text": "NEFilterReport"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProvider/handle(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleReport:"
+        }
+      ],
+      "role": "symbol",
+      "title": "handle(_:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterprovider/handle(_:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterVerdict": {
+      "abstract": [
+        {
+          "text": "The abstract base class for filter verdict classes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterVerdict"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterVerdict",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterVerdict"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterVerdict",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterverdict"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterVerdict/shouldReport": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to send a report to the control provider when processing this verdict.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldReport"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterVerdict/shouldReport",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shouldReport"
+        }
+      ],
+      "role": "symbol",
+      "title": "shouldReport",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterverdict/shouldreport"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@BOOL": {
+      "abstract": [
+        {
+          "text": "Type to represent a Boolean value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BOOL",
+      "type": "topic",
+      "url": "/documentation/objectivec/bool"
+    },
+    "doc://com.externally.resolved.symbol/s:Sb": {
+      "abstract": [
+        {
+          "text": "A value type whose instances are either `true` or `false`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/Swift/Bool"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "shouldReport"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shouldReport"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.networkextension/documentation/NetworkExtension",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterVerdict"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@BOOL",
+                    "text": "BOOL"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "shouldReport"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterVerdict~1shouldReport/title",
+          "value": "shouldReport"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterVerdict~1shouldReport/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shouldReport"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterAction~1drop/title",
+          "value": "NEFilterActionDrop"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterAction~1drop/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterActionDrop"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterDataVerdict~1needRules()/title",
+          "value": "needRulesVerdict"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterDataVerdict~1needRules()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "needRulesVerdict"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterVerdict/title",
+          "value": "NEFilterVerdict"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterVerdict/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterVerdict"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterVerdict/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterVerdict"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterAction~1filterData/title",
+          "value": "NEFilterActionFilterData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterAction~1filterData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterActionFilterData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterProvider~1handle(_:)/title",
+          "value": "handleReport:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterProvider~1handle(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleReport:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterAction~1remediate/title",
+          "value": "NEFilterActionRemediate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterAction~1remediate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterActionRemediate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterAction~1allow/title",
+          "value": "NEFilterActionAllow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterAction~1allow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterActionAllow"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/networkextension/nefilterverdict/shouldreport"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/networkextension/nefilterverdict/shouldreport"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

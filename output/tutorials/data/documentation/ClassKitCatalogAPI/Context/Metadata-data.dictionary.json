@@ -1,0 +1,671 @@
+{
+  "abstract": [
+    {
+      "text": "Information that helps the system categorize a context.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI",
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context/Metadata-data.dictionary"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:classkit_api:Context.Metadata",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "Context.Metadata"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ClassKit Catalog API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Context.Metadata"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "ClassKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Dictionary",
+    "symbolKind": "dictionary",
+    "title": "Context.Metadata"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: classkit_api"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "Context.Metadata"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of tags that describes your content.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "keywords",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ],
+          "typeDetails": [
+            {
+              "arrayMode": true,
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The locale for which you designed the context. You can upload multiple versions of a context that have the same identifier path but different locales. Use one of the identifiers that the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/locale",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure supports, like ",
+                  "type": "text"
+                },
+                {
+                  "code": "en-us",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "locale",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The earliest version of your app that supports this context, which is a string of numbers that use periods as delimiters, like ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "6.3",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "10.5.12",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": ". Delete contexts for versions of your app that you no longer support.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "minimumBundleVersion",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of locales — any of the identifiers that the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/locale",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure supports — for which this context data is suitable. If you don’t set this value, the system sets it to a single-element array containing the value of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "locale",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " field. Set the value to ",
+                  "type": "text"
+                },
+                {
+                  "code": "mul",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to indicate that the content is suitable for any locale.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "presentableLocales",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ],
+          "typeDetails": [
+            {
+              "arrayMode": true,
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of standards to which the context adheres.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "standardsAlignments",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ],
+          "typeDetails": [
+            {
+              "arrayMode": true,
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of identifier paths that act as the context’s parent context. If you don’t set a value for this field, the system adds a path representing the default parent of this context. A context can have a maximum of 2000 child contexts.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "presentablePaths",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context/Metadata-data.dictionary/PresentablePaths-data.dictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:classkit_api:Context.Metadata.PresentablePaths",
+              "text": "Context.Metadata.PresentablePaths"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ],
+          "typeDetails": [
+            {
+              "arrayMode": true,
+              "baseType": "dictionary"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "attributes": [
+        {
+          "kind": "allowedTypes",
+          "values": []
+        }
+      ],
+      "kind": "attributes",
+      "title": "Attributes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/preparing-context-data"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You typically design a context with a specific locale in mind, and use the ",
+              "type": "text"
+            },
+            {
+              "code": "locale",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field to indicate that locale. However, you may want to make the context available in other locales. For example, a context that you design for the ",
+              "type": "text"
+            },
+            {
+              "code": "en-us",
+              "type": "codeVoice"
+            },
+            {
+              "text": " locale may be suitable for any English-speaking locale, like ",
+              "type": "text"
+            },
+            {
+              "code": "en-gb",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "en-au",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and so on. Use the ",
+              "type": "text"
+            },
+            {
+              "code": "presentableLocales",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field to indicate all the locales for which you consider the content to be suitable. Use a single-element array with the value ",
+              "type": "text"
+            },
+            {
+              "code": "mul",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to indicate suitability for any locale.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you create multiple contexts to represent the same content for different locales, be sure that the set of presentable locales for one context doesn’t overlap the set of presentable locales for others. This might result in teachers seeing multiple versions of the same content. For example, if you use ",
+              "type": "text"
+            },
+            {
+              "code": "mul",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for one context’s presentable values, and ",
+              "type": "text"
+            },
+            {
+              "code": "en-us",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for a second, Schoolwork presents an English-speaking teacher in the United States with both contexts, as if they represent different content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI": {
+      "abstract": [
+        {
+          "text": "Declare the activities supported by your educational app through a web interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClassKit Catalog API",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context": {
+      "abstract": [
+        {
+          "text": "An area of your app that represents an assignable task, like a quiz or a chapter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Context"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Context"
+        }
+      ],
+      "role": "symbol",
+      "title": "Context",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/context"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context/Data-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The data that makes up a context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Context.Data"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context/Data-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Context.Data"
+        }
+      ],
+      "role": "symbol",
+      "title": "Context.Data",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/context/data-data.dictionary"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context/Metadata-data.dictionary": {
+      "abstract": [
+        {
+          "text": "Information that helps the system categorize a context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Context.Metadata"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context/Metadata-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Context.Metadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "Context.Metadata",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/context/metadata-data.dictionary"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context/Metadata-data.dictionary/PresentablePaths-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The identifier path of a context to use as one of the presentable paths in a context’s metadata.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Context.Metadata.PresentablePaths"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context/Metadata-data.dictionary/PresentablePaths-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Context.Metadata.PresentablePaths"
+        }
+      ],
+      "role": "symbol",
+      "title": "Context.Metadata.PresentablePaths",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/context/metadata-data.dictionary/presentablepaths-data.dictionary"
+    },
+    "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/preparing-context-data": {
+      "abstract": [
+        {
+          "text": "Adjust how you manage context data when working with the web API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/preparing-context-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing Context Data",
+      "type": "topic",
+      "url": "/documentation/classkitcatalogapi/preparing-context-data"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale": {
+      "abstract": [
+        {
+          "text": "Information about linguistic, cultural, and technological conventions for use in formatting data for presentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Locale"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Locale",
+      "type": "topic",
+      "url": "/documentation/foundation/locale"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Objects",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context/Data-data.dictionary"
+      ],
+      "title": "Objects"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Parent-Contexts",
+      "identifiers": [
+        "doc://com.apple.classkitcatalogapi/documentation/ClassKitCatalogAPI/Context/Metadata-data.dictionary/PresentablePaths-data.dictionary"
+      ],
+      "title": "Parent Contexts"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/classkitcatalogapi/context/metadata-data.dictionary"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1395 @@
+{
+  "abstract": [
+    {
+      "text": "An interface the home manager uses to communicate changes to the state of the home network.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.homekit/documentation/HomeKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)HMHomeManagerDelegate",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "HMHomeManagerDelegate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HomeKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "HMHomeManagerDelegate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "HMHomeManagerDelegate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "HMHomeManagerDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adopt this protocol to find out about changes made outside your app to the set of homes in the HomeKit database, like when homes are added or removed by another app. You also rely on this protocol when you first create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance. The home manager calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate/homeManagerDidUpdateHomes(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to indicate that it has finished its initial load of data from the HomeKit database.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Changes that your app initiates—even those made asynchronously followed by a call to a completion handler—generate delegate callbacks in other apps, but not in your own. As a result, your app must update its internal data store or user interface from both the completion handler of an asynchronous call, and the delegate callback that corresponds to the same kind of change made by another app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To be alerted about changes made within a particular home, adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. To find out about changes made to specific accessories, adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit": {
+      "abstract": [
+        {
+          "text": "Configure, control, and communicate with home automation accessories.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HomeKit",
+      "type": "topic",
+      "url": "/documentation/homekit"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines the communication method for state updates from accessories to their delegates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMAccessoryDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMAccessoryDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMAccessoryDelegate",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessorydelegate"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAddAccessoryRequest": {
+      "abstract": [
+        {
+          "text": "A request to add an accessory to a particular home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMAddAccessoryRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAddAccessoryRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMAddAccessoryRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMAddAccessoryRequest",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaddaccessoryrequest"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate": {
+      "abstract": [
+        {
+          "text": "An interface that communicates changes to a home’s configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMHomeDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMHomeDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMHomeDelegate",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomedelegate"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager": {
+      "abstract": [
+        {
+          "text": "The manager for a collection of one or more of a user’s homes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMHomeManager"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMHomeManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMHomeManager",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomemanager"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager/delegate": {
+      "abstract": [
+        {
+          "text": "A delegate that receives updates on the collection of homes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)HMHomeManagerDelegate",
+          "text": "HMHomeManagerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomemanager/delegate"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate": {
+      "abstract": [
+        {
+          "text": "An interface the home manager uses to communicate changes to the state of the home network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMHomeManagerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMHomeManagerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMHomeManagerDelegate",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomemanagerdelegate"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate/homeManager(_:didAdd:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the home manager added a home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "homeManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHomeManager",
+          "text": "HMHomeManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAdd"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate/homeManager(_:didAdd:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "homeManager:didAddHome:"
+        }
+      ],
+      "role": "symbol",
+      "title": "homeManager(_:didAdd:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomemanagerdelegate/homemanager(_:didadd:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate/homeManager(_:didReceiveAddAccessoryRequest:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate to add an accessory to a home by using a setup payload.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "homeManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHomeManager",
+          "text": "HMHomeManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didReceiveAddAccessoryRequest"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMAddAccessoryRequest",
+          "text": "HMAddAccessoryRequest"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate/homeManager(_:didReceiveAddAccessoryRequest:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "homeManager:didReceiveAddAccessoryRequest:"
+        }
+      ],
+      "role": "symbol",
+      "title": "homeManager(_:didReceiveAddAccessoryRequest:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomemanagerdelegate/homemanager(_:didreceiveaddaccessoryrequest:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate/homeManager(_:didRemove:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the home manager removed a home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "homeManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHomeManager",
+          "text": "HMHomeManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didRemove"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHome",
+          "text": "HMHome"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate/homeManager(_:didRemove:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "homeManager:didRemoveHome:"
+        }
+      ],
+      "role": "symbol",
+      "title": "homeManager(_:didRemove:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomemanagerdelegate/homemanager(_:didremove:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate/homeManager(_:didUpdate:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the authorization status changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "homeManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHomeManager",
+          "text": "HMHomeManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HMHomeManagerAuthorizationStatus",
+          "text": "HMHomeManagerAuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate/homeManager(_:didUpdate:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "homeManager:didUpdateAuthorizationStatus:"
+        }
+      ],
+      "role": "symbol",
+      "title": "homeManager(_:didUpdate:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomemanagerdelegate/homemanager(_:didupdate:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate/homeManagerDidUpdateHomes(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the home manager updated its collection of homes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "homeManagerDidUpdateHomes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHomeManager",
+          "text": "HMHomeManager"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate/homeManagerDidUpdateHomes(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "homeManagerDidUpdateHomes:"
+        }
+      ],
+      "role": "symbol",
+      "title": "homeManagerDidUpdateHomes(_:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomemanagerdelegate/homemanagerdidupdatehomes(_:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate/homeManagerDidUpdatePrimaryHome(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the home manager updated its primary home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "homeManagerDidUpdatePrimaryHome"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMHomeManager",
+          "text": "HMHomeManager"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate/homeManagerDidUpdatePrimaryHome(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "homeManagerDidUpdatePrimaryHome:"
+        }
+      ],
+      "role": "symbol",
+      "title": "homeManagerDidUpdatePrimaryHome(_:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomemanagerdelegate/homemanagerdidupdateprimaryhome(_:)"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Keeping-track-of-connected-homes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager/delegate"
+      ],
+      "title": "Keeping track of connected homes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Adding-and-removing-homes",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate/homeManagerDidUpdateHomes(_:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate/homeManager(_:didAdd:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate/homeManager(_:didRemove:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate/homeManagerDidUpdatePrimaryHome(_:)"
+      ],
+      "title": "Adding and removing homes"
+    },
+    {
+      "anchor": "Adding-accessories",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate/homeManager(_:didReceiveAddAccessoryRequest:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMAddAccessoryRequest"
+      ],
+      "title": "Adding accessories"
+    },
+    {
+      "anchor": "Monitoring-authorization-status",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate/homeManager(_:didUpdate:)"
+      ],
+      "title": "Monitoring authorization status"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "HMHomeManagerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeManagerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeManagerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.homekit/documentation/HomeKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Adding-and-removing-homes",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate/homeManagerDidUpdateHomes(_:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate/homeManager(_:didAdd:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate/homeManager(_:didRemove:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate/homeManagerDidUpdatePrimaryHome(_:)"
+              ],
+              "title": "Adding and removing homes"
+            },
+            {
+              "anchor": "Adding-accessories",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate/homeManager(_:didReceiveAddAccessoryRequest:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMAddAccessoryRequest"
+              ],
+              "title": "Adding accessories"
+            },
+            {
+              "anchor": "Monitoring-authorization-status",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeManagerDelegate/homeManager(_:didUpdate:)"
+              ],
+              "title": "Monitoring authorization status"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Keeping-track-of-connected-homes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager/delegate"
+              ],
+              "title": "Keeping track of connected homes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "HMHomeManagerDelegate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate/title",
+          "value": "HMHomeDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManagerDelegate~1homeManagerDidUpdatePrimaryHome(_:)/title",
+          "value": "homeManagerDidUpdatePrimaryHome:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManagerDelegate~1homeManagerDidUpdatePrimaryHome(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "homeManagerDidUpdatePrimaryHome:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManager~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManager~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAddAccessoryRequest/title",
+          "value": "HMAddAccessoryRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAddAccessoryRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAddAccessoryRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAddAccessoryRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAddAccessoryRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryDelegate/title",
+          "value": "HMAccessoryDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessoryDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessoryDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManagerDelegate~1homeManagerDidUpdateHomes(_:)/title",
+          "value": "homeManagerDidUpdateHomes:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManagerDelegate~1homeManagerDidUpdateHomes(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "homeManagerDidUpdateHomes:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManagerDelegate~1homeManager(_:didUpdate:)/title",
+          "value": "homeManager:didUpdateAuthorizationStatus:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManagerDelegate~1homeManager(_:didUpdate:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "homeManager:didUpdateAuthorizationStatus:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManagerDelegate~1homeManager(_:didAdd:)/title",
+          "value": "homeManager:didAddHome:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManagerDelegate~1homeManager(_:didAdd:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "homeManager:didAddHome:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManagerDelegate~1homeManager(_:didReceiveAddAccessoryRequest:)/title",
+          "value": "homeManager:didReceiveAddAccessoryRequest:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManagerDelegate~1homeManager(_:didReceiveAddAccessoryRequest:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "homeManager:didReceiveAddAccessoryRequest:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManager/title",
+          "value": "HMHomeManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManagerDelegate/title",
+          "value": "HMHomeManagerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManagerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeManagerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManagerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeManagerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManagerDelegate~1homeManager(_:didRemove:)/title",
+          "value": "homeManager:didRemoveHome:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManagerDelegate~1homeManager(_:didRemove:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "homeManager:didRemoveHome:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/homekit/hmhomemanagerdelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/homekit/hmhomemanagerdelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

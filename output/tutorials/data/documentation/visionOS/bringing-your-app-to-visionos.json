@@ -1,0 +1,2904 @@
+{
+  "abstract": [
+    {
+      "text": "Build a version of your iPadOS or iOS app using the visionOS SDK,",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "and update your code for platform differences.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/bringing-your-app-to-visionos"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Bringing your existing apps to visionOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have an existing app that runs in iPadOS or iOS, you can build",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that app against the visionOS SDK to run it on the platform. Apps built",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specifically for visionOS adopt the standard system appearance, and they look",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "more natural on the platform. Updating your app is also an opportunity",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to add elements that work well on the platform, such as 3D content and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "immersive experiences.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In most cases, all you need to do to support visionOS is update your Xcode",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "project’s settings and recompile your code. Depending on your app,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you might need to make additional changes to account for features that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are only found in the iOS SDK. While most of the same technologies",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are available on both platforms, some technologies don’t make sense or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "require hardware that isn’t present on visionOS devices. For example, people",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "don’t typically use a headset to make contactless payments, so apps",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that use the ProximityReader framework must disable those features",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when running in visionOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you use ARKit in your iOS app to create an augmented reality",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "experience, you need to make additional changes to support ARKit in visionOS.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For information on how to update this type of app, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.visionOS/documentation/visionOS/bringing-your-arkit-app-to-visionos",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-a-visionOS-specific-version-of-your-app",
+          "level": 3,
+          "text": "Create a visionOS-specific version of your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To update your app to build specifically for the visionOS SDK:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your project’s settings, select your app target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Navigate to the General tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Supported Destinations, click the Add (+) button to add a new destination and select the Apple Vision option.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "bringingExistingAppsToVision.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you add Apple Vision as a destination, Xcode makes some one-time changes to your project’s build settings.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After you add the destination, you can modify your project’s build settings and build phases to customize the build behavior specifically for visionOS.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, you might remove dependencies for the visionOS version of your app, or change the set of source files you want to compile.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about how to update a target’s configuration,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/customizing-the-build-phases-of-a-target",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-your-code-for-features-that-are-unavailable-in-visionOS",
+          "level": 3,
+          "text": "Update your code for features that are unavailable in visionOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first step to updating your existing app to run in visionOS is to stop using deprecated frameworks and to check for frameworks with behavioral changes in visionOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app currently uses deprecated APIs or frameworks, update your code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to use appropriate replacements.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "visionOS removes many deprecated",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "symbols entirely, turning these deprecation warnings into",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "missing-symbol errors on the platform.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Fix any deprecation warnings in the iOS version of your code before you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "build for visionOS to see the original deprecation warning and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "replacement details.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Read ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.visionOS/documentation/visionOS/determining-whether-to-bring-your-app-to-visionos",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for a list of deprecated frameworks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To help you avoid using APIs for unavailable features, many frameworks offer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "APIs to check the availability of those features. Continue",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to use those APIs and take appropriate actions when the features aren’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "available. In other cases, prepare for the framework code to do",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "nothing or to generate errors when you use it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Read ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.visionOS/documentation/visionOS/determining-whether-to-bring-your-app-to-visionos",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for a list of APIs with availability checks and deprecated frameworks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The iOS SDK includes many frameworks that don’t apply to visionOS, either",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "because they use hardware that isn’t available or their features",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "don’t apply to the platform. Move code that uses these frameworks to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "separate source files whenever possible, and include those files only",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the iOS version of your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following frameworks are available in the iOS SDK but not in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "visionOS SDK.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ActivityKit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AdSupport",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "App Clips",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AutomatedDeviceEnrollment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "BusinessChat",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "CarKey",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "CarPlay",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Cinematic",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ClockKit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "CoreLocationUI",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "CoreMediaIO",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "CoreNFC",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "CoreTelephony",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "DeviceActivity",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "DockKit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ExposureNotification",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "FamilyControls",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "FinanceKit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "FinanceKitUI",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ManagedSettings",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ManagedSettingsUI",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Messages",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "MLCompute",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "NearbyInteraction",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "OpenAL",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "OpenGLES",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ProximityReader",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "SafetyKit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ScreenTime",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "SensorKit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ServiceManagement",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Social",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Twitter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "WidgetKit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "WorkoutKit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you can’t isolate the code to separate source files, use conditional",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "statements such as the ones below to offer a different code path for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "visionOS and iOS. The following example shows how to do this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#if os(visionOS)",
+            "   // visionOS code",
+            "#elseif os(iOS)",
+            "   // iOS code",
+            "#endif"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional information about how to isolate code to the iOS version",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of your app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/running-code-on-a-specific-version",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-your-interface-to-take-advantage-of-visionOS-features",
+          "level": 3,
+          "text": "Update your interface to take advantage of visionOS features",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After your existing code runs correctly in visionOS, look for ways to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "improve the experience you offer on the platform. In visionOS, you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "display content using more than just windows. Think about ways to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "incorporate the following elements into your interface:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Depth.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Many SwiftUI views use visual effects to add depth. Look for similar ways to incorporate depth into your own custom views. For guidance on how best to incorporate depth and 3D elements in your interface, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/design/human-interface-guidelines",
+                      "isActive": true,
+                      "overridingTitle": "Human Interface Guidelines",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Human Interface Guidelines",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "3D content.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Think about where you might incorporate 3D models and shapes into your content. Use RealityKit to implement your content, and a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/RealityKit/RealityView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to present that content from your app. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.visionOS/documentation/visionOS/adding-3d-content-to-your-app",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Immersive experiences.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Present a space to immerse someone in your app’s content. Spaces let you place content anywhere in a person’s surroundings. You can also create fully immersive experiences that display only your app’s content. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.visionOS/documentation/visionOS/creating-fully-immersive-experiences",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Interactions with someone’s surroundings.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Use ARKit to facilitate interactions between your content and the surroundings. For example, detect planar surfaces to use as anchor points for your content. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ARKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for more details.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Color.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Standard visionOS windows typically use the system-defined glass material, which lets light and objects from people’s physical surroundings show through. Use color sparingly to draw attention to specific elements. Refer to the visionOS platform specific guidelines in the Human Interface Guidelines ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/design/human-interface-guidelines/color#visionOS",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " documentation for best practices.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "System-provided UI components.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Take advantage of the components built for visionOS in SwiftUI. Components like ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TabView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " appear on the bottom of iOS or iPadOS apps and on the left side of visionOS apps. Other UI elements, like ornaments, are introduced specifically for visionOS. Using these elements keeps your interface adaptable between platforms and provides hover effects for free.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additional information on how to design your layout for visionOS is available on the Human Interface Guidelines ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/layout#visionOS",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you use ARKit in your iOS app to create an augmented reality",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "experience, you need to make additional changes to support ARKit in visionOS.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For information on how to update this type of app, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.visionOS/documentation/visionOS/bringing-your-arkit-app-to-visionos",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Consider-your-implementation",
+          "level": 3,
+          "text": "Consider your implementation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your existing app is built with UIKit, consider your implementation plan for visionOS.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Although you can still use UIKit and load iOS storyboards into your app, you can’t include visionOS-specific or 3D content without using SwiftUI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider migrating your app to SwiftUI.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The declarative syntax gives you less code to maintain and makes it easier to validate that your interface does what you want.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftUI is also unified across all Apple platforms and adapts to device-specific behavior without extra work.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To learn more about migrating to the SwiftUI lifecycle, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Migrating-to-the-SwiftUI-life-cycle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can also continue using UIKit views in a SwiftUI app with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/UIViewRepresentable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you plan to continue using UIKit, read ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.visionOS/documentation/visionOS/bringing-your-app-to-visionos#Create-adaptive-layouts-in-UIKit",
+              "isActive": true,
+              "overridingTitle": "Create adaptive layouts in UIKit",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Create adaptive layouts in UIKit",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to ensure your layout looks good on visionOS.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The WWDC23 video ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2023/111215/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " walks through bringing your UIKit app to visionOS and shows how to take advantage of native features for visionOS by including SwiftUI views using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/UIHostingController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a tutorial on mixing SwiftUI and UIKit content, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/tutorials/SwiftUI/interfacing-with-uikit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-adaptive-layouts-in-UIKit",
+          "level": 3,
+          "text": "Create adaptive layouts in UIKit",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although visionOS is built for SwiftUI adoption, you can continue to use and build out your UIKit codebase as well.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If your UIKit app uses hardcoded values or relies on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIScreen",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for layout, the first step to migrating your app to visionOS is to start using an adaptable layout.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you make decisions using device details, your app might produce",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "inconsistent or erroneous results on an unknown device type, or it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "might fail altogether. Find solutions that rely on environmental",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information, rather than the device type. For example, SwiftUI and UIKit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "start layout using the app’s window size, which isn’t necessarily the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "same size as the device’s display.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Device-specific information is available when you absolutely need it,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "but validate the information you receive and provide reasonable default",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "behavior for unexpected values.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Think about ways to create adaptive layouts using the following techniques:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Use stack views.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIStackView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects adjust the position of their contained views automatically when interface dimensions change. Alternatively, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/index.html",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " constraints let you specify the rules that determine the size and position of the views in your interface.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Stay within layout margins.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Read ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/positioning-content-within-layout-margins",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to set up constraints that respect layout margins and don’t crowd other content.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Respect the safe area.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Place views so they’re not obstructed by other content. Each view has a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UILayoutGuide",
+                      "isActive": true,
+                      "overridingTitle": "layout guide",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "layout guide",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " that helps you create constraints to position your views within the safe area. Read ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/positioning-content-relative-to-the-safe-area",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for guidance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Adapt based on changes in UITraitCollection.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Write code to adjust your app’s layout according to changes in the iOS interface elements, such as size class, display scale, and layout direction. Read ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UITraitCollection",
+                      "isActive": true,
+                      "overridingTitle": "UITraitCollection",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "UITraitCollection",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for more information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Update-your-apps-assets",
+          "level": 3,
+          "text": "Update your app’s assets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add vector-based or high-resolution images to your project specifically to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "support visionOS. In visionOS, people can view your app’s content at different angles",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and different distances, so image pixels rarely line up with screen pixels.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Vector-based images work best because they maintain their detail and crispness",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "at any size. For bitmap-based images, use high-resolution images (",
+              "type": "text"
+            },
+            {
+              "code": "@2x",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or better)",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to ensure they retain detail at different sizes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about designing images for your app, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/foundations/images",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in Human Interface Guidelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "bringingExistingAppsToVision.png": {
+      "alt": "The supported destinations section of an Xcode project that includes visionOS as a destination.",
+      "identifier": "bringingExistingAppsToVision.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/aa91e8f952e75c82a0b13aa985443fd5/bringingExistingAppsToVision@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e86829433550d1659cc49fdb34ea7ff4/bringingExistingAppsToVision~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/design/human-interface-guidelines": {
+      "abstract": [
+        {
+          "text": "The HIG contains guidance and best practices that can help you design a great experience for any Apple platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/human-interface-guidelines",
+      "images": [
+        {
+          "identifier": "human-interface-guidelines-page-image-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Human Interface Guidelines",
+      "type": "topic",
+      "url": "/design/human-interface-guidelines"
+    },
+    "doc://com.apple.documentation/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/ARKit"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/RealityView": {
+      "abstract": [
+        {
+          "text": "A view that contains RealityKit content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RealityView"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/RealityView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RealityView",
+      "type": "topic",
+      "url": "/documentation/RealityKit/RealityView"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Migrating-to-the-SwiftUI-life-cycle": {
+      "abstract": [
+        {
+          "text": "Use a scene-based life cycle in SwiftUI while keeping your existing codebase.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Migrating-to-the-SwiftUI-life-cycle",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating to the SwiftUI life cycle",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Migrating-to-the-SwiftUI-life-cycle"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/TabView": {
+      "abstract": [
+        {
+          "text": "A view that switches between multiple child views using interactive user interface elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabView"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "SelectionValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SelectionValue"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TabView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TabView",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/TabView"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/UIHostingController": {
+      "abstract": [
+        {
+          "text": "A UIKit view controller that manages a SwiftUI view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIHostingController"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/UIHostingController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIHostingController",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/UIHostingController"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/UIViewRepresentable": {
+      "abstract": [
+        {
+          "text": "A wrapper for a UIKit view that you use to integrate that view into your SwiftUI view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP4BodyQa",
+          "text": "Body"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5NeverO",
+          "text": "Never"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/UIViewRepresentable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIViewRepresentable",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/UIViewRepresentable"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UILayoutGuide": {
+      "abstract": [
+        {
+          "text": "A rectangular area that can interact with Auto Layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILayoutGuide"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UILayoutGuide",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UILayoutGuide",
+      "type": "topic",
+      "url": "/documentation/UIKit/UILayoutGuide"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIScreen": {
+      "abstract": [
+        {
+          "text": "An object that defines the properties associated with a hardware-based display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIScreen"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIScreen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIScreen",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIScreen"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIStackView": {
+      "abstract": [
+        {
+          "text": "A streamlined interface for laying out a collection of views in either a column or a row.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIStackView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIStackView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIStackView",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIStackView"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UITraitCollection": {
+      "abstract": [
+        {
+          "text": "A collection of data that represents the environment for an individual element in your app’s user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UITraitCollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITraitCollection",
+      "type": "topic",
+      "url": "/documentation/UIKit/UITraitCollection"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/positioning-content-relative-to-the-safe-area": {
+      "abstract": [
+        {
+          "text": "Position views so that they aren’t obstructed by other content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/positioning-content-relative-to-the-safe-area",
+      "kind": "article",
+      "role": "article",
+      "title": "Positioning content relative to the safe area",
+      "type": "topic",
+      "url": "/documentation/UIKit/positioning-content-relative-to-the-safe-area"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/positioning-content-within-layout-margins": {
+      "abstract": [
+        {
+          "text": "Position views so that they aren’t crowded by other content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/positioning-content-within-layout-margins",
+      "kind": "article",
+      "role": "article",
+      "title": "Positioning content within layout margins",
+      "type": "topic",
+      "url": "/documentation/UIKit/positioning-content-within-layout-margins"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/customizing-the-build-phases-of-a-target": {
+      "abstract": [
+        {
+          "text": "Specify the tasks to perform during a build, including the source files to compile, the scripts to run, and the resources to include in the final product.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/customizing-the-build-phases-of-a-target",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the build phases of a target",
+      "type": "topic",
+      "url": "/documentation/Xcode/customizing-the-build-phases-of-a-target"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/running-code-on-a-specific-version": {
+      "abstract": [
+        {
+          "text": "Add conditional compilation markers around code that requires a particular family of devices or minimum operating system version to run.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/running-code-on-a-specific-version",
+      "kind": "article",
+      "role": "article",
+      "title": "Running code on a specific platform or OS version",
+      "type": "topic",
+      "url": "/documentation/Xcode/running-code-on-a-specific-version"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/tutorials/SwiftUI/interfacing-with-uikit": {
+      "abstract": [
+        {
+          "text": "SwiftUI works seamlessly with the existing UI frameworks on all Apple platforms. For example, you can place UIKit views and view controllers inside SwiftUI views, and vice versa.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/tutorials/SwiftUI/interfacing-with-uikit",
+      "kind": "project",
+      "role": "project",
+      "title": "Interfacing with UIKit",
+      "type": "topic",
+      "url": "/tutorials/SwiftUI/interfacing-with-uikit"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/adding-3d-content-to-your-app": {
+      "abstract": [
+        {
+          "text": "Add depth and dimension to your visionOS app and discover how",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to incorporate your app’s content into a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/adding-3d-content-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding 3D content to your app",
+      "type": "topic",
+      "url": "/documentation/visionos/adding-3d-content-to-your-app"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/bringing-your-app-to-visionos#Create-adaptive-layouts-in-UIKit": {
+      "abstract": [],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/bringing-your-app-to-visionos#Create-adaptive-layouts-in-UIKit",
+      "kind": "section",
+      "title": "Create adaptive layouts in UIKit",
+      "type": "topic",
+      "url": "/documentation/visionos/bringing-your-app-to-visionos#Create-adaptive-layouts-in-UIKit"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/bringing-your-arkit-app-to-visionos": {
+      "abstract": [
+        {
+          "text": "Update an iPadOS or iOS app that uses ARKit, and provide an equivalent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "experience in visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/bringing-your-arkit-app-to-visionos",
+      "kind": "article",
+      "role": "article",
+      "title": "Bringing your ARKit app to visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos/bringing-your-arkit-app-to-visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/creating-fully-immersive-experiences": {
+      "abstract": [
+        {
+          "text": "Build fully immersive experiences by combining spaces with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "content you create using RealityKit or Metal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/creating-fully-immersive-experiences",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating fully immersive experiences in your app",
+      "type": "topic",
+      "url": "/documentation/visionos/creating-fully-immersive-experiences"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/determining-whether-to-bring-your-app-to-visionos": {
+      "abstract": [
+        {
+          "text": "Decide whether to bring your existing iPadOS or iOS app to visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/determining-whether-to-bring-your-app-to-visionos",
+      "kind": "article",
+      "role": "article",
+      "title": "Determining whether to bring your app to visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos/determining-whether-to-bring-your-app-to-visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/making-your-app-compatible-with-visionos": {
+      "abstract": [
+        {
+          "text": "Modify your iPadOS or iOS app to run successfully in visionOS as a compatible app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/making-your-app-compatible-with-visionos",
+      "kind": "article",
+      "role": "article",
+      "title": "Making your existing app compatible with visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos/making-your-app-compatible-with-visionos"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/color#visionOS": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/color#visionOS",
+      "title": "Color",
+      "titleInlineContent": [
+        {
+          "text": "Color",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/color#visionOS"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/foundations/images": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/foundations/images",
+      "title": "Images",
+      "titleInlineContent": [
+        {
+          "text": "Images",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/foundations/images"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/layout#visionOS": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/layout#visionOS",
+      "title": "Layout",
+      "titleInlineContent": [
+        {
+          "text": "Layout",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/layout#visionOS"
+    },
+    "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/index.html": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/index.html",
+      "title": "Auto Layout",
+      "titleInlineContent": [
+        {
+          "text": "Auto Layout",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/index.html"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/111215/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/111215/",
+      "title": "Meet UIKit for Spatial Computing",
+      "titleInlineContent": [
+        {
+          "text": "Meet UIKit for Spatial Computing",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/111215/"
+    },
+    "human-interface-guidelines-page-image-card.png": {
+      "alt": null,
+      "identifier": "human-interface-guidelines-page-image-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7d9e16f23525f7c0d971b55e8bf3f25e/human-interface-guidelines-page-image-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c9a7050750e8b3d2e4cbcf9128a2c9ef/human-interface-guidelines-page-image-card~dark@2x.png"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "iOS-migration-and-compatibility",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/determining-whether-to-bring-your-app-to-visionos",
+        "doc://com.apple.visionOS/documentation/visionOS/bringing-your-arkit-app-to-visionos",
+        "doc://com.apple.visionOS/documentation/visionOS/making-your-app-compatible-with-visionos"
+      ],
+      "title": "iOS migration and compatibility"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UITraitCollection/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UITraitCollection"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIScreen/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIScreen"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UILayoutGuide/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UILayoutGuide"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIStackView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIStackView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

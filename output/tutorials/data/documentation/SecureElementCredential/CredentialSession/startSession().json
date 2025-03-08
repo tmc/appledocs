@@ -1,0 +1,679 @@
+{
+  "abstract": [
+    {
+      "text": "Requests a session to view, manage, or use credentials in the Secure Element.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "added",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://SecureElementCredential/documentation/SecureElementCredential",
+        "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/startSession()"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:23SecureElementCredential0C7SessionC05startD0ACyYaKFZ",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "static"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "startSession"
+      },
+      {
+        "kind": "text",
+        "text": "() "
+      },
+      {
+        "kind": "keyword",
+        "text": "async"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "throws"
+      },
+      {
+        "kind": "text",
+        "text": " -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:23SecureElementCredential0C7SessionC",
+        "text": "CredentialSession"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SecureElementCredential"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.1",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.1",
+        "name": "iPadOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "method",
+    "title": "startSession()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "startSession"
+            },
+            {
+              "kind": "text",
+              "text": "() "
+            },
+            {
+              "kind": "keyword",
+              "text": "async"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            },
+            {
+              "kind": "text",
+              "text": " -> "
+            },
+            {
+              "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:23SecureElementCredential0C7SessionC",
+              "text": "CredentialSession"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://SecureElementCredential/documentation/SecureElementCredential/Accessing-and-Using-Secure-Element-Credentials"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To start a session, your app needs to be in the foreground. Your app also needs to have the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.developer.secure-element-credential",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement. If your app lacks this entitlement, calls to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " APIs raise ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/fatalError(_:file:line:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you also want to make your app eligible to be the system’s default contactless app, you need the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.developer.secure-element-credential.default-contactless-app",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement as well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method is asynchronous, which requires that you call it with the ",
+              "type": "text"
+            },
+            {
+              "code": "await",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keyword. When the system is ready to provide the session resource, the following events occur:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The person using the app receives a GDPR privacy information sheet.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The first time the app tries to access a credential session, the person using the app receives an alert to allow usage of the Secure Element. If they accept, the session proceeds normally. If they decline, the session invalidates and new sessions for this app fail immediately. To create a valid session, the person using the app needs to allow Secure Element access for the app in Settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sessions start in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/State-swift.enum/management",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state. An app can have only one active session at a time. When your app no longer needs the credential session, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/invalidate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If your app goes into the background, the system automatically invalidates your session after a short delay.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://SecureElementCredential/documentation/SecureElementCredential": {
+      "abstract": [
+        {
+          "text": "Allow access to credentials inside the Secure Element on device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SecureElementCredential",
+      "type": "topic",
+      "url": "/documentation/secureelementcredential"
+    },
+    "doc://SecureElementCredential/documentation/SecureElementCredential/Accessing-and-Using-Secure-Element-Credentials": {
+      "abstract": [
+        {
+          "text": "Manage and use payment cards and other credentials.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/Accessing-and-Using-Secure-Element-Credentials",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing and using secure element credentials",
+      "type": "topic",
+      "url": "/documentation/secureelementcredential/accessing-and-using-secure-element-credentials"
+    },
+    "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession": {
+      "abstract": [
+        {
+          "text": "A class for performing actions on a credential stored in the Secure Element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CredentialSession"
+        }
+      ],
+      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CredentialSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "CredentialSession",
+      "type": "topic",
+      "url": "/documentation/secureelementcredential/credentialsession"
+    },
+    "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/State-swift.enum/management": {
+      "abstract": [
+        {
+          "text": "The state for managing the credential session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "management"
+        }
+      ],
+      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/State-swift.enum/management",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CredentialSession.State.management",
+      "type": "topic",
+      "url": "/documentation/secureelementcredential/credentialsession/state-swift.enum/management"
+    },
+    "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/invalidate()": {
+      "abstract": [
+        {
+          "text": "Inmediately invalidates a session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidate"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/invalidate()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invalidate()",
+      "type": "topic",
+      "url": "/documentation/secureelementcredential/credentialsession/invalidate()"
+    },
+    "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/startSession()": {
+      "abstract": [
+        {
+          "text": "Requests a session to view, manage, or use credentials in the Secure Element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startSession"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:23SecureElementCredential0C7SessionC",
+          "text": "CredentialSession"
+        }
+      ],
+      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/startSession()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startSession()",
+      "type": "topic",
+      "url": "/documentation/secureelementcredential/credentialsession/startsession()"
+    },
+    "doc://com.apple.documentation/documentation/Swift/fatalError(_:file:line:)": {
+      "abstract": [
+        {
+          "text": "Unconditionally prints a given message and stops execution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fatalError"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "message"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " = String(), "
+        },
+        {
+          "kind": "externalParam",
+          "text": "file"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "keyword",
+          "text": "#file"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "line"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "keyword",
+          "text": "#line"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5NeverO",
+          "text": "Never"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/fatalError(_:file:line:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fatalError(_:file:line:)",
+      "type": "topic",
+      "url": "/documentation/Swift/fatalError(_:file:line:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-the-credential-session-life-cycle",
+      "generated": true,
+      "identifiers": [
+        "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/invalidate()"
+      ],
+      "title": "Managing the credential session life cycle"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/secureelementcredential/credentialsession/startsession()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

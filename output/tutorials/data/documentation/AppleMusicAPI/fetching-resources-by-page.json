@@ -1,0 +1,394 @@
+{
+  "abstract": [
+    {
+      "text": "Use pagination to fetch the next set of objects.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/fetching-resources-by-page"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Music API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Fetching Resources by Page"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some ",
+              "type": "text"
+            },
+            {
+              "code": "GET",
+              "type": "codeVoice"
+            },
+            {
+              "text": " requests support pagination of the objects or an object’s relationships and relationship views. Specify a ",
+              "type": "text"
+            },
+            {
+              "code": "limit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to restrict the number of resources returned. If you don’t supply a limit, the API supplies a default one. If you reach the limit to the number of resource objects in a response, the response contains a subset of the resource objects matching your criteria. In this case you must make more requests to get the rest of the objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See the corresponding resource’s object model for the default fetch limit. If there are more resource objects than permitted by the fetch limit, the response contains a ",
+              "type": "text"
+            },
+            {
+              "code": "next",
+              "type": "codeVoice"
+            },
+            {
+              "text": " member whose value is a subpath to use in the next request. The subpath contains the ",
+              "type": "text"
+            },
+            {
+              "code": "offset",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter that specifies the next page. Similarly, a ",
+              "type": "text"
+            },
+            {
+              "code": "Relationship",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object may contain a ",
+              "type": "text"
+            },
+            {
+              "code": "next",
+              "type": "codeVoice"
+            },
+            {
+              "text": " member that you can use to fetch more objects in a relationship.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, you may fetch all objects of a resource type, but specify the amount in the response by using the limit parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GET https://api.music.apple.com/v1/storefronts?limit=2"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If there are more objects to fetch, the response contains a ",
+              "type": "text"
+            },
+            {
+              "code": "next",
+              "type": "codeVoice"
+            },
+            {
+              "text": " member.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "   \"data\":[",
+            "      {",
+            "          \"attributes\":{",
+            "             \"defaultLanguageTag\":\"en-gb\",",
+            "             \"name\":\"Anguilla\",",
+            "             \"supportedLanguageTags\":[",
+            "             \"en-gb\"",
+            "             ]",
+            "          },",
+            "          \"href\":\"/v1/storefronts/ai\",",
+            "          \"id\":\"ai\",",
+            "          \"type\":\"storefronts\"",
+            "      },",
+            "      {",
+            "          \"attributes\":{",
+            "             \"defaultLanguageTag\":\"en-gb\",",
+            "             \"name\":\"Antigua and Barbuda\",",
+            "             \"supportedLanguageTags\":[",
+            "             \"en-gb\"",
+            "             ]",
+            "          },",
+            "          \"href\":\"/v1/storefronts/ag\",",
+            "          \"id\":\"ag\",",
+            "          \"type\":\"storefronts\"",
+            "      }",
+            "   ],",
+            "   \"next\":\"/v1/storefronts?offset=2\"",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pass the ",
+              "type": "text"
+            },
+            {
+              "code": "next",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subpath, and optionally, use the ",
+              "type": "text"
+            },
+            {
+              "code": "limit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter again, in the next request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GET https://api.music.apple.com/v1/storefronts?offset=2&limit=2"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Continue requesting the resource objects until the ",
+              "type": "text"
+            },
+            {
+              "code": "next",
+              "type": "codeVoice"
+            },
+            {
+              "text": " member no longer appears in the response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI": {
+      "abstract": [
+        {
+          "text": "Integrate streaming music with catalog and personal content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Music API",
+      "type": "topic",
+      "url": "/documentation/applemusicapi"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/common-objects": {
+      "abstract": [
+        {
+          "text": "Understand the common JSON objects that framework responses contain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/common-objects",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Common Objects",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/common-objects"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/generating-developer-tokens": {
+      "abstract": [
+        {
+          "text": "Generate a developer token needed to make requests to Apple Music API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/generating-developer-tokens",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating Developer Tokens",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/generating-developer-tokens"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses": {
+      "abstract": [
+        {
+          "text": "Write a request and handle responses from the API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Requests and Responses",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/handling-requests-and-responses"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-resource-representation-and-relationships": {
+      "abstract": [
+        {
+          "text": "Fetch resources with extended attributes and included relationships and relationship views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-resource-representation-and-relationships",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Resource Representation and Relationships",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/handling-resource-representation-and-relationships"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/managing-content-ratings-alternate-versions-and-equivalencies": {
+      "abstract": [
+        {
+          "text": "Handle multiple and alternate versions of content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/managing-content-ratings-alternate-versions-and-equivalencies",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Content Ratings, Alternate Versions, and Equivalencies",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/managing-content-ratings-alternate-versions-and-equivalencies"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/storefronts-and-localization": {
+      "abstract": [
+        {
+          "text": "Pick a region-specific geographic location from which to retrieve catalog information, or retrieve information from the user’s personal library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/storefronts-and-localization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Storefronts and Localization",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/storefronts-and-localization"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit": {
+      "abstract": [
+        {
+          "text": "Authenticate requests for user data using the Music User Token.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit",
+      "kind": "article",
+      "role": "article",
+      "title": "User Authentication for MusicKit",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/user-authentication-for-musickit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/generating-developer-tokens",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-resource-representation-and-relationships",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/storefronts-and-localization",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/common-objects",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/managing-content-ratings-alternate-versions-and-equivalencies"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemusicapi/fetching-resources-by-page"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,443 @@
+{
+  "abstract": [
+    {
+      "text": "Loads the Java virtual machine with specified parameters.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806733-nsjavasetup"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1806733,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "role": "pseudoSymbol",
+    "symbolKind": "func",
+    "title": "NSJavaSetup"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "id NSJavaSetup ("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   NSDictionary *plist"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Part of the Java-to-Objective-C bridge. You normally shouldn’t use it yourself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can pass ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the ",
+              "type": "text"
+            },
+            {
+              "code": "plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary, in which case the Java virtual machine will not be loaded, so you should probably just use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806737-nsjavasetupvirtualmachine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead. The ",
+              "type": "text"
+            },
+            {
+              "code": "plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary may contain the following key-value pairs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSJavaRoot",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "—An NSString indicating the root of the location where the  application’s classes are.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSJavaPath",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "—An NSArray of NSStrings, each string containing one component of a class path whose components will   be prepended by ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSJavaRoot",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " if they are not absolute locations.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSJavaUserPath",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "—An NSString indicating another segment of the class path so that    the application developer can customize where the class loader should search for classes. When searching for classes, this path is searched after  the application’s class path so that one cannot replace the classes used by the application.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSJavaLibraryPath",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "—An NSArray of NSStrings, each string containing one component of a path to search for dynamic shared libraries needed by Java wrappers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSJavaClasses",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "—An NSArray of NSStrings, each string containing the name of one class that the VM should load so that  their associated frameworks will be loaded.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Java Support",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime/java_support"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806670-nsjavabundlecleanup": {
+      "abstract": [
+        {
+          "text": "This function has been deprecated.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806670-nsjavabundlecleanup",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "NSJavaBundleCleanup",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime/java_support/1806670-nsjavabundlecleanup"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806677-nsjavabundlesetup": {
+      "abstract": [
+        {
+          "text": "This function has been deprecated.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806677-nsjavabundlesetup",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "NSJavaBundleSetup",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime/java_support/1806677-nsjavabundlesetup"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806687-nsjavaclassesforbundle": {
+      "abstract": [
+        {
+          "text": "Loads the Java classes located in the specified bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806687-nsjavaclassesforbundle",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "NSJavaClassesForBundle",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime/java_support/1806687-nsjavaclassesforbundle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806697-nsjavaclassesfrompath": {
+      "abstract": [
+        {
+          "text": "Loads the Java classes located at the specified path.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806697-nsjavaclassesfrompath",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "NSJavaClassesFromPath",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime/java_support/1806697-nsjavaclassesfrompath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806703-nsjavaneedstoloadclasses": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a virtual machine is needed or if Java classes are provided.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806703-nsjavaneedstoloadclasses",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "NSJavaNeedsToLoadClasses",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime/java_support/1806703-nsjavaneedstoloadclasses"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806712-nsjavaneedsvirtualmachine": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a Java virtual machine is required.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806712-nsjavaneedsvirtualmachine",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "NSJavaNeedsVirtualMachine",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime/java_support/1806712-nsjavaneedsvirtualmachine"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806720-nsjavaobjectnamedinpath": {
+      "abstract": [
+        {
+          "text": "Creates an instance of the named class using the class loader previously specified at the given path.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806720-nsjavaobjectnamedinpath",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "NSJavaObjectNamedInPath",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime/java_support/1806720-nsjavaobjectnamedinpath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806727-nsjavaprovidesclasses": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether Java classes are provided.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806727-nsjavaprovidesclasses",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "NSJavaProvidesClasses",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime/java_support/1806727-nsjavaprovidesclasses"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806733-nsjavasetup": {
+      "abstract": [
+        {
+          "text": "Loads the Java virtual machine with specified parameters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806733-nsjavasetup",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "NSJavaSetup",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime/java_support/1806733-nsjavasetup"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806737-nsjavasetupvirtualmachine": {
+      "abstract": [
+        {
+          "text": "Sets up the Java virtual machine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806737-nsjavasetupvirtualmachine",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "NSJavaSetupVirtualMachine",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime/java_support/1806737-nsjavasetupvirtualmachine"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806670-nsjavabundlecleanup",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806677-nsjavabundlesetup",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806687-nsjavaclassesforbundle",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806697-nsjavaclassesfrompath",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806703-nsjavaneedstoloadclasses",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806712-nsjavaneedsvirtualmachine",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806720-nsjavaobjectnamedinpath",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806727-nsjavaprovidesclasses",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime/java_support/1806737-nsjavasetupvirtualmachine"
+      ],
+      "title": "Java Setup Functions"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/object_runtime/java_support/1806733-nsjavasetup"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

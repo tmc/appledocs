@@ -1,0 +1,1142 @@
+{
+  "abstract": [
+    {
+      "text": "Make your app more responsive by examining the event-handling and rendering loop.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/understanding-user-interface-responsiveness"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Understanding user interface responsiveness"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Human perception is adept at identifying motion and linking cause to effect through sequential actions.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This is important for graphical user interfaces because they rely on making the user believe a certain interaction with a device causes a specific effect, and that the objects onscreen behave sufficiently realistically.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, a button needs to highlight when a person taps or clicks it, and when someone drags an object across the screen, it needs to follow the mouse or finger.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two ways this illusion can break down:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The time between user input and the screen update is too long, so the app’s UI doesn’t seem like it’s responding instantaneously anymore.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "A noticeable delay between user input and the corresponding screen update is called a ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "hang",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-hangs-in-your-app",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The motion onscreen isn’t fluid like it would be in the real world.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "An example is when the screen seems to get stuck and then jumps ahead during scrolling or during an animation.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "This is called a ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "hitch",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-hitches-in-your-app",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This article covers different types of user interactions and how the event-handling and rendering loop processes events to handle them.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This foundational knowledge helps you understand what causes hangs and hitches, how the two are similar, and what differentiates them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-different-types-of-interactions",
+          "level": 3,
+          "text": "Understand different types of interactions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "discrete",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " user interaction occurs when the user performs a single well-contained interaction and the screen then updates in response.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "An example is when somebody presses a key on the keyboard and the corresponding letter then appears onscreen.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Another example is pressing a button on a touchscreen.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, in that case, there are two discrete interactions.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "First, the finger presses down on the button and, in response, the button changes color or otherwise indicates it’s in a pressed state.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then, the finger lifts and, in response, the button changes back to its previous visual state to show it’s no longer pressed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "continuous",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " user interaction occurs when the user performs a longer series of movements or gestures, and the screen updates continuously throughout the interaction.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Examples of this include scrolling through a list, dragging an icon, and using a two-finger pinch gesture to zoom in or out on a map.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In general, humans are much more sensitive to delays in continuous interactions than delays in discrete interactions.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A small latency that isn’t noticeable for a discrete user interaction may become visible during a continuous user interaction, such as when a dragged icon doesn’t quite keep up with the user’s finger.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Humans are even more sensitive to nonfluid motion.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the example of dragging an icon, a delay of 50 milliseconds (ms) between the finger changing direction and the icon changing direction may be noticeable when looking for it. However, it isn’t obvious when the delay stays constant and the icon moves smoothly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the latency between a change in user interaction and the corresponding screen update is smaller, but inconsistent, the icon seems to sometimes get stuck for a moment and then jumps ahead.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This kind of jarring movement is far more noticeable than a slightly longer delay.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For this reason, Apple devices often optimize for smooth motion while accepting a slightly longer interaction latency, if necessary.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "There are times when both an extremely low interaction latency and fluid motion onscreen are crucial to making an interaction feel real.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "One example of this is drawing onscreen with Apple Pencil.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-the-event-handling-and-rendering-pipeline",
+          "level": 3,
+          "text": "Understand the event-handling and rendering pipeline",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a single user-input event, there are several steps in the event’s journey through the system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "understanding-user-interface-responsiveness-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As the diagram above illustrates, a user interaction propagates through the system as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The user interacts with an input device by performing a click, tap, or press.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "User clicks",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The hardware, such as a mouse, touchscreen, or keyboard, recognizes the input, and forwards it to the operating system (OS).",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Hardware",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The operating system determines which process is responsible for handling the user input event, which is usually the currently active app or the app that owns the window where the event occurs.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "OS event delivery",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The system puts the event in an app-specific queue, and it’s the responsibility of the main thread of the app to pick up the events and process them. The thread is called the ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "main thread",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " due to this responsibility, and because it’s also the only thread in your app that can modify the view hierarchy, which makes up your app’s UI. If a UI update is necessary, the app updates the view hierarchy, still on the main thread. The app also updates the layer tree (containment, position) and provides content for the individual layers to display. However, compositing the layers into a single bitmap image to display onscreen doesn’t happen inside the app.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Main thread work",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The render server is a separate process that handles all rendering of the various processes that need to draw to the screen. It composites the layer trees from the apps and the system processes into a final image.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Render server",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "When the final image representing the new frame is ready, the display driver uses it to update the display. The display driver checks at regular intervals to determine whether the screen needs updating. The time when a display update can start is known as the ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "vertical sync",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": ", or ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "vsync",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": ", and the time between two potential display updates is the ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "vsync interval",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": ", or the ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "display refresh interval",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Update display",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Differentiate-hangs-and-hitches",
+          "level": 3,
+          "text": "Differentiate hangs and hitches",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As mentioned above, a hang is a noticeable delay in a discrete user interaction, and it’s almost always the result of long-running work on the main thread.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Long-running work on the main thread can also cause hitches, but for hitches, the threshold is lower.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Discrete interaction delays only start becoming noticeable as hangs when the main thread is unresponsive for about 50 ms to 100 ms or longer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, a delay as small as the length of a single refresh interval — generally between 8 ms and 16 ms, depending on the refresh rate of the display — can cause a hitch.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Delays in the render server can also cause a hitch, but usually aren’t long enough to cause a hang.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a hang, only the delay between a user interaction and the corresponding screen update is relevant.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about hangs, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-hangs-in-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To avoid a hitch, which describes a failure in fluid motion, it’s only relevant to be able to update the screen with each screen refresh.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The delay between user input and screen update isn’t relevant for a hitch.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about hitches, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-hitches-in-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because of the much lower time thresholds for hitches, as well as the fact that an unresponsive main thread can also cause hitches, when the system detects a potential hang, the same system state might also cause a hitch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-when-the-system-reports-hitches-and-hangs",
+          "level": 3,
+          "text": "Understand when the system reports hitches and hangs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the system detects hitches by measuring the time between the start of a screen update event and the UI updating, it can only detect hitches when user interaction is happening or another trigger for screen updates exists.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When no such trigger exists, the display doesn’t need to update, so the frame can’t be late.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although a hang is also only noticeable by the user when they interact with their device, the system can detect the conditions leading to a hang by examining the behavior of the main run loop.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It measures extended periods of unresponsiveness of the main run loop, regardless of whether the user happens to be interacting with the app at the time.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In that sense, the system reports ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "potential hangs",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", conditions that would cause a hang if the user were to interact with the device during that time.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For hitches, the system only reports actual delays in screen updates.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It can’t detect device states that would potentially lead to a hitch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Fix-hangs-first",
+          "level": 3,
+          "text": "Fix hangs first",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Prioritize investigating and addressing hangs first because they’re easier to understand and usually easier to fix.",
+              "type": "text"
+            },
+            {
+              "text": "\n",
+              "type": "text"
+            },
+            {
+              "text": "And by fixing the hangs, you’re likely to fix major sources of hitches as well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When analyzing the hangs, do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Separate UI update work from non-UI tasks, such as loading updated data, and ensure the non-UI work runs on a background queue.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Look for hangs where the main thread is doing too much work.",
+                      "type": "text"
+                    },
+                    {
+                      "text": "\n",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Investigate whether you can do less work, like reloading only the data for the currently visible objects instead of every object in the list even if it isn’t onscreen.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After fixing any hangs, you can look at the hitches in your app, which requires understanding the work of the render server on the main thread, in addition to the work your app is doing there.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn about the various tools to detect hangs and hitches, and best practices to avoid them, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/improving-app-responsiveness",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/analyzing-responsiveness-issues-in-your-shipping-app": {
+      "abstract": [
+        {
+          "text": "Identify responsiveness issues your users encounter, and use the hang and hitch data in Xcode Organizer to determine which issues are most important to fix.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/analyzing-responsiveness-issues-in-your-shipping-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing responsiveness issues in your shipping app",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-responsiveness-issues-in-your-shipping-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-performance-issues-early": {
+      "abstract": [
+        {
+          "text": "Diagnose potential performance issues in your app during testing with the Thread Performance Checker tool in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-performance-issues-early",
+      "kind": "article",
+      "role": "article",
+      "title": "Diagnosing performance issues early",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-performance-issues-early"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/improving-app-responsiveness": {
+      "abstract": [
+        {
+          "text": "Create a user experience that feels responsive by removing hangs and hitches from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/improving-app-responsiveness",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving app responsiveness",
+      "type": "topic",
+      "url": "/documentation/xcode/improving-app-responsiveness"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics": {
+      "abstract": [
+        {
+          "text": "Measure, investigate, and address the use of system resources and issues impacting performance using Instruments and Xcode Organizer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Performance and metrics",
+      "type": "topic",
+      "url": "/documentation/xcode/performance-and-metrics"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reduce-terminations-in-your-app": {
+      "abstract": [
+        {
+          "text": "Minimize how frequently the system stops your app by addressing common termination reasons.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reduce-terminations-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing terminations in your app",
+      "type": "topic",
+      "url": "/documentation/xcode/reduce-terminations-in-your-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reducing-disk-writes": {
+      "abstract": [
+        {
+          "text": "Improve your app’s responsiveness by optimizing how it writes data to permanent storage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reducing-disk-writes",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing disk writes",
+      "type": "topic",
+      "url": "/documentation/xcode/reducing-disk-writes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-launch-time": {
+      "abstract": [
+        {
+          "text": "Create a more responsive experience with your app by minimizing time spent in startup.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-launch-time",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing your app’s launch time",
+      "type": "topic",
+      "url": "/documentation/xcode/reducing-your-app-s-launch-time"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/understanding-hangs-in-your-app": {
+      "abstract": [
+        {
+          "text": "Determine the cause for delays in user interactions by examining the main thread and the main run loop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-hangs-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding hangs in your app",
+      "type": "topic",
+      "url": "/documentation/xcode/understanding-hangs-in-your-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/understanding-hitches-in-your-app": {
+      "abstract": [
+        {
+          "text": "Determine the cause of interruptions in motion by examining the render loop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-hitches-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding hitches in your app",
+      "type": "topic",
+      "url": "/documentation/xcode/understanding-hitches-in-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "understanding-user-interface-responsiveness-1": {
+      "alt": "A timeline illustration with a horizontal bar labeled Your app that spans five columns. The first column has a label called vsync interval spanning it at the bottom. At the top left above the second column, a label called User clicks has an arrow pointing down to a square labeled Hardware. Below that and to the right above the horizontal bar is a rectangle labeled OS event delivery. Both rectangles are  in the second column. A dashed line separating the second and third column is labeled Begin time. In the third column, a rectangle labeled Main thread work sits on the horizontal bar. A horizontal line labeled Main thread busy appears at the bottom of the column aligned with the rectangle. A dashed line separating the third and fourth column is labeled Commit deadline. The fourth column contains a rectangle labeled Render server below the horizontal bar. The rectangle is left-aligned to the dashed line labeled Commit deadline, but not aligned with the right side of the column. A dashed line that separates the fourth and fifth column is labeled Presentation time. A horizontal line at the bottom labeled Frame lifetime spans the third and fourth columns starting at the dashed line labeled Begin time and ending at the dashed line labeled Presentation time. The fifth column contains a rectangle labeled Update display below the horizontal bar that is left-aligned in its column. A horizontal line at the bottom labeled Delay perceived by the user spans from the User clicks arrow on the left to the right side of the Update display rectangle.",
+      "identifier": "understanding-user-interface-responsiveness-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/009e1c22ef43c592903b51e0116b1a7d/understanding-user-interface-responsiveness-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b56ae2630f3d5a8550f12d456b027222/understanding-user-interface-responsiveness-1~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Responsiveness",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/analyzing-responsiveness-issues-in-your-shipping-app",
+        "doc://com.apple.Xcode/documentation/Xcode/improving-app-responsiveness",
+        "doc://com.apple.Xcode/documentation/Xcode/understanding-hangs-in-your-app",
+        "doc://com.apple.Xcode/documentation/Xcode/understanding-hitches-in-your-app",
+        "doc://com.apple.Xcode/documentation/Xcode/diagnosing-performance-issues-early",
+        "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-launch-time",
+        "doc://com.apple.Xcode/documentation/Xcode/reduce-terminations-in-your-app",
+        "doc://com.apple.Xcode/documentation/Xcode/reducing-disk-writes"
+      ],
+      "title": "Responsiveness"
+    }
+  ]
+}

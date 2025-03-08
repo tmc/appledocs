@@ -1,0 +1,1971 @@
+{
+  "abstract": [
+    {
+      "text": "Generate dynamic, interactive previews of your custom views.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View-fundamentals",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Previews-in-Xcode"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Previews in Xcode"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a custom ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with SwiftUI,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode can display a preview of the view’s content",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that stays up-to-date as you make changes to the view’s code.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You use one of the preview macros — like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Preview(_:body:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " —",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to tell Xcode what to display.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode shows the preview in a canvas beside your code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "previews-in-xcode-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Different preview macros enable different kinds of configuration.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, you can add traits that affect the preview’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "appearance using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Preview(_:traits:_:body:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or add custom viewpoints for the preview using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Preview(_:traits:body:cameras:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro. You can also check how",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your view behaves inside a specific scene type. For example, in visionOS",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Preview(_:immersionStyle:traits:body:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "preview your view inside an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ImmersiveSpace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You typically rely on preview macros to create previews in your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code. However, if you can’t get the behavior you need using a preview",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "macro, you can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PreviewProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol and its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "associated supporting types to define and configure a preview.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "View-Fundamentals-PageImage-card.png": {
+      "alt": "A conceptual illustration showing a view decomposed into different components.",
+      "identifier": "View-Fundamentals-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a9155d8ac081b19cb86c95247d8b043d/View-Fundamentals-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c29763670d863f869160a7df932dc4e1/View-Fundamentals-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ImmersiveSpace": {
+      "abstract": [
+        {
+          "text": "A scene that presents its content in an unbounded space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImmersiveSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ImmersiveSpace",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImmersiveSpace"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImmersiveSpace",
+      "type": "topic",
+      "url": "/documentation/swiftui/immersivespace"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/InterfaceOrientation": {
+      "abstract": [
+        {
+          "text": "The orientation of the interface from the user’s perspective.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "InterfaceOrientation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/InterfaceOrientation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InterfaceOrientation"
+        }
+      ],
+      "role": "symbol",
+      "title": "InterfaceOrientation",
+      "type": "topic",
+      "url": "/documentation/swiftui/interfaceorientation"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Preview(_:body:)": {
+      "abstract": [
+        {
+          "text": "Creates a preview of a SwiftUI view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Preview"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Preview(_:body:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Preview(_:body:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/preview(_:body:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Preview(_:immersionStyle:traits:body:)": {
+      "abstract": [
+        {
+          "text": "Creates a preview of a SwiftUI view in an immersive space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Preview"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Style"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "immersionStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Style"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "traits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport12PreviewTraitV",
+          "text": "PreviewTrait"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport7PreviewV",
+          "text": "Preview"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport7PreviewV10ViewTraitsO",
+          "text": "ViewTraits"
+        },
+        {
+          "kind": "text",
+          "text": ">..., "
+        },
+        {
+          "kind": "externalParam",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Preview(_:immersionStyle:traits:body:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Preview(_:immersionStyle:traits:body:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/preview(_:immersionstyle:traits:body:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Preview(_:immersionStyle:traits:body:cameras:)": {
+      "abstract": [
+        {
+          "text": "Creates a preview of a SwiftUI view in an immersive space with custom",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "viewpoints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Preview"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Style"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "immersionStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Style"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "traits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport12PreviewTraitV",
+          "text": "PreviewTrait"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport7PreviewV",
+          "text": "Preview"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport7PreviewV10ViewTraitsO",
+          "text": "ViewTraits"
+        },
+        {
+          "kind": "text",
+          "text": ">..., "
+        },
+        {
+          "kind": "externalParam",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "cameras"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport13PreviewCameraV",
+          "text": "PreviewCamera"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Preview(_:immersionStyle:traits:body:cameras:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Preview(_:immersionStyle:traits:body:cameras:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/preview(_:immersionstyle:traits:body:cameras:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Preview(_:traits:_:body:)": {
+      "abstract": [
+        {
+          "text": "Creates a preview of a SwiftUI view using the specified traits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Preview"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "traits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport12PreviewTraitV",
+          "text": "PreviewTrait"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport7PreviewV",
+          "text": "Preview"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport7PreviewV10ViewTraitsO",
+          "text": "ViewTraits"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport12PreviewTraitV",
+          "text": "PreviewTrait"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport7PreviewV",
+          "text": "Preview"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport7PreviewV10ViewTraitsO",
+          "text": "ViewTraits"
+        },
+        {
+          "kind": "text",
+          "text": ">..., "
+        },
+        {
+          "kind": "externalParam",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Preview(_:traits:_:body:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Preview(_:traits:_:body:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/preview(_:traits:_:body:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Preview(_:traits:body:cameras:)": {
+      "abstract": [
+        {
+          "text": "Creates a preview of a SwiftUI view using the specified traits and custom",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "viewpoints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Preview"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "traits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport12PreviewTraitV",
+          "text": "PreviewTrait"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport7PreviewV",
+          "text": "Preview"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport7PreviewV10ViewTraitsO",
+          "text": "ViewTraits"
+        },
+        {
+          "kind": "text",
+          "text": ">..., "
+        },
+        {
+          "kind": "externalParam",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "cameras"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport13PreviewCameraV",
+          "text": "PreviewCamera"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Preview(_:traits:body:cameras:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Preview(_:traits:body:cameras:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/preview(_:traits:body:cameras:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Preview(_:windowStyle:traits:body:)": {
+      "abstract": [
+        {
+          "text": "Creates a preview of a SwiftUI view in a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Preview"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Style"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "windowStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Style"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "traits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport12PreviewTraitV",
+          "text": "PreviewTrait"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport7PreviewV",
+          "text": "Preview"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport7PreviewV10ViewTraitsO",
+          "text": "ViewTraits"
+        },
+        {
+          "kind": "text",
+          "text": ">..., "
+        },
+        {
+          "kind": "externalParam",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Preview(_:windowStyle:traits:body:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Preview(_:windowStyle:traits:body:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/preview(_:windowstyle:traits:body:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Preview(_:windowStyle:traits:body:cameras:)": {
+      "abstract": [
+        {
+          "text": "Creates a preview of a SwiftUI view in a window with custom viewpoints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Preview"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Style"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "windowStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Style"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "traits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport12PreviewTraitV",
+          "text": "PreviewTrait"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport7PreviewV",
+          "text": "Preview"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport7PreviewV10ViewTraitsO",
+          "text": "ViewTraits"
+        },
+        {
+          "kind": "text",
+          "text": ">..., "
+        },
+        {
+          "kind": "externalParam",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "cameras"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport13PreviewCameraV",
+          "text": "PreviewCamera"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Preview(_:windowStyle:traits:body:cameras:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Preview(_:windowStyle:traits:body:cameras:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/preview(_:windowstyle:traits:body:cameras:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PreviewContext": {
+      "abstract": [
+        {
+          "text": "A context type for use with a preview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreviewContext"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PreviewContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreviewContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreviewContext",
+      "type": "topic",
+      "url": "/documentation/swiftui/previewcontext"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PreviewContextKey": {
+      "abstract": [
+        {
+          "text": "A key type for a preview context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreviewContextKey"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PreviewContextKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreviewContextKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreviewContextKey",
+      "type": "topic",
+      "url": "/documentation/swiftui/previewcontextkey"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PreviewDevice": {
+      "abstract": [
+        {
+          "text": "A simulator device that runs a preview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreviewDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PreviewDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreviewDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreviewDevice",
+      "type": "topic",
+      "url": "/documentation/swiftui/previewdevice"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PreviewModifier": {
+      "abstract": [
+        {
+          "text": "A type that defines an environment in which previews can appear.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreviewModifier"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PreviewModifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreviewModifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreviewModifier",
+      "type": "topic",
+      "url": "/documentation/swiftui/previewmodifier"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PreviewModifierContent": {
+      "abstract": [
+        {
+          "text": "The type-erased content of a preview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreviewModifierContent"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PreviewModifierContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreviewModifierContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreviewModifierContent",
+      "type": "topic",
+      "url": "/documentation/swiftui/previewmodifiercontent"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PreviewPlatform": {
+      "abstract": [
+        {
+          "text": "Platforms that can run the preview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreviewPlatform"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PreviewPlatform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreviewPlatform"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreviewPlatform",
+      "type": "topic",
+      "url": "/documentation/swiftui/previewplatform"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PreviewProvider": {
+      "abstract": [
+        {
+          "text": "A type that produces view previews in Xcode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreviewProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PreviewProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreviewProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreviewProvider",
+      "type": "topic",
+      "url": "/documentation/swiftui/previewprovider"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Previewable()": {
+      "abstract": [
+        {
+          "text": "Tag allowing a dynamic property to appear inline in a preview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Previewable"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Previewable()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Previewable()",
+      "type": "topic",
+      "url": "/documentation/swiftui/previewable()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/swiftui/view"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View-fundamentals": {
+      "abstract": [
+        {
+          "text": "Define the visual elements of your app using a hierarchy of views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-fundamentals",
+      "images": [
+        {
+          "identifier": "View-Fundamentals-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View fundamentals",
+      "type": "topic",
+      "url": "/documentation/swiftui/view-fundamentals"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/previewContext(_:)": {
+      "abstract": [
+        {
+          "text": "Declares a context for the preview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "previewContext"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/previewContext(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "previewContext(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/previewcontext(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/previewDevice(_:)": {
+      "abstract": [
+        {
+          "text": "Overrides the device for a preview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "previewDevice"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI13PreviewDeviceV",
+          "text": "PreviewDevice"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/previewDevice(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "previewDevice(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/previewdevice(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/previewDisplayName(_:)": {
+      "abstract": [
+        {
+          "text": "Sets a user visible name to show in the canvas for a preview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "previewDisplayName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/previewDisplayName(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "previewDisplayName(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/previewdisplayname(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/previewInterfaceOrientation(_:)": {
+      "abstract": [
+        {
+          "text": "Overrides the orientation of the preview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "previewInterfaceOrientation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20InterfaceOrientationV",
+          "text": "InterfaceOrientation"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/previewInterfaceOrientation(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "previewInterfaceOrientation(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/previewinterfaceorientation(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/previewLayout(_:)": {
+      "abstract": [
+        {
+          "text": "Overrides the size of the container for the preview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "previewLayout"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport13PreviewLayoutO",
+          "text": "PreviewLayout"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/previewLayout(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "previewLayout(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/previewlayout(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Xcode-library-customization": {
+      "abstract": [
+        {
+          "text": "Expose custom views and modifiers in the Xcode library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Xcode-library-customization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Xcode library customization",
+      "type": "topic",
+      "url": "/documentation/swiftui/xcode-library-customization"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/previewing-your-apps-interface-in-xcode": {
+      "abstract": [
+        {
+          "text": "Iterate designs quickly and preview your apps’ displays across different Apple devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/previewing-your-apps-interface-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Previewing your app’s interface in Xcode",
+      "type": "topic",
+      "url": "/documentation/Xcode/previewing-your-apps-interface-in-xcode"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "previews-in-xcode-hero": {
+      "alt": null,
+      "identifier": "previews-in-xcode-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5efb20dd844dbf1610ee3a4c833f809b/previews-in-xcode-hero@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Tool-support",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Xcode-library-customization"
+      ],
+      "title": "Tool support"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/Xcode/previewing-your-apps-interface-in-xcode"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Creating-a-preview",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Preview(_:body:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Preview(_:traits:_:body:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Preview(_:traits:body:cameras:)"
+      ],
+      "title": "Creating a preview"
+    },
+    {
+      "anchor": "Creating-a-preview-in-the-context-of-a-scene",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Preview(_:immersionStyle:traits:body:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Preview(_:immersionStyle:traits:body:cameras:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Preview(_:windowStyle:traits:body:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Preview(_:windowStyle:traits:body:cameras:)"
+      ],
+      "title": "Creating a preview in the context of a scene"
+    },
+    {
+      "anchor": "Defining-a-preview",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Previewable()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PreviewProvider",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PreviewPlatform",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/previewDisplayName(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PreviewModifier",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PreviewModifierContent"
+      ],
+      "title": "Defining a preview"
+    },
+    {
+      "anchor": "Customizing-a-preview",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/previewDevice(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PreviewDevice",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/previewLayout(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/previewInterfaceOrientation(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/InterfaceOrientation"
+      ],
+      "title": "Customizing a preview"
+    },
+    {
+      "anchor": "Setting-a-context",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/previewContext(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PreviewContext",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PreviewContextKey"
+      ],
+      "title": "Setting a context"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/previews-in-xcode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

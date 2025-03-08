@@ -1,0 +1,1525 @@
+{
+  "abstract": [
+    {
+      "text": "Create previews of files to use inside your app, or perform simple edits on previews.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.quicklook/documentation/QuickLook"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "QuickLook",
+    "modules": [
+      {
+        "name": "Quick Look"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "4.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "4.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.5",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Quick Look"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When showing files in your app, including the ability to quickly preview a file and its content can be helpful to your users. For example, you may want to allow users to zoom into a photo, play back an audio file, and so on. Use the Quick Look framework to show a preview of common file types in your app that allows basic interactions. Quick Look can generate previews for common file types, including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iWork and Microsoft Office documents",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Images",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Live Photos",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Text files",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "PDFs",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Audio and video files",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Augmented reality objects that use the USDZ file format (iOS and iPadOS only)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On iOS devices, the Quick Look framework provides functionality for performing simple edits on previews of common file types; for example, users can add markup to an image. To perform more advanced edits on files, provide advanced playback features, display a file’s content next to text, or add views on top of the preview, use lower-level APIs. For example, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to provide advanced video playback features.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can provide previews for your own data types by either rendering a view with your own view controller or by returning a supported preview format, such as PDF or HTML.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The list of supported common file types may change between operating system releases.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Providing-Quick-Look-previews-for-your-data-types",
+          "level": 3,
+          "text": "Providing Quick Look previews for your data types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide Quick Look previews for your own file types, create a Quick Look preview extension with either a view controller or data-based preview. In either case, add your supported content types to the ",
+              "type": "text"
+            },
+            {
+              "code": "QLSupportedContentTypes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file of the extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide a view controller-based preview extension, set up a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that conforms to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuickLookUI/QLPreviewingController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Prepare and display the view within the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuickLookUI/QLPreviewingController/preparePreviewOfFile(at:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. To learn about creating a view controller preview extension, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2018/237/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide a data-based preview extension, implement a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuickLookUI/QLPreviewProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to provide a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuickLookUI/QLPreviewReply",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " based on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuickLookUI/QLFilePreviewRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that the system provides.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer": {
+      "abstract": [
+        {
+          "text": "An object that provides the interface to control the player’s transport behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayer",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVPlayer"
+    },
+    "doc://com.apple.documentation/documentation/QuickLookUI/QLFilePreviewRequest": {
+      "abstract": [
+        {
+          "text": "A Quick Look preview request that indicates the content to preview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLFilePreviewRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuickLookUI/QLFilePreviewRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "QLFilePreviewRequest",
+      "type": "topic",
+      "url": "/documentation/QuickLookUI/QLFilePreviewRequest"
+    },
+    "doc://com.apple.documentation/documentation/QuickLookUI/QLPreviewItem": {
+      "abstract": [
+        {
+          "text": "A protocol that defines a set of properties you implement to make a preview of your application’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLPreviewItem"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuickLookUI/QLPreviewItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "QLPreviewItem",
+      "type": "topic",
+      "url": "/documentation/QuickLookUI/QLPreviewItem"
+    },
+    "doc://com.apple.documentation/documentation/QuickLookUI/QLPreviewProvider": {
+      "abstract": [
+        {
+          "text": "A class that you subclass to provide a data-based Quick Look preview extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLPreviewProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuickLookUI/QLPreviewProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "QLPreviewProvider",
+      "type": "topic",
+      "url": "/documentation/QuickLookUI/QLPreviewProvider"
+    },
+    "doc://com.apple.documentation/documentation/QuickLookUI/QLPreviewReply": {
+      "abstract": [
+        {
+          "text": "The class you create when providing a data-based Quick Look preview extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLPreviewReply"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuickLookUI/QLPreviewReply",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "QLPreviewReply",
+      "type": "topic",
+      "url": "/documentation/QuickLookUI/QLPreviewReply"
+    },
+    "doc://com.apple.documentation/documentation/QuickLookUI/QLPreviewReplyAttachment": {
+      "abstract": [
+        {
+          "text": "An attachment for a Quick Look preview reply that provides additional content for the system to display a preview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLPreviewReplyAttachment"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuickLookUI/QLPreviewReplyAttachment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "QLPreviewReplyAttachment",
+      "type": "topic",
+      "url": "/documentation/QuickLookUI/QLPreviewReplyAttachment"
+    },
+    "doc://com.apple.documentation/documentation/QuickLookUI/QLPreviewingController": {
+      "abstract": [
+        {
+          "text": "A protocol for implementing a custom controller to create previews of files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLPreviewingController"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuickLookUI/QLPreviewingController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "QLPreviewingController",
+      "type": "topic",
+      "url": "/documentation/QuickLookUI/QLPreviewingController"
+    },
+    "doc://com.apple.documentation/documentation/QuickLookUI/QLPreviewingController/preparePreviewOfFile(at:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Prepares the preview of a file at the specified file’s URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preparePreviewOfFile"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuickLookUI/QLPreviewingController/preparePreviewOfFile(at:completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preparePreviewOfFile(at:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/QuickLookUI/QLPreviewingController/preparePreviewOfFile(at:completionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController": {
+      "abstract": [
+        {
+          "text": "An object that manages a view hierarchy for your UIKit app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIViewController",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook": {
+      "abstract": [
+        {
+          "text": "Create previews of files to use inside your app, or perform simple edits on previews.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Quick Look",
+      "type": "topic",
+      "url": "/documentation/quicklook"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook/EditingMode": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EditingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook/EditingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EditingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "EditingMode",
+      "type": "topic",
+      "url": "/documentation/quicklook/editingmode"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook/PreviewApplication": {
+      "abstract": [
+        {
+          "text": "A class you use to configure and launch the platform Quick Look application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreviewApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook/PreviewApplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreviewApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreviewApplication",
+      "type": "topic",
+      "url": "/documentation/quicklook/previewapplication"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook/PreviewItem": {
+      "abstract": [
+        {
+          "text": "An item to preview in the preview application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreviewItem"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook/PreviewItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreviewItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreviewItem",
+      "type": "topic",
+      "url": "/documentation/quicklook/previewitem"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook/PreviewSession": {
+      "abstract": [
+        {
+          "text": "A structure with which you can control an existing session and receive events for the current preview application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreviewSession"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook/PreviewSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreviewSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreviewSession",
+      "type": "topic",
+      "url": "/documentation/quicklook/previewsession"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook/QLPreviewController": {
+      "abstract": [
+        {
+          "text": "A specialized view controller for previewing an item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLPreviewController"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook/QLPreviewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QLPreviewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "QLPreviewController",
+      "type": "topic",
+      "url": "/documentation/quicklook/qlpreviewcontroller"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook/QLPreviewSceneActivationConfiguration": {
+      "abstract": [
+        {
+          "text": "A scene configuration to preview items at the specified URLs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "QLPreviewSceneActivationConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook/QLPreviewSceneActivationConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QLPreviewSceneActivationConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "QLPreviewSceneActivationConfiguration",
+      "type": "topic",
+      "url": "/documentation/quicklook/qlpreviewsceneactivationconfiguration"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook/QL_STRONG_REF": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "QL_STRONG_REF"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook/QL_STRONG_REF",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "QL_STRONG_REF",
+      "type": "topic",
+      "url": "/documentation/quicklook/ql_strong_ref"
+    },
+    "doc://com.apple.quicklook/documentation/QuickLook/previews-or-thumbnail-images-for-macos-10-14-or-earlier": {
+      "abstract": [
+        {
+          "text": "Create thumbnail images or previews of common files and custom file types in earlier versions of macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quicklook/documentation/QuickLook/previews-or-thumbnail-images-for-macos-10-14-or-earlier",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Previews or thumbnail images for macOS 10.14 or earlier",
+      "type": "topic",
+      "url": "/documentation/quicklook/previews-or-thumbnail-images-for-macos-10-14-or-earlier"
+    },
+    "https://developer.apple.com/videos/play/wwdc2018/237/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2018/237/",
+      "title": "Quick Look Previews from the Ground Up",
+      "titleInlineContent": [
+        {
+          "text": "Quick Look Previews from the Ground Up",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2018/237/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Previews",
+      "identifiers": [
+        "doc://com.apple.quicklook/documentation/QuickLook/QLPreviewController",
+        "doc://com.apple.documentation/documentation/QuickLookUI/QLPreviewItem",
+        "doc://com.apple.quicklook/documentation/QuickLook/QLPreviewSceneActivationConfiguration",
+        "doc://com.apple.quicklook/documentation/QuickLook/previews-or-thumbnail-images-for-macos-10-14-or-earlier"
+      ],
+      "title": "Previews"
+    },
+    {
+      "anchor": "Preview-extensions",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/QuickLookUI/QLPreviewingController"
+      ],
+      "title": "Preview extensions"
+    },
+    {
+      "anchor": "Data-based-preview-extensions",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/QuickLookUI/QLPreviewProvider",
+        "doc://com.apple.documentation/documentation/QuickLookUI/QLFilePreviewRequest",
+        "doc://com.apple.documentation/documentation/QuickLookUI/QLPreviewReply",
+        "doc://com.apple.documentation/documentation/QuickLookUI/QLPreviewReplyAttachment"
+      ],
+      "title": "Data-based preview extensions"
+    },
+    {
+      "anchor": "Classes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.quicklook/documentation/QuickLook/PreviewApplication"
+      ],
+      "title": "Classes"
+    },
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.quicklook/documentation/QuickLook/PreviewItem",
+        "doc://com.apple.quicklook/documentation/QuickLook/PreviewSession"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.quicklook/documentation/QuickLook/EditingMode"
+      ],
+      "title": "Type Aliases"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Previews",
+              "identifiers": [
+                "doc://com.apple.quicklook/documentation/QuickLook/QLPreviewController",
+                "doc://com.apple.documentation/documentation/QuickLookUI/QLPreviewItem",
+                "doc://com.apple.quicklook/documentation/QuickLook/QLPreviewSceneActivationConfiguration",
+                "doc://com.apple.quicklook/documentation/QuickLook/previews-or-thumbnail-images-for-macos-10-14-or-earlier"
+              ],
+              "title": "Previews"
+            },
+            {
+              "anchor": "Preview-extensions",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/QuickLookUI/QLPreviewingController"
+              ],
+              "title": "Preview extensions"
+            },
+            {
+              "anchor": "Data-based-preview-extensions",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/QuickLookUI/QLPreviewProvider",
+                "doc://com.apple.documentation/documentation/QuickLookUI/QLFilePreviewRequest",
+                "doc://com.apple.documentation/documentation/QuickLookUI/QLPreviewReply",
+                "doc://com.apple.documentation/documentation/QuickLookUI/QLPreviewReplyAttachment"
+              ],
+              "title": "Data-based preview extensions"
+            },
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.quicklook/documentation/QuickLook/QL_STRONG_REF"
+              ],
+              "title": "Macros"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuickLookUI~1QLPreviewItem/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "QLPreviewItem"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuickLookUI~1QLPreviewingController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "QLPreviewingController"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVPlayer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuickLookUI~1QLPreviewReplyAttachment/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "QLPreviewReplyAttachment"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLPreviewSceneActivationConfiguration/title",
+          "value": "QLPreviewSceneActivationConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLPreviewSceneActivationConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLPreviewSceneActivationConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLPreviewSceneActivationConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLPreviewSceneActivationConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuickLookUI~1QLPreviewingController~1preparePreviewOfFile(at:completionHandler:)/title",
+          "value": "preparePreviewOfFileAtURL:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuickLookUI~1QLPreviewingController~1preparePreviewOfFile(at:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "preparePreviewOfFileAtURL:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURL",
+              "text": "NSURL"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "url"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": ""
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "handler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuickLookUI~1QLPreviewReply/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "QLPreviewReply"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLPreviewController/title",
+          "value": "QLPreviewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLPreviewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLPreviewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quicklook~1documentation~1QuickLook~1QLPreviewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "QLPreviewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIResponder",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuickLookUI~1QLFilePreviewRequest/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "QLFilePreviewRequest"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuickLookUI~1QLPreviewProvider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "QLPreviewProvider"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicklook"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/quicklook"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

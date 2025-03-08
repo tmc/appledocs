@@ -1,0 +1,1867 @@
+{
+  "abstract": [
+    {
+      "text": "A decoder that restores data from an archive referenced by keys.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/archives_and_serialization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1409317,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSKeyedUnarchiver",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSKeyedUnarchiver"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.2",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSKeyedUnarchiver"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSKeyedUnarchiver"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSCoder",
+              "text": "NSCoder"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is a concrete subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that defines methods for decoding a set of named objects (and scalar values) from a keyed archive. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class produces archives that this class can decode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The archiver creates keyed archive as a hierarchy of objects. The archiver treats each object as a namespace into which it can encode other objects. This means that an unarchiver can only decode objects encoded within the immediate scope of their parent object. Objects encoded elsewhere in the hierarchy — whether higher than, lower than, or parallel to this particular object — aren’t accessible. In this way, the keys used by a particular object to encode its instance variables need to be unique only within the scope of that object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you invoke one of the ",
+              "type": "text"
+            },
+            {
+              "code": "decode",
+              "type": "codeVoice"
+            },
+            {
+              "text": "-prefixed methods of this class using a key that does not exist in the archive, the return value indicates failure. This value varies by decoded type. For example, if a key does not exist in an archive, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1413260-decodebool",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1418107-decodeintforkey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1409082-decodeobject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " supports limited type coercion for numeric types. You can use any of the integer decode methods to decode a value encoded as any type of integer, whether a standard ",
+              "type": "text"
+            },
+            {
+              "code": "Int",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or an explicit 32-bit or 64-bit integer. Likewise, you can use the ",
+              "type": "text"
+            },
+            {
+              "code": "Float",
+              "type": "codeVoice"
+            },
+            {
+              "text": "- or ",
+              "type": "text"
+            },
+            {
+              "code": "Double",
+              "type": "codeVoice"
+            },
+            {
+              "text": "-returning decode methods to handle value encoded as a ",
+              "type": "text"
+            },
+            {
+              "code": "Float",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "Double",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If an encoded value is too large to fit within the coerced type, the decoding method throws a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsexceptionname/1413262-rangeexception",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Further, when trying to coerce a value to an incompatible type — for example decoding an ",
+              "type": "text"
+            },
+            {
+              "code": "Int",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as a ",
+              "type": "text"
+            },
+            {
+              "code": "Float",
+              "type": "codeVoice"
+            },
+            {
+              "text": " — the decoding method throws an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsexceptionname/1409872-invalidunarchiveoperationexcepti",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Archives and Serialization",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder": {
+      "abstract": [
+        {
+          "text": "An abstract class that serves as the basis for objects that enable archiving and distribution of other objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoder",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexceptionname/1409872-invalidunarchiveoperationexcepti": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexceptionname/1409872-invalidunarchiveoperationexcepti",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invalidUnarchiveOperationException",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexceptionname/1409872-invalidunarchiveoperationexcepti"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexceptionname/1413262-rangeexception": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexceptionname/1413262-rangeexception",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rangeException",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexceptionname/1413262-rangeexception"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver": {
+      "abstract": [
+        {
+          "text": "An encoder that stores an object’s data to an archive referenced by keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSKeyedArchiver"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSKeyedArchiver",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedarchiver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedarchiverdelegate": {
+      "abstract": [
+        {
+          "text": "The optional methods implemented by the delegate of a keyed archiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSKeyedArchiverDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedarchiverdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSKeyedArchiverDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedarchiverdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver": {
+      "abstract": [
+        {
+          "text": "A decoder that restores data from an archive referenced by keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSKeyedUnarchiver"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSKeyedUnarchiver",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1409082-decodeobject": {
+      "abstract": [
+        {
+          "text": "Decodes and returns an object associated with a given key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1409082-decodeobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeObject(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/1409082-decodeobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1409718-setclass": {
+      "abstract": [
+        {
+          "text": "Sets a global translation mapping to decode objects encoded with a given class name as instances of a given class instead.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setClass"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forClassName"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1409718-setclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setClass(_:forClassName:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/1409718-setclass"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1410824-requiressecurecoding": {
+      "abstract": [
+        {
+          "text": "Indicates whether the receiver requires all unarchived classes to conform to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "requiresSecureCoding"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1410824-requiressecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requiresSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/1410824-requiressecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1410862-init": {
+      "abstract": [
+        {
+          "text": "Initializes an archiver to decode data from the specified location.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forReadingWith"
+        },
+        {
+          "kind": "text",
+          "text": ": Data)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1410862-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(forReadingWith:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/1410862-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1412252-decodefloat": {
+      "abstract": [
+        {
+          "text": "Decodes a single-precision floating-point value associated with a given key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeFloat"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Float"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1412252-decodefloat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeFloat(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/1412252-decodefloat"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1412476-class": {
+      "abstract": [
+        {
+          "text": "Returns the class from which this unarchiver instantiates an encoded object with a given class name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "`class`"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forClassName"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> AnyClass?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1412476-class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class(forClassName:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/1412476-class"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1413260-decodebool": {
+      "abstract": [
+        {
+          "text": "Decodes a Boolean value associated with a given key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeBool"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1413260-decodebool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeBool(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/1413260-decodebool"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1413288-decodeint64": {
+      "abstract": [
+        {
+          "text": "Decodes a 64-bit integer value associated with a given key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeInt64"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Int64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1413288-decodeint64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeInt64(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/1413288-decodeint64"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1413564-containsvalue": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the archive contains a value for a given key within the current decoding scope.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "containsValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1413564-containsvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "containsValue(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/1413564-containsvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1413894-unarchiveobject": {
+      "abstract": [
+        {
+          "text": "Decodes and returns the object graph previously encoded by ",
+          "type": "text"
+        },
+        {
+          "code": "NSKeyedArchiver",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and stored in a given ",
+          "type": "text"
+        },
+        {
+          "code": "NSData",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "unarchiveObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": Data) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1413894-unarchiveobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unarchiveObject(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/1413894-unarchiveobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1414659-setclass": {
+      "abstract": [
+        {
+          "text": "Sets a translation mapping on this unarchiver to decode objects encoded with a given class name as instances of a given class instead.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setClass"
+        },
+        {
+          "kind": "text",
+          "text": "(AnyClass?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forClassName"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1414659-setclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setClass(_:forClassName:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/1414659-setclass"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1414963-decodedouble": {
+      "abstract": [
+        {
+          "text": "Decodes a double-precision floating-point value associated with a given key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeDouble"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1414963-decodedouble",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeDouble(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/1414963-decodedouble"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1415688-delegate": {
+      "abstract": [
+        {
+          "text": "The receiver’s delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any NSKeyedUnarchiverDelegate)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1415688-delegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/1415688-delegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1416327-decodeint32": {
+      "abstract": [
+        {
+          "text": "Decodes a 32-bit integer value associated with a given key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeInt32"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1416327-decodeint32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeInt32(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/1416327-decodeint32"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1416807-class": {
+      "abstract": [
+        {
+          "text": "Returns the class from which this unarchiver instantiates an encoded object with a given class name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "`class`"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forClassName"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> AnyClass?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1416807-class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class(forClassName:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/1416807-class"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1417153-unarchiveobject": {
+      "abstract": [
+        {
+          "text": "Decodes and returns the object graph previously encoded by ",
+          "type": "text"
+        },
+        {
+          "code": "NSKeyedArchiver",
+          "type": "codeVoice"
+        },
+        {
+          "text": " written to the file at a given path.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "unarchiveObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withFile"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1417153-unarchiveobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unarchiveObject(withFile:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/1417153-unarchiveobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1418091-decodebytes": {
+      "abstract": [
+        {
+          "text": "Decodes a stream of bytes associated with a given key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeBytes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "returnedLength"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutablePointer<Int>?) -> UnsafePointer<UInt8>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1418091-decodebytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeBytes(forKey:returnedLength:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/1418091-decodebytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1418107-decodeintforkey": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeInt(forKey:)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1418107-decodeintforkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeInt(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/1418107-decodeintforkey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1418233-finishdecoding": {
+      "abstract": [
+        {
+          "text": "Tells the receiver that you are finished decoding objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "finishDecoding"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1418233-finishdecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "finishDecoding()",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/1418233-finishdecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1643164-decodingfailurepolicy": {
+      "abstract": [
+        {
+          "text": "The action to take when this unarchiver fails to decode an entry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodingFailurePolicy"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder.DecodingFailurePolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1643164-decodingfailurepolicy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodingFailurePolicy",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/1643164-decodingfailurepolicy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/2919664-unarchivetoplevelobjectwithdata": {
+      "abstract": [
+        {
+          "text": "Decodes a previously-archived object graph, and returns the root object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "unarchiveTopLevelObjectWithData"
+        },
+        {
+          "kind": "text",
+          "text": "(Data) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/2919664-unarchivetoplevelobjectwithdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unarchiveTopLevelObjectWithData(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/2919664-unarchivetoplevelobjectwithdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/2924374-decodedecodable": {
+      "abstract": [
+        {
+          "text": "Decodes a decodable value associated with a given key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeDecodable"
+        },
+        {
+          "kind": "text",
+          "text": "<T>(T.Type, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> T?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/2924374-decodedecodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeDecodable(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/2924374-decodedecodable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/2924375-decodetopleveldecodable": {
+      "abstract": [
+        {
+          "text": "Decodes a top-level decodable value associated with a given key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeTopLevelDecodable"
+        },
+        {
+          "kind": "text",
+          "text": "<T>(T.Type, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> T?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/2924375-decodetopleveldecodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decodeTopLevelDecodable(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/2924375-decodetopleveldecodable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/2962882-init": {
+      "abstract": [
+        {
+          "text": "Initializes an archiver to decode data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/2962882-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/2962882-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/2962883-init": {
+      "abstract": [
+        {
+          "text": "Initializes an archiver to decode data from the specified location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forReadingFrom"
+        },
+        {
+          "kind": "text",
+          "text": ": Data)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/2962883-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(forReadingFrom:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/2962883-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/2962885-unarchivedobject": {
+      "abstract": [
+        {
+          "text": "Decodes a previously-archived object graph, returning the root object as one of the specified classes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "unarchivedObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "ofClasses"
+        },
+        {
+          "kind": "text",
+          "text": ": Set<AnyHashable>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": Data) -> Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/2962885-unarchivedobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unarchivedObject(ofClasses:from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/2962885-unarchivedobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/2963379-unarchivedobject": {
+      "abstract": [
+        {
+          "text": "Decodes a previously-archived object graph, returning the root object as one of the specified classes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "unarchivedObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "ofClasses"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyClass], "
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": Data) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/2963379-unarchivedobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unarchivedObject(ofClasses:from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/2963379-unarchivedobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/2983380-unarchivedobject": {
+      "abstract": [
+        {
+          "text": "Decodes a previously-archived object graph, and returns the root object as the specified type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "unarchivedObject"
+        },
+        {
+          "kind": "text",
+          "text": "<DecodedObjectType>("
+        },
+        {
+          "kind": "identifier",
+          "text": "ofClass"
+        },
+        {
+          "kind": "text",
+          "text": ": DecodedObjectType.Type, "
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": Data) -> DecodedObjectType?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/2983380-unarchivedobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unarchivedObject(ofClass:from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/2983380-unarchivedobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/3650107-unarchivedarrayofobjects": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "unarchivedArrayOfObjects"
+        },
+        {
+          "kind": "text",
+          "text": "<DecodedObject>("
+        },
+        {
+          "kind": "identifier",
+          "text": "ofClass"
+        },
+        {
+          "kind": "text",
+          "text": ": DecodedObject.Type, "
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": Data) -> [DecodedObject]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/3650107-unarchivedarrayofobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unarchivedArrayOfObjects(ofClass:from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/3650107-unarchivedarrayofobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/3650108-unarchivedarrayofobjects": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "unarchivedArrayOfObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "ofClasses"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyClass], "
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": Data) -> [Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/3650108-unarchivedarrayofobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unarchivedArrayOfObjects(ofClasses:from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/3650108-unarchivedarrayofobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/3650109-unarchiveddictionary": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "unarchivedDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "keysOfClasses"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyClass], "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectsOfClasses"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyClass], "
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": Data) -> [AnyHashable : Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/3650109-unarchiveddictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unarchivedDictionary(keysOfClasses:objectsOfClasses:from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/3650109-unarchiveddictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/3650110-unarchiveddictionary": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "unarchivedDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "<DecodedKey, DecodedObject>("
+        },
+        {
+          "kind": "identifier",
+          "text": "ofKeyClass"
+        },
+        {
+          "kind": "text",
+          "text": ": DecodedKey.Type, "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectClass"
+        },
+        {
+          "kind": "text",
+          "text": ": DecodedObject.Type, "
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": Data) -> [DecodedKey : DecodedObject]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/3650110-unarchiveddictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unarchivedDictionary(ofKeyClass:objectClass:from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/3650110-unarchiveddictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/keyed_unarchiving_exception_names": {
+      "abstract": [
+        {
+          "text": "Names of exceptions that are raised by ",
+          "type": "text"
+        },
+        {
+          "code": "NSKeyedUnarchiver",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if there is a problem extracting an archive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/keyed_unarchiving_exception_names",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keyed Unarchiving Exception Names",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver/keyed_unarchiving_exception_names"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiverdelegate": {
+      "abstract": [
+        {
+          "text": "The optional methods implemented by the delegate of a keyed unarchiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSKeyedUnarchiverDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiverdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSKeyedUnarchiverDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiverdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecureunarchivefromdatatransformer": {
+      "abstract": [
+        {
+          "text": "A value transformer that converts data to and from classes that support secure coding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureUnarchiveFromDataTransformer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecureunarchivefromdatatransformer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureUnarchiveFromDataTransformer",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecureunarchivefromdatatransformer"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscoder"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedarchiverdelegate",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiverdelegate",
+        "doc://com.apple.documentation/documentation/foundation/nscoder",
+        "doc://com.apple.documentation/documentation/foundation/nssecureunarchivefromdatatransformer"
+      ],
+      "title": "Keyed Archivers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1653977",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/2962883-init",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/2962882-init",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1410862-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Keyed Unarchiver"
+    },
+    {
+      "anchor": "1654002",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/2919664-unarchivetoplevelobjectwithdata",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/2983380-unarchivedobject",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/2962885-unarchivedobject",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/2963379-unarchivedobject",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1410824-requiressecurecoding",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1413894-unarchiveobject",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1417153-unarchiveobject"
+      ],
+      "kind": "taskGroup",
+      "title": "Unarchiving Data"
+    },
+    {
+      "anchor": "1654053",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1413564-containsvalue",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/2924374-decodedecodable",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/2924375-decodetopleveldecodable",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1413260-decodebool",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1418091-decodebytes",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1414963-decodedouble",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1412252-decodefloat",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1416327-decodeint32",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1413288-decodeint64",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1409082-decodeobject",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1418233-finishdecoding",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1643164-decodingfailurepolicy"
+      ],
+      "kind": "taskGroup",
+      "title": "Decoding Data"
+    },
+    {
+      "anchor": "1654135",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1415688-delegate"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing the Delegate"
+    },
+    {
+      "anchor": "1654159",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1409718-setclass",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1416807-class",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1414659-setclass",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/1412476-class"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing Class Names"
+    },
+    {
+      "anchor": "1681352",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/keyed_unarchiving_exception_names"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "3567544",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/3650107-unarchivedarrayofobjects",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/3650108-unarchivedarrayofobjects",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/3650109-unarchiveddictionary",
+        "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver/3650110-unarchiveddictionary"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nskeyedunarchiver"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nskeyedunarchiver"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

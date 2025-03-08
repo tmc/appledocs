@@ -1,0 +1,1325 @@
+{
+  "abstract": [
+    {
+      "text": "Create an entity that tracks and follows head movement in an immersive scene.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS",
+        "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/displaying-a-3D-object-that-moves-to-stay-in-a-person's-view"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "sample-head-tracking-1-main-view.png",
+        "type": "card"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Displaying an entity that follows a person’s view"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample uses world-tracking data from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in visionOS to create and display a 3D entity that dynamically moves in front of a person’s view. As the following video shows, the floating sphere’s position updates based on the person’s head movement, to ensure the object stays visible and smoothly follows their view:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "sample-head-tracking-2-main-view.mp4",
+          "type": "video"
+        },
+        {
+          "anchor": "Extend-the-floats-to-enable-calculations",
+          "level": 3,
+          "text": "Extend the floats to enable calculations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample adds functionality to existing class types by extending ",
+              "type": "text"
+            },
+            {
+              "code": "SIMD3<Float>",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "SIMD4<Float>",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "simd_float4x4",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import Foundation",
+            "import simd",
+            "import RealityKit",
+            "",
+            "/// The type alias to create a new name for `SIMD3<Float>`.",
+            "typealias Float3 = SIMD3<Float>",
+            "",
+            "/// The type alias to create a new name for `SIMD4<Float>`.",
+            "typealias Float4 = SIMD4<Float>",
+            "",
+            "/// The type alias to create a new name for `simd_float4x4`.",
+            "typealias Float4x4 = simd_float4x4"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To include these data types in the extension to their associated class, the sample associates each of the entry points using a ",
+              "type": "text"
+            },
+            {
+              "code": "typealias",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Float3",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension includes the following methods:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "init(_:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", to create a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Float3",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Float4",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "length()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", to calculate the total length of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Float3",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "normalized()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", to calculate the normalized vector of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Float3",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "import Foundation",
+            "import simd",
+            "import RealityKit",
+            "",
+            "typealias Float3 = SIMD3<Float>",
+            "",
+            "// ...",
+            "",
+            "extension Float3 {",
+            "    /// The initializer of a `Float3` from a `Float4`.",
+            "    init(_ float4: Float4) {",
+            "        self.init()",
+            "        ",
+            "        x = float4.x",
+            "        y = float4.y",
+            "        z = float4.z",
+            "    }",
+            "    ",
+            "    // Calculate the total length by taking the square root of the product of the provided float.",
+            "    func length() -> Float {",
+            "        sqrt(x * x + y * y + z * z)",
+            "    }",
+            "    ",
+            "    // Calculate the normalized vector of the float.",
+            "    func normalized() -> Float3 {",
+            "        self * 1 / length()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Float4",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension contains the ",
+              "type": "text"
+            },
+            {
+              "code": "toFloat3()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method that converts a ",
+              "type": "text"
+            },
+            {
+              "code": "Float4",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value to ",
+              "type": "text"
+            },
+            {
+              "code": "Float3",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import Foundation",
+            "import simd",
+            "import RealityKit",
+            "",
+            "typealias Float4 = SIMD4<Float>",
+            "",
+            "// ...",
+            "",
+            "extension Float4 {",
+            "    // Ignore the W value to convert a `Float4` into a `Float3`.",
+            "    func toFloat3() -> Float3 {",
+            "        Float3(self)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Float4x4",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension includes the following methods:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "translation()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", to get the transform information in the form of a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Float3",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "forward()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", to get the forward-facing vector",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "import Foundation",
+            "import simd",
+            "import RealityKit",
+            "",
+            "typealias Float4x4 = simd_float4x4",
+            "",
+            "// ...",
+            "",
+            "extension Float4x4 {",
+            "    // Identify the translation value from the `float4x4` and convert to a `Float3`.",
+            "    func translation() -> Float3 {",
+            "        columns.3.toFloat3()",
+            "    }",
+            "    ",
+            "    // Identify the forward-facing vector and return a `Float3`.",
+            "    func forward() -> Float3 {",
+            "        columns.2.toFloat3().normalized()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Update-the-entities-over-time",
+          "level": 3,
+          "text": "Update the entities over time",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample sets up a custom system and component to handle updates in real time:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "import RealityKit",
+            "",
+            "struct ClosureComponent: Component {",
+            "    /// The closure that takes the time interval since the last update.",
+            "    let closure: (TimeInterval) -> Void",
+            "",
+            "    init (closure: @escaping (TimeInterval) -> Void) {",
+            "        self.closure = closure",
+            "        ClosureSystem.registerSystem()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The component contains the ",
+              "type": "text"
+            },
+            {
+              "code": "closure",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable to track the time. On initialization, it registers ",
+              "type": "text"
+            },
+            {
+              "code": "ClosureSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " into the reality view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "ClosureSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " constructs a query using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/EntityQuery",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to retrieve all entities with the ",
+              "type": "text"
+            },
+            {
+              "code": "ClosureComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from the scene. Then it passes the delta time, which is the elapsed time since the last update, to the ",
+              "type": "text"
+            },
+            {
+              "code": "closure",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable for each entity:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "import RealityKit",
+            "",
+            "struct ClosureSystem: System {",
+            "    /// The query to check if the entity has the `ClosureComponent`.",
+            "    static let query = EntityQuery(where: .has(ClosureComponent.self))",
+            "    ",
+            "    init(scene: RealityKit.Scene) {}",
+            "    ",
+            "    /// Update entities with `ClosureComponent` at each render frame.",
+            "    func update(context: SceneUpdateContext) {",
+            "        for entity in context.entities(matching: Self.query, updatingSystemWhen: .rendering) {",
+            "            guard let comp = entity.components[ClosureComponent.self] else { continue }",
+            "            comp.closure(context.deltaTime)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Implement-head-tracking",
+          "level": 3,
+          "text": "Implement head tracking",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "visionOS supports ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/WorldTrackingProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from ARKit to get live data about a device’s position. World tracking requires an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/ARKitSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and a device that supports world tracking. The sample uses the ",
+              "type": "text"
+            },
+            {
+              "code": "HeadPositionTracker",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to initialize the ARKit session and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/WorldTrackingProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "import RealityKit",
+            "import ARKit",
+            "",
+            "class HeadPositionTracker: ObservableObject {",
+            "    /// The instance of the `ARKitSession` for world tracking.",
+            "    let arSession = ARKitSession()",
+            "",
+            "    /// The instance of a new `WorldTrackingProvider` for world tracking.",
+            "    let worldTracking = WorldTrackingProvider()",
+            "",
+            "    init() {",
+            "        Task {",
+            "            // Check whether the device supports world tracking.",
+            "            guard WorldTrackingProvider.isSupported else {",
+            "                print(\"WorldTrackingProvider is not supported on this device\")",
+            "                return",
+            "            }",
+            "            do {",
+            "                // Attempt to start an ARKit session with the world-tracking provider.",
+            "                try await arSession.run([worldTracking])",
+            "            } catch let error as ARKitSession.Error {",
+            "                // Handle any potential ARKit session errors.",
+            "                print(\"Encountered an error while running providers: \\(error.localizedDescription)\")",
+            "            } catch let error {",
+            "                // Handle any unexpected errors.    ",
+            "                print(\"Encountered an unexpected error: \\(error.localizedDescription)\")",
+            "            }",
+            "        }",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "HeadPositionTracker",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the ",
+              "type": "text"
+            },
+            {
+              "code": "originFromDeviceTransform()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to get the devices’s transform in real time:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func originFromDeviceTransform() -> simd_float4x4? {",
+            "    /// The anchor of the device at the current time.",
+            "    guard let deviceAnchor = worldTracking.queryDeviceAnchor(atTimestamp: CACurrentMediaTime()) else {",
+            "        return nil",
+            "    }",
+            "",
+            "    // Return the device's transform.",
+            "    return deviceAnchor.originFromAnchorTransform",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Display-the-sphere-that-follows-the-view",
+          "level": 3,
+          "text": "Display the sphere that follows the view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Device tracking is accessible within immersive spaces. The sample creates a custom view that uses a reality view to place a 3D sphere in front of the device’s forward direction at a set distance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Device-tracking data isn’t available in visionOS apps that only display a SwiftUI window view or a SwiftUI volumetric view.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "import RealityKit",
+            "",
+            "struct HeadPositionView: View {",
+            "    /// The tracker that contains the logic to handle real-time transformations from the device.",
+            "    @StateObject var headTracker = HeadPositionTracker()",
+            "",
+            "    var body: some View {",
+            "        RealityView(make: { content in",
+            "            /// The entity representation of the world origin.",
+            "            let root = Entity()",
+            "",
+            "            /// The size of the floating sphere.",
+            "            let radius: Float = 0.02",
+            "",
+            "            /// The material for the floating sphere.",
+            "            let material = SimpleMaterial(color: .cyan, isMetallic: false)",
+            "",
+            "            /// The sphere mesh entity.",
+            "            let floatingSphere = ModelEntity(",
+            "                mesh: .generateSphere(radius: radius),",
+            "                materials: [material]",
+            "            )",
+            "",
+            "            // Add the floating sphere to the root.",
+            "            root.addChild(floatingSphere)",
+            "",
+            "            // ...",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The view creates two entities: the ",
+              "type": "text"
+            },
+            {
+              "code": "root",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the ",
+              "type": "text"
+            },
+            {
+              "code": "floatingSphere",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The view sets the ",
+              "type": "text"
+            },
+            {
+              "code": "ClosureComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "code": "root",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", creates the ",
+              "type": "text"
+            },
+            {
+              "code": "currentTransform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to determine the headset’s current location, and calculates a smooth target position for the floating sphere in front of the device:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var body: some View {",
+            "    RealityView(make: { content in",
+            "        // ...",
+            "    ",
+            "        /// The distance that the content extends out from the device.",
+            "        let distance: Float = 1.0",
+            "",
+            "        root.components.set(ClosureComponent(closure: { deltaTime in",
+            "            /// The current position of the device.",
+            "            guard let currentTransform = headTracker.originFromDeviceTransform() else {",
+            "                return",
+            "            }",
+            "",
+            "            /// The target position in front of the device.",
+            "            let targetPosition = currentTransform.translation() - distance * currentTransform.forward()",
+            "",
+            "            /// The interpolation ratio for smooth movement.",
+            "            let ratio = Float(pow(0.96, deltaTime / (16 * 1E-3)))",
+            "",
+            "            /// The new position of the floating sphere.",
+            "            let newPosition = ratio * floatingSphere.position(relativeTo: nil) + (1 - ratio) * targetPosition",
+            "",
+            "            // Update the position of the floating sphere.",
+            "            floatingSphere.setPosition(newPosition, relativeTo: nil)",
+            "        }))",
+            "",
+            "        // Add the root entity to the `RealityView`.",
+            "        content.add(root)",
+            "    }, update: { _ in })",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "setPosition()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method moves the sphere to the new position over a set rate of time, applying a smoothing effect to the sphere.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "55e1c3199fc3/DisplayingA3DObjectThatMovesToStayInAPersonsView.zip": {
+      "checksum": "55e1c3199fc36c1c9f3f30f9bdd0d58c894f7fbfcb8244ea59d6eb5b8237902a2a02a17154429332ca34f17affea489e04b3c123f3e4ec62bd07937d919592b6",
+      "identifier": "55e1c3199fc3/DisplayingA3DObjectThatMovesToStayInAPersonsView.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/55e1c3199fc3/DisplayingA3DObjectThatMovesToStayInAPersonsView.zip"
+    },
+    "doc://com.apple.documentation/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/ARKit"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/ARKitSession": {
+      "abstract": [
+        {
+          "text": "The main entry point for receiving data from ARKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARKitSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/ARKitSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARKitSession",
+      "type": "topic",
+      "url": "/documentation/ARKit/ARKitSession"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/WorldTrackingProvider": {
+      "abstract": [
+        {
+          "text": "A source of live data about the device pose and anchors in a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WorldTrackingProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/WorldTrackingProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WorldTrackingProvider",
+      "type": "topic",
+      "url": "/documentation/ARKit/WorldTrackingProvider"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/EntityQuery": {
+      "abstract": [
+        {
+          "text": "An object that retrieves entities from a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/EntityQuery",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EntityQuery",
+      "type": "topic",
+      "url": "/documentation/RealityKit/EntityQuery"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/applying-mesh-to-real-world-surroundings": {
+      "abstract": [
+        {
+          "text": "Add a layer of mesh to objects in the real world, using scene reconstruction in ARKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/applying-mesh-to-real-world-surroundings",
+      "images": [
+        {
+          "identifier": "sample-scene-reconstruction-1-main-view.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Applying mesh to real-world surroundings",
+      "type": "topic",
+      "url": "/documentation/visionos/applying-mesh-to-real-world-surroundings"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/creating-a-painting-space-in-visionos": {
+      "abstract": [
+        {
+          "text": "Implement a painting canvas entity, and update its mesh to represent a stroke.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/creating-a-painting-space-in-visionos",
+      "images": [
+        {
+          "identifier": "sample-painting-1-main-view-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a 3D painting space",
+      "type": "topic",
+      "url": "/documentation/visionos/creating-a-painting-space-in-visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples": {
+      "abstract": [
+        {
+          "text": "Learn the fundamentals of building apps for visionOS with beginner-friendly sample code projects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples",
+      "images": [
+        {
+          "identifier": "introductory-visionOS-samples.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Introductory visionOS samples",
+      "type": "topic",
+      "url": "/documentation/visionos/introductory-visionos-samples"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/obscuring-virtual-items-in-a-scene-behind-real-world-items": {
+      "abstract": [
+        {
+          "text": "Increase the realism of an immersive experience by adding entities with invisible materials  real-world objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/obscuring-virtual-items-in-a-scene-behind-real-world-items",
+      "images": [
+        {
+          "identifier": "sample-worldocclusion-1-main-view-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Obscuring virtual items in a scene behind real-world items",
+      "type": "topic",
+      "url": "/documentation/visionos/obscuring-virtual-items-in-a-scene-behind-real-world-items"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/tracking-and-visualizing-hand-movement": {
+      "abstract": [
+        {
+          "text": "Use hand-tracking anchors to display a visual representation of hand transforms in visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/tracking-and-visualizing-hand-movement",
+      "images": [
+        {
+          "identifier": "sample-visualize-hand-tracking-in-visionos-with-arkit-poster.jpg",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Tracking and visualizing hand movement",
+      "type": "topic",
+      "url": "/documentation/visionos/tracking-and-visualizing-hand-movement"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "introductory-visionOS-samples.png": {
+      "alt": "A translucent window displaying five white, three-dimensional entities in a horizontal row. From left to right, the shapes are a box, a rounded box, a right sphere, a cone, and a cylinder that all top-align.",
+      "identifier": "introductory-visionOS-samples.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3d386622a70e5f41179e6a4c98a125c7/introductory-visionOS-samples@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/58fa94f103305452c567401d648dedc5/introductory-visionOS-samples~dark@2x.png"
+        }
+      ]
+    },
+    "sample-head-tracking-1-main-view.png": {
+      "alt": null,
+      "identifier": "sample-head-tracking-1-main-view.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/337cbec01d13e02d7ce87083e99aa238/sample-head-tracking-1-main-view.png"
+        }
+      ]
+    },
+    "sample-head-tracking-2-main-view.mp4": {
+      "alt": "A video of a visionOS app in Simulator, displaying a translucent window and a cyan sphere that moves to stay in view as the person moves their head.",
+      "identifier": "sample-head-tracking-2-main-view.mp4",
+      "poster": null,
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/09b5081ed53a677473d6b7bc0b57e783/sample-head-tracking-2-main-view.mp4"
+        }
+      ]
+    },
+    "sample-painting-1-main-view-card.png": {
+      "alt": "",
+      "identifier": "sample-painting-1-main-view-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5935efa03ec190fbbe60c69bd0cd017c/sample-painting-1-main-view-card.png"
+        }
+      ]
+    },
+    "sample-scene-reconstruction-1-main-view.png": {
+      "alt": "",
+      "identifier": "sample-scene-reconstruction-1-main-view.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ca107fadb52f294d3f7d41e02c6bd321/sample-scene-reconstruction-1-main-view.png"
+        }
+      ]
+    },
+    "sample-visualize-hand-tracking-in-visionos-with-arkit-poster.jpg": {
+      "alt": "A screenshot of a visionOS app with a translucent window with the label 'Hand Tracking Example', displaying two hands with spheres that appear affixed to each bone joint.",
+      "identifier": "sample-visualize-hand-tracking-in-visionos-with-arkit-poster.jpg",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/49cfdbaa10faf75abd68af3af7b9bbec/sample-visualize-hand-tracking-in-visionos-with-arkit-poster@2x.jpg"
+        }
+      ]
+    },
+    "sample-worldocclusion-1-main-view-card.png": {
+      "alt": "",
+      "identifier": "sample-worldocclusion-1-main-view-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4da9a072fd905e705906481890384b51/sample-worldocclusion-1-main-view-card.png"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "55e1c3199fc3/DisplayingA3DObjectThatMovesToStayInAPersonsView.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Integrating-ARKit",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/creating-a-painting-space-in-visionos",
+        "doc://com.apple.visionOS/documentation/visionOS/tracking-and-visualizing-hand-movement",
+        "doc://com.apple.visionOS/documentation/visionOS/applying-mesh-to-real-world-surroundings",
+        "doc://com.apple.visionOS/documentation/visionOS/obscuring-virtual-items-in-a-scene-behind-real-world-items"
+      ],
+      "title": "Integrating ARKit"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Integrating-ARKit",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.visionOS/documentation/visionOS/applying-mesh-to-real-world-surroundings"
+              ],
+              "title": "Integrating ARKit"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

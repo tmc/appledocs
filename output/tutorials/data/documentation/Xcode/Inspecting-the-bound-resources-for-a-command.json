@@ -1,0 +1,3915 @@
+{
+  "abstract": [
+    {
+      "text": "Discover issues by examining the bound resources at any point in an encoder.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Inspecting the bound resources for a command"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metal’s render and compute encoders allow you to set pipeline states, bind resources, specify parameters, and encode GPU commands.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Bound Resources viewer helps you determine the bound resources at any point in an encoder.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-brv-overview.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inspect-bound-resources",
+          "level": 3,
+          "text": "Inspect bound resources",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Bound Resources viewer displays the current set of bound resources in the encoder.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can double-click a resource row to further inspect that resource.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-brv-table-bound.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a render pass, the Bound Resources viewer groups the resources in the following sections:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Render Pipeline:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " The specified render pipeline state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Execute Indirect:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " The indirect command buffer (ICB) that the command executes from.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Vertex/Object/Mesh/Tile/Fragment Stage:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " The resources in the corresponding stage. In addition, it includes the shader function. For the vertex and the mesh stage, it also includes the index buffer and output geometry.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Attachments:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " The attachment textures.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Indirect:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " The used indirect resources and those from the same heap. To use a resource, call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLRenderCommandEncoder/useResource(_:usage:stages:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLRenderCommandEncoder/useHeap(_:stages:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a compute pass, the Bound Resources viewer groups the resources in the following sections:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Compute Pipeline:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " The specified compute pipeline state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Execute Indirect:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " The indirect command buffer (ICB) that the command executes from.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Compute:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " The resources in the compute pass.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Indirect:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " The used indirect resources and those from the same heap. To use a resource, call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder/useResource(_:usage:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder/useResources(_:usage:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder/useHeap(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder/useHeaps(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Bound Resources viewer includes the following information for all resource types:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Column",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Property",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Label",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLResource/label",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The label you set when creating the resource. Use this information to identify specific resources in your app. To learn how to name your resources, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Naming-resources-and-commands",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An attribute to identify the location of the argument in the shader: buffer, texture, sampler, or threadgroup buffer index.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allocated Size",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLResource/allocatedSize",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The actual allocated memory size for the resource.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Parameter Name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name of the variable in the shader that binds to the resource.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resource Usage",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An indicator of whether the shader can read from or write to the resource.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Access",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An indicator of whether the shader actually accesses the resource in the draw command or compute dispatch.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Insights",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Possible problems or optimizations that might improve resource usage.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Shader Stages",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The shader stages that use the resource (see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLRenderStages",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For textures, you can add the following columns:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Column",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Property",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pixel Format",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTexture/pixelFormat",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Metal pixel format you choose when creating the texture.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTexture/textureType",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The texture’s subtype.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Width",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTexture/width",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The width, in pixels, of the texture’s base mipmap.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Height",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTexture/height",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The height, in pixels, of the texture’s base mipmap.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Depth",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTexture/depth",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The depth, in pixels, of the texture’s base mipmap.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Slice",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLRenderPassAttachmentDescriptor/slice",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The slice of the texture for the render pass attachment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Level",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLRenderPassAttachmentDescriptor/level",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The mipmap level of the texture for the render pass attachment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Depth Plane",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLRenderPassAttachmentDescriptor/depthPlane",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The depth plane of the texture for the render pass attachment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Array Length",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTexture/arrayLength",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The number of slices in the texture array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Mipmap Count",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTexture/mipmapLevelCount",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The number of mipmap levels that the texture stores.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sample Count",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTexture/sampleCount",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The number of samples that each pixel stores.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Usage",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTexture/usage",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Flags that indicate the actions a shader or app can perform on the texture. The more restricted the list, the more optimizations Metal can apply to the texture.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For buffers, you can add the following columns:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Column",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Property",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Length",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLBuffer/length",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The logical length, in bytes, of the buffer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Offset",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The location where the data begins, in bytes, from the start of the buffer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For functions, you can add the Library column to show the library that the app uses to create the function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Improve-your-Metal-workload-with-Insights",
+          "level": 3,
+          "text": "Improve your Metal workload with Insights",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Click the Insights button in the bottom right corner to open a popover of recommendations for the bound resources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-brv-insights.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inspect-resources-that-the-shaders-access",
+          "level": 3,
+          "text": "Inspect resources that the shaders access",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The shaders don’t necessarily access every bound resource in a draw command or compute dispatch.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This is very common in bindless workflows where shaders access only a small set of resources from a large heap.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Bound Resources viewer provides a top-level filter for resources that the shaders actually access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To apply the filter, click the Accessed button above the table to view only the accessed resources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-brv-table-accessed.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Limit-your-scope-with-filters",
+          "level": 3,
+          "text": "Limit your scope with filters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the filter field at the bottom of the Bound Resources viewer to adjust the filtering criteria by typing filter terms into it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The table shows the related resources that match the filter terms.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also click the filter button to add filters for specific kinds of resources or for the used indirect resources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When there are two or more filter terms, you can click the filter button to choose whether to match any or all of the terms.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For any filter term, you can click it to choose to include or exclude resources that match the term.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-GPU-counters": {
+      "abstract": [
+        {
+          "text": "Identify issues within your frame capture by examining performance counters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-GPU-counters",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing draw command and compute dispatch performance with GPU counters",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-draw-command-and-compute-dispatch-performance-with-gpu-counters"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-pipeline-statistics": {
+      "abstract": [
+        {
+          "text": "Identify issues within your frame capture by examining pipeline statistics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-pipeline-statistics",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing draw command and compute dispatch performance with pipeline statistics",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-draw-command-and-compute-dispatch-performance-with-pipeline-statistics"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch": {
+      "abstract": [
+        {
+          "text": "Identify and fix problematic shaders in your app using the shader debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging the shaders within a draw command or compute dispatch",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging-the-shaders-within-a-draw-command-or-compute-dispatch"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-attachments-of-a-draw-command": {
+      "abstract": [
+        {
+          "text": "Discover attachment issues by inspecting individual pixels and samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-attachments-of-a-draw-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting the attachments of a draw command",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-the-attachments-of-a-draw-command"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-geometry-of-a-draw-command": {
+      "abstract": [
+        {
+          "text": "Find problems in your app’s vertex, object, or mesh function by examining the current geometry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-geometry-of-a-draw-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting the geometry of a draw command",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-the-geometry-of-a-draw-command"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger": {
+      "abstract": [
+        {
+          "text": "Debug and profile your Metal workload with a GPU trace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal debugger",
+      "type": "topic",
+      "url": "/documentation/xcode/metal-debugger"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Naming-resources-and-commands": {
+      "abstract": [
+        {
+          "text": "Enhance the debugging of your Metal app using labels and grouping.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Naming-resources-and-commands",
+      "kind": "article",
+      "role": "article",
+      "title": "Naming resources and commands",
+      "type": "topic",
+      "url": "/documentation/xcode/naming-resources-and-commands"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLBuffer/length": {
+      "abstract": [
+        {
+          "text": "The logical size of the buffer, in bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLBuffer/length",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "length",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLBuffer/length"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder/useHeap(_:)": {
+      "abstract": [
+        {
+          "text": "Ensures the shaders in the render pass’s subsequent draw commands have access to all of the resources you allocate from a heap.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useHeap"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "heap"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLHeap",
+          "text": "MTLHeap"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder/useHeap(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "useHeap(_:)",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLComputeCommandEncoder/useHeap(_:)"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder/useHeaps(_:)": {
+      "abstract": [
+        {
+          "text": "Ensures the shaders in the render pass’s subsequent draw commands have access to all of the resources you allocate from multiple heaps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useHeaps"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "heaps"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLHeap",
+          "text": "MTLHeap"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder/useHeaps(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "useHeaps(_:)",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLComputeCommandEncoder/useHeaps(_:)"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder/useResource(_:usage:)": {
+      "abstract": [
+        {
+          "text": "Ensures kernel calls that the system encodes in subsequent commands have access to a resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useResource"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "resource"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLResource",
+          "text": "MTLResource"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLResourceUsage",
+          "text": "MTLResourceUsage"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder/useResource(_:usage:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "useResource(_:usage:)",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLComputeCommandEncoder/useResource(_:usage:)"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder/useResources(_:usage:)": {
+      "abstract": [
+        {
+          "text": "Ensures kernel calls that the system encodes in subsequent commands have access to multiple resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useResources"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "resources"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLResource",
+          "text": "MTLResource"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLResourceUsage",
+          "text": "MTLResourceUsage"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder/useResources(_:usage:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "useResources(_:usage:)",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLComputeCommandEncoder/useResources(_:usage:)"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLRenderCommandEncoder/useHeap(_:stages:)": {
+      "abstract": [
+        {
+          "text": "Ensures the shaders in the render pass’s subsequent draw commands have access to the resources you allocate from a heap.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useHeap"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "heap"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLHeap",
+          "text": "MTLHeap"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stages"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLRenderStages",
+          "text": "MTLRenderStages"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLRenderCommandEncoder/useHeap(_:stages:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "useHeap(_:stages:)",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLRenderCommandEncoder/useHeap(_:stages:)"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLRenderCommandEncoder/useResource(_:usage:stages:)": {
+      "abstract": [
+        {
+          "text": "Ensures the shaders in the render pass’s subsequent draw commands have access to a resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useResource"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "resource"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLResource",
+          "text": "MTLResource"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLResourceUsage",
+          "text": "MTLResourceUsage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stages"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLRenderStages",
+          "text": "MTLRenderStages"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLRenderCommandEncoder/useResource(_:usage:stages:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "useResource(_:usage:stages:)",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLRenderCommandEncoder/useResource(_:usage:stages:)"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLRenderPassAttachmentDescriptor/depthPlane": {
+      "abstract": [
+        {
+          "text": "The depth plane of the texture used for rendering to the attachment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "depthPlane"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLRenderPassAttachmentDescriptor/depthPlane",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "depthPlane",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLRenderPassAttachmentDescriptor/depthPlane"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLRenderPassAttachmentDescriptor/level": {
+      "abstract": [
+        {
+          "text": "The mipmap level of the texture used for rendering to the attachment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "level"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLRenderPassAttachmentDescriptor/level",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "level",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLRenderPassAttachmentDescriptor/level"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLRenderPassAttachmentDescriptor/slice": {
+      "abstract": [
+        {
+          "text": "The slice of the texture used for rendering to the attachment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "slice"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLRenderPassAttachmentDescriptor/slice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "slice",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLRenderPassAttachmentDescriptor/slice"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLRenderStages": {
+      "abstract": [
+        {
+          "text": "The stages in a render pass that triggers a synchronization command.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderStages"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLRenderStages",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLRenderStages",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLRenderStages"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLResource/allocatedSize": {
+      "abstract": [
+        {
+          "text": "The size of the resource, in bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocatedSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLResource/allocatedSize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocatedSize",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLResource/allocatedSize"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLResource/label": {
+      "abstract": [
+        {
+          "text": "A string that identifies the resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "label"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLResource/label",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "label",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLResource/label"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLTexture/arrayLength": {
+      "abstract": [
+        {
+          "text": "The number of slices in the texture array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "arrayLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTexture/arrayLength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "arrayLength",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLTexture/arrayLength"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLTexture/depth": {
+      "abstract": [
+        {
+          "text": "The depth of the texture image for the base level mipmap, in pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "depth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTexture/depth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "depth",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLTexture/depth"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLTexture/height": {
+      "abstract": [
+        {
+          "text": "The height of the texture image for the base level mipmap, in pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTexture/height",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "height",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLTexture/height"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLTexture/mipmapLevelCount": {
+      "abstract": [
+        {
+          "text": "The number of mipmap levels in the texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mipmapLevelCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTexture/mipmapLevelCount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mipmapLevelCount",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLTexture/mipmapLevelCount"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLTexture/pixelFormat": {
+      "abstract": [
+        {
+          "text": "The format of pixels in the texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPixelFormat",
+          "text": "MTLPixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTexture/pixelFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pixelFormat",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLTexture/pixelFormat"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLTexture/sampleCount": {
+      "abstract": [
+        {
+          "text": "The number of samples in each pixel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sampleCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTexture/sampleCount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sampleCount",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLTexture/sampleCount"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLTexture/textureType": {
+      "abstract": [
+        {
+          "text": "The dimension and arrangement of the texture image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLTextureType",
+          "text": "MTLTextureType"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTexture/textureType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textureType",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLTexture/textureType"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLTexture/usage": {
+      "abstract": [
+        {
+          "text": "Options that determine how you can use the texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLTextureUsage",
+          "text": "MTLTextureUsage"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTexture/usage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "usage",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLTexture/usage"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLTexture/width": {
+      "abstract": [
+        {
+          "text": "The width of the texture image for the base level mipmap, in pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLTexture/width",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "width",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLTexture/width"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "gputools-metal-debugger-brv-insights.png": {
+      "alt": "A screenshot of the Insights popover showing two recommendations related to redundant buffer bindings.",
+      "identifier": "gputools-metal-debugger-brv-insights.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a4ac644c39a9f972dbdb6926c84dbc31/gputools-metal-debugger-brv-insights.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7e66ed5cba8048eaa3f349535d9ae96a/gputools-metal-debugger-brv-insights@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/89b22056571e36e7dc4ca81d429e5503/gputools-metal-debugger-brv-insights~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7768ba162cf7d8c32164f57fa2a50473/gputools-metal-debugger-brv-insights~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-brv-overview.png": {
+      "alt": "A screenshot of the Bound Resources viewer, listing the bound resources.",
+      "identifier": "gputools-metal-debugger-brv-overview.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/686488d89d7a3fbdd171af15542208ff/gputools-metal-debugger-brv-overview.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bd76301bd2465d45548820e9ecad9db0/gputools-metal-debugger-brv-overview@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9a1ada58017adf0d11f95058ff296492/gputools-metal-debugger-brv-overview~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/64a34336e20fee271044be4e74b3ff37/gputools-metal-debugger-brv-overview~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-brv-table-accessed.png": {
+      "alt": "A screenshot of the Bound Resources viewer highlighting the Accessed button.",
+      "identifier": "gputools-metal-debugger-brv-table-accessed.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8ac8226423fa88a85f9dd3c6270b7bea/gputools-metal-debugger-brv-table-accessed.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7263ad3152f14d3dc02403e3749f138e/gputools-metal-debugger-brv-table-accessed@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/df518d7c76b86bc5ac376f17531147d4/gputools-metal-debugger-brv-table-accessed~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f23deef20a6485acf1f78e26b976b7e6/gputools-metal-debugger-brv-table-accessed~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-brv-table-bound.png": {
+      "alt": "A screenshot of the table of bound resources for a draw command.",
+      "identifier": "gputools-metal-debugger-brv-table-bound.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3cdf46de5b0f2a478e7d2c9aeadd09d5/gputools-metal-debugger-brv-table-bound.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/914557cf4b19766e6162850ff6aca9ba/gputools-metal-debugger-brv-table-bound@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4ba7f5d3875791f042cf564d75e5b66b/gputools-metal-debugger-brv-table-bound~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4bc2826532acf73aec9f6fcfe255bdf0/gputools-metal-debugger-brv-table-bound~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Metal-command-analysis",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-geometry-of-a-draw-command",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-attachments-of-a-draw-command",
+        "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-GPU-counters",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-pipeline-statistics"
+      ],
+      "title": "Metal command analysis"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLRenderCommandEncoder~1useHeap(_:stages:)/title",
+          "value": "useHeap:stages:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLRenderCommandEncoder~1useHeap(_:stages:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "useHeap:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)MTLHeap",
+              "text": "id<MTLHeap>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "heap"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "stages:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@MTLRenderStages",
+              "text": "MTLRenderStages"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "stages"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLRenderStages/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLRenderStages"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLBuffer~1length/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "length"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLTexture~1height/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "height"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLRenderPassAttachmentDescriptor~1level/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "level"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLTexture~1width/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "width"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLRenderPassAttachmentDescriptor~1slice/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "slice"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLResource~1allocatedSize/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "allocatedSize"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLTexture~1textureType/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@MTLTextureType",
+              "text": "MTLTextureType"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureType"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLTexture~1depth/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "depth"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLRenderPassAttachmentDescriptor~1depthPlane/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "depthPlane"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLComputeCommandEncoder~1useResource(_:usage:)/title",
+          "value": "useResource:usage:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLComputeCommandEncoder~1useResource(_:usage:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "useResource:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)MTLResource",
+              "text": "id<MTLResource>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "resource"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "usage:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@MTLResourceUsage",
+              "text": "MTLResourceUsage"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "usage"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLTexture~1pixelFormat/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@MTLPixelFormat",
+              "text": "MTLPixelFormat"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "pixelFormat"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLResource~1label/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "atomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "label"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLTexture~1arrayLength/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "arrayLength"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLComputeCommandEncoder~1useHeap(_:)/title",
+          "value": "useHeap:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLComputeCommandEncoder~1useHeap(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "useHeap:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)MTLHeap",
+              "text": "id<MTLHeap>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "heap"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLTexture~1usage/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@MTLTextureUsage",
+              "text": "MTLTextureUsage"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "usage"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLRenderCommandEncoder~1useResource(_:usage:stages:)/title",
+          "value": "useResource:usage:stages:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLRenderCommandEncoder~1useResource(_:usage:stages:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "useResource:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)MTLResource",
+              "text": "id<MTLResource>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "resource"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "usage:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@MTLResourceUsage",
+              "text": "MTLResourceUsage"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "usage"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "stages:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@MTLRenderStages",
+              "text": "MTLRenderStages"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "stages"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLTexture~1mipmapLevelCount/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "mipmapLevelCount"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLTexture~1sampleCount/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "sampleCount"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

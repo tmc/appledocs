@@ -1,0 +1,930 @@
+{
+  "abstract": [
+    {
+      "text": "A sequence built around an iterator of type ",
+      "type": "text"
+    },
+    {
+      "code": "Base",
+      "type": "codeVoice"
+    },
+    {
+      "text": ".",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/IteratorSequence"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:s16IteratorSequenceV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "IteratorSequence"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "IteratorSequence"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "IteratorSequence"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@frozen"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IteratorSequence"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Base"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Base"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/IteratorProtocol",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:St",
+              "text": "IteratorProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Useful mostly to recover the ability to use ",
+              "type": "text"
+            },
+            {
+              "code": "for",
+              "type": "codeVoice"
+            },
+            {
+              "text": "…",
+              "type": "text"
+            },
+            {
+              "code": "in",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "given just an iterator ",
+              "type": "text"
+            },
+            {
+              "code": "i",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for x in IteratorSequence(i) { ... }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Copyable": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "IteratorProtocol",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Copyable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/swift/copyable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/EnumeratedIterator": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnumeratedIterator"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/EnumeratedIterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EnumeratedIterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "EnumeratedIterator",
+      "type": "topic",
+      "url": "/documentation/swift/enumeratediterator"
+    },
+    "doc://com.apple.Swift/documentation/Swift/IndexingIterator": {
+      "abstract": [
+        {
+          "text": "A type that iterates over a collection using its indices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IndexingIterator"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/IndexingIterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IndexingIterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "IndexingIterator",
+      "type": "topic",
+      "url": "/documentation/swift/indexingiterator"
+    },
+    "doc://com.apple.Swift/documentation/Swift/IteratorProtocol": {
+      "abstract": [
+        {
+          "text": "A type that supplies the values of a sequence one at a time.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "IteratorProtocol",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IteratorProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/IteratorProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IteratorProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "IteratorProtocol",
+      "type": "topic",
+      "url": "/documentation/swift/iteratorprotocol"
+    },
+    "doc://com.apple.Swift/documentation/Swift/IteratorSequence": {
+      "abstract": [
+        {
+          "text": "A sequence built around an iterator of type ",
+          "type": "text"
+        },
+        {
+          "code": "Base",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IteratorSequence"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/IteratorSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IteratorSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "IteratorSequence",
+      "type": "topic",
+      "url": "/documentation/swift/iteratorsequence"
+    },
+    "doc://com.apple.Swift/documentation/Swift/IteratorSequence/IteratorProtocol-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/IteratorSequence/IteratorProtocol-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IteratorProtocol Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/iteratorsequence/iteratorprotocol-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/IteratorSequence/Sequence-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/IteratorSequence/Sequence-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sequence Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/iteratorsequence/sequence-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/IteratorSequence/init(_:)": {
+      "abstract": [
+        {
+          "text": "Creates an instance whose iterator is a copy of ",
+          "type": "text"
+        },
+        {
+          "code": "base",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Base"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/IteratorSequence/init(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/iteratorsequence/init(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "IteratorProtocol",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Sendable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sequence": {
+      "abstract": [
+        {
+          "text": "A type that provides sequential, iterated access to its elements.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Base",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "IteratorProtocol",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sequence"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "Sequence",
+      "type": "topic",
+      "url": "/documentation/swift/sequence"
+    },
+    "doc://com.apple.Swift/documentation/Swift/SetIterator": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetIterator"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/SetIterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SetIterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "SetIterator",
+      "type": "topic",
+      "url": "/documentation/swift/setiterator"
+    },
+    "doc://com.apple.Swift/documentation/Swift/StrideThroughIterator": {
+      "abstract": [
+        {
+          "text": "An iterator for a ",
+          "type": "text"
+        },
+        {
+          "code": "StrideThrough",
+          "type": "codeVoice"
+        },
+        {
+          "text": " instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StrideThroughIterator"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/StrideThroughIterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StrideThroughIterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "StrideThroughIterator",
+      "type": "topic",
+      "url": "/documentation/swift/stridethroughiterator"
+    },
+    "doc://com.apple.Swift/documentation/Swift/StrideToIterator": {
+      "abstract": [
+        {
+          "text": "An iterator for a ",
+          "type": "text"
+        },
+        {
+          "code": "StrideTo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StrideToIterator"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/StrideToIterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StrideToIterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "StrideToIterator",
+      "type": "topic",
+      "url": "/documentation/swift/stridetoiterator"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Copyable",
+        "doc://com.apple.Swift/documentation/Swift/IteratorProtocol",
+        "doc://com.apple.Swift/documentation/Swift/Sendable",
+        "doc://com.apple.Swift/documentation/Swift/Sequence"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Indices-and-Iterators",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/IndexingIterator",
+        "doc://com.apple.Swift/documentation/Swift/EnumeratedIterator",
+        "doc://com.apple.Swift/documentation/Swift/SetIterator",
+        "doc://com.apple.Swift/documentation/Swift/StrideThroughIterator",
+        "doc://com.apple.Swift/documentation/Swift/StrideToIterator"
+      ],
+      "title": "Indices and Iterators"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/IteratorSequence/init(_:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/IteratorSequence/IteratorProtocol-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/IteratorSequence/Sequence-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/iteratorsequence"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,664 @@
+{
+  "abstract": [
+    {
+      "text": "Submit a payment request to the App Store when a customer selects a product to buy.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/requesting-a-payment-from-the-app-store"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Requesting a payment from the App Store"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you present your app’s store UI, users can make purchases from within your app. When the user chooses a product, your app creates and submits a payment request to the App Store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implementing an in-app purchase flow consists of three stages. In the first stage, your app retrieves product information. Then your app requests payment when the user selects a product in your app’s store. Finally, your app delivers the products.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3315895",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-payment-request",
+          "level": 3,
+          "text": "Create a payment request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user selects a product to buy, create a payment request using the corresponding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProduct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and set the quantity if needed, as the code below shows. The product object comes from the array of products that your app’s products request returns, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/fetching-product-information-from-the-app-store",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Use the corresponding SKProduct object that returns in the array from SKProductsRequest.",
+                    "let payment = SKMutablePayment(product: product)",
+                    "payment.quantity = 2"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "SKProduct *product = <# Product returned by a products request. #>;",
+                    "SKMutablePayment *payment = [SKMutablePayment paymentWithProduct:product];",
+                    "payment.quantity = 2;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Submit-a-payment-request",
+          "level": 3,
+          "text": "Submit a payment request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Submit your payment request to the App Store by adding it to the payment queue. If you add a payment object to the queue more than once, the system submits it to the App Store multiple times, charging the user and requiring your app to deliver the product each time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "SKPaymentQueue.default().add(payment)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "[[SKPaymentQueue defaultQueue] addPayment:payment];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each payment request your app submits, it receives a corresponding transaction to process. For more information about transactions and the payment queue, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/processing-a-transaction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For auto-renewable subscriptions, you may submit a payment request with a subscription offer for users you determine eligible to receive an offer. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/implementing-promotional-offers-in-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment": {
+      "abstract": [
+        {
+          "text": "A mutable request to the App Store to process payment for additional functionality that your app offers.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKMutablePayment"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKMutablePayment"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKMutablePayment",
+      "type": "topic",
+      "url": "/documentation/storekit/skmutablepayment"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPayment": {
+      "abstract": [
+        {
+          "text": "A request to the App Store to process payment for additional functionality that your app offers.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPayment"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPayment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPayment"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPayment",
+      "type": "topic",
+      "url": "/documentation/storekit/skpayment"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransaction": {
+      "abstract": [
+        {
+          "text": "An object in the payment queue.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPaymentTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPaymentTransaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPaymentTransaction",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymenttransaction"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKProduct": {
+      "abstract": [
+        {
+          "text": "Information about a registered product in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKProduct"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProduct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKProduct"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKProduct",
+      "type": "topic",
+      "url": "/documentation/storekit/skproduct"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/fetching-product-information-from-the-app-store": {
+      "abstract": [
+        {
+          "text": "Retrieve up-to-date information about the products for sale in your app to display to your customers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/fetching-product-information-from-the-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "Fetching product information from the App Store",
+      "type": "topic",
+      "url": "/documentation/storekit/fetching-product-information-from-the-app-store"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/implementing-promotional-offers-in-your-app": {
+      "abstract": [
+        {
+          "text": "Offer discounted pricing for auto-renewable subscription products to eligible subscribers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/implementing-promotional-offers-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing promotional offers in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/implementing-promotional-offers-in-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer additional content and services in your app using the Original In-App Purchase API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original API for In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/original-api-for-in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/processing-a-transaction": {
+      "abstract": [
+        {
+          "text": "Register a transaction queue observer to get and handle transaction updates from the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/processing-a-transaction",
+      "kind": "article",
+      "role": "article",
+      "title": "Processing a transaction",
+      "type": "topic",
+      "url": "/documentation/storekit/processing-a-transaction"
+    },
+    "media-3315895": {
+      "alt": "A flowchart depicting the three stages of the in-app purchase process between your app and the App Store. First, your app makes a request for a product, the App Store provides that product information, and your app displays it. Next, the user selects a product, your app makes a payment request, and the App Store processes the payment. Finally, the App Store calls your app’s transaction queue observer, and your app delivers the purchased product. The second stage, requesting payment, is highlighted.",
+      "identifier": "media-3315895",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ea0d3011f324be7c4824026f6efbf13b/media-3315895@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d2b46bc7ef2f4db605539b1046e02e95/media-3315895~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Purchases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/processing-a-transaction",
+        "doc://com.apple.storekit/documentation/StoreKit/SKPayment",
+        "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment",
+        "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransaction"
+      ],
+      "title": "Purchases"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Purchases",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/processing-a-transaction",
+                "doc://com.apple.storekit/documentation/StoreKit/SKPayment",
+                "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment",
+                "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransaction"
+              ],
+              "title": "Purchases"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPayment/title",
+          "value": "SKPayment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPayment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPayment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPayment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPayment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransaction/title",
+          "value": "SKPaymentTransaction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransaction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentTransaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransaction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentTransaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKMutablePayment/title",
+          "value": "SKMutablePayment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKMutablePayment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKMutablePayment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKMutablePayment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKMutablePayment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProduct/title",
+          "value": "SKProduct"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProduct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKProduct"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProduct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKProduct"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/requesting-a-payment-from-the-app-store"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/requesting-a-payment-from-the-app-store"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

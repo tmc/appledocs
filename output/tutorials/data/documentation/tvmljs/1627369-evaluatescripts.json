@@ -1,0 +1,354 @@
+{
+  "abstract": [
+    {
+      "text": "Verifies and executes TVMLKit JS files.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/tvmljs",
+        "doc://com.apple.documentation/documentation/tvmljs/tvmlkit_js_functions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/tvmljs/1627369-evaluatescripts"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1627369,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "func/evaluateScripts",
+    "modules": [
+      {
+        "name": "TVMLKit JS"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "evaluateScripts"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "tvOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "evaluateScripts"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "    "
+            },
+            {
+              "kind": "keyword",
+              "text": "in"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Array"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "scripts"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "    "
+            },
+            {
+              "kind": "keyword",
+              "text": "in"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Function"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "callback"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "data"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of URLs pointing to TVMLKit JS files.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "scripts"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A function that is executed after attempting to open the TVMLKit JS files. A boolean argument is passed into the function that signals whether all scripts loaded successfully.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "callback"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method first verifies that the locations contained in the ",
+              "type": "text"
+            },
+            {
+              "code": "scripts",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter contain TVMLKit JS files. The code in the files is then executed. The callback function contains a boolean argument that signals whether the TVMLKit JS files loaded successfully. Use this method to keep the size of your initial TVMLKit JS file small, while being able to incorporate other TVMLKit JS files. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/tvmljs/1627369-evaluatescripts#1943541",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " shows an example incorporating this method into your app. The example creates an array containing the location of the ResourceLoader and Presenter TVMLKit JS files. On a successful load, the ",
+              "type": "text"
+            },
+            {
+              "code": "success",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is set to ",
+              "type": "text"
+            },
+            {
+              "code": "TRUE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the app continues. Otherwise, an alert is presented onscreen stating that an error occurred.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "App.onLaunch = function(options) {",
+            "    var javascriptFiles = [",
+            "        `${options.BASEURL}js/ResourceLoader.js`,",
+            "        `${options.BASEURL}js/Presenter.js`",
+            "    ];",
+            " ",
+            "    evaluateScripts(javascriptFiles, function(success) {",
+            "        if (success) {",
+            "            resourceLoader = new ResourceLoader(options.BASEURL);",
+            " ",
+            "            var index = resourceLoader.loadResource(`${options.BASEURL}templates/Index.xml.js`,",
+            "                function(resource) {",
+            "                    var doc = Presenter.makeDocument(resource);",
+            "                    doc.addEventListener(\"select\", Presenter.load.bind(Presenter));",
+            "                    navigationDocument.pushDocument(doc);",
+            "                });",
+            "        } else {",
+            " ",
+            "            var alert = createAlert(\"Evaluate Scripts Error\", \"There was an error attempting to evaluate the external JavaScript files.\\n\\n Please check your network connection and try again later.\");",
+            "            navigationDocument.presentModal(alert);",
+            " ",
+            "            throw (\"Playback Example: unable to evaluate scripts.\");",
+            "        }",
+            "    });",
+            "}"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "evaluateScripts example",
+                "type": "text"
+              }
+            ],
+            "anchor": "1943541",
+            "title": "Listing 1"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs": {
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TVMLKit JS",
+      "type": "topic",
+      "url": "/documentation/tvmljs"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/1627369-evaluatescripts": {
+      "abstract": [
+        {
+          "text": "Verifies and executes TVMLKit JS files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/1627369-evaluatescripts",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "evaluateScripts",
+      "type": "topic",
+      "url": "/documentation/tvmljs/1627369-evaluatescripts"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/1627369-evaluatescripts#1943541": {
+      "abstract": [
+        {
+          "text": "evaluateScripts example",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/1627369-evaluatescripts#1943541",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/tvmljs/1627369-evaluatescripts#1943541"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/tvmlkit_js_functions": {
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/tvmlkit_js_functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "TVMLKit JS Functions",
+      "type": "topic",
+      "url": "/documentation/tvmljs/tvmlkit_js_functions"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/tvmljs/1627369-evaluatescripts"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

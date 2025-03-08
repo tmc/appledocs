@@ -1,0 +1,1043 @@
+{
+  "abstract": [
+    {
+      "text": "Validate whether your code causes expected events to happen.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://org.swift.testing/documentation/Testing",
+        "doc://org.swift.testing/documentation/Testing/Expectations"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://org.swift.testing/documentation/Testing/testing-asynchronous-code"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Swift Testing"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Testing asynchronous code"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The testing library integrates with Swift concurrency, meaning that in many",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "situations you can test asynchronous code using standard Swift",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "features.  Mark your test function as ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and, in the function",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "body, ",
+              "type": "text"
+            },
+            {
+              "code": "await",
+              "type": "codeVoice"
+            },
+            {
+              "text": " any asynchronous interactions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Test func priceLookupYieldsExpectedValue() async {",
+            "  let mozarellaPrice = await unitPrice(for: .mozarella)",
+            "  #expect(mozarellaPrice == 3)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In more complex situations you can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/Confirmation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to discover whether an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "expected event happens.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Confirm-that-an-event-happens",
+          "level": 3,
+          "text": "Confirm that an event happens",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/confirmation(_:expectedCount:isolation:sourceLocation:_:)-5mqz2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "asynchronous test function to create a ",
+              "type": "text"
+            },
+            {
+              "code": "Confirmation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the expected event. In",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the trailing closure parameter, call the code under test. Swift Testing passes a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "Confirmation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the parameter to the closure, which you call as a function in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the event handler for the code under test when the event you’re testing for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "occurs:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Test(\"OrderCalculator successfully calculates subtotal for no pizzas\")",
+            "func subtotalForNoPizzas() async {",
+            "  let calculator = OrderCalculator()",
+            "  await confirmation() { confirmation in",
+            "    calculator.successHandler = { _ in confirmation() }",
+            "    _ = await calculator.subtotal(for: PizzaToppings(bases: []))",
+            "  }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you expect the event to happen more than once, set the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "expectedCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to the number of expected occurrences. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "test passes if the number of occurrences during the test matches the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "expected count, and fails otherwise.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also pass a range to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/confirmation(_:expectedCount:isolation:sourceLocation:_:)-l3il",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "if the exact number of times the event occurs may change over time or is random:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Test(\"Customers bought sandwiches\")",
+            "func boughtSandwiches() async {",
+            "  await confirmation(expectedCount: 0 ..< 1000) { boughtSandwich in",
+            "    var foodTruck = FoodTruck()",
+            "    foodTruck.orderHandler = { order in",
+            "      if order.contains(.sandwich) {",
+            "        boughtSandwich()",
+            "      }",
+            "    }",
+            "    await FoodTruck.operate()",
+            "  }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, there may be zero customers or up to (but not including) 1,000",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "customers who order sandwiches. Any ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/swift/rangeexpression",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which includes an explicit lower bound can be used:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Range Expression",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Usage",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1...",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If an event must occur ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "at least",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " once",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "5...",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If an event must occur ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "at least",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " five times",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1 ... 5",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If an event must occur at least once, but not more than five times",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0 ..< 100",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If an event may or may not occur, but ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "must not",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " occur more than 99 times",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Confirm-that-an-event-doesnt-happen",
+          "level": 3,
+          "text": "Confirm that an event doesn’t happen",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To validate that a particular event doesn’t occur during a test,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "create a ",
+              "type": "text"
+            },
+            {
+              "code": "Confirmation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with an expected count of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Test func orderCalculatorEncountersNoErrors() async {",
+            "  let calculator = OrderCalculator()",
+            "  await confirmation(expectedCount: 0) { confirmation in",
+            "    calculator.errorHandler = { _ in confirmation() }",
+            "    calculator.subtotal(for: PizzaToppings(bases: []))",
+            "  }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://org.swift.testing/documentation/Testing": {
+      "abstract": [
+        {
+          "text": "Create and run tests for your Swift packages and Xcode projects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift Testing",
+      "type": "topic",
+      "url": "/documentation/testing"
+    },
+    "doc://org.swift.testing/documentation/Testing/Confirmation": {
+      "abstract": [
+        {
+          "text": "A type that can be used to confirm that an event occurs zero or more times.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Confirmation"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Confirmation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Confirmation"
+        }
+      ],
+      "role": "symbol",
+      "title": "Confirmation",
+      "type": "topic",
+      "url": "/documentation/testing/confirmation"
+    },
+    "doc://org.swift.testing/documentation/Testing/Expectations": {
+      "abstract": [
+        {
+          "text": "Check for expected values, outcomes, and asynchronous events in tests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Expectations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Expectations and confirmations",
+      "type": "topic",
+      "url": "/documentation/testing/expectations"
+    },
+    "doc://org.swift.testing/documentation/Testing/confirmation(_:expectedCount:isolation:sourceLocation:_:)-5mqz2": {
+      "abstract": [
+        {
+          "text": "Confirm that some event occurs during the invocation of a function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "confirmation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "expectedCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isolation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "isolated"
+        },
+        {
+          "kind": "text",
+          "text": " (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScA",
+          "text": "Actor"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing14SourceLocationV",
+          "text": "SourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing12ConfirmationV",
+          "text": "Confirmation"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "sending "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/confirmation(_:expectedCount:isolation:sourceLocation:_:)-5mqz2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "confirmation(_:expectedCount:isolation:sourceLocation:_:)",
+      "type": "topic",
+      "url": "/documentation/testing/confirmation(_:expectedcount:isolation:sourcelocation:_:)-5mqz2"
+    },
+    "doc://org.swift.testing/documentation/Testing/confirmation(_:expectedCount:isolation:sourceLocation:_:)-l3il": {
+      "abstract": [
+        {
+          "text": "Confirm that some event occurs during the invocation of a function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "confirmation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "expectedCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SX",
+          "text": "RangeExpression"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "> & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST",
+          "text": "Sequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isolation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "isolated"
+        },
+        {
+          "kind": "text",
+          "text": " (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScA",
+          "text": "Actor"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing14SourceLocationV",
+          "text": "SourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ", ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing12ConfirmationV",
+          "text": "Confirmation"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "sending "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/confirmation(_:expectedCount:isolation:sourceLocation:_:)-l3il",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "confirmation(_:expectedCount:isolation:sourceLocation:_:)",
+      "type": "topic",
+      "url": "/documentation/testing/confirmation(_:expectedcount:isolation:sourcelocation:_:)-l3il"
+    },
+    "https://developer.apple.com/documentation/swift/rangeexpression": {
+      "identifier": "https://developer.apple.com/documentation/swift/rangeexpression",
+      "title": "range expression",
+      "titleInlineContent": [
+        {
+          "text": "range expression",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/swift/rangeexpression"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Confirming-that-asynchronous-events-occur",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.testing/documentation/Testing/confirmation(_:expectedCount:isolation:sourceLocation:_:)-5mqz2",
+        "doc://org.swift.testing/documentation/Testing/confirmation(_:expectedCount:isolation:sourceLocation:_:)-l3il",
+        "doc://org.swift.testing/documentation/Testing/Confirmation"
+      ],
+      "title": "Confirming that asynchronous events occur"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/testing/testing-asynchronous-code"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

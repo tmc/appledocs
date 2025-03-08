@@ -1,0 +1,1852 @@
+{
+  "abstract": [
+    {
+      "text": "Control the appearance of your rendering by using the color gamut API.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/managing-color-space-and-gamut-in-plug-ins"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Managing color space and gamut in plug-ins"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Motion and Final Cut Pro use a color-managed pipeline for rendering. They keep track of the color spaces the source clips define, and convert images and colors from one color space to another as necessary in order to preserve their intended appearance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the host app calls your FxPlug plug-in to render, the host app passes input images and colors that the host app already converted to the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "working color space",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". The plug-in’s desired color space, which the plug-in controls, and the gamut that Motion and Final Cut Pro use, which the user controls, uniquely determine the working color space. You usually don’t need to convert from one color space to another. (The only exceptions are plug-ins that do specialized processing in specific color spaces.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-color-values-and-color-spaces",
+          "level": 3,
+          "text": "Understand color values and color spaces",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Both a color’s component values and its defining color space determine its appearance. For example, the RGB values (",
+              "type": "text"
+            },
+            {
+              "code": "0.5, 0.5, 0.5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") appear as middle gray in the sRGB color space, but in the Rec. 709 color space, the same values appear as a slightly brighter gray. To display the same middle gray in Rec. 709, the plug-in must change the color values so that the sRGB color (",
+              "type": "text"
+            },
+            {
+              "code": "0.5, 0.5, 0.5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") appears to the eye as the same shade of gray as Rec. 709 (",
+              "type": "text"
+            },
+            {
+              "code": "0.45, 0.45, 0.45",
+              "type": "codeVoice"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3655264",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The fact that both the component values and the color space control the color appearance can have some surprising implications. For example, in general, two colors with identical components appear differently to the eye if those two colors use different color spaces. Similarly, two colors that appear the same have different color components if those two colors use different color spaces.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a color channel using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterCreationAPI_v5",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the host app assumes that default RGB values you supply are to be in the sRGB color space. The host app also uses the sRGB color space when the inspector displays color component values. However, when ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterRetrievalAPI_v7",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " gets the color components, it converts sRGB values to the working color space. For example, if the color channel shows the components (",
+              "type": "text"
+            },
+            {
+              "code": "0.2, 0.4, 0.6",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") and the working color space is linear Rec. 709, your plug-in receives (",
+              "type": "text"
+            },
+            {
+              "code": "0.033, 0.133, 0.3189",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") as the value of the color. These converted color components are correct; both color values display as the same identical dark blue color.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxParameterFlag_DONT_REMAP_COLORS",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " parameter flag on a color channel is an exception to this rule because it states that the channel isn’t logically a color and the host must not treat it as belonging to a color space. Instead, the host treats such a color channel as a simple triple of floating-point values, and the host app delivers these values to your plug-in without any conversion.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Set-the-desired-color-space",
+          "level": 3,
+          "text": "Set the desired color space",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your plug-in can tell Motion and Final Cut Pro whether you prefer the working color space to be a gamma-corrected color space or a linear color space. Whether your plug-in requires gamma-corrected or linear pixels is the plug-in’s ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "desired color space",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your plug-in specifies the desired color space by setting the value of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxPropertyKey_DesiredProcessingColorInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key in its properties dictionary to either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxImageColorInfo_RGB_GAMMA_VIDEO",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxImageColorInfo_RGB_LINEAR",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If your plug-in doesn’t set the value of this key, the default is ",
+              "type": "text"
+            },
+            {
+              "code": "kFxImageColorInfo_RGB_LINEAR",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-the-color-gamut-in-use-for-the-working-color-space",
+          "level": 3,
+          "text": "Determine the color gamut in use for the working color space",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All color spaces have a range of colors that the color space defines, called the color space’s ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "gamut",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". This gamut usually corresponds to color components that are in the range ",
+              "type": "text"
+            },
+            {
+              "code": "[0, 1]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (some color spaces support ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "extended range",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", where components can be less than ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or greater than ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). When a color has components that are outside of the range for a color space, the color is ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "out of gamut",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Motion and Final Cut Pro allow out of gamut colors in their rendering pipelines. So your plug-in may receive images or colors with components that are less than ",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or greater than ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". For example, if the working color space is the Rec. 709 color space, and your input image is from a wide gamut clip and contains pixels outside the Rec. 709 gamut, your plug-in receives colors that have components that are either less than ",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or greater than ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Additionally, the host apps explicitly allows users to create colors with components outside the ",
+                  "type": "text"
+                },
+                {
+                  "code": "[0, 1]",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " range in the inspector.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Display devices also have a gamut. In the past, television, computer, and phone displays commonly had a gamut similar to the Rec. 709 color gamut. Now, however, many devices can display a wider range of colors, which allows the colors to have a brighter or more saturated appearance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get the ",
+              "type": "text"
+            },
+            {
+              "code": "FxColorPrimaries",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value for the project that uses your plug-in, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxColorGamutAPI_v2/colorPrimaries()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of the ",
+              "type": "text"
+            },
+            {
+              "code": "FxColorGamutAPI",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let colorApi = _apiManager!.api(for: FxColorGamutAPI.self) as! FxColorGamutAPI",
+                    "let isHDR : Bool = colorApi.colorPrimaries() == UInt(kFxColorPrimaries_Rec2020)",
+                    "",
+                    "if isHDR {",
+                    "   // ...",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "id<FxColorGamutAPI> colorApi = [_apiManager apiForProtocol: @protocol(FxColorGamutAPI)];",
+                    "BOOL isHDR = ([colorApi colorPrimaries] == kFxColorPrimaries_Rec2020);",
+                    "if (isHDR)",
+                    "{",
+                    "   // ...",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "FxColorPrimaries",
+              "type": "codeVoice"
+            },
+            {
+              "text": " enumerated type defines the two choices of color gamut:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Standard Rec. 709 gamut.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxColorPrimaries_Rec709",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Rec. 2020 Wide Gamut HDR.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxColorPrimaries_Rec2020",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These values correspond to the color processing settings in Motion or Final Cut Pro. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/en-ca/guide/motion/motnb8712fa5/mac",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/final-cut-pro/use-wide-gamut-hdr-color-processing-ver1cd9629a5",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3655257",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-the-working-color-space",
+          "level": 3,
+          "text": "Determine the working color space",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Between the plug-in’s desired color space and the gamut the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxColorGamutAPI_v2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol returns to your plug-in, you can determine what the actual working color space is when the host app calls your plug-in. This table describes the working color space for each combination of desired color space and color gamut value. The rows of this table are desired color space values, while the columns are gamut values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxColorPrimaries_Rec709",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxColorPrimaries_Rec2020",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxImageColorInfo_RGB_LINEAR",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The linear Rec. 709 color space",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The linear Rec. 2020 color space",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxImageColorInfo_RGB_GAMMA_VIDEO",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Rec. 709 color space",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Rec. 2020 color space",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the host app calls your plug-in to render, Motion and Final Cut Pro provide input images in the working color space. If you retrieve the values of color parameters, the host app provides the values in the working color space (unless your color parameter uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxParameterFlag_DONT_REMAP_COLORS",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", in which case, the host app retrieves the components without conversion). Similarly, Motion and Final Cut Pro assume that the output image your plug-in renders is in the working color space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As mentioned earlier, your plug-in must be able to accept colors outside the ",
+              "type": "text"
+            },
+            {
+              "code": "[0, 1]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " range. Values above ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " generally behave in an intuitive way: the higher the value, the brighter the color. Thus, (",
+              "type": "text"
+            },
+            {
+              "code": "1.5, 0, 0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") is a brighter red than (",
+              "type": "text"
+            },
+            {
+              "code": "1, 0, 0",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). However, negative values don’t correspond to dimmer colors, as one might expect; instead, they correspond to higher saturation. For example, (",
+              "type": "text"
+            },
+            {
+              "code": "1, 1, 0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") is a fully (in-gamut) saturated yellow. But (",
+              "type": "text"
+            },
+            {
+              "code": "1, 1, -0.2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") is an even more saturated yellow that is out of gamut for the color space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Negative color components can produce unexpected results in certain calculations. For example, the host app computes luminance as a weighted sum of the RGB components. If one or more of the components is negative, it artificially skews the luminance lower and can lead to unexpected rendering results. Nontrivial blending operations can also produce surprising results with component values outside of ",
+              "type": "text"
+            },
+            {
+              "code": "[0, 1]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must determine the best way for your plug-in to deal with such values. Simple options include clamping or taking the absolute value of the components; more sophisticated methods try to map out-of-gamut colors to in-gamut colors. The best solution depends on what your plug-in does and what results your users expect. There is no universally correct answer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Convert-pixels-between-RGB-and-YCbCr",
+          "level": 3,
+          "text": "Convert pixels between RGB and YCbCr",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxColorGamutAPI_v2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " has two methods for obtaining matrices to convert pixels between RGB and YCbCr color spaces. Plug-ins commonly convert pixels between RGB and YCbCr color spaces using a single matrix multiply of the pixel and the desired conversion matrix. These two methods retrieve the appropriate matrices:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func colorMatrixFromDesiredRGBToYCbCr() -> FxMatrix44!",
+                    "func colorMatrixFromYCbCrToDesiredRGB() -> FxMatrix44!"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (FxMatrix44*)colorMatrixFromDesiredRGBToYCbCr;",
+                    "- (FxMatrix44*)colorMatrixFromYCbCrToDesiredRGB;"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the matrix that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxColorGamutAPI_v2/colorMatrixFromDesiredRGBToYCbCr()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns to convert from RGB pixels the host provides to your plug-in in the working space to the equivalent YCbCr pixels. Conversely, you can use the matrix that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxColorGamutAPI_v2/colorMatrixFromYCbCrToDesiredRGB()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns to convert YCbCr pixels back to the RGB working color space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to convert from RGB to luminance only, you can use the matrix the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxColorGamutAPI_v2/colorMatrixFromDesiredRGBToYCbCr()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method returns. Computing the dot product of the first row of the matrix with the RGB color obtains the luminance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug": {
+      "abstract": [
+        {
+          "text": "Create custom effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/fxplug",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FxPlug",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/fxplug"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxColorGamutAPI_v2": {
+      "abstract": [
+        {
+          "text": "A protocol that handles plug-in queries to the host for the project’s color gamut.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxColorGamutAPI_v2"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxColorGamutAPI_v2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxColorGamutAPI_v2"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxColorGamutAPI_v2",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxcolorgamutapi_v2"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxColorGamutAPI_v2/colorMatrixFromDesiredRGBToYCbCr()": {
+      "abstract": [
+        {
+          "text": "Returns a color matrix that is appropriate for converting RGB values in the project’s working gamut into YCbCr values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorMatrixFromDesiredRGBToYCbCr"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FxMatrix44",
+          "text": "FxMatrix44"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxColorGamutAPI_v2/colorMatrixFromDesiredRGBToYCbCr()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "colorMatrixFromDesiredRGBToYCbCr"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "colorMatrixFromDesiredRGBToYCbCr()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxcolorgamutapi_v2/colormatrixfromdesiredrgbtoycbcr()"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxColorGamutAPI_v2/colorMatrixFromYCbCrToDesiredRGB()": {
+      "abstract": [
+        {
+          "text": "Returns a color matrix that is appropriate for converting RGB values from YCbCr to an RGB value in the project’s working gamut.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorMatrixFromYCbCrToDesiredRGB"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)FxMatrix44",
+          "text": "FxMatrix44"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxColorGamutAPI_v2/colorMatrixFromYCbCrToDesiredRGB()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "colorMatrixFromYCbCrToDesiredRGB"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "colorMatrixFromYCbCrToDesiredRGB()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxcolorgamutapi_v2/colormatrixfromycbcrtodesiredrgb()"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxColorGamutAPI_v2/colorPrimaries()": {
+      "abstract": [
+        {
+          "text": "Provides an enumerated type that describes the color primaries of the project’s working gamut.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorPrimaries"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FxColorPrimaries",
+          "text": "FxColorPrimaries"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxColorGamutAPI_v2/colorPrimaries()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "colorPrimaries"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "colorPrimaries()",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxcolorgamutapi_v2/colorprimaries()"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterCreationAPI_v5": {
+      "abstract": [
+        {
+          "text": "Defines the methods provided by the host application to create parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxParameterCreationAPI_v5"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterCreationAPI_v5",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxParameterCreationAPI_v5"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxParameterCreationAPI_v5",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxparametercreationapi_v5"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterRetrievalAPI_v7": {
+      "abstract": [
+        {
+          "text": "Adds a method to retrieve the image information about an image parameter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FxParameterRetrievalAPI_v7"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxParameterRetrievalAPI_v7",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FxParameterRetrievalAPI_v7"
+        }
+      ],
+      "role": "symbol",
+      "title": "FxParameterRetrievalAPI_v7",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/fxparameterretrievalapi_v7"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxColorPrimaries_Rec2020": {
+      "abstract": [
+        {
+          "text": "Color primaries for the Rec. 2020 colorspace.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFxColorPrimaries_Rec2020"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxColorPrimaries_Rec2020",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kFxColorPrimaries_Rec2020"
+        }
+      ],
+      "role": "symbol",
+      "title": "kFxColorPrimaries_Rec2020",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/kfxcolorprimaries_rec2020"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxColorPrimaries_Rec709": {
+      "abstract": [
+        {
+          "text": "Color primaries for the Rec. 709 colorspace.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFxColorPrimaries_Rec709"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxColorPrimaries_Rec709",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kFxColorPrimaries_Rec709"
+        }
+      ],
+      "role": "symbol",
+      "title": "kFxColorPrimaries_Rec709",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/kfxcolorprimaries_rec709"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxImageColorInfo_RGB_GAMMA_VIDEO": {
+      "abstract": [
+        {
+          "text": "RGB at video gamma (2.2).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFxImageColorInfo_RGB_GAMMA_VIDEO"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxImageColorInfo_RGB_GAMMA_VIDEO",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kFxImageColorInfo_RGB_GAMMA_VIDEO"
+        }
+      ],
+      "role": "symbol",
+      "title": "kFxImageColorInfo_RGB_GAMMA_VIDEO",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/kfximagecolorinfo_rgb_gamma_video"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxImageColorInfo_RGB_LINEAR": {
+      "abstract": [
+        {
+          "text": "RGB linear (not gamma corrected).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFxImageColorInfo_RGB_LINEAR"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxImageColorInfo_RGB_LINEAR",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kFxImageColorInfo_RGB_LINEAR"
+        }
+      ],
+      "role": "symbol",
+      "title": "kFxImageColorInfo_RGB_LINEAR",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/kfximagecolorinfo_rgb_linear"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxParameterFlag_DONT_REMAP_COLORS": {
+      "abstract": [
+        {
+          "text": "Indicates that the host must not remap colors to sRGB.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFxParameterFlag_DONT_REMAP_COLORS"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxParameterFlag_DONT_REMAP_COLORS",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kFxParameterFlag_DONT_REMAP_COLORS"
+        }
+      ],
+      "role": "symbol",
+      "title": "kFxParameterFlag_DONT_REMAP_COLORS",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/kfxparameterflag_dont_remap_colors"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxPropertyKey_DesiredProcessingColorInfo": {
+      "abstract": [
+        {
+          "text": "A key that determines whether your plug-in renders in linear or gamma-corrected color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kFxPropertyKey_DesiredProcessingColorInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/kFxPropertyKey_DesiredProcessingColorInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kFxPropertyKey_DesiredProcessingColorInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "kFxPropertyKey_DesiredProcessingColorInfo",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications/kfxpropertykey_desiredprocessingcolorinfo"
+    },
+    "https://support.apple.com/en-ca/guide/motion/motnb8712fa5/mac": {
+      "identifier": "https://support.apple.com/en-ca/guide/motion/motnb8712fa5/mac",
+      "title": "Use wide-gamut HDR color processing in Motion",
+      "titleInlineContent": [
+        {
+          "text": "Use wide-gamut HDR color processing in Motion",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-ca/guide/motion/motnb8712fa5/mac"
+    },
+    "https://support.apple.com/guide/final-cut-pro/use-wide-gamut-hdr-color-processing-ver1cd9629a5": {
+      "identifier": "https://support.apple.com/guide/final-cut-pro/use-wide-gamut-hdr-color-processing-ver1cd9629a5",
+      "title": "Use wide-gamut HDR color processing in Final Cut Pro",
+      "titleInlineContent": [
+        {
+          "text": "Use wide-gamut HDR color processing in Final Cut Pro",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/final-cut-pro/use-wide-gamut-hdr-color-processing-ver1cd9629a5"
+    },
+    "media-3655257": {
+      "alt": "Rec. 709/sRGB color space vs. Rec 2020",
+      "identifier": "media-3655257",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c48ee0b7272680ce4de9c30fe704a09b/media-3655257@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5f6b4339cc495aa3e114ade771573ba7/media-3655257~dark@2x.png"
+        }
+      ]
+    },
+    "media-3655264": {
+      "alt": "Rec. 709 and sRGB Transfer Functions",
+      "identifier": "media-3655264",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3cc5d38da24a664a7a1b2decaefc1cc7/media-3655264@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/113a365e6fb4f856b854b8da07845927/media-3655264~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Color",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxColorGamutAPI_v2"
+      ],
+      "title": "Color"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Color",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications/FxColorGamutAPI_v2"
+              ],
+              "title": "Color"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterCreationAPI_v5/title",
+          "value": "FxParameterCreationAPI_v5"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterCreationAPI_v5/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxParameterCreationAPI_v5"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterCreationAPI_v5/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxParameterCreationAPI_v5"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxColorPrimaries_Rec709/title",
+          "value": "kFxColorPrimaries_Rec709"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxColorPrimaries_Rec709/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kFxColorPrimaries_Rec709"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxColorGamutAPI_v2~1colorMatrixFromDesiredRGBToYCbCr()/title",
+          "value": "colorMatrixFromDesiredRGBToYCbCr"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxColorGamutAPI_v2~1colorMatrixFromDesiredRGBToYCbCr()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "colorMatrixFromDesiredRGBToYCbCr"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxPropertyKey_DesiredProcessingColorInfo/title",
+          "value": "kFxPropertyKey_DesiredProcessingColorInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxPropertyKey_DesiredProcessingColorInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kFxPropertyKey_DesiredProcessingColorInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxColorGamutAPI_v2~1colorMatrixFromYCbCrToDesiredRGB()/title",
+          "value": "colorMatrixFromYCbCrToDesiredRGB"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxColorGamutAPI_v2~1colorMatrixFromYCbCrToDesiredRGB()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "colorMatrixFromYCbCrToDesiredRGB"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxColorPrimaries_Rec2020/title",
+          "value": "kFxColorPrimaries_Rec2020"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxColorPrimaries_Rec2020/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kFxColorPrimaries_Rec2020"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxImageColorInfo_RGB_LINEAR/title",
+          "value": "kFxImageColorInfo_RGB_LINEAR"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxImageColorInfo_RGB_LINEAR/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kFxImageColorInfo_RGB_LINEAR"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxColorGamutAPI_v2~1colorPrimaries()/title",
+          "value": "colorPrimaries"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxColorGamutAPI_v2~1colorPrimaries()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "colorPrimaries"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxColorGamutAPI_v2/title",
+          "value": "FxColorGamutAPI_v2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxColorGamutAPI_v2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxColorGamutAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxColorGamutAPI_v2/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxColorGamutAPI_v2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxParameterFlag_DONT_REMAP_COLORS/title",
+          "value": "kFxParameterFlag_DONT_REMAP_COLORS"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxParameterFlag_DONT_REMAP_COLORS/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kFxParameterFlag_DONT_REMAP_COLORS"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxImageColorInfo_RGB_GAMMA_VIDEO/title",
+          "value": "kFxImageColorInfo_RGB_GAMMA_VIDEO"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1kFxImageColorInfo_RGB_GAMMA_VIDEO/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kFxImageColorInfo_RGB_GAMMA_VIDEO"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterRetrievalAPI_v7/title",
+          "value": "FxParameterRetrievalAPI_v7"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterRetrievalAPI_v7/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxParameterRetrievalAPI_v7"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.professionalvideoapplications~1documentation~1professional_video_applications~1FxParameterRetrievalAPI_v7/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FxParameterRetrievalAPI_v7"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/managing-color-space-and-gamut-in-plug-ins"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/managing-color-space-and-gamut-in-plug-ins"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,855 @@
+{
+  "abstract": [
+    {
+      "text": "Reduce API calls and conserve device power by streamlining your app’s georelated searches.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Apple Maps Server API",
+      "versions": [
+        "1.0 beta 1",
+        "1.2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Apple Maps Server API",
+      "versions": [
+        "1.1",
+        "1.2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "AppleMapsServerAPI",
+    "modules": [
+      {
+        "name": "Apple Maps Server API"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.2",
+        "name": "Apple Maps Server API"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Web Service",
+    "symbolKind": "module",
+    "title": "Apple Maps Server API"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this web-based service to streamline your app’s API by moving georelated searches for places, points of interest, geocoding, directions, possible autocompletions for searches, and estimated time of arrival (ETA) calculations from inside your app to your server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To try the Maps Server API, generate a temporary token as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKitJS/creating-a-maps-token",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Use these credentials to access the API from your app, or use them on ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/maps/try-maps-server-api/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Apple Maps Server API is a web-based API similar to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKitJS",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API, and uses the same authorization infrastructure. It requires authorization using a JSON Web Token (JWT) for API calls. You obtain a key for creating the token when you complete the setup in your Apple Developer account.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To start using the API, you first need to generate an identifier and a private key, and authenticate with the service, following the steps below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To create an identifier and private key, follow the steps in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-a-maps-identifier-and-a-private-key",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To create tokens from your identifier and private key with the Apple Maps Server API, follow the steps in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-and-using-tokens-with-maps-server-api",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the Token API to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-token",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for API access.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The service provides up to 25,000 service calls per day per team between Apple Maps Server API and MapKit JS. If your app exceeds this quota, the service returns an HTTP 429 error (Too Many Requests) and your app needs to retry later. If your app requires a larger daily quota, submit a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/contact/request/mapkitjs/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI": {
+      "abstract": [
+        {
+          "text": "Reduce API calls and conserve device power by streamlining your app’s georelated searches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Maps Server API",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-directions": {
+      "abstract": [
+        {
+          "text": "Find directions by specific criteria.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-directions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "/v1/directions"
+        }
+      ],
+      "role": "symbol",
+      "title": "Search for directions and estimated travel time between locations",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/-v1-directions"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-etas": {
+      "abstract": [
+        {
+          "text": "Returns the estimated time of arrival (ETA) and distance between starting and ending locations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-etas",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "/v1/etas"
+        }
+      ],
+      "role": "symbol",
+      "title": "Determine estimated arrival times and distances to one or more destinations",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/-v1-etas"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-geocode": {
+      "abstract": [
+        {
+          "text": "Returns the latitude and longitude of the address you specify.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-geocode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "/v1/geocode"
+        }
+      ],
+      "role": "symbol",
+      "title": "Geocode an address",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/-v1-geocode"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place": {
+      "abstract": [
+        {
+          "text": "Obtain a set of Place objects for a given set of Place IDs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "/v1/place"
+        }
+      ],
+      "role": "symbol",
+      "title": "Search for places using mulitple identifiers",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/-v1-place"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place-:id": {
+      "abstract": [
+        {
+          "text": "Obtain a Place object for a given Place ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place-:id",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "/v1/place/:id"
+        }
+      ],
+      "role": "symbol",
+      "title": "Search for a place using an identifier",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/-v1-place-:id"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place-alternateIds": {
+      "abstract": [
+        {
+          "text": "Get a list of alternate Place IDs given one or more Place IDs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place-alternateIds",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "/v1/place/alternateIds"
+        }
+      ],
+      "role": "symbol",
+      "title": "Obtain a list of alternate place identifiers",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/-v1-place-alternateids"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-reverseGeocode": {
+      "abstract": [
+        {
+          "text": "Returns an array of addresses present at the coordinates you provide.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-reverseGeocode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "/v1/reverseGeocode"
+        }
+      ],
+      "role": "symbol",
+      "title": "Reverse geocode a location",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/-v1-reversegeocode"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-search": {
+      "abstract": [
+        {
+          "text": "Find places by name or by specific search criteria.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-search",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "/v1/search"
+        }
+      ],
+      "role": "symbol",
+      "title": "Search for places that match specific criteria",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/-v1-search"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-searchAutocomplete": {
+      "abstract": [
+        {
+          "text": "Find results that you can use to autocomplete searches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-searchAutocomplete",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "/v1/searchAutocomplete"
+        }
+      ],
+      "role": "symbol",
+      "title": "Search for places that meet specific criteria to autocomplete a place search",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/-v1-searchautocomplete"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-token": {
+      "abstract": [
+        {
+          "text": "Returns a JWT maps access token that you use to call the service API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-token",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "/v1/token"
+        }
+      ],
+      "role": "symbol",
+      "title": "Generate a Maps token",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/-v1-token"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AddressCategory": {
+      "abstract": [
+        {
+          "text": "Search categories related to political geographical boundaries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "AddressCategory"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AddressCategory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AddressCategory"
+        }
+      ],
+      "role": "symbol",
+      "title": "AddressCategory",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/addresscategory"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AlternateIdsResponse": {
+      "abstract": [
+        {
+          "text": "A list of alternate Place IDs and associated errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AlternateIdsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AlternateIdsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AlternateIdsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "AlternateIdsResponse",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/alternateidsresponse"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AlternateIdsResponse/AlternateIds": {
+      "abstract": [
+        {
+          "text": "Contains a list of alternate Place IDs for a given Place ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AlternateIdsResponse.AlternateIds"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AlternateIdsResponse/AlternateIds",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AlternateIdsResponse.AlternateIds"
+        }
+      ],
+      "role": "symbol",
+      "title": "AlternateIdsResponse.AlternateIds",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/alternateidsresponse/alternateids"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/PlacesResponse": {
+      "abstract": [
+        {
+          "text": "A list of Place IDs and errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlacesResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/PlacesResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlacesResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlacesResponse",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/placesresponse"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/PlacesResponse/PlaceLookupError": {
+      "abstract": [
+        {
+          "text": "An error associated with a lookup call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlacesResponse.PlaceLookupError"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/PlacesResponse/PlaceLookupError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlacesResponse.PlaceLookupError"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlacesResponse.PlaceLookupError",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/placesresponse/placelookuperror"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchACResultType": {
+      "abstract": [
+        {
+          "text": "An enumerated string that indicates the result type for the search request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "SearchACResultType"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchACResultType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SearchACResultType"
+        }
+      ],
+      "role": "symbol",
+      "title": "SearchACResultType",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/searchacresulttype"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchResultType": {
+      "abstract": [
+        {
+          "text": "An enumerated string that indicates the result type for the search autocomplete request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "SearchResultType"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchResultType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SearchResultType"
+        }
+      ],
+      "role": "symbol",
+      "title": "SearchResultType",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/searchresulttype"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/common-objects": {
+      "abstract": [
+        {
+          "text": "Understand the common JSON objects that API responses contain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/common-objects",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Common objects",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/common-objects"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-a-maps-identifier-and-a-private-key": {
+      "abstract": [
+        {
+          "text": "Create a Maps identifier and a private key before generating tokens for MapKit JS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-a-maps-identifier-and-a-private-key",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Maps identifier and a private key",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/creating-a-maps-identifier-and-a-private-key"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-and-using-tokens-with-maps-server-api": {
+      "abstract": [
+        {
+          "text": "Sign JSON Web Tokens to use Maps Server API and debug common signing errors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-and-using-tokens-with-maps-server-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating and using tokens with Maps Server API",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/creating-and-using-tokens-with-maps-server-api"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/debugging-an-invalid-token": {
+      "abstract": [
+        {
+          "text": "Inspect the JavaScript console logs, the token, and events to determine why a token is invalid.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/debugging-an-invalid-token",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging an Invalid token",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/debugging-an-invalid-token"
+    },
+    "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/integrating-the-apple-maps-server-api-into-java-server-applications": {
+      "abstract": [
+        {
+          "text": "Streamline your app’s API by moving georelated searches from inside your app to your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/integrating-the-apple-maps-server-api-into-java-server-applications",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Integrating the Apple Maps Server API into Java server applications",
+      "type": "topic",
+      "url": "/documentation/applemapsserverapi/integrating-the-apple-maps-server-api-into-java-server-applications"
+    },
+    "doc://com.apple.documentation/documentation/MapKitJS": {
+      "abstract": [
+        {
+          "text": "Embed interactive Apple Maps on your website, annotate points of interest, and perform georelated searches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKitJS",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MapKit JS",
+      "type": "topic",
+      "url": "/documentation/MapKitJS"
+    },
+    "doc://com.apple.documentation/documentation/MapKitJS/creating-a-maps-token": {
+      "abstract": [
+        {
+          "text": "Generate your token to access MapKit services with proper authorization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKitJS/creating-a-maps-token",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Maps token",
+      "type": "topic",
+      "url": "/documentation/MapKitJS/creating-a-maps-token"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/contact/request/mapkitjs/": {
+      "identifier": "https://developer.apple.com/contact/request/mapkitjs/",
+      "title": "quota increase request form",
+      "titleInlineContent": [
+        {
+          "text": "quota increase request form",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/contact/request/mapkitjs/"
+    },
+    "https://developer.apple.com/maps/try-maps-server-api/": {
+      "identifier": "https://developer.apple.com/maps/try-maps-server-api/",
+      "title": "Try Maps Server API",
+      "titleInlineContent": [
+        {
+          "text": "Try Maps Server API",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/maps/try-maps-server-api/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-and-using-tokens-with-maps-server-api",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/creating-a-maps-identifier-and-a-private-key",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-token",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/debugging-an-invalid-token",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/common-objects",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/integrating-the-apple-maps-server-api-into-java-server-applications"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Geocoding",
+      "identifiers": [
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-geocode",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-reverseGeocode"
+      ],
+      "title": "Geocoding"
+    },
+    {
+      "anchor": "Searching",
+      "identifiers": [
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AddressCategory",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchACResultType",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/SearchResultType",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AlternateIdsResponse",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/AlternateIdsResponse/AlternateIds",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/PlacesResponse",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/PlacesResponse/PlaceLookupError",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-search",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-searchAutocomplete",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place-:id",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-place-alternateIds"
+      ],
+      "title": "Searching"
+    },
+    {
+      "anchor": "Directions",
+      "identifiers": [
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-directions",
+        "doc://com.apple.applemapsserverapi/documentation/AppleMapsServerAPI/-v1-etas"
+      ],
+      "title": "Directions"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemapsserverapi"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

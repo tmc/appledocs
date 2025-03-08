@@ -1,0 +1,1915 @@
+{
+  "abstract": [
+    {
+      "text": "A class that supports safely sharing Thread credentials between multiple clients.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)THClient",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "THClient"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ThreadNetwork"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "THClient"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "THClient"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "THClient"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Request credentials for either a specific Thread network or for the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "preferred network",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The preferred network is the default Thread network",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "chosen by the framework for a home.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ThreadNetwork framework maintains a database of network credentials. The class",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "allows clients to store, list, and delete credentials for a given network from the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "database.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some methods in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " use the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "team ID",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", a string that you store",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in your application’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ThreadNetwork framework uses the team ID",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to preserve the privacy of the Thread network credentials across different clients.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, credentials stored by one client can’t be deleted or modified by another",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "client.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Thread credentials give you the ability to add any device into the Thread",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "network. Use this information responsibly.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork": {
+      "abstract": [
+        {
+          "text": "Share credentials and choose a designated network for each home.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ThreadNetwork",
+      "type": "topic",
+      "url": "/documentation/threadnetwork"
+    },
+    "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient": {
+      "abstract": [
+        {
+          "text": "A class that supports safely sharing Thread credentials between multiple clients.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "THClient"
+        }
+      ],
+      "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "THClient"
+        }
+      ],
+      "role": "symbol",
+      "title": "THClient",
+      "type": "topic",
+      "url": "/documentation/threadnetwork/thclient"
+    },
+    "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/checkPreferredNetwork(forActiveOperationalDataset:completion:)": {
+      "abstract": [
+        {
+          "text": "Determines if the essential operating parameters match the preferred network’s parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "checkPreferredNetwork"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forActiveOperationalDataset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/checkPreferredNetwork(forActiveOperationalDataset:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "checkPreferredNetworkForActiveOperationalDataset:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "checkPreferredNetwork(forActiveOperationalDataset:completion:)",
+      "type": "topic",
+      "url": "/documentation/threadnetwork/thclient/checkpreferrednetwork(foractiveoperationaldataset:completion:)"
+    },
+    "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/deleteCredentials(forBorderAgent:completion:)": {
+      "abstract": [
+        {
+          "text": "Deletes Thread network credentials from the framework database for a Border Agent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deleteCredentials"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forBorderAgent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/deleteCredentials(forBorderAgent:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deleteCredentialsForBorderAgent:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "deleteCredentials(forBorderAgent:completion:)",
+      "type": "topic",
+      "url": "/documentation/threadnetwork/thclient/deletecredentials(forborderagent:completion:)"
+    },
+    "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/init()": {
+      "abstract": [
+        {
+          "text": "Creates the client object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/init()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/threadnetwork/thclient/init()"
+    },
+    "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/isPreferredNetworkAvailable(completion:)": {
+      "abstract": [
+        {
+          "text": "Indicates whether a preferred network is available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPreferredNetworkAvailable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/isPreferredNetworkAvailable(completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isPreferredNetworkAvailableWithCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "isPreferredNetworkAvailable(completion:)",
+      "type": "topic",
+      "url": "/documentation/threadnetwork/thclient/ispreferrednetworkavailable(completion:)"
+    },
+    "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/retrieveAllActiveCredentials(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a set of the active credentials.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "retrieveAllActiveCredentials"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)THCredentials",
+          "text": "THCredentials"
+        },
+        {
+          "kind": "text",
+          "text": ">?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/retrieveAllActiveCredentials(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "retrieveAllActiveCredentials:"
+        }
+      ],
+      "role": "symbol",
+      "title": "retrieveAllActiveCredentials(_:)",
+      "type": "topic",
+      "url": "/documentation/threadnetwork/thclient/retrieveallactivecredentials(_:)"
+    },
+    "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/retrieveAllCredentials(_:)": {
+      "abstract": [
+        {
+          "text": "Requests all Thread credentials from the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "retrieveAllCredentials"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)THCredentials",
+          "text": "THCredentials"
+        },
+        {
+          "kind": "text",
+          "text": ">?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/retrieveAllCredentials(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "retrieveAllCredentials:"
+        }
+      ],
+      "role": "symbol",
+      "title": "retrieveAllCredentials(_:)",
+      "type": "topic",
+      "url": "/documentation/threadnetwork/thclient/retrieveallcredentials(_:)"
+    },
+    "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/retrieveCredentials(forBorderAgent:completion:)": {
+      "abstract": [
+        {
+          "text": "Requests Thread credentials for a Border Agent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "retrieveCredentials"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forBorderAgent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)THCredentials",
+          "text": "THCredentials"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/retrieveCredentials(forBorderAgent:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "retrieveCredentialsForBorderAgent:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "retrieveCredentials(forBorderAgent:completion:)",
+      "type": "topic",
+      "url": "/documentation/threadnetwork/thclient/retrievecredentials(forborderagent:completion:)"
+    },
+    "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/retrieveCredentials(forExtendedPANID:completion:)": {
+      "abstract": [
+        {
+          "text": "Requests Thread credentials for an extended Personal Area Network (PAN) ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "retrieveCredentials"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forExtendedPANID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)THCredentials",
+          "text": "THCredentials"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/retrieveCredentials(forExtendedPANID:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "retrieveCredentialsForExtendedPANID:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "retrieveCredentials(forExtendedPANID:completion:)",
+      "type": "topic",
+      "url": "/documentation/threadnetwork/thclient/retrievecredentials(forextendedpanid:completion:)"
+    },
+    "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/retrievePreferredCredentials(_:)": {
+      "abstract": [
+        {
+          "text": "Requests Thread credentials for the preferred network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "retrievePreferredCredentials"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)THCredentials",
+          "text": "THCredentials"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/retrievePreferredCredentials(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "retrievePreferredCredentials:"
+        }
+      ],
+      "role": "symbol",
+      "title": "retrievePreferredCredentials(_:)",
+      "type": "topic",
+      "url": "/documentation/threadnetwork/thclient/retrievepreferredcredentials(_:)"
+    },
+    "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/storeCredentials(forBorderAgent:activeOperationalDataSet:completion:)": {
+      "abstract": [
+        {
+          "text": "Stores Thread network credentials into the framework database that a Border Agent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "provides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storeCredentials"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forBorderAgent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "activeOperationalDataSet"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/storeCredentials(forBorderAgent:activeOperationalDataSet:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "storeCredentialsForBorderAgent:activeOperationalDataSet:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "storeCredentials(forBorderAgent:activeOperationalDataSet:completion:)",
+      "type": "topic",
+      "url": "/documentation/threadnetwork/thclient/storecredentials(forborderagent:activeoperationaldataset:completion:)"
+    },
+    "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THCredentials": {
+      "abstract": [
+        {
+          "text": "A class that contains credentials for a Thread network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "THCredentials"
+        }
+      ],
+      "identifier": "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THCredentials",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "THCredentials"
+        }
+      ],
+      "role": "symbol",
+      "title": "THCredentials",
+      "type": "topic",
+      "url": "/documentation/threadnetwork/thcredentials"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.manage-thread-network-credentials": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app can use ThreadNetwork.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.manage-thread-network-credentials",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.networking.manage-thread-network-credentials",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.networking.manage-thread-network-credentials"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-clients-and-sharing-credentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.manage-thread-network-credentials",
+        "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THCredentials"
+      ],
+      "title": "Managing clients and sharing credentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-the-Client",
+      "identifiers": [
+        "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/init()"
+      ],
+      "title": "Creating the Client"
+    },
+    {
+      "anchor": "Retrieving-Credentials",
+      "identifiers": [
+        "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/isPreferredNetworkAvailable(completion:)",
+        "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/checkPreferredNetwork(forActiveOperationalDataset:completion:)",
+        "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/retrieveCredentials(forBorderAgent:completion:)",
+        "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/retrieveCredentials(forExtendedPANID:completion:)",
+        "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/retrieveAllCredentials(_:)",
+        "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/retrievePreferredCredentials(_:)",
+        "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/retrieveAllActiveCredentials(_:)"
+      ],
+      "title": "Retrieving Credentials"
+    },
+    {
+      "anchor": "Storing-and-Deleting-Credentials",
+      "identifiers": [
+        "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/deleteCredentials(forBorderAgent:completion:)",
+        "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/storeCredentials(forBorderAgent:activeOperationalDataSet:completion:)"
+      ],
+      "title": "Storing and Deleting Credentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "THClient"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "THClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "THClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-the-Client",
+              "identifiers": [
+                "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/init()"
+              ],
+              "title": "Creating the Client"
+            },
+            {
+              "anchor": "Retrieving-Credentials",
+              "identifiers": [
+                "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/isPreferredNetworkAvailable(completion:)",
+                "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/checkPreferredNetwork(forActiveOperationalDataset:completion:)",
+                "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/retrieveCredentials(forBorderAgent:completion:)",
+                "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/retrieveCredentials(forExtendedPANID:completion:)",
+                "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/retrieveAllCredentials(_:)",
+                "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/retrievePreferredCredentials(_:)",
+                "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/retrieveAllActiveCredentials(_:)"
+              ],
+              "title": "Retrieving Credentials"
+            },
+            {
+              "anchor": "Storing-and-Deleting-Credentials",
+              "identifiers": [
+                "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/deleteCredentials(forBorderAgent:completion:)",
+                "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THClient/storeCredentials(forBorderAgent:activeOperationalDataSet:completion:)"
+              ],
+              "title": "Storing and Deleting Credentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Managing-clients-and-sharing-credentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.manage-thread-network-credentials",
+                "doc://com.apple.ThreadNetwork/documentation/ThreadNetwork/THCredentials"
+              ],
+              "title": "Managing clients and sharing credentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "THClient"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1retrieveCredentials(forBorderAgent:completion:)/title",
+          "value": "retrieveCredentialsForBorderAgent:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1retrieveCredentials(forBorderAgent:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "retrieveCredentialsForBorderAgent:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1retrieveAllActiveCredentials(_:)/title",
+          "value": "retrieveAllActiveCredentials:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1retrieveAllActiveCredentials(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "retrieveAllActiveCredentials:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1deleteCredentials(forBorderAgent:completion:)/title",
+          "value": "deleteCredentialsForBorderAgent:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1deleteCredentials(forBorderAgent:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "deleteCredentialsForBorderAgent:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1retrieveAllCredentials(_:)/title",
+          "value": "retrieveAllCredentials:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1retrieveAllCredentials(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "retrieveAllCredentials:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1isPreferredNetworkAvailable(completion:)/title",
+          "value": "isPreferredNetworkAvailableWithCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1isPreferredNetworkAvailable(completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "isPreferredNetworkAvailableWithCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1init()/title",
+          "value": "init"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1init()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "init"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient/title",
+          "value": "THClient"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "THClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "THClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1checkPreferredNetwork(forActiveOperationalDataset:completion:)/title",
+          "value": "checkPreferredNetworkForActiveOperationalDataset:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1checkPreferredNetwork(forActiveOperationalDataset:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "checkPreferredNetworkForActiveOperationalDataset:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1retrieveCredentials(forExtendedPANID:completion:)/title",
+          "value": "retrieveCredentialsForExtendedPANID:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1retrieveCredentials(forExtendedPANID:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "retrieveCredentialsForExtendedPANID:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1retrievePreferredCredentials(_:)/title",
+          "value": "retrievePreferredCredentials:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1retrievePreferredCredentials(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "retrievePreferredCredentials:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1storeCredentials(forBorderAgent:activeOperationalDataSet:completion:)/title",
+          "value": "storeCredentialsForBorderAgent:activeOperationalDataSet:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THClient~1storeCredentials(forBorderAgent:activeOperationalDataSet:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "storeCredentialsForBorderAgent:activeOperationalDataSet:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THCredentials/title",
+          "value": "THCredentials"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THCredentials/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "THCredentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.ThreadNetwork~1documentation~1ThreadNetwork~1THCredentials/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "THCredentials"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/threadnetwork/thclient"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/threadnetwork/thclient"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

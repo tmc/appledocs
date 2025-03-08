@@ -1,0 +1,1824 @@
+{
+  "abstract": [
+    {
+      "text": "Discover how Metal executes commands on a GPU.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/setting-up-a-command-structure"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Setting Up a Command Structure"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Metal, you send commands to the GPU so it can perform work on your behalf. A command performs the drawing, parallel computation, and resource management work your app requires.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The relationship between Metal apps and the GPU on a device is a client/server model where your app is the client and the GPU is the server. You make requests by sending commands to the GPU that you encapsulate in a command buffer and then add to a command queue. After processing the commands, the GPU notifies your app when it’s ready for more work.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3034500",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The order that you place commands in command buffers, then enqueue and commit command buffers, affects the perceived order in which Metal executes your commands.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following sections explain how to set up a command structure to produce the results you want. Some objects you create once and use throughout your app, and others you create specifically to execute a set of commands.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-Expensive-Shared-Objects-During-Initialization",
+          "level": 3,
+          "text": "Create Expensive Shared Objects During Initialization",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create objects that are expensive to allocate during initialization, not in time-critical code paths. Objects that you can share in your code are command queues, pipelines, buffers, and textures. After you initialize these objects, they’re fast to reuse.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Make-a-Command-Queue",
+          "level": 4,
+          "text": "Make a Command Queue",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make a command queue, call the device’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeCommandQueue()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "commandQueue = device.makeCommandQueue()"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "commandQueue = [device newCommandQueue];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then use the same command queue throughout your app to hold command buffers. The figure below illustrates the command queue that contains command buffers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3034323",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Make-One-or-More-Pipeline-Objects",
+          "level": 4,
+          "text": "Make One or More Pipeline Objects",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "pipeline object",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " tells Metal how to process your commands. The pipeline object encapsulates functions that you write in the Metal shading language. To use a pipeline in your Metal workflow, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Write Metal shader functions that process your data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a pipeline object that contains your shaders.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the state of the render or compute pipeline.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make draw or compute calls.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metal doesn’t perform your draw or compute calls immediately. Instead, you use an encoder object to insert commands that encapsulate those calls into your command buffer. After you commit the command buffer, Metal sends it to the GPU and uses the active pipeline object to process the commands.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The figure below illustrates the active pipeline on the GPU that contains your custom shader code that processes commands:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3034326",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Issue-Commands-to-the-GPU",
+          "level": 3,
+          "text": "Issue Commands to the GPU",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To execute commands on the GPU, follow this process:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a command buffer from a command queue.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a command encoder using the command buffer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the commands to the command buffer using the command encoder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Get callbacks when the GPU schedules and executes the commands by setting completion handlers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Commit the command buffer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re performing animation as part of a rendering loop, do this for each frame of the animation. You also follow this process to execute one-off image processing, or machine learning tasks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-Command-Buffer",
+          "level": 4,
+          "text": "Create a Command Buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a command buffer by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandQueue/makeCommandBuffer()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the command queue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "guard let commandBuffer = commandQueue.makeCommandBuffer() else { ",
+                    "    return ",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "id <MTLCommandBuffer> commandBuffer = [commandQueue commandBuffer];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For single-threaded apps, create a single command buffer containing the commands. The figure below illustrates the command buffer’s relationship to the commands it contains:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3034324",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-Commands-to-the-Command-Buffer",
+          "level": 4,
+          "text": "Add Commands to the Command Buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you call task-specific functions on an encoder object — like draws or compute operations — the encoder places commands corresponding to those calls in the command buffer. The encoder inserts the commands into the command buffer, including everything the GPU needs to process the task at runtime.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The figure below illustrates a command encoder inserting commands into a command buffer when the app makes a draw call:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3145023",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You encode actual commands with concrete subclasses of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", depending on your task. For example, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to issue render commands, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to issue parallel computation commands. For a complete list of subclasses, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a complete rendering example, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For a complete parallel processing example, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/processing-a-texture-in-a-compute-function",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Commit-a-Command-Buffer",
+          "level": 4,
+          "text": "Commit a Command Buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To submit your commands to run on the GPU, commit the command buffer to the GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "commandBuffer.commit()"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "[commandBuffer commit];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Committing a command buffer doesn’t run its commands immediately. Instead, Metal schedules the buffer’s commands to run only after you commit prior command buffers that are waiting in the queue. If you don’t explicitly enqueue a command buffer, Metal does that for you when you commit the buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can’t reuse a buffer after you commit it, but you can receive notifications when Metal schedules and completes the commands, or you can query the buffer’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/status",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To receive callbacks during this process, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/addScheduledHandler(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/addCompletedHandler(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As much as possible, the perceived order in which Metal executes the commands is the same as the way you order them. Although Metal might reorder some of your commands before processing them, this usually only occurs when there’s a performance gain and no other perceivable impact.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer": {
+      "abstract": [
+        {
+          "text": "A container that stores a sequence of GPU commands that you encode into it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/addCompletedHandler(_:)": {
+      "abstract": [
+        {
+          "text": "Registers a completion handler the GPU device calls immediately after the GPU finishes running the commands in the command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addCompletedHandler"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLCommandBufferHandler",
+          "text": "MTLCommandBufferHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/addCompletedHandler(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addCompletedHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "addCompletedHandler(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/addcompletedhandler(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/addScheduledHandler(_:)": {
+      "abstract": [
+        {
+          "text": "Registers a completion handler the GPU device calls immediately after it schedules the command buffer to run on the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addScheduledHandler"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLCommandBufferHandler",
+          "text": "MTLCommandBufferHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/addScheduledHandler(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addScheduledHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "addScheduledHandler(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/addscheduledhandler(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/status": {
+      "abstract": [
+        {
+          "text": "The command buffer’s current state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "status"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLCommandBufferStatus",
+          "text": "MTLCommandBufferStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/status",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "status"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "status",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/status"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBufferDescriptor": {
+      "abstract": [
+        {
+          "text": "A configuration that customizes the behavior for a new command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBufferDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBufferDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBufferDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandBufferDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbufferdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBufferError-swift.struct": {
+      "abstract": [
+        {
+          "text": "The command buffer error codes that indicate why the GPU doesn’t finish executing a command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBufferError"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBufferError-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBufferError"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandBufferError",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffererror-swift.struct"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBufferError-swift.struct/Code": {
+      "abstract": [
+        {
+          "text": "Error codes that indicate why a GPU is unable to finish running a command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBufferError-swift.struct/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandBufferError.Code",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffererror-swift.struct/code"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBufferErrorDomain": {
+      "abstract": [
+        {
+          "text": "The domain for Metal command buffer errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBufferErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBufferErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandBufferErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandBufferErrorDomain",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffererrordomain"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An encoder that writes GPU commands into a command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandQueue": {
+      "abstract": [
+        {
+          "text": "An instance you use to create, submit, and schedule command buffers to a specific GPU device to run the commands within those buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandQueue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandQueue"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandQueue",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandqueue"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandQueue/makeCommandBuffer()": {
+      "abstract": [
+        {
+          "text": "Returns a command buffer from the command queue that maintains strong references to resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeCommandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "() -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCommandBuffer",
+          "text": "MTLCommandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandQueue/makeCommandBuffer()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "commandBuffer"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeCommandBuffer()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandqueue/makecommandbuffer()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandQueueDescriptor": {
+      "abstract": [
+        {
+          "text": "A configuration that customizes the behavior for a new command queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCommandQueueDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandQueueDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCommandQueueDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCommandQueueDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandqueuedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An interface for dispatching commands to encode in a compute pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLComputeCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLComputeCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLComputeCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeCommandQueue()": {
+      "abstract": [
+        {
+          "text": "Creates a queue you use to submit rendering and computation commands to a GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeCommandQueue"
+        },
+        {
+          "kind": "text",
+          "text": "() -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCommandQueue",
+          "text": "MTLCommandQueue"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeCommandQueue()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newCommandQueue"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeCommandQueue()",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makecommandqueue()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An interface that encodes a render pass into a command buffer, including all its draw calls and configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission": {
+      "abstract": [
+        {
+          "text": "Find any available GPU, submit work to it with command buffers, suspend work, and coordinate between multiple GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GPU Devices and Work Submission",
+      "type": "topic",
+      "url": "/documentation/metal/gpu-devices-and-work-submission"
+    },
+    "doc://com.apple.metal/documentation/Metal/processing-a-texture-in-a-compute-function": {
+      "abstract": [
+        {
+          "text": "Perform parallel calculations on structured data by placing the data in textures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/processing-a-texture-in-a-compute-function",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Processing a Texture in a Compute Function",
+      "type": "topic",
+      "url": "/documentation/metal/processing-a-texture-in-a-compute-function"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives": {
+      "abstract": [
+        {
+          "text": "Render a simple 2D triangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using a Render Pipeline to Render Primitives",
+      "type": "topic",
+      "url": "/documentation/metal/using-a-render-pipeline-to-render-primitives"
+    },
+    "media-3034323": {
+      "alt": "A diagram that depicts a command queue’s relationship to the command buffers it contains. A box representing a command queue contains two boxes representing command buffers, numbered in ascending order. The first box contains two boxes representing commands, numbered in ascending order. The second box contains one box representing a single command.",
+      "identifier": "media-3034323",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e4410f1f785637e3936881b01c9af215/media-3034323@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d45977cc2d1ea3ee384f930b1abcd9be/media-3034323~dark@2x.png"
+        }
+      ]
+    },
+    "media-3034324": {
+      "alt": "A diagram depicting a command’s relationship to the command buffer that contains it. A box labeled Command buffer contains a series of boxes representing commands, numbered in ascending order to indicate their insertion order from left to right.  ",
+      "identifier": "media-3034324",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/571ca85ee804499bc66432d2146cc911/media-3034324@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9cc96d216140220f56f55e06eeffd694/media-3034324~dark@2x.png"
+        }
+      ]
+    },
+    "media-3034326": {
+      "alt": "A flow diagram depicting the process by which Metal processes commands using the active pipeline. At left, the Metal app issues commands to the GPU, at center. The GPU contains the active pipeline object, which contains your custom shader code. At the right, an image icon represents the command result.",
+      "identifier": "media-3034326",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7bbc31985047f1bea71243ca16f4da5d/media-3034326@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/20a3e08efddd8a27db45963bba064c6d/media-3034326~dark@2x.png"
+        }
+      ]
+    },
+    "media-3034500": {
+      "alt": "A flow diagram representing a Metal app’s command processing cycle. On the left, the Metal app, labeled Client, issues a command, labeled Request, to the GPU on the right. At the right, the GPU sends a completion notification, labeled Response, to the client on the left.",
+      "identifier": "media-3034500",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/33d2c0c5043e08e483395771ed84f86c/media-3034500@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/80f4d0a47a6c5582103f3e2817d5d7fa/media-3034500~dark@2x.png"
+        }
+      ]
+    },
+    "media-3145023": {
+      "alt": "A flow diagram showing the series of events that affect command creation and placement of a command into a command buffer. At left, a Metal app makes a draw call to a command encoder, at center. The command encoder responds by sending a command to the command buffer, at right.",
+      "identifier": "media-3145023",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/58d2dd686fce344abf109ffa1a500cae/media-3145023@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b927b0f170b28806efaa86b21ac280a2/media-3145023~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Submitting-Work-to-a-GPU",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLCommandQueue",
+        "doc://com.apple.metal/documentation/Metal/MTLCommandQueueDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+        "doc://com.apple.metal/documentation/Metal/MTLCommandBufferDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLCommandBufferError-swift.struct",
+        "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder"
+      ],
+      "title": "Submitting Work to a GPU"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Submitting-Work-to-a-GPU",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLCommandQueue",
+                "doc://com.apple.metal/documentation/Metal/MTLCommandQueueDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+                "doc://com.apple.metal/documentation/Metal/MTLCommandBufferDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLCommandBufferErrorDomain",
+                "doc://com.apple.metal/documentation/Metal/MTLCommandBufferError-swift.struct/Code",
+                "doc://com.apple.metal/documentation/Metal/MTLCommandEncoder"
+              ],
+              "title": "Submitting Work to a GPU"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandQueueDescriptor/title",
+          "value": "MTLCommandQueueDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandQueueDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandQueueDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandQueueDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandQueueDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1status/title",
+          "value": "status"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1status/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "status"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandQueue~1makeCommandBuffer()/title",
+          "value": "commandBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandQueue~1makeCommandBuffer()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "commandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder/title",
+          "value": "MTLComputeCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputeCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputeCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputeCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandQueue/title",
+          "value": "MTLCommandQueue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandQueue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandQueue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/title",
+          "value": "MTLRenderCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/title",
+          "value": "MTLCommandBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferDescriptor/title",
+          "value": "MTLCommandBufferDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBufferDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBufferDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeCommandQueue()/title",
+          "value": "newCommandQueue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeCommandQueue()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newCommandQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandEncoder/title",
+          "value": "MTLCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferErrorDomain/title",
+          "value": "MTLCommandBufferErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBufferErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferError-swift.struct~1Code/title",
+          "value": "MTLCommandBufferError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferError-swift.struct~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBufferError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBufferError-swift.struct~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCommandBufferError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1addCompletedHandler(_:)/title",
+          "value": "addCompletedHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1addCompletedHandler(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addCompletedHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1addScheduledHandler(_:)/title",
+          "value": "addScheduledHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1addScheduledHandler(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addScheduledHandler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/setting-up-a-command-structure"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/setting-up-a-command-structure"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1478 @@
+{
+  "abstract": [
+    {
+      "text": "A ",
+      "type": "text"
+    },
+    {
+      "code": "UIDragInteraction",
+      "type": "codeVoice"
+    },
+    {
+      "text": " subclass with features specific to browsers to enable asynchronous preparations and behaviours.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteraction"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)BEDragInteraction",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "BEDragInteraction"
+      }
+    ],
+    "modules": [
+      {
+        "name": "BrowserEngineKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "BEDragInteraction"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iPadOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "BEDragInteraction"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "BEDragInteraction"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An interaction that enables your app to asynchronously provide drag items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "BEDragInteraction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIDragInteraction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that additionally supports asynchronous interaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a person drags a UI element in your browser app, create a ",
+              "type": "text"
+            },
+            {
+              "code": "BEDragInteraction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and attach it to the source view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you create the object, set its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteraction/delegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to an object that conforms to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteractionDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the delegate to prepare the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIDragSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before the system requests drag items, which it does by calling the delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIDragInteractionDelegate/dragInteraction(_:itemsForBeginning:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit": {
+      "abstract": [
+        {
+          "text": "Create a browser that renders content using an alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BrowserEngineKit",
+      "type": "topic",
+      "url": "/documentation/browserenginekit"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteraction": {
+      "abstract": [
+        {
+          "text": "A ",
+          "type": "text"
+        },
+        {
+          "code": "UIDragInteraction",
+          "type": "codeVoice"
+        },
+        {
+          "text": " subclass with features specific to browsers to enable asynchronous preparations and behaviours.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BEDragInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEDragInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "BEDragInteraction",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bedraginteraction"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteraction/delegate": {
+      "abstract": [
+        {
+          "text": "The object that manages the drag interaction lifecycle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)BEDragInteractionDelegate",
+          "text": "BEDragInteractionDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteraction/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bedraginteraction/delegate"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteraction/init(delegate:)": {
+      "abstract": [
+        {
+          "text": "Creates an drag interaction with the specified delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)BEDragInteractionDelegate",
+          "text": "BEDragInteractionDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteraction/init(delegate:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithDelegate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(delegate:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bedraginteraction/init(delegate:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteractionDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol to which the drag interaction delegates conform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BEDragInteractionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteractionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEDragInteractionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "BEDragInteractionDelegate",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bedraginteractiondelegate"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIDragInteraction": {
+      "abstract": [
+        {
+          "text": "An interaction to enable dragging of items from a view, employing a delegate to provide drag items and to respond to calls from the drag session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDragInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIDragInteraction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIDragInteraction",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIDragInteraction"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIDragInteractionDelegate/dragInteraction(_:itemsForBeginning:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate for the array of drag items for an impending drag interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dragInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "interaction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIDragInteraction",
+          "text": "UIDragInteraction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "itemsForBeginning"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDragSession",
+          "text": "UIDragSession"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIDragItem",
+          "text": "UIDragItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIDragInteractionDelegate/dragInteraction(_:itemsForBeginning:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dragInteraction(_:itemsForBeginning:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIDragInteractionDelegate/dragInteraction(_:itemsForBeginning:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIDragSession": {
+      "abstract": [
+        {
+          "text": "The interface for configuring a drag session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDragSession"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIDragDropSession",
+          "text": "UIDragDropSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIDragSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIDragSession",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIDragSession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)UIDragInteraction": {
+      "abstract": [
+        {
+          "text": "An interaction to enable dragging of items from a view, employing a delegate to provide drag items and to respond to calls from the drag session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDragInteraction"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)UIDragInteraction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIDragInteraction",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIDragInteraction"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIInteraction": {
+      "abstract": [
+        {
+          "text": "The protocol that an interaction implements to access the view that owns it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIInteraction"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIInteraction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIInteraction",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIInteraction"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)UIDragInteraction"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIInteraction"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Drag-interaction",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteractionDelegate"
+      ],
+      "title": "Drag interaction"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-drag-interaction",
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteraction/init(delegate:)"
+      ],
+      "title": "Creating a drag interaction"
+    },
+    {
+      "anchor": "Handling-drag-gestures",
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteraction/delegate",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteractionDelegate"
+      ],
+      "title": "Handling drag gestures"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.4",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.4",
+              "name": "iPadOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "BEDragInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEDragInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEDragInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-drag-interaction",
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteraction/init(delegate:)"
+              ],
+              "title": "Creating a drag interaction"
+            },
+            {
+              "anchor": "Handling-drag-gestures",
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteraction/delegate",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteractionDelegate"
+              ],
+              "title": "Handling drag gestures"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)UIDragInteraction"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Drag-interaction",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteractionDelegate"
+              ],
+              "title": "Drag interaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "BEDragInteraction"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)UIDragInteraction",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)UIDragInteraction",
+                    "text": "UIDragInteraction"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)UIDragInteraction/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIDragInteraction"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEDragInteraction~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEDragInteraction~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIInteraction/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIInteraction"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIDragInteraction/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIDragInteraction"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIDragSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIDragSession"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)UIDragDropSession",
+              "text": "UIDragDropSession"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIDragInteractionDelegate~1dragInteraction(_:itemsForBeginning:)/title",
+          "value": "dragInteraction:itemsForBeginningSession:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIDragInteractionDelegate~1dragInteraction(_:itemsForBeginning:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<UIDragItem *>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "dragInteraction:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIDragInteraction",
+              "text": "UIDragInteraction"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "interaction"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "itemsForBeginningSession:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)UIDragSession",
+              "text": "id<UIDragSession>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "session"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEDragInteraction~1init(delegate:)/title",
+          "value": "initWithDelegate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEDragInteraction~1init(delegate:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithDelegate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEDragInteractionDelegate/title",
+          "value": "BEDragInteractionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEDragInteractionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEDragInteractionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEDragInteractionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEDragInteractionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEDragInteraction/title",
+          "value": "BEDragInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEDragInteraction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEDragInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEDragInteraction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEDragInteraction"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/browserenginekit/bedraginteraction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/browserenginekit/bedraginteraction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

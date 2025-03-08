@@ -1,0 +1,3036 @@
+{
+  "abstract": [
+    {
+      "text": "A collection of methods that manages the app-level behavior of a WatchKit extension.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchkit/documentation/WatchKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)WKExtensionDelegate",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "WKExtensionDelegate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "WatchKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "WKExtensionDelegate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "WKExtensionDelegate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKExtensionDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement the delegate’s methods to respond to your app’s life-cycle events, such as the activation and deactivation of your app. You can also implement delegate methods to respond to background tasks, Siri intents, workout sessions, or Handoff activity from another devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "WatchKit creates your delegate object automatically by instantiating the class assigned to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKExtensionDelegateClassName",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key in your WatchKit extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. By default, this class is named ExtensionDelegate. The system then assigns the delegate object to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtension/delegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the shared ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKExtensionDelegateClassName": {
+      "abstract": [
+        {
+          "text": "The name of your watchOS app’s extension delegate.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKExtensionDelegateClassName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKExtensionDelegateClassName",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/WKExtensionDelegateClassName"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKPrefersNetworkUponForeground": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an app requires network access on launch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKPrefersNetworkUponForeground",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKPrefersNetworkUponForeground",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/WKPrefersNetworkUponForeground"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that use features the app delegate monitors or controls, such as background tasks and extended runtime sessions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WatchKit",
+      "type": "topic",
+      "url": "/documentation/watchkit"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKApplication": {
+      "abstract": [
+        {
+          "text": "The centralized point of control and coordination for apps with a single watchOS app target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKApplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKApplication",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkapplication"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationDelegate": {
+      "abstract": [
+        {
+          "text": "A collection of methods that manages the app-level behavior for a single-target watchOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKApplicationDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKApplicationDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKApplicationDelegate",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkapplicationdelegate"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationMain(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates the application object and the application delegate, and sets up the app’s event cycle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKApplicationMain"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">?>, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationMain(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKApplicationMain"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKApplicationMain(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkapplicationmain(_:_:_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKBackgroundFetchResult": {
+      "abstract": [
+        {
+          "text": "The result of an attempt to download the content associated with a remote notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKBackgroundFetchResult"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKBackgroundFetchResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKBackgroundFetchResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKBackgroundFetchResult",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkbackgroundfetchresult"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtension": {
+      "abstract": [
+        {
+          "text": "The centralized point of control and coordination for extension-based apps running in watchOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKExtension",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextension"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtension/delegate": {
+      "abstract": [
+        {
+          "text": "The delegate of the WatchKit extension object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)WKExtensionDelegate",
+          "text": "WKExtensionDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtension/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextension/delegate"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate": {
+      "abstract": [
+        {
+          "text": "A collection of methods that manages the app-level behavior of a WatchKit extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKExtensionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKExtensionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKExtensionDelegate",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/applicationDidBecomeActive()": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the watchOS app is visible and processing events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationDidBecomeActive"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/applicationDidBecomeActive()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applicationDidBecomeActive"
+        }
+      ],
+      "role": "symbol",
+      "title": "applicationDidBecomeActive()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/applicationdidbecomeactive()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/applicationDidEnterBackground()": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the app has transitioned from the foreground to the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationDidEnterBackground"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/applicationDidEnterBackground()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applicationDidEnterBackground"
+        }
+      ],
+      "role": "symbol",
+      "title": "applicationDidEnterBackground()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/applicationdidenterbackground()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/applicationDidFinishLaunching()": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the launch process is almost done and the extension is almost ready to run.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationDidFinishLaunching"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/applicationDidFinishLaunching()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applicationDidFinishLaunching"
+        }
+      ],
+      "role": "symbol",
+      "title": "applicationDidFinishLaunching()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/applicationdidfinishlaunching()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/applicationWillEnterForeground()": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the app is about to transition from the background to the foreground.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationWillEnterForeground"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/applicationWillEnterForeground()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applicationWillEnterForeground"
+        }
+      ],
+      "role": "symbol",
+      "title": "applicationWillEnterForeground()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/applicationwillenterforeground()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/applicationWillResignActive()": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the system is about to deactivate the watchOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationWillResignActive"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/applicationWillResignActive()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applicationWillResignActive"
+        }
+      ],
+      "role": "symbol",
+      "title": "applicationWillResignActive()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/applicationwillresignactive()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/deviceOrientationDidChange()": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the device’s orientation has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceOrientationDidChange"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/deviceOrientationDidChange()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deviceOrientationDidChange"
+        }
+      ],
+      "role": "symbol",
+      "title": "deviceOrientationDidChange()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/deviceorientationdidchange()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/didFailToRegisterForRemoteNotificationsWithError(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that Apple Push Notification service (APNs) cannot successfully complete the registration process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didFailToRegisterForRemoteNotificationsWithError"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/didFailToRegisterForRemoteNotificationsWithError(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didFailToRegisterForRemoteNotificationsWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "didFailToRegisterForRemoteNotificationsWithError(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/didfailtoregisterforremotenotificationswitherror(_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/didReceive(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a local notification was triggered.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didReceive"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UILocalNotification",
+          "text": "UILocalNotification"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/didReceive(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didReceiveLocalNotification:"
+        }
+      ],
+      "role": "symbol",
+      "title": "didReceive(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/didreceive(_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/didReceiveRemoteNotification(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a remote notification arrived.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didReceiveRemoteNotification"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/didReceiveRemoteNotification(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didReceiveRemoteNotification:"
+        }
+      ],
+      "role": "symbol",
+      "title": "didReceiveRemoteNotification(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/didreceiveremotenotification(_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/didReceiveRemoteNotification(_:fetchCompletionHandler:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a background notification has arrived.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didReceiveRemoteNotification"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fetchCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@WKBackgroundFetchResult",
+          "text": "WKBackgroundFetchResult"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/didReceiveRemoteNotification(_:fetchCompletionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didReceiveRemoteNotification:fetchCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "didReceiveRemoteNotification(_:fetchCompletionHandler:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/didreceiveremotenotification(_:fetchcompletionhandler:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/didRegisterForRemoteNotifications(withDeviceToken:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the app successfully registered with Apple Push Notification service (APNs).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didRegisterForRemoteNotifications"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withDeviceToken"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/didRegisterForRemoteNotifications(withDeviceToken:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didRegisterForRemoteNotificationsWithDeviceToken:"
+        }
+      ],
+      "role": "symbol",
+      "title": "didRegisterForRemoteNotifications(withDeviceToken:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/didregisterforremotenotifications(withdevicetoken:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:)-4qxgv": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the system launched your app to resume an extended runtime session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKExtendedRuntimeSession",
+          "text": "WKExtendedRuntimeSession"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:)-4qxgv",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleExtendedRuntimeSession:"
+        }
+      ],
+      "role": "symbol",
+      "title": "handle(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/handle(_:)-4qxgv"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:)-5pyj1": {
+      "abstract": [
+        {
+          "text": "Responds to Handoff–related activity from Siri.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUserActivity",
+          "text": "NSUserActivity"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:)-5pyj1",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleActivity:"
+        }
+      ],
+      "role": "symbol",
+      "title": "handle(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/handle(_:)-5pyj1"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:)-92ulv": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the app has received one or more background tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKRefreshBackgroundTask",
+          "text": "WKRefreshBackgroundTask"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:)-92ulv",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleBackgroundTasks:"
+        }
+      ],
+      "role": "symbol",
+      "title": "handle(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/handle(_:)-92ulv"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:)-f27i": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the user started a workout session on the paired iPhone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKWorkoutConfiguration",
+          "text": "HKWorkoutConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:)-f27i",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleWorkoutConfiguration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "handle(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/handle(_:)-f27i"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Responds to a Siri intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INIntent",
+          "text": "INIntent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INIntentResponse",
+          "text": "INIntentResponse"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleIntent:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "handle(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/handle(_:completionhandler:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleAction(withIdentifier:for:)": {
+      "abstract": [
+        {
+          "text": "Delivers a local notification payload and a user-selected action to the app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UILocalNotification",
+          "text": "UILocalNotification"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleAction(withIdentifier:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleActionWithIdentifier:forLocalNotification:"
+        }
+      ],
+      "role": "symbol",
+      "title": "handleAction(withIdentifier:for:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/handleaction(withidentifier:for:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleAction(withIdentifier:for:withResponseInfo:)": {
+      "abstract": [
+        {
+          "text": "Delivers a local notification payload and user response information to the app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UILocalNotification",
+          "text": "UILocalNotification"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withResponseInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleAction(withIdentifier:for:withResponseInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleActionWithIdentifier:forLocalNotification:withResponseInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "handleAction(withIdentifier:for:withResponseInfo:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/handleaction(withidentifier:for:withresponseinfo:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleAction(withIdentifier:forRemoteNotification:)": {
+      "abstract": [
+        {
+          "text": "Delivers a remote notification payload and a user-selected action to the app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forRemoteNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleAction(withIdentifier:forRemoteNotification:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleActionWithIdentifier:forRemoteNotification:"
+        }
+      ],
+      "role": "symbol",
+      "title": "handleAction(withIdentifier:forRemoteNotification:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/handleaction(withidentifier:forremotenotification:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleAction(withIdentifier:forRemoteNotification:withResponseInfo:)": {
+      "abstract": [
+        {
+          "text": "Delivers a remote notification payload and user response information to the app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forRemoteNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withResponseInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleAction(withIdentifier:forRemoteNotification:withResponseInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleActionWithIdentifier:forRemoteNotification:withResponseInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "handleAction(withIdentifier:forRemoteNotification:withResponseInfo:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/handleaction(withidentifier:forremotenotification:withresponseinfo:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleActiveWorkoutRecovery()": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the app relaunches after crashing during an active workout session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleActiveWorkoutRecovery"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleActiveWorkoutRecovery()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleActiveWorkoutRecovery"
+        }
+      ],
+      "role": "symbol",
+      "title": "handleActiveWorkoutRecovery()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/handleactiveworkoutrecovery()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleRemoteNowPlayingActivity()": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the user plays audio in the corresponding iOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleRemoteNowPlayingActivity"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleRemoteNowPlayingActivity()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleRemoteNowPlayingActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "handleRemoteNowPlayingActivity()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/handleremotenowplayingactivity()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleUserActivity(_:)": {
+      "abstract": [
+        {
+          "text": "Responds to Handoff–related activity from complications and notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleUserActivity"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleUserActivity(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleUserActivity:"
+        }
+      ],
+      "role": "symbol",
+      "title": "handleUserActivity(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/handleuseractivity(_:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/userDidAcceptCloudKitShare(with:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the app has access to shared information in CloudKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userDidAcceptCloudKitShare"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKShareMetadata",
+          "text": "CKShareMetadata"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/userDidAcceptCloudKitShare(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userDidAcceptCloudKitShareWithMetadata:"
+        }
+      ],
+      "role": "symbol",
+      "title": "userDidAcceptCloudKitShare(with:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextensiondelegate/userdidacceptcloudkitshare(with:)"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceDevice": {
+      "abstract": [
+        {
+          "text": "An object that provides information about the user’s Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceDevice",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacedevice"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/setting-up-a-watchos-project": {
+      "abstract": [
+        {
+          "text": "Create a new watchOS project or add a watch target to an existing iOS project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/setting-up-a-watchos-project",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Setting up a watchOS project",
+      "type": "topic",
+      "url": "/documentation/watchkit/setting-up-a-watchos-project"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/working-with-the-watchos-app-life-cycle": {
+      "abstract": [
+        {
+          "text": "Learn how the watchOS app life cycle operates and responds to life cycle notification methods.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/working-with-the-watchos-app-life-cycle",
+      "kind": "article",
+      "role": "article",
+      "title": "Working with the watchOS app life cycle",
+      "type": "topic",
+      "url": "/documentation/watchkit/working-with-the-watchos-app-life-cycle"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-structure",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/setting-up-a-watchos-project",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKApplication",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationDelegate",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtension",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationMain(_:_:_:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceDevice",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKPrefersNetworkUponForeground"
+      ],
+      "title": "App structure"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Monitoring-state-changes",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/working-with-the-watchos-app-life-cycle",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/applicationDidFinishLaunching()",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/applicationDidBecomeActive()",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/applicationWillResignActive()",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/applicationWillEnterForeground()",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/applicationDidEnterBackground()",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/deviceOrientationDidChange()"
+      ],
+      "title": "Monitoring state changes"
+    },
+    {
+      "anchor": "Responding-to-intents",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:completionHandler:)"
+      ],
+      "title": "Responding to intents"
+    },
+    {
+      "anchor": "Setup-Now-Playing-interface",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleRemoteNowPlayingActivity()"
+      ],
+      "title": "Setup Now Playing interface"
+    },
+    {
+      "anchor": "Handling-a-workout-session",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:)-f27i",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleActiveWorkoutRecovery()"
+      ],
+      "title": "Handling a workout session"
+    },
+    {
+      "anchor": "Handling-background-tasks",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:)-92ulv"
+      ],
+      "title": "Handling background tasks"
+    },
+    {
+      "anchor": "Handling-extended-runtime-sessions",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:)-4qxgv"
+      ],
+      "title": "Handling extended runtime sessions"
+    },
+    {
+      "anchor": "Managing-remote-notifications",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/didRegisterForRemoteNotifications(withDeviceToken:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/didFailToRegisterForRemoteNotificationsWithError(_:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/didReceiveRemoteNotification(_:fetchCompletionHandler:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKBackgroundFetchResult"
+      ],
+      "title": "Managing remote notifications"
+    },
+    {
+      "anchor": "Coordinating-handoff-activity",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleUserActivity(_:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:)-5pyj1"
+      ],
+      "title": "Coordinating handoff activity"
+    },
+    {
+      "anchor": "Accepting-CloudKit-shares",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/userDidAcceptCloudKitShare(with:)"
+      ],
+      "title": "Accepting CloudKit shares"
+    },
+    {
+      "anchor": "Deprecated-Methods",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/didReceiveRemoteNotification(_:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/didReceive(_:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleAction(withIdentifier:forRemoteNotification:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleAction(withIdentifier:forRemoteNotification:withResponseInfo:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleAction(withIdentifier:for:)",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleAction(withIdentifier:for:withResponseInfo:)"
+      ],
+      "title": "Deprecated Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "WKExtensionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKExtensionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKExtensionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.watchkit/documentation/WatchKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Monitoring-state-changes",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/working-with-the-watchos-app-life-cycle",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/applicationDidFinishLaunching()",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/applicationDidBecomeActive()",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/applicationWillResignActive()",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/applicationWillEnterForeground()",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/applicationDidEnterBackground()",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/deviceOrientationDidChange()"
+              ],
+              "title": "Monitoring state changes"
+            },
+            {
+              "anchor": "Responding-to-intents",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:completionHandler:)"
+              ],
+              "title": "Responding to intents"
+            },
+            {
+              "anchor": "Setup-Now-Playing-interface",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleRemoteNowPlayingActivity()"
+              ],
+              "title": "Setup Now Playing interface"
+            },
+            {
+              "anchor": "Handling-a-workout-session",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:)-f27i",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleActiveWorkoutRecovery()"
+              ],
+              "title": "Handling a workout session"
+            },
+            {
+              "anchor": "Handling-background-tasks",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:)-92ulv"
+              ],
+              "title": "Handling background tasks"
+            },
+            {
+              "anchor": "Handling-extended-runtime-sessions",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:)-4qxgv"
+              ],
+              "title": "Handling extended runtime sessions"
+            },
+            {
+              "anchor": "Managing-remote-notifications",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/didRegisterForRemoteNotifications(withDeviceToken:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/didFailToRegisterForRemoteNotificationsWithError(_:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/didReceiveRemoteNotification(_:fetchCompletionHandler:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKBackgroundFetchResult"
+              ],
+              "title": "Managing remote notifications"
+            },
+            {
+              "anchor": "Coordinating-handoff-activity",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleUserActivity(_:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handle(_:)-5pyj1"
+              ],
+              "title": "Coordinating handoff activity"
+            },
+            {
+              "anchor": "Accepting-CloudKit-shares",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/userDidAcceptCloudKitShare(with:)"
+              ],
+              "title": "Accepting CloudKit shares"
+            },
+            {
+              "anchor": "Deprecated-Methods",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/didReceiveRemoteNotification(_:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/didReceive(_:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleAction(withIdentifier:forRemoteNotification:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleAction(withIdentifier:forRemoteNotification:withResponseInfo:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleAction(withIdentifier:for:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtensionDelegate/handleAction(withIdentifier:for:withResponseInfo:)"
+              ],
+              "title": "Deprecated Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "App-structure",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/setting-up-a-watchos-project",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKApplication",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationDelegate",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtension",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationMain(_:_:_:)",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceDevice",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKPrefersNetworkUponForeground"
+              ],
+              "title": "App structure"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "WKExtensionDelegate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKBackgroundFetchResult/title",
+          "value": "WKBackgroundFetchResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKBackgroundFetchResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKBackgroundFetchResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKBackgroundFetchResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKBackgroundFetchResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1didReceive(_:)/title",
+          "value": "didReceiveLocalNotification:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1didReceive(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didReceiveLocalNotification:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1applicationDidEnterBackground()/title",
+          "value": "applicationDidEnterBackground"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1applicationDidEnterBackground()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "applicationDidEnterBackground"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtension~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtension~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceDevice/title",
+          "value": "WKInterfaceDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1didReceiveRemoteNotification(_:fetchCompletionHandler:)/title",
+          "value": "didReceiveRemoteNotification:fetchCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1didReceiveRemoteNotification(_:fetchCompletionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didReceiveRemoteNotification:fetchCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handle(_:)-5pyj1/title",
+          "value": "handleActivity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handle(_:)-5pyj1/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleActivity:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handleAction(withIdentifier:for:)/title",
+          "value": "handleActionWithIdentifier:forLocalNotification:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handleAction(withIdentifier:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleActionWithIdentifier:forLocalNotification:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handle(_:completionHandler:)/title",
+          "value": "handleIntent:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handle(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleIntent:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handleAction(withIdentifier:forRemoteNotification:withResponseInfo:)/title",
+          "value": "handleActionWithIdentifier:forRemoteNotification:withResponseInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handleAction(withIdentifier:forRemoteNotification:withResponseInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleActionWithIdentifier:forRemoteNotification:withResponseInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1applicationWillResignActive()/title",
+          "value": "applicationWillResignActive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1applicationWillResignActive()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "applicationWillResignActive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handle(_:)-4qxgv/title",
+          "value": "handleExtendedRuntimeSession:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handle(_:)-4qxgv/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleExtendedRuntimeSession:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1applicationDidBecomeActive()/title",
+          "value": "applicationDidBecomeActive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1applicationDidBecomeActive()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "applicationDidBecomeActive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate/title",
+          "value": "WKExtensionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKExtensionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKExtensionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1didReceiveRemoteNotification(_:)/title",
+          "value": "didReceiveRemoteNotification:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1didReceiveRemoteNotification(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didReceiveRemoteNotification:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handle(_:)-f27i/title",
+          "value": "handleWorkoutConfiguration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handle(_:)-f27i/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleWorkoutConfiguration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1userDidAcceptCloudKitShare(with:)/title",
+          "value": "userDidAcceptCloudKitShareWithMetadata:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1userDidAcceptCloudKitShare(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "userDidAcceptCloudKitShareWithMetadata:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplicationDelegate/title",
+          "value": "WKApplicationDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplicationDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKApplicationDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplicationDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKApplicationDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handleUserActivity(_:)/title",
+          "value": "handleUserActivity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handleUserActivity(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleUserActivity:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1deviceOrientationDidChange()/title",
+          "value": "deviceOrientationDidChange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1deviceOrientationDidChange()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "deviceOrientationDidChange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handleAction(withIdentifier:for:withResponseInfo:)/title",
+          "value": "handleActionWithIdentifier:forLocalNotification:withResponseInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handleAction(withIdentifier:for:withResponseInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleActionWithIdentifier:forLocalNotification:withResponseInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handleRemoteNowPlayingActivity()/title",
+          "value": "handleRemoteNowPlayingActivity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handleRemoteNowPlayingActivity()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleRemoteNowPlayingActivity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1didFailToRegisterForRemoteNotificationsWithError(_:)/title",
+          "value": "didFailToRegisterForRemoteNotificationsWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1didFailToRegisterForRemoteNotificationsWithError(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didFailToRegisterForRemoteNotificationsWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handleAction(withIdentifier:forRemoteNotification:)/title",
+          "value": "handleActionWithIdentifier:forRemoteNotification:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handleAction(withIdentifier:forRemoteNotification:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleActionWithIdentifier:forRemoteNotification:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1didRegisterForRemoteNotifications(withDeviceToken:)/title",
+          "value": "didRegisterForRemoteNotificationsWithDeviceToken:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1didRegisterForRemoteNotifications(withDeviceToken:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didRegisterForRemoteNotificationsWithDeviceToken:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handle(_:)-92ulv/title",
+          "value": "handleBackgroundTasks:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handle(_:)-92ulv/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleBackgroundTasks:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplicationMain(_:_:_:)/title",
+          "value": "WKApplicationMain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplicationMain(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKApplicationMain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtension/title",
+          "value": "WKExtension"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtension/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtension/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1applicationWillEnterForeground()/title",
+          "value": "applicationWillEnterForeground"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1applicationWillEnterForeground()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "applicationWillEnterForeground"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplication/title",
+          "value": "WKApplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handleActiveWorkoutRecovery()/title",
+          "value": "handleActiveWorkoutRecovery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1handleActiveWorkoutRecovery()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleActiveWorkoutRecovery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1applicationDidFinishLaunching()/title",
+          "value": "applicationDidFinishLaunching"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtensionDelegate~1applicationDidFinishLaunching()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "applicationDidFinishLaunching"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/watchkit/wkextensiondelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/watchkit/wkextensiondelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

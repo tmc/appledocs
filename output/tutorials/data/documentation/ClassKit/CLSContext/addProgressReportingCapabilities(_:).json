@@ -1,0 +1,942 @@
+{
+  "abstract": [
+    {
+      "text": "Adds a progress reporting capability to the set of capabilities for the context.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.classkit/documentation/ClassKit",
+        "doc://com.apple.classkit/documentation/ClassKit/CLSContext"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.classkit/documentation/ClassKit/CLSContext/addProgressReportingCapabilities(_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CLSContext(im)addProgressReportingCapabilities:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "addProgressReportingCapabilities"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sh",
+        "text": "Set"
+      },
+      {
+        "kind": "text",
+        "text": "<"
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)CLSProgressReportingCapability",
+        "text": "CLSProgressReportingCapability"
+      },
+      {
+        "kind": "text",
+        "text": ">)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ClassKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "addProgressReportingCapabilities:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "addProgressReportingCapabilities(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "addProgressReportingCapabilities"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "capabilities"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sh",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sh",
+              "text": "Set"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSProgressReportingCapability",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CLSProgressReportingCapability",
+              "text": "CLSProgressReportingCapability"
+            },
+            {
+              "kind": "text",
+              "text": ">)"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this method at the time you create a context to indicate what kinds of metrics, like duration, a score, or a binary result, that you record for the context. This helps teachers to understand what to expect when assigning a context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, all contexts have a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSProgressReportingCapability/Kind-swift.enum/duration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " capability, because the framework records duration automatically. But you can add others, according to which metrics you record. You can also add another duration capability, but because a context can have only one capability of a given kind, yours supersedes the default.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To remove all capabilities that you previously added, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext/resetProgressReportingCapabilities()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. This restores the context to its default state, which is to have only the default duration capability.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.classkit/documentation/ClassKit": {
+      "abstract": [
+        {
+          "text": "Enable teachers to assign activities from your app’s content and to view student progress.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClassKit",
+      "type": "topic",
+      "url": "/documentation/classkit"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSContext": {
+      "abstract": [
+        {
+          "text": "An area of your app that represents an assignable task, like a quiz or a chapter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLSContext"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLSContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLSContext",
+      "type": "topic",
+      "url": "/documentation/classkit/clscontext"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSContext/addProgressReportingCapabilities(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a progress reporting capability to the set of capabilities for the context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addProgressReportingCapabilities"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLSProgressReportingCapability",
+          "text": "CLSProgressReportingCapability"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext/addProgressReportingCapabilities(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addProgressReportingCapabilities:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addProgressReportingCapabilities(_:)",
+      "type": "topic",
+      "url": "/documentation/classkit/clscontext/addprogressreportingcapabilities(_:)"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSContext/progressReportingCapabilities": {
+      "abstract": [
+        {
+          "text": "The kinds of progress reporting that the context can perform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "progressReportingCapabilities"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLSProgressReportingCapability",
+          "text": "CLSProgressReportingCapability"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext/progressReportingCapabilities",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "progressReportingCapabilities"
+        }
+      ],
+      "role": "symbol",
+      "title": "progressReportingCapabilities",
+      "type": "topic",
+      "url": "/documentation/classkit/clscontext/progressreportingcapabilities"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSContext/resetProgressReportingCapabilities()": {
+      "abstract": [
+        {
+          "text": "Resets the set of capabilities for the context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resetProgressReportingCapabilities"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSContext/resetProgressReportingCapabilities()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resetProgressReportingCapabilities"
+        }
+      ],
+      "role": "symbol",
+      "title": "resetProgressReportingCapabilities()",
+      "type": "topic",
+      "url": "/documentation/classkit/clscontext/resetprogressreportingcapabilities()"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSProgressReportingCapability": {
+      "abstract": [
+        {
+          "text": "A progress reporting capability supported by a context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLSProgressReportingCapability"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSProgressReportingCapability",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLSProgressReportingCapability"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLSProgressReportingCapability",
+      "type": "topic",
+      "url": "/documentation/classkit/clsprogressreportingcapability"
+    },
+    "doc://com.apple.classkit/documentation/ClassKit/CLSProgressReportingCapability/Kind-swift.enum/duration": {
+      "abstract": [
+        {
+          "text": "Time spent performing the task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "duration"
+        }
+      ],
+      "identifier": "doc://com.apple.classkit/documentation/ClassKit/CLSProgressReportingCapability/Kind-swift.enum/duration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLSProgressReportingCapabilityKindDuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLSProgressReportingCapability.Kind.duration",
+      "type": "topic",
+      "url": "/documentation/classkit/clsprogressreportingcapability/kind-swift.enum/duration"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:Sh": {
+      "abstract": [
+        {
+          "text": "An unordered collection of unique elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Set",
+      "type": "topic",
+      "url": "/documentation/Swift/Set"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Indicating-progress-reporting-capabilities",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.classkit/documentation/ClassKit/CLSContext/progressReportingCapabilities",
+        "doc://com.apple.classkit/documentation/ClassKit/CLSContext/resetProgressReportingCapabilities()",
+        "doc://com.apple.classkit/documentation/ClassKit/CLSProgressReportingCapability"
+      ],
+      "title": "Indicating progress reporting capabilities"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "addProgressReportingCapabilities:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addProgressReportingCapabilities:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.classkit/documentation/ClassKit",
+                "doc://com.apple.classkit/documentation/ClassKit/CLSContext"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Indicating-progress-reporting-capabilities",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.classkit/documentation/ClassKit/CLSContext/progressReportingCapabilities",
+                "doc://com.apple.classkit/documentation/ClassKit/CLSContext/resetProgressReportingCapabilities()",
+                "doc://com.apple.classkit/documentation/ClassKit/CLSProgressReportingCapability"
+              ],
+              "title": "Indicating progress reporting capabilities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "addProgressReportingCapabilities:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:Q$objc(cs)NSSet",
+                    "text": "NSSet<CLSProgressReportingCapability *>"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "capabilities"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext~1addProgressReportingCapabilities(_:)/title",
+          "value": "addProgressReportingCapabilities:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext~1addProgressReportingCapabilities(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addProgressReportingCapabilities:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext/title",
+          "value": "CLSContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLSContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLSContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSProgressReportingCapability/title",
+          "value": "CLSProgressReportingCapability"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSProgressReportingCapability/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLSProgressReportingCapability"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSProgressReportingCapability/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLSProgressReportingCapability"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext~1progressReportingCapabilities/title",
+          "value": "progressReportingCapabilities"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext~1progressReportingCapabilities/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "progressReportingCapabilities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext~1resetProgressReportingCapabilities()/title",
+          "value": "resetProgressReportingCapabilities"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSContext~1resetProgressReportingCapabilities()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resetProgressReportingCapabilities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSProgressReportingCapability~1Kind-swift.enum~1duration/title",
+          "value": "CLSProgressReportingCapabilityKindDuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.classkit~1documentation~1ClassKit~1CLSProgressReportingCapability~1Kind-swift.enum~1duration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLSProgressReportingCapabilityKindDuration"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/classkit/clscontext/addprogressreportingcapabilities(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/classkit/clscontext/addprogressreportingcapabilities(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

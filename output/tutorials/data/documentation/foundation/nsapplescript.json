@@ -1,0 +1,732 @@
+{
+  "abstract": [
+    {
+      "text": "An object that provides the ability to load, compile, and execute scripts.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/scripting_support"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsapplescript"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1417809,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSAppleScript",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSAppleScript"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.2",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSAppleScript"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAppleScript"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This class provides applications with the ability to",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "load a script from a URL or from a text string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "compile or execute a script or an individual Apple event",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "obtain an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSAppleEventDescriptor",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " containing the reply from an executed script or event",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "obtain an attributed string for a compiled script, suitable for display in a script editor",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "obtain various kinds of information about any errors that may occur",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "code": "NSAppleScript",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " provides the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsapplescript/1410807-executeappleevent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method so that you can send an Apple event to invoke a handler in a script. (In an AppleScript script, a handler is the equivalent of a function.) However, you cannot use this method to send Apple events to other applications.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "NSAppleScript",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object, you can use a URL to specify a script that can be in either text or compiled form, or you can supply the script as a string. Should an error occur when compiling or executing the script, several of the methods return a dictionary containing error information. The keys for obtaining error information, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsapplescript/1416462-errormessage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", are described in the Constants section.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See also NSAppleScript Additions Reference in the Application Kit framework, which defines a method that returns the syntax-highlighted source code for a script.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsapplescript": {
+      "abstract": [
+        {
+          "text": "An object that provides the ability to load, compile, and execute scripts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAppleScript"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsapplescript",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAppleScript",
+      "type": "topic",
+      "url": "/documentation/foundation/nsapplescript"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsapplescript/1407582-compileandreturnerror": {
+      "abstract": [
+        {
+          "text": "Compiles the receiver, if it is not already compiled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "compileAndReturnError"
+        },
+        {
+          "kind": "text",
+          "text": "(AutoreleasingUnsafeMutablePointer<NSDictionary?>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsapplescript/1407582-compileandreturnerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "compileAndReturnError(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsapplescript/1407582-compileandreturnerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsapplescript/1408453-source": {
+      "abstract": [
+        {
+          "text": "The script source for the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "source"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsapplescript/1408453-source",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "source",
+      "type": "topic",
+      "url": "/documentation/foundation/nsapplescript/1408453-source"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsapplescript/1410034-executeandreturnerror": {
+      "abstract": [
+        {
+          "text": "Executes the receiver, compiling it first if it is not already compiled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeAndReturnError"
+        },
+        {
+          "kind": "text",
+          "text": "(AutoreleasingUnsafeMutablePointer<NSDictionary?>?) -> NSAppleEventDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsapplescript/1410034-executeandreturnerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeAndReturnError(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsapplescript/1410034-executeandreturnerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsapplescript/1410407-iscompiled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the receiver's script has been compiled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isCompiled"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsapplescript/1410407-iscompiled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isCompiled",
+      "type": "topic",
+      "url": "/documentation/foundation/nsapplescript/1410407-iscompiled"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsapplescript/1410807-executeappleevent": {
+      "abstract": [
+        {
+          "text": "Executes an Apple event in the context of the receiver, as a means of allowing the application to invoke a handler in the script.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeAppleEvent"
+        },
+        {
+          "kind": "text",
+          "text": "(NSAppleEventDescriptor, "
+        },
+        {
+          "kind": "identifier",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": AutoreleasingUnsafeMutablePointer<NSDictionary?>?) -> NSAppleEventDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsapplescript/1410807-executeappleevent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeAppleEvent(_:error:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsapplescript/1410807-executeappleevent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsapplescript/1412508-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated script instance from the source identified by the passed URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": AutoreleasingUnsafeMutablePointer<NSDictionary?>?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsapplescript/1412508-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(contentsOf:error:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsapplescript/1412508-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsapplescript/1414313-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated script instance from the passed source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "source"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsapplescript/1414313-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(source:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsapplescript/1414313-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsapplescript/1416462-errormessage": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsapplescript/1416462-errormessage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "errorMessage",
+      "type": "topic",
+      "url": "/documentation/foundation/nsapplescript/1416462-errormessage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsapplescript/error_dictionary_keys": {
+      "abstract": [
+        {
+          "text": "If the result of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsapplescript/1412508-init",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsapplescript/1407582-compileandreturnerror",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsapplescript/1410034-executeandreturnerror",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", or ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsapplescript/1410807-executeappleevent",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", signals failure (",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/swift/false",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", respectively), a pointer to an autoreleased dictionary is put at the location pointed to by the error parameter. The error info dictionary may contain entries that use any combination of the following keys, including no entries at all.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsapplescript/error_dictionary_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Error Dictionary Keys",
+      "type": "topic",
+      "url": "/documentation/foundation/nsapplescript/error_dictionary_keys"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scripting_support": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scripting_support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scripting Support",
+      "type": "topic",
+      "url": "/documentation/foundation/scripting_support"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1651595",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsapplescript/1412508-init",
+        "doc://com.apple.documentation/documentation/foundation/nsapplescript/1414313-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializing a Script"
+    },
+    {
+      "anchor": "1651621",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsapplescript/1410407-iscompiled",
+        "doc://com.apple.documentation/documentation/foundation/nsapplescript/1408453-source"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Information About a Script"
+    },
+    {
+      "anchor": "1651649",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsapplescript/1407582-compileandreturnerror",
+        "doc://com.apple.documentation/documentation/foundation/nsapplescript/1410034-executeandreturnerror",
+        "doc://com.apple.documentation/documentation/foundation/nsapplescript/1410807-executeappleevent"
+      ],
+      "kind": "taskGroup",
+      "title": "Compiling and Executing a Script"
+    },
+    {
+      "anchor": "1680347",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsapplescript/error_dictionary_keys"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsapplescript"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsapplescript"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

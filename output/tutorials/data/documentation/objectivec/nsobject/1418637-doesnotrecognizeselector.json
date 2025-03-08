@@ -1,0 +1,578 @@
+{
+  "abstract": [
+    {
+      "text": "Handles messages the receiver doesn’t recognize.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/objectivec",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418637-doesnotrecognizeselector"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1418637,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSObject(im)doesNotRecognizeSelector:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "doesNotRecognizeSelector"
+      },
+      {
+        "kind": "text",
+        "text": "(Selector!)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Objective-C Runtime"
+      }
+    ],
+    "parent": {
+      "title": "NSObject"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "doesNotRecognizeSelector(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "doesNotRecognizeSelector"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "aSelector"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/selector",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+              "text": "Selector"
+            },
+            {
+              "kind": "text",
+              "text": "!"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1737767",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " that identifies a method not implemented or recognized by the receiver.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "aSelector"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The runtime system invokes this method whenever an object receives an ",
+              "type": "text"
+            },
+            {
+              "code": "aSelector",
+              "type": "codeVoice"
+            },
+            {
+              "text": " message it can’t respond to or forward. This method, in turn, raises an ",
+              "type": "text"
+            },
+            {
+              "code": "NSInvalidArgumentException",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and generates an error message. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Any ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418637-doesnotrecognizeselector",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " messages are generally sent only by the runtime system. However, they can be used in program code to prevent a method from being inherited. For example, an ",
+              "type": "text"
+            },
+            {
+              "code": "NSObject",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subclass might renounce the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418807-copy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418641-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method by re-implementing it to include a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418637-doesnotrecognizeselector",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " message as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (id)copy",
+            "{",
+            "    [self doesNotRecognizeSelector:_cmd];",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "2555779",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "_cmd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable is a hidden argument passed to every method that is the current selector; in this example, it identifies the selector for the ",
+              "type": "text"
+            },
+            {
+              "code": "copy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method. This code prevents instances of the subclass from responding to ",
+              "type": "text"
+            },
+            {
+              "code": "copy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " messages or superclasses from forwarding ",
+              "type": "text"
+            },
+            {
+              "code": "copy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " messages—although ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol/1418583-responds",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " will still report that the receiver has access to a ",
+              "type": "text"
+            },
+            {
+              "code": "copy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you override this method, you must call ",
+              "type": "text"
+            },
+            {
+              "code": "super",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or raise an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsexceptionname/1415426-invalidargumentexception",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " exception at the end of your implementation. In other words, this method must not return normally; it must always result in an exception being thrown. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1737767": {
+      "identifier": "devLink-1737767",
+      "title": "Selector",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/Selector.html#//apple_ref/doc/uid/TP40008195-CH48"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexceptionname/1415426-invalidargumentexception": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexceptionname/1415426-invalidargumentexception",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invalidArgumentException",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexceptionname/1415426-invalidargumentexception"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/objectivec": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Objective-C Runtime",
+      "type": "topic",
+      "url": "/documentation/objectivec"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1418637-doesnotrecognizeselector": {
+      "abstract": [
+        {
+          "text": "Handles messages the receiver doesn’t recognize.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "doesNotRecognizeSelector"
+        },
+        {
+          "kind": "text",
+          "text": "(Selector!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418637-doesnotrecognizeselector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "doesNotRecognizeSelector(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1418637-doesnotrecognizeselector"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1418637-doesnotrecognizeselector#2555779": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418637-doesnotrecognizeselector#2555779",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/objectivec/nsobject/1418637-doesnotrecognizeselector#2555779"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1418641-init": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418641-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1418641-init"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1418807-copy": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418807-copy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copy()",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1418807-copy"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1571955-forwardinvocation": {
+      "abstract": [
+        {
+          "text": "Overridden by subclasses to forward messages to other objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "forwardInvocation:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571955-forwardinvocation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "forwardInvocation:",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1571955-forwardinvocation"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol/1418583-responds": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol/1418583-responds",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "responds(to:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol/1418583-responds"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/selector": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/selector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Selector",
+      "type": "topic",
+      "url": "/documentation/objectivec/selector"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1571955-forwardinvocation"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/objectivec/nsobject/1418637-doesnotrecognizeselector"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/objectivec/nsobject/1418637-doesnotrecognizeselector"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

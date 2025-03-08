@@ -1,0 +1,1357 @@
+{
+  "abstract": [
+    {
+      "text": "An object that participates in the composition of mail messages, and annotates recipient tokens.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mailkit/documentation/MailKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MEComposeSessionHandler",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MEComposeSessionHandler"
+      }
+    ],
+    "modules": [
+      {
+        "name": "MailKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MEComposeSessionHandler"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "MEComposeSessionHandler"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MEComposeSessionHandler"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user composes a message, MailKit requests a compose session handler object from your extension. MailKit uses this handler in the following ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To inform it when the compose session begins and ends",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To add status annotations for email addresses that the user enters into the To, Cc, and Bcc fields",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To display a custom popover in the compose window",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To include custom headers in an outgoing message",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To confirm that an outgoing message is ready for delivery",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each of the items in the list above corresponds to methods that the handler implements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To indicate that your extension contains a compose session handler, add ",
+              "type": "text"
+            },
+            {
+              "code": "MEComposeSessionHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/MEExtensionCapabilities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array in the extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>NSExtensionAttributes</key>",
+            "<dict>",
+            "    <key>MEExtensionCapabilities</key>",
+            "    <array>",
+            "        <string>MEComposeSessionHandler</string>",
+            "    </array>",
+            "</dict>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/MEExtensionCapabilities": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/MEExtensionCapabilities",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MEExtensionCapabilities",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSExtension/NSExtensionAttributes/MEExtensionCapabilities"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit": {
+      "abstract": [
+        {
+          "text": "Secure, customize, and act on email messages that users send and receive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MailKit",
+      "type": "topic",
+      "url": "/documentation/mailkit"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit/MEAddressAnnotation": {
+      "abstract": [
+        {
+          "text": "An object that indicates the validity of an email address.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEAddressAnnotation"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEAddressAnnotation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEAddressAnnotation"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEAddressAnnotation",
+      "type": "topic",
+      "url": "/documentation/mailkit/meaddressannotation"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit/MEComposeSession": {
+      "abstract": [
+        {
+          "text": "An object that represents a single mail compose window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEComposeSession"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEComposeSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEComposeSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEComposeSession",
+      "type": "topic",
+      "url": "/documentation/mailkit/mecomposesession"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionError": {
+      "abstract": [
+        {
+          "text": "An error that indicates the compose session is in an erroneous state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEComposeSessionError"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEComposeSessionError"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEComposeSessionError",
+      "type": "topic",
+      "url": "/documentation/mailkit/mecomposesessionerror"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler": {
+      "abstract": [
+        {
+          "text": "An object that participates in the composition of mail messages, and annotates recipient tokens.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEComposeSessionHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEComposeSessionHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEComposeSessionHandler",
+      "type": "topic",
+      "url": "/documentation/mailkit/mecomposesessionhandler"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler/additionalHeaders(for:)": {
+      "abstract": [
+        {
+          "text": "Provides custom headers to include in the outgoing message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "additionalHeaders"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MEComposeSession",
+          "text": "MEComposeSession"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]]"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler/additionalHeaders(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "additionalHeadersForSession:"
+        }
+      ],
+      "role": "symbol",
+      "title": "additionalHeaders(for:)",
+      "type": "topic",
+      "url": "/documentation/mailkit/mecomposesessionhandler/additionalheaders(for:)"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler/allowMessageSendForSession(_:completion:)": {
+      "abstract": [
+        {
+          "text": "Confirms that the message is ready for delivery.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowMessageSendForSession"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MEComposeSession",
+          "text": "MEComposeSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler/allowMessageSendForSession(_:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:canSendMessageWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowMessageSendForSession(_:completion:)",
+      "type": "topic",
+      "url": "/documentation/mailkit/mecomposesessionhandler/allowmessagesendforsession(_:completion:)"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler/annotateAddressesForSession(_:completion:)": {
+      "abstract": [
+        {
+          "text": "Indicates whether recipients in the compose window are valid or not.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "annotateAddressesForSession"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MEComposeSession",
+          "text": "MEComposeSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MEEmailAddress",
+          "text": "MEEmailAddress"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MEAddressAnnotation",
+          "text": "MEAddressAnnotation"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler/annotateAddressesForSession(_:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:annotateAddressesWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "annotateAddressesForSession(_:completion:)",
+      "type": "topic",
+      "url": "/documentation/mailkit/mecomposesessionhandler/annotateaddressesforsession(_:completion:)"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler/mailComposeSessionDidBegin(_:)": {
+      "abstract": [
+        {
+          "text": "Informs the handler when the user opens a compose window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mailComposeSessionDidBegin"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MEComposeSession",
+          "text": "MEComposeSession"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler/mailComposeSessionDidBegin(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mailComposeSessionDidBegin:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "mailComposeSessionDidBegin(_:)",
+      "type": "topic",
+      "url": "/documentation/mailkit/mecomposesessionhandler/mailcomposesessiondidbegin(_:)"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler/mailComposeSessionDidEnd(_:)": {
+      "abstract": [
+        {
+          "text": "Informs the handler when the user closes a compose window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mailComposeSessionDidEnd"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MEComposeSession",
+          "text": "MEComposeSession"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler/mailComposeSessionDidEnd(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mailComposeSessionDidEnd:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "mailComposeSessionDidEnd(_:)",
+      "type": "topic",
+      "url": "/documentation/mailkit/mecomposesessionhandler/mailcomposesessiondidend(_:)"
+    },
+    "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler/viewController(for:)": {
+      "abstract": [
+        {
+          "text": "Provides a custom view controller to display as part of the compose window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MEComposeSession",
+          "text": "MEComposeSession"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MEExtensionViewController",
+          "text": "MEExtensionViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler/viewController(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewControllerForSession:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "viewController(for:)",
+      "type": "topic",
+      "url": "/documentation/mailkit/mecomposesessionhandler/viewcontroller(for:)"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Handling-Compose-Sessions",
+      "identifiers": [
+        "doc://com.apple.mailkit/documentation/MailKit/MEComposeSession",
+        "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler/mailComposeSessionDidBegin(_:)",
+        "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler/mailComposeSessionDidEnd(_:)",
+        "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionError"
+      ],
+      "title": "Handling Compose Sessions"
+    },
+    {
+      "anchor": "Annotating-Email-Address-Tokens",
+      "identifiers": [
+        "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler/annotateAddressesForSession(_:completion:)",
+        "doc://com.apple.mailkit/documentation/MailKit/MEAddressAnnotation"
+      ],
+      "title": "Annotating Email Address Tokens"
+    },
+    {
+      "anchor": "Extending-the-Compose-Window-Interface",
+      "identifiers": [
+        "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler/viewController(for:)"
+      ],
+      "title": "Extending the Compose Window Interface"
+    },
+    {
+      "anchor": "Adding-Custom-Headers",
+      "identifiers": [
+        "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler/additionalHeaders(for:)"
+      ],
+      "title": "Adding Custom Headers"
+    },
+    {
+      "anchor": "Approving-Message-Delivery",
+      "identifiers": [
+        "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler/allowMessageSendForSession(_:completion:)"
+      ],
+      "title": "Approving Message Delivery"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MEComposeSessionHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEComposeSessionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEComposeSessionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.mailkit/documentation/MailKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Handling-Compose-Sessions",
+              "identifiers": [
+                "doc://com.apple.mailkit/documentation/MailKit/MEComposeSession",
+                "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler/mailComposeSessionDidBegin(_:)",
+                "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler/mailComposeSessionDidEnd(_:)"
+              ],
+              "title": "Handling Compose Sessions"
+            },
+            {
+              "anchor": "Annotating-Email-Address-Tokens",
+              "identifiers": [
+                "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler/annotateAddressesForSession(_:completion:)",
+                "doc://com.apple.mailkit/documentation/MailKit/MEAddressAnnotation"
+              ],
+              "title": "Annotating Email Address Tokens"
+            },
+            {
+              "anchor": "Extending-the-Compose-Window-Interface",
+              "identifiers": [
+                "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler/viewController(for:)"
+              ],
+              "title": "Extending the Compose Window Interface"
+            },
+            {
+              "anchor": "Adding-Custom-Headers",
+              "identifiers": [
+                "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler/additionalHeaders(for:)"
+              ],
+              "title": "Adding Custom Headers"
+            },
+            {
+              "anchor": "Approving-Message-Delivery",
+              "identifiers": [
+                "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler/allowMessageSendForSession(_:completion:)"
+              ],
+              "title": "Approving Message Delivery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MEComposeSessionHandler"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEAddressAnnotation/title",
+          "value": "MEAddressAnnotation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEAddressAnnotation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEAddressAnnotation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEAddressAnnotation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEAddressAnnotation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEComposeSessionHandler~1mailComposeSessionDidEnd(_:)/title",
+          "value": "mailComposeSessionDidEnd:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEComposeSessionHandler~1mailComposeSessionDidEnd(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mailComposeSessionDidEnd:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEComposeSessionHandler~1annotateAddressesForSession(_:completion:)/title",
+          "value": "session:annotateAddressesWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEComposeSessionHandler~1annotateAddressesForSession(_:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:annotateAddressesWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEComposeSessionHandler~1mailComposeSessionDidBegin(_:)/title",
+          "value": "mailComposeSessionDidBegin:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEComposeSessionHandler~1mailComposeSessionDidBegin(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mailComposeSessionDidBegin:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEComposeSessionHandler~1allowMessageSendForSession(_:completion:)/title",
+          "value": "session:canSendMessageWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEComposeSessionHandler~1allowMessageSendForSession(_:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:canSendMessageWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEComposeSessionHandler/title",
+          "value": "MEComposeSessionHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEComposeSessionHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEComposeSessionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEComposeSessionHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEComposeSessionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEComposeSessionHandler~1additionalHeaders(for:)/title",
+          "value": "additionalHeadersForSession:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEComposeSessionHandler~1additionalHeaders(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "additionalHeadersForSession:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEComposeSession/title",
+          "value": "MEComposeSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEComposeSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEComposeSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEComposeSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEComposeSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEComposeSessionHandler~1viewController(for:)/title",
+          "value": "viewControllerForSession:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mailkit~1documentation~1MailKit~1MEComposeSessionHandler~1viewController(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewControllerForSession:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mailkit/mecomposesessionhandler"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mailkit/mecomposesessionhandler"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

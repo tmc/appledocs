@@ -1,0 +1,2711 @@
+{
+  "abstract": [
+    {
+      "text": "Select the optimal LAPACK routine to solve a system of linear equations.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-of-linear-equations-with-lapack"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.3",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Solving systems of linear equations with LAPACK"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Accelerate framework provides the LAPACK library for numerical linear algebra. A basic technique of linear algebra is to solve systems of simultaneous equations. For example, the following shows three equations that contain the unknowns ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "x",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "y",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "z",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "simultaneous-equations_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can solve this system by rewriting the simultaneous equations as a matrix equation with the following form:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "simulataneous-ax=b_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This form is an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Ax = b",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " form, where ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "A",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is the coefficient matrix, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "x",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a column vector that contains the unknown values, and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "b",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a column vector that contains the constant values. The number of elements in ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "x",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is equal to the number of columns of ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "A",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", and the number of elements in ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "b",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is equal to the number of rows of ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "A",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The process of solving this system computes the values for ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "x",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "y",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "z",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " as ",
+              "type": "text"
+            },
+            {
+              "code": "-2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "24",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "8",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", respectively.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "simultaneous-solution_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an example of solving a linear system, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/finding-an-interpolating-polynomial-using-the-vandermonde-method",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "LAPACK includes routines for solving systems of linear equations as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Ax = b",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". This sample code project includes wrapper functions that simplify calling the LAPACK routines, for example, by encapsulating multiple-step workflows into a single function call.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Run the sample code app to see the results of each routine solve different example systems.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-the-properties-of-the-coefficient-matrix",
+          "level": 3,
+          "text": "Determine the properties of the coefficient matrix",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "LAPACK provides different solving routines depending on the properties of the coefficient matrix, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "A",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Is the coefficient matrix ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "symmetric",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": "? A symmetric matrix is one that’s equal to its transpose, that is, a matrix that’s identical when swapping its row and column indices. A symmetric matrix is necessarily square. The following is an example of a symmetric matrix:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "symmetric_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Is the coefficient matrix ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "positive definite",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": "? A matrix is positive definite if all of its ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://mathworld.wolfram.com/Eigenvalue.html",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " are positive. Confirm whether a matrix is positive definite by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "spotrf_(_:_:_:_:_:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to try a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://mathworld.wolfram.com/CholeskyDecomposition.html",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". If the factorization fails and returns a positive value, the matrix isn’t positive definite. This sample code project includes the function ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "isPositiveDefinite(_:dimension:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to determine whether a matrix is positive definite.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Is the coefficient matrix ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "banded",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": "? A banded matrix has all of its nonzero entries on its main diagonal and an arbitrary number of superdiagonals (above the main diagonal) and subdiagonals (below the main diagonal). The following is an example of a nonsymmetric, banded matrix with two superdiagonals and one subdiagonal:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "banded_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Is the coefficient matrix ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "tridiagonal",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": "? A tridiagonal matrix has all of its nonzero entries on its main diagonal, its first superdiagonal, and its first subdiagonal. The following is an example of a nonsymmetric, tridiagonal matrix:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "tridiagonal_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the coefficient matrix is ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "sparse",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", that is, most of the entries in the coefficient matrix are zero, Accelerate provides the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/sparse-solvers-library",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " library to help solve such systems.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Select-LAPACK-variants-for-data-types",
+          "level": 3,
+          "text": "Select LAPACK variants for data types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The LAPACK routines in this sample code project are all for real, single-precision matrices. All of the routines are available in single- and double-precision for real and complex values. The first character of a routine name defines the type of data the routine works on. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "sgels_(_:_:_:_:_:_:_:_:_:_:_:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — single-precision, real values",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "dgels_(_:_:_:_:_:_:_:_:_:_:_:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — double-precision, real values",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "cgels_(_:_:_:_:_:_:_:_:_:_:_:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — single-precision, complex values",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "zgels_(_:_:_:_:_:_:_:_:_:_:_:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — double-precision, complex values",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For complex matrices, the LAPACK routine variant for real symmetric matrices requires ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://mathworld.wolfram.com/HermitianMatrix.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For example, the ",
+              "type": "text"
+            },
+            {
+              "code": "cptsv_()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " routine computes the solution to ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Ax = b",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " for a complex single-precision, Hermitian, tridiagonal coefficient matrix; and ",
+              "type": "text"
+            },
+            {
+              "code": "sptsv_()",
+              "type": "codeVoice"
+            },
+            {
+              "text": "  computes the solution for a real single-precision, symmetric, tridiagonal coefficient matrix.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The routines in this sample code project are suitable for solving full rank systems, that is, they have a unique and exact solution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-values-in-column-major-layout",
+          "level": 3,
+          "text": "Define values in column-major layout",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The LAPACK routines in this article require the matrix data in column-major layout, which means specifying all the terms in the first column, then all of the terms in the second column, the third column, and so on. For example, if there are two columns with three row values each, the routine specifies the three row values for column one, then the three row values for column two, as the following example illustrates:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "b-matrix_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let bValues: [Float] = [80, 180, 160,",
+            "                        800, 1800, 1600]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The routines return the result as column-major, for example, an array that contains ",
+              "type": "text"
+            },
+            {
+              "code": "[10.0, 20.0, 30.0, 100.0, 200.0, 300.0]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represents the following matrix:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "x-matrix_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Select-the-solving-routine-for-the-coefficient-matrix-type",
+          "level": 3,
+          "text": "Select the solving routine for the coefficient matrix type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project provides Swift wrapper functions to each single-precision LAPACK solving routine. Select the routine that most closely matches the coefficient matrix for the highest performance. The following shows the Swift wrapper functions and the underlying LAPACK routines to solve systems with different coefficient matrices:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Symmetric",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Positive definite",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        },
+                        {
+                          "items": [
+                            {
+                              "content": [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Tridiagonal",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                },
+                                {
+                                  "items": [
+                                    {
+                                      "content": [
+                                        {
+                                          "inlineContent": [
+                                            {
+                                              "text": "Swift wrapper function: ",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "code": "symmetric_positiveDefinite_tridiagonal()",
+                                              "type": "codeVoice"
+                                            }
+                                          ],
+                                          "type": "paragraph"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "content": [
+                                        {
+                                          "inlineContent": [
+                                            {
+                                              "text": "Underlying LAPACK routine: ",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "code": "sptsv_()",
+                                              "type": "codeVoice"
+                                            }
+                                          ],
+                                          "type": "paragraph"
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "type": "unorderedList"
+                                }
+                              ]
+                            },
+                            {
+                              "content": [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Other banded",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                },
+                                {
+                                  "items": [
+                                    {
+                                      "content": [
+                                        {
+                                          "inlineContent": [
+                                            {
+                                              "text": "Swift wrapper function: ",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "code": "symmetric_positiveDefinite_banded()",
+                                              "type": "codeVoice"
+                                            }
+                                          ],
+                                          "type": "paragraph"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "content": [
+                                        {
+                                          "inlineContent": [
+                                            {
+                                              "text": "Underlying LAPACK routine: ",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "code": "spbsv_()",
+                                              "type": "codeVoice"
+                                            }
+                                          ],
+                                          "type": "paragraph"
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "type": "unorderedList"
+                                }
+                              ]
+                            },
+                            {
+                              "content": [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "General",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                },
+                                {
+                                  "items": [
+                                    {
+                                      "content": [
+                                        {
+                                          "inlineContent": [
+                                            {
+                                              "text": "Swift wrapper function: ",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "code": "symmetric_positiveDefinite_general()",
+                                              "type": "codeVoice"
+                                            }
+                                          ],
+                                          "type": "paragraph"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "content": [
+                                        {
+                                          "inlineContent": [
+                                            {
+                                              "text": "Underlying LAPACK routine: ",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "code": "sposv_()",
+                                              "type": "codeVoice"
+                                            }
+                                          ],
+                                          "type": "paragraph"
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "type": "unorderedList"
+                                }
+                              ]
+                            }
+                          ],
+                          "type": "unorderedList"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Indefinite",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        },
+                        {
+                          "items": [
+                            {
+                              "content": [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "General",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                },
+                                {
+                                  "items": [
+                                    {
+                                      "content": [
+                                        {
+                                          "inlineContent": [
+                                            {
+                                              "text": "Swift wrapper function: ",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "code": "symmetric_indefinite_general()",
+                                              "type": "codeVoice"
+                                            }
+                                          ],
+                                          "type": "paragraph"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "content": [
+                                        {
+                                          "inlineContent": [
+                                            {
+                                              "text": "Underlying LAPACK routine:  ",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "code": "ssysv_()",
+                                              "type": "codeVoice"
+                                            }
+                                          ],
+                                          "type": "paragraph"
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "type": "unorderedList"
+                                }
+                              ]
+                            }
+                          ],
+                          "type": "unorderedList"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Nonsymmetric",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Square",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        },
+                        {
+                          "items": [
+                            {
+                              "content": [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Tridiagonal",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                },
+                                {
+                                  "items": [
+                                    {
+                                      "content": [
+                                        {
+                                          "inlineContent": [
+                                            {
+                                              "text": "Swift wrapper function: nonsymmetric_tridiagonal()",
+                                              "type": "text"
+                                            }
+                                          ],
+                                          "type": "paragraph"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "content": [
+                                        {
+                                          "inlineContent": [
+                                            {
+                                              "text": "Underlying LAPACK routine: ",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "code": "sgtsv_()",
+                                              "type": "codeVoice"
+                                            }
+                                          ],
+                                          "type": "paragraph"
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "type": "unorderedList"
+                                }
+                              ]
+                            },
+                            {
+                              "content": [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Other banded",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                },
+                                {
+                                  "items": [
+                                    {
+                                      "content": [
+                                        {
+                                          "inlineContent": [
+                                            {
+                                              "text": "Swift wrapper function: ",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "code": "nonsymmetric_banded()",
+                                              "type": "codeVoice"
+                                            }
+                                          ],
+                                          "type": "paragraph"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "content": [
+                                        {
+                                          "inlineContent": [
+                                            {
+                                              "text": "Underlying LAPACK routine: ",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "code": "sgbsv_()",
+                                              "type": "codeVoice"
+                                            }
+                                          ],
+                                          "type": "paragraph"
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "type": "unorderedList"
+                                }
+                              ]
+                            },
+                            {
+                              "content": [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "General",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                },
+                                {
+                                  "items": [
+                                    {
+                                      "content": [
+                                        {
+                                          "inlineContent": [
+                                            {
+                                              "text": "Swift wrapper function: ",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "code": "nonsymmetric_general()",
+                                              "type": "codeVoice"
+                                            }
+                                          ],
+                                          "type": "paragraph"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "content": [
+                                        {
+                                          "inlineContent": [
+                                            {
+                                              "text": "Underlying LAPACK routine: ",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "code": "sgesv_()",
+                                              "type": "codeVoice"
+                                            }
+                                          ],
+                                          "type": "paragraph"
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "type": "unorderedList"
+                                }
+                              ]
+                            }
+                          ],
+                          "type": "unorderedList"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Nonsquare",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        },
+                        {
+                          "items": [
+                            {
+                              "content": [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "QR factorization",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                },
+                                {
+                                  "items": [
+                                    {
+                                      "content": [
+                                        {
+                                          "inlineContent": [
+                                            {
+                                              "text": "Swift wrapper function: ",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "code": "nonsymmetric_nonsquare()",
+                                              "type": "codeVoice"
+                                            }
+                                          ],
+                                          "type": "paragraph"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "content": [
+                                        {
+                                          "inlineContent": [
+                                            {
+                                              "text": "Underlying LAPACK routine: ",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "code": "sgels_()",
+                                              "type": "codeVoice"
+                                            }
+                                          ],
+                                          "type": "paragraph"
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "type": "unorderedList"
+                                }
+                              ]
+                            },
+                            {
+                              "content": [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Cholesky factorization",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                },
+                                {
+                                  "items": [
+                                    {
+                                      "content": [
+                                        {
+                                          "inlineContent": [
+                                            {
+                                              "text": "Swift wrapper function: ",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "code": "leastSquares_nonsquare()",
+                                              "type": "codeVoice"
+                                            }
+                                          ],
+                                          "type": "paragraph"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "content": [
+                                        {
+                                          "inlineContent": [
+                                            {
+                                              "text": "Underlying LAPACK routines: ",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "code": "sposv_()",
+                                              "type": "codeVoice"
+                                            },
+                                            {
+                                              "text": " and ",
+                                              "type": "text"
+                                            },
+                                            {
+                                              "code": "ssysv_()",
+                                              "type": "codeVoice"
+                                            }
+                                          ],
+                                          "type": "paragraph"
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "type": "unorderedList"
+                                }
+                              ]
+                            }
+                          ],
+                          "type": "unorderedList"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Solve-for-a-nonsquare-matrix-using-QR-factorization",
+          "level": 3,
+          "text": "Solve for a nonsquare matrix using QR factorization",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A system of linear equations with a nonsquare coefficient matrix is either:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Overdetermined — there are more equations than unknowns, that is, the coefficient matrix has more rows than columns. In this case, the system may not have a solution.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Underdetermined — there are more unknowns than equations, that is, the coefficient matrix has more columns than rows. In this case, the system may have infinitely many solutions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In these cases, the solution is either not exact (unless the overdetermined system is actually consistent) or not unique. In the case where LAPACK is unable to solve the system, the Swift wrapper functions return ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Swift wrapper function ",
+              "type": "text"
+            },
+            {
+              "code": "nonsymmetric_nonsquare(a:dimension:b:rightHandSideCount:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " wraps the LAPACK routine ",
+              "type": "text"
+            },
+            {
+              "code": "sgels_(_:_:_:_:_:_:_:_:_:_:_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This routine takes one of two approaches, depending on the system:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the coefficient matrix, ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "A",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ", has more rows than columns (overdetermined), the routine minimizes the error in ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Ax - b",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " by solving the least squares problem ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "‖ b-Ax ‖₂",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ". The following image shows the graph of an overdetermined system with two unknowns and three equations.  ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nonsymmetric_nonsquare(a:dimension:b:rightHandSideCount:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "  returns ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "[1.4615387, 0.7692307, -1.1766968]",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", indicating the ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "x",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " in ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Ax=b",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " equals  ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "[1.4615387, 0.7692307]",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and the sum of the residuals squared (that is, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "r0² + r1² + r2²",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " equals ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-1.1766968²",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "). Selecting any other point in the triangle of the three intercepts yields a larger sum of residuals squared.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "accelerate-solving-systems-linear-equations-1_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "overdetermined_graph_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the coefficient matrix, ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "A",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ", has more columns than rows (underdetermined), the routine finds the smallest ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "x",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " that solves the equation ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "min ‖ x ‖₂",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " such that ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Ax = b",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ".  The following image shows the graph of ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "y=x+1",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ", which is the set of solutions to the illustrated system. The closest point on the line to the origin is at x = -0.5, y = 0.5.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "accelerate-solving-systems-linear-equations-2_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "underdetermined_graph_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "sgels_(_:_:_:_:_:_:_:_:_:_:_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " routine uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://mathworld.wolfram.com/QRDecomposition.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for overdetermined systems, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://mathworld.wolfram.com/LQDecomposition.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for underdetermined systems.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following is an example of an underdetermined system with a coefficient matrix that’s nonsquare:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "nonsymmetric-nonsquare_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code calls ",
+              "type": "text"
+            },
+            {
+              "code": "nonsymmetric_nonsquare(a:dimension:b:rightHandSideCount:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to compute the values of ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "x",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let aValues: [Float] = [1, 6, 11,",
+            "                        2, 7, 12,",
+            "                        3, 8, 13,",
+            "                        4, 9, 14,",
+            "                        5, 10, 15]",
+            "",
+            "let dimension = (m: 3, n: 5)",
+            "",
+            "/// The _b_ in _Ax = b_.",
+            "let bValues: [Float] = [355, 930, 1505]",
+            "",
+            "/// Call `nonsymmetric_nonsquare` to compute the _x_ in _Ax = b_.",
+            "let x = nonsymmetric_nonsquare(a: aValues,",
+            "                               dimension: dimension,",
+            "                               b: bValues,",
+            "                               rightHandSideCount: 1)",
+            "",
+            "/// Calculate _b_ using the computed _x_.",
+            "if let x = x {",
+            "    let b = matrixVectorMultiply(matrix: aValues,",
+            "                                 dimension: dimension,",
+            "                                 vector: x)",
+            "    ",
+            "    /// Prints _b_ in _Ax = b_ using the computed _x_: `~[355, 930, 1505]`.",
+            "    print(\"\\nnonsymmetric_nonsquare: ([355, 930, 1505]) b =\", b)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Solve-for-a-nonsquare-matrix-using-Cholesky-factorization",
+          "level": 3,
+          "text": "Solve for a nonsquare matrix using Cholesky factorization",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Where speed is more important than numerical accuracy, the sample code project provides an alternative to ",
+              "type": "text"
+            },
+            {
+              "code": "sgels_(_:_:_:_:_:_:_:_:_:_:_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "code": "leastSquares_nonsquare(a:dimension:b:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function exploits the fact that the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "x",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "AᵀAx = Aᵀb",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " equals the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "x",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Ax = b",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". This technique creates the square coefficient matrix ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "AᵀA",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and solves with either ",
+              "type": "text"
+            },
+            {
+              "code": "symmetric_positiveDefinite_general(a:dimension:b:rightHandSideCount:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "symmetric_indefinite_general(a:dimension:b:rightHandSideCount:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "leastSquares_nonsquare(a:dimension:b:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function uses the same problem as   ",
+              "type": "text"
+            },
+            {
+              "code": "nonsymmetric_nonsquare(a:dimension:b:rightHandSideCount:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", but uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://mathworld.wolfram.com/CholeskyDecomposition.html",
+              "isActive": true,
+              "overridingTitle": "Cholesky factorization",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Cholesky factorization",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " when ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "AᵀA",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is positive definite.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following is an example of an overdetermined system with a coefficient matrix that’s nonsquare:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "leastsquares-nonsquare_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code calls ",
+              "type": "text"
+            },
+            {
+              "code": "leastSquares_nonsquare(a:dimension:b:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to compute the values of ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "x",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let aValues: [Float] = [1, 4, 7, 10,",
+            "                        2, 5, 8, 11,",
+            "                        3, 6, 9, 12]",
+            "let dimension = (m: 4, n: 3)",
+            "let bValues: [Float] = [194, 455, 716, 977]",
+            "",
+            "/// Call `leastSquares_nonsquare` to compute the _x_ in _Ax = b_.",
+            "let x = leastSquares_nonsquare(a: aValues,",
+            "                               dimension: dimension,",
+            "                               b: bValues)",
+            "",
+            "/// Calculate _b_ using the computed _x_.",
+            "if let x = x {",
+            "    let b = matrixVectorMultiply(matrix: aValues,",
+            "                                 dimension: dimension,",
+            "                                 vector: Array(x[0..<3]))",
+            "    ",
+            "    /// Prints _b_ in _Ax = b_ using the computed _x_: `~[194, 455, 716, 977]`.",
+            "    print(\"\\nleastSquares_nonsquare: b =\", b)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Solve-for-a-rank-deficient-matrix",
+          "level": 3,
+          "text": "Solve for a rank-deficient matrix",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Systems with a symmetric matrix that’s not full rank, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "rank-deficient matrices",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", don’t have a single unique solution. For example, the following two multiplications contain different ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "x",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " matrices, but yield the same result in ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "b",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "symmetric-indefinite-general_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this case, passing matrix ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "A",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to its most suitable function, ",
+              "type": "text"
+            },
+            {
+              "code": "symmetric_indefinite_general(a:dimension:b:rightHandSideCount:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", returns an error indicating that the routine can’t compute the solution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "One option to deal with rank-deficiency is to instead solve a nearby problem of full rank by adding a small epsilon value to the matrix to regularize it. The following code adds such an epsilon to diagonal elements in matrix ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "A",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var aValues: [Float] = [1, 2, 1,",
+            "                        2, 1, 2,",
+            "                        1, 2, 1]",
+            "",
+            "let dimension = 3",
+            "let epsilon = sqrt(Float.ulpOfOne)",
+            "for i in 0 ..< dimension {",
+            "    aValues[i * dimension + i] += epsilon",
+            "}",
+            "",
+            "let bValues: [Float] = [80, 100, 80]",
+            "",
+            "/// Call `symmetric_indefinite_general` to compute the _x_ in _Ax = b_.",
+            "let x = symmetric_indefinite_general(a: aValues,",
+            "                                     dimension: dimension,",
+            "                                     b: bValues,",
+            "                                     rightHandSideCount: 1)",
+            "",
+            "/// Calculate _b_ using the computed _x_.",
+            "if let x = x {",
+            "    let b = matrixVectorMultiply(matrix: aValues,",
+            "                                 dimension: (m: dimension, n: dimension),",
+            "                                 vector: x)",
+            "    ",
+            "    /// Prints _b_ in _Ax = b_ using the computed _x_: `~[80, 100, 80]`.",
+            "    print(\"\\nRank-Deficient: b =\", b)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "x",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " contains the values ",
+              "type": "text"
+            },
+            {
+              "code": "[0.0, 20.0, 40.0]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "symmetric-indefinite-general-2_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "5108beb67511/SolvingSystemsOfLinearEquationsWithLAPACK.zip": {
+      "checksum": "5108beb67511679409c3c9313e40f9dc9950f25128d909fd36c87da2009f3d887c797de7a3c4e160e90dc6a82aface44dd90d4c40ee685eb41b3992f200d3486",
+      "identifier": "5108beb67511/SolvingSystemsOfLinearEquationsWithLAPACK.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/5108beb67511/SolvingSystemsOfLinearEquationsWithLAPACK.zip"
+    },
+    "accelerate-solving-systems-linear-equations-1_2x.png": {
+      "alt": "A line chart that contains three lines with the slope intercepts of y equals minus x plus 2, y equals 2 x minus 4, and y equals x plus 0. The three lines form a triangle and a marked point within the triangle represents the result of minimizing A x minus b.",
+      "identifier": "accelerate-solving-systems-linear-equations-1_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/72252210a95ac80542d30efd87939c01/accelerate-solving-systems-linear-equations-1_2x.png"
+        }
+      ]
+    },
+    "accelerate-solving-systems-linear-equations-2_2x.png": {
+      "alt": "A line chart that contains a single line with the slope intercept of y equals x plus 1, and a marked point that’s nearest to the chart origin.",
+      "identifier": "accelerate-solving-systems-linear-equations-2_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/af70e4c4158f2a05455e6ea788685ca5/accelerate-solving-systems-linear-equations-2_2x.png"
+        }
+      ]
+    },
+    "b-matrix_2x.png": {
+      "alt": "Matrix that consists of three rows and two columns of numbers. The first column has the values 80, 180, and 160. The second column has the values 800, 1800, and 1600.",
+      "identifier": "b-matrix_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8c68168076bb6a624cacf25e0244de25/b-matrix_2x.png"
+        }
+      ]
+    },
+    "banded_2x.png": {
+      "alt": "Matrix that consists of five rows and five columns of numbers representing a nonsymmetric, banded matrix.",
+      "identifier": "banded_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ede7683431cd98ad48bbd5eb8dcb9b84/banded_2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/blas-library": {
+      "abstract": [
+        {
+          "text": "Perform common linear algebra operations with Apple’s implementation of the Basic Linear Algebra Subprograms (BLAS).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/blas-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "BLAS",
+      "type": "topic",
+      "url": "/documentation/accelerate/blas-library"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/compressing-an-image-using-linear-algebra": {
+      "abstract": [
+        {
+          "text": "Reduce the storage size of an image using singular value decomposition (SVD).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/compressing-an-image-using-linear-algebra",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Compressing an image using linear algebra",
+      "type": "topic",
+      "url": "/documentation/accelerate/compressing-an-image-using-linear-algebra"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/finding-an-interpolating-polynomial-using-the-vandermonde-method": {
+      "abstract": [
+        {
+          "text": "Use LAPACK to solve a linear system and find an interpolating polynomial to construct new points between a series of known data points.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/finding-an-interpolating-polynomial-using-the-vandermonde-method",
+      "kind": "article",
+      "role": "article",
+      "title": "Finding an interpolating polynomial using the Vandermonde method",
+      "type": "topic",
+      "url": "/documentation/accelerate/finding-an-interpolating-polynomial-using-the-vandermonde-method"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/sparse-solvers-library": {
+      "abstract": [
+        {
+          "text": "Solve systems of equations where the coefficient matrix is sparse.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/sparse-solvers-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sparse Solvers",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse-solvers-library"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://mathworld.wolfram.com/CholeskyDecomposition.html": {
+      "identifier": "https://mathworld.wolfram.com/CholeskyDecomposition.html",
+      "title": "Cholesky factorization",
+      "titleInlineContent": [
+        {
+          "text": "Cholesky factorization",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://mathworld.wolfram.com/CholeskyDecomposition.html"
+    },
+    "https://mathworld.wolfram.com/Eigenvalue.html": {
+      "identifier": "https://mathworld.wolfram.com/Eigenvalue.html",
+      "title": "eigenvalues",
+      "titleInlineContent": [
+        {
+          "text": "eigenvalues",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://mathworld.wolfram.com/Eigenvalue.html"
+    },
+    "https://mathworld.wolfram.com/HermitianMatrix.html": {
+      "identifier": "https://mathworld.wolfram.com/HermitianMatrix.html",
+      "title": "Hermitian matrices",
+      "titleInlineContent": [
+        {
+          "text": "Hermitian matrices",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://mathworld.wolfram.com/HermitianMatrix.html"
+    },
+    "https://mathworld.wolfram.com/LQDecomposition.html": {
+      "identifier": "https://mathworld.wolfram.com/LQDecomposition.html",
+      "title": "LQ factorization",
+      "titleInlineContent": [
+        {
+          "text": "LQ factorization",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://mathworld.wolfram.com/LQDecomposition.html"
+    },
+    "https://mathworld.wolfram.com/QRDecomposition.html": {
+      "identifier": "https://mathworld.wolfram.com/QRDecomposition.html",
+      "title": "QR factorization",
+      "titleInlineContent": [
+        {
+          "text": "QR factorization",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://mathworld.wolfram.com/QRDecomposition.html"
+    },
+    "leastsquares-nonsquare_2x.png": {
+      "alt": "Mathematical formula that describes the matrix equation, A x equals b. A four-by-three matrix multiplied by a three-element column matrix equals a four-element column matrix.",
+      "identifier": "leastsquares-nonsquare_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/52d10fb92472d7fd1d5a0fb1516aa0d7/leastsquares-nonsquare_2x.png"
+        }
+      ]
+    },
+    "nonsymmetric-nonsquare_2x.png": {
+      "alt": "Mathematical formula that describes the matrix equation, A x equals b. A three-by-five matrix multiplied by a five-element column matrix equals a three-element column matrix.",
+      "identifier": "nonsymmetric-nonsquare_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a7776fb1e351a04e88a923cee761dd60/nonsymmetric-nonsquare_2x.png"
+        }
+      ]
+    },
+    "overdetermined_graph_2x.png": {
+      "alt": "A series of equations that show the slope intercepts as A x equals b with the constants on the right.",
+      "identifier": "overdetermined_graph_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a039e3f8aa8ae0d40d3c2e551d5a9d8c/overdetermined_graph_2x.png"
+        }
+      ]
+    },
+    "simulataneous-ax=b_2x.png": {
+      "alt": "Mathematical formula that describes the matrix equation, A x equals b. A three-by-three matrix multiplied by a three-element column matrix equals a three-element column matrix.",
+      "identifier": "simulataneous-ax=b_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/db8e672916663cd9c5c5caaf6837e83f/simulataneous-ax=b_2x.png"
+        }
+      ]
+    },
+    "simultaneous-equations_2x.png": {
+      "alt": "Set of three simultaneous equations.",
+      "identifier": "simultaneous-equations_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1c138a77e2929a2876e51b74728891dd/simultaneous-equations_2x.png"
+        }
+      ]
+    },
+    "simultaneous-solution_2x.png": {
+      "alt": "Mathematical formula that describes the matrix equation, A x equals b with the computed unknowns on the left, and the same system as a set of simultaneous equations on the right.",
+      "identifier": "simultaneous-solution_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/69300343f1dc42dcd7acfcfc706d8fcf/simultaneous-solution_2x.png"
+        }
+      ]
+    },
+    "symmetric-indefinite-general-2_2x.png": {
+      "alt": "Mathematical formula that describes the matrix equation, A x equals b. A three-by-three matrix multiplied by a three-element column matrix equals a three-element column matrix.",
+      "identifier": "symmetric-indefinite-general-2_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/887543dac14de56a68c5cbb375e750dc/symmetric-indefinite-general-2_2x.png"
+        }
+      ]
+    },
+    "symmetric-indefinite-general_2x.png": {
+      "alt": "Two stacked mathematical formulas that describe the matrix equation, A x equals b. Each formula is a three-by-three matrix multiplied by a three-element column matrix that equals a three-element column matrix. In both cases, matrices A and b contain the same values, but matrix x has different values.",
+      "identifier": "symmetric-indefinite-general_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c47fc65670c3f829ef110c2a4f48b5fe/symmetric-indefinite-general_2x.png"
+        }
+      ]
+    },
+    "symmetric_2x.png": {
+      "alt": "Matrix that consists of five rows and five columns of numbers. The numbers in the first row are the same as those in the first column. The numbers in the second row are the same as in the second column, and so forth.",
+      "identifier": "symmetric_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8498d08aa4d6b3a6583912b7c01af25f/symmetric_2x.png"
+        }
+      ]
+    },
+    "tridiagonal_2x.png": {
+      "alt": "Matrix that consists of five rows and five columns of numbers representing a nonsymmetric, tridiagonal matrix.",
+      "identifier": "tridiagonal_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/25db5cb6bfb99506fe3be7fc15c62f1e/tridiagonal_2x.png"
+        }
+      ]
+    },
+    "underdetermined_graph_2x.png": {
+      "alt": "A series of equations that show the slope intercept as A x equals b with the constants on the right.",
+      "identifier": "underdetermined_graph_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cb4c316fe2cbbb2e486d9e0111c4c46f/underdetermined_graph_2x.png"
+        }
+      ]
+    },
+    "x-matrix_2x.png": {
+      "alt": "Matrix that consists of three rows and two columns of numbers. The first column has the values 10, 20, and 30. The second column has the values 100, 200, and 300.",
+      "identifier": "x-matrix_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/47571c2f8f2b00d47144af88680b049f/x-matrix_2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "5108beb67511/SolvingSystemsOfLinearEquationsWithLAPACK.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Linear-Algebra",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/finding-an-interpolating-polynomial-using-the-vandermonde-method",
+        "doc://com.apple.accelerate/documentation/Accelerate/compressing-an-image-using-linear-algebra",
+        "doc://com.apple.accelerate/documentation/Accelerate/blas-library"
+      ],
+      "title": "Linear Algebra"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

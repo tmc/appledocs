@@ -1,0 +1,1407 @@
+{
+  "abstract": [
+    {
+      "text": "Protect a keychain item with biometric authentication.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.localauthentication/documentation/LocalAuthentication/accessing-keychain-items-with-face-id-or-touch-id"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Local Authentication"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.5",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.5",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.1",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Accessing Keychain Items with Face ID or Touch ID"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you store a secure item like a password or a private key in the keychain, you dictate the conditions under which that item can be accessed later. Among other things, you can tell keychain services that every time it tries to read the item, it should first seek the user’s permission—for example, by authenticating the user biometrically with Face ID or Touch ID. You rely on both the Security and LocalAuthentication frameworks to enable this behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Overview.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To access keychain items in general, you use keychain services within the Security framework. When authentication is needed, keychain services then relies on the LocalAuthentication framework to present the appropriate interface to the user. The Secure Enclave then carries out the authentication by, for example, testing the user’s finger against the stored fingerprints. The Secure Enclave passes back a pass/fail result that gates keychain item access. No user space or operating system software ever has access to the underlying authentication data, such as stored fingerprints.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project demonstrates how to configure a keychain item when you store it, so that when your app tries to retrieve it later, keychain services only provides the data after a successful user authentication event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-the-Face-ID-Usage-Description",
+          "level": 3,
+          "text": "Set the Face ID Usage Description",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In any project that uses biometrics, include the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW75",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key in your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. Without this key, the system won’t allow your app to use Face ID. The value for this key is a string that the system presents to the user the first time your app attempts to use Face ID. The string should clearly explain why your app needs access to this authentication mechanism. The system doesn’t require a comparable usage description for Touch ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-an-Access-Control",
+          "level": 3,
+          "text": "Create an Access Control",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a protected keychain item, begin by creating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/SecAccessControl",
+              "isActive": true,
+              "overridingTitle": "SecAccessControl",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "SecAccessControl",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " instance:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let access = SecAccessControlCreateWithFlags(nil, // Use the default allocator.",
+            "                                             kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly,",
+            "                                             .userPresence,",
+            "                                             nil) // Ignore any error."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The access control instance contains restrictions along two dimensions: accessibility and authentication. For the first, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly",
+              "isActive": true,
+              "overridingTitle": "kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " setting prevents items from being stored if the device has no passcode. Further, any item already stored in the keychain with this level of accessibility becomes unavailable if the user removes the passcode. Also, because this accessibility ends with ",
+              "type": "text"
+            },
+            {
+              "code": "ThisDeviceOnly",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the item isn’t eligible for the iCloud keychain and won’t be included if the user restores a device backup to a new device. This is the most restrictive option, but others are available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Along the authentication dimension, the above code uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/SecAccessControlCreateFlags/userPresence",
+              "isActive": true,
+              "overridingTitle": "userPresence",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "userPresence",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " flag. This tells keychain services to request biometric authentication, or to fall back on the device passcode, whenever the item is later read from the keychain. For more information about creating an access control instance, including the various levels of restrictiveness in each dimension, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/restricting-keychain-item-accessibility",
+              "isActive": true,
+              "overridingTitle": "Restricting Keychain Item Accessibility",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Restricting Keychain Item Accessibility",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Optionally-Provide-a-Customized-Context",
+          "level": 3,
+          "text": "Optionally, Provide a Customized Context",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Keychain services automatically makes use of the LocalAuthentication framework, and in particular uses an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/LAContext",
+              "isActive": true,
+              "overridingTitle": "LAContext",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "LAContext",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " instance to authenticate the user. You can let keychain services create a new context every time it needs to authenticate. However, if you want to alter the default configuration, you can optionally create a context for it to use instead:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let context = LAContext()",
+            "context.touchIDAuthenticationAllowableReuseDuration = 10"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, you set the context’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/LAContext/touchIDAuthenticationAllowableReuseDuration",
+              "isActive": true,
+              "overridingTitle": "touchIDAuthenticationAllowableReuseDuration",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "touchIDAuthenticationAllowableReuseDuration",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " parameter to a non-zero value. As a result, any Touch ID authentication that keychain services requires is satisfied by the most recent device unlock event, if it happened within the given number of seconds (up to five minutes). This configuration prevents the user from having to authenticate twice in quick succession: once to get into the device, and immediately again to obtain a keychain item. Note that this grace period applies specifically to device unlock with Touch ID, not keychain retrieval authentications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-the-Keychain-Item",
+          "level": 3,
+          "text": "Add the Keychain Item",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, put all of the attributes together into a query dictionary:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,",
+            "                            kSecAttrAccount as String: account,",
+            "                            kSecAttrServer as String: server,",
+            "                            kSecAttrAccessControl as String: access as Any,",
+            "                            kSecUseAuthenticationContext as String: context,",
+            "                            kSecValueData as String: password]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This query is very much like the one described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/adding-a-password-to-the-keychain",
+              "isActive": true,
+              "overridingTitle": "Adding a Password to the Keychain",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Adding a Password to the Keychain",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", with the addition of the access control instance and the context. Then use this query to actually create the item:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let status = SecItemAdd(query as CFDictionary, nil)",
+            "guard status == errSecSuccess else { throw KeychainError(status: status) }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Test the return status and handle error conditions in a way that makes sense for your app. For example, you might handle the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/errSecDuplicateItem",
+              "isActive": true,
+              "overridingTitle": "errSecDuplicateItem",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "errSecDuplicateItem",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " error by attempting to modify the item that already exists. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/using-the-keychain-to-manage-user-secrets",
+              "isActive": true,
+              "overridingTitle": "Using the Keychain to Manage User Secrets",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Using the Keychain to Manage User Secrets",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " for a general discussion of working with keychain items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-a-Prompt-When-Reading-the-Item",
+          "level": 3,
+          "text": "Provide a Prompt When Reading the Item",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When reading the protected item, you search for it as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/searching-for-keychain-items",
+              "isActive": true,
+              "overridingTitle": "Searching for Keychain Items",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Searching for Keychain Items",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". Keychain services works with LocalAuthentication to authenticate the user automatically as needed, using the context you provided, if any. However, there are a few additional query settings you might want to include.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, you can provide a string that the authentication context presents to the user when asking for a TouchID event. Set this string in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/kSecUseOperationPrompt",
+              "isActive": true,
+              "overridingTitle": "kSecUseOperationPrompt",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "kSecUseOperationPrompt",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " attribute of the keychain item search query:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let context = LAContext()",
+            "context.localizedReason = \"Access your password on the keychain\"",
+            "let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,",
+            "                            kSecAttrServer as String: server,",
+            "                            kSecMatchLimit as String: kSecMatchLimitOne,",
+            "                            kSecReturnAttributes as String: true,",
+            "                            kSecUseAuthenticationContext as String: context,",
+            "                            kSecReturnData as String: true]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Providing this prompt lets the user know why you want them to authenticate. The corresponding dialog already names your app, so you don’t have to include that in the prompt.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, if you don’t want keychain services to prompt for authentication when you search for items, for example, because you’re conducting a broad search and are willing to simply skip any protected items, you can specify the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/kSecUseAuthenticationUI",
+              "isActive": true,
+              "overridingTitle": "kSecUseAuthenticationUI",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "kSecUseAuthenticationUI",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " value with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/kSecUseAuthenticationUISkip",
+              "isActive": true,
+              "overridingTitle": "kSecUseAuthenticationUISkip",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "kSecUseAuthenticationUISkip",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "8f3df253eb87/AccessingKeychainItemsWithFaceIDOrTouchID.zip": {
+      "checksum": "8f3df253eb87b02482ed0876217fbec2677408fa5ceffad93e6f54028b6548176120eeda54d83b5f2ff380a5135c2000926de817d6c58d03a6a9a1f4cce486d3",
+      "identifier": "8f3df253eb87/AccessingKeychainItemsWithFaceIDOrTouchID.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/8f3df253eb87/AccessingKeychainItemsWithFaceIDOrTouchID.zip"
+    },
+    "Overview.png": {
+      "alt": "Diagram showing the relationships among the Security and LocalAuthentication frameworks, and the Secure Enclave, to securely store keychain items.",
+      "identifier": "Overview.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/df9ce62e17934ab1c61ba5b24cc03280/Overview@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/LocalAuthentication/LAContext": {
+      "abstract": [
+        {
+          "text": "A mechanism for evaluating authentication policies and access controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LAContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/LAContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LAContext",
+      "type": "topic",
+      "url": "/documentation/LocalAuthentication/LAContext"
+    },
+    "doc://com.apple.documentation/documentation/LocalAuthentication/LAContext/touchIDAuthenticationAllowableReuseDuration": {
+      "abstract": [
+        {
+          "text": "The duration for which Touch ID authentication reuse is allowable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "touchIDAuthenticationAllowableReuseDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/LocalAuthentication/LAContext/touchIDAuthenticationAllowableReuseDuration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "touchIDAuthenticationAllowableReuseDuration",
+      "type": "topic",
+      "url": "/documentation/LocalAuthentication/LAContext/touchIDAuthenticationAllowableReuseDuration"
+    },
+    "doc://com.apple.documentation/documentation/Security/SecAccessControl": {
+      "abstract": [
+        {
+          "text": "An opaque type that contains information about how a keychain item may be used.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecAccessControl"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/SecAccessControl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecAccessControl",
+      "type": "topic",
+      "url": "/documentation/Security/SecAccessControl"
+    },
+    "doc://com.apple.documentation/documentation/Security/SecAccessControlCreateFlags/userPresence": {
+      "abstract": [
+        {
+          "text": "Constraint to access an item with either biometry or passcode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userPresence"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecAccessControlCreateFlags",
+          "text": "SecAccessControlCreateFlags"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/SecAccessControlCreateFlags/userPresence",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "userPresence",
+      "type": "topic",
+      "url": "/documentation/Security/SecAccessControlCreateFlags/userPresence"
+    },
+    "doc://com.apple.documentation/documentation/Security/adding-a-password-to-the-keychain": {
+      "abstract": [
+        {
+          "text": "Add network credentials to the keychain on behalf of the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/adding-a-password-to-the-keychain",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a password to the keychain",
+      "type": "topic",
+      "url": "/documentation/Security/adding-a-password-to-the-keychain"
+    },
+    "doc://com.apple.documentation/documentation/Security/errSecDuplicateItem": {
+      "abstract": [
+        {
+          "text": "The item already exists.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errSecDuplicateItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/errSecDuplicateItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "errSecDuplicateItem",
+      "type": "topic",
+      "url": "/documentation/Security/errSecDuplicateItem"
+    },
+    "doc://com.apple.documentation/documentation/Security/kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly": {
+      "abstract": [
+        {
+          "text": "The data in the keychain can only be accessed when the device is unlocked. Only available if a passcode is set on the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly",
+      "type": "topic",
+      "url": "/documentation/Security/kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly"
+    },
+    "doc://com.apple.documentation/documentation/Security/kSecUseAuthenticationUI": {
+      "abstract": [
+        {
+          "text": "A key whose value indicates whether the user is prompted for authentication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecUseAuthenticationUI"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/kSecUseAuthenticationUI",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kSecUseAuthenticationUI",
+      "type": "topic",
+      "url": "/documentation/Security/kSecUseAuthenticationUI"
+    },
+    "doc://com.apple.documentation/documentation/Security/kSecUseAuthenticationUISkip": {
+      "abstract": [
+        {
+          "text": "A value that indicates items requiring user authentication should be skipped.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecUseAuthenticationUISkip"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/kSecUseAuthenticationUISkip",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kSecUseAuthenticationUISkip",
+      "type": "topic",
+      "url": "/documentation/Security/kSecUseAuthenticationUISkip"
+    },
+    "doc://com.apple.documentation/documentation/Security/kSecUseOperationPrompt": {
+      "abstract": [
+        {
+          "text": "A key whose value is an operation prompt.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecUseOperationPrompt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/kSecUseOperationPrompt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kSecUseOperationPrompt",
+      "type": "topic",
+      "url": "/documentation/Security/kSecUseOperationPrompt"
+    },
+    "doc://com.apple.documentation/documentation/Security/restricting-keychain-item-accessibility": {
+      "abstract": [
+        {
+          "text": "Set the conditions under which an app can access a keychain item such as a password.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/restricting-keychain-item-accessibility",
+      "kind": "article",
+      "role": "article",
+      "title": "Restricting keychain item accessibility",
+      "type": "topic",
+      "url": "/documentation/Security/restricting-keychain-item-accessibility"
+    },
+    "doc://com.apple.documentation/documentation/Security/searching-for-keychain-items": {
+      "abstract": [
+        {
+          "text": "Find keychain items based on search criteria that you specify.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/searching-for-keychain-items",
+      "kind": "article",
+      "role": "article",
+      "title": "Searching for keychain items",
+      "type": "topic",
+      "url": "/documentation/Security/searching-for-keychain-items"
+    },
+    "doc://com.apple.documentation/documentation/Security/using-the-keychain-to-manage-user-secrets": {
+      "abstract": [
+        {
+          "text": "Relieve the user of remembering small secrets by storing them in the keychain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/using-the-keychain-to-manage-user-secrets",
+      "kind": "article",
+      "role": "article",
+      "title": "Using the keychain to manage user secrets",
+      "type": "topic",
+      "url": "/documentation/Security/using-the-keychain-to-manage-user-secrets"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication": {
+      "abstract": [
+        {
+          "text": "Authenticate users biometrically or with a passphrase they already know.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Local Authentication",
+      "type": "topic",
+      "url": "/documentation/localauthentication"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/logging-a-user-into-your-app-with-face-id-or-touch-id": {
+      "abstract": [
+        {
+          "text": "Supplement your own authentication scheme with biometric authentication, making it easy for users to access sensitive parts of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/logging-a-user-into-your-app-with-face-id-or-touch-id",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Logging a User into Your App with Face ID or Touch ID",
+      "type": "topic",
+      "url": "/documentation/localauthentication/logging-a-user-into-your-app-with-face-id-or-touch-id"
+    },
+    "https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW75": {
+      "identifier": "https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW75",
+      "title": "NSFaceIDUsageDescription",
+      "titleInlineContent": [
+        {
+          "text": "NSFaceIDUsageDescription",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW75"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "8f3df253eb87/AccessingKeychainItemsWithFaceIDOrTouchID.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/logging-a-user-into-your-app-with-face-id-or-touch-id"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/logging-a-user-into-your-app-with-face-id-or-touch-id"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1kSecUseOperationPrompt/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kSecUseOperationPrompt"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1errSecDuplicateItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "errSecDuplicateItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1LocalAuthentication~1LAContext/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "LAContext"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1SecAccessControl/title",
+          "value": "SecAccessControlRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1SecAccessControl/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@__SecAccessControl",
+              "text": "__SecAccessControl"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "SecAccessControlRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1kSecUseAuthenticationUISkip/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kSecUseAuthenticationUISkip"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1LocalAuthentication~1LAContext~1touchIDAuthenticationAllowableReuseDuration/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSTimeInterval",
+              "text": "NSTimeInterval"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "touchIDAuthenticationAllowableReuseDuration"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1SecAccessControlCreateFlags~1userPresence/title",
+          "value": "kSecAccessControlUserPresence"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1SecAccessControlCreateFlags~1userPresence/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAccessControlUserPresence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Security~1kSecUseAuthenticationUI/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kSecUseAuthenticationUI"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/localauthentication/accessing-keychain-items-with-face-id-or-touch-id"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/localauthentication/accessing-keychain-items-with-face-id-or-touch-id"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

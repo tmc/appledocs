@@ -1,0 +1,878 @@
+{
+  "abstract": [
+    {
+      "text": "An object that represents an NFC tag object.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corenfc/documentation/CoreNFC"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTag-swift.enum"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7CoreNFC6NFCTagO",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "enum"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NFCTag"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core NFC"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NFCTag"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration",
+    "symbolKind": "enum",
+    "title": "NFCTag"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NFCTag"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an NFC reader session detects a tag, it returns an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTag-swift.enum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. Use this generic object to determine if the tag is available, and to retrieve an object of a specific tag type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 1. Getting a MIFARE Ultralight tag from an array of generic tags objects",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func tagReaderSession(_ session: NFCTagReaderSession, didDetect tags: [NFCTag]) {",
+            "    var tag: NFCTag? = nil",
+            "    ",
+            "    for nfcTag in tags {",
+            "        // In this example you are searching for a MIFARE Ultralight tag (NFC Forum T2T tag platform).",
+            "        if case let .miFare(mifareTag) = nfcTag {",
+            "            if mifareTag.mifareFamily == .ultralight {",
+            "                tag = nfcTag",
+            "                break",
+            "            }",
+            "        }",
+            "    }",
+            "    ",
+            "    if tag == nil {",
+            "        session.invalidate(errorMessage: \"No valid coupon found.\")",
+            "        return",
+            "    }",
+            "    ",
+            "    session.connect(to: tag!) { (error: Error?) in",
+            "        if error != nil {",
+            "            session.invalidate(errorMessage: \"Connection error. Please try again.\")",
+            "            return",
+            "        }",
+            "        self.readCouponCode(from: tag!)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corenfc/documentation/CoreNFC": {
+      "abstract": [
+        {
+          "text": "Detect NFC tags, read messages that contain NDEF data, and save data to writable tags.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core NFC",
+      "type": "topic",
+      "url": "/documentation/corenfc"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCFeliCaTag": {
+      "abstract": [
+        {
+          "text": "An interface for interacting with a FeliCa™ tag.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NFCFeliCaTag"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCFeliCaTag",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NFCFeliCaTag"
+        }
+      ],
+      "role": "symbol",
+      "title": "NFCFeliCaTag",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfcfelicatag"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCISO15693Tag": {
+      "abstract": [
+        {
+          "text": "An interface for interacting with an ISO 15693 tag.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NFCISO15693Tag"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCISO15693Tag",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NFCISO15693Tag"
+        }
+      ],
+      "role": "symbol",
+      "title": "NFCISO15693Tag",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfciso15693tag"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCISO7816Tag": {
+      "abstract": [
+        {
+          "text": "An interface for interacting with an ISO 7816 tag.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NFCISO7816Tag"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCISO7816Tag",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NFCISO7816Tag"
+        }
+      ],
+      "role": "symbol",
+      "title": "NFCISO7816Tag",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfciso7816tag"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCMiFareTag": {
+      "abstract": [
+        {
+          "text": "An interface for interacting with a MIFARE® tag.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NFCMiFareTag"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCMiFareTag",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NFCMiFareTag"
+        }
+      ],
+      "role": "symbol",
+      "title": "NFCMiFareTag",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfcmifaretag"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCNDEFTag": {
+      "abstract": [
+        {
+          "text": "An interface for interacting with an NDEF tag.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NFCNDEFTag"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCNDEFTag",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NFCNDEFTag"
+        }
+      ],
+      "role": "symbol",
+      "title": "NFCNDEFTag",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfcndeftag"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCTag-swift.enum": {
+      "abstract": [
+        {
+          "text": "An object that represents an NFC tag object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NFCTag"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTag-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NFCTag"
+        }
+      ],
+      "role": "symbol",
+      "title": "NFCTag",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfctag-swift.enum"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCTag-swift.enum/feliCa(_:)": {
+      "abstract": [
+        {
+          "text": "Gets a tag as a FeliCa tag object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "feliCa"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NFCFeliCaTag",
+          "text": "NFCFeliCaTag"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTag-swift.enum/feliCa(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NFCTag.feliCa(_:)",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfctag-swift.enum/felica(_:)"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCTag-swift.enum/isAvailable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether a detected tag is available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAvailable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTag-swift.enum/isAvailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isAvailable",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfctag-swift.enum/isavailable"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCTag-swift.enum/iso15693(_:)": {
+      "abstract": [
+        {
+          "text": "Gets a tag as an ISO 15693 tag object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "iso15693"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NFCISO15693Tag",
+          "text": "NFCISO15693Tag"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTag-swift.enum/iso15693(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NFCTag.iso15693(_:)",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfctag-swift.enum/iso15693(_:)"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCTag-swift.enum/iso7816(_:)": {
+      "abstract": [
+        {
+          "text": "Gets a tag as an ISO 7816 tag object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "iso7816"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NFCISO7816Tag",
+          "text": "NFCISO7816Tag"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTag-swift.enum/iso7816(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NFCTag.iso7816(_:)",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfctag-swift.enum/iso7816(_:)"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCTag-swift.enum/miFare(_:)": {
+      "abstract": [
+        {
+          "text": "Get a tag as a MIFARE tag object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "miFare"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NFCMiFareTag",
+          "text": "NFCMiFareTag"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTag-swift.enum/miFare(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NFCTag.miFare(_:)",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfctag-swift.enum/mifare(_:)"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagCommandConfiguration": {
+      "abstract": [
+        {
+          "text": "A set of parameters you use to define the configuration of an NFC tag command.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NFCTagCommandConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagCommandConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NFCTagCommandConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "NFCTagCommandConfiguration",
+      "type": "topic",
+      "url": "/documentation/corenfc/nfctagcommandconfiguration"
+    },
+    "doc://com.apple.corenfc/documentation/CoreNFC/creating-nfc-tags-from-your-iphone": {
+      "abstract": [
+        {
+          "text": "Save data to tags, and interact with them using native tag protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corenfc/documentation/CoreNFC/creating-nfc-tags-from-your-iphone",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating NFC Tags from Your iPhone",
+      "type": "topic",
+      "url": "/documentation/corenfc/creating-nfc-tags-from-your-iphone"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Tag-types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corenfc/documentation/CoreNFC/creating-nfc-tags-from-your-iphone",
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCISO7816Tag",
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCISO15693Tag",
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCFeliCaTag",
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCMiFareTag",
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCNDEFTag",
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCTagCommandConfiguration"
+      ],
+      "title": "Tag types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-Information-About-a-Tag",
+      "identifiers": [
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCTag-swift.enum/isAvailable"
+      ],
+      "title": "Getting Information About a Tag"
+    },
+    {
+      "anchor": "Getting-a-Specific-Tag-Type",
+      "identifiers": [
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCTag-swift.enum/iso15693(_:)",
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCTag-swift.enum/iso7816(_:)",
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCTag-swift.enum/feliCa(_:)",
+        "doc://com.apple.corenfc/documentation/CoreNFC/NFCTag-swift.enum/miFare(_:)"
+      ],
+      "title": "Getting a Specific Tag Type"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCISO7816Tag/title",
+          "value": "NFCISO7816Tag"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCISO7816Tag/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCISO7816Tag"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCISO7816Tag/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCISO7816Tag"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCTagCommandConfiguration/title",
+          "value": "NFCTagCommandConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCTagCommandConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCTagCommandConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCTagCommandConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCTagCommandConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCNDEFTag/title",
+          "value": "NFCNDEFTag"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCNDEFTag/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCNDEFTag"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCNDEFTag/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCNDEFTag"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCMiFareTag/title",
+          "value": "NFCMiFareTag"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCMiFareTag/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCMiFareTag"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCMiFareTag/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCMiFareTag"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCISO15693Tag/title",
+          "value": "NFCISO15693Tag"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCISO15693Tag/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCISO15693Tag"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCISO15693Tag/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCISO15693Tag"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCFeliCaTag/title",
+          "value": "NFCFeliCaTag"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCFeliCaTag/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCFeliCaTag"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corenfc~1documentation~1CoreNFC~1NFCFeliCaTag/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NFCFeliCaTag"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corenfc/nfctag-swift.enum"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

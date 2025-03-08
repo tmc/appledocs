@@ -1,0 +1,1374 @@
+{
+  "abstract": [
+    {
+      "text": "A type that uniquely identifies a specific instance of an app entity.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AppIntents/documentation/AppIntents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10AppIntents16EntityIdentifierV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "EntityIdentifier"
+      }
+    ],
+    "modules": [
+      {
+        "name": "App Intents"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "EntityIdentifier"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "EntityIdentifier"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "EntityIdentifier"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The value used should be unique across all entities of the given type. Entities which are",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "relevant across executions of the application should have stable identifiers that persist",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "across executions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Entities, by default, conform to the ",
+              "type": "text"
+            },
+            {
+              "code": "Identifiable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol. Use a type for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that conforms to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifierConvertible",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Default implementations for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "String",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "UUID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "Int",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are provided.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Song: AppEntity {",
+            "    let id = UUID()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.AppIntents/documentation/AppIntents": {
+      "abstract": [
+        {
+          "text": "Make your app’s content and actions discoverable with system experiences like Spotlight, widgets, and enhanced action capabilities of Siri, powered by Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Intents",
+      "type": "topic",
+      "url": "/documentation/appintents"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier": {
+      "abstract": [
+        {
+          "text": "A type that uniquely identifies a specific instance of an app entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityIdentifier",
+      "type": "topic",
+      "url": "/documentation/appintents/entityidentifier"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/==(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "=="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents16EntityIdentifierV",
+          "text": "EntityIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents16EntityIdentifierV",
+          "text": "EntityIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/==(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/appintents/entityidentifier/==(_:_:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/Equatable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/Equatable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equatable Implementations",
+      "type": "topic",
+      "url": "/documentation/appintents/entityidentifier/equatable-implementations"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/Specification": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Specification"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/Specification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Specification"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityIdentifier.Specification",
+      "type": "topic",
+      "url": "/documentation/appintents/entityidentifier/specification"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/UnwrappedType": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnwrappedType"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/UnwrappedType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnwrappedType"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityIdentifier.UnwrappedType",
+      "type": "topic",
+      "url": "/documentation/appintents/entityidentifier/unwrappedtype"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/ValueType": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ValueType"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/ValueType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ValueType"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityIdentifier.ValueType",
+      "type": "topic",
+      "url": "/documentation/appintents/entityidentifier/valuetype"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/defaultResolverSpecification": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultResolverSpecification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents26EmptyResolverSpecificationV",
+          "text": "EmptyResolverSpecification"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents16EntityIdentifierV",
+          "text": "EntityIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/defaultResolverSpecification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultResolverSpecification",
+      "type": "topic",
+      "url": "/documentation/appintents/entityidentifier/defaultresolverspecification"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/description": {
+      "abstract": [
+        {
+          "text": "A textual representation of this instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/appintents/entityidentifier/description"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/entityType": {
+      "abstract": [
+        {
+          "text": "The type of ",
+          "type": "text"
+        },
+        {
+          "code": "AppEntity",
+          "type": "codeVoice"
+        },
+        {
+          "text": " represented by this identifier",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "entityType"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6EntityP",
+          "text": "AppEntity"
+        },
+        {
+          "kind": "text",
+          "text": ".Type"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/entityType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "entityType",
+      "type": "topic",
+      "url": "/documentation/appintents/entityidentifier/entitytype"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/hash(into:)": {
+      "abstract": [
+        {
+          "text": "Hashes the essential components of this value by feeding them into the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "given hasher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hash"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6HasherV",
+          "text": "Hasher"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/hash(into:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hash(into:)",
+      "type": "topic",
+      "url": "/documentation/appintents/entityidentifier/hash(into:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/hashValue": {
+      "abstract": [
+        {
+          "text": "The hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hashValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/hashValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hashValue",
+      "type": "topic",
+      "url": "/documentation/appintents/entityidentifier/hashvalue"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/identifier": {
+      "abstract": [
+        {
+          "text": "Value uniquely identifying the entity instance within its type",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/identifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/appintents/entityidentifier/identifier"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/init(activityIdentifier:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "activityIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/init(activityIdentifier:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(activityIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/appintents/entityidentifier/init(activityidentifier:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/init(for:)": {
+      "abstract": [
+        {
+          "text": "Creates an identifier for the specified entity",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/init(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(for:)",
+      "type": "topic",
+      "url": "/documentation/appintents/entityidentifier/init(for:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/init(for:identifier:)": {
+      "abstract": [
+        {
+          "text": "Creates an ",
+          "type": "text"
+        },
+        {
+          "code": "EntityIdentifier",
+          "type": "codeVoice"
+        },
+        {
+          "text": " representing an instance of the specified entity type backed",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "by the specified identifier value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/init(for:identifier:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(for:identifier:)",
+      "type": "topic",
+      "url": "/documentation/appintents/entityidentifier/init(for:identifier:)"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/valueMaximumLength": {
+      "abstract": [
+        {
+          "text": "Maximum allowed length for the ",
+          "type": "text"
+        },
+        {
+          "code": "identifier",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "This is a constraint imposed by the system and thus forces us to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "truncate the identifier if it exceeds the maximum length.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "valueMaximumLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/valueMaximumLength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "valueMaximumLength",
+      "type": "topic",
+      "url": "/documentation/appintents/entityidentifier/valuemaximumlength"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifierConvertible": {
+      "abstract": [
+        {
+          "text": "An interface for converting between an entity’s identifier and its string",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityIdentifierConvertible"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifierConvertible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityIdentifierConvertible"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityIdentifierConvertible",
+      "type": "topic",
+      "url": "/documentation/appintents/entityidentifierconvertible"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/PersistentlyIdentifiable": {
+      "abstract": [
+        {
+          "text": "Defines a string that uniquely identifies a type. This is useful for maintaining the identity",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of a type, even when its type name is changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PersistentlyIdentifiable"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/PersistentlyIdentifiable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PersistentlyIdentifiable"
+        }
+      ],
+      "role": "symbol",
+      "title": "PersistentlyIdentifiable",
+      "type": "topic",
+      "url": "/documentation/appintents/persistentlyidentifiable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Entity-identity",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/PersistentlyIdentifiable",
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifierConvertible"
+      ],
+      "title": "Entity identity"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-entity-identifier",
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/init(for:)",
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/init(for:identifier:)"
+      ],
+      "title": "Creating an entity identifier"
+    },
+    {
+      "anchor": "Getting-the-identifier-details",
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/identifier",
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/entityType",
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/valueMaximumLength"
+      ],
+      "title": "Getting the identifier details"
+    },
+    {
+      "anchor": "Describing-the-identifier",
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/description"
+      ],
+      "title": "Describing the identifier"
+    },
+    {
+      "anchor": "Providing-a-hash-value",
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/hash(into:)"
+      ],
+      "title": "Providing a hash value"
+    },
+    {
+      "anchor": "Operators",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/==(_:_:)"
+      ],
+      "title": "Operators"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/init(activityIdentifier:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/hashValue"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/Specification",
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/UnwrappedType",
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/ValueType"
+      ],
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "Type-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/defaultResolverSpecification"
+      ],
+      "title": "Type Properties"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AppIntents/documentation/AppIntents/EntityIdentifier/Equatable-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appintents/entityidentifier"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

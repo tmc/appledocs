@@ -1,0 +1,6248 @@
+{
+  "abstract": [
+    {
+      "text": "Read or write a variety of audio data to or from disk or a memory buffer.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-services"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Audio File Services"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This document describes Audio File Services, a C programming interface that enables you to read or write a wide variety of audio data to or from disk or a memory buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With Audio File Services you can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create, initialize, open, and close audio files",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Read and write audio files",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optimize audio files",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Work with user data and global information",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1576492-audio-file-marker-types": {
+      "abstract": [
+        {
+          "text": "A type of marker within a file used in the ",
+          "type": "text"
+        },
+        {
+          "code": "mType",
+          "type": "codeVoice"
+        },
+        {
+          "text": " field of the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileMarker",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " structure.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1576492-audio-file-marker-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio File Marker Types",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1576492-audio-file-marker-types"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1576494-audio-file-loop-direction-consta": {
+      "abstract": [
+        {
+          "text": "The playback direction of a looped segment of an audio file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1576494-audio-file-loop-direction-consta",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio File Loop Direction Constants",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1576494-audio-file-loop-direction-consta"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1576495-audio-file-global-info-propertie": {
+      "abstract": [
+        {
+          "text": "Access these properties using the functions described in Working with Global Information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1576495-audio-file-global-info-propertie",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio File Global Info Properties",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1576495-audio-file-global-info-propertie"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1576499-audio-file-properties": {
+      "abstract": [
+        {
+          "text": "Properties used by the functions described in getting and setting pieces of data in audio files. See Working with Global Information for details.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1576499-audio-file-properties",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio File Properties",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1576499-audio-file-properties"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioBytePacketTranslation": {
+      "abstract": [
+        {
+          "text": "A data structure used by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFilePropertyByteToPacket",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFilePropertyPacketToByte",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioBytePacketTranslation"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioBytePacketTranslation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioBytePacketTranslation"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioBytePacketTranslation",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiobytepackettranslation"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioBytePacketTranslationFlags": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioBytePacketTranslationFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioBytePacketTranslationFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioBytePacketTranslationFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioBytePacketTranslationFlags",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiobytepackettranslationflags"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileClose(_:)": {
+      "abstract": [
+        {
+          "text": "Closes an audio file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileClose"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileID",
+          "text": "AudioFileID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileClose(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileClose"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileClose(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofileclose(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileCountUserData(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Gets the number of user data items with a specified ID in a file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileCountUserData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileID",
+          "text": "AudioFileID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileCountUserData(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileCountUserData"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileCountUserData(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilecountuserdata(_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileCreateWithURL(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new audio file, or initializes an existing file, specified by a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileCreateWithURL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileTypeID",
+          "text": "AudioFileTypeID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioStreamBasicDescription",
+          "text": "AudioStreamBasicDescription"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AudioFileFlags",
+          "text": "AudioFileFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileID",
+          "text": "AudioFileID"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileCreateWithURL(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileCreateWithURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileCreateWithURL(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilecreatewithurl(_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileFDFTable": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileFDFTable"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileFDFTable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AudioFileFDFTable",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilefdftable"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileFDFTableExtended": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileFDFTableExtended"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileFDFTableExtended",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AudioFileFDFTableExtended",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilefdftableextended"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileFlags": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileFlags",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofileflags"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetGlobalInfo(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Copies the value of a global property into a buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileGetGlobalInfo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFilePropertyID",
+          "text": "AudioFilePropertyID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetGlobalInfo(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileGetGlobalInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileGetGlobalInfo(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilegetglobalinfo(_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetGlobalInfoSize(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Gets the size of a global audio file property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileGetGlobalInfoSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFilePropertyID",
+          "text": "AudioFilePropertyID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetGlobalInfoSize(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileGetGlobalInfoSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileGetGlobalInfoSize(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilegetglobalinfosize(_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetProperty(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Gets the value of an audio file property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileGetProperty"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileID",
+          "text": "AudioFileID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFilePropertyID",
+          "text": "AudioFilePropertyID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetProperty(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileGetProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileGetProperty(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilegetproperty(_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetPropertyInfo(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Gets information about an audio file property, including the size of the property value and whether the value is writable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileGetPropertyInfo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileID",
+          "text": "AudioFileID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFilePropertyID",
+          "text": "AudioFilePropertyID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetPropertyInfo(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileGetPropertyInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileGetPropertyInfo(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilegetpropertyinfo(_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetUserData(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Gets a chunk from an audio file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileGetUserData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileID",
+          "text": "AudioFileID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetUserData(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileGetUserData"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileGetUserData(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilegetuserdata(_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetUserDataAtOffset(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Gets part of the data from a chunk in an audio file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileGetUserDataAtOffset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileID",
+          "text": "AudioFileID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetUserDataAtOffset(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileGetUserDataAtOffset"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileGetUserDataAtOffset(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilegetuserdataatoffset(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetUserDataSize(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Gets the size of a user data item in an audio file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileGetUserDataSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileID",
+          "text": "AudioFileID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetUserDataSize(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileGetUserDataSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileGetUserDataSize(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilegetuserdatasize(_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetUserDataSize64(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Gets the size of a user data item in an audio file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileGetUserDataSize64"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileID",
+          "text": "AudioFileID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetUserDataSize64(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileGetUserDataSize64"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileGetUserDataSize64(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilegetuserdatasize64(_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileID": {
+      "abstract": [
+        {
+          "text": "An opaque data type that represents an audio file object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileID"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileID",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofileid"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileInitializeWithCallbacks(_:_:_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Deletes the content of an existing file and assigns callbacks to the audio file object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileInitializeWithCallbacks"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFile_ReadProc",
+          "text": "AudioFile_ReadProc"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFile_WriteProc",
+          "text": "AudioFile_WriteProc"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFile_GetSizeProc",
+          "text": "AudioFile_GetSizeProc"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFile_SetSizeProc",
+          "text": "AudioFile_SetSizeProc"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileTypeID",
+          "text": "AudioFileTypeID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioStreamBasicDescription",
+          "text": "AudioStreamBasicDescription"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AudioFileFlags",
+          "text": "AudioFileFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileID",
+          "text": "AudioFileID"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileInitializeWithCallbacks(_:_:_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileInitializeWithCallbacks"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileInitializeWithCallbacks(_:_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofileinitializewithcallbacks(_:_:_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileMarker": {
+      "abstract": [
+        {
+          "text": "Annotates a position in an audio file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileMarker"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileMarker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileMarker"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileMarker",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilemarker"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileMarkerList": {
+      "abstract": [
+        {
+          "text": "A list of markers associated with an audio file, including their SMPTE time type, the number of markers, and the markers themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileMarkerList"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileMarkerList",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileMarkerList"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileMarkerList",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilemarkerlist"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileOpenURL(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Open an existing audio file specified by a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileOpenURL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AudioFilePermissions",
+          "text": "AudioFilePermissions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileTypeID",
+          "text": "AudioFileTypeID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileID",
+          "text": "AudioFileID"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileOpenURL(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileOpenURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileOpenURL(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofileopenurl(_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileOpenWithCallbacks(_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Opens an existing file with callbacks you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileOpenWithCallbacks"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFile_ReadProc",
+          "text": "AudioFile_ReadProc"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFile_WriteProc",
+          "text": "AudioFile_WriteProc"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFile_GetSizeProc",
+          "text": "AudioFile_GetSizeProc"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFile_SetSizeProc",
+          "text": "AudioFile_SetSizeProc"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileTypeID",
+          "text": "AudioFileTypeID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileID",
+          "text": "AudioFileID"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileOpenWithCallbacks(_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileOpenWithCallbacks"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileOpenWithCallbacks(_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofileopenwithcallbacks(_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileOptimize(_:)": {
+      "abstract": [
+        {
+          "text": "Consolidates audio data and performs other internal optimizations of the file structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileOptimize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileID",
+          "text": "AudioFileID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileOptimize(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileOptimize"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileOptimize(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofileoptimize(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFilePacketTableInfo": {
+      "abstract": [
+        {
+          "text": "Contains information about the number of valid frames in a file and where they begin and end.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFilePacketTableInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFilePacketTableInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFilePacketTableInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFilePacketTableInfo",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilepackettableinfo"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFilePermissions": {
+      "abstract": [
+        {
+          "text": "Flags for use when opening an audio file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFilePermissions"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFilePermissions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFilePermissions"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFilePermissions",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilepermissions"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFilePropertyID": {
+      "abstract": [
+        {
+          "text": "An audio file property identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFilePropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFilePropertyID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFilePropertyID"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFilePropertyID",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilepropertyid"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileReadBytes(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Reads bytes of audio data from an audio file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileReadBytes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileID",
+          "text": "AudioFileID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileReadBytes(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileReadBytes"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileReadBytes(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilereadbytes(_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileReadPacketData(_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Reads packets of audio data from an audio file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileReadPacketData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileID",
+          "text": "AudioFileID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioStreamPacketDescription",
+          "text": "AudioStreamPacketDescription"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileReadPacketData(_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileReadPacketData"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileReadPacketData(_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilereadpacketdata(_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileRegion": {
+      "abstract": [
+        {
+          "text": "An audio file region specifies a segment of audio data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileRegion"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileRegion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileRegion"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileRegion",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofileregion"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileRegionFlags": {
+      "abstract": [
+        {
+          "text": "Flags that specify a playback direction for an audio file region structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileRegionFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileRegionFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileRegionFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileRegionFlags",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofileregionflags"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileRegionList": {
+      "abstract": [
+        {
+          "text": "A list of the audio file regions in a file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileRegionList"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileRegionList",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileRegionList"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileRegionList",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofileregionlist"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileRemoveUserData(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Removes a user data item from an audio file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileRemoveUserData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileID",
+          "text": "AudioFileID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileRemoveUserData(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileRemoveUserData"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileRemoveUserData(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofileremoveuserdata(_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileSetProperty(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the value of an audio file property",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileSetProperty"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileID",
+          "text": "AudioFileID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFilePropertyID",
+          "text": "AudioFilePropertyID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileSetProperty(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileSetProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileSetProperty(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilesetproperty(_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileSetUserData(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets a user data item in an audio file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileSetUserData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileID",
+          "text": "AudioFileID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileSetUserData(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileSetUserData"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileSetUserData(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilesetuserdata(_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamParseFlags": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileStreamParseFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamParseFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileStreamParseFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileStreamParseFlags",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilestreamparseflags"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamPropertyFlags": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileStreamPropertyFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamPropertyFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileStreamPropertyFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileStreamPropertyFlags",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilestreampropertyflags"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamSeekFlags": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileStreamSeekFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamSeekFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileStreamSeekFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileStreamSeekFlags",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilestreamseekflags"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileTypeAndFormatID": {
+      "abstract": [
+        {
+          "text": "A specifier for the constant",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileGlobalInfo_AvailableStreamDescriptionsForFormat",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileTypeAndFormatID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileTypeAndFormatID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileTypeAndFormatID"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileTypeAndFormatID",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofiletypeandformatid"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileTypeID": {
+      "abstract": [
+        {
+          "text": "Operating system constants that indicate the type of file to be written or a hint about what type of file to expect from data provided.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileTypeID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileTypeID",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofiletypeid"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileWriteBytes(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Writes bytes of audio data to an audio file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileWriteBytes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileID",
+          "text": "AudioFileID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileWriteBytes(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileWriteBytes"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileWriteBytes(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilewritebytes(_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileWritePackets(_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Writes packets of audio data to an audio data file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileWritePackets"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileID",
+          "text": "AudioFileID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioStreamPacketDescription",
+          "text": "AudioStreamPacketDescription"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileWritePackets(_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileWritePackets"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileWritePackets(_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilewritepackets(_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFile_GetSizeProc": {
+      "abstract": [
+        {
+          "text": "Gets file data size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFile_GetSizeProc"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFile_GetSizeProc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFile_GetSizeProc"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFile_GetSizeProc",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofile_getsizeproc"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFile_ReadProc": {
+      "abstract": [
+        {
+          "text": "Reads audio data when used in conjunction with the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileOpenWithCallbacks(_:_:_:_:_:_:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileInitializeWithCallbacks(_:_:_:_:_:_:_:_:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " functions.)",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFile_ReadProc"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFile_ReadProc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFile_ReadProc"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFile_ReadProc",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofile_readproc"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFile_SMPTE_Time": {
+      "abstract": [
+        {
+          "text": "A data structure for describing SMPTE (Society of Motion Picture and Television Engineers) time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFile_SMPTE_Time"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFile_SMPTE_Time",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFile_SMPTE_Time"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFile_SMPTE_Time",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofile_smpte_time"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFile_SetSizeProc": {
+      "abstract": [
+        {
+          "text": "Sets file data size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFile_SetSizeProc"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFile_SetSizeProc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFile_SetSizeProc"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFile_SetSizeProc",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofile_setsizeproc"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFile_WriteProc": {
+      "abstract": [
+        {
+          "text": "A callback for writing file data when used in conjunction with the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileOpenWithCallbacks(_:_:_:_:_:_:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileCreateWithURL(_:_:_:_:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFile_WriteProc"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFile_WriteProc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFile_WriteProc"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFile_WriteProc",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofile_writeproc"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFramePacketTranslation": {
+      "abstract": [
+        {
+          "text": "A structure that specifies frame and packet translations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFramePacketTranslation"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFramePacketTranslation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFramePacketTranslation"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFramePacketTranslation",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioframepackettranslation"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioIndependentPacketTranslation": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioIndependentPacketTranslation"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioIndependentPacketTranslation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioIndependentPacketTranslation"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioIndependentPacketTranslation",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioindependentpackettranslation"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioPacketDependencyInfoTranslation": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioPacketDependencyInfoTranslation"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioPacketDependencyInfoTranslation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioPacketDependencyInfoTranslation"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioPacketDependencyInfoTranslation",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiopacketdependencyinfotranslation"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioPacketRangeByteCountTranslation": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioPacketRangeByteCountTranslation"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioPacketRangeByteCountTranslation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioPacketRangeByteCountTranslation"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioPacketRangeByteCountTranslation",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiopacketrangebytecounttranslation"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioPacketRollDistanceTranslation": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioPacketRollDistanceTranslation"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioPacketRollDistanceTranslation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioPacketRollDistanceTranslation"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioPacketRollDistanceTranslation",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiopacketrolldistancetranslation"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/NextAudioFileRegion(_:)": {
+      "abstract": [
+        {
+          "text": "Finds the next audio file region in a region list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NextAudioFileRegion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioFileRegion",
+          "text": "AudioFileRegion"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioFileRegion",
+          "text": "AudioFileRegion"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/NextAudioFileRegion(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NextAudioFileRegion"
+        }
+      ],
+      "role": "symbol",
+      "title": "NextAudioFileRegion(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/nextaudiofileregion(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/NumAudioFileMarkersToNumBytes(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the number of bytes corresponding to a specified number of audio file markers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NumAudioFileMarkersToNumBytes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/NumAudioFileMarkersToNumBytes(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NumAudioFileMarkersToNumBytes"
+        }
+      ],
+      "role": "symbol",
+      "title": "NumAudioFileMarkersToNumBytes(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/numaudiofilemarkerstonumbytes(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/NumBytesToNumAudioFileMarkers(_:)": {
+      "abstract": [
+        {
+          "text": "A macro that returns the number of audio file markers represented by a specified number of bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NumBytesToNumAudioFileMarkers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/NumBytesToNumAudioFileMarkers(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NumBytesToNumAudioFileMarkers"
+        }
+      ],
+      "role": "symbol",
+      "title": "NumBytesToNumAudioFileMarkers(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/numbytestonumaudiofilemarkers(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-components": {
+      "abstract": [
+        {
+          "text": "Get information about audio file formats, and about files containing audio data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-components",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio File Components",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-file-components"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-stream-services": {
+      "abstract": [
+        {
+          "text": "Parse streamed audio files as the data arrives on the user’s computer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-stream-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio File Stream Services",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-file-stream-services"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-format-services": {
+      "abstract": [
+        {
+          "text": "Access information about audio formats and codecs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-format-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Format Services",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-format-services"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio_file_creation_flags": {
+      "abstract": [
+        {
+          "text": "Flags to set when creating an audio file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio_file_creation_flags",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio File Creation Flags",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio_file_creation_flags"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio_file_packet_translation_flags": {
+      "abstract": [
+        {
+          "text": "Flags specified in a packet translation structure.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio_file_packet_translation_flags",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio File Packet Translation Flags",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio_file_packet_translation_flags"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/core-audio-file-format": {
+      "abstract": [
+        {
+          "text": "Parse the structure of Core Audio files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/core-audio-file-format",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Core Audio File Format",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/core-audio-file-format"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/extended-audio-file-services": {
+      "abstract": [
+        {
+          "text": "Read and write compressed files and linear PCM audio files using a simplified interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/extended-audio-file-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Extended Audio File Services",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/extended-audio-file-services"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/info-string-keys": {
+      "abstract": [
+        {
+          "text": "Key values of properties to get and set using Audio File Services functions and provide a common way to get the same information out of several different kinds of files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/info-string-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Info String Keys",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/info-string-keys"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileBadPropertySizeError": {
+      "abstract": [
+        {
+          "text": "The size of the property data was not correct.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileBadPropertySizeError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileBadPropertySizeError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileBadPropertySizeError"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileBadPropertySizeError",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofilebadpropertysizeerror"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileDoesNotAllow64BitDataSizeError": {
+      "abstract": [
+        {
+          "text": "The file offset was too large for the file type. The AIFF and WAVE file format types have 32-bit file size limits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileDoesNotAllow64BitDataSizeError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileDoesNotAllow64BitDataSizeError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileDoesNotAllow64BitDataSizeError"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileDoesNotAllow64BitDataSizeError",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofiledoesnotallow64bitdatasizeerror"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileEndOfFileError": {
+      "abstract": [
+        {
+          "text": "End of file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileEndOfFileError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileEndOfFileError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileEndOfFileError"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileEndOfFileError",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofileendoffileerror"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileFileNotFoundError": {
+      "abstract": [
+        {
+          "text": "File not found.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileFileNotFoundError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileFileNotFoundError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileFileNotFoundError"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileFileNotFoundError",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofilefilenotfounderror"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileGlobalInfo_AvailableStreamDescriptionsForFormat": {
+      "abstract": [
+        {
+          "text": "An array of audio stream basic description structures, which contain all the formats for a particular file type and format ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileGlobalInfo_AvailableStreamDescriptionsForFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFilePropertyID",
+          "text": "AudioFilePropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileGlobalInfo_AvailableStreamDescriptionsForFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileGlobalInfo_AvailableStreamDescriptionsForFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileGlobalInfo_AvailableStreamDescriptionsForFormat",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofileglobalinfo_availablestreamdescriptionsforformat"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileInvalidChunkError": {
+      "abstract": [
+        {
+          "text": "Either the chunk does not exist in the file or it is not supported by the file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileInvalidChunkError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileInvalidChunkError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileInvalidChunkError"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileInvalidChunkError",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofileinvalidchunkerror"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileInvalidFileError": {
+      "abstract": [
+        {
+          "text": "The file is malformed, or otherwise not a valid instance of an audio file of its type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileInvalidFileError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileInvalidFileError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileInvalidFileError"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileInvalidFileError",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofileinvalidfileerror"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileInvalidPacketOffsetError": {
+      "abstract": [
+        {
+          "text": "A packet offset was past the end of the file, or not at the end of the file when a VBR format was written,  or a corrupt packet size was read when the packet table was built.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileInvalidPacketOffsetError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileInvalidPacketOffsetError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileInvalidPacketOffsetError"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileInvalidPacketOffsetError",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofileinvalidpacketoffseterror"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileNotOpenError": {
+      "abstract": [
+        {
+          "text": "The file is closed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileNotOpenError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileNotOpenError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileNotOpenError"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileNotOpenError",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofilenotopenerror"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileNotOptimizedError": {
+      "abstract": [
+        {
+          "text": "The chunks following the audio data chunk are preventing the extension of the audio data chunk. To write more data, you must optimize the file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileNotOptimizedError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileNotOptimizedError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileNotOptimizedError"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileNotOptimizedError",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofilenotoptimizederror"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileOperationNotSupportedError": {
+      "abstract": [
+        {
+          "text": "The operation cannot be performed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileOperationNotSupportedError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileOperationNotSupportedError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileOperationNotSupportedError"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileOperationNotSupportedError",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofileoperationnotsupportederror"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFilePermissionsError": {
+      "abstract": [
+        {
+          "text": "The operation violated the file permissions. For example, an attempt was made to write to a file opened with the ",
+          "type": "text"
+        },
+        {
+          "code": "kAudioFileReadPermission",
+          "type": "codeVoice"
+        },
+        {
+          "text": " constant.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFilePermissionsError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFilePermissionsError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFilePermissionsError"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFilePermissionsError",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofilepermissionserror"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFilePositionError": {
+      "abstract": [
+        {
+          "text": "Invalid file position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFilePositionError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFilePositionError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFilePositionError"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFilePositionError",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofilepositionerror"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFilePropertyByteToPacket": {
+      "abstract": [
+        {
+          "text": "Passes an audio byte packet translation structure with the ",
+          "type": "text"
+        },
+        {
+          "code": "mByte",
+          "type": "codeVoice"
+        },
+        {
+          "text": " field filled out and returns the ",
+          "type": "text"
+        },
+        {
+          "code": "mPacket",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "code": "mByteOffsetInPacket",
+          "type": "codeVoice"
+        },
+        {
+          "text": " fields. If the value in the ",
+          "type": "text"
+        },
+        {
+          "code": "mByte",
+          "type": "codeVoice"
+        },
+        {
+          "text": " field is an estimate then the ",
+          "type": "text"
+        },
+        {
+          "code": "kBytePacketTranslationFlag_IsEstimate",
+          "type": "codeVoice"
+        },
+        {
+          "text": " flag is set in the ",
+          "type": "text"
+        },
+        {
+          "code": "mFlags",
+          "type": "codeVoice"
+        },
+        {
+          "text": " field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFilePropertyByteToPacket"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFilePropertyID",
+          "text": "AudioFilePropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFilePropertyByteToPacket",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFilePropertyByteToPacket"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFilePropertyByteToPacket",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofilepropertybytetopacket"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFilePropertyPacketToByte": {
+      "abstract": [
+        {
+          "text": "Passes an audio byte packet translation structure with the ",
+          "type": "text"
+        },
+        {
+          "code": "mPacket",
+          "type": "codeVoice"
+        },
+        {
+          "text": " field filled out and returns the ",
+          "type": "text"
+        },
+        {
+          "code": "mByte",
+          "type": "codeVoice"
+        },
+        {
+          "text": " field. The ",
+          "type": "text"
+        },
+        {
+          "code": "mByteOffsetInPacket",
+          "type": "codeVoice"
+        },
+        {
+          "text": " field is ignored. If the value in the ",
+          "type": "text"
+        },
+        {
+          "code": "mByte",
+          "type": "codeVoice"
+        },
+        {
+          "text": " field is an estimate then the ",
+          "type": "text"
+        },
+        {
+          "code": "kBytePacketTranslationFlag_IsEstimate",
+          "type": "codeVoice"
+        },
+        {
+          "text": " flag is set in the ",
+          "type": "text"
+        },
+        {
+          "code": "mFlags",
+          "type": "codeVoice"
+        },
+        {
+          "text": " field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFilePropertyPacketToByte"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFilePropertyID",
+          "text": "AudioFilePropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFilePropertyPacketToByte",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFilePropertyPacketToByte"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFilePropertyPacketToByte",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofilepropertypackettobyte"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileUnspecifiedError": {
+      "abstract": [
+        {
+          "text": "An unspecified error has occurred.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileUnspecifiedError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileUnspecifiedError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileUnspecifiedError"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileUnspecifiedError",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofileunspecifiederror"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileUnsupportedDataFormatError": {
+      "abstract": [
+        {
+          "text": "The data format is not supported by this file type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileUnsupportedDataFormatError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileUnsupportedDataFormatError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileUnsupportedDataFormatError"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileUnsupportedDataFormatError",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofileunsupporteddataformaterror"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileUnsupportedFileTypeError": {
+      "abstract": [
+        {
+          "text": "The file type is not supported.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileUnsupportedFileTypeError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileUnsupportedFileTypeError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileUnsupportedFileTypeError"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileUnsupportedFileTypeError",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofileunsupportedfiletypeerror"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileUnsupportedPropertyError": {
+      "abstract": [
+        {
+          "text": "The property is not supported.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileUnsupportedPropertyError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileUnsupportedPropertyError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileUnsupportedPropertyError"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileUnsupportedPropertyError",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofileunsupportedpropertyerror"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Audio-Files-and-Formats",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-format-services",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/extended-audio-file-services",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-stream-services",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-components",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/core-audio-file-format"
+      ],
+      "title": "Audio Files and Formats"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-and-Initializing-Audio-Files",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileCreateWithURL(_:_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileInitializeWithCallbacks(_:_:_:_:_:_:_:_:_:)"
+      ],
+      "title": "Creating and Initializing Audio Files"
+    },
+    {
+      "anchor": "Opening-and-Closing-Audio-Files",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileOpenURL(_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileOpenWithCallbacks(_:_:_:_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileClose(_:)"
+      ],
+      "title": "Opening and Closing Audio Files"
+    },
+    {
+      "anchor": "Reading-and-Writing-Audio-Files",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileReadBytes(_:_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileWriteBytes(_:_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileReadPacketData(_:_:_:_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileWritePackets(_:_:_:_:_:_:_:)"
+      ],
+      "title": "Reading and Writing Audio Files"
+    },
+    {
+      "anchor": "Getting-and-Setting-Audio-File-Properties",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetProperty(_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetPropertyInfo(_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileSetProperty(_:_:_:_:)"
+      ],
+      "title": "Getting and Setting Audio File Properties"
+    },
+    {
+      "anchor": "Working-with-User-Data",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileCountUserData(_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetUserDataSize(_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetUserDataSize64(_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetUserData(_:_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetUserDataAtOffset(_:_:_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileSetUserData(_:_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileRemoveUserData(_:_:_:)"
+      ],
+      "title": "Working with User Data"
+    },
+    {
+      "anchor": "Working-with-Global-Information",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetGlobalInfoSize(_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetGlobalInfo(_:_:_:_:_:)"
+      ],
+      "title": "Working with Global Information"
+    },
+    {
+      "anchor": "Optimizing-Audio-Files",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileOptimize(_:)"
+      ],
+      "title": "Optimizing Audio Files"
+    },
+    {
+      "anchor": "Parsing-Audio-File-Content",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/NextAudioFileRegion(_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/NumAudioFileMarkersToNumBytes(_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/NumBytesToNumAudioFileMarkers(_:)"
+      ],
+      "title": "Parsing Audio File Content"
+    },
+    {
+      "anchor": "Callbacks",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFile_ReadProc",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFile_WriteProc",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFile_GetSizeProc",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFile_SetSizeProc"
+      ],
+      "title": "Callbacks"
+    },
+    {
+      "anchor": "Data-Types",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioBytePacketTranslationFlags",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileFlags",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileRegionFlags",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamParseFlags",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamPropertyFlags",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamSeekFlags",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileID",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFilePropertyID",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFile_SMPTE_Time",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileMarker",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileMarkerList",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileRegion",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileRegionList",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFramePacketTranslation",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioBytePacketTranslation",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFilePacketTableInfo",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileTypeAndFormatID",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioIndependentPacketTranslation",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioPacketDependencyInfoTranslation",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioPacketRangeByteCountTranslation",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioPacketRollDistanceTranslation"
+      ],
+      "title": "Data Types"
+    },
+    {
+      "anchor": "Enumerations",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioBytePacketTranslationFlags",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileFlags",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFilePermissions",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileRegionFlags",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamParseFlags",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamPropertyFlags",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamSeekFlags"
+      ],
+      "title": "Enumerations"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileTypeID",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio_file_creation_flags",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFilePermissions",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1576494-audio-file-loop-direction-consta",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1576492-audio-file-marker-types",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileRegionFlags",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio_file_packet_translation_flags",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/info-string-keys",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1576499-audio-file-properties",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1576495-audio-file-global-info-propertie"
+      ],
+      "title": "Constants"
+    },
+    {
+      "abstract": [
+        {
+          "text": "This table lists the result codes defined for Audio File Services.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Result-Codes",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileUnspecifiedError",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileUnsupportedFileTypeError",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileUnsupportedDataFormatError",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileUnsupportedPropertyError",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileBadPropertySizeError",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFilePermissionsError",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileNotOptimizedError",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileInvalidChunkError",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileDoesNotAllow64BitDataSizeError",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileInvalidPacketOffsetError",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileInvalidFileError",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileOperationNotSupportedError",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileNotOpenError",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileEndOfFileError",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFilePositionError",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileFileNotFoundError"
+      ],
+      "title": "Result Codes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-and-Initializing-Audio-Files",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileCreateWithURL(_:_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileInitializeWithCallbacks(_:_:_:_:_:_:_:_:_:)"
+              ],
+              "title": "Creating and Initializing Audio Files"
+            },
+            {
+              "anchor": "Opening-and-Closing-Audio-Files",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileOpenURL(_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileOpenWithCallbacks(_:_:_:_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileClose(_:)"
+              ],
+              "title": "Opening and Closing Audio Files"
+            },
+            {
+              "anchor": "Reading-and-Writing-Audio-Files",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileReadBytes(_:_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileWriteBytes(_:_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileReadPacketData(_:_:_:_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileWritePackets(_:_:_:_:_:_:_:)"
+              ],
+              "title": "Reading and Writing Audio Files"
+            },
+            {
+              "anchor": "Getting-and-Setting-Audio-File-Properties",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetProperty(_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetPropertyInfo(_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileSetProperty(_:_:_:_:)"
+              ],
+              "title": "Getting and Setting Audio File Properties"
+            },
+            {
+              "anchor": "Working-with-User-Data",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileCountUserData(_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetUserDataSize(_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetUserDataSize64(_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetUserData(_:_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetUserDataAtOffset(_:_:_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileSetUserData(_:_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileRemoveUserData(_:_:_:)"
+              ],
+              "title": "Working with User Data"
+            },
+            {
+              "anchor": "Working-with-Global-Information",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetGlobalInfoSize(_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileGetGlobalInfo(_:_:_:_:_:)"
+              ],
+              "title": "Working with Global Information"
+            },
+            {
+              "anchor": "Optimizing-Audio-Files",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileOptimize(_:)"
+              ],
+              "title": "Optimizing Audio Files"
+            },
+            {
+              "anchor": "Parsing-Audio-File-Content",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/NextAudioFileRegion(_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/NumAudioFileMarkersToNumBytes(_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/NumBytesToNumAudioFileMarkers(_:)"
+              ],
+              "title": "Parsing Audio File Content"
+            },
+            {
+              "anchor": "Callbacks",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFile_ReadProc",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFile_WriteProc",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFile_GetSizeProc",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFile_SetSizeProc"
+              ],
+              "title": "Callbacks"
+            },
+            {
+              "anchor": "Data-Types",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioBytePacketTranslationFlags",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileFDFTable",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileFDFTableExtended",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileFlags",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileRegionFlags",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamParseFlags",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamPropertyFlags",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamSeekFlags",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileID",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFilePropertyID",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFile_SMPTE_Time",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileMarker",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileMarkerList",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileRegion",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileRegionList",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFramePacketTranslation",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioBytePacketTranslation",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFilePacketTableInfo",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileTypeAndFormatID",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioIndependentPacketTranslation",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioPacketDependencyInfoTranslation",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioPacketRangeByteCountTranslation",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioPacketRollDistanceTranslation"
+              ],
+              "title": "Data Types"
+            },
+            {
+              "anchor": "Enumerations",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioBytePacketTranslationFlags",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileFlags",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFilePermissions",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileRegionFlags",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamParseFlags",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamPropertyFlags",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamSeekFlags"
+              ],
+              "title": "Enumerations"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileTypeID",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio_file_creation_flags",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFilePermissions",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1576494-audio-file-loop-direction-consta",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1576492-audio-file-marker-types",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileRegionFlags",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio_file_packet_translation_flags",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/info-string-keys",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1576499-audio-file-properties",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1576495-audio-file-global-info-propertie"
+              ],
+              "title": "Constants"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "This table lists the result codes defined for Audio File Services.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Result-Codes",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileUnspecifiedError",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileUnsupportedFileTypeError",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileUnsupportedDataFormatError",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileUnsupportedPropertyError",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileBadPropertySizeError",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFilePermissionsError",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileNotOptimizedError",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileInvalidChunkError",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileDoesNotAllow64BitDataSizeError",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileInvalidPacketOffsetError",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileInvalidFileError",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileOperationNotSupportedError",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileNotOpenError",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileEndOfFileError",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFilePositionError",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileFileNotFoundError"
+              ],
+              "title": "Result Codes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Audio-Files-and-Formats",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-format-services",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/extended-audio-file-services",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-stream-services",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-components",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/core-audio-file-format"
+              ],
+              "title": "Audio Files and Formats"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileWriteBytes(_:_:_:_:_:)/title",
+          "value": "AudioFileWriteBytes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileWriteBytes(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileWriteBytes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileFlags/title",
+          "value": "AudioFileFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileWritePackets(_:_:_:_:_:_:_:)/title",
+          "value": "AudioFileWritePackets"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileWritePackets(_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileWritePackets"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFilePropertyByteToPacket/title",
+          "value": "kAudioFilePropertyByteToPacket"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFilePropertyByteToPacket/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFilePropertyByteToPacket"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileGetUserDataSize64(_:_:_:_:)/title",
+          "value": "AudioFileGetUserDataSize64"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileGetUserDataSize64(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileGetUserDataSize64"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileReadBytes(_:_:_:_:_:)/title",
+          "value": "AudioFileReadBytes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileReadBytes(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileReadBytes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileUnsupportedPropertyError/title",
+          "value": "kAudioFileUnsupportedPropertyError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileUnsupportedPropertyError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileUnsupportedPropertyError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioPacketRollDistanceTranslation/title",
+          "value": "AudioPacketRollDistanceTranslation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioPacketRollDistanceTranslation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioPacketRollDistanceTranslation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioPacketRollDistanceTranslation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioPacketRollDistanceTranslation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileGetUserDataAtOffset(_:_:_:_:_:_:)/title",
+          "value": "AudioFileGetUserDataAtOffset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileGetUserDataAtOffset(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileGetUserDataAtOffset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileInitializeWithCallbacks(_:_:_:_:_:_:_:_:_:)/title",
+          "value": "AudioFileInitializeWithCallbacks"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileInitializeWithCallbacks(_:_:_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileInitializeWithCallbacks"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileNotOpenError/title",
+          "value": "kAudioFileNotOpenError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileNotOpenError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileNotOpenError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileTypeAndFormatID/title",
+          "value": "AudioFileTypeAndFormatID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileTypeAndFormatID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileTypeAndFormatID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileTypeAndFormatID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileTypeAndFormatID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileRegion/title",
+          "value": "AudioFileRegion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileRegion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileRegion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileRegion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileRegion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileUnspecifiedError/title",
+          "value": "kAudioFileUnspecifiedError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileUnspecifiedError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileUnspecifiedError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileEndOfFileError/title",
+          "value": "kAudioFileEndOfFileError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileEndOfFileError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileEndOfFileError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileCountUserData(_:_:_:)/title",
+          "value": "AudioFileCountUserData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileCountUserData(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileCountUserData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileUnsupportedDataFormatError/title",
+          "value": "kAudioFileUnsupportedDataFormatError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileUnsupportedDataFormatError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileUnsupportedDataFormatError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFile_SetSizeProc/title",
+          "value": "AudioFile_SetSizeProc"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFile_SetSizeProc/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFile_SetSizeProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFile_SetSizeProc/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFile_SetSizeProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileGetPropertyInfo(_:_:_:_:)/title",
+          "value": "AudioFileGetPropertyInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileGetPropertyInfo(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileGetPropertyInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileMarkerList/title",
+          "value": "AudioFileMarkerList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileMarkerList/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileMarkerList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileMarkerList/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileMarkerList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileGlobalInfo_AvailableStreamDescriptionsForFormat/title",
+          "value": "kAudioFileGlobalInfo_AvailableStreamDescriptionsForFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileGlobalInfo_AvailableStreamDescriptionsForFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileGlobalInfo_AvailableStreamDescriptionsForFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFile_GetSizeProc/title",
+          "value": "AudioFile_GetSizeProc"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFile_GetSizeProc/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFile_GetSizeProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFile_GetSizeProc/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFile_GetSizeProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileBadPropertySizeError/title",
+          "value": "kAudioFileBadPropertySizeError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileBadPropertySizeError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileBadPropertySizeError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileOpenWithCallbacks(_:_:_:_:_:_:_:)/title",
+          "value": "AudioFileOpenWithCallbacks"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileOpenWithCallbacks(_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileOpenWithCallbacks"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileSetProperty(_:_:_:_:)/title",
+          "value": "AudioFileSetProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileSetProperty(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileSetProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFilePermissions/title",
+          "value": "AudioFilePermissions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFilePermissions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFilePermissions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFilePermissions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFilePermissions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFilePermissionsError/title",
+          "value": "kAudioFilePermissionsError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFilePermissionsError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFilePermissionsError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioPacketRangeByteCountTranslation/title",
+          "value": "AudioPacketRangeByteCountTranslation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioPacketRangeByteCountTranslation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioPacketRangeByteCountTranslation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioPacketRangeByteCountTranslation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioPacketRangeByteCountTranslation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileOpenURL(_:_:_:_:)/title",
+          "value": "AudioFileOpenURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileOpenURL(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileOpenURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1NumAudioFileMarkersToNumBytes(_:)/title",
+          "value": "NumAudioFileMarkersToNumBytes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1NumAudioFileMarkersToNumBytes(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NumAudioFileMarkersToNumBytes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileInvalidFileError/title",
+          "value": "kAudioFileInvalidFileError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileInvalidFileError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileInvalidFileError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileUnsupportedFileTypeError/title",
+          "value": "kAudioFileUnsupportedFileTypeError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileUnsupportedFileTypeError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileUnsupportedFileTypeError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioIndependentPacketTranslation/title",
+          "value": "AudioIndependentPacketTranslation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioIndependentPacketTranslation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioIndependentPacketTranslation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioIndependentPacketTranslation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioIndependentPacketTranslation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileInvalidChunkError/title",
+          "value": "kAudioFileInvalidChunkError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileInvalidChunkError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileInvalidChunkError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileNotOptimizedError/title",
+          "value": "kAudioFileNotOptimizedError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileNotOptimizedError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileNotOptimizedError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileRegionFlags/title",
+          "value": "AudioFileRegionFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileRegionFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileRegionFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileRegionFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileRegionFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileSetUserData(_:_:_:_:_:)/title",
+          "value": "AudioFileSetUserData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileSetUserData(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileSetUserData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileMarker/title",
+          "value": "AudioFileMarker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileMarker/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileMarker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileMarker/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileMarker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileTypeID/title",
+          "value": "AudioFileTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileTypeID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileTypeID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamPropertyFlags/title",
+          "value": "AudioFileStreamPropertyFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamPropertyFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileStreamPropertyFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamPropertyFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileStreamPropertyFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFilePacketTableInfo/title",
+          "value": "AudioFilePacketTableInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFilePacketTableInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFilePacketTableInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFilePacketTableInfo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFilePacketTableInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileCreateWithURL(_:_:_:_:_:)/title",
+          "value": "AudioFileCreateWithURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileCreateWithURL(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileCreateWithURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFramePacketTranslation/title",
+          "value": "AudioFramePacketTranslation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFramePacketTranslation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFramePacketTranslation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFramePacketTranslation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFramePacketTranslation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1NumBytesToNumAudioFileMarkers(_:)/title",
+          "value": "NumBytesToNumAudioFileMarkers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1NumBytesToNumAudioFileMarkers(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NumBytesToNumAudioFileMarkers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileClose(_:)/title",
+          "value": "AudioFileClose"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileClose(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileClose"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileRemoveUserData(_:_:_:)/title",
+          "value": "AudioFileRemoveUserData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileRemoveUserData(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileRemoveUserData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileGetUserDataSize(_:_:_:_:)/title",
+          "value": "AudioFileGetUserDataSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileGetUserDataSize(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileGetUserDataSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileFileNotFoundError/title",
+          "value": "kAudioFileFileNotFoundError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileFileNotFoundError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileFileNotFoundError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileOptimize(_:)/title",
+          "value": "AudioFileOptimize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileOptimize(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileOptimize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFilePositionError/title",
+          "value": "kAudioFilePositionError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFilePositionError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFilePositionError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFile_ReadProc/title",
+          "value": "AudioFile_ReadProc"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFile_ReadProc/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFile_ReadProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFile_ReadProc/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFile_ReadProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFile_WriteProc/title",
+          "value": "AudioFile_WriteProc"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFile_WriteProc/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFile_WriteProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFile_WriteProc/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFile_WriteProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileInvalidPacketOffsetError/title",
+          "value": "kAudioFileInvalidPacketOffsetError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileInvalidPacketOffsetError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileInvalidPacketOffsetError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1NextAudioFileRegion(_:)/title",
+          "value": "NextAudioFileRegion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1NextAudioFileRegion(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NextAudioFileRegion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileID/title",
+          "value": "AudioFileID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileGetUserData(_:_:_:_:_:)/title",
+          "value": "AudioFileGetUserData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileGetUserData(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileGetUserData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioBytePacketTranslation/title",
+          "value": "AudioBytePacketTranslation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioBytePacketTranslation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioBytePacketTranslation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioBytePacketTranslation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioBytePacketTranslation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioPacketDependencyInfoTranslation/title",
+          "value": "AudioPacketDependencyInfoTranslation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioPacketDependencyInfoTranslation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioPacketDependencyInfoTranslation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioPacketDependencyInfoTranslation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioPacketDependencyInfoTranslation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileReadPacketData(_:_:_:_:_:_:_:)/title",
+          "value": "AudioFileReadPacketData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileReadPacketData(_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileReadPacketData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileGetGlobalInfo(_:_:_:_:_:)/title",
+          "value": "AudioFileGetGlobalInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileGetGlobalInfo(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileGetGlobalInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFilePropertyID/title",
+          "value": "AudioFilePropertyID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFilePropertyID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFilePropertyID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFilePropertyID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFilePropertyID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamParseFlags/title",
+          "value": "AudioFileStreamParseFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamParseFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileStreamParseFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamParseFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileStreamParseFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileGetProperty(_:_:_:_:)/title",
+          "value": "AudioFileGetProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileGetProperty(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileGetProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFile_SMPTE_Time/title",
+          "value": "AudioFile_SMPTE_Time"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFile_SMPTE_Time/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFile_SMPTE_Time"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFile_SMPTE_Time/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFile_SMPTE_Time"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamSeekFlags/title",
+          "value": "AudioFileStreamSeekFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamSeekFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileStreamSeekFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamSeekFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileStreamSeekFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFilePropertyPacketToByte/title",
+          "value": "kAudioFilePropertyPacketToByte"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFilePropertyPacketToByte/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFilePropertyPacketToByte"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileDoesNotAllow64BitDataSizeError/title",
+          "value": "kAudioFileDoesNotAllow64BitDataSizeError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileDoesNotAllow64BitDataSizeError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileDoesNotAllow64BitDataSizeError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioBytePacketTranslationFlags/title",
+          "value": "AudioBytePacketTranslationFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioBytePacketTranslationFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioBytePacketTranslationFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioBytePacketTranslationFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioBytePacketTranslationFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileGetGlobalInfoSize(_:_:_:_:)/title",
+          "value": "AudioFileGetGlobalInfoSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileGetGlobalInfoSize(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileGetGlobalInfoSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileOperationNotSupportedError/title",
+          "value": "kAudioFileOperationNotSupportedError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileOperationNotSupportedError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileOperationNotSupportedError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileRegionList/title",
+          "value": "AudioFileRegionList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileRegionList/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileRegionList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileRegionList/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileRegionList"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/audio-file-services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/audiotoolbox/audio-file-services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,939 @@
+{
+  "abstract": [
+    {
+      "text": "Validate positive diagnoses for app-less exposure notifications.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-express"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-an-exposure-notifications-express-test-verification-server"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Exposure Notification"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Setting Up an Exposure Notifications Express Test Verification Server"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Exposure Notifications Express requires a Public Health Authority (PHA) to have a test verification server that verifies positive diagnoses received from a test center or other healthcare provider. A test verification server includes a mechanism to request a verification code for users with a positive COVID-19 test result. The test verification server also has APIs that allow Exposure Notifications Express to authenticate the user’s positive diagnosis before uploading exposure keys to the PHA’s key server",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Google has created a reference implementation of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://github.com/google/exposure-notifications-verification-server",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that you can use as a starting point or as a reference while implementing your own test verification server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Test-Verification-Server",
+          "level": 3,
+          "text": "Configure the Test Verification Server",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Exposure Notifications Express works by reading configuration values for a PHA from Apple Business Registry (ABR). It uses these configuration values to locate a PHA’s servers and to adjust its calculations and behavior based on the values entered by that PHA. To set up a test verification server to work with Exposure Notifications Express, a PHA specifies the following values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Test Verification Intro Message",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "testVerificationIntroMessage",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is a string that iOS presents to the user to explain the purpose of test verification and key upload.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Test Verification URL",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Exposure Notifications Express uses the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "testVerificationURL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to exchange verification codes for long-term authentication tokens.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Test Verification Certificate URL",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Exposure Notifications Express uses the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "testVerificationCertificateURL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to upload an HMAC and long-term authentication token and receive back a certificate and key metadata.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Test Verification API Key",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": iOS needs the value in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "testVerificationAPIKey",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to communicate with your test verification server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Verification Code Learn More URL",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Exposure Notifications Express presents the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "verificationCodeLearnMoreURL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to the user when they have received a positive diagnosis. The link contains information on how to use the verification code and provides way to request help if the user experiences problems.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To see all of the configuration options available with Exposure Notifications Express, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/configuring-exposure-notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Generate-Verification-Codes-on-Request",
+          "level": 3,
+          "text": "Generate Verification Codes on Request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "PHAs use the test verification server to generate verification codes for positive test results. The verification code may be an 8-digit number that can be read over the phone or a deep link that can be texted or emailed to the user. A test verification server can use any one-time password algorithm to generate a verification code as long as the resulting code uniquely identifies one test result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For information on generating deep links that are compatible with Exposure Notifications Express, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://github.com/google/exposure-notifications-verification-server/blob/main/docs/ens-spec.md",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Exchange-Verification-Codes-for-Tokens",
+          "level": 3,
+          "text": "Exchange Verification Codes for Tokens",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Test verification servers must provide an endpoint to allow an iPhone to exchange a verification code for a long-term authentication token. PHAs register the URL for this endpoint with ABR as the Test Verification URL (",
+              "type": "text"
+            },
+            {
+              "code": "testVerificationURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). This endpoint expects a JSON dictionary as the body of an HTTP POST request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This endpoint supports one key in the request dictionary:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "String containing the authentication code. ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Required",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "code",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Requests must also include a custom HTTP header field called ",
+              "type": "text"
+            },
+            {
+              "code": "X-API-Key",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", with its value set to the test verification server’s secret API key. Test verification servers reject requests without this header or if the value in the header doesn’t match the API key registered with ABR.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The test verification server responds to these requests by returning a JSON dictionary in the body of the response. Here are the keys that the response dictionary uses:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "String representing the user’s test result. Possible values are “confirmed”, “likely”, or “negative”.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "testtype",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "String containing the date of symptom onset (",
+                        "type": "text"
+                      },
+                      {
+                        "code": "YYYY-MM-DD",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ").",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "symptomDate",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "String containing the long-term authentication token.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "token",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "If the test verification server encounters an error while processing the request, this string contains a description of the problem.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "error",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "If the test verification server encounters an error while processing the request, this string contains a code that describes the error.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "errorCode",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Respond-to-Verification-Certificate-Requests",
+          "level": 3,
+          "text": "Respond to Verification Certificate Requests",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before uploading keys to the key server, Exposure Notifications Express contacts the verification server at the Test Verification Certificate URL (",
+              "type": "text"
+            },
+            {
+              "code": "testVerificationCertificateURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") registered with ABR to get a certificate and metadata for the key batch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The test verification server expects requests to this URL to contain a JSON dictionary in the body of an HTTP POST request. Here are the keys that dictionary supports:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "String containing the long-term authentication token previously received from the test verification server. ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Required",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "token",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "String containing a hash-based message authentication code Exposure Notifications Express calculated from the keys it will submit to the key server. For information on calculating HMAC, see the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "https://github.com/google/exposure-notifications-server/blob/main/docs/design/verification_protocol.md",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ". ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Required",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "ekeyhmac",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Requests to this URL must also include a custom HTTP header field called ",
+              "type": "text"
+            },
+            {
+              "code": "X-API-Key",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", with its value set to the test verification server’s API key. Test verification servers reject requests without this header, or with the wrong value in the header.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The test validation server responds to requests by returning JSON in the body of the response. Here are the keys for that response dictionary:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "String containing the requested certificate if the test verification server was able to validate the request.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "certificate",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "If the test verification server encounters an error while processing the request, this string contains a description of the problem.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "error",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "If the test verification server encounters an error while processing the request, this string contains a code describing the error.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "errorCode",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification": {
+      "abstract": [
+        {
+          "text": "Implement a COVID-19 exposure notification system that protects user privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Exposure Notification",
+      "type": "topic",
+      "url": "/documentation/exposurenotification"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/configuring-a-key-server-for-exposure-notifications-express": {
+      "abstract": [
+        {
+          "text": "Support exposure key upload and download for app-less exposure notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/configuring-a-key-server-for-exposure-notifications-express",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring a Key Server for Exposure Notifications Express",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/configuring-a-key-server-for-exposure-notifications-express"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/configuring-exposure-notifications": {
+      "abstract": [
+        {
+          "text": "Define how Exposure Notifications work for a region by assigning server-based key-value pairs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/configuring-exposure-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Exposure Notifications",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/configuring-exposure-notifications"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-express": {
+      "abstract": [
+        {
+          "text": "Configure servers to notify users of potential exposures to COVID-19 without an app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-express",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Supporting Exposure Notifications Express",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/supporting-exposure-notifications-express"
+    },
+    "https://github.com/google/exposure-notifications-server/blob/main/docs/design/verification_protocol.md": {
+      "identifier": "https://github.com/google/exposure-notifications-server/blob/main/docs/design/verification_protocol.md",
+      "title": "Public Health Authority Diagnosis Verification Protocol",
+      "titleInlineContent": [
+        {
+          "text": "Public Health Authority Diagnosis Verification Protocol",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/google/exposure-notifications-server/blob/main/docs/design/verification_protocol.md"
+    },
+    "https://github.com/google/exposure-notifications-verification-server": {
+      "identifier": "https://github.com/google/exposure-notifications-verification-server",
+      "title": "test verification server",
+      "titleInlineContent": [
+        {
+          "text": "test verification server",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/google/exposure-notifications-verification-server"
+    },
+    "https://github.com/google/exposure-notifications-verification-server/blob/main/docs/ens-spec.md": {
+      "identifier": "https://github.com/google/exposure-notifications-verification-server/blob/main/docs/ens-spec.md",
+      "title": "Exposure Notifications Server Resource Identifier Scheme Documentation",
+      "titleInlineContent": [
+        {
+          "text": "Exposure Notifications Server Resource Identifier Scheme Documentation",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/google/exposure-notifications-verification-server/blob/main/docs/ens-spec.md"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Server-Configuration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/configuring-a-key-server-for-exposure-notifications-express"
+      ],
+      "title": "Server Configuration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Server-Configuration",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/configuring-a-key-server-for-exposure-notifications-express"
+              ],
+              "title": "Server Configuration"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/exposurenotification/setting-up-an-exposure-notifications-express-test-verification-server"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/exposurenotification/setting-up-an-exposure-notifications-express-test-verification-server"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

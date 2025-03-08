@@ -1,0 +1,1147 @@
+{
+  "abstract": [
+    {
+      "text": "Organize tests into test suites.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://org.swift.testing/documentation/Testing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://org.swift.testing/documentation/Testing/OrganizingTests"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Swift Testing"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Organizing test functions with suite types"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When working with a large selection of test functions, it can be helpful to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "organize them into test suites.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A test function can be added to a test suite in one of two ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "By placing it in a Swift type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "By placing it in a Swift type and annotating that type with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@Suite",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "attribute.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "@Suite",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute isn’t required for the testing library to recognize that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a type contains test functions, but adding it allows customization of a test",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "suite’s appearance in the IDE and at the command line. If a trait such as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/Trait/tags(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/Trait/disabled(_:sourceLocation:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is applied to a test",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "suite, it’s automatically inherited by the tests contained in the suite.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to containing test functions and any other members that a Swift type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "might contain, test suite types can also contain additional test suites nested",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "within them. To add a nested test suite type, simply declare an additional type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "within the scope of the outer test suite type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, tests contained within a suite run in parallel with each other.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about test parallelization, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/Parallelization",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Customize-a-suites-name",
+          "level": 3,
+          "text": "Customize a suite’s name",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To customize a test suite’s name, supply a string literal as an argument to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "@Suite",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Suite(\"Food truck tests\") struct FoodTruckTests {",
+            "  @Test func foodTruckExists() { ... }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To further customize the appearance and behavior of a test function, use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/Traits",
+              "isActive": true,
+              "overridingTitle": "traits",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "traits",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://org.swift.testing/documentation/Testing/Trait/tags(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-functions-in-test-suite-types",
+          "level": 2,
+          "text": "Test functions in test suite types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a type contains a test function declared as an instance method (that is,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "without either the ",
+              "type": "text"
+            },
+            {
+              "code": "static",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "class",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keyword), the testing library calls",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that test function at runtime by initializing an instance of the type, then",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "calling the test function on that instance. If a test suite type contains",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "multiple test functions declared as instance methods, each one is called on a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "distinct instance of the type. Therefore, the following test suite and test",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Suite struct FoodTruckTests {",
+            "  @Test func foodTruckExists() { ... }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Are equivalent to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Suite struct FoodTruckTests {",
+            "  func foodTruckExists() { ... }",
+            "",
+            "  @Test static func staticFoodTruckExists() {",
+            "    let instance = FoodTruckTests()",
+            "    instance.foodTruckExists()",
+            "  }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Constraints-on-test-suite-types",
+          "level": 3,
+          "text": "Constraints on test suite types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using a type as a test suite, it’s subject to some constraints that are",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "not otherwise applied to Swift types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "An-initializer-may-be-required",
+          "level": 4,
+          "text": "An initializer may be required",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a type contains test functions declared as instance methods, it must be",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "possible to initialize an instance of the type with a zero-argument initializer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The initializer may be any combination of:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "implicit or explicit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "synchronous or asynchronous",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "throwing or non-throwing",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "private",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "fileprivate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "internal",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "package",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "public",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Suite struct FoodTruckTests {",
+            "  var batteryLevel = 100",
+            "",
+            "  @Test func foodTruckExists() { ... } // ✅ OK: The type has an implicit init().",
+            "}",
+            "",
+            "@Suite struct CashRegisterTests {",
+            "  private init(cashOnHand: Decimal = 0.0) async throws { ... }",
+            "",
+            "  @Test func calculateSalesTax() { ... } // ✅ OK: The type has a callable init().",
+            "}",
+            "",
+            "struct MenuTests {",
+            "  var foods: [Food]",
+            "  var prices: [Food: Decimal]",
+            "",
+            "  @Test static func specialOfTheDay() { ... } // ✅ OK: The function is static.",
+            "  @Test func orderAllFoods() { ... } // ❌ ERROR: The suite type requires init().",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The compiler emits an error when presented with a test suite that doesn’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "meet this requirement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-suite-types-must-always-be-available",
+          "level": 3,
+          "text": "Test suite types must always be available",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although ",
+              "type": "text"
+            },
+            {
+              "code": "@available",
+              "type": "codeVoice"
+            },
+            {
+              "text": " can be applied to a test function to limit its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "availability at runtime, a test suite type (and any types that contain it) must",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "not",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " be annotated with the ",
+              "type": "text"
+            },
+            {
+              "code": "@available",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Suite struct FoodTruckTests { ... } // ✅ OK: The type is always available.",
+            "",
+            "@available(macOS 11.0, *) // ❌ ERROR: The suite type must always be available.",
+            "@Suite struct CashRegisterTests { ... }",
+            "",
+            "@available(macOS 11.0, *) struct MenuItemTests { // ❌ ERROR: The suite type's",
+            "                                                 // containing type must always",
+            "                                                 // be available too.",
+            "  @Suite struct BurgerTests { ... }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The compiler emits an error when presented with a test suite that doesn’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "meet this requirement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://org.swift.testing/documentation/Testing": {
+      "abstract": [
+        {
+          "text": "Create and run tests for your Swift packages and Xcode projects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift Testing",
+      "type": "topic",
+      "url": "/documentation/testing"
+    },
+    "doc://org.swift.testing/documentation/Testing/DefiningTests": {
+      "abstract": [
+        {
+          "text": "Define a test function to validate that code is working correctly.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/DefiningTests",
+      "kind": "article",
+      "role": "article",
+      "title": "Defining test functions",
+      "type": "topic",
+      "url": "/documentation/testing/definingtests"
+    },
+    "doc://org.swift.testing/documentation/Testing/MigratingFromXCTest": {
+      "abstract": [
+        {
+          "text": "Migrate an existing test method or test class written using XCTest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/MigratingFromXCTest",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating a test from XCTest",
+      "type": "topic",
+      "url": "/documentation/testing/migratingfromxctest"
+    },
+    "doc://org.swift.testing/documentation/Testing/Parallelization": {
+      "abstract": [
+        {
+          "text": "Control whether tests run serially or in parallel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Parallelization",
+      "kind": "article",
+      "role": "article",
+      "title": "Running tests serially or in parallel",
+      "type": "topic",
+      "url": "/documentation/testing/parallelization"
+    },
+    "doc://org.swift.testing/documentation/Testing/Suite(_:_:)": {
+      "abstract": [
+        {
+          "text": "Declare a test suite.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Suite"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing10SuiteTraitP",
+          "text": "SuiteTrait"
+        },
+        {
+          "kind": "text",
+          "text": "...)"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Suite(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Suite(_:_:)",
+      "type": "topic",
+      "url": "/documentation/testing/suite(_:_:)"
+    },
+    "doc://org.swift.testing/documentation/Testing/Test": {
+      "abstract": [
+        {
+          "text": "A type representing a test or suite.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Test"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Test",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Test"
+        }
+      ],
+      "role": "symbol",
+      "title": "Test",
+      "type": "topic",
+      "url": "/documentation/testing/test"
+    },
+    "doc://org.swift.testing/documentation/Testing/Test(_:_:)": {
+      "abstract": [
+        {
+          "text": "Declare a test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Test"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing9TestTraitP",
+          "text": "TestTrait"
+        },
+        {
+          "kind": "text",
+          "text": "...)"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Test(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Test(_:_:)",
+      "type": "topic",
+      "url": "/documentation/testing/test(_:_:)"
+    },
+    "doc://org.swift.testing/documentation/Testing/Trait/disabled(_:sourceLocation:)": {
+      "abstract": [
+        {
+          "text": "Construct a condition trait that disables a test unconditionally.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "ConditionTrait",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "disabled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing7CommentV",
+          "text": "Comment"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing14SourceLocationV",
+          "text": "SourceLocation"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Trait/disabled(_:sourceLocation:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "disabled(_:sourceLocation:)",
+      "type": "topic",
+      "url": "/documentation/testing/trait/disabled(_:sourcelocation:)"
+    },
+    "doc://org.swift.testing/documentation/Testing/Trait/tags(_:)": {
+      "abstract": [
+        {
+          "text": "Construct a list of tags to apply to a test.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Tag.List",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tags"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing3TagV",
+          "text": "Tag"
+        },
+        {
+          "kind": "text",
+          "text": "...) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Trait/tags(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tags(_:)",
+      "type": "topic",
+      "url": "/documentation/testing/trait/tags(_:)"
+    },
+    "doc://org.swift.testing/documentation/Testing/Traits": {
+      "abstract": [
+        {
+          "text": "Add traits to tests to annotate them or customize their behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.testing/documentation/Testing/Traits",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Traits",
+      "type": "topic",
+      "url": "/documentation/testing/traits"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.testing/documentation/Testing/DefiningTests",
+        "doc://org.swift.testing/documentation/Testing/MigratingFromXCTest",
+        "doc://org.swift.testing/documentation/Testing/Test(_:_:)",
+        "doc://org.swift.testing/documentation/Testing/Test",
+        "doc://org.swift.testing/documentation/Testing/Suite(_:_:)"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/testing/organizingtests"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

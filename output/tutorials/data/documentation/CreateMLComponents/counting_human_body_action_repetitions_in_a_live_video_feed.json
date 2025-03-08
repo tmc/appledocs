@@ -1,0 +1,1554 @@
+{
+  "abstract": [
+    {
+      "text": "Use Create ML Components to analyze a series of video frames and count a person’s repetitive or periodic body movements.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/createmlcomponents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed"
+  },
+  "kind": "article",
+  "legacy_identifier": 3992438,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Create ML Components"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Counting human body action repetitions in a live video feed"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC22 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-4037837",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app counts a person’s repetitive or periodic body movements (",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "actions",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ") by analyzing a series of video frames and making a prediction with a human body action repetition counter. The counter in this sample can count arbitrary body moves that occur at moderate speed, such as jumping jacks, dance spins, and waving arms.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4065168",
+              "metadata": {
+                "anchor": "4065168",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app continually presents the current action repetition count on top of a live, full-screen video feed from the camera in portrait orientation. When the app detects one or more people in the frame, it overlays a wireframe body pose on each person. At the same time, the app predicts the action repetition count about the most prominent person across multiple frames, typically whoever is closest to the camera.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app begins by configuring a camera to generate video frames, then directs the frames through a series of transformers it chains together with Create ML Components. These methods work together to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Read camera frames in real time using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/VideoReader",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Analyze each frame to locate any human body poses using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/HumanBodyPoseExtractor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and redirect the pose stream with an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-4057036",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to allow multiple consumers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optionally, downsample the stream using a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Downsampler",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to process the observed actions in different speeds. To improve performance, you can move the downsampler to an earlier stage in the pipeline if you don’t need to render poses on every frame.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Isolate the prominent pose using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PoseSelector",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optionally, use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/JointsSelector",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to select only joints of interest for counting.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Aggregate the prominent pose’s position data over time using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindowTransformer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Predict action repetitions by sending aggregate data to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/HumanBodyActionCounter",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "4065198",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project requires a device with iOS 16 or later, or iPadOS 16 or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To build this project:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Double-click the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CountMyActions.xcodeproj",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " project to open it in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, from the Project navigator, select the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CountMyActions",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " project and click the Signing & Capabilities tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your development team from the Add Account pop-up menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your target device from the scheme menu, and choose Product > Run.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "4065199",
+          "level": 3,
+          "text": "Start a live video feed",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/VideoReader",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to configure the device’s camera and generate an asynchronous video frame sequence. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/VideoReader/CameraConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " specifies the front- or rear-facing camera, and configures its pixel format and resolution. This app supports portrait orientation only. Low lighting and other factors can vary the frame rate, which may affect the counting performance, so ensure the person’s full body is visible in bright environments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// The camera configuration to define the basic camera position, pixel format, and resolution to use.",
+            "private var configuration = VideoReader.CameraConfiguration()"
+          ],
+          "metadata": {
+            "anchor": "4065171",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app first launches — or when the user toggles the camera — the video reader configures a camera device, starts the video-processing pipeline, and produces a frame sequence output with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/VideoReader/readCamera(configuration:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Start the video-processing pipeline by displaying the poses in the camera frames and",
+            "/// starting the action repetition count prediction stream.",
+            "func startVideoProcessingPipeline() {",
+            "",
+            "    if let displayCameraTask = displayCameraTask {",
+            "        displayCameraTask.cancel()",
+            "    }",
+            "",
+            "    displayCameraTask = Task {",
+            "        // Display poses on top of each camera frame.",
+            "        try await self.displayPoseInCamera()",
+            "    }",
+            "",
+            "    if predictionTask == nil {",
+            "        predictionTask = Task {",
+            "            // Predict the action repetition count.",
+            "            try await self.predictCount()",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4065172",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "4065200",
+          "level": 3,
+          "text": "Analyze each frame for body poses",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/HumanBodyPoseExtractor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a transformer that can locate any human body poses from an image or a video frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// A Create ML Components transformer to extract human body poses from a single image or a video frame.",
+            "/// - Tag: poseExtractor",
+            "private let poseExtractor = HumanBodyPoseExtractor()"
+          ],
+          "metadata": {
+            "anchor": "4065174",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the transformation completes, the method creates and returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Pose",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array that contains one pose for every detected person in the same frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Extract poses in every frame.",
+            "let poses = try await poseExtractor.applied(to: frame.feature)"
+          ],
+          "metadata": {
+            "anchor": "4065175",
+            "title": "Listing 4"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Pose",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure serves the following purposes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Calculates the pose’s area within a frame (See the “Isolate a body pose” section below.).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Draws each detected pose as a wireframe of points and lines (See the “Present the poses to the user” section below.).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the underlying human body pose model, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/detecting-human-body-poses-in-images",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4065201",
+          "level": 3,
+          "text": "Create a pose stream",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "link-4057036",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sends the extracted poses to a separate asynchronous stream. This allows additional consumers to obtain poses from the upstream asynchronous sequence. ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-4057036",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " requires the inclusion of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-4057037",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " Swift package.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// An asynchronous channel to divert the pose stream for another consumer.",
+            "private let poseStream = AsyncChannel<TemporalFeature<[Pose]>>()"
+          ],
+          "metadata": {
+            "anchor": "4065177",
+            "title": "Listing 5"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "4065202",
+          "level": 3,
+          "text": "Create an action repetition counting pipeline",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "ActionCounter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure consists of a pipeline of Create ML Components transformers to achieve continuous action repetition counting. It takes a pose stream as input and returns an asynchronous sequence of cumulative counts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// The counter to count action repetitions from a pose stream.",
+            "private let actionCounter = ActionCounter()"
+          ],
+          "metadata": {
+            "anchor": "4065179",
+            "title": "Listing 6"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "4065203",
+          "level": 3,
+          "text": "Downsample a pose stream",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first optional transformer in the pipeline, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Downsampler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", downsamples the incoming pose sequence by an integer factor. This allows the pipeline to process and count much slower actions. For example, without downsampling, the original counter model can handle moderate speed actions, about one repetition per second, such as jumping jacks. A downsampling factor of three can effectively speed up slower actions, such as pushups or a complex dance sequence with about one repetition per 3 seconds, and still allow the model to count the actions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Use an optional Downsampler transformer to downsample the",
+            "// incoming frames (that is, effectively speed up the observed actions).",
+            "let pipeline = Downsampler(factor: 1)"
+          ],
+          "metadata": {
+            "anchor": "4065181",
+            "title": "Listing 7"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "4065204",
+          "level": 3,
+          "text": "Isolate a body pose",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The next transformer in the pipeline, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PoseSelector",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", selects a single pose from the array of poses by using the default strategy, namely, selecting the most prominent person by their maximum bounding box area.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Use a PoseSelector transformer to select one pose to count if",
+            "// the system detects multiple poses.",
+            "    .appending(PoseSelector(strategy: .maximumBoundingBoxArea))"
+          ],
+          "metadata": {
+            "anchor": "4065184",
+            "title": "Listing 8"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The goal of this strategy is to consistently select the same person’s pose from a crowd over time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4065183",
+              "metadata": {
+                "anchor": "4065183",
+                "title": "Figure 2"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Get the most accurate predictions by using whatever strategy best tracks a person from frame to frame.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "4065205",
+          "level": 3,
+          "text": "Select a subset of body joints",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The next optional transformer in the pipeline, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/JointsSelector",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", selects or ignores a specified subset of body joints from the pose.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4065186",
+              "metadata": {
+                "anchor": "4065186",
+                "title": "Figure 3"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to count only upper-body movements, the transformer can ignore lower-body joints in the pose, such as knees and ankles, which can eliminate noise by ignoring any leg movements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Use an optional JointsSelector transformer to specifically ignore",
+            "// or select a set of joints in a pose to include in counting.",
+            "    .appending(JointsSelector(ignoredJoints: [.nose, .leftEye, .leftEar, .rightEye, .rightEar]))"
+          ],
+          "metadata": {
+            "anchor": "4065187",
+            "title": "Listing 9"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "4065206",
+          "level": 3,
+          "text": "Gather a window of poses",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The next transformer in the pipeline is a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindowTransformer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that receives a pose sequence from its upstream and gathers the frames into an array by providing the following parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "stride",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " that determines the number of frames to count before updating the pose window",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "length",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " that determines the window size, namely, how many frames to group together",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "// Use a SlidingWindowTransformer to group frames into windows, and",
+            "// prepare them for prediction.",
+            "    .appending(SlidingWindowTransformer<Pose>(stride: 5, length: 90))"
+          ],
+          "metadata": {
+            "anchor": "4065190",
+            "title": "Listing 10"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4065189",
+              "metadata": {
+                "anchor": "4065189",
+                "title": "Figure 4"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The action repetition counter assumes a fixed length of 90, where the sliding window transformer groups 90 frames together to generate a single prediction count. The stride is adjustable. An example is a stride of 10 frames, indicating the count updates every 10 frames, which is about 0.3 seconds if the frame rate is 30 frames per second. When the stride is smaller than the length, the windows overlap.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4065207",
+          "level": 3,
+          "text": "Predict the person’s action repetition count",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The next transformer in the pipeline, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/HumanBodyActionCounter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", takes a stream of grouped pose windows as input and produces a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/HumanBodyActionCounter/CumulativeSumSequence",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " where each result is a cumulative count of the actions in the sequence. Live counting occurs by iterating each item in the resulted sequence.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Use a HumanBodyActionCounter transformer to count actions from",
+            "// each window and produce cumulative counts for the input stream.",
+            "    .appending(HumanBodyActionCounter())"
+          ],
+          "metadata": {
+            "anchor": "4065192",
+            "title": "Listing 11"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "4065208",
+          "level": 3,
+          "text": "Present the count to the user",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The final count appears as a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " label on the screen using the ",
+              "type": "text"
+            },
+            {
+              "code": "OverlayView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure on the main thread.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4065209",
+          "level": 3,
+          "text": "Present the poses to the user",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app visualizes the result of each detected human body pose by drawing the poses on top of the frame that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/HumanBodyPoseExtractor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " finds them in. Each time the ",
+              "type": "text"
+            },
+            {
+              "code": "poseExtractor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " creates an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Pose",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances, the ",
+              "type": "text"
+            },
+            {
+              "code": "PosesView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " iterates each detected pose and draws it by calling its ",
+              "type": "text"
+            },
+            {
+              "code": "drawWireframe(to:applying:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, which draws the pose as a wireframe of connection lines and joint circles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Draw all the poses Vision finds in the frame.",
+            "for pose in poses {",
+            "    // Draw each pose as a wireframe at the scale of the image.",
+            "    pose.drawWireframe(to: context, applying: pointTransform)",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "4065195",
+            "title": "Listing 12"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "ViewModel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " presents the image and poses onscreen by calling ",
+              "type": "text"
+            },
+            {
+              "code": "display(image:, poses:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Downsampler": {
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Downsampler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Downsampler",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/downsampler"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/HumanBodyActionCounter": {
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/HumanBodyActionCounter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HumanBodyActionCounter",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/humanbodyactioncounter"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/HumanBodyActionCounter/CumulativeSumSequence": {
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/HumanBodyActionCounter/CumulativeSumSequence",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HumanBodyActionCounter.CumulativeSumSequence",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/humanbodyactioncounter/cumulativesumsequence"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/HumanBodyPoseExtractor": {
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/HumanBodyPoseExtractor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HumanBodyPoseExtractor",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/humanbodyposeextractor"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/JointsSelector": {
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/JointsSelector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JointsSelector",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/jointsselector"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Pose": {
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Pose",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Pose",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/pose"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PoseSelector": {
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/PoseSelector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PoseSelector",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/poseselector"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindowTransformer": {
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindowTransformer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SlidingWindowTransformer",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindowtransformer"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/VideoReader": {
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/VideoReader",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VideoReader",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/videoreader"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/VideoReader/CameraConfiguration": {
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/VideoReader/CameraConfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VideoReader.CameraConfiguration",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/videoreader/cameraconfiguration"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/VideoReader/readCamera(configuration:)": {
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/VideoReader/readCamera(configuration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readCamera(configuration:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/videoreader/readcamera(configuration:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "kind": "article",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.documentation/documentation/createmlcomponents": {
+      "identifier": "doc://com.apple.documentation/documentation/createmlcomponents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML Components",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents"
+    },
+    "doc://com.apple.documentation/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065171": {
+      "identifier": "doc://com.apple.documentation/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065171",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065171"
+    },
+    "doc://com.apple.documentation/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065172": {
+      "identifier": "doc://com.apple.documentation/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065172",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065172"
+    },
+    "doc://com.apple.documentation/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065174": {
+      "identifier": "doc://com.apple.documentation/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065174",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065174"
+    },
+    "doc://com.apple.documentation/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065175": {
+      "identifier": "doc://com.apple.documentation/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065175",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065175"
+    },
+    "doc://com.apple.documentation/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065177": {
+      "identifier": "doc://com.apple.documentation/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065177",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065177"
+    },
+    "doc://com.apple.documentation/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065179": {
+      "identifier": "doc://com.apple.documentation/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065179",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 6",
+      "type": "section",
+      "url": "/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065179"
+    },
+    "doc://com.apple.documentation/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065181": {
+      "identifier": "doc://com.apple.documentation/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065181",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 7",
+      "type": "section",
+      "url": "/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065181"
+    },
+    "doc://com.apple.documentation/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065184": {
+      "identifier": "doc://com.apple.documentation/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065184",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 8",
+      "type": "section",
+      "url": "/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065184"
+    },
+    "doc://com.apple.documentation/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065187": {
+      "identifier": "doc://com.apple.documentation/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065187",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 9",
+      "type": "section",
+      "url": "/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065187"
+    },
+    "doc://com.apple.documentation/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065190": {
+      "identifier": "doc://com.apple.documentation/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065190",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 10",
+      "type": "section",
+      "url": "/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065190"
+    },
+    "doc://com.apple.documentation/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065192": {
+      "identifier": "doc://com.apple.documentation/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065192",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 11",
+      "type": "section",
+      "url": "/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065192"
+    },
+    "doc://com.apple.documentation/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065195": {
+      "identifier": "doc://com.apple.documentation/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065195",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 12",
+      "type": "section",
+      "url": "/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065195"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.vision/documentation/Vision/detecting-human-body-poses-in-images": {
+      "identifier": "doc://com.apple.vision/documentation/Vision/detecting-human-body-poses-in-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Detecting Human Body Poses in Images",
+      "type": "topic",
+      "url": "/documentation/vision/detecting-human-body-poses-in-images"
+    },
+    "https://docs-assets.developer.apple.com/published/9ff07e7133/CountingHumanBodyActionRepetitionsInALiveVideoFeed.zip": {
+      "checksum": "0509e2fd319949cfac232a6b3b56a728ecff74a3420700d7d99dccccb3db120a8c501bdfcfa9490e9439c8ebe26904f3204d375de2a0b745b669b8a6f18e8fd7",
+      "identifier": "https://docs-assets.developer.apple.com/published/9ff07e7133/CountingHumanBodyActionRepetitionsInALiveVideoFeed.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/9ff07e7133/CountingHumanBodyActionRepetitionsInALiveVideoFeed.zip"
+    },
+    "link-4037837": {
+      "identifier": "link-4037837",
+      "kind": "article",
+      "role": "link",
+      "title": "110332: What’s new in Create ML",
+      "type": "topic",
+      "url": "https://developer.apple.com/wwdc22/110332/"
+    },
+    "link-4057036": {
+      "identifier": "link-4057036",
+      "kind": "article",
+      "role": "link",
+      "title": "AsyncChannel",
+      "type": "topic",
+      "url": "https://github.com/apple/swift-async-algorithms/blob/main/Sources/AsyncAlgorithms/AsyncAlgorithms.docc/Guides/Channel.md"
+    },
+    "link-4057037": {
+      "identifier": "link-4057037",
+      "kind": "article",
+      "role": "link",
+      "title": "AsyncAlgorithms",
+      "type": "topic",
+      "url": "https://github.com/apple/swift-async-algorithms"
+    },
+    "link-media-4065168": {
+      "identifier": "link-media-4065168",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065168"
+    },
+    "link-media-4065183": {
+      "identifier": "link-media-4065183",
+      "title": "Figure 2",
+      "type": "link",
+      "url": "/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065183"
+    },
+    "link-media-4065186": {
+      "identifier": "link-media-4065186",
+      "title": "Figure 3",
+      "type": "link",
+      "url": "/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065186"
+    },
+    "link-media-4065189": {
+      "identifier": "link-media-4065189",
+      "title": "Figure 4",
+      "type": "link",
+      "url": "/documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed#4065189"
+    },
+    "media-4065168": {
+      "alt": "A flow diagram that illustrates two people performing jumping jacks in front of a device’s camera. A video reader extracts video frames from the camera, and then the pose extractor consumes the frames to generate poses of body location data. The Create ML Components framework consumes the pose data and predicts the count for the jumping jacks.",
+      "identifier": "media-4065168",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9eff398948/renderedDark2x-1658773614.png"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4ab1c7d766/rendered2x-1658773616.png"
+        }
+      ]
+    },
+    "media-4065183": {
+      "alt": "A flow diagram that illustrates two detected poses in the same frame passing into a pose selector, where the default strategy selects the most-prominent pose, and the output is a single pose. ",
+      "identifier": "media-4065183",
+      "title": "Figure 2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e848533bc0/renderedDark2x-1658258329.png"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e4816551ca/rendered2x-1658258330.png"
+        }
+      ]
+    },
+    "media-4065186": {
+      "alt": "A flow diagram that illustrates a full body pose passing into a joints selector, which reduces it to a subset of joints that consists of an upper-body-only pose. ",
+      "identifier": "media-4065186",
+      "title": "Figure 3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/adeb7bee6f/renderedDark2x-1658258330.png"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2743ada2ba/rendered2x-1658258331.png"
+        }
+      ]
+    },
+    "media-4065189": {
+      "alt": "A flow diagram that illustrates a pose sequence passing into a sliding window transformer, which defines the stride and length for its window. ",
+      "identifier": "media-4065189",
+      "title": "Figure 4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c29f8c7dd9/rendered2x-1658258332.png"
+        },
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b73e9a7349/renderedDark2x-1658258334.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/9ff07e7133/CountingHumanBodyActionRepetitionsInALiveVideoFeed.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/createmlcomponents/counting_human_body_action_repetitions_in_a_live_video_feed"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

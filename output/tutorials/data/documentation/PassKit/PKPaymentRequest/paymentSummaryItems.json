@@ -1,0 +1,1135 @@
+{
+  "abstract": [
+    {
+      "text": "An array of payment summary item objects that summarize the amount of the payment.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.passkit/documentation/PassKit",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/paymentSummaryItems"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)PKPaymentRequest(py)paymentSummaryItems",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "paymentSummaryItems"
+      },
+      {
+        "kind": "text",
+        "text": ": ["
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)PKPaymentSummaryItem",
+        "text": "PKPaymentSummaryItem"
+      },
+      {
+        "kind": "text",
+        "text": "]"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PassKit (Apple Pay and Wallet)"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "paymentSummaryItems"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "paymentSummaryItems"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentSummaryItems"
+            },
+            {
+              "kind": "text",
+              "text": ": ["
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)PKPaymentSummaryItem",
+              "text": "PKPaymentSummaryItem"
+            },
+            {
+              "kind": "text",
+              "text": "] { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A typical transaction includes separate summary items for the order total, shipping cost, tax, and the grand total. See the following code for an example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Pay uses the last item in the ",
+              "type": "text"
+            },
+            {
+              "code": "paymentSummaryItems",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array as the grand total for the purchase shown in the example in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/paymentSummaryItems",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class displays this item differently than the rest of the summary items. As a result, there are additional requirements placed on both its amount and its label.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the grand total amount to the sum of all the other items in the array. This amount must be greater than or equal to zero.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the grand total label to the name of your company. This label represents the person or company receiving payment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your payment processor might have additional requirements, such as a minimum or maximum payment amount.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 15 and later you can create three different types of payment summary items:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for an immediate payment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKDeferredPaymentSummaryItem",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for a payment that occurs in the future, such as a pre-order.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for a payment that occurs more than once, such as a subscription.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In versions of iOS prior to version 12.0 and watchOS prior to version 5.0, the amount of the grand total must be greater than zero.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Setting the payment summary items:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// 12.75 subtotal",
+            "NSDecimalNumber *subtotalAmount = [NSDecimalNumber decimalNumberWithMantissa:1275",
+            " exponent:-2 isNegative:NO];",
+            "self.subtotal = [PKPaymentSummaryItem summaryItemWithLabel:@\"Subtotal\" amount:subtotalAmount];",
+            " ",
+            "// 2.00 discount",
+            "NSDecimalNumber *discountAmount = [NSDecimalNumber decimalNumberWithMantissa:200 exponent:-2 isNegative:YES];",
+            "self.discount = [PKPaymentSummaryItem summaryItemWithLabel:@\"Discount\" amount:discountAmount];",
+            " ",
+            "// 12.75 - 2.00 = 10.75 grand total",
+            "NSDecimalNumber *totalAmount = [NSDecimalNumber zero];",
+            "totalAmount = [totalAmount decimalNumberByAdding:subtotalAmount];",
+            "totalAmount = [totalAmount decimalNumberByAdding:discountAmount];",
+            "self.total = [PKPaymentSummaryItem summaryItemWithLabel:@\"My Company Name\" amount:totalAmount];",
+            "self.summaryItems = @[self.subtotal, self.discount, self.total];",
+            "request.paymentSummaryItems = self.summaryItems;"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.passkit/documentation/PassKit": {
+      "abstract": [
+        {
+          "text": "Process Apple Pay payments in your app, and create and distribute passes for the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PassKit (Apple Pay and Wallet)",
+      "type": "topic",
+      "url": "/documentation/passkit"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKDeferredPaymentSummaryItem": {
+      "abstract": [
+        {
+          "text": "An object that defines a summary item for a payment that occurs at a later date, such as a pre-order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKDeferredPaymentSummaryItem"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKDeferredPaymentSummaryItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKDeferredPaymentSummaryItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKDeferredPaymentSummaryItem",
+      "type": "topic",
+      "url": "/documentation/passkit/pkdeferredpaymentsummaryitem"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewController": {
+      "abstract": [
+        {
+          "text": "An object that presents a sheet that prompts the user to authorize a payment request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentAuthorizationViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentAuthorizationViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentAuthorizationViewController",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationviewcontroller"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest": {
+      "abstract": [
+        {
+          "text": "An object that represents a request for payment, including details about payment-processing capabilities, the payment amount, and shipping information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/paymentSummaryItems": {
+      "abstract": [
+        {
+          "text": "An array of payment summary item objects that summarize the amount of the payment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentSummaryItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentSummaryItem",
+          "text": "PKPaymentSummaryItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/paymentSummaryItems",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentSummaryItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentSummaryItems",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest/paymentsummaryitems"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem": {
+      "abstract": [
+        {
+          "text": "An object that defines a summary item in a payment request, taxes, discounts, shipping, a grand total, and the like.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentSummaryItem"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentSummaryItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentSummaryItem",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentsummaryitem"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem/init(label:amount:)": {
+      "abstract": [
+        {
+          "text": "Initializes and returns a summary item with the given label and amount.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "label"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "amount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSDecimalNumber",
+          "text": "NSDecimalNumber"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem/init(label:amount:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "summaryItemWithLabel:amount:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(label:amount:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentsummaryitem/init(label:amount:)"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem": {
+      "abstract": [
+        {
+          "text": "An object that defines a summary item for a payment that occurs repeatedly at a specified interval, such as a subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKRecurringPaymentSummaryItem"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKRecurringPaymentSummaryItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKRecurringPaymentSummaryItem",
+      "type": "topic",
+      "url": "/documentation/passkit/pkrecurringpaymentsummaryitem"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem/init(label:amount:)"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Setting-the-payment-summary-items",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem",
+        "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem",
+        "doc://com.apple.passkit/documentation/PassKit/PKDeferredPaymentSummaryItem"
+      ],
+      "title": "Setting the payment summary items"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "paymentSummaryItems"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "paymentSummaryItems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.passkit/documentation/PassKit",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem/init(label:amount:)"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Setting-the-payment-summary-items",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem",
+                "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem",
+                "doc://com.apple.passkit/documentation/PassKit/PKDeferredPaymentSummaryItem"
+              ],
+              "title": "Setting the payment summary items"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "nonatomic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "copy"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:Q$objc(cs)NSArray",
+                    "text": "NSArray<PKPaymentSummaryItem *>"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "paymentSummaryItems"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1paymentSummaryItems/title",
+          "value": "paymentSummaryItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1paymentSummaryItems/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "paymentSummaryItems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentSummaryItem/title",
+          "value": "PKPaymentSummaryItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentSummaryItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentSummaryItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentSummaryItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentSummaryItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDeferredPaymentSummaryItem/title",
+          "value": "PKDeferredPaymentSummaryItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDeferredPaymentSummaryItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKDeferredPaymentSummaryItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDeferredPaymentSummaryItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKDeferredPaymentSummaryItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewController/title",
+          "value": "PKPaymentAuthorizationViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentSummaryItem~1init(label:amount:)/title",
+          "value": "summaryItemWithLabel:amount:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentSummaryItem~1init(label:amount:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "summaryItemWithLabel:amount:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKRecurringPaymentSummaryItem/title",
+          "value": "PKRecurringPaymentSummaryItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKRecurringPaymentSummaryItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKRecurringPaymentSummaryItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKRecurringPaymentSummaryItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKRecurringPaymentSummaryItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/title",
+          "value": "PKPaymentRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequest"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/passkit/pkpaymentrequest/paymentsummaryitems"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/passkit/pkpaymentrequest/paymentsummaryitems"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

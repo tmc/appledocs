@@ -1,0 +1,1183 @@
+{
+  "abstract": [
+    {
+      "text": "Update your just-in-time (JIT) compiler to work with the Hardened Runtime capability,",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "and with Apple silicon.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Apple-Silicon/documentation/apple-silicon"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Apple-Silicon/documentation/apple-silicon",
+        "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/porting-your-macos-apps-to-apple-silicon"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/porting-just-in-time-compilers-to-apple-silicon"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Porting just-in-time compilers to Apple silicon"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A just-in-time (JIT) compiler translates byte-code or intermediate script code into",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "machine-language instructions, and makes those instructions available for execution.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "An app initiates JIT compilation as needed to support relevant tasks, and the compilation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "process takes place within the app’s process space. For example, a web browser uses",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "JIT compilation to transform a web page’s script code into runnable code when the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "user interacts with the appropriate page elements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "porting-just-in-time-compilers-to-apple-silicon-1.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because JIT compilation uses some techniques that the Hardened Runtime capability",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specifically disallows, you need to update your app if it supports that capability.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Even if your app doesn’t adopt the Hardened Runtime, you need to still make changes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to support Apple silicon.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about configuring the Hardened Runtime capability, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/hardened-runtime",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-the-JIT-entitlements-for-the-Hardened-Runtime",
+          "level": 3,
+          "text": "Enable the JIT entitlements for the Hardened Runtime",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Hardened Runtime capability prohibits the execution of code in a memory page,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "unless that code is accompanied by a valid code signature. Because a JIT compiler",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "doesn’t sign the code it generates, it technically violates the rules of the Hardened",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Runtime. To fix this issue, you need to adjust your Hardened Runtime settings to allow",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "JIT-related activities.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To allow JIT compilation in your app, navigate to the Hardened Runtime capability",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in Xcode and enable the Allow Execution of JIT-compiled Code option for your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you enable this option, Xcode adds the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.security.cs.allow-jit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to your app. When this entitlement is present, the system allows your app to call",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "mmap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "code": "MAP_JIT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag. If you don’t have this entitlement, calls using that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "flag return an error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app has the Hardened Runtime capability and the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.security.cs.allow-jit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement, it can only create one memory region with the ",
+              "type": "text"
+            },
+            {
+              "code": "MAP_JIT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag set.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.security.cs.allow-jit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement is required only when an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app adopts the Hardened Runtime capability. If you don’t adopt this capability, you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "don’t need the entitlement to use the ",
+              "type": "text"
+            },
+            {
+              "code": "MAP_JIT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag. For more information about",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the entitlement, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.cs.allow-jit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, add the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.security.cs.jit-write-allowlist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement with the value ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", to enable JIT callback allow lists.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Adding this entitlement allows your to call ",
+              "type": "text"
+            },
+            {
+              "code": "pthread_jit_write_with_callback_np()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which you use to write to your app’s JIT region.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "On macOS, when you add the ",
+                  "type": "text"
+                },
+                {
+                  "code": "com.apple.security.cs.jit-write-allowlist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " entitlement, your app can no longer call ",
+                  "type": "text"
+                },
+                {
+                  "code": "pthread_jit_write_protect_np()",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "pthread_jit_write_protect_np()",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " function isn’t available on iOS.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When memory protection is enabled, a thread cannot write to a memory region and execute",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instructions in that region at the same time. Apple silicon enables memory protection",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for all apps, regardless of whether they adopt the Hardened Runtime. Intel-based",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Mac computers enable memory protection only for apps that adopt the Hardened Runtime.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-callback-to-write-JIT-instructions",
+          "level": 3,
+          "text": "Create a callback to write JIT instructions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app writes to the ",
+              "type": "text"
+            },
+            {
+              "code": "MAP_JIT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " memory region in a callback function, that you pass to the ",
+              "type": "text"
+            },
+            {
+              "code": "pthread_jit_write_with_callback_np()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The callback needs to take a context pointer as an argument, and return its result as an integer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The callback needs to assume that the memory pointed to by the context pointer can be controlled by an attacker, and validate that the instructions to be written are permitted.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Initialize this pointer using mmap() with the MAP_JIT flag.",
+            "static void *jit_region;",
+            "",
+            "struct jit_code {",
+            "  void *instructions;",
+            "  ptrdiff_t entry_point;",
+            "  size_t instructions_length;",
+            "}",
+            "",
+            "enum jit_code_safety {",
+            "  JIT_CODE_VALID,",
+            "  JIT_CODE_INVALID,",
+            "};",
+            "",
+            "// Ensure that the JIT code is safe to execute.",
+            "enum jit_code_safety validate_jit_code(struct jit_code *code);",
+            "",
+            "int jit_writing_callback(void *context) {",
+            "  struct jit_code *code = (struct jit_code *)context;",
+            "  if (validate_jit_code(code) == JIT_CODE_VALID) {",
+            "    memcpy(jit_region, code->instructions, code->instructions_length);",
+            "\treturn 0;",
+            "  } else {",
+            "    return -1;",
+            "  }",
+            "}"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-your-JIT-callback-to-the-allowlist",
+          "level": 3,
+          "text": "Add your JIT callback to the allowlist",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each executable, for example, your app binary, can define at most one allowlist of functions that the executable uses as callbacks to ",
+              "type": "text"
+            },
+            {
+              "code": "pthread_jit_write_with_callback_np()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Your app crashes if you call ",
+                  "type": "text"
+                },
+                {
+                  "code": "pthread_jit_write_with_callback_np()",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " with a callback function that isn’t in the allowlist.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Define your app’s allowlist using the ",
+              "type": "text"
+            },
+            {
+              "code": "PTHREAD_JIT_WRITE_ALLOW_CALLBACKS_NP",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macro:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "PTHREAD_JIT_WRITE_ALLOW_CALLBACKS_NP(jit_writing_callback)"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On macOS, if you need to update the allowlist with callbacks you load at runtime, for example from dynamic libraries you load using ",
+              "type": "text"
+            },
+            {
+              "code": "dlopen()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.apple.security.cs.jit-write-allowlist-freeze-late",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " entitlement with the value ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Define at most one allowlist in each dynamic library using ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PTHREAD_JIT_WRITE_ALLOW_CALLBACKS_NP",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Load the dynamic libraries in your main executable.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pthread_jit_write_freeze_callbacks_np()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you add the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.security.cs.jit-write-allowlist-freeze-late",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement, you need to call ",
+              "type": "text"
+            },
+            {
+              "code": "pthread_jit_write_freeze_callbacks_np()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " before your first call to ",
+              "type": "text"
+            },
+            {
+              "code": "pthread_jit_write_with_callback_np()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you call ",
+              "type": "text"
+            },
+            {
+              "code": "pthread_jit_write_with_callback_np()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " before freezing the callbacks allowlist, the system terminates your process with an error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Freeze the callback allowlist by calling ",
+                  "type": "text"
+                },
+                {
+                  "code": "pthread_jit_write_freeze_callbacks_np()",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " early in your app’s startup process, before the app starts processing untrusted inputs.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Write-instructions-to-your-JIT-memory-region",
+          "level": 3,
+          "text": "Write instructions to your JIT memory region",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pass your callback and context pointer to ",
+              "type": "text"
+            },
+            {
+              "code": "pthread_jit_write_with_callback_np()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to write code to the ",
+              "type": "text"
+            },
+            {
+              "code": "MAP_JIT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " memory region.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Checks that your callback function is in the allowlist.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Makes the memory region writable, and not executable, for the current thread only.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Runs your callback function, passing the context pointer as the argument.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Makes the memory region executable, and not writable, for the current thread.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Returns the value that your callback function returned.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "struct jit_code code = {0};",
+            "int status = jit_compile(\"console.log(\\\"Hello, world!\\\");\", &code);",
+            "if (status == JIT_COMPILATION_SUCCESS) {",
+            "  pthread_jit_write_with_callback_np(jit_writing_callback, &code);",
+            "} else {",
+            "  // Handle a compilation error.",
+            "}"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Invalidate-caches-and-execute-the-code",
+          "level": 3,
+          "text": "Invalidate caches and execute the code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Always call ",
+              "type": "text"
+            },
+            {
+              "code": "sys_icache_invalidate(_:_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " before you execute the machine instructions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on a recently updated memory page. On Apple silicon, the instruction caches aren’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "coherent with data caches, and unexpected results might occur if you execute instructions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "without invalidating the caches. It’s also safe to call the ",
+              "type": "text"
+            },
+            {
+              "code": "sys_icache_invalidate(_:_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "function on Intel-based Mac computers, where the function does nothing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "sys_icache_invalidate(jit_region, code.instructions_length);",
+            "void (*run_jit)(void) = jit_region + code.entry_point;",
+            "run_jit();"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/addressing-architectural-differences-in-your-macos-code": {
+      "abstract": [
+        {
+          "text": "Fix problems that stem from architectural differences between Apple silicon and Intel-based",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Mac computers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/addressing-architectural-differences-in-your-macos-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Addressing Architectural Differences in Your macOS Code",
+      "type": "topic",
+      "url": "/documentation/apple-silicon/addressing-architectural-differences-in-your-macos-code"
+    },
+    "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/porting-your-audio-code-to-apple-silicon": {
+      "abstract": [
+        {
+          "text": "Eliminate issues in your audio-specific code when running on Apple silicon Mac computers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/porting-your-audio-code-to-apple-silicon",
+      "kind": "article",
+      "role": "article",
+      "title": "Porting Your Audio Code to Apple Silicon",
+      "type": "topic",
+      "url": "/documentation/apple-silicon/porting-your-audio-code-to-apple-silicon"
+    },
+    "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/porting-your-macos-apps-to-apple-silicon": {
+      "abstract": [
+        {
+          "text": "Create a version of your macOS app that runs on both Apple silicon and Intel-based",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Mac computers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/porting-your-macos-apps-to-apple-silicon",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Porting Your macOS Apps to Apple Silicon",
+      "type": "topic",
+      "url": "/documentation/apple-silicon/porting-your-macos-apps-to-apple-silicon"
+    },
+    "doc://com.apple.Apple-Silicon/documentation/apple-silicon": {
+      "abstract": [
+        {
+          "text": "Get the resources you need to create software for Macs with Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Apple-Silicon/documentation/apple-silicon",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple Silicon",
+      "type": "topic",
+      "url": "/documentation/apple-silicon"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.cs.allow-jit": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may create writable and executable memory using the `MAP_JIT` flag.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.cs.allow-jit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Allow execution of JIT-compiled code entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.cs.allow-jit"
+    },
+    "doc://com.apple.documentation/documentation/Security/hardened-runtime": {
+      "abstract": [
+        {
+          "text": "Manage security protections and resource access for your macOS apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/hardened-runtime",
+      "kind": "article",
+      "role": "article",
+      "title": "Hardened Runtime",
+      "type": "topic",
+      "url": "/documentation/Security/hardened-runtime"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "porting-just-in-time-compilers-to-apple-silicon-1.png": {
+      "alt": "An illustration of an app compiling byte code into native instructions.",
+      "identifier": "porting-just-in-time-compilers-to-apple-silicon-1.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/73a6da4269f6f95707cfaeaa75ec269c/porting-just-in-time-compilers-to-apple-silicon-1@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "General-Porting-Tips",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/addressing-architectural-differences-in-your-macos-code",
+        "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/porting-your-audio-code-to-apple-silicon"
+      ],
+      "title": "General Porting Tips"
+    }
+  ]
+}

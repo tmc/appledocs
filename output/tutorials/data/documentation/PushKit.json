@@ -1,0 +1,771 @@
+{
+  "abstract": [
+    {
+      "text": "Respond to push notifications related to your app’s complications, file providers, and VoIP services.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.pushkit/documentation/PushKit"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "PushKit",
+    "modules": [
+      {
+        "name": "PushKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "8.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.15",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "6.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "PushKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The PushKit framework supports specialized notifications for updating your watchOS complications, responding to file provider changes, and receiving incoming Voice-over-IP (VoIP) calls. PushKit notifications differ from the ones you handle with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework. Instead of displaying an alert, badging your app’s icon, or playing a sound, PushKit notifications wake up or launch your app and give it time to respond. Both PushKit and User Notifications use the Apple Push Notification service (APNs) to deliver push notifications to user devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To receive PushKit notifications, your app creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and uses it to configure the notification types it supports. When registration is successful, PushKit delivers a unique data token to your app that contains the identity of the current device and the push type. Forward that token along to the server, and include it in any notifications you send to the user. APNs uses the token to deliver the correct type of notification to the user’s device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about how to configure your server to work with APNs, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications/setting-up-a-remote-notification-server",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "PushKit doesn’t support some special use cases in which access to Apple Push Notification service (APNs) isn’t possible. For information about when you might need to support these cases, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/library/archive/qa/qa1938/_index.html#//apple_ref/doc/uid/DTS40017564",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "UserNotifications-PageImage-card.png": {
+      "alt": "[A notification interface displayed on the lock screen of an iOS device.]",
+      "identifier": "UserNotifications-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/074de9a9213bf2905d67fae5eb46e4f8/UserNotifications-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5733742e1c084fc202b3c92df9083686/UserNotifications-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications": {
+      "abstract": [
+        {
+          "text": "Push user-facing notifications to the user’s device from a server, or generate them locally from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications",
+      "images": [
+        {
+          "identifier": "UserNotifications-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "User Notifications",
+      "type": "topic",
+      "url": "/documentation/UserNotifications"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/setting-up-a-remote-notification-server": {
+      "abstract": [
+        {
+          "text": "Generate notifications and push them to user devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/setting-up-a-remote-notification-server",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up a remote notification server",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/setting-up-a-remote-notification-server"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.pushkit/documentation/PushKit": {
+      "abstract": [
+        {
+          "text": "Respond to push notifications related to your app’s complications, file providers, and VoIP services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pushkit/documentation/PushKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PushKit",
+      "type": "topic",
+      "url": "/documentation/pushkit"
+    },
+    "doc://com.apple.pushkit/documentation/PushKit/PKPushCredentials": {
+      "abstract": [
+        {
+          "text": "An object that encapsulates the device token you use to deliver push notifications to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPushCredentials"
+        }
+      ],
+      "identifier": "doc://com.apple.pushkit/documentation/PushKit/PKPushCredentials",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPushCredentials"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPushCredentials",
+      "type": "topic",
+      "url": "/documentation/pushkit/pkpushcredentials"
+    },
+    "doc://com.apple.pushkit/documentation/PushKit/PKPushPayload": {
+      "abstract": [
+        {
+          "text": "An object that contains information about a received PushKit notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPushPayload"
+        }
+      ],
+      "identifier": "doc://com.apple.pushkit/documentation/PushKit/PKPushPayload",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPushPayload"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPushPayload",
+      "type": "topic",
+      "url": "/documentation/pushkit/pkpushpayload"
+    },
+    "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry": {
+      "abstract": [
+        {
+          "text": "An object that requests the delivery and handles the receipt of PushKit notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPushRegistry"
+        }
+      ],
+      "identifier": "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPushRegistry"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPushRegistry",
+      "type": "topic",
+      "url": "/documentation/pushkit/pkpushregistry"
+    },
+    "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistryDelegate": {
+      "abstract": [
+        {
+          "text": "The methods that you use to handle incoming PushKit notifications and registration events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPushRegistryDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistryDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPushRegistryDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPushRegistryDelegate",
+      "type": "topic",
+      "url": "/documentation/pushkit/pkpushregistrydelegate"
+    },
+    "doc://com.apple.pushkit/documentation/PushKit/PKPushType": {
+      "abstract": [
+        {
+          "text": "Constants reflecting the push types you want to support.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPushType"
+        }
+      ],
+      "identifier": "doc://com.apple.pushkit/documentation/PushKit/PKPushType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPushType"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPushType",
+      "type": "topic",
+      "url": "/documentation/pushkit/pkpushtype"
+    },
+    "doc://com.apple.pushkit/documentation/PushKit/PK_EXPORT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "PK_EXPORT"
+        }
+      ],
+      "identifier": "doc://com.apple.pushkit/documentation/PushKit/PK_EXPORT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PK_EXPORT",
+      "type": "topic",
+      "url": "/documentation/pushkit/pk_export"
+    },
+    "doc://com.apple.pushkit/documentation/PushKit/exporting-broadcast-push-notification-metrics": {
+      "abstract": [
+        {
+          "text": "Discover how many people subscribe to your broadcast channels, and how many messages they receive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pushkit/documentation/PushKit/exporting-broadcast-push-notification-metrics",
+      "kind": "article",
+      "role": "article",
+      "title": "Exporting broadcast push notification metrics",
+      "type": "topic",
+      "url": "/documentation/pushkit/exporting-broadcast-push-notification-metrics"
+    },
+    "doc://com.apple.pushkit/documentation/PushKit/exporting-delivery-metrics-logs": {
+      "abstract": [
+        {
+          "text": "Download and analyze push-notification metrics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pushkit/documentation/PushKit/exporting-delivery-metrics-logs",
+      "kind": "article",
+      "role": "article",
+      "title": "Exporting delivery metrics logs",
+      "type": "topic",
+      "url": "/documentation/pushkit/exporting-delivery-metrics-logs"
+    },
+    "doc://com.apple.pushkit/documentation/PushKit/responding-to-voip-notifications-from-pushkit": {
+      "abstract": [
+        {
+          "text": "Receive incoming Voice-over-IP (VoIP) push notifications and use them to display the system call interface to the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pushkit/documentation/PushKit/responding-to-voip-notifications-from-pushkit",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to VoIP Notifications from PushKit",
+      "type": "topic",
+      "url": "/documentation/pushkit/responding-to-voip-notifications-from-pushkit"
+    },
+    "doc://com.apple.pushkit/documentation/PushKit/supporting-pushkit-notifications-in-your-app": {
+      "abstract": [
+        {
+          "text": "Declare the types of PushKit notifications your app supports and configure objects to respond to them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pushkit/documentation/PushKit/supporting-pushkit-notifications-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting PushKit Notifications in Your App",
+      "type": "topic",
+      "url": "/documentation/pushkit/supporting-pushkit-notifications-in-your-app"
+    },
+    "https://developer.apple.com/library/archive/qa/qa1938/_index.html#//apple_ref/doc/uid/DTS40017564": {
+      "identifier": "https://developer.apple.com/library/archive/qa/qa1938/_index.html#//apple_ref/doc/uid/DTS40017564",
+      "title": "iOS 10 and the Legacy VoIP Architecture",
+      "titleInlineContent": [
+        {
+          "text": "iOS 10 and the Legacy VoIP Architecture",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/qa/qa1938/_index.html#//apple_ref/doc/uid/DTS40017564"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Registration",
+      "identifiers": [
+        "doc://com.apple.pushkit/documentation/PushKit/supporting-pushkit-notifications-in-your-app",
+        "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry",
+        "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistryDelegate",
+        "doc://com.apple.pushkit/documentation/PushKit/PKPushCredentials"
+      ],
+      "title": "Registration"
+    },
+    {
+      "anchor": "Push-Types",
+      "identifiers": [
+        "doc://com.apple.pushkit/documentation/PushKit/responding-to-voip-notifications-from-pushkit",
+        "doc://com.apple.pushkit/documentation/PushKit/PKPushType"
+      ],
+      "title": "Push Types"
+    },
+    {
+      "anchor": "Payload",
+      "identifiers": [
+        "doc://com.apple.pushkit/documentation/PushKit/PKPushPayload"
+      ],
+      "title": "Payload"
+    },
+    {
+      "anchor": "Data-export",
+      "identifiers": [
+        "doc://com.apple.pushkit/documentation/PushKit/exporting-delivery-metrics-logs",
+        "doc://com.apple.pushkit/documentation/PushKit/exporting-broadcast-push-notification-metrics"
+      ],
+      "title": "Data export"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Registration",
+              "identifiers": [
+                "doc://com.apple.pushkit/documentation/PushKit/supporting-pushkit-notifications-in-your-app",
+                "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistry",
+                "doc://com.apple.pushkit/documentation/PushKit/PKPushRegistryDelegate",
+                "doc://com.apple.pushkit/documentation/PushKit/PKPushCredentials"
+              ],
+              "title": "Registration"
+            },
+            {
+              "anchor": "Push-Types",
+              "identifiers": [
+                "doc://com.apple.pushkit/documentation/PushKit/responding-to-voip-notifications-from-pushkit",
+                "doc://com.apple.pushkit/documentation/PushKit/PKPushType"
+              ],
+              "title": "Push Types"
+            },
+            {
+              "anchor": "Payload",
+              "identifiers": [
+                "doc://com.apple.pushkit/documentation/PushKit/PKPushPayload"
+              ],
+              "title": "Payload"
+            },
+            {
+              "anchor": "Data-export",
+              "identifiers": [
+                "doc://com.apple.pushkit/documentation/PushKit/exporting-delivery-metrics-logs",
+                "doc://com.apple.pushkit/documentation/PushKit/exporting-broadcast-push-notification-metrics"
+              ],
+              "title": "Data export"
+            },
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.pushkit/documentation/PushKit/PK_EXPORT"
+              ],
+              "title": "Macros"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushType/title",
+          "value": "PKPushType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPushType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPushType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushRegistryDelegate/title",
+          "value": "PKPushRegistryDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushRegistryDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPushRegistryDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushRegistryDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPushRegistryDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushPayload/title",
+          "value": "PKPushPayload"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushPayload/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPushPayload"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushPayload/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPushPayload"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushCredentials/title",
+          "value": "PKPushCredentials"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushCredentials/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPushCredentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushCredentials/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPushCredentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushRegistry/title",
+          "value": "PKPushRegistry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushRegistry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPushRegistry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pushkit~1documentation~1PushKit~1PKPushRegistry/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPushRegistry"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/pushkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/pushkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

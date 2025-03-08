@@ -1,0 +1,553 @@
+{
+  "abstract": [
+    {
+      "text": "Respond to notifications about customer refunds for consumable, non-consumable, and non-renewing subscription products.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/handling-refund-notifications"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Handling refund notifications"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Store server sends near real-time notifications when customers receive refunds for in-app purchases. If you offer content across multiple platforms, for example gems or coins for games, and you update player account balances on your server, receiving refund notifications is important. Respond to refund notifications by interpreting and handling the refund information, and informing customers in the app of any actions you take as a result of the refund.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable notifications, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/enabling-app-store-server-notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Receive-notifications-of-customer-refunds-for-one-time-purchases",
+          "level": 3,
+          "text": "Receive notifications of customer refunds for one-time purchases",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Customers request refunds in several ways, such as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Contacting Apple Customer Support and asking for a refund",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Logging in and using Apple’s self-service tool, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://reportaproblem.apple.com",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", to request a refund",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Asking their payment method issuer for a refund",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the App Store processes a refund, the App Store server sends a ",
+              "type": "text"
+            },
+            {
+              "code": "REFUND",
+              "type": "codeVoice"
+            },
+            {
+              "text": " notification to your server, at the URL you configure. Your server must respond to the post with a 200 response code. The ",
+              "type": "text"
+            },
+            {
+              "code": "REFUND",
+              "type": "codeVoice"
+            },
+            {
+              "text": " notification applies to consumable, non-consumable, and non-renewing subscriptions only. To detect refunds for auto-renewable subscriptions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/handling-subscriptions-billing#Detect-a-Refund",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Interpret-and-handle-the-refund-notification",
+          "level": 3,
+          "text": "Interpret and handle the refund notification",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your server is responsible for parsing and interpreting all notifications from the App Store server. For the ",
+              "type": "text"
+            },
+            {
+              "code": "REFUND",
+              "type": "codeVoice"
+            },
+            {
+              "text": " notification, identify the specific transaction, product ID, and relevant dates from the response:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Find the most recent transaction for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "product_id i",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "n the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "unified_receipt.latest_receipt_info",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " by checking the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "purchase_date",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to select the most recent transaction.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The date when App Store issued the refund is in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "cancellation_date_ms",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field for the transaction.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the response, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You’re responsible to store, monitor, and take appropriate action for each refunded transaction when you receive a ",
+              "type": "text"
+            },
+            {
+              "code": "REFUND",
+              "type": "codeVoice"
+            },
+            {
+              "text": " notification. For example, you might build your own in-game currency-rebalancing logic that handles refunded transactions by linking a notification to a player account or session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Inform customers by presenting contextual messaging in the app for any actions you take as a result of the refund.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-refund-abuse",
+          "level": 3,
+          "text": "Identify refund abuse",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reduce refund abuse and identify repeated refunded purchases by mapping ",
+              "type": "text"
+            },
+            {
+              "code": "REFUND",
+              "type": "codeVoice"
+            },
+            {
+              "text": " notifications to the player accounts on your server. Monitor and analyze your data to identify suspicious refund activity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you offer content across multiple platforms, keep the balances for user accounts up to date on your server. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to get near real-time status updates for the transactions that affect your customers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications": {
+      "abstract": [
+        {
+          "text": "Monitor In-App Purchase events in real time and learn of unreported external purchase tokens, with server notifications from the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/enabling-app-store-server-notifications": {
+      "abstract": [
+        {
+          "text": "Configure your server and provide an HTTPS URL to receive notifications about in-app purchase events and unreported external purchase tokens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/enabling-app-store-server-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/storekit/enabling-app-store-server-notifications"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/handling-subscriptions-billing#Detect-a-Refund": {
+      "abstract": [],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/handling-subscriptions-billing#Detect-a-Refund",
+      "kind": "section",
+      "title": "Detect a Refund",
+      "type": "topic",
+      "url": "/documentation/storekit/handling-subscriptions-billing#Detect-a-Refund"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer additional content and services in your app using the Original In-App Purchase API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original API for In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/original-api-for-in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-refund-requests": {
+      "abstract": [
+        {
+          "text": "Test your app’s implementation of refund requests, and your app’s and server’s handling of approved and declined refunds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-refund-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing refund requests",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-refund-requests"
+    },
+    "https://reportaproblem.apple.com": {
+      "identifier": "https://reportaproblem.apple.com",
+      "title": "reportaproblem.apple.com",
+      "titleInlineContent": [
+        {
+          "text": "reportaproblem.apple.com",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://reportaproblem.apple.com"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Refunds",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/testing-refund-requests"
+      ],
+      "title": "Refunds"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Refunds",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/testing-refund-requests"
+              ],
+              "title": "Refunds"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/handling-refund-notifications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/handling-refund-notifications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

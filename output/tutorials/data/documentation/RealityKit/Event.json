@@ -1,0 +1,2095 @@
+{
+  "abstract": [
+    {
+      "text": "A type that can be sent as an event.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/Event"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation5EventP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Event"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Event"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "Event"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Event"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s8SendableP",
+              "text": "Sendable"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RealityKit provides a number of events you can subscribe to.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system notifies you whenever the event type occurs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, you can subscribe to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionEvents/Began",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to know when two objects begin colliding,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/Update",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " every time the scene redraws.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To subscribe to an event from inside of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " builder, call",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "one of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewContentProtocol",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "subscribe",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods, for example",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewContentProtocol/subscribe(to:on:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example of subscribing to the event ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionEvents/Began",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which occurs when two entities collide:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct RealityGame: View {",
+            "",
+            "    @State var collisionSubscription: EventSubscription?",
+            "",
+            "    var body: some View {",
+            "        RealityView { content in",
+            "            // Create an entity with model and collision components.",
+            "            let model = ModelComponent(",
+            "                mesh: MeshResource.generateBox(size: .one / 10),",
+            "                materials: [SimpleMaterial(color: .red, isMetallic: false)]",
+            "            )",
+            "            let collision = CollisionComponent(shapes: [ShapeResource.generateBox(size: .one / 10)])",
+            "            let collisionEntity = Entity(components: model, collision)",
+            "            content.add(collisionEntity)",
+            "",
+            "            // Subscribe to collision began event.",
+            "            collisionSubscription = content.subscribe(",
+            "               to: CollisionEvents.Began.self,",
+            "               on: collisionEntity,",
+            "               self.onCollisionBegan",
+            "           )",
+            "        }",
+            "    }",
+            "    private func onCollisionBegan(_ event: CollisionEvents.Began) {",
+            "        print(\"collision started\")",
+            "        let firstEntity = event.entityA // The entity whose collisions you're subscribing to.",
+            "        let secondEntity = event.entityB // Another entity in the scene.",
+            "        // Respond to collision event...",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Add a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to any entities you want to detect collisions for.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AccessibilityEvents/Activate": {
+      "abstract": [
+        {
+          "text": "An accessibility event for activating an accessibility element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Activate"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AccessibilityEvents/Activate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Activate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccessibilityEvents.Activate",
+      "type": "topic",
+      "url": "/documentation/realitykit/accessibilityevents/activate"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AccessibilityEvents/CustomAction": {
+      "abstract": [
+        {
+          "text": "An accessibility event for a custom action defined in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomAction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AccessibilityEvents/CustomAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccessibilityEvents.CustomAction",
+      "type": "topic",
+      "url": "/documentation/realitykit/accessibilityevents/customaction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AccessibilityEvents/Decrement": {
+      "abstract": [
+        {
+          "text": "An accessibility event for decrementing an accessibility element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decrement"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AccessibilityEvents/Decrement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Decrement"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccessibilityEvents.Decrement",
+      "type": "topic",
+      "url": "/documentation/realitykit/accessibilityevents/decrement"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AccessibilityEvents/Increment": {
+      "abstract": [
+        {
+          "text": "An accessibility event for incrementing an accessibility element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Increment"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AccessibilityEvents/Increment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Increment"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccessibilityEvents.Increment",
+      "type": "topic",
+      "url": "/documentation/realitykit/accessibilityevents/increment"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AccessibilityEvents/RotorNavigation": {
+      "abstract": [
+        {
+          "text": "An accessibility event associated with a rotor navigation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RotorNavigation"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AccessibilityEvents/RotorNavigation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RotorNavigation"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccessibilityEvents.RotorNavigation",
+      "type": "topic",
+      "url": "/documentation/realitykit/accessibilityevents/rotornavigation"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationEvents/PlaybackCompleted": {
+      "abstract": [
+        {
+          "text": "The event raised when an animation reaches the end of its duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaybackCompleted"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationEvents/PlaybackCompleted",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlaybackCompleted"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationEvents.PlaybackCompleted",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationevents/playbackcompleted"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationEvents/PlaybackLooped": {
+      "abstract": [
+        {
+          "text": "The event raised when an animation loops.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaybackLooped"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationEvents/PlaybackLooped",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlaybackLooped"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationEvents.PlaybackLooped",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationevents/playbacklooped"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationEvents/PlaybackStarted": {
+      "abstract": [
+        {
+          "text": "The event raised when an animation has been started.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaybackStarted"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationEvents/PlaybackStarted",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlaybackStarted"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationEvents.PlaybackStarted",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationevents/playbackstarted"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationEvents/PlaybackTerminated": {
+      "abstract": [
+        {
+          "text": "The event raised when an animation has been terminated, regardless of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "whether it ran to completion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaybackTerminated"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationEvents/PlaybackTerminated",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlaybackTerminated"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationEvents.PlaybackTerminated",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationevents/playbackterminated"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationEvents/SkeletalPoseUpdateComplete": {
+      "abstract": [
+        {
+          "text": "Raised immediately after the SkeletalPoseSystem has been updated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SkeletalPoseUpdateComplete"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationEvents/SkeletalPoseUpdateComplete",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SkeletalPoseUpdateComplete"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationEvents.SkeletalPoseUpdateComplete",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationevents/skeletalposeupdatecomplete"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioEvents/PlaybackCompleted": {
+      "abstract": [
+        {
+          "text": "Audio playback completed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaybackCompleted"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioEvents/PlaybackCompleted",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlaybackCompleted"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioEvents.PlaybackCompleted",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioevents/playbackcompleted"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent": {
+      "abstract": [
+        {
+          "text": "A component that gives an entity the ability to collide with other entities",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that also have collision components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CollisionComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CollisionComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CollisionComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisioncomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionEvents/Began": {
+      "abstract": [
+        {
+          "text": "An event raised when two objects collide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Began"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionEvents/Began",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Began"
+        }
+      ],
+      "role": "symbol",
+      "title": "CollisionEvents.Began",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisionevents/began"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionEvents/Ended": {
+      "abstract": [
+        {
+          "text": "An event raised when two objects, previously in contact, separate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Ended"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionEvents/Ended",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Ended"
+        }
+      ],
+      "role": "symbol",
+      "title": "CollisionEvents.Ended",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisionevents/ended"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CollisionEvents/Updated": {
+      "abstract": [
+        {
+          "text": "An event raised on every frame when two objects are in contact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Updated"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CollisionEvents/Updated",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Updated"
+        }
+      ],
+      "role": "symbol",
+      "title": "CollisionEvents.Updated",
+      "type": "topic",
+      "url": "/documentation/realitykit/collisionevents/updated"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ComponentEvents": {
+      "abstract": [
+        {
+          "text": "Provides the events related to components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComponentEvents"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ComponentEvents",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComponentEvents"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentEvents",
+      "type": "topic",
+      "url": "/documentation/realitykit/componentevents"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ComponentEvents/DidActivate": {
+      "abstract": [
+        {
+          "text": "Event raised after a component has been activated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DidActivate"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ComponentEvents/DidActivate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DidActivate"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentEvents.DidActivate",
+      "type": "topic",
+      "url": "/documentation/realitykit/componentevents/didactivate"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ComponentEvents/DidAdd": {
+      "abstract": [
+        {
+          "text": "Event raised after a component has been added to an entity,",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DidAdd"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ComponentEvents/DidAdd",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DidAdd"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentEvents.DidAdd",
+      "type": "topic",
+      "url": "/documentation/realitykit/componentevents/didadd"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ComponentEvents/DidChange": {
+      "abstract": [
+        {
+          "text": "Event raised after a component has been modified.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DidChange"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ComponentEvents/DidChange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DidChange"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentEvents.DidChange",
+      "type": "topic",
+      "url": "/documentation/realitykit/componentevents/didchange"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ComponentEvents/WillDeactivate": {
+      "abstract": [
+        {
+          "text": "Event raised before a component is deactivated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WillDeactivate"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ComponentEvents/WillDeactivate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WillDeactivate"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentEvents.WillDeactivate",
+      "type": "topic",
+      "url": "/documentation/realitykit/componentevents/willdeactivate"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ComponentEvents/WillRemove": {
+      "abstract": [
+        {
+          "text": "Event raised before a component is removed from an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WillRemove"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ComponentEvents/WillRemove",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WillRemove"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentEvents.WillRemove",
+      "type": "topic",
+      "url": "/documentation/realitykit/componentevents/willremove"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Event": {
+      "abstract": [
+        {
+          "text": "A type that can be sent as an event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Event"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Event",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Event"
+        }
+      ],
+      "role": "symbol",
+      "title": "Event",
+      "type": "topic",
+      "url": "/documentation/realitykit/event"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EventSource": {
+      "abstract": [
+        {
+          "text": "A type on which events can be published and subscribed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EventSource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EventSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EventSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "EventSource",
+      "type": "topic",
+      "url": "/documentation/realitykit/eventsource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EventSubscription": {
+      "abstract": [
+        {
+          "text": "A subscription to an event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EventSubscription"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EventSubscription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EventSubscription"
+        }
+      ],
+      "role": "symbol",
+      "title": "EventSubscription",
+      "type": "topic",
+      "url": "/documentation/realitykit/eventsubscription"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsSimulationEvents/DidSimulate": {
+      "abstract": [
+        {
+          "text": "The event raised after the simulation advances to the current frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DidSimulate"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsSimulationEvents/DidSimulate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DidSimulate"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicsSimulationEvents.DidSimulate",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicssimulationevents/didsimulate"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsSimulationEvents/WillSimulate": {
+      "abstract": [
+        {
+          "text": "The event raised before the simulation advances to the current frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WillSimulate"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsSimulationEvents/WillSimulate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WillSimulate"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhysicsSimulationEvents.WillSimulate",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicssimulationevents/willsimulate"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/RealityView": {
+      "abstract": [
+        {
+          "text": "A view that contains RealityKit content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RealityView"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RealityView"
+        }
+      ],
+      "role": "symbol",
+      "title": "RealityView",
+      "type": "topic",
+      "url": "/documentation/realitykit/realityview"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewContentProtocol": {
+      "abstract": [
+        {
+          "text": "A protocol representing the content of a reality view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RealityViewContentProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewContentProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RealityViewContentProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "RealityViewContentProtocol",
+      "type": "topic",
+      "url": "/documentation/realitykit/realityviewcontentprotocol"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewContentProtocol/subscribe(to:on:_:)": {
+      "abstract": [
+        {
+          "text": "Subscribes to an event type, optionally limited to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "events affecting a source entity or scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscribe"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation11EventSourceP",
+          "text": "EventSource"
+        },
+        {
+          "kind": "text",
+          "text": ")?, ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "E"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation17EventSubscriptionV",
+          "text": "EventSubscription"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityViewContentProtocol/subscribe(to:on:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscribe(to:on:_:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/realityviewcontentprotocol/subscribe(to:on:_:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents": {
+      "abstract": [
+        {
+          "text": "Events the scene invokes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SceneEvents"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SceneEvents"
+        }
+      ],
+      "role": "symbol",
+      "title": "SceneEvents",
+      "type": "topic",
+      "url": "/documentation/realitykit/sceneevents"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/AnchoredStateChanged": {
+      "abstract": [
+        {
+          "text": "An event invoked when the anchored state of an anchoring entity",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnchoredStateChanged"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/AnchoredStateChanged",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnchoredStateChanged"
+        }
+      ],
+      "role": "symbol",
+      "title": "SceneEvents.AnchoredStateChanged",
+      "type": "topic",
+      "url": "/documentation/realitykit/sceneevents/anchoredstatechanged"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/DidActivateEntity": {
+      "abstract": [
+        {
+          "text": "Raised after an entity becomes active.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DidActivateEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/DidActivateEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DidActivateEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "SceneEvents.DidActivateEntity",
+      "type": "topic",
+      "url": "/documentation/realitykit/sceneevents/didactivateentity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/DidAddEntity": {
+      "abstract": [
+        {
+          "text": "Raised after an entity is added to the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DidAddEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/DidAddEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DidAddEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "SceneEvents.DidAddEntity",
+      "type": "topic",
+      "url": "/documentation/realitykit/sceneevents/didaddentity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/DidReparentEntity": {
+      "abstract": [
+        {
+          "text": "Raised after an entity has been reparented within the same scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DidReparentEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/DidReparentEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DidReparentEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "SceneEvents.DidReparentEntity",
+      "type": "topic",
+      "url": "/documentation/realitykit/sceneevents/didreparententity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/Update": {
+      "abstract": [
+        {
+          "text": "An event invoked once per frame interval that you can use to execute",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "custom logic for each frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Update"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/Update",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Update"
+        }
+      ],
+      "role": "symbol",
+      "title": "SceneEvents.Update",
+      "type": "topic",
+      "url": "/documentation/realitykit/sceneevents/update"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/WillDeactivateEntity": {
+      "abstract": [
+        {
+          "text": "Raised before an entity becomes inactive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WillDeactivateEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/WillDeactivateEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WillDeactivateEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "SceneEvents.WillDeactivateEntity",
+      "type": "topic",
+      "url": "/documentation/realitykit/sceneevents/willdeactivateentity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/WillRemoveEntity": {
+      "abstract": [
+        {
+          "text": "Raised before an entity is removed from the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WillRemoveEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/WillRemoveEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WillRemoveEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "SceneEvents.WillRemoveEntity",
+      "type": "topic",
+      "url": "/documentation/realitykit/sceneevents/willremoveentity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SynchronizationEvents/OwnershipChanged": {
+      "abstract": [
+        {
+          "text": "The event raised when ownership of an entity changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OwnershipChanged"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SynchronizationEvents/OwnershipChanged",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OwnershipChanged"
+        }
+      ],
+      "role": "symbol",
+      "title": "SynchronizationEvents.OwnershipChanged",
+      "type": "topic",
+      "url": "/documentation/realitykit/synchronizationevents/ownershipchanged"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SynchronizationEvents/OwnershipRequest": {
+      "abstract": [
+        {
+          "text": "The event raised when a network peer wants to gain ownership of an",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OwnershipRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SynchronizationEvents/OwnershipRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OwnershipRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "SynchronizationEvents.OwnershipRequest",
+      "type": "topic",
+      "url": "/documentation/realitykit/synchronizationevents/ownershiprequest"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/VideoPlayerEvents/ContentTypeDidChange": {
+      "abstract": [
+        {
+          "text": "Content type changed event",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentTypeDidChange"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/VideoPlayerEvents/ContentTypeDidChange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContentTypeDidChange"
+        }
+      ],
+      "role": "symbol",
+      "title": "VideoPlayerEvents.ContentTypeDidChange",
+      "type": "topic",
+      "url": "/documentation/realitykit/videoplayerevents/contenttypedidchange"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/VideoPlayerEvents/ImmersiveViewingModeDidChange": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImmersiveViewingModeDidChange"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/VideoPlayerEvents/ImmersiveViewingModeDidChange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImmersiveViewingModeDidChange"
+        }
+      ],
+      "role": "symbol",
+      "title": "VideoPlayerEvents.ImmersiveViewingModeDidChange",
+      "type": "topic",
+      "url": "/documentation/realitykit/videoplayerevents/immersiveviewingmodedidchange"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/VideoPlayerEvents/ImmersiveViewingModeDidTransition": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImmersiveViewingModeDidTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/VideoPlayerEvents/ImmersiveViewingModeDidTransition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImmersiveViewingModeDidTransition"
+        }
+      ],
+      "role": "symbol",
+      "title": "VideoPlayerEvents.ImmersiveViewingModeDidTransition",
+      "type": "topic",
+      "url": "/documentation/realitykit/videoplayerevents/immersiveviewingmodedidtransition"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/VideoPlayerEvents/ImmersiveViewingModeWillTransition": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImmersiveViewingModeWillTransition"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/VideoPlayerEvents/ImmersiveViewingModeWillTransition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImmersiveViewingModeWillTransition"
+        }
+      ],
+      "role": "symbol",
+      "title": "VideoPlayerEvents.ImmersiveViewingModeWillTransition",
+      "type": "topic",
+      "url": "/documentation/realitykit/videoplayerevents/immersiveviewingmodewilltransition"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/VideoPlayerEvents/VideoSizeDidChange": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VideoSizeDidChange"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/VideoPlayerEvents/VideoSizeDidChange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VideoSizeDidChange"
+        }
+      ],
+      "role": "symbol",
+      "title": "VideoPlayerEvents.VideoSizeDidChange",
+      "type": "topic",
+      "url": "/documentation/realitykit/videoplayerevents/videosizedidchange"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/VideoPlayerEvents/ViewingModeDidChange": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ViewingModeDidChange"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/VideoPlayerEvents/ViewingModeDidChange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ViewingModeDidChange"
+        }
+      ],
+      "role": "symbol",
+      "title": "VideoPlayerEvents.ViewingModeDidChange",
+      "type": "topic",
+      "url": "/documentation/realitykit/videoplayerevents/viewingmodedidchange"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AccessibilityEvents/Activate",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AccessibilityEvents/CustomAction",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AccessibilityEvents/Decrement",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AccessibilityEvents/Increment",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AccessibilityEvents/RotorNavigation",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationEvents/PlaybackCompleted",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationEvents/PlaybackLooped",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationEvents/PlaybackStarted",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationEvents/PlaybackTerminated",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationEvents/SkeletalPoseUpdateComplete",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioEvents/PlaybackCompleted",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionEvents/Began",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionEvents/Ended",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CollisionEvents/Updated",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ComponentEvents/DidActivate",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ComponentEvents/DidAdd",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ComponentEvents/DidChange",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ComponentEvents/WillDeactivate",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ComponentEvents/WillRemove",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsSimulationEvents/DidSimulate",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PhysicsSimulationEvents/WillSimulate",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/AnchoredStateChanged",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/DidActivateEntity",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/DidAddEntity",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/DidReparentEntity",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/Update",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/WillDeactivateEntity",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents/WillRemoveEntity",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SynchronizationEvents/OwnershipChanged",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SynchronizationEvents/OwnershipRequest",
+        "doc://com.apple.RealityKit/documentation/RealityKit/VideoPlayerEvents/ContentTypeDidChange",
+        "doc://com.apple.RealityKit/documentation/RealityKit/VideoPlayerEvents/ImmersiveViewingModeDidChange",
+        "doc://com.apple.RealityKit/documentation/RealityKit/VideoPlayerEvents/ImmersiveViewingModeDidTransition",
+        "doc://com.apple.RealityKit/documentation/RealityKit/VideoPlayerEvents/ImmersiveViewingModeWillTransition",
+        "doc://com.apple.RealityKit/documentation/RealityKit/VideoPlayerEvents/VideoSizeDidChange",
+        "doc://com.apple.RealityKit/documentation/RealityKit/VideoPlayerEvents/ViewingModeDidChange"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Core-event-types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/EventSource",
+        "doc://com.apple.RealityKit/documentation/RealityKit/EventSubscription",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SceneEvents",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ComponentEvents"
+      ],
+      "title": "Core event types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/event"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

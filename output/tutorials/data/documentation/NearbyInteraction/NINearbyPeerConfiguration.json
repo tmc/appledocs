@@ -1,0 +1,1481 @@
+{
+  "abstract": [
+    {
+      "text": "A configuration that enables interaction between iPhone or Apple Watch devices.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NINearbyPeerConfiguration",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NINearbyPeerConfiguration"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Nearby Interaction"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NINearbyPeerConfiguration"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.3",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NINearbyPeerConfiguration"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NINearbyPeerConfiguration"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/initiating-and-maintaining-a-session"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A peer interaction session enables two Apple devices to share their respective distance and direction through the device’s Ultra Wideband (UWB) chip. To start a peer interaction session, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance and pass it to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NISession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NISession/run(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an example app that demonstrates this configuration, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/implementing-interactions-between-users-in-close-proximity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-Precision-Finding-for-stationary-objects",
+          "level": 3,
+          "text": "Enable Precision Finding for stationary objects",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 16, you can combine the visual spatial power of ARKit with the radio sensitivity of the UWB chip to locate stationary nearby objects with considerable precision. To do that, set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration/isCameraAssistanceEnabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and optionally provide the interaction session with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/ARSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance through ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NISession/setARSession(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before running the session. Together, the UWB chip and ARKit’s assistance enable Nearby Interaction to provide the same Precision Finding capabilities present in AirTag.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/ARKit/ARSession": {
+      "abstract": [
+        {
+          "text": "The object that manages the major tasks associated with every AR experience, such as motion tracking, camera passthrough, and image analysis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/ARSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARSession",
+      "type": "topic",
+      "url": "/documentation/ARKit/ARSession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction": {
+      "abstract": [
+        {
+          "text": "Locate and interact with nearby devices using identifiers, distance, and direction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Nearby Interaction",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIConfiguration": {
+      "abstract": [
+        {
+          "text": "An abstract base class for interaction configurations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NIConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NIConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "NIConfiguration",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/niconfiguration"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that enables interaction between iPhone or Apple Watch devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NINearbyPeerConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NINearbyPeerConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "NINearbyPeerConfiguration",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/ninearbypeerconfiguration"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration/init(peerToken:)": {
+      "abstract": [
+        {
+          "text": "Creates a configuration for interaction between devices, including iPhone and Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "peerToken"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NIDiscoveryToken",
+          "text": "NIDiscoveryToken"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration/init(peerToken:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithPeerToken:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(peerToken:)",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/ninearbypeerconfiguration/init(peertoken:)"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration/isCameraAssistanceEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that combines the spatial awareness of ARKit with Nearby Interaction to improve the accuracy of a nearby object’s position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isCameraAssistanceEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration/isCameraAssistanceEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cameraAssistanceEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isCameraAssistanceEnabled",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/ninearbypeerconfiguration/iscameraassistanceenabled"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration/isExtendedDistanceMeasurementEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether both peers can use extended distance measurement for this Nearby Interaction session instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isExtendedDistanceMeasurementEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration/isExtendedDistanceMeasurementEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "extendedDistanceMeasurementEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isExtendedDistanceMeasurementEnabled",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/ninearbypeerconfiguration/isextendeddistancemeasurementenabled"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration/peerDiscoveryToken": {
+      "abstract": [
+        {
+          "text": "A value that uniquely identifies the other peer in the interaction session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "peerDiscoveryToken"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NIDiscoveryToken",
+          "text": "NIDiscoveryToken"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration/peerDiscoveryToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "peerDiscoveryToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "peerDiscoveryToken",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/ninearbypeerconfiguration/peerdiscoverytoken"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NISession": {
+      "abstract": [
+        {
+          "text": "An object that identifies a unique connection between two peer devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NISession"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NISession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NISession"
+        }
+      ],
+      "role": "symbol",
+      "title": "NISession",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/nisession"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NISession/run(_:)": {
+      "abstract": [
+        {
+          "text": "Starts a session with a nearby peer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "run"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NIConfiguration",
+          "text": "NIConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NISession/run(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "runWithConfiguration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "run(_:)",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/nisession/run(_:)"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NISession/setARSession(_:)": {
+      "abstract": [
+        {
+          "text": "Provides the framework with an existing AR session to use for Camera Assistance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setARSession"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NISession/setARSession(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setARSession:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setARSession(_:)",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/nisession/setarsession(_:)"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/discovering-peers-with-multipeer-connectivity": {
+      "abstract": [
+        {
+          "text": "Exchange discovery tokens over the local network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/discovering-peers-with-multipeer-connectivity",
+      "kind": "article",
+      "role": "article",
+      "title": "Discovering peers with Multipeer Connectivity",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/discovering-peers-with-multipeer-connectivity"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/implementing-interactions-between-users-in-close-proximity": {
+      "abstract": [
+        {
+          "text": "Enable devices to access relative positioning information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/implementing-interactions-between-users-in-close-proximity",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing Interactions Between Users in Close Proximity",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/implementing-interactions-between-users-in-close-proximity"
+    },
+    "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/initiating-and-maintaining-a-session": {
+      "abstract": [
+        {
+          "text": "Measure the relative position of a nearby device and coach the user to sustain interaction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/initiating-and-maintaining-a-session",
+      "kind": "article",
+      "role": "article",
+      "title": "Initiating and maintaining a session",
+      "type": "topic",
+      "url": "/documentation/nearbyinteraction/initiating-and-maintaining-a-session"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIConfiguration"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Phone-interaction",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/implementing-interactions-between-users-in-close-proximity",
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/discovering-peers-with-multipeer-connectivity"
+      ],
+      "title": "Phone interaction"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-configuration",
+      "identifiers": [
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration/init(peerToken:)"
+      ],
+      "title": "Creating a configuration"
+    },
+    {
+      "anchor": "Accessing-the-discovery-token",
+      "identifiers": [
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration/peerDiscoveryToken"
+      ],
+      "title": "Accessing the discovery token"
+    },
+    {
+      "anchor": "Subclassing-a-configuration",
+      "identifiers": [
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIConfiguration"
+      ],
+      "title": "Subclassing a configuration"
+    },
+    {
+      "anchor": "Enabling-Camera-Assistance",
+      "identifiers": [
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration/isCameraAssistanceEnabled"
+      ],
+      "title": "Enabling Camera Assistance"
+    },
+    {
+      "anchor": "Checking-distance-measurement-capability",
+      "identifiers": [
+        "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration/isExtendedDistanceMeasurementEnabled"
+      ],
+      "title": "Checking distance measurement capability"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.3",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NINearbyPeerConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NINearbyPeerConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NINearbyPeerConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-configuration",
+              "identifiers": [
+                "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration/init(peerToken:)"
+              ],
+              "title": "Creating a configuration"
+            },
+            {
+              "anchor": "Accessing-the-discovery-token",
+              "identifiers": [
+                "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration/peerDiscoveryToken"
+              ],
+              "title": "Accessing the discovery token"
+            },
+            {
+              "anchor": "Subclassing-a-configuration",
+              "identifiers": [
+                "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIConfiguration"
+              ],
+              "title": "Subclassing a configuration"
+            },
+            {
+              "anchor": "Enabling-Camera-Assistance",
+              "identifiers": [
+                "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration/isCameraAssistanceEnabled"
+              ],
+              "title": "Enabling Camera Assistance"
+            },
+            {
+              "anchor": "Checking-distance-measurement-capability",
+              "identifiers": [
+                "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NINearbyPeerConfiguration/isExtendedDistanceMeasurementEnabled"
+              ],
+              "title": "Checking distance measurement capability"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIConfiguration"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Phone-interaction",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/implementing-interactions-between-users-in-close-proximity",
+                "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/discovering-peers-with-multipeer-connectivity"
+              ],
+              "title": "Phone interaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NINearbyPeerConfiguration"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.nearbyinteraction/documentation/NearbyInteraction/NIConfiguration",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NIConfiguration",
+                    "text": "NIConfiguration"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ARKit~1ARSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ARSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NINearbyPeerConfiguration~1peerDiscoveryToken/title",
+          "value": "peerDiscoveryToken"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NINearbyPeerConfiguration~1peerDiscoveryToken/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "peerDiscoveryToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NISession/title",
+          "value": "NISession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NISession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NISession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NISession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NISession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NISession~1setARSession(_:)/title",
+          "value": "setARSession:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NISession~1setARSession(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setARSession:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NISession~1run(_:)/title",
+          "value": "runWithConfiguration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NISession~1run(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "runWithConfiguration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NINearbyPeerConfiguration~1isCameraAssistanceEnabled/title",
+          "value": "cameraAssistanceEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NINearbyPeerConfiguration~1isCameraAssistanceEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cameraAssistanceEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NIConfiguration/title",
+          "value": "NIConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NIConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NIConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NIConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NIConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NINearbyPeerConfiguration/title",
+          "value": "NINearbyPeerConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NINearbyPeerConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NINearbyPeerConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NINearbyPeerConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NINearbyPeerConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NINearbyPeerConfiguration~1init(peerToken:)/title",
+          "value": "initWithPeerToken:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NINearbyPeerConfiguration~1init(peerToken:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithPeerToken:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NINearbyPeerConfiguration~1isExtendedDistanceMeasurementEnabled/title",
+          "value": "extendedDistanceMeasurementEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.nearbyinteraction~1documentation~1NearbyInteraction~1NINearbyPeerConfiguration~1isExtendedDistanceMeasurementEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "extendedDistanceMeasurementEnabled"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/nearbyinteraction/ninearbypeerconfiguration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/nearbyinteraction/ninearbypeerconfiguration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

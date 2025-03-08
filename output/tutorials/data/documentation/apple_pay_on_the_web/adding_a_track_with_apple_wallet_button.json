@@ -1,0 +1,1000 @@
+{
+  "abstract": [
+    {
+      "text": "Configure and style an Apple Wallet Button to match your website.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/adding_a_track_with_apple_wallet_button"
+  },
+  "kind": "article",
+  "legacy_identifier": 4292366,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Pay JS"
+      },
+      {
+        "name": "Payment Request API"
+      },
+      {
+        "name": "Apple Pay JS Button"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding a Track with Apple Wallet button"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 17.0 and later and macOS 14.0 and later, Apple Wallet order tracking is available on the web and provides a variety of button types that you can use on your website. You can specify the Track with Apple Wallet button style, compactness, and localization using attributes that you supply to the JavaScript function that displays the button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4292394",
+          "level": 3,
+          "text": "Add the Apple Pay JavaScript API to the page header",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display an Track with Apple Wallet button, add the following script tag to your webpage’s head tag to load the Apple Pay JavaScript API:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<head>",
+            "    <script async crossorigin ",
+            "      src=\"https://applepay.cdn-apple.com/jsapi/1.latest/apple-pay-sdk.js\">",
+            "    </script>",
+            "</head>"
+          ],
+          "metadata": {
+            "anchor": "4292393",
+            "title": "Listing 1"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The script tag contains the URL that loads the ",
+              "type": "text"
+            },
+            {
+              "code": "apple-pay-sdk.js",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", from the Apple Pay JS CDN. The script tag includes two additional attributes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An abbreviated version of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "crossorigin=”anonymous”",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", this attribute instructs the browser to connect to the Apple Pay JS CDN using anonymous credentials mode. This improves performance by allowing subsequent Apple Pay JS network requests to reuse the same HTTP/2 connection",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "crossorigin",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The attribute instructs the browser to immediately evaluate the script. This prevents ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "apple-pay-sdk.js",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " from blocking the page load, and initializes and loads the ApplePay JS libraries as soon as possible. Your app needs to wait for the callback function execution before interacting with the API.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "async",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, ensure that your website allows a Content Security Policy for Apple Pay JS to function properly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4292392",
+          "level": 3,
+          "text": "Add a standard Apple Wallet button",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display the button, add an ",
+              "type": "text"
+            },
+            {
+              "code": "apple-wallet-button",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag to your webpage and set the ",
+              "type": "text"
+            },
+            {
+              "code": "buttonstyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "compact",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "locale",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "onclick",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameters. For example, this call into the Apple Pay JavaScript library provides details necessary for rendering the button localized to the US, and uses the default compactness and style:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<style>",
+            "    apple-wallet-button {",
+            "        --apple-wallet-button-border-radius: 5px;",
+            "        --apple-wallet-button-height: 40px;",
+            "        --apple-wallet-button-width: 180px;",
+            "        --apple-wallet-button-padding: 0px 0px;",
+            "        --apple-wallet-button-box-sizing: content-box;",
+            "    }",
+            "</style>",
+            "<apple-wallet-button",
+            "    buttonstyle=\"black\"",
+            "    compact=\"true\"",
+            "    locale=\"en-US\"",
+            "    onclick=\"addOrder();\"",
+            " />"
+          ],
+          "metadata": {
+            "anchor": "4292391",
+            "title": "Listing 2"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-4292395",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-4292397",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for tips on generating the Order Package.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To protect user privacy, ensure the package URL the merchant system generates uses the same authenticated user session and implements the following policies, with regard to package URLs:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It’s not possible to guess the next order package URL automatically.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It’s not possible to scrape order packages anonymously.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It’s not possible for a user to download an order package that belongs to a different user, even if they find out the order package’s URL.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "4301006",
+          "level": 3,
+          "text": "Customize an Apple Wallet Button",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are several options for customizing the button’s attributes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "metadata": {
+            "anchor": "4301007",
+            "title": "Table 1"
+          },
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attribute",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Accepted Values",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "buttonstyle",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "code": "(required)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "black",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "white-border",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "white",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The button display style for either light mode or dark mode devices.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "compact",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "false",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Modifies the display style of the button to either have the default compact multi-line view or the single line view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "locale",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An BCP 47 language code, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "en-US",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The language and region the button uses.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "onclick",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A JavaScript function",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An inline function argument to trigger the distributable order package code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To customize the button’s styling, use the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "metadata": {
+            "anchor": "4301005",
+            "title": "Table 2"
+          },
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Atrribute",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "--apple-wallet-button-border-radius",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "number",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "This CSS property rounds the corners of an element’s outer border edge. You can set a single radius to make circular corners, or two radii to make elliptical corners.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "--apple-wallet-button-height",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "number",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "This CSS property specifies the height of an element. By default, the property defines the height of the content area. If you set ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "box-sizing",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to the value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "border-box",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", however, it instead determines the height of the border area.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "--apple-wallet-button-width",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "number",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "This CSS property sets an element’s width. By default, it sets the width of the content area, but if you set ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "box-sizing",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to the value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "border-box",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", it sets the width of the border area.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "--apple-wallet-button-padding",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "number",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "This CSS shorthand property sets the padding area on all four sides of an element at once.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "--apple-wallet-button-box-sizing",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "border-box",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " , ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "content-box",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "box-sizing",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " CSS property sets how the total width and height of an element is calculated.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4292400",
+          "level": 3,
+          "text": "Determine sizing requirements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For sizing requirements for the Track with Apple Wallet button, along with other design guidelines, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-4292399",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the Human Interface Guidelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Pay on the Web",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/adding_a_track_with_apple_wallet_button": {
+      "abstract": [
+        {
+          "text": "Configure and style an Apple Wallet Button to match your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/adding_a_track_with_apple_wallet_button",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Track with Apple Wallet button",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/adding_a_track_with_apple_wallet_button"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/adding_a_track_with_apple_wallet_button#4292391": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/adding_a_track_with_apple_wallet_button#4292391",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/adding_a_track_with_apple_wallet_button#4292391"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/adding_a_track_with_apple_wallet_button#4292393": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/adding_a_track_with_apple_wallet_button#4292393",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/adding_a_track_with_apple_wallet_button#4292393"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/adding_a_track_with_apple_wallet_button#4301005": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/adding_a_track_with_apple_wallet_button#4301005",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 2",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/adding_a_track_with_apple_wallet_button#4301005"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/adding_a_track_with_apple_wallet_button#4301007": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/adding_a_track_with_apple_wallet_button#4301007",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 1",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/adding_a_track_with_apple_wallet_button#4301007"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-4292395": {
+      "identifier": "link-4292395",
+      "kind": "article",
+      "role": "link",
+      "title": "Build a distributable order package",
+      "type": "section",
+      "url": "https://applepaydemo.apple.com/order-tracking#generatePayload"
+    },
+    "link-4292397": {
+      "identifier": "link-4292397",
+      "kind": "article",
+      "role": "link",
+      "title": "Apple Pay Order Tracking Demo",
+      "type": "topic",
+      "url": "https://applepaydemo.apple.com/order-tracking"
+    },
+    "link-4292399": {
+      "identifier": "link-4292399",
+      "kind": "article",
+      "role": "link",
+      "title": "Apple Pay",
+      "type": "topic",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/apple-pay"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/apple_pay_on_the_web/adding_a_track_with_apple_wallet_button"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

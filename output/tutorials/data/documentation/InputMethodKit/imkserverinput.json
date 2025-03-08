@@ -1,0 +1,878 @@
+{
+  "abstract": [
+    {
+      "code": "IMKServerInput",
+      "type": "codeVoice"
+    },
+    {
+      "text": " is an informal protocol that defines methods for receiving text events. This is intentionally not a formal protocol because there are three ways to receive events. An input method chooses one of the following approaches and implements the appropriate methods:",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/imkserverinput"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "InputMethodKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "IMKServerInput"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key binding. In this approach the system tries to map each key-down event to an action method that the input method has implemented.  If successful (action method found), the system calls ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "didCommandBySelector:client:",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".  If unsuccessful (action method not found), the system calls ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "inputText:client:",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".  For this approach you need to implement ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1385446-inputtext",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1385394-didcommand",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Text data only. In this approach, you opt to receive all key events without the key binding, and then unpack  the relevant text data.   Key events are broken down into the Unicodes, the key code that generated them, and modifier flags.  This data is then sent to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1385436-inputtext",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method, which you need to implement.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Handle all events. In this approach, you receive events directly from the Text Services Manager as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSEvent",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects. You must implement ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1385363-handle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSEvent": {
+      "abstract": [
+        {
+          "text": "An object that contains information about an input action, such as a mouse click or a key press.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSEvent",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSEvent"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1385360-candidates": {
+      "abstract": [
+        {
+          "text": "Returns an array of candidates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "candidates"
+        },
+        {
+          "kind": "text",
+          "text": "(Any!) -> [Any]!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1385360-candidates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "candidates(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1385360-candidates"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1385363-handle": {
+      "abstract": [
+        {
+          "text": "Handles key down and mouse events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "handle"
+        },
+        {
+          "kind": "text",
+          "text": "(NSEvent!, "
+        },
+        {
+          "kind": "identifier",
+          "text": "client"
+        },
+        {
+          "kind": "text",
+          "text": ": Any!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1385363-handle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handle(_:client:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1385363-handle"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1385394-didcommand": {
+      "abstract": [
+        {
+          "text": "Processes a command  generated by user action such as typing certain keys or pressing the mouse button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "didCommand"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": Selector!, "
+        },
+        {
+          "kind": "identifier",
+          "text": "client"
+        },
+        {
+          "kind": "text",
+          "text": ": Any!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1385394-didcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didCommand(by:client:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1385394-didcommand"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1385400-originalstring": {
+      "abstract": [
+        {
+          "text": "Return the string that consists of the precomposed Unicode characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "originalString"
+        },
+        {
+          "kind": "text",
+          "text": "(Any!) -> NSAttributedString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1385400-originalstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "originalString(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1385400-originalstring"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1385416-composedstring": {
+      "abstract": [
+        {
+          "text": "Return the current composed string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "composedString"
+        },
+        {
+          "kind": "text",
+          "text": "(Any!) -> Any!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1385416-composedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "composedString(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1385416-composedstring"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1385436-inputtext": {
+      "abstract": [
+        {
+          "text": "Receives Unicode, the key code that generated it, and any modifier flags.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputText"
+        },
+        {
+          "kind": "text",
+          "text": "(String!, "
+        },
+        {
+          "kind": "identifier",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "modifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "client"
+        },
+        {
+          "kind": "text",
+          "text": ": Any!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1385436-inputtext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputText(_:key:modifiers:client:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1385436-inputtext"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1385446-inputtext": {
+      "abstract": [
+        {
+          "text": "Handles key down events that do not map to an action method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputText"
+        },
+        {
+          "kind": "text",
+          "text": "(String!, "
+        },
+        {
+          "kind": "identifier",
+          "text": "client"
+        },
+        {
+          "kind": "text",
+          "text": ": Any!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1385446-inputtext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputText(_:client:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1385446-inputtext"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1385539-commitcomposition": {
+      "abstract": [
+        {
+          "text": "Informs the controller that the composition should be committed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "commitComposition"
+        },
+        {
+          "kind": "text",
+          "text": "(Any!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1385539-commitcomposition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commitComposition(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1385539-commitcomposition"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit": {
+      "abstract": [
+        {
+          "text": "Develop input methods and manage communication with client applications, candidates windows, and input method modes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "InputMethodKit",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKMouseHandling": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "IMKMouseHandling",
+          "type": "codeVoice"
+        },
+        {
+          "text": " protocol defines methods that your input method can implement to handle mouse events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IMKMouseHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKMouseHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IMKMouseHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "IMKMouseHandling",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkmousehandling"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKStateSetting": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "IMKStateSetting",
+          "type": "codeVoice"
+        },
+        {
+          "text": " protocol defines methods for setting or accessing values that indicate the state of an input method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IMKStateSetting"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKStateSetting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IMKStateSetting"
+        }
+      ],
+      "role": "symbol",
+      "title": "IMKStateSetting",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/imkstatesetting"
+    },
+    "doc://com.apple.inputmethodkit/documentation/InputMethodKit/info-dictionary-keys": {
+      "abstract": [
+        {
+          "text": "Constants for keys used to look up information in the info dictionary.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.inputmethodkit/documentation/InputMethodKit/info-dictionary-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Info Dictionary Keys",
+      "type": "topic",
+      "url": "/documentation/inputmethodkit/info-dictionary-keys"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Protocols",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKMouseHandling",
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKStateSetting"
+      ],
+      "title": "Protocols"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Supporting-Key-Binding",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1385446-inputtext",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1385394-didcommand"
+      ],
+      "title": "Supporting Key Binding"
+    },
+    {
+      "anchor": "Unpacking-Text-Data",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1385436-inputtext"
+      ],
+      "title": "Unpacking Text Data"
+    },
+    {
+      "anchor": "Receiving-Events-Directly-from-the-Text-Services-Manager",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1385363-handle"
+      ],
+      "title": "Receiving Events Directly from the Text Services Manager"
+    },
+    {
+      "anchor": "Committing-a-Composition",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1385539-commitcomposition"
+      ],
+      "title": "Committing a Composition"
+    },
+    {
+      "anchor": "Getting-Input-Strings-and-Candidates",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1385416-composedstring",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1385400-originalstring",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1385360-candidates"
+      ],
+      "title": "Getting Input Strings and Candidates"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.inputmethodkit/documentation/InputMethodKit/info-dictionary-keys"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Supporting-Key-Binding",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/objectivec/nsobject/1385446-inputtext",
+                "doc://com.apple.documentation/documentation/objectivec/nsobject/1385394-didcommand"
+              ],
+              "title": "Supporting Key Binding"
+            },
+            {
+              "anchor": "Unpacking-Text-Data",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/objectivec/nsobject/1385436-inputtext"
+              ],
+              "title": "Unpacking Text Data"
+            },
+            {
+              "anchor": "Receiving-Events-Directly-from-the-Text-Services-Manager",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/objectivec/nsobject/1385363-handle"
+              ],
+              "title": "Receiving Events Directly from the Text Services Manager"
+            },
+            {
+              "anchor": "Committing-a-Composition",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/objectivec/nsobject/1385539-commitcomposition"
+              ],
+              "title": "Committing a Composition"
+            },
+            {
+              "anchor": "Getting-Input-Strings-and-Candidates",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/objectivec/nsobject/1385416-composedstring",
+                "doc://com.apple.documentation/documentation/objectivec/nsobject/1385400-originalstring",
+                "doc://com.apple.documentation/documentation/objectivec/nsobject/1385360-candidates"
+              ],
+              "title": "Getting Input Strings and Candidates"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/info-dictionary-keys"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Protocols",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKMouseHandling",
+                "doc://com.apple.inputmethodkit/documentation/InputMethodKit/IMKStateSetting"
+              ],
+              "title": "Protocols"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11385539-commitcomposition/title",
+          "value": "commitComposition:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11385446-inputtext/title",
+          "value": "inputText:client:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11385394-didcommand/title",
+          "value": "didCommandBySelector:client:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11385400-originalstring/title",
+          "value": "originalString:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11385363-handle/title",
+          "value": "handleEvent:client:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKMouseHandling/title",
+          "value": "IMKMouseHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKMouseHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IMKMouseHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKMouseHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IMKMouseHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSEvent/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSEvent"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11385360-candidates/title",
+          "value": "candidates:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKStateSetting/title",
+          "value": "IMKStateSetting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKStateSetting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IMKStateSetting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.inputmethodkit~1documentation~1InputMethodKit~1IMKStateSetting/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IMKStateSetting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11385436-inputtext/title",
+          "value": "inputText:key:modifiers:client:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11385416-composedstring/title",
+          "value": "composedString:"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/inputmethodkit/imkserverinput"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/inputmethodkit/imkserverinput"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

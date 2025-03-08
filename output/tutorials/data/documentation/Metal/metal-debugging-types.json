@@ -1,0 +1,825 @@
+{
+  "abstract": [
+    {
+      "text": "Create capture managers and capture scopes, and review a GPU device’s log after it runs a command buffer.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/metal-debugging-types"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Metal Debugging Types"
+  },
+  "references": {
+    "Metal-Developer-Workflow-PageImage-card.png": {
+      "alt": null,
+      "identifier": "Metal-Developer-Workflow-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/713b476e42e48070365a2abf70bc49b0/Metal-Developer-Workflow-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e226f618b21dde7899eba5de3bd4641a/Metal-Developer-Workflow-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/Xcode/Analyzing-the-memory-usage-of-your-Metal-app": {
+      "abstract": [
+        {
+          "text": "Keep your app alive in the background by managing its memory footprint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/Analyzing-the-memory-usage-of-your-Metal-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing the memory usage of your Metal app",
+      "type": "topic",
+      "url": "/documentation/Xcode/Analyzing-the-memory-usage-of-your-Metal-app"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app": {
+      "abstract": [
+        {
+          "text": "Ensure consistent, smooth rendering by profiling your app’s frame time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing the performance of your Metal app",
+      "type": "topic",
+      "url": "/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/Metal-debugger": {
+      "abstract": [
+        {
+          "text": "Debug and profile your Metal workload with a GPU trace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/Metal-debugger",
+      "kind": "article",
+      "role": "article",
+      "title": "Metal debugger",
+      "type": "topic",
+      "url": "/documentation/Xcode/Metal-debugger"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/Metal-developer-workflows": {
+      "abstract": [
+        {
+          "text": "Locate and fix issues related to your app’s use of the Metal API and GPU functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/Metal-developer-workflows",
+      "images": [
+        {
+          "identifier": "Metal-Developer-Workflow-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Metal developer workflows",
+      "type": "topic",
+      "url": "/documentation/Xcode/Metal-developer-workflows"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCaptureDescriptor": {
+      "abstract": [
+        {
+          "text": "A configuration for a Metal capture session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCaptureDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCaptureDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCaptureDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCaptureDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcapturedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCaptureDestination": {
+      "abstract": [
+        {
+          "text": "The kinds of destinations for captured command data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCaptureDestination"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCaptureDestination",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCaptureDestination"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCaptureDestination",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcapturedestination"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCaptureError": {
+      "abstract": [
+        {
+          "text": "Errors returned by capture sessions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCaptureError"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCaptureError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCaptureError"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCaptureError",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcaptureerror"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCaptureErrorDomain": {
+      "abstract": [
+        {
+          "text": "The error domain for capture errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCaptureErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCaptureErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCaptureErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCaptureErrorDomain",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcaptureerrordomain"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCaptureManager": {
+      "abstract": [
+        {
+          "text": "An instance you use to capture Metal command data in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCaptureManager"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCaptureManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCaptureManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCaptureManager",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcapturemanager"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCaptureScope": {
+      "abstract": [
+        {
+          "text": "A protocol that defines custom boundaries for a GPU frame capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCaptureScope"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCaptureScope",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCaptureScope"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCaptureScope",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcapturescope"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunctionLog": {
+      "abstract": [
+        {
+          "text": "A log entry a Metal device generates when the it runs a command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFunctionLog"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunctionLog",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFunctionLog"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFunctionLog",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunctionlog"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLLogContainer-c.protocol": {
+      "abstract": [
+        {
+          "text": "A collection of logged messages, created when a Metal device runs a command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MTLLogContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLLogContainer-c.protocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLLogContainer",
+      "type": "topic",
+      "url": "/documentation/metal/mtllogcontainer-c.protocol"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLLogContainer-swift.struct": {
+      "abstract": [
+        {
+          "text": "A collection of logged messages, created when a Metal device runs a command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLLogContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLLogContainer-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLLogContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLLogContainer",
+      "type": "topic",
+      "url": "/documentation/metal/mtllogcontainer-swift.struct"
+    },
+    "doc://com.apple.metal/documentation/Metal/capturing-metal-commands-programmatically": {
+      "abstract": [
+        {
+          "text": "Invoke Metal’s frame capture from your app, then save the resulting GPU trace to a file or view it in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/capturing-metal-commands-programmatically",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Capturing Metal Commands Programmatically",
+      "type": "topic",
+      "url": "/documentation/metal/capturing-metal-commands-programmatically"
+    },
+    "doc://com.apple.metal/documentation/Metal/developing-metal-apps-that-run-in-simulator": {
+      "abstract": [
+        {
+          "text": "Prototype and test your Metal apps in Simulator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/developing-metal-apps-that-run-in-simulator",
+      "kind": "article",
+      "role": "article",
+      "title": "Developing Metal apps that run in Simulator",
+      "type": "topic",
+      "url": "/documentation/metal/developing-metal-apps-that-run-in-simulator"
+    },
+    "doc://com.apple.metal/documentation/Metal/gpu-counters-and-counter-sample-buffers": {
+      "abstract": [
+        {
+          "text": "Retrieve runtime data from a GPU device by sampling one or more of its counters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/gpu-counters-and-counter-sample-buffers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GPU Counters and Counter Sample Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/gpu-counters-and-counter-sample-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-your-games-graphics-performance-and-settings": {
+      "abstract": [
+        {
+          "text": "Fix performance glitches and develop default settings for smooth experiences on Apple platforms using the powerful suite of Metal development tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-your-games-graphics-performance-and-settings",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving your game’s graphics performance and settings",
+      "type": "topic",
+      "url": "/documentation/metal/improving-your-games-graphics-performance-and-settings"
+    },
+    "doc://com.apple.metal/documentation/Metal/supporting-simulator-in-a-metal-app": {
+      "abstract": [
+        {
+          "text": "Configure alternative render paths in your Metal app to enable running your app in Simulator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/supporting-simulator-in-a-metal-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting Simulator in a Metal app",
+      "type": "topic",
+      "url": "/documentation/metal/supporting-simulator-in-a-metal-app"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Developer-Tools",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/Xcode/Metal-developer-workflows",
+        "doc://com.apple.documentation/documentation/Xcode/Metal-debugger",
+        "doc://com.apple.metal/documentation/Metal/improving-your-games-graphics-performance-and-settings",
+        "doc://com.apple.metal/documentation/Metal/capturing-metal-commands-programmatically",
+        "doc://com.apple.metal/documentation/Metal/supporting-simulator-in-a-metal-app",
+        "doc://com.apple.documentation/documentation/Xcode/Analyzing-the-memory-usage-of-your-Metal-app",
+        "doc://com.apple.documentation/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app",
+        "doc://com.apple.metal/documentation/Metal/developing-metal-apps-that-run-in-simulator",
+        "doc://com.apple.metal/documentation/Metal/gpu-counters-and-counter-sample-buffers"
+      ],
+      "title": "Developer Tools"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Frame-Capture",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLCaptureDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLCaptureManager",
+        "doc://com.apple.metal/documentation/Metal/MTLCaptureDestination",
+        "doc://com.apple.metal/documentation/Metal/MTLCaptureScope"
+      ],
+      "title": "Frame Capture"
+    },
+    {
+      "anchor": "Capture-Errors",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLCaptureError",
+        "doc://com.apple.metal/documentation/Metal/MTLCaptureErrorDomain"
+      ],
+      "title": "Capture Errors"
+    },
+    {
+      "anchor": "Shader-Logs",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLFunctionLog",
+        "doc://com.apple.metal/documentation/Metal/MTLLogContainer-swift.struct"
+      ],
+      "title": "Shader Logs"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Frame-Capture",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLCaptureDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLCaptureManager",
+                "doc://com.apple.metal/documentation/Metal/MTLCaptureDestination",
+                "doc://com.apple.metal/documentation/Metal/MTLCaptureScope"
+              ],
+              "title": "Frame Capture"
+            },
+            {
+              "anchor": "Capture-Errors",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLCaptureError",
+                "doc://com.apple.metal/documentation/Metal/MTLCaptureErrorDomain"
+              ],
+              "title": "Capture Errors"
+            },
+            {
+              "anchor": "Shader-Logs",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLFunctionLog",
+                "doc://com.apple.metal/documentation/Metal/MTLLogContainer-c.protocol"
+              ],
+              "title": "Shader Logs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Developer-Tools",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/improving-your-games-graphics-performance-and-settings",
+                "doc://com.apple.metal/documentation/Metal/capturing-metal-commands-programmatically",
+                "doc://com.apple.metal/documentation/Metal/supporting-simulator-in-a-metal-app",
+                "doc://com.apple.metal/documentation/Metal/developing-metal-apps-that-run-in-simulator",
+                "doc://com.apple.metal/documentation/Metal/gpu-counters-and-counter-sample-buffers"
+              ],
+              "title": "Developer Tools"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager/title",
+          "value": "MTLCaptureManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCaptureManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCaptureManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureError/title",
+          "value": "MTLCaptureError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCaptureError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureError/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCaptureError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureErrorDomain/title",
+          "value": "MTLCaptureErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCaptureErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureDestination/title",
+          "value": "MTLCaptureDestination"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureDestination/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCaptureDestination"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureDestination/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCaptureDestination"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureScope/title",
+          "value": "MTLCaptureScope"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureScope/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCaptureScope"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureScope/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCaptureScope"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureDescriptor/title",
+          "value": "MTLCaptureDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCaptureDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCaptureDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCaptureDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionLog/title",
+          "value": "MTLFunctionLog"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionLog/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionLog"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunctionLog/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunctionLog"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/metal-debugging-types"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/metal-debugging-types"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

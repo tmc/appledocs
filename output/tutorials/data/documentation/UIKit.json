@@ -1,0 +1,1396 @@
+{
+  "abstract": [
+    {
+      "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "UIKit",
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "UIKit"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.uikit/documentation/UIKit/supporting-voiceover-in-your-app",
+        "doc://com.apple.uikit/documentation/UIKit/about-focus-interactions-for-apple-tv"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UIKit provides a variety of features for building apps, including components you can use to construct the core infrastructure of your iOS, iPadOS, or tvOS apps. The framework provides the window and view architecture for implementing your UI, the event-handling infrastructure for delivering Multi-Touch and other types of input to your app, and the main run loop for managing interactions between the user, the system, and your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4087315",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UIKit also includes support for animations, documents, drawing and printing, text management and display, search, app extensions, resource management, and getting information about the current device. You can also customize accessibility support, and localize your app’s interface for different languages, countries, or cultural regions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UIKit works seamlessly with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework, so you can implement parts of your UIKit app in SwiftUI or mix interface elements between the two frameworks. For example, you can place UIKit views and view controllers inside SwiftUI views, and vice versa.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To build a macOS app, you can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create an app that works across all of Apple’s platforms, or use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create an app for Mac only. Alternatively, you can bring your UIKit iPad app to the Mac with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/mac-catalyst",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Use UIKit classes only from your app’s main thread or main dispatch queue, unless otherwise indicated in the documentation for those classes. This restriction particularly applies to classes that derive from ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or that involve manipulating your app’s user interface in any way.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/AppKit"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/SwiftUI"
+    },
+    "doc://com.apple.documentation/documentation/Updates/UIKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to UIKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Updates/UIKit",
+      "kind": "article",
+      "role": "article",
+      "title": "UIKit updates",
+      "type": "topic",
+      "url": "/documentation/Updates/UIKit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSWritingToolsExclusionAttributeName": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSWritingToolsExclusionAttributeName"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSWritingToolsExclusionAttributeName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSWritingToolsExclusionAttributeName",
+      "type": "topic",
+      "url": "/documentation/uikit/nswritingtoolsexclusionattributename"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIConfigurationTextAttributesTransformer-swift.struct": {
+      "abstract": [
+        {
+          "text": "Defines a text transformation that can affect the visual appearance of a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIConfigurationTextAttributesTransformer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIConfigurationTextAttributesTransformer-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIConfigurationTextAttributesTransformer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIConfigurationTextAttributesTransformer",
+      "type": "topic",
+      "url": "/documentation/uikit/uiconfigurationtextattributestransformer-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder": {
+      "abstract": [
+        {
+          "text": "An abstract interface for responding to and handling events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIResponder"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIResponder"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIResponder",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIShadowProperties-c.class": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UIShadowProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIShadowProperties-c.class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIShadowProperties",
+      "type": "topic",
+      "url": "/documentation/uikit/uishadowproperties-c.class"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIShadowProperties-swift.struct": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIShadowProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIShadowProperties-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIShadowProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIShadowProperties",
+      "type": "topic",
+      "url": "/documentation/uikit/uishadowproperties-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextFormattingViewController": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextFormattingViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextFormattingViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextFormattingViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextFormattingViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextformattingviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/about-app-development-with-uikit": {
+      "abstract": [
+        {
+          "text": "Learn about the basic support that UIKit and Xcode provide for your iOS and tvOS apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/about-app-development-with-uikit",
+      "kind": "article",
+      "role": "article",
+      "title": "About App Development with UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit/about-app-development-with-uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/about-focus-interactions-for-apple-tv": {
+      "abstract": [
+        {
+          "text": "Design and implement intuitive control schemes for menus and interactive user interface layouts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/about-focus-interactions-for-apple-tv",
+      "kind": "article",
+      "role": "article",
+      "title": "About focus interactions for Apple TV",
+      "type": "topic",
+      "url": "/documentation/uikit/about-focus-interactions-for-apple-tv"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/accessibility-for-uikit": {
+      "abstract": [
+        {
+          "text": "Make your UIKit apps accessible to everyone who uses iOS and tvOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/accessibility-for-uikit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessibility for UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit/accessibility-for-uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/animation-and-haptics": {
+      "abstract": [
+        {
+          "text": "Provide feedback to users using view-based animations and haptics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/animation-and-haptics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Animation and haptics",
+      "type": "topic",
+      "url": "/documentation/uikit/animation-and-haptics"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/app-and-environment": {
+      "abstract": [
+        {
+          "text": "Manage life-cycle events and your app’s UI scenes, and get information about traits and the environment in which your app runs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and environment",
+      "type": "topic",
+      "url": "/documentation/uikit/app-and-environment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/app-extensions": {
+      "abstract": [
+        {
+          "text": "Extend your app’s basic functionality to other parts of the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/app-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App extensions",
+      "type": "topic",
+      "url": "/documentation/uikit/app-extensions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/appearance-customization": {
+      "abstract": [
+        {
+          "text": "Add Dark Mode support to your app, customize the appearance of bars, and use appearance proxies to modify your UI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/appearance-customization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Appearance customization",
+      "type": "topic",
+      "url": "/documentation/uikit/appearance-customization"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions": {
+      "abstract": [
+        {
+          "text": "Handle user interactions like double tap and squeeze on Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Pencil interactions",
+      "type": "topic",
+      "url": "/documentation/uikit/apple-pencil-interactions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/deprecated-symbols": {
+      "abstract": [
+        {
+          "text": "Review unsupported symbols and their replacements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/deprecated-symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated symbols",
+      "type": "topic",
+      "url": "/documentation/uikit/deprecated-symbols"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/documents-data-and-pasteboard": {
+      "abstract": [
+        {
+          "text": "Organize your app’s data and share that data on the pasteboard.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/documents-data-and-pasteboard",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Documents, data, and pasteboard",
+      "type": "topic",
+      "url": "/documentation/uikit/documents-data-and-pasteboard"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/drag-and-drop": {
+      "abstract": [
+        {
+          "text": "Bring drag and drop to your app by using interaction APIs with your views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/drag-and-drop",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Drag and drop",
+      "type": "topic",
+      "url": "/documentation/uikit/drag-and-drop"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/drawing": {
+      "abstract": [
+        {
+          "text": "Configure your app’s drawing environment using colors, renderers, draw paths, strings, and shadows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/drawing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Drawing",
+      "type": "topic",
+      "url": "/documentation/uikit/drawing"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation": {
+      "abstract": [
+        {
+          "text": "Navigate the interface of your UIKit app using a remote, game controller, or keyboard.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Focus-based navigation",
+      "type": "topic",
+      "url": "/documentation/uikit/focus-based-navigation"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handwriting-recognition": {
+      "abstract": [
+        {
+          "text": "Configure text fields and custom views that accept text to handle input from Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handwriting-recognition",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Handwriting recognition",
+      "type": "topic",
+      "url": "/documentation/uikit/handwriting-recognition"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/images-and-pdf": {
+      "abstract": [
+        {
+          "text": "Create and manage images, including those that use bitmap and PDF formats.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/images-and-pdf",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Images and PDF",
+      "type": "topic",
+      "url": "/documentation/uikit/images-and-pdf"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/interprocess-communication": {
+      "abstract": [
+        {
+          "text": "Display activity-based services to people.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/interprocess-communication",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Interprocess communication",
+      "type": "topic",
+      "url": "/documentation/uikit/interprocess-communication"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/keyboards-and-input": {
+      "abstract": [
+        {
+          "text": "Configure the system keyboard, create your own keyboards to handle input, or detect key presses on a physical keyboard.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/keyboards-and-input",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keyboards and input",
+      "type": "topic",
+      "url": "/documentation/uikit/keyboards-and-input"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/mac-catalyst": {
+      "abstract": [
+        {
+          "text": "Create a version of your iPad app that users can run on a Mac device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/mac-catalyst",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Mac Catalyst",
+      "type": "topic",
+      "url": "/documentation/uikit/mac-catalyst"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts": {
+      "abstract": [
+        {
+          "text": "Simplify interactions with your app using menu systems, contextual menus, Home Screen quick actions, and keyboard shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Menus and shortcuts",
+      "type": "topic",
+      "url": "/documentation/uikit/menus-and-shortcuts"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/pointer-interactions": {
+      "abstract": [
+        {
+          "text": "Support pointer interactions in your custom controls and views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/pointer-interactions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Pointer interactions",
+      "type": "topic",
+      "url": "/documentation/uikit/pointer-interactions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/printing": {
+      "abstract": [
+        {
+          "text": "Display the system print panels and manage the printing process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/printing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Printing",
+      "type": "topic",
+      "url": "/documentation/uikit/printing"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/protecting-the-user-s-privacy": {
+      "abstract": [
+        {
+          "text": "Secure personal data, and respect user preferences for how data is used.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/protecting-the-user-s-privacy",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Protecting the User’s Privacy",
+      "type": "topic",
+      "url": "/documentation/uikit/protecting-the-user-s-privacy"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/resource-management": {
+      "abstract": [
+        {
+          "text": "Manage the images, strings, storyboards, and nib files that you use to implement your app’s interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/resource-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resource management",
+      "type": "topic",
+      "url": "/documentation/uikit/resource-management"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/supporting-voiceover-in-your-app": {
+      "abstract": [
+        {
+          "text": "Add VoiceOver support to make your iOS app more accessible to users who are blind or have low vision.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/supporting-voiceover-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting VoiceOver in your app",
+      "type": "topic",
+      "url": "/documentation/uikit/supporting-voiceover-in-your-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/text-display-and-fonts": {
+      "abstract": [
+        {
+          "text": "Display text, manage fonts, and check spelling.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/text-display-and-fonts",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Text display and fonts",
+      "type": "topic",
+      "url": "/documentation/uikit/text-display-and-fonts"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/textkit": {
+      "abstract": [
+        {
+          "text": "Manage text storage and perform custom layout of text-based content in your app’s views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/textkit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "TextKit",
+      "type": "topic",
+      "url": "/documentation/uikit/textkit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures": {
+      "abstract": [
+        {
+          "text": "Encapsulate your app’s event-handling logic in gesture recognizers so that you can reuse that code throughout your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Touches, presses, and gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/touches-presses-and-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/uikit-constants": {
+      "abstract": [
+        {
+          "text": "This document describes constants that are used throughout the UIKit framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/uikit-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "UIKit Constants",
+      "type": "topic",
+      "url": "/documentation/uikit/uikit-constants"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/uikit-data-types": {
+      "abstract": [
+        {
+          "text": "The UIKit framework defines data types that are used in multiple places throughout the framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/uikit-data-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "UIKit Data Types",
+      "type": "topic",
+      "url": "/documentation/uikit/uikit-data-types"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/uikit-enumerations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/uikit-enumerations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "UIKit Enumerations",
+      "type": "topic",
+      "url": "/documentation/uikit/uikit-enumerations"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/uikit-functions": {
+      "abstract": [
+        {
+          "text": "The UIKit framework defines a number of functions, many of them used in graphics and drawing operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/uikit-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "UIKit Functions",
+      "type": "topic",
+      "url": "/documentation/uikit/uikit-functions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/view-controllers": {
+      "abstract": [
+        {
+          "text": "Manage your interface using view controllers and facilitate navigation around your app’s content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View controllers",
+      "type": "topic",
+      "url": "/documentation/uikit/view-controllers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/view-layout": {
+      "abstract": [
+        {
+          "text": "Use stack views to lay out the views of your interface automatically. Use Auto Layout when you require precise placement of your views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/view-layout",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View layout",
+      "type": "topic",
+      "url": "/documentation/uikit/view-layout"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/views-and-controls": {
+      "abstract": [
+        {
+          "text": "Present your content onscreen and define the interactions allowed with that content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Views and controls",
+      "type": "topic",
+      "url": "/documentation/uikit/views-and-controls"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/windows-and-screens": {
+      "abstract": [
+        {
+          "text": "Provide a container for your view hierarchies and other content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/windows-and-screens",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Windows and screens",
+      "type": "topic",
+      "url": "/documentation/uikit/windows-and-screens"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/writing-tools": {
+      "abstract": [
+        {
+          "text": "Add support for Writing Tools to your app’s text views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/writing-tools",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Writing Tools",
+      "type": "topic",
+      "url": "/documentation/uikit/writing-tools"
+    },
+    "media-4087315": {
+      "alt": "Image of an iPhone and iPad running apps that showcase UIKit user interface elements. The iPhone is running a sample app that shows a color picker and a navigation bar. The iPad is running a sample app that shows a split-view interface with an outline view, a list of recipes, and a detail view with information about a specific recipe.",
+      "identifier": "media-4087315",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/31e8bdfc42bedb19440cda0f0c4c513f/media-4087315@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/565389bad84bdfaa6976f12e08b39c5b/media-4087315~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/Updates/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/about-app-development-with-uikit",
+        "doc://com.apple.uikit/documentation/UIKit/protecting-the-user-s-privacy"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "abstract": [
+        {
+          "text": "UIKit manages your app’s interactions with the system and provides classes for you to manage your app’s data and resources.",
+          "type": "text"
+        }
+      ],
+      "anchor": "App-structure",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+        "doc://com.apple.uikit/documentation/UIKit/documents-data-and-pasteboard",
+        "doc://com.apple.uikit/documentation/UIKit/resource-management",
+        "doc://com.apple.uikit/documentation/UIKit/app-extensions",
+        "doc://com.apple.uikit/documentation/UIKit/interprocess-communication",
+        "doc://com.apple.uikit/documentation/UIKit/mac-catalyst"
+      ],
+      "title": "App structure"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Views help you display content onscreen and facilitate user interactions; view controllers help you manage views and the structure of your interface.",
+          "type": "text"
+        }
+      ],
+      "anchor": "User-interface",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+        "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+        "doc://com.apple.uikit/documentation/UIKit/view-layout",
+        "doc://com.apple.uikit/documentation/UIKit/appearance-customization",
+        "doc://com.apple.uikit/documentation/UIKit/animation-and-haptics",
+        "doc://com.apple.uikit/documentation/UIKit/windows-and-screens"
+      ],
+      "title": "User interface"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Responders and gesture recognizers help you handle touches and other events. Drag and drop, focus, peek and pop, and accessibility handle other user interactions.",
+          "type": "text"
+        }
+      ],
+      "anchor": "User-interactions",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts",
+        "doc://com.apple.uikit/documentation/UIKit/drag-and-drop",
+        "doc://com.apple.uikit/documentation/UIKit/pointer-interactions",
+        "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions",
+        "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation",
+        "doc://com.apple.uikit/documentation/UIKit/accessibility-for-uikit"
+      ],
+      "title": "User interactions"
+    },
+    {
+      "abstract": [
+        {
+          "text": "UIKit provides classes and protocols that help you configure your drawing environment and render your content.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Graphics-drawing-and-printing",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/images-and-pdf",
+        "doc://com.apple.uikit/documentation/UIKit/drawing",
+        "doc://com.apple.uikit/documentation/UIKit/printing"
+      ],
+      "title": "Graphics, drawing, and printing"
+    },
+    {
+      "abstract": [
+        {
+          "text": "In addition to text views that simplify displaying text in your app, UIKit provides custom text management and rendering that supports the system keyboards.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Text",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/text-display-and-fonts",
+        "doc://com.apple.uikit/documentation/UIKit/textkit",
+        "doc://com.apple.uikit/documentation/UIKit/keyboards-and-input",
+        "doc://com.apple.uikit/documentation/UIKit/writing-tools",
+        "doc://com.apple.uikit/documentation/UIKit/handwriting-recognition"
+      ],
+      "title": "Text"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Avoid using deprecated classes and protocols in your apps.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Deprecated",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/deprecated-symbols"
+      ],
+      "title": "Deprecated"
+    },
+    {
+      "anchor": "Structures",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIShadowProperties-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UIConfigurationTextAttributesTransformer-swift.struct"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Classes",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITextFormattingViewController"
+      ],
+      "title": "Classes"
+    },
+    {
+      "anchor": "Reference",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/uikit-enumerations",
+        "doc://com.apple.uikit/documentation/UIKit/uikit-constants",
+        "doc://com.apple.uikit/documentation/UIKit/uikit-data-types",
+        "doc://com.apple.uikit/documentation/UIKit/uikit-functions"
+      ],
+      "title": "Reference"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/Updates/UIKit",
+                "doc://com.apple.uikit/documentation/UIKit/about-app-development-with-uikit",
+                "doc://com.apple.uikit/documentation/UIKit/protecting-the-user-s-privacy"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "UIKit manages your app’s interactions with the system and provides classes for you to manage your app’s data and resources.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "App-structure",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+                "doc://com.apple.uikit/documentation/UIKit/documents-data-and-pasteboard",
+                "doc://com.apple.uikit/documentation/UIKit/resource-management",
+                "doc://com.apple.uikit/documentation/UIKit/app-extensions",
+                "doc://com.apple.uikit/documentation/UIKit/interprocess-communication",
+                "doc://com.apple.uikit/documentation/UIKit/mac-catalyst"
+              ],
+              "title": "App structure"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Views help you display content onscreen and facilitate user interactions; view controllers help you manage views and the structure of your interface.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "User-interface",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+                "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+                "doc://com.apple.uikit/documentation/UIKit/view-layout",
+                "doc://com.apple.uikit/documentation/UIKit/appearance-customization",
+                "doc://com.apple.uikit/documentation/UIKit/animation-and-haptics",
+                "doc://com.apple.uikit/documentation/UIKit/windows-and-screens"
+              ],
+              "title": "User interface"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Responders and gesture recognizers help you handle touches and other events. Drag and drop, focus, peek and pop, and accessibility handle other user interactions.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "User-interactions",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+                "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts",
+                "doc://com.apple.uikit/documentation/UIKit/drag-and-drop",
+                "doc://com.apple.uikit/documentation/UIKit/pointer-interactions",
+                "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions",
+                "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation",
+                "doc://com.apple.uikit/documentation/UIKit/accessibility-for-uikit"
+              ],
+              "title": "User interactions"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "UIKit provides classes and protocols that help you configure your drawing environment and render your content.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Graphics-drawing-and-printing",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/images-and-pdf",
+                "doc://com.apple.uikit/documentation/UIKit/drawing",
+                "doc://com.apple.uikit/documentation/UIKit/printing"
+              ],
+              "title": "Graphics, drawing, and printing"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "In addition to text views that simplify displaying text in your app, UIKit provides custom text management and rendering that supports the system keyboards.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Text",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/text-display-and-fonts",
+                "doc://com.apple.uikit/documentation/UIKit/textkit",
+                "doc://com.apple.uikit/documentation/UIKit/keyboards-and-input",
+                "doc://com.apple.uikit/documentation/UIKit/writing-tools",
+                "doc://com.apple.uikit/documentation/UIKit/handwriting-recognition"
+              ],
+              "title": "Text"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Avoid using deprecated classes and protocols in your apps.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Deprecated",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/deprecated-symbols"
+              ],
+              "title": "Deprecated"
+            },
+            {
+              "anchor": "Classes",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIShadowProperties-c.class",
+                "doc://com.apple.uikit/documentation/UIKit/UITextFormattingViewController"
+              ],
+              "title": "Classes"
+            },
+            {
+              "anchor": "Reference",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/uikit-enumerations",
+                "doc://com.apple.uikit/documentation/UIKit/uikit-constants",
+                "doc://com.apple.uikit/documentation/UIKit/uikit-data-types",
+                "doc://com.apple.uikit/documentation/UIKit/uikit-functions"
+              ],
+              "title": "Reference"
+            },
+            {
+              "anchor": "Variables",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/NSWritingToolsExclusionAttributeName"
+              ],
+              "title": "Variables"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder/title",
+          "value": "UIResponder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFormattingViewController/title",
+          "value": "UITextFormattingViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFormattingViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextFormattingViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextFormattingViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextFormattingViewController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

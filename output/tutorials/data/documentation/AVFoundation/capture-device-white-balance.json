@@ -1,0 +1,1850 @@
+{
+  "abstract": [
+    {
+      "text": "Configure the automatic white balance behavior of a camera, or manually control white balance settings.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capture-setup",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-white-balance"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "White Balance"
+  },
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice": {
+      "abstract": [
+        {
+          "text": "An object that represents a hardware or virtual capture device like a camera or microphone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/WhiteBalanceChromaticityValues": {
+      "abstract": [
+        {
+          "text": "A structure that defines CIE 1931 xy chromaticity values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WhiteBalanceChromaticityValues"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/WhiteBalanceChromaticityValues",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WhiteBalanceChromaticityValues"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice.WhiteBalanceChromaticityValues",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/whitebalancechromaticityvalues"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/WhiteBalanceGains": {
+      "abstract": [
+        {
+          "text": "A structure that defines RGB white balance gain values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WhiteBalanceGains"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/WhiteBalanceGains",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WhiteBalanceGains"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice.WhiteBalanceGains",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/whitebalancegains"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/WhiteBalanceMode-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants to specify the white balance mode of a capture device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WhiteBalanceMode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/WhiteBalanceMode-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WhiteBalanceMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice.WhiteBalanceMode",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/whitebalancemode-swift.enum"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/WhiteBalanceTemperatureAndTintValues": {
+      "abstract": [
+        {
+          "text": "A structure that defines temperature and tint values correlated to a white-balance color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WhiteBalanceTemperatureAndTintValues"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/WhiteBalanceTemperatureAndTintValues",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WhiteBalanceTemperatureAndTintValues"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVCaptureDevice.WhiteBalanceTemperatureAndTintValues",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/whitebalancetemperatureandtintvalues"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/chromaticityValues(for:)": {
+      "abstract": [
+        {
+          "text": "Converts device-specific white balance RGB gain values to device-independent chromaticity values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "chromaticityValues"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@AVCaptureWhiteBalanceGains",
+          "text": "WhiteBalanceGains"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@AVCaptureWhiteBalanceChromaticityValues",
+          "text": "WhiteBalanceChromaticityValues"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/chromaticityValues(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "chromaticityValuesForDeviceWhiteBalanceGains:"
+        }
+      ],
+      "role": "symbol",
+      "title": "chromaticityValues(for:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/chromaticityvalues(for:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/deviceWhiteBalanceGains": {
+      "abstract": [
+        {
+          "text": "The current device-specific RGB white balance gain values in use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceWhiteBalanceGains"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@AVCaptureWhiteBalanceGains",
+          "text": "WhiteBalanceGains"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/deviceWhiteBalanceGains",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deviceWhiteBalanceGains"
+        }
+      ],
+      "role": "symbol",
+      "title": "deviceWhiteBalanceGains",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/devicewhitebalancegains"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/deviceWhiteBalanceGains(for:)-3wtsa": {
+      "abstract": [
+        {
+          "text": "Converts device-independent temperature and tint values to device-specific white balance RGB gain values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceWhiteBalanceGains"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@AVCaptureWhiteBalanceTemperatureAndTintValues",
+          "text": "WhiteBalanceTemperatureAndTintValues"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@AVCaptureWhiteBalanceGains",
+          "text": "WhiteBalanceGains"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/deviceWhiteBalanceGains(for:)-3wtsa",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deviceWhiteBalanceGainsForTemperatureAndTintValues:"
+        }
+      ],
+      "role": "symbol",
+      "title": "deviceWhiteBalanceGains(for:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/devicewhitebalancegains(for:)-3wtsa"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/deviceWhiteBalanceGains(for:)-9gdtw": {
+      "abstract": [
+        {
+          "text": "Converts device-independent chromaticity values to device-specific white balance RGB gain values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deviceWhiteBalanceGains"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@AVCaptureWhiteBalanceChromaticityValues",
+          "text": "WhiteBalanceChromaticityValues"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@AVCaptureWhiteBalanceGains",
+          "text": "WhiteBalanceGains"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/deviceWhiteBalanceGains(for:)-9gdtw",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deviceWhiteBalanceGainsForChromaticityValues:"
+        }
+      ],
+      "role": "symbol",
+      "title": "deviceWhiteBalanceGains(for:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/devicewhitebalancegains(for:)-9gdtw"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/grayWorldDeviceWhiteBalanceGains": {
+      "abstract": [
+        {
+          "text": "The current device-specific white balance values required for a neutral gray white point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "grayWorldDeviceWhiteBalanceGains"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@AVCaptureWhiteBalanceGains",
+          "text": "WhiteBalanceGains"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/grayWorldDeviceWhiteBalanceGains",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "grayWorldDeviceWhiteBalanceGains"
+        }
+      ],
+      "role": "symbol",
+      "title": "grayWorldDeviceWhiteBalanceGains",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/grayworlddevicewhitebalancegains"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isAdjustingWhiteBalance": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the device is currently adjusting the white balance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAdjustingWhiteBalance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isAdjustingWhiteBalance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "adjustingWhiteBalance"
+        }
+      ],
+      "role": "symbol",
+      "title": "isAdjustingWhiteBalance",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/isadjustingwhitebalance"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isLockingWhiteBalanceWithCustomDeviceGainsSupported": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the device supports locking white balance to specific gain values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isLockingWhiteBalanceWithCustomDeviceGainsSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isLockingWhiteBalanceWithCustomDeviceGainsSupported",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lockingWhiteBalanceWithCustomDeviceGainsSupported"
+        }
+      ],
+      "role": "symbol",
+      "title": "isLockingWhiteBalanceWithCustomDeviceGainsSupported",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/islockingwhitebalancewithcustomdevicegainssupported"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isSubjectAreaChangeMonitoringEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the device monitors the subject area for changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSubjectAreaChangeMonitoringEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isSubjectAreaChangeMonitoringEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "subjectAreaChangeMonitoringEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isSubjectAreaChangeMonitoringEnabled",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/issubjectareachangemonitoringenabled"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isWhiteBalanceModeSupported(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the device supports the specified white balance mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isWhiteBalanceModeSupported"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVCaptureWhiteBalanceMode",
+          "text": "WhiteBalanceMode"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isWhiteBalanceModeSupported(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isWhiteBalanceModeSupported:"
+        }
+      ],
+      "role": "symbol",
+      "title": "isWhiteBalanceModeSupported(_:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/iswhitebalancemodesupported(_:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/lockForConfiguration()": {
+      "abstract": [
+        {
+          "text": "Requests exclusive access to configure device hardware properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockForConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/lockForConfiguration()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lockForConfiguration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "lockForConfiguration()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/lockforconfiguration()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/maxWhiteBalanceGain": {
+      "abstract": [
+        {
+          "text": "The maximum supported value to which you can set a color channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maxWhiteBalanceGain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/maxWhiteBalanceGain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maxWhiteBalanceGain"
+        }
+      ],
+      "role": "symbol",
+      "title": "maxWhiteBalanceGain",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/maxwhitebalancegain"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/setWhiteBalanceModeLocked(with:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Sets the white balance to locked mode with the specified white balance gains.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setWhiteBalanceModeLocked"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@AVCaptureWhiteBalanceGains",
+          "text": "WhiteBalanceGains"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/setWhiteBalanceModeLocked(with:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setWhiteBalanceModeLocked(with:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/setwhitebalancemodelocked(with:completionhandler:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/subjectAreaDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "A notification the system posts when a capture device detects a substantial change to the video subject area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subjectAreaDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/subjectAreaDidChangeNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDeviceSubjectAreaDidChangeNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "subjectAreaDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/subjectareadidchangenotification"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/temperatureAndTintValues(for:)": {
+      "abstract": [
+        {
+          "text": "Converts device-specific white balance RGB gain values to device-independent temperature and tint values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "temperatureAndTintValues"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@AVCaptureWhiteBalanceGains",
+          "text": "WhiteBalanceGains"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@AVCaptureWhiteBalanceTemperatureAndTintValues",
+          "text": "WhiteBalanceTemperatureAndTintValues"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/temperatureAndTintValues(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "temperatureAndTintValuesForDeviceWhiteBalanceGains:"
+        }
+      ],
+      "role": "symbol",
+      "title": "temperatureAndTintValues(for:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/temperatureandtintvalues(for:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/unlockForConfiguration()": {
+      "abstract": [
+        {
+          "text": "Releases exclusive control over device hardware properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unlockForConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/unlockForConfiguration()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unlockForConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "unlockForConfiguration()",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/unlockforconfiguration()"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/whiteBalanceMode-swift.property": {
+      "abstract": [
+        {
+          "text": "The current white balance mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "whiteBalanceMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVCaptureWhiteBalanceMode",
+          "text": "WhiteBalanceMode"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/whiteBalanceMode-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "whiteBalanceMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "whiteBalanceMode",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avcapturedevice/whitebalancemode-swift.property"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-color": {
+      "abstract": [
+        {
+          "text": "Manage HDR and color space settings for a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-color",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Color",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capture-device-color"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-exposure": {
+      "abstract": [
+        {
+          "text": "Configure the automatic exposure behavior of a camera, or manually control its exposure settings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-exposure",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Exposure",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capture-device-exposure"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-focus": {
+      "abstract": [
+        {
+          "text": "Configure the automatic focus behavior of a camera, or manually set its lens position.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-focus",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Focus",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capture-device-focus"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-formats": {
+      "abstract": [
+        {
+          "text": "Configure capture formats and camera frame rates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-formats",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Formats",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capture-device-formats"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-lighting": {
+      "abstract": [
+        {
+          "text": "Configure the device flash, torch, and low light settings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-lighting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Lighting",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capture-device-lighting"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-zoom": {
+      "abstract": [
+        {
+          "text": "Configure device zooming behavior and inspect hardware capabilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-zoom",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Zoom",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capture-device-zoom"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/capture-setup": {
+      "abstract": [
+        {
+          "text": "Configure built-in cameras and microphones, and external capture devices, for media capture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/capture-setup",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Capture setup",
+      "type": "topic",
+      "url": "/documentation/avfoundation/capture-setup"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-Camera-Hardware",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/lockForConfiguration()",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/unlockForConfiguration()",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isSubjectAreaChangeMonitoringEnabled",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/subjectAreaDidChangeNotification",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-formats",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-focus",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-exposure",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-lighting",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-color",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-zoom"
+      ],
+      "title": "Configuring Camera Hardware"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Configuring-Automatic-White-Balance",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isWhiteBalanceModeSupported(_:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/whiteBalanceMode-swift.property",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/WhiteBalanceMode-swift.enum"
+      ],
+      "title": "Configuring Automatic White Balance"
+    },
+    {
+      "anchor": "Monitoring-White-Balance-Changes",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isAdjustingWhiteBalance"
+      ],
+      "title": "Monitoring White Balance Changes"
+    },
+    {
+      "anchor": "Inspecting-Gain-Levels",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/deviceWhiteBalanceGains",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/grayWorldDeviceWhiteBalanceGains",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/maxWhiteBalanceGain"
+      ],
+      "title": "Inspecting Gain Levels"
+    },
+    {
+      "anchor": "Performing-Conversions",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/chromaticityValues(for:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/temperatureAndTintValues(for:)",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/deviceWhiteBalanceGains(for:)-9gdtw",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/deviceWhiteBalanceGains(for:)-3wtsa",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/WhiteBalanceGains",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/WhiteBalanceChromaticityValues",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/WhiteBalanceTemperatureAndTintValues"
+      ],
+      "title": "Performing Conversions"
+    },
+    {
+      "anchor": "Setting-White-Balance-Manually",
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isLockingWhiteBalanceWithCustomDeviceGainsSupported",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/setWhiteBalanceModeLocked(with:completionHandler:)"
+      ],
+      "title": "Setting White Balance Manually"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Configuring-Automatic-White-Balance",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isWhiteBalanceModeSupported(_:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/whiteBalanceMode-swift.property",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/WhiteBalanceMode-swift.enum"
+              ],
+              "title": "Configuring Automatic White Balance"
+            },
+            {
+              "anchor": "Monitoring-White-Balance-Changes",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isAdjustingWhiteBalance"
+              ],
+              "title": "Monitoring White Balance Changes"
+            },
+            {
+              "anchor": "Inspecting-Gain-Levels",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/deviceWhiteBalanceGains",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/grayWorldDeviceWhiteBalanceGains",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/maxWhiteBalanceGain"
+              ],
+              "title": "Inspecting Gain Levels"
+            },
+            {
+              "anchor": "Performing-Conversions",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/chromaticityValues(for:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/temperatureAndTintValues(for:)",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/deviceWhiteBalanceGains(for:)-9gdtw",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/deviceWhiteBalanceGains(for:)-3wtsa",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/WhiteBalanceGains",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/WhiteBalanceChromaticityValues",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/WhiteBalanceTemperatureAndTintValues"
+              ],
+              "title": "Performing Conversions"
+            },
+            {
+              "anchor": "Setting-White-Balance-Manually",
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isLockingWhiteBalanceWithCustomDeviceGainsSupported",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/setWhiteBalanceModeLocked(with:completionHandler:)"
+              ],
+              "title": "Setting White Balance Manually"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Configuring-Camera-Hardware",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/lockForConfiguration()",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/unlockForConfiguration()",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/isSubjectAreaChangeMonitoringEnabled",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVCaptureDevice/subjectAreaDidChangeNotification",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-formats",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-focus",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-exposure",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-lighting",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-color",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/capture-device-zoom"
+              ],
+              "title": "Configuring Camera Hardware"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1setWhiteBalanceModeLocked(with:completionHandler:)/title",
+          "value": "setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1setWhiteBalanceModeLocked(with:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1deviceWhiteBalanceGains/title",
+          "value": "deviceWhiteBalanceGains"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1deviceWhiteBalanceGains/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "deviceWhiteBalanceGains"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isLockingWhiteBalanceWithCustomDeviceGainsSupported/title",
+          "value": "lockingWhiteBalanceWithCustomDeviceGainsSupported"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isLockingWhiteBalanceWithCustomDeviceGainsSupported/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lockingWhiteBalanceWithCustomDeviceGainsSupported"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1chromaticityValues(for:)/title",
+          "value": "chromaticityValuesForDeviceWhiteBalanceGains:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1chromaticityValues(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "chromaticityValuesForDeviceWhiteBalanceGains:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1deviceWhiteBalanceGains(for:)-3wtsa/title",
+          "value": "deviceWhiteBalanceGainsForTemperatureAndTintValues:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1deviceWhiteBalanceGains(for:)-3wtsa/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "deviceWhiteBalanceGainsForTemperatureAndTintValues:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1WhiteBalanceTemperatureAndTintValues/title",
+          "value": "AVCaptureWhiteBalanceTemperatureAndTintValues"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1WhiteBalanceTemperatureAndTintValues/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureWhiteBalanceTemperatureAndTintValues"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1WhiteBalanceTemperatureAndTintValues/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureWhiteBalanceTemperatureAndTintValues"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1WhiteBalanceGains/title",
+          "value": "AVCaptureWhiteBalanceGains"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1WhiteBalanceGains/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureWhiteBalanceGains"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1WhiteBalanceGains/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureWhiteBalanceGains"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1WhiteBalanceChromaticityValues/title",
+          "value": "AVCaptureWhiteBalanceChromaticityValues"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1WhiteBalanceChromaticityValues/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureWhiteBalanceChromaticityValues"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1WhiteBalanceChromaticityValues/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureWhiteBalanceChromaticityValues"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1whiteBalanceMode-swift.property/title",
+          "value": "whiteBalanceMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1whiteBalanceMode-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "whiteBalanceMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1deviceWhiteBalanceGains(for:)-9gdtw/title",
+          "value": "deviceWhiteBalanceGainsForChromaticityValues:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1deviceWhiteBalanceGains(for:)-9gdtw/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "deviceWhiteBalanceGainsForChromaticityValues:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isAdjustingWhiteBalance/title",
+          "value": "adjustingWhiteBalance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isAdjustingWhiteBalance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "adjustingWhiteBalance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isSubjectAreaChangeMonitoringEnabled/title",
+          "value": "subjectAreaChangeMonitoringEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isSubjectAreaChangeMonitoringEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "subjectAreaChangeMonitoringEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isWhiteBalanceModeSupported(_:)/title",
+          "value": "isWhiteBalanceModeSupported:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1isWhiteBalanceModeSupported(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "isWhiteBalanceModeSupported:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1grayWorldDeviceWhiteBalanceGains/title",
+          "value": "grayWorldDeviceWhiteBalanceGains"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1grayWorldDeviceWhiteBalanceGains/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "grayWorldDeviceWhiteBalanceGains"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1temperatureAndTintValues(for:)/title",
+          "value": "temperatureAndTintValuesForDeviceWhiteBalanceGains:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1temperatureAndTintValues(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "temperatureAndTintValuesForDeviceWhiteBalanceGains:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1maxWhiteBalanceGain/title",
+          "value": "maxWhiteBalanceGain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1maxWhiteBalanceGain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maxWhiteBalanceGain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1lockForConfiguration()/title",
+          "value": "lockForConfiguration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1lockForConfiguration()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "lockForConfiguration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1subjectAreaDidChangeNotification/title",
+          "value": "AVCaptureDeviceSubjectAreaDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1subjectAreaDidChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceSubjectAreaDidChangeNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1WhiteBalanceMode-swift.enum/title",
+          "value": "AVCaptureWhiteBalanceMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1WhiteBalanceMode-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureWhiteBalanceMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1WhiteBalanceMode-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureWhiteBalanceMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1unlockForConfiguration()/title",
+          "value": "unlockForConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice~1unlockForConfiguration()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unlockForConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/title",
+          "value": "AVCaptureDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVCaptureDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevice"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/capture-device-white-balance"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/capture-device-white-balance"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

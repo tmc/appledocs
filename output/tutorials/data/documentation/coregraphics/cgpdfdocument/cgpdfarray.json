@@ -1,0 +1,765 @@
+{
+  "abstract": [
+    {
+      "text": "An array structure within a PDF document.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coregraphics",
+        "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfarray"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1666287,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Graphics"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "CGPDFArray"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "PDF arrays may be heterogeneous—that is, they may contain any other PDF objects, including PDF strings, PDF dictionaries, and other PDF arrays.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many ",
+              "type": "text"
+            },
+            {
+              "code": "CGPDFArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functions to retrieve values from a PDF array take the form:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "bool CGPDFArrayGet<DataType> (",
+            " CGPDFArrayRef array,",
+            " size_t index,",
+            " <DataType>Ref *value",
+            ");"
+          ],
+          "metadata": {
+            "anchor": "1966732",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These functions test the data type of the object at the specified index. If the object is not of the expected type, the function returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ". If the object is of the expected type, the function returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", and the object is passed back in the ",
+              "type": "text"
+            },
+            {
+              "code": "value",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This type is not derived from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cftyperef",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and therefore there are no functions for retaining and releasing it. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgpdfarrayref",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects exist only as constituent parts of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, and they are managed by their container.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1719815": {
+      "identifier": "devLink-1719815",
+      "title": "Quartz 2D Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001066"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cftyperef": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cftyperef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFTypeRef",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cftyperef"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Graphics",
+      "type": "topic",
+      "url": "/documentation/coregraphics"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1454139-cgpdfarraygetdictionary": {
+      "abstract": [
+        {
+          "text": "Returns whether an object at a given index in a PDF array is a PDF dictionary and, if so, retrieves that dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGPDFArrayGetDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "(CGPDFArrayRef, Int, UnsafeMutablePointer<CGPDFDictionaryRef?>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1454139-cgpdfarraygetdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPDFArrayGetDictionary(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1454139-cgpdfarraygetdictionary"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1454424-cgpdfarraygetstream": {
+      "abstract": [
+        {
+          "text": "Returns whether an object at a given index in a PDF array is a PDF stream and, if so, retrieves that stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGPDFArrayGetStream"
+        },
+        {
+          "kind": "text",
+          "text": "(CGPDFArrayRef, Int, UnsafeMutablePointer<CGPDFStreamRef?>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1454424-cgpdfarraygetstream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPDFArrayGetStream(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1454424-cgpdfarraygetstream"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1454504-cgpdfarraygetboolean": {
+      "abstract": [
+        {
+          "text": "Returns whether an object at a given index in a PDF array is a PDF Boolean and, if so, retrieves that Boolean.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGPDFArrayGetBoolean"
+        },
+        {
+          "kind": "text",
+          "text": "(CGPDFArrayRef, Int, UnsafeMutablePointer<CGPDFBoolean>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1454504-cgpdfarraygetboolean",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPDFArrayGetBoolean(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1454504-cgpdfarraygetboolean"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1454834-cgpdfarraygetarray": {
+      "abstract": [
+        {
+          "text": "Returns whether an object at a given index in a PDF array is another PDF array and, if so, retrieves that array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGPDFArrayGetArray"
+        },
+        {
+          "kind": "text",
+          "text": "(CGPDFArrayRef, Int, UnsafeMutablePointer<CGPDFArrayRef?>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1454834-cgpdfarraygetarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPDFArrayGetArray(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1454834-cgpdfarraygetarray"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455034-cgpdfarraygetname": {
+      "abstract": [
+        {
+          "text": "Returns whether an object at a given index in a PDF array is a PDF name reference (represented as a constant C string) and, if so, retrieves that name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGPDFArrayGetName"
+        },
+        {
+          "kind": "text",
+          "text": "(CGPDFArrayRef, Int, UnsafeMutablePointer<UnsafePointer<CChar>?>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455034-cgpdfarraygetname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPDFArrayGetName(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455034-cgpdfarraygetname"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455207-cgpdfarraygetcount": {
+      "abstract": [
+        {
+          "text": "Returns the number of items in a PDF array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGPDFArrayGetCount"
+        },
+        {
+          "kind": "text",
+          "text": "(CGPDFArrayRef) -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455207-cgpdfarraygetcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPDFArrayGetCount(_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455207-cgpdfarraygetcount"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1455374-cgpdfarraygetnumber": {
+      "abstract": [
+        {
+          "text": "Returns whether an object at a given index in a PDF array is a PDF number and, if so, retrieves that object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGPDFArrayGetNumber"
+        },
+        {
+          "kind": "text",
+          "text": "(CGPDFArrayRef, Int, UnsafeMutablePointer<CGPDFReal>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1455374-cgpdfarraygetnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPDFArrayGetNumber(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1455374-cgpdfarraygetnumber"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1456053-cgpdfarraygetinteger": {
+      "abstract": [
+        {
+          "text": "Returns whether an object at a given index in a PDF array is a PDF integer and, if so, retrieves that object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGPDFArrayGetInteger"
+        },
+        {
+          "kind": "text",
+          "text": "(CGPDFArrayRef, Int, UnsafeMutablePointer<CGPDFInteger>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1456053-cgpdfarraygetinteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPDFArrayGetInteger(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1456053-cgpdfarraygetinteger"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1456104-cgpdfarraygetstring": {
+      "abstract": [
+        {
+          "text": "Returns whether an object at a given index in a PDF array is a PDF string and, if so, retrieves that string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGPDFArrayGetString"
+        },
+        {
+          "kind": "text",
+          "text": "(CGPDFArrayRef, Int, UnsafeMutablePointer<CGPDFStringRef?>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1456104-cgpdfarraygetstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPDFArrayGetString(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1456104-cgpdfarraygetstring"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1456173-cgpdfarraygetnull": {
+      "abstract": [
+        {
+          "text": "Returns whether an object at a given index in a Quartz PDF array is a PDF null.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGPDFArrayGetNull"
+        },
+        {
+          "kind": "text",
+          "text": "(CGPDFArrayRef, Int) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1456173-cgpdfarraygetnull",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPDFArrayGetNull(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1456173-cgpdfarraygetnull"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1456631-cgpdfarraygetobject": {
+      "abstract": [
+        {
+          "text": "Returns whether an object at a given index in a PDF array is a PDF object and, if so, retrieves that object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGPDFArrayGetObject"
+        },
+        {
+          "kind": "text",
+          "text": "(CGPDFArrayRef, Int, UnsafeMutablePointer<CGPDFObjectRef?>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1456631-cgpdfarraygetobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPDFArrayGetObject(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1456631-cgpdfarraygetobject"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgpdfarrayref": {
+      "abstract": [
+        {
+          "text": "An opaque type that encapsulates a PDF array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGPDFArrayRef"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgpdfarrayref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPDFArrayRef",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgpdfarrayref"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPDFDocument",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgpdfdocument"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfarray": {
+      "abstract": [
+        {
+          "text": "An array structure within a PDF document.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfarray",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CGPDFArray",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgpdfdocument/cgpdfarray"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfarray#1966732": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfarray#1966732",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/coregraphics/cgpdfdocument/cgpdfarray#1966732"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfcontentstream": {
+      "abstract": [
+        {
+          "text": "A representation of one or more content data streams in a PDF page.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfcontentstream",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CGPDFContentStream",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgpdfdocument/cgpdfcontentstream"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfdictionary": {
+      "abstract": [
+        {
+          "text": "A dictionary structure within a PDF document.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfdictionary",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CGPDFDictionary",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgpdfdocument/cgpdfdictionary"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfobject": {
+      "abstract": [
+        {
+          "text": "An object representing content within a PDF document.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfobject",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CGPDFObject",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgpdfdocument/cgpdfobject"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfoperatortable": {
+      "abstract": [
+        {
+          "text": "A set of callback functions for operators used when scanning content in a PDF document.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfoperatortable",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CGPDFOperatorTable",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgpdfdocument/cgpdfoperatortable"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfpage": {
+      "abstract": [
+        {
+          "text": "A page in a PDF document.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfpage",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CGPDFPage",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgpdfdocument/cgpdfpage"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfscanner": {
+      "abstract": [
+        {
+          "text": "A parser object for handling content and operators in a PDF content stream.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfscanner",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CGPDFScanner",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgpdfdocument/cgpdfscanner"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfstream": {
+      "abstract": [
+        {
+          "text": "A stream or sequence of data bytes in a PDF document.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfstream",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CGPDFStream",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgpdfdocument/cgpdfstream"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfstring": {
+      "abstract": [
+        {
+          "text": "A text string in a PDF document.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfstring",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CGPDFString",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgpdfdocument/cgpdfstring"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfpage",
+        "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfobject",
+        "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfstream",
+        "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfstring",
+        "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfscanner",
+        "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfdictionary",
+        "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfcontentstream",
+        "doc://com.apple.documentation/documentation/coregraphics/cgpdfdocument/cgpdfoperatortable"
+      ],
+      "title": "Abstract Types for PDF Document Content"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "devLink-1719815"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1677201",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coregraphics/1454834-cgpdfarraygetarray",
+        "doc://com.apple.documentation/documentation/coregraphics/1454504-cgpdfarraygetboolean",
+        "doc://com.apple.documentation/documentation/coregraphics/1455207-cgpdfarraygetcount",
+        "doc://com.apple.documentation/documentation/coregraphics/1454139-cgpdfarraygetdictionary",
+        "doc://com.apple.documentation/documentation/coregraphics/1456053-cgpdfarraygetinteger",
+        "doc://com.apple.documentation/documentation/coregraphics/1455034-cgpdfarraygetname",
+        "doc://com.apple.documentation/documentation/coregraphics/1456173-cgpdfarraygetnull",
+        "doc://com.apple.documentation/documentation/coregraphics/1455374-cgpdfarraygetnumber",
+        "doc://com.apple.documentation/documentation/coregraphics/1456631-cgpdfarraygetobject",
+        "doc://com.apple.documentation/documentation/coregraphics/1454424-cgpdfarraygetstream",
+        "doc://com.apple.documentation/documentation/coregraphics/1456104-cgpdfarraygetstring"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Data from a PDF Array"
+    },
+    {
+      "anchor": "1666416",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coregraphics/cgpdfarrayref"
+      ],
+      "kind": "taskGroup",
+      "title": "Data Types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coregraphics/cgpdfarray",
+        "documentation/coregraphics/cgpdfdocumentref/cgpdfarray"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coregraphics/cgpdfdocument/cgpdfarray"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

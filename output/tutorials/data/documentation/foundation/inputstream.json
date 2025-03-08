@@ -1,0 +1,849 @@
+{
+  "abstract": [
+    {
+      "text": "A stream that provides read-only stream functionality.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/inputstream"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1414582,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSInputStream",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "InputStream"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.3",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "InputStream"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "InputStream"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/stream",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSStream",
+              "text": "Stream"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/inputstream",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is “toll-free bridged” with its Core Foundation counterpart, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfreadstream",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information on toll-free bridging, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1745091",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1651093",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSInputStream",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is an abstract superclass of a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "class cluster",
+                  "type": "text"
+                }
+              ],
+              "type": "newTerm"
+            },
+            {
+              "text": " consisting of concrete subclasses of ",
+              "type": "text"
+            },
+            {
+              "code": "NSStream",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that provide standard read-only access to stream data. Although ",
+              "type": "text"
+            },
+            {
+              "code": "NSInputStream",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is probably sufficient for most situations requiring access to stream data, you can create a subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSInputStream",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if you want more specialized behavior (for example, you want to record statistics on the data in a stream).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1651097",
+          "level": 4,
+          "text": "Methods to Override",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSInputStream",
+              "type": "codeVoice"
+            },
+            {
+              "text": " you may have to implement initializers for the type of stream data supported and suitably re-implement existing initializers. You must also provide complete implementations of the following methods:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/inputstream/1411544-read",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From the current read index, take up to the number of bytes specified in the second parameter from the stream and place them in the client-supplied buffer (first parameter). The buffer must be of the size specified by the second parameter. Return the actual number of bytes placed in the buffer; if there is nothing left in the stream, return ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Reset the index into the stream for the next read operation. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/inputstream/1416811-getbuffer",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Return in 0(1) a pointer to the subclass-allocated buffer (first parameter). Return by reference in the second parameter the number of bytes actually put into the buffer. The buffer’s contents are valid only until the next stream operation. Return ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " if you cannot access data in the buffer; otherwise, return ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". If this method is not appropriate for your type of stream, you may return ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/inputstream/1409410-hasbytesavailable",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Return ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " if there is more data to read in the stream, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " if there is not. If you want to be semantically compatible with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSInputStream",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", return ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " if a read must be attempted to determine if bytes are available.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1745091": {
+      "identifier": "devLink-1745091",
+      "title": "Toll-Free Bridging",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfreadstream": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfreadstream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFReadStream",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfreadstream"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inputstream": {
+      "abstract": [
+        {
+          "text": "A stream that provides read-only stream functionality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "InputStream"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inputstream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "InputStream",
+      "type": "topic",
+      "url": "/documentation/foundation/inputstream"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inputstream/1408976-init": {
+      "abstract": [
+        {
+          "text": "Initializes and returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSInputStream",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object that reads data from the file at a given path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "fileAtPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inputstream/1408976-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(fileAtPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/inputstream/1408976-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inputstream/1409410-hasbytesavailable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the receiver has bytes available to read.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasBytesAvailable"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inputstream/1409410-hasbytesavailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasBytesAvailable",
+      "type": "topic",
+      "url": "/documentation/foundation/inputstream/1409410-hasbytesavailable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inputstream/1411544-read": {
+      "abstract": [
+        {
+          "text": "Reads up to a given number of bytes into a given buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "read"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<UInt8>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "maxLength"
+        },
+        {
+          "kind": "text",
+          "text": ": Int) -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inputstream/1411544-read",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "read(_:maxLength:)",
+      "type": "topic",
+      "url": "/documentation/foundation/inputstream/1411544-read"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inputstream/1412470-init": {
+      "abstract": [
+        {
+          "text": "Initializes and returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSInputStream",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object for reading from a given ",
+          "type": "text"
+        },
+        {
+          "code": "NSData",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": Data)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inputstream/1412470-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(data:)",
+      "type": "topic",
+      "url": "/documentation/foundation/inputstream/1412470-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inputstream/1416811-getbuffer": {
+      "abstract": [
+        {
+          "text": "Returns by reference a pointer to a read buffer and, by reference, the number of bytes available, and returns a Boolean value that indicates whether the buffer is available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "getBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutablePointer<Int>) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inputstream/1416811-getbuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getBuffer(_:length:)",
+      "type": "topic",
+      "url": "/documentation/foundation/inputstream/1416811-getbuffer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/inputstream/1417891-init": {
+      "abstract": [
+        {
+          "text": "Initializes and returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSInputStream",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object that reads data from the file at a given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/inputstream/1417891-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(url:)",
+      "type": "topic",
+      "url": "/documentation/foundation/inputstream/1417891-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/outputstream": {
+      "abstract": [
+        {
+          "text": "A stream that provides write-only stream functionality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "OutputStream"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/outputstream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OutputStream",
+      "type": "topic",
+      "url": "/documentation/foundation/outputstream"
+    },
+    "doc://com.apple.documentation/documentation/foundation/stream": {
+      "abstract": [
+        {
+          "text": "An abstract class representing a stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Stream"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/stream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Stream",
+      "type": "topic",
+      "url": "/documentation/foundation/stream"
+    },
+    "doc://com.apple.documentation/documentation/foundation/streamdelegate": {
+      "abstract": [
+        {
+          "text": "An interface that delegates of a stream instance use to handle events on the stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "StreamDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/streamdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StreamDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/streamdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Streams, Sockets, and Ports",
+      "type": "topic",
+      "url": "/documentation/foundation/streams_sockets_and_ports"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/stream"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/stream",
+        "doc://com.apple.documentation/documentation/foundation/outputstream",
+        "doc://com.apple.documentation/documentation/foundation/streamdelegate"
+      ],
+      "title": "Streams"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1651103",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/inputstream/1412470-init",
+        "doc://com.apple.documentation/documentation/foundation/inputstream/1408976-init",
+        "doc://com.apple.documentation/documentation/foundation/inputstream/1417891-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Streams"
+    },
+    {
+      "anchor": "1651159",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/inputstream/1411544-read",
+        "doc://com.apple.documentation/documentation/foundation/inputstream/1416811-getbuffer",
+        "doc://com.apple.documentation/documentation/foundation/inputstream/1409410-hasbytesavailable"
+      ],
+      "kind": "taskGroup",
+      "title": "Using Streams"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsinputstream"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/inputstream"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

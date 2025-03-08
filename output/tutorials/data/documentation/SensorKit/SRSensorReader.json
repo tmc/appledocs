@@ -1,0 +1,2224 @@
+{
+  "abstract": [
+    {
+      "text": "An object that establishes user authorization and records data for a particular sensor.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sensorkit/documentation/SensorKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SRSensorReader",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SRSensorReader"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SensorKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SRSensorReader"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SRSensorReader"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SRSensorReader"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To acquire data from a particular sensor using a reader, an app creates an instance of this class using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/init(sensor:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and passes in one sensor from the available options in ",
+              "type": "text"
+            },
+            {
+              "code": "Sensors",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A reader is a data stream for a particular sensor that the user must authorize before use. When an app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/requestAuthorization(sensors:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the OS prompts the user for approval to use the particular sensor and determines the app’s authorization according to the user’s answer. The framework notifies the delegate with the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReaderDelegate/sensorReader(_:didChange:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " callback if the authorization status changes as a result of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/requestAuthorization(sensors:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " call. When a reader’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/authorizationStatus",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRAuthorizationStatus/authorized",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", an app starts collecting sensor data by beginning recording.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/startRecording()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the framework starts the reader’s sensor if it isn’t already running because of a request from another app or a system process. An app has access to 7 days of prior recorded data for an active sensor. When an app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/stopRecording()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the app relinquishes stakeholdership in the sensor. When a sensor has no app or system stakeholders, the framework deactivates the sensor and, thereby, stops recording data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To fetch a sensor’s data, pass a request object to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/fetch(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " specifies a time range that defines the age of the data, and a device, such as a phone or a watch, from which to collect the data. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/fetchDevices()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to list the available devices, and use the time convenience-functions in Defining the Time Range to specify the time range.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the fetch query succeeds, the framework notifies the delegate with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReaderDelegate/sensorReader(_:didCompleteFetch:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The delegate receives sensor data in the form of ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "samples",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReaderDelegate/sensorReader(_:fetching:didFetchResult:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". A fetch result’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchResult/sample",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type is different depending on the particular sensor for the reader. For a mapping of sensors to their samples, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchResult/sample#Sample-types",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit": {
+      "abstract": [
+        {
+          "text": "Retrieve data and derived metrics from sensors on an iPhone, or paired Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SensorKit",
+      "type": "topic",
+      "url": "/documentation/sensorkit"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRAuthorizationStatus": {
+      "abstract": [
+        {
+          "text": "The states that model whether the user approves the app to read a particular sensor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SRAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRAuthorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRAuthorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "SRAuthorizationStatus",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srauthorizationstatus"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRAuthorizationStatus/authorized": {
+      "abstract": [
+        {
+          "text": "User has granted authorization to this application",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorized"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRAuthorizationStatus/authorized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRAuthorizationStatusAuthorized"
+        }
+      ],
+      "role": "symbol",
+      "title": "SRAuthorizationStatus.authorized",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srauthorizationstatus/authorized"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRDevice": {
+      "abstract": [
+        {
+          "text": "A representation of a device that provides sample data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SRDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "SRDevice",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srdevice"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchRequest": {
+      "abstract": [
+        {
+          "text": "An object that defines the criteria for a sample query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SRFetchRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRFetchRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "SRFetchRequest",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srfetchrequest"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchResult/sample": {
+      "abstract": [
+        {
+          "text": "A recording that the sensor reader fetches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sample"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SampleType"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchResult/sample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sample"
+        }
+      ],
+      "role": "symbol",
+      "title": "sample",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srfetchresult/sample"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchResult/sample#Sample-types": {
+      "abstract": [],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRFetchResult/sample#Sample-types",
+      "kind": "section",
+      "title": "Sample types",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srfetchresult/sample#Sample-types"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor": {
+      "abstract": [
+        {
+          "text": "The sensors an app can read.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SRSensor"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRSensor"
+        }
+      ],
+      "role": "symbol",
+      "title": "SRSensor",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensor"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader": {
+      "abstract": [
+        {
+          "text": "An object that establishes user authorization and records data for a particular sensor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SRSensorReader"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRSensorReader"
+        }
+      ],
+      "role": "symbol",
+      "title": "SRSensorReader",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensorreader"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/authorizationStatus": {
+      "abstract": [
+        {
+          "text": "The status of the user’s agreement to let the app access this reader’s sensor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SRAuthorizationStatus",
+          "text": "SRAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/authorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationStatus",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensorreader/authorizationstatus"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/delegate": {
+      "abstract": [
+        {
+          "text": "An object that responds to sensor-related events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SRSensorReaderDelegate",
+          "text": "SRSensorReaderDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensorreader/delegate"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/fetch(_:)": {
+      "abstract": [
+        {
+          "text": "Fetches the samples that a fetch request specifies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SRFetchRequest",
+          "text": "SRFetchRequest"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/fetch(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetch:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetch(_:)",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensorreader/fetch(_:)"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/fetchDevices()": {
+      "abstract": [
+        {
+          "text": "Acquires device information for all devices that store data for this reader’s sensor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchDevices"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/fetchDevices()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchDevices"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchDevices()",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensorreader/fetchdevices()"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/init(sensor:)": {
+      "abstract": [
+        {
+          "text": "Initializes a new sensor reader object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "sensor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SRSensor",
+          "text": "SRSensor"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/init(sensor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithSensor:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(sensor:)",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensorreader/init(sensor:)"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/requestAuthorization(sensors:completion:)": {
+      "abstract": [
+        {
+          "text": "Requests user permission to read one or more sensors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "sensors"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SRSensor",
+          "text": "SRSensor"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/requestAuthorization(sensors:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestAuthorizationForSensors:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestAuthorization(sensors:completion:)",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensorreader/requestauthorization(sensors:completion:)"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/sensor": {
+      "abstract": [
+        {
+          "text": "The particular sensor that this object reads.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sensor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SRSensor",
+          "text": "SRSensor"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/sensor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sensor"
+        }
+      ],
+      "role": "symbol",
+      "title": "sensor",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensorreader/sensor"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/startRecording()": {
+      "abstract": [
+        {
+          "text": "Starts recording sensor data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startRecording"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/startRecording()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startRecording"
+        }
+      ],
+      "role": "symbol",
+      "title": "startRecording()",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensorreader/startrecording()"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/stopRecording()": {
+      "abstract": [
+        {
+          "text": "Stops recording sensor data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopRecording"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/stopRecording()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopRecording"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopRecording()",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensorreader/stoprecording()"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReaderDelegate": {
+      "abstract": [
+        {
+          "text": "A set of callbacks the framework invokes to notify the app of sensor-related events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SRSensorReaderDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReaderDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRSensorReaderDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SRSensorReaderDelegate",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensorreaderdelegate"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReaderDelegate/sensorReader(_:didChange:)": {
+      "abstract": [
+        {
+          "text": "Notifies the delegate of the reader’s new authorization status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sensorReader"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SRSensorReader",
+          "text": "SRSensorReader"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didChange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SRAuthorizationStatus",
+          "text": "SRAuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReaderDelegate/sensorReader(_:didChange:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sensorReader:didChangeAuthorizationStatus:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sensorReader(_:didChange:)",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensorreaderdelegate/sensorreader(_:didchange:)"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReaderDelegate/sensorReader(_:didCompleteFetch:)": {
+      "abstract": [
+        {
+          "text": "Provides the delegate with a completed fetch request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sensorReader"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SRSensorReader",
+          "text": "SRSensorReader"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didCompleteFetch"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SRFetchRequest",
+          "text": "SRFetchRequest"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReaderDelegate/sensorReader(_:didCompleteFetch:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sensorReader:didCompleteFetch:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sensorReader(_:didCompleteFetch:)",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensorreaderdelegate/sensorreader(_:didcompletefetch:)"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReaderDelegate/sensorReader(_:fetching:didFetchResult:)": {
+      "abstract": [
+        {
+          "text": "Provides the delegate with a fetch result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sensorReader"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SRSensorReader",
+          "text": "SRSensorReader"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fetching"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SRFetchRequest",
+          "text": "SRFetchRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFetchResult"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SRFetchResult",
+          "text": "SRFetchResult"
+        },
+        {
+          "kind": "text",
+          "text": "<AnyObject>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReaderDelegate/sensorReader(_:fetching:didFetchResult:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sensorReader:fetchingRequest:didFetchResult:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sensorReader(_:fetching:didFetchResult:)",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srsensorreaderdelegate/sensorreader(_:fetching:didfetchresult:)"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/configuring-your-project-for-sensor-reading": {
+      "abstract": [
+        {
+          "text": "Add metadata to your app to attain system and user permission to access sensor data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/configuring-your-project-for-sensor-reading",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring your project for sensor reading",
+      "type": "topic",
+      "url": "/documentation/sensorkit/configuring-your-project-for-sensor-reading"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Setup",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sensorkit/documentation/SensorKit/configuring-your-project-for-sensor-reading"
+      ],
+      "title": "Setup"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Checking-user-authorization",
+      "identifiers": [
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/authorizationStatus",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/requestAuthorization(sensors:completion:)",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRAuthorizationStatus"
+      ],
+      "title": "Checking user authorization"
+    },
+    {
+      "anchor": "Creating-a-sensor-reader",
+      "identifiers": [
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/init(sensor:)",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/sensor"
+      ],
+      "title": "Creating a sensor reader"
+    },
+    {
+      "anchor": "Recording-sensor-data",
+      "identifiers": [
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/startRecording()",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/stopRecording()"
+      ],
+      "title": "Recording sensor data"
+    },
+    {
+      "anchor": "Reading-recorded-data",
+      "identifiers": [
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/fetch(_:)",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/fetchDevices()",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRDevice"
+      ],
+      "title": "Reading recorded data"
+    },
+    {
+      "anchor": "Responding-to-sensor-events",
+      "identifiers": [
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/delegate",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReaderDelegate"
+      ],
+      "title": "Responding to sensor events"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SRSensorReader"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensorReader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensorReader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.sensorkit/documentation/SensorKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Checking-user-authorization",
+              "identifiers": [
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/authorizationStatus",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/requestAuthorization(sensors:completion:)",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRAuthorizationStatus"
+              ],
+              "title": "Checking user authorization"
+            },
+            {
+              "anchor": "Creating-a-sensor-reader",
+              "identifiers": [
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/init(sensor:)",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRSensor",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/sensor"
+              ],
+              "title": "Creating a sensor reader"
+            },
+            {
+              "anchor": "Recording-sensor-data",
+              "identifiers": [
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/startRecording()",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/stopRecording()"
+              ],
+              "title": "Recording sensor data"
+            },
+            {
+              "anchor": "Reading-recorded-data",
+              "identifiers": [
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/fetch(_:)",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/fetchDevices()",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRDevice"
+              ],
+              "title": "Reading recorded data"
+            },
+            {
+              "anchor": "Responding-to-sensor-events",
+              "identifiers": [
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReader/delegate",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRSensorReaderDelegate"
+              ],
+              "title": "Responding to sensor events"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Setup",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.sensorkit/documentation/SensorKit/configuring-your-project-for-sensor-reading"
+              ],
+              "title": "Setup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SRSensorReader"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader~1fetch(_:)/title",
+          "value": "fetch:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader~1fetch(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetch:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor/title",
+          "value": "SRSensor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader~1fetchDevices()/title",
+          "value": "fetchDevices"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader~1fetchDevices()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchDevices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader~1startRecording()/title",
+          "value": "startRecording"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader~1startRecording()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startRecording"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRFetchRequest/title",
+          "value": "SRFetchRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRFetchRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRFetchRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRFetchRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRFetchRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReaderDelegate~1sensorReader(_:didChange:)/title",
+          "value": "sensorReader:didChangeAuthorizationStatus:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReaderDelegate~1sensorReader(_:didChange:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sensorReader:didChangeAuthorizationStatus:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader~1sensor/title",
+          "value": "sensor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader~1sensor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sensor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader~1init(sensor:)/title",
+          "value": "initWithSensor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader~1init(sensor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithSensor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRAuthorizationStatus/title",
+          "value": "SRAuthorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRAuthorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRAuthorizationStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReaderDelegate~1sensorReader(_:fetching:didFetchResult:)/title",
+          "value": "sensorReader:fetchingRequest:didFetchResult:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReaderDelegate~1sensorReader(_:fetching:didFetchResult:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sensorReader:fetchingRequest:didFetchResult:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader~1stopRecording()/title",
+          "value": "stopRecording"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader~1stopRecording()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopRecording"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRFetchResult~1sample/title",
+          "value": "sample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRFetchResult~1sample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader~1requestAuthorization(sensors:completion:)/title",
+          "value": "requestAuthorizationForSensors:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader~1requestAuthorization(sensors:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestAuthorizationForSensors:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader/title",
+          "value": "SRSensorReader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensorReader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensorReader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReaderDelegate~1sensorReader(_:didCompleteFetch:)/title",
+          "value": "sensorReader:didCompleteFetch:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReaderDelegate~1sensorReader(_:didCompleteFetch:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sensorReader:didCompleteFetch:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRAuthorizationStatus~1authorized/title",
+          "value": "SRAuthorizationStatusAuthorized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRAuthorizationStatus~1authorized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRAuthorizationStatusAuthorized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRDevice/title",
+          "value": "SRDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader~1authorizationStatus/title",
+          "value": "authorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReader~1authorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "authorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReaderDelegate/title",
+          "value": "SRSensorReaderDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReaderDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensorReaderDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRSensorReaderDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRSensorReaderDelegate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/sensorkit/srsensorreader"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/sensorkit/srsensorreader"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

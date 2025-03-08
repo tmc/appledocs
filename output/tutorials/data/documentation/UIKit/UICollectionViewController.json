@@ -1,0 +1,2624 @@
+{
+  "abstract": [
+    {
+      "text": "A view controller that specializes in managing a collection view.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UICollectionViewController",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UICollectionViewController"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UICollectionViewController"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UICollectionViewController"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewController"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.uikit/documentation/UIKit/displaying-and-managing-views-with-a-view-controller"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A view controller implements the following behavior:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the collection view controller has an assigned nib file or was loaded from a storyboard, it loads its view from the corresponding nib file or storyboard. If you create the collection view controller programmatically, it automatically creates a new unconfigured collection view object, which you can access using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/collectionView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When loading a collection view from a storyboard or nib file, the data source and delegate objects for the collection view are obtained from the nib file. If a data source or delegate is not specified, the collection view controller assigns itself to the unspecified role.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the collection view is about to appear for the first time, the collection view controller reloads the collection view data. It also clears the current selection every time the view is displayed. You can change this behavior by setting the value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/clearsSelectionOnViewWillAppear",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create a custom subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "UICollectionViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for each collection view that you want to manage. When you initialize the controller, using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/init(collectionViewLayout:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, you specify the layout the collection view should have. Because the initially created collection view is without dimensions or content, the collection view’s data source and delegate—typically the collection view controller itself—must provide this information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may override the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/loadView()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method or any other superclass method, but if you do, be sure to call ",
+              "type": "text"
+            },
+            {
+              "code": "super",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the implementation of your method. If you do not, the collection view controller may not be able to perform all of the tasks needed to maintain the integrity of the collection view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfigurationProviding": {
+      "abstract": [
+        {
+          "text": "An interface that provides a source for shareable content to fulfill user requests to share current content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemsConfigurationProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfigurationProviding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemsConfigurationProviding"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActivityItemsConfigurationProviding",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityitemsconfigurationproviding"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAppearance": {
+      "abstract": [
+        {
+          "text": "A collection of methods that gives you access to the appearance proxy for a class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAppearance"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAppearance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAppearance"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uiappearance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAppearanceContainer": {
+      "abstract": [
+        {
+          "text": "A protocol that a class must adopt to allow appearance customization using the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAppearance",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAppearanceContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAppearanceContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAppearanceContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAppearanceContainer",
+      "type": "topic",
+      "url": "/documentation/uikit/uiappearancecontainer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that specializes in managing a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/clearsSelectionOnViewWillAppear": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating if the controller clears the selection when the collection view appears.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clearsSelectionOnViewWillAppear"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/clearsSelectionOnViewWillAppear",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "clearsSelectionOnViewWillAppear"
+        }
+      ],
+      "role": "symbol",
+      "title": "clearsSelectionOnViewWillAppear",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcontroller/clearsselectiononviewwillappear"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/collectionView": {
+      "abstract": [
+        {
+          "text": "The collection view object managed by this view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "collectionView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UICollectionView",
+          "text": "UICollectionView"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/collectionView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "collectionView"
+        }
+      ],
+      "role": "symbol",
+      "title": "collectionView",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcontroller/collectionview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/collectionViewLayout": {
+      "abstract": [
+        {
+          "text": "The layout object used to initialize the collection view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "collectionViewLayout"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UICollectionViewLayout",
+          "text": "UICollectionViewLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/collectionViewLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "collectionViewLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "collectionViewLayout",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcontroller/collectionviewlayout"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/init(coder:)": {
+      "abstract": [
+        {
+          "text": "Creates a collection view controller with the nib file in the specified bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/init(coder:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCoder:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcontroller/init(coder:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/init(collectionViewLayout:)": {
+      "abstract": [
+        {
+          "text": "Initializes a collection view controller and configures the collection view with the provided layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "collectionViewLayout"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UICollectionViewLayout",
+          "text": "UICollectionViewLayout"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/init(collectionViewLayout:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCollectionViewLayout:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(collectionViewLayout:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcontroller/init(collectionviewlayout:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/init(nibName:bundle:)": {
+      "abstract": [
+        {
+          "text": "Returns a newly initialized view controller with the nib file in the specified bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "nibName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bundle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/init(nibName:bundle:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithNibName:bundle:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(nibName:bundle:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcontroller/init(nibname:bundle:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/installsStandardGestureForInteractiveMovement": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the collection view controller installs a standard gesture recognizer to drive the reordering process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "installsStandardGestureForInteractiveMovement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/installsStandardGestureForInteractiveMovement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "installsStandardGestureForInteractiveMovement"
+        }
+      ],
+      "role": "symbol",
+      "title": "installsStandardGestureForInteractiveMovement",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcontroller/installsstandardgestureforinteractivemovement"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/useLayoutToLayoutNavigationTransitions": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the collection view controller coordinates with a navigation controller for transitions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useLayoutToLayoutNavigationTransitions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/useLayoutToLayoutNavigationTransitions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "useLayoutToLayoutNavigationTransitions"
+        }
+      ],
+      "role": "symbol",
+      "title": "useLayoutToLayoutNavigationTransitions",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewcontroller/uselayouttolayoutnavigationtransitions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSource": {
+      "abstract": [
+        {
+          "text": "The methods adopted by the object you use to manage data and provide cells for a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewDataSource",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdatasource"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDelegate": {
+      "abstract": [
+        {
+          "text": "The methods adopted by the object you use to manage user interactions with items in a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIContentContainer": {
+      "abstract": [
+        {
+          "text": "A set of methods for adapting the contents of your view controllers to size and trait changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIContentContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContentContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIContentContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIContentContainer",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontentcontainer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFocusEnvironment": {
+      "abstract": [
+        {
+          "text": "A set of methods that define the focus behavior for a branch of the view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusEnvironment"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusEnvironment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFocusEnvironment"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFocusEnvironment",
+      "type": "topic",
+      "url": "/documentation/uikit/uifocusenvironment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPasteConfigurationSupporting": {
+      "abstract": [
+        {
+          "text": "The interface that determines whether a responder object supports paste configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPasteConfigurationSupporting"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPasteConfigurationSupporting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPasteConfigurationSupporting"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPasteConfigurationSupporting",
+      "type": "topic",
+      "url": "/documentation/uikit/uipasteconfigurationsupporting"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions": {
+      "abstract": [
+        {
+          "text": "A set of standard methods that apps can adopt to support editing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIResponderStandardEditActions"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIResponderStandardEditActions"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIResponderStandardEditActions",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponderstandardeditactions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIScrollViewDelegate": {
+      "abstract": [
+        {
+          "text": "The interface for the delegate of a scroll view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIScrollViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScrollViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIScrollViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIScrollViewDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscrollviewdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring": {
+      "abstract": [
+        {
+          "text": "Methods for adding objects to your state restoration archives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIStateRestoring"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIStateRestoring"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIStateRestoring",
+      "type": "topic",
+      "url": "/documentation/uikit/uistaterestoring"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that specializes in managing a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitChangeObservable-67e94": {
+      "abstract": [
+        {
+          "text": "A type that calls your code in reaction to changes in the trait environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitChangeObservable"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitChangeObservable-67e94",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitChangeObservable"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitChangeObservable",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitchangeobservable-67e94"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment": {
+      "abstract": [
+        {
+          "text": "A set of methods that makes the iOS interface environment available to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitEnvironment"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitEnvironment"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitEnvironment",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitenvironment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "The protocol you adopt to restore an object’s state from a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIUserActivityRestoring"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserActivityRestoring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIUserActivityRestoring"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/uikit/uiuseractivityrestoring"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController": {
+      "abstract": [
+        {
+          "text": "An object that manages a view hierarchy for your UIKit app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/loadView()": {
+      "abstract": [
+        {
+          "text": "Creates the view that the controller manages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadView"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/loadView()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadView"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadView()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/loadview()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/displaying-and-managing-views-with-a-view-controller": {
+      "abstract": [
+        {
+          "text": "Build a view controller in storyboards, configure it with custom views, and fill those views with your app’s data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/displaying-and-managing-views-with-a-view-controller",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying and managing views with a view controller",
+      "type": "topic",
+      "url": "/documentation/uikit/displaying-and-managing-views-with-a-view-controller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/showing-and-hiding-view-controllers": {
+      "abstract": [
+        {
+          "text": "Display view controllers using different techniques, and pass data between them during transitions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/showing-and-hiding-view-controllers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Showing and hiding view controllers",
+      "type": "topic",
+      "url": "/documentation/uikit/showing-and-hiding-view-controllers"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling": {
+      "abstract": [
+        {
+          "text": "The interface an app extension uses to respond to a request from a host app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExtensionRequestHandling"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionRequestHandling",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensionrequesthandling"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTouchBarProvider"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfigurationProviding",
+        "doc://com.apple.uikit/documentation/UIKit/UIAppearanceContainer",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSource",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UIContentContainer",
+        "doc://com.apple.uikit/documentation/UIKit/UIFocusEnvironment",
+        "doc://com.apple.uikit/documentation/UIKit/UIPasteConfigurationSupporting",
+        "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions",
+        "doc://com.apple.uikit/documentation/UIKit/UIScrollViewDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitChangeObservable-67e94",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment",
+        "doc://com.apple.uikit/documentation/UIKit/UIUserActivityRestoring"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Content-view-controllers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/displaying-and-managing-views-with-a-view-controller",
+        "doc://com.apple.uikit/documentation/UIKit/showing-and-hiding-view-controllers",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UIContentContainer"
+      ],
+      "title": "Content view controllers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-collection-view-controller",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/init(collectionViewLayout:)",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/init(nibName:bundle:)",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/init(coder:)"
+      ],
+      "title": "Creating a collection view controller"
+    },
+    {
+      "anchor": "Getting-the-collection-view",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/collectionView",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/collectionViewLayout"
+      ],
+      "title": "Getting the collection view"
+    },
+    {
+      "anchor": "Configuring-the-collection-view-behavior",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/clearsSelectionOnViewWillAppear",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/installsStandardGestureForInteractiveMovement"
+      ],
+      "title": "Configuring the collection view behavior"
+    },
+    {
+      "anchor": "Integrating-with-a-navigation-controller",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/useLayoutToLayoutNavigationTransitions"
+      ],
+      "title": "Integrating with a navigation controller"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UICollectionViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-collection-view-controller",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/init(collectionViewLayout:)",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/init(nibName:bundle:)",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/init(coder:)"
+              ],
+              "title": "Creating a collection view controller"
+            },
+            {
+              "anchor": "Getting-the-collection-view",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/collectionView",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/collectionViewLayout"
+              ],
+              "title": "Getting the collection view"
+            },
+            {
+              "anchor": "Configuring-the-collection-view-behavior",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/clearsSelectionOnViewWillAppear",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/installsStandardGestureForInteractiveMovement"
+              ],
+              "title": "Configuring the collection view behavior"
+            },
+            {
+              "anchor": "Integrating-with-a-navigation-controller",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewController/useLayoutToLayoutNavigationTransitions"
+              ],
+              "title": "Integrating with a navigation controller"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIViewController"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSource",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDelegate"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Content-view-controllers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/displaying-and-managing-views-with-a-view-controller",
+                "doc://com.apple.uikit/documentation/UIKit/showing-and-hiding-view-controllers",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UITableViewController",
+                "doc://com.apple.uikit/documentation/UIKit/UIContentContainer"
+              ],
+              "title": "Content view controllers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UICollectionViewController"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)UIViewController",
+                    "text": "UIViewController"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController~1collectionViewLayout/title",
+          "value": "collectionViewLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController~1collectionViewLayout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "collectionViewLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPasteConfigurationSupporting/title",
+          "value": "UIPasteConfigurationSupporting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPasteConfigurationSupporting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPasteConfigurationSupporting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPasteConfigurationSupporting/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPasteConfigurationSupporting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearance/title",
+          "value": "UIAppearance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearance/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1loadView()/title",
+          "value": "loadView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1loadView()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions/title",
+          "value": "UIResponderStandardEditActions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIResponderStandardEditActions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIResponderStandardEditActions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserActivityRestoring/title",
+          "value": "UIUserActivityRestoring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserActivityRestoring/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController~1collectionView/title",
+          "value": "collectionView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController~1collectionView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "collectionView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDelegate/title",
+          "value": "UICollectionViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController~1init(collectionViewLayout:)/title",
+          "value": "initWithCollectionViewLayout:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController~1init(collectionViewLayout:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithCollectionViewLayout:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusEnvironment/title",
+          "value": "UIFocusEnvironment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusEnvironment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusEnvironment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment/title",
+          "value": "UITraitEnvironment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITraitEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITraitEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfigurationProviding/title",
+          "value": "UIActivityItemsConfigurationProviding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfigurationProviding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemsConfigurationProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfigurationProviding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemsConfigurationProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewController/title",
+          "value": "UITableViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITableViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITableViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController~1useLayoutToLayoutNavigationTransitions/title",
+          "value": "useLayoutToLayoutNavigationTransitions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController~1useLayoutToLayoutNavigationTransitions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "useLayoutToLayoutNavigationTransitions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentContainer/title",
+          "value": "UIContentContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContentContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContentContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring/title",
+          "value": "UIStateRestoring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStateRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStateRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController~1init(coder:)/title",
+          "value": "initWithCoder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController~1init(coder:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithCoder:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearanceContainer/title",
+          "value": "UIAppearanceContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearanceContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearanceContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearanceContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearanceContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController/title",
+          "value": "UICollectionViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController~1installsStandardGestureForInteractiveMovement/title",
+          "value": "installsStandardGestureForInteractiveMovement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController~1installsStandardGestureForInteractiveMovement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "installsStandardGestureForInteractiveMovement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDataSource/title",
+          "value": "UICollectionViewDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDataSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController~1init(nibName:bundle:)/title",
+          "value": "initWithNibName:bundle:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController~1init(nibName:bundle:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithNibName:bundle:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController~1clearsSelectionOnViewWillAppear/title",
+          "value": "clearsSelectionOnViewWillAppear"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewController~1clearsSelectionOnViewWillAppear/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "clearsSelectionOnViewWillAppear"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScrollViewDelegate/title",
+          "value": "UIScrollViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScrollViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScrollViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScrollViewDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScrollViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/title",
+          "value": "UIViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uicollectionviewcontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uicollectionviewcontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

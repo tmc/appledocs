@@ -1,0 +1,1323 @@
+{
+  "abstract": [
+    {
+      "text": "A struct representing an entry in an Accessibility Rotor.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityRotorEntry"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI23AccessibilityRotorEntryV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AccessibilityRotorEntry"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AccessibilityRotorEntry"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "AccessibilityRotorEntry"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AccessibilityRotorEntry"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "ID"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "ID"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SH",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SH",
+              "text": "Hashable"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An Accessibility Rotor is a shortcut for Accessibility users to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "quickly navigate to specific elements of the user interface,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and optionally specific ranges of text within those elements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An entry in a Rotor may contain a label to identify the entry to the user,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and identifier used to determine which Accessibility element the Rotor entry",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "should navigate to, as well as an optional range used for entries that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "navigate to a specific position in the text of their associated",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Accessibility element. An entry can also specify a handler to be",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "called before the entry is navigated to, to do any manual work needed to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "bring the Accessibility element on-screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following example, a Message application creates a Rotor",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "allowing users to navigate to specifically the messages originating from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "VIPs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// `messages` is a list of `Identifiable` `Message`s.",
+            "",
+            "ScrollView {",
+            "    LazyVStack {",
+            "        ForEach(messages) { message in",
+            "            MessageView(message)",
+            "        }",
+            "    }",
+            "}",
+            ".accessibilityElement(children: .contain)",
+            ".accessibilityRotor(\"VIPs\") {",
+            "    // Not all the `MessageView`s are generated at once, but the model",
+            "    // knows about all the messages.",
+            "    ForEach(messages) { message in",
+            "        // If the Message is from a VIP, make a Rotor entry for it.",
+            "        if message.isVIP {",
+            "            AccessibilityRotorEntry(message.subject, id: message.id)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An entry may also be created using an optional namespace, for situations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "where there are multiple Accessibility elements within a ForEach iteration",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or where a ",
+              "type": "text"
+            },
+            {
+              "code": "ScrollView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is not present. In this case, the ",
+              "type": "text"
+            },
+            {
+              "code": "prepare",
+              "type": "codeVoice"
+            },
+            {
+              "text": " closure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "may be needed in order to scroll the element into position using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "ScrollViewReader",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The same namespace should be passed to calls to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "accessibilityRotorEntry(id:in:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to tag the Accessibility elements",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "associated with this entry.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following example, a Message application creates a Rotor",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "allowing users to navigate to specifically the messages originating from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "VIPs. The Rotor entries are associated with the content text of the message,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which is one of the two views within the ForEach that generate Accessibility",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "elements. That view is tagged with ",
+              "type": "text"
+            },
+            {
+              "code": "accessibilityRotorEntry(id:in:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " so that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it can be found by the ",
+              "type": "text"
+            },
+            {
+              "code": "AccessibilityRotorEntry",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "ScrollViewReader",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "used with the ",
+              "type": "text"
+            },
+            {
+              "code": "prepare",
+              "type": "codeVoice"
+            },
+            {
+              "text": " closure to scroll it into position.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MessageListView: View {",
+            "    @Namespace var namespace",
+            "",
+            "    var body: some View {",
+            "        ScrollViewReader { scroller in",
+            "             ScrollView {",
+            "                LazyVStack {",
+            "                    ForEach(allMessages) { message in",
+            "                        VStack {",
+            "                            Text(message.subject)",
+            "                            // Tag this `Text` as an element associated",
+            "                            // with a Rotor entry.",
+            "                            Text(message.content)",
+            "                                .accessibilityRotorEntry(",
+            "                                    \"\\(message.id)_content\",",
+            "                                    in: namespace",
+            "                                )",
+            "                        }",
+            "                    }",
+            "                }",
+            "            }",
+            "            .accessibilityElement(children: .contain)",
+            "            .accessibilityRotor(\"VIP Messages\") {",
+            "                ForEach(vipMessages) { vipMessage in",
+            "                    // The Rotor entry points to a specific ID we",
+            "                    // defined within a given `ForEach` iteration,",
+            "                    // not to the entire `ForEach` iteration.",
+            "                    AccessibilityRotorEntry(vipMessage.subject,",
+            "                        id: \"\\(vipMessage.id)_content\", in: namespace)",
+            "                    {",
+            "                        // But the ID we give to `ScrollViewReader`",
+            "                        // matches the one used in the `ForEach`, which",
+            "                        // is the identifier for the whole iteration",
+            "                        // and what `ScrollViewReader` requires.",
+            "                        scroller.scrollTo(vipMessage.id)",
+            "                    }",
+            "                }",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityRotorContent": {
+      "abstract": [
+        {
+          "text": "Content within an accessibility rotor.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "ID",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Hashable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessibilityRotorContent"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityRotorContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccessibilityRotorContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccessibilityRotorContent",
+      "type": "topic",
+      "url": "/documentation/swiftui/accessibilityrotorcontent"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityRotorContentBuilder": {
+      "abstract": [
+        {
+          "text": "Result builder you use to generate rotor entry content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessibilityRotorContentBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityRotorContentBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccessibilityRotorContentBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccessibilityRotorContentBuilder",
+      "type": "topic",
+      "url": "/documentation/swiftui/accessibilityrotorcontentbuilder"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityRotorEntry": {
+      "abstract": [
+        {
+          "text": "A struct representing an entry in an Accessibility Rotor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessibilityRotorEntry"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityRotorEntry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccessibilityRotorEntry"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccessibilityRotorEntry",
+      "type": "topic",
+      "url": "/documentation/swiftui/accessibilityrotorentry"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityRotorEntry/init(_:_:in:textRange:prepare:)": {
+      "abstract": [
+        {
+          "text": "Create a Rotor entry with a specific label, identifier and namespace,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and with an optional range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "L"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "L"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9NamespaceV",
+          "text": "Namespace"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9NamespaceV2IDV",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "textRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "prepare"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityRotorEntry/init(_:_:in:textRange:prepare:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:_:in:textRange:prepare:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/accessibilityrotorentry/init(_:_:in:textrange:prepare:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityRotorEntry/init(_:id:in:textRange:prepare:)": {
+      "abstract": [
+        {
+          "text": "Create a Rotor entry with a specific label, identifier and namespace,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and with an optional range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "textRange"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "prepare"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityRotorEntry/init(_:id:in:textRange:prepare:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "textRange"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "prepare"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(_:id:in:textRange:prepare:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/accessibilityrotorentry/init(_:id:in:textrange:prepare:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityRotorEntry/init(_:id:textRange:prepare:)": {
+      "abstract": [
+        {
+          "text": "Create a Rotor entry with a specific label and identifier, with an",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "optional range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "textRange"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "prepare"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityRotorEntry/init(_:id:textRange:prepare:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "textRange"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "prepare"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(_:id:textRange:prepare:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/accessibilityrotorentry/init(_:id:textrange:prepare:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityRotorEntry/init(_:textRange:prepare:)": {
+      "abstract": [
+        {
+          "text": "Create a Rotor entry with a specific label and range. This Rotor entry",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "will be associated with the Accessibility element that owns the Rotor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "textRange"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "prepare"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityRotorEntry/init(_:textRange:prepare:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "textRange"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "prepare"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(_:textRange:prepare:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/accessibilityrotorentry/init(_:textrange:prepare:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityRotorContent",
+        "doc://com.externally.resolved.symbol/s:s8CopyableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-rotors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityRotorContent",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityRotorContentBuilder"
+      ],
+      "title": "Creating rotors"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-rotor-entry",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityRotorEntry/init(_:textRange:prepare:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityRotorEntry/init(_:id:textRange:prepare:)"
+      ],
+      "title": "Creating a rotor entry"
+    },
+    {
+      "anchor": "Creating-an-identified-rotor-entry-in-a-namespace",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityRotorEntry/init(_:id:in:textRange:prepare:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityRotorEntry/init(_:_:in:textRange:prepare:)"
+      ],
+      "title": "Creating an identified rotor entry in a namespace"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/accessibilityrotorentry"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

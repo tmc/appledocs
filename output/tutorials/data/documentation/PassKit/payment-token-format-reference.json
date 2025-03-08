@@ -1,0 +1,2680 @@
+{
+  "abstract": [
+    {
+      "text": "Verify an Apple Pay payment token and validate a transaction.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.passkit/documentation/PassKit",
+        "doc://com.apple.passkit/documentation/PassKit/apple-pay"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.passkit/documentation/PassKit/payment-token-format-reference"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "PassKit (Apple Pay and Wallet)"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Payment token format reference"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Pay is available on all iOS devices with a Secure Element — an industry-standard, certified chip designed to store payment information safely. In macOS, users must have an iPhone or Apple Watch that supports Apple Pay to authorize the payment, or have a Mac with Touch ID. The Secure Element creates a payment object when an app or website that uses Apple Pay sends a payment request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The payment object has a nested structure that contains a payment token with encrypted payment data, as shown in the figure below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3949579",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Secure Element encrypts the token’s payment data using either elliptic curve cryptography (ECC) or RSA encryption. The Secure Element selects the encryption algorithm based on the merchant capabilities that the payment request indicates. Most regions use ECC encryption. Other regions use RSA encryption if ECC encryption is unavailable due to regulatory concerns.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Verify-the-signature-and-decrypt-the-payment-data",
+          "level": 3,
+          "text": "Verify the signature and decrypt the payment data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following steps describe the process of validating a transaction by verifying the signature, decrypting the payment data, and verifying additional transaction details. Refer to the reference tables to identify keys and values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Step 1: Verify the signature as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure that the certificates contain the correct custom OIDs: 1.2.840.113635.100.6.29 for the leaf certificate and 1.2.840.113635.100.6.2.14 for the intermediate CA. The value for these marker OIDs doesn’t matter, only their presence.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure that the root CA is the Apple Root CA - G3. This certificate is available from ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://www.apple.com/certificateauthority",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure that there’s a valid X.509 chain of trust from the signature to the root CA. Specifically, ensure that the signature was created using the private key that corresponds to the leaf certificate, that the leaf certificate is signed by the intermediate CA, and that the intermediate CA is signed by the Apple Root CA - G3.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Validate the token’s signature. For ECC (EC_v1), ensure that the signature is a valid Ellyptical Curve Digital Signature Algorithm (ECDSA) signature (ecdsa-with-SHA256 1.2.840.10045.4.3.2) of the concatenated values of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ephemeralPublicKey",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "data",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "transactionId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "applicationData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " keys. For RSA (RSA_v1), ensure that the signature is a valid RSA signature (RSA-with-SHA256 1.2.840.113549.1.1.11) of the concatenated values of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "wrappedKey",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "data",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "transactionId",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "applicationData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " keys.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Inspect the Cryptographic Message Syntax (CMS) signing time of the signature, as defined by section 11.3 of RFC 5652. If the time signature and the transaction time differ by more than 5 minutes, the token may be a replay attack.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The signature is valid if all the signature verification steps above succeed. If the signature is invalid or any of the hash values don’t match, ignore the transaction.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Step 2: Use the value of the ",
+              "type": "text"
+            },
+            {
+              "code": "publicKeyHash",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to determine which merchant public key Apple used, and then retrieve the corresponding merchant public key certificate and private key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Step 3: Restore the symmetric key. For instructions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PassKit/restoring-the-symmetric-key",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Step 4: Use the symmetric key to decrypt the value of the ",
+              "type": "text"
+            },
+            {
+              "code": "data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For ECC (EC_v1), decrypt the data key using AES–256 (id-aes256-GCM 2.16.840.1.101.3.4.1.46), with an initialization vector of 16 null bytes and no associated authentication data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For RSA (RSA_v1), decrypt the data key using AES–128 (id-aes128-GCM 2.16.840.1.101.3.4.1.6), with an initialization vector of 16 null bytes and no associated authentication data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you complete Step 4, the payment data in the ",
+              "type": "text"
+            },
+            {
+              "code": "data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value of the payment token structure is decrypted. Use the decrypted payment data and information you have about the transaction to validate that transaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Step 5: Confirm that you haven’t already credited this payment by verifying that no payment with the same ",
+              "type": "text"
+            },
+            {
+              "code": "transactionId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " shows as processed. For efficiency, consider only those payments with a transaction time that’s within the 5-minute time window of the current ",
+              "type": "text"
+            },
+            {
+              "code": "transactionId",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as explained in the last bullet point of Step 1.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Step 6: Verify the transaction details using information from the merchant about the Apple Pay payment request and other transaction information:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check that the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "currencyCode",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " matches the currency code in the original Apple Pay payment request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check that the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "transactionAmount",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is correct, as compared with the total charge of the transaction.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check that the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "applicationData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field matches the hash of the data the original payment request used, and that the data is correct. For example, check that an order number in the data from the original payment request is the order number to which you, the payment processor, are applying this payment. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/applicationData",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". For transactions that initiate in Apple Pay on the Web, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/2577137-applicationdata",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrequest/2951834-applicationdata",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Step 7: If the signature is valid, the hash values match, and your transaction validation passes, use the decrypted payment data to process the payment. Otherwise, ignore the transaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Payment-token-format-reference",
+          "level": 3,
+          "text": "Payment token format reference",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following tables describe the keys and values of the payment token structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Payment-token-structure",
+          "level": 4,
+          "text": "Payment token structure",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentToken/paymentData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentToken",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymenttoken/1916115-paymentdata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymenttoken",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", for Apple Pay on the Web) contains a UTF-8 serialization of a plaintext JSON dictionary with the following keys and values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "data",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "payment data dictionary, Base64 encoded as a string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Encrypted payment data ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " See Payment Data Keys below for the decrypted payment data keys and values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "header",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "header dictionary",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Additional version-dependent information you use to decrypt and verify the payment ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " See Header Keys and Values below.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "signature",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "detached PKCS #7 signature, Base64 encoded as a string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Signature of the payment and header data ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " The signature includes the signing certificate, its intermediate CA certificate, and information about the signing algorithm.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "version",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Version information about the payment token ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " The token uses ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EC_v1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for ECC-encrypted data and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "RSA_v1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for RSA-encrypted data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Header-keys-and-values",
+          "level": 4,
+          "text": "Header keys and values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "header",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the following keys and values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "applicationData",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "SHA–256 hash, hex encoded as a string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optional. Hash of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/applicationData",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property of the original ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object for transactions that initiate in apps. For transactions that initiate in Apple Pay on the Web, the value is the hash of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/2577137-applicationdata",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrequest/2951834-applicationdata",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " This key is omitted if the value of that property is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ephemeralPublicKey",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "X.509 encoded key bytes, Base64 encoded as a string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ephemeral public key bytes ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " EC_v1 only.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "wrappedKey",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Base64-encoded string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The symmetric key wrapped using your RSA public key ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " RSA_v1 only.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "publicKeyHash",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "SHA–256 hash, Base64 encoded as a string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Hash of the X.509 encoded public key bytes of the merchant’s certificate",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "transactionId",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A hexadecimal identifier, as a string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Transaction identifier, generated on the device",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the application data and the original payment request, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/applicationData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For transactions using Apple Pay on the Web, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrequest/2951834-applicationdata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/2577137-applicationdata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Payment-data-keys",
+          "level": 4,
+          "text": "Payment data keys",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The decrypted payment data in the ",
+              "type": "text"
+            },
+            {
+              "code": "data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value contains the following keys and values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "applicationPrimaryAccountNumber",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Device-specific account number of the card that funds this transaction",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "applicationExpirationDate",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "date as a string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Card expiration date in the format YYMMDD",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "currencyCode",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ISO 4217 numeric currency code, as a string to preserve leading zeros",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "transactionAmount",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "number",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Transaction amount",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "cardholderName",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optional. Cardholder name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "deviceManufacturerIdentifier",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Hex-encoded device manufacturer identifier",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "paymentDataType",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Either ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"3DSecure\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or “",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EMV\"",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "paymentData",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "payment data dictionary",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Detailed payment data; see Detailed Payment Data Keys (3D Secure) and Detailed Payment Data Keys (EMV) below",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "authenticationResponses",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "list of Authentication Response entries",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For a multitoken request, a list of submerchant responses that contain cryptograms. See Authentication Response below.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "merchantTokenIdentifier",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For a merchant token request, the provisioned merchant token identifier from the payment network",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "merchantTokenMetadata",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MerchantTokenNotificationServices/MerchantTokenMetadata",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For a merchant token request, this data contains card art and the token’s last four digits and expiration date",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Detailed-payment-data-keys-3D-Secure",
+          "level": 4,
+          "text": "Detailed payment data keys (3D Secure)",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the ",
+              "type": "text"
+            },
+            {
+              "code": "paymentDataType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value is ",
+              "type": "text"
+            },
+            {
+              "code": "\"3DSecure\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the Payment Data Keys information, the payment data dictionary in ",
+              "type": "text"
+            },
+            {
+              "code": "paymentData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the following keys and values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "onlinePaymentCryptogram",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Base64-encoded string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Online payment cryptogram, as defined by 3D Secure",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "eciIndicator",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optional. ECI indicator, as defined by 3D Secure ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " The card network may add an ECI indicator to the payment data that the payment token includes. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " If you receive an ECI indicator, you must pass it on to your payment processor; otherwise, the transaction fails.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Detailed-payment-data-keys-EMV",
+          "level": 4,
+          "text": "Detailed payment data keys (EMV)",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the ",
+              "type": "text"
+            },
+            {
+              "code": "paymentDataType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value is ",
+              "type": "text"
+            },
+            {
+              "code": "“EMV”",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the Payment Data Keys information, the payment data dictionary in ",
+              "type": "text"
+            },
+            {
+              "code": "paymentData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the following keys and values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "emvData",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Europay, Mastercard, and Visa (EMV) payment structure, as a Base64-encoded string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Output from the Secure Element",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "encryptedPINData",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The encrypted PIN, as a hex-encoded string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The PIN is encrypted using the bank’s key. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " RSA_v1 only.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Authentication-response",
+          "level": 4,
+          "text": "Authentication response",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The dictionary for the ",
+              "type": "text"
+            },
+            {
+              "code": "authenticationResponses",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the Payment Data Keys information contains the following keys and values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "merchantIdentifier",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The submerchant identifier as provided by the coordinator merchant",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "authenticationData",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Payment network-generated cryptogram for the submerchant",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "transactionAmount",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The authorized amount for a given submerchant",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/MerchantTokenNotificationServices/MerchantTokenMetadata": {
+      "abstract": [
+        {
+          "text": "The card information related to a merchant token, including its card art and metadata.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MerchantTokenMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MerchantTokenNotificationServices/MerchantTokenMetadata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MerchantTokenMetadata",
+      "type": "topic",
+      "url": "/documentation/MerchantTokenNotificationServices/MerchantTokenMetadata"
+    },
+    "doc://com.apple.documentation/documentation/PassKit/restoring-the-symmetric-key": {
+      "abstract": [
+        {
+          "text": "Restore the symmetric key you use to verify payment data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PassKit/restoring-the-symmetric-key",
+      "kind": "article",
+      "role": "article",
+      "title": "Restoring the symmetric key",
+      "type": "topic",
+      "url": "/documentation/PassKit/restoring-the-symmetric-key"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest": {
+      "abstract": [
+        {
+          "text": "A request for payment, which includes information about payment-processing capabilities, the payment amount, and shipping information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaypaymentrequest"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/2577137-applicationdata": {
+      "abstract": [
+        {
+          "text": "A Base64-encoded string for application-specific data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest/2577137-applicationdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applicationData",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaypaymentrequest/2577137-applicationdata"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymenttoken": {
+      "abstract": [
+        {
+          "text": "An object that contains the user's payment credentials.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymenttoken",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayPaymentToken",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaypaymenttoken"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymenttoken/1916115-paymentdata": {
+      "abstract": [
+        {
+          "text": "An object containing the encrypted payment data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymenttoken/1916115-paymentdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "paymentData",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaypaymenttoken/1916115-paymentdata"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrequest": {
+      "abstract": [
+        {
+          "text": "A dictionary that defines the Apple Pay payment request object to use for the W3C Payment Request API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayRequest",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayrequest"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrequest/2951834-applicationdata": {
+      "abstract": [
+        {
+          "text": "A Base64-encoded string used to contain your application-specific data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayrequest/2951834-applicationdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applicationData",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayrequest/2951834-applicationdata"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.passkit/documentation/PassKit": {
+      "abstract": [
+        {
+          "text": "Process Apple Pay payments in your app, and create and distribute passes for the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PassKit (Apple Pay and Wallet)",
+      "type": "topic",
+      "url": "/documentation/passkit"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest": {
+      "abstract": [
+        {
+          "text": "An object that represents a request for payment, including details about payment-processing capabilities, the payment amount, and shipping information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/applicationData": {
+      "abstract": [
+        {
+          "text": "Application-specific data or state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/applicationData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applicationData"
+        }
+      ],
+      "role": "symbol",
+      "title": "applicationData",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest/applicationdata"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentToken": {
+      "abstract": [
+        {
+          "text": "Contains the user’s payment credentials.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentToken"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentToken",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymenttoken"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentToken/paymentData": {
+      "abstract": [
+        {
+          "text": "The payment data as a UTF-8 encoded serialization of a JSON dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentToken/paymentData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentData"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentData",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymenttoken/paymentdata"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/apple-pay": {
+      "abstract": [
+        {
+          "text": "Request and process Apple Pay payments in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/apple-pay",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Pay",
+      "type": "topic",
+      "url": "/documentation/passkit/apple-pay"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/restoring-the-symmetric-key": {
+      "abstract": [
+        {
+          "text": "Restore the symmetric key you use to verify payment data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/restoring-the-symmetric-key",
+      "kind": "article",
+      "role": "article",
+      "title": "Restoring the symmetric key",
+      "type": "topic",
+      "url": "/documentation/passkit/restoring-the-symmetric-key"
+    },
+    "https://www.apple.com/certificateauthority": {
+      "identifier": "https://www.apple.com/certificateauthority",
+      "title": "www.apple.com/certificateauthority",
+      "titleInlineContent": [
+        {
+          "text": "www.apple.com/certificateauthority",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.apple.com/certificateauthority"
+    },
+    "media-3949579": {
+      "alt": "A diagram of a PKPaymentToken object, which contains three objects: a Transaction ID, a Payment network, and Payment token data.  The Payment token data contains a Signature, a Header, and Encrypted Payment Data.",
+      "identifier": "media-3949579",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/df44697d86da331eb9609bf362399a9d/media-3949579@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c04ecc4fdfaaa9586027665ee12b50f7/media-3949579~dark@2x.png"
+        }
+      ]
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Symmetric-keys",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/restoring-the-symmetric-key"
+      ],
+      "title": "Symmetric keys"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Symmetric-keys",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/restoring-the-symmetric-key"
+              ],
+              "title": "Symmetric keys"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentToken~1paymentData/title",
+          "value": "paymentData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentToken~1paymentData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "paymentData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/title",
+          "value": "PKPaymentRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1applicationData/title",
+          "value": "applicationData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1applicationData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "applicationData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentToken/title",
+          "value": "PKPaymentToken"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentToken/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentToken/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentToken"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/passkit/payment-token-format-reference"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/passkit/payment-token-format-reference"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

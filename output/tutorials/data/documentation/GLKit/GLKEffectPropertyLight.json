@@ -1,0 +1,2247 @@
+{
+  "abstract": [
+    {
+      "text": "Lighting information for use in GLKit rendering effects.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.glkit/documentation/GLKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)GLKEffectPropertyLight",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "GLKEffectPropertyLight"
+      }
+    ],
+    "modules": [
+      {
+        "name": "GLKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GLKEffectPropertyLight"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "12.0",
+        "introducedAt": "5.0",
+        "message": "OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "12.0",
+        "introducedAt": "5.0",
+        "message": "OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.14",
+        "introducedAt": "10.8",
+        "message": "OpenGL API deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "12.0",
+        "introducedAt": "9.0",
+        "message": "OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)",
+        "name": "tvOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "GLKEffectPropertyLight"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "macOS",
+            "tvOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyLight"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The lighting model implemented by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is identical to the lighting model implemented in OpenGL ES 1.1; each light interacts with any material properties on the effect to determine the intensity and color that particular light contributes to the scene at a fragment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are three basic kinds of lights: directional, point and spotlights.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A directional light is considered to be infinitely far away, and always directs light in the same direction. To create a directional light, set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/position",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property to a vector whose ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "y",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "z",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " components specify the direction to the light (that is, the negation of the direction the light is travelling in), and whose ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "w",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " component is set to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A point light is placed at a position within the scene, and emits light in all directions. To create a directional light, set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/position",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property to a vector whose ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "y",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "z",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "w",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " components specify the homogenous coordinates for the position of the light in the scene. The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "w",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " component is typically set to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and must not be set to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The intensity of a point light is adjusted using an distance attenuation function. This function is controlled by adjusting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/constantAttenuation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/linearAttenuation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/quadraticAttenuation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties. The default values for these properties create a light whose intensity is constant over distance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A spotlight is placed at a position within the scene, and emits light in a specific direction in a cone. To create a spotlight, set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/position",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property to a vector whose ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "y",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "z",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "w",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " components specify the homogenous coordinates for the position of the light in the scene. The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "w",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " component must not be set to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Then, set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/spotDirection",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property to a vector that specifies the direction of the light and the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/spotCutoff",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to a value less than ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "180.0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Like a point light, a spotlight’s intensity can be adjusted using the distance attenuation properties. A spotlight’s intensity can also be changed as a function of the spotlight angle by setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/spotExponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. The default value for a spotlight creates a spotlight whose intensity is not affected by the angle. That is, the spotlight radiates the same amount of light at the center and at the edge of the cone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Lighting calculations are performed in eye-space coordinates.  The eye-space coordinates for the position and the spot direction are calculated at the precise moment that new position values are specified and may be affected by other properties of the effect. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.glkit/documentation/GLKit": {
+      "abstract": [
+        {
+          "text": "Speed up OpenGL ES or OpenGL app development. Use math libraries, background texture loading, pre-created shader effects, and a standard view and view controller to implement your rendering loop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GLKit",
+      "type": "topic",
+      "url": "/documentation/glkit"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect": {
+      "abstract": [
+        {
+          "text": "A simple lighting and shading system for use in shader-based OpenGL rendering.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKBaseEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKBaseEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKBaseEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKBaseEffect",
+      "type": "topic",
+      "url": "/documentation/glkit/glkbaseeffect"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectProperty": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for configuration information used in GLKit rendering effects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKEffectProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectProperty",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKEffectProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKEffectProperty",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectproperty"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyFog": {
+      "abstract": [
+        {
+          "text": "Fog drawing information for use in GLKit rendering effects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKEffectPropertyFog"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyFog",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKEffectPropertyFog"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKEffectPropertyFog",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertyfog"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight": {
+      "abstract": [
+        {
+          "text": "Lighting information for use in GLKit rendering effects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKEffectPropertyLight"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKEffectPropertyLight"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKEffectPropertyLight",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertylight"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/ambientColor": {
+      "abstract": [
+        {
+          "text": "The ambient portion of the light.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ambientColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "GLKVector4"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/ambientColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ambientColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ambientColor",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertylight/ambientcolor"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/constantAttenuation": {
+      "abstract": [
+        {
+          "text": "A constant factor applied to the attenuation of a point light or spotlight.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "constantAttenuation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@GLfloat",
+          "text": "GLfloat"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/constantAttenuation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "constantAttenuation"
+        }
+      ],
+      "role": "symbol",
+      "title": "constantAttenuation",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertylight/constantattenuation"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/diffuseColor": {
+      "abstract": [
+        {
+          "text": "The diffuse portion of the light.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "diffuseColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "GLKVector4"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/diffuseColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "diffuseColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "diffuseColor",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertylight/diffusecolor"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/enabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether calculations should be performed on this light.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@GLboolean",
+          "text": "GLboolean"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/enabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "enabled",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertylight/enabled"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/linearAttenuation": {
+      "abstract": [
+        {
+          "text": "A linear factor applied to the attenuation of a point light or spotlight.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "linearAttenuation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@GLfloat",
+          "text": "GLfloat"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/linearAttenuation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "linearAttenuation"
+        }
+      ],
+      "role": "symbol",
+      "title": "linearAttenuation",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertylight/linearattenuation"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/position": {
+      "abstract": [
+        {
+          "text": "The position of the light in world coordinates.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "position"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "GLKVector4"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/position",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "position"
+        }
+      ],
+      "role": "symbol",
+      "title": "position",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertylight/position"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/quadraticAttenuation": {
+      "abstract": [
+        {
+          "text": "A quadratic factor applied to the attenuation of a point light or spotlight.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "quadraticAttenuation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@GLfloat",
+          "text": "GLfloat"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/quadraticAttenuation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "quadraticAttenuation"
+        }
+      ],
+      "role": "symbol",
+      "title": "quadraticAttenuation",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertylight/quadraticattenuation"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/specularColor": {
+      "abstract": [
+        {
+          "text": "The specular portion of the light.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "specularColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "GLKVector4"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/specularColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "specularColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "specularColor",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertylight/specularcolor"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/spotCutoff": {
+      "abstract": [
+        {
+          "text": "The angle in degrees where the spotlight is cut off.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "spotCutoff"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@GLfloat",
+          "text": "GLfloat"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/spotCutoff",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "spotCutoff"
+        }
+      ],
+      "role": "symbol",
+      "title": "spotCutoff",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertylight/spotcutoff"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/spotDirection": {
+      "abstract": [
+        {
+          "text": "A vector indicating the direction the spotlight is projecting.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "spotDirection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "GLKVector3"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/spotDirection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "spotDirection"
+        }
+      ],
+      "role": "symbol",
+      "title": "spotDirection",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertylight/spotdirection"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/spotExponent": {
+      "abstract": [
+        {
+          "text": "A value indicating how focused the spotlight is.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "spotExponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@GLfloat",
+          "text": "GLfloat"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/spotExponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "spotExponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "spotExponent",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertylight/spotexponent"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/transform": {
+      "abstract": [
+        {
+          "text": "A transform applied to the light’s position and direction before calculating the contribution of the light.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GLKEffectPropertyTransform",
+          "text": "GLKEffectPropertyTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/transform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transform"
+        }
+      ],
+      "role": "symbol",
+      "title": "transform",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertylight/transform"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyMaterial": {
+      "abstract": [
+        {
+          "text": "Surface appearance properties for use in GLKit rendering effects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKEffectPropertyMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyMaterial",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKEffectPropertyMaterial"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKEffectPropertyMaterial",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertymaterial"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyTexture": {
+      "abstract": [
+        {
+          "text": "Texture drawing parameters for use in GLKit rendering effects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKEffectPropertyTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKEffectPropertyTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKEffectPropertyTexture",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertytexture"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyTransform": {
+      "abstract": [
+        {
+          "text": "Coordinate transform information for use in GLKit rendering effects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKEffectPropertyTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKEffectPropertyTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKEffectPropertyTransform",
+      "type": "topic",
+      "url": "/documentation/glkit/glkeffectpropertytransform"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKLightingType": {
+      "abstract": [
+        {
+          "text": "A constant that describes how lighting is calculated by an effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLKLightingType"
+        }
+      ],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKLightingType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GLKLightingType"
+        }
+      ],
+      "role": "symbol",
+      "title": "GLKLightingType",
+      "type": "topic",
+      "url": "/documentation/glkit/glklightingtype"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/glkit-effects-constants": {
+      "abstract": [],
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/glkit-effects-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GLKit Effects Constants",
+      "type": "topic",
+      "url": "/documentation/glkit/glkit-effects-constants"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectProperty"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Rendering-Effect-Parameters",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectProperty",
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyFog",
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyTexture",
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyMaterial",
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyTransform",
+        "doc://com.apple.glkit/documentation/GLKit/glkit-effects-constants"
+      ],
+      "title": "Rendering Effect Parameters"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Configuring-Common-Lighting-Properties",
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/enabled",
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/position",
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/transform"
+      ],
+      "title": "Configuring Common Lighting Properties"
+    },
+    {
+      "anchor": "Configuring-Light-Colors",
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/ambientColor",
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/diffuseColor",
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/specularColor"
+      ],
+      "title": "Configuring Light Colors"
+    },
+    {
+      "anchor": "Configuring-Lighting-Attenuation",
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/constantAttenuation",
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/linearAttenuation",
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/quadraticAttenuation"
+      ],
+      "title": "Configuring Lighting Attenuation"
+    },
+    {
+      "anchor": "Configuring-Spotlight-Properties",
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/spotCutoff",
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/spotDirection",
+        "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/spotExponent"
+      ],
+      "title": "Configuring Spotlight Properties"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.glkit/documentation/GLKit/GLKLightingType"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "12.0",
+              "introducedAt": "5.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "12.0",
+              "introducedAt": "5.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "10.14",
+              "introducedAt": "10.8",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "12.0",
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "GLKEffectPropertyLight"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.glkit/documentation/GLKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Configuring-Common-Lighting-Properties",
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/enabled",
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/position",
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/transform"
+              ],
+              "title": "Configuring Common Lighting Properties"
+            },
+            {
+              "anchor": "Configuring-Light-Colors",
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/ambientColor",
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/diffuseColor",
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/specularColor"
+              ],
+              "title": "Configuring Light Colors"
+            },
+            {
+              "anchor": "Configuring-Lighting-Attenuation",
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/constantAttenuation",
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/linearAttenuation",
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/quadraticAttenuation"
+              ],
+              "title": "Configuring Lighting Attenuation"
+            },
+            {
+              "anchor": "Configuring-Spotlight-Properties",
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/spotCutoff",
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/spotDirection",
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyLight/spotExponent"
+              ],
+              "title": "Configuring Spotlight Properties"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKLightingType"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectProperty"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Rendering-Effect-Parameters",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectProperty",
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyFog",
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyTexture",
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyMaterial",
+                "doc://com.apple.glkit/documentation/GLKit/GLKEffectPropertyTransform",
+                "doc://com.apple.glkit/documentation/GLKit/glkit-effects-constants"
+              ],
+              "title": "Rendering Effect Parameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "macOS",
+                  "tvOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "GLKEffectPropertyLight"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKEffectProperty",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)GLKEffectProperty",
+                    "text": "GLKEffectProperty"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "OpenGLES API deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect/title",
+          "value": "GLKBaseEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKBaseEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKBaseEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKBaseEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1spotDirection/title",
+          "value": "spotDirection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1spotDirection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "spotDirection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1spotCutoff/title",
+          "value": "spotCutoff"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1spotCutoff/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "spotCutoff"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectProperty/title",
+          "value": "GLKEffectProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectProperty/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectProperty/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight/title",
+          "value": "GLKEffectPropertyLight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyLight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1linearAttenuation/title",
+          "value": "linearAttenuation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1linearAttenuation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "linearAttenuation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1enabled/title",
+          "value": "enabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1enabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "enabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1ambientColor/title",
+          "value": "ambientColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1ambientColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ambientColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyMaterial/title",
+          "value": "GLKEffectPropertyMaterial"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyMaterial/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyMaterial"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyMaterial/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyMaterial"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1specularColor/title",
+          "value": "specularColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1specularColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "specularColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1transform/title",
+          "value": "transform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1transform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKLightingType/title",
+          "value": "GLKLightingType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKLightingType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKLightingType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKLightingType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKLightingType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1diffuseColor/title",
+          "value": "diffuseColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1diffuseColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "diffuseColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1position/title",
+          "value": "position"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1position/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "position"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1spotExponent/title",
+          "value": "spotExponent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1spotExponent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "spotExponent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyTransform/title",
+          "value": "GLKEffectPropertyTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyTransform/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyTexture/title",
+          "value": "GLKEffectPropertyTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyTexture/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyFog/title",
+          "value": "GLKEffectPropertyFog"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyFog/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyFog"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyFog/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GLKEffectPropertyFog"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1constantAttenuation/title",
+          "value": "constantAttenuation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1constantAttenuation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "constantAttenuation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1quadraticAttenuation/title",
+          "value": "quadraticAttenuation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.glkit~1documentation~1GLKit~1GLKEffectPropertyLight~1quadraticAttenuation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "quadraticAttenuation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/glkit/glkeffectpropertylight"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/glkit/glkeffectpropertylight"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

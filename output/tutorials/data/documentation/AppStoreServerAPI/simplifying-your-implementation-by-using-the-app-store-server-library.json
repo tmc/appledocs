@@ -1,0 +1,571 @@
+{
+  "abstract": [
+    {
+      "text": "Use Apple’s open source library to create JSON Web Tokens (JWT) to authorize your calls, verify transactions, extract transaction identifiers from receipts, and more.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/simplifying-your-implementation-by-using-the-app-store-server-library"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Store Server API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Simplifying your implementation by using the App Store Server Library"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Store Server Library is an open source library from Apple, available in four languages. It makes adopting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and working with JSON Web Signature (JWS) transactions easier. Find the App Store Server Library for each language in the following GitHub repositories:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Swift: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://github.com/apple/app-store-server-library-swift",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Java: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://github.com/apple/app-store-server-library-java",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Python: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://github.com/apple/app-store-server-library-python",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Node: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://github.com/apple/app-store-server-library-node",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Choose the language that best supports your server and expertise.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Store Server Library offers four key capabilities:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An API client that encodes ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " requests, decodes the responses, and creates the JSON Web Token (JWT) you use to authenticate the calls. For more information on using JWTs, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/generating-json-web-tokens-for-api-requests",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Functions that verify JWS transactions, to verify that Apple signed the transaction data you get in API responses, from ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and from devices using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". See the functions ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "verifyAndDecodeTransaction",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "verifyAndDecodeAppTransaction",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "verifyAndDecodeRenewalInfo",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", available in each language the library supports.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A utility that extracts transaction identifiers from receipts. The App Store Server API endpoints take a transaction identifier in the path parameter. Use this utility as you migrate from using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to using the App Store Server API for transaction information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A function that generates signatures for subscription promotional offers. For more information on promotional offers, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/help/app-store-connect/manage-subscriptions/set-up-promotional-offers-for-auto-renewable-subscriptions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see the WWDC23 session ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2023/10143/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI": {
+      "abstract": [
+        {
+          "text": "Manage your customers’ App Store transactions from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server API",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/app-store-server-api-changelog": {
+      "abstract": [
+        {
+          "text": "Learn about new features and updates in the App Store Server API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/app-store-server-api-changelog",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Server API changelog",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/app-store-server-api-changelog"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/creating-api-keys-to-authorize-api-requests": {
+      "abstract": [
+        {
+          "text": "Create API keys you use to sign JSON Web Tokens and authorize API requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/creating-api-keys-to-authorize-api-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating API keys to authorize API requests",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/creating-api-keys-to-authorize-api-requests"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/generating-json-web-tokens-for-api-requests": {
+      "abstract": [
+        {
+          "text": "Create JSON Web Tokens signed with your private key to authorize requests for App Store Server API and External Purchase Server API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/generating-json-web-tokens-for-api-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating JSON Web Tokens for API requests",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/generating-json-web-tokens-for-api-requests"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/identifying-rate-limits": {
+      "abstract": [
+        {
+          "text": "Recognize the rate limits that apply to App Store Server API endpoints and handle them in your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/identifying-rate-limits",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying rate limits",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/identifying-rate-limits"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2": {
+      "abstract": [
+        {
+          "text": "Specify your secure server’s URL in App Store Connect to receive version 2 notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App Store Server Notifications V2",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/StoreKit"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts": {
+      "abstract": [
+        {
+          "text": "Validate app and In-App Purchase receipts with the App Store.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Receipts",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt": {
+      "abstract": [
+        {
+          "text": "Send a receipt to the App Store for verification.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt",
+      "kind": "article",
+      "role": "symbol",
+      "title": "verifyReceipt",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/verifyreceipt"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/help/app-store-connect/manage-subscriptions/set-up-promotional-offers-for-auto-renewable-subscriptions": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/manage-subscriptions/set-up-promotional-offers-for-auto-renewable-subscriptions",
+      "title": "Set up promotional offers for auto-renewable subscriptions",
+      "titleInlineContent": [
+        {
+          "text": "Set up promotional offers for auto-renewable subscriptions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/manage-subscriptions/set-up-promotional-offers-for-auto-renewable-subscriptions"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10143/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10143/",
+      "title": "Meet the App Store Server Library",
+      "titleInlineContent": [
+        {
+          "text": "Meet the App Store Server Library",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10143/"
+    },
+    "https://github.com/apple/app-store-server-library-java": {
+      "identifier": "https://github.com/apple/app-store-server-library-java",
+      "title": "App Store Server Java Library",
+      "titleInlineContent": [
+        {
+          "text": "App Store Server Java Library",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/app-store-server-library-java"
+    },
+    "https://github.com/apple/app-store-server-library-node": {
+      "identifier": "https://github.com/apple/app-store-server-library-node",
+      "title": "App Store Server Node Library",
+      "titleInlineContent": [
+        {
+          "text": "App Store Server Node Library",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/app-store-server-library-node"
+    },
+    "https://github.com/apple/app-store-server-library-python": {
+      "identifier": "https://github.com/apple/app-store-server-library-python",
+      "title": "App Store Server Python Library",
+      "titleInlineContent": [
+        {
+          "text": "App Store Server Python Library",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/app-store-server-library-python"
+    },
+    "https://github.com/apple/app-store-server-library-swift": {
+      "identifier": "https://github.com/apple/app-store-server-library-swift",
+      "title": "App Store Server Swift Library",
+      "titleInlineContent": [
+        {
+          "text": "App Store Server Swift Library",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/app-store-server-library-swift"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/creating-api-keys-to-authorize-api-requests",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/generating-json-web-tokens-for-api-requests",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/identifying-rate-limits",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/app-store-server-api-changelog"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreserverapi/simplifying-your-implementation-by-using-the-app-store-server-library"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5157 @@
+{
+  "abstract": [
+    {
+      "text": "Provide an even more streamlined, consistent, and glanceable user experience with new design features.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/creating-an-intuitive-and-effective-ui-in-watchos-10"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating an intuitive and effective UI in watchOS 10"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "watchOS 10 provides a redesigned user interface that focuses on relevant, glanceable content and consistent navigation, and takes advantage of the high-quality display with full-screen color and images.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When designing your app, use these features to create efficient, intuitive navigation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TabView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " provides a set of views that people can scroll through using the Digital Crown.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/NavigationSplitView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " toggles between a source list and a set of detail views.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/NavigationStack",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " moves into and back out of a hierarchy of views.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use these features to make your app consistent and visually coherent:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Toolbars",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " guarantee consistent size and placement for buttons.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/matchedGeometryEffect(id:in:properties:anchor:isSource:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " animates changes to persistent elements across different tabs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Color",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " provides opportunities for branding, glanceable information, and additional context.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Material",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " help create consistency, a clear hierarchy, and a sense of place.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance, see Human Interface Guidelines > ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/designing-for-watchos",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Scroll-through-views-using-the-Digital-Crown",
+          "level": 2,
+          "text": "Scroll through views using the Digital Crown",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Digital Crown provides a precise input device that people can use to navigate between apps, scroll through an app’s content, and make precise selections without obscuring the display. To get the most out of the Digital Crown, emphasize vertical scrolling over horizontal scrolling in your app and use system controls that already support the Digital Crown, like the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Picker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In addition, watchOS 10 adds the ability to scroll vertically through a set of pages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create vertical pagination, use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TabView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/tabViewStyle(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TabViewStyle/verticalPage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Binding var selected: Item",
+            "",
+            "var body: some View {",
+            "    TabView(selection: $selected) {",
+            "        ForEach(Item.allCases) { item in",
+            "            // Create a view for the item.",
+            "            Text(\"\\(item.title) tab\")",
+            "        }",
+            "    }",
+            "    .tabViewStyle(.verticalPage)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system displays the selected tab and places a page indicator next to the Digital Crown. People can scroll vertically through the pages with their finger, or using the Digital Crown.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "scrolling-through-vertical-tabs",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TabView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to display a set of distinct, purposeful views. Give each view a clear purpose, and consider limiting the view’s content to a single screen’s worth of information. However, the system does support longer views, transitioning seamlessly from scrolling between views, and scrolling through a longer view’s content. If you have longer views, consider placing them after your app’s fixed-height views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Binding var selected: Item",
+            "var body: some View {",
+            "    TabView(selection: $selected) {",
+            "        ForEach(Item.allCases) { item in",
+            "            // Create a screen-sized view for each item.",
+            "            Text(\"\\(item.title) tab\")",
+            "        }",
+            "        ",
+            "        // End with a longer view.",
+            "        ScrollView {",
+            "            Text(\"1\\n2\\n3\\n4\\n5\\n6\\n7\\n8\\n9\\n10\\n11\\n12\\n13\\n14\\n15\\n16\\n\")",
+            "        }",
+            "    }",
+            "    .tabViewStyle(.verticalPage)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When scrolling through a longer view’s content, the system expands the selected dot in the page control to show the scroll position within the longer view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "scrolling-in-longer-views",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional design guidance, see Human Interface Guidelines > ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/digital-crown",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/page-controls",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Toggle-between-a-source-list-and-detail-views",
+          "level": 2,
+          "text": "Toggle between a source list and detail views",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS, iOS, and iPadOS, split views are used to present two or more columns of data. In watchOS 10, a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/NavigationSplitView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is the ideal way to display a source list and the corresponding detail views. If the context is large enough to show multiple columns, the system displays a list of items in the leading column. People can then choose one or more items in a leading column to display details about those items in subsequent columns.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similar to the experience on an iPhone in portrait orientation, the ",
+              "type": "text"
+            },
+            {
+              "code": "NavigationSplitView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in watchOS 10 only shows one column at a time. For example, your app may display a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/List",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the source view. When someone selects an item from the list, the ",
+              "type": "text"
+            },
+            {
+              "code": "NavigationSplitView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " automatically animates to the corresponding detail view. When the person taps the list icon, the system returns to the source view. The system automatically handles animating the transition between source and detail view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a split view, instantiate a ",
+              "type": "text"
+            },
+            {
+              "code": "NavigationSplitView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance. Pass a ",
+              "type": "text"
+            },
+            {
+              "code": "List",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the source view, and create a detail view based on the selection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Binding var selected: Item?",
+            "",
+            "var body: some View {",
+            "    NavigationSplitView() {",
+            "",
+            "        List(selection: $selected) {",
+            "            ForEach(Item.allCases, id: \\.self) { item in",
+            "                NavigationLink(item.rawValue.uppercased(),",
+            "                               value: item)",
+            "            }",
+            "        }",
+            "        .listStyle(.carousel)",
+            "    } detail: {",
+            "        DetailView(selected: $selected)",
+            "    }",
+            "",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also combine the split view with a vertical tab view, letting people scroll through the detail views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Binding var selected: Item?",
+            "",
+            "var body: some View {",
+            "    NavigationSplitView() {",
+            "",
+            "        List(selection: $selected) {",
+            "            ForEach(Item.allCases, id: \\.self) { item in",
+            "                NavigationLink(item.rawValue.uppercased(),",
+            "                               value: item)",
+            "            }",
+            "        }",
+            "        .containerBackground(.green.gradient,",
+            "                             for: .navigation)",
+            "        .listStyle(.carousel)",
+            "    } detail: {",
+            "        TabView(selection: $selected) {",
+            "        ForEach(Item.allCases, id: \\.self) { item in",
+            "            ItemView(item: item)",
+            "                .tag(Optional(item))",
+            "                .containerBackground(.blue.gradient,",
+            "                                     for: .tabView)",
+            "        }",
+            "    }",
+            "    .tabViewStyle(.verticalPage)}",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "split-view-detail-view",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Detail view",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "split-view-source-list",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Source list",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "While the code for the ",
+                  "type": "text"
+                },
+                {
+                  "code": "List",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and the ",
+                  "type": "text"
+                },
+                {
+                  "code": "TabView",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " look very similar, there is a significant difference. The ",
+                  "type": "text"
+                },
+                {
+                  "code": "List",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " expects an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Swift/Optional",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for the ",
+                  "type": "text"
+                },
+                {
+                  "code": "selected",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " value. If ",
+                  "type": "text"
+                },
+                {
+                  "code": "selected",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "nil",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", that means nothing is selected. If it’s not ",
+                  "type": "text"
+                },
+                {
+                  "code": "nil",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the system unwraps its value and compares the value to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "id",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for each item in the list. On the other hand, the ",
+                  "type": "text"
+                },
+                {
+                  "code": "TabView",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " doesn’t unwrap the ",
+                  "type": "text"
+                },
+                {
+                  "code": "selected",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " value. It just compares ",
+                  "type": "text"
+                },
+                {
+                  "code": "selected",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to the tab item’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/tag(_:includeOptional:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". As a result, you either need to unwrap ",
+                  "type": "text"
+                },
+                {
+                  "code": "selected",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " before passing it to the tab view, or you need to wrap the tag values in an ",
+                  "type": "text"
+                },
+                {
+                  "code": "Optional",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " before passing them to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "tag(_:)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " modifier.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using a split view in watchOS, consider the following best practices:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Automatically open the split view to its most relevant detail view. You can use location, recency, frequency, or some other indication of user intent to determine the detail view to display.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "There’s no need to add a title to the source list, or a cancel button or navigation controls to the detail view. Avoiding extraneous labels results in a shorter navigation bar, giving you more room to display data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Consider making your detail views unmistakeable at a glance, so they also don’t need a title.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can use the source list to present comparative data. For example, a weather app might display the temperature at each location, or a world clock might display the time in each city.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional design guidance, see Human Interface Guidelines > ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/split-views",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Move-through-a-hierarchy-of-views",
+          "level": 2,
+          "text": "Move through a hierarchy of views",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While the ",
+              "type": "text"
+            },
+            {
+              "code": "TabView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "NavigationSplitView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " provide new navigation paradigms, they aren’t your only option. If your app doesn’t pivot between a detail view and a source list, or if it needs more than a few vertically paginated tabs, consider using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/NavigationStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". While the ",
+              "type": "text"
+            },
+            {
+              "code": "NavigationStack",
+              "type": "codeVoice"
+            },
+            {
+              "text": " isn’t a new feature, it is still an effective way to navigate an arbitrary hierarchy of views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a ",
+              "type": "text"
+            },
+            {
+              "code": "NavigationStack",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an array to store the stack.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pass a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Binding",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to the array as the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "path",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NavigationStack",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " constructor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/navigationDestination(for:destination:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " modifier to provide the view for the current data from the front of the array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can then modify the array directly, or use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/NavigationLink",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances. These links push a value onto the array when someone taps it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@State var stack = [Int]()",
+            "",
+            "var body: some View {",
+            "    NavigationStack(path: $stack) {",
+            "        // Create the root view.",
+            "        Text(\"Main page\")",
+            "            .toolbar {",
+            "                ToolbarItem(placement: .topBarTrailing) {",
+            "                    NavigationLink(value: 2) {",
+            "                        Image(systemName: \"chevron.right\")",
+            "                    }",
+            "                }",
+            "            }",
+            "            // Create a view for the top value in the stack.",
+            "            .navigationDestination(for: Int.self) { value in",
+            "                Text(\"Second page\")",
+            "            }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "navigation-stack-root-view",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Root view",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "navigation-stack-leaf-view",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "leaf view",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating a navigation stack in watchOS, consider the following best practices:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To streamline navigation, keep the view hierarchy as shallow as possible.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use a large title on the root view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Don’t use a title on any subsequent views where a back button is present.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Place-buttons-consistently-with-the-toolbar",
+          "level": 2,
+          "text": "Place buttons consistently with the toolbar",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app uses a ",
+              "type": "text"
+            },
+            {
+              "code": "NavigationSplitView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "NavigationStack",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you can place buttons in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/toolbar(content:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and provide a consistent size, location, and appearance for the buttons. If the view has scrolling content, the buttons remain visible above the content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can place both a leading and trailing button in the top toolbar. The system automatically moves the page’s navigation title and the time to make space for these buttons. Additionally, you can place up to three buttons in the bottom toolbar. If you have three buttons in the bottom bar, you can make the center button more prominent by making it larger.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var body: some View {",
+            "    NavigationStack {",
+            "        Text(\"Main View\")",
+            "            .toolbar {",
+            "                ToolbarItem(placement: .topBarLeading) {",
+            "                    Button {",
+            "                        // Perform an action here.",
+            "                    } label: {",
+            "                        Image(systemName:\"suit.heart\")",
+            "                    }",
+            "                }",
+            "                ToolbarItem(placement: .topBarTrailing) {",
+            "                    Button {",
+            "                        // Perform an action here.",
+            "                    } label: {",
+            "                        Image(systemName:\"suit.club\")",
+            "                    }",
+            "                }",
+            "                ToolbarItemGroup(placement: .bottomBar) {",
+            "                    Button {",
+            "                        // Perform an action here.",
+            "                    } label: {",
+            "                        Image(systemName:\"suit.diamond\")",
+            "                    }",
+            "                    ",
+            "                    Button {",
+            "                        // Perform an action here.",
+            "                    } label: {",
+            "                        Image(systemName:\"star\")",
+            "                    }",
+            "                    .controlSize(.large)",
+            "                    .background(.red, in: Capsule())",
+            "                    ",
+            "                    Button {",
+            "                        // Perform an action here.",
+            "                    } label: {",
+            "                        Image(systemName:\"suit.spade\")",
+            "                    }",
+            "                }",
+            "            }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "tab-bar-buttons",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also place a button in the scrolling view by using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ToolbarItemPlacement/primaryAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " placement. By default, a scrolling toolbar button remains hidden until people reveal it by scrolling up. People frequently scroll to the top of a scrolling view, so discovering a toolbar button is automatic.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use toolbar buttons to offer important functionality that’s related to the view, but not necessarily part of the view’s main purpose. A primary action might work better as a button in the view itself.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "By default, the system automatically displays the list icon or back button in the leading top toolbar position. As a result, you often only place your own button in the top trailing position.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional design guidance, see Human Interface Guidelines > ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/toolbars",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-continuity-with-persistent-elements",
+          "level": 2,
+          "text": "Provide continuity with persistent elements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can display the same element on multiple pages to create a sense of continuity between the pages. For example, when working with vertical tab views, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/matchedGeometryEffect(id:in:properties:anchor:isSource:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to animate changes to an element’s size and position between tabs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the following screenshot shows a books icon in the middle of the first page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "persistent-icon-page-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, when someone uses the digital crown to scroll to the next page, the icon shrinks and moves into the toolbar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "persistent-icon-page-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code uses the ",
+              "type": "text"
+            },
+            {
+              "code": "matchedGeometryEffect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier to create that effect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NavigationStack {",
+            "    TabView(selection: $pageNumber) {",
+            "",
+            "        VStack {",
+            "            Image(systemName: \"books.vertical.fill\")",
+            "                .imageScale(.large)",
+            "                .matchedGeometryEffect(",
+            "                    id: bookIcon,",
+            "                    in: library,",
+            "                    properties:  .frame,",
+            "                    isSource: pageNumber == 0)",
+            "            Text(\"Books\")",
+            "        }",
+            "        .tag(0)",
+            "",
+            "        VStack {",
+            "            BookList()",
+            "        }",
+            "        .tag(1)",
+            "    }",
+            "    .tabViewStyle(.verticalPage)",
+            "    .toolbar {",
+            "        ToolbarItem(placement: .topBarLeading) {",
+            "            Image(systemName: \"books.vertical.fill\")",
+            "",
+            "                .matchedGeometryEffect(",
+            "                    id: bookIcon,",
+            "                    in: library,",
+            "                    properties:  .frame,",
+            "                    isSource: pageNumber != 0)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the icon appears in the first tab’s view and in the toolbar. The ",
+              "type": "text"
+            },
+            {
+              "code": "isSource",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter determines which version gets rendered. If ",
+              "type": "text"
+            },
+            {
+              "code": "pageNumber",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", someone is viewing the first page, so the system renders the version inside the tab view. If ",
+              "type": "text"
+            },
+            {
+              "code": "pageNumber",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is set to a different value, the system renders the version in the toolbar. When ",
+              "type": "text"
+            },
+            {
+              "code": "pageNumber",
+              "type": "codeVoice"
+            },
+            {
+              "text": " changes, the system animates the changes to the icon’s frame, matching the animation to the Digital Crown.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-additional-information-with-color-backgrounds",
+          "level": 2,
+          "text": "Provide additional information with color backgrounds",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use full color backgrounds to convey information about your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider colors that:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Relate to your app’s branding.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Evoke a particular emotion, such as the calming blue background in Sleep.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Convey a sense of space. For example, Fitness has a black background on the main screen, but uses red, green, and blue background colors for the Move, Exercise, and Stand views.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Display information at a glance. For example, World Clock uses solar gradients to show the time of day.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Indicate a state change. Timer also uses a black background, but changes to bright orange when the timer is done.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Normal views can just set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/background(alignment:content:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the desired color. However, for anything presented by a ",
+              "type": "text"
+            },
+            {
+              "code": "NavigationSplitView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "NavigationStack",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "TabView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/containerBackground(_:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier instead and pass in either the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ContainerBackgroundPlacement/navigation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ContainerBackgroundPlacement/tabView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value for the placement. The ",
+              "type": "text"
+            },
+            {
+              "code": "containerBackground",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier also supports displaying a gradient using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Color/gradient",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the following code adds a green gradient to the split view’s source list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Binding var selected: Item?",
+            "",
+            "var body: some View {",
+            "    NavigationSplitView() {",
+            "",
+            "        List(selection: $selected) {",
+            "            ForEach(Item.allCases, id: \\.self) { item in",
+            "                NavigationLink(item.rawValue.uppercased(),",
+            "                               value: item)",
+            "            }",
+            "        }",
+            "        .containerBackground(.green.gradient,",
+            "                             for: .navigation)",
+            "        .listStyle(.carousel)",
+            "    } detail: {",
+            "        DetailView(selected: $selected)",
+            "    }",
+            "",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example adds a blue gradient to a tab item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Binding var selected: Item?",
+            "",
+            "var body: some View {",
+            "    TabView(selection: $selected) {",
+            "        ForEach(Item.allCases) { item in",
+            "            Text(\"\\(item.title) tab\")",
+            "                .tag(Optional(item))",
+            "                .containerBackground(.blue.gradient,",
+            "                                     for: .tabView)",
+            "        }",
+            "    }",
+            "    .tabViewStyle(.verticalPage)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "background-color-navigation",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Navigation placement",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "background-color-tab",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Tab placement",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional design guidance, see Human Interface Guidelines > ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/color",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Indicate-hierarchy-and-context-with-materials",
+          "level": 2,
+          "text": "Indicate hierarchy and context with materials",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Material",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " effects to improve legibility, define an information hierarchy, and provide context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the system automatically adds the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A vibrant fill ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "material",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to controls like buttons and list cells.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A full-screen, thin ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "material",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to presented views, like sheets and full-screen covers. This effect lets the color of the covered view show through, helping orient the wearer within the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A blur effect behind the navigation bar.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, the system provides vibrant text labels in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ShapeStyle/primary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ShapeStyle/secondary-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ShapeStyle/tertiary-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ShapeStyle/quaternary-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  prominence levels for creating a typographic hierarchy. You can also add vibrant versions of all the system colors to ensure legibility over full-color backgrounds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/foregroundStyle(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to set a hierarchical text style. Or use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/PrimitiveButtonStyle/borderedProminent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " button style to make a button more prominent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@State var item: Item",
+            "",
+            "var body: some View {",
+            "    VStack {",
+            "        HStack {",
+            "            Text(item.title)",
+            "                .font(.headline)",
+            "                .foregroundStyle(.primary)",
+            "            Spacer()",
+            "        }",
+            "        .scenePadding(.horizontal)",
+            "        ",
+            "        HStack {",
+            "            Text(item.subtitle)",
+            "                .font(.subheadline)",
+            "                .foregroundStyle(.secondary)",
+            "            Spacer()",
+            "        }",
+            "        .scenePadding(.horizontal)",
+            "        ",
+            "        Spacer()",
+            "        ",
+            "        Text(item.bodyText)",
+            "            .foregroundStyle(.tertiary)",
+            "            .scenePadding(.horizontal)",
+            "        ",
+            "        Spacer()",
+            "        ",
+            "        Button {",
+            "            // Perform an action here.",
+            "        } label: {",
+            "            Text(\"Action\")",
+            "        }",
+            "        .buttonStyle(.borderedProminent)",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "setting-hierarchy-with-materials",
+              "metadata": {
+                "abstract": [
+                  {
+                    "text": "Navigation placement",
+                    "type": "text"
+                  }
+                ]
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional design guidance, see Human Interface Guidelines > ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/materials",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "background-color-navigation": {
+      "alt": "A screenshot of a split view's source view. The source view has a green gradient background.",
+      "identifier": "background-color-navigation",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9cbe255f81a286bb6786479a0aa6f3e9/background-color-navigation@2x.png"
+        }
+      ]
+    },
+    "background-color-tab": {
+      "alt": "A screenshot of an Apple Watch showing a tab view. The tab view has a blue gradient background.",
+      "identifier": "background-color-tab",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8c6d4d672180b7a0450a16f65ad4c7e6/background-color-tab@2x.png"
+        }
+      ]
+    },
+    "color.svg": {
+      "alt": null,
+      "identifier": "color.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "color",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d8868e121f0aff9e53911d53a00e1c1a/color.svg"
+        }
+      ]
+    },
+    "components-page-controls-thumbnail.png": {
+      "alt": null,
+      "identifier": "components-page-controls-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/765106722c45c58a5153e3684b347d0a/components-page-controls-thumbnail@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a52b8b7064988135633b3d6d79de32c5/components-page-controls-thumbnail~dark@2x.png"
+        }
+      ]
+    },
+    "components-split-views-thumbnail.png": {
+      "alt": null,
+      "identifier": "components-split-views-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c9a0494c3fc8fd9d51698911cc860794/components-split-views-thumbnail~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ed7d6fc0889fcc088cc104f46216e1a0/components-split-views-thumbnail@2x.png"
+        }
+      ]
+    },
+    "components-toolbars-thumbnail.png": {
+      "alt": null,
+      "identifier": "components-toolbars-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/af9a66a513ec927196e10ce743d8b45f/components-toolbars-thumbnail@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b26c97cf64b5d3c4bbe1536f91f1e940/components-toolbars-thumbnail~dark@2x.png"
+        }
+      ]
+    },
+    "digital-crown.svg": {
+      "alt": null,
+      "identifier": "digital-crown.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "digital-crown",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/64c8d1de2b6d1a4c767e59e12874daef/digital-crown.svg"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/color": {
+      "abstract": [
+        {
+          "text": "Judicious use of color can enhance communication, evoke your brand, provide visual continuity, communicate status and feedback, and help people understand information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/color",
+      "images": [
+        {
+          "identifier": "color.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "foundations-color-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Color",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/color"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/designing-for-watchos": {
+      "abstract": [
+        {
+          "text": "When people glance at their Apple Watch, they know they can access essential information and perform simple, timely tasks whether they’re stationary or in motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/designing-for-watchos",
+      "images": [
+        {
+          "identifier": "watchos.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "platforms-designing-for-watchos-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Designing for watchOS",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/designing-for-watchos"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/digital-crown": {
+      "abstract": [
+        {
+          "text": "The Digital Crown is an important hardware input for Apple Vision Pro and Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/digital-crown",
+      "images": [
+        {
+          "identifier": "digital-crown.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "inputs-digital-crown-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Digital Crown",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/digital-crown"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/materials": {
+      "abstract": [
+        {
+          "text": "On Apple platforms, a material imparts translucency by blurring and modifying the color values of the underlying visual content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/materials",
+      "images": [
+        {
+          "identifier": "materials.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "foundations-materials-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Materials",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/materials"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/page-controls": {
+      "abstract": [
+        {
+          "text": "A page control displays a row of indicator images, each of which represents a page in a flat list.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/page-controls",
+      "images": [
+        {
+          "identifier": "components-page-controls-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Page controls",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/page-controls"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/split-views": {
+      "abstract": [
+        {
+          "text": "A split view manages the presentation of multiple adjacent panes of content, each of which can contain a variety of components, including tables, collections, images, and custom views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/split-views",
+      "images": [
+        {
+          "identifier": "components-split-views-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Split views",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/split-views"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/toolbars": {
+      "abstract": [
+        {
+          "text": "A toolbar provides convenient access to frequently used commands and controls that perform actions relevant to the current view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/toolbars",
+      "images": [
+        {
+          "identifier": "components-toolbars-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Toolbars",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/toolbars"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Optional": {
+      "abstract": [
+        {
+          "text": "A type that represents either a wrapped value or the absence of a value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Optional"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Wrapped"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Wrapped"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Copyable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Optional",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Optional",
+      "type": "topic",
+      "url": "/documentation/Swift/Optional"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Binding": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that can read and write a value owned by a source of truth.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@propertyWrapper"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@dynamicMemberLookup"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Binding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Binding",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Binding"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Color": {
+      "abstract": [
+        {
+          "text": "A representation of a color that adapts to a given context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Color"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Color",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Color",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Color"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Color/gradient": {
+      "abstract": [
+        {
+          "text": "Returns the standard gradient for the color `self`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gradient"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11AnyGradientV",
+          "text": "AnyGradient"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Color/gradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gradient",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Color/gradient"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ContainerBackgroundPlacement/navigation": {
+      "abstract": [
+        {
+          "text": "A background placement inside a [`NavigationStack`](doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationStack) or [`NavigationSplitView`](doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitView).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI28ContainerBackgroundPlacementV",
+          "text": "ContainerBackgroundPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ContainerBackgroundPlacement/navigation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigation",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ContainerBackgroundPlacement/navigation"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ContainerBackgroundPlacement/tabView": {
+      "abstract": [
+        {
+          "text": "A background placement inside a [`TabView`](doc://com.apple.SwiftUI/documentation/SwiftUI/TabView).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI28ContainerBackgroundPlacementV",
+          "text": "ContainerBackgroundPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ContainerBackgroundPlacement/tabView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tabView",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ContainerBackgroundPlacement/tabView"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/List": {
+      "abstract": [
+        {
+          "text": "A container that presents rows of data arranged in a single column, optionally providing the ability to select one or more members.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "List"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "SelectionValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SelectionValue"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/List",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "List",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/List"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Material": {
+      "abstract": [
+        {
+          "text": "A background material type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Material"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Material",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Material",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Material"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/NavigationLink": {
+      "abstract": [
+        {
+          "text": "A view that controls a navigation presentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NavigationLink"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Destination"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Destination"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/NavigationLink",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NavigationLink",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/NavigationLink"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/NavigationSplitView": {
+      "abstract": [
+        {
+          "text": "A view that presents views in two or three columns, where selections in leading columns control presentations in subsequent columns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NavigationSplitView"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Sidebar"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Detail"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Sidebar"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Detail"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/NavigationSplitView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NavigationSplitView",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/NavigationSplitView"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/NavigationStack": {
+      "abstract": [
+        {
+          "text": "A view that displays a root view and enables you to present additional views over the root view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NavigationStack"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Root"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Root"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/NavigationStack",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NavigationStack",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/NavigationStack"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Picker": {
+      "abstract": [
+        {
+          "text": "A control for selecting from a set of mutually exclusive values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Picker"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "SelectionValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SelectionValue"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Picker",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Picker",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Picker"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/PrimitiveButtonStyle/borderedProminent": {
+      "abstract": [
+        {
+          "text": "A button style that applies standard border prominent artwork based on the button’s context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "borderedProminent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI28BorderedProminentButtonStyleV",
+          "text": "BorderedProminentButtonStyle"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/PrimitiveButtonStyle/borderedProminent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "borderedProminent",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/PrimitiveButtonStyle/borderedProminent"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ShapeStyle/primary": {
+      "abstract": [
+        {
+          "text": "A shape style that maps to the first level of the current content style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "primary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI22HierarchicalShapeStyleV",
+          "text": "HierarchicalShapeStyle"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ShapeStyle/primary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "primary",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ShapeStyle/primary"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ShapeStyle/quaternary-swift.property": {
+      "abstract": [
+        {
+          "text": "Returns the fourth level of this shape style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "quaternary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10ShapeStyleP",
+          "text": "ShapeStyle"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ShapeStyle/quaternary-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "quaternary",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ShapeStyle/quaternary-swift.property"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ShapeStyle/secondary-swift.property": {
+      "abstract": [
+        {
+          "text": "Returns the second level of this shape style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "secondary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10ShapeStyleP",
+          "text": "ShapeStyle"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ShapeStyle/secondary-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "secondary",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ShapeStyle/secondary-swift.property"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ShapeStyle/tertiary-swift.property": {
+      "abstract": [
+        {
+          "text": "Returns the third level of this shape style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tertiary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10ShapeStyleP",
+          "text": "ShapeStyle"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ShapeStyle/tertiary-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tertiary",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ShapeStyle/tertiary-swift.property"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/TabView": {
+      "abstract": [
+        {
+          "text": "A view that switches between multiple child views using interactive user interface elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabView"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "SelectionValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SelectionValue"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TabView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TabView",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/TabView"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/TabViewStyle/verticalPage": {
+      "abstract": [
+        {
+          "text": "A `TabViewStyle` that displays a vertical page `TabView` interaction and appearance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "verticalPage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI24VerticalPageTabViewStyleV",
+          "text": "VerticalPageTabViewStyle"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TabViewStyle/verticalPage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "verticalPage",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/TabViewStyle/verticalPage"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ToolbarItemPlacement/primaryAction": {
+      "abstract": [
+        {
+          "text": "The item represents a primary action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "primaryAction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20ToolbarItemPlacementV",
+          "text": "ToolbarItemPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ToolbarItemPlacement/primaryAction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "primaryAction",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ToolbarItemPlacement/primaryAction"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Toolbars": {
+      "abstract": [
+        {
+          "text": "Provide immediate access to frequently used commands and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Toolbars",
+      "kind": "article",
+      "role": "article",
+      "title": "Toolbars",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Toolbars"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/background(alignment:content:)": {
+      "abstract": [
+        {
+          "text": "Layers the views that you specify behind this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "background"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AlignmentV",
+          "text": "Alignment"
+        },
+        {
+          "kind": "text",
+          "text": " = .center, "
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:7SwiftUI11ViewBuilderV",
+          "text": "ViewBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/background(alignment:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "background(alignment:content:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/background(alignment:content:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/containerBackground(_:for:)": {
+      "abstract": [
+        {
+          "text": "Sets the container background of the enclosing container using a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "containerBackground"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "container"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI28ContainerBackgroundPlacementV",
+          "text": "ContainerBackgroundPlacement"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10ShapeStyleP",
+          "text": "ShapeStyle"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/containerBackground(_:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "containerBackground(_:for:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/containerBackground(_:for:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/foregroundStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets a view’s foreground elements to use a given style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "foregroundStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10ShapeStyleP",
+          "text": "ShapeStyle"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/foregroundStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "foregroundStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/foregroundStyle(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/matchedGeometryEffect(id:in:properties:anchor:isSource:)": {
+      "abstract": [
+        {
+          "text": "Defines a group of views with synchronized geometry using an identifier and namespace that you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "matchedGeometryEffect"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "namespace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9NamespaceV",
+          "text": "Namespace"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9NamespaceV2IDV",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "properties"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI25MatchedGeometryPropertiesV",
+          "text": "MatchedGeometryProperties"
+        },
+        {
+          "kind": "text",
+          "text": " = .frame, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "anchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9UnitPointV",
+          "text": "UnitPoint"
+        },
+        {
+          "kind": "text",
+          "text": " = .center, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isSource"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = true) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/matchedGeometryEffect(id:in:properties:anchor:isSource:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "matchedGeometryEffect(id:in:properties:anchor:isSource:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/matchedGeometryEffect(id:in:properties:anchor:isSource:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/navigationDestination(for:destination:)": {
+      "abstract": [
+        {
+          "text": "Associates a destination view with a presented data type for use within a navigation stack.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationDestination"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:7SwiftUI11ViewBuilderV",
+          "text": "ViewBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/navigationDestination(for:destination:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationDestination(for:destination:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/navigationDestination(for:destination:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/tabViewStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for the tab view within the current environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabViewStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12TabViewStyleP",
+          "text": "TabViewStyle"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/tabViewStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tabViewStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/tabViewStyle(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/tag(_:includeOptional:)": {
+      "abstract": [
+        {
+          "text": "Sets the unique tag value of this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tag"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "tag"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "includeOptional"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = true) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/tag(_:includeOptional:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tag(_:includeOptional:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/tag(_:includeOptional:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/toolbar(content:)": {
+      "abstract": [
+        {
+          "text": "Populates the toolbar or navigation bar with the specified items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toolbar"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:7SwiftUI21ToolbarContentBuilderV",
+          "text": "ToolbarContentBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI14ToolbarContentP",
+          "text": "ToolbarContent"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/toolbar(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toolbar(content:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/toolbar(content:)"
+    },
+    "doc://com.apple.documentation/documentation/Updates/watchos": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to watchOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Updates/watchos",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS updates",
+      "type": "topic",
+      "url": "/documentation/Updates/watchos"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that combine complications, notifications, and Siri to create",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a personal experience on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps",
+      "images": [
+        {
+          "identifier": "watchOSApps-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "watchOS apps",
+      "type": "topic",
+      "url": "/documentation/watchos-apps"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/building_a_watchos_app": {
+      "abstract": [
+        {
+          "text": "Set up your app’s life cycle and create its user interface with SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/building_a_watchos_app",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a watchOS app",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/building_a_watchos_app"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/updating-your-app-and-widgets-for-watchos-10": {
+      "abstract": [
+        {
+          "text": "Integrate SwiftUI elements and watch-specific features, and build widgets for the Smart Stack.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/updating-your-app-and-widgets-for-watchos-10",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Updating your app and widgets for watchOS 10",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/updating-your-app-and-widgets-for-watchos-10"
+    },
+    "foundations-color-thumbnail.png": {
+      "alt": null,
+      "identifier": "foundations-color-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/01e7d6cdf551a65c661496d1a5118164/foundations-color-thumbnail~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/abf2e0ae0883b9974bae47a71b3ac09b/foundations-color-thumbnail@2x.png"
+        }
+      ]
+    },
+    "foundations-materials-thumbnail.png": {
+      "alt": null,
+      "identifier": "foundations-materials-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/399fa3194e9fceae447179fca01d14b5/foundations-materials-thumbnail@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/abf69bd2d19302636cac376ef6fc49df/foundations-materials-thumbnail~dark@2x.png"
+        }
+      ]
+    },
+    "inputs-digital-crown-thumbnail.png": {
+      "alt": null,
+      "identifier": "inputs-digital-crown-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/86b4e102af1069de5789611ddfb8f5c7/inputs-digital-crown-thumbnail@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e535df5186865f3c9394201cec7806de/inputs-digital-crown-thumbnail~dark@2x.png"
+        }
+      ]
+    },
+    "materials.svg": {
+      "alt": null,
+      "identifier": "materials.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "materials",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1ef2efc25cb743289767a8505bc30929/materials.svg"
+        }
+      ]
+    },
+    "navigation-stack-leaf-view": {
+      "alt": "A screenshot of an Apple Watch showing a navigation stack's leaf view. The view has a back button and a label.",
+      "identifier": "navigation-stack-leaf-view",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dd583e8facc4f23f317356ecf7ac3577/navigation-stack-leaf-view@2x.png"
+        }
+      ]
+    },
+    "navigation-stack-root-view": {
+      "alt": "A screenshot of an Apple Watch showing a navigation stack's root view. The view has a large title, a toolbar button to navigate to the leaf view, and a label.",
+      "identifier": "navigation-stack-root-view",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1d38090d5719d042d42855ab8040e919/navigation-stack-root-view@2x.png"
+        }
+      ]
+    },
+    "persistent-icon-page-1": {
+      "alt": " A screenshot of an Apple Watch showing the first page of a vertical tab view, with the books icon in the middle of the page.",
+      "identifier": "persistent-icon-page-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9daa407c28fad117b715a57ac5d4f8e9/persistent-icon-page-1@2x.png"
+        }
+      ]
+    },
+    "persistent-icon-page-2": {
+      "alt": " A screenshot of an Apple Watch showing the second page of a vertical tab view, with the books icon moved to the upper right edge of the toolbar.",
+      "identifier": "persistent-icon-page-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5513cca02df225c630c5987d2780c507/persistent-icon-page-2@2x.png"
+        }
+      ]
+    },
+    "platforms-designing-for-watchos-thumbnail.png": {
+      "alt": null,
+      "identifier": "platforms-designing-for-watchos-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0686f93dddf6ba103cc46001a38ee538/platforms-designing-for-watchos-thumbnail~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dd69cccef7898c67b4c69998b9a766a3/platforms-designing-for-watchos-thumbnail@2x.png"
+        }
+      ]
+    },
+    "scrolling-in-longer-views": {
+      "alt": "A screenshot of an Apple Watch showing a tab view with the final, longer view selected. The selected dot in the page indicator has expanded to show the scroll position in the long view.",
+      "identifier": "scrolling-in-longer-views",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/846d4b3392e97185c673ca0e5393f0af/scrolling-in-longer-views@2x.png"
+        }
+      ]
+    },
+    "scrolling-through-vertical-tabs": {
+      "alt": "A screenshot of an Apple Watch with a tab view with the third tab selected. The page indicator shows six dots next to the Digital Crown. The dot for the selected tab is highlighted.",
+      "identifier": "scrolling-through-vertical-tabs",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d09c27b6757df65a7ae5f5d936c8c781/scrolling-through-vertical-tabs@2x.png"
+        }
+      ]
+    },
+    "setting-hierarchy-with-materials": {
+      "alt": "A screenshot of an Apple Watch showing a sheet displayed over a view with the green gradient showing through. The sheet contains a title, subtitle, body text, and a button. Each Text view uses one of the hierarchical materials to set its foreground color. The button uses the borderedProminant style to set it's background color.",
+      "identifier": "setting-hierarchy-with-materials",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8087a8a273dde1f4483543c9f56f7406/setting-hierarchy-with-materials@2x.png"
+        }
+      ]
+    },
+    "split-view-detail-view": {
+      "alt": "A screenshot of an Apple Watch showing a split view's detail view. The detail view is a vertical tab view, with the third tab selected.",
+      "identifier": "split-view-detail-view",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9282533de17e56174b0dfdfcd935a182/split-view-detail-view@2x.png"
+        }
+      ]
+    },
+    "split-view-source-list": {
+      "alt": " A screenshot of an Apple Watch showing a split view's source view. The source view shows a list that displays a label for each item.",
+      "identifier": "split-view-source-list",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2368de54b8c9d8a9adae323acb029bd2/split-view-source-list@2x.png"
+        }
+      ]
+    },
+    "tab-bar-buttons": {
+      "alt": "A screenshot of an Apple Watch showing the root view of a navigation stack. The view has a heart button in the top leading position, a club button in the top trailing, a diamond in the bottom leading and a spade in the bottom trailing. It also has a larger, red star button in the center of the bottom toolbar.",
+      "identifier": "tab-bar-buttons",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9246721d7cffae645cc6f8a200e0eeec/tab-bar-buttons@2x.png"
+        }
+      ]
+    },
+    "watchOSApps-PageImage-card.png": {
+      "alt": "A stylized representation of Apple Watch.",
+      "identifier": "watchOSApps-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5e043ca96ec9c9e5579649124c448c35/watchOSApps-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2e82e5f258fb084d7b684889cabbe515/watchOSApps-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "watchos.svg": {
+      "alt": null,
+      "identifier": "watchos.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "watchos",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e3afc34edc848f8ea56d5cc1cb2b7495/watchos.svg"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/updating-your-app-and-widgets-for-watchos-10",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/building_a_watchos_app",
+        "doc://com.apple.documentation/documentation/Updates/watchos"
+      ],
+      "title": "Essentials"
+    }
+  ]
+}

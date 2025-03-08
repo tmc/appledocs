@@ -1,0 +1,678 @@
+{
+  "abstract": [
+    {
+      "text": "Returns the expiration date for the most recent monitoring period.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremotion/documentation/CoreMotion",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager/monitorKinesiasExpirationDate()"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CMMovementDisorderManager(im)monitorKinesiasExpirationDate",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "monitorKinesiasExpirationDate"
+      },
+      {
+        "kind": "text",
+        "text": "() -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:10Foundation4DateV",
+        "text": "Date"
+      },
+      {
+        "kind": "text",
+        "text": "?"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Motion"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "monitorKinesiasExpirationDate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "monitorKinesiasExpirationDate()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "monitorKinesiasExpirationDate"
+            },
+            {
+              "kind": "text",
+              "text": "() -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:10Foundation4DateV",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation4DateV",
+              "text": "Date"
+            },
+            {
+              "kind": "text",
+              "text": "?"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The current expiration date, or ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if you have not yet begun monitoring.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This date is set when you call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager/monitorKinesias(forDuration:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. You can extend the date by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager/monitorKinesias(forDuration:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " again; however, you can’t shorten the monitoring duration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the expiration date to determine whether you are currently monitoring the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let experiationDate = movementDisorderManager.monitorKinesiasExpirationDate() else {",
+            "    // You haven't started monitoring the user.",
+            "    return",
+            "}",
+            "",
+            "if experiationDate > Date() {",
+            "    // Currently monitoring the user.",
+            "} else {",
+            "    // The monitoring period has ended.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremotion/documentation/CoreMotion": {
+      "abstract": [
+        {
+          "text": "Process accelerometer, gyroscope, pedometer, and environment-related events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Motion",
+      "type": "topic",
+      "url": "/documentation/coremotion"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager": {
+      "abstract": [
+        {
+          "text": "A manager for recording and querying movement disorder data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMMovementDisorderManager"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMMovementDisorderManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMMovementDisorderManager",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmovementdisordermanager"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager/monitorKinesias(forDuration:)": {
+      "abstract": [
+        {
+          "text": "Calculate and store tremor and dyskinetic symptom results for the duration of the specified time interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "monitorKinesias"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager/monitorKinesias(forDuration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "monitorKinesiasForDuration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "monitorKinesias(forDuration:)",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmovementdisordermanager/monitorkinesias(forduration:)"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager/monitorKinesiasExpirationDate()": {
+      "abstract": [
+        {
+          "text": "Returns the expiration date for the most recent monitoring period.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "monitorKinesiasExpirationDate"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager/monitorKinesiasExpirationDate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "monitorKinesiasExpirationDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "monitorKinesiasExpirationDate()",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmovementdisordermanager/monitorkinesiasexpirationdate()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:10Foundation4DateV": {
+      "abstract": [
+        {
+          "text": "A specific point in time, independent of any calendar or time zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Date"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:10Foundation4DateV",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date",
+      "type": "topic",
+      "url": "/documentation/foundation/date"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Recording-Movement-Disorders",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager/monitorKinesias(forDuration:)"
+      ],
+      "title": "Recording Movement Disorders"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "5.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "monitorKinesiasExpirationDate"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "monitorKinesiasExpirationDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.coremotion/documentation/CoreMotion",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Recording-Movement-Disorders",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMMovementDisorderManager/monitorKinesias(forDuration:)"
+              ],
+              "title": "Recording Movement Disorders"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSDate",
+                    "text": "NSDate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "monitorKinesiasExpirationDate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "content": [
+              {
+                "anchor": "return-value",
+                "level": 2,
+                "text": "Return Value",
+                "type": "heading"
+              },
+              {
+                "inlineContent": [
+                  {
+                    "text": "The current expiration date, or ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "nil",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " if you have not yet begun monitoring.",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "kind": "content"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMovementDisorderManager~1monitorKinesias(forDuration:)/title",
+          "value": "monitorKinesiasForDuration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMovementDisorderManager~1monitorKinesias(forDuration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "monitorKinesiasForDuration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMovementDisorderManager~1monitorKinesiasExpirationDate()/title",
+          "value": "monitorKinesiasExpirationDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMovementDisorderManager~1monitorKinesiasExpirationDate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "monitorKinesiasExpirationDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMovementDisorderManager/title",
+          "value": "CMMovementDisorderManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMovementDisorderManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMovementDisorderManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMovementDisorderManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMovementDisorderManager"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremotion/cmmovementdisordermanager/monitorkinesiasexpirationdate()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremotion/cmmovementdisordermanager/monitorkinesiasexpirationdate()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

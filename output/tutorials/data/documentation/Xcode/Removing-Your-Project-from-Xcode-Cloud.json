@@ -1,0 +1,1016 @@
+{
+  "abstract": [
+    {
+      "text": "Remove your project from Xcode Cloud to delete app and workflow data, disconnect your Git repository, and remove the Slack integration.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Removing-Your-Project-from-Xcode-Cloud"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Removing your project from Xcode Cloud"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app or framework is no longer under active development, you might want to do some general cleanup, like:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Remove your app and any data from Xcode Cloud.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Disconnect Xcode Cloud from your SCM provider.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Disconnect Xcode Cloud from your team’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://slack.com/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " workspace.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Remove any webhooks that you’ve configured.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deleting-your-data-from-Xcode-Cloud",
+          "level": 3,
+          "text": "Deleting your data from Xcode Cloud",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you delete your data from Xcode Cloud, you can’t restore it and it becomes immediately inaccessible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, deleting a workflow deletes the workflow’s build history and artifacts. Only delete a workflow or your data from Xcode Cloud when you’re confident that you don’t need its build history or artifacts anymore. Instead, deactivate workflows you no longer need as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Developing-a-Workflow-Strategy-for-Xcode-Cloud#Deactivate-a-workflow-instead-of-deleting-it",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To stop using Xcode Cloud for your app or framework and delete its associated data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, navigate to the Report navigator, Control-click your app, choose Delete Xcode Cloud Data for,” and confirm that you want to permanently delete all Xcode Cloud data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://appstoreconnect.apple.com",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", go to your app’s page, select the Xcode Cloud tab, choose Settings > Delete Xcode Cloud Data, click Delete, and confirm that you want to permanently delete all Xcode Cloud data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on the differences between deleting and deactivating a workflow, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Developing-a-Workflow-Strategy-for-Xcode-Cloud#Deactivate-a-workflow-instead-of-deleting-it",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Disconnect-your-Git-repository-in-Xcode-Cloud",
+          "level": 3,
+          "text": "Disconnect your Git repository in Xcode Cloud",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you move your Git repositories to another source code management (SCM) provider, you’ll want to remove the old provider from your Xcode Cloud configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To disconnect Xcode Cloud from ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://bitbucket.org/product/enterprise",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://github.com/enterprise",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://about.gitlab.com/install",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sign in to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://appstoreconnect.apple.com",
+                      "isActive": true,
+                      "overridingTitle": "App Store Connect",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "App Store Connect",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and go to Users and Access.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Xcode Cloud tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Move the cursor over the SCM provider you want to remove, then click the Remove button (-) and confirm that you want to disconnect Xcode Cloud from your provider.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To disconnect Xcode Cloud from ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://bitbucket.org",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://github.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://gitlab.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sign in to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://appstoreconnect.apple.com",
+                      "isActive": true,
+                      "overridingTitle": "App Store Connect",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "App Store Connect",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and go to your profile settings by clicking your account in the top-right corner of the website and Edit Profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Xcode Cloud tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Integrations in the sidebar.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Unlink next to the SCM provider you no longer use and confirm that you want to remove the connection between Xcode Cloud and your provider.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Remove-personal-access-tokens-or-apps",
+          "level": 3,
+          "text": "Remove personal access tokens or apps",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To completely remove all traces of Xcode Cloud from your SCM provider, you need to remove the app or personal access token that allowed Xcode Cloud access to the repository. The process to do this is different for each SCM provider:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Sign into your Bitbucket Cloud account and go to your personal settings. Choose “App authorization” in the Access Management group and revoke the application authorization for Xcode Cloud.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "https://bitbucket.org",
+                    "isActive": true,
+                    "overridingTitle": "Bitbucket Cloud",
+                    "overridingTitleInlineContent": [
+                      {
+                        "text": "Bitbucket Cloud",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Sign in to your Bitbucket Server account and go to your account settings. Choose “HTTP access tokens” and revoke the token for Xcode Cloud using the Actions  > Revoke button.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "https://bitbucket.org/product/enterprise",
+                    "isActive": true,
+                    "overridingTitle": "Bitbucket Server",
+                    "overridingTitleInlineContent": [
+                      {
+                        "text": "Bitbucket Server",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Sign into your GitHub account. If you use a GitHub organization and the organization owns your Git repository, follow the steps described for GitHub Enterprise. If you don’t use a GitHub organization, go to your account settings. Choose Applications, click Configure next to the Xcode Cloud app, and then click Uninstall to remove the GitHub app from your account and repositories.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "https://github.com",
+                    "isActive": true,
+                    "overridingTitle": "GitHub",
+                    "overridingTitleInlineContent": [
+                      {
+                        "text": "GitHub",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Sign into your GitHub Enterprise account and go to your account settings. Choose Applications > Configure, and then click Uninstall at the bottom of your GitHub app’s settings. This removes the GitHub app from your repositories. Next, choose Developer Settings > GitHub Apps and click Edit for the Xcode Cloud GitHub app. Navigate to the Advanced section and delete your app from your GitHub Enterprise account or organization.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "https://github.com/enterprise",
+                    "isActive": true,
+                    "overridingTitle": "GitHub Enterprise",
+                    "overridingTitleInlineContent": [
+                      {
+                        "text": "GitHub Enterprise",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Sign into your GitLab account and navigate to your user preferences. Click Applications, and then scroll down to the list of authorized apps and revoke the authorization for the Xcode Cloud app.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "https://gitlab.com",
+                    "isActive": true,
+                    "overridingTitle": "GitLab",
+                    "overridingTitleInlineContent": [
+                      {
+                        "text": "GitLab",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Sign into your account for your self-managed GitLab instance and go to your account settings.  Choose Applications and then delete the app for Xcode Cloud.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "https://about.gitlab.com/install",
+                    "isActive": true,
+                    "overridingTitle": "Self-managed GitLab Instance",
+                    "overridingTitleInlineContent": [
+                      {
+                        "text": "Self-managed GitLab Instance",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Remove-the-Slack-integration",
+          "level": 3,
+          "text": "Remove the Slack integration",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you connected your team’s Slack workspace to Xcode Cloud, the connection between Xcode Cloud and your Slack workspace remains when you delete a workflow or remove your project. To remove the Slack integration, you’ll need to uninstall the Slack app from your team’s Slack workspace:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open your Slack workspace in your browser and click Manage. Alternatively, click on your workspace’s name in the Slack app and choose “Settings & administration” > “Manage apps”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Installed Apps in the sidebar, then choose the Xcode Cloud app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Remove the app and confirm that you want to delete the Slack app for Xcode Cloud.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Depending on the configuration of your team’s Slack workspace, you may need to ask your team’s Slack administrator to remove the Slack app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Configuring-Xcode-Cloud-for-Your-Team": {
+      "abstract": [
+        {
+          "text": "Start using continuous integration and delivery with Xcode Cloud as a team.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Xcode-Cloud-for-Your-Team",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Xcode Cloud for your team",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-xcode-cloud-for-your-team"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Developing-a-Workflow-Strategy-for-Xcode-Cloud#Deactivate-a-workflow-instead-of-deleting-it": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Developing-a-Workflow-Strategy-for-Xcode-Cloud#Deactivate-a-workflow-instead-of-deleting-it",
+      "kind": "section",
+      "title": "Deactivate a workflow instead of deleting it",
+      "type": "topic",
+      "url": "/documentation/xcode/developing-a-workflow-strategy-for-xcode-cloud#Deactivate-a-workflow-instead-of-deleting-it"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Review dependencies and make them available to Xcode Cloud before you configure your project to use Xcode Cloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "Making dependencies available to Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/making-dependencies-available-to-xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Setting-the-Next-Build-Number-for-Xcode-Cloud-Builds": {
+      "abstract": [
+        {
+          "text": "Start numbering builds from a custom build number for your existing Mac app to avoid version collisions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Setting-the-Next-Build-Number-for-Xcode-Cloud-Builds",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting the next build number for Xcode Cloud builds",
+      "type": "topic",
+      "url": "/documentation/xcode/setting-the-next-build-number-for-xcode-cloud-builds"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Sharing-custom-aliases-across-Xcode-Cloud-workflows": {
+      "abstract": [
+        {
+          "text": "Use custom aliases to share configurations with multiple workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Sharing-custom-aliases-across-Xcode-Cloud-workflows",
+      "kind": "article",
+      "role": "article",
+      "title": "Sharing macOS and Xcode versions across Xcode Cloud workflows",
+      "type": "topic",
+      "url": "/documentation/xcode/sharing-custom-aliases-across-xcode-cloud-workflows"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Sharing-environment-variables-across-xcode-cloud-workflows": {
+      "abstract": [
+        {
+          "text": "Apply common configurations to multiple workflows by using shared environment variables.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Sharing-environment-variables-across-xcode-cloud-workflows",
+      "kind": "article",
+      "role": "article",
+      "title": "Sharing environment variables across Xcode Cloud workflows",
+      "type": "topic",
+      "url": "/documentation/xcode/sharing-environment-variables-across-xcode-cloud-workflows"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Automatically build, test, and distribute your apps with Xcode Cloud to verify changes and create high-quality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/building-swift-packages-or-swift-playground-app-projects-with-xcode-cloud": {
+      "abstract": [
+        {
+          "text": "Add your Swift package or Swift Playgrounds app project to an Xcode project to build it in Xcode Cloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/building-swift-packages-or-swift-playground-app-projects-with-xcode-cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "Building Swift packages and Swift Playgrounds app projects with Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/building-swift-packages-or-swift-playground-app-projects-with-xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/including-notes-for-testers-with-a-beta-release-of-your-app": {
+      "abstract": [
+        {
+          "text": "Add text files to your Xcode project to provide notes to beta testers about what to test.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/including-notes-for-testers-with-a-beta-release-of-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Including notes for testers with a beta release of your app",
+      "type": "topic",
+      "url": "/documentation/xcode/including-notes-for-testers-with-a-beta-release-of-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://about.gitlab.com/install": {
+      "identifier": "https://about.gitlab.com/install",
+      "title": "self-managed GitLab instances",
+      "titleInlineContent": [
+        {
+          "text": "self-managed GitLab instances",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://about.gitlab.com/install"
+    },
+    "https://appstoreconnect.apple.com": {
+      "identifier": "https://appstoreconnect.apple.com",
+      "title": "App Store Connect",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://appstoreconnect.apple.com"
+    },
+    "https://bitbucket.org": {
+      "identifier": "https://bitbucket.org",
+      "title": "Bitbucket",
+      "titleInlineContent": [
+        {
+          "text": "Bitbucket",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://bitbucket.org"
+    },
+    "https://bitbucket.org/product/enterprise": {
+      "identifier": "https://bitbucket.org/product/enterprise",
+      "title": "Bitbucket Server",
+      "titleInlineContent": [
+        {
+          "text": "Bitbucket Server",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://bitbucket.org/product/enterprise"
+    },
+    "https://github.com": {
+      "identifier": "https://github.com",
+      "title": "GitHub",
+      "titleInlineContent": [
+        {
+          "text": "GitHub",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com"
+    },
+    "https://github.com/enterprise": {
+      "identifier": "https://github.com/enterprise",
+      "title": "GitHub Enterprise",
+      "titleInlineContent": [
+        {
+          "text": "GitHub Enterprise",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/enterprise"
+    },
+    "https://gitlab.com": {
+      "identifier": "https://gitlab.com",
+      "title": "GitLab",
+      "titleInlineContent": [
+        {
+          "text": "GitLab",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://gitlab.com"
+    },
+    "https://slack.com/": {
+      "identifier": "https://slack.com/",
+      "title": "Slack",
+      "titleInlineContent": [
+        {
+          "text": "Slack",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://slack.com/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Setup-and-maintenance",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud",
+        "doc://com.apple.Xcode/documentation/Xcode/Configuring-Xcode-Cloud-for-Your-Team",
+        "doc://com.apple.Xcode/documentation/Xcode/Sharing-custom-aliases-across-Xcode-Cloud-workflows",
+        "doc://com.apple.Xcode/documentation/Xcode/Sharing-environment-variables-across-xcode-cloud-workflows",
+        "doc://com.apple.Xcode/documentation/Xcode/building-swift-packages-or-swift-playground-app-projects-with-xcode-cloud",
+        "doc://com.apple.Xcode/documentation/Xcode/Setting-the-Next-Build-Number-for-Xcode-Cloud-Builds",
+        "doc://com.apple.Xcode/documentation/Xcode/including-notes-for-testers-with-a-beta-release-of-your-app"
+      ],
+      "title": "Setup and maintenance"
+    }
+  ]
+}

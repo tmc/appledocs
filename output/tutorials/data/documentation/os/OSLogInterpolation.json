@@ -1,0 +1,3861 @@
+{
+  "abstract": [
+    {
+      "text": "A container for the elements of a log message.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.os/documentation/os"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.os/documentation/os/OSLogInterpolation"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:2os18OSLogInterpolationV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "OSLogInterpolation"
+      }
+    ],
+    "modules": [
+      {
+        "name": "os"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "OSLogInterpolation"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "OSLogInterpolation"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@frozen"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "OSLogInterpolation"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure contains a formatted string and its interpolated arguments. Don’t create ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structures directly. The system creates them automatically when you log messages using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/Logger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you craft log messages, you may incorporate content from your code’s variables directly into the message strings. When you do, the logging system creates ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structures to store those values. The structure stores the provided values as-is, and the logging system formats those values as strings only in the final log message. To change the final appearance of a value, include additional parameters along with the value. Consider the following example, which logs values of several different types:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "logger.log(\"\\(taskID) \\(giftCardID) \\(serverID) \\(seconds)\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For values that are variable in length, formatting them makes the log message easier to read. In the preceding example, ",
+              "type": "text"
+            },
+            {
+              "code": "giftCardID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "seconds",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contain variable-length values. The following example fixes the formatting issues by making all gift card IDs the same width and aligning them to the left edge of the available space. The example also formats each seconds value as a fixed-point number with only two digits to the right of the decimal point.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "logger.log(\"\\(taskID) \\(giftCardID, align: .left(columns: GiftCard.maxIDLength)) \\(serverID) \\(seconds, format: .fixed(precision: 2))\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because strings and custom objects may contain user-sensitive information, the logging system redacts those values by default, however, it doesn’t redact numerical values. The resulting log message displays a string like ",
+              "type": "text"
+            },
+            {
+              "code": "<private>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instead of the actual value. If you know the value doesn’t include sensitive data, change the privacy setting using the ",
+              "type": "text"
+            },
+            {
+              "code": "privacy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, as the following example shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "logger.log(\"Paid with bank account \\(accountNumberString)\")   // Redacted by default",
+            "logger.log(\"Ordered smoothie \\(smoothieName, privacy: .public)\")  // Visible!"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.os/documentation/os": {
+      "abstract": [
+        {
+          "text": "Coordinate the scheduling and synchronization of your app’s tasks, and log information to the console to diagnose issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "os",
+      "type": "topic",
+      "url": "/documentation/os"
+    },
+    "doc://com.apple.os/documentation/os/Logger": {
+      "abstract": [
+        {
+          "text": "An object for writing interpolated string messages to the unified logging system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Logger"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/Logger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Logger"
+        }
+      ],
+      "role": "symbol",
+      "title": "Logger",
+      "type": "topic",
+      "url": "/documentation/os/logger"
+    },
+    "doc://com.apple.os/documentation/os/OSLogIntExtendedFormat": {
+      "abstract": [
+        {
+          "text": "Options for expanding bit rate information stored as an int during logging.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLogIntExtendedFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogIntExtendedFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSLogIntExtendedFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSLogIntExtendedFormat",
+      "type": "topic",
+      "url": "/documentation/os/oslogintextendedformat"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation": {
+      "abstract": [
+        {
+          "text": "A container for the elements of a log message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLogInterpolation"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSLogInterpolation"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSLogInterpolation",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:align:privacy:)-6tazr": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "align"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogStringAlignmentV",
+          "text": "OSLogStringAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:align:privacy:)-6tazr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:align:privacy:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:align:privacy:)-6tazr"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:align:privacy:)-84m60": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated textual representation of a type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "align"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogStringAlignmentV",
+          "text": "OSLogStringAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:align:privacy:)-84m60",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:align:privacy:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:align:privacy:)-84m60"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:align:privacy:)-8hwmt": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated type description.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> any "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "align"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogStringAlignmentV",
+          "text": "OSLogStringAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:align:privacy:)-8hwmt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:align:privacy:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:align:privacy:)-8hwmt"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:align:privacy:attributes:)-7g68v": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated string with the specified attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "align"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogStringAlignmentV",
+          "text": "OSLogStringAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:align:privacy:attributes:)-7g68v",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:align:privacy:attributes:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:align:privacy:attributes:)-7g68v"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:align:privacy:attributes:)-9hehv": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated type description with the specified attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> any "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "align"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogStringAlignmentV",
+          "text": "OSLogStringAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:align:privacy:attributes:)-9hehv",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:align:privacy:attributes:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:align:privacy:attributes:)-9hehv"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:align:privacy:attributes:)-xyum": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated textual representation of a type using the specified attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "align"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogStringAlignmentV",
+          "text": "OSLogStringAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:align:privacy:attributes:)-xyum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:align:privacy:attributes:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:align:privacy:attributes:)-xyum"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:bytes:format:privacy:)": {
+      "abstract": [
+        {
+          "text": "Appends interpolated pointer data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bytes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os18OSLogPointerFormatO",
+          "text": "OSLogPointerFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:bytes:format:privacy:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:bytes:format:privacy:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:bytes:format:privacy:)"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:bytes:format:privacy:attributes:)": {
+      "abstract": [
+        {
+          "text": "Appends interpolated pointer data with the specified attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bytes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os18OSLogPointerFormatO",
+          "text": "OSLogPointerFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:bytes:format:privacy:attributes:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:bytes:format:privacy:attributes:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:bytes:format:privacy:attributes:)"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-190d0": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated 16-bit integer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int16V",
+          "text": "Int16"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os22OSLogIntegerFormattingV",
+          "text": "OSLogIntegerFormatting"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "align"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogStringAlignmentV",
+          "text": "OSLogStringAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-190d0",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:format:align:privacy:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:format:align:privacy:)-190d0"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-20jin": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated unsigned integer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os22OSLogIntegerFormattingV",
+          "text": "OSLogIntegerFormatting"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "align"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogStringAlignmentV",
+          "text": "OSLogStringAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-20jin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:format:align:privacy:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:format:align:privacy:)-20jin"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-2i3qh": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated unsigned 32-bit integer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os22OSLogIntegerFormattingV",
+          "text": "OSLogIntegerFormatting"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "align"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogStringAlignmentV",
+          "text": "OSLogStringAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-2i3qh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:format:align:privacy:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:format:align:privacy:)-2i3qh"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-2sb1i": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated 32-bit integer with the specified alignment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os22OSLogIntegerFormattingV",
+          "text": "OSLogIntegerFormatting"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "align"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogStringAlignmentV",
+          "text": "OSLogStringAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-2sb1i",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:format:align:privacy:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:format:align:privacy:)-2sb1i"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-4qvu9": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated unsigned 8-bit integer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os22OSLogIntegerFormattingV",
+          "text": "OSLogIntegerFormatting"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "align"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogStringAlignmentV",
+          "text": "OSLogStringAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-4qvu9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:format:align:privacy:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:format:align:privacy:)-4qvu9"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-5ihzf": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated 8-bit integer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Int8V",
+          "text": "Int8"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os22OSLogIntegerFormattingV",
+          "text": "OSLogIntegerFormatting"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "align"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogStringAlignmentV",
+          "text": "OSLogStringAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-5ihzf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:format:align:privacy:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:format:align:privacy:)-5ihzf"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-6mu00": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated double.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogFloatFormattingV",
+          "text": "OSLogFloatFormatting"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "align"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogStringAlignmentV",
+          "text": "OSLogStringAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-6mu00",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:format:align:privacy:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:format:align:privacy:)-6mu00"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-7k91g": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated unsigned 16-bit integer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt16V",
+          "text": "UInt16"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os22OSLogIntegerFormattingV",
+          "text": "OSLogIntegerFormatting"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "align"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogStringAlignmentV",
+          "text": "OSLogStringAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-7k91g",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:format:align:privacy:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:format:align:privacy:)-7k91g"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-7z1jd": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated float.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogFloatFormattingV",
+          "text": "OSLogFloatFormatting"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "align"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogStringAlignmentV",
+          "text": "OSLogStringAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-7z1jd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:format:align:privacy:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:format:align:privacy:)-7z1jd"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-802m9": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated 64-bit integer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os22OSLogIntegerFormattingV",
+          "text": "OSLogIntegerFormatting"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "align"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogStringAlignmentV",
+          "text": "OSLogStringAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-802m9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:format:align:privacy:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:format:align:privacy:)-802m9"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-81jbm": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated unsigned 64-bit integer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os22OSLogIntegerFormattingV",
+          "text": "OSLogIntegerFormatting"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "align"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogStringAlignmentV",
+          "text": "OSLogStringAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-81jbm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:format:align:privacy:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:format:align:privacy:)-81jbm"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-8kli1": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated integer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os22OSLogIntegerFormattingV",
+          "text": "OSLogIntegerFormatting"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "align"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogStringAlignmentV",
+          "text": "OSLogStringAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-8kli1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:format:align:privacy:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:format:align:privacy:)-8kli1"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:attributes:)-78sek": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated float with the specified attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogFloatFormattingV",
+          "text": "OSLogFloatFormatting"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "align"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogStringAlignmentV",
+          "text": "OSLogStringAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:attributes:)-78sek",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:format:align:privacy:attributes:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:format:align:privacy:attributes:)-78sek"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:attributes:)-8107a": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated numeric type using the specified attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os22OSLogIntegerFormattingV",
+          "text": "OSLogIntegerFormatting"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "align"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogStringAlignmentV",
+          "text": "OSLogStringAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:attributes:)-8107a",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:format:align:privacy:attributes:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:format:align:privacy:attributes:)-8107a"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:attributes:)-8bi90": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated double with the specified attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogFloatFormattingV",
+          "text": "OSLogFloatFormatting"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "align"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os20OSLogStringAlignmentV",
+          "text": "OSLogStringAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:attributes:)-8bi90",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:format:align:privacy:attributes:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:format:align:privacy:attributes:)-8bi90"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:privacy:)-3ji02": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated 32-bit integer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os24OSLogInt32ExtendedFormatO",
+          "text": "OSLogInt32ExtendedFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:privacy:)-3ji02",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:format:privacy:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:format:privacy:)-3ji02"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:privacy:)-5qaau": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated collection of raw bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SW",
+          "text": "UnsafeRawBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os18OSLogPointerFormatO",
+          "text": "OSLogPointerFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:privacy:)-5qaau",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:format:privacy:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:format:privacy:)-5qaau"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:privacy:)-686xc": {
+      "abstract": [
+        {
+          "text": "Adds a Boolean argument to the message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os15OSLogBoolFormatO",
+          "text": "OSLogBoolFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:privacy:)-686xc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:format:privacy:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:format:privacy:)-686xc"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:privacy:attributes:)-4i2ir": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated 32-bit integer with the specified attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os24OSLogInt32ExtendedFormatO",
+          "text": "OSLogInt32ExtendedFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:privacy:attributes:)-4i2ir",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:format:privacy:attributes:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:format:privacy:attributes:)-4i2ir"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:privacy:attributes:)-6le5w": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os22OSLogIntExtendedFormatO",
+          "text": "OSLogIntExtendedFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:privacy:attributes:)-6le5w",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:format:privacy:attributes:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:format:privacy:attributes:)-6le5w"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:privacy:attributes:)-93lbs": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated collection of raw bytes with the specified attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SW",
+          "text": "UnsafeRawBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os18OSLogPointerFormatO",
+          "text": "OSLogPointerFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:privacy:attributes:)-93lbs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:format:privacy:attributes:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:format:privacy:attributes:)-93lbs"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:privacy:)": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated object description.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSObject",
+          "text": "NSObject"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:privacy:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:privacy:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:privacy:)"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:privacy:attributes:)-3czd2": {
+      "abstract": [
+        {
+          "text": "Appends an interpolated object description with the specified attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSObject",
+          "text": "NSObject"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:privacy:attributes:)-3czd2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:privacy:attributes:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:privacy:attributes:)-3czd2"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:privacy:attributes:)-4o74h": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:privacy:attributes:)-4o74h",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:privacy:attributes:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:privacy:attributes:)-4o74h"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:privacy:attributes:)-6vtcc": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:privacy:attributes:)-6vtcc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:privacy:attributes:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:privacy:attributes:)-6vtcc"
+    },
+    "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:privacy:attributes:)-9eafm": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appendInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSObject",
+          "text": "NSObject"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "privacy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:2os12OSLogPrivacyV",
+          "text": "OSLogPrivacy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:privacy:attributes:)-9eafm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appendInterpolation(_:privacy:attributes:)",
+      "type": "topic",
+      "url": "/documentation/os/osloginterpolation/appendinterpolation(_:privacy:attributes:)-9eafm"
+    },
+    "doc://com.externally.resolved.symbol/s:s27StringInterpolationProtocolP": {
+      "abstract": [
+        {
+          "text": "Represents the contents of a string literal with interpolations while it’s being built up.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StringInterpolationProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s27StringInterpolationProtocolP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StringInterpolationProtocol",
+      "type": "topic",
+      "url": "/documentation/Swift/StringInterpolationProtocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s27StringInterpolationProtocolP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Value-Interpolation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/OSLogIntExtendedFormat"
+      ],
+      "title": "Value Interpolation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Appending-Strings",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:align:privacy:)-6tazr",
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:align:privacy:attributes:)-7g68v"
+      ],
+      "title": "Appending Strings"
+    },
+    {
+      "anchor": "Appending-Signed-Integers",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-8kli1",
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-5ihzf",
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-190d0",
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:privacy:)-3ji02",
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:privacy:attributes:)-4i2ir",
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-2sb1i",
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-802m9"
+      ],
+      "title": "Appending Signed Integers"
+    },
+    {
+      "anchor": "Appending-Unsigned-Integers",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-20jin",
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-4qvu9",
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-7k91g",
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-2i3qh",
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-81jbm"
+      ],
+      "title": "Appending Unsigned Integers"
+    },
+    {
+      "anchor": "Appending-Doubles",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-6mu00",
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:attributes:)-8bi90"
+      ],
+      "title": "Appending Doubles"
+    },
+    {
+      "anchor": "Appending-Floats",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:)-7z1jd",
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:attributes:)-78sek"
+      ],
+      "title": "Appending Floats"
+    },
+    {
+      "anchor": "Appending-Boolean-Values",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:privacy:)-686xc"
+      ],
+      "title": "Appending Boolean Values"
+    },
+    {
+      "anchor": "Appending-Generic-Types",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:align:privacy:)-84m60",
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:align:privacy:attributes:)-xyum",
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:align:privacy:attributes:)-8107a",
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:align:privacy:)-8hwmt",
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:align:privacy:attributes:)-9hehv"
+      ],
+      "title": "Appending Generic Types"
+    },
+    {
+      "anchor": "Appending-Pointer-Data",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:bytes:format:privacy:)",
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:bytes:format:privacy:attributes:)",
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:privacy:)-5qaau",
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:privacy:attributes:)-93lbs"
+      ],
+      "title": "Appending Pointer Data"
+    },
+    {
+      "anchor": "Appending-Objects",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:privacy:)",
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:privacy:attributes:)-3czd2"
+      ],
+      "title": "Appending Objects"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:format:privacy:attributes:)-6le5w",
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:privacy:attributes:)-4o74h",
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:privacy:attributes:)-6vtcc",
+        "doc://com.apple.os/documentation/os/OSLogInterpolation/appendInterpolation(_:privacy:attributes:)-9eafm"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/os/osloginterpolation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

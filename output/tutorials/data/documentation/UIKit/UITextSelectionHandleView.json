@@ -1,0 +1,1535 @@
+{
+  "abstract": [
+    {
+      "text": "An interface you use to draw custom the selection handles for ranges of text.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHandleView"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)UITextSelectionHandleView",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UITextSelectionHandleView"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UITextSelectionHandleView"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "UITextSelectionHandleView"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UITextSelectionHandleView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICoordinateSpace",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)UICoordinateSpace",
+              "text": "UICoordinateSpace"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHandleView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol in a custom view you use to draw text-selection handles in one of your text views. Use your custom view in conjunction with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to apply your custom selection UI to one of your text views. This protocol provides the preferred frame for the selection handle, and you provide details about the handle back to the system. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CALayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects or your view’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/draw(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to draw the handles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After adopting this protocol in your custom view, create exactly two instances and assign them to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction/handleViews",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the interaction object you attached to your text view. Configure one instance as the leading selection handle, and configure the other instance as the trailing selection handle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/QuartzCore/CALayer": {
+      "abstract": [
+        {
+          "text": "An object that manages image-based content and allows you to perform animations on that content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CALayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CALayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CALayer",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CALayer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICoordinateSpace": {
+      "abstract": [
+        {
+          "text": "A set of methods for converting between different frames of reference on a screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICoordinateSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICoordinateSpace",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICoordinateSpace"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICoordinateSpace",
+      "type": "topic",
+      "url": "/documentation/uikit/uicoordinatespace"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIStandardTextCursorView": {
+      "abstract": [
+        {
+          "text": "A view that draws the standard system insertion point in a piece of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIStandardTextCursorView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStandardTextCursorView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIStandardTextCursorView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIStandardTextCursorView",
+      "type": "topic",
+      "url": "/documentation/uikit/uistandardtextcursorview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextCursorDropPositionAnimator": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextCursorDropPositionAnimator"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextCursorDropPositionAnimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextCursorDropPositionAnimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextCursorDropPositionAnimator",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextcursordroppositionanimator"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextCursorView": {
+      "abstract": [
+        {
+          "text": "An interface you use to draw the insertion point in a piece of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextCursorView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextCursorView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextCursorView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextCursorView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextcursorview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextLoupeSession": {
+      "abstract": [
+        {
+          "text": "An object that manages the presentation of the system magnifier at the location you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextLoupeSession"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextLoupeSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextLoupeSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextLoupeSession",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextloupesession"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction": {
+      "abstract": [
+        {
+          "text": "An object that provides the system UI for displaying text selection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextSelectionDisplayInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextSelectionDisplayInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextSelectionDisplayInteraction",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextselectiondisplayinteraction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction/handleViews": {
+      "abstract": [
+        {
+          "text": "The view that draws the selection handles for the selected text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleViews"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UITextSelectionHandleView",
+          "text": "UITextSelectionHandleView"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction/handleViews",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleViews"
+        }
+      ],
+      "role": "symbol",
+      "title": "handleViews",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextselectiondisplayinteraction/handleviews"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHandleView": {
+      "abstract": [
+        {
+          "text": "An interface you use to draw custom the selection handles for ranges of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextSelectionHandleView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHandleView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextSelectionHandleView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextSelectionHandleView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextselectionhandleview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHandleView/customShape": {
+      "abstract": [
+        {
+          "text": "The custom shape to draw for the stem of the selection handle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "customShape"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBezierPath",
+          "text": "UIBezierPath"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHandleView/customShape",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "customShape"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "customShape",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextselectionhandleview/customshape"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHandleView/direction": {
+      "abstract": [
+        {
+          "text": "The orientation of the selection handle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "direction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSDirectionalRectEdge",
+          "text": "NSDirectionalRectEdge"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHandleView/direction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "direction"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "direction",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextselectionhandleview/direction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHandleView/isVertical": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isVertical"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHandleView/isVertical",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vertical"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "isVertical",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextselectionhandleview/isvertical"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHandleView/preferredFrame(for:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredFrame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHandleView/preferredFrame(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredFrameForRect:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "preferredFrame(for:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextselectionhandleview/preferredframe(for:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHighlightView": {
+      "abstract": [
+        {
+          "text": "An interface you use to provide a custom highlight UI behind the selected text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextSelectionHighlightView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHighlightView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextSelectionHighlightView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextSelectionHighlightView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextselectionhighlightview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/draw(_:)": {
+      "abstract": [
+        {
+          "text": "Draws the view’s image within the passed-in rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "draw"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/draw(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "drawRect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "draw(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/draw(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/adopting-system-selection-ui-in-custom-text-views": {
+      "abstract": [
+        {
+          "text": "Incorporate the system text-selection experience into your custom text UI in UIKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/adopting-system-selection-ui-in-custom-text-views",
+      "kind": "article",
+      "role": "article",
+      "title": "Adopting system selection UI in custom text views",
+      "type": "topic",
+      "url": "/documentation/uikit/adopting-system-selection-ui-in-custom-text-views"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.apple.uikit/documentation/UIKit/UICoordinateSpace"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Custom-text-selection",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/adopting-system-selection-ui-in-custom-text-views",
+        "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction",
+        "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHighlightView",
+        "doc://com.apple.uikit/documentation/UIKit/UITextCursorView",
+        "doc://com.apple.uikit/documentation/UIKit/UIStandardTextCursorView",
+        "doc://com.apple.uikit/documentation/UIKit/UITextCursorDropPositionAnimator",
+        "doc://com.apple.uikit/documentation/UIKit/UITextLoupeSession"
+      ],
+      "title": "Custom text selection"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Providing-the-preferred-frame-rectangle",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHandleView/preferredFrame(for:)"
+      ],
+      "title": "Providing the preferred frame rectangle"
+    },
+    {
+      "anchor": "Specifying-the-handle-details",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHandleView/direction",
+        "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHandleView/customShape",
+        "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHandleView/isVertical"
+      ],
+      "title": "Specifying the handle details"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UITextSelectionHandleView"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextSelectionHandleView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextSelectionHandleView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Providing-the-preferred-frame-rectangle",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHandleView/preferredFrame(for:)"
+              ],
+              "title": "Providing the preferred frame rectangle"
+            },
+            {
+              "anchor": "Specifying-the-handle-details",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHandleView/direction",
+                "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHandleView/customShape",
+                "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHandleView/isVertical"
+              ],
+              "title": "Specifying the handle details"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICoordinateSpace"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Custom-text-selection",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/adopting-system-selection-ui-in-custom-text-views",
+                "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction",
+                "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHighlightView",
+                "doc://com.apple.uikit/documentation/UIKit/UITextCursorView",
+                "doc://com.apple.uikit/documentation/UIKit/UIStandardTextCursorView",
+                "doc://com.apple.uikit/documentation/UIKit/UITextCursorDropPositionAnimator",
+                "doc://com.apple.uikit/documentation/UIKit/UITextLoupeSession"
+              ],
+              "title": "Custom text selection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UITextSelectionHandleView"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.apple.uikit/documentation/UIKit/UICoordinateSpace",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)UICoordinateSpace",
+                    "text": "UICoordinateSpace"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionDisplayInteraction/title",
+          "value": "UITextSelectionDisplayInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionDisplayInteraction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextSelectionDisplayInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionDisplayInteraction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextSelectionDisplayInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionDisplayInteraction~1handleViews/title",
+          "value": "handleViews"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionDisplayInteraction~1handleViews/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "handleViews"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStandardTextCursorView/title",
+          "value": "UIStandardTextCursorView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStandardTextCursorView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStandardTextCursorView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStandardTextCursorView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStandardTextCursorView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextLoupeSession/title",
+          "value": "UITextLoupeSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextLoupeSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextLoupeSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextLoupeSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextLoupeSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextCursorDropPositionAnimator/title",
+          "value": "UITextCursorDropPositionAnimator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextCursorDropPositionAnimator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextCursorDropPositionAnimator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextCursorDropPositionAnimator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextCursorDropPositionAnimator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionHighlightView/title",
+          "value": "UITextSelectionHighlightView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionHighlightView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextSelectionHighlightView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionHighlightView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextSelectionHighlightView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1draw(_:)/title",
+          "value": "drawRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1draw(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionHandleView~1preferredFrame(for:)/title",
+          "value": "preferredFrameForRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionHandleView~1preferredFrame(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "preferredFrameForRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionHandleView~1direction/title",
+          "value": "direction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionHandleView~1direction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "direction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CALayer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CALayer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICoordinateSpace/title",
+          "value": "UICoordinateSpace"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICoordinateSpace/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICoordinateSpace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICoordinateSpace/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICoordinateSpace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionHandleView~1customShape/title",
+          "value": "customShape"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionHandleView~1customShape/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "customShape"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionHandleView~1isVertical/title",
+          "value": "vertical"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionHandleView~1isVertical/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vertical"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionHandleView/title",
+          "value": "UITextSelectionHandleView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionHandleView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextSelectionHandleView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionHandleView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextSelectionHandleView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextCursorView/title",
+          "value": "UITextCursorView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextCursorView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextCursorView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextCursorView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextCursorView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uitextselectionhandleview"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uitextselectionhandleview"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

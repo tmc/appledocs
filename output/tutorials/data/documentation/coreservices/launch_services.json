@@ -1,0 +1,1653 @@
+{
+  "abstract": [
+    {
+      "text": "Launch and open documents in other apps from your current app process.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreservices/launch_services"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1658613,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Launch Services"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "macOS Launch Services is an API that enables a running app to open other apps or their document files, similar to the Finder or the Dock. Using Launch Services, an app can perform such tasks as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open (launch or activate) another app",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open a document or a URL in another app",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Identify the preferred app for opening a document or URL",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Register information about the kinds of document files and URLs an app can open",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Obtain information for displaying a file or URL on the screen, such as its icon, display name, and kind string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Maintain and update the contents of the Recent Items menu",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Launch Services eliminates apps having to query the Finder to open an app, document, or URL for them. The macOS Finder itself uses Launch Services to perform such tasks. Because the Finder performs no additional processing beyond calling Launch Services, any client using Launch Services for these purposes behaves identically to the Finder.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1441854-lscanurlaccepturl": {
+      "abstract": [
+        {
+          "text": "Tests whether an app can accept (open) an item for a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSCanURLAcceptURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL, CFURL, LSRolesMask, LSAcceptanceFlags, UnsafeMutablePointer<DarwinBoolean>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1441854-lscanurlaccepturl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSCanURLAcceptURL(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1441854-lscanurlaccepturl"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1441986-lsopenfromurlspec": {
+      "abstract": [
+        {
+          "text": "Opens one or more items for a URL in the preferred apps or a designated app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSOpenFromURLSpec"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<LSLaunchURLSpec>, UnsafeMutablePointer<Unmanaged<CFURL>?>?) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1441986-lsopenfromurlspec",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSOpenFromURLSpec(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1441986-lsopenfromurlspec"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1442850-lsopencfurlref": {
+      "abstract": [
+        {
+          "text": "Opens an item for a URL in the default manner in its preferred app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSOpenCFURLRef"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL, UnsafeMutablePointer<Unmanaged<CFURL>?>?) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1442850-lsopencfurlref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSOpenCFURLRef(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1442850-lsopencfurlref"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1444955-lssetdefaultrolehandlerforconten": {
+      "abstract": [
+        {
+          "text": "Sets the user’s preferred default handler for the specified content type in the specified roles.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSSetDefaultRoleHandlerForContentType"
+        },
+        {
+          "kind": "text",
+          "text": "(CFString, LSRolesMask, CFString) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444955-lssetdefaultrolehandlerforconten",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSSetDefaultRoleHandlerForContentType(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1444955-lssetdefaultrolehandlerforconten"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1445148-lscopyapplicationurlsforurl": {
+      "abstract": [
+        {
+          "text": "Locates all known apps suitable for opening an item for the specified URL.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSCopyApplicationURLsForURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL, LSRolesMask) -> Unmanaged<CFArray>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1445148-lscopyapplicationurlsforurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSCopyApplicationURLsForURL(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1445148-lscopyapplicationurlsforurl"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1446350-lsregisterurl": {
+      "abstract": [
+        {
+          "text": "Registers an app, using a URL, in the Launch Services database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSRegisterURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL, Bool) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1446350-lsregisterurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSRegisterURL(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1446350-lsregisterurl"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447734-lscopydefaultapplicationurlforco": {
+      "abstract": [
+        {
+          "text": "Returns the app that opens a content type.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSCopyDefaultApplicationURLForContentType"
+        },
+        {
+          "kind": "text",
+          "text": "(CFString, LSRolesMask, UnsafeMutablePointer<Unmanaged<CFError>?>?) -> Unmanaged<CFURL>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447734-lscopydefaultapplicationurlforco",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSCopyDefaultApplicationURLForContentType(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447734-lscopydefaultapplicationurlforco"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447760-lssetdefaulthandlerforurlscheme": {
+      "abstract": [
+        {
+          "text": "Sets the user’s preferred default handler for the specified URL scheme.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSSetDefaultHandlerForURLScheme"
+        },
+        {
+          "kind": "text",
+          "text": "(CFString, CFString) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447760-lssetdefaulthandlerforurlscheme",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSSetDefaultHandlerForURLScheme(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447760-lssetdefaulthandlerforurlscheme"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1448020-lscopyallrolehandlersforcontentt": {
+      "abstract": [
+        {
+          "text": "Locates an array of bundle identifiers for apps capable of handling a specified content type with the specified roles.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSCopyAllRoleHandlersForContentType"
+        },
+        {
+          "kind": "text",
+          "text": "(CFString, LSRolesMask) -> Unmanaged<CFArray>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1448020-lscopyallrolehandlersforcontentt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSCopyAllRoleHandlersForContentType(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1448020-lscopyallrolehandlersforcontentt"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1448824-lscopydefaultapplicationurlforur": {
+      "abstract": [
+        {
+          "text": "Returns the app that opens an item.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSCopyDefaultApplicationURLForURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL, LSRolesMask, UnsafeMutablePointer<Unmanaged<CFError>?>?) -> Unmanaged<CFURL>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1448824-lscopydefaultapplicationurlforur",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSCopyDefaultApplicationURLForURL(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1448824-lscopydefaultapplicationurlforur"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1449290-lscopyapplicationurlsforbundleid": {
+      "abstract": [
+        {
+          "text": "Locates all URLs for apps that correspond to the specified bundle identifier.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSCopyApplicationURLsForBundleIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "(CFString, UnsafeMutablePointer<Unmanaged<CFError>?>?) -> Unmanaged<CFArray>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1449290-lscopyapplicationurlsforbundleid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSCopyApplicationURLsForBundleIdentifier(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1449290-lscopyapplicationurlsforbundleid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1449868-lscopydefaultrolehandlerforconte": {
+      "abstract": [
+        {
+          "text": "Returns the bundle identifier of the user’s preferred default handler for the specified content type with the specified role.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSCopyDefaultRoleHandlerForContentType"
+        },
+        {
+          "kind": "text",
+          "text": "(CFString, LSRolesMask) -> Unmanaged<CFString>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1449868-lscopydefaultrolehandlerforconte",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSCopyDefaultRoleHandlerForContentType(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1449868-lscopydefaultrolehandlerforconte"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/klsappintrasherr": {
+      "abstract": [
+        {
+          "text": "The app can’t run because it’s inside a Trash folder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLSAppInTrashErr"
+        },
+        {
+          "kind": "text",
+          "text": ": OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/klsappintrasherr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kLSAppInTrashErr",
+      "type": "topic",
+      "url": "/documentation/coreservices/klsappintrasherr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/klsapplicationnotfounderr": {
+      "abstract": [
+        {
+          "text": "No app in the Launch Services database matches the input criteria.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLSApplicationNotFoundErr"
+        },
+        {
+          "kind": "text",
+          "text": ": OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/klsapplicationnotfounderr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kLSApplicationNotFoundErr",
+      "type": "topic",
+      "url": "/documentation/coreservices/klsapplicationnotfounderr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/klscannotsetinfoerr": {
+      "abstract": [
+        {
+          "text": "The system can’t hide the filename extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLSCannotSetInfoErr"
+        },
+        {
+          "kind": "text",
+          "text": ": OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/klscannotsetinfoerr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kLSCannotSetInfoErr",
+      "type": "topic",
+      "url": "/documentation/coreservices/klscannotsetinfoerr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/klsdataerr": {
+      "abstract": [
+        {
+          "text": "Improper data structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLSDataErr"
+        },
+        {
+          "kind": "text",
+          "text": ": OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/klsdataerr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kLSDataErr",
+      "type": "topic",
+      "url": "/documentation/coreservices/klsdataerr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/klsdataunavailableerr": {
+      "abstract": [
+        {
+          "text": "Data of the desired type is not available (for example, there is no kind string).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLSDataUnavailableErr"
+        },
+        {
+          "kind": "text",
+          "text": ": OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/klsdataunavailableerr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kLSDataUnavailableErr",
+      "type": "topic",
+      "url": "/documentation/coreservices/klsdataunavailableerr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/klsincompatiblesystemversionerr": {
+      "abstract": [
+        {
+          "text": "The requested app can’t run on the current macOS version.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLSIncompatibleSystemVersionErr"
+        },
+        {
+          "kind": "text",
+          "text": ": OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/klsincompatiblesystemversionerr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kLSIncompatibleSystemVersionErr",
+      "type": "topic",
+      "url": "/documentation/coreservices/klsincompatiblesystemversionerr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/klslaunchinprogresserr": {
+      "abstract": [
+        {
+          "text": "A launch of the app is already in progress.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLSLaunchInProgressErr"
+        },
+        {
+          "kind": "text",
+          "text": ": OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/klslaunchinprogresserr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kLSLaunchInProgressErr",
+      "type": "topic",
+      "url": "/documentation/coreservices/klslaunchinprogresserr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/klsmultiplesessionsnotsupportederr": {
+      "abstract": [
+        {
+          "text": "The requested app can’t run simultaneously in two different user sessions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLSMultipleSessionsNotSupportedErr"
+        },
+        {
+          "kind": "text",
+          "text": ": OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/klsmultiplesessionsnotsupportederr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kLSMultipleSessionsNotSupportedErr",
+      "type": "topic",
+      "url": "/documentation/coreservices/klsmultiplesessionsnotsupportederr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/klsnoexecutableerr": {
+      "abstract": [
+        {
+          "text": "The executable file is missing or has an unusable format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLSNoExecutableErr"
+        },
+        {
+          "kind": "text",
+          "text": ": OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/klsnoexecutableerr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kLSNoExecutableErr",
+      "type": "topic",
+      "url": "/documentation/coreservices/klsnoexecutableerr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/klsnolaunchpermissionerr": {
+      "abstract": [
+        {
+          "text": "The user doesn’t have permission to launch the app on a managed network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLSNoLaunchPermissionErr"
+        },
+        {
+          "kind": "text",
+          "text": ": OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/klsnolaunchpermissionerr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kLSNoLaunchPermissionErr",
+      "type": "topic",
+      "url": "/documentation/coreservices/klsnolaunchpermissionerr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/klsnotanapplicationerr": {
+      "abstract": [
+        {
+          "text": "The item for registration is not an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLSNotAnApplicationErr"
+        },
+        {
+          "kind": "text",
+          "text": ": OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/klsnotanapplicationerr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kLSNotAnApplicationErr",
+      "type": "topic",
+      "url": "/documentation/coreservices/klsnotanapplicationerr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/klsquarantineagentbundleidentifierkey": {
+      "abstract": [
+        {
+          "text": "The bundle identifier of the quarantining agent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLSQuarantineAgentBundleIdentifierKey"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/klsquarantineagentbundleidentifierkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kLSQuarantineAgentBundleIdentifierKey",
+      "type": "topic",
+      "url": "/documentation/coreservices/klsquarantineagentbundleidentifierkey"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/klsquarantineagentnamekey": {
+      "abstract": [
+        {
+          "text": "The app name of the quarantining agent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLSQuarantineAgentNameKey"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/klsquarantineagentnamekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kLSQuarantineAgentNameKey",
+      "type": "topic",
+      "url": "/documentation/coreservices/klsquarantineagentnamekey"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/klsquarantinedataurlkey": {
+      "abstract": [
+        {
+          "text": "The actual URL of the quarantined item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLSQuarantineDataURLKey"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/klsquarantinedataurlkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kLSQuarantineDataURLKey",
+      "type": "topic",
+      "url": "/documentation/coreservices/klsquarantinedataurlkey"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/klsquarantineoriginurlkey": {
+      "abstract": [
+        {
+          "text": "The URL of the resource originally hosting the quarantined item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLSQuarantineOriginURLKey"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/klsquarantineoriginurlkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kLSQuarantineOriginURLKey",
+      "type": "topic",
+      "url": "/documentation/coreservices/klsquarantineoriginurlkey"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/klsquarantinetimestampkey": {
+      "abstract": [
+        {
+          "text": "The date and time of the item’s quarantine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLSQuarantineTimeStampKey"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/klsquarantinetimestampkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kLSQuarantineTimeStampKey",
+      "type": "topic",
+      "url": "/documentation/coreservices/klsquarantinetimestampkey"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/klsquarantinetypecalendareventattachment": {
+      "abstract": [
+        {
+          "text": "The type when the data is an attachment from a calendar event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLSQuarantineTypeCalendarEventAttachment"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/klsquarantinetypecalendareventattachment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kLSQuarantineTypeCalendarEventAttachment",
+      "type": "topic",
+      "url": "/documentation/coreservices/klsquarantinetypecalendareventattachment"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/klsquarantinetypeemailattachment": {
+      "abstract": [
+        {
+          "text": "The type when the data is an attachment from an email message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLSQuarantineTypeEmailAttachment"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/klsquarantinetypeemailattachment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kLSQuarantineTypeEmailAttachment",
+      "type": "topic",
+      "url": "/documentation/coreservices/klsquarantinetypeemailattachment"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/klsquarantinetypeinstantmessageattachment": {
+      "abstract": [
+        {
+          "text": "The type when the data is an attachment from a message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLSQuarantineTypeInstantMessageAttachment"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/klsquarantinetypeinstantmessageattachment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kLSQuarantineTypeInstantMessageAttachment",
+      "type": "topic",
+      "url": "/documentation/coreservices/klsquarantinetypeinstantmessageattachment"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/klsquarantinetypekey": {
+      "abstract": [
+        {
+          "text": "A symbolic string identifying the reason for the quarantine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLSQuarantineTypeKey"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/klsquarantinetypekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kLSQuarantineTypeKey",
+      "type": "topic",
+      "url": "/documentation/coreservices/klsquarantinetypekey"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/klsquarantinetypeotherattachment": {
+      "abstract": [
+        {
+          "text": "The type when the data is an attachment from a generic source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLSQuarantineTypeOtherAttachment"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/klsquarantinetypeotherattachment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kLSQuarantineTypeOtherAttachment",
+      "type": "topic",
+      "url": "/documentation/coreservices/klsquarantinetypeotherattachment"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/klsquarantinetypeotherdownload": {
+      "abstract": [
+        {
+          "text": "The type when the data is from a download.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLSQuarantineTypeOtherDownload"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/klsquarantinetypeotherdownload",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kLSQuarantineTypeOtherDownload",
+      "type": "topic",
+      "url": "/documentation/coreservices/klsquarantinetypeotherdownload"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/klsquarantinetypewebdownload": {
+      "abstract": [
+        {
+          "text": "The type when the data is from a website download.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLSQuarantineTypeWebDownload"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/klsquarantinetypewebdownload",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kLSQuarantineTypeWebDownload",
+      "type": "topic",
+      "url": "/documentation/coreservices/klsquarantinetypewebdownload"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/klsservercommunicationerr": {
+      "abstract": [
+        {
+          "text": "There is a problem communicating with the server process that maintains the Launch Services database. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLSServerCommunicationErr"
+        },
+        {
+          "kind": "text",
+          "text": ": OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/klsservercommunicationerr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kLSServerCommunicationErr",
+      "type": "topic",
+      "url": "/documentation/coreservices/klsservercommunicationerr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/klsunknownerr": {
+      "abstract": [
+        {
+          "text": "An unknown error has occurred.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLSUnknownErr"
+        },
+        {
+          "kind": "text",
+          "text": ": OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/klsunknownerr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kLSUnknownErr",
+      "type": "topic",
+      "url": "/documentation/coreservices/klsunknownerr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/launch_services/1469201-unknown_type_or_creator": {
+      "abstract": [
+        {
+          "text": "Represents an unknown file type or creator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/launch_services/1469201-unknown_type_or_creator",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Unknown Type or Creator",
+      "type": "topic",
+      "url": "/documentation/coreservices/launch_services/1469201-unknown_type_or_creator"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/launch_services/deprecated_symbols": {
+      "abstract": [
+        {
+          "text": "Apple has deprecated these symbols and no longer recommends using them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/launch_services/deprecated_symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated Symbols",
+      "type": "topic",
+      "url": "/documentation/coreservices/launch_services/deprecated_symbols"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/lsacceptanceflags": {
+      "abstract": [
+        {
+          "text": "The specification that determines whether an app can accept (open) an item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSAcceptanceFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/lsacceptanceflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSAcceptanceFlags",
+      "type": "topic",
+      "url": "/documentation/coreservices/lsacceptanceflags"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/lshandleroptions": {
+      "abstract": [
+        {
+          "text": "The specification that controls the selection of handlers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSHandlerOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/lshandleroptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSHandlerOptions",
+      "type": "topic",
+      "url": "/documentation/coreservices/lshandleroptions"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/lsiteminfoflags": {
+      "abstract": [
+        {
+          "text": "The specification that provides information about an item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSItemInfoFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/lsiteminfoflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSItemInfoFlags",
+      "type": "topic",
+      "url": "/documentation/coreservices/lsiteminfoflags"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/lslaunchflags": {
+      "abstract": [
+        {
+          "text": "The specification for launching an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSLaunchFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/lslaunchflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSLaunchFlags",
+      "type": "topic",
+      "url": "/documentation/coreservices/lslaunchflags"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec": {
+      "abstract": [
+        {
+          "text": "The specification for launching an app, opening items, or both, along with related information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSLaunchURLSpec"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSLaunchURLSpec",
+      "type": "topic",
+      "url": "/documentation/coreservices/lslaunchurlspec"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/lsrequestedinfo": {
+      "abstract": [
+        {
+          "text": "The specification that controls which information to obtain about an item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSRequestedInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/lsrequestedinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSRequestedInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/lsrequestedinfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/lsrolesmask": {
+      "abstract": [
+        {
+          "text": "The specification that sets the desired role or roles for an app to claim for an item or a family of items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSRolesMask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/lsrolesmask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSRolesMask",
+      "type": "topic",
+      "url": "/documentation/coreservices/lsrolesmask"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/lssharedfilelist": {
+      "abstract": [
+        {
+          "text": "A persistent list of file-system objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSSharedFileList"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/lssharedfilelist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSSharedFileList",
+      "type": "topic",
+      "url": "/documentation/coreservices/lssharedfilelist"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/lssharedfilelistitem": {
+      "abstract": [
+        {
+          "text": "A file-system object in the shared file list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "LSSharedFileListItem"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/lssharedfilelistitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LSSharedFileListItem",
+      "type": "topic",
+      "url": "/documentation/coreservices/lssharedfilelistitem"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "abstract": [
+        {
+          "text": "The functions in this section locate and test the preferred app for opening an item or a family of items, or the app that matches a set of defining characteristics.",
+          "type": "text"
+        }
+      ],
+      "anchor": "1658650",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1448824-lscopydefaultapplicationurlforur",
+        "doc://com.apple.documentation/documentation/coreservices/1447734-lscopydefaultapplicationurlforco",
+        "doc://com.apple.documentation/documentation/coreservices/1445148-lscopyapplicationurlsforurl",
+        "doc://com.apple.documentation/documentation/coreservices/1441854-lscanurlaccepturl",
+        "doc://com.apple.documentation/documentation/coreservices/1449290-lscopyapplicationurlsforbundleid"
+      ],
+      "kind": "taskGroup",
+      "title": "Locating an App"
+    },
+    {
+      "abstract": [
+        {
+          "text": "The functions in this section open a designated item or a collection of items, or launch or activate a designated app.",
+          "type": "text"
+        }
+      ],
+      "anchor": "1658811",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1442850-lsopencfurlref",
+        "doc://com.apple.documentation/documentation/coreservices/1441986-lsopenfromurlspec",
+        "doc://com.apple.documentation/documentation/coreservices/lslaunchurlspec",
+        "doc://com.apple.documentation/documentation/coreservices/lssharedfilelist",
+        "doc://com.apple.documentation/documentation/coreservices/lssharedfilelistitem"
+      ],
+      "kind": "taskGroup",
+      "title": "Opening Items"
+    },
+    {
+      "abstract": [
+        {
+          "text": "The functions in this section register an app in the Launch Services database.",
+          "type": "text"
+        }
+      ],
+      "anchor": "1659263",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1446350-lsregisterurl"
+      ],
+      "kind": "taskGroup",
+      "title": "Registering an App"
+    },
+    {
+      "abstract": [
+        {
+          "text": "The functions in this section get and set bundle identifiers for handlers of specified content types and URL schemes.",
+          "type": "text"
+        }
+      ],
+      "anchor": "1659328",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1448020-lscopyallrolehandlersforcontentt",
+        "doc://com.apple.documentation/documentation/coreservices/1449868-lscopydefaultrolehandlerforconte",
+        "doc://com.apple.documentation/documentation/coreservices/1444955-lssetdefaultrolehandlerforconten",
+        "doc://com.apple.documentation/documentation/coreservices/1447760-lssetdefaulthandlerforurlscheme",
+        "doc://com.apple.documentation/documentation/coreservices/lsrolesmask"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with Role Handlers"
+    },
+    {
+      "anchor": "3578858",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/klsquarantineagentbundleidentifierkey",
+        "doc://com.apple.documentation/documentation/coreservices/klsquarantineagentnamekey",
+        "doc://com.apple.documentation/documentation/coreservices/klsquarantinetimestampkey",
+        "doc://com.apple.documentation/documentation/coreservices/klsquarantinetypekey",
+        "doc://com.apple.documentation/documentation/coreservices/klsquarantinedataurlkey",
+        "doc://com.apple.documentation/documentation/coreservices/klsquarantineoriginurlkey"
+      ],
+      "kind": "taskGroup",
+      "title": "Understanding the Quarantine Properties Dictionary"
+    },
+    {
+      "anchor": "3578857",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/klsquarantinetypecalendareventattachment",
+        "doc://com.apple.documentation/documentation/coreservices/klsquarantinetypeemailattachment",
+        "doc://com.apple.documentation/documentation/coreservices/klsquarantinetypeinstantmessageattachment",
+        "doc://com.apple.documentation/documentation/coreservices/klsquarantinetypeotherattachment",
+        "doc://com.apple.documentation/documentation/coreservices/klsquarantinetypeotherdownload",
+        "doc://com.apple.documentation/documentation/coreservices/klsquarantinetypewebdownload"
+      ],
+      "kind": "taskGroup",
+      "title": "Identifying the Quarantine Type"
+    },
+    {
+      "abstract": [
+        {
+          "text": "This section describes the constants in the Launch Services API.",
+          "type": "text"
+        }
+      ],
+      "anchor": "1660079",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/lslaunchflags",
+        "doc://com.apple.documentation/documentation/coreservices/lsacceptanceflags",
+        "doc://com.apple.documentation/documentation/coreservices/lsiteminfoflags",
+        "doc://com.apple.documentation/documentation/coreservices/lshandleroptions",
+        "doc://com.apple.documentation/documentation/coreservices/lsrequestedinfo",
+        "doc://com.apple.documentation/documentation/coreservices/launch_services/1469201-unknown_type_or_creator"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "1661359",
+      "discussion": {
+        "content": [
+          {
+            "inlineContent": [
+              {
+                "text": "This section lists the most common result codes that Launch Services functions return.",
+                "type": "text"
+              }
+            ],
+            "type": "paragraph"
+          }
+        ],
+        "kind": "content"
+      },
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/klsappintrasherr",
+        "doc://com.apple.documentation/documentation/coreservices/klsunknownerr",
+        "doc://com.apple.documentation/documentation/coreservices/klsnotanapplicationerr",
+        "doc://com.apple.documentation/documentation/coreservices/klsdataunavailableerr",
+        "doc://com.apple.documentation/documentation/coreservices/klsapplicationnotfounderr",
+        "doc://com.apple.documentation/documentation/coreservices/klsdataerr",
+        "doc://com.apple.documentation/documentation/coreservices/klslaunchinprogresserr",
+        "doc://com.apple.documentation/documentation/coreservices/klsservercommunicationerr",
+        "doc://com.apple.documentation/documentation/coreservices/klscannotsetinfoerr",
+        "doc://com.apple.documentation/documentation/coreservices/klsincompatiblesystemversionerr",
+        "doc://com.apple.documentation/documentation/coreservices/klsnolaunchpermissionerr",
+        "doc://com.apple.documentation/documentation/coreservices/klsnoexecutableerr",
+        "doc://com.apple.documentation/documentation/coreservices/klsmultiplesessionsnotsupportederr"
+      ],
+      "kind": "taskGroup",
+      "title": "Result Codes"
+    },
+    {
+      "abstract": [],
+      "anchor": "3573465",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/launch_services/deprecated_symbols"
+      ],
+      "kind": "taskGroup",
+      "title": "Deprecated"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/launch_services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreservices/launch_services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

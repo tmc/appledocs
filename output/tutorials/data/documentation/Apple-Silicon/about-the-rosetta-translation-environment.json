@@ -1,0 +1,584 @@
+{
+  "abstract": [
+    {
+      "text": "Learn how Rosetta translates executables, and understand what Rosetta can’t translate.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Apple-Silicon/documentation/apple-silicon"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/about-the-rosetta-translation-environment"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "About the Rosetta Translation Environment"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Rosetta is a translation process that allows users to run apps that contain ",
+              "type": "text"
+            },
+            {
+              "code": "x86_64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instructions on Apple silicon. Rosetta is meant to ease the transition to Apple silicon,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "giving you time to create a universal binary for your app. It is not a substitute",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for creating a native version of your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To the user, Rosetta is mostly transparent. If an executable contains only Intel",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instructions, macOS automatically launches Rosetta and begins the translation process.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When translation finishes, the system launches the translated executable in place",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the original. However, the translation process takes time, so users might perceive",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that translated apps launch or run more slowly at times.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system prefers to execute an app’s ",
+              "type": "text"
+            },
+            {
+              "code": "arm64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instructions on Apple silicon. If",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a binary includes both ",
+              "type": "text"
+            },
+            {
+              "code": "arm64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "x86_64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instructions, the user can tell the system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to launch the app using Rosetta translation from the app’s Get Info window in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Finder. For example, a user might enable Rosetta translation to allow the app to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "run older plug-ins that don’t yet support the ",
+              "type": "text"
+            },
+            {
+              "code": "arm64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " architecture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "about-the-rosetta-translation-environment-1.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The system prevents you from mixing ",
+                  "type": "text"
+                },
+                {
+                  "code": "arm64",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " code and ",
+                  "type": "text"
+                },
+                {
+                  "code": "x86_64",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " code in",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the same process. Rosetta translation applies to an entire process, including all",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "code modules that the process loads dynamically.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on how to determine when your app is running under Rosetta translation,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/about-the-rosetta-translation-environment#Determine-Whether-Your-App-Is-Running-as-a-Translated-Binary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "..",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "What-Cant-Be-Translated",
+          "level": 3,
+          "text": "What Can’t Be Translated?",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Rosetta can translate most Intel-based apps, including apps that contain just-in-time",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(JIT) compilers. However, Rosetta doesn’t translate the following executables:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Kernel extensions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Virtual Machine apps that virtualize x86_64 computer platforms",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Rosetta translates all ",
+              "type": "text"
+            },
+            {
+              "code": "x86_64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instructions, but it doesn’t support the execution",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of some newer instruction sets and processor features, such as AVX, AVX2, and AVX512",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "vector instructions. If you include these newer instructions in your code, execute",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "them only after verifying that they are available. For example, to determine if AVX512",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "vector instructions are available, use the ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/kernel/1387446-sysctlbyname",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "function to check the ",
+              "type": "text"
+            },
+            {
+              "code": "hw.optional.avx512f",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-Whether-Your-App-Is-Running-as-a-Translated-Binary",
+          "level": 3,
+          "text": "Determine Whether Your App Is Running as a Translated Binary",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On Apple silicon, a universal binary may run either natively or as a translated binary.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system runs the native version whenever possible, but the user might opt to run",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the code using Rosetta to support older plug-ins.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To programmatically determine when a process is running under Rosetta translation,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "call the ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/kernel/1387446-sysctlbyname",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "function with the ",
+              "type": "text"
+            },
+            {
+              "code": "sysctl.proc_translated",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag, as shown in the following example.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The example function returns the value ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for a native process, ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for a translated",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "process, and ",
+              "type": "text"
+            },
+            {
+              "code": "-1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when an error occurs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "int processIsTranslated() {",
+            "   int ret = 0;",
+            "   size_t size = sizeof(ret);",
+            "   if (sysctlbyname(\"sysctl.proc_translated\", &ret, &size, NULL, 0) == -1) ",
+            "   {",
+            "      if (errno == ENOENT)",
+            "         return 0;",
+            "      return -1;",
+            "   }",
+            "   return ret;",
+            "}"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "about-the-rosetta-translation-environment-1.png": {
+      "alt": "A screen that highlights the Open using Rosetta option in the Get Info window for Mail.",
+      "identifier": "about-the-rosetta-translation-environment-1.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3a4da06dd5005d3387eb9526c398f49f/about-the-rosetta-translation-environment-1@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/about-the-rosetta-translation-environment#Determine-Whether-Your-App-Is-Running-as-a-Translated-Binary": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Apple-Silicon/documentation/Apple-Silicon/about-the-rosetta-translation-environment#Determine-Whether-Your-App-Is-Running-as-a-Translated-Binary",
+      "kind": "section",
+      "title": "Determine Whether Your App Is Running as a Translated Binary",
+      "type": "topic",
+      "url": "/documentation/apple-silicon/about-the-rosetta-translation-environment#Determine-Whether-Your-App-Is-Running-as-a-Translated-Binary"
+    },
+    "doc://com.apple.Apple-Silicon/documentation/apple-silicon": {
+      "abstract": [
+        {
+          "text": "Get the resources you need to create software for Macs with Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Apple-Silicon/documentation/apple-silicon",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple Silicon",
+      "type": "topic",
+      "url": "/documentation/apple-silicon"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": []
+}

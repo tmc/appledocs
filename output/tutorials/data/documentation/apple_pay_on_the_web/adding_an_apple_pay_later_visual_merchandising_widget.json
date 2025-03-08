@@ -1,0 +1,907 @@
+{
+  "abstract": [
+    {
+      "text": "Configure and style Apple Pay Later visual merchandising widgets to match your website.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Apple Pay Later is deprecated.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/adding_an_apple_pay_later_visual_merchandising_widget"
+  },
+  "kind": "article",
+  "legacy_identifier": 4209979,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Pay JS"
+      },
+      {
+        "name": "Payment Request API"
+      },
+      {
+        "name": "Apple Pay JS Button"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding an Apple Pay Later visual merchandising widget"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS and iPadOS 16.4 and later, Apple Pay on the Web provides a variety of Apple Pay merchandising widget types that you can use on your website. You can specify the Apple Pay merchandising widget style, type, and localization using attributes that you supply to a JavaScript function that displays the widget.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4209983",
+          "level": 3,
+          "text": "Add the Apple Pay JavaScript API to the page header",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display an Apple Pay Later visual merchandising widget, add the following script tag to your webpage’s ",
+              "type": "text"
+            },
+            {
+              "code": "head",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag to load the Apple Pay JavaScript API:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<head>",
+            "    <script src=\"https://applepay.cdn-apple.com/jsapi/v1.1.0/apple-pay-sdk.js\"",
+            "    crossorigin async data-initial-token=\"Your Apple Pay JS token\"></script>",
+            "</head>"
+          ],
+          "metadata": {
+            "anchor": "4209980",
+            "title": "Listing 1"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The script tag contains the URL that loads the ",
+              "type": "text"
+            },
+            {
+              "code": "apple-pay-sdk.js",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", from the Apple Pay JS CDN. The script tag includes three additional attributes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An abbreviated version of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "crossorigin=”anonymous”",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", this attribute instructs the browser to connect to the Apple Pay JS CDN using anonymous credentials mode. This improves performance by allowing subsequent Apple Pay JS network requests to reuse the same HTTP/2 connection",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "crossorigin",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The attribute instructs the browser to immediately evaluate the script. This prevents ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "apple-pay-sdk.js",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " from blocking the page load, and initializes and loads the ApplePay JS libraries as soon as possible. Your app needs to wait for the callback function execution before interacting with the API.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "async",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "This value is a JSON Web Token (JWT) that you need to obtain from the Developer Portal. See ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "link-4250815",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " on the Developer Portal and follow the instructions for registering a merchant domain to generate the JWT.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "data-initial-token",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, you need to ensure that your website allows a Content Security Policy for Apple Pay JS to function properly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "4209978",
+          "level": 3,
+          "text": "Add a standard widget",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display the widget, add an ",
+              "type": "text"
+            },
+            {
+              "code": "apple-pay-merchandising",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag to your webpage and set the amount, style, type, and locale parameters. For example, this call into the Apple Pay JavaScript library provides details necessary for rendering the widget localized to the US, and uses the default size and type:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<apple-pay-merchandising ",
+            "    amount=\"108\" ",
+            "    type=\"plain\" ",
+            "    locale=\"en-US\" ",
+            "    country-code=\"US\">",
+            "</apple-pay-merchandising>"
+          ],
+          "metadata": {
+            "anchor": "4209984",
+            "title": "Listing 2"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are several options for customizing the widget’s appearance:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "metadata": {
+            "anchor": "4250821",
+            "title": "Table 1"
+          },
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attribute",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "amount",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "code": "",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "(required)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A string that represents the amount of the transaction as a decimal number, for example ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "“108”",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The payment amount displayed in the widget, usually a product’s price.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "type",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "badge",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "plain",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "price",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "checkout",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A string that describes the kind of Apple Pay Later visual merchandising widget.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "modal-type",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "learn-more",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "calculator",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A string that defines the contents of the modal that the visual merchandising widget displays. Use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "learn-more",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to display information about Apple Pay Later or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "calculator",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to display a breakdown of payments.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "locale",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An BCP 47 language code, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "en-US",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The language and region the widget uses for the Apple Pay Later visual merchandising widget.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "country-code",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "(required)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A two-letter ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-4279541",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " country code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The country or region of the merchant’s principal place of business.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "currency-code",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "(required)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A three letter ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-4279540",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " currency code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The currency in use at the merchant’s principal place of business",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "theme",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "dark",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "light",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "auto",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The appearance of the widget. Defaults to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "auto",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " if no value is specified.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "debug ",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "false",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The setting to use for testing purposes to force the widget to display on all devices and operating systems. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You need to remove this setting before deploying to production.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "4209975",
+          "level": 3,
+          "text": "Determine sizing requirements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For sizing requirements for the Apple Pay Later visual merchandising widget, along with other design guidelines, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-4250813",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the Human Interface Guidelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Pay on the Web",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/adding_an_apple_pay_later_visual_merchandising_widget": {
+      "abstract": [
+        {
+          "text": "Configure and style Apple Pay Later visual merchandising widgets to match your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/adding_an_apple_pay_later_visual_merchandising_widget",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding an Apple Pay Later visual merchandising widget",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/adding_an_apple_pay_later_visual_merchandising_widget"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/adding_an_apple_pay_later_visual_merchandising_widget#4209980": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/adding_an_apple_pay_later_visual_merchandising_widget#4209980",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/adding_an_apple_pay_later_visual_merchandising_widget#4209980"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/adding_an_apple_pay_later_visual_merchandising_widget#4209984": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/adding_an_apple_pay_later_visual_merchandising_widget#4209984",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/adding_an_apple_pay_later_visual_merchandising_widget#4209984"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/adding_an_apple_pay_later_visual_merchandising_widget#4250821": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/adding_an_apple_pay_later_visual_merchandising_widget#4250821",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 1",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/adding_an_apple_pay_later_visual_merchandising_widget#4250821"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-4250813": {
+      "identifier": "link-4250813",
+      "kind": "article",
+      "role": "link",
+      "title": "Apple Pay",
+      "type": "topic",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/apple-pay"
+    },
+    "link-4250815": {
+      "identifier": "link-4250815",
+      "kind": "article",
+      "role": "link",
+      "title": "Certificates, Identifiers & Profiles",
+      "type": "topic",
+      "url": "https://developer.apple.com/account/resources/services/list"
+    },
+    "link-4279540": {
+      "identifier": "link-4279540",
+      "kind": "article",
+      "role": "link",
+      "title": "ISO-4217",
+      "type": "topic",
+      "url": "https://www.iso.org/iso-4217-currency-codes.html"
+    },
+    "link-4279541": {
+      "identifier": "link-4279541",
+      "kind": "article",
+      "role": "link",
+      "title": "ISO-3166",
+      "type": "topic",
+      "url": "https://www.iso.org/iso-3166-country-codes.html"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/apple_pay_on_the_web/adding_an_apple_pay_later_visual_merchandising_widget"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

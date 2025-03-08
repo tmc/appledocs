@@ -1,0 +1,2902 @@
+{
+  "abstract": [
+    {
+      "text": "Limit texture memory usage for large textures by loading or unloading image detail on the basis of MIP and tile region.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/metal-sample-code-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/streaming-large-images-with-metal-sparse-textures"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Streaming large images with Metal sparse textures"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample demonstrates sparse texture streaming by rendering a ground plane that samples from a 16K resolution texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The renderer uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/managing-sparse-texture-memory",
+              "isActive": true,
+              "overridingTitle": "Metal sparse textures",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Metal sparse textures",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to subdivide the image into regions, or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "tiles",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", and chooses the tiles to keep in memory.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The GPU updates an access counter buffer, and the app determines the tiles it needs to load or discard.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample shows a heat map of the available MIP levels on the lower left of the screen, where ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "white",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " represents level 0, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "yellow",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " represents levels 1 to 3, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "red",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " represents levels 4 and 5, and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "purple",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " represents the remaining MIP levels.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app contains a checkbox that toggles the camera animation.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When the animation runs, the app updates the sparse texture as the camera moves through the scene.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Lastly, this sample demonstrates asynchronous updates using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Dispatch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Grand Central Dispatch (GCD)",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", to update the sparse texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "sparse-textures-1-screen-capture",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sparse textures are special textures that manage the residency of both tiles and MIP levels.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For instance, a 16K resolution texture may use more than one gigabyte of memory, not including mipmaps that may increase levels memory requirements by 33%.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To efficiently use space, the smallest MIP levels are often stored together, called a mipmap tail.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, this may contain the 8 x 8, 4 x 4, 2 x 2, and 1 x 1 MIP levels.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following figure shows an example texture with its mipmaps and mipmap tail.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "sparse-textures-2-example-texture",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app follows a straightforward process to manage a sparse texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "First, it checks for sparse texture support.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Next, it initializes the sparse texture by loading a texture of Apple Park, and loading and mapping the mipmap tails.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then, the app renders a scene that uses the sparse texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After rendering, the app updates the texture in parallel with the main render pass.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It retrieves the access counters, processes them, and discards tiles that aren’t needed anymore.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It also maps and unmaps tiles, blits nonresident tiles, and updates the residency buffer when the blitting work finishes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "blit",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " means to copy a rectangle of pixels from a source image buffer to a destination memory buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Xcode project contains schemes for running the sample on macOS and iOS with a physical device that supports sparse textures.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can enable or disable camera movement by checking the switch button on the top-right of the app screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build the project with Xcode 12 and later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Target a macOS device with an M1 chip or later and macOS 12 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Target an iOS device with an A13 chip or later and iOS 14 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Check-for-sparse-texture-support",
+          "level": 3,
+          "text": "Check for sparse texture support",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample checks if the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/apple6",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " feature set is available with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/supportsFamily(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This feature set begins with the Apple A13 GPUs.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Here’s the code from ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLViewController:viewDidLoad",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Metal sparse textures require at least MTLGPUFamilyApple6.",
+            "if (![_mtkView.device supportsFamily:MTLGPUFamilyApple6])",
+            "{",
+            "    NSAssert (0, @\"This device doesn't support Metal sparse textures.\");",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Manage-the-sparse-texture",
+          "level": 3,
+          "text": "Manage the sparse texture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A sparse texture divides large textures into tiles that the application treats as smaller textures with their own MIP levels.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sparse texture contains a residency buffer that tracks the MIP levels that are currently loaded.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following figure shows how the above texture would be subdivided into separate tile regions.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The mipmap tail is considered its own tile, and the app ensures that all the tails are resident.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "sparse-textures-3-texture-with-tiles",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The residency buffer and access counter buffers use the same layout, but use different data types.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The layout is an array of integer values representing each tile, starting with level 0.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The tiles are laid out left to right and top to bottom.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app updates the residency buffer while the GPU updates the access counters.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The residency buffer uses 8-bit integer values to represent Boolean residency or nonresidency, and the access counters are 64-bit integer values.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following figure shows the memory layout of the residency and access counter buffers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "sparse-textures-4-memory-layout",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLSparseTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class manages the sparse texture in this sample and uses an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLHeap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to store the texture data for the tiles.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A heap is a Metal object that allows an app to quickly allocate and free textures from a memory pool.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Heaps allow quick allocation of tile memory and help limit the amount of memory used by the sparse texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In addition to the heap, the class allocates two buffers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The first buffer is the residency buffer that tracks the highest MIP-level resident in the texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When a shader fails to sample a sparse texture, it can use this buffer to fall back to a resident tile at a lower MIP level.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During rendering, the GPU uses the access counters buffer to store a counter per tile and increments it when a shader samples from the corresponding tile region.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app can query and analyze this buffer to find tiles to map or unmap.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When the heap is low on available memory, the class can replace resident tiles that the shader hasn’t recently accessed.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "And this is how the app uses the residency and access counters buffers to dynamically adjust the residency of the sparse texture while staying within a memory budget.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Initialize-the-sparse-texture",
+          "level": 3,
+          "text": "Initialize the sparse texture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app uses a 16K texture map of Apple Park stored in the Khronos Texture (KTX) file format.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLSparseTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLStreamedTextureDataBacking",
+              "type": "codeVoice"
+            },
+            {
+              "text": " classes manage all aspects of using sparse textures.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app specifies a heap size of 16 MiB to quickly allocate memory to store tile data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#if USE_SMALL_SPARSE_TEXTURE_HEAP",
+            "const NSUInteger heapSize = 2 * 1048576;",
+            "#else",
+            "const NSUInteger heapSize = 16 * 1048576;",
+            "#endif",
+            "",
+            "NSURL* _sparseTexturePath = [[NSBundle mainBundle] URLForResource:@\"apple_park.ktx\" withExtension:nil];",
+            "_sparseTexture = [[AAPLSparseTexture alloc] initWithDevice:_device",
+            "                                                      path:_sparseTexturePath",
+            "                                              commandQueue:_commandQueue",
+            "                                                  heapSize:heapSize];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following code, the app starts loading the KTX file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The loader reads the file header and maps the file to memory using ",
+              "type": "text"
+            },
+            {
+              "code": "mmap",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Memory mapping facilitates memory copies into staging buffers when the app needs to blit tiles to the sparse texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The second step creates a heap for the mapped tiles and a second heap for the staging buffers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Allocating buffers from a heap is more efficient because Metal won’t perform expensive state tracking to avoid data hazards.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sparse texture manager performs its own heap management because only the sparse texture, in the grander scheme, needs to have data-hazard tracking.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The third step maps the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "mipmap tail",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", the highest mipmap levels that fit inside one memory block.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then the texture manager blits the bottom mipmap tail into the sparse texture to ensure that all tiles contain a minimal amount of texture data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The final step creates the access counter buffer for all frames in flight.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Lastly, the app updates the residency buffer to tell Metal which tiles are resident.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "_numTilesToDiscardFromLRU = 0;",
+            "_sparseTextureBacking = [[AAPLStreamedTextureDataBacking alloc] initWithKTXPath:path];",
+            "[self createHeaps:heapSize];",
+            "[self mapMipmapTails];",
+            "[self blitMipmapTails];",
+            "[self createAccessCountersBuffer];",
+            "[self updateResidencyBuffer];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At this point, the app has initialized the sparse texture, copied the bottom mipmap tails to GPU memory, and mapped the mipmap tails resident.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app may now use the sparse texture for rendering objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Render-the-scene",
+          "level": 3,
+          "text": "Render the scene",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app performs ordinary rendering tasks in ",
+              "type": "text"
+            },
+            {
+              "code": "drawInMTKView,",
+              "type": "codeVoice"
+            },
+            {
+              "text": " like updating animation variables and uniform buffers, creating a command buffer, and rendering the scene.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The end of the following block of code shows an optional rendering pass that renders a quad in the lower-left of the screen.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This quad shows a color-coded version of the residency buffer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You may disable this visualization by setting the preprocessor variable ",
+              "type": "text"
+            },
+            {
+              "code": "DEBUG_SPARSE_TEXTURE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to 0.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "id<MTLCommandBuffer> commandBuffer = [_commandQueue commandBuffer];",
+            "commandBuffer.label = @\"Main render cmd buffer\";",
+            "",
+            "// Update the animation and uniform buffers for the sample.",
+            "[self updateAnimationAndBuffers];",
+            "",
+            "// Begin the forward render pass.",
+            "[self drawScene:commandBuffer];",
+            "",
+            "#if DEBUG_SPARSE_TEXTURE",
+            "// Draw a visualization of the sparse texture residency buffer.",
+            "[self drawDebugSparseTextureTiles:commandBuffer];",
+            "#endif",
+            "",
+            "// Register the completion handler for the command buffer.",
+            "[commandBuffer addCompletedHandler:^(id<MTLCommandBuffer> _Nonnull cmdBuffer)",
+            "{",
+            "    dispatch_semaphore_signal(self->_inFlightSemaphore);",
+            "}];",
+            "[commandBuffer presentDrawable:_mtkView.currentDrawable];",
+            "[commandBuffer commit];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app begins the update process after it commits the main command buffer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It asks the sparse texture class to update by querying the access counters and mapping and blitting tiles.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The update can occur concurrently with the rendering thread using GCD.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You may disable asynchronous processing by setting the preprocessor variable ",
+              "type": "text"
+            },
+            {
+              "code": "ASYNCHRONOUS_TEXTURE_UPDATES",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to 0.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#if ASYNCHRONOUS_TEXTURE_UPDATES",
+            "dispatch_async(_dispatch_queue, ^{",
+            "    // Process the sparse texture access counters, and map and blit tiles.",
+            "    [self->_sparseTexture update:self->_currentBufferIndex];",
+            "});",
+            "#else",
+            "// Process the sparse texture access counters, and map and blit tiles.",
+            "[_sparseTexture update:_currentBufferIndex];",
+            "#endif"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Sample-the-sparse-texture",
+          "level": 3,
+          "text": "Sample the sparse texture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows how the app draws the ground plane.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It sets typical render states like pipeline state object, vertex and fragment buffers, and texture state.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It also sets a fragment buffer, ",
+              "type": "text"
+            },
+            {
+              "code": "_sparseTexture.residencyBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", that the shader utilizes to sample the texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "And finally, it sets the sparse texture using ",
+              "type": "text"
+            },
+            {
+              "code": "setFragmentTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[renderEncoder setCullMode:MTLCullModeNone];",
+            "[renderEncoder setRenderPipelineState:_forwardRenderPipelineState];",
+            "[renderEncoder setVertexBuffer:_sampleParamsBuffer[_currentBufferIndex] offset:0 atIndex:AAPLBufferIndexSampleParams];",
+            "[renderEncoder setFragmentBuffer:_sampleParamsBuffer[_currentBufferIndex] offset:0 atIndex:AAPLBufferIndexSampleParams];",
+            "[renderEncoder setFragmentBuffer:_sparseTexture.residencyBuffer offset:0 atIndex:AAPLBufferIndexResidency];",
+            "[renderEncoder setVertexBuffer:_quadVerticesBuffer offset:0 atIndex:0];",
+            "[renderEncoder setFragmentTexture:_sparseTexture.sparseTexture atIndex:AAPLTextureIndexBaseColor];",
+            "[renderEncoder drawPrimitives:MTLPrimitiveTypeTriangle vertexStart:0 vertexCount:6];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The shader code uses the function ",
+              "type": "text"
+            },
+            {
+              "code": "sampleSparseTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to handle sampling from the sparse texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Metal provides a ",
+              "type": "text"
+            },
+            {
+              "code": "sparse_sample",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function that returns a ",
+              "type": "text"
+            },
+            {
+              "code": "sparse_color<half4>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This object has a ",
+              "type": "text"
+            },
+            {
+              "code": "resident",
+              "type": "codeVoice"
+            },
+            {
+              "text": " member function that returns ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for an unmapped tile region.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the tile is resident, ",
+              "type": "text"
+            },
+            {
+              "code": "sampleSparseTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " returns the sampled color.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Otherwise, it uses the residency buffer to determine the best MIP level for each mapped tile.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then it resamples the texture with the ",
+              "type": "text"
+            },
+            {
+              "code": "min_lod_clamp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument to ensure that unmapped tile regions aren’t accessed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Sample the sparse texture and return a lower mipmap level if the tile isn't resident.",
+            "half4 sampleSparseTexture(texture2d<half, access::sample> sparseTexture,",
+            "                          float2 texCoord,",
+            "                          float2 sparseTextureSizeInTiles,",
+            "                          const device char* residencyBuffer)",
+            "{",
+            "    constexpr sampler linearSampler(mip_filter::linear,",
+            "                                    mag_filter::linear,",
+            "                                    min_filter::linear,",
+            "                                    s_address::clamp_to_edge,",
+            "                                    t_address::clamp_to_edge);",
+            "    // The `sparse_sample` function returns a `sparse_color` type to safely sample the sparse texture's region.",
+            "    sparse_color<half4> sparseColor = sparseTexture.sparse_sample(linearSampler, texCoord);",
+            "    half4 baseColor = half4(0.h);",
+            "    // The `resident` function returns `true` if the sampled region is mapped.",
+            "    if (sparseColor.resident())",
+            "    {",
+            "        baseColor = sparseColor.value();",
+            "    }",
+            "    else",
+            "    {",
+            "        float residentBufferMipmap = getResidencyBufferMipmap(residencyBuffer, sparseTextureSizeInTiles, texCoord);",
+            "        // `min_lod_clamp` restricts the minimum mipmap level that the shader can sample.",
+            "        baseColor = sparseTexture.sample(linearSampler, texCoord, min_lod_clamp(residentBufferMipmap));",
+            "    }",
+            "    return baseColor;",
+            "}"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The residency buffer is a two-dimensional data structure that stores the best MIP level for each mapped tile.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The function ",
+              "type": "text"
+            },
+            {
+              "code": "getResidencyBufferMipmap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " takes the input texture coordinates and converts them to tile coordinates ",
+              "type": "text"
+            },
+            {
+              "code": "readX",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "readY",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The shader then indexes the residency buffer and returns the best MIP level.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Return the minimum mipmap level available in the sparse texture.",
+            "float getResidencyBufferMipmap(const device char* residencyBuffer,",
+            "                               float2 sparseTextureSizeInTiles,",
+            "                               float2 texCoord)",
+            "{",
+            "    // Transform the UV coordinate from a pixel coordinate to a tile coordinate.",
+            "    ushort readX = (ushort) (clamp(texCoord.x, 0.f, 0.99f) * sparseTextureSizeInTiles.x);",
+            "    ushort readY = (ushort) (clamp(texCoord.y, 0.f, 0.99f) * sparseTextureSizeInTiles.y);",
+            "    ushort index = readX + (readY * (ushort)sparseTextureSizeInTiles.x);",
+            "    ushort val = residencyBuffer[index];",
+            "    return (float)val;",
+            "}"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While the fragment stage is running, the GPU records the number of texture accesses by the shader.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app analyzes this buffer to stream and map new regions of texture data that aren’t resident.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows an example of how the tiles sample resident parent tiles if a requested tile isn’t resident.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The green tiles show a tile that the shader accessed and was resident.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The red tiles show a tile that the shader accessed, but had to fall back to a lower MIP level.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app detects a tile it needs to map when the access counter is nonzero and the corresponding residency buffer is zero.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "sparse-textures-5-tiles-sample",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-the-sparse-texture",
+          "level": 3,
+          "text": "Update the sparse texture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows how the update process decides when to map or unmap tiles.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For every resident tile that the shader accessed, the tile moves to the front of the least-recently used (LRU) cache, a data structure that combines a linked list and an unordered map.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "processAccessCounters",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method creates map requests for the accessed nonresident tile and its nonresident parent tiles.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The parent tiles must form a chain from the bottom mipmap tail to the highest level tile.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The update process checks for any dependencies and doesn’t create unmap requests for required parent tiles.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "And if the heap doesn’t have enough memory available, then ",
+              "type": "text"
+            },
+            {
+              "code": "discardTilesFromLRU",
+              "type": "codeVoice"
+            },
+            {
+              "text": " unmaps unnecessary tiles to make room.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "sparse-textures-6-texture-update",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To summarize, the ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLSparseTexture:update:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method calls four functions to update the texture:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "updateAccessCountersBuffer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " uses a blit encoder to get the access counters.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "processAccessCounters",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " examines the access counter buffer to determine the tiles to map or unmap.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "discardTilesFromLRU",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " uses an LRU cache to manage the sparse texture heap and determine the tiles to discard.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "mapAndBlitTiles",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " maps tiles that need residency and blits them into the sparse texture.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The remaining sections cover these methods in more detail.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-the-access-counter-buffers",
+          "level": 3,
+          "text": "Update the access counter buffers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sparse texture class uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/getTextureAccessCounters(_:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API to copy and reset the counters for the sparse texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It requests Metal to copy the data from each MIP level into the ",
+              "type": "text"
+            },
+            {
+              "code": "_accessCountersBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The initialization step precalculated the offsets into this buffer, and the app can reference them from the ",
+              "type": "text"
+            },
+            {
+              "code": "_accessCountersMipmapOffsets",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for (NSUInteger mipmap = 0; mipmap < _sparseTexture.firstMipmapInTail; ++mipmap)",
+            "{",
+            "    NSUInteger accessCountersOffset = _accessCountersMipmapOffsets[mipmap];",
+            "    MTLRegion pixelRegion           = [_sparseTextureBacking calculateMipmapRegion:mipmap];",
+            "    MTLRegion tileRegion;",
+            "    ",
+            "    [_device convertSparsePixelRegions:&pixelRegion",
+            "                         toTileRegions:&tileRegion",
+            "                          withTileSize:_tileSize",
+            "                         alignmentMode:MTLSparseTextureRegionAlignmentModeOutward",
+            "                            numRegions:1];",
+            "    ",
+            "    [encoder getTextureAccessCounters:_sparseTexture region:tileRegion mipLevel:mipmap slice:0",
+            "                        resetCounters:YES",
+            "                       countersBuffer:_accessCountersBuffer[frameIndex]",
+            "                 countersBufferOffset:sizeof(uint) * accessCountersOffset];",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Process-the-access-counter-buffers",
+          "level": 3,
+          "text": "Process the access counter buffers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the sparse texture class examines the access counters buffer, each entry contains the number of times the shader accessed each MIP region.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A value of zero means that the tile wasn’t referenced at all in the last frame.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Since there can be several frames in flight, the app ensures that tiles aren’t unmapped prematurely.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To manage this, the sparse texture class uses a simple data structure ",
+              "type": "text"
+            },
+            {
+              "code": "TextureTile",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct TextureTile",
+            "{",
+            "    /// The x and y components represent the tile origin in the tile coordinate (not in the pixel coordinate).",
+            "    /// The z component represents the mipmap level to which this tile belongs.",
+            "    MTLOrigin origin;",
+            "",
+            "    /// The state describes the status of the tile in terms of whether it's unmapped or mapped,",
+            "    /// or if it's undergoing the process of mapping or unmapping.",
+            "    TileState state;",
+            "",
+            "    /// The frames count variable makes sure a tile used by a previous frame isn't unmapped.",
+            "    int8_t framesCount;",
+            "};"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sparse texture class categorizes texture tiles in one of five states: unmapped, mapped, queue for mapping, queue for unmapping, or stored in the LRU cache.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When examining each counter for all tiles, the sparse texture manager applies the following actions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Queue an accessed tile that’s unmapped for mapping.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Store a mapped and unaccessed tile in the LRU cache.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Queue an unaccessed tile in the LRU cache for unmapping.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change an accessed tile in the LRU cache back to a mapped state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Do nothing if the accessed tile is mapped.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "SparseTexture:newMapTileRequest:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method adds the tile to a list of tiles to map.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The helper function ",
+              "type": "text"
+            },
+            {
+              "code": "setTextureTileRefCounterParent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ensures that parent tiles are properly reference counted.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Resident parent tiles may depend on tiles in lower mipmap levels, so the sparse texture class doesn’t put them in the LRU cache.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following code shows the logic of putting tiles into the LRU cache.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Only consider putting a tile in the LRU cache if it's mapped and isn't needed",
+            "// by a parent tile in its mipmap chain.",
+            "bool isTileNotMapped = (tile->state != TileState::TileStateMapped);",
+            "bool isTileUsedByParentTile = (mipmap > 0 && (_countRefParentTiles[mipmap - 1][tileIndex] > 0));",
+            "",
+            "if (isTileNotMapped || isTileUsedByParentTile)",
+            "{",
+            "    continue;",
+            "}",
+            "",
+            "// Only put a texture tile in the LRU cache when the GPU hasn't sampled it",
+            "// in a recent frame.",
+            "tile->framesCount = std::max(0, tile->framesCount - 1);",
+            "if (tile->framesCount <= 0)",
+            "{",
+            "    tile->state = TileState::TileStateStoredInLRUCache;",
+            "    _notUsedMappedTilesLRUCache.put(tile);",
+            "    [self setTextureTileRefCounterParent:tile higherMipmapQuality:NO];",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Discard-tiles-from-the-LRU-cache",
+          "level": 3,
+          "text": "Discard tiles from the LRU cache",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app uses a heap of textures to manage the mapped tiles in the sparse texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If there’s no memory available to map nonresident tiles, then the sparse texture class discards older tiles.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It uses an LRU cache to prioritize tiles to discard.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLPointerLRUCache",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class manages a ",
+              "type": "text"
+            },
+            {
+              "code": "std::list",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "std::unordered_map",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to track mapped tile pointers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When the manager retrieves a pointer with ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLPointerLRUCache::get",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", it moves the tile to the front of the cache.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When the manager discards a tile and the cache is full, ",
+              "type": "text"
+            },
+            {
+              "code": "discardLeastRecentlyUsed",
+              "type": "codeVoice"
+            },
+            {
+              "text": " removes the last entry in the cache.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app tracks the number of tiles that need discarding and creates unmap requests in the following code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSUInteger index = 0;",
+            "for (; index < _numTilesToDiscardFromLRU; ++index)",
+            "{",
+            "    TextureTile* tile = _notUsedMappedTilesLRUCache.discardLeastRecentlyUsed();",
+            "    if (!tile)",
+            "    {",
+            "        break;",
+            "    }",
+            "    [self newUnmapTileRequest:tile];",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This completes the process to get the access counter buffers and create the map and unmap requests.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The next step is to map and blit tiles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Map-and-blit-tiles",
+          "level": 3,
+          "text": "Map and blit tiles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app stores a list of mapping and unmapping requests that the ",
+              "type": "text"
+            },
+            {
+              "code": "mapAndBlitTiles",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method encodes using a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "resource state command encoder",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "updateTileMappingMode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method converts the sparse pixel regions to tile regions and then updates the texture mapping to reflect the highest mapped MIP level.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "id<MTLResourceStateCommandEncoder> rsEncoder = [cmdBuffer resourceStateCommandEncoder];",
+            "rsEncoder.label = @\"Tile mapping resource state encoder\";",
+            "",
+            "for (TextureTile* tile : unmapTilesRequest)",
+            "{",
+            "    [self updateTileMappingMode:tile mappingMode:MTLSparseTextureMappingModeUnmap onEncoder:rsEncoder];",
+            "    tile->state = TileState::TileStateUnmapped;",
+            "}",
+            "",
+            "for (const auto tile: mapTilesRequest)",
+            "{",
+            "    [self updateTileMappingMode:tile",
+            "                    mappingMode:MTLSparseTextureMappingModeMap",
+            "                      onEncoder:rsEncoder];",
+            "}",
+            "",
+            "[rsEncoder endEncoding];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While the resource state encoder is processing, the app starts streaming the tiles from the KTX file and blits them into the texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sparse texture manager iterates over new tile requests and calls ",
+              "type": "text"
+            },
+            {
+              "code": "streamTileToStagingBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to allocate staging buffers from the heap.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The manager copies the texture from the file to the staging buffer and uses a blit encoder to write it to the sparse texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Stream the tiles from the source texture file into the sparse texture heap tiles.",
+            "for (const auto& tile: mapTilesRequest)",
+            "{",
+            "    id<MTLBuffer> tempStreamingBuffer = [self streamTileToStagingBuffer:tile];",
+            "    ",
+            "    // `blocksWide` holds the number of blocks of compressed pixels spanning the width of the tile.",
+            "    NSUInteger blocksWide       = calculateBlocksWidth(_tileSize.width, _sparseTextureBacking.blockSize, 0);",
+            "    NSUInteger bytesPerRow      = blocksWide * _sparseTextureBacking.bytesPerBlock;",
+            "    MTLOrigin destinationOrigin = MTLOriginMake(tile->origin.x * _tileSize.width,",
+            "                                                tile->origin.y * _tileSize.height,",
+            "                                                0);",
+            "    ",
+            "    [blitEncoder copyFromBuffer:tempStreamingBuffer",
+            "                   sourceOffset:0",
+            "              sourceBytesPerRow:bytesPerRow",
+            "            sourceBytesPerImage:0",
+            "                     sourceSize:_tileSize",
+            "                      toTexture:_sparseTexture",
+            "               destinationSlice:0",
+            "               destinationLevel:tile->origin.z",
+            "              destinationOrigin:destinationOrigin];",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The last step is to wait until the blit command encoder is finished.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "During this time, the ",
+              "type": "text"
+            },
+            {
+              "code": "mapAndBlitTiles",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method updates the residency buffer and parent reference counts.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This function waits to update the residency buffer until after the blits have finished, so the shader doesn’t access data that hasn’t finished mapping.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following code shows this process:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Finish the tile requests to update the residency information.",
+            "for (auto& tile: mapTilesRequest)",
+            "{",
+            "    tile->state = TileState::TileStateMapped;",
+            "    [self updateTextureEntryResidency:tile minMipmapFlag:YES];",
+            "    [self setTextureTileRefCounterParent:tile higherMipmapQuality:YES];",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once the resource state encoder maps the tiles, the blit encoder copies the texture data and the app updates the residency buffer, the process repeats for each frame.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app code renders a quad to the screen using the residency buffer to show the highest MIP levels available to visualize the sparse texture tile residency.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You may set the ",
+              "type": "text"
+            },
+            {
+              "code": "USE_SMALL_SPARSE_TEXTURE_HEAP",
+              "type": "codeVoice"
+            },
+            {
+              "text": " preprocessor variable to 1 to see how mapping and unmapping occurs more frequently when the heap size is smaller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "06a0b3fd0bfa/StreamingLargeImagesWithMetalSparseTextures.zip": {
+      "checksum": "06a0b3fd0bfa195d52c3ede920ec6907b22d87483fcd8c757d0d9ea3f0aff9719a84c0a9d618594fd18a680f8b9fb873e3dbf031b79d4753df8b049537e7f5cd",
+      "identifier": "06a0b3fd0bfa/StreamingLargeImagesWithMetalSparseTextures.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/06a0b3fd0bfa/StreamingLargeImagesWithMetalSparseTextures.zip"
+    },
+    "doc://com.apple.documentation/documentation/Dispatch": {
+      "abstract": [
+        {
+          "text": "Execute code concurrently on multicore hardware by submitting work to dispatch queues managed by the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Dispatch",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Dispatch",
+      "type": "topic",
+      "url": "/documentation/Dispatch"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/getTextureAccessCounters(_:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:)": {
+      "abstract": [
+        {
+          "text": "Encodes a command that retrieves a sparse texture’s access data for a specific region, mipmap level, and slice.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getTextureAccessCounters"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "region"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLRegion",
+          "text": "MTLRegion"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mipLevel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "slice"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "resetCounters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "countersBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "countersBufferOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder/getTextureAccessCounters(_:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getTextureAccessCounters:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getTextureAccessCounters(_:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder/gettextureaccesscounters(_:region:miplevel:slice:resetcounters:countersbuffer:countersbufferoffset:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/supportsFamily(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the GPU device supports the feature set of a specific GPU family.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportsFamily"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLGPUFamily",
+          "text": "MTLGPUFamily"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/supportsFamily(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportsFamily:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "supportsFamily(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/supportsfamily(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/apple6": {
+      "abstract": [
+        {
+          "text": "Represents the Apple family 6 GPU features that correspond to the Apple A13 GPUs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "apple6"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/apple6",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLGPUFamilyApple6"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLGPUFamily.apple6",
+      "type": "topic",
+      "url": "/documentation/metal/mtlgpufamily/apple6"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLHeap": {
+      "abstract": [
+        {
+          "text": "A memory pool from which you can suballocate resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLHeap"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLHeap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLHeap"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLHeap",
+      "type": "topic",
+      "url": "/documentation/metal/mtlheap"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-and-sampling-textures": {
+      "abstract": [
+        {
+          "text": "Load image data into a texture and apply it to a quadrangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-and-sampling-textures",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating and Sampling Textures",
+      "type": "topic",
+      "url": "/documentation/metal/creating-and-sampling-textures"
+    },
+    "doc://com.apple.metal/documentation/Metal/managing-sparse-texture-memory": {
+      "abstract": [
+        {
+          "text": "Take direct control of memory allocation for texture data by using sparse textures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/managing-sparse-texture-memory",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Sparse Texture Memory",
+      "type": "topic",
+      "url": "/documentation/metal/managing-sparse-texture-memory"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-sample-code-library": {
+      "abstract": [
+        {
+          "text": "Explore the complete set of Metal samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-sample-code-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Sample Code Library",
+      "type": "topic",
+      "url": "/documentation/metal/metal-sample-code-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/processing-a-texture-in-a-compute-function": {
+      "abstract": [
+        {
+          "text": "Perform parallel calculations on structured data by placing the data in textures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/processing-a-texture-in-a-compute-function",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Processing a Texture in a Compute Function",
+      "type": "topic",
+      "url": "/documentation/metal/processing-a-texture-in-a-compute-function"
+    },
+    "doc://com.apple.metal/documentation/Metal/reading-pixel-data-from-a-drawable-texture": {
+      "abstract": [
+        {
+          "text": "Access texture data from the CPU by copying it to a buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/reading-pixel-data-from-a-drawable-texture",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Reading Pixel Data from a Drawable Texture",
+      "type": "topic",
+      "url": "/documentation/metal/reading-pixel-data-from-a-drawable-texture"
+    },
+    "sparse-textures-1-screen-capture": {
+      "alt": "A screen capture of the sparse textures app showing the Apple Park texture and a heat map of the mapped sparse texture tiles.",
+      "identifier": "sparse-textures-1-screen-capture",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/492721f4ae4dbd9ca277e82d21e18460/sparse-textures-1-screen-capture.png"
+        }
+      ]
+    },
+    "sparse-textures-2-example-texture": {
+      "alt": "An illustration showing a texture map and its eight levels of mipmaps. The last five levels of the mipmap tail are shown grouped together. An enlarged version of the mipmap tail is also included.",
+      "identifier": "sparse-textures-2-example-texture",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8818e36dca13e626b914eaa9bf93d1d4/sparse-textures-2-example-texture@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0291e49cf50cb5b02056dac588be0018/sparse-textures-2-example-texture~dark@2x.png"
+        }
+      ]
+    },
+    "sparse-textures-3-texture-with-tiles": {
+      "alt": "An illustration of a large texture and its mipmaps, showing their division into tile regions. An enlarged version of the mipmap tail is also included.",
+      "identifier": "sparse-textures-3-texture-with-tiles",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/38bd41fa07bb15ff077a3d68b7ea7cab/sparse-textures-3-texture-with-tiles@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0a9496cc232c125c5c59765d384d4411/sparse-textures-3-texture-with-tiles~dark@2x.png"
+        }
+      ]
+    },
+    "sparse-textures-4-memory-layout": {
+      "alt": "An illustration of the layout of the residency and access counter buffers. Resident tiles are colored in. Levels 0, 1, and 2 are shown, as well as the mipmap tail, with 0 being the largest.",
+      "identifier": "sparse-textures-4-memory-layout",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9c70d68899aaa662ac4ad3cf2eb14d38/sparse-textures-4-memory-layout@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dad4905e53a2e39be412c34b80941bcf/sparse-textures-4-memory-layout~dark@2x.png"
+        }
+      ]
+    },
+    "sparse-textures-5-tiles-sample": {
+      "alt": "An illustration showing how the shader samples resident parent tiles if a requested tile isn’t resident. Levels 0, 1, and 2 are shown, along with the mipmap tail, with level 0 being the largest. Tile colors denote whether a tile is accessed and resident, accessed but not resident, nonresident, or resident.",
+      "identifier": "sparse-textures-5-tiles-sample",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1cfaf424d0e334e6359c736605e936d4/sparse-textures-5-tiles-sample@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c13934abbafdc678d089faf8b4f809df/sparse-textures-5-tiles-sample~dark@2x.png"
+        }
+      ]
+    },
+    "sparse-textures-6-texture-update": {
+      "alt": "An illustration showing how the shader decides to map or unmap tiles. Levels 0, 1, and 2 are shown, along with the mipmap tail, with level 0 being the largest. Different colors denote whether a tile is discarded LRU, required, required parent, nonresident, or resident.",
+      "identifier": "sparse-textures-6-texture-update",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/186f598d40e05c0e52ee513f36c4be0e/sparse-textures-6-texture-update@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e8a465b3d38df4c459792b0a28de6817/sparse-textures-6-texture-update~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "06a0b3fd0bfa/StreamingLargeImagesWithMetalSparseTextures.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Textures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/processing-a-texture-in-a-compute-function",
+        "doc://com.apple.metal/documentation/Metal/reading-pixel-data-from-a-drawable-texture",
+        "doc://com.apple.metal/documentation/Metal/creating-and-sampling-textures"
+      ],
+      "title": "Textures"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Textures",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/processing-a-texture-in-a-compute-function",
+                "doc://com.apple.metal/documentation/Metal/reading-pixel-data-from-a-drawable-texture",
+                "doc://com.apple.metal/documentation/Metal/creating-and-sampling-textures"
+              ],
+              "title": "Textures"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1getTextureAccessCounters(_:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:)/title",
+          "value": "getTextureAccessCounters:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBlitCommandEncoder~1getTextureAccessCounters(_:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getTextureAccessCounters:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLGPUFamily~1apple6/title",
+          "value": "MTLGPUFamilyApple6"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLGPUFamily~1apple6/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLGPUFamilyApple6"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeap/title",
+          "value": "MTLHeap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHeap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeap/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHeap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1supportsFamily(_:)/title",
+          "value": "supportsFamily:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1supportsFamily(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "supportsFamily:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/streaming-large-images-with-metal-sparse-textures"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/streaming-large-images-with-metal-sparse-textures"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

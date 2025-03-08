@@ -1,0 +1,355 @@
+{
+  "abstract": [
+    {
+      "text": "Empower parents and guardians to configure constraints on other devices while preserving the family’s privacy.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ConnectionWithFrameworks"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ManagedSettings"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Manage Settings on Devices in a Family Sharing Group"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use Managed Settings together with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ManagedSettingsUI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DeviceActivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/FamilyControls",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to manage a device’s settings while preserving the user’s privacy.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Managed Settings can’t function without a parent or guardian in the same Family Sharing group authorizing your app using Family Controls.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To help implement time-based settings, Device Activity executes your code on a schedule without a child running your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The parent or guardian in the Family Sharing group makes the decisions about setting management, and no one outside of the group can see the apps the group uses or the activities they participate in on their devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Request-Authorization-for-Your-App",
+          "level": 3,
+          "text": "Request Authorization for Your App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Family Controls framework contributes privacy-preserving capabilities to the suite of development tools.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you create an app with the Managed Settings framework, users must authorize your app when they open it for the first time on a device.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After a parent or guardian authorizes your app, only a parent or guardian can delete your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Family Controls uses tokens to represent applications and websites on a user’s device.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The tokens ensure that no one outside of the user’s Family Sharing group can see the apps the family uses or the websites they visit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows how to request authorization from a user to use your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import FamilyControls ",
+            "",
+            "AuthorizationCenter.shared.requestAuthorization { result in ",
+            "    switch result {",
+            "        case .success():",
+            "            //...",
+            "        case .failure(let error):",
+            "           //...",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-Time-Limits-and-Schedule-Constraints",
+          "level": 3,
+          "text": "Handle Time Limits and Schedule Constraints",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Since a child might not use your app independently, Device Activity executes your code even when your app isn’t running.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A parent or guardian can set device usage schedules and time limits with your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system notifies your app when scheduled events occur and when usage approaches time limits.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can provide notifications on a device to warn the user that a scheduled event or time limit is approaching.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Device Activity tracks and notifies your app about device usage, according to controls the parent or guardian creates in your app with Family Controls.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, your app can enable a parent or guardian to specify a time limit of one hour of activity per day.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When the child’s device reaches that limit, the system activates your app extension to handle the event.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Your app can choose to handle that event by updating managed settings, such as adding an app to the list of blocked applications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings": {
+      "abstract": [
+        {
+          "text": "Access and change settings with your app while maintaining user privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ManagedSettings",
+      "type": "topic",
+      "url": "/documentation/managedsettings"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ReadingMedia": {
+      "abstract": [
+        {
+          "text": "Read the media rating on a device and determine what media to display on your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ReadingMedia",
+      "kind": "article",
+      "role": "article",
+      "title": "Confirming the Effective TV and Movie Ratings",
+      "type": "topic",
+      "url": "/documentation/managedsettings/readingmedia"
+    },
+    "doc://com.apple.documentation/documentation/DeviceActivity": {
+      "abstract": [
+        {
+          "text": "Monitor device activity with your app extension while maintaining user privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DeviceActivity",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DeviceActivity",
+      "type": "topic",
+      "url": "/documentation/DeviceActivity"
+    },
+    "doc://com.apple.documentation/documentation/FamilyControls": {
+      "abstract": [
+        {
+          "text": "Authorize your app to provide parental controls on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FamilyControls",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "FamilyControls",
+      "type": "topic",
+      "url": "/documentation/FamilyControls"
+    },
+    "doc://com.apple.documentation/documentation/ManagedSettingsUI": {
+      "abstract": [
+        {
+          "text": "Define and configure the appearance of shielding views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ManagedSettingsUI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ManagedSettingsUI",
+      "type": "topic",
+      "url": "/documentation/ManagedSettingsUI"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ReadingMedia"
+      ],
+      "title": "Essentials"
+    }
+  ]
+}

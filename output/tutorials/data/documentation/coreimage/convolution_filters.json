@@ -1,0 +1,692 @@
+{
+  "abstract": [
+    {
+      "text": "Produce effects such as blurring, sharpening, edge detection, translation, and embossing.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreimage/convolution_filters"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3438605,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Image"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Convolution Filters"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A convolution filter generates each output pixel by summing all elements in the element-wise product of two matrices - the weight matrix and a matrix containing the neighbors of each input pixel. A bias is added to this and the resulting value is clamped to between 0.0 and 1.0. This operation is performed independently for each color component (including the alpha component). You can create many types of image processing effects using different weight matrices, such as blurring, sharpening, edge detection, translation, and embossing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Image",
+      "type": "topic",
+      "url": "/documentation/coreimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/blur_filters": {
+      "abstract": [
+        {
+          "text": "Apply blurs, simulate motion and zoom effects, reduce noise, and erode and dilate image regions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/blur_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Blur Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/blur_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228299-convolution3x3": {
+      "abstract": [
+        {
+          "text": "Applies a convolution 3 x 3 filter to the ",
+          "type": "text"
+        },
+        {
+          "code": "RGBA",
+          "type": "codeVoice"
+        },
+        {
+          "text": " components of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolution3X3"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIConvolution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228299-convolution3x3",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convolution3X3()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228299-convolution3x3"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228300-convolution5x5": {
+      "abstract": [
+        {
+          "text": "Applies a convolution 5 x 5 filter to the ",
+          "type": "text"
+        },
+        {
+          "code": "RGBA",
+          "type": "codeVoice"
+        },
+        {
+          "text": " components image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolution5X5"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIConvolution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228300-convolution5x5",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convolution5X5()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228300-convolution5x5"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228301-convolution7x7": {
+      "abstract": [
+        {
+          "text": "Applies a convolution 7 x 7 filter to the ",
+          "type": "text"
+        },
+        {
+          "code": "RGBA",
+          "type": "codeVoice"
+        },
+        {
+          "text": " color components of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolution7X7"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIConvolution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228301-convolution7x7",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convolution7X7()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228301-convolution7x7"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228302-convolution9horizontal": {
+      "abstract": [
+        {
+          "text": "Applies a convolution-9 horizontal filter to the ",
+          "type": "text"
+        },
+        {
+          "code": "RGBA",
+          "type": "codeVoice"
+        },
+        {
+          "text": " components of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolution9Horizontal"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIConvolution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228302-convolution9horizontal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convolution9Horizontal()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228302-convolution9horizontal"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228303-convolution9vertical": {
+      "abstract": [
+        {
+          "text": "Applies a convolution-9 vertical filter to the ",
+          "type": "text"
+        },
+        {
+          "code": "RGBA",
+          "type": "codeVoice"
+        },
+        {
+          "text": " components of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolution9Vertical"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIConvolution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228303-convolution9vertical",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convolution9Vertical()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228303-convolution9vertical"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/4401858-convolutionrgb3x3": {
+      "abstract": [
+        {
+          "text": "Applies a convolution 3 x 3 filter to the ",
+          "type": "text"
+        },
+        {
+          "code": "RGB",
+          "type": "codeVoice"
+        },
+        {
+          "text": " components of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolutionRGB3X3"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIConvolution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/4401858-convolutionrgb3x3",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convolutionRGB3X3()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/4401858-convolutionrgb3x3"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/4401859-convolutionrgb5x5": {
+      "abstract": [
+        {
+          "text": "Applies a convolution 5 x 5 filter to the ",
+          "type": "text"
+        },
+        {
+          "code": "RGB",
+          "type": "codeVoice"
+        },
+        {
+          "text": " components of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolutionRGB5X5"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIConvolution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/4401859-convolutionrgb5x5",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convolutionRGB5X5()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/4401859-convolutionrgb5x5"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/4401860-convolutionrgb7x7": {
+      "abstract": [
+        {
+          "text": "Applies a convolution 7 x 7 filter to the RGB components of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolutionRGB7X7"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIConvolution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/4401860-convolutionrgb7x7",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convolutionRGB7X7()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/4401860-convolutionrgb7x7"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/4401861-convolutionrgb9horizontal": {
+      "abstract": [
+        {
+          "text": "Applies a convolution 9 x 1 filter to the RGB components of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolutionRGB9Horizontal"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIConvolution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/4401861-convolutionrgb9horizontal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convolutionRGB9Horizontal()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/4401861-convolutionrgb9horizontal"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/4401862-convolutionrgb9vertical": {
+      "abstract": [
+        {
+          "text": "Applies a convolution 1 x 9 filter to the RGB components of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "convolutionRGB9Vertical"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIConvolution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/4401862-convolutionrgb9vertical",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convolutionRGB9Vertical()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/4401862-convolutionrgb9vertical"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/color_adjustment_filters": {
+      "abstract": [
+        {
+          "text": "Apply color transformations, including exposure, hue, and tint adjustments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/color_adjustment_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Color Adjustment Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/color_adjustment_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/color_effect_filters": {
+      "abstract": [
+        {
+          "text": "Apply color effects, including photo effects, dithering, and color maps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/color_effect_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Color Effect Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/color_effect_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/composite_operations": {
+      "abstract": [
+        {
+          "text": "Composite images by using a range of blend modes and compositing operators. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/composite_operations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Composite Operations",
+      "type": "topic",
+      "url": "/documentation/coreimage/composite_operations"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/convolution_filters": {
+      "abstract": [
+        {
+          "text": "Produce effects such as blurring, sharpening, edge detection, translation, and embossing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/convolution_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Convolution Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/convolution_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/distortion_filters": {
+      "abstract": [
+        {
+          "text": "Apply distortion to images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/distortion_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Distortion Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/distortion_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/generator_filters": {
+      "abstract": [
+        {
+          "text": "Generate barcode, geometric, and special-effect images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/generator_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Generator Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/generator_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/geometry_adjustment_filters": {
+      "abstract": [
+        {
+          "text": "Translate, scale, and rotate images in 2D and 3D.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/geometry_adjustment_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Geometry Adjustment Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/geometry_adjustment_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/gradient_filters": {
+      "abstract": [
+        {
+          "text": "Generate linear and radial gradients.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/gradient_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Gradient Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/gradient_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/halftone_effect_filters": {
+      "abstract": [
+        {
+          "text": "Simulate monochrome and CMYK halftone screens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/halftone_effect_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Halftone Effect Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/halftone_effect_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/reduction_filters": {
+      "abstract": [
+        {
+          "text": "Create statistical information about an image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/reduction_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Reduction Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/reduction_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/sharpening_filters": {
+      "abstract": [
+        {
+          "text": "Apply sharpening to images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/sharpening_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sharpening Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/sharpening_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/stylizing_filters": {
+      "abstract": [
+        {
+          "text": "Create stylized versions of images by applying effects including pixelation and line overlays.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/stylizing_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Stylizing Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/stylizing_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/tile_effect_filters": {
+      "abstract": [
+        {
+          "text": "Produce tiled images from source images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/tile_effect_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Tile Effect Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/tile_effect_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/transition_filters": {
+      "abstract": [
+        {
+          "text": "Transition between two images by using effects including page curl and swipe.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/transition_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Transition Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/transition_filters"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/blur_filters",
+        "doc://com.apple.documentation/documentation/coreimage/color_adjustment_filters",
+        "doc://com.apple.documentation/documentation/coreimage/color_effect_filters",
+        "doc://com.apple.documentation/documentation/coreimage/composite_operations",
+        "doc://com.apple.documentation/documentation/coreimage/distortion_filters",
+        "doc://com.apple.documentation/documentation/coreimage/generator_filters",
+        "doc://com.apple.documentation/documentation/coreimage/geometry_adjustment_filters",
+        "doc://com.apple.documentation/documentation/coreimage/gradient_filters",
+        "doc://com.apple.documentation/documentation/coreimage/halftone_effect_filters",
+        "doc://com.apple.documentation/documentation/coreimage/reduction_filters",
+        "doc://com.apple.documentation/documentation/coreimage/sharpening_filters",
+        "doc://com.apple.documentation/documentation/coreimage/stylizing_filters",
+        "doc://com.apple.documentation/documentation/coreimage/tile_effect_filters",
+        "doc://com.apple.documentation/documentation/coreimage/transition_filters"
+      ],
+      "title": "Filter Catalog"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3438603",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228299-convolution3x3",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228300-convolution5x5",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228301-convolution7x7",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228302-convolution9horizontal",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228303-convolution9vertical",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/4401858-convolutionrgb3x3",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/4401859-convolutionrgb5x5",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/4401860-convolutionrgb7x7",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/4401861-convolutionrgb9horizontal",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/4401862-convolutionrgb9vertical"
+      ],
+      "kind": "taskGroup",
+      "title": "Filters"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreimage/convolution_filters"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreimage/convolution_filters"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,996 @@
+{
+  "abstract": [
+    {
+      "text": "Identify multiple objects in an image by using the DEtection TRansformer image-segmentation model.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coreml/documentation/CoreML",
+        "doc://com.apple.coreml/documentation/CoreML/model-integration-samples"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coreml/documentation/CoreML/using-core-ml-for-semantic-image-segmentation"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core ML"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Using Core ML for semantic image segmentation"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Semantic image-segmentation models identify multiple objects on an input image you provide.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For each object, the model output provides the precise locations of each pixel that represents it,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so that you can do things like visualize the area of an image that corresponds to the object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project shows you how to load the model, read the model’s metadata to get label information, and perform offline inference.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It also shows how to create a mask — from the image-segment label — and overlay it on the original image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Select-the-image-segmentation-model",
+          "level": 3,
+          "text": "Select the image-segmentation model",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code project includes an 8-bit palletization image-segmentation model — ",
+              "type": "text"
+            },
+            {
+              "code": "DETRResnet50SemanticSegmentationF16P8",
+              "type": "codeVoice"
+            },
+            {
+              "text": " — in the ",
+              "type": "text"
+            },
+            {
+              "code": "models",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Replace the model with a different version by dropping the model ",
+              "type": "text"
+            },
+            {
+              "code": ".mlpackage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " into the ",
+              "type": "text"
+            },
+            {
+              "code": "models",
+              "type": "codeVoice"
+            },
+            {
+              "text": " folder in Xcode.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To download a DETR model using 16-bit, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/machine-learning/models/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select the model in the Xcode file navigator to view details in an Xcode model preview area. The following image shows the metadata and operations for the 8-bit model:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "selected-detr-model-details",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use a model with a different name, but using the same semantics, replace the source code references in ",
+              "type": "text"
+            },
+            {
+              "code": "ViewModel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the model class for ",
+              "type": "text"
+            },
+            {
+              "code": "Model",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "ModelOutput",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "final class ViewModel: ObservableObject {",
+            "    typealias Model = DETRResnet50SemanticSegmentationF16P8",
+            "    typealias ModelOutput = DETRResnet50SemanticSegmentationF16P8Output",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Load-the-model",
+          "level": 3,
+          "text": "Load the model",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "How long it takes to load a model depends on many factors, including the size of the model.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample app loads the segmentation model asynchronously to avoid blocking the calling thread:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "nonisolated func loadModel() async {",
+            "    do {",
+            "        let model = try Model()",
+            "        let labels = model.model.segmentationLabels",
+            "        await didLoadModel(model, labels: labels)",
+            "    } catch {",
+            "        Task { @MainActor in",
+            "            errorMessage = \"The model failed to load: \\(error.localizedDescription)\"",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "code": "MainView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the sample loads the model using the ",
+              "type": "text"
+            },
+            {
+              "code": "task",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier, and displays a progress view to display the load time.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample uses the ",
+              "type": "text"
+            },
+            {
+              "code": "ObservableObject",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol to observe when the loading is complete:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var body: some View {",
+            "    VStack(spacing: 20) {",
+            "        ",
+            "        // Other existing view configuration.",
+            "",
+            "        // Display a load message when the sample loads the model.",
+            "        if !viewModel.isModelLoaded {",
+            "            ProgressView(\"Loading model...\")",
+            "        }",
+            "",
+            "        // Display an error message.",
+            "        if let message = viewModel.errorMessage, !message.isEmpty {",
+            "            Text(\"Error: \\(message)\")",
+            "        }",
+            "    }",
+            "    .photosPicker(isPresented: $viewModel.showPhotoPicker, selection: $viewModel.selectedPhoto)",
+            "    .task {",
+            "        // Load the model asynchronously.",
+            "        if loadModel {",
+            "            await viewModel.loadModel()",
+            "        }",
+            "    }",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Read-the-image-segmentation-model-metadata",
+          "level": 3,
+          "text": "Read the image-segmentation model metadata",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Core ML",
+              "type": "codeVoice"
+            },
+            {
+              "text": " framework uses optional metadata to map segment label values into strings an app reads.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The metadata is in JSON format, and consists of two optional lists of strings:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "label",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " list that contains the user-readable names for each label",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "color",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " list for suggested colors — as hexadecimal RGB codes — an app can use",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following image shows the label metadata in the Xcode model preview area:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "selected-detr-metadata",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app reads the segmentation labels from the model metadata by calling the ",
+              "type": "text"
+            },
+            {
+              "code": "readSegmentationLabels",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method in ",
+              "type": "text"
+            },
+            {
+              "code": "MLModel",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about the format ",
+              "type": "text"
+            },
+            {
+              "code": "Core ML",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses for metadata, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://apple.github.io/coremltools/docs-guides/source/xcode-model-preview-types.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension MLModel {",
+            "    /// The segmentation labels specified in the metadata.",
+            "    var segmentationLabels: [String] {",
+            "        if let metadata = modelDescription.metadata[.creatorDefinedKey] as? [String: Any],",
+            "           let params = metadata[\"com.apple.coreml.model.preview.params\"] as? String,",
+            "           let data = params.data(using: .utf8),",
+            "           let parsed = try? JSONSerialization.jsonObject(with: data) as? [String: Any],",
+            "           let labels = parsed[\"labels\"] as? [String] {",
+            "            return labels",
+            "        } else {",
+            "            return []",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the colors from the model metadata are optional, a common practice is to use a generic set of colors that an app defines.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A semantic image-segmentation model can generate a large number of labels, and may need to reuse colors or use very similar colors.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To assist people with color blindness, avoid using only color to identify different objects.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about using inclusive colors, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/color#Inclusive-color",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Perform-inference",
+          "level": 3,
+          "text": "Perform inference",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The 8-bit DETR model takes a ",
+              "type": "text"
+            },
+            {
+              "code": "CVPixelBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the type ",
+              "type": "text"
+            },
+            {
+              "code": "kCVPixelFormatType_32ARGB",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the input, and generates a ",
+              "type": "text"
+            },
+            {
+              "code": "ShapedArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of ",
+              "type": "text"
+            },
+            {
+              "code": "Int32",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as output.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For both arrays, the model uses fixed dimensions with the size ",
+              "type": "text"
+            },
+            {
+              "code": "(448, 448)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "These values are specific to the model, and can be different for another model.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To perform inference on the image-segmentation model, the sample app calls the ",
+              "type": "text"
+            },
+            {
+              "code": "performInference",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After inference, the sample app gets the result array from the ",
+              "type": "text"
+            },
+            {
+              "code": "semanticPredictionsShapedArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Resize the input image to the target size.",
+            "let resizedImage = await CIImage(cgImage: inputImage.cgImage!).resized(to: targetSize)",
+            "",
+            "// Get the pixel buffer for the image.",
+            "let pixelBuffer = context.render(resizedImage, pixelFormat: kCVPixelFormatType_32ARGB)",
+            "",
+            "// Perform inference.",
+            "let result = try model.prediction(image: pixelBuffer)",
+            "",
+            "// Get the result.",
+            "let resultArray = result.semanticPredictionsShapedArray"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Overlay-the-result",
+          "level": 3,
+          "text": "Overlay the result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app provides a visualization of model output by overlaying a masked image — representing the selected segment — on top of the original, like the sky in the following image:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "masked-image",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Based on the selection, the sample app colors the labeled regions by calling the ",
+              "type": "text"
+            },
+            {
+              "code": "renderMask",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method in ",
+              "type": "text"
+            },
+            {
+              "code": "ViewModel",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func renderMask() throws -> CGImage? {",
+            "    guard let resultArray else {",
+            "        return nil",
+            "    }",
+            "",
+            "    // Convert the results to a mask.",
+            "    var bitmap = resultArray.scalars.map { labelIndex in",
+            "        let label = self.labelNames[Int(labelIndex)]",
+            "        if label == selectedLabel {",
+            "            return 0xFFFFFF00 as UInt32",
+            "        } else {",
+            "            return 0x00000000 as UInt32",
+            "        }",
+            "    }",
+            "",
+            "    // Convert the mask to an image.",
+            "    let width = resultArray.shape[1]",
+            "    let height = resultArray.shape[0]",
+            "    let image = bitmap.withUnsafeMutableBytes { bytes in",
+            "        let context = CGContext(",
+            "            data: bytes.baseAddress,",
+            "            width: width,",
+            "            height: height,",
+            "            bitsPerComponent: 8,",
+            "            bytesPerRow: 4 * width,",
+            "            space: CGColorSpace(name: CGColorSpace.sRGB)!,",
+            "            bitmapInfo: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.noneSkipLast.rawValue  // RGB0",
+            "        )",
+            "        return context?.makeImage()",
+            "    }",
+            "",
+            "    return image!",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "00ad11cf32e4/UsingCoreMLForSemanticImageSegmentation.zip": {
+      "checksum": "00ad11cf32e4aecf6e7d6f78ffdc50af95baa14c9e9715235e165ff8a92c562c62c31aa46f2d048d7acd695e3f3a4635433c2f81bbe68d4fc32880829a1d8f0d",
+      "identifier": "00ad11cf32e4/UsingCoreMLForSemanticImageSegmentation.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/00ad11cf32e4/UsingCoreMLForSemanticImageSegmentation.zip"
+    },
+    "doc://com.apple.coreml/documentation/CoreML": {
+      "abstract": [
+        {
+          "text": "Integrate machine learning models into your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core ML",
+      "type": "topic",
+      "url": "/documentation/coreml"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/detecting-human-body-poses-in-an-image": {
+      "abstract": [
+        {
+          "text": "Locate people and the stance of their bodies by analyzing an image with a PoseNet model.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/detecting-human-body-poses-in-an-image",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Detecting human body poses in an image",
+      "type": "topic",
+      "url": "/documentation/coreml/detecting-human-body-poses-in-an-image"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/model-integration-samples": {
+      "abstract": [
+        {
+          "text": "Integrate tabular, image, and text classifcation models into your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/model-integration-samples",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Model Integration Samples",
+      "type": "topic",
+      "url": "/documentation/coreml/model-integration-samples"
+    },
+    "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml": {
+      "abstract": [
+        {
+          "text": "Crop and scale photos using the Vision framework and classify them with a Core ML model.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Classifying Images with Vision and Core ML",
+      "type": "topic",
+      "url": "/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml"
+    },
+    "doc://com.apple.documentation/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection": {
+      "abstract": [
+        {
+          "text": "Detect dice position and values shown in a camera frame, and determine the end of a roll by leveraging a dice detection model.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Understanding a Dice Roll with Vision and Object Detection",
+      "type": "topic",
+      "url": "/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://apple.github.io/coremltools/docs-guides/source/xcode-model-preview-types.html": {
+      "identifier": "https://apple.github.io/coremltools/docs-guides/source/xcode-model-preview-types.html",
+      "title": "Xcode Model Preview Types",
+      "titleInlineContent": [
+        {
+          "text": "Xcode Model Preview Types",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://apple.github.io/coremltools/docs-guides/source/xcode-model-preview-types.html"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/color#Inclusive-color": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/color#Inclusive-color",
+      "title": "Inclusive color",
+      "titleInlineContent": [
+        {
+          "text": "Inclusive color",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/color#Inclusive-color"
+    },
+    "https://developer.apple.com/machine-learning/models/": {
+      "identifier": "https://developer.apple.com/machine-learning/models/",
+      "title": "Core ML Models",
+      "titleInlineContent": [
+        {
+          "text": "Core ML Models",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/machine-learning/models/"
+    },
+    "masked-image": {
+      "alt": "An image that shows an image mask that the sample overlays on top of the original image.",
+      "identifier": "masked-image",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/eea7869f82af6ed71cc39ad781494700/masked-image@2x.png"
+        }
+      ]
+    },
+    "selected-detr-metadata": {
+      "alt": "A screenshot of the Xcode model preview area that shows details about the model you select in the file navigator area. It highlights additional metadata that contains model labels — person, bicycle, car, motorcycle, airplane, bus, and so on.",
+      "identifier": "selected-detr-metadata",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/49ea06b95e07841f4a7d38b1bdf9a321/selected-detr-metadata@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a0b16c7d718869ed7330ca0dffc5803e/selected-detr-metadata~dark@2x.png"
+        }
+      ]
+    },
+    "selected-detr-model-details": {
+      "alt": "A screenshot of the Xcode model preview area that shows details about the model you select in the file navigator area.",
+      "identifier": "selected-detr-model-details",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a5c6acaff8377b69ec33e067fcc76162/selected-detr-model-details@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f28e4df513483263e69969858b876543/selected-detr-model-details~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "00ad11cf32e4/UsingCoreMLForSemanticImageSegmentation.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Image-Classification-Models",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml",
+        "doc://com.apple.coreml/documentation/CoreML/detecting-human-body-poses-in-an-image",
+        "doc://com.apple.documentation/documentation/coreml/model_integration_samples/understanding_a_dice_roll_with_vision_and_object_detection"
+      ],
+      "title": "Image Classification Models"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coreml/using-core-ml-for-semantic-image-segmentation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

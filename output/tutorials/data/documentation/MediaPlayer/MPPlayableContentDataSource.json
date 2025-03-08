@@ -1,0 +1,1155 @@
+{
+  "abstract": [
+    {
+      "text": "The data source providing media metadata to external media players so they can build user interfaces displaying your app’s content.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use CarPlay framework",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentDataSource"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MPPlayableContentDataSource",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MPPlayableContentDataSource"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Media Player"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MPPlayableContentDataSource"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "14.0",
+        "introducedAt": "7.1",
+        "message": "Use CarPlay framework",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "14.0",
+        "introducedAt": "7.1",
+        "message": "Use CarPlay framework",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "14.0",
+        "introducedAt": "13.1",
+        "message": "Use CarPlay framework",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "1.0",
+        "introducedAt": "1.0",
+        "message": "Use CarPlay framework",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "MPPlayableContentDataSource"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MPPlayableContentDataSource"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support external media players, create a class that conforms to the ",
+              "type": "text"
+            },
+            {
+              "code": "MPPlayableContentDataSource",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol. When your app launches, create an instance of this class and assign it to the shared ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentManager/dataSource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. This data source provides media metadata to external media players so that they can build user interfaces displaying your app’s content. It’s best to set this data source as early as possible in your app’s lifecycle, as iOS may start asking for content right away.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This class is only used for CarPlay. Using it requires a special entitlement issued by Apple. Apps without the correct entitlement won’t appear on the CarPlay home screen. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "http://www.apple.com/ios/carplay/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for more information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer": {
+      "abstract": [
+        {
+          "text": "Find and play songs, audio podcasts, audio books, and more from within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Media Player",
+      "type": "topic",
+      "url": "/documentation/mediaplayer"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentDataSource": {
+      "abstract": [
+        {
+          "text": "The data source providing media metadata to external media players so they can build user interfaces displaying your app’s content.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPPlayableContentDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPPlayableContentDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPPlayableContentDataSource",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpplayablecontentdatasource"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentDataSource/beginLoadingChildItems(at:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Starts to load the children of the indicated index.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginLoadingChildItems"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentDataSource/beginLoadingChildItems(at:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "beginLoadingChildItemsAtIndexPath:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "beginLoadingChildItems(at:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpplayablecontentdatasource/beginloadingchilditems(at:completionhandler:)"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentDataSource/childItemsDisplayPlaybackProgress(at:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the provided content supports playback progress.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "childItemsDisplayPlaybackProgress"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentDataSource/childItemsDisplayPlaybackProgress(at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "childItemsDisplayPlaybackProgressAtIndexPath:"
+        }
+      ],
+      "role": "symbol",
+      "title": "childItemsDisplayPlaybackProgress(at:)",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpplayablecontentdatasource/childitemsdisplayplaybackprogress(at:)"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentDataSource/contentItem(at:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the media item at the specified index.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MPContentItem",
+          "text": "MPContentItem"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentDataSource/contentItem(at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentItemAtIndexPath:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "contentItem(at:)",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpplayablecontentdatasource/contentitem(at:)"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentDataSource/contentItem(forIdentifier:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the content item associated with the provided identifier.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MPContentItem",
+          "text": "MPContentItem"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentDataSource/contentItem(forIdentifier:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentItemForIdentifier:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "contentItem(forIdentifier:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpplayablecontentdatasource/contentitem(foridentifier:completionhandler:)"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentDataSource/numberOfChildItems(at:)": {
+      "abstract": [
+        {
+          "text": "Provides the number of child nodes for the indicated node.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberOfChildItems"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentDataSource/numberOfChildItems(at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "numberOfChildItemsAtIndexPath:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "numberOfChildItems(at:)",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpplayablecontentdatasource/numberofchilditems(at:)"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentManager/dataSource": {
+      "abstract": [
+        {
+          "text": "The data source provided by the app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataSource"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MPPlayableContentDataSource",
+          "text": "MPPlayableContentDataSource"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentManager/dataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "dataSource",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpplayablecontentmanager/datasource"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "http://www.apple.com/ios/carplay/": {
+      "identifier": "http://www.apple.com/ios/carplay/",
+      "title": "http://www.apple.com/ios/carplay/",
+      "titleInlineContent": [
+        {
+          "text": "http://www.apple.com/ios/carplay/",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://www.apple.com/ios/carplay/"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Providing-playable-content",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentManager/dataSource"
+      ],
+      "title": "Providing playable content"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Retrieving-a-media-item",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentDataSource/contentItem(at:)",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentDataSource/contentItem(forIdentifier:completionHandler:)"
+      ],
+      "title": "Retrieving a media item"
+    },
+    {
+      "anchor": "Working-with-child-nodes",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentDataSource/beginLoadingChildItems(at:completionHandler:)",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentDataSource/childItemsDisplayPlaybackProgress(at:)",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentDataSource/numberOfChildItems(at:)"
+      ],
+      "title": "Working with child nodes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "14.0",
+              "introducedAt": "7.1",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "14.0",
+              "introducedAt": "7.1",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "14.0",
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "1.0",
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MPPlayableContentDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPPlayableContentDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPPlayableContentDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Retrieving-a-media-item",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentDataSource/contentItem(at:)",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentDataSource/contentItem(forIdentifier:completionHandler:)"
+              ],
+              "title": "Retrieving a media item"
+            },
+            {
+              "anchor": "Working-with-child-nodes",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentDataSource/beginLoadingChildItems(at:completionHandler:)",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentDataSource/childItemsDisplayPlaybackProgress(at:)",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentDataSource/numberOfChildItems(at:)"
+              ],
+              "title": "Working with child nodes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Providing-playable-content",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPPlayableContentManager/dataSource"
+              ],
+              "title": "Providing playable content"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MPPlayableContentDataSource"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use CarPlay framework",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPPlayableContentDataSource~1beginLoadingChildItems(at:completionHandler:)/title",
+          "value": "beginLoadingChildItemsAtIndexPath:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPPlayableContentDataSource~1beginLoadingChildItems(at:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "beginLoadingChildItemsAtIndexPath:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPPlayableContentDataSource/title",
+          "value": "MPPlayableContentDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPPlayableContentDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPPlayableContentDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPPlayableContentDataSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPPlayableContentDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPPlayableContentManager~1dataSource/title",
+          "value": "dataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPPlayableContentManager~1dataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPPlayableContentDataSource~1contentItem(at:)/title",
+          "value": "contentItemAtIndexPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPPlayableContentDataSource~1contentItem(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "contentItemAtIndexPath:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPPlayableContentDataSource~1contentItem(forIdentifier:completionHandler:)/title",
+          "value": "contentItemForIdentifier:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPPlayableContentDataSource~1contentItem(forIdentifier:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "contentItemForIdentifier:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPPlayableContentDataSource~1childItemsDisplayPlaybackProgress(at:)/title",
+          "value": "childItemsDisplayPlaybackProgressAtIndexPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPPlayableContentDataSource~1childItemsDisplayPlaybackProgress(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "childItemsDisplayPlaybackProgressAtIndexPath:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPPlayableContentDataSource~1numberOfChildItems(at:)/title",
+          "value": "numberOfChildItemsAtIndexPath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPPlayableContentDataSource~1numberOfChildItems(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "numberOfChildItemsAtIndexPath:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mediaplayer/mpplayablecontentdatasource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mediaplayer/mpplayablecontentdatasource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

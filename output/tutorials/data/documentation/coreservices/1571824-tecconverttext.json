@@ -1,0 +1,662 @@
+{
+  "abstract": [
+    {
+      "text": "Converts a stream of text from a source encoding to adestination encoding. It uses the conversion path specified by theconverter object you supply.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coreservices/1571824-tecconverttext"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1571824,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@TECConvertText",
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "TECConvertText"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "identifier": "symbol-1586802",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "TECConvertText"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/tecobjectref",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@TECObjectRef",
+              "text": "TECObjectRef"
+            },
+            {
+              "kind": "text",
+              "text": " encodingConverter, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/consttextptr",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ConstTextPtr",
+              "text": "ConstTextPtr"
+            },
+            {
+              "kind": "text",
+              "text": " inputBuffer, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/bytecount",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ByteCount",
+              "text": "ByteCount"
+            },
+            {
+              "kind": "text",
+              "text": " inputBufferLength, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/bytecount",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ByteCount",
+              "text": "ByteCount"
+            },
+            {
+              "kind": "text",
+              "text": " *actualInputLength, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/textptr",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@TextPtr",
+              "text": "TextPtr"
+            },
+            {
+              "kind": "text",
+              "text": " outputBuffer, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/bytecount",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ByteCount",
+              "text": "ByteCount"
+            },
+            {
+              "kind": "text",
+              "text": " outputBufferLength, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/bytecount",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ByteCount",
+              "text": "ByteCount"
+            },
+            {
+              "kind": "text",
+              "text": " *actualOutputLength);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A reference to the text encoding converter object you want to use for the conversion. It can be a reference returned by the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/1571815-teccreateconverter",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/1571829-teccreateconverterfrompath",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " functions. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "encodingConverter"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The stream of text you want to convert. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "inputBuffer"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The length in bytes (",
+                  "type": "text"
+                },
+                {
+                  "code": "UInt8",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "unsigned char",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ") of the stream of text. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "inputBufferLength"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On return, a pointer to the number of source text bytes that were converted from the input buffer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "actualInputLength"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a buffer for a byte stream. On output, the buffer holds the converted text.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "outputBuffer"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The length in bytes of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "outputBuffer",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "outputBufferLength"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On return, a pointer to the number of bytes of converted text returned in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "outputBuffer",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "actualOutputLength"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A resultcode. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager#1664324",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If there is not enough memoryavailable for ",
+              "type": "text"
+            },
+            {
+              "code": "TECConvertText",
+              "type": "codeVoice"
+            },
+            {
+              "text": " toconvert the text when allocating internal buffers, the functionreturns the appropriate Memory Manager result code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In most cases, ",
+              "type": "text"
+            },
+            {
+              "code": "TECConvertText",
+              "type": "codeVoice"
+            },
+            {
+              "text": " does not return ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1560006-anonymous/ktecusedfallbacksstatus",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " even if it has substituted a fallback character in the process of converting its input text to output in another encoding (unlike, for example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1433542-convertfromunicodetotext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " which always returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1560006-anonymous/ktecusedfallbacksstatus",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if it substitutes a fallback character). That is because ",
+              "type": "text"
+            },
+            {
+              "code": "TECConvertText",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is intended to be used primarily by clients who just want it to do the best job it can in converting from a given input encoding to a given output encoding and don't want to worry too much about the details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the output buffer you allocate is too small to accommodateany of the converted text, the function fails. For best results,you should follow these guidelines when you allocate an output buffer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Base the buffer length on an estimate of thebyte requirements of the destination encoding. Make sure you accountfor additional bytes needed by the destination encoding (for example,an escape sequence) in addition to the actual text.  ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": " Always allocate a buffer at least 32 bytes long.  ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": " If size is a concern, make sure the output buffer is at leastlarge enough to hold a portion of the converted text. You can convertpart of the text, then use the value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "actualInputLength",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameterto identify the next byte to be taken and to determine how manybytes remain. To convert the remaining text, you simply call thefunction again with the remaining text and a new output buffer. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": " If the destination encoding is a character encoding scheme—suchas ISO-2022-JP, which begins in ASCII and switches to other codedcharacter sets through limited combinations of escape sequences—thenyou need to allocate enough space to accommodate escape sequencesthat signal switches. ISO-2022-JP requires 3 to 5 bytes for an escapesequence preceding the 1-byte or 2-byte character it introduces.If you allocate a buffer that is less than 5 bytes, the TECConvertTextfunction could fail, depending on the text being converted.  ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make sure that you receive all of the converted text, youshould call the function  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1571848-tecflushtext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when you are finished converting all the text in a text stream. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433542-convertfromunicodetotext": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433542-convertfromunicodetotext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConvertFromUnicodeToText",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433542-convertfromunicodetotext"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1560006-anonymous/ktecusedfallbacksstatus": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1560006-anonymous/ktecusedfallbacksstatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kTECUsedFallbacksStatus",
+      "type": "topic",
+      "url": "/documentation/coreservices/1560006-anonymous/ktecusedfallbacksstatus"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1571815-teccreateconverter": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1571815-teccreateconverter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECCreateConverter",
+      "type": "topic",
+      "url": "/documentation/coreservices/1571815-teccreateconverter"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1571824-tecconverttext": {
+      "abstract": [
+        {
+          "text": "Converts a stream of text from a source encoding to adestination encoding. It uses the conversion path specified by theconverter object you supply.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1571824-tecconverttext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECConvertText",
+      "type": "topic",
+      "url": "/documentation/coreservices/1571824-tecconverttext"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1571829-teccreateconverterfrompath": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1571829-teccreateconverterfrompath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECCreateConverterFromPath",
+      "type": "topic",
+      "url": "/documentation/coreservices/1571829-teccreateconverterfrompath"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1571848-tecflushtext": {
+      "abstract": [
+        {
+          "text": "Flushes out any data in a converter object’s temporarybuffers and resets the converter object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1571848-tecflushtext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECFlushText",
+      "type": "topic",
+      "url": "/documentation/coreservices/1571848-tecflushtext"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Text Encoding Conversion Manager",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/text_encoding_conversion_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager#1664324": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager#1664324",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/coreservices/carbon_core/text_encoding_conversion_manager#1664324"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/consttextptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/consttextptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConstTextPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/consttextptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecobjectref": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecobjectref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECObjectRef",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecobjectref"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/textptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/textptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TextPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/textptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/bytecount": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/bytecount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ByteCount",
+      "type": "topic",
+      "url": "/documentation/kernel/bytecount"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1571848-tecflushtext"
+      ],
+      "title": "Converting Text Between Encodings"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/1571824-tecconverttext"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

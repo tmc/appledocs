@@ -1,0 +1,2719 @@
+{
+  "abstract": [
+    {
+      "text": "A structure that represents time.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremedia/documentation/CoreMedia"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremedia/documentation/CoreMedia/cmtime-api"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Media"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "CMTime APIs"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core Media represents time as a rational value, with a time value as the numerator and timescale as the denominator. The structure can represent a specific numeric time in the media timeline, and can also represent nonnumeric values like invalid and indefinite times or positive and negative infinity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremedia/documentation/CoreMedia": {
+      "abstract": [
+        {
+          "text": "Represent time-based audio-visual assets with essential data types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Media",
+      "type": "topic",
+      "url": "/documentation/coremedia"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_COMPARE_INLINE": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the specified comparison is true.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CMTIME_COMPARE_INLINE"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_COMPARE_INLINE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTIME_COMPARE_INLINE",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtime_compare_inline"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_HAS_BEEN_ROUNDED": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the system rounded the time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CMTIME_HAS_BEEN_ROUNDED"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_HAS_BEEN_ROUNDED",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTIME_HAS_BEEN_ROUNDED",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtime_has_been_rounded"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_HAS_BEEN_ROUNDED(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the system rounded the time value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTIME_HAS_BEEN_ROUNDED"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_HAS_BEEN_ROUNDED(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTIME_HAS_BEEN_ROUNDED(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtime_has_been_rounded(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_INDEFINITE": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a time is indefinite.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CMTIME_IS_INDEFINITE"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_INDEFINITE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTIME_IS_INDEFINITE",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtime_is_indefinite"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_INDEFINITE(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a given time is indefinite.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTIME_IS_INDEFINITE"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_INDEFINITE(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTIME_IS_INDEFINITE(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtime_is_indefinite(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_INVALID": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a time is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CMTIME_IS_INVALID"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_INVALID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTIME_IS_INVALID",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtime_is_invalid"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_INVALID(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a given time is invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTIME_IS_INVALID"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_INVALID(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTIME_IS_INVALID(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtime_is_invalid(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_NEGATIVEINFINITY(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a given time is negative infinity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTIME_IS_NEGATIVEINFINITY"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_NEGATIVEINFINITY(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTIME_IS_NEGATIVEINFINITY(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtime_is_negativeinfinity(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_NEGATIVE_INFINITY": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a time is negative infinity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CMTIME_IS_NEGATIVE_INFINITY"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_NEGATIVE_INFINITY",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTIME_IS_NEGATIVE_INFINITY",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtime_is_negative_infinity"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_NUMERIC": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a time is numeric.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CMTIME_IS_NUMERIC"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_NUMERIC",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTIME_IS_NUMERIC",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtime_is_numeric"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_NUMERIC(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a given time is numeric.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTIME_IS_NUMERIC"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_NUMERIC(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTIME_IS_NUMERIC(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtime_is_numeric(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_POSITIVEINFINITY(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a given time is positive infinity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTIME_IS_POSITIVEINFINITY"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_POSITIVEINFINITY(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTIME_IS_POSITIVEINFINITY(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtime_is_positiveinfinity(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_POSITIVE_INFINITY": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a time is positive infinity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CMTIME_IS_POSITIVE_INFINITY"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_POSITIVE_INFINITY",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTIME_IS_POSITIVE_INFINITY",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtime_is_positive_infinity"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_VALID": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a time is valid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CMTIME_IS_VALID"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_VALID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTIME_IS_VALID",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtime_is_valid"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_VALID(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a given time is valid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTIME_IS_VALID"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_VALID(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTIME_IS_VALID(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtime_is_valid(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTime": {
+      "abstract": [
+        {
+          "text": "A structure that represents time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTime"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTime",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtime"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeAbsoluteValue(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the absolute value of a time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeAbsoluteValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeAbsoluteValue(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeAbsoluteValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeAbsoluteValue(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimeabsolutevalue(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeAdd(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the sum of two times.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeAdd"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeAdd(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeAdd"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeAdd(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimeadd(_:_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeCompare(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the numerical relationship of two times.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeCompare"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeCompare(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeCompare"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeCompare(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimecompare(_:_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeConvertScale(_:timescale:method:)": {
+      "abstract": [
+        {
+          "text": "Converts the source time to a new timescale using the specified rounding method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeConvertScale"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timescale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "method"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CMTimeRoundingMethod",
+          "text": "CMTimeRoundingMethod"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeConvertScale(_:timescale:method:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeConvertScale"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeConvertScale(_:timescale:method:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimeconvertscale(_:timescale:method:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeCopyAsDictionary(_:allocator:)": {
+      "abstract": [
+        {
+          "text": "Creates a dictionary representation of the time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeCopyAsDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "allocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeCopyAsDictionary(_:allocator:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeCopyAsDictionary"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeCopyAsDictionary(_:allocator:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimecopyasdictionary(_:allocator:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeCopyDescription(allocator:time:)": {
+      "abstract": [
+        {
+          "text": "Creates a string representation of the time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeCopyDescription"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "allocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "time"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeCopyDescription(allocator:time:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeCopyDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeCopyDescription(allocator:time:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimecopydescription(allocator:time:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeEpoch": {
+      "abstract": [
+        {
+          "text": "An epoch for a time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeEpoch"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeEpoch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeEpoch"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeEpoch",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimeepoch"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeFlags": {
+      "abstract": [
+        {
+          "text": "A structure that defines the flags for a time value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeFlags",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimeflags"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeGetSeconds(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a representation of the time in seconds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeGetSeconds"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7Float64a",
+          "text": "Float64"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeGetSeconds(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeGetSeconds"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeGetSeconds(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimegetseconds(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMake(value:timescale:)": {
+      "abstract": [
+        {
+          "text": "Creates a time with a value and timescale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeMake"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timescale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMake(value:timescale:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeMake"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeMake(value:timescale:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimemake(value:timescale:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMakeFromDictionary(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a time from a dictionary representation of its fields.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeMakeFromDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMakeFromDictionary(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeMakeFromDictionary"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeMakeFromDictionary(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimemakefromdictionary(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMakeWithEpoch(value:timescale:epoch:)": {
+      "abstract": [
+        {
+          "text": "Creates a time with a value, timescale, and epoch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeMakeWithEpoch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timescale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "epoch"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMakeWithEpoch(value:timescale:epoch:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeMakeWithEpoch"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeMakeWithEpoch(value:timescale:epoch:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimemakewithepoch(value:timescale:epoch:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMakeWithSeconds(_:preferredTimescale:)": {
+      "abstract": [
+        {
+          "text": "Creates a time that represents a number of seconds in a preferred timescale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeMakeWithSeconds"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7Float64a",
+          "text": "Float64"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "preferredTimescale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMakeWithSeconds(_:preferredTimescale:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeMakeWithSeconds"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeMakeWithSeconds(_:preferredTimescale:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimemakewithseconds(_:preferredtimescale:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMaximum(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the greater of two time values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeMaximum"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMaximum(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeMaximum"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeMaximum(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimemaximum(_:_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMinimum(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the lesser of two time values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeMinimum"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMinimum(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeMinimum"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeMinimum(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimeminimum(_:_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMultiply(_:multiplier:)": {
+      "abstract": [
+        {
+          "text": "Returns the result of multiplying a time by an integer multiplier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeMultiply"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "multiplier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMultiply(_:multiplier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeMultiply"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeMultiply(_:multiplier:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimemultiply(_:multiplier:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMultiplyByFloat64(_:multiplier:)": {
+      "abstract": [
+        {
+          "text": "Returns the result of multiplying a time by a floating-point multiplier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeMultiplyByFloat64"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "multiplier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7Float64a",
+          "text": "Float64"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMultiplyByFloat64(_:multiplier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeMultiplyByFloat64"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeMultiplyByFloat64(_:multiplier:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimemultiplybyfloat64(_:multiplier:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMultiplyByRatio(_:multiplier:divisor:)": {
+      "abstract": [
+        {
+          "text": "Returns the result of multiplying a time by an integer multiplier, and then dividing the result by the divisor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeMultiplyByRatio"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "multiplier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "divisor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMultiplyByRatio(_:multiplier:divisor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeMultiplyByRatio"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeMultiplyByRatio(_:multiplier:divisor:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimemultiplybyratio(_:multiplier:divisor:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRoundingMethod": {
+      "abstract": [
+        {
+          "text": "An enumeration of rounding methods to use when performing time calculations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeRoundingMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRoundingMethod",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeRoundingMethod"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeRoundingMethod",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimeroundingmethod"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeScale": {
+      "abstract": [
+        {
+          "text": "An integer timescale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeScale"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeScale",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeScale"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeScale",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimescale"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeShow(_:)": {
+      "abstract": [
+        {
+          "text": "Prints a description of the time to the console.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeShow"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeShow(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeShow"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeShow(_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimeshow(_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeSubtract(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the difference between two times.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeSubtract"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeSubtract(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeSubtract"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeSubtract(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimesubtract(_:_:)"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeValue": {
+      "abstract": [
+        {
+          "text": "An integer time value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeValue"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMTimeValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMTimeValue",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimevalue"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/cmtime-dictionary-keys": {
+      "abstract": [
+        {
+          "text": "Keys to use when working with dictionary representations of time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/cmtime-dictionary-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dictionary Keys",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtime-dictionary-keys"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/cmtime-time": {
+      "abstract": [
+        {
+          "text": "Defined time values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/cmtime-time",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Time",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtime-time"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/cmtime-timescale": {
+      "abstract": [
+        {
+          "text": "Defined timescale values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/cmtime-timescale",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Timescale",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtime-timescale"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/cmtimemapping-api": {
+      "abstract": [
+        {
+          "text": "A structure that maps a segment of a source time range to a target time range.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/cmtimemapping-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CMTimeMapping APIs",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimemapping-api"
+    },
+    "doc://com.apple.coremedia/documentation/CoreMedia/cmtimerange-api": {
+      "abstract": [
+        {
+          "text": "A structure that represents a range of time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremedia/documentation/CoreMedia/cmtimerange-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CMTimeRange APIs",
+      "type": "topic",
+      "url": "/documentation/coremedia/cmtimerange-api"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Time-Representation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/cmtimerange-api",
+        "doc://com.apple.coremedia/documentation/CoreMedia/cmtimemapping-api"
+      ],
+      "title": "Time Representation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Time",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMake(value:timescale:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMakeWithEpoch(value:timescale:epoch:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMakeWithSeconds(_:preferredTimescale:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMakeFromDictionary(_:)"
+      ],
+      "title": "Creating a Time"
+    },
+    {
+      "anchor": "Inspecting-a-Time",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeGetSeconds(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeAbsoluteValue(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_VALID(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_INVALID(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_POSITIVEINFINITY(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_NEGATIVEINFINITY(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_INDEFINITE(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_NUMERIC(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_HAS_BEEN_ROUNDED(_:)"
+      ],
+      "title": "Inspecting a Time"
+    },
+    {
+      "anchor": "Performing-Time-Calculations",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeAdd(_:_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeSubtract(_:_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMultiply(_:multiplier:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMultiplyByFloat64(_:multiplier:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMultiplyByRatio(_:multiplier:divisor:)"
+      ],
+      "title": "Performing Time Calculations"
+    },
+    {
+      "anchor": "Changing-the-Timescale",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeConvertScale(_:timescale:method:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRoundingMethod"
+      ],
+      "title": "Changing the Timescale"
+    },
+    {
+      "anchor": "Comparing-Times",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeCompare(_:_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMaximum(_:_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMinimum(_:_:)"
+      ],
+      "title": "Comparing Times"
+    },
+    {
+      "anchor": "Representing-Times",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeShow(_:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeCopyDescription(allocator:time:)",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeCopyAsDictionary(_:allocator:)"
+      ],
+      "title": "Representing Times"
+    },
+    {
+      "anchor": "Data-Types",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTime",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeValue",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeScale",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeEpoch",
+        "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeFlags"
+      ],
+      "title": "Data Types"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.coremedia/documentation/CoreMedia/cmtime-time",
+        "doc://com.apple.coremedia/documentation/CoreMedia/cmtime-timescale",
+        "doc://com.apple.coremedia/documentation/CoreMedia/cmtime-dictionary-keys"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Time",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMake(value:timescale:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMakeWithEpoch(value:timescale:epoch:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMakeWithSeconds(_:preferredTimescale:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMakeFromDictionary(_:)"
+              ],
+              "title": "Creating a Time"
+            },
+            {
+              "anchor": "Inspecting-a-Time",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeGetSeconds(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeAbsoluteValue(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_VALID",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_INVALID",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_POSITIVE_INFINITY",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_NEGATIVE_INFINITY",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_INDEFINITE",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_IS_NUMERIC",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_HAS_BEEN_ROUNDED"
+              ],
+              "title": "Inspecting a Time"
+            },
+            {
+              "anchor": "Performing-Time-Calculations",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeAdd(_:_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeSubtract(_:_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMultiply(_:multiplier:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMultiplyByFloat64(_:multiplier:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMultiplyByRatio(_:multiplier:divisor:)"
+              ],
+              "title": "Performing Time Calculations"
+            },
+            {
+              "anchor": "Changing-the-Timescale",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeConvertScale(_:timescale:method:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeRoundingMethod"
+              ],
+              "title": "Changing the Timescale"
+            },
+            {
+              "anchor": "Comparing-Times",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTIME_COMPARE_INLINE",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeCompare(_:_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMaximum(_:_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeMinimum(_:_:)"
+              ],
+              "title": "Comparing Times"
+            },
+            {
+              "anchor": "Representing-Times",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeShow(_:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeCopyDescription(allocator:time:)",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeCopyAsDictionary(_:allocator:)"
+              ],
+              "title": "Representing Times"
+            },
+            {
+              "anchor": "Data-Types",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTime",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeValue",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeScale",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeEpoch",
+                "doc://com.apple.coremedia/documentation/CoreMedia/CMTimeFlags"
+              ],
+              "title": "Data Types"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/cmtime-time",
+                "doc://com.apple.coremedia/documentation/CoreMedia/cmtime-timescale",
+                "doc://com.apple.coremedia/documentation/CoreMedia/cmtime-dictionary-keys"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Time-Representation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremedia/documentation/CoreMedia/cmtimerange-api",
+                "doc://com.apple.coremedia/documentation/CoreMedia/cmtimemapping-api"
+              ],
+              "title": "Time Representation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeShow(_:)/title",
+          "value": "CMTimeShow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeShow(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeShow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeMultiply(_:multiplier:)/title",
+          "value": "CMTimeMultiply"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeMultiply(_:multiplier:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeMultiply"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeMinimum(_:_:)/title",
+          "value": "CMTimeMinimum"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeMinimum(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeMinimum"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeAdd(_:_:)/title",
+          "value": "CMTimeAdd"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeAdd(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeAdd"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeGetSeconds(_:)/title",
+          "value": "CMTimeGetSeconds"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeGetSeconds(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeGetSeconds"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRoundingMethod/title",
+          "value": "CMTimeRoundingMethod"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRoundingMethod/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeRoundingMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeRoundingMethod/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeRoundingMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeConvertScale(_:timescale:method:)/title",
+          "value": "CMTimeConvertScale"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeConvertScale(_:timescale:method:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeConvertScale"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeMakeFromDictionary(_:)/title",
+          "value": "CMTimeMakeFromDictionary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeMakeFromDictionary(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeMakeFromDictionary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeMakeWithSeconds(_:preferredTimescale:)/title",
+          "value": "CMTimeMakeWithSeconds"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeMakeWithSeconds(_:preferredTimescale:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeMakeWithSeconds"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeMake(value:timescale:)/title",
+          "value": "CMTimeMake"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeMake(value:timescale:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeMake"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTime/title",
+          "value": "CMTime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTime/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeMaximum(_:_:)/title",
+          "value": "CMTimeMaximum"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeMaximum(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeMaximum"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeCopyDescription(allocator:time:)/title",
+          "value": "CMTimeCopyDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeCopyDescription(allocator:time:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeCopyDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeCompare(_:_:)/title",
+          "value": "CMTimeCompare"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeCompare(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeCompare"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeAbsoluteValue(_:)/title",
+          "value": "CMTimeAbsoluteValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeAbsoluteValue(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeAbsoluteValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeCopyAsDictionary(_:allocator:)/title",
+          "value": "CMTimeCopyAsDictionary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeCopyAsDictionary(_:allocator:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeCopyAsDictionary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeEpoch/title",
+          "value": "CMTimeEpoch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeEpoch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeEpoch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeEpoch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeEpoch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeSubtract(_:_:)/title",
+          "value": "CMTimeSubtract"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeSubtract(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeSubtract"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeFlags/title",
+          "value": "CMTimeFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeValue/title",
+          "value": "CMTimeValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeValue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeMakeWithEpoch(value:timescale:epoch:)/title",
+          "value": "CMTimeMakeWithEpoch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeMakeWithEpoch(value:timescale:epoch:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeMakeWithEpoch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeMultiplyByFloat64(_:multiplier:)/title",
+          "value": "CMTimeMultiplyByFloat64"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeMultiplyByFloat64(_:multiplier:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeMultiplyByFloat64"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeScale/title",
+          "value": "CMTimeScale"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeScale/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeScale"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeScale/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeScale"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeMultiplyByRatio(_:multiplier:divisor:)/title",
+          "value": "CMTimeMultiplyByRatio"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremedia~1documentation~1CoreMedia~1CMTimeMultiplyByRatio(_:multiplier:divisor:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMTimeMultiplyByRatio"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremedia/cmtime-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremedia/cmtime-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

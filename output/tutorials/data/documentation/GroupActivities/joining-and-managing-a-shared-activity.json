@@ -1,0 +1,2097 @@
+{
+  "abstract": [
+    {
+      "text": "Configure the session when a SharePlay activity starts, and handle events",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "that occur during the lifetime of the activity.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.GroupActivities/documentation/GroupActivities/joining-and-managing-a-shared-activity"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Group Activities"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Joining and managing a shared activity"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When one person in a group starts an activity, other people’s devices",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "display system UI to prompt them to join that activity.  When",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "each person joins, the system prepares a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the activity and delivers it to their app. Your app uses that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "session object to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Prepare any required UI.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Start the activity, monitor its state, and respond to changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Synchronize activity-related information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "group-activity-from-messages.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about how to define activities, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/defining-your-apps-shareplay-activities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For information about how to start activities, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/promoting-shareplay-activities-from-your-apps-ui",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Join-an-activity-from-a-background-task",
+          "level": 3,
+          "text": "Join an activity from a background task",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Activities can start at any time, so you need to set up an asynchronous",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "handler in your app to listen for when they start. After a participant",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "joins an activity, the system creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "delivers it to the sessions property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupActivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you defined. Monitor the sessions property from an asynchronous handler,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and process new session objects when they become available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure separate asynchronous handlers for each of your app’s activity",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "types, and use each one to receive new sessions for their activity. In",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftUI, create your handler by adding the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/task(priority:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier to the view containing the UI for the activity, as shown in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example below. Inside the block for the task modifier, wait on the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "activity’s sessions property using a ",
+              "type": "text"
+            },
+            {
+              "code": "for..in",
+              "type": "codeVoice"
+            },
+            {
+              "text": " loop. The sessions property",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contains an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/AsyncSequence",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type, which wakes up the task and executes your code when a new session",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "arrives. Use your code to begin the activity in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ContentView: View {",
+            "",
+            "    var body: some View {",
+            "        VStack {",
+            "            MyCustomView()",
+            "            MyOtherCustomView()",
+            "        }",
+            "        .task {",
+            "            for await session in MyActivity.sessions() {",
+            "                // Perform any app-specific tasks...",
+            "",
+            "                // Join the session.",
+            "                session.join",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re not using SwiftUI, handle the arrival of sessions using a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Task",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " block, as shown",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the following example. This block offers the same behavior as the SwiftUI",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "task modifier, and you use it in similar ways. When a new session arrives,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "update your app’s UI to reflect the current activity, or perform any other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tasks you need to prepare for the activity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Process an asynchronously delivered session.",
+            "var task = Task {",
+            "    for await session in DrawTogether.sessions() {",
+            "",
+            "        // Perform any app-specific tasks...",
+            "",
+            "        // Join the session.",
+            "        session.join()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Save a reference to any sessions you receive asynchronously and remove those",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "references when the session state changes to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/State-swift.enum/invalidated(reason:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system delivers one new session for each joined activity. When the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "state of the session changes, or when other properties change, the system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "updates the already delivered session. To detect updates while the session",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is active, add subscribers to the properties of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prepare-your-apps-interface",
+          "level": 3,
+          "text": "Prepare your app’s interface",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app receives a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, start preparing your app’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "UI immediately. The activity doesn’t start until you call the join",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method of the session object you received. However, don’t call that method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "until you’re ready to display the UI for the activity itself. If your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app needs to collect login credentials or download content before starting the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "activity, present the UI for those tasks and wait for them to complete before",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you call the join method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you join an activity, update your UI as needed to reflect relevant",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information. In particular:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide a way for people to see who joined the activity, and who hasn’t joined. Some people might not join an activity right away, because they don’t have the app or are doing something else. Keeping everyone informed lets them know who’s aware of the activity details.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide visual cues when someone makes a change, and optionally display information about who made the change. For example, annotate the change temporarily with the person’s identity, or add app-specific messages to the conversation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Support people navigating away from an activity but staying on the group FaceTime call or Messages conversation. For activities that involve video playback, support Picture in Picture to continue playback even when someone changes apps.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make sure app-specific controls are easy to access.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Join-the-session-to-start-the-activity",
+          "level": 3,
+          "text": "Join the session to start the activity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app has everything it needs and is ready to start the activity,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/join()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/join()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method asks the system to start the activity in your app.",
+              "type": "text"
+            },
+            {
+              "text": "\n",
+              "type": "text"
+            },
+            {
+              "text": "Even after you call this method, the session remains in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/State-swift.enum/waiting",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "state until the system establishes a connection to the activity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your call to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/join()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is successful, the system changes the state of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "session to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/State-swift.enum/joined",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and begins sending",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information to and from the current device. If you tried to synchronize data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "after calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/join()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", but before the system completed the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "request, those requests remain queued until your session enters the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/State-swift.enum/joined",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state. After successfully joining the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "session, the system expects you to handle session-related changes and messages.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For information about how to send messages between participants, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/synchronizing-data-during-a-shareplay-activity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Accommodate-people-who-arrive-late-to-the-session",
+          "level": 3,
+          "text": "Accommodate people who arrive late to the session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Participants join activities separately, and people can join immediately",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or after a delay.  If participants need to download your app, or don’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see the invitation to join the activity, they might arrive several minutes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "after others. If your activity manages state information that all participants",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "require, devise a way to deliver that information to someone who arrives",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "late. For example, a whiteboard app needs to deliver the current whiteboard",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content to any late joiners.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider the experience for people who arrive late to an activity, and plan",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for it when implementing your activity support. You might create a lobby",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interface where participants wait until everyone is present, or you might",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "define custom messages to let people catch up with the rest of the group.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Choose an experience that makes sense for your app, and remember that every",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "participant is equal in a SharePlay activity. There’s no single activity",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "owner who controls the experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine when new participants join the session, monitor the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/activeParticipants",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the session using a separate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "task. When the list of participants changes, compare the new list with a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "saved copy your app maintains. When you detect new participants, update",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "them with the current state of the activity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Task {",
+            "    for try await updatedParticipants in session.$activeParticipants.values {",
+            "        for participant in updatedParticipants {",
+            "            // Compare the current list to a saved version you maintain.",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "End-the-activity-for-one-or-more-participants",
+          "level": 3,
+          "text": "End the activity for one or more participants",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object contains methods to end the session for the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "current participant or the entire group. When designing your UI, make",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it clear which option someone is choosing, and call the correct method in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "shareplay-lobby-status.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a participant quits your app, switches to a different app, or navigates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "away from your app’s activity-related UI, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/leave()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "end the activity for that participant. Other participants remain engaged in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the activity until they leave or until someone ends the activity for everyone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a participant leaves an activity, the system moves their session to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/State-swift.enum/invalidated(reason:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state and stops",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the flow of information between their device and the rest of the group.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When the session moves to this state, it’s safe to discard the session",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object itself and perform any activity-related cleanup. If the person is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "still active on the FaceTime call or Messages conversation and rejoins the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "activity later, the system delivers a new session object to your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you want to end the activity for everyone, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/end()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method. This method invalidates the sessions for all participants. Make sure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "any buttons or UI that calls this method makes it clear that the activity",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ends for everyone. The session also ends when everyone leaves the activity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.GroupActivities/documentation/GroupActivities": {
+      "abstract": [
+        {
+          "text": "Create app-specific activities your users can share and experience together.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Group Activities",
+      "type": "topic",
+      "url": "/documentation/groupactivities"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/CustomMessageIdentifiable": {
+      "abstract": [
+        {
+          "text": "A type that assigns a custom ID string to messages you send to other devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomMessageIdentifiable"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/CustomMessageIdentifiable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomMessageIdentifiable"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomMessageIdentifiable",
+      "type": "topic",
+      "url": "/documentation/groupactivities/custommessageidentifiable"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupActivity": {
+      "abstract": [
+        {
+          "text": "A type that can advertise your app’s activities to other participants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroupActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GroupActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupActivity",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupactivity"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession": {
+      "abstract": [
+        {
+          "text": "A session for an in-progress activity that synchronizes content among participant devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroupSession"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GroupSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupSession",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/State-swift.enum/invalidated(reason:)": {
+      "abstract": [
+        {
+          "text": "A state that indicates the session is no longer valid and can’t be used",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for shared activities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidated"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "reason"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/State-swift.enum/invalidated(reason:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GroupSession.State.invalidated(reason:)",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/state-swift.enum/invalidated(reason:)"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/State-swift.enum/joined": {
+      "abstract": [
+        {
+          "text": "An active state that indicates the session allows data synchronization between devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "joined"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/State-swift.enum/joined",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GroupSession.State.joined",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/state-swift.enum/joined"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/State-swift.enum/waiting": {
+      "abstract": [
+        {
+          "text": "An idle state that indicates the session is waiting for the app to join the activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "waiting"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/State-swift.enum/waiting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GroupSession.State.waiting",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/state-swift.enum/waiting"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/activeParticipants": {
+      "abstract": [
+        {
+          "text": "The set of participants currently engaged in the activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeParticipants"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities11ParticipantV",
+          "text": "Participant"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/activeParticipants",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "activeParticipants",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/activeparticipants"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/end()": {
+      "abstract": [
+        {
+          "text": "Ends the activity for the entire group and stops the transfer",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of synchronized data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/end()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "end()",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/end()"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/join()": {
+      "abstract": [
+        {
+          "text": "Starts the shared activity on the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "join"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/join()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "join()",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/join()"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/leave()": {
+      "abstract": [
+        {
+          "text": "Leaves the current activity and stops receiving synchronized data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "leave"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/leave()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "leave()",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/leave()"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/Participant": {
+      "abstract": [
+        {
+          "text": "An active participant in a group session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Participant"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/Participant",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Participant"
+        }
+      ],
+      "role": "symbol",
+      "title": "Participant",
+      "type": "topic",
+      "url": "/documentation/groupactivities/participant"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/defining-your-apps-shareplay-activities": {
+      "abstract": [
+        {
+          "text": "Configure your app’s SharePlay support and define the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "activities that people can perform from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/defining-your-apps-shareplay-activities",
+      "kind": "article",
+      "role": "article",
+      "title": "Defining your app’s SharePlay activities",
+      "type": "topic",
+      "url": "/documentation/groupactivities/defining-your-apps-shareplay-activities"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/promoting-shareplay-activities-from-your-apps-ui": {
+      "abstract": [
+        {
+          "text": "Make it easy for people to start activities from your app’s UI, from",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the system share sheet, or using AirPlay over AirDrop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/promoting-shareplay-activities-from-your-apps-ui",
+      "kind": "article",
+      "role": "article",
+      "title": "Presenting SharePlay activities from your app’s UI",
+      "type": "topic",
+      "url": "/documentation/groupactivities/promoting-shareplay-activities-from-your-apps-ui"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/synchronizing-data-during-a-shareplay-activity": {
+      "abstract": [
+        {
+          "text": "Send custom messages and data between devices to synchronize content for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your activity, and incorporate messages your app receives from other",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "participants.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/synchronizing-data-during-a-shareplay-activity",
+      "kind": "article",
+      "role": "article",
+      "title": "Synchronizing data during a SharePlay activity",
+      "type": "topic",
+      "url": "/documentation/groupactivities/synchronizing-data-during-a-shareplay-activity"
+    },
+    "doc://com.apple.documentation/documentation/Swift/AsyncSequence": {
+      "abstract": [
+        {
+          "text": "A type that provides asynchronous, sequential, iterated access to its elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AsyncSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sci7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sci7FailureQa",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/AsyncSequence",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AsyncSequence",
+      "type": "topic",
+      "url": "/documentation/Swift/AsyncSequence"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Task": {
+      "abstract": [
+        {
+          "text": "A unit of asynchronous work.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Task"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Success"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Success"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Task",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Task",
+      "type": "topic",
+      "url": "/documentation/Swift/Task"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/task(priority:_:)": {
+      "abstract": [
+        {
+          "text": "Adds an asynchronous task to perform before this view appears.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "task"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "priority"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScP",
+          "text": "TaskPriority"
+        },
+        {
+          "kind": "text",
+          "text": " = .userInitiated, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " () "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/task(priority:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "task(priority:_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/task(priority:_:)"
+    },
+    "doc://com.apple.documentation/documentation/groupactivities/drawing_content_in_a_group_session": {
+      "abstract": [
+        {
+          "text": "Invite your friends to draw on a shared canvas while on a FaceTime call.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/groupactivities/drawing_content_in_a_group_session",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Drawing content in a group session",
+      "type": "topic",
+      "url": "/documentation/groupactivities/drawing_content_in_a_group_session"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "group-activity-from-messages.png": {
+      "alt": "An illustration of the Messages app on iPhone showing a message that includes a prompt to join a SharePlay activity. The system UI displays a Join button to start the activity from the Messages app.",
+      "identifier": "group-activity-from-messages.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2602468996c73256afdbd12889921202/group-activity-from-messages@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e729ea85f1841fb1a6f40fa5ae6973bb/group-activity-from-messages~dark@2x.png"
+        }
+      ]
+    },
+    "shareplay-lobby-status.png": {
+      "alt": "A screenshot of an app on iPhone showing a list of participants in the current group. The UI includes a button to end the activity.",
+      "identifier": "shareplay-lobby-status.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3983156f5313bf94842675696cbb6b8e/shareplay-lobby-status@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/32bc6235d77d266994426a97aae7e654/shareplay-lobby-status~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Session-management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/groupactivities/drawing_content_in_a_group_session",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/CustomMessageIdentifiable",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/Participant"
+      ],
+      "title": "Session management"
+    }
+  ]
+}

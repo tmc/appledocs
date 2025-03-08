@@ -1,0 +1,1703 @@
+{
+  "abstract": [
+    {
+      "text": "A container for data protected by a right.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)LARightStore",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "LARightStore"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Local Authentication"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "LARightStore"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "LARightStore"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "LARightStore"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " along with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to make secrets accessible only after certain conditions, including authentication, are met. Storing secrets this way lets you tie the availability of sensitive resources to the authorization status of the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following stores a named access token behind the default authorization requirements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func storeBackendAccessToken(_ token: Data) async throws {",
+            "    let loginRight = LARight()",
+            "    _ = try await LARightStore.shared.saveRight(loginRight, identifier: \"access-token\", secret: token)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system stores your secret in the keychain and protects it with a unique key in the Secure Enclave. The system associates the key with your right and with an access control list that ensures that the data is only accessible after your access requirements are met.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can retrieve stored secrets later using the right’s identifier:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func fetchBackendAccessToken() async throws -> Data {",
+            "    let loginRight = try await LARightStore.shared.right(forIdentifier: \"access-token\")",
+            "",
+            "    // Authorize the right or else the secret is unavailable.",
+            "    try await loginRight.authorize(localizedReason: \"Access sandcastle competition server\")",
+            "    return try await loginRight.secret.rawData",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication": {
+      "abstract": [
+        {
+          "text": "Authenticate users biometrically or with a passphrase they already know.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Local Authentication",
+      "type": "topic",
+      "url": "/documentation/localauthentication"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAPersistedRight": {
+      "abstract": [
+        {
+          "text": "A right that gates access to a key and a secret.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LAPersistedRight"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAPersistedRight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LAPersistedRight"
+        }
+      ],
+      "role": "symbol",
+      "title": "LAPersistedRight",
+      "type": "topic",
+      "url": "/documentation/localauthentication/lapersistedright"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight": {
+      "abstract": [
+        {
+          "text": "A grouped set of requirements that gate access to a resource or operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LARight"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LARight"
+        }
+      ],
+      "role": "symbol",
+      "title": "LARight",
+      "type": "topic",
+      "url": "/documentation/localauthentication/laright"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore": {
+      "abstract": [
+        {
+          "text": "A container for data protected by a right.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LARightStore"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LARightStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "LARightStore",
+      "type": "topic",
+      "url": "/documentation/localauthentication/larightstore"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/removeAllRights(completion:)": {
+      "abstract": [
+        {
+          "text": "Removes all rights associated with this client from the right store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllRights"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/removeAllRights(completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeAllRightsWithCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeAllRights(completion:)",
+      "type": "topic",
+      "url": "/documentation/localauthentication/larightstore/removeallrights(completion:)"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/removeRight(_:completion:)": {
+      "abstract": [
+        {
+          "text": "Removes a right from the right store given an instance of that right.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeRight"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)LAPersistedRight",
+          "text": "LAPersistedRight"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/removeRight(_:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeRight:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeRight(_:completion:)",
+      "type": "topic",
+      "url": "/documentation/localauthentication/larightstore/removeright(_:completion:)"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/removeRight(forIdentifier:completion:)": {
+      "abstract": [
+        {
+          "text": "Removes a right from the right store given its unique identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeRight"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/removeRight(forIdentifier:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeRightForIdentifier:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeRight(forIdentifier:completion:)",
+      "type": "topic",
+      "url": "/documentation/localauthentication/larightstore/removeright(foridentifier:completion:)"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/right(forIdentifier:completion:)": {
+      "abstract": [
+        {
+          "text": "Fetches a previously stored right from the shared right store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "right"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)LAPersistedRight",
+          "text": "LAPersistedRight"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/right(forIdentifier:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rightForIdentifier:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "right(forIdentifier:completion:)",
+      "type": "topic",
+      "url": "/documentation/localauthentication/larightstore/right(foridentifier:completion:)"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/saveRight(_:identifier:completion:)": {
+      "abstract": [
+        {
+          "text": "Saves a right to a persistent right store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "saveRight"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)LARight",
+          "text": "LARight"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)LAPersistedRight",
+          "text": "LAPersistedRight"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/saveRight(_:identifier:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "saveRight:identifier:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "saveRight(_:identifier:completion:)",
+      "type": "topic",
+      "url": "/documentation/localauthentication/larightstore/saveright(_:identifier:completion:)"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/saveRight(_:identifier:secret:completion:)": {
+      "abstract": [
+        {
+          "text": "Saves a right to a persistent store along with secret data you supply.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "saveRight"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)LARight",
+          "text": "LARight"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "secret"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)LAPersistedRight",
+          "text": "LAPersistedRight"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/saveRight(_:identifier:secret:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "saveRight:identifier:secret:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "saveRight(_:identifier:secret:completion:)",
+      "type": "topic",
+      "url": "/documentation/localauthentication/larightstore/saveright(_:identifier:secret:completion:)"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/shared": {
+      "abstract": [
+        {
+          "text": "A shared object that stores rights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)LARightStore",
+          "text": "LARightStore"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/shared",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sharedStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "shared",
+      "type": "topic",
+      "url": "/documentation/localauthentication/larightstore/shared"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LASecret": {
+      "abstract": [
+        {
+          "text": "Data that’s protected by a persisted right.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LASecret"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LASecret",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LASecret"
+        }
+      ],
+      "role": "symbol",
+      "title": "LASecret",
+      "type": "topic",
+      "url": "/documentation/localauthentication/lasecret"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Persistence",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAPersistedRight",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LASecret"
+      ],
+      "title": "Persistence"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Accessing-rights",
+      "identifiers": [
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/shared",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/right(forIdentifier:completion:)"
+      ],
+      "title": "Accessing rights"
+    },
+    {
+      "anchor": "Storing-rights",
+      "identifiers": [
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/saveRight(_:identifier:completion:)",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/saveRight(_:identifier:secret:completion:)"
+      ],
+      "title": "Storing rights"
+    },
+    {
+      "anchor": "Removing-stored-rights",
+      "identifiers": [
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/removeRight(_:completion:)",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/removeRight(forIdentifier:completion:)",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/removeAllRights(completion:)"
+      ],
+      "title": "Removing stored rights"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "LARightStore"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LARightStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LARightStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Accessing-rights",
+              "identifiers": [
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/shared",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/right(forIdentifier:completion:)"
+              ],
+              "title": "Accessing rights"
+            },
+            {
+              "anchor": "Storing-rights",
+              "identifiers": [
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/saveRight(_:identifier:completion:)",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/saveRight(_:identifier:secret:completion:)"
+              ],
+              "title": "Storing rights"
+            },
+            {
+              "anchor": "Removing-stored-rights",
+              "identifiers": [
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/removeRight(_:completion:)",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/removeRight(forIdentifier:completion:)",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore/removeAllRights(completion:)"
+              ],
+              "title": "Removing stored rights"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Persistence",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAPersistedRight",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LASecret"
+              ],
+              "title": "Persistence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "LARightStore"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARightStore~1saveRight(_:identifier:completion:)/title",
+          "value": "saveRight:identifier:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARightStore~1saveRight(_:identifier:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "saveRight:identifier:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARightStore/title",
+          "value": "LARightStore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARightStore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LARightStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARightStore/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LARightStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARightStore~1shared/title",
+          "value": "sharedStore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARightStore~1shared/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sharedStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARightStore~1removeAllRights(completion:)/title",
+          "value": "removeAllRightsWithCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARightStore~1removeAllRights(completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeAllRightsWithCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARightStore~1removeRight(forIdentifier:completion:)/title",
+          "value": "removeRightForIdentifier:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARightStore~1removeRight(forIdentifier:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeRightForIdentifier:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARightStore~1right(forIdentifier:completion:)/title",
+          "value": "rightForIdentifier:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARightStore~1right(forIdentifier:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "rightForIdentifier:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARightStore~1removeRight(_:completion:)/title",
+          "value": "removeRight:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARightStore~1removeRight(_:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeRight:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARight/title",
+          "value": "LARight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LARight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARight/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LARight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARightStore~1saveRight(_:identifier:secret:completion:)/title",
+          "value": "saveRight:identifier:secret:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARightStore~1saveRight(_:identifier:secret:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "saveRight:identifier:secret:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAPersistedRight/title",
+          "value": "LAPersistedRight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAPersistedRight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAPersistedRight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAPersistedRight/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAPersistedRight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LASecret/title",
+          "value": "LASecret"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LASecret/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LASecret"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LASecret/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LASecret"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/localauthentication/larightstore"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/localauthentication/larightstore"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

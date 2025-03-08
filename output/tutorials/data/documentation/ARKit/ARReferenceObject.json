@@ -1,0 +1,2261 @@
+{
+  "abstract": [
+    {
+      "text": "The description of a 3D object that you want ARKit to detect in the physical environment.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)ARReferenceObject",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ARReferenceObject"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ARReferenceObject"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "ARReferenceObject"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ARReferenceObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Object detection in ARKit lets you trigger AR content when the session recognizes a known 3D object. For example, your app could detect sculptures in an art museum and provide a virtual curator, or detect tabletop gaming figures and create visual effects for the game.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide a known 3D object for detection, you scan a real-world object using ARKit:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run an AR session using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARObjectScanningConfiguration",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to enable collection of high-fidelity spatial mapping data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In that session, point the device camera at the real-world object from various angles, allowing ARKit to build up an internal map of the object and its surroundings. For an example of guiding user interactions to produce good scan data, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/scanning-and-detecting-3d-objects",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Determine the portion of the session’s world coordinate space representing the object to be recognized, and call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/createReferenceObject(transform:center:extent:completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to get that portion as an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ready for use in object detection.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To save the reference object for use later or elsewhere, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/export(to:previewImage:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method to create an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".arobject",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To detect objects in an AR session, pass a collection of reference objects to your session configuration’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/detectionObjects",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. You need not scan and detect objects in the same app: For example, you might create one app for scanning museum collections that outputs ",
+              "type": "text"
+            },
+            {
+              "code": ".arobject",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files, then bundle those files into another app meant for museum visitors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To bundle reference objects into an app, use your Xcode project’s asset catalog:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your asset catalog, use the Add (+) button to create an AR Resource Group.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".arobject",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " into the resource group to create AR Reference Object entries in the asset catalog.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optionally, use the Xcode inspector panel to provide a descriptive name for the object, which appears as the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/name",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property at runtime and can be useful for debugging.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARObjectAnchor": {
+      "abstract": [
+        {
+          "text": "An anchor for a real-world 3D object that ARKit detects in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARObjectAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARObjectAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARObjectAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARObjectAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/arobjectanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARObjectScanningConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that recognizes objects and collects high-fidelity data about specific objects using the rear-facing camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARObjectScanningConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARObjectScanningConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARObjectScanningConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARObjectScanningConfiguration",
+      "type": "topic",
+      "url": "/documentation/arkit/arobjectscanningconfiguration"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject": {
+      "abstract": [
+        {
+          "text": "The description of a 3D object that you want ARKit to detect in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARReferenceObject"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARReferenceObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARReferenceObject",
+      "type": "topic",
+      "url": "/documentation/arkit/arreferenceobject"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/applyingTransform(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new reference object created by applying the specified transform to this reference object’s geometric data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applyingTransform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_float4x4",
+          "text": "simd_float4x4"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARReferenceObject",
+          "text": "ARReferenceObject"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/applyingTransform(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "referenceObjectByApplyingTransform:"
+        }
+      ],
+      "role": "symbol",
+      "title": "applyingTransform(_:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arreferenceobject/applyingtransform(_:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/archiveExtension": {
+      "abstract": [
+        {
+          "text": "The standard filename extension for exported ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instances.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "archiveExtension"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/archiveExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARReferenceObjectArchiveExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "archiveExtension",
+      "type": "topic",
+      "url": "/documentation/arkit/arreferenceobject/archiveextension"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/center": {
+      "abstract": [
+        {
+          "text": "The center point of the reference object’s space-mapping data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "center"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_float3",
+          "text": "simd_float3"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/center",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "center"
+        }
+      ],
+      "role": "symbol",
+      "title": "center",
+      "type": "topic",
+      "url": "/documentation/arkit/arreferenceobject/center"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/export(to:previewImage:)": {
+      "abstract": [
+        {
+          "text": "Writes a binary representation of the object to the specified file URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "export"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "previewImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/export(to:previewImage:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "exportObjectToURL:previewImage:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "export(to:previewImage:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arreferenceobject/export(to:previewimage:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/extent": {
+      "abstract": [
+        {
+          "text": "The size of the reference object’s space-mapping data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "extent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_float3",
+          "text": "simd_float3"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/extent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "extent"
+        }
+      ],
+      "role": "symbol",
+      "title": "extent",
+      "type": "topic",
+      "url": "/documentation/arkit/arreferenceobject/extent"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/init(archiveURL:)": {
+      "abstract": [
+        {
+          "text": "Loads a reference object from the specified file URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "archiveURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/init(archiveURL:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithArchiveURL:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(archiveURL:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arreferenceobject/init(archiveurl:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/merging(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new reference object that combines spatial information from both this reference object and another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "merging"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARReferenceObject",
+          "text": "ARReferenceObject"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARReferenceObject",
+          "text": "ARReferenceObject"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/merging(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "referenceObjectByMergingObject:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "merging(_:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arreferenceobject/merging(_:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/name": {
+      "abstract": [
+        {
+          "text": "A descriptive name for the reference object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/name",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "name"
+        }
+      ],
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/arkit/arreferenceobject/name"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/rawFeaturePoints": {
+      "abstract": [
+        {
+          "text": "A coarse representation of the space-mapping data contained in the reference object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rawFeaturePoints"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARPointCloud",
+          "text": "ARPointCloud"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/rawFeaturePoints",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rawFeaturePoints"
+        }
+      ],
+      "role": "symbol",
+      "title": "rawFeaturePoints",
+      "type": "topic",
+      "url": "/documentation/arkit/arreferenceobject/rawfeaturepoints"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/referenceObjects(inGroupNamed:bundle:)": {
+      "abstract": [
+        {
+          "text": "Loads all reference objects in the specified AR Resource Group in your Xcode project’s asset catalog.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "referenceObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "inGroupNamed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bundle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARReferenceObject",
+          "text": "ARReferenceObject"
+        },
+        {
+          "kind": "text",
+          "text": ">?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/referenceObjects(inGroupNamed:bundle:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "referenceObjectsInGroupNamed:bundle:"
+        }
+      ],
+      "role": "symbol",
+      "title": "referenceObjects(inGroupNamed:bundle:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arreferenceobject/referenceobjects(ingroupnamed:bundle:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/resourceGroupName": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resourceGroupName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/resourceGroupName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resourceGroupName"
+        }
+      ],
+      "role": "symbol",
+      "title": "resourceGroupName",
+      "type": "topic",
+      "url": "/documentation/arkit/arreferenceobject/resourcegroupname"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/scale": {
+      "abstract": [
+        {
+          "text": "A scale factor for the local coordinate space the reference object defines.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_float3",
+          "text": "simd_float3"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/scale",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scale"
+        }
+      ],
+      "role": "symbol",
+      "title": "scale",
+      "type": "topic",
+      "url": "/documentation/arkit/arreferenceobject/scale"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession/createReferenceObject(transform:center:extent:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Creates a reference object (for 3D object detection) from the specified region of the session’s world space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "createReferenceObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_float4x4",
+          "text": "simd_float4x4"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "center"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_float3",
+          "text": "simd_float3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "extent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_float3",
+          "text": "simd_float3"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARReferenceObject",
+          "text": "ARReferenceObject"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/createReferenceObject(transform:center:extent:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "createReferenceObjectWithTransform:center:extent:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "createReferenceObject(transform:center:extent:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession/createreferenceobject(transform:center:extent:completionhandler:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/detectionObjects": {
+      "abstract": [
+        {
+          "text": "A set of 3D objects that the framework attempts to detect in the user’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detectionObjects"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARReferenceObject",
+          "text": "ARReferenceObject"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/detectionObjects",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "detectionObjects"
+        }
+      ],
+      "role": "symbol",
+      "title": "detectionObjects",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/detectionobjects"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/scanning-and-detecting-3d-objects": {
+      "abstract": [
+        {
+          "text": "Record spatial features of real-world objects, then use the results to find those objects in the user’s environment and trigger AR content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/scanning-and-detecting-3d-objects",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Scanning and Detecting 3D Objects",
+      "type": "topic",
+      "url": "/documentation/arkit/scanning-and-detecting-3d-objects"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/visualizing-and-interacting-with-a-reconstructed-scene": {
+      "abstract": [
+        {
+          "text": "Estimate the shape of the physical environment using a polygonal mesh.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/visualizing-and-interacting-with-a-reconstructed-scene",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Visualizing and interacting with a reconstructed scene",
+      "type": "topic",
+      "url": "/documentation/arkit/visualizing-and-interacting-with-a-reconstructed-scene"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Physical-Objects",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/visualizing-and-interacting-with-a-reconstructed-scene",
+        "doc://com.apple.arkit/documentation/ARKit/scanning-and-detecting-3d-objects",
+        "doc://com.apple.arkit/documentation/ARKit/ARObjectAnchor"
+      ],
+      "title": "Physical Objects"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Loading-Reference-Objects",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/init(archiveURL:)",
+        "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/referenceObjects(inGroupNamed:bundle:)"
+      ],
+      "title": "Loading Reference Objects"
+    },
+    {
+      "anchor": "Examining-a-Reference-Object",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/name",
+        "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/resourceGroupName",
+        "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/center",
+        "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/extent",
+        "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/scale"
+      ],
+      "title": "Examining a Reference Object"
+    },
+    {
+      "anchor": "Saving-Recorded-Objects",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/export(to:previewImage:)",
+        "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/archiveExtension"
+      ],
+      "title": "Saving Recorded Objects"
+    },
+    {
+      "anchor": "Creating-Derivative-Reference-Objects",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/applyingTransform(_:)",
+        "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/merging(_:)"
+      ],
+      "title": "Creating Derivative Reference Objects"
+    },
+    {
+      "anchor": "Debugging-a-Reference-Object",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/rawFeaturePoints"
+      ],
+      "title": "Debugging a Reference Object"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "ARReferenceObject"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARReferenceObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARReferenceObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.arkit/documentation/ARKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Loading-Reference-Objects",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/init(archiveURL:)",
+                "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/referenceObjects(inGroupNamed:bundle:)"
+              ],
+              "title": "Loading Reference Objects"
+            },
+            {
+              "anchor": "Examining-a-Reference-Object",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/name",
+                "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/resourceGroupName",
+                "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/center",
+                "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/extent",
+                "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/scale"
+              ],
+              "title": "Examining a Reference Object"
+            },
+            {
+              "anchor": "Saving-Recorded-Objects",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/export(to:previewImage:)",
+                "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/archiveExtension"
+              ],
+              "title": "Saving Recorded Objects"
+            },
+            {
+              "anchor": "Creating-Derivative-Reference-Objects",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/applyingTransform(_:)",
+                "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/merging(_:)"
+              ],
+              "title": "Creating Derivative Reference Objects"
+            },
+            {
+              "anchor": "Debugging-a-Reference-Object",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARReferenceObject/rawFeaturePoints"
+              ],
+              "title": "Debugging a Reference Object"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Physical-Objects",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/visualizing-and-interacting-with-a-reconstructed-scene",
+                "doc://com.apple.arkit/documentation/ARKit/scanning-and-detecting-3d-objects",
+                "doc://com.apple.arkit/documentation/ARKit/ARObjectAnchor"
+              ],
+              "title": "Physical Objects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "ARReferenceObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1applyingTransform(_:)/title",
+          "value": "referenceObjectByApplyingTransform:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1applyingTransform(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "referenceObjectByApplyingTransform:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1extent/title",
+          "value": "extent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1extent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "extent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARObjectAnchor/title",
+          "value": "ARObjectAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARObjectAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARObjectAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARObjectAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARObjectAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1resourceGroupName/title",
+          "value": "resourceGroupName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1resourceGroupName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "resourceGroupName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1scale/title",
+          "value": "scale"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1scale/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "scale"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARObjectScanningConfiguration/title",
+          "value": "ARObjectScanningConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARObjectScanningConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARObjectScanningConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARObjectScanningConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARObjectScanningConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject/title",
+          "value": "ARReferenceObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARReferenceObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARReferenceObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1rawFeaturePoints/title",
+          "value": "rawFeaturePoints"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1rawFeaturePoints/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rawFeaturePoints"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1detectionObjects/title",
+          "value": "detectionObjects"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1detectionObjects/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "detectionObjects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1referenceObjects(inGroupNamed:bundle:)/title",
+          "value": "referenceObjectsInGroupNamed:bundle:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1referenceObjects(inGroupNamed:bundle:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "referenceObjectsInGroupNamed:bundle:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1center/title",
+          "value": "center"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1center/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "center"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1merging(_:)/title",
+          "value": "referenceObjectByMergingObject:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1merging(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "referenceObjectByMergingObject:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1export(to:previewImage:)/title",
+          "value": "exportObjectToURL:previewImage:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1export(to:previewImage:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "exportObjectToURL:previewImage:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1name/title",
+          "value": "name"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1name/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "name"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1archiveExtension/title",
+          "value": "ARReferenceObjectArchiveExtension"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1archiveExtension/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARReferenceObjectArchiveExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1init(archiveURL:)/title",
+          "value": "initWithArchiveURL:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceObject~1init(archiveURL:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithArchiveURL:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1createReferenceObject(transform:center:extent:completionHandler:)/title",
+          "value": "createReferenceObjectWithTransform:center:extent:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1createReferenceObject(transform:center:extent:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "createReferenceObjectWithTransform:center:extent:completionHandler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/arreferenceobject"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/arreferenceobject"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

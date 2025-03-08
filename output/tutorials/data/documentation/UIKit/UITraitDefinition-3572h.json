@@ -1,0 +1,2010 @@
+{
+  "abstract": [
+    {
+      "text": "A type representing a trait in a trait collection.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-3572h"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)UITraitDefinition",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "UITraitDefinition"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UITraitDefinition"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "UITraitDefinition"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UITraitDefinition"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All traits contained in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitCollection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " conform to this protocol. Three protocols refine ",
+              "type": "text"
+            },
+            {
+              "code": "UITraitDefinition",
+              "type": "codeVoice"
+            },
+            {
+              "text": ": ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UINSIntegerTraitDefinition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICGFloatTraitDefinition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIObjectTraitDefinition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can create custom traits by defining your own object conforming one of these three protocols, as appropriate for your trait value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below defines a new trait that holds an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsinteger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "typedef NS_ENUM(NSInteger, Theme) {",
+            "    ThemeStandard,",
+            "    ThemeMonochrome",
+            "};",
+            "",
+            "@interface MyThemeTrait : NSObject<UINSIntegerTraitDefinition>",
+            "@end",
+            "",
+            "@implementation MyThemeTrait",
+            "+ (NSInteger)defaultValue { return ThemeStandard; }",
+            "@end"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Defining ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-64c15/defaultValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is the minimum requirement to conform to this protocol. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-64c15/defaultValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " must be constant.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The best candidates for trait values are simple scalars: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsinteger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgfloat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can also use lightweight objects as trait values, but these are less efficient than simple scalars. Examples of lightweight objects include ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or a composite of similarly lightweight objects. Make sure the default value never changes, preferably by making the object immutable. The system frequently checks trait values for equality, so classes need an efficient implementation of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol/1418795-isequal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use your custom trait to implement custom dynamic colors, implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-64c15/affectsColorAppearance",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and return ",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Returning ",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tells the system to update and redraw views automatically when the trait changes. The system responds to changes to your trait similar to changes in system traits contained in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitCollection/systemTraitsAffectingColorAppearance-64z7q",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Changes to traits that affect color appearance are more expensive, so opt in to this behavior only when necessary, and change such traits infrequently.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A trait type serves as a unique key, identifying a trait within a trait collection. Methods such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitCollection/valueForNSIntegerTrait:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitChangeObservable-7qoet/registerForTraitChanges:withHandler:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " take a trait type to identify the trait in a collection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Traits-in-both-Swift-and-Objective-C",
+          "level": 3,
+          "text": "Traits in both Swift and Objective-C",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to access traits from both Swift and Objective-C code, create a type conforming to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-64c15",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in both languages. To define a trait that’s accessible from both Swift and Objective-C, follow these guidelines :",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Swift, define a structure that conforms to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-64c15",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Objective-C, define an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " subclass that conforms to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINSIntegerTraitDefinition",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICGFloatTraitDefinition",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIObjectTraitDefinition",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-64c15/defaultValue",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-64c15/name",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-64c15/identifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and make the values the same in Objective-C and Swift.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your trait holds an object value, make the class visible to both Swift and Objective-C.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your trait holds a fundamental value type, make your Objective-C types correspond to Swift types, as in the following table:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Swift",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Objective-C",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/Bool",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsinteger",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/Int",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsinteger",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/Double",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgfloat",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgfloat",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgfloat",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For Swift ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Bool",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " values, Objective-C uses 0 for ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and 1 for ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your Swift trait uses an optional type for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-64c15/defaultValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", Objective-C represents a Swift ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value with a special Objective-C constant. The table below lists the Objective-C values that correspond to a Swift ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Swift optional type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Swift value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Objective-C type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Objective-C value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Int?",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsinteger",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotfound",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Double?",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgfloat",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgfloat_max",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "CGFloat?",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgfloat",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgfloat_max",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Objective-C, your trait value may require an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass if your data model exceeds the simple scalars of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsinteger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgfloat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To use this value in Swift, import your Objective-C class into Swift, and use it for the value of your custom trait in both languages. Other than bridging with Objective-C, avoid using reference types for Swift trait values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can prevent Swift from importing your Objective-C class name by applying the ",
+              "type": "text"
+            },
+            {
+              "code": "NS_REFINED_FOR_SWIFT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macro to your Objective-C interface. This macro allows you to name your Swift trait structure with the same name as your Objective-C trait class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below defines a trait in Objective-C, with a custom ",
+              "type": "text"
+            },
+            {
+              "code": "Theme",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type for a trait value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "typedef NS_ENUM(NSInteger, Theme) {",
+            "    ThemeStandard,",
+            "    ThemeMonochrome",
+            "};",
+            "",
+            "NS_REFINED_FOR_SWIFT @interface ThemeTrait : NSObject<UINSIntegerTraitDefinition>",
+            "@end",
+            "",
+            "@implementation ThemeTrait",
+            "+ (NSInteger)defaultValue { return ThemeStandard; }",
+            "+ (NSString *)name { return @\"Theme\"; }",
+            "+ (NSString *)identifier { return @\"com.example.themetrait\"; }",
+            "@end",
+            ""
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code example shows the definition of a Swift trait so that UIKit recognizes it as the same trait as defined above in Objective-C:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// The NS_REFINED_FOR_SWIFT macro allows this struct to have ",
+            "// the same name as the Objective-C trait class.",
+            "struct ThemeTrait: UITraitDefinition {",
+            "    static let defaultValue = Theme.standard",
+            "    static let name = \"Theme\"",
+            "    static let identifier = \"com.example.themetrait\"",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NS_REFINED_FOR_SWIFT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macro makes your Objective-C class available in Swift by prepending double underscores to the class name. You can use this to make your Swift implementation call your Objective-C class properties. For more details, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/improving-objective-c-api-declarations-for-swift",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Swift/Bool": {
+      "abstract": [
+        {
+          "text": "A value type whose instances are either `true` or `false`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Bool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/Swift/Bool"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Double": {
+      "abstract": [
+        {
+          "text": "A double-precision, floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Double",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Double",
+      "type": "topic",
+      "url": "/documentation/Swift/Double"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Int": {
+      "abstract": [
+        {
+          "text": "A signed integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Int",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/Swift/Int"
+    },
+    "doc://com.apple.documentation/documentation/Swift/improving-objective-c-api-declarations-for-swift": {
+      "abstract": [
+        {
+          "text": "Use the `NS_REFINED_FOR_SWIFT` macro to change how an API is imported into Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/improving-objective-c-api-declarations-for-swift",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving Objective-C API Declarations for Swift",
+      "type": "topic",
+      "url": "/documentation/Swift/improving-objective-c-api-declarations-for-swift"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgfloat": {
+      "abstract": [
+        {
+          "text": "The basic type for floating-point scalar values in Core Graphics and related frameworks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgfloat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGFloat",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgfloat"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgfloat_max": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGFLOAT_MAX"
+        },
+        {
+          "kind": "text",
+          "text": ": Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgfloat_max",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGFLOAT_MAX",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgfloat_max"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate": {
+      "abstract": [
+        {
+          "text": "A representation of a specific point in time, for use when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotfound": {
+      "abstract": [
+        {
+          "text": "A value indicating that a requested item couldn’t be found or doesn’t exist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSNotFound"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotfound",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotFound",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotfound"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "abstract": [
+        {
+          "text": "A static, plain-text Unicode string object which you use when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsinteger": {
+      "abstract": [
+        {
+          "text": "Describes an integer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSInteger"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsinteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSInteger",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsinteger"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol/1418795-isequal": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the receiver and a given object are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqual"
+        },
+        {
+          "kind": "text",
+          "text": "(Any?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol/1418795-isequal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqual(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol/1418795-isequal"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICGFloatTraitDefinition": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UICGFloatTraitDefinition"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICGFloatTraitDefinition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICGFloatTraitDefinition",
+      "type": "topic",
+      "url": "/documentation/uikit/uicgfloattraitdefinition"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINSIntegerTraitDefinition": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UINSIntegerTraitDefinition"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINSIntegerTraitDefinition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UINSIntegerTraitDefinition",
+      "type": "topic",
+      "url": "/documentation/uikit/uinsintegertraitdefinition"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIObjectTraitDefinition": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UIObjectTraitDefinition"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIObjectTraitDefinition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIObjectTraitDefinition",
+      "type": "topic",
+      "url": "/documentation/uikit/uiobjecttraitdefinition"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITrait-1dbah": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UITrait"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITrait-1dbah",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITrait",
+      "type": "topic",
+      "url": "/documentation/uikit/uitrait-1dbah"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitChangeObservable-7qoet/registerForTraitChanges:withHandler:": {
+      "abstract": [
+        {
+          "text": "Registers a list of traits to observe and a closure to execute when one of the observed traits changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerForTraitChanges:withHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitChangeObservable-7qoet/registerForTraitChanges:withHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "registerForTraitChanges:withHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "registerForTraitChanges:withHandler:",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitchangeobservable-7qoet/registerfortraitchanges:withhandler:"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitCollection": {
+      "abstract": [
+        {
+          "text": "A collection of data that represents the environment for an individual element in your app’s user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitCollection",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitcollection"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitCollection/systemTraitsAffectingColorAppearance-64z7q": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemTraitsAffectingColorAppearance"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit7UITraita",
+          "text": "UITrait"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitCollection/systemTraitsAffectingColorAppearance-64z7q",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "systemTraitsAffectingColorAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitcollection/systemtraitsaffectingcolorappearance-64z7q"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitCollection/valueForNSIntegerTrait:": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "valueForNSIntegerTrait:"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitCollection/valueForNSIntegerTrait:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "valueForNSIntegerTrait:"
+        }
+      ],
+      "role": "symbol",
+      "title": "valueForNSIntegerTrait:",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitcollection/valuefornsintegertrait:"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-3572h": {
+      "abstract": [
+        {
+          "text": "A type representing a trait in a trait collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UITraitDefinition"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-3572h",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITraitDefinition",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitdefinition-3572h"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-3572h/affectsColorAppearance": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "affectsColorAppearance"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-3572h/affectsColorAppearance",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "affectsColorAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitdefinition-3572h/affectscolorappearance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-3572h/identifier": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-3572h/identifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitdefinition-3572h/identifier"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-3572h/name": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-3572h/name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitdefinition-3572h/name"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-64c15": {
+      "abstract": [
+        {
+          "text": "A type representing a trait in a trait collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitDefinition"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-64c15",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitDefinition"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitDefinition",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitdefinition-64c15"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-64c15/affectsColorAppearance": {
+      "abstract": [],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "affectsColorAppearance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-64c15/affectsColorAppearance",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "affectsColorAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitdefinition-64c15/affectscolorappearance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-64c15/defaultValue": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit17UITraitDefinitionP5ValueQa",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-64c15/defaultValue",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "defaultValue",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitdefinition-64c15/defaultvalue"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-64c15/identifier": {
+      "abstract": [],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-64c15/identifier",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitdefinition-64c15/identifier"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-64c15/name": {
+      "abstract": [],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-64c15/name",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitdefinition-64c15/name"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICGFloatTraitDefinition",
+        "doc://com.apple.uikit/documentation/UIKit/UINSIntegerTraitDefinition",
+        "doc://com.apple.uikit/documentation/UIKit/UIObjectTraitDefinition"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Custom-traits",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITrait-1dbah",
+        "doc://com.apple.uikit/documentation/UIKit/UIObjectTraitDefinition",
+        "doc://com.apple.uikit/documentation/UIKit/UICGFloatTraitDefinition",
+        "doc://com.apple.uikit/documentation/UIKit/UINSIntegerTraitDefinition"
+      ],
+      "title": "Custom traits"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Type-Properties",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-3572h/affectsColorAppearance",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-3572h/identifier",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitDefinition-3572h/name"
+      ],
+      "title": "Type Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobjectprotocol~11418795-isequal/title",
+          "value": "isEqual:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsstring/abstract",
+          "value": [
+            {
+              "text": "A static, plain-text Unicode string object.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsdate/abstract",
+          "value": [
+            {
+              "text": "A representation of a specific point in time, independent of any calendar or time zone.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitCollection/title",
+          "value": "UITraitCollection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitCollection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITraitCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitCollection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITraitCollection"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uitraitdefinition-3572h"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2333 @@
+{
+  "abstract": [
+    {
+      "text": "An object that manages audio assets, controls playback, and configures environmental effects.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.phase/documentation/PHASE"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.phase/documentation/PHASE/PHASEEngine"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)PHASEEngine",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PHASEEngine"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PHASE"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PHASEEngine"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "PHASEEngine"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PHASEEngine"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before using PHASE, an app creates an instance of this object. Apps access all of the framework’s functionality through engine functions or properties, or through other PHASE classes into which you pass the engine object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can create multiple engine instances, but normally, apps create only one.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-and-Start-the-Engine",
+          "level": 3,
+          "text": "Create and Start the Engine",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an engine object, choose a value for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEngine/init(updateMode:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " argument that selects the desired control over scene setup and playback timing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Apps that need precise audio synchronization and ",
+            "// synchronized dynamic mix control pass in `.manual`.",
+            "engine = PHASEEngine(updateMode: .automatic) "
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, load your sound assets, sound event assets, and shapes for sound occlusion. Before your app attempts to play sounds, start the engine object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do { try engine.start() } ",
+            "catch { /* Handle the error. */ }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To stop audio playback and enable the engine to deallocate system resources, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEngine/stop()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "engine.stop()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.phase/documentation/PHASE": {
+      "abstract": [
+        {
+          "text": "Create dynamic audio experiences in your game or app that react to events and cues in the environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PHASE",
+      "type": "topic",
+      "url": "/documentation/phase"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEAssetRegistry": {
+      "abstract": [
+        {
+          "text": "A central repository of audio assets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEAssetRegistry"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEAssetRegistry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEAssetRegistry"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEAssetRegistry",
+      "type": "topic",
+      "url": "/documentation/phase/phaseassetregistry"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEEngine": {
+      "abstract": [
+        {
+          "text": "An object that manages audio assets, controls playback, and configures environmental effects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEngine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEEngine"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEEngine",
+      "type": "topic",
+      "url": "/documentation/phase/phaseengine"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEEngine/UpdateMode": {
+      "abstract": [
+        {
+          "text": "Modes that determine when the framework consumes API calls and updates internal state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdateMode"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEngine/UpdateMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UpdateMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEEngine.UpdateMode",
+      "type": "topic",
+      "url": "/documentation/phase/phaseengine/updatemode"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEEngine/activeGroupPreset": {
+      "abstract": [
+        {
+          "text": "The settings that define playback for a group of sounds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeGroupPreset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASEGroupPreset",
+          "text": "PHASEGroupPreset"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEngine/activeGroupPreset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activeGroupPreset"
+        }
+      ],
+      "role": "symbol",
+      "title": "activeGroupPreset",
+      "type": "topic",
+      "url": "/documentation/phase/phaseengine/activegrouppreset"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEEngine/assetRegistry": {
+      "abstract": [
+        {
+          "text": "An object that loads and unloads audio resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "assetRegistry"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASEAssetRegistry",
+          "text": "PHASEAssetRegistry"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEngine/assetRegistry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "assetRegistry"
+        }
+      ],
+      "role": "symbol",
+      "title": "assetRegistry",
+      "type": "topic",
+      "url": "/documentation/phase/phaseengine/assetregistry"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEEngine/defaultMedium": {
+      "abstract": [
+        {
+          "text": "The physical matter through which sound travels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultMedium"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASEMedium",
+          "text": "PHASEMedium"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEngine/defaultMedium",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "defaultMedium"
+        }
+      ],
+      "role": "symbol",
+      "title": "defaultMedium",
+      "type": "topic",
+      "url": "/documentation/phase/phaseengine/defaultmedium"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEEngine/defaultReverbPreset": {
+      "abstract": [
+        {
+          "text": "The environmental surroundings that determine how sound resonates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultReverbPreset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHASEReverbPreset",
+          "text": "PHASEReverbPreset"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEngine/defaultReverbPreset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "defaultReverbPreset"
+        }
+      ],
+      "role": "symbol",
+      "title": "defaultReverbPreset",
+      "type": "topic",
+      "url": "/documentation/phase/phaseengine/defaultreverbpreset"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEEngine/duckers": {
+      "abstract": [
+        {
+          "text": "An array of objects that reduce the volume of simultaneously playing sounds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "duckers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASEDucker",
+          "text": "PHASEDucker"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEngine/duckers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "duckers"
+        }
+      ],
+      "role": "symbol",
+      "title": "duckers",
+      "type": "topic",
+      "url": "/documentation/phase/phaseengine/duckers"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEEngine/groups": {
+      "abstract": [
+        {
+          "text": "A list of named groups that contain sounds the app operates on collectively.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "groups"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASEGroup",
+          "text": "PHASEGroup"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEngine/groups",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "groups"
+        }
+      ],
+      "role": "symbol",
+      "title": "groups",
+      "type": "topic",
+      "url": "/documentation/phase/phaseengine/groups"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEEngine/init(updateMode:)": {
+      "abstract": [
+        {
+          "text": "Creates an engine updated by the app or framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "updateMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASEEngine",
+          "text": "PHASEEngine"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHASEUpdateMode",
+          "text": "UpdateMode"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEngine/init(updateMode:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithUpdateMode:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(updateMode:)",
+      "type": "topic",
+      "url": "/documentation/phase/phaseengine/init(updatemode:)"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEEngine/outputSpatializationMode": {
+      "abstract": [
+        {
+          "text": "The mode the engine implements to create a 3D sound experience.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputSpatializationMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHASESpatializationMode",
+          "text": "PHASESpatializationMode"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEngine/outputSpatializationMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outputSpatializationMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "outputSpatializationMode",
+      "type": "topic",
+      "url": "/documentation/phase/phaseengine/outputspatializationmode"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEEngine/pause()": {
+      "abstract": [
+        {
+          "text": "Pauses all audio playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pause"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEngine/pause()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pause"
+        }
+      ],
+      "role": "symbol",
+      "title": "pause()",
+      "type": "topic",
+      "url": "/documentation/phase/phaseengine/pause()"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEEngine/renderingState": {
+      "abstract": [
+        {
+          "text": "The status of the engine’s audio playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderingState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASESoundEvent",
+          "text": "PHASESoundEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHASERenderingState",
+          "text": "RenderingState"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEngine/renderingState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renderingState"
+        }
+      ],
+      "role": "symbol",
+      "title": "renderingState",
+      "type": "topic",
+      "url": "/documentation/phase/phaseengine/renderingstate"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEEngine/rootObject": {
+      "abstract": [
+        {
+          "text": "The main object to which the app adds child objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rootObject"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASEObject",
+          "text": "PHASEObject"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEngine/rootObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rootObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "rootObject",
+      "type": "topic",
+      "url": "/documentation/phase/phaseengine/rootobject"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEEngine/soundEvents": {
+      "abstract": [
+        {
+          "text": "A collection of the sounds that play under various runtime circumstances.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "soundEvents"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHASESoundEvent",
+          "text": "PHASESoundEvent"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEngine/soundEvents",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "soundEvents"
+        }
+      ],
+      "role": "symbol",
+      "title": "soundEvents",
+      "type": "topic",
+      "url": "/documentation/phase/phaseengine/soundevents"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEEngine/start()": {
+      "abstract": [
+        {
+          "text": "Starts or resumes all audio playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEngine/start()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startAndReturnError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "start()",
+      "type": "topic",
+      "url": "/documentation/phase/phaseengine/start()"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEEngine/stop()": {
+      "abstract": [
+        {
+          "text": "Stops all audio playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stop"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEngine/stop()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stop"
+        }
+      ],
+      "role": "symbol",
+      "title": "stop()",
+      "type": "topic",
+      "url": "/documentation/phase/phaseengine/stop()"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEEngine/unitsPerMeter": {
+      "abstract": [
+        {
+          "text": "A conversion factor from meters to your app’s preferred unit of measurement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unitsPerMeter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEngine/unitsPerMeter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unitsPerMeter"
+        }
+      ],
+      "role": "symbol",
+      "title": "unitsPerMeter",
+      "type": "topic",
+      "url": "/documentation/phase/phaseengine/unitspermeter"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEEngine/unitsPerSecond": {
+      "abstract": [
+        {
+          "text": "A conversion factor from seconds to your app’s preferred unit of time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unitsPerSecond"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEngine/unitsPerSecond",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unitsPerSecond"
+        }
+      ],
+      "role": "symbol",
+      "title": "unitsPerSecond",
+      "type": "topic",
+      "url": "/documentation/phase/phaseengine/unitspersecond"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEEngine/update()": {
+      "abstract": [
+        {
+          "text": "Processes app commands and increments framework processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEngine/update()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "update"
+        }
+      ],
+      "role": "symbol",
+      "title": "update()",
+      "type": "topic",
+      "url": "/documentation/phase/phaseengine/update()"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEMedium": {
+      "abstract": [
+        {
+          "text": "A property or quality of the environment that affects how sound travels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEMedium"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEMedium",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEMedium"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEMedium",
+      "type": "topic",
+      "url": "/documentation/phase/phasemedium"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASENormalizationMode": {
+      "abstract": [
+        {
+          "text": "Options that determine whether the framework adjusts a sound asset’s loudness for the user’s output device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASENormalizationMode"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASENormalizationMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASENormalizationMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASENormalizationMode",
+      "type": "topic",
+      "url": "/documentation/phase/phasenormalizationmode"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEReverbPreset": {
+      "abstract": [
+        {
+          "text": "The manner in which PHASE diffuses resonating sound.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEReverbPreset"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEReverbPreset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEReverbPreset"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEReverbPreset",
+      "type": "topic",
+      "url": "/documentation/phase/phasereverbpreset"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASESpatializationMode": {
+      "abstract": [
+        {
+          "text": "The manner in which PHASE outputs spatial audio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASESpatializationMode"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASESpatializationMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASESpatializationMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASESpatializationMode",
+      "type": "topic",
+      "url": "/documentation/phase/phasespatializationmode"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Setup",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEEngine/UpdateMode",
+        "doc://com.apple.phase/documentation/PHASE/PHASEAssetRegistry",
+        "doc://com.apple.phase/documentation/PHASE/PHASENormalizationMode",
+        "doc://com.apple.phase/documentation/PHASE/PHASESpatializationMode",
+        "doc://com.apple.phase/documentation/PHASE/PHASEReverbPreset",
+        "doc://com.apple.phase/documentation/PHASE/PHASEMedium"
+      ],
+      "title": "Setup"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-Engine",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEEngine/init(updateMode:)",
+        "doc://com.apple.phase/documentation/PHASE/PHASEEngine/UpdateMode"
+      ],
+      "title": "Creating an Engine"
+    },
+    {
+      "anchor": "Registering-Audio-Resources",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEEngine/assetRegistry"
+      ],
+      "title": "Registering Audio Resources"
+    },
+    {
+      "anchor": "Accessing-Scene-Hierarchy",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEEngine/rootObject"
+      ],
+      "title": "Accessing Scene Hierarchy"
+    },
+    {
+      "anchor": "Defining-Environmental-Effects",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEEngine/defaultReverbPreset",
+        "doc://com.apple.phase/documentation/PHASE/PHASEEngine/defaultMedium",
+        "doc://com.apple.phase/documentation/PHASE/PHASEEngine/outputSpatializationMode"
+      ],
+      "title": "Defining Environmental Effects"
+    },
+    {
+      "anchor": "Controlling-and-Inspecting-Playback-State",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEEngine/pause()",
+        "doc://com.apple.phase/documentation/PHASE/PHASEEngine/start()",
+        "doc://com.apple.phase/documentation/PHASE/PHASEEngine/stop()",
+        "doc://com.apple.phase/documentation/PHASE/PHASEEngine/update()",
+        "doc://com.apple.phase/documentation/PHASE/PHASEEngine/renderingState"
+      ],
+      "title": "Controlling and Inspecting Playback State"
+    },
+    {
+      "anchor": "Managing-Groups-of-Sounds",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEEngine/groups",
+        "doc://com.apple.phase/documentation/PHASE/PHASEEngine/activeGroupPreset",
+        "doc://com.apple.phase/documentation/PHASE/PHASEEngine/duckers"
+      ],
+      "title": "Managing Groups of Sounds"
+    },
+    {
+      "anchor": "Accessing-In-Flight-Audio",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEEngine/soundEvents"
+      ],
+      "title": "Accessing In-Flight Audio"
+    },
+    {
+      "anchor": "Measuring-Units",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEEngine/unitsPerMeter",
+        "doc://com.apple.phase/documentation/PHASE/PHASEEngine/unitsPerSecond"
+      ],
+      "title": "Measuring Units"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "PHASEEngine"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEEngine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEEngine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.phase/documentation/PHASE"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-an-Engine",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEEngine/init(updateMode:)",
+                "doc://com.apple.phase/documentation/PHASE/PHASEEngine/UpdateMode"
+              ],
+              "title": "Creating an Engine"
+            },
+            {
+              "anchor": "Registering-Audio-Resources",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEEngine/assetRegistry"
+              ],
+              "title": "Registering Audio Resources"
+            },
+            {
+              "anchor": "Accessing-Scene-Hierarchy",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEEngine/rootObject"
+              ],
+              "title": "Accessing Scene Hierarchy"
+            },
+            {
+              "anchor": "Defining-Environmental-Effects",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEEngine/defaultReverbPreset",
+                "doc://com.apple.phase/documentation/PHASE/PHASEEngine/defaultMedium",
+                "doc://com.apple.phase/documentation/PHASE/PHASEEngine/outputSpatializationMode"
+              ],
+              "title": "Defining Environmental Effects"
+            },
+            {
+              "anchor": "Controlling-and-Inspecting-Playback-State",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEEngine/pause()",
+                "doc://com.apple.phase/documentation/PHASE/PHASEEngine/start()",
+                "doc://com.apple.phase/documentation/PHASE/PHASEEngine/stop()",
+                "doc://com.apple.phase/documentation/PHASE/PHASEEngine/update()",
+                "doc://com.apple.phase/documentation/PHASE/PHASEEngine/renderingState"
+              ],
+              "title": "Controlling and Inspecting Playback State"
+            },
+            {
+              "anchor": "Managing-Groups-of-Sounds",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEEngine/groups",
+                "doc://com.apple.phase/documentation/PHASE/PHASEEngine/activeGroupPreset",
+                "doc://com.apple.phase/documentation/PHASE/PHASEEngine/duckers"
+              ],
+              "title": "Managing Groups of Sounds"
+            },
+            {
+              "anchor": "Accessing-In-Flight-Audio",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEEngine/soundEvents"
+              ],
+              "title": "Accessing In-Flight Audio"
+            },
+            {
+              "anchor": "Measuring-Units",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEEngine/unitsPerMeter",
+                "doc://com.apple.phase/documentation/PHASE/PHASEEngine/unitsPerSecond"
+              ],
+              "title": "Measuring Units"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Setup",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEEngine/UpdateMode",
+                "doc://com.apple.phase/documentation/PHASE/PHASEAssetRegistry",
+                "doc://com.apple.phase/documentation/PHASE/PHASENormalizationMode",
+                "doc://com.apple.phase/documentation/PHASE/PHASESpatializationMode",
+                "doc://com.apple.phase/documentation/PHASE/PHASEReverbPreset",
+                "doc://com.apple.phase/documentation/PHASE/PHASEMedium"
+              ],
+              "title": "Setup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PHASEEngine"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1UpdateMode/title",
+          "value": "PHASEUpdateMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1UpdateMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEUpdateMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1UpdateMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEUpdateMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1update()/title",
+          "value": "update"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1update()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "update"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine/title",
+          "value": "PHASEEngine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEEngine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEEngine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESpatializationMode/title",
+          "value": "PHASESpatializationMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESpatializationMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESpatializationMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASESpatializationMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASESpatializationMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1stop()/title",
+          "value": "stop"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1stop()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stop"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1unitsPerMeter/title",
+          "value": "unitsPerMeter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1unitsPerMeter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "unitsPerMeter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEAssetRegistry/title",
+          "value": "PHASEAssetRegistry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEAssetRegistry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEAssetRegistry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEAssetRegistry/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEAssetRegistry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEReverbPreset/title",
+          "value": "PHASEReverbPreset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEReverbPreset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEReverbPreset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEReverbPreset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEReverbPreset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1groups/title",
+          "value": "groups"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1groups/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "groups"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1defaultMedium/title",
+          "value": "defaultMedium"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1defaultMedium/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "defaultMedium"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1rootObject/title",
+          "value": "rootObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1rootObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rootObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1start()/title",
+          "value": "startAndReturnError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1start()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startAndReturnError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEMedium/title",
+          "value": "PHASEMedium"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEMedium/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEMedium"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEMedium/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEMedium"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1outputSpatializationMode/title",
+          "value": "outputSpatializationMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1outputSpatializationMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "outputSpatializationMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1renderingState/title",
+          "value": "renderingState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1renderingState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "renderingState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1pause()/title",
+          "value": "pause"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1pause()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pause"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1assetRegistry/title",
+          "value": "assetRegistry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1assetRegistry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "assetRegistry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1activeGroupPreset/title",
+          "value": "activeGroupPreset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1activeGroupPreset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activeGroupPreset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASENormalizationMode/title",
+          "value": "PHASENormalizationMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASENormalizationMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASENormalizationMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASENormalizationMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASENormalizationMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1init(updateMode:)/title",
+          "value": "initWithUpdateMode:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1init(updateMode:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithUpdateMode:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1duckers/title",
+          "value": "duckers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1duckers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "duckers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1unitsPerSecond/title",
+          "value": "unitsPerSecond"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1unitsPerSecond/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "unitsPerSecond"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1soundEvents/title",
+          "value": "soundEvents"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1soundEvents/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "soundEvents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1defaultReverbPreset/title",
+          "value": "defaultReverbPreset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEngine~1defaultReverbPreset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "defaultReverbPreset"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/phase/phaseengine"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/phase/phaseengine"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

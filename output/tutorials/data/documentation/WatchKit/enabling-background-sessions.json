@@ -1,0 +1,675 @@
+{
+  "abstract": [
+    {
+      "text": "Enable the background mode for audio, location updates, remote notifications, or workouts.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchkit/documentation/WatchKit",
+        "doc://com.apple.watchkit/documentation/WatchKit/background-execution"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchkit/documentation/WatchKit/enabling-background-sessions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WatchKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Enabling Background Sessions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To receive background notifications or run background sessions, your app needs to enable the corresponding background mode. Add the Background Modes capability to your WatchKit extension, and then select the desired modes. Each mode sets its respective keys in the extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3694647",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Remote notification mode lets your app receive remote, background notifications. When a background notification arrives, the system wakes or launches your app to the background and gives it 30 seconds to update the app. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications/pushing-background-updates-to-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Audio, Location updates, and Workout processing modes let your app run the respective background sessions. Your app must start the session in the foreground, but the session continues to run when your app transitions to the background. Also, while the session is running, Apple Watch displays your app whenever the user raises their wrist. If the user presses the digital crown to navigate back to the watch face, the system displays an icon above the status bar, indicating that the session is still active.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/HealthKit/HKWorkoutSession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object to start and stop workouts. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/HealthKit/running-workout-sessions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class to play extended audio files in the background. For more information see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/playing-background-audio",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object to start a continuous background location session. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/allowsBackgroundLocationUpdates",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession": {
+      "abstract": [
+        {
+          "text": "An object that communicates to the system how you intend to use audio in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioSession",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioSession"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIBackgroundModes": {
+      "abstract": [
+        {
+          "text": "Services provided by an app that require it to run in the background.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIBackgroundModes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIBackgroundModes",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIBackgroundModes"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKBackgroundModes": {
+      "abstract": [
+        {
+          "text": "The services a watchOS app provides that require it to continue running in the background.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKBackgroundModes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKBackgroundModes",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/WKBackgroundModes"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager": {
+      "abstract": [
+        {
+          "text": "The object you use to start and stop the delivery of location-related events to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocationManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLLocationManager",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/CLLocationManager"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/allowsBackgroundLocationUpdates": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app receives location updates when running in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsBackgroundLocationUpdates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/allowsBackgroundLocationUpdates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowsBackgroundLocationUpdates",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/CLLocationManager/allowsBackgroundLocationUpdates"
+    },
+    "doc://com.apple.documentation/documentation/HealthKit/HKWorkoutSession": {
+      "abstract": [
+        {
+          "text": "A session that tracks the user’s workout on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HealthKit/HKWorkoutSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HKWorkoutSession",
+      "type": "topic",
+      "url": "/documentation/HealthKit/HKWorkoutSession"
+    },
+    "doc://com.apple.documentation/documentation/HealthKit/running-workout-sessions": {
+      "abstract": [
+        {
+          "text": "Track a workout on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HealthKit/running-workout-sessions",
+      "kind": "article",
+      "role": "article",
+      "title": "Running workout sessions",
+      "type": "topic",
+      "url": "/documentation/HealthKit/running-workout-sessions"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/pushing-background-updates-to-your-app": {
+      "abstract": [
+        {
+          "text": "Deliver notifications that wake your app and update it in the background.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/pushing-background-updates-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Pushing background updates to your App",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/pushing-background-updates-to-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that use features the app delegate monitors or controls, such as background tasks and extended runtime sessions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WatchKit",
+      "type": "topic",
+      "url": "/documentation/watchkit"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/background-execution": {
+      "abstract": [
+        {
+          "text": "Manage background sessions and tasks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/background-execution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Background execution",
+      "type": "topic",
+      "url": "/documentation/watchkit/background-execution"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/playing-background-audio": {
+      "abstract": [
+        {
+          "text": "Enable background audio in your app to provide a seamless playback experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/playing-background-audio",
+      "kind": "article",
+      "role": "article",
+      "title": "Playing Background Audio",
+      "type": "topic",
+      "url": "/documentation/watchkit/playing-background-audio"
+    },
+    "media-3694647": {
+      "alt": "A screenshot showing the background modes.",
+      "identifier": "media-3694647",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1a4e02853adfbec31f913f6036f856d1/media-3694647@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Background-sessions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/playing-background-audio",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKBackgroundModes",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIBackgroundModes"
+      ],
+      "title": "Background sessions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Background-sessions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/playing-background-audio",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKBackgroundModes",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIBackgroundModes"
+              ],
+              "title": "Background sessions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLLocationManager~1allowsBackgroundLocationUpdates/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "assign"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "allowsBackgroundLocationUpdates"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1HealthKit~1HKWorkoutSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLLocationManager/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CLLocationManager"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/watchkit/enabling-background-sessions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/watchkit/enabling-background-sessions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

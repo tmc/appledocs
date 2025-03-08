@@ -1,0 +1,786 @@
+{
+  "abstract": [
+    {
+      "text": "A reference to a captured portion of a regular expression.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/RegexBuilder"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/RegexBuilder/Reference"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:12RegexBuilder9ReferenceV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Reference"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RegexBuilder"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Reference"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Reference"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Reference"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Capture"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use a ",
+              "type": "text"
+            },
+            {
+              "code": "Reference",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to access a regular expression, both during",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the matching process and after a capture has been successful.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the ",
+              "type": "text"
+            },
+            {
+              "code": "kind",
+              "type": "codeVoice"
+            },
+            {
+              "text": " reference captures either ",
+              "type": "text"
+            },
+            {
+              "code": "\"CREDIT\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "\"DEBIT\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " at the beginning of a line. Later in the regular expression, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "presence of ",
+              "type": "text"
+            },
+            {
+              "code": "kind",
+              "type": "codeVoice"
+            },
+            {
+              "text": " matches the same substring that was captured previously",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "at the end of the line.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let kindRef = Reference(Substring.self)",
+            "let kindRegex = ChoiceOf {",
+            "    \"CREDIT\"",
+            "    \"DEBIT\"",
+            "}",
+            "",
+            "let transactionRegex = Regex {",
+            "    Anchor.startOfLine",
+            "    Capture(kindRegex, as: kindRef)",
+            "    OneOrMore(.anyNonNewline)",
+            "    kindRef",
+            "    Anchor.endOfLine",
+            "}",
+            "",
+            "let validTransaction = \"CREDIT     109912311421    Payroll   $69.73  CREDIT\"",
+            "let invalidTransaction = \"DEBIT     00522142123    Expense   $5.17  CREDIT\"",
+            "",
+            "print(validTransaction.contains(transactionRegex))",
+            "// Prints \"true\"",
+            "print(invalidTransaction.contains(transactionRegex))",
+            "// Prints \"false\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Any reference that is used for matching must be captured elsewhere in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "Regex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " block. You can use a reference for matching before it is captured;",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in that case, the reference will not match until it has previously been",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "captured.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To access the captured “transaction kind”, you can use the ",
+              "type": "text"
+            },
+            {
+              "code": "kind",
+              "type": "codeVoice"
+            },
+            {
+              "text": " reference",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to subscript a ",
+              "type": "text"
+            },
+            {
+              "code": "Regex.Match",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let match = validTransaction.firstMatch(of: transactionRegex) {",
+            "    print(match[kindRef])",
+            "}",
+            "// Prints \"CREDIT\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use a ",
+              "type": "text"
+            },
+            {
+              "code": "Reference",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to capture a transformed value, include a ",
+              "type": "text"
+            },
+            {
+              "code": "transform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "closure when capturing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Transaction {",
+            "    var id: UInt64",
+            "}",
+            "let transactionRef = Reference(Transaction.self)",
+            "",
+            "let transactionIDRegex = Regex {",
+            "    Capture(kindRegex, as: kindRef)",
+            "    OneOrMore(.whitespace)",
+            "    TryCapture(as: transactionRef) {",
+            "        OneOrMore(.digit)",
+            "    } transform: { str in",
+            "        UInt64(str).map(Transaction.init(id:))",
+            "    }",
+            "    OneOrMore(.anyNonNewline)",
+            "    kindRef",
+            "    Anchor.endOfLine",
+            "}",
+            "",
+            "if let match = validTransaction.firstMatch(of: transactionIDRegex) {",
+            "    print(match[transactionRef])",
+            "}",
+            "// Prints \"Transaction(id: 109912311421)\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/RegexBuilder": {
+      "abstract": [
+        {
+          "text": "Use an expressive domain-specific language to build regular expressions,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for operations like searching and replacing in text.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/RegexBuilder",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RegexBuilder",
+      "type": "topic",
+      "url": "/documentation/regexbuilder"
+    },
+    "doc://com.apple.Swift/documentation/RegexBuilder/Capture": {
+      "abstract": [
+        {
+          "text": "A regex component that saves the matched substring, or a transformed result,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for access in a regex match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Capture"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/RegexBuilder/Capture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Capture"
+        }
+      ],
+      "role": "symbol",
+      "title": "Capture",
+      "type": "topic",
+      "url": "/documentation/regexbuilder/capture"
+    },
+    "doc://com.apple.Swift/documentation/RegexBuilder/Reference": {
+      "abstract": [
+        {
+          "text": "A reference to a captured portion of a regular expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Reference"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/RegexBuilder/Reference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Reference"
+        }
+      ],
+      "role": "symbol",
+      "title": "Reference",
+      "type": "topic",
+      "url": "/documentation/regexbuilder/reference"
+    },
+    "doc://com.apple.Swift/documentation/RegexBuilder/Reference/RegexOutput": {
+      "abstract": [
+        {
+          "text": "The output type for this regular expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RegexOutput"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/RegexBuilder/Reference/RegexOutput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RegexOutput"
+        }
+      ],
+      "role": "symbol",
+      "title": "Reference.RegexOutput",
+      "type": "topic",
+      "url": "/documentation/regexbuilder/reference/regexoutput"
+    },
+    "doc://com.apple.Swift/documentation/RegexBuilder/Reference/init(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a reference with the specified capture type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Capture"
+        },
+        {
+          "kind": "text",
+          "text": ".Type)"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/RegexBuilder/Reference/init(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/regexbuilder/reference/init(_:)"
+    },
+    "doc://com.apple.Swift/documentation/RegexBuilder/Reference/regex": {
+      "abstract": [
+        {
+          "text": "The regular expression represented by this component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "regex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StringProcessing5RegexV",
+          "text": "Regex"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Capture"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/RegexBuilder/Reference/regex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "regex",
+      "type": "topic",
+      "url": "/documentation/regexbuilder/reference/regex"
+    },
+    "doc://com.apple.Swift/documentation/RegexBuilder/TryCapture": {
+      "abstract": [
+        {
+          "text": "A regex component that attempts to transform a matched substring, saving",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the result if successful and backtracking if the transformation fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TryCapture"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/RegexBuilder/TryCapture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TryCapture"
+        }
+      ],
+      "role": "symbol",
+      "title": "TryCapture",
+      "type": "topic",
+      "url": "/documentation/regexbuilder/trycapture"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RegexComponent": {
+      "abstract": [
+        {
+          "text": "A type that represents a regular expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RegexComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RegexComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RegexComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "RegexComponent",
+      "type": "topic",
+      "url": "/documentation/swift/regexcomponent"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/RegexComponent"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Captures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/RegexBuilder/Capture",
+        "doc://com.apple.Swift/documentation/RegexBuilder/TryCapture"
+      ],
+      "title": "Captures"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/RegexBuilder/Reference/init(_:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/RegexBuilder/Reference/regex"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/RegexBuilder/Reference/RegexOutput"
+      ],
+      "title": "Type Aliases"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/regexbuilder/reference"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

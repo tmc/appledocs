@@ -1,0 +1,1607 @@
+{
+  "abstract": [
+    {
+      "text": "Calculate face-capture quality and visualize facial features for a collection of images using the Vision framework.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.vision/documentation/Vision"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.vision/documentation/Vision/analyzing-a-selfie-and-visualizing-its-content"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Vision"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.1",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Analyzing a selfie and visualizing its content"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "Vision",
+              "type": "codeVoice"
+            },
+            {
+              "text": " framework to detect faces and facial features in a photo. This framework can analyze a photo to retrieve metrics such as face-capture quality and visual information like facial landmarks and face rectangles. This sample demonstrates how to locate all the faces in a selfie through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/DetectFaceRectanglesRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The sample then uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/DetectFaceCaptureQualityRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to obtain capture-quality scores, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/DetectFaceLandmarksRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to display outlines around each facial landmark, like the eyes or nose.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "face-detection-box",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Face-capture quality is a holistic measure that considers scene lighting, blur, occlusion, expression, pose, focus, and more. It provides a score that the app uses to sort the collection of selfies from best to worst. The pretrained machine-learning model scores a capture lower if, for example, the image contains low light or bad focus, or if the person has a negative expression. These scores are floating-point values between 0.0 and 1.0.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run this sample app, you need the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode 16 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iPhone with iOS 18 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Selecting-the-selfies",
+          "level": 3,
+          "text": "Selecting the selfies",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PhotosUI/PhotosPicker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to allow a person to select the selfies to analyze, and sets the maximum number of images to 5 through the ",
+              "type": "text"
+            },
+            {
+              "code": "maxSelectionCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter. For more information on using ",
+              "type": "text"
+            },
+            {
+              "code": "PhotosPicker",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PhotoKit/bringing-photos-picker-to-your-swiftui-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "PhotosPicker(selection: $selectedPhotos, maxSelectionCount: 5, matching: .images) {",
+            "    Text(\"Select Selfies\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample performs the ",
+              "type": "text"
+            },
+            {
+              "code": "Vision",
+              "type": "codeVoice"
+            },
+            {
+              "text": " requests and displays the images using data, so the app converts each ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PhotosUI/PhotosPickerItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for photo in selectedPhotos {",
+            "    if let image = try? await photo.loadTransferable(type: Data.self) {",
+            "        selectedPhotosData.append(image)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Perform-the-requests-and-analyze-the-selfies",
+          "level": 3,
+          "text": "Perform the requests and analyze the selfies",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To analyze a selfie, the sample first instantiates the three ",
+              "type": "text"
+            },
+            {
+              "code": "Vision",
+              "type": "codeVoice"
+            },
+            {
+              "text": " requests. The sample then performs ",
+              "type": "text"
+            },
+            {
+              "code": "DetectFaceRectanglesRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to locate the faces in the photo, and uses the returned ",
+              "type": "text"
+            },
+            {
+              "code": "FaceObservation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects as the objects the other two requests process. The app sets this functionality through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/DetectFaceLandmarksRequest/inputFaceObservations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, ",
+              "type": "text"
+            },
+            {
+              "code": "DetectFaceLandmarksRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "DetectFaceCaptureQualityRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " need to locate the faces first before performing the rest of the request. Setting the ",
+              "type": "text"
+            },
+            {
+              "code": "inputFaceObservations",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property prevents the sample from performing ",
+              "type": "text"
+            },
+            {
+              "code": "DetectFaceRectanglesRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " more than once (which is unnecessary).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the ",
+              "type": "text"
+            },
+            {
+              "code": "score",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method on a ",
+              "type": "text"
+            },
+            {
+              "code": "FaceObservation",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the sample sets the selfie’s score. The function returns the new ",
+              "type": "text"
+            },
+            {
+              "code": "Selfie",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object, which holds the photo, the score, and the results of the ",
+              "type": "text"
+            },
+            {
+              "code": "DetectFaceLandmarksRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func processSelfie(photo: Data) async throws -> Selfie {",
+            "    /// Instantiate the `Vision` requests.",
+            "    let detectFacesRequest = DetectFaceRectanglesRequest()",
+            "    var qualityRequest = DetectFaceCaptureQualityRequest()",
+            "    var landmarksRequest = DetectFaceLandmarksRequest()",
+            "    ",
+            "    /// Perform `DetectFaceRectanglesRequest` to locate all faces in the photo.",
+            "    let handler = ImageRequestHandler(photo)",
+            "    let faceObservations = try await handler.perform(detectFacesRequest)",
+            "    ",
+            "    /// Set the faces that `DetectFaceLandmarksRequest` and `DetectFaceCaptureQualityRequest` analyze.",
+            "    landmarksRequest.inputFaceObservations = faceObservations",
+            "    qualityRequest.inputFaceObservations = faceObservations",
+            "        ",
+            "    /// Perform `DetectFaceCaptureQualityRequest` and `DetectFaceLandmarksRequest` on the photo.",
+            "    let (qualityResults, landmarksResults) = try await handler.perform(qualityRequest, landmarksRequest)",
+            "    ",
+            "    var score: Float = 0",
+            "    /// Set the capture-quality score of the photo if `Vision` detects one face.",
+            "    if qualityResults.count == 1 {",
+            "        score = qualityResults[0].captureQuality!.score",
+            "    /// Set the average capture-quality score if `Vision` detects multiple faces.",
+            "    } else if qualityResults.count > 1 {",
+            "        for face in qualityResults {",
+            "            score += face.captureQuality!.score",
+            "        }",
+            "        score /= Float(qualityResults.count)",
+            "    }",
+            "        ",
+            "    return Selfie(photo: photo, score: score, landmarksResults: landmarksResults)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Analyzing a large collection of selfies with ",
+              "type": "text"
+            },
+            {
+              "code": "Vision",
+              "type": "codeVoice"
+            },
+            {
+              "text": " requests can take time, so the app uses Swift concurrency to help with speed and efficiency. Using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/TaskGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the app processes the images in parallel. When the ",
+              "type": "text"
+            },
+            {
+              "code": "processSelfie",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method returns a new ",
+              "type": "text"
+            },
+            {
+              "code": "Selfie",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object, the app adds it to the ",
+              "type": "text"
+            },
+            {
+              "code": "selfies",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array. After the app processes all the images, it sorts the ",
+              "type": "text"
+            },
+            {
+              "code": "selfies",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array by capture-quality score. The function returns the new array of ",
+              "type": "text"
+            },
+            {
+              "code": "Selfie",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func processAllSelfies(photos: [Data]) async throws -> [Selfie] {",
+            "    var selfies = [Selfie]()",
+            "    ",
+            "    try await withThrowingTaskGroup(of: Selfie.self) { group in",
+            "        for photo in photos {",
+            "            group.addTask {",
+            "                return try await processSelfie(photo: photo)",
+            "            }",
+            "        }",
+            "        ",
+            "        /// Only add the photo to the `selfies` array if Vision detects a face.",
+            "        for try await selfie in group where selfie.facesDetected > 0 {",
+            "            selfies.append(selfie)",
+            "        }",
+            "    }",
+            "    ",
+            "    /// Sort the selfies in descending order of their capture-quality scores.",
+            "    selfies.sort { $0.score > $1.score }",
+            "    ",
+            "    return selfies",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Display-face-rectangles",
+          "level": 3,
+          "text": "Display face rectangles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample provides custom ",
+              "type": "text"
+            },
+            {
+              "code": "Shape",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implementations to draw a rectangle around each face, and the face landmarks. For face rectangles, the app uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/FaceObservation/boundingBox",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property on a ",
+              "type": "text"
+            },
+            {
+              "code": "FaceObservation",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "code": "boundingBox",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property contains the location and dimensions of the box in the form of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/NormalizedRect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The sample converts the ",
+              "type": "text"
+            },
+            {
+              "code": "NormalizedRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Path",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to draw the rectangle:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct BoundingBox: Shape {",
+            "    private let normalizedRect: NormalizedRect",
+            "    ",
+            "    init(observation: any BoundingBoxProviding) {",
+            "        normalizedRect = observation.boundingBox",
+            "    }",
+            "    ",
+            "    func path(in rect: CGRect) -> Path {",
+            "        let rect = normalizedRect.toImageCoordinates(rect.size, origin: .upperLeft)",
+            "        return Path(rect)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates a ",
+              "type": "text"
+            },
+            {
+              "code": "BoundingBox",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object for each face in the photo, and overlays them on the image:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".overlay {",
+            "    ForEach(selfie.landmarkResults, id: \\.self) { observation in",
+            "        BoundingBox(observation: observation)",
+            "            .stroke(.red, lineWidth: 2)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Display-face-landmarks",
+          "level": 3,
+          "text": "Display face landmarks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create and display face landmarks on the image, the sample uses the custom ",
+              "type": "text"
+            },
+            {
+              "code": "FaceLandmark",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure. Each ",
+              "type": "text"
+            },
+            {
+              "code": "FaceObservation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from the ",
+              "type": "text"
+            },
+            {
+              "code": "DetectFaceLandmarksRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains a collection of landmarks as regions. A region contains all the points the sample needs to draw the outline. The possible regions are ",
+              "type": "text"
+            },
+            {
+              "code": "faceContour",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "innerLips",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "leftEye",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "leftEyebrow",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "leftPupil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "medianLine",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "nose",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "noseCrest",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "outerLips",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "rightEye",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "rightEyebrow",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "rightPupil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample converts a region’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/NormalizedPoint",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " collection to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgpoint",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " collection, and draws a path from one point to the next. When it reaches the last point, the sample closes the path:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct FaceLandmark: Shape {",
+            "    let region: FaceObservation.Landmarks2D.Region",
+            "    ",
+            "    func path(in rect: CGRect) -> Path {",
+            "        let points = region.pointsInImageCoordinates(rect.size, origin: .upperLeft)",
+            "        let path = CGMutablePath()",
+            "        ",
+            "        path.move(to: points[0])",
+            "        ",
+            "        for index in 1..<points.count {",
+            "            path.addLine(to: points[index])",
+            "        }",
+            "        ",
+            "        if region.pointsClassification == .closedPath {",
+            "            path.closeSubpath()",
+            "        }",
+            "        ",
+            "        return Path(path)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each face ",
+              "type": "text"
+            },
+            {
+              "code": "Vision",
+              "type": "codeVoice"
+            },
+            {
+              "text": " detects in an image, the sample creates ",
+              "type": "text"
+            },
+            {
+              "code": "FaceLandmark",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects and overlays them on the image:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".overlay {",
+            "    ForEach(selfie.landmarksResults, id: \\.self) { observation in",
+            "        FaceLandmark(region: observation.landmarks!.faceContour)",
+            "            .stroke(.white, lineWidth: 2)",
+            "        ",
+            "        // ..",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "747e6482a879/AnalyzingASelfieAndVisualizingItsContent.zip": {
+      "checksum": "747e6482a8791d9047c33956acf9e41922063bfff7180a882ff2dc042038ee62e470b66ad164ae56ab2591091ca454c03aaf758496baa53b18bb06ee9ef0726e",
+      "identifier": "747e6482a879/AnalyzingASelfieAndVisualizingItsContent.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/747e6482a879/AnalyzingASelfieAndVisualizingItsContent.zip"
+    },
+    "doc://com.apple.documentation/documentation/PhotoKit/bringing-photos-picker-to-your-swiftui-app": {
+      "abstract": [
+        {
+          "text": "Select media assets by using a Photos picker view that SwiftUI provides.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PhotoKit/bringing-photos-picker-to-your-swiftui-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Bringing Photos picker to your SwiftUI app",
+      "type": "topic",
+      "url": "/documentation/PhotoKit/bringing-photos-picker-to-your-swiftui-app"
+    },
+    "doc://com.apple.documentation/documentation/PhotosUI/PhotosPicker": {
+      "abstract": [
+        {
+          "text": "A view that displays a Photos picker for choosing assets from the photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhotosPicker"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PhotosUI/PhotosPicker",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PhotosPicker",
+      "type": "topic",
+      "url": "/documentation/PhotosUI/PhotosPicker"
+    },
+    "doc://com.apple.documentation/documentation/PhotosUI/PhotosPickerItem": {
+      "abstract": [
+        {
+          "text": "A type that represents an item you use with a Photos picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhotosPickerItem"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PhotosUI/PhotosPickerItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PhotosPickerItem",
+      "type": "topic",
+      "url": "/documentation/PhotosUI/PhotosPickerItem"
+    },
+    "doc://com.apple.documentation/documentation/Swift/TaskGroup": {
+      "abstract": [
+        {
+          "text": "A group that contains dynamically created child tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TaskGroup"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "ChildTaskResult"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ChildTaskResult"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/TaskGroup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TaskGroup",
+      "type": "topic",
+      "url": "/documentation/Swift/TaskGroup"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Path": {
+      "abstract": [
+        {
+          "text": "The outline of a 2D shape.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Path"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Path",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Path",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Path"
+    },
+    "doc://com.apple.documentation/documentation/Vision/DetectFaceCaptureQualityRequest": {
+      "abstract": [
+        {
+          "text": "A request that produces a floating-point number that represents the capture quality of a face in a photo.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectFaceCaptureQualityRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/DetectFaceCaptureQualityRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DetectFaceCaptureQualityRequest",
+      "type": "topic",
+      "url": "/documentation/Vision/DetectFaceCaptureQualityRequest"
+    },
+    "doc://com.apple.documentation/documentation/Vision/DetectFaceLandmarksRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request that finds facial features like eyes and mouth in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectFaceLandmarksRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/DetectFaceLandmarksRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DetectFaceLandmarksRequest",
+      "type": "topic",
+      "url": "/documentation/Vision/DetectFaceLandmarksRequest"
+    },
+    "doc://com.apple.documentation/documentation/Vision/DetectFaceLandmarksRequest/inputFaceObservations": {
+      "abstract": [
+        {
+          "text": "An array of face-observation objects to process as part of the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputFaceObservations"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Vision15FaceObservationV",
+          "text": "FaceObservation"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/DetectFaceLandmarksRequest/inputFaceObservations",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inputFaceObservations",
+      "type": "topic",
+      "url": "/documentation/Vision/DetectFaceLandmarksRequest/inputFaceObservations"
+    },
+    "doc://com.apple.documentation/documentation/Vision/DetectFaceRectanglesRequest": {
+      "abstract": [
+        {
+          "text": "A request that finds faces within an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectFaceRectanglesRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/DetectFaceRectanglesRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DetectFaceRectanglesRequest",
+      "type": "topic",
+      "url": "/documentation/Vision/DetectFaceRectanglesRequest"
+    },
+    "doc://com.apple.documentation/documentation/Vision/FaceObservation/boundingBox": {
+      "abstract": [
+        {
+          "text": "The bounding box of the object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "boundingBox"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Vision14NormalizedRectV",
+          "text": "NormalizedRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/FaceObservation/boundingBox",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "boundingBox",
+      "type": "topic",
+      "url": "/documentation/Vision/FaceObservation/boundingBox"
+    },
+    "doc://com.apple.documentation/documentation/Vision/NormalizedPoint": {
+      "abstract": [
+        {
+          "text": "A point in a 2D coordinate system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NormalizedPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/NormalizedPoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NormalizedPoint",
+      "type": "topic",
+      "url": "/documentation/Vision/NormalizedPoint"
+    },
+    "doc://com.apple.documentation/documentation/Vision/NormalizedRect": {
+      "abstract": [
+        {
+          "text": "The location and dimensions of a rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NormalizedRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/NormalizedRect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NormalizedRect",
+      "type": "topic",
+      "url": "/documentation/Vision/NormalizedRect"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgpoint": {
+      "abstract": [
+        {
+          "text": "A structure that contains a point in a two-dimensional coordinate system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgpoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGPoint",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgpoint"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgrect": {
+      "abstract": [
+        {
+          "text": "A structure that contains the location and dimensions of a rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRect",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgrect"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.vision/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.vision/documentation/Vision/DetectFaceCaptureQualityRequest": {
+      "abstract": [
+        {
+          "text": "A request that produces a floating-point number that represents the capture quality of a face in a photo.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectFaceCaptureQualityRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/DetectFaceCaptureQualityRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DetectFaceCaptureQualityRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "DetectFaceCaptureQualityRequest",
+      "type": "topic",
+      "url": "/documentation/vision/detectfacecapturequalityrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/DetectFaceLandmarksRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request that finds facial features like eyes and mouth in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectFaceLandmarksRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/DetectFaceLandmarksRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DetectFaceLandmarksRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "DetectFaceLandmarksRequest",
+      "type": "topic",
+      "url": "/documentation/vision/detectfacelandmarksrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/DetectFaceRectanglesRequest": {
+      "abstract": [
+        {
+          "text": "A request that finds faces within an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectFaceRectanglesRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/DetectFaceRectanglesRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DetectFaceRectanglesRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "DetectFaceRectanglesRequest",
+      "type": "topic",
+      "url": "/documentation/vision/detectfacerectanglesrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/DetectHumanRectanglesRequest": {
+      "abstract": [
+        {
+          "text": "A request that finds rectangular regions that contain people in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectHumanRectanglesRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/DetectHumanRectanglesRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DetectHumanRectanglesRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "DetectHumanRectanglesRequest",
+      "type": "topic",
+      "url": "/documentation/vision/detecthumanrectanglesrequest"
+    },
+    "face-detection-box": {
+      "alt": "An illustration of a person’s face, and a box around the face depicting it being detected.",
+      "identifier": "face-detection-box",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e09281809de5df298df7a922cc0a7a3a/face-detection-box@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "747e6482a879/AnalyzingASelfieAndVisualizingItsContent.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Face-and-body-detection",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/DetectFaceRectanglesRequest",
+        "doc://com.apple.vision/documentation/Vision/DetectFaceLandmarksRequest",
+        "doc://com.apple.vision/documentation/Vision/DetectFaceCaptureQualityRequest",
+        "doc://com.apple.vision/documentation/Vision/DetectHumanRectanglesRequest"
+      ],
+      "title": "Face and body detection"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/vision/analyzing-a-selfie-and-visualizing-its-content"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

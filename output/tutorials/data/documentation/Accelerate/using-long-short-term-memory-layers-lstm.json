@@ -1,0 +1,1147 @@
+{
+  "abstract": [
+    {
+      "text": "Add long short-term memory (LSTM) layers to recurrent neural networks to avoid long-term dependency problems.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/bnns-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/classic-bnns-api"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/using-long-short-term-memory-layers-lstm"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using Long Short-Term Memory Layers (LSTM)"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An LSTM layer consists of four gates that manipulate cell-state data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Controls whether to erase data from the cell-state.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Forget gate",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Controls whether to write data to the cell-state.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Input gate",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Controls what data to write to the cell-state.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Candidate gate",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Controls what data to pass as the output hidden state.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Output gate",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure illustrates the components of an LSTM layer. The inputs are the cell-state (c), the hidden state (h), and the input data (x). The outputs are the updated cell-state (c) and hidden state (h):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3633106",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that the default activation function for the forget, input, and output gates is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSActivationFunction/sigmoid",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "; the default activation function for the candidate gate is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSActivationFunction/tanh",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "BNNS provides direct apply functions for forward and backward LSTM passes, that is, you don’t need to create an explicit LSTM layer. Rather, you create descriptors of the input, output, and gates to create a parameters structure, and pass the parameters structure to the apply function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The input and out descriptors require n-dimensional array descriptors for the data, hidden state, and cell-state:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let inputDescriptor = BNNSLSTMDataDescriptor(data_desc: inputDataDescriptor,",
+            "                                             hidden_desc: inputHiddenDescriptor,",
+            "                                             cell_state_desc: inputCellStateDescriptor)",
+            "",
+            "let outputDescriptor = BNNSLSTMDataDescriptor(data_desc: outputDataDescriptor,",
+            "                                              hidden_desc: outputHiddenDescriptor,",
+            "                                              cell_state_desc: outputCellStateDescriptor)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Define each gate by specifying input, hidden, and cell-state weights, and bias:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let forgetGate = BNNSLSTMGateDescriptor(iw_desc: (forgetGateInputWeightsDescriptor,",
+            "                                                  forgetGateInputWeightsDescriptor),",
+            "                                        hw_desc: forgetGateHiddenWeightsDescriptor,",
+            "                                        cw_desc: forgetGateCellStateWeightsDescriptor,",
+            "                                        b_desc: forgetGateBiasDescriptor,",
+            "                                        activation: BNNSActivation(function: .sigmoid))",
+            "",
+            "let inputGate = BNNSLSTMGateDescriptor(iw_desc: (inputGateInputWeightsDescriptor,",
+            "                                                 inputGateInputWeightsDescriptor),",
+            "                                       hw_desc: inputGateHiddenWeightsDescriptor,",
+            "                                       cw_desc: inputGateCellStateWeightsDescriptor,",
+            "                                       b_desc: inputGateBiasDescriptor,",
+            "                                       activation: BNNSActivation(function: .sigmoid))",
+            "",
+            "let candidateGate = BNNSLSTMGateDescriptor(iw_desc: (candidateGateInputWeightsDescriptor,",
+            "                                                     candidateGateInputWeightsDescriptor),",
+            "                                           hw_desc: candidateGateHiddenWeightsDescriptor,",
+            "                                           cw_desc: candidateGateCellStateWeightsDescriptor,",
+            "                                           b_desc: candidateGateBiasDescriptor,",
+            "                                           activation: BNNSActivation(function: .tanh))",
+            "",
+            "let outputGate = BNNSLSTMGateDescriptor(iw_desc: (outputGateInputWeightsDescriptor,",
+            "                                                  outputGateInputWeightsDescriptor),",
+            "                                        hw_desc: outputGateHiddenWeightsDescriptor,",
+            "                                        cw_desc: outputGateCellStateWeightsDescriptor,",
+            "                                        b_desc: outputGateBiasDescriptor,",
+            "                                        activation: BNNSActivation(function: .sigmoid))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows how each gate computes its output:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " for (size_t o = 0; o < iw_desc.size[1]; o++)",
+            " {",
+            "  float res = bias[o]; // init with bias value",
+            "  for (size_t i = 0; i < iw_desc.size[0]; i++) // matrix vector multiply",
+            "   res += input[i] * input_weights[o][i];",
+            "  for (size_t i = 0; i < hw_desc.size[0]; i++) // matrix vector multiply",
+            "   res += hidden[i] * hidden_weights[o][i];",
+            "  for (size_t i = 0; i < cw_desc.size[0]; i++) // matrix vector multiply",
+            "   res += cell[i] * cell_weights[o][i];",
+            "  out[i] = activation.func(res); // apply activation function",
+            " }"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Give the descriptors for the input, output, and gates, you’re ready to create the parameters structure:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var layerParams = BNNSLayerParametersLSTM(input_size:  ... ,",
+            "                                          hidden_size:  ... ,",
+            "                                          batch_size: ... ,",
+            "                                          num_layers: ... ,",
+            "                                          seq_len: ... ,",
+            "                                          dropout: ... ,",
+            "                                          lstm_flags: BNNSLayerFlagsLSTMDefaultActivations.rawValue,",
+            "                                          sequence_descriptor: BNNSNDArrayDescriptor(),",
+            "                                          input_descriptor: inputDescriptor,",
+            "                                          output_descriptor: outputDescriptor,",
+            "                                          input_gate: inputGate,",
+            "                                          forget_gate: forgetGate,",
+            "                                          candidate_gate: candidateGate,",
+            "                                          output_gate: outputGate,",
+            "                                          hidden_activation: BNNSActivation(function: .identity))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "LSTM provides the option to define a training cache that stores intermediate results to accelerate backward computation. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSComputeLSTMTrainingCacheCapacity(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to compute the size, in bytes, of the training cache:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let trainingCacheBufferBytes = BNNSComputeLSTMTrainingCacheCapacity(&layerParams)",
+            "",
+            "let trainingCache = UnsafeMutableRawPointer.allocate(byteCount: trainingCacheBufferBytes,",
+            "                                                     alignment: 1)",
+            "defer {",
+            "    trainingCache.deallocate()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSDirectApplyLSTMBatchTrainingCaching(_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to apply the LSTM layer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "BNNSDirectApplyLSTMBatchTrainingCaching(&layerParams,",
+            "                                        nil,",
+            "                                        trainingCache,",
+            "                                        trainingCacheBufferBytes)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSActivationFunction/sigmoid": {
+      "abstract": [
+        {
+          "text": "An activation function that returns the sigmoid function of its input.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sigmoid"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@BNNSActivationFunction",
+          "text": "BNNSActivationFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSActivationFunction/sigmoid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sigmoid",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsactivationfunction/sigmoid"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSActivationFunction/tanh": {
+      "abstract": [
+        {
+          "text": "An activation function that returns the hyperbolic tangent of its input.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tanh"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@BNNSActivationFunction",
+          "text": "BNNSActivationFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSActivationFunction/tanh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tanh",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsactivationfunction/tanh"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSComputeLSTMTrainingCacheCapacity(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the minimum bytes capacity of the training cache buffer a long short-term memory (LSTM) layer uses when it’s applied.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSComputeLSTMTrainingCacheCapacity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSLayerParametersLSTM",
+          "text": "BNNSLayerParametersLSTM"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSComputeLSTMTrainingCacheCapacity(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSComputeLSTMTrainingCacheCapacity"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSComputeLSTMTrainingCacheCapacity(_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnscomputelstmtrainingcachecapacity(_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSDirectApplyLSTMBatchBackward(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Applies a long short-term memory (LSTM) filter backward to generate gradients.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSDirectApplyLSTMBatchBackward"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSLayerParametersLSTM",
+          "text": "BNNSLayerParametersLSTM"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSLayerParametersLSTM",
+          "text": "BNNSLayerParametersLSTM"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSFilterParameters",
+          "text": "BNNSFilterParameters"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSDirectApplyLSTMBatchBackward(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSDirectApplyLSTMBatchBackward"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSDirectApplyLSTMBatchBackward(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsdirectapplylstmbatchbackward(_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSDirectApplyLSTMBatchTrainingCaching(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Applies a long short-term memory (LSTM) layer directly to an input.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSDirectApplyLSTMBatchTrainingCaching"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSLayerParametersLSTM",
+          "text": "BNNSLayerParametersLSTM"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@BNNSFilterParameters",
+          "text": "BNNSFilterParameters"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSDirectApplyLSTMBatchTrainingCaching(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSDirectApplyLSTMBatchTrainingCaching"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSDirectApplyLSTMBatchTrainingCaching(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnsdirectapplylstmbatchtrainingcaching(_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSLSTMDataDescriptor": {
+      "abstract": [
+        {
+          "text": "A structure that contains the input-output, hidden, and cell state n-dimensional array descriptors for a long short-term memory (LSTM) layer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSLSTMDataDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSLSTMDataDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSLSTMDataDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSLSTMDataDescriptor",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnslstmdatadescriptor"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSLSTMGateDescriptor": {
+      "abstract": [
+        {
+          "text": "A structure that describes a long short-term memory (LSTM) gate layer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSLSTMGateDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSLSTMGateDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSLSTMGateDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSLSTMGateDescriptor",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnslstmgatedescriptor"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSLayerFlags": {
+      "abstract": [
+        {
+          "text": "Options that control the behavior of a long short-term memory (LSTM) layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSLayerFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSLayerFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSLayerFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSLayerFlags",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnslayerflags"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/BNNSLayerParametersLSTM": {
+      "abstract": [
+        {
+          "text": "A structure that contains the parameters of a long short-term memory (LSTM) layer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BNNSLayerParametersLSTM"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/BNNSLayerParametersLSTM",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BNNSLayerParametersLSTM"
+        }
+      ],
+      "role": "symbol",
+      "title": "BNNSLayerParametersLSTM",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnnslayerparameterslstm"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/bnns-library": {
+      "abstract": [
+        {
+          "text": "Implement and run neural networks for training and inference.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/bnns-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "BNNS",
+      "type": "topic",
+      "url": "/documentation/accelerate/bnns-library"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/classic-bnns-api": {
+      "abstract": [],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/classic-bnns-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Classic BNNS API",
+      "type": "topic",
+      "url": "/documentation/accelerate/classic-bnns-api"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3633106": {
+      "alt": "Visualization of an LSTM layer showing the forget gate, input gate, candidate gate, and output gate as boxes that contain a curve that represents the gate’s activation function. The cell state is multiplied by the output of the forget gate, and then added to the product of the outputs of the input gate and candidate gate.",
+      "identifier": "media-3633106",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6565aaa85ca2568104335ed3b51b8ac5/media-3633106@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Recurrent-layers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSLSTMDataDescriptor",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSLSTMGateDescriptor",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSLayerFlags",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSLayerParametersLSTM",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSComputeLSTMTrainingCacheCapacity(_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSDirectApplyLSTMBatchTrainingCaching(_:_:_:_:)",
+        "doc://com.apple.accelerate/documentation/Accelerate/BNNSDirectApplyLSTMBatchBackward(_:_:_:_:_:)"
+      ],
+      "title": "Recurrent layers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSLSTMGateDescriptor/title",
+          "value": "BNNSLSTMGateDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSLSTMGateDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSLSTMGateDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSLSTMGateDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSLSTMGateDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDirectApplyLSTMBatchBackward(_:_:_:_:_:)/title",
+          "value": "BNNSDirectApplyLSTMBatchBackward"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDirectApplyLSTMBatchBackward(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSDirectApplyLSTMBatchBackward"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSLayerFlags/title",
+          "value": "BNNSLayerFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSLayerFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSLayerFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSLayerFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSLayerFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSLSTMDataDescriptor/title",
+          "value": "BNNSLSTMDataDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSLSTMDataDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSLSTMDataDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSLSTMDataDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSLSTMDataDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDirectApplyLSTMBatchTrainingCaching(_:_:_:_:)/title",
+          "value": "BNNSDirectApplyLSTMBatchTrainingCaching"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSDirectApplyLSTMBatchTrainingCaching(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSDirectApplyLSTMBatchTrainingCaching"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSLayerParametersLSTM/title",
+          "value": "BNNSLayerParametersLSTM"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSLayerParametersLSTM/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSLayerParametersLSTM"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSLayerParametersLSTM/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSLayerParametersLSTM"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSComputeLSTMTrainingCacheCapacity(_:)/title",
+          "value": "BNNSComputeLSTMTrainingCacheCapacity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1BNNSComputeLSTMTrainingCacheCapacity(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BNNSComputeLSTMTrainingCacheCapacity"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

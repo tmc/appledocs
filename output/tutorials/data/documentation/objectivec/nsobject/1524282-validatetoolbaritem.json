@@ -1,0 +1,459 @@
+{
+  "abstract": [
+    {
+      "text": "If this method is implemented and returns ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+      "isActive": false,
+      "type": "reference"
+    },
+    {
+      "text": ", NSToolbar will disable ",
+      "type": "text"
+    },
+    {
+      "code": "theItem",
+      "type": "codeVoice"
+    },
+    {
+      "text": "; returning ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+      "isActive": false,
+      "type": "reference"
+    },
+    {
+      "text": " causes ",
+      "type": "text"
+    },
+    {
+      "code": "theItem",
+      "type": "codeVoice"
+    },
+    {
+      "text": " to be enabled.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/objectivec",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/objectivec/nsobject/1524282-validatetoolbaritem"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1524282,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSObject(im)validateToolbarItem:",
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "parent": {
+      "title": "NSObject"
+    },
+    "platforms": [
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "11.0",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "validateToolbarItem:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "keyword",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "identifier",
+              "text": "validateToolbarItem:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSToolbarItem",
+              "text": "NSToolbarItem"
+            },
+            {
+              "kind": "text",
+              "text": " *"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "item"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "NSToolbar only calls this method for image items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1524282-validatetoolbaritem",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " is called very frequently, so it must be efficient.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the receiver is the ",
+              "type": "text"
+            },
+            {
+              "code": "target",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the actions of multiple toolbar items, it’s necessary to determine which toolbar item ",
+              "type": "text"
+            },
+            {
+              "code": "theItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " refers to by testing the ",
+              "type": "text"
+            },
+            {
+              "code": "itemIdentifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "-(BOOL)validateToolbarItem:(NSToolbarItem *)toolbarItem",
+            "{",
+            "    BOOL enable = NO;",
+            "    if ([[toolbarItem itemIdentifier] isEqual:SaveDocToolbarItemIdentifier]) {",
+            "        // We will return YES (enable the save item)",
+            "        // only when the document is dirty and needs saving",
+            "        enable = [self isDocumentEdited];",
+            "    } else if ([[toolbarItem itemIdentifier] isEqual:NSToolbarPrintItemIdentifier]) {",
+            "        // always enable print for this window",
+            "        enable = YES;",
+            "    }",
+            "    return enable;",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "2555944",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1695993": {
+      "identifier": "devLink-1695993",
+      "title": "Toolbar Programming Topics for Cocoa",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Toolbars/Toolbars.html#//apple_ref/doc/uid/10000109i"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSToolbar/validateVisibleItems()": {
+      "abstract": [
+        {
+          "text": "Validates the toolbar’s visible items during a window update.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "validateVisibleItems()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbar/validateVisibleItems()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "validateVisibleItems()",
+      "type": "topic",
+      "url": "/documentation/appkit/nstoolbar/validatevisibleitems()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSToolbarItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nstoolbaritem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem/action": {
+      "abstract": [
+        {
+          "text": "The action method to call when someone clicks on the toolbar item.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem/action",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "action",
+      "type": "topic",
+      "url": "/documentation/appkit/nstoolbaritem/action"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem/target": {
+      "abstract": [
+        {
+          "text": "The object that defines the action method the toolbar item calls when clicked.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem/target",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "target",
+      "type": "topic",
+      "url": "/documentation/appkit/nstoolbaritem/target"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem/validate()": {
+      "abstract": [
+        {
+          "text": "Validates the toolbar item’s menu and its ability to perfrom its action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "validate()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem/validate()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "validate()",
+      "type": "topic",
+      "url": "/documentation/appkit/nstoolbaritem/validate()"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/objectivec": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Objective-C Runtime",
+      "type": "topic",
+      "url": "/documentation/objectivec"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/no": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NO",
+      "type": "topic",
+      "url": "/documentation/objectivec/no"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1524282-validatetoolbaritem": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "validateToolbarItem:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1524282-validatetoolbaritem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "validateToolbarItem:",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1524282-validatetoolbaritem"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1524282-validatetoolbaritem#2555944": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1524282-validatetoolbaritem#2555944",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/objectivec/nsobject/1524282-validatetoolbaritem#2555944"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/yes": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "YES",
+      "type": "topic",
+      "url": "/documentation/objectivec/yes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSToolbar/validateVisibleItems()",
+        "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem/action",
+        "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem/target",
+        "devLink-1695993",
+        "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem/validate()"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/objectivec/nsobject/1524282-validatetoolbaritem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

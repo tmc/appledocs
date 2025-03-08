@@ -1,0 +1,567 @@
+{
+  "abstract": [
+    {
+      "text": "Debug your server to send push notifications with device and broadcast push notifications.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.usernotifications/documentation/UserNotifications",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.usernotifications/documentation/UserNotifications/troubleshooting-push-notifications"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "User Notifications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Troubleshooting push notifications"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When encountering issues where test devices fail to receive push notifications from the provider server, troubleshooting becomes essential to ensure the functionality of your app’s notification system. Verify that you aren’t spamming the device. If you send too many notifications to the same device within a short timespan, APNs may treat it as a denial-of-service attack and temporarily block your server from sending notifications. Check to refer to if silent notifications are being throttled. APNs sends a limited number of silent notifications with the ",
+              "type": "text"
+            },
+            {
+              "code": "content-available",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key. In addition, if the device has already exceeded its power budget for the day, silent notifications aren’t sent again until the power budget resets, which happens once a day. These limits are disabled when testing your app from Xcode. For more information, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/pushing-background-updates-to-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make sure you have the necessary certificates installed on your provider server. If your provider server doesn’t have the proper certificates for TLS/SSL validation, it can’t connect to APNs. For certificate-based connections, your provider server also needs the certificate you obtained from Apple. For more information, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-certificate-based-connection-to-apns",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Check how often your provider server connects to APNs. If your provider server opens and closes its connection to APNs repeatedly, APNs may treat it as a denial-of-service attack and temporarily block your server from connecting.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Depending on whether you are troubleshooting issues with device or broadcast notifications, there are different areas you can verify to fix your connection with APNs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can verify the TLS handshake between your provider server and APNs by running the OpenSSL ",
+              "type": "text"
+            },
+            {
+              "code": "s_client",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command from your server, as in code snippet below.. This command can also show if your TLS/SSL certificates have expired or been revoked.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "$ openssl s_client -connect api-broadcast.push.apple.com:443 -cert YourSSLCertAndPrivateKey.pem -debug ",
+            "-showcerts -CAfile server-ca-cert.pem"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Troubleshoot-receiving-device-push-notifications",
+          "level": 3,
+          "text": "Troubleshoot receiving device push notifications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your test devices aren’t receiving notifications sent by your provider server, examine the following possible causes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Make sure that your provider server has an up-to-date device token for your test device.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Each time your app launches, it needs to request its current token and forward that token to your provider server. Implement the appropriate failure handler methods to determine if APNs reported an error. For more information, refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/registering-your-app-with-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Check for errors returned by APNs.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " When failures occur, APNs reports an appropriate error back to your provider server. Use the error code to decide the proper action that makes sense for your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Make sure you included the apns-push-type key in your request headers.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " This key is required starting in watchOS 6. The absence of this key may delay the delivery of notifications, or prevent their delivery altogether. See .",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Check to refer to if you’re sending requests to the same device too quickly.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " APNs queues only one notification at a time for each device, and the device must acknowledge receipt of the notification before APNs dequeues it. If you send multiple notification requests in a very short period of time, each new request might overwrite the previous request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Check the firewall settings of your server and devices.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " To send notifications, your provider server must allow inbound and outbound TCP packets over port 443 for HTTP/2 connections, or port 2195 when using the binary interface. Devices connecting to APNs over Wi-Fi need to allow inbound and outbound TCP packets over port 5223, falling back to port 443 if port 5223 is unavailable.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Troubleshoot-receiving-broadcast-push-notifications",
+          "level": 3,
+          "text": "Troubleshoot receiving broadcast push notifications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During testing, if you find that your test devices aren’t receiving notifications sent by your provider server, examine the following possible causes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Check the topic.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " The bundle ID string you use in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ":path",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " needs to exactly match your app’s bundle ID. The string can’t include a suffix, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".push-type.liveactivity",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Check the channel identifier.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Make sure that your provider server uses a valid channel ID for your channel.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Check for errors returned by APNs.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " When failures occur, APNs reports an appropriate error back to your provider server. Use the error code to decide the proper action that makes sense for your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Check the firewall settings of your server and devices.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " To send notifications, your provider server allows inbound and outbound TCP packets over port 443 for HTTP/2 connections. Devices connecting to APNs over Wi-Fi need to allow inbound and outbound TCP packets over port 5223, falling back to port 443 if port 5223 is unavailable.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "UserNotifications-PageImage-card.png": {
+      "alt": "[A notification interface displayed on the lock screen of an iOS device.]",
+      "identifier": "UserNotifications-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/074de9a9213bf2905d67fae5eb46e4f8/UserNotifications-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5733742e1c084fc202b3c92df9083686/UserNotifications-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications": {
+      "abstract": [
+        {
+          "text": "Push user-facing notifications to the user’s device from a server, or generate them locally from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications",
+      "images": [
+        {
+          "identifier": "UserNotifications-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "User Notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-certificate-based-connection-to-apns": {
+      "abstract": [
+        {
+          "text": "Secure your communications with Apple Push Notification service (APNs) by installing a certificate on your provider server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-certificate-based-connection-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Establishing a certificate-based connection to APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/establishing-a-certificate-based-connection-to-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/pushing-background-updates-to-your-app": {
+      "abstract": [
+        {
+          "text": "Deliver notifications that wake your app and update it in the background.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/pushing-background-updates-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Pushing background updates to your App",
+      "type": "topic",
+      "url": "/documentation/usernotifications/pushing-background-updates-to-your-app"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/registering-your-app-with-apns": {
+      "abstract": [
+        {
+          "text": "Communicate with Apple Push Notification service (APNs) and receive a unique device token that identifies your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/registering-your-app-with-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Registering your app with APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/registering-your-app-with-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server": {
+      "abstract": [
+        {
+          "text": "Generate notifications and push them to user devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Setting up a remote notification server",
+      "type": "topic",
+      "url": "/documentation/usernotifications/setting-up-a-remote-notification-server"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/usernotifications/troubleshooting-push-notifications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/usernotifications/troubleshooting-push-notifications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1065 @@
+{
+  "abstract": [
+    {
+      "text": "Share data throughout a view hierarchy using the environment.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Environment-values"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Environment values"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Views in SwiftUI can react to configuration information that they read from the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "environment using an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Environment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property wrapper.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "environment-values-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A view inherits its environment from its container view, subject to explicit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "changes from an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/environment(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier, or by implicit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "changes from one of the many modifiers that operate on environment values.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "As a result, you can configure a entire hierarchy of views by modifying the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "environment of the group’s container.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can find many built-in environment values in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "structure. You can also create a custom ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property by defining",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a new property in an extension to the environment values structure and applying",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Entry()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro to the variable declaration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Entry()": {
+      "abstract": [
+        {
+          "text": "Creates an environment values, transaction, container values,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "or focused values entry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Entry"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Entry()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Entry()",
+      "type": "topic",
+      "url": "/documentation/swiftui/entry()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Environment": {
+      "abstract": [
+        {
+          "text": "A property wrapper that reads a value from a view’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Environment"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Environment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Environment"
+        }
+      ],
+      "role": "symbol",
+      "title": "Environment",
+      "type": "topic",
+      "url": "/documentation/swiftui/environment"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentKey": {
+      "abstract": [
+        {
+          "text": "A key for accessing values in the environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnvironmentKey"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EnvironmentKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "EnvironmentKey",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentkey"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues": {
+      "abstract": [
+        {
+          "text": "A collection of environment values propagated through a view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnvironmentValues"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EnvironmentValues"
+        }
+      ],
+      "role": "symbol",
+      "title": "EnvironmentValues",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Model-data": {
+      "abstract": [
+        {
+          "text": "Manage the data that your app uses to drive its interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Model-data",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Model data",
+      "type": "topic",
+      "url": "/documentation/swiftui/model-data"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Persistent-storage": {
+      "abstract": [
+        {
+          "text": "Store data for use across sessions of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Persistent-storage",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Persistent storage",
+      "type": "topic",
+      "url": "/documentation/swiftui/persistent-storage"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Preferences": {
+      "abstract": [
+        {
+          "text": "Indicate configuration preferences from views to their container views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Preferences",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preferences",
+      "type": "topic",
+      "url": "/documentation/swiftui/preferences"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/environment(_:)": {
+      "abstract": [
+        {
+          "text": "Places an observable object in the scene’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "environment"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/environment(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "environment(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/environment(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/environment(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the environment value of the specified key path to the given value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "environment"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s15WritableKeyPathC",
+          "text": "WritableKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17EnvironmentValuesV",
+          "text": "EnvironmentValues"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/environment(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "environment(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/environment(_:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/transformEnvironment(_:transform:)": {
+      "abstract": [
+        {
+          "text": "Transforms the environment value of the specified key path with the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "given function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transformEnvironment"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s15WritableKeyPathC",
+          "text": "WritableKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17EnvironmentValuesV",
+          "text": "EnvironmentValues"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/transformEnvironment(_:transform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transformEnvironment(_:transform:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/transformenvironment(_:transform:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/environment(_:)": {
+      "abstract": [
+        {
+          "text": "Places an observable object in the view’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "environment"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/environment(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "environment(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/environment(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/environment(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the environment value of the specified key path to the given value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "environment"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s15WritableKeyPathC",
+          "text": "WritableKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17EnvironmentValuesV",
+          "text": "EnvironmentValues"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/environment(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "environment(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/environment(_:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/transformEnvironment(_:transform:)": {
+      "abstract": [
+        {
+          "text": "Transforms the environment value of the specified key path with the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "given function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transformEnvironment"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s15WritableKeyPathC",
+          "text": "WritableKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17EnvironmentValuesV",
+          "text": "EnvironmentValues"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/transformEnvironment(_:transform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transformEnvironment(_:transform:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/transformenvironment(_:transform:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "environment-values-hero": {
+      "alt": null,
+      "identifier": "environment-values-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c55679ce6979b83be86939cf3c9b5b65/environment-values-hero@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Data-and-storage",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Model-data",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Preferences",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Persistent-storage"
+      ],
+      "title": "Data and storage"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Accessing-environment-values",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Environment",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues"
+      ],
+      "title": "Accessing environment values"
+    },
+    {
+      "anchor": "Creating-custom-environment-values",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Entry()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentKey"
+      ],
+      "title": "Creating custom environment values"
+    },
+    {
+      "anchor": "Modifying-the-environment-of-a-view",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/environment(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/environment(_:_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/transformEnvironment(_:transform:)"
+      ],
+      "title": "Modifying the environment of a view"
+    },
+    {
+      "anchor": "Modifying-the-environment-of-a-scene",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/environment(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/environment(_:_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/transformEnvironment(_:transform:)"
+      ],
+      "title": "Modifying the environment of a scene"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/environment-values"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

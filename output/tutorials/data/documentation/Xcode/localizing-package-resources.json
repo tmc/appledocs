@@ -1,0 +1,1173 @@
+{
+  "abstract": [
+    {
+      "text": "Ensure that your Swift package provides localized resources for many locales.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/swift-packages"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/localizing-package-resources"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Localizing package resources"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Localizing the resources in your Swift package ensures its usefulness for as many",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "developers as possible. Adopt localized resources early to avoid additional development",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "costs later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Declare-a-default-localization",
+          "level": 3,
+          "text": "Declare a default localization",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To localize your package’s resources, pass the optional ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Package/defaultLocalization",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parameter to the package initializer in your package manifest. This example provides",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "English as the default localization:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let package = Package(",
+            "    name: \"MyLibrary\",",
+            "    defaultLocalization: \"en\",",
+            "    platforms: [",
+            "    ],",
+            "    products: [",
+            "        // Products define the executables and libraries a package produces, and make them visible to other packages.",
+            "    ],",
+            "    dependencies: [",
+            "        // Dependencies declare other packages that this package depends on.",
+            "        // .package(url: /* package url */, from: \"1.0.0\"),",
+            "    ],",
+            "    targets: [",
+            "        // Targets are the basic building blocks of a package. A target can define a module or a test suite.",
+            "        // Targets can depend on other targets in this package, and on products in packages this package depends on.",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you declare a value for ",
+              "type": "text"
+            },
+            {
+              "code": "defaultLocalization",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the package manifest, Xcode",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "requires the package to contain localized resources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When declaring a supported language, or naming directories that contain",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "localized resources, use two-letter ISO 639-1 or three-letter ISO 639-2 language",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "codes with optional region or script designators. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleDevelopmentRegion",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "for more information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-resources-to-language-specific-directories",
+          "level": 3,
+          "text": "Add resources to language-specific directories",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use Xcode’s default localization mechanism, place localized resources in language-specific",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "directories. A language-specific directory has a name that uses an ISO 639 language",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code and optional designators, followed by the ",
+              "type": "text"
+            },
+            {
+              "code": ".lproj",
+              "type": "codeVoice"
+            },
+            {
+              "text": " suffix, and doesn’t contain",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "subdirectories. For example, resources in the English language as it’s used in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "United Kingdom reside in a directory named ",
+              "type": "text"
+            },
+            {
+              "code": "en-GB.lproj",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". By placing package resources",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in directories that end in ",
+              "type": "text"
+            },
+            {
+              "code": ".lproj",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and using ISO 639 language codes, Xcode can infer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the language automatically.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Place your ",
+              "type": "text"
+            },
+            {
+              "code": ".lproj",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directories in a parent directory named ",
+              "type": "text"
+            },
+            {
+              "code": "Resources",
+              "type": "codeVoice"
+            },
+            {
+              "text": " so you’ll",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "recognize that it contains package resources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you build your Swift package, Xcode validates the package’s localized resources",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and displays warnings or errors to help prevent issues at runtime. For example, Xcode",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "detects:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Subdirectories within a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".lproj",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " directory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Missing resources for a locale.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Duplicate, conflicting, or inaccessible resources.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following screenshot shows the structure of a Swift package with localized resources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "localizing-package-resources-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Localize-storyboards-and-Interface-Builder-files",
+          "level": 3,
+          "text": "Localize storyboards and Interface Builder files",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the Swift package includes storyboards or Interface Builder files as resources,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "adopt base internationalization to relieve localizers of the need to modify these",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "files directly. To have Xcode automatically recognize base localization in the Swift",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "package:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Declare a value for ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Package/defaultLocalization",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "package manifest.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a directory named, for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Resources,",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for your localized resources.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a subdirectory named ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Base.lproj",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and place the package’s storyboards and",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Interface Builder files in it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Place the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".lproj",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " directories for all supported languages in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Resources",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "directory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you prefer to explicitly declare a resource for base internationalization, use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the process rule and pass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Resource/Localization/base",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, use the following to declare a ",
+              "type": "text"
+            },
+            {
+              "code": ".xib",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file that supports base internationalization:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": ".process(”path/to/MyViewController.xib”, localization: .base)",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about base internationalization, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/InternationalizingYourUserInterface/InternationalizingYourUserInterface.html#//apple_ref/doc/uid/10000171i-CH3-SW2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Access-localized-resources",
+          "level": 3,
+          "text": "Access localized resources",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode recognizes localized resources in ",
+              "type": "text"
+            },
+            {
+              "code": ".lproj",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directories and automatically creates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "resource bundles. As a result, you can access localized resource files in your package’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code with APIs you may already know from app development. For example, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to access a localized string at runtime:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "let localizedString = NSLocalizedString(”a_localized_string”, bundle: Bundle.module, comment: “a comment”)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, you can access localized image resources with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "UIImage(named: “image name”, in: .module, with: nil)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/bundling-resources-with-a-swift-package#Access-a-resource-in-code",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/bundling-resources-with-a-swift-package": {
+      "abstract": [
+        {
+          "text": "Add resource files to your Swift package and access them in your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/bundling-resources-with-a-swift-package",
+      "kind": "article",
+      "role": "article",
+      "title": "Bundling resources with a Swift package",
+      "type": "topic",
+      "url": "/documentation/xcode/bundling-resources-with-a-swift-package"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/bundling-resources-with-a-swift-package#Access-a-resource-in-code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/bundling-resources-with-a-swift-package#Access-a-resource-in-code",
+      "kind": "section",
+      "title": "Access a resource in code",
+      "type": "topic",
+      "url": "/documentation/xcode/bundling-resources-with-a-swift-package#Access-a-resource-in-code"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/creating-a-standalone-swift-package-with-xcode": {
+      "abstract": [
+        {
+          "text": "Bundle executable or shareable code into a standalone Swift package.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-a-standalone-swift-package-with-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a standalone Swift package with Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-a-standalone-swift-package-with-xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/developing-a-swift-package-in-tandem-with-an-app": {
+      "abstract": [
+        {
+          "text": "Add your published Swift package as a local package to your app’s project and develop",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the package and the app in tandem.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/developing-a-swift-package-in-tandem-with-an-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Developing a Swift package in tandem with an app",
+      "type": "topic",
+      "url": "/documentation/xcode/developing-a-swift-package-in-tandem-with-an-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/distributing-binary-frameworks-as-swift-packages": {
+      "abstract": [
+        {
+          "text": "Make binaries available to other developers by creating Swift packages that include",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "one or more XCFrameworks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/distributing-binary-frameworks-as-swift-packages",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing binary frameworks as Swift packages",
+      "type": "topic",
+      "url": "/documentation/xcode/distributing-binary-frameworks-as-swift-packages"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/organizing-your-code-with-local-packages": {
+      "abstract": [
+        {
+          "text": "Simplify maintenance, promote modularity, and encourage reuse by organizing your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "app’s code into local Swift packages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/organizing-your-code-with-local-packages",
+      "kind": "article",
+      "role": "article",
+      "title": "Organizing your code with local packages",
+      "type": "topic",
+      "url": "/documentation/xcode/organizing-your-code-with-local-packages"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/swift-packages": {
+      "abstract": [
+        {
+          "text": "Create reusable code, organize it in a lightweight way, and share it across Xcode projects and with other developers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/swift-packages",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Swift packages",
+      "type": "topic",
+      "url": "/documentation/xcode/swift-packages"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleDevelopmentRegion": {
+      "abstract": [
+        {
+          "text": "The default language and region for the bundle, as a language ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleDevelopmentRegion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleDevelopmentRegion",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/CFBundleDevelopmentRegion"
+    },
+    "doc://com.apple.documentation/documentation/PackageDescription": {
+      "abstract": [
+        {
+          "text": "Create reusable code, organize it in a lightweight way, and share it across your projects and with other developers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PackageDescription",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PackageDescription",
+      "type": "topic",
+      "url": "/documentation/PackageDescription"
+    },
+    "doc://com.apple.documentation/documentation/PackageDescription/Package/defaultLocalization": {
+      "abstract": [
+        {
+          "text": "The default localization for resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultLocalization"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription11LanguageTagV",
+          "text": "LanguageTag"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Package/defaultLocalization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultLocalization",
+      "type": "topic",
+      "url": "/documentation/PackageDescription/Package/defaultLocalization"
+    },
+    "doc://com.apple.documentation/documentation/PackageDescription/Resource/Localization/base": {
+      "abstract": [
+        {
+          "text": "A constant that represents base internationalization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "base"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Resource/Localization/base",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Resource.Localization.base",
+      "type": "topic",
+      "url": "/documentation/PackageDescription/Resource/Localization/base"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIImage": {
+      "abstract": [
+        {
+          "text": "An object that manages image data in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIImage",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIImage"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "abstract": [
+        {
+          "text": "Access essential data types, collections, and operating-system services to define the base layer of functionality for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/InternationalizingYourUserInterface/InternationalizingYourUserInterface.html#//apple_ref/doc/uid/10000171i-CH3-SW2": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/InternationalizingYourUserInterface/InternationalizingYourUserInterface.html#//apple_ref/doc/uid/10000171i-CH3-SW2",
+      "title": "Internationalizing the User Interface",
+      "titleInlineContent": [
+        {
+          "text": "Internationalizing the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "User Interface",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/InternationalizingYourUserInterface/InternationalizingYourUserInterface.html#//apple_ref/doc/uid/10000171i-CH3-SW2"
+    },
+    "localizing-package-resources-1": {
+      "alt": "Screenshot of an expanded Swift package in Xcode’s Project navigator with localized resource directories residing in a parent directory named Resources.",
+      "identifier": "localizing-package-resources-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5f537126d363d23c91d9f7c4ccca00f3/localizing-package-resources-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5f537126d363d23c91d9f7c4ccca00f3/localizing-package-resources-1~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Package-creation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/creating-a-standalone-swift-package-with-xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/bundling-resources-with-a-swift-package",
+        "doc://com.apple.Xcode/documentation/Xcode/distributing-binary-frameworks-as-swift-packages",
+        "doc://com.apple.Xcode/documentation/Xcode/developing-a-swift-package-in-tandem-with-an-app",
+        "doc://com.apple.Xcode/documentation/Xcode/organizing-your-code-with-local-packages",
+        "doc://com.apple.documentation/documentation/PackageDescription"
+      ],
+      "title": "Package creation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImage/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIImage"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

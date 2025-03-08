@@ -1,0 +1,814 @@
+{
+  "abstract": [
+    {
+      "text": "Creates a new user client object for this IOAudioControl instance.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/audio",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812229-newuserclient"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1812229,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "parent": {
+      "title": "IOAudioControl"
+    },
+    "role": "pseudoSymbol",
+    "symbolKind": "instm",
+    "title": "newUserClient"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "virtual IOReturn newUserClient("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " task_t task,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " void *securityID,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " UInt32 type,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " IOUserClient **handler); "
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The task requesting the new user client.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "task"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Optional security paramater passed in by the client - ignored.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "securityID"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Optional user client type passed in by the client - 0 for the default user client type.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "type"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The new IOUserClient * must be stored in this param on a successful completion.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "handler"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A dictionary of additional properties for the connection.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "properties"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Returns kIOReturnSuccess on success. May also result kIOReturnError or kIOReturnNoMemory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This is called automatically by I/O Kit when a user process opens a connection to this IOAudioControl. This is typically done when the user process needs to register for value change notifications. This implementation allocates a new IOAudioControlUserClient object. There is no need to call this directly. A derived class that requires overriding of newUserClient should override the version with the properties parameter for Intel targets, and without the properties parameter for PPC targets. The #if __i386__ directive can be used to select between the two behaviors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/audio": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/audio",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/audio"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOAudioControl",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812069-adduserclient": {
+      "abstract": [
+        {
+          "text": "Called on the IOWorkLoop to add a new IOAudioControlUserClient.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812069-adduserclient",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "addUserClient",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812069-adduserclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812079-adduserclientaction": {
+      "abstract": [
+        {
+          "text": "IOCommandGate Action which calls addUserClient() while holding the IOCommandGate.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812079-adduserclientaction",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "addUserClientAction",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812079-adduserclientaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812087-clientclosed": {
+      "abstract": [
+        {
+          "text": "Called automatically by the IOAudioControlUserClient when a user client closes its connection to the control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812087-clientclosed",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "clientClosed",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812087-clientclosed"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812095-createuserclient": {
+      "abstract": [
+        {
+          "text": "Creates a new IOAudioControlUserClient instance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812095-createuserclient",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "createUserClient(task_t, void *, UInt32, IOAudioControlUserClient **)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812095-createuserclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812104-createuserclient": {
+      "abstract": [
+        {
+          "text": "Creates a new IOAudioControlUserClient instance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812104-createuserclient",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "createUserClient(task_t, void *, UInt32, IOAudioControlUserClient **, OSDictionary *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812104-createuserclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812113-detachuserclientsaction": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812113-detachuserclientsaction",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "detachUserClientsAction",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812113-detachuserclientsaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812123-flushvalue": {
+      "abstract": [
+        {
+          "text": "Forces the control to be flushed out to the hardware.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812123-flushvalue",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "flushValue",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812123-flushvalue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812130-free": {
+      "abstract": [
+        {
+          "text": "Frees all of the resources allocated by the IOAudioControl.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812130-free",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812130-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812135-getchannelid": {
+      "abstract": [
+        {
+          "text": "Returns the channel ID for the control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812135-getchannelid",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getChannelID",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812135-getchannelid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812146-getcommandgate": {
+      "abstract": [
+        {
+          "text": "Returns the IOCommandGate for this IOAudioControl.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812146-getcommandgate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCommandGate",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812146-getcommandgate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812156-getcontrolid": {
+      "abstract": [
+        {
+          "text": "Returns the control ID for the control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812156-getcontrolid",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getControlID",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812156-getcontrolid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812169-getisstarted": {
+      "abstract": [
+        {
+          "text": "Returns true after start() has been called.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812169-getisstarted",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getIsStarted",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812169-getisstarted"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812181-getvalue": {
+      "abstract": [
+        {
+          "text": "Returns the current value of the control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812181-getvalue",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getValue",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812181-getvalue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812197-getworkloop": {
+      "abstract": [
+        {
+          "text": "Returns the IOWorkLoop for the whole audio driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812197-getworkloop",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getWorkLoop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812197-getworkloop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812208-hardwarevaluechanged": {
+      "abstract": [
+        {
+          "text": "Updates the value for this control and sends out the value changed notification.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812208-hardwarevaluechanged",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "hardwareValueChanged",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812208-hardwarevaluechanged"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812219-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated IOAudioControl with the given attributes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812219-init",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812219-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812229-newuserclient": {
+      "abstract": [
+        {
+          "text": "Creates a new user client object for this IOAudioControl instance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812229-newuserclient",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "newUserClient",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812229-newuserclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812237-performvaluechange": {
+      "abstract": [
+        {
+          "text": "Called by setValue() to make the call to the valueChangeHandler to update the hardware.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812237-performvaluechange",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "performValueChange",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812237-performvaluechange"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812247-removeuserclient": {
+      "abstract": [
+        {
+          "text": "Called on the IOWorkLoop to remove an IOAudioControlUserClient.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812247-removeuserclient",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "removeUserClient",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812247-removeuserclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812259-removeuserclientaction": {
+      "abstract": [
+        {
+          "text": "IOCommandGate Action which calls removeUserClient() while holding the IOCommandGate.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812259-removeuserclientaction",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "removeUserClientAction",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812259-removeuserclientaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812267-sendvaluechangenotification": {
+      "abstract": [
+        {
+          "text": "Called when the value has changed for the control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812267-sendvaluechangenotification",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "sendValueChangeNotification",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812267-sendvaluechangenotification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812275-setchannelid": {
+      "abstract": [
+        {
+          "text": "Called at init time to set the channel ID for this IOAudioControl.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812275-setchannelid",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setChannelID",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812275-setchannelid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812281-setchannelname": {
+      "abstract": [
+        {
+          "text": "Called at init time to set the channel name for this IOAudioControl.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812281-setchannelname",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setChannelName",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812281-setchannelname"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812283-setcontrolid": {
+      "abstract": [
+        {
+          "text": "Sets the controlID for this control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812283-setcontrolid",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setControlID",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812283-setcontrolid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812287-setproperties": {
+      "abstract": [
+        {
+          "text": "Changes a property of this IOService.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812287-setproperties",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setProperties",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812287-setproperties"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812291-setreadonlyflag": {
+      "abstract": [
+        {
+          "text": "Call this function to say that a control is read only. This call cannot be undone, so if a control is only temporarily unsetable, do not use this call but instead return an error from the control handler.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812291-setreadonlyflag",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setReadOnlyFlag",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812291-setreadonlyflag"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812293-setsubtype": {
+      "abstract": [
+        {
+          "text": "Called at init time to set the control type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812293-setsubtype",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setSubType(UInt32)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812293-setsubtype"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812300-settype": {
+      "abstract": [
+        {
+          "text": "Called at init time to set the control type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812300-settype",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setType(UInt32)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812300-settype"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812305-setusage": {
+      "abstract": [
+        {
+          "text": "Called at init time to set the control usage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812305-setusage",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setUsage",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812305-setusage"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812307-setvalue": {
+      "abstract": [
+        {
+          "text": "Sets the value for this control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812307-setvalue",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setValue",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812307-setvalue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812310-setvalueaction": {
+      "abstract": [
+        {
+          "text": "IOCommandGate Action which calls setValue() while holding the IOCommandGate.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812310-setvalueaction",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setValueAction",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812310-setvalueaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812313-start": {
+      "abstract": [
+        {
+          "text": "Starts a newly created IOAudioControl.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812313-start",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "start",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812313-start"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812316-stop": {
+      "abstract": [
+        {
+          "text": "Stops the control when the provider is going away.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812316-stop",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "stop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812316-stop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812319-updatevalue": {
+      "abstract": [
+        {
+          "text": "Called by setValue() in order to update the value and the registry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812319-updatevalue",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "updateValue",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812319-updatevalue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812322-validatevalue": {
+      "abstract": [
+        {
+          "text": "Called by setValue() to verify that the value is valid.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812322-validatevalue",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "validateValue",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812322-validatevalue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812328-withattributes": {
+      "abstract": [
+        {
+          "text": "Static function that allocates a new IOAudioControl with the given attributes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812328-withattributes",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withAttributes",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol/1812328-withattributes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812069-adduserclient",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812079-adduserclientaction",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812087-clientclosed",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812095-createuserclient",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812104-createuserclient",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812113-detachuserclientsaction",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812123-flushvalue",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812130-free",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812135-getchannelid",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812146-getcommandgate",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812156-getcontrolid",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812169-getisstarted",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812181-getvalue",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812197-getworkloop",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812208-hardwarevaluechanged",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812219-init",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812237-performvaluechange",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812247-removeuserclient",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812259-removeuserclientaction",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812267-sendvaluechangenotification",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812275-setchannelid",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812281-setchannelname",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812283-setcontrolid",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812287-setproperties",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812291-setreadonlyflag",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812293-setsubtype",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812300-settype",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812305-setusage",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812307-setvalue",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812310-setvalueaction",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812313-start",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812316-stop",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812319-updatevalue",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812322-validatevalue",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol/1812328-withattributes"
+      ],
+      "title": "Miscellaneous"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/ioaudiocontrol/1812229-newuserclient"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

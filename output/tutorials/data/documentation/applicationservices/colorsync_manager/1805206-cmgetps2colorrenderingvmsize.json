@@ -1,0 +1,419 @@
+{
+  "abstract": [
+    {
+      "text": "Determines the virtual memory size of the color rendering dictionary (CRD) for a printer profile before your application or driver obtains the CRD and sends it to the printer.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805206-cmgetps2colorrenderingvmsize"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1805206,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "role": "pseudoSymbol",
+    "symbolKind": "func",
+    "title": "CMGetPS2ColorRenderingVMSize"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "CMError CMGetPS2ColorRenderingVMSize ("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   CMProfileRef srcProf,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   CMProfileRef dstProf,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   UInt32 *vmSize,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   Boolean *preferredCMMnotfound"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A profile reference to a profile that supplies the rendering intent for the CRD. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "srcProf"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A profile reference to the destination printer profile.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "dstProf"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a memory size. On return, the virtual memory size of the CRD. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "vmSize"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a flag for whether the preferred CMM was found. On return, has the value ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if the CMM corresponding to profile was not available or if it was unable to perform the function and the default CMM was used. Otherwise, has the value ",
+                  "type": "text"
+                },
+                {
+                  "code": "false",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "preferredCMMnotfound"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "CMError",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your application or device driver can call this function to determine if the virtual memory size of the color rendering dictionary exceeds the printer’s capacity before sending the CRD to the printer. If the printer’s profile contains the Apple-defined optional tag ",
+              "type": "text"
+            },
+            {
+              "code": "'psvm'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmconcatprofileset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", then the default CMM will return the data supplied by this tag specifying the CRD virtual memory size for the rendering intent’s CRD. If the printer’s profile does not contain this tag, then the CMM uses an algorithm to assess the VM size of the CRD, in which case the assessment can be larger than the actual maximum VM size. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The CMM uses the profile specified by the ",
+              "type": "text"
+            },
+            {
+              "code": "srcProf",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to determine the rendering intent to use. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmconcatprofileset": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmconcatprofileset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMConcatProfileSet",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmconcatprofileset"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ColorSync Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/applicationservices/colorsync_manager#1670295"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805191-cmgetps2colorspace": {
+      "abstract": [
+        {
+          "text": "Obtains color space element data in text format usable as the parameter to the PostScript ",
+          "type": "text"
+        },
+        {
+          "code": "setColorSpace",
+          "type": "codeVoice"
+        },
+        {
+          "text": " operator, which characterizes the color space of subsequent graphics data. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805191-cmgetps2colorspace",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetPS2ColorSpace",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805191-cmgetps2colorspace"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805196-cmgetps2colorrenderingintent": {
+      "abstract": [
+        {
+          "text": "Obtains the rendering intent element data in text format usable as the parameter to the PostScript ",
+          "type": "text"
+        },
+        {
+          "code": "findRenderingIntent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " operator, which specifies the color-matching option for subsequent graphics data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805196-cmgetps2colorrenderingintent",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetPS2ColorRenderingIntent",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805196-cmgetps2colorrenderingintent"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805202-cmgetps2colorrendering": {
+      "abstract": [
+        {
+          "text": "Obtains the color rendering dictionary (CRD) element data usable as the parameter to the PostScript ",
+          "type": "text"
+        },
+        {
+          "code": "setColorRendering",
+          "type": "codeVoice"
+        },
+        {
+          "text": " operator, which specifies the PostScript color rendering dictionary to use for the following graphics data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805202-cmgetps2colorrendering",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetPS2ColorRendering",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805202-cmgetps2colorrendering"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805206-cmgetps2colorrenderingvmsize": {
+      "abstract": [
+        {
+          "text": "Determines the virtual memory size of the color rendering dictionary (CRD) for a printer profile before your application or driver obtains the CRD and sends it to the printer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805206-cmgetps2colorrenderingvmsize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetPS2ColorRenderingVMSize",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805206-cmgetps2colorrenderingvmsize"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805191-cmgetps2colorspace",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805196-cmgetps2colorrenderingintent",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805202-cmgetps2colorrendering"
+      ],
+      "title": "Working With PostScript"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/colorsync_manager/1805206-cmgetps2colorrenderingvmsize"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

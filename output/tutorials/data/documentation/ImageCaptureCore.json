@@ -1,0 +1,1323 @@
+{
+  "abstract": [
+    {
+      "text": "Browse for media devices and control them programmatically from your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "ImageCaptureCore",
+    "modules": [
+      {
+        "name": "ImageCaptureCore"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.6",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "ImageCaptureCore"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using ImageCaptureCore, your app can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Discover connected cameras and scanners",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "View and modify the folders, files, and metadata on a connected camera",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Take photos directly on a connected camera using tethered capture",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Perform overview scans and scans on a connected scanner",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3501083",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configuring-tethered-capture-and-photo-import",
+          "level": 3,
+          "text": "Configuring tethered capture and photo import",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To import pictures and tether from a macOS app, you first need to enable the Hardened Runtime capability in Xcode, and then add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.personal-information.photos-library",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can tether from an iOS app, you need to tell the user why the app is requesting access to an external camera. Add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key to your ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file with a description of your intended use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In macOS 14 and later, use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.usb",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " entitlement key to allow your sandboxed app to interact with USB devices.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.usb": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether your app may interact with USB devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.usb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.security.device.usb",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.device.usb"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.personal-information.photos-library": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app has read-write access to the user’s Photos library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.personal-information.photos-library",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Photos Library Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.personal-information.photos-library"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the device’s camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCameraUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore": {
+      "abstract": [
+        {
+          "text": "Browse for media devices and control them programmatically from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ImageCaptureCore",
+      "type": "topic",
+      "url": "/documentation/imagecapturecore"
+    },
+    "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICCameraDevice": {
+      "abstract": [
+        {
+          "text": "An object that represents a camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ICCameraDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICCameraDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ICCameraDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "ICCameraDevice",
+      "type": "topic",
+      "url": "/documentation/imagecapturecore/iccameradevice"
+    },
+    "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICCameraDeviceDelegate": {
+      "abstract": [
+        {
+          "text": "Methods for detecting cameras, getting metadata and thumbnails, handling access and capability changes, and performing other actions on connected cameras.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ICCameraDeviceDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICCameraDeviceDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ICCameraDeviceDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "ICCameraDeviceDelegate",
+      "type": "topic",
+      "url": "/documentation/imagecapturecore/iccameradevicedelegate"
+    },
+    "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICCameraFile": {
+      "abstract": [
+        {
+          "text": "An object that represents a file on a camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ICCameraFile"
+        }
+      ],
+      "identifier": "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICCameraFile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ICCameraFile"
+        }
+      ],
+      "role": "symbol",
+      "title": "ICCameraFile",
+      "type": "topic",
+      "url": "/documentation/imagecapturecore/iccamerafile"
+    },
+    "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICCameraFolder": {
+      "abstract": [
+        {
+          "text": "An object that represents a folder on a camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ICCameraFolder"
+        }
+      ],
+      "identifier": "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICCameraFolder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ICCameraFolder"
+        }
+      ],
+      "role": "symbol",
+      "title": "ICCameraFolder",
+      "type": "topic",
+      "url": "/documentation/imagecapturecore/iccamerafolder"
+    },
+    "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICCameraItem": {
+      "abstract": [
+        {
+          "text": "An abstract class that represents a camera item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ICCameraItem"
+        }
+      ],
+      "identifier": "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICCameraItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ICCameraItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "ICCameraItem",
+      "type": "topic",
+      "url": "/documentation/imagecapturecore/iccameraitem"
+    },
+    "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICDeviceBrowser": {
+      "abstract": [
+        {
+          "text": "An object for finding digital cameras and scanners.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ICDeviceBrowser"
+        }
+      ],
+      "identifier": "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICDeviceBrowser",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ICDeviceBrowser"
+        }
+      ],
+      "role": "symbol",
+      "title": "ICDeviceBrowser",
+      "type": "topic",
+      "url": "/documentation/imagecapturecore/icdevicebrowser"
+    },
+    "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICLegacyReturn": {
+      "abstract": [
+        {
+          "text": "A legacy error returned from ImageCaptureCore.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICLegacyReturn",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ICLegacyReturn",
+      "type": "topic",
+      "url": "/documentation/imagecapturecore/iclegacyreturn"
+    },
+    "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICReturn": {
+      "abstract": [
+        {
+          "text": "An error returned from ImageCaptureCore.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICReturn",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ICReturn",
+      "type": "topic",
+      "url": "/documentation/imagecapturecore/icreturn"
+    },
+    "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICReturnConnectionError": {
+      "abstract": [
+        {
+          "text": "A connection error returned from ImageCaptureCore.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ICReturnConnectionError"
+        }
+      ],
+      "identifier": "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICReturnConnectionError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ICReturnConnectionError"
+        }
+      ],
+      "role": "symbol",
+      "title": "ICReturnConnectionError",
+      "type": "topic",
+      "url": "/documentation/imagecapturecore/icreturnconnectionerror"
+    },
+    "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICReturnDownloadError": {
+      "abstract": [
+        {
+          "text": "A download error returned from ImageCaptureCore.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ICReturnDownloadError"
+        }
+      ],
+      "identifier": "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICReturnDownloadError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ICReturnDownloadError"
+        }
+      ],
+      "role": "symbol",
+      "title": "ICReturnDownloadError",
+      "type": "topic",
+      "url": "/documentation/imagecapturecore/icreturndownloaderror"
+    },
+    "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICReturnMetadataError": {
+      "abstract": [
+        {
+          "text": "A metadata error returned from ImageCaptureCore.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ICReturnMetadataError"
+        }
+      ],
+      "identifier": "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICReturnMetadataError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ICReturnMetadataError"
+        }
+      ],
+      "role": "symbol",
+      "title": "ICReturnMetadataError",
+      "type": "topic",
+      "url": "/documentation/imagecapturecore/icreturnmetadataerror"
+    },
+    "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICReturnObjectError": {
+      "abstract": [
+        {
+          "text": "An object error returned from ImageCaptureCore.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ICReturnObjectError"
+        }
+      ],
+      "identifier": "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICReturnObjectError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ICReturnObjectError"
+        }
+      ],
+      "role": "symbol",
+      "title": "ICReturnObjectError",
+      "type": "topic",
+      "url": "/documentation/imagecapturecore/icreturnobjecterror"
+    },
+    "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICReturnPTPDeviceError": {
+      "abstract": [
+        {
+          "text": "A PTP device error returned from ImageCaptureCore.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ICReturnPTPDeviceError"
+        }
+      ],
+      "identifier": "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICReturnPTPDeviceError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ICReturnPTPDeviceError"
+        }
+      ],
+      "role": "symbol",
+      "title": "ICReturnPTPDeviceError",
+      "type": "topic",
+      "url": "/documentation/imagecapturecore/icreturnptpdeviceerror"
+    },
+    "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICReturnThumbnailError": {
+      "abstract": [
+        {
+          "text": "A thumbnail error returned from ImageCaptureCore.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ICReturnThumbnailError"
+        }
+      ],
+      "identifier": "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICReturnThumbnailError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ICReturnThumbnailError"
+        }
+      ],
+      "role": "symbol",
+      "title": "ICReturnThumbnailError",
+      "type": "topic",
+      "url": "/documentation/imagecapturecore/icreturnthumbnailerror"
+    },
+    "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICRunLoopMode": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ICRunLoopMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICRunLoopMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ICRunLoopMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "ICRunLoopMode",
+      "type": "topic",
+      "url": "/documentation/imagecapturecore/icrunloopmode"
+    },
+    "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICScannerDevice": {
+      "abstract": [
+        {
+          "text": "An object that represents a scanner.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ICScannerDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICScannerDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ICScannerDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "ICScannerDevice",
+      "type": "topic",
+      "url": "/documentation/imagecapturecore/icscannerdevice"
+    },
+    "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICScannerDeviceDelegate": {
+      "abstract": [
+        {
+          "text": "Methods for determining availability, selecting a functional unit, and performing scans on connected scanners.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ICScannerDeviceDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICScannerDeviceDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ICScannerDeviceDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "ICScannerDeviceDelegate",
+      "type": "topic",
+      "url": "/documentation/imagecapturecore/icscannerdevicedelegate"
+    },
+    "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/imagecapturecore-constants": {
+      "abstract": [],
+      "identifier": "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/imagecapturecore-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ImageCaptureCore Constants",
+      "type": "topic",
+      "url": "/documentation/imagecapturecore/imagecapturecore-constants"
+    },
+    "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/imagecapturecore-data-types": {
+      "abstract": [],
+      "identifier": "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/imagecapturecore-data-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ImageCaptureCore Data Types",
+      "type": "topic",
+      "url": "/documentation/imagecapturecore/imagecapturecore-data-types"
+    },
+    "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/imagecapturecore-enumerations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/imagecapturecore-enumerations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ImageCaptureCore Enumerations",
+      "type": "topic",
+      "url": "/documentation/imagecapturecore/imagecapturecore-enumerations"
+    },
+    "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/imagecapturecore-macros": {
+      "abstract": [],
+      "identifier": "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/imagecapturecore-macros",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ImageCaptureCore Macros",
+      "type": "topic",
+      "url": "/documentation/imagecapturecore/imagecapturecore-macros"
+    },
+    "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/scanner-configuration": {
+      "abstract": [
+        {
+          "text": "Examine a scanner’s functional units and features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/scanner-configuration",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scanner Configuration",
+      "type": "topic",
+      "url": "/documentation/imagecapturecore/scanner-configuration"
+    },
+    "media-3501083": {
+      "alt": "Diagram showing a macOS device connected by cables to a camera and a scanner, and an iPadOS device connected by cable to a camera.",
+      "identifier": "media-3501083",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0060df4265c83f5384bad802fb263ffd/media-3501083@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2cfb1635129cb950120b090034bc0c0c/media-3501083~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICDeviceBrowser",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.personal-information.photos-library",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Cameras",
+      "identifiers": [
+        "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICCameraDevice",
+        "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICCameraDeviceDelegate",
+        "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICCameraItem",
+        "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICCameraFile",
+        "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICCameraFolder"
+      ],
+      "title": "Cameras"
+    },
+    {
+      "anchor": "Scanners",
+      "identifiers": [
+        "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICScannerDevice",
+        "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICScannerDeviceDelegate",
+        "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/scanner-configuration"
+      ],
+      "title": "Scanners"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICReturn",
+        "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICLegacyReturn",
+        "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICReturnConnectionError",
+        "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICReturnDownloadError",
+        "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICReturnMetadataError",
+        "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICReturnObjectError",
+        "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICReturnPTPDeviceError",
+        "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICReturnThumbnailError"
+      ],
+      "title": "Errors"
+    },
+    {
+      "anchor": "Legacy-Symbols",
+      "identifiers": [
+        "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICRunLoopMode"
+      ],
+      "title": "Legacy Symbols"
+    },
+    {
+      "anchor": "Articles",
+      "identifiers": [
+        "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/imagecapturecore-constants",
+        "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/imagecapturecore-data-types",
+        "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/imagecapturecore-enumerations",
+        "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/imagecapturecore-macros"
+      ],
+      "title": "Articles"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICDeviceBrowser",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.personal-information.photos-library",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCameraUsageDescription"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Cameras",
+              "identifiers": [
+                "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICCameraDevice",
+                "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICCameraDeviceDelegate",
+                "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICCameraItem",
+                "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICCameraFile",
+                "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICCameraFolder"
+              ],
+              "title": "Cameras"
+            },
+            {
+              "anchor": "Scanners",
+              "identifiers": [
+                "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICScannerDevice",
+                "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICScannerDeviceDelegate",
+                "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/scanner-configuration"
+              ],
+              "title": "Scanners"
+            },
+            {
+              "anchor": "Errors",
+              "identifiers": [
+                "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICReturn",
+                "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICLegacyReturn"
+              ],
+              "title": "Errors"
+            },
+            {
+              "anchor": "Legacy-Symbols",
+              "identifiers": [
+                "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/ICRunLoopMode"
+              ],
+              "title": "Legacy Symbols"
+            },
+            {
+              "anchor": "Articles",
+              "identifiers": [
+                "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/imagecapturecore-constants",
+                "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/imagecapturecore-data-types",
+                "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/imagecapturecore-enumerations",
+                "doc://com.apple.imagecapturecore/documentation/ImageCaptureCore/imagecapturecore-macros"
+              ],
+              "title": "Articles"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.imagecapturecore~1documentation~1ImageCaptureCore~1ICCameraDeviceDelegate/title",
+          "value": "ICCameraDeviceDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.imagecapturecore~1documentation~1ImageCaptureCore~1ICCameraDeviceDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ICCameraDeviceDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.imagecapturecore~1documentation~1ImageCaptureCore~1ICCameraDeviceDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ICCameraDeviceDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.imagecapturecore~1documentation~1ImageCaptureCore~1ICCameraItem/title",
+          "value": "ICCameraItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.imagecapturecore~1documentation~1ImageCaptureCore~1ICCameraItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ICCameraItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.imagecapturecore~1documentation~1ImageCaptureCore~1ICCameraItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ICCameraItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.imagecapturecore~1documentation~1ImageCaptureCore~1ICCameraFile/title",
+          "value": "ICCameraFile"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.imagecapturecore~1documentation~1ImageCaptureCore~1ICCameraFile/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ICCameraFile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.imagecapturecore~1documentation~1ImageCaptureCore~1ICCameraFile/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ICCameraFile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.imagecapturecore~1documentation~1ImageCaptureCore~1ICScannerDeviceDelegate/title",
+          "value": "ICScannerDeviceDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.imagecapturecore~1documentation~1ImageCaptureCore~1ICScannerDeviceDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ICScannerDeviceDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.imagecapturecore~1documentation~1ImageCaptureCore~1ICScannerDeviceDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ICScannerDeviceDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.imagecapturecore~1documentation~1ImageCaptureCore~1ICRunLoopMode/title",
+          "value": "ICRunLoopMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.imagecapturecore~1documentation~1ImageCaptureCore~1ICRunLoopMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ICRunLoopMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.imagecapturecore~1documentation~1ImageCaptureCore~1ICScannerDevice/title",
+          "value": "ICScannerDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.imagecapturecore~1documentation~1ImageCaptureCore~1ICScannerDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ICScannerDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.imagecapturecore~1documentation~1ImageCaptureCore~1ICScannerDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ICScannerDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.imagecapturecore~1documentation~1ImageCaptureCore~1ICDeviceBrowser/title",
+          "value": "ICDeviceBrowser"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.imagecapturecore~1documentation~1ImageCaptureCore~1ICDeviceBrowser/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ICDeviceBrowser"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.imagecapturecore~1documentation~1ImageCaptureCore~1ICDeviceBrowser/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ICDeviceBrowser"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.imagecapturecore~1documentation~1ImageCaptureCore~1ICCameraDevice/title",
+          "value": "ICCameraDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.imagecapturecore~1documentation~1ImageCaptureCore~1ICCameraDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ICCameraDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.imagecapturecore~1documentation~1ImageCaptureCore~1ICCameraDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ICCameraDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.imagecapturecore~1documentation~1ImageCaptureCore~1ICCameraFolder/title",
+          "value": "ICCameraFolder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.imagecapturecore~1documentation~1ImageCaptureCore~1ICCameraFolder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ICCameraFolder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.imagecapturecore~1documentation~1ImageCaptureCore~1ICCameraFolder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ICCameraFolder"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/imagecapturecore"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/imagecapturecore"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,910 @@
+{
+  "abstract": [
+    {
+      "text": "If 48-bit LBAs are supported, IOExtendedLBA is used to represent a 48-bit LBA. The driver examines the ATA identify data to determine if 48-bit addressing is supported.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/ata"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/ioextendedlba"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1392130,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOExtendedLBA",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "11.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOExtendedLBA"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOExtendedLBA"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSObject",
+              "text": "OSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ataoperationtype": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ataoperationtype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ATAOperationType",
+      "type": "topic",
+      "url": "/documentation/kernel/ataoperationtype"
+    },
+    "doc://com.apple.documentation/documentation/kernel/atarequestidentifier": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/atarequestidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ATARequestIdentifier",
+      "type": "topic",
+      "url": "/documentation/kernel/atarequestidentifier"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/ata": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/ata",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ATA",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/ata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabusinfo": {
+      "abstract": [
+        {
+          "text": "used to indicate the capabilities of the bus the device is connected to, PIO and DMA modes supported, etc.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabusinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOATABusInfo",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabusinfo"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacompletionfunction": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacompletionfunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOATACompletionFunction",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacompletionfunction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatadevconfig": {
+      "abstract": [
+        {
+          "text": "used for configuring and communicating the desired transfer modes of a device. A disk driver would typically use this object in conjunction with the 512-bytes of identification data from the drive and the IOATABusInfo object for the bus it is connected to. This object will determine the best matching transfer speeds available. the device driver will then send a series of Set Features commands to configure the drive and this object to the bus through the IOATADevice nub in order to configure the optimum transfer mode. The driver for the disk drive may choose to populate this object with whatever transfer mode desired, in the event that a different mode is required.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatadevconfig",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOATADevConfig",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatadevconfig"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba": {
+      "abstract": [
+        {
+          "text": "If 48-bit LBAs are supported, IOExtendedLBA is used to represent a 48-bit LBA. The driver examines the ATA identify data to determine if 48-bit addressing is supported.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOExtendedLBA",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392052-setlbalow16": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setLBALow16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392052-setlbalow16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setLBALow16",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1392052-setlbalow16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392071-getdevice": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392071-getdevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getDevice",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1392071-getdevice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392081-setcommand": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392081-setcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1392081-setcommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392085-getlbalow16": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getLBALow16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392085-getlbalow16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getLBALow16",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1392085-getlbalow16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392089-createioextendedlba": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "createIOExtendedLBA"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392089-createioextendedlba",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createIOExtendedLBA",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1392089-createioextendedlba"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392095-getsectorcount16": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getSectorCount16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392095-getsectorcount16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getSectorCount16",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1392095-getsectorcount16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392102-setsectorcount16": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSectorCount16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392102-setsectorcount16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setSectorCount16",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1392102-setsectorcount16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392107-setextendedlba": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setExtendedLBA"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392107-setextendedlba",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setExtendedLBA",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1392107-setextendedlba"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392121-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392121-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1392121-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392128-setfeatures16": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFeatures16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392128-setfeatures16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setFeatures16",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1392128-setfeatures16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392136-getlbahigh16": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getLBAHigh16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392136-getlbahigh16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getLBAHigh16",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1392136-getlbahigh16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392147-zerodata": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "zeroData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392147-zerodata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "zeroData",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1392147-zerodata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392149-setdevice": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392149-setdevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDevice",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1392149-setdevice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392156-setlbahigh16": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setLBAHigh16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392156-setlbahigh16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setLBAHigh16",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1392156-setlbahigh16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392160-getfeatures16": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getFeatures16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392160-getfeatures16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getFeatures16",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1392160-getfeatures16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392162-getcommand": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392162-getcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1392162-getcommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392164-getlbamid16": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getLBAMid16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392164-getlbamid16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getLBAMid16",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1392164-getlbamid16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392175-setlbamid16": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setLBAMid16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392175-setlbamid16",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setLBAMid16",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1392175-setlbamid16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392177-getextendedlba": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getExtendedLBA"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392177-getextendedlba",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getExtendedLBA",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1392177-getextendedlba"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813831-getcommand": {
+      "abstract": [
+        {
+          "text": "Taskfile access. Registers are named in accordance with ATA Standards conventions",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813831-getcommand",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1813831-getcommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813835-getdevice": {
+      "abstract": [
+        {
+          "text": "Taskfile access. Registers are named in accordance with ATA Standards conventions",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813835-getdevice",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getDevice",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1813835-getdevice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813840-getextendedlba": {
+      "abstract": [
+        {
+          "text": "convenience method that gets a 48-bit LBA",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813840-getextendedlba",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getExtendedLBA",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1813840-getextendedlba"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813845-getfeatures16": {
+      "abstract": [
+        {
+          "text": "Taskfile access. Registers are named in accordance with ATA Standards conventions",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813845-getfeatures16",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getFeatures16",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1813845-getfeatures16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813850-getlbahigh16": {
+      "abstract": [
+        {
+          "text": "convenience method that gets the high 16 bits of a 48-bit LBA",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813850-getlbahigh16",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getLBAHigh16",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1813850-getlbahigh16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813853-getlbalow16": {
+      "abstract": [
+        {
+          "text": "convenience method that gets the lower 16 bits of a 48-bit LBA",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813853-getlbalow16",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getLBALow16",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1813853-getlbalow16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813856-getlbamid16": {
+      "abstract": [
+        {
+          "text": "convenience method that gets the middle 16 bits of a 48-bit LBA",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813856-getlbamid16",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getLBAMid16",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1813856-getlbamid16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813860-getsectorcount16": {
+      "abstract": [
+        {
+          "text": "Taskfile access. Registers are named in accordance with ATA Standards conventions",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813860-getsectorcount16",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getSectorCount16",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1813860-getsectorcount16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813863-setcommand": {
+      "abstract": [
+        {
+          "text": "Taskfile access. Registers are named in accordance with ATA Standards conventions",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813863-setcommand",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1813863-setcommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813867-setdevice": {
+      "abstract": [
+        {
+          "text": "Taskfile access. Registers are named in accordance with ATA Standards conventions",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813867-setdevice",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setDevice",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1813867-setdevice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813870-setextendedlba": {
+      "abstract": [
+        {
+          "text": "convenience method that sets the taskfile registers into a 48-bit LBA address, along with sector count, and unit selected and LBA bit set",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813870-setextendedlba",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setExtendedLBA",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1813870-setextendedlba"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813873-setfeatures16": {
+      "abstract": [
+        {
+          "text": "Taskfile access. Registers are named in accordance with ATA Standards conventions",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813873-setfeatures16",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setFeatures16",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1813873-setfeatures16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813876-setlbahigh16": {
+      "abstract": [
+        {
+          "text": "convenience method that sets the high 16 bits of a 48-bit LBA",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813876-setlbahigh16",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setLBAHigh16",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1813876-setlbahigh16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813879-setlbalow16": {
+      "abstract": [
+        {
+          "text": "convenience method that sets the lower 16 bits of a 48-bit LBA",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813879-setlbalow16",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setLBALow16",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1813879-setlbalow16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813881-setlbamid16": {
+      "abstract": [
+        {
+          "text": "convenience method that sets the middle 16 bits of a 48-bit LBA",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813881-setlbamid16",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setLBAMid16",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1813881-setlbamid16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813884-setsectorcount16": {
+      "abstract": [
+        {
+          "text": "Taskfile access. Registers are named in accordance with ATA Standards conventions",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813884-setsectorcount16",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setSectorCount16",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1813884-setsectorcount16"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813886-zerodata": {
+      "abstract": [
+        {
+          "text": "convenience method that zeros out the lba, sector count, features, device, and command member variables",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813886-zerodata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "zeroData",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/1813886-zerodata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioextendedlba/reserved": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioextendedlba/reserved",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "reserved",
+      "type": "topic",
+      "url": "/documentation/kernel/ioextendedlba/reserved"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "ExpansionData",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/expansiondata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ataoperationtype",
+        "doc://com.apple.documentation/documentation/kernel/atarequestidentifier",
+        "doc://com.apple.documentation/documentation/kernel/ioatabusinfo",
+        "doc://com.apple.documentation/documentation/kernel/ioatadevconfig",
+        "doc://com.apple.documentation/documentation/kernel/ioatacompletionfunction"
+      ],
+      "title": "Base Types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1818491",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813831-getcommand",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813835-getdevice",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813840-getextendedlba",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813845-getfeatures16",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813850-getlbahigh16",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813853-getlbalow16",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813856-getlbamid16",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813860-getsectorcount16",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813863-setcommand",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813867-setdevice",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813870-setextendedlba",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813873-setfeatures16",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813876-setlbahigh16",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813879-setlbalow16",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813881-setlbamid16",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813884-setsectorcount16",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1813886-zerodata"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "1818543",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata"
+      ],
+      "kind": "taskGroup",
+      "title": "DataTypes"
+    },
+    {
+      "anchor": "1818551",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/reserved"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Variables"
+    },
+    {
+      "anchor": "2855273",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392162-getcommand",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392071-getdevice",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392177-getextendedlba",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392160-getfeatures16",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392136-getlbahigh16",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392085-getlbalow16",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392164-getlbamid16",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392121-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392095-getsectorcount16",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392081-setcommand",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392149-setdevice",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392107-setextendedlba",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392128-setfeatures16",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392156-setlbahigh16",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392052-setlbalow16",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392175-setlbamid16",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392102-setsectorcount16",
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392147-zerodata"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "2855274",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioextendedlba/1392089-createioextendedlba"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/ioextendedlba"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

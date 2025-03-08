@@ -1,0 +1,835 @@
+{
+  "abstract": [
+    {
+      "text": "The process terminated because it received an abort signal.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs",
+        "doc://com.apple.Xcode/documentation/Xcode/understanding-the-exception-types-in-a-crash-report"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/SIGABRT"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "EXC_CRASH (SIGABRT)"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Typically, the ",
+              "type": "text"
+            },
+            {
+              "code": "SIGABRT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " signal is sent because",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the process called the ",
+              "type": "text"
+            },
+            {
+              "code": "abort()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as when an app encounters an uncaught Objective-C or C++ language exception.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/addressing-language-exception-crashes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " explains how to handle uncaught language",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "exceptions in more detail.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This signal can also come from another process",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that has the privileges to manage this process’ lifetime,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and sent a ",
+              "type": "text"
+            },
+            {
+              "code": "SIGABRT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " because this process misbehaved in a detectable manner.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the signal wasn’t sent because of a language exception,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "look at the crashed thread’s backtrace",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to determine if code in the process called ",
+              "type": "text"
+            },
+            {
+              "code": "abort()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about the ",
+              "type": "text"
+            },
+            {
+              "code": "abort()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function from the C standard library,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "enter ",
+              "type": "text"
+            },
+            {
+              "code": "man 3 abort",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in Terminal to view the ",
+              "type": "text"
+            },
+            {
+              "code": "abort(3)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " man page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If an app extension takes too much time to initialize,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the operating system sends a ",
+              "type": "text"
+            },
+            {
+              "code": "SIGABRT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the app extension process.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "These crashes include an ",
+              "type": "text"
+            },
+            {
+              "code": "Exception Subtype",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field with the value ",
+              "type": "text"
+            },
+            {
+              "code": "LAUNCH_HANG",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because extensions don’t have a ",
+              "type": "text"
+            },
+            {
+              "code": "main",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "any time spent initializing occurs within static constructors",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418815-load",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that are present in your extension and dependent libraries.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Although the exception information is different in a watchdog termination,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "investigate the ",
+              "type": "text"
+            },
+            {
+              "code": "LAUNCH_HANG",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using the same techniques discussed in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/addressing-watchdog-terminations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/EXC_ARITHMETIC": {
+      "abstract": [
+        {
+          "text": "An arithmetic problem terminated the process,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "often because of division by zero or a floating-point error.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/EXC_ARITHMETIC",
+      "kind": "article",
+      "role": "article",
+      "title": "EXC_ARITHMETIC",
+      "type": "topic",
+      "url": "/documentation/xcode/exc_arithmetic"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/EXC_BAD_ACCESS": {
+      "abstract": [
+        {
+          "text": "A bad access to memory terminated the process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/EXC_BAD_ACCESS",
+      "kind": "article",
+      "role": "article",
+      "title": "EXC_BAD_ACCESS",
+      "type": "topic",
+      "url": "/documentation/xcode/exc_bad_access"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/EXC_CRASH": {
+      "abstract": [
+        {
+          "text": "The process crashed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/EXC_CRASH",
+      "kind": "article",
+      "role": "article",
+      "title": "EXC_CRASH",
+      "type": "topic",
+      "url": "/documentation/xcode/exc_crash"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/EXC_GUARD": {
+      "abstract": [
+        {
+          "text": "The process violated a guarded resource protection, often related to file descriptors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/EXC_GUARD",
+      "kind": "article",
+      "role": "article",
+      "title": "EXC_GUARD",
+      "type": "topic",
+      "url": "/documentation/xcode/exc_guard"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/EXC_RESOURCE": {
+      "abstract": [
+        {
+          "text": "The operating system stopped the process",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "because the process exceeded a limit on resource consumption,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "like CPU time or memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/EXC_RESOURCE",
+      "kind": "article",
+      "role": "article",
+      "title": "EXC_RESOURCE",
+      "type": "topic",
+      "url": "/documentation/xcode/exc_resource"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/SIGBUS": {
+      "abstract": [
+        {
+          "text": "A bus error terminated the process,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "often because the process tried to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "access a misaligned or invalid address in memory,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "or due to a pointer authentication failure.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/SIGBUS",
+      "kind": "article",
+      "role": "article",
+      "title": "EXC_BAD_ACCESS (SIGBUS)",
+      "type": "topic",
+      "url": "/documentation/xcode/sigbus"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/SIGKILL": {
+      "abstract": [
+        {
+          "text": "The operating system terminated the process,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "often because a background task violated a requirement,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "device resources were limited,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "or the user force quit the app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/SIGKILL",
+      "kind": "article",
+      "role": "article",
+      "title": "EXC_CRASH (SIGKILL)",
+      "type": "topic",
+      "url": "/documentation/xcode/sigkill"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/SIGQUIT": {
+      "abstract": [
+        {
+          "text": "Another processes terminated the process,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "often because the process violated a requirement or timeout.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/SIGQUIT",
+      "kind": "article",
+      "role": "article",
+      "title": "EXC_CRASH (SIGQUIT)",
+      "type": "topic",
+      "url": "/documentation/xcode/sigquit"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/SIGSEGV": {
+      "abstract": [
+        {
+          "text": "A memory segmentation fault terminated the process,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "often because the process tried to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "access an invalid or out-of-bounds address in memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/SIGSEGV",
+      "kind": "article",
+      "role": "article",
+      "title": "EXC_BAD_ACCESS (SIGSEGV)",
+      "type": "topic",
+      "url": "/documentation/xcode/sigsegv"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/SIGSYS": {
+      "abstract": [
+        {
+          "text": "A bad argument to a system call terminated the process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/SIGSYS",
+      "kind": "article",
+      "role": "article",
+      "title": "EXC_CRASH (SIGSYS)",
+      "type": "topic",
+      "url": "/documentation/xcode/sigsys"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/SIGTERM": {
+      "abstract": [
+        {
+          "text": "A software termination signal terminated the process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/SIGTERM",
+      "kind": "article",
+      "role": "article",
+      "title": "EXC_CRASH (SIGTERM)",
+      "type": "topic",
+      "url": "/documentation/xcode/sigterm"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/SIGTRAP_SIGILL": {
+      "abstract": [
+        {
+          "text": "A trace trap or invalid CPU instruction interrupted the process,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "often because the process violated a requirement or timeout.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/SIGTRAP_SIGILL",
+      "kind": "article",
+      "role": "article",
+      "title": "EXC_BREAKPOINT (SIGTRAP) and EXC_BAD_INSTRUCTION (SIGILL)",
+      "type": "topic",
+      "url": "/documentation/xcode/sigtrap_sigill"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/addressing-language-exception-crashes": {
+      "abstract": [
+        {
+          "text": "Identify the signs of a language exception, and address the crashes caused by uncaught",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "language exceptions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/addressing-language-exception-crashes",
+      "kind": "article",
+      "role": "article",
+      "title": "Addressing language exception crashes",
+      "type": "topic",
+      "url": "/documentation/xcode/addressing-language-exception-crashes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/addressing-watchdog-terminations": {
+      "abstract": [
+        {
+          "text": "Identify the signature of an unresponsive app terminated by the watchdog, and address",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the issue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/addressing-watchdog-terminations",
+      "kind": "article",
+      "role": "article",
+      "title": "Addressing watchdog terminations",
+      "type": "topic",
+      "url": "/documentation/xcode/addressing-watchdog-terminations"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs": {
+      "abstract": [
+        {
+          "text": "Use crash reports and device logs to debug app issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Diagnosing issues using crash reports and device logs",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-issues-using-crash-reports-and-device-logs"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/understanding-the-exception-types-in-a-crash-report": {
+      "abstract": [
+        {
+          "text": "Learn what the exception type tells you about why your app crashed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-the-exception-types-in-a-crash-report",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Understanding the exception types in a crash report",
+      "type": "topic",
+      "url": "/documentation/xcode/understanding-the-exception-types-in-a-crash-report"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1418815-load": {
+      "abstract": [
+        {
+          "text": "Invoked whenever a class or category is added to the Objective-C runtime; implement this method to perform class-specific behavior upon loading.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "load"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418815-load",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "load()",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1418815-load"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Exceptions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/EXC_ARITHMETIC",
+        "doc://com.apple.Xcode/documentation/Xcode/EXC_BAD_ACCESS",
+        "doc://com.apple.Xcode/documentation/Xcode/SIGBUS",
+        "doc://com.apple.Xcode/documentation/Xcode/SIGSEGV",
+        "doc://com.apple.Xcode/documentation/Xcode/SIGTRAP_SIGILL",
+        "doc://com.apple.Xcode/documentation/Xcode/EXC_CRASH",
+        "doc://com.apple.Xcode/documentation/Xcode/SIGKILL",
+        "doc://com.apple.Xcode/documentation/Xcode/SIGQUIT",
+        "doc://com.apple.Xcode/documentation/Xcode/SIGSYS",
+        "doc://com.apple.Xcode/documentation/Xcode/SIGTERM",
+        "doc://com.apple.Xcode/documentation/Xcode/EXC_GUARD",
+        "doc://com.apple.Xcode/documentation/Xcode/EXC_RESOURCE"
+      ],
+      "title": "Exceptions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1objectivec~1nsobject~11418815-load/title",
+          "value": "load"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

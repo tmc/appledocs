@@ -1,0 +1,1378 @@
+{
+  "abstract": [
+    {
+      "text": "A class that processes a framebuffer object to detect and dim sequences of flashing lights.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessor"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MAFlashingLightsProcessor",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MAFlashingLightsProcessor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Media Accessibility"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MAFlashingLightsProcessor"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "MAFlashingLightsProcessor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MAFlashingLightsProcessor"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A device with the Dim Flashing Lights setting on automatically dims the brightness of flashing effect sequences when it detects them in video content. If your app performs custom video drawing instead of using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " APIs, you can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to detect and mitigate sequences of flashing effects in your video content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows how you might incorporate ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " into code that uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " APIs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import MediaAccessibility",
+            "import CoreVideo",
+            "import OSLog",
+            "",
+            "private let processor = MAFlashingLightsProcessor()",
+            "private let logger = Logger()",
+            "",
+            "func readVideoBuffer() {",
+            "    ",
+            "    // Confirm that the Dim Flashing Lights setting is on before processing video.",
+            "    if !MADimFlashingLightsEnabled() { return }",
+            "",
+            "    // Retrieve the CVPixelBuffer from your video content.",
+            "    // ...",
+            "    ",
+            "    // Get the IOSurface that backs the pixel buffer.",
+            "    guard let inSurface = CVPixelBufferGetIOSurface(pixelBuffer)?.takeUnretainedValue() else {",
+            "        logger.debug(\"Can't initialize input surface.\")",
+            "        return",
+            "    }",
+            "    ",
+            "    // Use the properties of the pixel buffer to initialize an output IOSurface.",
+            "    guard var outSurface = IOSurface(properties: [",
+            "        .width: CVPixelBufferGetWidth(pixelBuffer),",
+            "        .height: CVPixelBufferGetHeight(pixelBuffer),",
+            "        .bytesPerRow: CVPixelBufferGetWidth(pixelBuffer) * 4,",
+            "        .bytesPerElement: 4,",
+            "        .pixelFormat: CVPixelBufferGetPixelFormatType(pixelBuffer)",
+            "    ]) as IOSurfaceRef? else {",
+            "        logger.debug(\"Can't initialize output surface.\")",
+            "        return",
+            "    }",
+            "    ",
+            "    // Verify that the input IOSurface is compatible with the flashing lights processor.",
+            "    if processor.canProcessSurface(inSurface) {",
+            "        ",
+            "        // Analyze input IOSurface for flashing light sequences",
+            "        // and write mitigated content to output IOSurface.",
+            "        let result = processor.processSurface(inSurface, outSurface: &outSurface,",
+            "                                              timestamp: CFAbsoluteTimeGetCurrent())",
+            "        ",
+            "        if result.surfaceProcessed {",
+            "            logger.debug(\"\"\"",
+            "            Processed content with flashing lights intensity \\(result.intensityLevel)",
+            "            and mitigated output with mitigation level \\(result.mitigationLevel).",
+            "            \"\"\")",
+            "            ",
+            "            // Convert the mitigated output surface back to CVPixelBuffer",
+            "            // and draw the video content.",
+            "            // ...",
+            "            ",
+            "        } else {",
+            "            logger.debug(\"Can't process input surface.\")",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/flashing-lights",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/AVFoundation"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo": {
+      "abstract": [
+        {
+          "text": "Process digital video, including manipulation of individual frames, using a pipeline-based API and support for both Metal and OpenGL.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Video",
+      "type": "topic",
+      "url": "/documentation/CoreVideo"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility": {
+      "abstract": [
+        {
+          "text": "Make your app’s media more accessible by supporting people’s systemwide preferences for video and audio content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Media Accessibility",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MADimFlashingLightsEnabled()": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the flashing lights setting is enabled on the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MADimFlashingLightsEnabled"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MADimFlashingLightsEnabled()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MADimFlashingLightsEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "MADimFlashingLightsEnabled()",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/madimflashinglightsenabled()"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessor": {
+      "abstract": [
+        {
+          "text": "A class that processes a framebuffer object to detect and dim sequences of flashing lights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MAFlashingLightsProcessor"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MAFlashingLightsProcessor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MAFlashingLightsProcessor",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/maflashinglightsprocessor"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessor/OptionKey": {
+      "abstract": [
+        {
+          "text": "Options for the flashing lights processor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OptionKey"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessor/OptionKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OptionKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "MAFlashingLightsProcessor.OptionKey",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/maflashinglightsprocessor/optionkey"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessor/Result": {
+      "abstract": [
+        {
+          "text": "An object that reports the result of the flashing lights processor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessor/Result",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Result"
+        }
+      ],
+      "role": "symbol",
+      "title": "MAFlashingLightsProcessor.Result",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/maflashinglightsprocessor/result"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessor/canProcessSurface(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the flashing lights processor can process the content in the surface for sequences of flashing lights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canProcessSurface"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@IOSurfaceRef",
+          "text": "IOSurfaceRef"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessor/canProcessSurface(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canProcessSurface:"
+        }
+      ],
+      "role": "symbol",
+      "title": "canProcessSurface(_:)",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/maflashinglightsprocessor/canprocesssurface(_:)"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessor/processSurface(_:outSurface:timestamp:options:)": {
+      "abstract": [
+        {
+          "text": "Processes a surface by analyzing pixels for sequences of flashing lights and mitigates them by dimming the content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "processSurface"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@IOSurfaceRef",
+          "text": "IOSurfaceRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outSurface"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@IOSurfaceRef",
+          "text": "IOSurfaceRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timestamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAbsoluteTime",
+          "text": "CFAbsoluteTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MAFlashingLightsProcessor",
+          "text": "MAFlashingLightsProcessor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MAFlashingLightsProcessorOptionKey",
+          "text": "OptionKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MAFlashingLightsProcessor",
+          "text": "MAFlashingLightsProcessor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So25MAFlashingLightsProcessorC18MediaAccessibilityE6ResultV",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessor/processSurface(_:outSurface:timestamp:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "processSurface(_:outSurface:timestamp:options:)",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/maflashinglightsprocessor/processsurface(_:outsurface:timestamp:options:)"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessor/processSurface:outSurface:timestamp:options:": {
+      "abstract": [
+        {
+          "text": "Processes a surface by analyzing pixels for sequences of flashing lights and mitigates them by dimming the content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "processSurface:outSurface:timestamp:options:"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessor/processSurface:outSurface:timestamp:options:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "processSurface:outSurface:timestamp:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "processSurface:outSurface:timestamp:options:",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/maflashinglightsprocessor/processsurface:outsurface:timestamp:options:"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessorResult": {
+      "abstract": [
+        {
+          "text": "An object that reports the result of the flashing lights processor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MAFlashingLightsProcessorResult"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessorResult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MAFlashingLightsProcessorResult",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/maflashinglightsprocessorresult"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/flashing-lights": {
+      "abstract": [
+        {
+          "text": "Detect, mitigate, and inform people about flashing lights in media content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/flashing-lights",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Flashing lights",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/flashing-lights"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/kMADimFlashingLightsChangedNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts when a person changes the flashing lights setting on the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kMADimFlashingLightsChangedNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/kMADimFlashingLightsChangedNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kMADimFlashingLightsChangedNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "kMADimFlashingLightsChangedNotification",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/kmadimflashinglightschangednotification"
+    },
+    "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/responding-to-changes-in-the-flashing-lights-setting": {
+      "abstract": [
+        {
+          "text": "Adjust your UI when a person chooses to dim flashing lights on their Apple device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/responding-to-changes-in-the-flashing-lights-setting",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Responding to changes in the flashing lights setting",
+      "type": "topic",
+      "url": "/documentation/mediaaccessibility/responding-to-changes-in-the-flashing-lights-setting"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Dim-flashing-lights",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/responding-to-changes-in-the-flashing-lights-setting",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MADimFlashingLightsEnabled()",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/kMADimFlashingLightsChangedNotification"
+      ],
+      "title": "Dim flashing lights"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Checking-compatibility",
+      "identifiers": [
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessor/canProcessSurface(_:)"
+      ],
+      "title": "Checking compatibility"
+    },
+    {
+      "anchor": "Processing-video-content",
+      "identifiers": [
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessor/processSurface(_:outSurface:timestamp:options:)",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessor/Result",
+        "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessor/OptionKey"
+      ],
+      "title": "Processing video content"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MAFlashingLightsProcessor"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MAFlashingLightsProcessor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MAFlashingLightsProcessor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Checking-compatibility",
+              "identifiers": [
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessor/canProcessSurface(_:)"
+              ],
+              "title": "Checking compatibility"
+            },
+            {
+              "anchor": "Processing-video-content",
+              "identifiers": [
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessor/processSurface:outSurface:timestamp:options:",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessorResult",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MAFlashingLightsProcessor/OptionKey"
+              ],
+              "title": "Processing video content"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Dim-flashing-lights",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/MADimFlashingLightsEnabled()",
+                "doc://com.apple.mediaaccessibility/documentation/MediaAccessibility/kMADimFlashingLightsChangedNotification"
+              ],
+              "title": "Dim flashing lights"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MAFlashingLightsProcessor"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MADimFlashingLightsEnabled()/title",
+          "value": "MADimFlashingLightsEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MADimFlashingLightsEnabled()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MADimFlashingLightsEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAFlashingLightsProcessor~1OptionKey/title",
+          "value": "MAFlashingLightsProcessorOptionKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAFlashingLightsProcessor~1OptionKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MAFlashingLightsProcessorOptionKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAFlashingLightsProcessor~1OptionKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MAFlashingLightsProcessorOptionKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAFlashingLightsProcessor~1canProcessSurface(_:)/title",
+          "value": "canProcessSurface:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAFlashingLightsProcessor~1canProcessSurface(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "canProcessSurface:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1kMADimFlashingLightsChangedNotification/title",
+          "value": "kMADimFlashingLightsChangedNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1kMADimFlashingLightsChangedNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kMADimFlashingLightsChangedNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAFlashingLightsProcessor/title",
+          "value": "MAFlashingLightsProcessor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAFlashingLightsProcessor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MAFlashingLightsProcessor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaaccessibility~1documentation~1MediaAccessibility~1MAFlashingLightsProcessor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MAFlashingLightsProcessor"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mediaaccessibility/maflashinglightsprocessor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mediaaccessibility/maflashinglightsprocessor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

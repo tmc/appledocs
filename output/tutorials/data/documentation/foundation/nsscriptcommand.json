@@ -1,0 +1,1380 @@
+{
+  "abstract": [
+    {
+      "text": "A self-contained scripting statement.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/scripting_support"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1411979,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSScriptCommand",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSScriptCommand"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSScriptCommand"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSScriptCommand"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " represents a scripting statement, such as ",
+              "type": "text"
+            },
+            {
+              "code": "set word 5 of the front document to word 1 of the second document",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and contains the information needed to perform the operation specified by the statement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an Apple event reaches a Cocoa application, Cocoa’s built-in scripting support transforms it into a script command (that is, an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "NSScriptCommand",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or one of the subclasses provided by Cocoa scripting or by your application) and executes the command in the context of the application. Executing a command means either invoking the selector associated with the command on the object or objects designated to receive the command, or having the command perform its default implementation method (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1413379-performdefaultimplementation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your application most likely calls methods of ",
+              "type": "text"
+            },
+            {
+              "code": "NSScriptCommand",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to extract the command arguments. You do this either in the ",
+              "type": "text"
+            },
+            {
+              "code": "performDefaultImplementation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method of a command subclass you have created, or in an object method designated as the selector to handle a particular command.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As part of Cocoa’s standard scripting implementation, ",
+              "type": "text"
+            },
+            {
+              "code": "NSScriptCommand",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and its subclasses can handle the default command set for AppleScript's Standard suite for most applications without any subclassing. The Standard suite includes commands such as ",
+              "type": "text"
+            },
+            {
+              "code": "copy",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "count",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "create",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "delete",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "exists",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "move",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as well as common object classes such as ",
+              "type": "text"
+            },
+            {
+              "code": "application",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "document",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "window",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on working with script commands, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1698257",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1727275",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1698257": {
+      "identifier": "devLink-1698257",
+      "title": "Script Commands",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_script_cmds/SAppsScriptCmds.html#//apple_ref/doc/uid/20001242"
+    },
+    "devLink-1727275": {
+      "identifier": "devLink-1727275",
+      "title": "Cocoa Scripting Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsclonecommand": {
+      "abstract": [
+        {
+          "text": "A command that clones one or more scriptable objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCloneCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsclonecommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCloneCommand",
+      "type": "topic",
+      "url": "/documentation/foundation/nsclonecommand"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsclosecommand": {
+      "abstract": [
+        {
+          "text": "A command that closes one or more scriptable objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCloseCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsclosecommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCloseCommand",
+      "type": "topic",
+      "url": "/documentation/foundation/nsclosecommand"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscountcommand": {
+      "abstract": [
+        {
+          "text": "A command that counts the number of objects of a specified class in the specified object container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCountCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscountcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCountCommand",
+      "type": "topic",
+      "url": "/documentation/foundation/nscountcommand"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscreatecommand": {
+      "abstract": [
+        {
+          "text": "A command that creates a scriptable object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCreateCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscreatecommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCreateCommand",
+      "type": "topic",
+      "url": "/documentation/foundation/nscreatecommand"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdeletecommand": {
+      "abstract": [
+        {
+          "text": "A command that deletes a scriptable object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDeleteCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdeletecommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDeleteCommand",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdeletecommand"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexistscommand": {
+      "abstract": [
+        {
+          "text": "A command that determines whether a scriptable object exists.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExistsCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexistscommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExistsCommand",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexistscommand"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsgetcommand": {
+      "abstract": [
+        {
+          "text": "A command that retrieves a value or object from a scriptable object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSGetCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsgetcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSGetCommand",
+      "type": "topic",
+      "url": "/documentation/foundation/nsgetcommand"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmovecommand": {
+      "abstract": [
+        {
+          "text": "A command that moves one or more scriptable objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMoveCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmovecommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMoveCommand",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmovecommand"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsquitcommand": {
+      "abstract": [
+        {
+          "text": "A command that quits the specified app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSQuitCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsquitcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSQuitCommand",
+      "type": "topic",
+      "url": "/documentation/foundation/nsquitcommand"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptcommand": {
+      "abstract": [
+        {
+          "text": "A self-contained scripting statement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSScriptCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSScriptCommand",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptcommand"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1407452-commanddescription": {
+      "abstract": [
+        {
+          "text": "Returns the command description for the command.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "commandDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": NSScriptCommandDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1407452-commanddescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commandDescription",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptcommand/1407452-commanddescription"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1408227-resumeexecution": {
+      "abstract": [
+        {
+          "text": "If a successful, unmatched, invocation of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1417785-suspendexecution",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " has been made, resume the execution of the command.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "resumeExecution"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withResult"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1408227-resumeexecution",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resumeExecution(withResult:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptcommand/1408227-resumeexecution"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1408255-current": {
+      "abstract": [
+        {
+          "text": "If a command is being executed in the current thread by Cocoa scripting's built-in Apple event handling, return the command.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "current"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSScriptCommand?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1408255-current",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "current()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptcommand/1408255-current"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1410675-directparameter": {
+      "abstract": [
+        {
+          "text": "Sets the object that corresponds to the direct parameter of the Apple event from which the receiver derives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "directParameter"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1410675-directparameter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "directParameter",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptcommand/1410675-directparameter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1411257-evaluatedreceivers": {
+      "abstract": [
+        {
+          "text": "Returns the object or objects to which the command is to be sent (called both the “receivers” or “targets” of script commands).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "evaluatedReceivers"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1411257-evaluatedreceivers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "evaluatedReceivers",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptcommand/1411257-evaluatedreceivers"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1411484-scripterrornumber": {
+      "abstract": [
+        {
+          "text": "Sets a script error number that is associated with the execution of the command and is returned in the reply Apple event, if a reply was requested by the sender.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "scriptErrorNumber"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1411484-scripterrornumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scriptErrorNumber",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptcommand/1411484-scripterrornumber"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1411714-scripterrorexpectedtypedescripto": {
+      "abstract": [
+        {
+          "text": "Sets a descriptor for the expected type that will be put in the reply Apple event if the sender requested a reply, execution of the receiver completes, and an error number was set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "scriptErrorExpectedTypeDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": NSAppleEventDescriptor?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1411714-scripterrorexpectedtypedescripto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scriptErrorExpectedTypeDescriptor",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptcommand/1411714-scripterrorexpectedtypedescripto"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1413090-iswellformed": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isWellFormed"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1413090-iswellformed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isWellFormed",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptcommand/1413090-iswellformed"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1413335-evaluatedarguments": {
+      "abstract": [
+        {
+          "text": "Returns a dictionary containing the arguments of the command, evaluated from object specifiers to objects if necessary. The keys in the dictionary are the argument names.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "evaluatedArguments"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1413335-evaluatedarguments",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "evaluatedArguments",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptcommand/1413335-evaluatedarguments"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1413379-performdefaultimplementation": {
+      "abstract": [
+        {
+          "text": "Overridden by subclasses to provide a default implementation for the command represented by the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "performDefaultImplementation"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1413379-performdefaultimplementation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performDefaultImplementation()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptcommand/1413379-performdefaultimplementation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1413516-init": {
+      "abstract": [
+        {
+          "text": "Returns an a script command object initialized from the passed command description.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "commandDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": NSScriptCommandDescription)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1413516-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(commandDescription:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptcommand/1413516-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1414071-arguments": {
+      "abstract": [
+        {
+          "text": "Sets the arguments of the command to ",
+          "type": "text"
+        },
+        {
+          "code": "args",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "arguments"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1414071-arguments",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "arguments",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptcommand/1414071-arguments"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1414596-scripterrorstring": {
+      "abstract": [
+        {
+          "text": "Sets a script error string that is associated with execution of the command.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "scriptErrorString"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1414596-scripterrorstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scriptErrorString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptcommand/1414596-scripterrorstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1414780-execute": {
+      "abstract": [
+        {
+          "text": "Executes the command if it is valid and returns the result, if any.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "execute"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1414780-execute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "execute()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptcommand/1414780-execute"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1415626-appleevent": {
+      "abstract": [
+        {
+          "text": "If the receiver was constructed by Cocoa scripting's built-in Apple event handling, returns the Apple event descriptor from which it was constructed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "appleEvent"
+        },
+        {
+          "kind": "text",
+          "text": ": NSAppleEventDescriptor?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1415626-appleevent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appleEvent",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptcommand/1415626-appleevent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1417016-receiversspecifier": {
+      "abstract": [
+        {
+          "text": "Sets the object specifier to ",
+          "type": "text"
+        },
+        {
+          "code": "receiversSpec",
+          "type": "codeVoice"
+        },
+        {
+          "text": " that, when evaluated, indicates the receiver or receivers of the command.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "receiversSpecifier"
+        },
+        {
+          "kind": "text",
+          "text": ": NSScriptObjectSpecifier?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1417016-receiversspecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "receiversSpecifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptcommand/1417016-receiversspecifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1417217-scripterroroffendingobjectdescri": {
+      "abstract": [
+        {
+          "text": "Sets a descriptor for an object that will be put in the reply Apple event if the sender requested a reply, execution of the receiver completes, and an error number was set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "scriptErrorOffendingObjectDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": NSAppleEventDescriptor?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1417217-scripterroroffendingobjectdescri",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scriptErrorOffendingObjectDescriptor",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptcommand/1417217-scripterroroffendingobjectdescri"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1417482-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1417482-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptcommand/1417482-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1417785-suspendexecution": {
+      "abstract": [
+        {
+          "text": "Suspends the execution of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "suspendExecution"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1417785-suspendexecution",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "suspendExecution()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptcommand/1417785-suspendexecution"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1560759-nsscriptcommand_general_command_": {
+      "abstract": [
+        {
+          "code": "NSScriptCommand",
+          "type": "codeVoice"
+        },
+        {
+          "text": " uses the following error codes for general command execution problems:",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1560759-nsscriptcommand_general_command_",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "NSScriptCommand—General Command Execution Errors",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptcommand/1560759-nsscriptcommand_general_command_"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssetcommand": {
+      "abstract": [
+        {
+          "text": "A command that sets one or more attributes or relationships to one or more values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSetCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssetcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSetCommand",
+      "type": "topic",
+      "url": "/documentation/foundation/nssetcommand"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scripting_support": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scripting_support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scripting Support",
+      "type": "topic",
+      "url": "/documentation/foundation/scripting_support"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsquitcommand",
+        "doc://com.apple.documentation/documentation/foundation/nssetcommand",
+        "doc://com.apple.documentation/documentation/foundation/nsmovecommand",
+        "doc://com.apple.documentation/documentation/foundation/nscreatecommand",
+        "doc://com.apple.documentation/documentation/foundation/nsdeletecommand",
+        "doc://com.apple.documentation/documentation/foundation/nsexistscommand",
+        "doc://com.apple.documentation/documentation/foundation/nsgetcommand",
+        "doc://com.apple.documentation/documentation/foundation/nsclonecommand",
+        "doc://com.apple.documentation/documentation/foundation/nscountcommand",
+        "doc://com.apple.documentation/documentation/foundation/nsclosecommand"
+      ],
+      "title": "Script Commands"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1770516",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1413516-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializing a script command"
+    },
+    {
+      "anchor": "1770517",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1408255-current"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the current command"
+    },
+    {
+      "anchor": "1770518",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1415626-appleevent"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the Apple event"
+    },
+    {
+      "anchor": "1770520",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1414780-execute",
+        "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1413379-performdefaultimplementation"
+      ],
+      "kind": "taskGroup",
+      "title": "Executing the command"
+    },
+    {
+      "anchor": "1770521",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1411257-evaluatedreceivers",
+        "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1417016-receiversspecifier"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing receivers"
+    },
+    {
+      "anchor": "1770523",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1414071-arguments",
+        "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1413335-evaluatedarguments"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing arguments"
+    },
+    {
+      "anchor": "1770525",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1410675-directparameter"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing the direct parameter"
+    },
+    {
+      "anchor": "1770527",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1407452-commanddescription"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting command information"
+    },
+    {
+      "anchor": "1770528",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1411714-scripterrorexpectedtypedescripto",
+        "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1411484-scripterrornumber",
+        "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1417217-scripterroroffendingobjectdescri",
+        "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1414596-scripterrorstring"
+      ],
+      "kind": "taskGroup",
+      "title": "Handling script execution errors"
+    },
+    {
+      "anchor": "1770531",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1417785-suspendexecution",
+        "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1408227-resumeexecution"
+      ],
+      "kind": "taskGroup",
+      "title": "Suspending and resuming commands"
+    },
+    {
+      "anchor": "1664154",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1560759-nsscriptcommand_general_command_"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "2859940",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1417482-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "2859941",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptcommand/1413090-iswellformed"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsscriptcommand"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsscriptcommand"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

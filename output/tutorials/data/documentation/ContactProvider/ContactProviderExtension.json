@@ -1,0 +1,650 @@
+{
+  "abstract": [
+    {
+      "text": "The protocol your app extension implements, which provides contact items to the system-wide Contacts ecosystem.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ContactProvider/documentation/ContactProvider"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderExtension"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:15ContactProvider0aB9ExtensionP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ContactProviderExtension"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ContactProvider"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ContactProviderExtension"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "ContactProviderExtension"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ContactProviderExtension"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerating",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:15ContactProvider0A15ItemEnumeratingP",
+              "text": "ContactItemEnumerating"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:19ExtensionFoundation03AppA0P",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:19ExtensionFoundation03AppA0P",
+              "text": "AppExtension"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the system to recognize your app extension, use the following identifier in the extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>EXAppExtensionAttributes</key>",
+            "<dict>",
+            "    <key>EXExtensionPointIdentifier</key>",
+            "    <string>com.apple.contact.provider.extension</string>",
+            "</dict>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Installing the host app installs your extension, but the system won’t run the extension until the extension domain is enabled. When the extension runs, the system first calls the extension’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderExtension/configure(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Then you set up the enumerator that provides contact items from your data store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following shows a basic implementation of a ",
+              "type": "text"
+            },
+            {
+              "code": "ContactProviderExtension",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Because ",
+              "type": "text"
+            },
+            {
+              "code": "ContactProviderExtension",
+              "type": "codeVoice"
+            },
+            {
+              "text": " inherits from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerating",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " the implementation also implements ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerating/enumerator(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " which returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on demand. In this example, the extension sets up a ",
+              "type": "text"
+            },
+            {
+              "code": "RootContainerEnumerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to provide its contact items; see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " discussion for details of how ",
+              "type": "text"
+            },
+            {
+              "code": "RootContainerEnumerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " works.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import ContactProvider",
+            "",
+            "@main",
+            "class ExtensionExample: ContactProviderExtension {",
+            "    private let rootContainerEnumerator: RootContainerEnumerator",
+            "    ",
+            "    required init() {",
+            "        rootContainerEnumerator = RootContainerEnumerator()",
+            "    }",
+            "    ",
+            "    func configure(for domain: ContactProviderDomain) {",
+            "        rootContainerEnumerator.configure(for: domain)",
+            "    }",
+            "    ",
+            "    func enumerator(for collection: ContactItem.Identifier) -> any ContactItemEnumerator {",
+            "        return rootContainerEnumerator",
+            "    }",
+            "",
+            "    func invalidate() async {",
+            "        // Stop the enumeration and clean up, in preparation for the extension to terminate.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.ContactProvider/documentation/ContactProvider": {
+      "abstract": [
+        {
+          "text": "Provide contacts managed by your app to the system-wide Contacts ecosystem.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ContactProvider",
+      "type": "topic",
+      "url": "/documentation/contactprovider"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerating": {
+      "abstract": [
+        {
+          "text": "A protocol to provide enumerators for collections of contact items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContactItemEnumerating"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerating",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContactItemEnumerating"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContactItemEnumerating",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactitemenumerating"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerating/enumerator(for:)": {
+      "abstract": [
+        {
+          "text": "Provide an enumerator for the contact items collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ContactProvider0A4ItemO",
+          "text": "ContactItem"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ContactProvider0A4ItemO10IdentifierV",
+          "text": "Identifier"
+        },
+        {
+          "kind": "text",
+          "text": ") -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ContactProvider0A14ItemEnumeratorP",
+          "text": "ContactItemEnumerator"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerating/enumerator(for:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "enumerator(for:)",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactitemenumerating/enumerator(for:)"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerator": {
+      "abstract": [
+        {
+          "text": "A protocol to provide enumerations of all contact items and changed contact items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContactItemEnumerator"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContactItemEnumerator"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContactItemEnumerator",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactitemenumerator"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderExtension": {
+      "abstract": [
+        {
+          "text": "The protocol your app extension implements, which provides contact items to the system-wide Contacts ecosystem.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContactProviderExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContactProviderExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContactProviderExtension",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactproviderextension"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderExtension/configure(for:)": {
+      "abstract": [
+        {
+          "text": "Configures the extension instance for a domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "configure"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ContactProvider0aB6DomainP",
+          "text": "ContactProviderDomain"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderExtension/configure(for:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "configure(for:)",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactproviderextension/configure(for:)"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderExtension/invalidate()": {
+      "abstract": [
+        {
+          "text": "Invalidates the extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidate"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderExtension/invalidate()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "invalidate()",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactproviderextension/invalidate()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:19ExtensionFoundation03AppA0P": {
+      "abstract": [
+        {
+          "text": "Declares a type used by app extensions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppExtension"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:19ExtensionFoundation03AppA0P",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppExtension",
+      "type": "topic",
+      "url": "/documentation/ExtensionFoundation/AppExtension"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:19ExtensionFoundation03AppA0P",
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactItemEnumerating"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Configuring-an-extension",
+      "identifiers": [
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderExtension/configure(for:)"
+      ],
+      "title": "Configuring an extension"
+    },
+    {
+      "anchor": "Managing-the-extension-life-cycle",
+      "identifiers": [
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderExtension/invalidate()"
+      ],
+      "title": "Managing the extension life cycle"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/contactprovider/contactproviderextension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

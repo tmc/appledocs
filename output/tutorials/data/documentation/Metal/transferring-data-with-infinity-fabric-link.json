@@ -1,0 +1,1026 @@
+{
+  "abstract": [
+    {
+      "text": "Efficiently execute and visualize a compute-intensive simulation using multiple GPUs with a peer-to-peer connection.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission",
+        "doc://com.apple.metal/documentation/Metal/multi-gpu-systems"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/transferring-data-with-infinity-fabric-link"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "10.15",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Transferring Data with Infinity Fabric Link"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows how a Mac Pro system with multiple GPUs and an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Infinity Fabric Link connection can rapidly transfer an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from a simulation-dedicated GPU to a rendering-dedicated GPU without using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "PCI bus to update a shared intermediate buffer from allocated system memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses two separate classes to encode Metal commands:",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLSimulation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for compute commands and ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLRenderer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for graphics commands.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It uses the simulation class to create a compute pipeline, initialize an N-body data set, and execute the simulation.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It uses the renderer class to create a render pipeline and draw N-body data that the simulation produces.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Additionally, it uses the ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class to separate and coordinate work between the simulation and renderer classes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Get-Started",
+          "level": 3,
+          "text": "Get Started",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Connecting GPUs to each other places them in the same peer group.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Not all Mac Pro computers have multiple GPUs in a peer group with an Infinity Fabric Link connection.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To check the GPUs in a Mac, choose Apple menu > About this Mac, select the PCI Cards tab, and note the configuration.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The GPUs in a peer group appear as consuming two PCI slots together with the bottom-most connection to the motherboard linked.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Depending on the configuration, there may be two peer groups on two Duo cards consuming a total of four PCI slots.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Find-and-Assign-GPUs-in-Peer-Groups",
+          "level": 3,
+          "text": "Find and Assign GPUs in Peer Groups",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample determines whether a GPU is in a peer group by reading the device object’s ",
+              "type": "text"
+            },
+            {
+              "code": "peerGroupID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A nonzero value indicates that the GPU is in a peer group.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "GPUs in the same peer group share the same peer group ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample finds two GPUs in the same peer group, and stores them in a dictionary as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Find devices in a peer group.",
+            "for(id<MTLDevice> device in availableDevices)",
+            "{",
+            "    if(device.peerGroupID)",
+            "    {",
+            "        peerGroupID = device.peerGroupID;",
+            "        NSNumber *pgID = [NSNumber numberWithUnsignedLongLong:peerGroupID];",
+            "        if(peerGroupDictionary[pgID] != nil)",
+            "        {",
+            "            // Add a newly found peer to a previously found peer group.",
+            "            NSMutableArray *foundPeers = peerGroupDictionary[pgID];",
+            "            [foundPeers addObject:device];",
+            "        }",
+            "        else",
+            "        {",
+            "            // Create a dictionary entry for this peer group to hold the two GPUs.",
+            "            NSMutableArray *peers = [NSMutableArray arrayWithCapacity:2];",
+            "            [peers addObject:device];",
+            "            peerGroupDictionary[pgID] = peers;",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample then assigns the first GPU to simulate and the second GPU to render.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each GPU uses its own command buffer to do its work.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSArray *peerGroup = [peerGroupDictionary",
+            "                      objectForKey:[NSNumber numberWithUnsignedLongLong:peerGroupID]];",
+            "if(peerGroup != nil)",
+            "{",
+            "    _computeDevice = peerGroup[0];",
+            "    ",
+            "    _event = [[AAPLEventWrapper alloc] initWithDevice:_computeDevice];",
+            "",
+            "    _view.device = peerGroup[1];",
+            "    _renderer = [[AAPLRenderer alloc] initWithMetalKitView:_view",
+            "                                               sharedEvent:_event];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-Resources-and-Remote-Views",
+          "level": 3,
+          "text": "Create Resources and Remote Views",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/synchronizing-cpu-and-gpu-work",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the CPU and the GPU work simultaneously",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by using multiple instances of a data resource for triple-buffered rendering.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This sample uses a similar strategy for the renderer and simulation GPUs with two buffers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample creates a pool of two instances of an ",
+              "type": "text"
+            },
+            {
+              "code": "MTLBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and uses a different buffer instance each time it renders a frame.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The simulation creates a pool of two ",
+              "type": "text"
+            },
+            {
+              "code": "MTLBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects holding position data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " // Create two buffers for both positions and velocities to preserve",
+            " // the previous frame's data while computing the next frame.",
+            " _positions = [NSMutableArray arrayWithCapacity:2];",
+            " _velocities = [NSMutableArray arrayWithCapacity:2];",
+            "_positions[_oldBufferIndex] = initialPositions;",
+            "_positions[_newBufferIndex] = [_device newBufferWithLength:bufferSize",
+            "                                                   options:MTLResourceStorageModePrivate];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each Metal device object creates and manages its own GPU resources, and can’t access another device object’s resources.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When the sample needs to render a new frame, it first has to copy the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "position data that the simulation GPU owns to a resource that the renderer GPU owns.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To accomplish this task, the renderer creates two resources for each of the simulation’s buffers:",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an identically sized buffer to hold position data, and a remote view of the matching simulation buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "_positionsBufferViews = [NSMutableArray arrayWithCapacity:2];",
+            "_positionsBuffers = [NSMutableArray arrayWithCapacity:2];",
+            "for(int i = 0; i < 2; i++)",
+            "{",
+            "    _positionsBufferViews[i] = [positionBuffers[i] newRemoteBufferViewForDevice:_device];",
+            "    _positionsBuffers[i] = [_device newBufferWithLength:positionBuffers[i].allocatedSize",
+            "                                                options:MTLResourceStorageModePrivate];",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During simulation, each step updates a buffer in the simulation’s buffer pool.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The renderer then copies the updated buffer data to its own local buffer pool using the remote view it creates above (see below).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Simulate-Synchronize-and-Transfer",
+          "level": 3,
+          "text": "Simulate, Synchronize, and Transfer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample executes an N-body simulation and continuously renders a frame of simulation results until it reaches a time limit.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "At that point, the sample renders all the N-body particles in their final state.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about the N-body simulation, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-compute-processing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Handle the simulation's completion.",
+            "if(_simulationTime >= _config->simDuration)",
+            "{",
+            "    [self handleSimulationComplete:numBodies];",
+            "}",
+            "",
+            "// Simulate.",
+            "NSUInteger curIndex = [_simulation stepSimulation:updateHandler];",
+            "// Transfer.",
+            "[_renderer transferPositionDataAtIndex:curIndex];",
+            "// Render result.",
+            "[_renderer drawTransferredPositionDataWithNumBodies:numBodies",
+            "                                          inView:_view];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Simulation synchronizes with rendering by encoding an",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLSharedEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "signal event on the command buffer for simulation commands.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample encodes a corresponding wait event on the command buffer for the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "blit command that updates the renderer’s position buffer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The signal and wait events ensure that the position buffer visible in the peer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "group always contains valid position data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    [commandBuffer addCompletedHandler:^(id<MTLCommandBuffer> buffer)",
+            "     {",
+            "        block_updateHandler(updateSimulationTime);",
+            "    }];",
+            "}",
+            "",
+            "[_event signal:commandBuffer];",
+            "[commandBuffer commit];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "code": [
+            "// Create a new command buffer for blitting the remote view of the position buffer.",
+            "id<MTLCommandBuffer> commandBuffer = [_renderCommandQueue commandBuffer];",
+            "commandBuffer.label = @\"Blit of Remote Resource Command Buffer\";",
+            "   ",
+            "[_event wait:commandBuffer];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, the sample encodes commands to copy an ",
+              "type": "text"
+            },
+            {
+              "code": "MTLBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from the simulation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pool to the renderer pool using the remote view from initialization.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample uses data in that ",
+              "type": "text"
+            },
+            {
+              "code": "MTLBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as position data input to the vertex shader.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This Infinity Fabric Link transfer by blit doesn’t use PCI bus bandwidth and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "performs a direct copy of data in device memory, thereby avoiding a round trip to a shared buffer in system memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[blitEncoder copyFromBuffer:_positionsBufferViews[index]",
+            "               sourceOffset:0",
+            "                   toBuffer:_positionsBuffers[index]",
+            "          destinationOffset:0",
+            "                       size:_positionsBuffers[index].allocatedSize];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/transferring-data-between-connected-gpus",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "6b2600b894e0/TransferringDataWithInfinityFabricLink.zip": {
+      "checksum": "6b2600b894e007e2d0584bee280d2c98f0e13ce0492eb91ac0540ad237deccf9c40a542ebb11f319db1310b2bf7a5627f31e75fee2447f27b0af7e10dd1c46e4",
+      "identifier": "6b2600b894e0/TransferringDataWithInfinityFabricLink.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/6b2600b894e0/TransferringDataWithInfinityFabricLink.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer": {
+      "abstract": [
+        {
+          "text": "A resource that stores data in a format defined by your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSharedEvent": {
+      "abstract": [
+        {
+          "text": "An object you use to synchronize access to Metal resources across multiple CPUs, GPUs, and processes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSharedEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLSharedEvent",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsharedevent"
+    },
+    "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission": {
+      "abstract": [
+        {
+          "text": "Find any available GPU, submit work to it with command buffers, suspend work, and coordinate between multiple GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/gpu-devices-and-work-submission",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GPU Devices and Work Submission",
+      "type": "topic",
+      "url": "/documentation/metal/gpu-devices-and-work-submission"
+    },
+    "doc://com.apple.metal/documentation/Metal/handling-external-gpu-additions-and-removals": {
+      "abstract": [
+        {
+          "text": "Register and respond to external GPU notifications that a person initiates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/handling-external-gpu-additions-and-removals",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling External GPU Additions and Removals",
+      "type": "topic",
+      "url": "/documentation/metal/handling-external-gpu-additions-and-removals"
+    },
+    "doc://com.apple.metal/documentation/Metal/multi-gpu-systems": {
+      "abstract": [
+        {
+          "text": "Locate and work with internal and external GPUs and their displays, video memory, and performance tradeoffs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/multi-gpu-systems",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Multi-GPU Systems",
+      "type": "topic",
+      "url": "/documentation/metal/multi-gpu-systems"
+    },
+    "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-compute-processing": {
+      "abstract": [
+        {
+          "text": "Switch dynamically between multiple GPUs to efficiently execute a compute-intensive simulation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-compute-processing",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Selecting Device Objects for Compute Processing",
+      "type": "topic",
+      "url": "/documentation/metal/selecting-device-objects-for-compute-processing"
+    },
+    "doc://com.apple.metal/documentation/Metal/synchronizing-cpu-and-gpu-work": {
+      "abstract": [
+        {
+          "text": "Avoid stalls between CPU and GPU work by using multiple instances of a resource.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/synchronizing-cpu-and-gpu-work",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Synchronizing CPU and GPU Work",
+      "type": "topic",
+      "url": "/documentation/metal/synchronizing-cpu-and-gpu-work"
+    },
+    "doc://com.apple.metal/documentation/Metal/transferring-data-between-connected-gpus": {
+      "abstract": [
+        {
+          "text": "Use high-speed connections between GPUs to transfer data quickly.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/transferring-data-between-connected-gpus",
+      "kind": "article",
+      "role": "article",
+      "title": "Transferring Data Between Connected GPUs",
+      "type": "topic",
+      "url": "/documentation/metal/transferring-data-between-connected-gpus"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "6b2600b894e0/TransferringDataWithInfinityFabricLink.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Working-with-External-GPUs",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/handling-external-gpu-additions-and-removals",
+        "doc://com.apple.metal/documentation/Metal/transferring-data-between-connected-gpus"
+      ],
+      "title": "Working with External GPUs"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Working-with-External-GPUs",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/handling-external-gpu-additions-and-removals",
+                "doc://com.apple.metal/documentation/Metal/transferring-data-between-connected-gpus"
+              ],
+              "title": "Working with External GPUs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/title",
+          "value": "MTLBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEvent/title",
+          "value": "MTLSharedEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEvent"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/transferring-data-with-infinity-fabric-link"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/transferring-data-with-infinity-fabric-link"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

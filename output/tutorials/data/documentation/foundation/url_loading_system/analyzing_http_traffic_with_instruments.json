@@ -1,0 +1,830 @@
+{
+  "abstract": [
+    {
+      "text": "Measure HTTP-based network performance and usage of your apps.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments"
+  },
+  "kind": "article",
+  "legacy_identifier": 3861759,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Analyzing HTTP traffic with Instruments"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a component of Instruments, a performance-analysis and testing tool for iOS, iPadOS, watchOS, tvOS, and macOS apps, the HTTP Traffic instrument intercepts, records, and visualizes targeted processes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This instrument records both encrypted and unencrypted HTTP traffic in the trace document and in system logs, in an unencrypted state. These trace documents and log files may contain sensitive information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The instrument internally gathers detailed information—including header and body content, connection setup duration, and request and response times—from the URL Loading System. It then records this data and recombines it into precise intervals with additional metadata.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Session 10212: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-4164578",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related sessions from WWDC21",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "3861766",
+          "level": 3,
+          "text": "Launch Instruments and start recording",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "From Xcode’s Product menu, choose Profile. After Instruments launches, select the Network template, then click Choose.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3861762",
+              "metadata": {
+                "anchor": "3861762",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Network Connections and HTTP Traffic instruments appear in a new window, along with the timeline and detail panes. The following figure highlights the areas of interest.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3875432",
+              "metadata": {
+                "anchor": "3875432",
+                "title": "Figure 2"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Click the Record button in the toolbar. A dialog appears that explains the risks associated with capturing HTTP traffic and storing it unencrypted. If you accept this risk, click Record Anyway. The app launches and the instrument starts monitoring.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3874019",
+          "level": 3,
+          "text": "View the track hierarchy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The HTTP Traffic track is the topmost track. It shows all HTTP traffic for the current recording session. You can also view a break down of the captured traffic across different dimensions using a hierarchy of the HTTP Traffic instrument subtracks. To reveal the subtracks, click the disclosure triangle next to HTTP Traffic.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first hierarchy level organizes the traffic by process, revealing one track per captured process. Each process contains one or more ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " tracks, and each session contains a set of one or more domain tracks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3875619",
+              "metadata": {
+                "anchor": "3875619",
+                "title": "Figure 3"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The HTTP Traffic track and the process tracks show an aggregated view that displays how many tasks or transactions are active at any point. Session tracks display individual intervals for each task and transaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A session track corresponds to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that you create in code. The session name comes from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1408277-sessiondescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Naming your session allows you to reference it when viewing HTTP traffic for your app. Here’s an example showing how to name a session:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let session = URLSession(configuration:.default)",
+            "session.sessionDescription = \"Main Session\""
+          ],
+          "metadata": {
+            "anchor": "3875634",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3861768",
+          "level": 3,
+          "text": "View tasks and transactions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are times when completing a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " task requires several rounds of requests and responses. Each pair of requests and responses is a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "transaction",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Domain tracks provide an increased level of detail. In addition to information about the task, they also display the underlying transactions and transaction states. Here’s the dogs.example domain track showing a task with two transactions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3885552",
+              "metadata": {
+                "anchor": "3885552",
+                "title": "Figure 4"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A transaction has five states that occur in the following order: cache lookup, blocked, sending request, waiting for response, and receiving response. The following illustration shows these states.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3884341",
+              "metadata": {
+                "anchor": "3884341",
+                "title": "Figure 5"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some states have a very short duration compared to others. For example, cache lookup may take a few milliseconds, whereas blocking occurs for a second or longer. This leads to the cache lookup state not being visible at the default zoom level. If you’d like to view a specific state, use your mouse or trackpad to zoom in to the corresponding area of the transaction to reveal more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instruments provides two display styles in the track area. The default display style shows a list of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " tasks. Here are the tasks for the dogs.example session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3880089",
+              "metadata": {
+                "anchor": "3880089",
+                "title": "Figure 6"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also display transactions grouped by connection. To switch to this style, click the arrow next to the domain name. This helps you understand how your transactions execute and the influence of the underlying connections. Here are the transactions grouped by connection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3887310",
+              "metadata": {
+                "anchor": "3887310",
+                "title": "Figure 7"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The detail pane and inspector update when you change the track display style. When selecting the Tasks display, the detail pane shows information about the tasks. The inspector shows the backtrace of when the selected task resumed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When selecting the HTTP Transactions by Connection display, the detail pane shows information about the transactions. The inspector shows the request headers, response headers, and the request and response body of the selected transaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the two lists in the detail pane, there’s a summary view. From the pop-up menu, select “Summary: Transaction Durations.” The summary view groups connections hierarchically by IP address, connection, and path.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3878116",
+              "metadata": {
+                "anchor": "3878116",
+                "title": "Figure 8"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments": {
+      "abstract": [
+        {
+          "text": "Measure HTTP-based network performance and usage of your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing HTTP traffic with Instruments",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments#3875634": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments#3875634",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments#3875634"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/fetching_website_data_into_memory": {
+      "abstract": [
+        {
+          "text": "Receive data directly into memory by creating a data task from a URL session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/fetching_website_data_into_memory",
+      "kind": "article",
+      "role": "article",
+      "title": "Fetching website data into memory",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/fetching_website_data_into_memory"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/1408277-sessiondescription": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1408277-sessiondescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sessionDescription",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/1408277-sessiondescription"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontask": {
+      "abstract": [
+        {
+          "text": "A task, like downloading a specific resource, performed in a URL session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSessionTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionTask",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontask"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-4164578": {
+      "identifier": "link-4164578",
+      "kind": "article",
+      "role": "link",
+      "title": "Analyze HTTP traffic in Instruments",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2021/10212/"
+    },
+    "link-media-3861762": {
+      "identifier": "link-media-3861762",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments#3861762"
+    },
+    "link-media-3875432": {
+      "identifier": "link-media-3875432",
+      "title": "Figure 2",
+      "type": "link",
+      "url": "/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments#3875432"
+    },
+    "link-media-3875619": {
+      "identifier": "link-media-3875619",
+      "title": "Figure 3",
+      "type": "link",
+      "url": "/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments#3875619"
+    },
+    "link-media-3878116": {
+      "identifier": "link-media-3878116",
+      "title": "Figure 8",
+      "type": "link",
+      "url": "/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments#3878116"
+    },
+    "link-media-3880089": {
+      "identifier": "link-media-3880089",
+      "title": "Figure 6",
+      "type": "link",
+      "url": "/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments#3880089"
+    },
+    "link-media-3884341": {
+      "identifier": "link-media-3884341",
+      "title": "Figure 5",
+      "type": "link",
+      "url": "/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments#3884341"
+    },
+    "link-media-3885552": {
+      "identifier": "link-media-3885552",
+      "title": "Figure 4",
+      "type": "link",
+      "url": "/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments#3885552"
+    },
+    "link-media-3887310": {
+      "identifier": "link-media-3887310",
+      "title": "Figure 7",
+      "type": "link",
+      "url": "/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments#3887310"
+    },
+    "media-3861762": {
+      "alt": "An image showing the profile template for the Network instrument with the Network instrument selected.",
+      "identifier": "media-3861762",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/24933be226/renderedDark2x-1625088375.png"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5a5233c6ae/rendered2x-1625088378.png"
+        }
+      ]
+    },
+    "media-3875432": {
+      "alt": "An image of the Instruments window showing the major areas: the timeline pane, toolbar, detail pane, and the inspector pane. In the toolbar is the record button. The top portion of the window contains the HTTP Traffic instrument, process track, URLSession track, and task area.",
+      "identifier": "media-3875432",
+      "title": "Figure 2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0cd7f3348d/renderedDark2x-1629665060.png"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/30f2615f3b/rendered2x-1629665063.png"
+        }
+      ]
+    },
+    "media-3875619": {
+      "alt": "An image of a portion of the Instruments window showing the HTTP Traffic track, the process track, and the domain track. The domain track shows thumbnail load transactions for the dogs.example domain.",
+      "identifier": "media-3875619",
+      "title": "Figure 3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a9a63158b7/renderedDark2x-1633964534.png"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0164913024/rendered2x-1633964536.png"
+        }
+      ]
+    },
+    "media-3878116": {
+      "alt": "An image showing transactions grouped by IP address and connection. The count, average duration, maximum duration, and total duration appear for the selected transaction.",
+      "identifier": "media-3878116",
+      "title": "Figure 8",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f67b980146/rendered2x-1629725240.png"
+        },
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ca458f80e2/renderedDark2x-1629725243.png"
+        }
+      ]
+    },
+    "media-3880089": {
+      "alt": "An image showing URL session tasks for the dogs.example domain track. The selected task’s backtrace appears in the inspector pane.",
+      "identifier": "media-3880089",
+      "title": "Figure 6",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67d3064405/renderedDark2x-1633015224.png"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/140cfb792c/rendered2x-1633015227.png"
+        }
+      ]
+    },
+    "media-3884341": {
+      "alt": "An illustration showing the progression of a transaction from left to right: cache lookup, blocked, sending request, waiting for response, and receiving response.",
+      "identifier": "media-3884341",
+      "title": "Figure 5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d9447972ea/rendered2x-1632400263.png"
+        },
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c6a6a333f1/renderedDark2x-1632400266.png"
+        }
+      ]
+    },
+    "media-3885552": {
+      "alt": "An image showing a portion of the Instruments window highlighting two transactions in a single task.",
+      "identifier": "media-3885552",
+      "title": "Figure 4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fc0c741482/rendered2x-1632851639.png"
+        },
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bc96862e50/renderedDark2x-1632851644.png"
+        }
+      ]
+    },
+    "media-3887310": {
+      "alt": "An image showing transactions grouped by connection. There are two transactions under connection 1. The first transaction is the selected one and its request headers appear in the inspector pane.",
+      "identifier": "media-3887310",
+      "title": "Figure 7",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0c3138ec9a/rendered2x-1633975089.png"
+        },
+        {
+          "traits": [
+            "dark",
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/abc4f2177f/renderedDark2x-1633975095.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/fetching_website_data_into_memory",
+        "doc://com.apple.documentation/documentation/foundation/urlsession",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiontask"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

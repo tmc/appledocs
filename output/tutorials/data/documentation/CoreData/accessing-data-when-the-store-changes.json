@@ -1,0 +1,1429 @@
+{
+  "abstract": [
+    {
+      "text": "Guarantee that a context won’t see store changes until you tell it to look.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coredata/documentation/CoreData"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coredata/documentation/CoreData/accessing-data-when-the-store-changes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Data"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Accessing data when the store changes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Query generations give your UI a stable view of data in the database, regardless of changes happening to the store underneath. Whenever you read from a context, you see the same generation, or snapshot, of data until you choose to advance it to a later generation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use query generations when you want to isolate your view context from any changes made in the store by background threads in your app, app extensions, CloudKit, or other sources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Ensure-the-correct-type-and-mode-for-the-persistent-store",
+          "level": 3,
+          "text": "Ensure the correct type and mode for the persistent store",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use query generations, the persistent store must be an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSSQLiteStoreType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in write-ahead logging (WAL) journal mode. Core Data creates SQLite stores with WAL mode enabled by default.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Query generations leverage WAL mode to let you query against the historical state of the database. Core Data appends transactions to a ",
+              "type": "text"
+            },
+            {
+              "code": ".sqlite-wal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, or journal, in the same directory as the main store file. When your context reads from the journal, it starts at the transaction associated with a specific generation, instead of at the most recent transaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To confirm whether a custom store has WAL mode enabled, turn on SQL logging. Choose Product > Scheme > Edit Scheme, then choose the Run action, and add the following line under Arguments Passed on Launch:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "-com.apple.CoreData.SQLDebug 1"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Run your app, and look for the following output in the console:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "CoreData: sql: pragma journal_mode=wal"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you try to use query generations with a store that’s not an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSSQLiteStoreType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in WAL journal mode, your contexts gracefully revert to unpinned behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Pin-the-context-to-a-store-generation",
+          "level": 3,
+          "text": "Pin the context to a store generation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, contexts are unpinned, and read from the store at the generation of the most recent transaction. Pinned contexts read from the store at the generation of a specific transaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To pin a context, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/setQueryGenerationFrom(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and pass an opaque ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSQueryGenerationToken",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The context updates to the specified generation lazily on the next read (fetching or faulting) operation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSQueryGenerationToken/current",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " generation token to pin the context to the generation corresponding to the most recent store transaction. For example, pass the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSQueryGenerationToken/current",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " generation token when setting up your stack to pin the view context to the first generation that it fetches.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Pin the context to the generation that corresponds with the most recent",
+            "// store transaction.",
+            "do {",
+            "    try persistentContainer.viewContext.setQueryGenerationFrom(.current)",
+            "} catch {",
+            "    // Handle the error appropriately.",
+            "    print(\"Failed to pin the context:\", error.localizedDescription)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/queryGenerationToken",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from another pinned context to align both contexts to the same generation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To unpin a context, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/setQueryGenerationFrom(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", passing ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Unpin the context.",
+            "do {",
+            "    try persistentContainer.viewContext.setQueryGenerationFrom(nil)",
+            "} catch {",
+            "    // Handle the error appropriately.",
+            "    print(\"Failed to unpin the context:\", error.localizedDescription)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Nested contexts inherit their parent’s generation. They’re implicitly unpinned, but they see data as viewed through the generation of their parent with the addition of their parent’s pending changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A generation doesn’t include stores added to the store coordinator after the generation’s creation. Additionally, if you remove a store from the coordinator, don’t try to load data from the deleted store into a context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-the-view-context-to-the-current-store-generation",
+          "level": 3,
+          "text": "Update the view context to the current store generation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Advance a context to the generation of the most recent transaction, and pin it there, by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/setQueryGenerationFrom(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and passing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSQueryGenerationToken/current",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " token. The context updates to the specified generation lazily on the next read (fetching or faulting) operation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Advance the context to the generation of the most recent store transaction.",
+            "do {",
+            "    try persistentContainer.viewContext.setQueryGenerationFrom(.current)",
+            "} catch {",
+            "    // Handle the error appropriately.",
+            "    print(\"Failed to set the query generation:\", error.localizedDescription)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, update a context’s generation by calling any of the following.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/setQueryGenerationFrom(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/save()",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/mergeChanges(fromContextDidSave:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/mergeChanges(fromRemoteContextSave:into:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/reset()",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Update contexts to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSQueryGenerationToken/current",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " generation as soon as a specific generation is no longer needed. Query generations hold a file lock open to maintain the integrity of the journal for the duration of a query generation. Once no contexts refer to a query generation, it expires, and the system can reclaim the journal disk space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Refresh-objects",
+          "level": 3,
+          "text": "Refresh objects",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Refresh any managed objects registered to the context after you change the context’s query generation or unpin the context. Managed objects don’t automatically refresh, as this behavior may not be desirable and is difficult to revert.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/refreshAllObjects()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the context to refresh its existing managed objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Refresh existing managed objects.",
+            "persistentContainer.viewContext.refreshAllObjects()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also refresh your objects by fetching them again. Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/fetch(_:)-4xeoz",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the context to retrieve a fresh set of managed objects matching your request criteria.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Alternatively, refresh objects by fetching them again.",
+            "let request = NSFetchRequest<ShoppingItem>(entityName: \"ShoppingItem\")",
+            "request.fetchBatchSize = 10",
+            "",
+            "// Execute the fetch.",
+            "let results = await persistentContainer.viewContext.perform {",
+            "    do {",
+            "        return try self.persistentContainer.viewContext.fetch(request)",
+            "    } catch {",
+            "        // Handle the error appropriately. It's useful to use",
+            "        // `fatalError(_:file:line:)` during development.",
+            "        fatalError(\"Failed to refresh the objects: \\(error.localizedDescription)\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The fetch reads the journal from the context’s query generation if pinned, or from the most recent transaction if unpinned.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coredata/documentation/CoreData": {
+      "abstract": [
+        {
+          "text": "Persist or cache data on a single device, or sync data to multiple devices with CloudKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Data",
+      "type": "topic",
+      "url": "/documentation/coredata"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/fetch(_:)-4xeoz": {
+      "abstract": [
+        {
+          "text": "Returns an array of items of the specified type that meet the fetch request’s critieria.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetch"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFetchRequest",
+          "text": "NSFetchRequest"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/fetch(_:)-4xeoz",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fetch(_:)",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobjectcontext/fetch(_:)-4xeoz"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/mergeChanges(fromContextDidSave:)": {
+      "abstract": [
+        {
+          "text": "Merges the changes specified in a given notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mergeChanges"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromContextDidSave"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation12NotificationV",
+          "text": "Notification"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/mergeChanges(fromContextDidSave:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mergeChangesFromContextDidSaveNotification:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mergeChanges(fromContextDidSave:)",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobjectcontext/mergechanges(fromcontextdidsave:)"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/mergeChanges(fromRemoteContextSave:into:)": {
+      "abstract": [
+        {
+          "text": "Handles changes from other processes or from a serialized state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mergeChanges"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromRemoteContextSave"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSManagedObjectContext",
+          "text": "NSManagedObjectContext"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/mergeChanges(fromRemoteContextSave:into:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mergeChangesFromRemoteContextSave:intoContexts:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mergeChanges(fromRemoteContextSave:into:)",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobjectcontext/mergechanges(fromremotecontextsave:into:)"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/queryGenerationToken": {
+      "abstract": [
+        {
+          "text": "Returns the token associated with the query generation currently in use by this context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "queryGenerationToken"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSQueryGenerationToken",
+          "text": "NSQueryGenerationToken"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/queryGenerationToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "queryGenerationToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "queryGenerationToken",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobjectcontext/querygenerationtoken"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/refreshAllObjects()": {
+      "abstract": [
+        {
+          "text": "Refreshes all of the registered managed objects in the context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "refreshAllObjects"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/refreshAllObjects()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "refreshAllObjects"
+        }
+      ],
+      "role": "symbol",
+      "title": "refreshAllObjects()",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobjectcontext/refreshallobjects()"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/reset()": {
+      "abstract": [
+        {
+          "text": "Returns the context to its base state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reset"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/reset()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reset"
+        }
+      ],
+      "role": "symbol",
+      "title": "reset()",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobjectcontext/reset()"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/save()": {
+      "abstract": [
+        {
+          "text": "Attempts to commit unsaved changes to registered objects to the context’s parent store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "save"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/save()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "save:"
+        }
+      ],
+      "role": "symbol",
+      "title": "save()",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobjectcontext/save()"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/setQueryGenerationFrom(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the query generation this context should use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setQueryGenerationFrom"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSQueryGenerationToken",
+          "text": "NSQueryGenerationToken"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext/setQueryGenerationFrom(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setQueryGenerationFromToken:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setQueryGenerationFrom(_:)",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobjectcontext/setquerygenerationfrom(_:)"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSQueryGenerationToken": {
+      "abstract": [
+        {
+          "text": "A token that indicates which generation of the persistent store is being accessed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSQueryGenerationToken"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSQueryGenerationToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSQueryGenerationToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSQueryGenerationToken",
+      "type": "topic",
+      "url": "/documentation/coredata/nsquerygenerationtoken"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSQueryGenerationToken/current": {
+      "abstract": [
+        {
+          "text": "A token that informs a context to use the current generation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "current"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSQueryGenerationToken",
+          "text": "NSQueryGenerationToken"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSQueryGenerationToken/current",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentQueryGenerationToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "current",
+      "type": "topic",
+      "url": "/documentation/coredata/nsquerygenerationtoken/current"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSSQLiteStoreType": {
+      "abstract": [
+        {
+          "text": "The SQLite database store type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSQLiteStoreType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSSQLiteStoreType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSQLiteStoreType"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSQLiteStoreType",
+      "type": "topic",
+      "url": "/documentation/coredata/nssqlitestoretype"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/consuming-relevant-store-changes": {
+      "abstract": [
+        {
+          "text": "Filter store transactions for changes relevant to the current view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/consuming-relevant-store-changes",
+      "kind": "article",
+      "role": "article",
+      "title": "Consuming relevant store changes",
+      "type": "topic",
+      "url": "/documentation/coredata/consuming-relevant-store-changes"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/persistent-history": {
+      "abstract": [
+        {
+          "text": "Use persistent history tracking to determine what changes have occurred in the store since the enabling of persistent history tracking.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/persistent-history",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Persistent history",
+      "type": "topic",
+      "url": "/documentation/coredata/persistent-history"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Change-processing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/consuming-relevant-store-changes",
+        "doc://com.apple.coredata/documentation/CoreData/persistent-history"
+      ],
+      "title": "Change processing"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Change-processing",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/consuming-relevant-store-changes",
+                "doc://com.apple.coredata/documentation/CoreData/persistent-history"
+              ],
+              "title": "Change processing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext~1refreshAllObjects()/title",
+          "value": "refreshAllObjects"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext~1refreshAllObjects()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "refreshAllObjects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext~1save()/title",
+          "value": "save:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext~1save()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "save:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSQueryGenerationToken~1current/title",
+          "value": "currentQueryGenerationToken"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSQueryGenerationToken~1current/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "currentQueryGenerationToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSQueryGenerationToken/title",
+          "value": "NSQueryGenerationToken"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSQueryGenerationToken/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSQueryGenerationToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSQueryGenerationToken/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSQueryGenerationToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext~1queryGenerationToken/title",
+          "value": "queryGenerationToken"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext~1queryGenerationToken/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "queryGenerationToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext~1mergeChanges(fromContextDidSave:)/title",
+          "value": "mergeChangesFromContextDidSaveNotification:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext~1mergeChanges(fromContextDidSave:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mergeChangesFromContextDidSaveNotification:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext~1setQueryGenerationFrom(_:)/title",
+          "value": "setQueryGenerationFromToken:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext~1setQueryGenerationFrom(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setQueryGenerationFromToken:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext~1reset()/title",
+          "value": "reset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext~1reset()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "reset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext~1mergeChanges(fromRemoteContextSave:into:)/title",
+          "value": "mergeChangesFromRemoteContextSave:intoContexts:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSManagedObjectContext~1mergeChanges(fromRemoteContextSave:into:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "mergeChangesFromRemoteContextSave:intoContexts:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSSQLiteStoreType/title",
+          "value": "NSSQLiteStoreType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSSQLiteStoreType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSQLiteStoreType"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coredata/accessing-data-when-the-store-changes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coredata/accessing-data-when-the-store-changes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

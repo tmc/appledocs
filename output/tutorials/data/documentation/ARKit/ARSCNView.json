@@ -1,0 +1,4200 @@
+{
+  "abstract": [
+    {
+      "text": "A view that blends virtual 3D content from SceneKit into your augmented reality experience.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/ARSCNView"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)ARSCNView",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ARSCNView"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ARSCNView"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "ARSCNView"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ARSCNView"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class provides the easiest way to create augmented reality experiences that blend virtual 3D content with a device camera view of the real world. When you run the view’s provided ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The view automatically renders the live video feed from the device camera as the scene background.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The world coordinate system of the view’s SceneKit scene directly responds to the AR world coordinate system established by the session configuration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The view automatically moves its SceneKit camera to match the real-world movement of the device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit automatically matches SceneKit’s coordinate space to the real world, so after you place your app’s virtual content, it maintains the illusion of resting in the real-world as the user moves the device. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/providing-3d-virtual-content-with-scenekit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t necessarily need to use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to track positions of objects you add to the scene, but by implementing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods, you can add SceneKit content to any anchors that are automatically detected by ARKit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because ARKit requires Metal, use only Metal features of SceneKit. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "This class supports only ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNProgram",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instances with Metal Shading Language code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNView/Option/preferredRenderingAPI",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNRenderingAPI/openGLES2",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", the framework reverts the value to  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNRenderingAPI/metal",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARAnchor": {
+      "abstract": [
+        {
+          "text": "An object that specifies the position and orientation of an item in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/aranchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARCoachingOverlayView": {
+      "abstract": [
+        {
+          "text": "A view that displays standardized onboarding instructions to direct users toward a specific goal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARCoachingOverlayView"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCoachingOverlayView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARCoachingOverlayView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARCoachingOverlayView",
+      "type": "topic",
+      "url": "/documentation/arkit/arcoachingoverlayview"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNDebugOptions": {
+      "abstract": [
+        {
+          "text": "Options for drawing overlay content to aid debugging of AR tracking in a SceneKit view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSCNDebugOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNDebugOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSCNDebugOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSCNDebugOptions",
+      "type": "topic",
+      "url": "/documentation/arkit/arscndebugoptions"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNView": {
+      "abstract": [
+        {
+          "text": "A view that blends virtual 3D content from SceneKit into your augmented reality experience.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSCNView"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSCNView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSCNView",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnview"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNView/anchor(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the AR anchor associated with the specified SceneKit node, if any.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "anchor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNNode",
+          "text": "SCNNode"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARAnchor",
+          "text": "ARAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView/anchor(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "anchorForNode:"
+        }
+      ],
+      "role": "symbol",
+      "title": "anchor(for:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnview/anchor(for:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNView/automaticallyUpdatesLighting": {
+      "abstract": [
+        {
+          "text": "A Boolean value that specifies whether ARKit creates and updates SceneKit lights in the view’s scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automaticallyUpdatesLighting"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView/automaticallyUpdatesLighting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "automaticallyUpdatesLighting"
+        }
+      ],
+      "role": "symbol",
+      "title": "automaticallyUpdatesLighting",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnview/automaticallyupdateslighting"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNView/delegate": {
+      "abstract": [
+        {
+          "text": "An object you provide to mediate synchronization of the view’s AR scene information with SceneKit content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)ARSCNViewDelegate",
+          "text": "ARSCNViewDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnview/delegate"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNView/hitTest(_:types:)": {
+      "abstract": [
+        {
+          "text": "Searches for real-world objects or AR anchors in the captured camera image corresponding to a point in the SceneKit view.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hitTest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "types"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARHitTestResult",
+          "text": "ARHitTestResult"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARHitTestResultType",
+          "text": "ResultType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARHitTestResult",
+          "text": "ARHitTestResult"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView/hitTest(_:types:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hitTest:types:"
+        }
+      ],
+      "role": "symbol",
+      "title": "hitTest(_:types:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnview/hittest(_:types:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNView/node(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the SceneKit node associated with the specified AR anchor, if any.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "node"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARAnchor",
+          "text": "ARAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNNode",
+          "text": "SCNNode"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView/node(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nodeForAnchor:"
+        }
+      ],
+      "role": "symbol",
+      "title": "node(for:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnview/node(for:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNView/raycastQuery(from:allowing:alignment:)": {
+      "abstract": [
+        {
+          "text": "Creates a raycast query that originates from a point on the view, aligned with the center of the camera’s field of view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "raycastQuery"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "allowing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARRaycastQuery",
+          "text": "ARRaycastQuery"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARRaycastTarget",
+          "text": "Target"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARRaycastQuery",
+          "text": "ARRaycastQuery"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARRaycastTargetAlignment",
+          "text": "TargetAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARRaycastQuery",
+          "text": "ARRaycastQuery"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView/raycastQuery(from:allowing:alignment:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "raycastQueryFromPoint:allowingTarget:alignment:"
+        }
+      ],
+      "role": "symbol",
+      "title": "raycastQuery(from:allowing:alignment:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnview/raycastquery(from:allowing:alignment:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNView/rendersCameraGrain": {
+      "abstract": [
+        {
+          "text": "A flag that determines whether SceneKit applies image noise characteristics to your app’s virtual content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rendersCameraGrain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView/rendersCameraGrain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rendersCameraGrain"
+        }
+      ],
+      "role": "symbol",
+      "title": "rendersCameraGrain",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnview/renderscameragrain"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNView/rendersMotionBlur": {
+      "abstract": [
+        {
+          "text": "Determines whether the view renders motion blur.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rendersMotionBlur"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView/rendersMotionBlur",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rendersMotionBlur"
+        }
+      ],
+      "role": "symbol",
+      "title": "rendersMotionBlur",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnview/rendersmotionblur"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNView/scene": {
+      "abstract": [
+        {
+          "text": "The SceneKit scene to be displayed in the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNScene",
+          "text": "SCNScene"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView/scene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scene"
+        }
+      ],
+      "role": "symbol",
+      "title": "scene",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnview/scene"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNView/session": {
+      "abstract": [
+        {
+          "text": "The AR session that manages motion tracking and camera image processing for the view’s contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView/session",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session"
+        }
+      ],
+      "role": "symbol",
+      "title": "session",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnview/session"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNView/unprojectPoint(_:ontoPlane:)": {
+      "abstract": [
+        {
+          "text": "Returns the projection of a point from 2D view onto a plane in the 3D world space detected by ARKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unprojectPoint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ontoPlane"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_float4x4",
+          "text": "simd_float4x4"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@simd_float3",
+          "text": "simd_float3"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView/unprojectPoint(_:ontoPlane:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unprojectPoint(_:ontoPlane:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnview/unprojectpoint(_:ontoplane:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNView/unprojectPoint:ontoPlaneWithTransform:": {
+      "abstract": [
+        {
+          "text": "Returns the projection of a point from 2D view onto a plane in the 3D world space detected by ARKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "unprojectPoint:ontoPlaneWithTransform:"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNView/unprojectPoint:ontoPlaneWithTransform:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unprojectPoint:ontoPlaneWithTransform:"
+        }
+      ],
+      "role": "symbol",
+      "title": "unprojectPoint:ontoPlaneWithTransform:",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnview/unprojectpoint:ontoplanewithtransform:"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate": {
+      "abstract": [
+        {
+          "text": "Methods you can implement to mediate the automatic synchronization of SceneKit content with an AR session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSCNViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSCNViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSCNViewDelegate",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnviewdelegate"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSKView": {
+      "abstract": [
+        {
+          "text": "A view that blends virtual 2D content from SpriteKit into the 3D space of an augmented reality experience.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSKView"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSKView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSKView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSKView",
+      "type": "topic",
+      "url": "/documentation/arkit/arskview"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession": {
+      "abstract": [
+        {
+          "text": "The object that manages the major tasks associated with every AR experience, such as motion tracking, camera passthrough, and image analysis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSession"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSession",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSessionProviding": {
+      "abstract": [
+        {
+          "text": "An object that provides a session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSessionProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionProviding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSessionProviding"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSessionProviding",
+      "type": "topic",
+      "url": "/documentation/arkit/arsessionproviding"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/providing-3d-virtual-content-with-scenekit": {
+      "abstract": [
+        {
+          "text": "Use SceneKit to add realistic three-dimensional objects to your AR experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/providing-3d-virtual-content-with-scenekit",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing 3D Virtual Content with SceneKit",
+      "type": "topic",
+      "url": "/documentation/arkit/providing-3d-virtual-content-with-scenekit"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/ARView": {
+      "abstract": [
+        {
+          "text": "A view that enables you to display an AR experience with RealityKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@objc"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/ARView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARView",
+      "type": "topic",
+      "url": "/documentation/RealityKit/ARView"
+    },
+    "doc://com.apple.documentation/documentation/SceneKit/SCNProgram": {
+      "abstract": [
+        {
+          "text": "A complete Metal or OpenGL shader program that replaces SceneKit’s rendering of a geometry or material.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNProgram"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNProgram",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCNProgram",
+      "type": "topic",
+      "url": "/documentation/SceneKit/SCNProgram"
+    },
+    "doc://com.apple.documentation/documentation/SceneKit/SCNRenderingAPI/metal": {
+      "abstract": [
+        {
+          "text": "Use the Metal framework for SceneKit rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "metal"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNRenderingAPI/metal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCNRenderingAPI.metal",
+      "type": "topic",
+      "url": "/documentation/SceneKit/SCNRenderingAPI/metal"
+    },
+    "doc://com.apple.documentation/documentation/SceneKit/SCNRenderingAPI/openGLES2": {
+      "abstract": [
+        {
+          "text": "Use the OpenGL ES 2.0 API for SceneKit rendering in iOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openGLES2"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNRenderingAPI/openGLES2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCNRenderingAPI.openGLES2",
+      "type": "topic",
+      "url": "/documentation/SceneKit/SCNRenderingAPI/openGLES2"
+    },
+    "doc://com.apple.documentation/documentation/SceneKit/SCNView/Option/preferredRenderingAPI": {
+      "abstract": [
+        {
+          "text": "The rendering API to use for rendering the view (for example, Metal or OpenGL).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredRenderingAPI"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNView",
+          "text": "SCNView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SCNViewOption",
+          "text": "Option"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNView/Option/preferredRenderingAPI",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preferredRenderingAPI",
+      "type": "topic",
+      "url": "/documentation/SceneKit/SCNView/Option/preferredRenderingAPI"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)SCNView": {
+      "abstract": [
+        {
+          "text": "A view for displaying 3D SceneKit content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNView"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)SCNView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCNView",
+      "type": "topic",
+      "url": "/documentation/SceneKit/SCNView"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)CALayerDelegate": {
+      "abstract": [
+        {
+          "text": "Methods your app can implement to respond to layer-related events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CALayerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)CALayerDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CALayerDelegate",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CALayerDelegate"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTouchBarProvider"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)SCNSceneRenderer": {
+      "abstract": [
+        {
+          "text": "Methods and properties common to the [`SCNView`](doc://com.apple.scenekit/documentation/SceneKit/SCNView), [`SCNLayer`](doc://com.apple.scenekit/documentation/SceneKit/SCNLayer), and [`SCNRenderer`](doc://com.apple.scenekit/documentation/SceneKit/SCNRenderer) classes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNSceneRenderer"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)SCNSceneRenderer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCNSceneRenderer",
+      "type": "topic",
+      "url": "/documentation/SceneKit/SCNSceneRenderer"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)SCNTechniqueSupport": {
+      "abstract": [
+        {
+          "text": "The common interface for SceneKit objects that support multipass rendering using [`SCNTechnique`](doc://com.apple.scenekit/documentation/SceneKit/SCNTechnique) objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNTechniqueSupport"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)SCNTechniqueSupport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCNTechniqueSupport",
+      "type": "topic",
+      "url": "/documentation/SceneKit/SCNTechniqueSupport"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIAccessibilityIdentification": {
+      "abstract": [
+        {
+          "text": "Methods that associate a unique identifier with elements in your user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityIdentification"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIAccessibilityIdentification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIAccessibilityIdentification",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIAccessibilityIdentification"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIActivityItemsConfigurationProviding": {
+      "abstract": [
+        {
+          "text": "An interface that provides a source for shareable content to fulfill user requests to share current content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemsConfigurationProviding"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIActivityItemsConfigurationProviding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIActivityItemsConfigurationProviding",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIActivityItemsConfigurationProviding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIAppearance": {
+      "abstract": [
+        {
+          "text": "A collection of methods that gives you access to the appearance proxy for a class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAppearance"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIAppearance",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIAppearance",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIAppearance"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIAppearanceContainer": {
+      "abstract": [
+        {
+          "text": "A protocol that a class must adopt to allow appearance customization using the [`UIAppearance`](doc://com.apple.uikit/documentation/UIKit/UIAppearance) API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAppearanceContainer"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIAppearanceContainer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIAppearanceContainer",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIAppearanceContainer"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UICoordinateSpace": {
+      "abstract": [
+        {
+          "text": "A set of methods for converting between different frames of reference on a screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICoordinateSpace"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UICoordinateSpace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICoordinateSpace",
+      "type": "topic",
+      "url": "/documentation/UIKit/UICoordinateSpace"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIDynamicItem": {
+      "abstract": [
+        {
+          "text": "A set of methods that can make a custom object eligible to participate in UIKit Dynamics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDynamicItem"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIDynamicItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIDynamicItem",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIDynamicItem"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusEnvironment": {
+      "abstract": [
+        {
+          "text": "A set of methods that define the focus behavior for a branch of the view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusEnvironment"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusEnvironment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIFocusEnvironment",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIFocusEnvironment"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItem": {
+      "abstract": [
+        {
+          "text": "An object that can become focused.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusItem"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIFocusEnvironment",
+          "text": "UIFocusEnvironment"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIFocusItem",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIFocusItem"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItemContainer": {
+      "abstract": [
+        {
+          "text": "The container responsible for providing geometric context to focus items within a given focus environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusItemContainer"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItemContainer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIFocusItemContainer",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIFocusItemContainer"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UILargeContentViewerItem": {
+      "abstract": [
+        {
+          "text": "Methods that provide details about how to display your custom content in the large content viewer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILargeContentViewerItem"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UILargeContentViewerItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UILargeContentViewerItem",
+      "type": "topic",
+      "url": "/documentation/UIKit/UILargeContentViewerItem"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIPasteConfigurationSupporting": {
+      "abstract": [
+        {
+          "text": "The interface that determines whether a responder object supports paste configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPasteConfigurationSupporting"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIPasteConfigurationSupporting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIPasteConfigurationSupporting",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPasteConfigurationSupporting"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIPopoverPresentationControllerSourceItem": {
+      "abstract": [
+        {
+          "text": "A type that can be an anchor for a popover presentation controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPopoverPresentationControllerSourceItem"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIPopoverPresentationControllerSourceItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIPopoverPresentationControllerSourceItem",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPopoverPresentationControllerSourceItem"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIResponderStandardEditActions": {
+      "abstract": [
+        {
+          "text": "A set of standard methods that apps can adopt to support editing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIResponderStandardEditActions"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIResponderStandardEditActions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIResponderStandardEditActions",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIResponderStandardEditActions"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UITraitEnvironment": {
+      "abstract": [
+        {
+          "text": "A set of methods that makes the iOS interface environment available to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitEnvironment"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UITraitEnvironment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITraitEnvironment",
+      "type": "topic",
+      "url": "/documentation/UIKit/UITraitEnvironment"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "The protocol you adopt to restore an object’s state from a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIUserActivityRestoring"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIUserActivityRestoring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIUserActivityRestoring"
+    },
+    "doc://com.externally.resolved.symbol/s:5UIKit23UITraitChangeObservableP": {
+      "abstract": [
+        {
+          "text": "A type that calls your code in reaction to changes in the trait environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitChangeObservable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:5UIKit23UITraitChangeObservableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITraitChangeObservable",
+      "type": "topic",
+      "url": "/documentation/UIKit/UITraitChangeObservable-67e94"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)SCNView"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARSessionProviding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)CALayerDelegate",
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+        "doc://com.externally.resolved.symbol/c:objc(pl)SCNSceneRenderer",
+        "doc://com.externally.resolved.symbol/c:objc(pl)SCNTechniqueSupport",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIAccessibilityIdentification",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIActivityItemsConfigurationProviding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIAppearance",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIAppearanceContainer",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UICoordinateSpace",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIDynamicItem",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusEnvironment",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItem",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItemContainer",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UILargeContentViewerItem",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIPasteConfigurationSupporting",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIPopoverPresentationControllerSourceItem",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIResponderStandardEditActions",
+        "doc://com.externally.resolved.symbol/s:5UIKit23UITraitChangeObservableP",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UITraitEnvironment",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIUserActivityRestoring"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Views",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/RealityKit/ARView",
+        "doc://com.apple.arkit/documentation/ARKit/ARSKView",
+        "doc://com.apple.arkit/documentation/ARKit/ARCoachingOverlayView"
+      ],
+      "title": "Views"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/providing-3d-virtual-content-with-scenekit",
+        "doc://com.apple.arkit/documentation/ARKit/ARSCNView/session",
+        "doc://com.apple.arkit/documentation/ARKit/ARSCNView/scene"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Responding-to-AR-Updates",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARSCNView/delegate",
+        "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate"
+      ],
+      "title": "Responding to AR Updates"
+    },
+    {
+      "anchor": "Finding-Real-World-Surfaces",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARSCNView/hitTest(_:types:)",
+        "doc://com.apple.arkit/documentation/ARKit/ARSCNView/raycastQuery(from:allowing:alignment:)"
+      ],
+      "title": "Finding Real-World Surfaces"
+    },
+    {
+      "anchor": "Mapping-Content-to-Real-World-Positions",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARSCNView/anchor(for:)",
+        "doc://com.apple.arkit/documentation/ARKit/ARSCNView/node(for:)",
+        "doc://com.apple.arkit/documentation/ARKit/ARSCNView/unprojectPoint(_:ontoPlane:)"
+      ],
+      "title": "Mapping Content to Real-World Positions"
+    },
+    {
+      "anchor": "Managing-Lighting",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARSCNView/automaticallyUpdatesLighting"
+      ],
+      "title": "Managing Lighting"
+    },
+    {
+      "anchor": "Debugging-AR-Display",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARSCNDebugOptions"
+      ],
+      "title": "Debugging AR Display"
+    },
+    {
+      "anchor": "Managing-Rendering-Effects",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARSCNView/rendersMotionBlur",
+        "doc://com.apple.arkit/documentation/ARKit/ARSCNView/rendersCameraGrain"
+      ],
+      "title": "Managing Rendering Effects"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "ARSCNView"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSCNView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSCNView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.arkit/documentation/ARKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/providing-3d-virtual-content-with-scenekit",
+                "doc://com.apple.arkit/documentation/ARKit/ARSCNView/session",
+                "doc://com.apple.arkit/documentation/ARKit/ARSCNView/scene"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Responding-to-AR-Updates",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARSCNView/delegate",
+                "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate"
+              ],
+              "title": "Responding to AR Updates"
+            },
+            {
+              "anchor": "Finding-Real-World-Surfaces",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARSCNView/hitTest(_:types:)",
+                "doc://com.apple.arkit/documentation/ARKit/ARSCNView/raycastQuery(from:allowing:alignment:)"
+              ],
+              "title": "Finding Real-World Surfaces"
+            },
+            {
+              "anchor": "Mapping-Content-to-Real-World-Positions",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARSCNView/anchor(for:)",
+                "doc://com.apple.arkit/documentation/ARKit/ARSCNView/node(for:)",
+                "doc://com.apple.arkit/documentation/ARKit/ARSCNView/unprojectPoint:ontoPlaneWithTransform:"
+              ],
+              "title": "Mapping Content to Real-World Positions"
+            },
+            {
+              "anchor": "Managing-Lighting",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARSCNView/automaticallyUpdatesLighting"
+              ],
+              "title": "Managing Lighting"
+            },
+            {
+              "anchor": "Debugging-AR-Display",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARSCNDebugOptions"
+              ],
+              "title": "Debugging AR Display"
+            },
+            {
+              "anchor": "Managing-Rendering-Effects",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARSCNView/rendersMotionBlur",
+                "doc://com.apple.arkit/documentation/ARKit/ARSCNView/rendersCameraGrain"
+              ],
+              "title": "Managing Rendering Effects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)SCNView"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARSessionProviding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Views",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARSKView",
+                "doc://com.apple.arkit/documentation/ARKit/ARCoachingOverlayView"
+              ],
+              "title": "Views"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "ARSCNView"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)SCNView",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)SCNView",
+                    "text": "SCNView"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIDynamicItem/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIDynamicItem"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView~1raycastQuery(from:allowing:alignment:)/title",
+          "value": "raycastQueryFromPoint:allowingTarget:alignment:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView~1raycastQuery(from:allowing:alignment:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "raycastQueryFromPoint:allowingTarget:alignment:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/title",
+          "value": "ARSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView~1rendersCameraGrain/title",
+          "value": "rendersCameraGrain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView~1rendersCameraGrain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rendersCameraGrain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIFocusItem/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIFocusItem"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)UIFocusEnvironment",
+              "text": "UIFocusEnvironment"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView~1scene/title",
+          "value": "scene"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView~1scene/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "scene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIPasteConfigurationSupporting/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIPasteConfigurationSupporting"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIResponderStandardEditActions/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIResponderStandardEditActions"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView~1hitTest(_:types:)/title",
+          "value": "hitTest:types:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView~1hitTest(_:types:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "hitTest:types:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIActivityItemsConfigurationProviding/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemsConfigurationProviding"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)CALayerDelegate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CALayerDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView~1node(for:)/title",
+          "value": "nodeForAnchor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView~1node(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "nodeForAnchor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIAppearance/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIAppearance"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionProviding/title",
+          "value": "ARSessionProviding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionProviding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSessionProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionProviding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSessionProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UICoordinateSpace/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UICoordinateSpace"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor/title",
+          "value": "ARAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SceneKit~1SCNProgram/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCNProgram"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIPopoverPresentationControllerSourceItem/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIPopoverPresentationControllerSourceItem"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)SCNSceneRenderer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCNSceneRenderer"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)SCNTechniqueSupport/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCNTechniqueSupport"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIAppearanceContainer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIAppearanceContainer"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SceneKit~1SCNRenderingAPI~1metal/title",
+          "value": "SCNRenderingAPIMetal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SceneKit~1SCNRenderingAPI~1metal/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNRenderingAPIMetal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNViewDelegate/title",
+          "value": "ARSCNViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSCNViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNViewDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSCNViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UITraitEnvironment/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UITraitEnvironment"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIUserActivityRestoring"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIFocusEnvironment/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIFocusEnvironment"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView~1anchor(for:)/title",
+          "value": "anchorForNode:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView~1anchor(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "anchorForNode:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SceneKit~1SCNRenderingAPI~1openGLES2/title",
+          "value": "SCNRenderingAPIOpenGLES2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SceneKit~1SCNRenderingAPI~1openGLES2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNRenderingAPIOpenGLES2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UILargeContentViewerItem/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UILargeContentViewerItem"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView~1rendersMotionBlur/title",
+          "value": "rendersMotionBlur"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView~1rendersMotionBlur/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rendersMotionBlur"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView~1session/title",
+          "value": "session"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView~1session/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "session"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIAccessibilityIdentification/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityIdentification"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNDebugOptions/title",
+          "value": "ARSCNDebugOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNDebugOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSCNDebugOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNDebugOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSCNDebugOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView~1automaticallyUpdatesLighting/title",
+          "value": "automaticallyUpdatesLighting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView~1automaticallyUpdatesLighting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "automaticallyUpdatesLighting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCoachingOverlayView/title",
+          "value": "ARCoachingOverlayView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCoachingOverlayView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARCoachingOverlayView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCoachingOverlayView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARCoachingOverlayView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SceneKit~1SCNView~1Option~1preferredRenderingAPI/title",
+          "value": "SCNPreferredRenderingAPIKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SceneKit~1SCNView~1Option~1preferredRenderingAPI/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SCNViewOption",
+              "text": "SCNViewOption"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCNPreferredRenderingAPIKey"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)SCNView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCNView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSKView/title",
+          "value": "ARSKView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSKView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSKView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSKView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSKView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIFocusItemContainer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIFocusItemContainer"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView/title",
+          "value": "ARSCNView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSCNView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSCNView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/arscnview"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/arscnview"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3070 @@
+{
+  "abstract": [
+    {
+      "text": "A Core Animation layer that Metal can render into, typically displayed onscreen.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.quartzcore/documentation/QuartzCore"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CAMetalLayer",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CAMetalLayer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Animation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CAMetalLayer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CAMetalLayer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CAMetalLayer"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when you want to use Metal to render a layer’s contents; for example, to render into a view. Consider using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead, because this class automatically wraps a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and provides a higher-level abstraction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re using UIKit, to create a view that uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", create a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/releasenotes/iPhone/RN-iPhoneSDK/index.html#//apple_ref/doc/uid/TP40007428-CH1-SW18",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and override its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/layerClass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method to return a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "+ (Class) layerClass",
+            "{",
+            "    return [CAMetalLayer class];",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re using AppKit, configure an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to use a backing layer and assign a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to the view:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "myView.wantsLayer = YES;",
+            "myView.layer = [CAMetalLayer layer];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adjust the layer’s properties to configure its underlying pixel format and other display behaviors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Rendering-the-Layers-Contents",
+          "level": 3,
+          "text": "Rendering the Layer’s Contents",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " creates a pool of Metal drawable objects (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDrawable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). At any given time, one of these drawable objects contains the contents of the layer. To change the layer’s contents, ask the layer for a drawable object, render into it, and then update the layer’s contents to point to the new drawable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call the layer’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/nextDrawable()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to obtain a drawable object. Get the drawable object’s texture and create a render pass that renders to that texture, as shown in the code below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "CAMetalLayer *metalLayer = (CAMetalLayer*)self.layer;",
+            "id<CAMetalDrawable> *drawable = [metalLayer nextDrawable];",
+            "",
+            "MTLRenderPassDescriptor *renderPassDescriptor",
+            "                               = [MTLRenderPassDescriptor renderPassDescriptor];",
+            "",
+            "renderPassDescriptor.colorAttachments[0].texture = drawable.texture;",
+            "renderPassDescriptor.colorAttachments[0].loadAction = MTLLoadActionClear;",
+            "renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(0.0,0.0,0.0,1.0);",
+            "..."
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To change the layer’s contents to the new drawable, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLCommandBuffer/present(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method (or one of its variants) on the command buffer containing the encoded render pass, passing in the drawable object to present.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[commandBuffer presentDrawable:drawable];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Keeping-References-to-Drawables",
+          "level": 3,
+          "text": "Keeping References to Drawables",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The layer reuses a drawable only if it isn’t onscreen and there are no strong references to it. Further, if a drawable isn’t available when you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/nextDrawable()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the system waits for one to become available. To avoid stalls in your app, request a new drawable only when you need it, and release any references to it as quickly as possible after you’re done with it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, before retrieving a new drawable, you might perform other work on the CPU or submit commands to the GPU that don’t require the drawable. Then, obtain the drawable and encode a command buffer to render into it, as described above. After you commit this command buffer, release all strong references to the drawable. If you don’t release drawables correctly, the layer runs out of drawables, and future calls to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/nextDrawable()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " return ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Releasing-the-Drawable",
+          "level": 3,
+          "text": "Releasing the Drawable",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t release the drawable explicitly; instead, embed your render loop within an autorelease pool block:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func draw(in view: MTKView) {",
+                    "    autoreleasepool {",
+                    "        render(view: view)",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void)drawInMTKView:(MTKView *)view {",
+                    "    @autoreleasepool {",
+                    "        [self render:view];",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This block releases drawables promptly and avoids possible deadlock situations with multiple drawables. Release drawables as soon as possible after committing your onscreen render pass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "As of iOS 10 and tvOS 10, you can safely retain a drawable to query its properties, such as ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Metal/MTLDrawable/drawableID",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Metal/MTLDrawable/presentedTime",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", after the system has presented it. If you don’t need to query these properties, release the drawable when you no longer need it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSView": {
+      "abstract": [
+        {
+          "text": "The infrastructure for drawing, printing, and handling events in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSView",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSView"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLCommandBuffer/present(_:)": {
+      "abstract": [
+        {
+          "text": "Presents a drawable as early as possible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "present"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "drawable"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDrawable",
+          "text": "MTLDrawable"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLCommandBuffer/present(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "present(_:)",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLCommandBuffer/present(_:)"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLDrawable/drawableID": {
+      "abstract": [
+        {
+          "text": "A positive integer that identifies the drawable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "drawableID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLDrawable/drawableID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "drawableID",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLDrawable/drawableID"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLDrawable/presentedTime": {
+      "abstract": [
+        {
+          "text": "The host time, in seconds, when the drawable was displayed onscreen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentedTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTimeInterval",
+          "text": "CFTimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLDrawable/presentedTime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presentedTime",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLDrawable/presentedTime"
+    },
+    "doc://com.apple.documentation/documentation/MetalKit/MTKView": {
+      "abstract": [
+        {
+          "text": "A specialized view that creates, configures, and displays Metal objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTKView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTKView",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKView"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIView/layerClass": {
+      "abstract": [
+        {
+          "text": "Returns the class used to create the layer for instances of this class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "layerClass"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8AnyClassa",
+          "text": "AnyClass"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/layerClass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "layerClass",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIView/layerClass"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore": {
+      "abstract": [
+        {
+          "text": "Render, compose, and animate visual elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Animation",
+      "type": "topic",
+      "url": "/documentation/quartzcore"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAEAGLLayer": {
+      "abstract": [
+        {
+          "text": "A layer that supports drawing OpenGL content in iOS and tvOS applications.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAEAGLLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAEAGLLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAEAGLLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAEAGLLayer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caeagllayer"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAEDRMetadata": {
+      "abstract": [
+        {
+          "text": "Metadata describing how extended dynamic range (EDR) values should be tone mapped.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAEDRMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAEDRMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAEDRMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAEDRMetadata",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caedrmetadata"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer": {
+      "abstract": [
+        {
+          "text": "An object that manages image-based content and allows you to perform animations on that content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CALayer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CALayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CALayer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/calayer"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming": {
+      "abstract": [
+        {
+          "text": "Methods that model a hierarchical timing system, allowing objects to map time between their parent and local time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAMediaTiming"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAMediaTiming"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAMediaTiming",
+      "type": "topic",
+      "url": "/documentation/quartzcore/camediatiming"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDrawable": {
+      "abstract": [
+        {
+          "text": "A Metal drawable associated with a Core Animation layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAMetalDrawable"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDrawable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAMetalDrawable"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAMetalDrawable",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametaldrawable"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer": {
+      "abstract": [
+        {
+          "text": "A Core Animation layer that Metal can render into, typically displayed onscreen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAMetalLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAMetalLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAMetalLayer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametallayer"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/allowsNextDrawableTimeout": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether requests for a new buffer expire if the system can’t satisfy them.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsNextDrawableTimeout"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/allowsNextDrawableTimeout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsNextDrawableTimeout"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsNextDrawableTimeout",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametallayer/allowsnextdrawabletimeout"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/colorspace": {
+      "abstract": [
+        {
+          "text": "The color space of the rendered content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorspace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGColorSpaceRef",
+          "text": "CGColorSpace"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/colorspace",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "colorspace"
+        }
+      ],
+      "role": "symbol",
+      "title": "colorspace",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametallayer/colorspace"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/developerHUDProperties": {
+      "abstract": [
+        {
+          "text": "The properties of the Metal performance heads-up display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "developerHUDProperties"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/developerHUDProperties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "developerHUDProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "developerHUDProperties",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametallayer/developerhudproperties"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/device": {
+      "abstract": [
+        {
+          "text": "The Metal device responsible for the layer’s drawable resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDevice",
+          "text": "MTLDevice"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/device",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "device"
+        }
+      ],
+      "role": "symbol",
+      "title": "device",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametallayer/device"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/displaySyncEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the layer synchronizes its updates to the display’s refresh rate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displaySyncEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/displaySyncEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "displaySyncEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "displaySyncEnabled",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametallayer/displaysyncenabled"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/drawableSize": {
+      "abstract": [
+        {
+          "text": "The size, in pixels, of textures for rendering layer content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "drawableSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/drawableSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "drawableSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "drawableSize",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametallayer/drawablesize"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/edrMetadata": {
+      "abstract": [
+        {
+          "text": "Metadata describing the tone mapping to apply to the extended dynamic range (EDR) values in the layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "edrMetadata"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CAEDRMetadata",
+          "text": "CAEDRMetadata"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/edrMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EDRMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "edrMetadata",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametallayer/edrmetadata"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/framebufferOnly": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the layer’s textures are used only for rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "framebufferOnly"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/framebufferOnly",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "framebufferOnly"
+        }
+      ],
+      "role": "symbol",
+      "title": "framebufferOnly",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametallayer/framebufferonly"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/maximumDrawableCount": {
+      "abstract": [
+        {
+          "text": "The number of Metal drawables in the resource pool managed by Core Animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumDrawableCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/maximumDrawableCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumDrawableCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "maximumDrawableCount",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametallayer/maximumdrawablecount"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/nextDrawable()": {
+      "abstract": [
+        {
+          "text": "Waits until a Metal drawable is available, and then returns it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nextDrawable"
+        },
+        {
+          "kind": "text",
+          "text": "() -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)CAMetalDrawable",
+          "text": "CAMetalDrawable"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/nextDrawable()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nextDrawable"
+        }
+      ],
+      "role": "symbol",
+      "title": "nextDrawable()",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametallayer/nextdrawable()"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/pixelFormat": {
+      "abstract": [
+        {
+          "text": "The pixel format of the layer’s textures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPixelFormat",
+          "text": "MTLPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/pixelFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pixelFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "pixelFormat",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametallayer/pixelformat"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/preferredDevice": {
+      "abstract": [
+        {
+          "text": "The device object that the system recommends using for this layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredDevice"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDevice",
+          "text": "MTLDevice"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/preferredDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredDevice",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametallayer/preferreddevice"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/presentsWithTransaction": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the layer presents its content using a Core Animation transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentsWithTransaction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/presentsWithTransaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentsWithTransaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentsWithTransaction",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametallayer/presentswithtransaction"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/wantsExtendedDynamicRangeContent": {
+      "abstract": [
+        {
+          "text": "Enables extended dynamic range values onscreen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wantsExtendedDynamicRangeContent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/wantsExtendedDynamicRangeContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "wantsExtendedDynamicRangeContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "wantsExtendedDynamicRangeContent",
+      "type": "topic",
+      "url": "/documentation/quartzcore/cametallayer/wantsextendeddynamicrangecontent"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAOpenGLLayer": {
+      "abstract": [
+        {
+          "text": "A layer that provides a layer suitable for rendering OpenGL content.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAOpenGLLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAOpenGLLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAOpenGLLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAOpenGLLayer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caopengllayer"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CARenderer": {
+      "abstract": [
+        {
+          "text": "A layer that allows an application to render a layer tree into a Core OpenGL context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CARenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CARenderer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CARenderer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CARenderer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/carenderer"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "https://developer.apple.com/library/archive/releasenotes/iPhone/RN-iPhoneSDK/index.html#//apple_ref/doc/uid/TP40007428-CH1-SW18": {
+      "identifier": "https://developer.apple.com/library/archive/releasenotes/iPhone/RN-iPhoneSDK/index.html#//apple_ref/doc/uid/TP40007428-CH1-SW18",
+      "title": "UIView",
+      "titleInlineContent": [
+        {
+          "text": "UIView",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/releasenotes/iPhone/RN-iPhoneSDK/index.html#//apple_ref/doc/uid/TP40007428-CH1-SW18"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMediaTiming",
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Metal-and-OpenGL",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDrawable",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAEAGLLayer",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAEDRMetadata",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAOpenGLLayer",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CARenderer"
+      ],
+      "title": "Metal and OpenGL"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Configuring-the-Metal-Device",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/device",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/preferredDevice"
+      ],
+      "title": "Configuring the Metal Device"
+    },
+    {
+      "anchor": "Configuring-the-Layers-Drawable-Objects",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/pixelFormat",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/colorspace",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/framebufferOnly",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/drawableSize"
+      ],
+      "title": "Configuring the Layer’s Drawable Objects"
+    },
+    {
+      "anchor": "Configuring-Presentation-Behavior",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/presentsWithTransaction",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/displaySyncEnabled"
+      ],
+      "title": "Configuring Presentation Behavior"
+    },
+    {
+      "anchor": "Configuring-Extended-Dynamic-Range-Behavior",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/wantsExtendedDynamicRangeContent",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/edrMetadata"
+      ],
+      "title": "Configuring Extended Dynamic Range Behavior"
+    },
+    {
+      "anchor": "Obtaining-a-Metal-Drawable",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/nextDrawable()",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/maximumDrawableCount",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/allowsNextDrawableTimeout"
+      ],
+      "title": "Obtaining a Metal Drawable"
+    },
+    {
+      "anchor": "Configuring-the-Metal-Performance-HUD",
+      "identifiers": [
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/developerHUDProperties"
+      ],
+      "title": "Configuring the Metal Performance HUD"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CAMetalLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMetalLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMetalLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.quartzcore/documentation/QuartzCore"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Configuring-the-Metal-Device",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/device",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/preferredDevice"
+              ],
+              "title": "Configuring the Metal Device"
+            },
+            {
+              "anchor": "Configuring-the-Layers-Drawable-Objects",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/pixelFormat",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/colorspace",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/framebufferOnly",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/drawableSize"
+              ],
+              "title": "Configuring the Layer’s Drawable Objects"
+            },
+            {
+              "anchor": "Configuring-Presentation-Behavior",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/presentsWithTransaction",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/displaySyncEnabled"
+              ],
+              "title": "Configuring Presentation Behavior"
+            },
+            {
+              "anchor": "Configuring-Extended-Dynamic-Range-Behavior",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/wantsExtendedDynamicRangeContent",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/edrMetadata"
+              ],
+              "title": "Configuring Extended Dynamic Range Behavior"
+            },
+            {
+              "anchor": "Obtaining-a-Metal-Drawable",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/nextDrawable()",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/maximumDrawableCount",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/allowsNextDrawableTimeout"
+              ],
+              "title": "Obtaining a Metal Drawable"
+            },
+            {
+              "anchor": "Configuring-the-Metal-Performance-HUD",
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalLayer/developerHUDProperties"
+              ],
+              "title": "Configuring the Metal Performance HUD"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Metal-and-OpenGL",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAMetalDrawable",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAEAGLLayer",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAEDRMetadata",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAOpenGLLayer",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CARenderer"
+              ],
+              "title": "Metal and OpenGL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CAMetalLayer"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CALayer",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)CALayer",
+                    "text": "CALayer"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1framebufferOnly/title",
+          "value": "framebufferOnly"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1framebufferOnly/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "framebufferOnly"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1maximumDrawableCount/title",
+          "value": "maximumDrawableCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1maximumDrawableCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maximumDrawableCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1wantsExtendedDynamicRangeContent/title",
+          "value": "wantsExtendedDynamicRangeContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1wantsExtendedDynamicRangeContent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "wantsExtendedDynamicRangeContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTKView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSResponder",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1device/title",
+          "value": "device"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1device/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "device"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLDrawable~1presentedTime/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFTimeInterval",
+              "text": "CFTimeInterval"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentedTime"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1edrMetadata/title",
+          "value": "EDRMetadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1edrMetadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EDRMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1allowsNextDrawableTimeout/title",
+          "value": "allowsNextDrawableTimeout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1allowsNextDrawableTimeout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsNextDrawableTimeout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAOpenGLLayer/title",
+          "value": "CAOpenGLLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAOpenGLLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAOpenGLLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAOpenGLLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAOpenGLLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1preferredDevice/title",
+          "value": "preferredDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1preferredDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preferredDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1nextDrawable()/title",
+          "value": "nextDrawable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1nextDrawable()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "nextDrawable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLCommandBuffer~1present(_:)/title",
+          "value": "presentDrawable:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLCommandBuffer~1present(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentDrawable:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)MTLDrawable",
+              "text": "id<MTLDrawable>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "drawable"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAEAGLLayer/title",
+          "value": "CAEAGLLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAEAGLLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAEAGLLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAEAGLLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAEAGLLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLDrawable~1drawableID/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawableID"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer/title",
+          "value": "CAMetalLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMetalLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMetalLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1pixelFormat/title",
+          "value": "pixelFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1pixelFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pixelFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CALayer/title",
+          "value": "CALayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CALayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CALayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CALayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CALayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming/title",
+          "value": "CAMediaTiming"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMediaTiming"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMediaTiming/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMediaTiming"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CARenderer/title",
+          "value": "CARenderer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CARenderer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CARenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CARenderer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CARenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1developerHUDProperties/title",
+          "value": "developerHUDProperties"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1developerHUDProperties/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "developerHUDProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView~1layerClass/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@Class",
+              "text": "Class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "layerClass"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1drawableSize/title",
+          "value": "drawableSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1drawableSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "drawableSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1displaySyncEnabled/title",
+          "value": "displaySyncEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1displaySyncEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "displaySyncEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1presentsWithTransaction/title",
+          "value": "presentsWithTransaction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1presentsWithTransaction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "presentsWithTransaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1colorspace/title",
+          "value": "colorspace"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalLayer~1colorspace/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "colorspace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAEDRMetadata/title",
+          "value": "CAEDRMetadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAEDRMetadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAEDRMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAEDRMetadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAEDRMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalDrawable/title",
+          "value": "CAMetalDrawable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalDrawable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMetalDrawable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAMetalDrawable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAMetalDrawable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quartzcore/cametallayer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/quartzcore/cametallayer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

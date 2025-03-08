@@ -1,0 +1,1068 @@
+{
+  "abstract": [
+    {
+      "text": "Enable the system to verify your App Clip to support invocations in iOS 16.3 or earlier and from your website.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appclip/documentation/AppClip"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appclip/documentation/AppClip/associating-your-app-clip-with-your-website"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Clips"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Associating your App Clip with your website"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An App Clip gives people quick access to a particular workflow in your app, even when a person hasn’t installed your app. NFC readers, App Clip Codes, or QR codes define an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "invocation URL",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " that specifies which App Clip, or workflow within your full app, the system needs to run. Unless the invocation URL is a default App Clip link for your default App Clip experience, the system verifies the URL before it launches the App Clip using your associated website. It does this by checking that the App Clip includes the URL in its code signature, an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which cites the invocation URL’s domain. The system also verifies that the server of the domain agrees to launch the App Clip, by citing the App Clip within an Apple App Site Association (AASA) file that it hosts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3706576",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To associate your app and App Clip with your website:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify your invocation URL’s domain within an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " on both your app and App Clip targets in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add or modify an AASA file on the domain’s server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system verifies that both the entitlement and the configuration in the AASA file match before it permits the invocation of the App Clip. App Store Connect also verifies the match when you create an App Clip experience; for more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/app-store-connect/#/dev43c15c696",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You may already be familiar with the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Associated Domains Entitlement",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if your app supports ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/handoff/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/ios/universal-links/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". If you’re new to using this entitlement and universal links, read ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Xcode/allowing-apps-and-websites-to-link-to-your-content",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-universal-links-in-your-app",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". For additional information about the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Associated Domains Entitlement",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " — including cache policies — read ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-the-Associated-Domains-entitlement",
+          "level": 3,
+          "text": "Add the Associated Domains entitlement",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To associate your App Clip with your website, you must add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the app and the App Clip targets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, open your project in Xcode; then, in your project settings, enable the Associated Domains capability to add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Second, for each URL that launches your App Clip or full app, add its domain to the Associated Domains capability using the pattern: ",
+              "type": "text"
+            },
+            {
+              "code": "appclips:<fully qualified domain>",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example, add ",
+              "type": "text"
+            },
+            {
+              "code": "appclips:example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "appclips:appclip.example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Make sure to only include the desired subdomain and the top-level domain. Don’t include a trailing slash (",
+              "type": "text"
+            },
+            {
+              "code": "/",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), wildcard (",
+              "type": "text"
+            },
+            {
+              "code": "*",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), or path and query components in the URL. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Make-changes-to-your-server",
+          "level": 3,
+          "text": "Make changes to your server",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to adding the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to your Xcode project, you need to make changes to your server to associate your App Clip with your server and allow the system to verify the URL that tries to invoke your App Clip.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, create an AASA file as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Next, add an entry for the App Clip with the ",
+              "type": "text"
+            },
+            {
+              "code": "appclips",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to the file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows the content to add. Note how the value for the ",
+              "type": "text"
+            },
+            {
+              "code": "apps",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key is an array that contains the app identifier of the App Clip. In many cases, the array contains only one entry. However, it can contain entries for multiple App Clips.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"appclips\": {",
+            "        \"apps\": [\"ABCDE12345.com.example.MyApp.Clip\"]",
+            "    }",
+            "...",
+            "} "
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For apps that detect App Clip Codes in AR, add an entry for the parent app identifier. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appclip/documentation/AppClip/interacting-with-app-clip-codes-in-ar",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, add the AASA file to your website’s ",
+              "type": "text"
+            },
+            {
+              "code": ".well-known",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory. If you previously added an AASA file to your server, add the entry for the ",
+              "type": "text"
+            },
+            {
+              "code": "appclips",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to the existing file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you plan to use multiple invocation URLs with different domains, remember to add an AASA file to each domain’s ",
+                  "type": "text"
+                },
+                {
+                  "code": ".well-known",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " directory. In addition, remember to add each domain to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, to make sure the system can validate the association between your App Clip and the AASA file on your server, check your server’s configuration and make sure it allows ",
+              "type": "text"
+            },
+            {
+              "code": "AASA-Bot",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "CFNetwork",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as user agents.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-the-validation-status-of-your-App-Clip",
+          "level": 3,
+          "text": "Check the validation status of your App Clip",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "App Store Connect verifies the AASA file configuration of your App Clip after you’ve uploaded a build to App Store Connect and created an App Clip experience. To check the verification status:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://appstoreconnect.apple.com/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in your browser and navigate to a build’s details page.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click View Status in the App Clip section to show the domain validation status. It shows the validation status for each domain that’s associated with your App Clip.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, you could configure the default App Clip experience to use ",
+              "type": "text"
+            },
+            {
+              "code": "https://example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as its invocation URL and configure an advanced App Clip experience to use ",
+              "type": "text"
+            },
+            {
+              "code": "https://appclip.example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". In this example, you’d place an AASA file in the ",
+              "type": "text"
+            },
+            {
+              "code": ".well-known",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directories for each URL’s domain, and App Store Connect would show the verification status for both domains.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Cache Status column shows the validation status for your App Clip as the system performs the validation on people’s devices. As you develop your App Clip, you may make frequent changes to your AASA file. To check the verification status in real time, click Load Debug Status in the modal view that shows the verification status of your App Clip. If a configuration error occurs, App Store Connect shows information about the error in the Debug Status column.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2020/10651/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appclip/documentation/AppClip": {
+      "abstract": [
+        {
+          "text": "Provide people a shortcut to selected content and features of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Clips",
+      "type": "topic",
+      "url": "/documentation/appclip"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/APActivationPayload": {
+      "abstract": [
+        {
+          "text": "Information that’s passed to an App Clip on launch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "APActivationPayload"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/APActivationPayload",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "APActivationPayload"
+        }
+      ],
+      "role": "symbol",
+      "title": "APActivationPayload",
+      "type": "topic",
+      "url": "/documentation/appclip/apactivationpayload"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/configuring-the-launch-experience-of-your-app-clip": {
+      "abstract": [
+        {
+          "text": "Review how people launch your App Clip, identify invocation URLs, make use of default App Clip links, and configure experiences in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/configuring-the-launch-experience-of-your-app-clip",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring the launch experience of your App Clip",
+      "type": "topic",
+      "url": "/documentation/appclip/configuring-the-launch-experience-of-your-app-clip"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/confirming-a-person-s-physical-location": {
+      "abstract": [
+        {
+          "text": "Add code to quickly confirm a person’s physical location while respecting their privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/confirming-a-person-s-physical-location",
+      "kind": "article",
+      "role": "article",
+      "title": "Confirming a person’s physical location",
+      "type": "topic",
+      "url": "/documentation/appclip/confirming-a-person-s-physical-location"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/interacting-with-app-clip-codes-in-ar": {
+      "abstract": [
+        {
+          "text": "Display content and provide services in an AR experience with App Clip Codes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/interacting-with-app-clip-codes-in-ar",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Interacting with App Clip Codes in AR",
+      "type": "topic",
+      "url": "/documentation/appclip/interacting-with-app-clip-codes-in-ar"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/launching-another-app-s-app-clip-from-your-app": {
+      "abstract": [
+        {
+          "text": "Enable people to launch another app’s App Clip from your app with App Clip links and offer a rich preview of it with the Link Presentation framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/launching-another-app-s-app-clip-from-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Launching another app’s App Clip from your app",
+      "type": "topic",
+      "url": "/documentation/appclip/launching-another-app-s-app-clip-from-your-app"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/responding-to-invocations": {
+      "abstract": [
+        {
+          "text": "Add code to respond to invocations and offer a focused launch experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/responding-to-invocations",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to invocations",
+      "type": "topic",
+      "url": "/documentation/appclip/responding-to-invocations"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/supporting-invocations-from-your-website-and-the-messages-app": {
+      "abstract": [
+        {
+          "text": "Display a Smart App Banner and the App Clip card on your website that people tap to launch your App Clip, and add support for invocations from the Messages app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/supporting-invocations-from-your-website-and-the-messages-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting invocations from your website and the Messages app",
+      "type": "topic",
+      "url": "/documentation/appclip/supporting-invocations-from-your-website-and-the-messages-app"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains": {
+      "abstract": [
+        {
+          "text": "The associated domains for specific services, such as shared web credentials, universal links, and App Clips.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Associated Domains Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppClip": {
+      "abstract": [
+        {
+          "text": "A collection of keys that an App Clip uses to get additional capabilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppClip",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAppClip",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSAppClip"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/allowing-apps-and-websites-to-link-to-your-content": {
+      "abstract": [
+        {
+          "text": "Use universal links to link directly to content within your app and share data securely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/allowing-apps-and-websites-to-link-to-your-content",
+      "kind": "article",
+      "role": "article",
+      "title": "Allowing apps and websites to link to your content",
+      "type": "topic",
+      "url": "/documentation/Xcode/allowing-apps-and-websites-to-link-to-your-content"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains": {
+      "abstract": [
+        {
+          "text": "Connect your app and a website to provide both a native app and a browser experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting associated domains",
+      "type": "topic",
+      "url": "/documentation/Xcode/supporting-associated-domains"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/supporting-universal-links-in-your-app": {
+      "abstract": [
+        {
+          "text": "Prepare your app to respond to an incoming universal link.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-universal-links-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting universal links in your app",
+      "type": "topic",
+      "url": "/documentation/Xcode/supporting-universal-links-in-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://appstoreconnect.apple.com/": {
+      "identifier": "https://appstoreconnect.apple.com/",
+      "title": "App Store Connect",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://appstoreconnect.apple.com/"
+    },
+    "https://developer.apple.com/handoff/": {
+      "identifier": "https://developer.apple.com/handoff/",
+      "title": "Handoff",
+      "titleInlineContent": [
+        {
+          "text": "Handoff",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/handoff/"
+    },
+    "https://developer.apple.com/ios/universal-links/": {
+      "identifier": "https://developer.apple.com/ios/universal-links/",
+      "title": "universal links",
+      "titleInlineContent": [
+        {
+          "text": "universal links",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/ios/universal-links/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2020/10651/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10651/",
+      "title": "WWDC20: What’s New in App Store Connect",
+      "titleInlineContent": [
+        {
+          "text": "WWDC20: What’s New in App Store Connect",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10651/"
+    },
+    "https://help.apple.com/app-store-connect/#/dev43c15c696": {
+      "identifier": "https://help.apple.com/app-store-connect/#/dev43c15c696",
+      "title": "Set up an App Clip experience",
+      "titleInlineContent": [
+        {
+          "text": "Set up an App Clip experience",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/app-store-connect/#/dev43c15c696"
+    },
+    "media-3706576": {
+      "alt": "A diagram that depicts the steps in the App Clip validation process. A box on the left shows an icon of a device on which the App Clip invocation occurs, and the Associated Domains Entitlement for your App Clip. A box on the right shows the server of the domain that the entitlement specifies. A line connects the device and the server, and a checkmark indicates that the system approves the App Clip to run by verifying that the server hosts an Apple App Site Association file that specifies the App Clip.",
+      "identifier": "media-3706576",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/986bd3bece5247c4bcc8b6e47b848d34/media-3706576@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/44d7697ecaf55b0f783bec8f2f3ef2c6/media-3706576~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Launch",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appclip/documentation/AppClip/configuring-the-launch-experience-of-your-app-clip",
+        "doc://com.apple.appclip/documentation/AppClip/supporting-invocations-from-your-website-and-the-messages-app",
+        "doc://com.apple.appclip/documentation/AppClip/responding-to-invocations",
+        "doc://com.apple.appclip/documentation/AppClip/confirming-a-person-s-physical-location",
+        "doc://com.apple.appclip/documentation/AppClip/launching-another-app-s-app-clip-from-your-app",
+        "doc://com.apple.appclip/documentation/AppClip/APActivationPayload",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppClip"
+      ],
+      "title": "Launch"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Launch",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appclip/documentation/AppClip/configuring-the-launch-experience-of-your-app-clip",
+                "doc://com.apple.appclip/documentation/AppClip/supporting-invocations-from-your-website-and-the-messages-app",
+                "doc://com.apple.appclip/documentation/AppClip/responding-to-invocations",
+                "doc://com.apple.appclip/documentation/AppClip/confirming-a-person-s-physical-location",
+                "doc://com.apple.appclip/documentation/AppClip/launching-another-app-s-app-clip-from-your-app",
+                "doc://com.apple.appclip/documentation/AppClip/APActivationPayload",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppClip"
+              ],
+              "title": "Launch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appclip~1documentation~1AppClip~1APActivationPayload/title",
+          "value": "APActivationPayload"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appclip~1documentation~1AppClip~1APActivationPayload/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "APActivationPayload"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appclip~1documentation~1AppClip~1APActivationPayload/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "APActivationPayload"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appclip/associating-your-app-clip-with-your-website"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appclip/associating-your-app-clip-with-your-website"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

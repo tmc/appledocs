@@ -1,0 +1,627 @@
+{
+  "abstract": [
+    {
+      "text": "A Boolean value that indicates whether there are pending changes that the sync engine is unaware of.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cloudkit/documentation/CloudKit",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5/State-swift.class"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5/State-swift.class/hasPendingUntrackedChanges"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:8CloudKit12CKSyncEngineC5StateC26hasPendingUntrackedChangesSbvp",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "hasPendingUntrackedChanges"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sb",
+        "text": "Bool"
+      }
+    ],
+    "modules": [
+      {
+        "name": "CloudKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "hasPendingUntrackedChanges"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "final"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "hasPendingUntrackedChanges"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sb",
+              "text": "Bool"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this property to inform the sync engine that there are pending changes other than those available in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5/State-swift.class/pendingRecordZoneChanges",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". After you set this property, the sync engine automatically schedules a send operation and, when that operation executes, asks your delegate to provide those changes by invoking the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDelegate-1q7g8/nextRecordZoneChangeBatch(_:syncEngine:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using this property is optional and is necessary only if you track pending changes manually, outside of the sync engine’s state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cloudkit/documentation/CloudKit": {
+      "abstract": [
+        {
+          "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit",
+      "type": "topic",
+      "url": "/documentation/cloudkit"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5": {
+      "abstract": [
+        {
+          "text": "An object that manages the synchronization of local and remote record data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngine"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKSyncEngine",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-5sie5"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5/State-swift.class": {
+      "abstract": [
+        {
+          "text": "An object that manages the sync engine’s state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5/State-swift.class",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKSyncEngine.State",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-5sie5/state-swift.class"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5/State-swift.class/hasPendingUntrackedChanges": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether there are pending changes that the sync engine is unaware of.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasPendingUntrackedChanges"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5/State-swift.class/hasPendingUntrackedChanges",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasPendingUntrackedChanges",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-5sie5/state-swift.class/haspendinguntrackedchanges"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5/State-swift.class/pendingDatabaseChanges": {
+      "abstract": [
+        {
+          "text": "The database changes that the sync engine has yet to send to the iCloud servers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pendingDatabaseChanges"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CloudKit12CKSyncEngineC",
+          "text": "CKSyncEngine"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CloudKit12CKSyncEngineC21PendingDatabaseChangeO",
+          "text": "PendingDatabaseChange"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5/State-swift.class/pendingDatabaseChanges",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pendingDatabaseChanges",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-5sie5/state-swift.class/pendingdatabasechanges"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5/State-swift.class/pendingRecordZoneChanges": {
+      "abstract": [
+        {
+          "text": "The record zone changes that the sync engine has yet to send to the iCloud servers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pendingRecordZoneChanges"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CloudKit12CKSyncEngineC",
+          "text": "CKSyncEngine"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CloudKit12CKSyncEngineC23PendingRecordZoneChangeO",
+          "text": "PendingRecordZoneChange"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5/State-swift.class/pendingRecordZoneChanges",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pendingRecordZoneChanges",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-5sie5/state-swift.class/pendingrecordzonechanges"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDelegate-1q7g8/nextRecordZoneChangeBatch(_:syncEngine:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate to provide the next set of record changes to send to the server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nextRecordZoneChangeBatch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CloudKit12CKSyncEngineC",
+          "text": "CKSyncEngine"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CloudKit12CKSyncEngineC18SendChangesContextV",
+          "text": "SendChangesContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "syncEngine"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CloudKit12CKSyncEngineC",
+          "text": "CKSyncEngine"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CloudKit12CKSyncEngineC",
+          "text": "CKSyncEngine"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CloudKit12CKSyncEngineC21RecordZoneChangeBatchV",
+          "text": "RecordZoneChangeBatch"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineDelegate-1q7g8/nextRecordZoneChangeBatch(_:syncEngine:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "nextRecordZoneChangeBatch(_:syncEngine:)",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginedelegate-1q7g8/nextrecordzonechangebatch(_:syncengine:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:Sb": {
+      "abstract": [
+        {
+          "text": "A value type whose instances are either `true` or `false`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/Swift/Bool"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Accessing-pending-changes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5/State-swift.class/pendingDatabaseChanges",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5/State-swift.class/pendingRecordZoneChanges"
+      ],
+      "title": "Accessing pending changes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cloudkit/cksyncengine-5sie5/state-swift.class/haspendinguntrackedchanges"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

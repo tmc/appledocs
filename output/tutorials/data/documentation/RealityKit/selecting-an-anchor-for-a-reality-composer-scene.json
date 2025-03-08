@@ -1,0 +1,1433 @@
+{
+  "abstract": [
+    {
+      "text": "Decide which anchor is right for your scenes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer",
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/selecting-an-anchor-for-a-reality-composer-scene"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Selecting an anchor for a Reality Composer scene"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Reality Composer",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " projects contain virtual scenes that you can add to real-world",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "environments using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To place a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Reality Composer",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " scene into the real",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "world, you must anchor its content to a detected surface, image, face, or object.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " automatically detects appropriate anchors for many types of scenes,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "though you can also manually detect and place your scenes if you want more control",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or have more specific anchoring requirements than ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Reality Composer",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " provides.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a new project or add a scene to an existing project, Reality Composer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "presents you with a sheet asking you to select an anchor type. The anchor type you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "select defines how your scene’s content is added to the real world by identifying",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the types of detected real-world surfaces, images, faces, or objects that you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "place it in relation to.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can manually load and anchor Reality Composer scenes using code, like",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "you do with other ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/ARKit",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " content. When",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "you anchor a scene in code, RealityKit ignores the scene’s anchoring information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Reality Composer",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " supports five anchor types: Horizontal, Vertical, Image, Face,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and Object. It displays a different set of guides for each anchor type to help you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "place your content. You can change the anchor type later if you choose the wrong",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "option or change your mind about how to anchor your scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each anchor type, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Reality Composer",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " automatically creates a default scene for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you. You can use the default scene as a placeholder to test your code until you are",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ready to construct your own scene. If you do not want ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Reality Composer",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to add content",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to your newly created scene, deselect the “Create with default content” checkbox",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "at the bottom left of the action sheet.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "selecting-an-anchor-for-a-reality-composer-scene-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Select-horizontal-anchoring-for-tables-and-floors",
+          "level": 3,
+          "text": "Select horizontal anchoring for tables and floors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Horizontal anchoring is the default option when creating a new document or scene.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use this anchor type for scenes containing 3D objects to be placed on a table, floor,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or other flat surface. When you select a horizontal anchor for your scene, Reality",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Composer shows a guide grid to represent the real-world surface onto which it will",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "place your scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "selecting-an-anchor-for-a-reality-composer-scene-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Select-vertical-anchoring-for-walls-and-free-floating-objects",
+          "level": 3,
+          "text": "Select vertical anchoring for walls and free-floating objects",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use vertical anchoring for scenes that contain objects to be placed against a wall,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "column, or other vertical surface. A vertical anchor is a good choice for scenes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that contain, for example, a shelf, a basketball hoop, or a wall clock. After you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "select this anchor type, Reality Composer displays a vertical grid that represents",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the wall or other detected vertical surface to position the scene against.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "selecting-an-anchor-for-a-reality-composer-scene-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Select-image-anchoring-to-augment-real-world-2D-images",
+          "level": 3,
+          "text": "Select image anchoring to augment real-world 2D images",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select image anchoring to place your scene over or near an existing two-dimensional",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "image in the real world, such as a poster, painting, or photograph. After you select",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this anchor type, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Reality Composer",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " displays a white-square guide to represent the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "detected real-world image to place your content near. Any object in your scene that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is in front of the guide will appear in front of the detected image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Properties inspector, select a reference image asset that you want ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to detect. The white square then changes to the selected reference image, indicating",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " will look for that specific",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "image and automatically anchor your scene to it. ARKit continues tracking the image’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "location so that if the image moves, your scene moves with it. In the scene, you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "should also select the real-world size of the image you want ARKit to detect, by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using the Physical Height and Physical Width controls in the Scene inspector.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "’s automatic anchoring and tracking will not work for",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "your scene if you do not select a reference image. However, you may wish to leave",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the reference image empty for some scenes. If, for example, you wish to attach the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "same scene to multiple reference images, you will need to configure ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/ARKit",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "’s",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "image detection and then anchor your scene manually. For more information about configuring",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "image detection, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/ARKit/detecting-images-in-an-ar-experience",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "selecting-an-anchor-for-a-reality-composer-scene-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Select-face-anchoring-to-place-a-scene-relative-to-a-detected-face",
+          "level": 3,
+          "text": "Select face anchoring to place a scene relative to a detected face",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select face anchoring to place content on or near detected human faces in ARKit.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you select this anchor type, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Reality Composer",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " displays a 3D face to stand",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in for the real-world face that ARKit has detected. You can’t move or edit the face",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "guide, but the contents of your scene are placed into the real world based on their",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "relative position to the guide face. If, for example, you put a box in front of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "eyes of the guide face, a bar is placed in front of a detected person’s eyes in your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more details about ARKit face detection, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/tracking-and-visualizing-faces",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Face anchoring is only available when using the front-facing camera.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "selecting-an-anchor-for-a-reality-composer-scene-5",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Select-object-anchoring-to-place-a-scene-near-detected-objects",
+          "level": 3,
+          "text": "Select object anchoring to place a scene near detected objects",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select this anchor type to place your scene near a real-world object that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "has detected, based on an object that you’ve scanned. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " automatically",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "detects objects matching your scan, and anchors your scene to it. Object anchoring",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is a good choice for adding content to a real-world object like a toy, tool, or other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "physical object. For more details about ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object detection, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/scanning-and-detecting-3d-objects",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "selecting-an-anchor-for-a-reality-composer-scene-6",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you select object anchoring, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Reality Composer",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " displays a yellow cube with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a red exclamation point inside. The cube represents the object your scene is anchored",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to, and the exclamation point indicates that you need to identify the type of detected",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object to anchor your scene to. In the Properties inspector, below the anchor type,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "select a scanned object asset to use as an anchor. An image of the scanned object",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "then replaces the exclamation point.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike RealityKit image anchoring, object anchoring does not continuously track detected",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "objects. If a detected object moves, it may take a few seconds before the scene’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "position is updated to reflect its anchor’s new location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "selecting-an-anchor-for-a-reality-composer-scene-7",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Change-the-selected-anchor-type",
+          "level": 3,
+          "text": "Change the selected anchor type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While building your scene, you may realize that a different anchor type is a better",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "fit for what you’re building. With ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Reality Composer",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", you can change the anchor",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type of your scene at any time. Simply click or tap your scene’s background to deselect",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "any selected objects. Then check the Scene inspector for a section titled Anchor,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which shows the five possible anchor types. Click the new anchor type you that want",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to use for your scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "selecting-an-anchor-for-a-reality-composer-scene-8",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you select a new anchor, none of your scene’s content changes, but the guides",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are updated to reflect the new anchor type. You may have to adjust the location of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "some of your objects to ensure that they still align correctly with the new guides.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ARView": {
+      "abstract": [
+        {
+          "text": "A view that enables you to display an AR experience with RealityKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARView"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARView",
+      "type": "topic",
+      "url": "/documentation/realitykit/arview"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer": {
+      "abstract": [
+        {
+          "text": "Assemble assets into a dynamic 3D composition that you can add to a scene in your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "app, or share with AR Quick Look.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-3d-content-with-reality-composer",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating 3D Content with Reality Composer",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-3d-content-with-reality-composer"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer": {
+      "abstract": [
+        {
+          "text": "A visual editor for RealityKit AR scenes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-reality-composer",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Reality Composer",
+      "type": "topic",
+      "url": "/documentation/realitykit/realitykit-reality-composer"
+    },
+    "doc://com.apple.documentation/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/ARKit"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/detecting-images-in-an-ar-experience": {
+      "abstract": [
+        {
+          "text": "React to known 2D images in the user’s environment, and use their positions to place AR content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/detecting-images-in-an-ar-experience",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Detecting Images in an AR Experience",
+      "type": "topic",
+      "url": "/documentation/ARKit/detecting-images-in-an-ar-experience"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/scanning-and-detecting-3d-objects": {
+      "abstract": [
+        {
+          "text": "Record spatial features of real-world objects, then use the results to find those objects in the user’s environment and trigger AR content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/scanning-and-detecting-3d-objects",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Scanning and Detecting 3D Objects",
+      "type": "topic",
+      "url": "/documentation/ARKit/scanning-and-detecting-3d-objects"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/tracking-and-visualizing-faces": {
+      "abstract": [
+        {
+          "text": "Detect faces in a front-camera AR experience, overlay virtual content, and animate facial expressions in real-time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/tracking-and-visualizing-faces",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Tracking and visualizing faces",
+      "type": "topic",
+      "url": "/documentation/ARKit/tracking-and-visualizing-faces"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "selecting-an-anchor-for-a-reality-composer-scene-1": {
+      "alt": "Screenshot showing a Reality Composer sheet with the five options for choosing an anchor. These options are described in the sections that follow. ",
+      "identifier": "selecting-an-anchor-for-a-reality-composer-scene-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/34d8ce9bd733d608a5984be7fc2531ac/selecting-an-anchor-for-a-reality-composer-scene-1.png"
+        }
+      ]
+    },
+    "selecting-an-anchor-for-a-reality-composer-scene-2": {
+      "alt": "Screenshot showing a Reality Composer project window with the default horizontal anchoring scene.",
+      "identifier": "selecting-an-anchor-for-a-reality-composer-scene-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c035ed606dc5f1703619d32e9523c91c/selecting-an-anchor-for-a-reality-composer-scene-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/89e68c00f17edca3cbfc1cedb37bbaad/selecting-an-anchor-for-a-reality-composer-scene-2~dark@2x.png"
+        }
+      ]
+    },
+    "selecting-an-anchor-for-a-reality-composer-scene-3": {
+      "alt": "Screenshot showing a Reality Composer project window with the default vertical anchoring scene.",
+      "identifier": "selecting-an-anchor-for-a-reality-composer-scene-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0cdf8bd14ad37125f971f414ba484abb/selecting-an-anchor-for-a-reality-composer-scene-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ebc6e4e69010297666d46a423359a059/selecting-an-anchor-for-a-reality-composer-scene-3~dark@2x.png"
+        }
+      ]
+    },
+    "selecting-an-anchor-for-a-reality-composer-scene-4": {
+      "alt": "Screenshot showing a Reality Composer project window with the default Image anchoring scene.",
+      "identifier": "selecting-an-anchor-for-a-reality-composer-scene-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/40e9500fc0ec7ef734a28362de976c8a/selecting-an-anchor-for-a-reality-composer-scene-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9b7559bf237464a0f90246c71cf2e741/selecting-an-anchor-for-a-reality-composer-scene-4~dark@2x.png"
+        }
+      ]
+    },
+    "selecting-an-anchor-for-a-reality-composer-scene-5": {
+      "alt": "Screenshot showing a Reality Composer project window with the default face anchoring scene.",
+      "identifier": "selecting-an-anchor-for-a-reality-composer-scene-5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/88c3f182bbb1f2e1b74254f39947253d/selecting-an-anchor-for-a-reality-composer-scene-5@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0ee9266e20642ac0aabe87c5ddcec24b/selecting-an-anchor-for-a-reality-composer-scene-5~dark@2x.png"
+        }
+      ]
+    },
+    "selecting-an-anchor-for-a-reality-composer-scene-6": {
+      "alt": "Screenshot showing a Reality Composer project window with the default object anchoring scene.",
+      "identifier": "selecting-an-anchor-for-a-reality-composer-scene-6",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/190b15bf29be9d524b61f0408b5f42a2/selecting-an-anchor-for-a-reality-composer-scene-6@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/40906f937cf39120a0ac3bb21e119251/selecting-an-anchor-for-a-reality-composer-scene-6~dark@2x.png"
+        }
+      ]
+    },
+    "selecting-an-anchor-for-a-reality-composer-scene-7": {
+      "alt": "Screenshot showing a closeup of the scene inspector for a scene using an object anchor.",
+      "identifier": "selecting-an-anchor-for-a-reality-composer-scene-7",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ac1218284a7875e8a0d3dcecf2fe515a/selecting-an-anchor-for-a-reality-composer-scene-7@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9db0eb22f3743b23e352ca34e370e25e/selecting-an-anchor-for-a-reality-composer-scene-7~dark@2x.png"
+        }
+      ]
+    },
+    "selecting-an-anchor-for-a-reality-composer-scene-8": {
+      "alt": "Screenshot showing the Anchor Type section of the Properties Inspector for a scene.",
+      "identifier": "selecting-an-anchor-for-a-reality-composer-scene-8",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/14bbcb9c11437fa8d50b93e8ee343835/selecting-an-anchor-for-a-reality-composer-scene-8@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a9f788f546f13577dcc305a2644418e7/selecting-an-anchor-for-a-reality-composer-scene-8~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/selecting-an-anchor-for-a-reality-composer-scene"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

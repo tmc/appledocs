@@ -1,0 +1,465 @@
+{
+  "abstract": [
+    {
+      "text": "Returns the time at which the system displays the frame.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.compositorservices/documentation/CompositorServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_presentation_time"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@cp_frame_timing_get_presentation_time",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "cp_frame_timing_get_presentation_time"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Compositor Services"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "cp_frame_timing_get_presentation_time"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "cp_frame_timing_get_presentation_time"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_time",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@cp_time",
+              "text": "cp_time_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "cp_frame_timing_get_presentation_time"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@cp_frame_timing_t",
+              "text": "cp_frame_timing_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "frame_timing"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The frame’s timing information. Fetch this information using the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_predict_timing",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function. After you retrieve the frame’s drawable type, get the information using ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/frameTiming",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "frame_timing"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Mach absolute time at which the layer presents the frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the presentation time as a synchronization point for other parts of your app. For example, if you play an audio clip when the frame appears, configure your code to start playing the clip at the specified time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.compositorservices/documentation/CompositorServices": {
+      "abstract": [
+        {
+          "text": "Take control of the drawing environment and render your own content using Metal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Compositor Services",
+      "type": "topic",
+      "url": "/documentation/compositorservices"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/frameTiming": {
+      "abstract": [
+        {
+          "text": "The timing information for the drawable’s frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frameTiming"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CP_OBJECT_cp_layer_renderer",
+          "text": "LayerRenderer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@cp_frame_t",
+          "text": "Frame"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@cp_frame_timing_t",
+          "text": "Timing"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Drawable/frameTiming",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_get_frame_timing"
+        }
+      ],
+      "role": "symbol",
+      "title": "frameTiming",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/drawable/frametiming"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_predict_timing": {
+      "abstract": [
+        {
+          "text": "Computes and returns the predicted timing information for the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_predict_timing"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_predict_timing",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_frame_predict_timing",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_frame_predict_timing"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_optimal_input_time": {
+      "abstract": [
+        {
+          "text": "Returns the optimal time to start the frame submission process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_timing_get_optimal_input_time"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_optimal_input_time",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_frame_timing_get_optimal_input_time",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_frame_timing_get_optimal_input_time"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_presentation_time": {
+      "abstract": [
+        {
+          "text": "Returns the time at which the system displays the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_timing_get_presentation_time"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_presentation_time",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_frame_timing_get_presentation_time",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_frame_timing_get_presentation_time"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_rendering_deadline": {
+      "abstract": [
+        {
+          "text": "Returns the time at which you must finish all work for the specified frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_timing_get_rendering_deadline"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_rendering_deadline",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_frame_timing_get_rendering_deadline",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_frame_timing_get_rendering_deadline"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_t": {
+      "abstract": [
+        {
+          "text": "A type that stores information about a frame’s encoding, rendering,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and presentation deadlines.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_timing_t"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_frame_timing_t",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_frame_timing_t"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_time": {
+      "abstract": [
+        {
+          "text": "A Mach absolute time clock value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_time"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_time",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_time",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_time"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-timing-information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_predict_timing",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_optimal_input_time",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_get_rendering_deadline",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_frame_timing_t"
+      ],
+      "title": "Getting timing information"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Drawable~1frameTiming/title",
+          "value": "cp_drawable_get_frame_timing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Drawable~1frameTiming/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_drawable_get_frame_timing"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/compositorservices/cp_frame_timing_get_presentation_time"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

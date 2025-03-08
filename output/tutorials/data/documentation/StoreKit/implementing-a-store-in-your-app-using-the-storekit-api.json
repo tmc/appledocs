@@ -1,0 +1,500 @@
+{
+  "abstract": [
+    {
+      "text": "Offer In-App Purchases and manage entitlements using signed transactions and status information.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/implementing-a-store-in-your-app-using-the-storekit-api"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.1",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Implementing a store in your app using the StoreKit API"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This sample code project is associated with WWDC22 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc22/110404/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "It’s also associated with WWDC21 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc21/10114/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project uses StoreKit Testing in Xcode so you can build and run the sample app without needing to configure In-App Purchase products in App Store Connect. The project defines the products for the StoreKit testing environment in the ",
+              "type": "text"
+            },
+            {
+              "code": "Products.storekit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " configuration. The project includes the ",
+              "type": "text"
+            },
+            {
+              "code": "Products.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as a resource file, which contains product identifiers that map to emoji characters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, StoreKit Testing in Xcode is in a disabled state. Follow these steps to select the ",
+              "type": "text"
+            },
+            {
+              "code": "Products.storekit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " configuration file and enable StoreKit Testing in Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Product > Scheme > Edit Scheme.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the scheme editor, select the Run action.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Options in the action settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For the StoreKit Configuration option, select the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Products.storekit",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " configuration file from the dropdown menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app initializes a store, it reads the ",
+              "type": "text"
+            },
+            {
+              "code": "Products.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " resource to get the product identifiers, and requests the products. Because you enable StoreKit Testing in Xcode for this project, the system returns the products from the testing environment instead of from App Store Connect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "70057c4db7e2/ImplementingAStoreInYourAppUsingTheStoreKitAPI.zip": {
+      "checksum": "70057c4db7e2c443b83f586e436ad61d8bf6b0ac42652068a617a03e292b1c0234dc1e5662fa8662d54b5f12b0bd97dbf63e990d4c6e9155ec098bb54de19c8a",
+      "identifier": "70057c4db7e2/ImplementingAStoreInYourAppUsingTheStoreKitAPI.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/70057c4db7e2/ImplementingAStoreInYourAppUsingTheStoreKitAPI.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product": {
+      "abstract": [
+        {
+          "text": "Information about a product that you configure in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Product"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Product"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product",
+      "type": "topic",
+      "url": "/documentation/storekit/product"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo": {
+      "abstract": [
+        {
+          "text": "Information about an auto-renewable subscription, such as its status, period, subscription group, and subscription offer details.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.SubscriptionInfo",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptioninfo"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionInfo": {
+      "abstract": [
+        {
+          "text": "Information about an auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionInfo",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptioninfo"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStatus": {
+      "abstract": [
+        {
+          "text": "Represents the renewal status information for an auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionStatus",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptionstatus"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "https://developer.apple.com/wwdc21/10114/": {
+      "identifier": "https://developer.apple.com/wwdc21/10114/",
+      "title": "10114: Meet StoreKit 2",
+      "titleInlineContent": [
+        {
+          "text": "10114: Meet StoreKit 2",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc21/10114/"
+    },
+    "https://developer.apple.com/wwdc22/110404/": {
+      "identifier": "https://developer.apple.com/wwdc22/110404/",
+      "title": "110404: Implement proactive in-app purchase restore",
+      "titleInlineContent": [
+        {
+          "text": "110404: Implement proactive in-app purchase restore",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc22/110404/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "70057c4db7e2/ImplementingAStoreInYourAppUsingTheStoreKitAPI.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Product-and-subscription-information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/Product",
+        "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionInfo",
+        "doc://com.apple.storekit/documentation/StoreKit/SubscriptionStatus"
+      ],
+      "title": "Product and subscription information"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/implementing-a-store-in-your-app-using-the-storekit-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

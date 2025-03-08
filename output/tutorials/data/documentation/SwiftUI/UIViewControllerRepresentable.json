@@ -1,0 +1,2046 @@
+{
+  "abstract": [
+    {
+      "text": "A view that represents a UIKit view controller.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI29UIViewControllerRepresentableP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UIViewControllerRepresentable"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIViewControllerRepresentable"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "UIViewControllerRepresentable"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerRepresentable"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7SwiftUI4ViewP",
+              "text": "View"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Self"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/Body-swift.associatedtype",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7SwiftUI4ViewP4BodyQa",
+              "text": "Body"
+            },
+            {
+              "kind": "text",
+              "text": " == "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s5NeverO",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s5NeverO",
+              "text": "Never"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to create and manage a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object in your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftUI interface. Adopt this protocol in one of your app’s custom",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instances, and use its methods to create, update, and tear down your view",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "controller. The creation and update processes parallel the behavior of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftUI views, and you use them to configure your view controller with your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app’s current state information. Use the teardown process to remove your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view controller cleanly from your SwiftUI. For example, you might use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "teardown process to notify other objects that the view controller is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "disappearing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add your view controller into your SwiftUI interface, create your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance and add it to your SwiftUI",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interface. The system calls the methods of your custom instance at",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "appropriate times.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system doesn’t automatically communicate changes occurring within your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view controller to other parts of your SwiftUI interface. When you want your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view controller to coordinate with other SwiftUI views, you must provide a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSViewControllerRepresentable/Coordinator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to facilitate those",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interactions. For example, you use a coordinator to forward target-action",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and delegate messages from your view controller to any SwiftUI views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "SwiftUI fully controls the layout of the UIKit view controller’s",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "view using the view’s",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/center",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ",",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/bounds",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ",",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/frame",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", and",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/transform",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "properties. Don’t directly set these layout-related properties on the view",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "managed by a ",
+                  "type": "text"
+                },
+                {
+                  "code": "UIViewControllerRepresentable",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " instance from your own",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "code because that conflicts with SwiftUI and results in undefined behavior.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Warning",
+          "style": "warning",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSViewControllerRepresentable/Coordinator": {
+      "abstract": [
+        {
+          "text": "A type to coordinate with the view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Coordinator"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSViewControllerRepresentable/Coordinator",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Coordinator",
+      "type": "topic",
+      "url": "/documentation/swiftui/nsviewcontrollerrepresentable/coordinator"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable": {
+      "abstract": [
+        {
+          "text": "A view that represents a UIKit view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewControllerRepresentable",
+      "type": "topic",
+      "url": "/documentation/swiftui/uiviewcontrollerrepresentable"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/Context": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Context"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/Context",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Context"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewControllerRepresentable.Context",
+      "type": "topic",
+      "url": "/documentation/swiftui/uiviewcontrollerrepresentable/context"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/Coordinator": {
+      "abstract": [
+        {
+          "text": "A type to coordinate with the view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Coordinator"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/Coordinator",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Coordinator",
+      "type": "topic",
+      "url": "/documentation/swiftui/uiviewcontrollerrepresentable/coordinator"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/LayoutOptions": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LayoutOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/LayoutOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LayoutOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewControllerRepresentable.LayoutOptions",
+      "type": "topic",
+      "url": "/documentation/swiftui/uiviewcontrollerrepresentable/layoutoptions"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/UIViewControllerType": {
+      "abstract": [
+        {
+          "text": "The type of view controller to present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerType"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/UIViewControllerType",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "UIViewControllerType",
+      "type": "topic",
+      "url": "/documentation/swiftui/uiviewcontrollerrepresentable/uiviewcontrollertype"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/dismantleUIViewController(_:coordinator:)": {
+      "abstract": [
+        {
+          "text": "Cleans up the presented view controller (and coordinator) in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "anticipation of their removal.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dismantleUIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI29UIViewControllerRepresentableP0cD4TypeQa",
+          "text": "UIViewControllerType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "coordinator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI29UIViewControllerRepresentableP11CoordinatorQa",
+          "text": "Coordinator"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/dismantleUIViewController(_:coordinator:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "dismantleUIViewController(_:coordinator:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/uiviewcontrollerrepresentable/dismantleuiviewcontroller(_:coordinator:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/makeCoordinator()": {
+      "abstract": [
+        {
+          "text": "Creates the custom instance that you use to communicate changes from",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your view controller to other parts of your SwiftUI interface.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI29UIViewControllerRepresentableP11CoordinatorQa",
+          "text": "Coordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/makeCoordinator()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "makeCoordinator()",
+      "type": "topic",
+      "url": "/documentation/swiftui/uiviewcontrollerrepresentable/makecoordinator()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/makeUIViewController(context:)": {
+      "abstract": [
+        {
+          "text": "Creates the view controller object and configures its initial state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeUIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI29UIViewControllerRepresentableP7Contexta",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI29UIViewControllerRepresentableP0cD4TypeQa",
+          "text": "UIViewControllerType"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/makeUIViewController(context:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "makeUIViewController(context:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/uiviewcontrollerrepresentable/makeuiviewcontroller(context:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/sizeThatFits(_:uiViewController:context:)": {
+      "abstract": [
+        {
+          "text": "Given a proposed size, returns the preferred size of the composite view.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sizeThatFits"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16ProposedViewSizeV",
+          "text": "ProposedViewSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "uiViewController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI29UIViewControllerRepresentableP0cD4TypeQa",
+          "text": "UIViewControllerType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI29UIViewControllerRepresentableP7Contexta",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/sizeThatFits(_:uiViewController:context:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "sizeThatFits(_:uiViewController:context:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/uiviewcontrollerrepresentable/sizethatfits(_:uiviewcontroller:context:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/updateUIViewController(_:context:)": {
+      "abstract": [
+        {
+          "text": "Updates the state of the specified view controller with new information",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateUIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI29UIViewControllerRepresentableP0cD4TypeQa",
+          "text": "UIViewControllerType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI29UIViewControllerRepresentableP7Contexta",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/updateUIViewController(_:context:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "updateUIViewController(_:context:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/uiviewcontrollerrepresentable/updateuiviewcontroller(_:context:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentableContext": {
+      "abstract": [
+        {
+          "text": "Contextual information about the state of the system that you use to create",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and update your UIKit view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerRepresentableContext"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentableContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerRepresentableContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewControllerRepresentableContext",
+      "type": "topic",
+      "url": "/documentation/swiftui/uiviewcontrollerrepresentablecontext"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewRepresentable": {
+      "abstract": [
+        {
+          "text": "A wrapper for a UIKit view that you use to integrate that view into your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "SwiftUI view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewRepresentable",
+      "type": "topic",
+      "url": "/documentation/swiftui/uiviewrepresentable"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewRepresentableContext": {
+      "abstract": [
+        {
+          "text": "Contextual information about the state of the system that you use to create",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and update your UIKit view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewRepresentableContext"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewRepresentableContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewRepresentableContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewRepresentableContext",
+      "type": "topic",
+      "url": "/documentation/swiftui/uiviewrepresentablecontext"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/swiftui/view"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/Body-swift.associatedtype": {
+      "abstract": [
+        {
+          "text": "The type of view representing the body of this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Body"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/Body-swift.associatedtype",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Body",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/body-swift.associatedtype"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIView/bounds": {
+      "abstract": [
+        {
+          "text": "The bounds rectangle, which describes the view’s location and size in its own coordinate system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bounds"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/bounds",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bounds",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIView/bounds"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIView/center": {
+      "abstract": [
+        {
+          "text": "The center point of the view’s frame rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "center"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/center",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "center",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIView/center"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIView/frame": {
+      "abstract": [
+        {
+          "text": "The frame rectangle, which describes the view’s location and size in its superview’s coordinate system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frame"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/frame",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frame",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIView/frame"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIView/transform": {
+      "abstract": [
+        {
+          "text": "Specifies the transform applied to the view, relative to the center of its bounds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGAffineTransform",
+          "text": "CGAffineTransform"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/transform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transform",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIView/transform"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController": {
+      "abstract": [
+        {
+          "text": "An object that manages a view hierarchy for your UIKit app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIViewController",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s5NeverO": {
+      "abstract": [
+        {
+          "text": "A type that has no values and can’t be constructed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Never"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s5NeverO",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Never",
+      "type": "topic",
+      "url": "/documentation/Swift/Never"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Adding-UIKit-views-to-SwiftUI-view-hierarchies",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewRepresentable",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewRepresentableContext",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentableContext"
+      ],
+      "title": "Adding UIKit views to SwiftUI view hierarchies"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-and-updating-the-view-controller",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/makeUIViewController(context:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/updateUIViewController(_:context:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/Context",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/UIViewControllerType"
+      ],
+      "title": "Creating and updating the view controller"
+    },
+    {
+      "anchor": "Specifying-a-size",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/sizeThatFits(_:uiViewController:context:)"
+      ],
+      "title": "Specifying a size"
+    },
+    {
+      "anchor": "Cleaning-up-the-view-controller",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/dismantleUIViewController(_:coordinator:)"
+      ],
+      "title": "Cleaning up the view controller"
+    },
+    {
+      "anchor": "Providing-a-custom-coordinator-object",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/makeCoordinator()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/Coordinator"
+      ],
+      "title": "Providing a custom coordinator object"
+    },
+    {
+      "anchor": "Performing-layout",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewControllerRepresentable/LayoutOptions"
+      ],
+      "title": "Performing layout"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView~1center/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGPoint",
+              "text": "CGPoint"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "center"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIResponder",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView~1frame/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGRect",
+              "text": "CGRect"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "frame"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView~1bounds/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGRect",
+              "text": "CGRect"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "bounds"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView~1transform/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGAffineTransform",
+              "text": "CGAffineTransform"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "transform"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/uiviewcontrollerrepresentable"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

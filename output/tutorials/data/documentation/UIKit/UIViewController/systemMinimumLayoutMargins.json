@@ -1,0 +1,938 @@
+{
+  "abstract": [
+    {
+      "text": "The minimum layout margins for the view controller’s root view.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIViewController/systemMinimumLayoutMargins"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "UIKit",
+    "externalID": "c:objc(cs)UIViewController(py)systemMinimumLayoutMargins",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "systemMinimumLayoutMargins"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@S@NSDirectionalEdgeInsets",
+        "text": "NSDirectionalEdgeInsets"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "systemMinimumLayoutMargins"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "systemMinimumLayoutMargins"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "systemMinimumLayoutMargins"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDirectionalEdgeInsets",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@NSDirectionalEdgeInsets",
+              "text": "NSDirectionalEdgeInsets"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.uikit/documentation/UIKit/positioning-content-within-layout-margins"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This property contains the minimum layout margins expected by the system for the view controller’s root view. Do not override this property. To stop considering the system’s minimum layout margins for the root view, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewRespectsSystemMinimumLayoutMargins",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This property does not affect the margins associated with subviews of the root view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you assign a custom value to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/directionalLayoutMargins",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the view controller’s root view, the root view’s actual margins are set to either your custom values or the minimum values defined by this property, whichever values are greater. For example, if the value for one system minimum margin is ",
+              "type": "text"
+            },
+            {
+              "code": "20",
+              "type": "codeVoice"
+            },
+            {
+              "text": " points and you specify a value of ",
+              "type": "text"
+            },
+            {
+              "code": "10",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the same margin on the view, the view uses the value ",
+              "type": "text"
+            },
+            {
+              "code": "20",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the margin.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDirectionalEdgeInsets": {
+      "abstract": [
+        {
+          "text": "The inset distances for views, taking the user interface layout direction into account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDirectionalEdgeInsets"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDirectionalEdgeInsets",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDirectionalEdgeInsets"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDirectionalEdgeInsets",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdirectionaledgeinsets"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/directionalLayoutMargins": {
+      "abstract": [
+        {
+          "text": "The default spacing to use when laying out content in a view, taking into account the current language direction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "directionalLayoutMargins"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@NSDirectionalEdgeInsets",
+          "text": "NSDirectionalEdgeInsets"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/directionalLayoutMargins",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "directionalLayoutMargins"
+        }
+      ],
+      "role": "symbol",
+      "title": "directionalLayoutMargins",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/directionallayoutmargins"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController": {
+      "abstract": [
+        {
+          "text": "An object that manages a view hierarchy for your UIKit app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/systemMinimumLayoutMargins": {
+      "abstract": [
+        {
+          "text": "The minimum layout margins for the view controller’s root view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemMinimumLayoutMargins"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@NSDirectionalEdgeInsets",
+          "text": "NSDirectionalEdgeInsets"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/systemMinimumLayoutMargins",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "systemMinimumLayoutMargins"
+        }
+      ],
+      "role": "symbol",
+      "title": "systemMinimumLayoutMargins",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/systemminimumlayoutmargins"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewLayoutMarginsDidChange()": {
+      "abstract": [
+        {
+          "text": "Called to notify the view controller that the layout margins of its root view changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewLayoutMarginsDidChange"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewLayoutMarginsDidChange()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewLayoutMarginsDidChange"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewLayoutMarginsDidChange()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/viewlayoutmarginsdidchange()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewRespectsSystemMinimumLayoutMargins": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the view controller’s view uses the system-defined minimum layout margins.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewRespectsSystemMinimumLayoutMargins"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewRespectsSystemMinimumLayoutMargins",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewRespectsSystemMinimumLayoutMargins"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewRespectsSystemMinimumLayoutMargins",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/viewrespectssystemminimumlayoutmargins"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/positioning-content-within-layout-margins": {
+      "abstract": [
+        {
+          "text": "Position views so that they aren’t crowded by other content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/positioning-content-within-layout-margins",
+      "kind": "article",
+      "role": "article",
+      "title": "Positioning content within layout margins",
+      "type": "topic",
+      "url": "/documentation/uikit/positioning-content-within-layout-margins"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-the-views-margins",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/positioning-content-within-layout-margins",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewRespectsSystemMinimumLayoutMargins",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewLayoutMarginsDidChange()"
+      ],
+      "title": "Managing the view’s margins"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "systemMinimumLayoutMargins"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "systemMinimumLayoutMargins"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewController"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Managing-the-views-margins",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/positioning-content-within-layout-margins",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewRespectsSystemMinimumLayoutMargins",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewLayoutMarginsDidChange()"
+              ],
+              "title": "Managing the view’s margins"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "nonatomic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "readonly"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDirectionalEdgeInsets",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@S@NSDirectionalEdgeInsets",
+                    "text": "NSDirectionalEdgeInsets"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "systemMinimumLayoutMargins"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1viewRespectsSystemMinimumLayoutMargins/title",
+          "value": "viewRespectsSystemMinimumLayoutMargins"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1viewRespectsSystemMinimumLayoutMargins/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "viewRespectsSystemMinimumLayoutMargins"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDirectionalEdgeInsets/title",
+          "value": "NSDirectionalEdgeInsets"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDirectionalEdgeInsets/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDirectionalEdgeInsets"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDirectionalEdgeInsets/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDirectionalEdgeInsets"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/title",
+          "value": "UIViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1directionalLayoutMargins/title",
+          "value": "directionalLayoutMargins"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1directionalLayoutMargins/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "directionalLayoutMargins"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1viewLayoutMarginsDidChange()/title",
+          "value": "viewLayoutMarginsDidChange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1viewLayoutMarginsDidChange()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewLayoutMarginsDidChange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1systemMinimumLayoutMargins/title",
+          "value": "systemMinimumLayoutMargins"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1systemMinimumLayoutMargins/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "systemMinimumLayoutMargins"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uiviewcontroller/systemminimumlayoutmargins"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uiviewcontroller/systemminimumlayoutmargins"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

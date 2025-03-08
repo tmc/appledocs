@@ -1,0 +1,790 @@
+{
+  "abstract": [
+    {
+      "text": "An object representing a mutable collection of unique integer values that bridges to ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/indexset",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": "; use ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableindexset",
+      "isActive": false,
+      "type": "reference"
+    },
+    {
+      "text": " when you need reference semantics or other Foundation-specific behavior. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/collections",
+        "doc://com.apple.documentation/documentation/foundation/indexset"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsmutableindexset"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1416704,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSMutableIndexSet",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSMutableIndexSet"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.3",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSMutableIndexSet"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSMutableIndexSet"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsindexset",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSIndexSet",
+              "text": "NSIndexSet"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableindexset",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class represents a mutable collection of unique unsigned integers, known as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "indexes",
+                  "type": "text"
+                }
+              ],
+              "type": "newTerm"
+            },
+            {
+              "text": " because of the way they are used. This collection is referred to as a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "mutable index set",
+                  "type": "text"
+                }
+              ],
+              "type": "newTerm"
+            },
+            {
+              "text": ". The inclusive range of valid indexes is ",
+              "type": "text"
+            },
+            {
+              "code": "0...(NSNotFound - 1)",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; trying to use indexes outside this range is invalid.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The values in a mutable index set are always sorted, so the order in which values are added is irrelevant.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Do not subclass the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableindexset",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Swift overlay to the Foundation framework provides the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/indexset",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure, which bridges to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableindexset",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " class and its immutable superclass, ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsindexset",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". For more information about value types, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1752769",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1752686",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1752686": {
+      "identifier": "devLink-1752686",
+      "title": "Using Swift with Cocoa and Objective-C (Swift 4.1)",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216"
+    },
+    "devLink-1752769": {
+      "identifier": "devLink-1752769",
+      "title": "Working with Cocoa Frameworks",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/collections": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/collections",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collections",
+      "type": "topic",
+      "url": "/documentation/foundation/collections"
+    },
+    "doc://com.apple.documentation/documentation/foundation/indexset": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/indexset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IndexSet",
+      "type": "topic",
+      "url": "/documentation/foundation/indexset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/indexset/referencetype": {
+      "abstract": [
+        {
+          "text": "An alias for this value type's equivalent reference type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "IndexSet.ReferenceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/indexset/referencetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IndexSet.ReferenceType",
+      "type": "topic",
+      "url": "/documentation/foundation/indexset/referencetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsindexset": {
+      "abstract": [
+        {
+          "text": "An object representing an immutable collection of unique integer values that bridges to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/indexset",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": "; use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsindexset",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSIndexSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsindexset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSIndexSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nsindexset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableindexset": {
+      "abstract": [
+        {
+          "text": "An object representing a mutable collection of unique integer values that bridges to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/indexset",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": "; use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableindexset",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableIndexSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableindexset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableIndexSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableindexset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableindexset/1408251-add": {
+      "abstract": [
+        {
+          "text": "Adds the indexes in an index range to the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableindexset/1408251-add",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableindexset/1408251-add"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableindexset/1408738-removeallindexes": {
+      "abstract": [
+        {
+          "text": "Removes the receiver’s indexes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllIndexes"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableindexset/1408738-removeallindexes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeAllIndexes()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableindexset/1408738-removeallindexes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableindexset/1410650-remove": {
+      "abstract": [
+        {
+          "text": "Removes an index from the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "(Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableindexset/1410650-remove",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remove(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableindexset/1410650-remove"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableindexset/1410712-add": {
+      "abstract": [
+        {
+          "text": "Adds an index  to the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "(Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableindexset/1410712-add",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableindexset/1410712-add"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableindexset/1412018-remove": {
+      "abstract": [
+        {
+          "text": "Removes the indexes in an index set from the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "(IndexSet)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableindexset/1412018-remove",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remove(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableindexset/1412018-remove"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableindexset/1414594-add": {
+      "abstract": [
+        {
+          "text": "Adds the indexes in an index set to the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "(IndexSet)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableindexset/1414594-add",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableindexset/1414594-add"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableindexset/1415791-remove": {
+      "abstract": [
+        {
+          "text": "Removes the indexes in an index range from the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableindexset/1415791-remove",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remove(in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableindexset/1415791-remove"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableindexset/1416951-shiftindexesstarting": {
+      "abstract": [
+        {
+          "text": "Shifts a group of indexes to the left or the right within the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "shiftIndexesStarting"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableindexset/1416951-shiftindexesstarting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shiftIndexesStarting(at:by:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableindexset/1416951-shiftindexesstarting"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsindexset"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsindexset",
+        "doc://com.apple.documentation/documentation/foundation/indexset/referencetype"
+      ],
+      "title": "Using Reference Types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1653794",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutableindexset/1410712-add",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableindexset/1414594-add",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableindexset/1408251-add"
+      ],
+      "kind": "taskGroup",
+      "title": "Adding Indexes"
+    },
+    {
+      "anchor": "1653824",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutableindexset/1410650-remove",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableindexset/1412018-remove",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableindexset/1408738-removeallindexes",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableindexset/1415791-remove"
+      ],
+      "kind": "taskGroup",
+      "title": "Removing Indexes"
+    },
+    {
+      "anchor": "1653869",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutableindexset/1416951-shiftindexesstarting"
+      ],
+      "kind": "taskGroup",
+      "title": "Shifting Index Groups"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsmutableindexset"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsmutableindexset"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

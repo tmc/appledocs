@@ -1,0 +1,762 @@
+{
+  "abstract": [
+    {
+      "text": "Store data for use across sessions of your app.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Persistent-storage"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Persistent storage"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The operating system provides ways to store data when your app closes,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so that when people open your app again later, they can continue working without",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interruption. The mechanism that you use depends on factors like what and how",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "much you need to store, whether you need serialized or random access to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data, and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "persistent-storage-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use the same kinds of storage in a SwiftUI app that you use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in any other app. For example, you can access files on disk using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " interface.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, SwiftUI also provides conveniences that make it easier to use certain",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "kinds of persistent storage in a declarative environment. For example, you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/FetchRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/FetchedResults",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to interact with a Core Data model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AppStorage": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that reflects a value from ",
+          "type": "text"
+        },
+        {
+          "code": "UserDefaults",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "invalidates a view on a change in value in that user default.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppStorage"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AppStorage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppStorage"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppStorage",
+      "type": "topic",
+      "url": "/documentation/swiftui/appstorage"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Environment-values": {
+      "abstract": [
+        {
+          "text": "Share data throughout a view hierarchy using the environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Environment-values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Environment values",
+      "type": "topic",
+      "url": "/documentation/swiftui/environment-values"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/managedObjectContext": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "managedObjectContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSManagedObjectContext",
+          "text": "NSManagedObjectContext"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/managedObjectContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "managedObjectContext",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/managedobjectcontext"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/FetchRequest": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that retrieves entities from a Core Data persistent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FetchRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/FetchRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FetchRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "FetchRequest",
+      "type": "topic",
+      "url": "/documentation/swiftui/fetchrequest"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/FetchedResults": {
+      "abstract": [
+        {
+          "text": "A collection of results retrieved from a Core Data store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FetchedResults"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/FetchedResults",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FetchedResults"
+        }
+      ],
+      "role": "symbol",
+      "title": "FetchedResults",
+      "type": "topic",
+      "url": "/documentation/swiftui/fetchedresults"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Model-data": {
+      "abstract": [
+        {
+          "text": "Manage the data that your app uses to drive its interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Model-data",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Model data",
+      "type": "topic",
+      "url": "/documentation/swiftui/model-data"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Preferences": {
+      "abstract": [
+        {
+          "text": "Indicate configuration preferences from views to their container views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Preferences",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preferences",
+      "type": "topic",
+      "url": "/documentation/swiftui/preferences"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SceneStorage": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that reads and writes to persisted, per-scene",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SceneStorage"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SceneStorage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SceneStorage"
+        }
+      ],
+      "role": "symbol",
+      "title": "SceneStorage",
+      "type": "topic",
+      "url": "/documentation/swiftui/scenestorage"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SectionedFetchRequest": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that retrieves entities, grouped into sections,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from a Core Data persistent store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SectionedFetchRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SectionedFetchRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SectionedFetchRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "SectionedFetchRequest",
+      "type": "topic",
+      "url": "/documentation/swiftui/sectionedfetchrequest"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SectionedFetchResults": {
+      "abstract": [
+        {
+          "text": "A collection of results retrieved from a Core Data persistent store,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "grouped into sections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SectionedFetchResults"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SectionedFetchResults",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SectionedFetchResults"
+        }
+      ],
+      "role": "symbol",
+      "title": "SectionedFetchResults",
+      "type": "topic",
+      "url": "/documentation/swiftui/sectionedfetchresults"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/defaultAppStorage(_:)": {
+      "abstract": [
+        {
+          "text": "The default store used by ",
+          "type": "text"
+        },
+        {
+          "code": "AppStorage",
+          "type": "codeVoice"
+        },
+        {
+          "text": " contained within the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultAppStorage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUserDefaults",
+          "text": "UserDefaults"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/defaultAppStorage(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultAppStorage(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/defaultappstorage(_:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager": {
+      "abstract": [
+        {
+          "text": "A convenient interface to the contents of the file system, and the primary means of interacting with it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManager",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager"
+    },
+    "doc://com.apple.documentation/documentation/swiftui/loading_and_displaying_a_large_data_feed": {
+      "abstract": [
+        {
+          "text": "Consume data in the background, and lower memory use by batching imports and preventing duplicate records.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swiftui/loading_and_displaying_a_large_data_feed",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Loading and Displaying a Large Data Feed",
+      "type": "topic",
+      "url": "/documentation/swiftui/loading_and_displaying_a_large_data_feed"
+    },
+    "doc://com.apple.documentation/documentation/swiftui/restoring_your_app_s_state_with_swiftui": {
+      "abstract": [
+        {
+          "text": "Provide app continuity for users by preserving their current activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swiftui/restoring_your_app_s_state_with_swiftui",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Restoring Your App’s State with SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui/restoring_your_app_s_state_with_swiftui"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "persistent-storage-hero": {
+      "alt": null,
+      "identifier": "persistent-storage-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/45f566a52f46e696909b2586bde96bd8/persistent-storage-hero@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Data-and-storage",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Model-data",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Environment-values",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Preferences"
+      ],
+      "title": "Data and storage"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Saving-state-across-app-launches",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/swiftui/restoring_your_app_s_state_with_swiftui",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/defaultAppStorage(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AppStorage",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SceneStorage"
+      ],
+      "title": "Saving state across app launches"
+    },
+    {
+      "anchor": "Accessing-Core-Data",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/swiftui/loading_and_displaying_a_large_data_feed",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/managedObjectContext",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/FetchRequest",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/FetchedResults",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SectionedFetchRequest",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SectionedFetchResults"
+      ],
+      "title": "Accessing Core Data"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1filemanager/title",
+          "value": "NSFileManager"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/persistent-storage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

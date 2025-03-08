@@ -1,0 +1,713 @@
+{
+  "abstract": [
+    {
+      "text": "An interface for the app to control its extension.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ContactProvider/documentation/ContactProvider"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:15ContactProvider0aB7ManagerC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ContactProviderManager"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ContactProvider"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ContactProviderManager"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "ContactProviderManager"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ContactProviderManager"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this class to initially enable your contact provider app extension, making it visible to the system and other apps. To use the default domain, create a manager and call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/enable()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This is an ",
+              "type": "text"
+            },
+            {
+              "code": "async",
+              "type": "codeVoice"
+            },
+            {
+              "text": " call, because it may prompt the person using your app to approve turning on the contact provider.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import ContactProvider",
+            "",
+            "func enableExtensionExample() async {",
+            "    do {",
+            "        // The app creates a contact provider manager with a default domain.",
+            "        let manager = try ContactProviderManager()",
+            "        ",
+            "        // May prompt the person to enable the default domain.",
+            "        try await manager.enable()",
+            "    } catch {",
+            "        // Handle the error.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Signaling-the-app-extension",
+          "level": 3,
+          "text": "Signaling the app extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You also use ",
+              "type": "text"
+            },
+            {
+              "code": "ContactProviderManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when you need to invoke the app extension on demand. For example, when your app knows new contacts are available from your server, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/signalEnumerator(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " so the extension can fetch and provide the changed contacts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import ContactProvider",
+            "",
+            "func refreshForNewContacts() async {",
+            "    do {",
+            "        let manager = try ContactProviderManager()",
+            "        try await manager.signalEnumerator()",
+            "    } catch {",
+            "        // Handle the error.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can only use ",
+                  "type": "text"
+                },
+                {
+                  "code": "ContactProviderManager",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in an app, not in an app extension.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.ContactProvider/documentation/ContactProvider": {
+      "abstract": [
+        {
+          "text": "Provide contacts managed by your app to the system-wide Contacts ecosystem.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ContactProvider",
+      "type": "topic",
+      "url": "/documentation/contactprovider"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager": {
+      "abstract": [
+        {
+          "text": "An interface for the app to control its extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContactProviderManager"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContactProviderManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContactProviderManager",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactprovidermanager"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/disable()": {
+      "abstract": [
+        {
+          "text": "Disables the extension domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "disable"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/disable()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "disable()",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactprovidermanager/disable()"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/domain": {
+      "abstract": [
+        {
+          "text": "The domain that this instance manages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "domain"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ContactProvider0aB6DomainP",
+          "text": "ContactProviderDomain"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/domain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "domain",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactprovidermanager/domain"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/enable()": {
+      "abstract": [
+        {
+          "text": "Requests the person using the app to enable the extension domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enable"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/enable()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enable()",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactprovidermanager/enable()"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/init(domainIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Creates a provider manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "domainIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/init(domainIdentifier:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(domainIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactprovidermanager/init(domainidentifier:)"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/invalidate()": {
+      "abstract": [
+        {
+          "text": "Requests that the extension terminate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidate"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/invalidate()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invalidate()",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactprovidermanager/invalidate()"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/isEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the person using the app enabled the extension domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/isEnabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEnabled",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactprovidermanager/isenabled"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/reset()": {
+      "abstract": [
+        {
+          "text": "Resets the extension domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reset"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/reset()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reset()",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactprovidermanager/reset()"
+    },
+    "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/signalEnumerator(for:)": {
+      "abstract": [
+        {
+          "text": "Requests that the extension enumerate its contacts for the domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "signalEnumerator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ContactProvider0A4ItemO",
+          "text": "ContactItem"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ContactProvider0A4ItemO10IdentifierV",
+          "text": "Identifier"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/signalEnumerator(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "signalEnumerator(for:)",
+      "type": "topic",
+      "url": "/documentation/contactprovider/contactprovidermanager/signalenumerator(for:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-contact-provider-manager",
+      "identifiers": [
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/init(domainIdentifier:)"
+      ],
+      "title": "Creating a contact provider manager"
+    },
+    {
+      "anchor": "Invoking-the-app-extension",
+      "identifiers": [
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/signalEnumerator(for:)"
+      ],
+      "title": "Invoking the app extension"
+    },
+    {
+      "anchor": "Managing-the-contact-provider-manager-life-cycle",
+      "identifiers": [
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/invalidate()"
+      ],
+      "title": "Managing the contact provider manager life cycle"
+    },
+    {
+      "anchor": "Managing-the-domain",
+      "identifiers": [
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/domain",
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/enable()",
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/isEnabled",
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/reset()",
+        "doc://com.apple.ContactProvider/documentation/ContactProvider/ContactProviderManager/disable()"
+      ],
+      "title": "Managing the domain"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/contactprovider/contactprovidermanager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

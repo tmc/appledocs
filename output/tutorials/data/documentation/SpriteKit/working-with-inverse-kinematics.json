@@ -1,0 +1,961 @@
+{
+  "abstract": [
+    {
+      "text": "Gain fine-tuned control of objects that are connected by joints.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKAction",
+        "doc://com.apple.spritekit/documentation/SpriteKit/action-initializers"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/working-with-inverse-kinematics"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Working with Inverse Kinematics"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Inverse kinematics (IK) is the use of equations to drive a system of connected components so that an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "end effector",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " can reach a desired position. Imagine a robot arm formed of a series of sections hinged together. With traditional animation techniques, if you wanted the hand of the arm to reach to a specified position, you would have to code the rotations for each of the joints, which is a complex and time-consuming task. With IK, you simply need to specify the required position of the hand (which would be the end effector), and each individual joint is rotated to achieve the final position. In SpriteKit, complex IK animations can be generated with very little code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-Up-the-Joints-and-Constraints",
+          "level": 3,
+          "text": "Set Up the Joints and Constraints",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SpriteKit’s IK relies on two classes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "reach",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " methods that solve an IK system (that run the system to make the end effector reach a specified position).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects that constrain the position or orientation of nodes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code creates a simple robot arm consisting of a fixed ",
+              "type": "text"
+            },
+            {
+              "code": "shoulder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " node and ",
+              "type": "text"
+            },
+            {
+              "code": "upperArm",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "midArm",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "lowerArm",
+              "type": "codeVoice"
+            },
+            {
+              "text": " sections that are joined by ",
+              "type": "text"
+            },
+            {
+              "code": "elbow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "wrist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " nodes. At the end of the ",
+              "type": "text"
+            },
+            {
+              "code": "wrist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is an ",
+              "type": "text"
+            },
+            {
+              "code": "endEffector",
+              "type": "codeVoice"
+            },
+            {
+              "text": " node. The nodes are progressively children of each other.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "shoulder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " node is fixed to the scene with a constraint, and the other joints are offset in the ",
+              "type": "text"
+            },
+            {
+              "code": "y",
+              "type": "codeVoice"
+            },
+            {
+              "text": " direction by the length of each section.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let sectionLength: CGFloat = 100",
+            "let sectionRect = CGRect(x: -10, y: -sectionLength,",
+            "                         width: 20, height: sectionLength)",
+            "   ",
+            "let upperArm = SKShapeNode(rect: sectionRect)",
+            "let midArm = SKShapeNode(rect: sectionRect)",
+            "let lowerArm = SKShapeNode(rect: sectionRect)",
+            "let shoulder = SKShapeNode(circleOfRadius: 5)",
+            "let elbow = SKShapeNode(circleOfRadius: 5)",
+            "let wrist = SKShapeNode(circleOfRadius: 5)",
+            "let endEffector = SKShapeNode(circleOfRadius: 5)",
+            "   ",
+            "scene.addChild(shoulder)",
+            "shoulder.addChild(upperArm)",
+            "upperArm.addChild(elbow)",
+            "elbow.addChild(midArm)",
+            "midArm.addChild(wrist)",
+            "wrist.addChild(lowerArm)",
+            "lowerArm.addChild(endEffector)",
+            "    ",
+            "shoulder.constraints = [SKConstraint.positionX(SKRange(constantValue: 320),",
+            "                                               y: SKRange(constantValue: 320))]",
+            "    ",
+            "let positionConstraint = SKConstraint.positionY(SKRange(constantValue: -sectionLength))",
+            "elbow.constraints =  [ positionConstraint ]",
+            "wrist.constraints = [ positionConstraint ]",
+            "endEffector.constraints = [ positionConstraint ]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In its default position, the code above creates a node tree that looks like this (the shoulder is at the top, in blue, and the end effector is at the bottom, in yellow).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3020290",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Run-the-Solver",
+          "level": 3,
+          "text": "Run the Solver",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the IK solver, you create an action passing it the desired location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let reachAction = SKAction.reach(to: location,",
+            "                                 rootNode: shoulder,",
+            "                                 duration: 1.0)",
+            "     ",
+            "endEffector.run(reachAction)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Given a location to the left of and slightly below the shoulder, the action finishes with the node tree looking like the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3020292",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKAction": {
+      "abstract": [
+        {
+          "text": "An object that is run by a node to change its structure or content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKAction"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKAction",
+      "type": "topic",
+      "url": "/documentation/spritekit/skaction"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint": {
+      "abstract": [
+        {
+          "text": "A specification for constraining a node’s position or rotation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKConstraint"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKConstraint",
+      "type": "topic",
+      "url": "/documentation/spritekit/skconstraint"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJoint": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for objects that connect physics bodies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsJoint"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsJoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPhysicsJoint",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsjoint"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointFixed": {
+      "abstract": [
+        {
+          "text": "A joint that fuses two physics bodies together at a reference point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsJointFixed"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointFixed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsJointFixed"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPhysicsJointFixed",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsjointfixed"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointLimit": {
+      "abstract": [
+        {
+          "text": "A joint that imposes a maximum distance between two physics bodies, as if they were connected by a rope.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsJointLimit"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointLimit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsJointLimit"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPhysicsJointLimit",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsjointlimit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointPin": {
+      "abstract": [
+        {
+          "text": "A joint that pins together two physics bodies, allowing independent rotation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsJointPin"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointPin",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsJointPin"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPhysicsJointPin",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsjointpin"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointSliding": {
+      "abstract": [
+        {
+          "text": "A joint that allows two physics bodies to slide along an axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsJointSliding"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointSliding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsJointSliding"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPhysicsJointSliding",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsjointsliding"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointSpring": {
+      "abstract": [
+        {
+          "text": "A joint that simulates a spring connecting two physics bodies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsJointSpring"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointSpring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPhysicsJointSpring"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPhysicsJointSpring",
+      "type": "topic",
+      "url": "/documentation/spritekit/skphysicsjointspring"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/action-initializers": {
+      "abstract": [
+        {
+          "text": "Use these functions to create actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/action-initializers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Action Initializers",
+      "type": "topic",
+      "url": "/documentation/spritekit/action-initializers"
+    },
+    "media-3020290": {
+      "alt": "Robot arm in rest position",
+      "identifier": "media-3020290",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/86e297e57299a35e91f0b5a014674380/media-3020290@2x.png"
+        }
+      ]
+    },
+    "media-3020292": {
+      "alt": "Robot arm after IK solve",
+      "identifier": "media-3020292",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cd7c1b63663a73d4433280f6eed724c3/media-3020292@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Physics-Joints",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJoint",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointFixed",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointLimit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointPin",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointSliding",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointSpring"
+      ],
+      "title": "Physics Joints"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Physics-Joints",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJoint",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointFixed",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointLimit",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointPin",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointSliding",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKPhysicsJointSpring"
+              ],
+              "title": "Physics Joints"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJoint/title",
+          "value": "SKPhysicsJoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJoint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsJoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJoint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsJoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointSpring/title",
+          "value": "SKPhysicsJointSpring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointSpring/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsJointSpring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointSpring/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsJointSpring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint/title",
+          "value": "SKConstraint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction/title",
+          "value": "SKAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointSliding/title",
+          "value": "SKPhysicsJointSliding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointSliding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsJointSliding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointSliding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsJointSliding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointPin/title",
+          "value": "SKPhysicsJointPin"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointPin/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsJointPin"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointPin/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsJointPin"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointFixed/title",
+          "value": "SKPhysicsJointFixed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointFixed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsJointFixed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointFixed/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsJointFixed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointLimit/title",
+          "value": "SKPhysicsJointLimit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointLimit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsJointLimit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKPhysicsJointLimit/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPhysicsJointLimit"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/working-with-inverse-kinematics"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/working-with-inverse-kinematics"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

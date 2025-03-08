@@ -1,0 +1,844 @@
+{
+  "abstract": [
+    {
+      "text": "Specifies unsupported APIs for this extension, making them ",
+      "type": "text"
+    },
+    {
+      "code": "undefined",
+      "type": "codeVoice"
+    },
+    {
+      "text": " in JavaScript.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "added",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "added",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.webkit/documentation/WebKit",
+        "doc://com.apple.webkit/documentation/WebKit/WKWebExtensionContext"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.webkit/documentation/WebKit/WKWebExtensionContext/unsupportedAPIs"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)WKWebExtensionContext(py)unsupportedAPIs",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "unsupportedAPIs"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sh",
+        "text": "Set"
+      },
+      {
+        "kind": "text",
+        "text": "<"
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:SS",
+        "text": "String"
+      },
+      {
+        "kind": "text",
+        "text": ">!"
+      }
+    ],
+    "modules": [
+      {
+        "name": "WebKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "unsupportedAPIs"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": true,
+        "deprecated": false,
+        "introducedAt": "18.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": true,
+        "deprecated": false,
+        "introducedAt": "18.4",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": true,
+        "deprecated": false,
+        "introducedAt": "18.4",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": true,
+        "deprecated": false,
+        "introducedAt": "15.4",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": true,
+        "deprecated": false,
+        "introducedAt": "2.4",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "unsupportedAPIs"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "unsupportedAPIs"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sh",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sh",
+              "text": "Set"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SS",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SS",
+              "text": "String"
+            },
+            {
+              "kind": "text",
+              "text": ">! { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This property allows the app to specify a subset of web extension APIs that it chooses not to support, effectively making these APIs ",
+              "type": "text"
+            },
+            {
+              "code": "undefined",
+              "type": "codeVoice"
+            },
+            {
+              "text": " within the extension’s JavaScript contexts. This enables extensions to employ feature detection techniques for unsupported APIs, allowing them to adapt their behavior based on the APIs actually supported by the app. Setting is only allowed when the context is not loaded. Only certain APIs can be specified here, particularly those within the ",
+              "type": "text"
+            },
+            {
+              "code": "browser",
+              "type": "codeVoice"
+            },
+            {
+              "text": " namespace and other dynamic functions and properties, anything else will be silently ignored.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For example, specifying ",
+                  "type": "text"
+                },
+                {
+                  "code": "\"browser.windows.create\"",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "\"browser.storage\"",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in this set will result in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "browser.windows.create()",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " function and ",
+                  "type": "text"
+                },
+                {
+                  "code": "browser.storage",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " property being ",
+                  "type": "text"
+                },
+                {
+                  "code": "undefined",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.webkit/documentation/WebKit": {
+      "abstract": [
+        {
+          "text": "Integrate web content seamlessly into your app, and customize content interactions to meet your app’s needs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WebKit",
+      "type": "topic",
+      "url": "/documentation/webkit"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKWebExtensionContext": {
+      "abstract": [
+        {
+          "text": "An object that represents the runtime environment for a web extension.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKWebExtensionContext"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKWebExtensionContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKWebExtensionContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKWebExtensionContext",
+      "type": "topic",
+      "url": "/documentation/webkit/wkwebextensioncontext"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKWebExtensionContext/unsupportedAPIs": {
+      "abstract": [
+        {
+          "text": "Specifies unsupported APIs for this extension, making them ",
+          "type": "text"
+        },
+        {
+          "code": "undefined",
+          "type": "codeVoice"
+        },
+        {
+          "text": " in JavaScript.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unsupportedAPIs"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ">!"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKWebExtensionContext/unsupportedAPIs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unsupportedAPIs"
+        }
+      ],
+      "role": "symbol",
+      "title": "unsupportedAPIs",
+      "type": "topic",
+      "url": "/documentation/webkit/wkwebextensioncontext/unsupportedapis"
+    },
+    "doc://com.externally.resolved.symbol/s:SS": {
+      "abstract": [
+        {
+          "text": "A Unicode string value that is a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/Swift/String"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:Sh": {
+      "abstract": [
+        {
+          "text": "An unordered collection of unique elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Set",
+      "type": "topic",
+      "url": "/documentation/Swift/Set"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": true,
+              "deprecated": false,
+              "introducedAt": "18.4",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": true,
+              "deprecated": false,
+              "introducedAt": "18.4",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": true,
+              "deprecated": false,
+              "introducedAt": "18.4",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": true,
+              "deprecated": false,
+              "introducedAt": "15.4",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": true,
+              "deprecated": false,
+              "introducedAt": "2.4",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "unsupportedAPIs"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "unsupportedAPIs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.webkit/documentation/WebKit",
+                "doc://com.apple.webkit/documentation/WebKit/WKWebExtensionContext"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "nonatomic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "copy"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:Q$objc(cs)NSSet",
+                    "text": "NSSet<NSString *>"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "unsupportedAPIs"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKWebExtensionContext/title",
+          "value": "WKWebExtensionContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKWebExtensionContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKWebExtensionContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKWebExtensionContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKWebExtensionContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKWebExtensionContext~1unsupportedAPIs/title",
+          "value": "unsupportedAPIs"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKWebExtensionContext~1unsupportedAPIs/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "unsupportedAPIs"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/webkit/wkwebextensioncontext/unsupportedapis"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/webkit/wkwebextensioncontext/unsupportedapis"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

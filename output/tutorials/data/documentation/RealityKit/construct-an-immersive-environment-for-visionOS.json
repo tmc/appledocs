@@ -1,0 +1,1091 @@
+{
+  "abstract": [
+    {
+      "text": "Build efficient custom worlds for your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/construct-an-immersive-environment-for-visionOS"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Construct an immersive environment for visionOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can implement immersive environments for your app that people can fade in and out using the Digital Crown, just like the provided system environments. However, custom immersive environments can cause performance and thermal problems if you’re not careful about how you build them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This article describes ways to address these potential problems, and the sample provides a demonstration of some of these methods in action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Avoid-very-dark-or-light-environments",
+          "level": 2,
+          "text": "Avoid very dark or light environments",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If possible, avoid creating environments that are very dark or very light. With very dark environments, you may notice banding artifacts. You can mitigate this effect to some extent by using 16-bit textures instead of 8-bit textures, but doing so adds nontrivial overhead because Reality Composer Pro doesn’t compress the texture. You may also be able to implement dithering in your shader to reduce banding.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With very bright textures, the lightest parts of your environment may look clipped when viewed on a device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample’s garden scene is a well-balanced environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Minimize-shader-complexity",
+          "level": 2,
+          "text": "Minimize shader complexity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All shaders aren’t created equal. Physically based rendering (PBR) materials are considerably more complex than unlit materials, which just map a texture or color onto an object without requiring lighting calculations. Most 3D modeling applications provide a way to bake lighting into a texture, creating the illusion of a lighted entity. Baking lighting into your model’s textures isn’t always possible, but when you use an unlit material instead of a PBR material, you improve your environment’s performance. The sample app uses unlit materials as much as possible to limit pixel shader cost.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/UnlitMaterial",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", pass ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the intializer’s ",
+              "type": "text"
+            },
+            {
+              "code": "applyPostProcessToneMap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter for better performance and more accurate colors; for example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let material = UnlitMaterial(color: .white,",
+            "                             applyPostProcessToneMap: false)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also set ",
+              "type": "text"
+            },
+            {
+              "code": "applyPostProcessToneMap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in Reality Composer Pro’s inspector by selecting a material in the hierarchy browser, and then selecting that material’s UnlitSurface node in the Shader Graph.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Immersion-rcpro-applytonemap@2x",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Certain other settings can affect the complexity and performance of the shaders that RealityKit generates. For example, enabling transparency can add nontrivial overhead to the generated shader, as can using trilinear filtering on textures. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/improving-the-performance-of-a-realitykit-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-perpendicular-geometry",
+          "level": 2,
+          "text": "Use perpendicular geometry",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Try to use geometry that’s perpendicular to the viewer. For objects more than a moderate distance from the user, consider mapping a texture containing the rendered object and map it to a rectangle or other two-dimensional polygon using an unlit shader. You can also use normal maps and use UV animation on your textures to create more convincing flat objects, like the pond shown in this video. This sample has the pond located behind you. In the visonOS Simulator, once you have entered the immersive space, use the I/O > Set immersion to > 100% and then turn around to see the pond.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "immersive-simple-geometry.mp4",
+          "type": "video"
+        },
+        {
+          "anchor": "Use-a-sky-dome",
+          "level": 2,
+          "text": "Use a sky dome",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create your environment’s sky and distant objects, place a large dome over the viewer with the dome’s normals pointing inward, and map an environment texture onto it with an unlit material, as shown in this sample’s garden asset. If your environment has no floor or ground, use a sphere instead of a dome.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Beyond a certain distance, a viewer can’t tell the difference between an entity and a rendered version of that entity mapped to the sky dome, but the texture-mapped version adds no vertices to the scene other than those needed to create the sky dome.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "immersive-environment-skydome.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-geometry-efficiently",
+          "level": 2,
+          "text": "Use geometry efficiently",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although the geometry detail in the stylized content of the sample isn’t dense enough to require much optimization, vertex count is one of the biggest sources of performance problems in rendered 3D scenes, so use the smallest number of vertices you need to achieve the effect that you want. Objects that are further away from from the viewer generally need fewer vertices than those closer to the camera.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most 3D-modeling programs provide a way to capture fine surface details for a higher-resolution version of the same model using a texture instead of increasing the number of polygons. This process is referred to as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "baking",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", and the output is called a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "normal map",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". A normal map works by storing surface normals, which are vectors perpendicular to the surface of the model, from the higher resolution version of the object, by storing the vectors’ X, Y, and Z values as the R, G, and B components of the corresponding pixel in the UV-mapped image. Apply baked normal maps to a lower-resolution entity by assigning it to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/normal-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the material or shader node.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using normal maps does have a performance cost, however. Not as much as the extra vertices it would take to show fine details, but not neglible either. Avoid using them on large or distant objects and use them selectively when building immersive environments. Most 3D programs provide a way to bake other kinds of maps besides normal maps. For larger or more distant objects, if you need more detail, consider baking the details into the emission map and using an unlit shader.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Remove geometry the user can’t see, including vertices inside an object or behind one, or on the back side of static objects. Keep in mind that an environment is viewed from near the origin of the scene. If somebody moves more than about a meter from their starting position, visionOS automatically turns immersive mode off, so you don’t need to worry about how environment objects look from other vantage points.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Try to avoid using long, thin triangles in your models. To create items like wires and chain link fences, either break up the geometry into multiple smaller triangles, or consider using an alpha map, which is a texture you apply to your model that identifies which parts of the object are transparent. You can use an alpha map to “cut out” thin shapes from a simple, larger polygon rather than building them from vertices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Reduce-draw-calls",
+          "level": 2,
+          "text": "Reduce draw calls",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each model entity in your scene generates one draw call per material for noninstanced geometry. On the other hand, with instanced entities, RealityKit only generates a single draw call for each material used on the original instanced entity. As a result, using instanced entities can reduces the number of draw calls your app makes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sharing textures between entities by using ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "texture atlases",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which are textures that contain images for multiple materials, also reduces your app’s draw calls, as can combining multiple models into a single entity with shared materials. When combining model entities, be careful not to make the combined entities too large; if the entities are too large, they won’t be culled during frustum culling, when objects that are completely off-camera are removed from the rendering process — resulting in no draw calls at all. If any part of the combined entity is visible on screen, every material on that entity generates a draw call, even materials that are completely off screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Generate-efficient-textures",
+          "level": 2,
+          "text": "Generate efficient textures",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The way you create the textures for your model entities can have a significant impact on shader performance. For best results, use 8 bits per channel, sRGB-encoded textures that use the Display P3 color space. Select the smallest texture size you can without sacrificing quality. Also, use UV map geometry so the entity is consistently sized based on the entity’s relative distance to the viewer. In other words, create texture maps so that objects closer to the viewer use more UV space than distant objects of roughly the same size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-a-custom-image-based-lighting-texture",
+          "level": 2,
+          "text": "Provide a custom, image-based lighting texture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To control the lighting of your scene, provide an image-based lighting (IBL) texture. For best results, use a 1024x512 pixel HDRI image saved as an ",
+              "type": "text"
+            },
+            {
+              "code": ".exr",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. Load the image, then use it to create an ",
+              "type": "text"
+            },
+            {
+              "code": "ImageBasedLightComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on the root node of your ",
+              "type": "text"
+            },
+            {
+              "code": "RealityView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as shown below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "  if let resource = try? EnvironmentResource.generate(fromEquirectangular: myHDRImage) {}",
+            "    rootNode.components.set(ImageBasedLightComponent(",
+            "        environment: resource,",
+            "        intensityExponent: overallIntensityExponent",
+            "    ))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using IBL in your scene, add an ",
+              "type": "text"
+            },
+            {
+              "code": "ImageBasedLightReceiverComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to any entity in the scene using PBR materials, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/PhysicallyBasedMaterial",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/SimpleMaterial",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or materials created in Reality Composer’s Shader Graph of type ",
+              "type": "text"
+            },
+            {
+              "code": "Physically Based",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or of type ",
+              "type": "text"
+            },
+            {
+              "code": "Custom",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that uses a ",
+              "type": "text"
+            },
+            {
+              "code": "MaterialXPreviewSurface",
+              "type": "codeVoice"
+            },
+            {
+              "text": " shader node. If you don’t provide an IBL texture when using PBR materials, those materials render using RealityKit’s default IBL texture when in immersive mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Instrument-your-environment",
+          "level": 2,
+          "text": "Instrument your environment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the RealityKit Trace tool in Instruments to identify performance bottlenecks caused by your environment. With your project open in Xcode, select Product -> Analyze and choose the RealityKit Trace instrument. Click the red record button on the left side of the toolbar to start your app running. Use your app normally for a few minutes, then hit the same button again to stop recording. That button now shows a white square instead of the red circle to indicate the recording is in process. It takes a little bit of time for Instrument to process the recorded data after you stop it. For more information on the RealityKit Trace tool, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2023/10099/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " video from WWDC23.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "environment-instruments.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once Instruments finishes processing, expand the tool called RealityKit Metrics (1), and select the Reality Module called 3D Render (2). Look on the left side of the window and confirm that you can see Summary: Reality Module Metrics. The metrics in the bottom pane (3) provide information about the work your app’s shaders are doing behind the scenes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The three most important metrics to keep an eye on are Entity Count, 3D Mesh Draw Calls, and 3D Mesh Vertices. It’s important to make sure you leave enough compute power for the rest of your app, so try to keep your environment’s maximum value for these three metrics to the following values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Metric",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Target Max",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Entity Count",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "< 20",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "3D Mesh Draw Calls",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "< 100",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "3D Mesh Vertices",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "< 100000",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Immersion-rcpro-applytonemap@2x": {
+      "alt": "A screenshot of Reality Composer Pro's inspector showing the 'Apply Post Process Tone Box' checkbox.",
+      "identifier": "Immersion-rcpro-applytonemap@2x",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5a51afe5c3b34c6bcc7a87e30b60cd93/Immersion-rcpro-applytonemap@2x~dark.png"
+        }
+      ]
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/normal-swift.property": {
+      "abstract": [
+        {
+          "text": "The normal map for the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "normal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23PhysicallyBasedMaterialV",
+          "text": "PhysicallyBasedMaterial"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation23PhysicallyBasedMaterialV6NormalV",
+          "text": "Normal"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PhysicallyBasedMaterial/normal-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "normal",
+      "type": "topic",
+      "url": "/documentation/realitykit/physicallybasedmaterial/normal-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Resource": {
+      "abstract": [
+        {
+          "text": "A shared resource you use to configure a component, like a material, mesh,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "or texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Resource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Resource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Resource"
+        }
+      ],
+      "role": "symbol",
+      "title": "Resource",
+      "type": "topic",
+      "url": "/documentation/realitykit/resource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-performance-of-a-realitykit-app": {
+      "abstract": [
+        {
+          "text": "Measure CPU and GPU utilization to find ways to improve your app’s performance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-performance-of-a-realitykit-app",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Improving the Performance of a RealityKit App",
+      "type": "topic",
+      "url": "/documentation/realitykit/improving-the-performance-of-a-realitykit-app"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/passing-metal-command-objects-around-your-application": {
+      "abstract": [
+        {
+          "text": "Build a system that creates and passes Metal command objects to entities dispatching Metal compute shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/passing-metal-command-objects-around-your-application",
+      "kind": "article",
+      "role": "article",
+      "title": "Passing Metal command objects around your application",
+      "type": "topic",
+      "url": "/documentation/realitykit/passing-metal-command-objects-around-your-application"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/reducing-cpu-utilization-in-your-realitykit-app": {
+      "abstract": [
+        {
+          "text": "Target specific CPU metrics with adjustments to your app and its content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/reducing-cpu-utilization-in-your-realitykit-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing CPU Utilization in Your RealityKit App",
+      "type": "topic",
+      "url": "/documentation/realitykit/reducing-cpu-utilization-in-your-realitykit-app"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/reducing-gpu-utilization-in-your-realitykit-app": {
+      "abstract": [
+        {
+          "text": "Prevent the GPU from limiting your app’s frame rate by reducing the complexity of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your render.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/reducing-gpu-utilization-in-your-realitykit-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing GPU Utilization in Your RealityKit App",
+      "type": "topic",
+      "url": "/documentation/realitykit/reducing-gpu-utilization-in-your-realitykit-app"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/PhysicallyBasedMaterial": {
+      "abstract": [
+        {
+          "text": "A material that simulates the appearance of real-world objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhysicallyBasedMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/PhysicallyBasedMaterial",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PhysicallyBasedMaterial",
+      "type": "topic",
+      "url": "/documentation/RealityKit/PhysicallyBasedMaterial"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/SimpleMaterial": {
+      "abstract": [
+        {
+          "text": "A basic material that responds to lights in the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SimpleMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/SimpleMaterial",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SimpleMaterial",
+      "type": "topic",
+      "url": "/documentation/RealityKit/SimpleMaterial"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/UnlitMaterial": {
+      "abstract": [
+        {
+          "text": "A material that doesn’t respond to lights in the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnlitMaterial"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/UnlitMaterial",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnlitMaterial",
+      "type": "topic",
+      "url": "/documentation/RealityKit/UnlitMaterial"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/improving-the-performance-of-a-realitykit-app": {
+      "abstract": [
+        {
+          "text": "Measure CPU and GPU utilization to find ways to improve your app’s performance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/improving-the-performance-of-a-realitykit-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving the Performance of a RealityKit App",
+      "type": "topic",
+      "url": "/documentation/RealityKit/improving-the-performance-of-a-realitykit-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "e2ab5db2b288/ConstructAnImmersiveEnvironmentForVisionOS.zip": {
+      "checksum": "e2ab5db2b2888de9699b6424a97af8001361b25fd75483b97ba6f160beaa3e5060b683978692d8c75571dc52fa387ac04b5e3db67af4b5ca2e76306ed61ad4cb",
+      "identifier": "e2ab5db2b288/ConstructAnImmersiveEnvironmentForVisionOS.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/e2ab5db2b288/ConstructAnImmersiveEnvironmentForVisionOS.zip"
+    },
+    "environment-instruments.png": {
+      "alt": "A screenshot of Instrument's RealityKit Trace results window with callouts numbered 1, 2, and 3 identifying elements of the window.",
+      "identifier": "environment-instruments.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cd4872b4c162387e4a9155933816d32d/environment-instruments@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e382b63bae34ec1e51115e4a41e7e5ef/environment-instruments~dark@2x.png"
+        }
+      ]
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10099/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10099/",
+      "title": "Meet RealityKit Trace",
+      "titleInlineContent": [
+        {
+          "text": "Meet RealityKit Trace",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10099/"
+    },
+    "immersive-environment-skydome.png": {
+      "alt": "A screenshot of a sky dome in an outdoor environment.",
+      "identifier": "immersive-environment-skydome.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4712e7f0ae0d5c6750dce59579c118b7/immersive-environment-skydome@2x.png"
+        }
+      ]
+    },
+    "immersive-simple-geometry.mp4": {
+      "alt": "A video showing a stylized pond with lily pads and moving water. As we change our perspective, we see that the pond is actually a single rectangle with an animated texture applied to it.",
+      "identifier": "immersive-simple-geometry.mp4",
+      "poster": "immersive-simple-geometry.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3604a00cf725ca9ae33d434930f5f103/immersive-simple-geometry.mp4"
+        }
+      ]
+    },
+    "immersive-simple-geometry.png": {
+      "alt": null,
+      "identifier": "immersive-simple-geometry.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/202def411abb6160424763f02661b893/immersive-simple-geometry.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "e2ab5db2b288/ConstructAnImmersiveEnvironmentForVisionOS.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Performance-improvements",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-performance-of-a-realitykit-app",
+        "doc://com.apple.RealityKit/documentation/RealityKit/reducing-gpu-utilization-in-your-realitykit-app",
+        "doc://com.apple.RealityKit/documentation/RealityKit/reducing-cpu-utilization-in-your-realitykit-app",
+        "doc://com.apple.RealityKit/documentation/RealityKit/passing-metal-command-objects-around-your-application",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Resource"
+      ],
+      "title": "Performance improvements"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/construct-an-immersive-environment-for-visionos"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

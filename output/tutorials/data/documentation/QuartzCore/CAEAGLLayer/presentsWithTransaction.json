@@ -1,0 +1,770 @@
+{
+  "abstract": [
+    {
+      "text": "A Boolean value that determines whether the layer presents its content using a Core Animation transaction.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.quartzcore/documentation/QuartzCore",
+        "doc://com.apple.quartzcore/documentation/QuartzCore/CAEAGLLayer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.quartzcore/documentation/QuartzCore/CAEAGLLayer/presentsWithTransaction"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CAEAGLLayer(py)presentsWithTransaction",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "presentsWithTransaction"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sb",
+        "text": "Bool"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Animation"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "presentsWithTransaction"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "12.0",
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "12.0",
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "12.0",
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "presentsWithTransaction"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "tvOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentsWithTransaction"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sb",
+              "text": "Bool"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default this value is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ": ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAEAGLLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " displays the output of a rendering pass to the display as quickly as possible and asynchronously to any Core Animation transactions. However, if your game or app combines OpenGL and Core Animation content, it’s not guaranteed that your OpenGL content will arrive in the same frame as your Core Animation content. This could be an issue if, for example, your app draws ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/releasenotes/General/RN-iOSSDK-6_1/index.html#//apple_ref/doc/uid/TP40012869-CH1-SW17",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " content (such as labels with a target position and time) over the top of your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAEAGLLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the two domains need to be synchronized.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Setting this value to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " changes this default behavior so that your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAEAGLLayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " displays its drawable content synchronously, using whichever Core Animation transaction is current.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/OpenGLES/EAGLDrawable/drawableProperties": {
+      "abstract": [
+        {
+          "text": "A dictionary of values that specify the desired characteristics of the drawable surface.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "drawableProperties"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/OpenGLES/EAGLDrawable/drawableProperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "drawableProperties",
+      "type": "topic",
+      "url": "/documentation/OpenGLES/EAGLDrawable/drawableProperties"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore": {
+      "abstract": [
+        {
+          "text": "Render, compose, and animate visual elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Animation",
+      "type": "topic",
+      "url": "/documentation/quartzcore"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAEAGLLayer": {
+      "abstract": [
+        {
+          "text": "A layer that supports drawing OpenGL content in iOS and tvOS applications.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAEAGLLayer"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAEAGLLayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAEAGLLayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAEAGLLayer",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caeagllayer"
+    },
+    "doc://com.apple.quartzcore/documentation/QuartzCore/CAEAGLLayer/presentsWithTransaction": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the layer presents its content using a Core Animation transaction.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentsWithTransaction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.quartzcore/documentation/QuartzCore/CAEAGLLayer/presentsWithTransaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentsWithTransaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentsWithTransaction",
+      "type": "topic",
+      "url": "/documentation/quartzcore/caeagllayer/presentswithtransaction"
+    },
+    "doc://com.externally.resolved.symbol/s:Sb": {
+      "abstract": [
+        {
+          "text": "A value type whose instances are either `true` or `false`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/Swift/Bool"
+    },
+    "https://developer.apple.com/library/archive/releasenotes/General/RN-iOSSDK-6_1/index.html#//apple_ref/doc/uid/TP40012869-CH1-SW17": {
+      "identifier": "https://developer.apple.com/library/archive/releasenotes/General/RN-iOSSDK-6_1/index.html#//apple_ref/doc/uid/TP40012869-CH1-SW17",
+      "title": "UIKit",
+      "titleInlineContent": [
+        {
+          "text": "UIKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/releasenotes/General/RN-iOSSDK-6_1/index.html#//apple_ref/doc/uid/TP40012869-CH1-SW17"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Accessing-the-Layer-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/OpenGLES/EAGLDrawable/drawableProperties"
+      ],
+      "title": "Accessing the Layer Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "12.0",
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "12.0",
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "12.0",
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "presentsWithTransaction"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "presentsWithTransaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.quartzcore/documentation/QuartzCore",
+                "doc://com.apple.quartzcore/documentation/QuartzCore/CAEAGLLayer"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Accessing-the-Layer-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/OpenGLES/EAGLDrawable/drawableProperties"
+              ],
+              "title": "Accessing the Layer Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@BOOL",
+                    "text": "BOOL"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "presentsWithTransaction"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAEAGLLayer/title",
+          "value": "CAEAGLLayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAEAGLLayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAEAGLLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAEAGLLayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAEAGLLayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAEAGLLayer~1presentsWithTransaction/title",
+          "value": "presentsWithTransaction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.quartzcore~1documentation~1QuartzCore~1CAEAGLLayer~1presentsWithTransaction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "presentsWithTransaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1OpenGLES~1EAGLDrawable~1drawableProperties/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+              "text": "NSDictionary<NSString *,id>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawableProperties"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quartzcore/caeagllayer/presentswithtransaction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/quartzcore/caeagllayer/presentswithtransaction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1312 @@
+{
+  "abstract": [
+    {
+      "text": "The methods for responding to the life-cycle events of your navigation app’s dashboard scene.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.carplay/documentation/CarPlay"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationDashboardSceneDelegate"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)CPTemplateApplicationDashboardSceneDelegate",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CPTemplateApplicationDashboardSceneDelegate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "CarPlay"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CPTemplateApplicationDashboardSceneDelegate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.4",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.4",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "CPTemplateApplicationDashboardSceneDelegate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationDashboardSceneDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UISceneDelegate",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)UISceneDelegate",
+              "text": "UISceneDelegate"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This protocol defines methods that CarPlay calls when the scene connects and disconnects, and your implementation provides the appropriate behavior when these events occur. For example, setting the window’s root view controller when CarPlay connects your navigation app’s dashboard scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t create instances of your dashboard scene delegate directly. Instead, you specify the name of the class as part of the CarPlay scene configuration you add to your ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file—see the example below—or that you return from your app delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:configurationForConnecting:options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>CPTemplateApplicationDashboardSceneSessionRoleApplication</key>",
+            "<array> ",
+            "    <dict>",
+            "        <key>UISceneClassName</key>",
+            "        <string>CPTemplateApplicationDashboardScene</string>",
+            "        <key>UISceneConfigurationName</key>",
+            "        <string>MyCarPlayDashboardSceneConfiguration</string>",
+            "        <!-- Specify the name of your dashboard scene delegate class. --> ",
+            "        <key>UISceneDelegateClassName</key>",
+            "        <string>MyCarPlayDashboardSceneDelegate</string> ",
+            "    </dict>",
+            "</array>"
+          ],
+          "syntax": "plist",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.carplay/documentation/CarPlay": {
+      "abstract": [
+        {
+          "text": "Integrate CarPlay in apps related to audio, communication, navigation, parking, EV charging, food ordering, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CarPlay",
+      "type": "topic",
+      "url": "/documentation/carplay"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPMapTemplate": {
+      "abstract": [
+        {
+          "text": "A template that displays a navigation overlay that your app draws on the map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPMapTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPMapTemplate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPMapTemplate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPMapTemplate",
+      "type": "topic",
+      "url": "/documentation/carplay/cpmaptemplate"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPSearchTemplate": {
+      "abstract": [
+        {
+          "text": "A template that provides the ability to search for a destination and see a list of search results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPSearchTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPSearchTemplate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPSearchTemplate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPSearchTemplate",
+      "type": "topic",
+      "url": "/documentation/carplay/cpsearchtemplate"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationDashboardScene": {
+      "abstract": [
+        {
+          "text": "A CarPlay scene that controls your app’s dashboard navigation window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPTemplateApplicationDashboardScene"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationDashboardScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPTemplateApplicationDashboardScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPTemplateApplicationDashboardScene",
+      "type": "topic",
+      "url": "/documentation/carplay/cptemplateapplicationdashboardscene"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationDashboardSceneDelegate": {
+      "abstract": [
+        {
+          "text": "The methods for responding to the life-cycle events of your navigation app’s dashboard scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPTemplateApplicationDashboardSceneDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationDashboardSceneDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPTemplateApplicationDashboardSceneDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPTemplateApplicationDashboardSceneDelegate",
+      "type": "topic",
+      "url": "/documentation/carplay/cptemplateapplicationdashboardscenedelegate"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationDashboardSceneDelegate/templateApplicationDashboardScene(_:didConnect:to:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate about the addition of a CarPlay Dashboard scene to your navigation app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "templateApplicationDashboardScene"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CPTemplateApplicationDashboardScene",
+          "text": "CPTemplateApplicationDashboardScene"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didConnect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CPDashboardController",
+          "text": "CPDashboardController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWindow",
+          "text": "UIWindow"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationDashboardSceneDelegate/templateApplicationDashboardScene(_:didConnect:to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "templateApplicationDashboardScene:didConnectDashboardController:toWindow:"
+        }
+      ],
+      "role": "symbol",
+      "title": "templateApplicationDashboardScene(_:didConnect:to:)",
+      "type": "topic",
+      "url": "/documentation/carplay/cptemplateapplicationdashboardscenedelegate/templateapplicationdashboardscene(_:didconnect:to:)"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationDashboardSceneDelegate/templateApplicationDashboardScene(_:didDisconnect:from:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when CarPlay removes the dashboard scene from your navigation app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "templateApplicationDashboardScene"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CPTemplateApplicationDashboardScene",
+          "text": "CPTemplateApplicationDashboardScene"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didDisconnect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CPDashboardController",
+          "text": "CPDashboardController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWindow",
+          "text": "UIWindow"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationDashboardSceneDelegate/templateApplicationDashboardScene(_:didDisconnect:from:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "templateApplicationDashboardScene:didDisconnectDashboardController:fromWindow:"
+        }
+      ],
+      "role": "symbol",
+      "title": "templateApplicationDashboardScene(_:didDisconnect:from:)",
+      "type": "topic",
+      "url": "/documentation/carplay/cptemplateapplicationdashboardscenedelegate/templateapplicationdashboardscene(_:diddisconnect:from:)"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPVoiceControlTemplate": {
+      "abstract": [
+        {
+          "text": "A template that displays a voice control indicator during audio input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPVoiceControlTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPVoiceControlTemplate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPVoiceControlTemplate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPVoiceControlTemplate",
+      "type": "topic",
+      "url": "/documentation/carplay/cpvoicecontroltemplate"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/integrating-carplay-with-your-navigation-app": {
+      "abstract": [
+        {
+          "text": "Configure your navigation app to work with CarPlay by displaying your custom map and directions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/integrating-carplay-with-your-navigation-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Integrating CarPlay with Your Navigation App",
+      "type": "topic",
+      "url": "/documentation/carplay/integrating-carplay-with-your-navigation-app"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:configurationForConnecting:options:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the configuration data for UIKit to use when creating a new scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "configurationForConnecting"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "connectingSceneSession"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISceneSession",
+          "text": "UISceneSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIScene",
+          "text": "UIScene"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISceneConnectionOptions",
+          "text": "ConnectionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISceneConfiguration",
+          "text": "UISceneConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:configurationForConnecting:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:configurationForConnecting:options:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/application(_:configurationForConnecting:options:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UISceneDelegate": {
+      "abstract": [
+        {
+          "text": "The core methods you use to respond to life-cycle events occurring within a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISceneDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UISceneDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UISceneDelegate",
+      "type": "topic",
+      "url": "/documentation/UIKit/UISceneDelegate"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UISceneDelegate"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Navigation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.carplay/documentation/CarPlay/integrating-carplay-with-your-navigation-app",
+        "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationDashboardScene",
+        "doc://com.apple.carplay/documentation/CarPlay/CPMapTemplate",
+        "doc://com.apple.carplay/documentation/CarPlay/CPSearchTemplate",
+        "doc://com.apple.carplay/documentation/CarPlay/CPVoiceControlTemplate"
+      ],
+      "title": "Navigation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Responding-to-the-Scene-Life-Cycle",
+      "identifiers": [
+        "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationDashboardSceneDelegate/templateApplicationDashboardScene(_:didConnect:to:)",
+        "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationDashboardSceneDelegate/templateApplicationDashboardScene(_:didDisconnect:from:)"
+      ],
+      "title": "Responding to the Scene Life Cycle"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.4",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.4",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.4",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CPTemplateApplicationDashboardSceneDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationDashboardSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationDashboardSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.carplay/documentation/CarPlay"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Responding-to-the-Scene-Life-Cycle",
+              "identifiers": [
+                "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationDashboardSceneDelegate/templateApplicationDashboardScene(_:didConnect:to:)",
+                "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationDashboardSceneDelegate/templateApplicationDashboardScene(_:didDisconnect:from:)"
+              ],
+              "title": "Responding to the Scene Life Cycle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)UISceneDelegate"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Navigation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.carplay/documentation/CarPlay/integrating-carplay-with-your-navigation-app",
+                "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationDashboardScene",
+                "doc://com.apple.carplay/documentation/CarPlay/CPMapTemplate",
+                "doc://com.apple.carplay/documentation/CarPlay/CPSearchTemplate",
+                "doc://com.apple.carplay/documentation/CarPlay/CPVoiceControlTemplate"
+              ],
+              "title": "Navigation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "Mac Catalyst"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CPTemplateApplicationDashboardSceneDelegate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UISceneDelegate",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)UISceneDelegate",
+                    "text": "UISceneDelegate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPMapTemplate/title",
+          "value": "CPMapTemplate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPMapTemplate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPMapTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPMapTemplate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPMapTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationDashboardSceneDelegate~1templateApplicationDashboardScene(_:didDisconnect:from:)/title",
+          "value": "templateApplicationDashboardScene:didDisconnectDashboardController:fromWindow:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationDashboardSceneDelegate~1templateApplicationDashboardScene(_:didDisconnect:from:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "templateApplicationDashboardScene:didDisconnectDashboardController:fromWindow:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationDashboardSceneDelegate/title",
+          "value": "CPTemplateApplicationDashboardSceneDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationDashboardSceneDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationDashboardSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationDashboardSceneDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationDashboardSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:configurationForConnecting:options:)/title",
+          "value": "application:configurationForConnectingSceneSession:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:configurationForConnecting:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UISceneConfiguration",
+              "text": "UISceneConfiguration"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "configurationForConnectingSceneSession:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UISceneSession",
+              "text": "UISceneSession"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "connectingSceneSession"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "options:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UISceneConnectionOptions",
+              "text": "UISceneConnectionOptions"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "options"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationDashboardScene/title",
+          "value": "CPTemplateApplicationDashboardScene"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationDashboardScene/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationDashboardScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationDashboardScene/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationDashboardScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UISceneDelegate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UISceneDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationDashboardSceneDelegate~1templateApplicationDashboardScene(_:didConnect:to:)/title",
+          "value": "templateApplicationDashboardScene:didConnectDashboardController:toWindow:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationDashboardSceneDelegate~1templateApplicationDashboardScene(_:didConnect:to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "templateApplicationDashboardScene:didConnectDashboardController:toWindow:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPSearchTemplate/title",
+          "value": "CPSearchTemplate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPSearchTemplate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPSearchTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPSearchTemplate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPSearchTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPVoiceControlTemplate/title",
+          "value": "CPVoiceControlTemplate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPVoiceControlTemplate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPVoiceControlTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPVoiceControlTemplate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPVoiceControlTemplate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/carplay/cptemplateapplicationdashboardscenedelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/carplay/cptemplateapplicationdashboardscenedelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

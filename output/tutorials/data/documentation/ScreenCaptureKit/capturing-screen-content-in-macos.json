@@ -1,0 +1,1478 @@
+{
+  "abstract": [
+    {
+      "text": "Stream desktop content like displays, apps, and windows by adopting screen capture in your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/capturing-screen-content-in-macos"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ScreenCaptureKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Capturing screen content in macOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows how to add high-performance screen capture to your Mac app by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The sample explores how to create content filters to capture the displays, apps, and windows you choose. It then shows how to configure your stream output, retrieve video frames and audio samples, and update a running stream.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC24 session 10088: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc24/10088/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run this sample app, you’ll need the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Mac with macOS 15 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode 16 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first time you run this sample, the system prompts you to grant the app Screen Recording permission. After you grant permission, you need to restart the app to enable capture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-content-filter",
+          "level": 3,
+          "text": "Create a content filter",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Displays, running apps, and windows are the shareable content on a device. The sample uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCShareableContent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to retrieve the items in the form of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCDisplay",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCRunningApplication",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCWindow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects respectively.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Retrieve the available screen content to capture.",
+            "let availableContent = try await SCShareableContent.excludingDesktopWindows(false,",
+            "                                                                            onScreenWindowsOnly: true)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before the sample begins capture, it creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCContentFilter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to specify the content to capture. The sample provides two options that allow for capturing either a single window or an entire display. When the capture type is set to capture a window, the app creates a content filter that only includes that window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a content filter that includes a single window.",
+            "filter = SCContentFilter(desktopIndependentWindow: window)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a user specifies to capture the entire display, the sample creates a filter to capture only content from the main display. To illustrate filtering a running app, the sample contains a toggle to specify whether to exclude the sample app from the stream.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var excludedApps = [SCRunningApplication]()",
+            "// If a user chooses to exclude the app from the stream,",
+            "// exclude it by matching its bundle identifier.",
+            "if isAppExcluded {",
+            "    excludedApps = availableApps.filter { app in",
+            "        Bundle.main.bundleIdentifier == app.bundleIdentifier",
+            "    }",
+            "}",
+            "// Create a content filter with excluded apps.",
+            "filter = SCContentFilter(display: display,",
+            "                         excludingApplications: excludedApps,",
+            "                         exceptingWindows: [])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-stream-configuration",
+          "level": 3,
+          "text": "Create a stream configuration",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCStreamConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object provides properties to configure the stream’s output size, pixel format, audio capture settings, and more. The app’s configuration throttles frame updates to 60 fps, and configures the number of frames to keep in the queue at 5. Specifying more frames uses more memory, but may allow for processing frame data without stalling the display stream. The default value is 3 and shouldn’t exceed 8 frames.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var streamConfig = SCStreamConfiguration()",
+            "",
+            "if let dynamicRangePreset = selectedDynamicRangePreset?.scDynamicRangePreset {",
+            "    streamConfig = SCStreamConfiguration(preset: dynamicRangePreset)",
+            "}",
+            "",
+            "// Configure audio capture.",
+            "streamConfig.capturesAudio = isAudioCaptureEnabled",
+            "streamConfig.excludesCurrentProcessAudio = isAppAudioExcluded",
+            "streamConfig.captureMicrophone = isMicCaptureEnabled",
+            "",
+            "// Configure the display content width and height.",
+            "if captureType == .display, let display = selectedDisplay {",
+            "    streamConfig.width = display.width * scaleFactor",
+            "    streamConfig.height = display.height * scaleFactor",
+            "}",
+            "",
+            "// Configure the window content width and height.",
+            "if captureType == .window, let window = selectedWindow {",
+            "    streamConfig.width = Int(window.frame.width) * 2",
+            "    streamConfig.height = Int(window.frame.height) * 2",
+            "}",
+            "",
+            "// Set the capture interval at 60 fps.",
+            "streamConfig.minimumFrameInterval = CMTime(value: 1, timescale: 60)",
+            "",
+            "// Increase the depth of the frame queue to ensure high fps at the expense of increasing",
+            "// the memory footprint of WindowServer.",
+            "streamConfig.queueDepth = 5"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Start-the-capture-session",
+          "level": 3,
+          "text": "Start the capture session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses the content filter and stream configuration to initialize a new instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCStream",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To retrieve audio and video sample data, the app adds stream outputs that capture media of the specified type. When the stream captures new sample buffers, it delivers them to its stream output object on the indicated dispatch queues.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "stream = SCStream(filter: filter, configuration: configuration, delegate: streamOutput)",
+            "",
+            "// Add a stream output to capture screen content.",
+            "try stream?.addStreamOutput(streamOutput, type: .screen, sampleHandlerQueue: videoSampleBufferQueue)",
+            "try stream?.addStreamOutput(streamOutput, type: .audio, sampleHandlerQueue: audioSampleBufferQueue)",
+            "try stream?.addStreamOutput(streamOutput, type: .microphone, sampleHandlerQueue: micSampleBufferQueue)",
+            "stream?.startCapture()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the stream starts, further changes to its configuration and content filter don’t require restarting it. Instead, after you update the capture configuration in the user interface, the sample creates new stream configuration and content filter objects and applies them to the running stream to update its state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "try await stream?.updateConfiguration(configuration)",
+            "try await stream?.updateContentFilter(filter)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Process-the-output",
+          "level": 3,
+          "text": "Process the output",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a stream captures a new audio or video sample buffer, it calls the stream output’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCStreamOutput/stream(_:didOutputSampleBuffer:of:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, passing it the captured data and an indicator of its type. The stream output evaluates and processes the sample buffer as shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func stream(_ stream: SCStream, didOutputSampleBuffer sampleBuffer: CMSampleBuffer, of outputType: SCStreamOutputType) {",
+            "    ",
+            "    // Return early if the sample buffer is invalid.",
+            "    guard sampleBuffer.isValid else { return }",
+            "    ",
+            "    // Determine which type of data the sample buffer contains.",
+            "    switch outputType {",
+            "    case .screen:",
+            "\t\t// Process the screen content.",
+            "    case .audio:",
+            "\t\t// Process the audio content.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Process-a-video-sample-buffer",
+          "level": 3,
+          "text": "Process a video sample buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the sample buffer contains video data, it retrieves the sample buffer attachments that describe the output video frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Retrieve the array of metadata attachments from the sample buffer.",
+            "guard let attachmentsArray = CMSampleBufferGetSampleAttachmentsArray(sampleBuffer,",
+            "                                                                     createIfNecessary: false) as? [[SCStreamFrameInfo: Any]],",
+            "      let attachments = attachmentsArray.first else { return nil }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCStreamFrameInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure defines dictionary keys that the sample uses to retrieve metadata attached to a sample buffer. Metadata includes information about the frame’s display time, scale factor, status, and more. To determine whether a frame is available for processing, the sample inspects the status for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCFrameStatus/complete",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Validate the status of the frame. If it isn't `.complete`, return nil.",
+            "guard let statusRawValue = attachments[SCStreamFrameInfo.status] as? Int,",
+            "      let status = SCFrameStatus(rawValue: statusRawValue),",
+            "      status == .complete else { return nil }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample buffer wraps a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/corevideo/cvpixelbuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that’s backed by an ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/iosurface",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The sample casts the surface reference to an ",
+              "type": "text"
+            },
+            {
+              "code": "IOSurface",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that it later sets as the layer content of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/appkit/nsview",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Get the pixel buffer that contains the image data.",
+            "guard let pixelBuffer = sampleBuffer.imageBuffer else { return nil }",
+            "",
+            "// Get the backing IOSurface.",
+            "guard let surfaceRef = CVPixelBufferGetIOSurface(pixelBuffer)?.takeUnretainedValue() else { return nil }",
+            "let surface = unsafeBitCast(surfaceRef, to: IOSurface.self)",
+            "",
+            "// swiftlint:disable force_cast",
+            "// Retrieve the content rectangle, scale, and scale factor.",
+            "guard let contentRectDict = attachments[.contentRect],",
+            "      let contentRect = CGRect(dictionaryRepresentation: contentRectDict as! CFDictionary),",
+            "      let contentScale = attachments[.contentScale] as? CGFloat,",
+            "      let scaleFactor = attachments[.scaleFactor] as? CGFloat else { return nil }",
+            "",
+            "// Create a new frame with the relevant data.",
+            "let frame = CapturedFrame(surface: surface,",
+            "                          contentRect: contentRect,",
+            "                          contentScale: contentScale,",
+            "                          scaleFactor: scaleFactor)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Process-an-audio-sample-buffer",
+          "level": 3,
+          "text": "Process an audio sample buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the sample buffer contains audio, it retrieves the data as an ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/coreaudiotypes/audiobufferlist",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func handleAudio(for buffer: CMSampleBuffer) -> Void? {",
+            "    // Create an AVAudioPCMBuffer from an audio sample buffer.",
+            "    try? buffer.withAudioBufferList { audioBufferList, blockBuffer in",
+            "        guard let description = buffer.formatDescription?.audioStreamBasicDescription,",
+            "              let format = AVAudioFormat(standardFormatWithSampleRate: description.mSampleRate, channels: description.mChannelsPerFrame),",
+            "              let samples = AVAudioPCMBuffer(pcmFormat: format, bufferListNoCopy: audioBufferList.unsafePointer)",
+            "        else { return }",
+            "        pcmBufferHandler?(samples)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app retrieves the audio stream basic description that it uses to create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/avfaudio/avaudioformat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". It then uses the format and the audio buffer list to create a new instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/avfaudio/avaudiopcmbuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If you enable audio capture in the user interface, the sample uses the buffer to calculate average levels for the captured audio to display in a simple level meter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "9db8b3fae777/CapturingScreenContentInMacOS.zip": {
+      "checksum": "9db8b3fae7771660fd69c2e800f2bd0f65d68ee2c3d6462252eb5960493297c4d65e4622959417d99fb498da2987bbb615c7ea1bdfdd2b5b3c3f80780d9fccea",
+      "identifier": "9db8b3fae777/CapturingScreenContentInMacOS.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/9db8b3fae777/CapturingScreenContentInMacOS.zip"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.persistent-content-capture": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether a Virtual Network Computing (VNC) app needs persistent access to screen capture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.persistent-content-capture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Persistent Content Capture",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.persistent-content-capture"
+    },
+    "doc://com.apple.documentation/documentation/Updates/ScreenCaptureKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to ScreenCaptureKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Updates/ScreenCaptureKit",
+      "kind": "article",
+      "role": "article",
+      "title": "ScreenCaptureKit updates",
+      "type": "topic",
+      "url": "/documentation/Updates/ScreenCaptureKit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit": {
+      "abstract": [
+        {
+          "text": "Filter and select screen content and stream it to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ScreenCaptureKit",
+      "type": "topic",
+      "url": "/documentation/screencapturekit"
+    },
+    "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCContentFilter": {
+      "abstract": [
+        {
+          "text": "An instance that filters the content a stream captures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCContentFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCContentFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCContentFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCContentFilter",
+      "type": "topic",
+      "url": "/documentation/screencapturekit/sccontentfilter"
+    },
+    "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCDisplay": {
+      "abstract": [
+        {
+          "text": "An instance that represents a display device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCDisplay"
+        }
+      ],
+      "identifier": "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCDisplay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCDisplay"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCDisplay",
+      "type": "topic",
+      "url": "/documentation/screencapturekit/scdisplay"
+    },
+    "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCFrameStatus/complete": {
+      "abstract": [
+        {
+          "text": "A status that indicates the system successfully generated a new frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "complete"
+        }
+      ],
+      "identifier": "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCFrameStatus/complete",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCFrameStatusComplete"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCFrameStatus.complete",
+      "type": "topic",
+      "url": "/documentation/screencapturekit/scframestatus/complete"
+    },
+    "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCRunningApplication": {
+      "abstract": [
+        {
+          "text": "An instance that represents an app running on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCRunningApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCRunningApplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCRunningApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCRunningApplication",
+      "type": "topic",
+      "url": "/documentation/screencapturekit/scrunningapplication"
+    },
+    "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCShareableContent": {
+      "abstract": [
+        {
+          "text": "An instance that represents a set of displays, apps, and windows that your app can capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCShareableContent"
+        }
+      ],
+      "identifier": "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCShareableContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCShareableContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCShareableContent",
+      "type": "topic",
+      "url": "/documentation/screencapturekit/scshareablecontent"
+    },
+    "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCStream": {
+      "abstract": [
+        {
+          "text": "An instance that represents a stream of shareable content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCStream"
+        }
+      ],
+      "identifier": "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCStream",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCStream"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCStream",
+      "type": "topic",
+      "url": "/documentation/screencapturekit/scstream"
+    },
+    "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCStreamConfiguration": {
+      "abstract": [
+        {
+          "text": "An instance that provides the output configuration for a stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCStreamConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCStreamConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCStreamConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCStreamConfiguration",
+      "type": "topic",
+      "url": "/documentation/screencapturekit/scstreamconfiguration"
+    },
+    "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCStreamFrameInfo": {
+      "abstract": [
+        {
+          "text": "An instance that defines metadata keys for a stream frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCStreamFrameInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCStreamFrameInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCStreamFrameInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCStreamFrameInfo",
+      "type": "topic",
+      "url": "/documentation/screencapturekit/scstreamframeinfo"
+    },
+    "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCStreamOutput/stream(_:didOutputSampleBuffer:of:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a capture stream produced a frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stream"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCStream",
+          "text": "SCStream"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didOutputSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSampleBufferRef",
+          "text": "CMSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SCStreamOutputType",
+          "text": "SCStreamOutputType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCStreamOutput/stream(_:didOutputSampleBuffer:of:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stream:didOutputSampleBuffer:ofType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "stream(_:didOutputSampleBuffer:of:)",
+      "type": "topic",
+      "url": "/documentation/screencapturekit/scstreamoutput/stream(_:didoutputsamplebuffer:of:)"
+    },
+    "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCWindow": {
+      "abstract": [
+        {
+          "text": "An instance that represents an onscreen window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCWindow"
+        }
+      ],
+      "identifier": "doc://com.apple.screencapturekit/documentation/ScreenCaptureKit/SCWindow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCWindow"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCWindow",
+      "type": "topic",
+      "url": "/documentation/screencapturekit/scwindow"
+    },
+    "https://developer.apple.com/documentation/appkit/nsview": {
+      "identifier": "https://developer.apple.com/documentation/appkit/nsview",
+      "title": "NSView",
+      "titleInlineContent": [
+        {
+          "code": "NSView",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/appkit/nsview"
+    },
+    "https://developer.apple.com/documentation/avfaudio/avaudioformat": {
+      "identifier": "https://developer.apple.com/documentation/avfaudio/avaudioformat",
+      "title": "AVAudioFormat",
+      "titleInlineContent": [
+        {
+          "code": "AVAudioFormat",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/avfaudio/avaudioformat"
+    },
+    "https://developer.apple.com/documentation/avfaudio/avaudiopcmbuffer": {
+      "identifier": "https://developer.apple.com/documentation/avfaudio/avaudiopcmbuffer",
+      "title": "AVAudioPCMBuffer",
+      "titleInlineContent": [
+        {
+          "code": "AVAudioPCMBuffer",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/avfaudio/avaudiopcmbuffer"
+    },
+    "https://developer.apple.com/documentation/coreaudiotypes/audiobufferlist": {
+      "identifier": "https://developer.apple.com/documentation/coreaudiotypes/audiobufferlist",
+      "title": "AudioBufferList",
+      "titleInlineContent": [
+        {
+          "code": "AudioBufferList",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/coreaudiotypes/audiobufferlist"
+    },
+    "https://developer.apple.com/documentation/corevideo/cvpixelbuffer": {
+      "identifier": "https://developer.apple.com/documentation/corevideo/cvpixelbuffer",
+      "title": "CVPixelBuffer",
+      "titleInlineContent": [
+        {
+          "code": "CVPixelBuffer",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/corevideo/cvpixelbuffer"
+    },
+    "https://developer.apple.com/documentation/iosurface": {
+      "identifier": "https://developer.apple.com/documentation/iosurface",
+      "title": "IOSurface",
+      "titleInlineContent": [
+        {
+          "code": "IOSurface",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/iosurface"
+    },
+    "https://developer.apple.com/wwdc24/10088/": {
+      "identifier": "https://developer.apple.com/wwdc24/10088/",
+      "title": "Capture HDR content with ScreenCaptureKit",
+      "titleInlineContent": [
+        {
+          "text": "Capture HDR content with ScreenCaptureKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc24/10088/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "9db8b3fae777/CapturingScreenContentInMacOS.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/Updates/ScreenCaptureKit",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.persistent-content-capture"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.persistent-content-capture"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCStreamOutput~1stream(_:didOutputSampleBuffer:of:)/title",
+          "value": "stream:didOutputSampleBuffer:ofType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCStreamOutput~1stream(_:didOutputSampleBuffer:of:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stream:didOutputSampleBuffer:ofType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCWindow/title",
+          "value": "SCWindow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCWindow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCWindow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCWindow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCWindow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCStream/title",
+          "value": "SCStream"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCStream/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCStream"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCStream/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCStream"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCShareableContent/title",
+          "value": "SCShareableContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCShareableContent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCShareableContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCShareableContent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCShareableContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCStreamConfiguration/title",
+          "value": "SCStreamConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCStreamConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCStreamConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCStreamConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCStreamConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCContentFilter/title",
+          "value": "SCContentFilter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCContentFilter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCContentFilter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCContentFilter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCContentFilter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCStreamFrameInfo/title",
+          "value": "SCStreamFrameInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCStreamFrameInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCStreamFrameInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCStreamFrameInfo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCStreamFrameInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCRunningApplication/title",
+          "value": "SCRunningApplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCRunningApplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCRunningApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCRunningApplication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCRunningApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCDisplay/title",
+          "value": "SCDisplay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCDisplay/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCDisplay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCDisplay/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCDisplay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCFrameStatus~1complete/title",
+          "value": "SCFrameStatusComplete"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screencapturekit~1documentation~1ScreenCaptureKit~1SCFrameStatus~1complete/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCFrameStatusComplete"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/screencapturekit/capturing-screen-content-in-macos"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/screencapturekit/capturing-screen-content-in-macos"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

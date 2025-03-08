@@ -1,0 +1,965 @@
+{
+  "abstract": [
+    {
+      "text": "Toggle memory between being writable and executable.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/protecting-code-compiled-just-in-time"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "BrowserEngineKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Protecting code compiled just in time"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A just-in-time (JIT) compiler poses unique security challenges.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To prepare the compiled code, the web content extension must be able to write to a region of memory.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then, to run the code, the extension must be able to execute the content of that memory.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "But, an attacker can use memory that is both writable and executable to run arbitrary code in your process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The operating system uses hardware memory management to enforce that a page of memory allocated by your process is either writable, or executable, but not simultaneously both (W^X).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To toggle the writable or executable status of a memory page, your web content extension calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BrowserEngineCore/be_memory_inline_jit_restrict_rwx_to_rx_with_witness",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BrowserEngineCore/be_memory_inline_jit_restrict_rwx_to_rw_with_witness",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You must call these functions only in certain restricted ways that are outlined below, to protect your process from possible malicious misuse.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-JIT-entitlements",
+          "level": 2,
+          "text": "Add JIT entitlements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the following entitlements to your web content extension’s target, setting their values to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.kernel.extended-virtual-addressing",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "com.apple.developer.cs.allow-jit",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you use ",
+                  "type": "text"
+                },
+                {
+                  "code": "pthread_jit_write_with_callback_np()",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to toggle JIT write protections for a memory region instead of ",
+                  "type": "text"
+                },
+                {
+                  "code": "be_memory_inline_jit_restrict_rwx_to_rx_with_witness()",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", add both the ",
+                  "type": "text"
+                },
+                {
+                  "code": "com.apple.developer.cs.allow-jit",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "com.apple.security.cs.jit-write-allowlist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " entitlements, each with the value ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Apple-Silicon/porting-just-in-time-compilers-to-apple-silicon",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Adopt-pointer-authentication",
+          "level": 2,
+          "text": "Adopt pointer authentication",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app targets the ",
+              "type": "text"
+            },
+            {
+              "code": "arm64e",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instruction set, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BrowserEngineCore/be_memory_inline_jit_restrict_rwx_to_rw_with_witness",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function inserts a cryptographically signed pointer authentication code (PAC) into the pointer to your JIT memory.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The operating system authenticates the PAC when your extension process jumps to the JIT-compiled code after you call ",
+              "type": "text"
+            },
+            {
+              "code": "be_memory_inline_jit_restrict_rwx_to_rx_with_witness()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and only runs the code if the PAC is still valid.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Otherwise, it stops your extension process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pointer authentication is only available with the ",
+              "type": "text"
+            },
+            {
+              "code": "arm64e",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instruction set.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can compile your browser app as a universal binary that includes both ",
+              "type": "text"
+            },
+            {
+              "code": "arm64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "arm64e",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", but on devices that only support ",
+              "type": "text"
+            },
+            {
+              "code": "arm64",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the W^X toggle functions don’t use PAC.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information on building for ",
+              "type": "text"
+            },
+            {
+              "code": "arm64e",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", see “Build for pointer authentication” in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/managing-the-browser-extension-lifecycle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The iPhone Simulator doesn’t run ",
+                  "type": "text"
+                },
+                {
+                  "code": "arm64e",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " code.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You need to test your JIT code on an iPhone, not in the Simulator.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, your JIT compiler needs to emit ",
+              "type": "text"
+            },
+            {
+              "code": "arm64e",
+              "type": "codeVoice"
+            },
+            {
+              "text": " code that uses PAC-protected pointers. Your browser engine needs to adopt PAC for any pointer that influences control flow in your interpreter code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on pointer authentication, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/improving-control-flow-integrity-with-pointer-authentication",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inline-your-memory-protection-toggles",
+          "level": 2,
+          "text": "Inline your memory-protection toggles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your calls to ",
+              "type": "text"
+            },
+            {
+              "code": "be_memory_inline_jit_restrict_rwx_to_rw_with_witness()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and its counterpart must be inlined into the critical section for your extension’s JIT compilation code, so they don’t provide an attacker with a general way to run arbitrary code while your JIT region is writable.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "An attacker might use a general PAC-signing mechanism to write and run instructions anywhere in your process’s memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The Swift attribute ",
+                  "type": "text"
+                },
+                {
+                  "code": "@inlinable",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", described in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/attributes/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", indicates that the compiler ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "can choose to",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " inline a function, but doesn’t guarantee that it does.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "code": "@inlinable",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " isn’t suitable for inlining calls to the memory protection toggle functions for JIT compilation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Avoid-spilling-variables-to-the-stack",
+          "level": 2,
+          "text": "Avoid spilling variables to the stack",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Variables that your JIT code accesses between calls to the memory toggle functions must be in registers, or in heap memory that you access using PAC-protected pointers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Don’t rely on loop indexes or other variables that are in stack memory, because an attacker might gain control of the stack to change the behavior of your JIT compiler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If necessary, disassemble your extension’s binary to inspect the JIT critical section and ensure that important variables aren’t stored on the stack.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To disassemble the binary, use the command-line tool ",
+              "type": "text"
+            },
+            {
+              "code": "llvm-objdump",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, if your JIT compiler is in a function called ",
+              "type": "text"
+            },
+            {
+              "code": "runJavascript",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", run this command in Terminal:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun llvm-objdump --disassemble-symbols=runJavascript --macho /path/to/executable"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can also use the path to the object file in your Xcode project’s derived data file that contains the relevant function, instead of your extension’s executable file.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit": {
+      "abstract": [
+        {
+          "text": "Create a browser that renders content using an alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BrowserEngineKit",
+      "type": "topic",
+      "url": "/documentation/browserenginekit"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/improving-control-flow-integrity-with-pointer-authentication": {
+      "abstract": [
+        {
+          "text": "Increase confidence that your code uses pointers correctly.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/improving-control-flow-integrity-with-pointer-authentication",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving control flow integrity with pointer authentication",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/improving-control-flow-integrity-with-pointer-authentication"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/managing-the-browser-extension-lifecycle": {
+      "abstract": [
+        {
+          "text": "Coordinate helper processes to efficiently support your browser app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/managing-the-browser-extension-lifecycle",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing the browser extension life cycle",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/managing-the-browser-extension-lifecycle"
+    },
+    "doc://com.apple.documentation/documentation/Apple-Silicon/porting-just-in-time-compilers-to-apple-silicon": {
+      "abstract": [
+        {
+          "text": "Update your just-in-time (JIT) compiler to work with the Hardened Runtime capability, and with Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Apple-Silicon/porting-just-in-time-compilers-to-apple-silicon",
+      "kind": "article",
+      "role": "article",
+      "title": "Porting just-in-time compilers to Apple silicon",
+      "type": "topic",
+      "url": "/documentation/Apple-Silicon/porting-just-in-time-compilers-to-apple-silicon"
+    },
+    "doc://com.apple.documentation/documentation/BrowserEngineCore/BE_JIT_WRITE_PROTECT_TAG": {
+      "abstract": [
+        {
+          "text": "A discriminator value the system uses to generate pointer authentication codes for just-in-time compilation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BE_JIT_WRITE_PROTECT_TAG"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BrowserEngineCore/BE_JIT_WRITE_PROTECT_TAG",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BE_JIT_WRITE_PROTECT_TAG",
+      "type": "topic",
+      "url": "/documentation/BrowserEngineCore/BE_JIT_WRITE_PROTECT_TAG"
+    },
+    "doc://com.apple.documentation/documentation/BrowserEngineCore/be_memory_inline_jit_restrict_rwx_to_rw_with_witness": {
+      "abstract": [
+        {
+          "text": "Makes a region of memory writable for use in just-in-time (JIT) compilation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:v",
+          "text": "void"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "be_memory_inline_jit_restrict_rwx_to_rw_with_witness"
+        },
+        {
+          "kind": "text",
+          "text": "();"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BrowserEngineCore/be_memory_inline_jit_restrict_rwx_to_rw_with_witness",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "be_memory_inline_jit_restrict_rwx_to_rw_with_witness",
+      "type": "topic",
+      "url": "/documentation/BrowserEngineCore/be_memory_inline_jit_restrict_rwx_to_rw_with_witness"
+    },
+    "doc://com.apple.documentation/documentation/BrowserEngineCore/be_memory_inline_jit_restrict_rwx_to_rx_with_witness": {
+      "abstract": [
+        {
+          "text": "Makes a region of memory executable for use in just-in-time (JIT) compilation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:v",
+          "text": "void"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "be_memory_inline_jit_restrict_rwx_to_rx_with_witness"
+        },
+        {
+          "kind": "text",
+          "text": "();"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BrowserEngineCore/be_memory_inline_jit_restrict_rwx_to_rx_with_witness",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "be_memory_inline_jit_restrict_rwx_to_rx_with_witness",
+      "type": "topic",
+      "url": "/documentation/BrowserEngineCore/be_memory_inline_jit_restrict_rwx_to_rx_with_witness"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.kernel.extended-virtual-addressing": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may access an extended address space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.kernel.extended-virtual-addressing",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Extended Virtual Addressing Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.kernel.extended-virtual-addressing"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/attributes/": {
+      "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/attributes/",
+      "title": "Attributes",
+      "titleInlineContent": [
+        {
+          "text": "Attributes",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/attributes/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Just-in-time-code-compilation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/improving-control-flow-integrity-with-pointer-authentication",
+        "doc://com.apple.documentation/documentation/BrowserEngineCore/BE_JIT_WRITE_PROTECT_TAG"
+      ],
+      "title": "Just-in-time code compilation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Just-in-time-code-compilation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/improving-control-flow-integrity-with-pointer-authentication",
+                "doc://com.apple.documentation/documentation/BrowserEngineCore/BE_JIT_WRITE_PROTECT_TAG"
+              ],
+              "title": "Just-in-time code compilation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1BrowserEngineCore~1BE_JIT_WRITE_PROTECT_TAG/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "#define"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "BE_JIT_WRITE_PROTECT_TAG"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/browserenginekit/protecting-code-compiled-just-in-time"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/browserenginekit/protecting-code-compiled-just-in-time"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

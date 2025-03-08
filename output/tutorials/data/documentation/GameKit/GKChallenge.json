@@ -1,0 +1,2333 @@
+{
+  "abstract": [
+    {
+      "text": "A challenge issued by the local player to another player.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamekit/documentation/GameKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamekit/documentation/GameKit/GKChallenge"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)GKChallenge",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "GKChallenge"
+      }
+    ],
+    "modules": [
+      {
+        "name": "GameKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GKChallenge"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.8",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "GKChallenge"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GKChallenge"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Players can use Game Center to challenge other players to beat their scores and achievements that they earn in your game. When a player issues a challenge to another player, Game Center sends a push notification to the other player. That player can then accept or refuse the challenge. If the player accepts the challenge, Game Center adds the challenge to the player’s list of challenges. Later, if the player beats the challenge, Game Center notifies both players.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Game Center supports two kinds of challenges:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "When a player challenges another player to beat their leaderboard score. When the player beats the score, Game Center issues a new score challenge to the player who initiated the challenge and continues issuing challenges between the players until a player refuses the challenge.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "score challenge (",
+                    "type": "text"
+                  },
+                  {
+                    "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKScoreChallenge",
+                    "isActive": true,
+                    "type": "reference"
+                  },
+                  {
+                    "text": ")",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "When a player challenges another player to earn an achievement. This challenge ends when the player earns the achievement.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "achievement challenge (",
+                    "type": "text"
+                  },
+                  {
+                    "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAchievementChallenge",
+                    "isActive": true,
+                    "type": "reference"
+                  },
+                  {
+                    "text": ")",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You never subclass the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKChallenge",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class directly. However, you can subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKScoreChallenge",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAchievementChallenge",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create specific kinds of challenges.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-Challenges",
+          "level": 3,
+          "text": "Enable Challenges",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must enable challenges for your game in App Store Connect before you can use the challenges features. For details, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/configure-game-center/enable-challenges/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in App Store Connect Help.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Load-and-Issue-Challenges",
+          "level": 3,
+          "text": "Load and Issue Challenges",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can load the challenges issued by the local player using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/loadReceivedChallenges(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method. You can issue challenges with the player’s permission using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKScore/challengeComposeController(withMessage:players:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/Entry",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKScore",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAchievement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GKShowChallengeBanners": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether GameKit can display challenge banners in a game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GKShowChallengeBanners",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GKShowChallengeBanners",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/GKShowChallengeBanners"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit": {
+      "abstract": [
+        {
+          "text": "Enable players to interact with friends, compare leaderboard ranks, earn achievements, and participate in multiplayer games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GameKit",
+      "type": "topic",
+      "url": "/documentation/gamekit"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKAchievement": {
+      "abstract": [
+        {
+          "text": "An achievement you can award a player as they make progress toward and reach a goal in your game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKAchievement"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAchievement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKAchievement"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKAchievement",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkachievement"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKAchievementChallenge": {
+      "abstract": [
+        {
+          "text": "A type of challenge where a player must earn another player’s achievement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKAchievementChallenge"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAchievementChallenge",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKAchievementChallenge"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKAchievementChallenge",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkachievementchallenge"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKChallenge": {
+      "abstract": [
+        {
+          "text": "A challenge issued by the local player to another player.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKChallenge"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKChallenge",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKChallenge"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKChallenge",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkchallenge"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/completionDate": {
+      "abstract": [
+        {
+          "text": "The date the challenged player completed the challenge.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/completionDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "completionDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "completionDate",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkchallenge/completiondate"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/decline()": {
+      "abstract": [
+        {
+          "text": "Declines a challenge that another player issues to the local player.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "decline"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/decline()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "decline"
+        }
+      ],
+      "role": "symbol",
+      "title": "decline()",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkchallenge/decline()"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/issueDate": {
+      "abstract": [
+        {
+          "text": "The date the player issued the challenge.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "issueDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/issueDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "issueDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "issueDate",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkchallenge/issuedate"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/issuingPlayer": {
+      "abstract": [
+        {
+          "text": "The player who issues the challenge.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "issuingPlayer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKPlayer",
+          "text": "GKPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/issuingPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "issuingPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "issuingPlayer",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkchallenge/issuingplayer"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/issuingPlayerID": {
+      "abstract": [
+        {
+          "text": "The player who issues the challenge.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "issuingPlayerID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/issuingPlayerID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "issuingPlayerID"
+        }
+      ],
+      "role": "symbol",
+      "title": "issuingPlayerID",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkchallenge/issuingplayerid"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/loadReceivedChallenges(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Loads the list of outstanding challenges.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadReceivedChallenges"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKChallenge",
+          "text": "GKChallenge"
+        },
+        {
+          "kind": "text",
+          "text": "]?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/loadReceivedChallenges(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadReceivedChallengesWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadReceivedChallenges(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkchallenge/loadreceivedchallenges(completionhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/message": {
+      "abstract": [
+        {
+          "text": "A text message that describes the challenge.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "message"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/message",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "message"
+        }
+      ],
+      "role": "symbol",
+      "title": "message",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkchallenge/message"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/receivingPlayer": {
+      "abstract": [
+        {
+          "text": "The player who receives the challenge.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "receivingPlayer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKPlayer",
+          "text": "GKPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/receivingPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "receivingPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "receivingPlayer",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkchallenge/receivingplayer"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/receivingPlayerID": {
+      "abstract": [
+        {
+          "text": "The player who receives the challenge.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "receivingPlayerID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/receivingPlayerID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "receivingPlayerID"
+        }
+      ],
+      "role": "symbol",
+      "title": "receivingPlayerID",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkchallenge/receivingplayerid"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/state": {
+      "abstract": [
+        {
+          "text": "The current state of the challenge.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@GKChallengeState",
+          "text": "GKChallengeState"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/state",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "state"
+        }
+      ],
+      "role": "symbol",
+      "title": "state",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkchallenge/state"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKChallengeComposeCompletionBlock": {
+      "abstract": [
+        {
+          "text": "A completion block that provides information about the player who issues a challenge and the players who receive it.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKChallengeComposeCompletionBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKChallengeComposeCompletionBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKChallengeComposeCompletionBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKChallengeComposeCompletionBlock",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkchallengecomposecompletionblock"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKChallengeListener": {
+      "abstract": [
+        {
+          "text": "An object that responds to challenge events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKChallengeListener"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKChallengeListener",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKChallengeListener"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKChallengeListener",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkchallengelistener"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKChallengeState": {
+      "abstract": [
+        {
+          "text": "The state of a challenge.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKChallengeState"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKChallengeState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKChallengeState"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKChallengeState",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkchallengestate"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/Entry": {
+      "abstract": [
+        {
+          "text": "Information about a single score by a player on a leaderboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Entry"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboard/Entry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Entry"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKLeaderboard.Entry",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkleaderboard/entry"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKScore": {
+      "abstract": [
+        {
+          "text": "An object containing information for a score that was earned by the player.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKScore"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKScore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKScore"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKScore",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkscore"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKScore/challengeComposeController(withMessage:players:completion:)": {
+      "abstract": [
+        {
+          "text": "Provides a challenge compose view controller with preselected player identifiers and a preformatted, player-editable message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "challengeComposeController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withMessage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "players"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKPlayer",
+          "text": "GKPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@GKChallengeComposeHandler",
+          "text": "GKChallengeComposeHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKScore/challengeComposeController(withMessage:players:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "challengeComposeControllerWithMessage:players:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "challengeComposeController(withMessage:players:completion:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkscore/challengecomposecontroller(withmessage:players:completion:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKScoreChallenge": {
+      "abstract": [
+        {
+          "text": "A type of challenge where a player must beat the leaderboard score of another player.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKScoreChallenge"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKScoreChallenge",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKScoreChallenge"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKScoreChallenge",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkscorechallenge"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "https://developer.apple.com/help/app-store-connect/configure-game-center/enable-challenges/": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/configure-game-center/enable-challenges/",
+      "title": "Enable challenges",
+      "titleInlineContent": [
+        {
+          "text": "Enable challenges",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/configure-game-center/enable-challenges/"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKAchievementChallenge",
+        "doc://com.apple.gamekit/documentation/GameKit/GKScoreChallenge"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Challenges",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKScoreChallenge",
+        "doc://com.apple.gamekit/documentation/GameKit/GKAchievementChallenge",
+        "doc://com.apple.gamekit/documentation/GameKit/GKChallengeListener",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GKShowChallengeBanners"
+      ],
+      "title": "Challenges"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Retrieving-the-List-of-Challenges-to-the-Local-Player",
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/loadReceivedChallenges(completionHandler:)"
+      ],
+      "title": "Retrieving the List of Challenges to the Local Player"
+    },
+    {
+      "anchor": "Examining-Details-about-a-Challenge",
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/issuingPlayer",
+        "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/receivingPlayer",
+        "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/message",
+        "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/state",
+        "doc://com.apple.gamekit/documentation/GameKit/GKChallengeState",
+        "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/issueDate",
+        "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/completionDate"
+      ],
+      "title": "Examining Details about a Challenge"
+    },
+    {
+      "anchor": "Declining-a-Challenge",
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/decline()"
+      ],
+      "title": "Declining a Challenge"
+    },
+    {
+      "anchor": "Deprecated-symbols",
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/issuingPlayerID",
+        "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/receivingPlayerID",
+        "doc://com.apple.gamekit/documentation/GameKit/GKChallengeComposeCompletionBlock"
+      ],
+      "title": "Deprecated symbols"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.8",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "GKChallenge"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKChallenge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKChallenge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.gamekit/documentation/GameKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Retrieving-the-List-of-Challenges-to-the-Local-Player",
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/loadReceivedChallenges(completionHandler:)"
+              ],
+              "title": "Retrieving the List of Challenges to the Local Player"
+            },
+            {
+              "anchor": "Examining-Details-about-a-Challenge",
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/issuingPlayer",
+                "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/receivingPlayer",
+                "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/message",
+                "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/state",
+                "doc://com.apple.gamekit/documentation/GameKit/GKChallengeState",
+                "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/issueDate",
+                "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/completionDate"
+              ],
+              "title": "Examining Details about a Challenge"
+            },
+            {
+              "anchor": "Declining-a-Challenge",
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/decline()"
+              ],
+              "title": "Declining a Challenge"
+            },
+            {
+              "anchor": "Deprecated-symbols",
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/issuingPlayerID",
+                "doc://com.apple.gamekit/documentation/GameKit/GKChallenge/receivingPlayerID",
+                "doc://com.apple.gamekit/documentation/GameKit/GKChallengeComposeCompletionBlock"
+              ],
+              "title": "Deprecated symbols"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKAchievementChallenge",
+                "doc://com.apple.gamekit/documentation/GameKit/GKScoreChallenge"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Challenges",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/GKScoreChallenge",
+                "doc://com.apple.gamekit/documentation/GameKit/GKAchievementChallenge",
+                "doc://com.apple.gamekit/documentation/GameKit/GKChallengeListener",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GKShowChallengeBanners"
+              ],
+              "title": "Challenges"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "GKChallenge"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallenge~1message/title",
+          "value": "message"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallenge~1message/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "message"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallenge/title",
+          "value": "GKChallenge"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallenge/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKChallenge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallenge/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKChallenge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallengeState/title",
+          "value": "GKChallengeState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallengeState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKChallengeState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallengeState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKChallengeState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKScoreChallenge/title",
+          "value": "GKScoreChallenge"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKScoreChallenge/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKScoreChallenge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKScoreChallenge/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKScoreChallenge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallengeComposeCompletionBlock/title",
+          "value": "GKChallengeComposeCompletionBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallengeComposeCompletionBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKChallengeComposeCompletionBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallengeComposeCompletionBlock/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKChallengeComposeCompletionBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallenge~1decline()/title",
+          "value": "decline"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallenge~1decline()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "decline"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallenge~1issuingPlayerID/title",
+          "value": "issuingPlayerID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallenge~1issuingPlayerID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "issuingPlayerID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKScore/title",
+          "value": "GKScore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKScore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKScore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKScore/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKScore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallenge~1receivingPlayerID/title",
+          "value": "receivingPlayerID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallenge~1receivingPlayerID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "receivingPlayerID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAchievementChallenge/title",
+          "value": "GKAchievementChallenge"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAchievementChallenge/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKAchievementChallenge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAchievementChallenge/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKAchievementChallenge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallenge~1issuingPlayer/title",
+          "value": "issuingPlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallenge~1issuingPlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "issuingPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallenge~1receivingPlayer/title",
+          "value": "receivingPlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallenge~1receivingPlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "receivingPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallenge~1issueDate/title",
+          "value": "issueDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallenge~1issueDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "issueDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallenge~1completionDate/title",
+          "value": "completionDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallenge~1completionDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "completionDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1Entry/title",
+          "value": "GKLeaderboardEntry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1Entry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLeaderboardEntry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLeaderboard~1Entry/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLeaderboardEntry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallenge~1loadReceivedChallenges(completionHandler:)/title",
+          "value": "loadReceivedChallengesWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallenge~1loadReceivedChallenges(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadReceivedChallengesWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallenge~1state/title",
+          "value": "state"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallenge~1state/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "state"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallengeListener/title",
+          "value": "GKChallengeListener"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallengeListener/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKChallengeListener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKChallengeListener/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKChallengeListener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAchievement/title",
+          "value": "GKAchievement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAchievement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKAchievement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKAchievement/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKAchievement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKScore~1challengeComposeController(withMessage:players:completion:)/title",
+          "value": "challengeComposeControllerWithMessage:players:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKScore~1challengeComposeController(withMessage:players:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "challengeComposeControllerWithMessage:players:completion:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamekit/gkchallenge"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gamekit/gkchallenge"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

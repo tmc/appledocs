@@ -1,0 +1,1080 @@
+{
+  "abstract": [
+    {
+      "text": "Display 3D content with a volumetric window that people can move.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS",
+        "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/creating-a-volumetric-window-in-visionos"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating 3D models as movable windows"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project demonstrates how to create and display 3D models in a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "visionOS app, using volumetric windows that people can pick up and move around their environment. The app launches directly into a volumetric window containing a 3D model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "sample-volumetric-window.mp4",
+          "type": "video"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WindowStyle/volumetric",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " window style in SwiftUI creates a 3D volumetric window that someone can pick up",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and move around their space, similar to a 2D window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-up-volumetric-window-requirements",
+          "level": 3,
+          "text": "Set up volumetric window requirements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "VolumetricWindow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view loads a USDZ file and displays its contents. The ",
+              "type": "text"
+            },
+            {
+              "code": "defaultSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value defines the dimensions of the initial volumetric window size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "import RealityKit",
+            "",
+            "/// A view that loads in a 3D model and sets the dimensions of the volumetric window to the same size as the model.",
+            "struct VolumetricWindow: View {",
+            "    /// The default length of each side of the cubic volumetric window, in meters.",
+            "    static let defaultSize: CGFloat = 0.5",
+            "",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample’s ",
+              "type": "text"
+            },
+            {
+              "code": "EntryPoint",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure defines a volumetric window group and a ",
+              "type": "text"
+            },
+            {
+              "code": "defaultSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value that sets the initial dimensions of the view. The ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " specifies the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationPreferredDefaultSceneSessionRole",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as ",
+              "type": "text"
+            },
+            {
+              "code": "UIWindowSceneSessionRoleVolumetricApplication",
+              "type": "codeVoice"
+            },
+            {
+              "text": " launching directly into the volumetric window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "",
+            "@main",
+            "struct EntryPoint: App {",
+            "    /// The multiplier for the height of the volumetric window.",
+            "    let heightModifier: CGFloat = 0.25",
+            "",
+            "    var body: some Scene {",
+            "        // Configure a window group with a volumetric window.",
+            "        WindowGroup() {",
+            "            VolumetricWindow()",
+            "        }",
+            "        .windowStyle(.volumetric)",
+            "        // Scale the size of the window group relative to the volumetric window's size.",
+            "        .defaultSize(",
+            "            width: VolumetricWindow.defaultSize,",
+            "            height: heightModifier * VolumetricWindow.defaultSize,",
+            "            depth: VolumetricWindow.defaultSize,",
+            "            in: .meters",
+            "        )",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftUI requires three separate arguments to define the width, height, and depth of the volumetric window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Load-a-3D-model-as-an-entity-in-a-view",
+          "level": 3,
+          "text": "Load a 3D model as an entity in a view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "VolumetricWindow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view loads a USDZ file as an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/Entity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and adds it to the scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "RealityView { content in",
+            "    // Attempt to load the entity that uses the filename as a source.",
+            "    guard let model = try? await ModelEntity(named: modelName) else {",
+            "        return",
+            "    }",
+            "",
+            "    // Add the model to the `RealityView`.",
+            "    content.add(model)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Adjust-the-entity-to-the-size-of-the-volumetric-window",
+          "level": 3,
+          "text": "Adjust the entity to the size of the volumetric window",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample updates the scale and position of the entity in the update closure of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/RealityView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to respond to volume resizing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "viewBounds",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object converts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/GeometryReader3D",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " coordinate space to a local-world coordinate space that ",
+              "type": "text"
+            },
+            {
+              "code": "RealityView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let viewBounds = content.convert(",
+            "    geometry.frame(in: .local),",
+            "    from: .local,",
+            "    to: .scene",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/Entity/visualBounds(recursive:relativeTo:excludeInactive:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method computes a bounding box that contains the outer dimensions of the entity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The view bounding box places the model at the bottom of the y-axis value of the window’s view:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set the model's position to the bottom of the visual bounding box.",
+            "model.position.y -= model.visualBounds(relativeTo: nil).min.y",
+            "",
+            "// Adjust the model's position on the y-axis to align with the view bounds.",
+            "model.position.y += viewBounds.min.y"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app sets the scale of the model to match the width of the view bounds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// The base size of the model when the scale is 1.",
+            "let baseExtents = model.visualBounds(relativeTo: nil).extents / model.scale",
+            "",
+            "/// The scale required for the model to fit the bounds of the volumetric window.",
+            "let scale = Float(viewBounds.extents.x) / baseExtents.x",
+            "",
+            "// Apply the scale to the model to fill the full size of the window.",
+            "model.scale = SIMD3<Float>(repeating: scale)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "anchor": "See-Also",
+                  "level": 2,
+                  "text": "See Also",
+                  "type": "heading"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 1,
+          "type": "row"
+        },
+        {
+          "anchor": "Related-samples",
+          "level": 4,
+          "text": "Related samples",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.visionOS/documentation/visionOS/creating-a-new-swiftui-window-in-visionos"
+          ],
+          "style": "list",
+          "type": "links"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "92430dc8f42e/CreatingAVolumetricWindowInVisionOS.zip": {
+      "checksum": "92430dc8f42ef7829500429a1927ef5f31607422070881859665f1c2ecc1866be36a402de72a0152a72bd72ad9e040fff8381252abdd3e00afd14f14899fb701",
+      "identifier": "92430dc8f42e/CreatingAVolumetricWindowInVisionOS.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/92430dc8f42e/CreatingAVolumetricWindowInVisionOS.zip"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationPreferredDefaultSceneSessionRole": {
+      "abstract": [
+        {
+          "text": "The preferred initial scene session role for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIApplicationPreferredDefaultSceneSessionRole",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIApplicationPreferredDefaultSceneSessionRole",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIApplicationPreferredDefaultSceneSessionRole"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/Entity": {
+      "abstract": [
+        {
+          "text": "An element of a RealityKit scene to which you attach components that provide appearance and behavior characteristics for the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Entity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/Entity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Entity",
+      "type": "topic",
+      "url": "/documentation/RealityKit/Entity"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/Entity/visualBounds(recursive:relativeTo:excludeInactive:)": {
+      "abstract": [
+        {
+          "text": "Computes a bounding box for the entity in the specified space, optionally including child entities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "visualBounds"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "recursive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = true, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "relativeTo"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "referenceEntity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation6EntityC",
+          "text": "Entity"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "excludeInactive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = false) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation11BoundingBoxV",
+          "text": "BoundingBox"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/Entity/visualBounds(recursive:relativeTo:excludeInactive:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "visualBounds(recursive:relativeTo:excludeInactive:)",
+      "type": "topic",
+      "url": "/documentation/RealityKit/Entity/visualBounds(recursive:relativeTo:excludeInactive:)"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/RealityView": {
+      "abstract": [
+        {
+          "text": "A view that contains RealityKit content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RealityView"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/RealityView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RealityView",
+      "type": "topic",
+      "url": "/documentation/RealityKit/RealityView"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/GeometryReader3D": {
+      "abstract": [
+        {
+          "text": "A container view that defines its content as a function of its own size and coordinate space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GeometryReader3D"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/GeometryReader3D",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GeometryReader3D",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/GeometryReader3D"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/WindowStyle/volumetric": {
+      "abstract": [
+        {
+          "text": "A window style that creates a 3D volumetric window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumetric"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21VolumetricWindowStyleV",
+          "text": "VolumetricWindowStyle"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WindowStyle/volumetric",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumetric",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/WindowStyle/volumetric"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/creating-a-new-swiftui-window-in-visionos": {
+      "abstract": [
+        {
+          "text": "Display and manage multiple SwiftUI windows in your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/creating-a-new-swiftui-window-in-visionos",
+      "images": [
+        {
+          "identifier": "sample-new-window-1-main-view.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating SwiftUI windows in visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos/creating-a-new-swiftui-window-in-visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples": {
+      "abstract": [
+        {
+          "text": "Learn the fundamentals of building apps for visionOS with beginner-friendly sample code projects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples",
+      "images": [
+        {
+          "identifier": "introductory-visionOS-samples.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Introductory visionOS samples",
+      "type": "topic",
+      "url": "/documentation/visionos/introductory-visionos-samples"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "introductory-visionOS-samples.png": {
+      "alt": "A translucent window displaying five white, three-dimensional entities in a horizontal row. From left to right, the shapes are a box, a rounded box, a right sphere, a cone, and a cylinder that all top-align.",
+      "identifier": "introductory-visionOS-samples.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3d386622a70e5f41179e6a4c98a125c7/introductory-visionOS-samples@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/58fa94f103305452c567401d648dedc5/introductory-visionOS-samples~dark@2x.png"
+        }
+      ]
+    },
+    "sample-new-window-1-main-view.png": {
+      "alt": "",
+      "identifier": "sample-new-window-1-main-view.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c598c2c0c671cf1a943975fee28877ba/sample-new-window-1-main-view.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f35c5f95743a834e316851d340647d68/sample-new-window-1-main-view~dark.png"
+        }
+      ]
+    },
+    "sample-volumetric-window.mp4": {
+      "alt": "A video of a person resizing a volumetric window in visionOS.",
+      "identifier": "sample-volumetric-window.mp4",
+      "poster": null,
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/33ddee4f2ef95bfdaff8cfedab0fba53/sample-volumetric-window.mp4"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7d972447a7eb8f9133bc7a875f913e43/sample-volumetric-window~dark.mp4"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "92430dc8f42e/CreatingAVolumetricWindowInVisionOS.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

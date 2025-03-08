@@ -1,0 +1,645 @@
+{
+  "abstract": [
+    {
+      "text": "List all test results for a specific test action Xcode Cloud performed as part of a build.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.6 beta 1",
+        "3.6"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.0",
+        "3.6"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.5",
+        "3.6"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_-testResults"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:app_store_connect_api:get:v1-ciBuildActions-{}-testResults",
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GET /v1/ciBuildActions/{id}/testResults"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.5",
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "List All Test Results for an Xcode Cloud Test Action"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.appstoreconnect.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/ciBuildActions/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{id}"
+        },
+        {
+          "kind": "path",
+          "text": "/testResults"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The opaque resource ID that uniquely identifies the Build Actions resource.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "id",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "className",
+                "name",
+                "status",
+                "fileSource",
+                "message",
+                "destinationTestResults"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Additional fields to include for each Test Results resource returned by the response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "fields[ciTestResults]",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "maximum",
+              "value": "200"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of Test Results resources to return.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "limit",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request completed successfully.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiTestResultsResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:CiTestResultsResponse",
+              "text": "CiTestResultsResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An error occurred with your request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Request not authorized.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Resource not found.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example request below lists the test results for an Xcode Cloud build that performed a test action. Use the information provided in the response to display test results on a dashboard, create a new task for a failing test in your issue tracker, and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example-Request-and-Response",
+          "level": 3,
+          "text": "Example Request and Response",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "GET https://api.appstoreconnect.apple.com/v1/ciBuildActions/d871dabb-2c2c-4012-aff5-abb427bcb3a3/testResults"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "\"data\": [",
+                    "        {",
+                    "            \"type\": \"ciTestResults\",",
+                    "            \"id\": \"87f8a597-bea9-49d8-ba8b-6a643de66903\",",
+                    "            \"attributes\": {",
+                    "                \"className\": \"TestClass\",",
+                    "                \"name\": \"TestName\",",
+                    "                \"status\": \"SUCCESS\",",
+                    "                \"fileSource\": {",
+                    "                    \"path\": \"path\",",
+                    "                    \"lineNumber\": 100",
+                    "                },",
+                    "                \"message\": null,",
+                    "                \"destinationTestResults\": [",
+                    "                    {",
+                    "                        \"uuid\": \"8d1bff05-2b9c-4cc4-9225-e2cd41dee260\",",
+                    "                        \"deviceName\": \"iPhone X\",",
+                    "                        \"osVersion\": \"11.4.1\",",
+                    "                        \"status\": \"SUCCESS\",",
+                    "                        \"duration\": 6.600471973",
+                    "                    }",
+                    "                ]",
+                    "            },",
+                    "            \"links\": {",
+                    "                \"self\": \"https://api.appstoreconnect.apple.com/v1/ciTestResults/87f8a597-bea9-49d8-ba8b-6a643de66903\"",
+                    "            }",
+                    "        }",
+                    "    ],",
+                    "    \"links\": {",
+                    "        \"self\": \"https://api.appstoreconnect.apple.com/v1/ciBuildActions/d871dabb-2c2c-4012-aff5-abb427bcb3a3/testResults\"",
+                    "    },",
+                    "    \"meta\": {",
+                    "        \"paging\": {",
+                    "            \"limit\": 50",
+                    "        }",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiTestResultsResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains a list of Test Results resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CiTestResultsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiTestResultsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CiTestResultsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "CiTestResultsResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/citestresultsresponse"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse": {
+      "abstract": [
+        {
+          "text": "The error details that an API returns in the response body whenever the API request isn’t successful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/errorresponse"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_": {
+      "abstract": [
+        {
+          "text": "Get information about a specific action Xcode Cloud performed as part of a build.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/ciBuildActions/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read Build Action Information",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-cibuildactions-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_-artifacts": {
+      "abstract": [
+        {
+          "text": "List all artifacts Xcode Cloud created when it performed an action.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_-artifacts",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/ciBuildActions/{id}/artifacts"
+        }
+      ],
+      "role": "symbol",
+      "title": "List All Artifacts for a Build Action",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-cibuildactions-_id_-artifacts"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_-buildRun": {
+      "abstract": [
+        {
+          "text": "Get Xcode Cloud build information for a given build action.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_-buildRun",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/ciBuildActions/{id}/buildRun"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read the Xcode Cloud Build Information for a Build Action",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-cibuildactions-_id_-buildrun"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_-issues": {
+      "abstract": [
+        {
+          "text": "List all issues that occurred for a specific action that Xcode Cloud performed as part of a build.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_-issues",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/ciBuildActions/{id}/issues"
+        }
+      ],
+      "role": "symbol",
+      "title": "List All Issues for a Build Action",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-cibuildactions-_id_-issues"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_-testResults": {
+      "abstract": [
+        {
+          "text": "List all test results for a specific test action Xcode Cloud performed as part of a build.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_-testResults",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/ciBuildActions/{id}/testResults"
+        }
+      ],
+      "role": "symbol",
+      "title": "List All Test Results for an Xcode Cloud Test Action",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-cibuildactions-_id_-testresults"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-Build-Actions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_-artifacts",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_-buildRun",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_-issues"
+      ],
+      "title": "Getting Build Actions"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/get-v1-cibuildactions-_id_-testresults"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

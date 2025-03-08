@@ -1,0 +1,2183 @@
+{
+  "abstract": [
+    {
+      "text": "A resource that stores data in a format defined by your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/MTLBuffer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MTLBuffer",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MTLBuffer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MTLBuffer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "MTLBuffer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)MTLResource",
+              "text": "MTLResource"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/estimating-how-often-a-texture-region-is-accessed",
+        "doc://com.apple.metal/documentation/Metal/setting-resource-storage-modes",
+        "doc://com.apple.metal/documentation/Metal/converting-a-gpus-counter-data-into-a-readable-format",
+        "doc://com.apple.metal/documentation/Metal/synchronizing-a-managed-resource-in-macos",
+        "doc://com.apple.metal/documentation/Metal/indexing-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/simplifying-gpu-resource-management-with-residency-sets",
+        "doc://com.apple.metal/documentation/Metal/improving-ray-tracing-data-access-using-per-primitive-data",
+        "doc://com.apple.metal/documentation/Metal/specifying-drawing-and-dispatch-arguments-indirectly"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object can be used only with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that created it. Don’t implement this protocol yourself; instead, use the following ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods to create ",
+              "type": "text"
+            },
+            {
+              "code": "MTLBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeBuffer(length:options:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " creates a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MTLBuffer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object with a new storage allocation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeBuffer(bytes:length:options:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " creates a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MTLBuffer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object by copying data from an existing storage allocation into a new allocation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeBuffer(bytesNoCopy:length:options:deallocator:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " creates a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MTLBuffer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object that reuses an existing storage allocation and does not allocate any new storage.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Metal framework doesn’t know anything about the contents of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", just its size. You define the format of the data in the buffer and ensure that your app and your shaders know how to read and write the data. For example, you might create a struct in your shader that defines the data you want to store in the buffer and its memory layout.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you create a buffer with a managed resource storage mode (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/managed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), you must call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer/didModifyRange:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to tell Metal to copy any changes to the GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAllocation": {
+      "abstract": [
+        {
+          "text": "A memory allocation from a Metal GPU device, such as a memory heap, texture, or data buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAllocation"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAllocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAllocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAllocation",
+      "type": "topic",
+      "url": "/documentation/metal/mtlallocation"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer": {
+      "abstract": [
+        {
+          "text": "A resource that stores data in a format defined by your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer/addDebugMarker(_:range:)": {
+      "abstract": [
+        {
+          "text": "Adds a debug marker string to a specific buffer range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addDebugMarker"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer/addDebugMarker(_:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addDebugMarker(_:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer/adddebugmarker(_:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer/addDebugMarker:range:": {
+      "abstract": [
+        {
+          "text": "Adds a debug marker string to a specific buffer range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addDebugMarker:range:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer/addDebugMarker:range:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addDebugMarker:range:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addDebugMarker:range:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer/adddebugmarker:range:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer/contents()": {
+      "abstract": [
+        {
+          "text": "Gets the system address of the buffer’s storage allocation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contents"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer/contents()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contents"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "contents()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer/contents()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer/didModifyRange(_:)": {
+      "abstract": [
+        {
+          "text": "Informs the GPU that the CPU has modified a section of the buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didModifyRange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer/didModifyRange(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didModifyRange(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer/didmodifyrange(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer/didModifyRange:": {
+      "abstract": [
+        {
+          "text": "Informs the GPU that the CPU has modified a section of the buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "didModifyRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer/didModifyRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didModifyRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "didModifyRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer/didmodifyrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer/gpuAddress": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gpuAddress"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer/gpuAddress",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gpuAddress"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "gpuAddress",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer/gpuaddress"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer/length": {
+      "abstract": [
+        {
+          "text": "The logical size of the buffer, in bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer/length",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "length"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "length",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer/length"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer/makeRemoteBufferView(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a remote view of the buffer for another GPU in the same peer group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeRemoteBufferView"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDevice",
+          "text": "MTLDevice"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer/makeRemoteBufferView(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newRemoteBufferViewForDevice:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeRemoteBufferView(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer/makeremotebufferview(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer/makeTexture(descriptor:offset:bytesPerRow:)": {
+      "abstract": [
+        {
+          "text": "Creates a texture that shares its storage with the buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeTexture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLTextureDescriptor",
+          "text": "MTLTextureDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bytesPerRow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer/makeTexture(descriptor:offset:bytesPerRow:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newTextureWithDescriptor:offset:bytesPerRow:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeTexture(descriptor:offset:bytesPerRow:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer/maketexture(descriptor:offset:bytesperrow:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer/remoteStorageBuffer": {
+      "abstract": [
+        {
+          "text": "The buffer on another GPU that the buffer was created from, if any.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "remoteStorageBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer/remoteStorageBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "remoteStorageBuffer"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "remoteStorageBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer/remotestoragebuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer/removeAllDebugMarkers()": {
+      "abstract": [
+        {
+          "text": "Removes all debug marker strings from the buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllDebugMarkers"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer/removeAllDebugMarkers()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeAllDebugMarkers"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "removeAllDebugMarkers()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer/removealldebugmarkers()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice": {
+      "abstract": [
+        {
+          "text": "The main Metal interface to a GPU that apps use to draw graphics and run computations in parallel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDevice",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeBuffer(bytes:length:options:)": {
+      "abstract": [
+        {
+          "text": "Allocates a new buffer of a given length and initializes its contents by copying existing data into it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "bytes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLResourceOptions",
+          "text": "MTLResourceOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeBuffer(bytes:length:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newBufferWithBytes:length:options:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeBuffer(bytes:length:options:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makebuffer(bytes:length:options:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeBuffer(bytesNoCopy:length:options:deallocator:)": {
+      "abstract": [
+        {
+          "text": "Creates a buffer that wraps an existing contiguous memory allocation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "bytesNoCopy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLResourceOptions",
+          "text": "MTLResourceOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "deallocator"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeBuffer(bytesNoCopy:length:options:deallocator:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newBufferWithBytesNoCopy:length:options:deallocator:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeBuffer(bytesNoCopy:length:options:deallocator:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makebuffer(bytesnocopy:length:options:deallocator:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeBuffer(length:options:)": {
+      "abstract": [
+        {
+          "text": "Creates a buffer the method clears with zero values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLResourceOptions",
+          "text": "MTLResourceOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeBuffer(length:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newBufferWithLength:options:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeBuffer(length:options:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makebuffer(length:options:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResource": {
+      "abstract": [
+        {
+          "text": "An allocation of memory accessible to a GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLResource"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLResource",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresource"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStorageMode/managed": {
+      "abstract": [
+        {
+          "text": "The CPU and GPU may maintain separate copies of the resource, and any changes must be explicitly synchronized.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "managed"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/managed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStorageModeManaged"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLStorageMode.managed",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstoragemode/managed"
+    },
+    "doc://com.apple.metal/documentation/Metal/converting-a-gpus-counter-data-into-a-readable-format": {
+      "abstract": [
+        {
+          "text": "Inspect and use the data within a GPU’s counter sample buffer by resolving it into a standard format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/converting-a-gpus-counter-data-into-a-readable-format",
+      "kind": "article",
+      "role": "article",
+      "title": "Converting a GPU’s Counter Data into a Readable Format",
+      "type": "topic",
+      "url": "/documentation/metal/converting-a-gpus-counter-data-into-a-readable-format"
+    },
+    "doc://com.apple.metal/documentation/Metal/estimating-how-often-a-texture-region-is-accessed": {
+      "abstract": [
+        {
+          "text": "Use texture access patterns to determine when you need to map a texture region.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/estimating-how-often-a-texture-region-is-accessed",
+      "kind": "article",
+      "role": "article",
+      "title": "Estimating How Often a Texture Region Is Accessed",
+      "type": "topic",
+      "url": "/documentation/metal/estimating-how-often-a-texture-region-is-accessed"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Optimize your app’s performance by grouping your resources into argument buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving CPU Performance by Using Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/improving-cpu-performance-by-using-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-ray-tracing-data-access-using-per-primitive-data": {
+      "abstract": [
+        {
+          "text": "Simplify data access and improve GPU utilization by storing custom primitive data directly in the acceleration structure.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-ray-tracing-data-access-using-per-primitive-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving Ray-Tracing Data Access Using Per-Primitive Data",
+      "type": "topic",
+      "url": "/documentation/metal/improving-ray-tracing-data-access-using-per-primitive-data"
+    },
+    "doc://com.apple.metal/documentation/Metal/indexing-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Assign resource indices within an argument buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/indexing-argument-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Indexing Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/indexing-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/setting-resource-storage-modes": {
+      "abstract": [
+        {
+          "text": "Set a storage mode that defines the memory location and access permissions of a resource.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/setting-resource-storage-modes",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Resource Storage Modes",
+      "type": "topic",
+      "url": "/documentation/metal/setting-resource-storage-modes"
+    },
+    "doc://com.apple.metal/documentation/Metal/simplifying-gpu-resource-management-with-residency-sets": {
+      "abstract": [
+        {
+          "text": "Organize your resources into groups and influence when they become accessible to the GPU.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/simplifying-gpu-resource-management-with-residency-sets",
+      "kind": "article",
+      "role": "article",
+      "title": "Simplifying GPU Resource Management with Residency Sets",
+      "type": "topic",
+      "url": "/documentation/metal/simplifying-gpu-resource-management-with-residency-sets"
+    },
+    "doc://com.apple.metal/documentation/Metal/specifying-drawing-and-dispatch-arguments-indirectly": {
+      "abstract": [
+        {
+          "text": "Use indirect commands if you don’t know your draw or dispatch call arguments when you encode the command.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/specifying-drawing-and-dispatch-arguments-indirectly",
+      "kind": "article",
+      "role": "article",
+      "title": "Specifying Drawing and Dispatch Arguments Indirectly",
+      "type": "topic",
+      "url": "/documentation/metal/specifying-drawing-and-dispatch-arguments-indirectly"
+    },
+    "doc://com.apple.metal/documentation/Metal/synchronizing-a-managed-resource-in-macos": {
+      "abstract": [
+        {
+          "text": "Manually synchronize memory for a Metal resource in apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/synchronizing-a-managed-resource-in-macos",
+      "kind": "article",
+      "role": "article",
+      "title": "Synchronizing a Managed Resource in macOS",
+      "type": "topic",
+      "url": "/documentation/metal/synchronizing-a-managed-resource-in-macos"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLAllocation",
+        "doc://com.apple.metal/documentation/Metal/MTLResource",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Texture-That-Shares-Buffer-Data",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLBuffer/makeTexture(descriptor:offset:bytesPerRow:)"
+      ],
+      "title": "Creating a Texture That Shares Buffer Data"
+    },
+    {
+      "anchor": "Reading-the-Buffers-Data-on-the-CPU",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLBuffer/contents()"
+      ],
+      "title": "Reading the Buffer’s Data on the CPU"
+    },
+    {
+      "anchor": "Synchronizing-Data-to-the-GPU-for-Managed-Buffers",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLBuffer/didModifyRange(_:)"
+      ],
+      "title": "Synchronizing Data to the GPU for Managed Buffers"
+    },
+    {
+      "anchor": "Debugging-Buffers",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLBuffer/addDebugMarker(_:range:)",
+        "doc://com.apple.metal/documentation/Metal/MTLBuffer/removeAllDebugMarkers()"
+      ],
+      "title": "Debugging Buffers"
+    },
+    {
+      "anchor": "Reading-Buffer-Length",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLBuffer/length"
+      ],
+      "title": "Reading Buffer Length"
+    },
+    {
+      "anchor": "Creating-Views-of-Buffers-on-Other-GPUs",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLBuffer/makeRemoteBufferView(_:)",
+        "doc://com.apple.metal/documentation/Metal/MTLBuffer/remoteStorageBuffer"
+      ],
+      "title": "Creating Views of Buffers on Other GPUs"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLBuffer/gpuAddress"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MTLBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.metal/documentation/Metal"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Texture-That-Shares-Buffer-Data",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLBuffer/makeTexture(descriptor:offset:bytesPerRow:)"
+              ],
+              "title": "Creating a Texture That Shares Buffer Data"
+            },
+            {
+              "anchor": "Reading-the-Buffers-Data-on-the-CPU",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLBuffer/contents()"
+              ],
+              "title": "Reading the Buffer’s Data on the CPU"
+            },
+            {
+              "anchor": "Synchronizing-Data-to-the-GPU-for-Managed-Buffers",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLBuffer/didModifyRange:"
+              ],
+              "title": "Synchronizing Data to the GPU for Managed Buffers"
+            },
+            {
+              "anchor": "Debugging-Buffers",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLBuffer/addDebugMarker:range:",
+                "doc://com.apple.metal/documentation/Metal/MTLBuffer/removeAllDebugMarkers()"
+              ],
+              "title": "Debugging Buffers"
+            },
+            {
+              "anchor": "Reading-Buffer-Length",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLBuffer/length"
+              ],
+              "title": "Reading Buffer Length"
+            },
+            {
+              "anchor": "Creating-Views-of-Buffers-on-Other-GPUs",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLBuffer/makeRemoteBufferView(_:)",
+                "doc://com.apple.metal/documentation/Metal/MTLBuffer/remoteStorageBuffer"
+              ],
+              "title": "Creating Views of Buffers on Other GPUs"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLBuffer/gpuAddress"
+              ],
+              "title": "Instance Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLResource"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MTLBuffer"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)MTLResource",
+                    "text": "MTLResource"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer~1makeTexture(descriptor:offset:bytesPerRow:)/title",
+          "value": "newTextureWithDescriptor:offset:bytesPerRow:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer~1makeTexture(descriptor:offset:bytesPerRow:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newTextureWithDescriptor:offset:bytesPerRow:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer~1makeRemoteBufferView(_:)/title",
+          "value": "newRemoteBufferViewForDevice:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer~1makeRemoteBufferView(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newRemoteBufferViewForDevice:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAllocation/title",
+          "value": "MTLAllocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAllocation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAllocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAllocation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAllocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeBuffer(length:options:)/title",
+          "value": "newBufferWithLength:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeBuffer(length:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newBufferWithLength:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeBuffer(bytesNoCopy:length:options:deallocator:)/title",
+          "value": "newBufferWithBytesNoCopy:length:options:deallocator:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeBuffer(bytesNoCopy:length:options:deallocator:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newBufferWithBytesNoCopy:length:options:deallocator:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeBuffer(bytes:length:options:)/title",
+          "value": "newBufferWithBytes:length:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeBuffer(bytes:length:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newBufferWithBytes:length:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource/title",
+          "value": "MTLResource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer~1length/title",
+          "value": "length"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer~1length/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "length"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer~1contents()/title",
+          "value": "contents"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer~1contents()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "contents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer~1remoteStorageBuffer/title",
+          "value": "remoteStorageBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer~1remoteStorageBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "remoteStorageBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer~1gpuAddress/title",
+          "value": "gpuAddress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer~1gpuAddress/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gpuAddress"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/title",
+          "value": "MTLDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/title",
+          "value": "MTLBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1managed/title",
+          "value": "MTLStorageModeManaged"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1managed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStorageModeManaged"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer~1removeAllDebugMarkers()/title",
+          "value": "removeAllDebugMarkers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer~1removeAllDebugMarkers()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeAllDebugMarkers"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mtlbuffer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/mtlbuffer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

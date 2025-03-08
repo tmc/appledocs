@@ -1,0 +1,1134 @@
+{
+  "abstract": [
+    {
+      "text": "Detect when your app is using excessive memory, and bring memory use under control.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics",
+        "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-memory-use"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/responding-to-low-memory-warnings"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Responding to low-memory warnings"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iOS sends your app a warning when its memory use approaches the limit of available",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "device memory. The amount of memory use that triggers a memory warning corresponds",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the yellow region in Xcode’s memory gauge. Your app can receive a memory warning",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in any of these ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "UIKit calls the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/applicationDidReceiveMemoryWarning(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "method of your app delegate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "UIKit calls the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/didReceiveMemoryWarning()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "method of active ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "objects.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS posts ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/didReceiveMemoryWarningNotification",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to the default notification center.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dispatch queues receive an event with source type ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Dispatch/DISPATCH_SOURCE_TYPE_MEMORYPRESSURE",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The operating system sends low-memory warnings using a best-effort approach, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app needs to respond to them as quickly as possible. If memory demand on the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system increases faster than the warnings relieve memory pressure, the system may",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "not have time to send the low-memory warnings and wait for apps to respond. When",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this occurs, the system resorts to jettisoning apps to reclaim their memory and recording",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the reason in a log file, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-high-memory-use-with-jetsam-event-reports",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make sure your app changes its approach for allocating memory when it receives a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "memory warning—adopting a conservative policy of looking for opportunities to release",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "objects or reduce their size as it uses them. If your app allocates large amounts",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of memory at once and crashes before it receives the low-memory warning during the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "large allocation, modify your code to slowly allocate the necessary memory, so the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system has adequate time to free memory from across the system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app loads data it can easily recreate, consider using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nspurgeabledata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When the contents of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nspurgeabledata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "aren’t marked as in-use through ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1412187-begincontentaccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system automatically discards the contents in low-memory situations. This automatic",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "discard process helps your app react to a low-memory warnings more quickly, because",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the kernel handles discarding the data, rather than your app, which is waiting to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "receive the low-memory notification before discarding the data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Don’t traverse your app’s whole object graph looking for memory to release",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "when your app receives a memory warning, and avoid using ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nscache",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "in connection with ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nspurgeabledata",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "iOS compresses memory pages that apps haven’t accessed recently. Searching for memory",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "to purge brings these pages out of the compressor, and increases memory demands on",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the system.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/gathering-information-about-memory-use": {
+      "abstract": [
+        {
+          "text": "Identify memory-use inefficiencies by measuring and profiling your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/gathering-information-about-memory-use",
+      "kind": "article",
+      "role": "article",
+      "title": "Gathering information about memory use",
+      "type": "topic",
+      "url": "/documentation/xcode/gathering-information-about-memory-use"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/identifying-high-memory-use-with-jetsam-event-reports": {
+      "abstract": [
+        {
+          "text": "Discover why the operating system terminated your app when available memory was low.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-high-memory-use-with-jetsam-event-reports",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying high-memory use with jetsam event reports",
+      "type": "topic",
+      "url": "/documentation/xcode/identifying-high-memory-use-with-jetsam-event-reports"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/making-changes-to-reduce-memory-use": {
+      "abstract": [
+        {
+          "text": "Decrease your app’s use of memory by addressing common causes of excessive use.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/making-changes-to-reduce-memory-use",
+      "kind": "article",
+      "role": "article",
+      "title": "Making changes to reduce memory use",
+      "type": "topic",
+      "url": "/documentation/xcode/making-changes-to-reduce-memory-use"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics": {
+      "abstract": [
+        {
+          "text": "Measure, investigate, and address the use of system resources and issues impacting performance using Instruments and Xcode Organizer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Performance and metrics",
+      "type": "topic",
+      "url": "/documentation/xcode/performance-and-metrics"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/preventing-memory-use-regressions": {
+      "abstract": [
+        {
+          "text": "Measure the memory that your app’s features use, and detect increases by using XCTest",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "performance tests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/preventing-memory-use-regressions",
+      "kind": "article",
+      "role": "article",
+      "title": "Preventing memory-use regressions",
+      "type": "topic",
+      "url": "/documentation/xcode/preventing-memory-use-regressions"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-memory-use": {
+      "abstract": [
+        {
+          "text": "Improve your app’s performance by analyzing memory-use metrics and making changes",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to maximize memory efficiency.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-memory-use",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Reducing your app’s memory use",
+      "type": "topic",
+      "url": "/documentation/xcode/reducing-your-app-s-memory-use"
+    },
+    "doc://com.apple.documentation/documentation/Dispatch/DISPATCH_SOURCE_TYPE_MEMORYPRESSURE": {
+      "abstract": [
+        {
+          "text": "A type of dispatch source for monitoring memory pressure events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "#define"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DISPATCH_SOURCE_TYPE_MEMORYPRESSURE"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Dispatch/DISPATCH_SOURCE_TYPE_MEMORYPRESSURE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DISPATCH_SOURCE_TYPE_MEMORYPRESSURE",
+      "type": "topic",
+      "url": "/documentation/Dispatch/DISPATCH_SOURCE_TYPE_MEMORYPRESSURE"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplication/didReceiveMemoryWarningNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts when the app receives a warning from the operating system about low memory availability.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didReceiveMemoryWarningNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/didReceiveMemoryWarningNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didReceiveMemoryWarningNotification",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplication/didReceiveMemoryWarningNotification"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/applicationDidReceiveMemoryWarning(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the app receives a memory warning from the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationDidReceiveMemoryWarning"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/applicationDidReceiveMemoryWarning(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applicationDidReceiveMemoryWarning(_:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/applicationDidReceiveMemoryWarning(_:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController": {
+      "abstract": [
+        {
+          "text": "An object that manages a view hierarchy for your UIKit app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIViewController",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController/didReceiveMemoryWarning()": {
+      "abstract": [
+        {
+          "text": "Sent to the view controller when the app receives a memory warning.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didReceiveMemoryWarning"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/didReceiveMemoryWarning()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didReceiveMemoryWarning()",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController/didReceiveMemoryWarning()"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscache": {
+      "abstract": [
+        {
+          "text": "A mutable collection you use to temporarily store transient key-value pairs that are subject to eviction when resources are low.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCache"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscache",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCache",
+      "type": "topic",
+      "url": "/documentation/foundation/nscache"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1412187-begincontentaccess": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the discardable contents are still available and have been successfully accessed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginContentAccess"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdiscardablecontent/1412187-begincontentaccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginContentAccess()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdiscardablecontent/1412187-begincontentaccess"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspurgeabledata": {
+      "abstract": [
+        {
+          "text": "A mutable data object containing bytes that can be discarded when they're no longer needed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPurgeableData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspurgeabledata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPurgeableData",
+      "type": "topic",
+      "url": "/documentation/foundation/nspurgeabledata"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/identifying-high-memory-use-with-jetsam-event-reports"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Tasks",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/gathering-information-about-memory-use",
+        "doc://com.apple.Xcode/documentation/Xcode/making-changes-to-reduce-memory-use",
+        "doc://com.apple.Xcode/documentation/Xcode/preventing-memory-use-regressions"
+      ],
+      "title": "Tasks"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsdiscardablecontent~11412187-begincontentaccess/title",
+          "value": "beginContentAccess"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1didReceiveMemoryWarning()/title",
+          "value": "didReceiveMemoryWarning"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1didReceiveMemoryWarning()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "didReceiveMemoryWarning"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIResponder",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplication~1didReceiveMemoryWarningNotification/title",
+          "value": "UIApplicationDidReceiveMemoryWarningNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplication~1didReceiveMemoryWarningNotification/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSNotificationName",
+              "text": "NSNotificationName"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIApplicationDidReceiveMemoryWarningNotification"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1applicationDidReceiveMemoryWarning(_:)/title",
+          "value": "applicationDidReceiveMemoryWarning:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1applicationDidReceiveMemoryWarning(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "applicationDidReceiveMemoryWarning:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

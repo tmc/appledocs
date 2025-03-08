@@ -1,0 +1,5123 @@
+{
+  "abstract": [
+    {
+      "text": "A part of an app’s user interface with a life cycle managed by the",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "system.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI5SceneP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Scene"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Scene"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "Scene"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Scene"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Migrating-to-the-SwiftUI-life-cycle"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by combining one or more instances",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that conform to the ",
+              "type": "text"
+            },
+            {
+              "code": "Scene",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol in the app’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App/body-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can use the built-in scenes that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftUI provides, like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", along with custom scenes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that you compose from other scenes. To create a custom scene, declare a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type that conforms to the ",
+              "type": "text"
+            },
+            {
+              "code": "Scene",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol. Implement the required",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/body-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " computed property and provide the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content for your custom scene:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MyScene: Scene {",
+            "    var body: some Scene {",
+            "        WindowGroup {",
+            "            MyRootView()",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A scene acts as a container for a view hierarchy that you want to display",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the user. The system decides when and how to present the view hierarchy",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the user interface in a way that’s platform-appropriate and dependent",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on the current state of the app. For example, for the window group shown",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "above, the system lets the user create or remove windows that contain",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "MyRootView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on platforms like macOS and iPadOS. On other platforms, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "same view hierarchy might consume the entire display when active.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Read the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/scenePhase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " environment",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "value from within a scene or one of its views to check whether a scene is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "active or in some other state. You can create a property that contains the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scene phase, which is one of the values in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScenePhase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "enumeration, using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Environment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attribute:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MyScene: Scene {",
+            "    @Environment(\\.scenePhase) private var scenePhase",
+            "",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Scene",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol provides scene modifiers, defined as protocol methods",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with default implementations, that you use to configure a scene. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, you can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/onChange(of:perform:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "trigger an action when a value changes. The following code empties a cache",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when all of the scenes in the window group have moved to the background:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MyScene: Scene {",
+            "    @Environment(\\.scenePhase) private var scenePhase",
+            "    @StateObject private var cache = DataCache()",
+            "",
+            "    var body: some Scene {",
+            "        WindowGroup {",
+            "            MyRootView()",
+            "        }",
+            "        .onChange(of: scenePhase) { newScenePhase in",
+            "            if newScenePhase == .background {",
+            "                cache.empty()",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A type conforming to this protocol inherits ",
+              "type": "text"
+            },
+            {
+              "code": "@preconcurrency @MainActor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "isolation from the protocol if the conformance is included in the type’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "base declaration:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MyCustomType: Transition {",
+            "    // `@preconcurrency @MainActor` isolation by default",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Isolation to the main actor is the default, but it’s not required. Declare",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the conformance in an extension to opt out of main actor isolation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension MyCustomType: Transition {",
+            "    // `nonisolated` by default",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AlertScene": {
+      "abstract": [
+        {
+          "text": "A scene that renders itself as a standalone alert dialog.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AlertScene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AlertScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AlertScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "AlertScene",
+      "type": "topic",
+      "url": "/documentation/swiftui/alertscene"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/App": {
+      "abstract": [
+        {
+          "text": "A type that represents the structure and behavior of an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "App"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "App"
+        }
+      ],
+      "role": "symbol",
+      "title": "App",
+      "type": "topic",
+      "url": "/documentation/swiftui/app"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/App/body-swift.property": {
+      "abstract": [
+        {
+          "text": "The content and behavior of the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI3AppP4BodyQa",
+          "text": "Body"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App/body-swift.property",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "body",
+      "type": "topic",
+      "url": "/documentation/swiftui/app/body-swift.property"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroup": {
+      "abstract": [
+        {
+          "text": "A scene that enables support for opening, creating, and saving documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DocumentGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DocumentGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "DocumentGroup",
+      "type": "topic",
+      "url": "/documentation/swiftui/documentgroup"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroupLaunchScene": {
+      "abstract": [
+        {
+          "text": "A launch scene for document-based applications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DocumentGroupLaunchScene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroupLaunchScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DocumentGroupLaunchScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "DocumentGroupLaunchScene",
+      "type": "topic",
+      "url": "/documentation/swiftui/documentgrouplaunchscene"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Environment": {
+      "abstract": [
+        {
+          "text": "A property wrapper that reads a value from a view’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Environment"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Environment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Environment"
+        }
+      ],
+      "role": "symbol",
+      "title": "Environment",
+      "type": "topic",
+      "url": "/documentation/swiftui/environment"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/scenePhase": {
+      "abstract": [
+        {
+          "text": "The current phase of the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scenePhase"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10ScenePhaseO",
+          "text": "ScenePhase"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/scenePhase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scenePhase",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/scenephase"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Group": {
+      "abstract": [
+        {
+          "text": "A type that collects multiple instances of a content type — like views,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "scenes, or commands — into a single unit.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Content",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Scene",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Group"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Group",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Group"
+        }
+      ],
+      "role": "symbol",
+      "title": "Group",
+      "type": "topic",
+      "url": "/documentation/swiftui/group"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ImmersiveSpace": {
+      "abstract": [
+        {
+          "text": "A scene that presents its content in an unbounded space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImmersiveSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ImmersiveSpace",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImmersiveSpace"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImmersiveSpace",
+      "type": "topic",
+      "url": "/documentation/swiftui/immersivespace"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/MenuBarExtra": {
+      "abstract": [
+        {
+          "text": "A scene that renders itself as a persistent control in the system menu bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MenuBarExtra"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/MenuBarExtra",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MenuBarExtra"
+        }
+      ],
+      "role": "symbol",
+      "title": "MenuBarExtra",
+      "type": "topic",
+      "url": "/documentation/swiftui/menubarextra"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Migrating-to-the-SwiftUI-life-cycle": {
+      "abstract": [
+        {
+          "text": "Use a scene-based life cycle in SwiftUI while keeping your existing codebase.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Migrating-to-the-SwiftUI-life-cycle",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating to the SwiftUI life cycle",
+      "type": "topic",
+      "url": "/documentation/swiftui/migrating-to-the-swiftui-life-cycle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ModifiedContent": {
+      "abstract": [
+        {
+          "text": "A value with a modifier applied to it.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Content",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Scene",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Modifier",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "_SceneModifier",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModifiedContent"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ModifiedContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModifiedContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModifiedContent",
+      "type": "topic",
+      "url": "/documentation/swiftui/modifiedcontent"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene": {
+      "abstract": [
+        {
+          "text": "A part of an app’s user interface with a life cycle managed by the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Scene"
+        }
+      ],
+      "role": "symbol",
+      "title": "Scene",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/Body-swift.associatedtype": {
+      "abstract": [
+        {
+          "text": "The type of scene that represents the body of this scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Body"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/Body-swift.associatedtype",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Body",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/body-swift.associatedtype"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/backgroundTask(_:action:)": {
+      "abstract": [
+        {
+          "text": "Runs the specified action when the system provides a background task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "backgroundTask"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI14BackgroundTaskV",
+          "text": "BackgroundTask"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/backgroundTask(_:action:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "backgroundTask(_:action:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/backgroundtask(_:action:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/body-swift.property": {
+      "abstract": [
+        {
+          "text": "The content and behavior of the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP4BodyQa",
+          "text": "Body"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/body-swift.property",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "body",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/body-swift.property"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/commands(content:)": {
+      "abstract": [
+        {
+          "text": "Adds commands to the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commands"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/commands(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commands(content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/commands(content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/commandsRemoved()": {
+      "abstract": [
+        {
+          "text": "Removes all commands defined by the modified scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commandsRemoved"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/commandsRemoved()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commandsRemoved()",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/commandsremoved()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/commandsReplaced(content:)": {
+      "abstract": [
+        {
+          "text": "Replaces all commands defined by the modified scene with the commands",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from the builder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commandsReplaced"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/commandsReplaced(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commandsReplaced(content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/commandsreplaced(content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultAppStorage(_:)": {
+      "abstract": [
+        {
+          "text": "The default store used by ",
+          "type": "text"
+        },
+        {
+          "code": "AppStorage",
+          "type": "codeVoice"
+        },
+        {
+          "text": " contained within the scene and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "its view content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultAppStorage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUserDefaults",
+          "text": "UserDefaults"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultAppStorage(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultAppStorage(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/defaultappstorage(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultLaunchBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the default launch behavior for this scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultLaunchBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI19SceneLaunchBehaviorV",
+          "text": "SceneLaunchBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultLaunchBehavior(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultLaunchBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/defaultlaunchbehavior(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultPosition(_:)": {
+      "abstract": [
+        {
+          "text": "Sets a default position for a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultPosition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9UnitPointV",
+          "text": "UnitPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultPosition(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultPosition(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/defaultposition(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(_:)": {
+      "abstract": [
+        {
+          "text": "Sets a default size for a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultSize(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/defaultsize(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(_:in:)": {
+      "abstract": [
+        {
+          "text": "Sets a default size for a volumetric window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@UA@SPSize3D",
+          "text": "Size3D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUnitLength",
+          "text": "UnitLength"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(_:in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultSize(_:in:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/defaultsize(_:in:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(width:height:)": {
+      "abstract": [
+        {
+          "text": "Sets a default width and height for a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(width:height:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultSize(width:height:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/defaultsize(width:height:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(width:height:depth:)": {
+      "abstract": [
+        {
+          "text": "Sets a default size for a volumetric window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "depth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(width:height:depth:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultSize(width:height:depth:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/defaultsize(width:height:depth:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(width:height:depth:in:)": {
+      "abstract": [
+        {
+          "text": "Sets a default size for a volumetric window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "depth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUnitLength",
+          "text": "UnitLength"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(width:height:depth:in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultSize(width:height:depth:in:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/defaultsize(width:height:depth:in:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultWindowPlacement(_:)": {
+      "abstract": [
+        {
+          "text": "Defines a function used for determining the default placement",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of windows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultWindowPlacement"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16WindowLayoutRootV",
+          "text": "WindowLayoutRoot"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI22WindowPlacementContextV",
+          "text": "WindowPlacementContext"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15WindowPlacementV",
+          "text": "WindowPlacement"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultWindowPlacement(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultWindowPlacement(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/defaultwindowplacement(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultWorldScaling(_:)": {
+      "abstract": [
+        {
+          "text": "Specify the world scaling behavior for the window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultWorldScaling"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20WorldScalingBehaviorV",
+          "text": "WorldScalingBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultWorldScaling(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultWorldScaling(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/defaultworldscaling(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/dialogIcon(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the icon used by alerts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dialogIcon"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV",
+          "text": "Image"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/dialogIcon(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dialogIcon(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/dialogicon(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/dialogSeverity(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the severity for alerts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dialogSeverity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI14DialogSeverityV",
+          "text": "DialogSeverity"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/dialogSeverity(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dialogSeverity(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/dialogseverity(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/dialogSuppressionToggle(_:isSuppressed:)": {
+      "abstract": [
+        {
+          "text": "Enables user suppression of an alert with a custom suppression",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dialogSuppressionToggle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "isSuppressed"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/dialogSuppressionToggle(_:isSuppressed:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dialogSuppressionToggle(_:isSuppressed:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/dialogsuppressiontoggle(_:issuppressed:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/dialogSuppressionToggle(isSuppressed:)": {
+      "abstract": [
+        {
+          "text": "Enables user suppression of an alert with a custom suppression",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dialogSuppressionToggle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "isSuppressed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/dialogSuppressionToggle(isSuppressed:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dialogSuppressionToggle(isSuppressed:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/dialogsuppressiontoggle(issuppressed:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/documentBrowserContextMenu(_:)": {
+      "abstract": [
+        {
+          "text": "Adds to a ",
+          "type": "text"
+        },
+        {
+          "code": "DocumentGroupLaunchScene",
+          "type": "codeVoice"
+        },
+        {
+          "text": " actions that accept",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a list of selected files as their parameter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "documentBrowserContextMenu"
+        },
+        {
+          "kind": "text",
+          "text": "((["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/documentBrowserContextMenu(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "documentBrowserContextMenu(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/documentbrowsercontextmenu(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/environment(_:)": {
+      "abstract": [
+        {
+          "text": "Places an observable object in the scene’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "environment"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/environment(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "environment(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/environment(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/environment(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the environment value of the specified key path to the given value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "environment"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s15WritableKeyPathC",
+          "text": "WritableKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17EnvironmentValuesV",
+          "text": "EnvironmentValues"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/environment(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "environment(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/environment(_:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/environmentObject(_:)": {
+      "abstract": [
+        {
+          "text": "Supplies an ",
+          "type": "text"
+        },
+        {
+          "code": "ObservableObject",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to a view subhierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "environmentObject"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/environmentObject(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "environmentObject(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/environmentobject(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/handlesExternalEvents(matching:)": {
+      "abstract": [
+        {
+          "text": "Specifies the external events for which SwiftUI opens a new instance",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of the modified scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handlesExternalEvents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "matching"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/handlesExternalEvents(matching:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handlesExternalEvents(matching:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/handlesexternalevents(matching:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/immersionStyle(selection:in:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for an immersive space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "immersionStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "selection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI14ImmersionStyleP",
+          "text": "ImmersionStyle"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI14ImmersionStyleP",
+          "text": "ImmersionStyle"
+        },
+        {
+          "kind": "text",
+          "text": "...) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/immersionStyle(selection:in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "immersionStyle(selection:in:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/immersionstyle(selection:in:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/immersiveContentBrightness(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the content brightness of an immersive space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "immersiveContentBrightness"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI26ImmersiveContentBrightnessV",
+          "text": "ImmersiveContentBrightness"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/immersiveContentBrightness(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "immersiveContentBrightness(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/immersivecontentbrightness(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/keyboardShortcut(_:)": {
+      "abstract": [
+        {
+          "text": "Defines a keyboard shortcut for opening new scene windows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardShortcut"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16KeyboardShortcutV",
+          "text": "KeyboardShortcut"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/keyboardShortcut(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keyboardShortcut(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/keyboardshortcut(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/keyboardShortcut(_:modifiers:localization:)": {
+      "abstract": [
+        {
+          "text": "Defines a keyboard shortcut for opening new scene windows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardShortcut"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI13KeyEquivalentV",
+          "text": "KeyEquivalent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "modifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI14EventModifiersV",
+          "text": "EventModifiers"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "localization"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16KeyboardShortcutV",
+          "text": "KeyboardShortcut"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16KeyboardShortcutV12LocalizationV",
+          "text": "Localization"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/keyboardShortcut(_:modifiers:localization:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keyboardShortcut(_:modifiers:localization:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/keyboardshortcut(_:modifiers:localization:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/menuBarExtraStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for menu bar extra created by this scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "menuBarExtraStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/menuBarExtraStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "menuBarExtraStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/menubarextrastyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/modelContainer(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the model container and associated model context in this",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "scene’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modelContainer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData14ModelContainerC",
+          "text": "ModelContainer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/modelContainer(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "modelContainer(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/modelcontainer(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/modelContainer(for:inMemory:isAutosaveEnabled:isUndoEnabled:onSetup:)": {
+      "abstract": [
+        {
+          "text": "Sets the model container in this scene for storing the provided",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "model type, creating a new container if necessary, and also sets a model",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "context for that container in this scene’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modelContainer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "inMemory"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "isAutosaveEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "isUndoEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "onSetup"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/modelContainer(for:inMemory:isAutosaveEnabled:isUndoEnabled:onSetup:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "modelContainer(for:inMemory:isAutosaveEnabled:isUndoEnabled:onSetup:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/modelcontainer(for:inmemory:isautosaveenabled:isundoenabled:onsetup:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/modelContext(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the model context in this scene’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modelContext"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData12ModelContextC",
+          "text": "ModelContext"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/modelContext(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "modelContext(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/modelcontext(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/onChange(of:initial:_:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform when the given value changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onChange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "initial"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/onChange(of:initial:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onChange(of:initial:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/onchange(of:initial:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/onChange(of:perform:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform when the given value changes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onChange"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/onChange(of:perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onChange(of:perform:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/onchange(of:perform:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/persistentSystemOverlays(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the preferred visibility of the non-transient system views",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "overlaying the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "persistentSystemOverlays"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10VisibilityO",
+          "text": "Visibility"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/persistentSystemOverlays(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "persistentSystemOverlays(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/persistentsystemoverlays(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/restorationBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the restoration behavior for this scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restorationBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI24SceneRestorationBehaviorV",
+          "text": "SceneRestorationBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/restorationBehavior(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "restorationBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/restorationbehavior(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/transformEnvironment(_:transform:)": {
+      "abstract": [
+        {
+          "text": "Transforms the environment value of the specified key path with the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "given function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transformEnvironment"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s15WritableKeyPathC",
+          "text": "WritableKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17EnvironmentValuesV",
+          "text": "EnvironmentValues"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/transformEnvironment(_:transform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transformEnvironment(_:transform:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/transformenvironment(_:transform:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/upperLimbVisibility(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the preferred visibility of the user’s upper limbs, while an",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ImmersiveSpace",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " scene is presented.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "upperLimbVisibility"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10VisibilityO",
+          "text": "Visibility"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/upperLimbVisibility(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "upperLimbVisibility(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/upperlimbvisibility(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/volumeWorldAlignment(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies how a volume should be aligned when moved in the world.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "volumeWorldAlignment"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI22WorldAlignmentBehaviorV",
+          "text": "WorldAlignmentBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/volumeWorldAlignment(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volumeWorldAlignment(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/volumeworldalignment(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowBackgroundDragBehavior(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the behavior of dragging a window by its background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowBackgroundDragBehavior"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI25WindowInteractionBehaviorV",
+          "text": "WindowInteractionBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowBackgroundDragBehavior(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowBackgroundDragBehavior(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/windowbackgrounddragbehavior(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowIdealPlacement(_:)": {
+      "abstract": [
+        {
+          "text": "Provides a function which determines a placement to use when windows",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of a scene zoom.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowIdealPlacement"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16WindowLayoutRootV",
+          "text": "WindowLayoutRoot"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI22WindowPlacementContextV",
+          "text": "WindowPlacementContext"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15WindowPlacementV",
+          "text": "WindowPlacement"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowIdealPlacement(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowIdealPlacement(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/windowidealplacement(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowIdealSize(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies how windows derived form this scene should determine their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "size when zooming.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowIdealSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15WindowIdealSizeV",
+          "text": "WindowIdealSize"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowIdealSize(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowIdealSize(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/windowidealsize(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowLevel(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the window level of this scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowLevel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11WindowLevelV",
+          "text": "WindowLevel"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowLevel(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowLevel(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/windowlevel(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowManagerRole(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the role for windows derived from ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": " when",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "participating in a managed window context, such as full screen or",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Stage Manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowManagerRole"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17WindowManagerRoleV",
+          "text": "WindowManagerRole"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowManagerRole(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowManagerRole(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/windowmanagerrole(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowResizability(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the kind of resizability to use for a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowResizability"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI18WindowResizabilityV",
+          "text": "WindowResizability"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowResizability(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowResizability(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/windowresizability(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for windows created by this scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/windowstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowToolbarLabelStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the label style of items in a toolbar and enables user customization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowToolbarLabelStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17ToolbarLabelStyleV",
+          "text": "ToolbarLabelStyle"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowToolbarLabelStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowToolbarLabelStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/windowtoolbarlabelstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowToolbarLabelStyle(fixed:)": {
+      "abstract": [
+        {
+          "text": "Sets the label style of items in a toolbar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowToolbarLabelStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fixed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17ToolbarLabelStyleV",
+          "text": "ToolbarLabelStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowToolbarLabelStyle(fixed:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowToolbarLabelStyle(fixed:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/windowtoolbarlabelstyle(fixed:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowToolbarStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for the toolbar defined within this scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowToolbarStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5SceneP",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowToolbarStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowToolbarStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/scene/windowtoolbarstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SceneBuilder": {
+      "abstract": [
+        {
+          "text": "A result builder for composing a collection of scenes into a single",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "composite scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SceneBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SceneBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SceneBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "SceneBuilder",
+      "type": "topic",
+      "url": "/documentation/swiftui/scenebuilder"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScenePhase": {
+      "abstract": [
+        {
+          "text": "An indication of a scene’s operational state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScenePhase"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScenePhase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScenePhase"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScenePhase",
+      "type": "topic",
+      "url": "/documentation/swiftui/scenephase"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Settings": {
+      "abstract": [
+        {
+          "text": "A scene that presents an interface for viewing and modifying an app’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Settings"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Settings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Settings"
+        }
+      ],
+      "role": "symbol",
+      "title": "Settings",
+      "type": "topic",
+      "url": "/documentation/swiftui/settings"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UtilityWindow": {
+      "abstract": [
+        {
+          "text": "A specialized window scene that provides secondary utility to the content",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of the main scenes of an application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UtilityWindow"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UtilityWindow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UtilityWindow"
+        }
+      ],
+      "role": "symbol",
+      "title": "UtilityWindow",
+      "type": "topic",
+      "url": "/documentation/swiftui/utilitywindow"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WKNotificationScene": {
+      "abstract": [
+        {
+          "text": "A scene which appears in response to receiving the specified",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "category of remote or local notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKNotificationScene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WKNotificationScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKNotificationScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKNotificationScene",
+      "type": "topic",
+      "url": "/documentation/swiftui/wknotificationscene"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Window": {
+      "abstract": [
+        {
+          "text": "A scene that presents its content in a single, unique window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Window"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Window",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Window"
+        }
+      ],
+      "role": "symbol",
+      "title": "Window",
+      "type": "topic",
+      "url": "/documentation/swiftui/window"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowGroup": {
+      "abstract": [
+        {
+          "text": "A scene that presents a group of identically structured windows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WindowGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WindowGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "WindowGroup",
+      "type": "topic",
+      "url": "/documentation/swiftui/windowgroup"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AlertScene",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroup",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroupLaunchScene",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Group",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ImmersiveSpace",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/MenuBarExtra",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ModifiedContent",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Settings",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UtilityWindow",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WKNotificationScene",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Window",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowGroup"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-scenes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SceneBuilder"
+      ],
+      "title": "Creating scenes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-scene",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/body-swift.property",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/Body-swift.associatedtype"
+      ],
+      "title": "Creating a scene"
+    },
+    {
+      "anchor": "Watching-for-changes",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/onChange(of:initial:_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/handlesExternalEvents(matching:)"
+      ],
+      "title": "Watching for changes"
+    },
+    {
+      "anchor": "Creating-background-tasks",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/backgroundTask(_:action:)"
+      ],
+      "title": "Creating background tasks"
+    },
+    {
+      "anchor": "Managing-app-storage",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultAppStorage(_:)"
+      ],
+      "title": "Managing app storage"
+    },
+    {
+      "anchor": "Setting-commands",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/commands(content:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/commandsRemoved()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/commandsReplaced(content:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/keyboardShortcut(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/keyboardShortcut(_:modifiers:localization:)"
+      ],
+      "title": "Setting commands"
+    },
+    {
+      "anchor": "Sizing-and-positioning-the-scene",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultPosition(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(width:height:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(width:height:depth:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(_:in:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultSize(width:height:depth:in:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultWindowPlacement(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowResizability(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowIdealSize(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowIdealPlacement(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowManagerRole(_:)"
+      ],
+      "title": "Sizing and positioning the scene"
+    },
+    {
+      "anchor": "Interacting-with-volumes",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/volumeWorldAlignment(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultWorldScaling(_:)"
+      ],
+      "title": "Interacting with volumes"
+    },
+    {
+      "anchor": "Configuring-scene-visibility",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/defaultLaunchBehavior(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/restorationBehavior(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/persistentSystemOverlays(_:)"
+      ],
+      "title": "Configuring scene visibility"
+    },
+    {
+      "anchor": "Styling-the-scene",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/immersionStyle(selection:in:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/upperLimbVisibility(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowLevel(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowToolbarStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowToolbarLabelStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowToolbarLabelStyle(fixed:)"
+      ],
+      "title": "Styling the scene"
+    },
+    {
+      "anchor": "Configuring-a-data-model",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/modelContext(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/modelContainer(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/modelContainer(for:inMemory:isAutosaveEnabled:isUndoEnabled:onSetup:)"
+      ],
+      "title": "Configuring a data model"
+    },
+    {
+      "anchor": "Managing-the-environment",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/environment(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/environment(_:_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/environmentObject(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/transformEnvironment(_:transform:)"
+      ],
+      "title": "Managing the environment"
+    },
+    {
+      "anchor": "Interacting-with-dialogs",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/dialogIcon(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/dialogSeverity(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/dialogSuppressionToggle(isSuppressed:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/dialogSuppressionToggle(_:isSuppressed:)"
+      ],
+      "title": "Interacting with dialogs"
+    },
+    {
+      "anchor": "Supporting-drag-behavior",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/windowBackgroundDragBehavior(_:)"
+      ],
+      "title": "Supporting drag behavior"
+    },
+    {
+      "anchor": "Deprecated-symbols",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/onChange(of:perform:)"
+      ],
+      "title": "Deprecated symbols"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/documentBrowserContextMenu(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/immersiveContentBrightness(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scene/menuBarExtraStyle(_:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/scene"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

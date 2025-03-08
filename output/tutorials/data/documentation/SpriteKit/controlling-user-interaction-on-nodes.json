@@ -1,0 +1,1924 @@
+{
+  "abstract": [
+    {
+      "text": "Enable your node to respond to user input, like touches or mouse clicks.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKNode"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/controlling-user-interaction-on-nodes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Controlling User Interaction on Nodes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "SKNode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subclasses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIResponder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in iOS and tvOS, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSResponder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in macOS, allowing nodes to respond to user interaction events such as touches and mouse movements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two strategies you can adopt when supporting user interaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable user interaction on a single catch-all node, for example the scene, and calculate the child node or nodes that the user is interacting with by doing custom hit tests.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable user interaction on every node you want the user to interact with, and subclass them to implement their responder functions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Catch-All-User-Interaction-by-Using-a-Parent-Node",
+          "level": 3,
+          "text": "Catch All User Interaction by Using a Parent Node",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 1 shows an example of how to handle all user interaction on a parent node–in this case, the scene itself. The ",
+              "type": "text"
+            },
+            {
+              "code": "TouchScene",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class subclasses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and overrides its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/isUserInteractionEnabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to return ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 1. A scene that responds to touches",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class TouchScene: SKScene {",
+            "    override var isUserInteractionEnabled: Bool {",
+            "        get {",
+            "            return true",
+            "        }",
+            "        set {",
+            "            // ignore",
+            "        }",
+            "    }",
+            "    ",
+            "    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {",
+            "        guard let touch = touches.first else {",
+            "            return",
+            "        }",
+            "        ",
+            "        let location = touch.location(in: self)",
+            "        ",
+            "        let touchedNodes = nodes(at: location)",
+            "        let frontTouchedNode = atPoint(location).name",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Alternatively, you could override ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/sceneDidLoad()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and set ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/isUserInteractionEnabled",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in your implementation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The overridden ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIResponder/touchesBegan(_:with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method shows two techniques to find the nodes that have been touched. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/nodes(at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns an array of all of the sprites and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/atPoint(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns the top-most touched node.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the child nodes should have ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/isUserInteractionEnabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " set to ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The parent scene is responsible for responding to user interactions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 2 shows the equivalent code for macOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 2. A scene that responds to mouse down",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class TouchScene: SKScene {",
+            "    override var isUserInteractionEnabled: Bool {",
+            "        get {",
+            "            return true",
+            "        }",
+            "        set {",
+            "            // ignore",
+            "        }",
+            "    }",
+            "    ",
+            "    override func mouseDown(with event: NSEvent) {",
+            "        let location = event.location(in: self)",
+            "        let touchedNodes = nodes(at: location)",
+            "        let firstTouchedNode = atPoint(location).name",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Enable-User-Interaction-on-All-Nodes",
+          "level": 3,
+          "text": "Enable User Interaction on All Nodes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 3 shows an example of supporting user interaction on individual nodes in your scene. Instances of ",
+              "type": "text"
+            },
+            {
+              "code": "TouchSpriteNode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are added as children of a standard scene and user interaction is handled by each independently.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the case of overlapping nodes, only one will register a user interaction. For example, of two overlapping nodes, the one with the highest ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/zPosition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " receives the touch. For two nodes with an equal ",
+              "type": "text"
+            },
+            {
+              "code": "zPosition",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the last node in the parent’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/children",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array receives the touch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 3. A sprite node that responds to touches",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class TouchSpriteNode: SKSpriteNode {",
+            "    override var isUserInteractionEnabled: Bool {",
+            "        set {",
+            "            // ignore",
+            "        }",
+            "        get {",
+            "            return true",
+            "        }",
+            "    }",
+            "         ",
+            "    // For macOS replace this method with `mouseDown(with:)`",
+            "    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {",
+            "        // User has touched this node",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-User-Interaction-on-Hidden-Nodes-by-Using-Alpha",
+          "level": 3,
+          "text": "Handle User Interaction on Hidden Nodes by Using Alpha",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Translucent nodes–those with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/alpha",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of less than ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " but greater than ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": "–still receive user interactions. You can set a node’s ",
+              "type": "text"
+            },
+            {
+              "code": "alpha",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgfloat/1845210-leastnonzeromagnitude",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to make it effectively transparent and yet still respond to touches or mouse movements, although giving it a color of ",
+              "type": "text"
+            },
+            {
+              "code": "clear",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has the same effect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Review-the-Bounds-of-Node-User-Interaction",
+          "level": 3,
+          "text": "Review the Bounds of Node User Interaction",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "User interaction is based on the bounding box of the node. Sprite nodes containing textures with transparent areas or shape nodes with non-rectangular shapes will still report touches and mouse interactions even if the interaction is over a transparent part of their content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you build a composite node, the region that receives user interaction events is dependent on the node tree. Listing 4 shows the code used to create a subclassed ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that renders six circular shape nodes forming a larger circle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 4. A composite node that responds to touches",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class TouchCompositeNode: SKNode {",
+            "    override var isUserInteractionEnabled: Bool {",
+            "        set {",
+            "            // ignore",
+            "        }",
+            "        get {",
+            "            return true",
+            "        }",
+            "    }",
+            "    ",
+            "    let tau = CGFloat.pi * 2",
+            "    ",
+            "    required init(color: SKColor, radius: CGFloat = 100) {",
+            "        super.init()",
+            "        ",
+            "        stride(from: 0, to: tau, by: tau / 6).forEach {",
+            "            ",
+            "            let node = SKShapeNode(circleOfRadius: 20)",
+            "            ",
+            "            node.fillColor = color",
+            "            node.position = CGPoint(x: sin($0) * radius,",
+            "                                    y: cos($0) * radius)",
+            "            ",
+            "            addChild(node)",
+            "        }",
+            "    }",
+            "    ",
+            "    required init?(coder aDecoder: NSCoder) {",
+            "        fatalError(\"init(coder:) has not been implemented\")",
+            "    }",
+            "    ",
+            "    // For macOS replace this method with `mouseDown(with:)`",
+            "    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {",
+            "        // User has touched this node",
+            "    }",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you were to add an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "TouchCompositeNode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with no other nodes behind it, all touches inside its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/calculateAccumulatedFrame()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " would be reported. The figure below shows the accumulated frame of ",
+              "type": "text"
+            },
+            {
+              "code": "TouchCompositeNode",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Any user events within the dashed line will call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIResponder/touchesBegan(_:with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2985136",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, if you were to place an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "TouchCompositeNode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " above another node using, for example, the code in Listing 5, only touches on its child nodes would be reported.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 5. Placing a composite node over a background",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let composite = TouchCompositeNode(color: .red)",
+            "composite.position = CGPoint(x: 400, y: 400)",
+            "     ",
+            "let backgroundNode = SKSpriteNode(color: .blue,",
+            "                                  size: CGSize(width: 500, height: 500))",
+            "backgroundNode.position = CGPoint(x: 400, y: 400)",
+            "     ",
+            "scene.addChild(backgroundNode)",
+            "scene.addChild(composite)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this case, only touches or mouse events over the red spots shown in the figure below will call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIResponder/touchesBegan(_:with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2985152",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Nodes that have user interaction disabled will block touch and mouse events on nodes behind them where they overlap.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSResponder": {
+      "abstract": [
+        {
+          "text": "An abstract class that forms the basis of event and command processing in AppKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSResponder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSResponder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSResponder",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSResponder"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIResponder": {
+      "abstract": [
+        {
+          "text": "An abstract interface for responding to and handling events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIResponder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIResponder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIResponder",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIResponder"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIResponder/touchesBegan(_:with:)": {
+      "abstract": [
+        {
+          "text": "Tells this object that one or more new touches occurred in a view or window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "touchesBegan"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "touches"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITouch",
+          "text": "UITouch"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "event"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIEvent",
+          "text": "UIEvent"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIResponder/touchesBegan(_:with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "touchesBegan(_:with:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIResponder/touchesBegan(_:with:)"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgfloat/1845210-leastnonzeromagnitude": {
+      "abstract": [
+        {
+          "text": "The least positive number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "leastNonzeroMagnitude"
+        },
+        {
+          "kind": "text",
+          "text": ": CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgfloat/1845210-leastnonzeromagnitude",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "leastNonzeroMagnitude",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgfloat/1845210-leastnonzeromagnitude"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode": {
+      "abstract": [
+        {
+          "text": "The base class of all SpriteKit nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/alpha": {
+      "abstract": [
+        {
+          "text": "The transparency value applied to the node’s contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/alpha",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "alpha"
+        }
+      ],
+      "role": "symbol",
+      "title": "alpha",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/alpha"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/atPoint(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the deepest visible descendant that intersects a point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "atPoint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKNode",
+          "text": "SKNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/atPoint(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nodeAtPoint:"
+        }
+      ],
+      "role": "symbol",
+      "title": "atPoint(_:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/atpoint(_:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/calculateAccumulatedFrame()": {
+      "abstract": [
+        {
+          "text": "Returns a rectangle in the parent’s coordinate system that contains the position and size of itself and all child nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "calculateAccumulatedFrame"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/calculateAccumulatedFrame()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "calculateAccumulatedFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "calculateAccumulatedFrame()",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/calculateaccumulatedframe()"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/children": {
+      "abstract": [
+        {
+          "text": "The node’s children.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "children"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKNode",
+          "text": "SKNode"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/children",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "children"
+        }
+      ],
+      "role": "symbol",
+      "title": "children",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/children"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/focusBehavior": {
+      "abstract": [
+        {
+          "text": "The focus behavior for a node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "focusBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SKNodeFocusBehavior",
+          "text": "SKNodeFocusBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/focusBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "focusBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "focusBehavior",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/focusbehavior"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/isUserInteractionEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the node receives touch events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isUserInteractionEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/isUserInteractionEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userInteractionEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isUserInteractionEnabled",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/isuserinteractionenabled"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/nodes(at:)": {
+      "abstract": [
+        {
+          "text": "Returns an array of all visible descendants that intersect a point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nodes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKNode",
+          "text": "SKNode"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/nodes(at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nodesAtPoint:"
+        }
+      ],
+      "role": "symbol",
+      "title": "nodes(at:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/nodes(at:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/zPosition": {
+      "abstract": [
+        {
+          "text": "The height of the node relative to its parent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zPosition"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/zPosition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "zPosition"
+        }
+      ],
+      "role": "symbol",
+      "title": "zPosition",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/zposition"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene": {
+      "abstract": [
+        {
+          "text": "An object that organizes all of the active SpriteKit content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKScene"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKScene",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/sceneDidLoad()": {
+      "abstract": [
+        {
+          "text": "Tells you when the scene is presented.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sceneDidLoad"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene/sceneDidLoad()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sceneDidLoad"
+        }
+      ],
+      "role": "symbol",
+      "title": "sceneDidLoad()",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene/scenedidload()"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building": {
+      "abstract": [
+        {
+          "text": "Define the appearance or layout of scene content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Nodes for Scene Building",
+      "type": "topic",
+      "url": "/documentation/spritekit/nodes-for-scene-building"
+    },
+    "media-2985136": {
+      "alt": "Diagram showing how user events can be reported inside a node’s accumulated frame",
+      "identifier": "media-2985136",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f7a9d0b701f60604c0d9eb65e1a59f62/media-2985136@2x.png"
+        }
+      ]
+    },
+    "media-2985152": {
+      "alt": "Diagram showing how events are reported over a node’s non-transparent content. ",
+      "identifier": "media-2985152",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/547d4cb2fb694ec4ab99d0f5fa0ff546/media-2985152@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Handling-User-Input",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/isUserInteractionEnabled",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/focusBehavior"
+      ],
+      "title": "Handling User Input"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Handling-User-Input",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/isUserInteractionEnabled",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/focusBehavior"
+              ],
+              "title": "Handling User Input"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/title",
+          "value": "SKNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSResponder/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSResponder"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1sceneDidLoad()/title",
+          "value": "sceneDidLoad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene~1sceneDidLoad()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sceneDidLoad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1alpha/title",
+          "value": "alpha"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1alpha/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "alpha"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIResponder~1touchesBegan(_:with:)/title",
+          "value": "touchesBegan:withEvent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIResponder~1touchesBegan(_:with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "touchesBegan:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSSet",
+              "text": "NSSet<UITouch *>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "touches"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "withEvent:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIEvent",
+              "text": "UIEvent"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "event"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1atPoint(_:)/title",
+          "value": "nodeAtPoint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1atPoint(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "nodeAtPoint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1isUserInteractionEnabled/title",
+          "value": "userInteractionEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1isUserInteractionEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userInteractionEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1calculateAccumulatedFrame()/title",
+          "value": "calculateAccumulatedFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1calculateAccumulatedFrame()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "calculateAccumulatedFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1children/title",
+          "value": "children"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1children/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "children"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1zPosition/title",
+          "value": "zPosition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1zPosition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "zPosition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1nodes(at:)/title",
+          "value": "nodesAtPoint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1nodes(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "nodesAtPoint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIResponder/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIResponder"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene/title",
+          "value": "SKScene"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1focusBehavior/title",
+          "value": "focusBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1focusBehavior/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "focusBehavior"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/controlling-user-interaction-on-nodes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/controlling-user-interaction-on-nodes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

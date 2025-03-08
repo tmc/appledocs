@@ -1,0 +1,539 @@
+{
+  "abstract": [
+    {
+      "text": "Learn different methods to debug your code using console output.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/console-print-debugging"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Debugging an App Playground using the Console"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When writing code in Swift Playgrounds, you can debug your playgrounds by using print statements and viewing their output in the console. You can filter statements in the console to find specific outputs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-print-statement",
+          "level": 2,
+          "text": "Add a print statement",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call ",
+              "type": "text"
+            },
+            {
+              "code": "print(_:separator:terminator)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the code you’d like to debug and add any items you’d like to output to the console. These items output as ",
+              "type": "text"
+            },
+            {
+              "code": "String",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values, the same as the output obtained by calling ",
+              "type": "text"
+            },
+            {
+              "code": "String(item)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". To customize your debug output for any type, you can add ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/swift/customdebugstringconvertible",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " conformance to provide your own implementation for ",
+              "type": "text"
+            },
+            {
+              "code": "debugDescription",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This allows you to print custom ",
+              "type": "text"
+            },
+            {
+              "code": "String",
+              "type": "codeVoice"
+            },
+            {
+              "text": " representations for any type and view them in the console.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re trying to debug a SwiftUI view, you need to adjust your approach. Because SwiftUI is a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/swiftui/state-and-data-flow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can’t add an imperative ",
+              "type": "text"
+            },
+            {
+              "code": "print",
+              "type": "codeVoice"
+            },
+            {
+              "text": " call inside your view declaration. This is because the view ",
+              "type": "text"
+            },
+            {
+              "code": "body",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property expects to return a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/swiftui/view",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value. To resolve this, you can use one of several approaches.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "One approaach to debug your declarative code is to attach the ",
+              "type": "text"
+            },
+            {
+              "code": "onAppear(perform:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier to a view in your ",
+              "type": "text"
+            },
+            {
+              "code": "body",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and call ",
+              "type": "text"
+            },
+            {
+              "code": "print",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when the view first appears:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Image(systemName: \"globe\")",
+            "    .onAppear {",
+            "        print(\"This is the debug output.\")",
+            "    }"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You could also add an extension on ",
+              "type": "text"
+            },
+            {
+              "code": "View",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that returns itself and calls the ",
+              "type": "text"
+            },
+            {
+              "code": "print",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension View {",
+            "    func printOutput(_ value: Any) -> Self {",
+            "        print(value)",
+            "        return self",
+            "    }",
+            "}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can then use ",
+              "type": "text"
+            },
+            {
+              "code": "printOutput",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as a view modifier to print debug information to the console when the view is built:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "VStack {",
+            "   ForEach(colors, id: \\.self) { color in",
+            "      Circle()",
+            "         .foregroundColor(color)",
+            "         .printOutput(color)",
+            "   }",
+            "}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Understand-when-and-why-your-views-change",
+          "level": 2,
+          "text": "Understand when and why your views change",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Another approach that’s particularly useful when debugging SwiftUI view updates is to call the internal method ",
+              "type": "text"
+            },
+            {
+              "code": "Self._printChanges()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from the ",
+              "type": "text"
+            },
+            {
+              "code": "body",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of the view — instead of calling ",
+              "type": "text"
+            },
+            {
+              "code": "print",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This records which property caused the view to update and sends that information to the console. In addition to providing property names, ",
+              "type": "text"
+            },
+            {
+              "code": "@self",
+              "type": "codeVoice"
+            },
+            {
+              "text": " marks the change to the view value, and ",
+              "type": "text"
+            },
+            {
+              "code": "@identity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " marks the change to the view’s identity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var body: some View {",
+            "    let _ = Self._printChanges()",
+            "    // View code ",
+            "}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "See-your-apps-output-in-the-Console",
+          "level": 2,
+          "text": "See your app’s output in the Console",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Press the console button in the code editor to show and hide the console. To adjust the size of the console, you can drag to increase or decrease the available space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "console",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To filter results, tap the filter button and enter a phrase you’d like to filter on. The remaining results filter based upon this input.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can tap to select a result, which allows you to select it as text or to clear the console output by deleting the text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "console": {
+      "alt": "The Swift Playgrounds code editor displaying console output",
+      "identifier": "console",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6c0ce410a209737123227e53771c814a/console@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/386bdedb803b501c2845910debc37588/console~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/add-a-swift-package": {
+      "abstract": [
+        {
+          "text": "Extend the functionality of your app playground by finding and adding a publicly available Swift package.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/add-a-swift-package",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Swift package to your app playground",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/add-a-swift-package"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/live-preview": {
+      "abstract": [
+        {
+          "text": "Use the canvas in Swift Playgrounds to see a live preview of the SwiftUI views in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/live-preview",
+      "kind": "article",
+      "role": "article",
+      "title": "Previewing SwiftUI views in Swift Playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/live-preview"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/project-capabilities": {
+      "abstract": [
+        {
+          "text": "Request access for your app to protected resources, services, or device hardware such as sensors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/project-capabilities",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting access to capabilities for your app playground",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/project-capabilities"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/using-content-in-user-projects": {
+      "abstract": [
+        {
+          "text": "Learn how to bring sample code into your app playground.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/using-content-in-user-projects",
+      "kind": "article",
+      "role": "article",
+      "title": "Importing sample content into user app playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/using-content-in-user-projects"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds": {
+      "abstract": [
+        {
+          "text": "Learn to write apps, repurpose sample code, create, and share learning experiences in Swift Playgrounds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+      "kind": "article",
+      "role": "collection",
+      "title": "Swift Playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/documentation/swift/customdebugstringconvertible": {
+      "identifier": "https://developer.apple.com/documentation/swift/customdebugstringconvertible",
+      "title": "CustomDebugStringConvertible",
+      "titleInlineContent": [
+        {
+          "text": "CustomDebugStringConvertible",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/swift/customdebugstringconvertible"
+    },
+    "https://developer.apple.com/documentation/swiftui/state-and-data-flow": {
+      "identifier": "https://developer.apple.com/documentation/swiftui/state-and-data-flow",
+      "title": "declarative framework",
+      "titleInlineContent": [
+        {
+          "text": "declarative framework",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/swiftui/state-and-data-flow"
+    },
+    "https://developer.apple.com/documentation/swiftui/view": {
+      "identifier": "https://developer.apple.com/documentation/swiftui/view",
+      "title": "View",
+      "titleInlineContent": [
+        {
+          "text": "View",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/swiftui/view"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-playgrounds",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/add-a-swift-package",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/live-preview",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/project-capabilities",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/using-content-in-user-projects"
+      ],
+      "title": "App playgrounds"
+    }
+  ]
+}

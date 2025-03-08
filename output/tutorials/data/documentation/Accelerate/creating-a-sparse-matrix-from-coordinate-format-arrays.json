@@ -1,0 +1,1577 @@
+{
+  "abstract": [
+    {
+      "text": "Use separate coordinate format arrays to create sparse matrices.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/sparse-solvers-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/conversion-from-other-formats"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/creating-a-sparse-matrix-from-coordinate-format-arrays"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a sparse matrix from coordinate format arrays"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In some cases — for example, if you’re reading matrix values from a file — you may find it easier to create sparse matrix objects from coordinate format arrays. This approach requires three separate arrays: one that contains the column indexes, a second that contains the row indexes, and a third that contains the matrix values. Each array contains the same number of elements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-sparse-matrix",
+          "level": 3,
+          "text": "Create the sparse matrix",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following is an example of a symmetric sparse matrix:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2887076",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because this sparse matrix is symmetric, define it with the arrays below that describe its lower triangle. For example, the value ",
+              "type": "text"
+            },
+            {
+              "code": "9.5",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is in row 2, column 2.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "row =      [ 0,   1,   3,    1,    2,   3,   2,   3]",
+                    "column =   [ 0,   0,   0,    1,    1,   1,   2,   3]",
+                    "values =   [10.0, 1.0, 2.5, 12.0, -0.3, 1.1, 9.5, 6.0] "
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "int row[] =       { 0,   1,   3,    1,    2,   3,   2,   3};",
+                    "int column[] =    { 0,   0,   0,    1,    1,   1,   2,   3};",
+                    "double values[] = {10.0, 1.0, 2.5, 12.0, -0.3, 1.1, 9.5, 6.0};"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "attributes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to specify that the matrix is symmetric and the items in the values array derive from the lower triangle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code defines the attributes and creates the sparse matrix instance:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "var attributes = SparseAttributes_t()",
+                    "attributes.triangle = SparseLowerTriangle",
+                    "attributes.kind = SparseSymmetric  ",
+                    " ",
+                    "var row: [Int32] =      [ 0,   1,   3,    1,    2,   3,   2,   3]",
+                    "var column: [Int32] =   [ 0,   0,   0,    1,    1,   1,   2,   3]",
+                    "var values =            [10.0, 1.0, 2.5, 12.0, -0.3, 1.1, 9.5, 6.0] ",
+                    "         ",
+                    "let blockCount = 8",
+                    "let blockSize = 1",
+                    " ",
+                    "let A = SparseConvertFromCoordinate(4, 4,",
+                    "                                    blockCount, UInt8(blockSize),",
+                    "                                    attributes,",
+                    "                                    &row, &column,",
+                    "                                    &values)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "SparseAttributes_t attributes = {",
+                    "    .triangle = SparseLowerTriangle,",
+                    "    .kind = SparseSymmetric",
+                    "};",
+                    " ",
+                    "int row[] =       { 0,   1,   3,    1,    2,   3,   2,   3};",
+                    "int column[] =    { 0,   0,   0,    1,    1,   1,   2,   3};",
+                    "double values[] = {10.0, 1.0, 2.5, 12.0, -0.3, 1.1, 9.5, 6.0};",
+                    " ",
+                    "long blockCount = 8;",
+                    "UInt8 blockSize = 1;",
+                    " ",
+                    "SparseMatrix_Double A = SparseConvertFromCoordinate(4, 4,",
+                    "                                                    blockCount, blockSize,",
+                    "                                                    attributes,",
+                    "                                                    row, column,",
+                    "                                                    values);"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Invalid-and-duplicate-entries",
+          "level": 3,
+          "text": "Invalid and duplicate entries",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system ignores the block element and doesn’t include it in the returned matrix if the coordinates ",
+              "type": "text"
+            },
+            {
+              "code": "(row[i], column[i])",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are invalid, meaning either of the following is true:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "They lie outside the ranges ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0..<rowCount",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0..<columnCount",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", respectively.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseAttributes_t/kind",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseTriangular",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseUnitTriangular",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and the coordinates lie in the wrong triangle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseAttributes_t/kind",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseSymmetric",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the system transposes any entries in the wrong triangle and sums them into the block at ",
+              "type": "text"
+            },
+            {
+              "code": "(column[i], row[i])",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", if one is present.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system sums elements with duplicate coordinates and replaces them with a single entry.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The coordinate-conversion functions support block matrices, that is, those with a ",
+              "type": "text"
+            },
+            {
+              "code": "blockSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " greater than 1. The described matrix has ",
+              "type": "text"
+            },
+            {
+              "code": "rowCount * blockSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " rows and ",
+              "type": "text"
+            },
+            {
+              "code": "columnCount * blockSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " columns. For each ",
+              "type": "text"
+            },
+            {
+              "code": "i in 0..<blockCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", there’s a structurally nonzero block at block position ",
+              "type": "text"
+            },
+            {
+              "code": "(row[i], column[i])",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with numerical values ",
+              "type": "text"
+            },
+            {
+              "code": "data[i * blockSize * blockSize:(i + 1) * blockSize * blockSize - 1]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The system interprets the block’s values as the elements of a dense column-major matrix with ",
+              "type": "text"
+            },
+            {
+              "code": "blockSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " rows and columns.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Supply-a-user-defined-workspace",
+          "level": 3,
+          "text": "Supply a user-defined workspace",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two variants of each converter. The following functions allocate their own workspace internally and allocate space for the matrices that they return.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseConvertFromCoordinate(_:_:_:_:_:_:_:_:)-4n2el",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for double-precision, floating-point values",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseConvertFromCoordinate(_:_:_:_:_:_:_:_:)-4n2th",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for single-precision, floating-point values",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following functions require preallocated storage for the matrices that they return and a separate workspace for precise control over allocations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseConvertFromCoordinate(_:_:_:_:_:_:_:_:_:_:)-56hv8",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for double-precision, floating-point values",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseConvertFromCoordinate(_:_:_:_:_:_:_:_:_:_:)-84plp",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for single-precision, floating-point values",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseAttributes_t/kind": {
+      "abstract": [
+        {
+          "text": "An eumeration that specifies whether the matrix is ordinary, unit-triangular, triangular, or symmetric.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kind"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@SparseKind_t",
+          "text": "SparseKind_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseAttributes_t/kind",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kind"
+        }
+      ],
+      "role": "symbol",
+      "title": "kind",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseattributes_t/kind"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseConvertFromCoordinate(_:_:_:_:_:_:_:_:)-4n2el": {
+      "abstract": [
+        {
+          "text": "Returns a sparse matrix of double-precision values from individual coordinate format arrays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseConvertFromCoordinate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseAttributes_t",
+          "text": "SparseAttributes_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseMatrix_Double",
+          "text": "SparseMatrix_Double"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseConvertFromCoordinate(_:_:_:_:_:_:_:_:)-4n2el",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseConvertFromCoordinate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseConvertFromCoordinate(_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseconvertfromcoordinate(_:_:_:_:_:_:_:_:)-4n2el"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseConvertFromCoordinate(_:_:_:_:_:_:_:_:)-4n2th": {
+      "abstract": [
+        {
+          "text": "Returns a sparse matrix of single-precision values from individual coordinate format arrays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseConvertFromCoordinate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseAttributes_t",
+          "text": "SparseAttributes_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseMatrix_Float",
+          "text": "SparseMatrix_Float"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseConvertFromCoordinate(_:_:_:_:_:_:_:_:)-4n2th",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseConvertFromCoordinate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseConvertFromCoordinate(_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseconvertfromcoordinate(_:_:_:_:_:_:_:_:)-4n2th"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseConvertFromCoordinate(_:_:_:_:_:_:_:_:_:_:)-56hv8": {
+      "abstract": [
+        {
+          "text": "Returns a sparse matrix of double-precision values from individual coordinate format arrays, without any internal memory allocations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseConvertFromCoordinate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseAttributes_t",
+          "text": "SparseAttributes_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseMatrix_Double",
+          "text": "SparseMatrix_Double"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseConvertFromCoordinate(_:_:_:_:_:_:_:_:_:_:)-56hv8",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseConvertFromCoordinate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseConvertFromCoordinate(_:_:_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseconvertfromcoordinate(_:_:_:_:_:_:_:_:_:_:)-56hv8"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseConvertFromCoordinate(_:_:_:_:_:_:_:_:_:_:)-84plp": {
+      "abstract": [
+        {
+          "text": "Returns a sparse matrix of single-precision values from individual coordinate format arrays, without any internal memory allocations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseConvertFromCoordinate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseAttributes_t",
+          "text": "SparseAttributes_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseMatrix_Float",
+          "text": "SparseMatrix_Float"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseConvertFromCoordinate(_:_:_:_:_:_:_:_:_:_:)-84plp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseConvertFromCoordinate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseConvertFromCoordinate(_:_:_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseconvertfromcoordinate(_:_:_:_:_:_:_:_:_:_:)-84plp"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseSymmetric": {
+      "abstract": [
+        {
+          "text": "A symmetric sparse matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseSymmetric"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@SparseKind_t",
+          "text": "SparseKind_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseSymmetric",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseSymmetric"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseSymmetric",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsesymmetric"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseTriangular": {
+      "abstract": [
+        {
+          "text": "A triangular sparse matrix with a nonunit diagonal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseTriangular"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@SparseKind_t",
+          "text": "SparseKind_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseTriangular",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseTriangular"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseTriangular",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparsetriangular"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseUnitTriangular": {
+      "abstract": [
+        {
+          "text": "A triangular sparse matrix with a unit diagonal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseUnitTriangular"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@SparseKind_t",
+          "text": "SparseKind_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseUnitTriangular",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseUnitTriangular"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseUnitTriangular",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseunittriangular"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/conversion-from-other-formats": {
+      "abstract": [
+        {
+          "text": "Create sparse matrices from coordinate format arrays and BLAS opaque matrices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/conversion-from-other-formats",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Conversion from Other Formats",
+      "type": "topic",
+      "url": "/documentation/accelerate/conversion-from-other-formats"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/creating-sparse-matrices": {
+      "abstract": [
+        {
+          "text": "Create sparse matrices for factorization and solving systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/creating-sparse-matrices",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating sparse matrices",
+      "type": "topic",
+      "url": "/documentation/accelerate/creating-sparse-matrices"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-using-direct-methods": {
+      "abstract": [
+        {
+          "text": "Use direct methods to solve systems of equations where the coefficient matrix is sparse.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-using-direct-methods",
+      "kind": "article",
+      "role": "article",
+      "title": "Solving systems using direct methods",
+      "type": "topic",
+      "url": "/documentation/accelerate/solving-systems-using-direct-methods"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-using-iterative-methods": {
+      "abstract": [
+        {
+          "text": "Use iterative methods to solve systems of equations where the coefficient matrix is sparse.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-using-iterative-methods",
+      "kind": "article",
+      "role": "article",
+      "title": "Solving systems using iterative methods",
+      "type": "topic",
+      "url": "/documentation/accelerate/solving-systems-using-iterative-methods"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/sparse-solvers-library": {
+      "abstract": [
+        {
+          "text": "Solve systems of equations where the coefficient matrix is sparse.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/sparse-solvers-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sparse Solvers",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparse-solvers-library"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-2887076": {
+      "alt": "A four-by-four symmetric sparse matrix with four empty cells.",
+      "identifier": "media-2887076",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f6bec6052ca56a095367a459900564f8/media-2887076@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sparse-Matrices",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/creating-sparse-matrices",
+        "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-using-direct-methods",
+        "doc://com.apple.accelerate/documentation/Accelerate/solving-systems-using-iterative-methods",
+        "doc://com.apple.accelerate/documentation/Accelerate/sparse-solvers-library"
+      ],
+      "title": "Sparse Matrices"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSymmetric/title",
+          "value": "SparseSymmetric"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseSymmetric/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseSymmetric"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseConvertFromCoordinate(_:_:_:_:_:_:_:_:)-4n2th/title",
+          "value": "SparseConvertFromCoordinate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseConvertFromCoordinate(_:_:_:_:_:_:_:_:)-4n2th/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseConvertFromCoordinate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseConvertFromCoordinate(_:_:_:_:_:_:_:_:_:_:)-56hv8/title",
+          "value": "SparseConvertFromCoordinate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseConvertFromCoordinate(_:_:_:_:_:_:_:_:_:_:)-56hv8/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseConvertFromCoordinate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseUnitTriangular/title",
+          "value": "SparseUnitTriangular"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseUnitTriangular/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseUnitTriangular"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseAttributes_t~1kind/title",
+          "value": "kind"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseAttributes_t~1kind/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kind"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseConvertFromCoordinate(_:_:_:_:_:_:_:_:_:_:)-84plp/title",
+          "value": "SparseConvertFromCoordinate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseConvertFromCoordinate(_:_:_:_:_:_:_:_:_:_:)-84plp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseConvertFromCoordinate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseTriangular/title",
+          "value": "SparseTriangular"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseTriangular/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseTriangular"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseConvertFromCoordinate(_:_:_:_:_:_:_:_:)-4n2el/title",
+          "value": "SparseConvertFromCoordinate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseConvertFromCoordinate(_:_:_:_:_:_:_:_:)-4n2el/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseConvertFromCoordinate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

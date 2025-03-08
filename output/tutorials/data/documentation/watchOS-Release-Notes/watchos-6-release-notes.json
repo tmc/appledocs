@@ -1,0 +1,6671 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchos-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-6-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "watchOS 6 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The watchOS 6 SDK provides support for developing watchOS apps for Apple Watch devices running watchOS 6. The SDK comes bundled with Xcode 11 beta available from ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/download/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For information on the compatibility requirements for Xcode 11, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-11-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You must update your watch to watchOS 6 beta 2 or later before updating to iOS 13 beta 7 or later, otherwise your watch will no longer be able to connect to your phone. (52854192)",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Warning",
+          "style": "warning",
+          "type": "aside"
+        },
+        {
+          "anchor": "Networking",
+          "level": 3,
+          "text": "Networking",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To enhance security, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " no longer sniffs the MIME type when the server sends ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Content-Type: application/octet-stream",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (7820658)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/reloadrevalidatingcachedata",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/reloadignoringlocalandremotecachedata",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " APIs are now available. (49660334)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionwebsockettask",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " are now available for use in watchOS apps. (49779789)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/2908819-urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " delegate callback might not function as expected. (54309264)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " APIs no longer support SPDY. Servers should use HTTP 2 or HTTP 1.1. (43391641)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Notifications",
+          "level": 3,
+          "text": "Notifications",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To send a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UserNotifications",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " push to a watchOS device, a new ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "apns-push-type",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key is now required as part of the APNs request header. Depending on the type of notification, this key can be set to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "alert",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "background",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and is supported across all Apple platforms. (47099534)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Podcasts",
+          "level": 3,
+          "text": "Podcasts",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Asking Siri to play a podcast on Apple Watch might result in an error message. (50392036)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "SwiftUI",
+          "level": 3,
+          "text": "SwiftUI",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can now create a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Color",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " from a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIColor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSColor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (49833933)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreData/NSManagedObject",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " now conforms to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Combine/ObservableObject",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". The new ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/FetchRequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property wrapper can drive views from the results of a fetch request, and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/managedObjectContext",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is now included in the environment. (50280673)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Gesture modifiers are renamed for consistency. For example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "tapAction(count:_:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is renamed ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onTapGesture(count:perform:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "longPressAction(minimumDuration:maximumDistance:_:pressing:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is renamed ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onLongPressGesture(minimumDuration:maximumDistance:pressing:perform:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (50395282)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " now has a default line limit of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " so that it wraps by default. (51147116)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ContentSizeCategory",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and several other enumerations are now ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/CaseIterable",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (51168712)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SegmentedControl",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is now a style of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Picker",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (51769046)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "BindableObject",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is replaced by the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Combine/ObservableObject",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol from the Combine framework. (50800624) You can manually conform to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Combine/ObservableObject",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " by defining an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Combine/ObservableObject/objectWillChange-5gopl",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " publisher that emits before the object changes. However, by default, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Combine/ObservableObject",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " automatically synthesizes ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Combine/ObservableObject/objectWillChange-5gopl",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and emits before any ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Combine/Published",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " properties change.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "// RoomStore.swift",
+                    "",
+                    "import Foundation",
+                    "",
+                    "class RoomStore: ObservableObject {",
+                    "    @Published var rooms: [Room] = []",
+                    "}",
+                    "",
+                    "struct Room: Identifiable {",
+                    "    var id: UUID",
+                    "    var name: String",
+                    "    var capacity: Int",
+                    "    var hasVideo: Bool",
+                    "}",
+                    "",
+                    "// ContentView.swift",
+                    "import SwiftUI",
+                    "",
+                    "struct ContentView: View {",
+                    "    @ObservedObject var store: RoomStore",
+                    "",
+                    "    var body: some View {",
+                    "        NavigationView {",
+                    "            List(store.rooms) { room in",
+                    "                RoomCell(room: room)",
+                    "            }",
+                    "            .navigationBarTitle(\"Rooms\")",
+                    "        }",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "code": "@``ObjectBinding",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is replaced by ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ObservedObject",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " structure has four new properties for reading accessibility values from the environment: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/accessibilityDifferentiateWithoutColor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/accessibilityReduceTransparency",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/accessibilityReduceMotion",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/accessibilityInvertColors",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (51712481)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "color(_:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " modifier for ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is renamed ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text/foregroundColor(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for consistency with the more general ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/foregroundColor(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " view modifier. (50391847)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "BindableObject",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " protocol’s requirement is now ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "willChange",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instead of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "didChange",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and should now be sent before the object changes rather than after it changes. This change allows for improved coalescing of change notifications. (51580731)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/RangeReplaceableCollection",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol is extended to include a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/RangeReplaceableCollection/remove(atOffsets:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method and the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/MutableCollection",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol is extended to include a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/MutableCollection/move(fromOffsets:toOffset:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method. Each new method takes ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/indexset",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instances that you use with the ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "doc://com.apple.documentation/documentation/SwiftUI/ForEach/onmove(perform:)",
+                      "type": "text"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "doc://com.apple.documentation/documentation/SwiftUI/ForEach/ondelete(perform:)",
+                      "type": "text"
+                    },
+                    {
+                      "text": " modifiers on ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ForEach",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " views. (51991601)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added improved presentation modifiers: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/sheet(isPresented:onDismiss:content:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/actionSheet(isPresented:content:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/alert(isPresented:content:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " — along with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "isPresented",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the environment — replace the existing ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "presentation(_:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Sheet",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Modal",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PresentationLink",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " types. (52075730)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Updated the APIs for creating animations. The basic animations are now named after the curve type — such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Animation/linear",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Animation/easeInOut",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". The interpolation-based ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "spring(mass:stiffness:damping:initialVelocity:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " animation is now ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Animation/interpolatingSpring(mass:stiffness:damping:initialVelocity:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "fluidSpring(stiffness:dampingFraction:blendDuration:timestep:idleThreshold:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is now ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Animation/spring(response:dampingFraction:blendDuration:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Animation/interactiveSpring(response:dampingFraction:blendDuration:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", depending on whether or not the animation is driven interactively. (50280375)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added an initializer for creating a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Font",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " from a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreText/CTFont",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (51849885)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "SwiftUI has an API that lets you change the value type of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Binding",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/AnyHashable",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ":",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "let someBinding: Binding<String> = ...",
+                    "let typeErasedBinding = Binding<AnyHashable>(someBinding)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attempting to use this API at compile time results in a linker error on watchOS 6. (53769896)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WKInterfaceObjectRepresentable",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance with no explicit width might expand to the bounds of its container.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Wrap the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WKInterfaceObjectRepresentable",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance in a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/GeometryReader",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to get an explicit width for the view. (53512858)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Image",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instances don’t use resizing information configured in asset catalogs. Configure the size of an image using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Image/resizable(capInsets:resizingMode:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " modifier instead. (49114577)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "SwiftUI APIs deprecated in previous betas are now removed. (52587863, 53310683)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Length",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " type is replaced by ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgfloat",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (50654095)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "TabbedView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is now named ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TabView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (51012120)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "HAlignment",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "VAlignment",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " are now deprecated, use the more flexible ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/HorizontalAlignment",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/VerticalAlignment",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " types instead and use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TextAlignment",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for text. (51190531)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SelectionManager",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " protocol is removed, use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/Optional",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/Set",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instances directly for selection. (51557694)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "isPresented",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " environment value is deprecated and replaced with the more general ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/presentationMode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " value. (51641238)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "StaticMember",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " protocol is deprecated. Use protocol-conforming types directly instead. For example, use an instance of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WheelPickerStyle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " directly rather than the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "wheel",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " static member.(52911961)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Complex overloads for the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/background(_:alignment:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/border(_:width:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " modifiers are deprecated. Use shapes in a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/background(_:alignment:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/overlay(_:alignment:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to draw these instead. (53067530)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "identified(by:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " method on the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/Collection",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol is deprecated in favor of dedicated ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "init(_:id:selection:rowContent:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "init(_:id:content:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " initializers. (52976883, 52029393)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The retroactive conformance of Int to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/Identifiable",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol is removed. Change any code that relies on this conformance to pass ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\\.self",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter of the relevant initializer. Constant ranges of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Swift/Int",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " continue to be accepted:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "List(0..<5) {",
+                    "    Text(\"Rooms\")",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "However, you shouldn’t pass a range that changes at runtime. If you use a variable that changes at runtime to define the range, the list displays views according to the initial range and ignores any subsequent updates to the range.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Several extensions to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Binding",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " structure are removed. (51624798)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you have code such as the following:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "struct LandmarkList: View {",
+                    "    var landmark: [Landmark]",
+                    "    @Binding var favorites: Set<Landmark>",
+                    "",
+                    "    var body: some View {",
+                    "        List(landmarks) { landmark in",
+                    "            Toggle(landmark.name, isOn: self.$favorites.contains(landmarkID))",
+                    "        }",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Define the following subscript on the Set structure:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "extension Set {",
+                    "    subscript(member: Element) -> Bool {",
+                    "        get { contains(member) }",
+                    "        set {",
+                    "            if newValue {",
+                    "                insert(member)",
+                    "            } else {",
+                    "                remove(member)",
+                    "            }",
+                    "        }",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Then, change ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "self.$favorites.contains(landmarkID)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "self.$favorites[landmarkID]",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Binding",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " structure’s conditional conformance to the Collection protocol is removed. (51624798)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you have code such as the following:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "struct LandmarkList: View {",
+                    "    @Binding var landmark: [Landmark]",
+                    "",
+                    "    var body: some View {",
+                    "        List(landmarks) { landmark in",
+                    "            Toggle(landmark.value.name, isOn: landmark[\\.isFavorite])",
+                    "        }",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Define the following collection type:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "struct IndexedCollection<Base: RandomAccessCollection>: RandomAccessCollection {",
+                    "    typealias Index = Base.Index",
+                    "    typealias Element = (index: Index, element: Base.Element)",
+                    "",
+                    "    let base: Base",
+                    "",
+                    "    var startIndex: Index { base.startIndex }",
+                    "",
+                    "    var endIndex: Index { base.startIndex }",
+                    "",
+                    "    func index(after i: Index) -> Index {",
+                    "        base.index(after: i)",
+                    "    }",
+                    "",
+                    "    func index(before i: Index) -> Index {",
+                    "        base.index(before: i)",
+                    "    }",
+                    "",
+                    "    func index(_ i: Index, offsetBy distance: Int) -> Index {",
+                    "        base.index(i, offsetBy: distance)",
+                    "    }",
+                    "",
+                    "    subscript(position: Index) -> Element {",
+                    "        (index: position, element: base[position])",
+                    "    }",
+                    "}",
+                    "",
+                    "extension RandomAccessCollection {",
+                    "    func indexed() -> IndexedCollection<Self> {",
+                    "        IndexedCollection(base: self)",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Then, update your code to:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "struct LandmarkList: View {",
+                    "    @Binding var landmarks: [Landmark]",
+                    "",
+                    "    var body: some View {",
+                    "        List(landmarks.indexed(), id: \\.1.id) { (index, landmark) in",
+                    "            Toggle(landmark.name, isOn: self.$landmarks[index].isFavorite)",
+                    "        }",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "relativeWidth(_:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "relativeHeight(_:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "relativeSize(width:height:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " modifiers are deprecated. Use other modifiers like ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/frame(minWidth:idealWidth:maxWidth:minHeight:idealHeight:maxHeight:alignment:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instead. (51494692)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Xcode",
+          "level": 3,
+          "text": "Xcode",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your watch debugging session continuously times out, you might need to quit and relaunch Xcode after connecting to the internet in order to download the appropriate DeviceSupport files. (50554987)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The watchOS Mail app and related processes might quit unexpectedly when used within the Simulator. (53799899)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "UserNotifications-PageImage-card.png": {
+      "alt": "[A notification interface displayed on the lock screen of an iOS device.]",
+      "identifier": "UserNotifications-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/074de9a9213bf2905d67fae5eb46e4f8/UserNotifications-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5733742e1c084fc202b3c92df9083686/UserNotifications-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSColor": {
+      "abstract": [
+        {
+          "text": "An object that stores color data and sometimes opacity (alpha value).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSColor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSColor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSColor",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSColor"
+    },
+    "doc://com.apple.documentation/documentation/Combine/ObservableObject": {
+      "abstract": [
+        {
+          "text": "A type of object with a publisher that emits before the object has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ObservableObject"
+        },
+        {
+          "kind": "text",
+          "text": " : AnyObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Combine/ObservableObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ObservableObject",
+      "type": "topic",
+      "url": "/documentation/Combine/ObservableObject"
+    },
+    "doc://com.apple.documentation/documentation/Combine/ObservableObject/objectWillChange-5gopl": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectWillChange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine25ObservableObjectPublisherC",
+          "text": "ObservableObjectPublisher"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Combine/ObservableObject/objectWillChange-5gopl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objectWillChange",
+      "type": "topic",
+      "url": "/documentation/Combine/ObservableObject/objectWillChange-5gopl"
+    },
+    "doc://com.apple.documentation/documentation/Combine/Published": {
+      "abstract": [
+        {
+          "text": "A type that publishes a property marked with an attribute.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@propertyWrapper"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Published"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Combine/Published",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Published",
+      "type": "topic",
+      "url": "/documentation/Combine/Published"
+    },
+    "doc://com.apple.documentation/documentation/CoreData/NSManagedObject": {
+      "abstract": [
+        {
+          "text": "The base class that all Core Data model objects inherit from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSManagedObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreData/NSManagedObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSManagedObject",
+      "type": "topic",
+      "url": "/documentation/CoreData/NSManagedObject"
+    },
+    "doc://com.apple.documentation/documentation/CoreText/CTFont": {
+      "abstract": [
+        {
+          "text": "A font object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTFont"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreText/CTFont",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CTFont",
+      "type": "topic",
+      "url": "/documentation/CoreText/CTFont"
+    },
+    "doc://com.apple.documentation/documentation/Swift/AnyHashable": {
+      "abstract": [
+        {
+          "text": "A type-erased hashable value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnyHashable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/AnyHashable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AnyHashable",
+      "type": "topic",
+      "url": "/documentation/Swift/AnyHashable"
+    },
+    "doc://com.apple.documentation/documentation/Swift/CaseIterable": {
+      "abstract": [
+        {
+          "text": "A type that provides a collection of all of its values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CaseIterable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/CaseIterable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CaseIterable",
+      "type": "topic",
+      "url": "/documentation/Swift/CaseIterable"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Collection": {
+      "abstract": [
+        {
+          "text": "A sequence whose elements can be traversed multiple times, nondestructively, and accessed by an indexed subscript.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Collection"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": "> : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST",
+          "text": "Sequence"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Collection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Collection",
+      "type": "topic",
+      "url": "/documentation/Swift/Collection"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Identifiable": {
+      "abstract": [
+        {
+          "text": "A class of types whose instances hold the value of an entity with stable identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Identifiable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Identifiable",
+      "type": "topic",
+      "url": "/documentation/Swift/Identifiable"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Int": {
+      "abstract": [
+        {
+          "text": "A signed integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Int",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/Swift/Int"
+    },
+    "doc://com.apple.documentation/documentation/Swift/MutableCollection": {
+      "abstract": [
+        {
+          "text": "A collection that supports subscript assignment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MutableCollection"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SM7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": "> : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl",
+          "text": "Collection"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl11SubSequenceQa",
+          "text": "SubSequence"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SM",
+          "text": "MutableCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/MutableCollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MutableCollection",
+      "type": "topic",
+      "url": "/documentation/Swift/MutableCollection"
+    },
+    "doc://com.apple.documentation/documentation/Swift/MutableCollection/move(fromOffsets:toOffset:)": {
+      "abstract": [
+        {
+          "text": "Moves all the elements at the specified offsets to the specified destination offset, preserving ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "mutating"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "move"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromOffsets"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "source"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation8IndexSetV",
+          "text": "IndexSet"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toOffset"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/MutableCollection/move(fromOffsets:toOffset:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "move(fromOffsets:toOffset:)",
+      "type": "topic",
+      "url": "/documentation/Swift/MutableCollection/move(fromOffsets:toOffset:)"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Optional": {
+      "abstract": [
+        {
+          "text": "A type that represents either a wrapped value or the absence of a value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Optional"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Wrapped"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Wrapped"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Copyable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Optional",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Optional",
+      "type": "topic",
+      "url": "/documentation/Swift/Optional"
+    },
+    "doc://com.apple.documentation/documentation/Swift/RangeReplaceableCollection": {
+      "abstract": [
+        {
+          "text": "A collection that supports replacement of an arbitrary subrange of elements with the elements of another collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RangeReplaceableCollection"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": "> : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl",
+          "text": "Collection"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl11SubSequenceQa",
+          "text": "SubSequence"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sm",
+          "text": "RangeReplaceableCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/RangeReplaceableCollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RangeReplaceableCollection",
+      "type": "topic",
+      "url": "/documentation/Swift/RangeReplaceableCollection"
+    },
+    "doc://com.apple.documentation/documentation/Swift/RangeReplaceableCollection/remove(atOffsets:)": {
+      "abstract": [
+        {
+          "text": "Removes all the elements at the specified offsets from the collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "mutating"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atOffsets"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "offsets"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation8IndexSetV",
+          "text": "IndexSet"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/RangeReplaceableCollection/remove(atOffsets:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remove(atOffsets:)",
+      "type": "topic",
+      "url": "/documentation/Swift/RangeReplaceableCollection/remove(atOffsets:)"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Set": {
+      "abstract": [
+        {
+          "text": "An unordered collection of unique elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Set",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Set",
+      "type": "topic",
+      "url": "/documentation/Swift/Set"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Animation/easeInOut": {
+      "abstract": [
+        {
+          "text": "An animation that combines the behaviors of in and out easing animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "easeInOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Animation/easeInOut",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "easeInOut",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Animation/easeInOut"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Animation/interactiveSpring(response:dampingFraction:blendDuration:)": {
+      "abstract": [
+        {
+          "text": "A convenience for a `spring` animation with a lower `response` value, intended for driving interactive animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interactiveSpring"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "response"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": " = 0.15, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dampingFraction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": " = 0.86, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blendDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": " = 0.25) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Animation/interactiveSpring(response:dampingFraction:blendDuration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interactiveSpring(response:dampingFraction:blendDuration:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Animation/interactiveSpring(response:dampingFraction:blendDuration:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Animation/interpolatingSpring(mass:stiffness:damping:initialVelocity:)": {
+      "abstract": [
+        {
+          "text": "An interpolating spring animation that uses a damped spring model to produce values in the range [0, 1] that are then used to interpolate within the [from, to] range of the animated property. Preserves velocity across overlapping animations by adding the effects of each animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interpolatingSpring"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "mass"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": " = 1.0, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stiffness"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "damping"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "initialVelocity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": " = 0.0) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Animation/interpolatingSpring(mass:stiffness:damping:initialVelocity:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interpolatingSpring(mass:stiffness:damping:initialVelocity:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Animation/interpolatingSpring(mass:stiffness:damping:initialVelocity:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Animation/linear": {
+      "abstract": [
+        {
+          "text": "An animation that moves at a constant speed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "linear"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Animation/linear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "linear",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Animation/linear"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Animation/spring(response:dampingFraction:blendDuration:)": {
+      "abstract": [
+        {
+          "text": "A persistent spring animation. When mixed with other `spring()` or `interactiveSpring()` animations on the same property, each animation will be replaced by their successor, preserving velocity from one animation to the next. Optionally blends the response values between springs over a time period.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "spring"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "response"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": " = 0.5, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dampingFraction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": " = 0.825, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blendDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": " = 0) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AnimationV",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Animation/spring(response:dampingFraction:blendDuration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "spring(response:dampingFraction:blendDuration:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Animation/spring(response:dampingFraction:blendDuration:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Binding": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that can read and write a value owned by a source of truth.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@propertyWrapper"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@dynamicMemberLookup"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Binding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Binding",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Binding"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Color": {
+      "abstract": [
+        {
+          "text": "A representation of a color that adapts to a given context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Color"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Color",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Color",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Color"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ContentSizeCategory": {
+      "abstract": [
+        {
+          "text": "The sizes that you can specify for content.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContentSizeCategory"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ContentSizeCategory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ContentSizeCategory",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ContentSizeCategory"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues": {
+      "abstract": [
+        {
+          "text": "A collection of environment values propagated through a view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnvironmentValues"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EnvironmentValues",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/accessibilityDifferentiateWithoutColor": {
+      "abstract": [
+        {
+          "text": "Whether the system preference for Differentiate without Color is enabled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityDifferentiateWithoutColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/accessibilityDifferentiateWithoutColor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityDifferentiateWithoutColor",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/accessibilityDifferentiateWithoutColor"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/accessibilityInvertColors": {
+      "abstract": [
+        {
+          "text": "Whether the system preference for Invert Colors is enabled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityInvertColors"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/accessibilityInvertColors",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityInvertColors",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/accessibilityInvertColors"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/accessibilityReduceMotion": {
+      "abstract": [
+        {
+          "text": "Whether the system preference for Reduce Motion is enabled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityReduceMotion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/accessibilityReduceMotion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityReduceMotion",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/accessibilityReduceMotion"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/accessibilityReduceTransparency": {
+      "abstract": [
+        {
+          "text": "Whether the system preference for Reduce Transparency is enabled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityReduceTransparency"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/accessibilityReduceTransparency",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityReduceTransparency",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/accessibilityReduceTransparency"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/managedObjectContext": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "managedObjectContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSManagedObjectContext",
+          "text": "NSManagedObjectContext"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/managedObjectContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "managedObjectContext",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/managedObjectContext"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/presentationMode": {
+      "abstract": [
+        {
+          "text": "A binding to the current presentation mode of the view associated with this environment.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentationMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16PresentationModeV",
+          "text": "PresentationMode"
+        },
+        {
+          "kind": "text",
+          "text": "> { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/presentationMode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presentationMode",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/presentationMode"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/FetchRequest": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that retrieves entities from a Core Data persistent store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@propertyWrapper"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FetchRequest"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSFetchRequestResult",
+          "text": "NSFetchRequestResult"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/FetchRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FetchRequest",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/FetchRequest"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Font": {
+      "abstract": [
+        {
+          "text": "An environment-dependent font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Font"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Font",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Font",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Font"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ForEach": {
+      "abstract": [
+        {
+          "text": "A structure that computes views on demand from an underlying collection of identified data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ForEach"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sk",
+          "text": "RandomAccessCollection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ForEach",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ForEach",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ForEach"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/GeometryReader": {
+      "abstract": [
+        {
+          "text": "A container view that defines its content as a function of its own size and coordinate space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GeometryReader"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/GeometryReader",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GeometryReader",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/GeometryReader"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/HorizontalAlignment": {
+      "abstract": [
+        {
+          "text": "An alignment position along the horizontal axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HorizontalAlignment"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/HorizontalAlignment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HorizontalAlignment",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/HorizontalAlignment"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Image": {
+      "abstract": [
+        {
+          "text": "A view that displays an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Image"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Image",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Image",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Image"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Image/resizable(capInsets:resizingMode:)": {
+      "abstract": [
+        {
+          "text": "Sets the mode by which SwiftUI resizes an image to fit its space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resizable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "capInsets"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10EdgeInsetsV",
+          "text": "EdgeInsets"
+        },
+        {
+          "kind": "text",
+          "text": " = EdgeInsets(), "
+        },
+        {
+          "kind": "externalParam",
+          "text": "resizingMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV",
+          "text": "Image"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV12ResizingModeO",
+          "text": "ResizingMode"
+        },
+        {
+          "kind": "text",
+          "text": " = .stretch) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ImageV",
+          "text": "Image"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Image/resizable(capInsets:resizingMode:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resizable(capInsets:resizingMode:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Image/resizable(capInsets:resizingMode:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ObservedObject": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that subscribes to an observable object and invalidates a view whenever the observable object changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@propertyWrapper"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ObservedObject"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "ObjectType"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ObjectType"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine16ObservableObjectP",
+          "text": "ObservableObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ObservedObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ObservedObject",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ObservedObject"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Picker": {
+      "abstract": [
+        {
+          "text": "A control for selecting from a set of mutually exclusive values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Picker"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "SelectionValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SelectionValue"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Picker",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Picker",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Picker"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/TabView": {
+      "abstract": [
+        {
+          "text": "A view that switches between multiple child views using interactive user interface elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabView"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "SelectionValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SelectionValue"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TabView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TabView",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/TabView"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Text": {
+      "abstract": [
+        {
+          "text": "A view that displays one or more lines of read-only text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Text",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Text"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Text/foregroundColor(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the color of the text displayed by this view.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "foregroundColor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "color"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ColorV",
+          "text": "Color"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text/foregroundColor(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "foregroundColor(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Text/foregroundColor(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/TextAlignment": {
+      "abstract": [
+        {
+          "text": "An alignment position for text along the horizontal axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextAlignment"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/TextAlignment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TextAlignment",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/TextAlignment"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/VerticalAlignment": {
+      "abstract": [
+        {
+          "text": "An alignment position along the vertical axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VerticalAlignment"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/VerticalAlignment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VerticalAlignment",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/VerticalAlignment"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/actionSheet(isPresented:content:)": {
+      "abstract": [
+        {
+          "text": "Presents an action sheet when a given condition is true.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "actionSheet"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "isPresented"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11ActionSheetV",
+          "text": "ActionSheet"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/actionSheet(isPresented:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "actionSheet(isPresented:content:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/actionSheet(isPresented:content:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/alert(isPresented:content:)": {
+      "abstract": [
+        {
+          "text": "Presents an alert to the user.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "isPresented"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5AlertV",
+          "text": "Alert"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/alert(isPresented:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alert(isPresented:content:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/alert(isPresented:content:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/background(_:alignment:)": {
+      "abstract": [
+        {
+          "text": "Layers the given view behind this view.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "background"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Background"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "background"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Background"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AlignmentV",
+          "text": "Alignment"
+        },
+        {
+          "kind": "text",
+          "text": " = .center) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Background"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/background(_:alignment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "background(_:alignment:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/background(_:alignment:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/border(_:width:)": {
+      "abstract": [
+        {
+          "text": "Adds a border to this view with the specified style and width.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "border"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": " = 1) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10ShapeStyleP",
+          "text": "ShapeStyle"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/border(_:width:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "border(_:width:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/border(_:width:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/foregroundColor(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the color of the foreground elements displayed by this view.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "foregroundColor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "color"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ColorV",
+          "text": "Color"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/foregroundColor(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "foregroundColor(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/foregroundColor(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/frame(minWidth:idealWidth:maxWidth:minHeight:idealHeight:maxHeight:alignment:)": {
+      "abstract": [
+        {
+          "text": "Positions this view within an invisible frame having the specified size constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "minWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "idealWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "minHeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "idealHeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxHeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AlignmentV",
+          "text": "Alignment"
+        },
+        {
+          "kind": "text",
+          "text": " = .center) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/frame(minWidth:idealWidth:maxWidth:minHeight:idealHeight:maxHeight:alignment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frame(minWidth:idealWidth:maxWidth:minHeight:idealHeight:maxHeight:alignment:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/frame(minWidth:idealWidth:maxWidth:minHeight:idealHeight:maxHeight:alignment:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/onLongPressGesture(minimumDuration:maximumDistance:pressing:perform:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform when this view recognizes a long press gesture.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onLongPressGesture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "minimumDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": " = 0.5, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maximumDistance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": " = 10, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pressing"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onLongPressGesture(minimumDuration:maximumDistance:pressing:perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onLongPressGesture(minimumDuration:maximumDistance:pressing:perform:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/onLongPressGesture(minimumDuration:maximumDistance:pressing:perform:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/onTapGesture(count:perform:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform when this view recognizes a tap gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onTapGesture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": " = 1, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onTapGesture(count:perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onTapGesture(count:perform:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/onTapGesture(count:perform:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/overlay(_:alignment:)": {
+      "abstract": [
+        {
+          "text": "Layers a secondary view in front of this view.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "overlay"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Overlay"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "overlay"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Overlay"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AlignmentV",
+          "text": "Alignment"
+        },
+        {
+          "kind": "text",
+          "text": " = .center) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Overlay"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/overlay(_:alignment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "overlay(_:alignment:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/overlay(_:alignment:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/sheet(isPresented:onDismiss:content:)": {
+      "abstract": [
+        {
+          "text": "Presents a sheet when a binding to a Boolean value that you provide is true.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sheet"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "isPresented"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "onDismiss"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil, "
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:7SwiftUI11ViewBuilderV",
+          "text": "ViewBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/sheet(isPresented:onDismiss:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sheet(isPresented:onDismiss:content:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/sheet(isPresented:onDismiss:content:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/WKInterfaceObjectRepresentable": {
+      "abstract": [
+        {
+          "text": "A view that represents a WatchKit interface object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceObjectRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP4BodyQa",
+          "text": "Body"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5NeverO",
+          "text": "Never"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WKInterfaceObjectRepresentable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKInterfaceObjectRepresentable",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/WKInterfaceObjectRepresentable"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/WheelPickerStyle": {
+      "abstract": [
+        {
+          "text": "A picker style that presents the options in a scrollable wheel that shows the selected option and a few neighboring options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WheelPickerStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WheelPickerStyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WheelPickerStyle",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/WheelPickerStyle"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIColor": {
+      "abstract": [
+        {
+          "text": "An object that stores color data and sometimes opacity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIColor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIColor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIColor",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIColor"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications": {
+      "abstract": [
+        {
+          "text": "Push user-facing notifications to the user’s device from a server, or generate them locally from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications",
+      "images": [
+        {
+          "identifier": "UserNotifications-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "User Notifications",
+      "type": "topic",
+      "url": "/documentation/UserNotifications"
+    },
+    "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-11-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-11-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 11 Release Notes",
+      "type": "topic",
+      "url": "/documentation/Xcode-Release-Notes/xcode-11-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgfloat": {
+      "abstract": [
+        {
+          "text": "The basic type for floating-point scalar values in Core Graphics and related frameworks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgfloat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGFloat",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgfloat"
+    },
+    "doc://com.apple.documentation/documentation/foundation/indexset": {
+      "abstract": [
+        {
+          "text": "A collection of unique integer values that represent the indexes of elements in another collection. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "IndexSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/indexset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IndexSet",
+      "type": "topic",
+      "url": "/documentation/foundation/indexset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection": {
+      "abstract": [
+        {
+          "text": "An object that enables you to start and stop URL requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURLConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLConnection",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/reloadignoringlocalandremotecachedata": {
+      "abstract": [
+        {
+          "text": "Ignore local cache data, and instruct proxies and other intermediates to disregard their caches so far as the protocol allows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "reloadIgnoringLocalAndRemoteCacheData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/reloadignoringlocalandremotecachedata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest/cachepolicy/reloadignoringlocalandremotecachedata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/reloadrevalidatingcachedata": {
+      "abstract": [
+        {
+          "text": "Use cache data if the origin source can validate it; otherwise, load from the origin.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "reloadRevalidatingCacheData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/cachepolicy/reloadrevalidatingcachedata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest.CachePolicy.reloadRevalidatingCacheData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest/cachepolicy/reloadrevalidatingcachedata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask": {
+      "abstract": [
+        {
+          "text": "A URL session task that is stream-based.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSessionStreamTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionstreamtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionStreamTask",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionstreamtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/2908819-urlsession": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the task is waiting until suitable connectivity is available before beginning the network load. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "urlSession"
+        },
+        {
+          "kind": "text",
+          "text": "(URLSession, "
+        },
+        {
+          "kind": "identifier",
+          "text": "taskIsWaitingForConnectivity"
+        },
+        {
+          "kind": "text",
+          "text": ": URLSessionTask)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate/2908819-urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlSession(_:taskIsWaitingForConnectivity:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontaskdelegate/2908819-urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionwebsockettask": {
+      "abstract": [
+        {
+          "text": "A URL session task that communicates over the WebSockets protocol standard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSessionWebSocketTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionwebsockettask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionWebSocketTask",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionwebsockettask"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-6_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-6_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 6.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-6_1-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-6_1_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-6_1_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 6.1.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-6_1_1-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-6_1_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-6_1_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 6.1.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-6_1_2-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-6_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-6_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 6.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-6_2-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-6_2_5-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-6_2_5-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 6.2.5 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-6_2_5-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-6_2_8-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-6_2_8-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 6.2.8 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-6_2_8-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchos-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the watchOS SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchos-release-notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "watchOS Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes"
+    },
+    "https://developer.apple.com/download/": {
+      "identifier": "https://developer.apple.com/download/",
+      "title": "Beta Software Downloads",
+      "titleInlineContent": [
+        {
+          "text": "Beta Software Downloads",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/download/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "watchOS-6",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-6_2_8-release-notes",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-6_2_5-release-notes",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-6_2-release-notes",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-6_1_2-release-notes",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-6_1_1-release-notes",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-6_1-release-notes"
+      ],
+      "title": "watchOS 6"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsession/title",
+          "value": "NSURLSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsurlrequest~1cachepolicy~1reloadignoringlocalandremotecachedata/title",
+          "value": "NSURLRequestReloadIgnoringLocalAndRemoteCacheData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIColor/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIColor"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSColor/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSColor"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsessiontaskdelegate~12908819-urlsession/title",
+          "value": "URLSession:taskIsWaitingForConnectivity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreData~1NSManagedObject/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSManagedObject"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreText~1CTFont/title",
+          "value": "CTFontRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreText~1CTFont/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@__CTFont",
+              "text": "__CTFont"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "CTFontRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsessionwebsockettask/title",
+          "value": "NSURLSessionWebSocketTask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsessionstreamtask/title",
+          "value": "NSURLSessionStreamTask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsurlrequest~1cachepolicy~1reloadrevalidatingcachedata/title",
+          "value": "NSURLRequestReloadRevalidatingCacheData"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

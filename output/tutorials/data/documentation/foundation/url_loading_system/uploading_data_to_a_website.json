@@ -1,0 +1,717 @@
+{
+  "abstract": [
+    {
+      "text": "Post data from your app to servers.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_data_to_a_website"
+  },
+  "kind": "article",
+  "legacy_identifier": 2919363,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Uploading data to a website"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many apps work with servers that accept uploads of files like images or documents, or use web service API endpoints that accept structured data like JSON. To upload data from your app, you use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance. The upload task uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance that details how the upload is to be performed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2923847",
+          "level": 3,
+          "text": "Prepare your data for upload",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The data to upload can be the contents of a file, a stream, or data, as is the case in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_data_to_a_website#2923850",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many web service endpoints take JSON-formatted data, which you create by using the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/jsonencoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Encodable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " types like arrays and dictionaries. As shown in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_data_to_a_website#2923850",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can declare a structure that conforms to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Codable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", create an instance of this type, and use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/jsonencoder",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to encode the instance to JSON data for upload.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Order: Codable {",
+            "    let customerId: String",
+            "    let items: [String]",
+            "}",
+            "",
+            "// ...",
+            "",
+            "let order = Order(customerId: \"12345\",",
+            "                  items: [\"Cheese pizza\", \"Diet soda\"])",
+            "guard let uploadData = try? JSONEncoder().encode(order) else {",
+            "    return",
+            "}"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Preparing JSON data for upload",
+                "type": "text"
+              }
+            ],
+            "anchor": "2923850",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are many other ways to create a data instance, such as encoding an image as JPEG or PNG data, or converting a string to data by using an encoding like UTF-8.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2923848",
+          "level": 3,
+          "text": "Configure an upload request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An upload task requires a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " instance. As shown in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_data_to_a_website#2923851",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011415-httpmethod",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the request to ",
+              "type": "text"
+            },
+            {
+              "code": "\"",
+              "type": "codeVoice"
+            },
+            {
+              "code": "POST",
+              "type": "codeVoice"
+            },
+            {
+              "code": "\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "\"PUT\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", depending on what the server supports and expects. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011447-setvalue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to set the values of any HTTP headers that you want to provide, except the ",
+              "type": "text"
+            },
+            {
+              "code": "Content-Length",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header. The session figures out content length automatically from the size of your data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let url = URL(string: \"https://example.com/post\")!",
+            "var request = URLRequest(url: url)",
+            "request.httpMethod = \"POST\"",
+            "request.setValue(\"application/json\", forHTTPHeaderField: \"Content-Type\")"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Configuring a URL request",
+                "type": "text"
+              }
+            ],
+            "anchor": "2923851",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2923849",
+          "level": 3,
+          "text": "Create and start an upload task",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To begin an upload, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411518-uploadtask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " instance to create an uploading ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance, passing in the request and the data instances you’ve previously set up. Because tasks start in a suspended state, you begin the network loading process by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/1411121-resume",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the task. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_data_to_a_website#2923852",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " uses the shared ",
+              "type": "text"
+            },
+            {
+              "code": "URLSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance, and receives its results in a completion handler. The handler checks for transport and server errors before using any returned data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let task = URLSession.shared.uploadTask(with: request, from: uploadData) { data, response, error in",
+            "    if let error = error {",
+            "        print (\"error: \\(error)\")",
+            "        return",
+            "    }",
+            "    guard let response = response as? HTTPURLResponse,",
+            "        (200...299).contains(response.statusCode) else {",
+            "        print (\"server error\")",
+            "        return",
+            "    }",
+            "    if let mimeType = response.mimeType,",
+            "        mimeType == \"application/json\",",
+            "        let data = data,",
+            "        let dataString = String(data: data, encoding: .utf8) {",
+            "        print (\"got data: \\(dataString)\")",
+            "    }",
+            "}",
+            "task.resume()"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Starting an upload task",
+                "type": "text"
+              }
+            ],
+            "anchor": "2923852",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2936057",
+          "level": 3,
+          "text": "Alternatively, upload by setting a delegate",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As an alternative to the completion handler approach, you can instead set a delegate on a session you configure, and then create the upload task with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1409763-uploadtask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In this scenario, you implement methods from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocols. These methods receive the server response and any data or transport errors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Codable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Codable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Codable",
+      "type": "topic",
+      "url": "/documentation/swift/codable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Encodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Encodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/swift/encodable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/jsonencoder": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/jsonencoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JSONEncoder",
+      "type": "topic",
+      "url": "/documentation/foundation/jsonencoder"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_uploads": {
+      "abstract": [
+        {
+          "text": "Pause and resume an upload without starting over, even when the connection is interrupted.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_uploads",
+      "kind": "article",
+      "role": "article",
+      "title": "Pausing and resuming uploads",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/pausing_and_resuming_uploads"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_data_to_a_website": {
+      "abstract": [
+        {
+          "text": "Post data from your app to servers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_data_to_a_website",
+      "kind": "article",
+      "role": "article",
+      "title": "Uploading data to a website",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/uploading_data_to_a_website"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_data_to_a_website#2923850": {
+      "abstract": [
+        {
+          "text": "Preparing JSON data for upload",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_data_to_a_website#2923850",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/uploading_data_to_a_website#2923850"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_data_to_a_website#2923851": {
+      "abstract": [
+        {
+          "text": "Configuring a URL request",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_data_to_a_website#2923851",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/uploading_data_to_a_website#2923851"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_data_to_a_website#2923852": {
+      "abstract": [
+        {
+          "text": "Starting an upload task",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_data_to_a_website#2923852",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/foundation/url_loading_system/uploading_data_to_a_website#2923852"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data": {
+      "abstract": [
+        {
+          "text": "Send a stream of data to a server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data",
+      "kind": "article",
+      "role": "article",
+      "title": "Uploading streams of data",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/uploading_streams_of_data"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/2011415-httpmethod": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011415-httpmethod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "httpMethod",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/2011415-httpmethod"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/2011447-setvalue": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011447-setvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setValue(_:forHTTPHeaderField:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/2011447-setvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/1409763-uploadtask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1409763-uploadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uploadTask(with:from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/1409763-uploadtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/1411518-uploadtask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/1411518-uploadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uploadTask(with:from:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/1411518-uploadtask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionTask",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontask/1411121-resume": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontask/1411121-resume",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resume()",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontask/1411121-resume"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiontaskdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionTaskDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiontaskdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionuploadtask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionUploadTask",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionuploadtask"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/uploading_streams_of_data",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/pausing_and_resuming_uploads"
+      ],
+      "title": "Uploading"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/url_loading_system/uploading_data_to_a_website"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/url_loading_system/uploading_data_to_a_website"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

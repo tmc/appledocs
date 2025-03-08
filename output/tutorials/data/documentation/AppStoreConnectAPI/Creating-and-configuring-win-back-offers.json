@@ -1,0 +1,949 @@
+{
+  "abstract": [
+    {
+      "text": "Configure win-back offers for your auto-renewable subscriptions with the App Store Connect API.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/win-back-offers"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/Creating-and-configuring-win-back-offers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating and configuring win-back offers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Store Connect API lets you create and configure win-back offers for your auto-renewable subscriptions. You can create win-back offers for approved subscriptions. After creation, you can make changes to start date, end date and eligibility parameters, and edit some metadata for your win-back offer. You can have multiple win-back offers for a single subscription.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Review-App-Store-Connect-API-usage",
+          "level": 3,
+          "text": "Review App Store Connect API usage",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To manage auto-renewable subscriptions with the App Store Connect API, you need to understand key concepts for using the API. If youʼre new to using the App Store Connect API, make sure to read the documentation in the Essentials section of App Store Connect API and learn how to create API keys, generate JWTs, identify rate limits, and more.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create and manage win-back offers, be sure you have one of the following user roles:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ACCOUNT_HOLDER",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ADMIN",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "APP_MANAGER",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "MARKETING",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the full list of App Store Connect user roles, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/UserRole",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/support/roles",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prepare-your-app-for-win-back-offers",
+          "level": 3,
+          "text": "Prepare your app for win-back offers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app and subscriptions need to be approved before you can create a win-back offer. If you are using App Store promotion, you need an approved promoted-purchase image. To learn more, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-subscriptionImages",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "familySharable",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " field is editable only for auto-renewable subscriptions and non-consumable in-app purchases before the subscription or in-app purchase is approved by App Review.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Plan-your-win-back-offer",
+          "level": 3,
+          "text": "Plan your win-back offer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Begin by determining the subscription that needs the win-back offer. Get the subscriptionID by calling List All Subscriptions for a Subscription Group. Next, look up the price points you want in your win-back offer for your subscription by using List All Price Points for a Subscription. When you create your win-back offer, you choose the territories where it is available and prices for those territories, after creation you cannot change the territory availability or prices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "It is helpful to filter by territory when looking up price points. Use includes and filters like this: ",
+                  "type": "text"
+                },
+                {
+                  "code": "v1/subscriptions/id/pricePoints?include=territory&filter[territory]=CAN",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When setting up your win-back offer, a large part of configuration is determining eligibility. This list details the eligibility parameters available:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attribute Name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "customerEligibilityPaidSubscriptionDurationInMonths",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "How long a customer was a subscriber.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "customerEligibilityTimeSinceLastSubscribedInMonths",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "How long since the subscriber last had an active subscription.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "customerEligibilityWaitBetweenOffersInMonths",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (optional)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "How much time must pass between the end of their offer period and redeeming the same offer again.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Create-your-win-back-offer",
+          "level": 3,
+          "text": "Create your win-back offer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you plan your win-back offer, you can create it by using Create a win-back offer with a payload. For more information about each attribute in this payload, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/WinBackOfferCreateRequest/Data-data.dictionary/Attributes-data.dictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Use a unique referenceName and offerId that you have not used for a promotional offer, offer code, or introductory offer, when you create your win-back offer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example request:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "POST https://api.appstoreconnect.apple.com/v1/winBackOffers",
+            "{",
+            "  \"data\": {",
+            "    \"type\": \"winBackOffers\",",
+            "    \"attributes\": {",
+            "      \"referenceName\": \"6 Months for 3 A\",",
+            "      \"offerId\": \"6Monthfor3_a\",",
+            "      \"startDate\": \"2024-07-01\",",
+            "      \"endDate\": \"2024-07-31\",",
+            "      \"priority\": \"HIGH\",",
+            "      \"promotionIntent\": \"USE_AUTO_GENERATED_ASSETS\",",
+            "      \"customerEligibilityPaidSubscriptionDurationInMonths\": 6,",
+            "      \"customerEligibilityTimeSinceLastSubscribedInMonths\": {",
+            "        \"minimum\": 2,",
+            "        \"maximum\": 24",
+            "      },",
+            "      \"customerEligibilityWaitBetweenOffersInMonths\": 2,",
+            "      \"duration\": \"SIX_MONTHS\",",
+            "      \"offerMode\": \"PAY_UP_FRONT\",",
+            "      \"periodCount\": 1",
+            "    },",
+            "    \"relationships\": {",
+            "      \"subscription\": {",
+            "        \"data\": {",
+            "          \"type\": \"subscriptions\",",
+            "          \"id\": \"6447497832\"",
+            "        }",
+            "      },",
+            "      \"prices\": {",
+            "        \"data\": [",
+            "          {",
+            "            \"id\": \"${winbackOfferPrice-0}\",",
+            "            \"type\": \"winBackOfferPrices\"",
+            "          },",
+            "          {",
+            "            \"id\": \"${winbackOfferPrice-1}\",",
+            "            \"type\": \"winBackOfferPrices\"",
+            "          }",
+            "        ]",
+            "      }",
+            "    }",
+            "  },",
+            "  \"included\": [",
+            "    {",
+            "      \"type\": \"winBackOfferPrices\",",
+            "      \"id\": \"${winbackOfferPrice-0}\",",
+            "      \"relationships\": {",
+            "        \"subscriptionPricePoint\": {",
+            "          \"data\": {",
+            "            \"type\": \"subscriptionPricePoints\",",
+            "            \"id\": \"eyJzIjoiNjQ0NzQ5NzgzMiIsInQiOiJVU0EiLCJwIjoiMTAxMjcifQ\"",
+            "          }",
+            "        }",
+            "      }",
+            "    },",
+            "    {",
+            "      \"type\": \"winBackOfferPrices\",",
+            "      \"id\": \"${winbackOfferPrice-1}\",",
+            "      \"relationships\": {",
+            "        \"subscriptionPricePoint\": {",
+            "          \"data\": {",
+            "            \"type\": \"subscriptionPricePoints\",",
+            "            \"id\": \"eyJzIjoiNjQ0NzQ5NzgzMiIsInQiOiJDQU4iLCJwIjoiMTAxNDIifQ\"",
+            "          }",
+            "        }",
+            "      }",
+            "    }",
+            "  ]",
+            "}",
+            ""
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s a sample response, truncated for clarity:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"data\": {",
+            "    \"type\": \"winBackOffers\",",
+            "    \"id\": \"10778326500\",",
+            "    \"attributes\": {",
+            "      \"referenceName\": \"6 Months for 3 A\",",
+            "      \"offerId\": \"6Monthfor3_a\",",
+            "      \"duration\": \"SIX_MONTHS\",",
+            "      \"offerMode\": \"PAY_UP_FRONT\",",
+            "      \"periodCount\": 1,",
+            "      \"customerEligibilityPaidSubscriptionDurationInMonths\": 6,",
+            "      \"customerEligibilityTimeSinceLastSubscribedInMonths\": {",
+            "        \"minimum\": 2,",
+            "        \"maximum\": 24",
+            "      },",
+            "      \"customerEligibilityWaitBetweenOffersInMonths\": 2,",
+            "      \"startDate\": \"2024-07-01\",",
+            "      \"endDate\": \"2024-07-31\",",
+            "      \"priority\": \"HIGH\",",
+            "      \"promotionIntent\": \"USE_AUTO_GENERATED_ASSETS\"",
+            "    },",
+            "    \"relationships\": {",
+            "      \"promotion\": {",
+            "        \"links\": {",
+            "          \"self\": \"https://api.appstoreconnect.apple.com/v1/winBackOffers/10778326500/relationships/promotion\",",
+            "          \"related\": \"https://api.appstoreconnect.apple.com/v1/winBackOffers/10778326500/promotion\"",
+            "        }",
+            "      },",
+            ""
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Share-and-promote-your-win-back-offer",
+          "level": 3,
+          "text": "Share and promote your win-back offer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After your create your win-back offer, you can promote the offer in multiple ways. Your appʼs page in App Store promotes your win-back offer if you set ",
+              "type": "text"
+            },
+            {
+              "code": "promotionIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "USE_AUTO_GENERATED_ASSETS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and if you also have an approved promoted-purchase image, beginning on the ",
+              "type": "text"
+            },
+            {
+              "code": "startDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " you set for your win-back offer. Your win-back offer displays with the priority chosen, ",
+              "type": "text"
+            },
+            {
+              "code": "NORMAL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "HIGH",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", in accordance with any other offers or In-App Events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also use a URL to promote your win-back offer. To construct a url like this https://apps.apple.com/win-back/{Offer Apple ID}, use the ID (numerical value created by Apple) of the win-back offer that is in the responses from Create a win-back offer or List win-back offers. For the win-back offer example above, the URL is https://apps.apple.com/win-back/10778326500.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Read-information-about-and-update-your-win-back-offer",
+          "level": 3,
+          "text": "Read information about and update your win-back offer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can review your win-back offers by using List win-back offers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Once you create your offer, you can update many of the attributes, including eligibility requirements, start and end dates, priority, and promotion intent, by using Modify a win-back offer. After your offer is live, you can modify the priority attribute. You aren’t able to update the territories that are included in an existing win-back offer. To add more territories, you need to create a new win-back offer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-winBackOffers-_id_": {
+      "abstract": [
+        {
+          "text": "Remove a win-back offer for a specific subscription.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-winBackOffers-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DELETE /v1/winBackOffers/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Delete a win-back offer",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/delete-v1-winbackoffers-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-subscriptions-_id_-winBackOffers": {
+      "abstract": [
+        {
+          "text": "List all win-back offers for a specific subscription.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-subscriptions-_id_-winBackOffers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/subscriptions/{id}/winBackOffers"
+        }
+      ],
+      "role": "symbol",
+      "title": "List win-back offers",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-subscriptions-_id_-winbackoffers"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-winBackOffers-_id_": {
+      "abstract": [
+        {
+          "text": "Read details about a specific win-back offer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-winBackOffers-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/winBackOffers/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read win-back offer information",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-winbackoffers-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-winBackOffers-_id_-prices": {
+      "abstract": [
+        {
+          "text": "List all prices for specific win-back offers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-winBackOffers-_id_-prices",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/winBackOffers/{id}/prices"
+        }
+      ],
+      "role": "symbol",
+      "title": "List win-back offer prices",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-winbackoffers-_id_-prices"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-winBackOffers-_id_": {
+      "abstract": [
+        {
+          "text": "Edit details for a specific win-back offer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-winBackOffers-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PATCH /v1/winBackOffers/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Modify a win-back offer",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/patch-v1-winbackoffers-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-subscriptionImages": {
+      "abstract": [
+        {
+          "text": "Reserve an image asset to appear in the App Store, representing a subscription.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-subscriptionImages",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/subscriptionImages"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create an image for a subscription",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-subscriptionimages"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-winBackOffers": {
+      "abstract": [
+        {
+          "text": "Create a win-back offer for a specific subscription.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-winBackOffers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/winBackOffers"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create a win-back offer",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-winbackoffers"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/UserRole": {
+      "abstract": [
+        {
+          "text": "Strings that represent user roles and permissions in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserRole"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/UserRole",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UserRole"
+        }
+      ],
+      "role": "symbol",
+      "title": "UserRole",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/userrole"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/WinBackOfferCreateRequest/Data-data.dictionary/Attributes-data.dictionary": {
+      "abstract": [
+        {
+          "text": "Attributes that describe a winback offer resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "WinBackOfferCreateRequest.Data.Attributes"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/WinBackOfferCreateRequest/Data-data.dictionary/Attributes-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WinBackOfferCreateRequest.Data.Attributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "WinBackOfferCreateRequest.Data.Attributes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/winbackoffercreaterequest/data-data.dictionary/attributes-data.dictionary"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store": {
+      "abstract": [
+        {
+          "text": "Manage all aspects of your app, App Clips, in-app purchases, and customer reviews in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App Store",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/win-back-offers": {
+      "abstract": [
+        {
+          "text": "Create and manage win-back offers for your auto-renewable subscriptions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/win-back-offers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Win-back offers",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/win-back-offers"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/support/roles": {
+      "identifier": "https://developer.apple.com/support/roles",
+      "title": "Program Roles",
+      "titleInlineContent": [
+        {
+          "text": "Program Roles",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/roles"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Endpoints",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-subscriptions-_id_-winBackOffers",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-winBackOffers-_id_",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-winBackOffers-_id_-prices",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-winBackOffers",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-winBackOffers-_id_",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-winBackOffers-_id_"
+      ],
+      "title": "Endpoints"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/creating-and-configuring-win-back-offers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3886 @@
+{
+  "abstract": [
+    {
+      "text": "A view for displaying and editing text and search tokens.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UISearchTextField"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UISearchTextField",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UISearchTextField"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UISearchTextField"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UISearchTextField"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UISearchTextField"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a search text field to display search criteria represented as text and tokens, and allow the user to edit that criteria. Tokens are discrete representations of nontextual content that your app can create and use to represent filters that limit the search results. Tokens always occur contiguously before any text in the search field.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchBar",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " hosts a search text field, but you may also use a search text field in other roles, such as the title view of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The search field assigns text positions (",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextPosition",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ") to tokens as well as text so that users can interact with tokens using selection gestures and keyboard input. If the current selection includes any tokens, ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInput/selectedTextRange",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " includes their positions. Use the search field’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/textualRange",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property to access the range of just the text without the tokens.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tokens can be programmatically selected by including their position in a range assigned to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInput/selectedTextRange",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityIdentification": {
+      "abstract": [
+        {
+          "text": "Methods that associate a unique identifier with elements in your user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityIdentification"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityIdentification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityIdentification"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAccessibilityIdentification",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibilityidentification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfigurationProviding": {
+      "abstract": [
+        {
+          "text": "An interface that provides a source for shareable content to fulfill user requests to share current content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemsConfigurationProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfigurationProviding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemsConfigurationProviding"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActivityItemsConfigurationProviding",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityitemsconfigurationproviding"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAppearance": {
+      "abstract": [
+        {
+          "text": "A collection of methods that gives you access to the appearance proxy for a class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAppearance"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAppearance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAppearance"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAppearance",
+      "type": "topic",
+      "url": "/documentation/uikit/uiappearance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAppearanceContainer": {
+      "abstract": [
+        {
+          "text": "A protocol that a class must adopt to allow appearance customization using the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAppearance",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " API.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAppearanceContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAppearanceContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAppearanceContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAppearanceContainer",
+      "type": "topic",
+      "url": "/documentation/uikit/uiappearancecontainer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIContentSizeCategoryAdjusting": {
+      "abstract": [
+        {
+          "text": "A collection of methods that give controls an easy way to adopt automatic adjustment to content category changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIContentSizeCategoryAdjusting"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContentSizeCategoryAdjusting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIContentSizeCategoryAdjusting"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIContentSizeCategoryAdjusting",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontentsizecategoryadjusting"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIContextMenuInteractionDelegate": {
+      "abstract": [
+        {
+          "text": "The methods for providing the set of actions to perform on your content, and for customizing the preview of that content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIContextMenuInteractionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContextMenuInteractionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIContextMenuInteractionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIContextMenuInteractionDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontextmenuinteractiondelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICoordinateSpace": {
+      "abstract": [
+        {
+          "text": "A set of methods for converting between different frames of reference on a screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICoordinateSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICoordinateSpace",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICoordinateSpace"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICoordinateSpace",
+      "type": "topic",
+      "url": "/documentation/uikit/uicoordinatespace"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDynamicItem": {
+      "abstract": [
+        {
+          "text": "A set of methods that can make a custom object eligible to participate in UIKit Dynamics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDynamicItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDynamicItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDynamicItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDynamicItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uidynamicitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFocusEnvironment": {
+      "abstract": [
+        {
+          "text": "A set of methods that define the focus behavior for a branch of the view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusEnvironment"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusEnvironment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFocusEnvironment"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFocusEnvironment",
+      "type": "topic",
+      "url": "/documentation/uikit/uifocusenvironment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFocusItem": {
+      "abstract": [
+        {
+          "text": "An object that can become focused.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFocusItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFocusItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uifocusitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFocusItemContainer": {
+      "abstract": [
+        {
+          "text": "The container responsible for providing geometric context to focus items within a given focus environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusItemContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFocusItemContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFocusItemContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFocusItemContainer",
+      "type": "topic",
+      "url": "/documentation/uikit/uifocusitemcontainer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIKeyInput": {
+      "abstract": [
+        {
+          "text": "A set of methods a responder uses to implement simple text entry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIKeyInput"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKeyInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIKeyInput",
+      "type": "topic",
+      "url": "/documentation/uikit/uikeyinput"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILargeContentViewerItem": {
+      "abstract": [
+        {
+          "text": "Methods that provide details about how to display your custom content in the large content viewer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILargeContentViewerItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILargeContentViewerItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UILargeContentViewerItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UILargeContentViewerItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uilargecontentvieweritem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILetterformAwareAdjusting": {
+      "abstract": [
+        {
+          "text": "The typographic bounds-sizing behavior to handle text with fonts that contain oversize characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILetterformAwareAdjusting"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILetterformAwareAdjusting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UILetterformAwareAdjusting"
+        }
+      ],
+      "role": "symbol",
+      "title": "UILetterformAwareAdjusting",
+      "type": "topic",
+      "url": "/documentation/uikit/uiletterformawareadjusting"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem": {
+      "abstract": [
+        {
+          "text": "The items that a navigation bar displays when the associated view controller is visible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UINavigationItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UINavigationItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UINavigationItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPasteConfigurationSupporting": {
+      "abstract": [
+        {
+          "text": "The interface that determines whether a responder object supports paste configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPasteConfigurationSupporting"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPasteConfigurationSupporting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPasteConfigurationSupporting"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPasteConfigurationSupporting",
+      "type": "topic",
+      "url": "/documentation/uikit/uipasteconfigurationsupporting"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPopoverPresentationControllerSourceItem": {
+      "abstract": [
+        {
+          "text": "A type that can be an anchor for a popover presentation controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPopoverPresentationControllerSourceItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPopoverPresentationControllerSourceItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPopoverPresentationControllerSourceItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPopoverPresentationControllerSourceItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uipopoverpresentationcontrollersourceitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions": {
+      "abstract": [
+        {
+          "text": "A set of standard methods that apps can adopt to support editing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIResponderStandardEditActions"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIResponderStandardEditActions"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIResponderStandardEditActions",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponderstandardeditactions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchBar": {
+      "abstract": [
+        {
+          "text": "A specialized view for receiving search-related information from the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchBar"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchBar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchBar"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchBar",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchbar"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchTextField": {
+      "abstract": [
+        {
+          "text": "A view for displaying and editing text and search tokens.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchTextField"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchTextField",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchTextField"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchTextField",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchtextfield"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/allowsCopyingTokens": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the user can copy or drag tokens from the search field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsCopyingTokens"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/allowsCopyingTokens",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsCopyingTokens"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsCopyingTokens",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchtextfield/allowscopyingtokens"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/allowsDeletingTokens": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the user can remove tokens from the search field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsDeletingTokens"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/allowsDeletingTokens",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsDeletingTokens"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsDeletingTokens",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchtextfield/allowsdeletingtokens"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/insertToken(_:at:)": {
+      "abstract": [
+        {
+          "text": "Adds a search token at a specific index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertToken"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISearchToken",
+          "text": "UISearchToken"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/insertToken(_:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insertToken:atIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "insertToken(_:at:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchtextfield/inserttoken(_:at:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/positionOfToken(at:)": {
+      "abstract": [
+        {
+          "text": "Converts a token index into a text position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "positionOfToken"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextPosition",
+          "text": "UITextPosition"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/positionOfToken(at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "positionOfTokenAtIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "positionOfToken(at:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchtextfield/positionoftoken(at:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/removeToken(at:)": {
+      "abstract": [
+        {
+          "text": "Removes a particular search token from the search text field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeToken"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/removeToken(at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeTokenAtIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeToken(at:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchtextfield/removetoken(at:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/replaceTextualPortion(of:with:at:)": {
+      "abstract": [
+        {
+          "text": "Converts text in a search field into a search token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replaceTextualPortion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextRange",
+          "text": "UITextRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISearchToken",
+          "text": "UISearchToken"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/replaceTextualPortion(of:with:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "replaceTextualPortionOfRange:withToken:atIndex:"
+        }
+      ],
+      "role": "symbol",
+      "title": "replaceTextualPortion(of:with:at:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchtextfield/replacetextualportion(of:with:at:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/searchSuggestions": {
+      "abstract": [
+        {
+          "text": "A list of suggestions to offer as shortcuts below the search field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "searchSuggestions"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UISearchSuggestion",
+          "text": "UISearchSuggestion"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/searchSuggestions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "searchSuggestions"
+        }
+      ],
+      "role": "symbol",
+      "title": "searchSuggestions",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchtextfield/searchsuggestions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/textualRange": {
+      "abstract": [
+        {
+          "text": "The range of the field’s text content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textualRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextRange",
+          "text": "UITextRange"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/textualRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textualRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "textualRange",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchtextfield/textualrange"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/tokenBackgroundColor": {
+      "abstract": [
+        {
+          "text": "The background color for all tokens in the search text field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenBackgroundColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIColor",
+          "text": "UIColor"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/tokenBackgroundColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tokenBackgroundColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "tokenBackgroundColor",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchtextfield/tokenbackgroundcolor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/tokens": {
+      "abstract": [
+        {
+          "text": "The collection of tokens in the search text field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokens"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISearchToken",
+          "text": "UISearchToken"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/tokens",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tokens"
+        }
+      ],
+      "role": "symbol",
+      "title": "tokens",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchtextfield/tokens"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/tokens(in:)": {
+      "abstract": [
+        {
+          "text": "Returns the search field’s tokens that are within a given range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokens"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextRange",
+          "text": "UITextRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISearchToken",
+          "text": "UISearchToken"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/tokens(in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tokensInRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tokens(in:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchtextfield/tokens(in:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchTextFieldDelegate": {
+      "abstract": [
+        {
+          "text": "The interface for the delegate of a search field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchTextFieldDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchTextFieldDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchTextFieldDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchTextFieldDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchtextfielddelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchTextFieldPasteItem": {
+      "abstract": [
+        {
+          "text": "A protocol that supports pasting tokens.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchTextFieldPasteItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchTextFieldPasteItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchTextFieldPasteItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchTextFieldPasteItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchtextfieldpasteitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchToken": {
+      "abstract": [
+        {
+          "text": "Search criteria in a search text field, represented by text and an optional icon.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchToken"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchToken",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchtoken"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextDraggable": {
+      "abstract": [
+        {
+          "text": "The interface that determines if a text view is a drag source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextDraggable"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDraggable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextDraggable"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextDraggable",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextdraggable"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextDroppable": {
+      "abstract": [
+        {
+          "text": "The interface that determines if a text view is a drop destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextDroppable"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDroppable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextDroppable"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextDroppable",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextdroppable"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextField": {
+      "abstract": [
+        {
+          "text": "An object that displays an editable text area in your interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextField"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextField",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextField"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextField",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfield"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextField/delegate": {
+      "abstract": [
+        {
+          "text": "The text field’s delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UITextFieldDelegate",
+          "text": "UITextFieldDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextField/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfield/delegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInput": {
+      "abstract": [
+        {
+          "text": "A set of methods for interacting with the text input system and enabling features in documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextInput"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextInput",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinput"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInput/selectedTextRange": {
+      "abstract": [
+        {
+          "text": "The range of selected text in a document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedTextRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITextRange",
+          "text": "UITextRange"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInput/selectedTextRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectedTextRange"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "selectedTextRange",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinput/selectedtextrange"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInputTraits": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines features for keyboard input to a text object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextInputTraits"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputTraits",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextInputTraits"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextInputTraits",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinputtraits"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextPasteConfigurationSupporting": {
+      "abstract": [
+        {
+          "text": "The interface for text-oriented responder objects to participate in the unified paste and drop system in iOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextPasteConfigurationSupporting"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextPasteConfigurationSupporting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextPasteConfigurationSupporting"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextPasteConfigurationSupporting",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextpasteconfigurationsupporting"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextPosition": {
+      "abstract": [
+        {
+          "text": "A position in a text container—that is, an index into the backing string in a text-display view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextPosition"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextPosition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextPosition"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextPosition",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextposition"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitChangeObservable-67e94": {
+      "abstract": [
+        {
+          "text": "A type that calls your code in reaction to changes in the trait environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitChangeObservable"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitChangeObservable-67e94",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitChangeObservable"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitChangeObservable",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitchangeobservable-67e94"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment": {
+      "abstract": [
+        {
+          "text": "A set of methods that makes the iOS interface environment available to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITraitEnvironment"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITraitEnvironment"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITraitEnvironment",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitenvironment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "The protocol you adopt to restore an object’s state from a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIUserActivityRestoring"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIUserActivityRestoring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIUserActivityRestoring"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/uikit/uiuseractivityrestoring"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)CALayerDelegate": {
+      "abstract": [
+        {
+          "text": "Methods your app can implement to respond to layer-related events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CALayerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)CALayerDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CALayerDelegate",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CALayerDelegate"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTouchBarProvider"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITextField"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)CALayerDelegate",
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityIdentification",
+        "doc://com.apple.uikit/documentation/UIKit/UIActivityItemsConfigurationProviding",
+        "doc://com.apple.uikit/documentation/UIKit/UIAppearance",
+        "doc://com.apple.uikit/documentation/UIKit/UIAppearanceContainer",
+        "doc://com.apple.uikit/documentation/UIKit/UIContentSizeCategoryAdjusting",
+        "doc://com.apple.uikit/documentation/UIKit/UIContextMenuInteractionDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UICoordinateSpace",
+        "doc://com.apple.uikit/documentation/UIKit/UIDynamicItem",
+        "doc://com.apple.uikit/documentation/UIKit/UIFocusEnvironment",
+        "doc://com.apple.uikit/documentation/UIKit/UIFocusItem",
+        "doc://com.apple.uikit/documentation/UIKit/UIFocusItemContainer",
+        "doc://com.apple.uikit/documentation/UIKit/UIKeyInput",
+        "doc://com.apple.uikit/documentation/UIKit/UILargeContentViewerItem",
+        "doc://com.apple.uikit/documentation/UIKit/UILetterformAwareAdjusting",
+        "doc://com.apple.uikit/documentation/UIKit/UIPasteConfigurationSupporting",
+        "doc://com.apple.uikit/documentation/UIKit/UIPopoverPresentationControllerSourceItem",
+        "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions",
+        "doc://com.apple.uikit/documentation/UIKit/UITextDraggable",
+        "doc://com.apple.uikit/documentation/UIKit/UITextDroppable",
+        "doc://com.apple.uikit/documentation/UIKit/UITextInput",
+        "doc://com.apple.uikit/documentation/UIKit/UITextInputTraits",
+        "doc://com.apple.uikit/documentation/UIKit/UITextPasteConfigurationSupporting",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitChangeObservable-67e94",
+        "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment",
+        "doc://com.apple.uikit/documentation/UIKit/UIUserActivityRestoring"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Search-field",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UISearchToken",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchTextFieldDelegate"
+      ],
+      "title": "Search field"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Converting-text-into-tokens",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/replaceTextualPortion(of:with:at:)",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/textualRange"
+      ],
+      "title": "Converting text into tokens"
+    },
+    {
+      "anchor": "Supporting-token-interactions",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/allowsDeletingTokens",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/allowsCopyingTokens",
+        "doc://com.apple.uikit/documentation/UIKit/UITextField/delegate",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchTextFieldDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchTextFieldPasteItem"
+      ],
+      "title": "Supporting token interactions"
+    },
+    {
+      "anchor": "Adding-and-removing-tokens",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/tokens",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/insertToken(_:at:)",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/removeToken(at:)"
+      ],
+      "title": "Adding and removing tokens"
+    },
+    {
+      "anchor": "Customizing-token-behavior",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/tokenBackgroundColor",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/tokens(in:)",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/positionOfToken(at:)"
+      ],
+      "title": "Customizing token behavior"
+    },
+    {
+      "anchor": "Providing-search-suggestions",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/searchSuggestions"
+      ],
+      "title": "Providing search suggestions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UISearchTextField"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchTextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchTextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Converting-text-into-tokens",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/replaceTextualPortion(of:with:at:)",
+                "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/textualRange"
+              ],
+              "title": "Converting text into tokens"
+            },
+            {
+              "anchor": "Supporting-token-interactions",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/allowsDeletingTokens",
+                "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/allowsCopyingTokens",
+                "doc://com.apple.uikit/documentation/UIKit/UITextField/delegate",
+                "doc://com.apple.uikit/documentation/UIKit/UISearchTextFieldDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UISearchTextFieldPasteItem"
+              ],
+              "title": "Supporting token interactions"
+            },
+            {
+              "anchor": "Adding-and-removing-tokens",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/tokens",
+                "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/insertToken(_:at:)",
+                "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/removeToken(at:)"
+              ],
+              "title": "Adding and removing tokens"
+            },
+            {
+              "anchor": "Customizing-token-behavior",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/tokenBackgroundColor",
+                "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/tokens(in:)",
+                "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/positionOfToken(at:)"
+              ],
+              "title": "Customizing token behavior"
+            },
+            {
+              "anchor": "Providing-search-suggestions",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UISearchTextField/searchSuggestions"
+              ],
+              "title": "Providing search suggestions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITextField"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Search-field",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UISearchToken",
+                "doc://com.apple.uikit/documentation/UIKit/UISearchTextFieldDelegate"
+              ],
+              "title": "Search field"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UISearchTextField"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextField",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)UITextField",
+                    "text": "UITextField"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextFieldDelegate/title",
+          "value": "UISearchTextFieldDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextFieldDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchTextFieldDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextFieldDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchTextFieldDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions/title",
+          "value": "UIResponderStandardEditActions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIResponderStandardEditActions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIResponderStandardEditActions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityIdentification/title",
+          "value": "UIAccessibilityIdentification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityIdentification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityIdentification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityIdentification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityIdentification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyInput/title",
+          "value": "UIKeyInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField~1tokens(in:)/title",
+          "value": "tokensInRange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField~1tokens(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tokensInRange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment/title",
+          "value": "UITraitEnvironment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITraitEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITraitEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearance/title",
+          "value": "UIAppearance"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearance/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearance/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchBar/title",
+          "value": "UISearchBar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchBar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchBar/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusItemContainer/title",
+          "value": "UIFocusItemContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusItemContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusItemContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusItemContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusItemContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILargeContentViewerItem/title",
+          "value": "UILargeContentViewerItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILargeContentViewerItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILargeContentViewerItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILargeContentViewerItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILargeContentViewerItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentSizeCategoryAdjusting/title",
+          "value": "UIContentSizeCategoryAdjusting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentSizeCategoryAdjusting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContentSizeCategoryAdjusting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentSizeCategoryAdjusting/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContentSizeCategoryAdjusting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField~1replaceTextualPortion(of:with:at:)/title",
+          "value": "replaceTextualPortionOfRange:withToken:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField~1replaceTextualPortion(of:with:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "replaceTextualPortionOfRange:withToken:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICoordinateSpace/title",
+          "value": "UICoordinateSpace"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICoordinateSpace/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICoordinateSpace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICoordinateSpace/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICoordinateSpace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField~1positionOfToken(at:)/title",
+          "value": "positionOfTokenAtIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField~1positionOfToken(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "positionOfTokenAtIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextPasteConfigurationSupporting/title",
+          "value": "UITextPasteConfigurationSupporting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextPasteConfigurationSupporting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextPasteConfigurationSupporting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextPasteConfigurationSupporting/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextPasteConfigurationSupporting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDraggable/title",
+          "value": "UITextDraggable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDraggable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDraggable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDraggable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDraggable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPasteConfigurationSupporting/title",
+          "value": "UIPasteConfigurationSupporting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPasteConfigurationSupporting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPasteConfigurationSupporting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPasteConfigurationSupporting/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPasteConfigurationSupporting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField~1tokenBackgroundColor/title",
+          "value": "tokenBackgroundColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField~1tokenBackgroundColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tokenBackgroundColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusEnvironment/title",
+          "value": "UIFocusEnvironment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusEnvironment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusEnvironment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField~1textualRange/title",
+          "value": "textualRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField~1textualRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "textualRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchToken/title",
+          "value": "UISearchToken"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchToken/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchToken/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserActivityRestoring/title",
+          "value": "UIUserActivityRestoring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIUserActivityRestoring/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField~1tokens/title",
+          "value": "tokens"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField~1tokens/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tokens"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextPosition/title",
+          "value": "UITextPosition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextPosition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextPosition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextPosition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextPosition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTraits/title",
+          "value": "UITextInputTraits"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTraits/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInputTraits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputTraits/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInputTraits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContextMenuInteractionDelegate/title",
+          "value": "UIContextMenuInteractionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContextMenuInteractionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContextMenuInteractionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContextMenuInteractionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContextMenuInteractionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearanceContainer/title",
+          "value": "UIAppearanceContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearanceContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearanceContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAppearanceContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAppearanceContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem/title",
+          "value": "UINavigationItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINavigationItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField/title",
+          "value": "UISearchTextField"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchTextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchTextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextFieldPasteItem/title",
+          "value": "UISearchTextFieldPasteItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextFieldPasteItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchTextFieldPasteItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextFieldPasteItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchTextFieldPasteItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)CALayerDelegate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CALayerDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusItem/title",
+          "value": "UIFocusItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFocusItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFocusItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInput/title",
+          "value": "UITextInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPopoverPresentationControllerSourceItem/title",
+          "value": "UIPopoverPresentationControllerSourceItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPopoverPresentationControllerSourceItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPopoverPresentationControllerSourceItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPopoverPresentationControllerSourceItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPopoverPresentationControllerSourceItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField~1allowsDeletingTokens/title",
+          "value": "allowsDeletingTokens"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField~1allowsDeletingTokens/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsDeletingTokens"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILetterformAwareAdjusting/title",
+          "value": "UILetterformAwareAdjusting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILetterformAwareAdjusting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILetterformAwareAdjusting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILetterformAwareAdjusting/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILetterformAwareAdjusting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField~1searchSuggestions/title",
+          "value": "searchSuggestions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField~1searchSuggestions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "searchSuggestions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfigurationProviding/title",
+          "value": "UIActivityItemsConfigurationProviding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfigurationProviding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemsConfigurationProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActivityItemsConfigurationProviding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemsConfigurationProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicItem/title",
+          "value": "UIDynamicItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDynamicItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDynamicItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDynamicItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField~1removeToken(at:)/title",
+          "value": "removeTokenAtIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField~1removeToken(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeTokenAtIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField~1allowsCopyingTokens/title",
+          "value": "allowsCopyingTokens"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField~1allowsCopyingTokens/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsCopyingTokens"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField/title",
+          "value": "UITextField"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField~1insertToken(_:at:)/title",
+          "value": "insertToken:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchTextField~1insertToken(_:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insertToken:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDroppable/title",
+          "value": "UITextDroppable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDroppable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDroppable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDroppable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDroppable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInput~1selectedTextRange/title",
+          "value": "selectedTextRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInput~1selectedTextRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selectedTextRange"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uisearchtextfield"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uisearchtextfield"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

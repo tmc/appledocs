@@ -1,0 +1,570 @@
+{
+  "abstract": [
+    {
+      "text": "Diagnose and resolve issues launching a simulator, or with slow scrolling or animations in Simulator.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/devices-and-simulator"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/troubleshooting-simulator-launch-or-animation-issues"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Troubleshooting Simulator launch or animation issues"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you run multiple simulators concurrently with Xcode and other programs on your Mac, you can run into poor performance in simulators, or even errors launching more simulators. Isolate the cause, then fix these types of issues in Simulator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For issues that may be part of Simulator or a simulated device, please file a bug.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Investigate-and-address-insufficient-resources",
+          "level": 3,
+          "text": "Investigate and address insufficient resources",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Launching a simulator can result in an error alert that there are insufficient system resources. This usually occurs when launching a simulator exceeds either the maximum number of active processes or the maximum number of open files. The best solution is to free up resources by closing simulated devices and other Mac applications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If it’s not possible to free up enough resources, raise the system limits until you restart your Mac.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "It’s possible to exceed the maximum number of process or the maximum number of open files when you launch other programs or open other files some time after you’ve launched a simulator. If this occurs, Simulator doesn’t give you a warning. The effects depend on what program is trying to launch the process or open the file.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, find the current process and file limits:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open Terminal.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run the command ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sudo launchctl limit",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Provide your password when Terminal requests it, because you’re running the command as superuser.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Note the maximum number of processes next to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "maxproc",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and the maximum number of files next to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "maxfiles",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Run the command ",
+              "type": "text"
+            },
+            {
+              "code": "ps -A | wc -l",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in Terminal to show the current total of running processes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to increase the maximum number of processes, run the command ",
+              "type": "text"
+            },
+            {
+              "code": "sudo launchctl limit maxproc <per user limit> <total limit>",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", replacing ",
+              "type": "text"
+            },
+            {
+              "code": "<per user limit>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "<total limit>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with numbers. For example, the command ",
+              "type": "text"
+            },
+            {
+              "code": "sudo launchctl limit maxproc 2000 2500",
+              "type": "codeVoice"
+            },
+            {
+              "text": " sets the maximum number of concurrent processes for any one user to 2000 and the total number of all concurrent processes to 2500.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Setting the maximum number of processes to a number that is too low can prevent your Mac from operating correctly. Restart your machine to restore the original limits.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Warning",
+          "style": "warning",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to increase the maximum number of open files, run the command ",
+              "type": "text"
+            },
+            {
+              "code": "sudo launchctl limit maxfiles <per process limit> <total limit>",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", replacing ",
+              "type": "text"
+            },
+            {
+              "code": "<per process limit>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "<total limit>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with numbers. For example, the command ",
+              "type": "text"
+            },
+            {
+              "code": "sudo launchctl limit maxfiles 2000 unlimited",
+              "type": "codeVoice"
+            },
+            {
+              "text": " sets the maximum number of open files for any one process to 2000 and the total number of all open files to ",
+              "type": "text"
+            },
+            {
+              "code": "unlimited",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Investigate-slow-scrolling-or-animations",
+          "level": 3,
+          "text": "Investigate slow scrolling or animations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In some cases slow scrolling or animation is due to the simulator. Use the items in Debug > Graphics Quality Override to check if this is an issue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Use the default graphics quality for the device.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Device Default",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Force low-quality graphics. This choice results in faster scrolling and animation if Simulator is the cause.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Low Quality",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Force high-quality graphics.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "High Quality",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Report-bugs",
+          "level": 3,
+          "text": "Report bugs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For issues that may be part of Simulator or a simulated device, please file a bug through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/bug-reporting/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you file a bug, include the full version number of Xcode in the bug title and in the description. To find the version number, choose Xcode > About Xcode. The full version number including the part in parentheses is in the window that Xcode displays. If the bug is with a simulated device, attach a ",
+              "type": "text"
+            },
+            {
+              "code": "sysdiagnose",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for that device by opening Terminal and typing the following command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "xcrun simctl diagnose"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Press Enter again to display the status of the capture as well as the path for the file with the ",
+              "type": "text"
+            },
+            {
+              "code": "sysdiagnose",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on ",
+              "type": "text"
+            },
+            {
+              "code": "diagnose",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", run the following command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "xcrun simctl diagnose --help"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/devices-and-simulator": {
+      "abstract": [
+        {
+          "text": "Configure and manage devices connected to your Mac or devices in Simulator and use them to run your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/devices-and-simulator",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Devices and Simulator",
+      "type": "topic",
+      "url": "/documentation/xcode/devices-and-simulator"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/bug-reporting/": {
+      "identifier": "https://developer.apple.com/bug-reporting/",
+      "title": "Apple Developer website",
+      "titleInlineContent": [
+        {
+          "text": "Apple Developer website",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/bug-reporting/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": []
+}

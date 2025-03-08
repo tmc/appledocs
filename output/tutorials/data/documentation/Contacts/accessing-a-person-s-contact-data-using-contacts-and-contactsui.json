@@ -1,0 +1,343 @@
+{
+  "abstract": [
+    {
+      "text": "Allow people to grant your app access to contact data by adding the Contact access button and Contact access picker to your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.contacts/documentation/Contacts"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.contacts/documentation/Contacts/accessing-a-person-s-contact-data-using-contacts-and-contactsui"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Contacts"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Accessing a person’s contact data using Contacts and ContactsUI"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC24 session 10121: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc24/10121/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before running the sample code project in Xcode, select the sample target, then configure it to use your Developer team for signing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "afb4a67e7563/AccessingAPersonsContactDataUsingContactsAndContactsUI.zip": {
+      "checksum": "afb4a67e7563bb3ac357287a5cd59ca4aa611fa6d7d234b0cc82b16ed11e0f02a78671b2dd84dfd18558257b1489dbdef982554b6dd61fdc6374ce5f39c29046",
+      "identifier": "afb4a67e7563/AccessingAPersonsContactDataUsingContactsAndContactsUI.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/afb4a67e7563/AccessingAPersonsContactDataUsingContactsAndContactsUI.zip"
+    },
+    "doc://com.apple.contacts/documentation/Contacts": {
+      "abstract": [
+        {
+          "text": "Access the user’s contacts, and format and localize contact information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Contacts",
+      "type": "topic",
+      "url": "/documentation/contacts"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNContactStore": {
+      "abstract": [
+        {
+          "text": "The object that fetches and saves contacts, groups, and containers from the user’s Contacts database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CNContactStore"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNContactStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CNContactStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "CNContactStore",
+      "type": "topic",
+      "url": "/documentation/contacts/cncontactstore"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/accessing-the-contact-store": {
+      "abstract": [
+        {
+          "text": "Request permission from the person to read and write their contact data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/accessing-the-contact-store",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing the contact store",
+      "type": "topic",
+      "url": "/documentation/contacts/accessing-the-contact-store"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.contacts.notes": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may access the notes in contact entries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.contacts.notes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.contacts.notes",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.contacts.notes"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSContactsUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s contacts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSContactsUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSContactsUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSContactsUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/wwdc24/10121/": {
+      "identifier": "https://developer.apple.com/wwdc24/10121/",
+      "title": "Meet the Contact Access Button",
+      "titleInlineContent": [
+        {
+          "text": "Meet the Contact Access Button",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc24/10121/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "afb4a67e7563/AccessingAPersonsContactDataUsingContactsAndContactsUI.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.contacts/documentation/Contacts/accessing-the-contact-store",
+        "doc://com.apple.contacts/documentation/Contacts/CNContactStore",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSContactsUsageDescription",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.contacts.notes"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.contacts/documentation/Contacts/accessing-the-contact-store",
+                "doc://com.apple.contacts/documentation/Contacts/CNContactStore",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSContactsUsageDescription",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.contacts.notes"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore/title",
+          "value": "CNContactStore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CNContactStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CNContactStore"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/contacts/accessing-a-person-s-contact-data-using-contacts-and-contactsui"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/contacts/accessing-a-person-s-contact-data-using-contacts-and-contactsui"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

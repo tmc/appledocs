@@ -1,0 +1,2293 @@
+{
+  "abstract": [
+    {
+      "text": "A context object that declares which parts of your layout need to be updated when the layout is invalidated.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UICollectionViewLayoutInvalidationContext",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UICollectionViewLayoutInvalidationContext"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UICollectionViewLayoutInvalidationContext"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UICollectionViewLayoutInvalidationContext"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewLayoutInvalidationContext"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Layout objects that are designed to support invalidation contexts can use the information in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to optimize their behavior during the invalidation cycle. You can create an invalidation context object as a precursor to invalidating a layout object. After configuring the invalidation context object, pass it to the layout object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayout/invalidateLayout(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, which is responsible for using the context object to update the layout efficiently. The collection view also creates invalidation contexts in response to specific changes. For example, it creates an invalidation context when you change the layout or data source object, when you insert or delete items, and when you call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView/reloadData()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Subclassing-Notes",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you create your own custom layout objects, you can subclass ",
+              "type": "text"
+            },
+            {
+              "code": "UICollectionViewLayoutInvalidationContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and add properties to specify which aspects of your layout data can be invalidated separately. You must then design your layout object to check for these properties and update the layout appropriately.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about how to support custom invalidation contexts in your layout objects, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSCollectionLayoutSectionVisibleItemsInvalidationHandler": {
+      "abstract": [
+        {
+          "text": "A closure called before each layout cycle to allow modification of items in a section immediately before they’re displayed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCollectionLayoutSectionVisibleItemsInvalidationHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSCollectionLayoutSectionVisibleItemsInvalidationHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCollectionLayoutSectionVisibleItemsInvalidationHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCollectionLayoutSectionVisibleItemsInvalidationHandler",
+      "type": "topic",
+      "url": "/documentation/uikit/nscollectionlayoutsectionvisibleitemsinvalidationhandler"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSCollectionLayoutVisibleItem": {
+      "abstract": [
+        {
+          "text": "An item that’s currently visible within the bounds of a section.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCollectionLayoutVisibleItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSCollectionLayoutVisibleItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCollectionLayoutVisibleItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCollectionLayoutVisibleItem",
+      "type": "topic",
+      "url": "/documentation/uikit/nscollectionlayoutvisibleitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionView/reloadData()": {
+      "abstract": [
+        {
+          "text": "Reloads all of the data for the collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reloadData"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView/reloadData()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reloadData"
+        }
+      ],
+      "role": "symbol",
+      "title": "reloadData()",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionview/reloaddata()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayoutInvalidationContext": {
+      "abstract": [
+        {
+          "text": "A set of properties for determining whether to recompute the size of items or their position in the layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewFlowLayoutInvalidationContext"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayoutInvalidationContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewFlowLayoutInvalidationContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewFlowLayoutInvalidationContext",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewflowlayoutinvalidationcontext"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFocusUpdateContext": {
+      "abstract": [
+        {
+          "text": "A context object that stores information specific to a focus update in a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewFocusUpdateContext"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFocusUpdateContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewFocusUpdateContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewFocusUpdateContext",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewfocusupdatecontext"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayout": {
+      "abstract": [
+        {
+          "text": "An abstract base class for generating layout information for a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewLayout",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayout"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayout/invalidateLayout(with:)": {
+      "abstract": [
+        {
+          "text": "Invalidates the current layout using the information in the provided context object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidateLayout"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UICollectionViewLayoutInvalidationContext",
+          "text": "UICollectionViewLayoutInvalidationContext"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayout/invalidateLayout(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "invalidateLayoutWithContext:"
+        }
+      ],
+      "role": "symbol",
+      "title": "invalidateLayout(with:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayout/invalidatelayout(with:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext": {
+      "abstract": [
+        {
+          "text": "A context object that declares which parts of your layout need to be updated when the layout is invalidated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewLayoutInvalidationContext"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewLayoutInvalidationContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewLayoutInvalidationContext",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutinvalidationcontext"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/contentOffsetAdjustment": {
+      "abstract": [
+        {
+          "text": "The delta value to be applied to the collection view’s content offset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentOffsetAdjustment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/contentOffsetAdjustment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentOffsetAdjustment"
+        }
+      ],
+      "role": "symbol",
+      "title": "contentOffsetAdjustment",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutinvalidationcontext/contentoffsetadjustment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/contentSizeAdjustment": {
+      "abstract": [
+        {
+          "text": "The delta value to be applied to the collection view’s content size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentSizeAdjustment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/contentSizeAdjustment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentSizeAdjustment"
+        }
+      ],
+      "role": "symbol",
+      "title": "contentSizeAdjustment",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutinvalidationcontext/contentsizeadjustment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/interactiveMovementTarget": {
+      "abstract": [
+        {
+          "text": "The current point used to determine the placement of moving items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interactiveMovementTarget"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/interactiveMovementTarget",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "interactiveMovementTarget"
+        }
+      ],
+      "role": "symbol",
+      "title": "interactiveMovementTarget",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutinvalidationcontext/interactivemovementtarget"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidateDataSourceCounts": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the layout should ask for new section and item counts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidateDataSourceCounts"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidateDataSourceCounts",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "invalidateDataSourceCounts"
+        }
+      ],
+      "role": "symbol",
+      "title": "invalidateDataSourceCounts",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutinvalidationcontext/invalidatedatasourcecounts"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidateDecorationElements(ofKind:at:)": {
+      "abstract": [
+        {
+          "text": "Adds the decoration views at the specified index paths to the list of invalid items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidateDecorationElements"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofKind"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidateDecorationElements(ofKind:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "invalidateDecorationElementsOfKind:atIndexPaths:"
+        }
+      ],
+      "role": "symbol",
+      "title": "invalidateDecorationElements(ofKind:at:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutinvalidationcontext/invalidatedecorationelements(ofkind:at:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidateEverything": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates that all layout data should be marked as invalid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidateEverything"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidateEverything",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "invalidateEverything"
+        }
+      ],
+      "role": "symbol",
+      "title": "invalidateEverything",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutinvalidationcontext/invalidateeverything"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidateItems(at:)": {
+      "abstract": [
+        {
+          "text": "Adds the cells at the specified index paths to the list of invalid items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidateItems"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidateItems(at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "invalidateItemsAtIndexPaths:"
+        }
+      ],
+      "role": "symbol",
+      "title": "invalidateItems(at:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutinvalidationcontext/invalidateitems(at:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidateSupplementaryElements(ofKind:at:)": {
+      "abstract": [
+        {
+          "text": "Adds the supplementary views at the specified index paths to the list of invalid items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidateSupplementaryElements"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofKind"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidateSupplementaryElements(ofKind:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "invalidateSupplementaryElementsOfKind:atIndexPaths:"
+        }
+      ],
+      "role": "symbol",
+      "title": "invalidateSupplementaryElements(ofKind:at:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutinvalidationcontext/invalidatesupplementaryelements(ofkind:at:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidatedDecorationIndexPaths": {
+      "abstract": [
+        {
+          "text": "A dictionary that identifies the decoration views that were invalidated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidatedDecorationIndexPaths"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": "]]?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidatedDecorationIndexPaths",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "invalidatedDecorationIndexPaths"
+        }
+      ],
+      "role": "symbol",
+      "title": "invalidatedDecorationIndexPaths",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutinvalidationcontext/invalidateddecorationindexpaths"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidatedItemIndexPaths": {
+      "abstract": [
+        {
+          "text": "An array of index paths representing the cells that were invalidated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidatedItemIndexPaths"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidatedItemIndexPaths",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "invalidatedItemIndexPaths"
+        }
+      ],
+      "role": "symbol",
+      "title": "invalidatedItemIndexPaths",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutinvalidationcontext/invalidateditemindexpaths"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidatedSupplementaryIndexPaths": {
+      "abstract": [
+        {
+          "text": "A dictionary that identifies the supplementary views that were invalidated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidatedSupplementaryIndexPaths"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": "]]?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidatedSupplementaryIndexPaths",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "invalidatedSupplementaryIndexPaths"
+        }
+      ],
+      "role": "symbol",
+      "title": "invalidatedSupplementaryIndexPaths",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutinvalidationcontext/invalidatedsupplementaryindexpaths"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/previousIndexPathsForInteractivelyMovingItems": {
+      "abstract": [
+        {
+          "text": "An array of index paths representing the previous location of moving items in the collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "previousIndexPathsForInteractivelyMovingItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/previousIndexPathsForInteractivelyMovingItems",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "previousIndexPathsForInteractivelyMovingItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "previousIndexPathsForInteractivelyMovingItems",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutinvalidationcontext/previousindexpathsforinteractivelymovingitems"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/targetIndexPathsForInteractivelyMovingItems": {
+      "abstract": [
+        {
+          "text": "An array of index paths representing the new location of moving items in the collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "targetIndexPathsForInteractivelyMovingItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9IndexPathV",
+          "text": "IndexPath"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/targetIndexPathsForInteractivelyMovingItems",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "targetIndexPathsForInteractivelyMovingItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "targetIndexPathsForInteractivelyMovingItems",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayoutinvalidationcontext/targetindexpathsforinteractivelymovingitems"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewUpdateItem": {
+      "abstract": [
+        {
+          "text": "An object that describes a single change to make to an item in a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewUpdateItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewUpdateItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewUpdateItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewUpdateItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewupdateitem"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayoutInvalidationContext"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Layout-updates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/NSCollectionLayoutVisibleItem",
+        "doc://com.apple.uikit/documentation/UIKit/NSCollectionLayoutSectionVisibleItemsInvalidationHandler",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewUpdateItem",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFocusUpdateContext"
+      ],
+      "title": "Layout updates"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Invalidating-the-Collection-View-Data",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidateEverything",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidateDataSourceCounts"
+      ],
+      "title": "Invalidating the Collection View Data"
+    },
+    {
+      "anchor": "Invalidating-the-Content-Area",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/contentOffsetAdjustment",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/contentSizeAdjustment"
+      ],
+      "title": "Invalidating the Content Area"
+    },
+    {
+      "anchor": "Invalidating-Specific-Items",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidateItems(at:)",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidateSupplementaryElements(ofKind:at:)",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidateDecorationElements(ofKind:at:)",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidatedItemIndexPaths",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidatedSupplementaryIndexPaths",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidatedDecorationIndexPaths"
+      ],
+      "title": "Invalidating Specific Items"
+    },
+    {
+      "anchor": "Invalidating-the-Order-of-Items",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/previousIndexPathsForInteractivelyMovingItems",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/targetIndexPathsForInteractivelyMovingItems",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/interactiveMovementTarget"
+      ],
+      "title": "Invalidating the Order of Items"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UICollectionViewLayoutInvalidationContext"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewLayoutInvalidationContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewLayoutInvalidationContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Invalidating-the-Collection-View-Data",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidateEverything",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidateDataSourceCounts"
+              ],
+              "title": "Invalidating the Collection View Data"
+            },
+            {
+              "anchor": "Invalidating-the-Content-Area",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/contentOffsetAdjustment",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/contentSizeAdjustment"
+              ],
+              "title": "Invalidating the Content Area"
+            },
+            {
+              "anchor": "Invalidating-Specific-Items",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidateItems(at:)",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidateSupplementaryElements(ofKind:at:)",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidateDecorationElements(ofKind:at:)",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidatedItemIndexPaths",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidatedSupplementaryIndexPaths",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/invalidatedDecorationIndexPaths"
+              ],
+              "title": "Invalidating Specific Items"
+            },
+            {
+              "anchor": "Invalidating-the-Order-of-Items",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/previousIndexPathsForInteractivelyMovingItems",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/targetIndexPathsForInteractivelyMovingItems",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayoutInvalidationContext/interactiveMovementTarget"
+              ],
+              "title": "Invalidating the Order of Items"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayoutInvalidationContext"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Layout-updates",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/NSCollectionLayoutVisibleItem",
+                "doc://com.apple.uikit/documentation/UIKit/NSCollectionLayoutSectionVisibleItemsInvalidationHandler",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewUpdateItem",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFocusUpdateContext"
+              ],
+              "title": "Layout updates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UICollectionViewLayoutInvalidationContext"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext~1invalidateDataSourceCounts/title",
+          "value": "invalidateDataSourceCounts"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext~1invalidateDataSourceCounts/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "invalidateDataSourceCounts"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayout/title",
+          "value": "UICollectionViewLayout"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayout/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayout/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewLayout"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext~1invalidateItems(at:)/title",
+          "value": "invalidateItemsAtIndexPaths:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext~1invalidateItems(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "invalidateItemsAtIndexPaths:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext~1previousIndexPathsForInteractivelyMovingItems/title",
+          "value": "previousIndexPathsForInteractivelyMovingItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext~1previousIndexPathsForInteractivelyMovingItems/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "previousIndexPathsForInteractivelyMovingItems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSCollectionLayoutVisibleItem/title",
+          "value": "NSCollectionLayoutVisibleItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSCollectionLayoutVisibleItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCollectionLayoutVisibleItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSCollectionLayoutVisibleItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCollectionLayoutVisibleItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext~1invalidatedSupplementaryIndexPaths/title",
+          "value": "invalidatedSupplementaryIndexPaths"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext~1invalidatedSupplementaryIndexPaths/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "invalidatedSupplementaryIndexPaths"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext~1invalidatedItemIndexPaths/title",
+          "value": "invalidatedItemIndexPaths"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext~1invalidatedItemIndexPaths/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "invalidatedItemIndexPaths"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSCollectionLayoutSectionVisibleItemsInvalidationHandler/title",
+          "value": "NSCollectionLayoutSectionVisibleItemsInvalidationHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSCollectionLayoutSectionVisibleItemsInvalidationHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCollectionLayoutSectionVisibleItemsInvalidationHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSCollectionLayoutSectionVisibleItemsInvalidationHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCollectionLayoutSectionVisibleItemsInvalidationHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext~1invalidatedDecorationIndexPaths/title",
+          "value": "invalidatedDecorationIndexPaths"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext~1invalidatedDecorationIndexPaths/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "invalidatedDecorationIndexPaths"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext~1invalidateSupplementaryElements(ofKind:at:)/title",
+          "value": "invalidateSupplementaryElementsOfKind:atIndexPaths:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext~1invalidateSupplementaryElements(ofKind:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "invalidateSupplementaryElementsOfKind:atIndexPaths:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext~1interactiveMovementTarget/title",
+          "value": "interactiveMovementTarget"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext~1interactiveMovementTarget/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "interactiveMovementTarget"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView~1reloadData()/title",
+          "value": "reloadData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionView~1reloadData()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "reloadData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFocusUpdateContext/title",
+          "value": "UICollectionViewFocusUpdateContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFocusUpdateContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewFocusUpdateContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFocusUpdateContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewFocusUpdateContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayout~1invalidateLayout(with:)/title",
+          "value": "invalidateLayoutWithContext:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayout~1invalidateLayout(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "invalidateLayoutWithContext:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext~1invalidateEverything/title",
+          "value": "invalidateEverything"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext~1invalidateEverything/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "invalidateEverything"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext~1contentOffsetAdjustment/title",
+          "value": "contentOffsetAdjustment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext~1contentOffsetAdjustment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contentOffsetAdjustment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext~1contentSizeAdjustment/title",
+          "value": "contentSizeAdjustment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext~1contentSizeAdjustment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contentSizeAdjustment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext/title",
+          "value": "UICollectionViewLayoutInvalidationContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewLayoutInvalidationContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewLayoutInvalidationContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayoutInvalidationContext/title",
+          "value": "UICollectionViewFlowLayoutInvalidationContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayoutInvalidationContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewFlowLayoutInvalidationContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewFlowLayoutInvalidationContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewFlowLayoutInvalidationContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewUpdateItem/title",
+          "value": "UICollectionViewUpdateItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewUpdateItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewUpdateItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewUpdateItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewUpdateItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext~1targetIndexPathsForInteractivelyMovingItems/title",
+          "value": "targetIndexPathsForInteractivelyMovingItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext~1targetIndexPathsForInteractivelyMovingItems/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "targetIndexPathsForInteractivelyMovingItems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext~1invalidateDecorationElements(ofKind:at:)/title",
+          "value": "invalidateDecorationElementsOfKind:atIndexPaths:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewLayoutInvalidationContext~1invalidateDecorationElements(ofKind:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "invalidateDecorationElementsOfKind:atIndexPaths:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uicollectionviewlayoutinvalidationcontext"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uicollectionviewlayoutinvalidationcontext"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

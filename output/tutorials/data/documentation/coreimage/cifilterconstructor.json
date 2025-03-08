@@ -1,0 +1,514 @@
+{
+  "abstract": [
+    {
+      "text": "A general interface for objects that produce ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": " instances.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreimage/cifilterconstructor"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1437886,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)CIFilterConstructor",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "protocol "
+      },
+      {
+        "kind": "identifier",
+        "text": "CIFilterConstructor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Image"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.7",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "intf",
+    "title": "CIFilterConstructor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CIFilterConstructor"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Objects implementing this protocol are called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "filter constructors",
+                  "type": "text"
+                }
+              ],
+              "type": "newTerm"
+            },
+            {
+              "text": "—they produce new instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " subclasses when filters are requested by name. You can create a filter constructor to provide new, custom filters that other Core Image clients can discover using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class. Normally, you create and register custom filters by packaging them as Image Units (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1720885",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), but you can use this protocol to provide new filters within your app that are compositions of existing filters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide custom filters using this protocol, you must:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create your custom filters as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " subclasses.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a class that implements this protocol to vend instances of the appropriate ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " subclasses when requested.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class method ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1437889-registername",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for each custom filter, providing the filter’s name, an instance of your filter constructor class, and information about the filter’s attributes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1720885": {
+      "identifier": "devLink-1720885",
+      "title": "Packaging and Loading Image Units",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_image_units/ci_image_units.html#//apple_ref/doc/uid/TP30001185-CH7"
+    },
+    "doc://com.apple.documentation/documentation/coreimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Image",
+      "type": "topic",
+      "url": "/documentation/coreimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIFilter",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/1437889-registername": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/1437889-registername",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerName(_:constructor:classAttributes:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/1437889-registername"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilterconstructor": {
+      "abstract": [
+        {
+          "text": "A general interface for objects that produce ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instances.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIFilterConstructor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilterconstructor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIFilterConstructor",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilterconstructor"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilterconstructor/1438018-filter": {
+      "abstract": [
+        {
+          "text": "Returns a filter object specified by name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "filter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withName"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> CIFilter?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilterconstructor/1438018-filter",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "filter(withName:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilterconstructor/1438018-filter"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator": {
+      "abstract": [
+        {
+          "text": "An object that creates and configures chains of individual image filters. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIFilterGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIFilterGenerator",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifiltergenerator"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciplugin": {
+      "abstract": [
+        {
+          "text": "The mechanism for loading image units in macOS. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIPlugIn"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciplugin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIPlugIn",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciplugin"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cipluginregistration": {
+      "abstract": [
+        {
+          "text": "The interface for loading Core Image image units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIPlugInRegistration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cipluginregistration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIPlugInRegistration",
+      "type": "topic",
+      "url": "/documentation/coreimage/cipluginregistration"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/ciplugin",
+        "doc://com.apple.documentation/documentation/coreimage/cifiltergenerator",
+        "doc://com.apple.documentation/documentation/coreimage/cipluginregistration"
+      ],
+      "title": "Image Units"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1666238",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifilterconstructor/1438018-filter"
+      ],
+      "kind": "taskGroup",
+      "title": "Providing Filter Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreimage/cifilterconstructor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreimage/cifilterconstructor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

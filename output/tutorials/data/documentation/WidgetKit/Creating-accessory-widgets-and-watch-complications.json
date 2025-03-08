@@ -1,0 +1,1289 @@
+{
+  "abstract": [
+    {
+      "text": "Support accessory widgets that appear on the Lock Screen and as complications on Apple Watch.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-accessory-widgets-and-watch-complications"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WidgetKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating accessory widgets and watch complications"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "WidgetKit allows you to extend the reach of your app to the Lock Screen on iPhone and iPad, and to the Smart Stack on Apple Watch as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "accessory widgets",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". Accessory widgets also appear as watch complications on Apple Watch. They display your app’s most relevant, glanceable content in highly visible contexts and let people quickly access your app for more details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Widgets and watch complications use WidgetKit and SwiftUI views, enabling you to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Update your existing widgets’ code to support accessory widgets.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Offer WidgetKit complications for your watchOS app, replace ClockKit complications, and share more code between your iOS and watchOS apps.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create watch complications and Lock Screen widgets simultaneously.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add support for iOS or watchOS to your app — in addition to platforms you already support — and offer widgets or complications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your path to creating accessory widgets and WidgetKit complications depends on your project. Before you start coding, make sure to review options available to you and carefully plan your software development project. If you’re new to WidgetKit development, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Developing-a-WidgetKit-strategy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2022/10050",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2022/10051",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related sessions from WWDC22",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2023/10309",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2023/10027",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related sessions from WWDC23",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-a-new-app-that-offers-widgets-and-watch-complications",
+          "level": 3,
+          "text": "Create a new app that offers widgets and watch complications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you create a new app, support iOS and watchOS and offer widgets and complications right from the start. This allows you to create a shared code base and reduces the need for costly code changes later in the app development process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get started:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open Xcode and create a new project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose the watchOS app template and select Watch App with New Companion iOS App in the “Choose options for your new project” sheet.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a new watchOS widget extension target to your project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a new iOS widget extension target to your project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add code for your iOS and watchOS apps, and create iOS widgets — including for the Lock Screen — and watchOS complications simultaneously using SwiftUI views and WidgetKit.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about creating widgets and building apps with SwiftUI, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-a-Widget-Extension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information on creating watchOS apps, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/watchOS-Apps",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-accessory-widgets-to-your-existing-iOS-App",
+          "level": 3,
+          "text": "Add accessory widgets to your existing iOS App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app supports widgets, adding accessory widgets works like supporting any other widget size. To learn more, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Supporting-additional-widget-sizes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t offer widgets in your app, add a widget extension to your app and support accessory widgets from the start. To learn more about adding a widget extension to your project, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-a-Widget-Extension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, consider adding support for watchOS with WidgetKit complications by adding a watchOS app target and a watchOS widget extension target. To learn more about creating a watchOS app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/watchOS-Apps",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-WidgetKit-complications-to-your-existing-watchOS-app",
+          "level": 3,
+          "text": "Add WidgetKit complications to your existing watchOS app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your existing watchOS app doesn’t offer complications, add a watchOS widget extension to your project in Xcode, and create complications with WidgetKit. Implementing WidgetKit complications works like creating widgets. For more information about creating a widget extension, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-a-Widget-Extension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your watchOS app offers ClockKit complications, continue to use these to support watchOS 8 and earlier. However, plan to migrate your existing ClockKit complications to WidgetKit as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Converting-A-ClockKit-App",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "As soon as you offer a widget-based complication, the system stops calling ClockKit APIs. For example, it no longer calls your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationDataSource",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object’s methods to request timeline entries. The system may still wake your data source for migration requests.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, consider adding support for iOS by adding an iOS app target to your Xcode project if your watchOS app doesn’t come with an iOS companion app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Backyard-Birds-intro.png": {
+      "alt": null,
+      "identifier": "Backyard-Birds-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/308516255a4b167225a334a5a55a1ff3/Backyard-Birds-intro@2x.png"
+        }
+      ]
+    },
+    "Developing-WidgetKit-Strategy-PageImage-card.png": {
+      "alt": "A collection of widgets in different sizes and orientations.",
+      "identifier": "Developing-WidgetKit-Strategy-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3be6cd9e9843fbca08a8c9ac15fcd915/Developing-WidgetKit-Strategy-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/42a248c60d951cca0502f29a151532a0/Developing-WidgetKit-Strategy-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Extend the reach of your app by creating widgets, watch complications, Live Activities, and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WidgetKit",
+      "type": "topic",
+      "url": "/documentation/widgetkit"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Converting-A-ClockKit-App": {
+      "abstract": [
+        {
+          "text": "Leverage WidgetKit’s API to create watchOS complications using SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Converting-A-ClockKit-App",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating ClockKit complications to WidgetKit",
+      "type": "topic",
+      "url": "/documentation/widgetkit/converting-a-clockkit-app"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-a-Widget-Extension": {
+      "abstract": [
+        {
+          "text": "Display your app’s content in a convenient, informative widget on various devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-a-Widget-Extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a widget extension",
+      "type": "topic",
+      "url": "/documentation/widgetkit/creating-a-widget-extension"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Developing-a-WidgetKit-strategy": {
+      "abstract": [
+        {
+          "text": "Explore features, tasks, related frameworks, and constraints as you make a plan to implement widgets, watch complications, and Live Activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Developing-a-WidgetKit-strategy",
+      "images": [
+        {
+          "identifier": "Developing-WidgetKit-Strategy-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Developing a WidgetKit strategy",
+      "type": "topic",
+      "url": "/documentation/widgetkit/developing-a-widgetkit-strategy"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/StaticConfiguration": {
+      "abstract": [
+        {
+          "text": "An object describing the content of a widget that has no user-configurable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StaticConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/StaticConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StaticConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "StaticConfiguration",
+      "type": "topic",
+      "url": "/documentation/widgetkit/staticconfiguration"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Supporting-additional-widget-sizes": {
+      "abstract": [
+        {
+          "text": "Offer widgets in additional contexts by adding support for various widget sizes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Supporting-additional-widget-sizes",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting additional widget sizes",
+      "type": "topic",
+      "url": "/documentation/widgetkit/supporting-additional-widget-sizes"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetAccentedRenderingMode": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the rendering mode for an ",
+          "type": "text"
+        },
+        {
+          "code": "Image",
+          "type": "codeVoice"
+        },
+        {
+          "text": " in when displayed in a widget",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/accented",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetAccentedRenderingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetAccentedRenderingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetAccentedRenderingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetAccentedRenderingMode",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetaccentedrenderingmode"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily": {
+      "abstract": [
+        {
+          "text": "Values that define the widget’s size and shape.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetFamily"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetFamily"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetFamily",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the rendering mode for a widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetRenderingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetRenderingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetRenderingMode",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetrenderingmode"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/accented": {
+      "abstract": [
+        {
+          "text": "The system divides the widget’s view hierarchy into an accent group and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a default group, applying a different color to each group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accented"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit0A13RenderingModeV",
+          "text": "WidgetRenderingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/accented",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accented",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetrenderingmode/accented"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations": {
+      "abstract": [
+        {
+          "text": "Offer Live Activities, controls, animate data updates, and add interactivity to widgets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Emoji Rangers: Supporting Live Activities, interactivity, and animations",
+      "type": "topic",
+      "url": "/documentation/widgetkit/emoji-rangers-supporting-live-activities-interactivity-and-animations"
+    },
+    "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationDataSource": {
+      "abstract": [
+        {
+          "text": "A protocol that provides ClockKit with information about your complication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationDataSource"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ClockKit/CLKComplicationDataSource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLKComplicationDataSource",
+      "type": "topic",
+      "url": "/documentation/ClockKit/CLKComplicationDataSource"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/SwiftUI"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Backyard-birds-sample": {
+      "abstract": [
+        {
+          "text": "Create an app with persistent data, interactive widgets, and an all new in-app purchase experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Backyard-birds-sample",
+      "images": [
+        {
+          "identifier": "Backyard-Birds-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Backyard Birds: Building an app with SwiftData and widgets",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Backyard-birds-sample"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Widget": {
+      "abstract": [
+        {
+          "text": "The configuration and content of a widget to display on the Home screen or in Notification Center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Widget"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Widget",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Widget",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Widget"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/WidgetBundle": {
+      "abstract": [
+        {
+          "text": "A container used to expose multiple widgets from a single widget extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetBundle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WidgetBundle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetBundle",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/WidgetBundle"
+    },
+    "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui": {
+      "abstract": [
+        {
+          "text": "Create a shared codebase to build a multiplatform app that offers widgets and an App Clip.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Fruta: Building a Feature-Rich App with SwiftUI",
+      "type": "topic",
+      "url": "/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/watchOS-Apps": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that combine complications, notifications, and Siri to create a personal experience on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/watchOS-Apps",
+      "images": [
+        {
+          "identifier": "watchOSApps-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "watchOS apps",
+      "type": "topic",
+      "url": "/documentation/watchOS-Apps"
+    },
+    "doc://com.apple.documentation/documentation/widgetkit/building_widgets_using_widgetkit_and_swiftui": {
+      "abstract": [
+        {
+          "text": "Create widgets to show your app’s content on the Home screen, with custom intents for user-customizable settings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/widgetkit/building_widgets_using_widgetkit_and_swiftui",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building Widgets Using WidgetKit and SwiftUI",
+      "type": "topic",
+      "url": "/documentation/widgetkit/building_widgets_using_widgetkit_and_swiftui"
+    },
+    "https://developer.apple.com/videos/play/wwdc2022/10050": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2022/10050",
+      "title": "Session 10050: Complications and widgets: Reloaded",
+      "titleInlineContent": [
+        {
+          "text": "Session 10050: Complications and widgets: Reloaded",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2022/10050"
+    },
+    "https://developer.apple.com/videos/play/wwdc2022/10051": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2022/10051",
+      "title": "Session 10051: Go further with complications in WidgetKit",
+      "titleInlineContent": [
+        {
+          "text": "Session 10051: Go further with complications in WidgetKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2022/10051"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10027": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10027",
+      "title": "Session 10027: Bring widgets to new places",
+      "titleInlineContent": [
+        {
+          "text": "Session 10027: Bring widgets to new places",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10027"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10309": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10309",
+      "title": "Session 10309:Design widgets for the Smart Stack on Apple Watch",
+      "titleInlineContent": [
+        {
+          "text": "Session 10309:Design widgets for the Smart Stack on Apple Watch",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10309"
+    },
+    "watchOSApps-PageImage-card.png": {
+      "alt": null,
+      "identifier": "watchOSApps-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2e82e5f258fb084d7b684889cabbe515/watchOSApps-PageImage-card~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5e043ca96ec9c9e5579649124c448c35/watchOSApps-PageImage-card@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Widget-creation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-a-Widget-Extension",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Supporting-additional-widget-sizes",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Converting-A-ClockKit-App",
+        "doc://com.apple.documentation/documentation/widgetkit/building_widgets_using_widgetkit_and_swiftui",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+        "doc://com.apple.documentation/documentation/SwiftUI/Backyard-birds-sample",
+        "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui",
+        "doc://com.apple.documentation/documentation/SwiftUI/Widget",
+        "doc://com.apple.documentation/documentation/SwiftUI/WidgetBundle",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/StaticConfiguration",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetAccentedRenderingMode"
+      ],
+      "title": "Widget creation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Widget-creation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-a-Widget-Extension",
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Supporting-additional-widget-sizes",
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Converting-A-ClockKit-App",
+                "doc://com.apple.documentation/documentation/SwiftUI/Backyard-birds-sample"
+              ],
+              "title": "Widget creation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ClockKit~1CLKComplicationDataSource/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationDataSource"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/widgetkit/creating-accessory-widgets-and-watch-complications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/widgetkit/creating-accessory-widgets-and-watch-complications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

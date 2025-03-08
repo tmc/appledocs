@@ -1,0 +1,3069 @@
+{
+  "abstract": [
+    {
+      "text": "A session that tracks the user’s workout on Apple Watch.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)HKWorkoutSession",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "HKWorkoutSession"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "HKWorkoutSession"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "HKWorkoutSession"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutSession"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.healthkit/documentation/HealthKit/running-workout-sessions"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The session fine-tunes Apple Watch’s sensors for the specified activity. All workout sessions generate high-frequency heart rate samples; however, an outdoor cycling activity generates accurate location data, while an indoor cycling activity doesn’t.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Watch runs one workout session at a time. If a second workout starts while your workout is running, your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSessionDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object receives an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKError/Code/errorAnotherWorkoutSessionStarted",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " error, and your session ends.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKError/Code/errorAnotherWorkoutSessionStarted": {
+      "abstract": [
+        {
+          "text": "Another app started a workout session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errorAnotherWorkoutSessionStarted"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKError/Code/errorAnotherWorkoutSessionStarted",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKErrorAnotherWorkoutSessionStarted"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKError.Code.errorAnotherWorkoutSessionStarted",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkerror/code/erroranotherworkoutsessionstarted"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKLiveWorkoutBuilder": {
+      "abstract": [
+        {
+          "text": "A builder object that constructs a workout incrementally based on live data from an active workout session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKLiveWorkoutBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKLiveWorkoutBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKLiveWorkoutBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKLiveWorkoutBuilder",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkliveworkoutbuilder"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKLiveWorkoutDataSource": {
+      "abstract": [
+        {
+          "text": "A data source that automatically provides live data from an active workout session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKLiveWorkoutDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKLiveWorkoutDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKLiveWorkoutDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKLiveWorkoutDataSource",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkliveworkoutdatasource"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutConfiguration": {
+      "abstract": [
+        {
+          "text": "An object that contains configuration information about a workout session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutConfiguration",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutconfiguration"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession": {
+      "abstract": [
+        {
+          "text": "A session that tracks the user’s workout on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutSession"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutSession",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/activityType": {
+      "abstract": [
+        {
+          "text": "The workout activity performed during this session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activityType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKWorkoutActivityType",
+          "text": "HKWorkoutActivityType"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/activityType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activityType"
+        }
+      ],
+      "role": "symbol",
+      "title": "activityType",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession/activitytype"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/associatedWorkoutBuilder()": {
+      "abstract": [
+        {
+          "text": "Returns the live workout builder associated with the workout session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "associatedWorkoutBuilder"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKLiveWorkoutBuilder",
+          "text": "HKLiveWorkoutBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/associatedWorkoutBuilder()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "associatedWorkoutBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "associatedWorkoutBuilder()",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession/associatedworkoutbuilder()"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/beginNewActivity(configuration:date:metadata:)": {
+      "abstract": [
+        {
+          "text": "Begins a new workout activity in the workout session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginNewActivity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKWorkoutConfiguration",
+          "text": "HKWorkoutConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "date"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "metadata"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/beginNewActivity(configuration:date:metadata:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "beginNewActivityWithConfiguration:date:metadata:"
+        }
+      ],
+      "role": "symbol",
+      "title": "beginNewActivity(configuration:date:metadata:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession/beginnewactivity(configuration:date:metadata:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/currentActivity": {
+      "abstract": [
+        {
+          "text": "The current workout activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentActivity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKWorkoutActivity",
+          "text": "HKWorkoutActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/currentActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "currentActivity",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession/currentactivity"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/delegate": {
+      "abstract": [
+        {
+          "text": "The workout session’s delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)HKWorkoutSessionDelegate",
+          "text": "HKWorkoutSessionDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession/delegate"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/end()": {
+      "abstract": [
+        {
+          "text": "Ends the workout session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "end"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/end()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "end"
+        }
+      ],
+      "role": "symbol",
+      "title": "end()",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession/end()"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/endCurrentActivity(on:)": {
+      "abstract": [
+        {
+          "text": "Ends the current workout activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endCurrentActivity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/endCurrentActivity(on:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "endCurrentActivityOnDate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "endCurrentActivity(on:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession/endcurrentactivity(on:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/endDate": {
+      "abstract": [
+        {
+          "text": "The ending time and date for this workout session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/endDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "endDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "endDate",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession/enddate"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/init(activityType:locationType:)": {
+      "abstract": [
+        {
+          "text": "Returns a newly instantiated workout session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "activityType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKWorkoutActivityType",
+          "text": "HKWorkoutActivityType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "locationType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKWorkoutSessionLocationType",
+          "text": "HKWorkoutSessionLocationType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/init(activityType:locationType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithActivityType:locationType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(activityType:locationType:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession/init(activitytype:locationtype:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/init(configuration:)": {
+      "abstract": [
+        {
+          "text": "Returns a newly instantiated workout session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKWorkoutConfiguration",
+          "text": "HKWorkoutConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/init(configuration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithConfiguration:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(configuration:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession/init(configuration:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/init(healthStore:configuration:)": {
+      "abstract": [
+        {
+          "text": "Returns a newly instantiated workout session with an associated workout builder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "healthStore"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKHealthStore",
+          "text": "HKHealthStore"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKWorkoutConfiguration",
+          "text": "HKWorkoutConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/init(healthStore:configuration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithHealthStore:configuration:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(healthStore:configuration:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession/init(healthstore:configuration:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/locationType": {
+      "abstract": [
+        {
+          "text": "A value that indicates whether the workout session occurred indoors or outdoors.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locationType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKWorkoutSessionLocationType",
+          "text": "HKWorkoutSessionLocationType"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/locationType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationType"
+        }
+      ],
+      "role": "symbol",
+      "title": "locationType",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession/locationtype"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/pause()": {
+      "abstract": [
+        {
+          "text": "Pauses the workout session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pause"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/pause()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pause"
+        }
+      ],
+      "role": "symbol",
+      "title": "pause()",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession/pause()"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/prepare()": {
+      "abstract": [
+        {
+          "text": "Prepares the workout session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepare"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/prepare()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "prepare"
+        }
+      ],
+      "role": "symbol",
+      "title": "prepare()",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession/prepare()"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/resume()": {
+      "abstract": [
+        {
+          "text": "Resumes the workout session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resume"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/resume()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resume"
+        }
+      ],
+      "role": "symbol",
+      "title": "resume()",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession/resume()"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/sendToRemoteWorkoutSession(data:completion:)": {
+      "abstract": [
+        {
+          "text": "Sends the provided data to the remote workout session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendToRemoteWorkoutSession"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/sendToRemoteWorkoutSession(data:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sendDataToRemoteWorkoutSession:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sendToRemoteWorkoutSession(data:completion:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession/sendtoremoteworkoutsession(data:completion:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/startActivity(with:)": {
+      "abstract": [
+        {
+          "text": "Starts the workout session activity, and sets the start date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startActivity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/startActivity(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startActivityWithDate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startActivity(with:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession/startactivity(with:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/startDate": {
+      "abstract": [
+        {
+          "text": "The starting time and date for this workout session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/startDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "startDate",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession/startdate"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/startMirroringToCompanionDevice(completion:)": {
+      "abstract": [
+        {
+          "text": "Starts mirroring the workout session to the companion iOS device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startMirroringToCompanionDevice"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/startMirroringToCompanionDevice(completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startMirroringToCompanionDeviceWithCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startMirroringToCompanionDevice(completion:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession/startmirroringtocompaniondevice(completion:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/state": {
+      "abstract": [
+        {
+          "text": "The workout session’s current state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKWorkoutSessionState",
+          "text": "HKWorkoutSessionState"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/state",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "state"
+        }
+      ],
+      "role": "symbol",
+      "title": "state",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession/state"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/stopActivity(with:)": {
+      "abstract": [
+        {
+          "text": "Stops the workout session activity, and sets the end date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopActivity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/stopActivity(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopActivityWithDate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopActivity(with:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession/stopactivity(with:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/stopMirroringToCompanionDevice(completion:)": {
+      "abstract": [
+        {
+          "text": "Stops mirroring the workout session to the companion iOS device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopMirroringToCompanionDevice"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/stopMirroringToCompanionDevice(completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopMirroringToCompanionDeviceWithCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopMirroringToCompanionDevice(completion:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession/stopmirroringtocompaniondevice(completion:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/type": {
+      "abstract": [
+        {
+          "text": "A value that indicates whether the session is a primary session or a mirrored session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HKWorkoutSessionType",
+          "text": "HKWorkoutSessionType"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/type",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "type"
+        }
+      ],
+      "role": "symbol",
+      "title": "type",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession/type"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/workoutConfiguration": {
+      "abstract": [
+        {
+          "text": "The configuration object that describes this workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "workoutConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKWorkoutConfiguration",
+          "text": "HKWorkoutConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/workoutConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "workoutConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "workoutConfiguration",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsession/workoutconfiguration"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSessionDelegate": {
+      "abstract": [
+        {
+          "text": "The session delegate protocol that defines an interface for receiving notifications about errors and changes in the workout session’s state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutSessionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSessionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutSessionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsessiondelegate"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSessionState": {
+      "abstract": [
+        {
+          "text": "A workout session’s state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutSessionState"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSessionState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutSessionState"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKWorkoutSessionState",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkworkoutsessionstate"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/build-a-workout-app-for-apple-watch": {
+      "abstract": [
+        {
+          "text": "Create your own workout app, quickly and easily, with HealthKit and SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/build-a-workout-app-for-apple-watch",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Build a workout app for Apple Watch",
+      "type": "topic",
+      "url": "/documentation/healthkit/build-a-workout-app-for-apple-watch"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/building-a-multidevice-workout-app": {
+      "abstract": [
+        {
+          "text": "Mirror a workout from a watchOS app to its companion iOS app, and perform bidirectional communication between them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/building-a-multidevice-workout-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a multidevice workout app",
+      "type": "topic",
+      "url": "/documentation/healthkit/building-a-multidevice-workout-app"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/running-workout-sessions": {
+      "abstract": [
+        {
+          "text": "Track a workout on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/running-workout-sessions",
+      "kind": "article",
+      "role": "article",
+      "title": "Running workout sessions",
+      "type": "topic",
+      "url": "/documentation/healthkit/running-workout-sessions"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sessions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/running-workout-sessions",
+        "doc://com.apple.healthkit/documentation/HealthKit/build-a-workout-app-for-apple-watch",
+        "doc://com.apple.healthkit/documentation/HealthKit/building-a-multidevice-workout-app",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutConfiguration",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSessionState",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKLiveWorkoutBuilder",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKLiveWorkoutDataSource"
+      ],
+      "title": "Sessions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-workout-sessions",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/init(healthStore:configuration:)"
+      ],
+      "title": "Creating workout sessions"
+    },
+    {
+      "anchor": "Monitoring-the-session",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/delegate",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSessionDelegate"
+      ],
+      "title": "Monitoring the session"
+    },
+    {
+      "anchor": "Accessing-the-workout-builder",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/associatedWorkoutBuilder()"
+      ],
+      "title": "Accessing the workout builder"
+    },
+    {
+      "anchor": "Managing-the-workout",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/prepare()",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/startActivity(with:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/pause()",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/resume()",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/stopActivity(with:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/end()"
+      ],
+      "title": "Managing the workout"
+    },
+    {
+      "anchor": "Working-with-remote-workout-sessions",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/startMirroringToCompanionDevice(completion:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/stopMirroringToCompanionDevice(completion:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/sendToRemoteWorkoutSession(data:completion:)"
+      ],
+      "title": "Working with remote workout sessions"
+    },
+    {
+      "anchor": "Accessing-session-data",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/endDate",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/startDate",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/state",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/type",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/workoutConfiguration"
+      ],
+      "title": "Accessing session data"
+    },
+    {
+      "anchor": "Managing-workout-activities",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/currentActivity",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/beginNewActivity(configuration:date:metadata:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/endCurrentActivity(on:)"
+      ],
+      "title": "Managing workout activities"
+    },
+    {
+      "anchor": "Deprecated-methods",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/init(activityType:locationType:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/init(configuration:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/activityType",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/locationType"
+      ],
+      "title": "Deprecated methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "HKWorkoutSession"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.healthkit/documentation/HealthKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-workout-sessions",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/init(healthStore:configuration:)"
+              ],
+              "title": "Creating workout sessions"
+            },
+            {
+              "anchor": "Monitoring-the-session",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/delegate",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSessionDelegate"
+              ],
+              "title": "Monitoring the session"
+            },
+            {
+              "anchor": "Accessing-the-workout-builder",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/associatedWorkoutBuilder()"
+              ],
+              "title": "Accessing the workout builder"
+            },
+            {
+              "anchor": "Managing-the-workout",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/prepare()",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/startActivity(with:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/pause()",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/resume()",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/stopActivity(with:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/end()"
+              ],
+              "title": "Managing the workout"
+            },
+            {
+              "anchor": "Working-with-remote-workout-sessions",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/startMirroringToCompanionDevice(completion:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/stopMirroringToCompanionDevice(completion:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/sendToRemoteWorkoutSession(data:completion:)"
+              ],
+              "title": "Working with remote workout sessions"
+            },
+            {
+              "anchor": "Accessing-session-data",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/endDate",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/startDate",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/state",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/type",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/workoutConfiguration"
+              ],
+              "title": "Accessing session data"
+            },
+            {
+              "anchor": "Managing-workout-activities",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/currentActivity",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/beginNewActivity(configuration:date:metadata:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/endCurrentActivity(on:)"
+              ],
+              "title": "Managing workout activities"
+            },
+            {
+              "anchor": "Deprecated-methods",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/init(activityType:locationType:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/init(configuration:)",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/activityType",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSession/locationType"
+              ],
+              "title": "Deprecated methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Sessions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutConfiguration",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKWorkoutSessionState",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKLiveWorkoutBuilder",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKLiveWorkoutDataSource"
+              ],
+              "title": "Sessions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "HKWorkoutSession"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKLiveWorkoutDataSource/title",
+          "value": "HKLiveWorkoutDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKLiveWorkoutDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKLiveWorkoutDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKLiveWorkoutDataSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKLiveWorkoutDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKLiveWorkoutBuilder/title",
+          "value": "HKLiveWorkoutBuilder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKLiveWorkoutBuilder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKLiveWorkoutBuilder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKLiveWorkoutBuilder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKLiveWorkoutBuilder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1currentActivity/title",
+          "value": "currentActivity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1currentActivity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "currentActivity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1pause()/title",
+          "value": "pause"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1pause()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pause"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1endCurrentActivity(on:)/title",
+          "value": "endCurrentActivityOnDate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1endCurrentActivity(on:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "endCurrentActivityOnDate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1resume()/title",
+          "value": "resume"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1resume()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resume"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1workoutConfiguration/title",
+          "value": "workoutConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1workoutConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "workoutConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1startMirroringToCompanionDevice(completion:)/title",
+          "value": "startMirroringToCompanionDeviceWithCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1startMirroringToCompanionDevice(completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startMirroringToCompanionDeviceWithCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSessionDelegate/title",
+          "value": "HKWorkoutSessionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSessionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutSessionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSessionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutSessionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1prepare()/title",
+          "value": "prepare"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1prepare()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "prepare"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1sendToRemoteWorkoutSession(data:completion:)/title",
+          "value": "sendDataToRemoteWorkoutSession:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1sendToRemoteWorkoutSession(data:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sendDataToRemoteWorkoutSession:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1stopMirroringToCompanionDevice(completion:)/title",
+          "value": "stopMirroringToCompanionDeviceWithCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1stopMirroringToCompanionDevice(completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopMirroringToCompanionDeviceWithCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession/title",
+          "value": "HKWorkoutSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1endDate/title",
+          "value": "endDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1endDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "endDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKError~1Code~1errorAnotherWorkoutSessionStarted/title",
+          "value": "HKErrorAnotherWorkoutSessionStarted"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKError~1Code~1errorAnotherWorkoutSessionStarted/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKErrorAnotherWorkoutSessionStarted"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1startActivity(with:)/title",
+          "value": "startActivityWithDate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1startActivity(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startActivityWithDate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1beginNewActivity(configuration:date:metadata:)/title",
+          "value": "beginNewActivityWithConfiguration:date:metadata:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1beginNewActivity(configuration:date:metadata:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "beginNewActivityWithConfiguration:date:metadata:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutConfiguration/title",
+          "value": "HKWorkoutConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1end()/title",
+          "value": "end"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1end()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "end"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1activityType/title",
+          "value": "activityType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1activityType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activityType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1type/title",
+          "value": "type"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1type/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "type"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1locationType/title",
+          "value": "locationType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1locationType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "locationType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1init(activityType:locationType:)/title",
+          "value": "initWithActivityType:locationType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1init(activityType:locationType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithActivityType:locationType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1startDate/title",
+          "value": "startDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1startDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "startDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1state/title",
+          "value": "state"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1state/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "state"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1init(healthStore:configuration:)/title",
+          "value": "initWithHealthStore:configuration:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1init(healthStore:configuration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithHealthStore:configuration:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1associatedWorkoutBuilder()/title",
+          "value": "associatedWorkoutBuilder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1associatedWorkoutBuilder()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "associatedWorkoutBuilder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1init(configuration:)/title",
+          "value": "initWithConfiguration:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1init(configuration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithConfiguration:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1stopActivity(with:)/title",
+          "value": "stopActivityWithDate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSession~1stopActivity(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopActivityWithDate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSessionState/title",
+          "value": "HKWorkoutSessionState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSessionState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutSessionState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKWorkoutSessionState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutSessionState"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/healthkit/hkworkoutsession"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/healthkit/hkworkoutsession"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

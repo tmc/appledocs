@@ -1,0 +1,1262 @@
+{
+  "abstract": [
+    {
+      "text": "Constants for the tag schemes specified when initializing a linguistic tagger.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagger"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2875110,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@NSLinguisticTagScheme",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSLinguisticTagScheme"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "4.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "NSLinguisticTagScheme"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSLinguisticTagScheme"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When initializing a linguistic tagger with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1414576-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you specify one or more tag schemes that correspond to the kind of information you're interested in for a selection of natural language text. To ensure optimal performance, avoid specifying tag schemes that you won't use. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some tag schemes are only available for certain units and languages. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875111-availabletagschemes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1408694-availabletagschemes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods to determine the possible values for a specified language and linguistic unit. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When working with linguistic tags using the methods described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger#1661408",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger#2891792",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the returned tag value depends on the specified scheme. For example, given the token \"Überraschung\", the returned tag is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictag/1413094-noun",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1415311-lexicalclass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " tag scheme, \"de\" (German language) when using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1408597-language",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " tag scheme, and \"Latn\" (Latin script) when using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1414794-script",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " tag scheme, as shown in the following code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let tagger = NSLinguisticTagger(tagSchemes: [.lexicalClass, .language, .script], options: 0)",
+            "tagger.string = \"Überraschung\"",
+            "",
+            "tagger.tag(at: 0, unit: .word, scheme: .lexicalClass, tokenRange: nil) // Noun",
+            "tagger.tag(at: 0, unit: .word, scheme: .language, tokenRange: nil) // de",
+            "tagger.tag(at: 0, unit: .word, scheme: .script, tokenRange: nil) // Latn"
+          ],
+          "metadata": {
+            "anchor": "2926839",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table lists the available tag schemes, their applicable linguistic units, and possible tag values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "metadata": {
+            "anchor": "2888291",
+            "title": "Table 1"
+          },
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Linguistic tag scheme",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Applicable linguistic units",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Possible tag values",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1411898-tokentype",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit/word",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictag#2888293",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1415311-lexicalclass",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit/word",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictag#2888292",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1415135-nametype",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit/word",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictag#2888294",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1409103-nametypeorlexicalclass",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit/word",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictag#2888294",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictag#2888292",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1416890-lemma",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit/word",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A stem of the word",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1408597-language",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit/word",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit/sentence",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit/paragraph",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit/document",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A BCP-47 language tag",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1414794-script",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit/word",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit/sentence",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit/paragraph",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit/document",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An ISO 15924 script code",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Hashable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/swift/hashable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/RawRepresentable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/RawRepresentable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RawRepresentable",
+      "type": "topic",
+      "url": "/documentation/swift/rawrepresentable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictag": {
+      "abstract": [
+        {
+          "text": "A token, lexical class, name, lemma, language, or script returned by a linguistic tagger for natural language text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLinguisticTag"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictag",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLinguisticTag",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictag"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictag#2888292": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictag#2888292",
+      "kind": "article",
+      "role": "task",
+      "title": "Lexical Classes",
+      "type": "section",
+      "url": "/documentation/foundation/nslinguistictag#2888292"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictag#2888293": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictag#2888293",
+      "kind": "article",
+      "role": "task",
+      "title": "Token Types",
+      "type": "section",
+      "url": "/documentation/foundation/nslinguistictag#2888293"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictag#2888294": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictag#2888294",
+      "kind": "article",
+      "role": "task",
+      "title": "Name Types",
+      "type": "section",
+      "url": "/documentation/foundation/nslinguistictag#2888294"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictag/1413094-noun": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictag/1413094-noun",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "noun",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictag/1413094-noun"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLinguisticTagger",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger#1661408": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger#1661408",
+      "kind": "article",
+      "role": "task",
+      "title": "Getting Linguistic Tags",
+      "type": "section",
+      "url": "/documentation/foundation/nslinguistictagger#1661408"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger#2891792": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger#2891792",
+      "kind": "article",
+      "role": "task",
+      "title": "Enumerating Linguistic Tags",
+      "type": "section",
+      "url": "/documentation/foundation/nslinguistictagger#2891792"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1408694-availabletagschemes": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1408694-availabletagschemes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "availableTagSchemes(forLanguage:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/1408694-availabletagschemes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1414576-init": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/1414576-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(tagSchemes:options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/1414576-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875111-availabletagschemes": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagger/2875111-availabletagschemes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "availableTagSchemes(for:language:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagger/2875111-availabletagschemes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit": {
+      "abstract": [
+        {
+          "text": "Constants representing linguistic units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLinguisticTaggerUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLinguisticTaggerUnit",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictaggerunit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit/document": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit/document",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLinguisticTaggerUnit.document",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictaggerunit/document"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit/paragraph": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit/paragraph",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLinguisticTaggerUnit.paragraph",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictaggerunit/paragraph"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit/sentence": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit/sentence",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLinguisticTaggerUnit.sentence",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictaggerunit/sentence"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit/word": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit/word",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLinguisticTaggerUnit.word",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictaggerunit/word"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme": {
+      "abstract": [
+        {
+          "text": "Constants for the tag schemes specified when initializing a linguistic tagger.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLinguisticTagScheme"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLinguisticTagScheme",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagscheme"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme#2888291": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme#2888291",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 1",
+      "type": "section",
+      "url": "/documentation/foundation/nslinguistictagscheme#2888291"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme#2926839": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme#2926839",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/nslinguistictagscheme#2926839"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1408597-language": {
+      "abstract": [
+        {
+          "text": "Supplies the language for a token, if one can be determined.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "language"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagScheme"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1408597-language",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "language",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagscheme/1408597-language"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1409103-nametypeorlexicalclass": {
+      "abstract": [
+        {
+          "text": "Classifies tokens corresponding to names according to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1415135-nametype",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", and classifies all other tokens according to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1415311-lexicalclass",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "nameTypeOrLexicalClass"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagScheme"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1409103-nametypeorlexicalclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nameTypeOrLexicalClass",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagscheme/1409103-nametypeorlexicalclass"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1411898-tokentype": {
+      "abstract": [
+        {
+          "text": "Classifies tokens according to their broad type:  word, punctuation, or whitespace.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenType"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagScheme"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1411898-tokentype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tokenType",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagscheme/1411898-tokentype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1414794-script": {
+      "abstract": [
+        {
+          "text": "Supplies the script for a token, if one can be determined.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "script"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagScheme"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1414794-script",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "script",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagscheme/1414794-script"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1415135-nametype": {
+      "abstract": [
+        {
+          "text": "Classifies tokens according to whether they are part of a named entity.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "nameType"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagScheme"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1415135-nametype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nameType",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagscheme/1415135-nametype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1415311-lexicalclass": {
+      "abstract": [
+        {
+          "text": "Classifies tokens according to class:  part of speech, type of punctuation, or whitespace.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "lexicalClass"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagScheme"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1415311-lexicalclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lexicalClass",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagscheme/1415311-lexicalclass"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1416890-lemma": {
+      "abstract": [
+        {
+          "text": "Supplies a stem form of a word token, if known.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "lemma"
+        },
+        {
+          "kind": "text",
+          "text": ": NSLinguisticTagScheme"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1416890-lemma",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lemma",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagscheme/1416890-lemma"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/2895224-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "(String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/2895224-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagscheme/2895224-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/2895385-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "rawValue"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/2895385-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(rawValue:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nslinguistictagscheme/2895385-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/strings_and_text": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Strings and Text",
+      "type": "topic",
+      "url": "/documentation/foundation/strings_and_text"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Hashable",
+        "doc://com.apple.Swift/documentation/Swift/RawRepresentable",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictaggerunit",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictag"
+      ],
+      "title": "Supporting Types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1674023",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1411898-tokentype",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1415311-lexicalclass",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1415135-nametype",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1409103-nametypeorlexicalclass",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1416890-lemma",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1408597-language",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/1414794-script"
+      ],
+      "kind": "taskGroup",
+      "title": "Schemes"
+    },
+    {
+      "anchor": "2901671",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/2895224-init",
+        "doc://com.apple.documentation/documentation/foundation/nslinguistictagscheme/2895385-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nslinguistictagscheme"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nslinguistictagscheme"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

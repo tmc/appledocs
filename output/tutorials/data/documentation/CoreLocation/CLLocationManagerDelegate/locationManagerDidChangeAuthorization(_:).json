@@ -1,0 +1,1361 @@
+{
+  "abstract": [
+    {
+      "text": "Tells the delegate when the app creates the location manager and when the authorization status changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corelocation/documentation/CoreLocation",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManagerDidChangeAuthorization(_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)CLLocationManagerDelegate(im)locationManagerDidChangeAuthorization:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "locationManagerDidChangeAuthorization"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)CLLocationManager",
+        "text": "CLLocationManager"
+      },
+      {
+        "kind": "text",
+        "text": ")"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Location"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "locationManagerDidChangeAuthorization:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "locationManagerDidChangeAuthorization(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "optional"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationManagerDidChangeAuthorization"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "manager"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CLLocationManager",
+              "text": "CLLocationManager"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The location manager object reporting the event.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "manager"
+        }
+      ]
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/requesting-authorization-to-use-location-services"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system calls this method when the app creates the related object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance, and when the app’s authorization status changes. The status informs the app whether it can access the user’s location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this delegate method to manage your app’s state changes in response to its ability to use location information. For example, you may wish to enable or disable your app’s location-related features, as appropriate. To determine the app’s current authorization, read the new value of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/authorizationStatus-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/accuracyAuthorization",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties of the location manager.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Core Location always calls ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManagerDidChangeAuthorization(_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " when the user’s action results in an authorization status change, and when your app creates an instance of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", whether your app runs in the foreground or in the background.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user’s choice doesn’t change the authorization status after you call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/requestWhenInUseAuthorization()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/requestAlwaysAuthorization()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, the location manager doesn’t report the current authorization status to this method—the location manager only reports changes. For example, the location manager calls this method when the status changes from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLAuthorizationStatus/notDetermined",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLAuthorizationStatus/authorizedWhenInUse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Events-that-Cause-Authorization-Status-Changes",
+          "level": 3,
+          "text": "Events that Cause Authorization Status Changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app’s authorization status changes in response to users’ actions. Users can change permission for apps to use location information at any time. The user can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change an app’s location authorization in Settings > Privacy > Location Services, or in Settings > (the app) > Location Services.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Turn location services on or off globally in Settings > Privacy > Location Services.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Reset Location & Privacy in Settings > General > Reset.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A user’s response to location manager prompts can also change authorization status. For instance, users may change the authorization status by responding to the prompts initiated by calls to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/requestWhenInUseAuthorization()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/requestAlwaysAuthorization()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods. For apps with Always authorization, users may change the authorization status to When In Use when responding to the location usage reminder alert.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an app has temporary authorization, the authorization changes when the user ceases to use the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corelocation/documentation/CoreLocation": {
+      "abstract": [
+        {
+          "text": "Obtain the geographic location and orientation of a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Location",
+      "type": "topic",
+      "url": "/documentation/corelocation"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLAuthorizationStatus/authorizedWhenInUse": {
+      "abstract": [
+        {
+          "text": "The user authorized the app to start location services while it is in use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizedWhenInUse"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLAuthorizationStatus/authorizedWhenInUse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCLAuthorizationStatusAuthorizedWhenInUse"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLAuthorizationStatus.authorizedWhenInUse",
+      "type": "topic",
+      "url": "/documentation/corelocation/clauthorizationstatus/authorizedwheninuse"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLAuthorizationStatus/notDetermined": {
+      "abstract": [
+        {
+          "text": "The user has not chosen whether the app can use location services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notDetermined"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLAuthorizationStatus/notDetermined",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCLAuthorizationStatusNotDetermined"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLAuthorizationStatus.notDetermined",
+      "type": "topic",
+      "url": "/documentation/corelocation/clauthorizationstatus/notdetermined"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager": {
+      "abstract": [
+        {
+          "text": "The object you use to start and stop the delivery of location-related events to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocationManager"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLLocationManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLLocationManager",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanager"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/accuracyAuthorization": {
+      "abstract": [
+        {
+          "text": "A value that indicates the level of location accuracy the app has permission to use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accuracyAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CLAccuracyAuthorization",
+          "text": "CLAccuracyAuthorization"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/accuracyAuthorization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accuracyAuthorization"
+        }
+      ],
+      "role": "symbol",
+      "title": "accuracyAuthorization",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanager/accuracyauthorization"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/authorizationStatus-swift.property": {
+      "abstract": [
+        {
+          "text": "The current authorization status for the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CLAuthorizationStatus",
+          "text": "CLAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/authorizationStatus-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationStatus",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanager/authorizationstatus-swift.property"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/requestAlwaysAuthorization()": {
+      "abstract": [
+        {
+          "text": "Requests the user’s permission to use location services regardless of whether the app is in use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAlwaysAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/requestAlwaysAuthorization()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestAlwaysAuthorization"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestAlwaysAuthorization()",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanager/requestalwaysauthorization()"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/requestWhenInUseAuthorization()": {
+      "abstract": [
+        {
+          "text": "Requests the user’s permission to use location services while the app is in use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestWhenInUseAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/requestWhenInUseAuthorization()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestWhenInUseAuthorization"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestWhenInUseAuthorization()",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanager/requestwheninuseauthorization()"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate": {
+      "abstract": [
+        {
+          "text": "The methods you use to receive events from an associated location-manager object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocationManagerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLLocationManagerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLLocationManagerDelegate",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanagerdelegate"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didChangeAuthorization:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate its authorization status when the app creates the location manager and when the authorization status changes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locationManager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocationManager",
+          "text": "CLLocationManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didChangeAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CLAuthorizationStatus",
+          "text": "CLAuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didChangeAuthorization:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationManager:didChangeAuthorizationStatus:"
+        }
+      ],
+      "role": "symbol",
+      "title": "locationManager(_:didChangeAuthorization:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanagerdelegate/locationmanager(_:didchangeauthorization:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManagerDidChangeAuthorization(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the app creates the location manager and when the authorization status changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locationManagerDidChangeAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocationManager",
+          "text": "CLLocationManager"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManagerDidChangeAuthorization(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationManagerDidChangeAuthorization:"
+        }
+      ],
+      "role": "symbol",
+      "title": "locationManagerDidChangeAuthorization(_:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanagerdelegate/locationmanagerdidchangeauthorization(_:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/requesting-authorization-to-use-location-services": {
+      "abstract": [
+        {
+          "text": "Obtain authorization to use location services and manage changes to your app’s authorization status.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/requesting-authorization-to-use-location-services",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting authorization to use location services",
+      "type": "topic",
+      "url": "/documentation/corelocation/requesting-authorization-to-use-location-services"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Responding-to-authorization-changes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didChangeAuthorization:)"
+      ],
+      "title": "Responding to authorization changes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "locationManagerDidChangeAuthorization:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationManagerDidChangeAuthorization:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.corelocation/documentation/CoreLocation",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Responding-to-authorization-changes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManager(_:didChangeAuthorization:)"
+              ],
+              "title": "Responding to authorization changes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "locationManagerDidChangeAuthorization:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)CLLocationManager",
+                    "text": "CLLocationManager"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "manager"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The location manager object reporting the event.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "manager"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate/title",
+          "value": "CLLocationManagerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationManagerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationManagerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLAuthorizationStatus~1authorizedWhenInUse/title",
+          "value": "kCLAuthorizationStatusAuthorizedWhenInUse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLAuthorizationStatus~1authorizedWhenInUse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCLAuthorizationStatusAuthorizedWhenInUse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1accuracyAuthorization/title",
+          "value": "accuracyAuthorization"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1accuracyAuthorization/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accuracyAuthorization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager/title",
+          "value": "CLLocationManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1requestWhenInUseAuthorization()/title",
+          "value": "requestWhenInUseAuthorization"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1requestWhenInUseAuthorization()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestWhenInUseAuthorization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1authorizationStatus-swift.property/title",
+          "value": "authorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1authorizationStatus-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "authorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLAuthorizationStatus~1notDetermined/title",
+          "value": "kCLAuthorizationStatusNotDetermined"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLAuthorizationStatus~1notDetermined/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCLAuthorizationStatusNotDetermined"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManagerDidChangeAuthorization(_:)/title",
+          "value": "locationManagerDidChangeAuthorization:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManagerDidChangeAuthorization(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationManagerDidChangeAuthorization:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didChangeAuthorization:)/title",
+          "value": "locationManager:didChangeAuthorizationStatus:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManager(_:didChangeAuthorization:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationManager:didChangeAuthorizationStatus:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1requestAlwaysAuthorization()/title",
+          "value": "requestAlwaysAuthorization"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1requestAlwaysAuthorization()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestAlwaysAuthorization"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corelocation/cllocationmanagerdelegate/locationmanagerdidchangeauthorization(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corelocation/cllocationmanagerdelegate/locationmanagerdidchangeauthorization(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

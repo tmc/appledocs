@@ -1,0 +1,497 @@
+{
+  "abstract": [
+    {
+      "text": "Returns a list of locations in an Apple School Manager organization.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "added",
+      "platform": "Roster API",
+      "versions": [
+        "1.0.0 beta 1",
+        "1.0.0"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.rosterapi/documentation/RosterAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.rosterapi/documentation/RosterAPI/returns-a-list-of-locations-for-an-Apple-School-Manager-organization"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:roster_api:get:rosterapi-v1-locations",
+    "modules": [
+      {
+        "name": "Roster API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "returns a list of locations for an Apple School Manager organization"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0.0",
+        "name": "Roster API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "List locations"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api-school.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "rosterapi/v1/locations"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The maximum number of locations to return. The default is 100.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "limit",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A token for paging through a large number of results. If the number of locations in the organization is greater than the ",
+                  "type": "text"
+                },
+                {
+                  "code": "limit",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter, pass the token returned in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.rosterapi/documentation/RosterAPI/Locations",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "pageToken",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.rosterapi/documentation/RosterAPI/Locations",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:roster_api:Locations",
+              "text": "Locations"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The access token was invalid.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You don’t have permission to access the locations.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Forbidden",
+          "status": 403,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The client made too many requests. The response includes an ",
+                  "type": "text"
+                },
+                {
+                  "code": "X-Retry-After",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " header that indicates the number of seconds to wait before making another request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "status": 429,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The server encountered an internal error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": []
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Access to the ",
+              "type": "text"
+            },
+            {
+              "code": "locations",
+              "type": "codeVoice"
+            },
+            {
+              "text": " resource requires authorization to either the ",
+              "type": "text"
+            },
+            {
+              "code": "edu.users.read",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "edu.classes.read",
+              "type": "codeVoice"
+            },
+            {
+              "text": " scope.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "curl \"https://api-school.apple.com/rosterapi/v1/locations?limit=1\" -H \"Authorization: Bearer ${TOKEN}\""
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"locations\":[{\"id\":\"1234\",\"name\":\"Example Location\",\"domain\":\"example.com\",\"timeZone\":\"PST\",\"dateCreated\":\"2020-07-06T20:32:00Z\",\"dateLastModified\":\"2023-04-20T09:49:33.938397143Z\"}],",
+                    "  \"nextPageToken\":\"XbdJJGHGTqnueAVPfw2XOA\",",
+                    "  \"moreToFollow\":true",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.rosterapi/documentation/RosterAPI": {
+      "abstract": [
+        {
+          "text": "Read information about people and classes from an Apple School Manager organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.rosterapi/documentation/RosterAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Roster API",
+      "type": "topic",
+      "url": "/documentation/rosterapi"
+    },
+    "doc://com.apple.rosterapi/documentation/RosterAPI/Location": {
+      "abstract": [
+        {
+          "text": "A location in an Apple School Manager organization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Location"
+        }
+      ],
+      "identifier": "doc://com.apple.rosterapi/documentation/RosterAPI/Location",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Location"
+        }
+      ],
+      "role": "symbol",
+      "title": "Location",
+      "type": "topic",
+      "url": "/documentation/rosterapi/location"
+    },
+    "doc://com.apple.rosterapi/documentation/RosterAPI/Locations": {
+      "abstract": [
+        {
+          "text": "A list of locations, with a token for pagination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Locations"
+        }
+      ],
+      "identifier": "doc://com.apple.rosterapi/documentation/RosterAPI/Locations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Locations"
+        }
+      ],
+      "role": "symbol",
+      "title": "Locations",
+      "type": "topic",
+      "url": "/documentation/rosterapi/locations"
+    },
+    "doc://com.apple.rosterapi/documentation/RosterAPI/returns-a-list-of-locations-for-an-Apple-School-Manager-organization": {
+      "abstract": [
+        {
+          "text": "Returns a list of locations in an Apple School Manager organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.rosterapi/documentation/RosterAPI/returns-a-list-of-locations-for-an-Apple-School-Manager-organization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "returns a list of locations for an Apple School Manager organization"
+        }
+      ],
+      "role": "symbol",
+      "title": "List locations",
+      "type": "topic",
+      "url": "/documentation/rosterapi/returns-a-list-of-locations-for-an-apple-school-manager-organization"
+    },
+    "doc://com.apple.rosterapi/documentation/RosterAPI/returns-a-specific-location-in-an-Apple-School-Manager-organization": {
+      "abstract": [
+        {
+          "text": "Returns a specific location in an Apple School Manager organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.rosterapi/documentation/RosterAPI/returns-a-specific-location-in-an-Apple-School-Manager-organization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "returns a specific location in an Apple School Manager organization"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read a location",
+      "type": "topic",
+      "url": "/documentation/rosterapi/returns-a-specific-location-in-an-apple-school-manager-organization"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Information-about-locations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.rosterapi/documentation/RosterAPI/returns-a-specific-location-in-an-Apple-School-Manager-organization",
+        "doc://com.apple.rosterapi/documentation/RosterAPI/Location",
+        "doc://com.apple.rosterapi/documentation/RosterAPI/Locations"
+      ],
+      "title": "Information about locations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/rosterapi/returns-a-list-of-locations-for-an-apple-school-manager-organization"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

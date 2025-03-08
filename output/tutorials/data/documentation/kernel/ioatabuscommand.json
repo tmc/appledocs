@@ -1,0 +1,985 @@
+{
+  "abstract": [],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/ata"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1490659,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOATABusCommand",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "11.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOATABusCommand"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOATABusCommand"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOATACommand",
+              "text": "IOATACommand"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ATA Device (disk) drivers should use the superclass, IOATACommand and may not derive or use any subclass of IOATACommand.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "IOATABusCommand is the subclass of IOATACommand used by IOATAControllers. Controller classes may override this class to provide additional fields as their needs dictate or may use this as a concrete class if it is sufficient.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "IOATAControllers are always paired with specific IOATADevices and each specific subclass of IOATADevice is in turn the factory method for IOATACommands for use by disk drivers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this manner, mass-storage device drivers (disk drivers, clients of ATA bus controllers) see only the generalized interface of IOATADevice and the generalized interface of IOATACommand. This provides isolation from specific bus details for disk drivers and offers flexibility to controllers to add per-command fields and state variables for their own internal use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/ata": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/ata",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ATA",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/ata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580380-getflags": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580380-getflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1580380-getflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580381-getbuffer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580381-getbuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1580381-getbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580382-gettransferchunksize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getTransferChunkSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580382-gettransferchunksize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getTransferChunkSize",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1580382-gettransferchunksize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580383-getcallbackptr": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCallbackPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580383-getcallbackptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCallbackPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1580383-getcallbackptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580385-setcommandinuse": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCommandInUse"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580385-setcommandinuse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCommandInUse",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1580385-setcommandinuse"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580386-allocatecmd": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocateCmd"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580386-allocatecmd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocateCmd",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1580386-allocatecmd"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580387-setactualtransfer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setActualTransfer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580387-setactualtransfer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setActualTransfer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1580387-setactualtransfer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580389-gettimeoutms": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getTimeoutMS"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580389-gettimeoutms",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getTimeoutMS",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1580389-gettimeoutms"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580390-executecallback": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeCallback"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580390-executecallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1580390-executecallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580392-getbytecount": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getByteCount"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580392-getbytecount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getByteCount",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1580392-getbytecount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580393-setresult": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setResult"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580393-setresult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setResult",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1580393-setresult"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580394-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580394-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1580394-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580395-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580395-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1580395-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580399-getopcode": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getOpcode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580399-getopcode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getOpcode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1580399-getopcode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580401-gettaskfileptr": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getTaskFilePtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580401-gettaskfileptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getTaskFilePtr",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1580401-gettaskfileptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580404-zerocommand": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "zeroCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580404-zerocommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "zeroCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1580404-zerocommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580405-getregmask": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getRegMask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580405-getregmask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getRegMask",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1580405-getregmask"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580407-getpacketsize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getPacketSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580407-getpacketsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getPacketSize",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1580407-getpacketsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580408-getunit": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580408-getunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getUnit",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1580408-getunit"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580409-getpacketdata": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getPacketData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580409-getpacketdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getPacketData",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1580409-getpacketdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580410-getposition": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getPosition"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580410-getposition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getPosition",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1580410-getposition"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811850-allocatecmd": {
+      "abstract": [
+        {
+          "text": "factory method to create an instance of this class used by subclasses of IOATADevice",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811850-allocatecmd",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "allocateCmd",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1811850-allocatecmd"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811860-executecallback": {
+      "abstract": [
+        {
+          "text": "call the completion callback function",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811860-executecallback",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "executeCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1811860-executecallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811872-getbuffer": {
+      "abstract": [
+        {
+          "text": "get pointer to the memory descriptor for this transaction",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811872-getbuffer",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1811872-getbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811883-getbytecount": {
+      "abstract": [
+        {
+          "text": "return the byte count for this transaction to transfer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811883-getbytecount",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getByteCount",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1811883-getbytecount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811895-getcallbackptr": {
+      "abstract": [
+        {
+          "text": "return the callback pointer",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811895-getcallbackptr",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCallbackPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1811895-getcallbackptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811906-getflags": {
+      "abstract": [
+        {
+          "text": "return the flags for this command.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811906-getflags",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1811906-getflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811919-getopcode": {
+      "abstract": [
+        {
+          "text": "return the command opcode",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811919-getopcode",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getOpcode",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1811919-getopcode"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811925-getpacketdata": {
+      "abstract": [
+        {
+          "text": "return pointer to the array of packet data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811925-getpacketdata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPacketData",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1811925-getpacketdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811935-getpacketsize": {
+      "abstract": [
+        {
+          "text": "return the size of atapi packet if any.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811935-getpacketsize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPacketSize",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1811935-getpacketsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811945-getposition": {
+      "abstract": [
+        {
+          "text": "the position within the memory buffer for the transaction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811945-getposition",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPosition",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1811945-getposition"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811953-getregmask": {
+      "abstract": [
+        {
+          "text": "get the register mask for desired regs",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811953-getregmask",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getRegMask",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1811953-getregmask"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811963-gettaskfileptr": {
+      "abstract": [
+        {
+          "text": "return the taskfile structure pointer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811963-gettaskfileptr",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getTaskFilePtr",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1811963-gettaskfileptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811972-gettimeoutms": {
+      "abstract": [
+        {
+          "text": "return the timeout value for this command",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811972-gettimeoutms",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getTimeoutMS",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1811972-gettimeoutms"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811979-gettransferchunksize": {
+      "abstract": [
+        {
+          "text": "number of bytes between interrupts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811979-gettransferchunksize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getTransferChunkSize",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1811979-gettransferchunksize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811986-getunit": {
+      "abstract": [
+        {
+          "text": "return the unit id (0 primary, 1 secondary)",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811986-getunit",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getUnit",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1811986-getunit"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811993-init": {
+      "abstract": [
+        {
+          "text": "Zeroes all data, returns false if allocation fails. protected.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811993-init",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1811993-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811997-setactualtransfer": {
+      "abstract": [
+        {
+          "text": "set the byte count of bytes actually transferred.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811997-setactualtransfer",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setActualTransfer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1811997-setactualtransfer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1812002-setcommandinuse": {
+      "abstract": [
+        {
+          "text": "mark the command as being in progress.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1812002-setcommandinuse",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCommandInUse",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1812002-setcommandinuse"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1812006-setresult": {
+      "abstract": [
+        {
+          "text": "set the result code",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1812006-setresult",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setResult",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1812006-setresult"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1812011-zerocommand": {
+      "abstract": [
+        {
+          "text": "set to blank state, call prior to re-use of this object",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1812011-zerocommand",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "zeroCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/1812011-zerocommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/queuechain": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/queuechain",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "queueChain",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/queuechain"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/reserved": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/reserved",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "reserved",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/reserved"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/state": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/state",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "state",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/state"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/syncer": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/syncer",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "syncer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatabuscommand/syncer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioatacommand": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioatacommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOATACommand",
+      "type": "topic",
+      "url": "/documentation/kernel/ioatacommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "ExpansionData",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/expansiondata"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioatacommand"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1818851",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811850-allocatecmd",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811860-executecallback",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811872-getbuffer",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811883-getbytecount",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811895-getcallbackptr",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811906-getflags",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811919-getopcode",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811925-getpacketdata",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811935-getpacketsize",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811945-getposition",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811953-getregmask",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811963-gettaskfileptr",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811972-gettimeoutms",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811979-gettransferchunksize",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811986-getunit",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811993-init",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1811997-setactualtransfer",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1812002-setcommandinuse",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1812006-setresult",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1812011-zerocommand"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "1818861",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata"
+      ],
+      "kind": "taskGroup",
+      "title": "DataTypes"
+    },
+    {
+      "anchor": "1818864",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/syncer",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/state",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/reserved",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/queuechain"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Variables"
+    },
+    {
+      "anchor": "2857650",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580390-executecallback",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580381-getbuffer",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580392-getbytecount",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580383-getcallbackptr",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580380-getflags",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580394-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580399-getopcode",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580409-getpacketdata",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580407-getpacketsize",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580410-getposition",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580405-getregmask",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580401-gettaskfileptr",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580389-gettimeoutms",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580382-gettransferchunksize",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580408-getunit",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580395-init",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580387-setactualtransfer",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580385-setcommandinuse",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580393-setresult",
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580404-zerocommand"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "2857651",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioatabuscommand/1580386-allocatecmd"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/ioatabuscommand"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

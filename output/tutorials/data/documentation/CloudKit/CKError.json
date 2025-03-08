@@ -1,0 +1,3367 @@
+{
+  "abstract": [
+    {
+      "text": "A type that describes a CloudKit error.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cloudkit/documentation/CloudKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.cloudkit/documentation/CloudKit/CKError"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:SC11CKErrorCodeLeV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CKError"
+      }
+    ],
+    "modules": [
+      {
+        "name": "CloudKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CKError"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "CKError"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CKError"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/designing-and-creating-a-cloudkit-database"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CloudKit provides operations that faciliate moving data between your app and iCloud. There are also convenience methods in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKContainer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that provide similar functionality. If an operation or method fails to complete its task, CloudKit provides detailed error information that you can use to recover. A failure might be due to network or server conditions, or because of conflicts between local and remote data. For a list of possible reasons, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/Code",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you receive an error, cast it to an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "CKError",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to access additional information that CloudKit provides. For example, if the error code is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/requestRateLimited",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/retryAfterSeconds",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to determine how long you must wait before you retry the operation or method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Batch operations, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKModifyRecordsOperation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", can complete with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/partialFailure",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " error. This means only a subset of the operation’s changes succeed. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/partialErrorsByItemID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to access a dictionary that maps items that CloudKit can’t process to errors that describe those failures. You can then handle each error independently.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you attempt to save a record and the server’s version of that record is newer, CloudKit returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/serverRecordChanged",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " error. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/ancestorRecord",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/clientRecord",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/serverRecord",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties to resolve the conflict. Make sure you merge any changes into ",
+              "type": "text"
+            },
+            {
+              "code": "serverRecord",
+              "type": "codeVoice"
+            },
+            {
+              "text": " because that version contains the most recent change tag.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cloudkit/documentation/CloudKit": {
+      "abstract": [
+        {
+          "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit",
+      "type": "topic",
+      "url": "/documentation/cloudkit"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKContainer": {
+      "abstract": [
+        {
+          "text": "A conduit to your app’s databases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKContainer",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckcontainer"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabase": {
+      "abstract": [
+        {
+          "text": "An object that represents a collection of record zones and subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKDatabase"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKDatabase"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKDatabase",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckdatabase"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError": {
+      "abstract": [
+        {
+          "text": "A type that describes a CloudKit error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKError"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKError"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKError",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/Code": {
+      "abstract": [
+        {
+          "text": "The error codes that CloudKit returns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKError.Code",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/code"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/accountTemporarilyUnavailable": {
+      "abstract": [
+        {
+          "text": "An error that occurs when the user’s iCloud account is temporarily unavailable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accountTemporarilyUnavailable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/accountTemporarilyUnavailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accountTemporarilyUnavailable",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/accounttemporarilyunavailable"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/alreadyShared": {
+      "abstract": [
+        {
+          "text": "An error that occurs when CloudKit attempts to share a record with an existing share.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alreadyShared"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/alreadyShared",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alreadyShared",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/alreadyshared"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/ancestorRecord": {
+      "abstract": [
+        {
+          "text": "The original version of the record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ancestorRecord"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/ancestorRecord",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ancestorRecord",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/ancestorrecord"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/assetFileModified": {
+      "abstract": [
+        {
+          "text": "An error that occurs when the system modifies an asset while saving it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "assetFileModified"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/assetFileModified",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "assetFileModified",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/assetfilemodified"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/assetFileNotFound": {
+      "abstract": [
+        {
+          "text": "An error that occurs when the system can’t find the specified asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "assetFileNotFound"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/assetFileNotFound",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "assetFileNotFound",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/assetfilenotfound"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/assetNotAvailable": {
+      "abstract": [
+        {
+          "text": "An error that occurs when the system can’t access the specified asset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "assetNotAvailable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/assetNotAvailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "assetNotAvailable",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/assetnotavailable"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/badContainer": {
+      "abstract": [
+        {
+          "text": "An error that occurs when you use an unknown or unauthorized container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "badContainer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/badContainer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "badContainer",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/badcontainer"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/badDatabase": {
+      "abstract": [
+        {
+          "text": "An error that occurs when the operation can’t complete for the specified database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "badDatabase"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/badDatabase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "badDatabase",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/baddatabase"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/batchRequestFailed": {
+      "abstract": [
+        {
+          "text": "An error that occurs when the system rejects the entire batch of changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "batchRequestFailed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/batchRequestFailed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "batchRequestFailed",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/batchrequestfailed"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/changeTokenExpired": {
+      "abstract": [
+        {
+          "text": "An error that occurs when the change token expires.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "changeTokenExpired"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/changeTokenExpired",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "changeTokenExpired",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/changetokenexpired"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/clientRecord": {
+      "abstract": [
+        {
+          "text": "The local version of the record that includes any changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clientRecord"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/clientRecord",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clientRecord",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/clientrecord"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/constraintViolation": {
+      "abstract": [
+        {
+          "text": "An error that occurs when the server rejects the request because of a unique constraint violation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "constraintViolation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/constraintViolation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "constraintViolation",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/constraintviolation"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/errorDomain": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/errorDomain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "errorDomain",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/errordomain"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/incompatibleVersion": {
+      "abstract": [
+        {
+          "text": "An error that occurs when the current app version is older than the oldest allowed version.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "incompatibleVersion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/incompatibleVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "incompatibleVersion",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/incompatibleversion"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/internalError": {
+      "abstract": [
+        {
+          "text": "A nonrecoverable error that CloudKit encounters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "internalError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/internalError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "internalError",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/internalerror"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/invalidArguments": {
+      "abstract": [
+        {
+          "text": "An error that occurs when the request contains invalid information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidArguments"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/invalidArguments",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invalidArguments",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/invalidarguments"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/limitExceeded": {
+      "abstract": [
+        {
+          "text": "An error that occurs when a request’s size exceeds the limit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "limitExceeded"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/limitExceeded",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "limitExceeded",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/limitexceeded"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/managedAccountRestricted": {
+      "abstract": [
+        {
+          "text": "An error that occurs when CloudKit rejects a request due to a managed-account restriction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "managedAccountRestricted"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/managedAccountRestricted",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "managedAccountRestricted",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/managedaccountrestricted"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/missingEntitlement": {
+      "abstract": [
+        {
+          "text": "An error that occurs when the app is missing a required entitlement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "missingEntitlement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/missingEntitlement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "missingEntitlement",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/missingentitlement"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/networkFailure": {
+      "abstract": [
+        {
+          "text": "An error that occurs when a network is available, but CloudKit is inaccessible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "networkFailure"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/networkFailure",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "networkFailure",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/networkfailure"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/networkUnavailable": {
+      "abstract": [
+        {
+          "text": "An error that occurs when the network is unavailable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "networkUnavailable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/networkUnavailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "networkUnavailable",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/networkunavailable"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/notAuthenticated": {
+      "abstract": [
+        {
+          "text": "An error that occurs when the user is unauthenticated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notAuthenticated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/notAuthenticated",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "notAuthenticated",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/notauthenticated"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/operationCancelled": {
+      "abstract": [
+        {
+          "text": "An error that occurs when an operation cancels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "operationCancelled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/operationCancelled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "operationCancelled",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/operationcancelled"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/partialErrorsByItemID": {
+      "abstract": [
+        {
+          "text": "The dictionary that contains errors that relate to individual record operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "partialErrorsByItemID"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/partialErrorsByItemID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "partialErrorsByItemID",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/partialerrorsbyitemid"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/partialFailure": {
+      "abstract": [
+        {
+          "text": "An error that occurs when an operation completes with partial failures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "partialFailure"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/partialFailure",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "partialFailure",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/partialfailure"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/participantMayNeedVerification": {
+      "abstract": [
+        {
+          "text": "An error that occurs when the user isn’t a participant of the share.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "participantMayNeedVerification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/participantMayNeedVerification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "participantMayNeedVerification",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/participantmayneedverification"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/permissionFailure": {
+      "abstract": [
+        {
+          "text": "An error that occurs when the user doesn’t have permission to save or fetch data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "permissionFailure"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/permissionFailure",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "permissionFailure",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/permissionfailure"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/quotaExceeded": {
+      "abstract": [
+        {
+          "text": "An error that occurs when saving a record exceeds the user’s storage quota.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "quotaExceeded"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/quotaExceeded",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "quotaExceeded",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/quotaexceeded"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/referenceViolation": {
+      "abstract": [
+        {
+          "text": "An error that occurs when CloudKit can’t find the target of a reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "referenceViolation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/referenceViolation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "referenceViolation",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/referenceviolation"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/requestRateLimited": {
+      "abstract": [
+        {
+          "text": "An error that occurs when CloudKit rate-limits requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestRateLimited"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/requestRateLimited",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestRateLimited",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/requestratelimited"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/resultsTruncated": {
+      "abstract": [
+        {
+          "text": "An error that occurs when CloudKit truncates a query’s results.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resultsTruncated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/resultsTruncated",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resultsTruncated",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/resultstruncated"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/retryAfterSeconds": {
+      "abstract": [
+        {
+          "text": "The number of seconds to wait before you retry the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "retryAfterSeconds"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/retryAfterSeconds",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "retryAfterSeconds",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/retryafterseconds"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/serverRecord": {
+      "abstract": [
+        {
+          "text": "The server’s version of the record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "serverRecord"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/serverRecord",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "serverRecord",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/serverrecord"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/serverRecordChanged": {
+      "abstract": [
+        {
+          "text": "An error that occurs when CloudKit rejects a record because the server’s version is different.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "serverRecordChanged"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/serverRecordChanged",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "serverRecordChanged",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/serverrecordchanged"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/serverRejectedRequest": {
+      "abstract": [
+        {
+          "text": "An error that occurs when CloudKit rejects the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "serverRejectedRequest"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/serverRejectedRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "serverRejectedRequest",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/serverrejectedrequest"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/serverResponseLost": {
+      "abstract": [
+        {
+          "text": "An error that occurs when CloudKit is unable to maintain the network connection and provide a response.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "serverResponseLost"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/serverResponseLost",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "serverResponseLost",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/serverresponselost"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/serviceUnavailable": {
+      "abstract": [
+        {
+          "text": "An error that occurs when CloudKit is unavailable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "serviceUnavailable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/serviceUnavailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "serviceUnavailable",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/serviceunavailable"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/tooManyParticipants": {
+      "abstract": [
+        {
+          "text": "An error that occurs when a share has too many participants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tooManyParticipants"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/tooManyParticipants",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tooManyParticipants",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/toomanyparticipants"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/unknownItem": {
+      "abstract": [
+        {
+          "text": "An error that occurs when the specified record doesn’t exist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unknownItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/unknownItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unknownItem",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/unknownitem"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/userDeletedZone": {
+      "abstract": [
+        {
+          "text": "An error that occurs when the user deletes a record zone using the Settings app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userDeletedZone"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/userDeletedZone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "userDeletedZone",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/userdeletedzone"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/zoneBusy": {
+      "abstract": [
+        {
+          "text": "An error that occurs when the server is too busy to handle the record zone operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zoneBusy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/zoneBusy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "zoneBusy",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/zonebusy"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/zoneNotFound": {
+      "abstract": [
+        {
+          "text": "An error that occurs when the specified record zone doesn’t exist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zoneNotFound"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11CKErrorCodeLeV",
+          "text": "CKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/zoneNotFound",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "zoneNotFound",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/zonenotfound"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKErrorDomain": {
+      "abstract": [
+        {
+          "text": "The error domain for CloudKit errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKErrorDomain",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerrordomain"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKErrorRetryAfterKey": {
+      "abstract": [
+        {
+          "text": "The key to retrieve the number of seconds to wait before you retry a request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKErrorRetryAfterKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKErrorRetryAfterKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKErrorRetryAfterKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKErrorRetryAfterKey",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerrorretryafterkey"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKErrorUserDidResetEncryptedDataKey": {
+      "abstract": [
+        {
+          "text": "The key that determines whether CloudKit deletes a record zone because of a user action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKErrorUserDidResetEncryptedDataKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKErrorUserDidResetEncryptedDataKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKErrorUserDidResetEncryptedDataKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKErrorUserDidResetEncryptedDataKey",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerroruserdidresetencrypteddatakey"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKModifyRecordsOperation": {
+      "abstract": [
+        {
+          "text": "An operation that modifies one or more records.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKModifyRecordsOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKModifyRecordsOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKModifyRecordsOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKModifyRecordsOperation",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckmodifyrecordsoperation"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKPartialErrorsByItemIDKey": {
+      "abstract": [
+        {
+          "text": "The key to retrieve partial errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKPartialErrorsByItemIDKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKPartialErrorsByItemIDKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKPartialErrorsByItemIDKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKPartialErrorsByItemIDKey",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckpartialerrorsbyitemidkey"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/designing-and-creating-a-cloudkit-database": {
+      "abstract": [
+        {
+          "text": "Create a schema to store your app’s objects as records in iCloud using CloudKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/designing-and-creating-a-cloudkit-database",
+      "kind": "article",
+      "role": "article",
+      "title": "Designing and Creating a CloudKit Database",
+      "type": "topic",
+      "url": "/documentation/cloudkit/designing-and-creating-a-cloudkit-database"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/record-changed-error-keys": {
+      "abstract": [
+        {
+          "text": "Constants that represent conflicting records in a save operation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/record-changed-error-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Record Changed Error Keys",
+      "type": "topic",
+      "url": "/documentation/cloudkit/record-changed-error-keys"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:10Foundation13CustomNSErrorP": {
+      "abstract": [
+        {
+          "text": "A specialized error that provides a domain, error code, and user-info dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomNSError"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:10Foundation13CustomNSErrorP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomNSError",
+      "type": "topic",
+      "url": "/documentation/foundation/customnserror"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s5ErrorP": {
+      "abstract": [
+        {
+          "text": "A type representing an error value that can be thrown.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s5ErrorP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Error",
+      "type": "topic",
+      "url": "/documentation/Swift/Error"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:10Foundation13CustomNSErrorP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:s5ErrorP",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Errors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKErrorDomain",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/Code",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKErrorRetryAfterKey",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKErrorUserDidResetEncryptedDataKey",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKPartialErrorsByItemIDKey",
+        "doc://com.apple.cloudkit/documentation/CloudKit/record-changed-error-keys"
+      ],
+      "title": "Errors"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-Error-Codes",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/accountTemporarilyUnavailable",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/alreadyShared",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/assetFileModified",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/assetFileNotFound",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/assetNotAvailable",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/badContainer",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/badDatabase",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/batchRequestFailed",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/changeTokenExpired",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/constraintViolation",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/incompatibleVersion",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/internalError",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/invalidArguments",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/limitExceeded",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/managedAccountRestricted",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/missingEntitlement",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/networkFailure",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/networkUnavailable",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/notAuthenticated",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/operationCancelled",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/partialFailure",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/participantMayNeedVerification",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/permissionFailure",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/quotaExceeded",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/referenceViolation",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/requestRateLimited",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/serverRecordChanged",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/serverRejectedRequest",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/serverResponseLost",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/serviceUnavailable",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/tooManyParticipants",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/unknownItem",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/userDeletedZone",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/zoneBusy",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/zoneNotFound",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/resultsTruncated",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/Code"
+      ],
+      "title": "Getting Error Codes"
+    },
+    {
+      "anchor": "Getting-Partial-Errors",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/partialErrorsByItemID"
+      ],
+      "title": "Getting Partial Errors"
+    },
+    {
+      "anchor": "Getting-Conflicted-Records",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/ancestorRecord",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/clientRecord",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/serverRecord"
+      ],
+      "title": "Getting Conflicted Records"
+    },
+    {
+      "anchor": "Getting-Retry-Information",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/retryAfterSeconds"
+      ],
+      "title": "Getting Retry Information"
+    },
+    {
+      "anchor": "Type-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/errorDomain"
+      ],
+      "title": "Type Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKModifyRecordsOperation/title",
+          "value": "CKModifyRecordsOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKModifyRecordsOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKModifyRecordsOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKModifyRecordsOperation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKModifyRecordsOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKErrorUserDidResetEncryptedDataKey/title",
+          "value": "CKErrorUserDidResetEncryptedDataKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKErrorUserDidResetEncryptedDataKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKErrorUserDidResetEncryptedDataKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKErrorRetryAfterKey/title",
+          "value": "CKErrorRetryAfterKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKErrorRetryAfterKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKErrorRetryAfterKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKError~1Code/title",
+          "value": "CKErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKError~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKError~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKPartialErrorsByItemIDKey/title",
+          "value": "CKPartialErrorsByItemIDKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKPartialErrorsByItemIDKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKPartialErrorsByItemIDKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDatabase/title",
+          "value": "CKDatabase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDatabase/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKDatabase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDatabase/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKDatabase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKContainer/title",
+          "value": "CKContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKErrorDomain/title",
+          "value": "CKErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKErrorDomain"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cloudkit/ckerror"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

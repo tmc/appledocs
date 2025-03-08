@@ -1,0 +1,953 @@
+{
+  "abstract": [
+    {
+      "text": "The distance, in bytes, between the start of one pixel row and the next in an image, including any unused space between them.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/rowBytes"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@vImage_Buffer@FI@rowBytes",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "rowBytes"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Si",
+        "text": "Int"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "rowBytes"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "rowBytes"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "rowBytes"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Si",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Si",
+              "text": "Int"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/rowBytes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value must be at least the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/width",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " multiplied by the pixel size, where the pixel size depends on the image format. You can provide a larger value, in which case the extra bytes extend beyond the end of each row of pixels. You may want to do this to improve performance, or to describe an image within a larger image without copying the data. The vImage library doesn’t treat the extra bytes as part of the image that the vImage buffer represents.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the following code creates two buffers, ",
+              "type": "text"
+            },
+            {
+              "code": "subBufferOne",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "subBufferTwo",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", that point to the bottom-right quadrant of ",
+              "type": "text"
+            },
+            {
+              "code": "bufferOne",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the top-left quadrant of ",
+              "type": "text"
+            },
+            {
+              "code": "bufferTwo",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", respectively. Note that both subbuffers share the same ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/rowBytes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as their original buffers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let bufferOne = try vImage_Buffer(cgImage: cgImageOne,",
+            "                                  format: format)",
+            "",
+            "let bufferTwo = try vImage_Buffer(cgImage: cgImageTwo,",
+            "                                  format: format)",
+            "",
+            "// `subBufferTwo` points to the bottom-right quadrant of `bufferTwo`.",
+            "var start = (bufferTwo.rowBytes * Int(bufferOne.height / 2))    // y",
+            "start += Int(bufferOne.width / 2) * format.componentCount       // x",
+            "var subBufferOne = vImage_Buffer(data: bufferOne.data.advanced(by: start),",
+            "                                height: bufferOne.height / 2,",
+            "                                width: bufferOne.width / 2,",
+            "                                rowBytes: bufferTwo.rowBytes)",
+            "",
+            "// `subBufferTwo` points to the top-left quadrant of `bufferTwo`.",
+            "let subBufferTwo = vImage_Buffer(data: bufferTwo.data,",
+            "                                height: bufferTwo.height / 2,",
+            "                                width: bufferTwo.width / 2,",
+            "                                rowBytes: bufferTwo.rowBytes)",
+            "",
+            "try subBufferTwo.copy(destinationBuffer: &subBufferOne, pixelSize: 3)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "bufferOne",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the top-left quadrant of ",
+              "type": "text"
+            },
+            {
+              "code": "bufferTwo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " copied to its bottom-right quadrant.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4052506",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you allocate floating-point data for images, keep the data 4-byte-aligned by allocating bytes as integer multiples of four. For best performance, allocate bytes as integer multiples of 16.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer": {
+      "abstract": [
+        {
+          "text": "An image buffer that stores an image’s pixel data, dimensions, and row stride.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_Buffer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_Buffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_Buffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/data": {
+      "abstract": [
+        {
+          "text": "A pointer to the top-left pixel of the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/data",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "data"
+        }
+      ],
+      "role": "symbol",
+      "title": "data",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer/data"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/height": {
+      "abstract": [
+        {
+          "text": "The height of the image, in pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImagePixelCount",
+          "text": "vImagePixelCount"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/height",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "height"
+        }
+      ],
+      "role": "symbol",
+      "title": "height",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer/height"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/rowBytes": {
+      "abstract": [
+        {
+          "text": "The distance, in bytes, between the start of one pixel row and the next in an image, including any unused space between them.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rowBytes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/rowBytes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rowBytes"
+        }
+      ],
+      "role": "symbol",
+      "title": "rowBytes",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer/rowbytes"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/size": {
+      "abstract": [
+        {
+          "text": "The size of the image, in pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/size",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "size",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer/size"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/width": {
+      "abstract": [
+        {
+          "text": "The width of the image, in pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImagePixelCount",
+          "text": "vImagePixelCount"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/width",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "width"
+        }
+      ],
+      "role": "symbol",
+      "title": "width",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer/width"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@size_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@size_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "size_t",
+      "type": "topic",
+      "url": "/documentation/kernel/size_t"
+    },
+    "doc://com.externally.resolved.symbol/s:Si": {
+      "abstract": [
+        {
+          "text": "A signed integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Si",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/Swift/Int"
+    },
+    "media-4052506": {
+      "alt": "A composite image that contains a background photograph of a leafy plant and a foreground photograph of a bunch of flowers. The foreground image fills the bottom-right quadrant of the image.",
+      "identifier": "media-4052506",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/76b45275d4f48f17e26c4ad1be3b5b0a/media-4052506@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Inspecting-a-buffers-properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/data",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/height",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/width",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/size"
+      ],
+      "title": "Inspecting a buffer’s properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "rowBytes"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rowBytes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.accelerate/documentation/Accelerate",
+                "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Inspecting-a-buffers-properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/data",
+                "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/height",
+                "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/width"
+              ],
+              "title": "Inspecting a buffer’s properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@size_t",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@size_t",
+                    "text": "size_t"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "rowBytes"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer~1width/title",
+          "value": "width"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer~1width/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "width"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer~1rowBytes/title",
+          "value": "rowBytes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer~1rowBytes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rowBytes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer/title",
+          "value": "vImage_Buffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_Buffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_Buffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer~1data/title",
+          "value": "data"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer~1data/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer~1height/title",
+          "value": "height"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer~1height/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "height"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accelerate/vimage_buffer/rowbytes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/accelerate/vimage_buffer/rowbytes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

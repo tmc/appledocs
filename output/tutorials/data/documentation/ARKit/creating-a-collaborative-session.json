@@ -1,0 +1,1592 @@
+{
+  "abstract": [
+    {
+      "text": "Enable nearby devices to share an AR experience by using a peer-to-peer multiuser strategy.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/creating-a-collaborative-session"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating a collaborative session"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As an AR app runs, ARKit gathers information about a userʼs physical environment by processing the camera feed from the user’s device. To effect a multiuser AR experience in which users learn more about the environment by sharing the information from their device’s camera feed with other users, you enable ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "collaboration",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Throughout a collaborative session, ARKit periodically provides data for you to share with peer users, and you choose a network protocol to send that data. In addition to information about the layout of the physical environment––the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "world data",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "––collaboration data includes an anchor for each participant. These anchors indicate each peer’s approximate location, which you can use, for example, to place virtual content that represents the peer user. ARKit also provides you with any anchors that the peer users create themselves.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app allows multiple users to view a common horizontal surface and place blocks on top of the surface, with a unique color for each user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "collaboration-annotated",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although this sample draws its graphics using RealityKit, it doesn’t use RealityKit’s mechanism for over-the-network entity synchronization. Instead, it uses RealityKit as a renderer only as necessary to demonstrate ARKit’s collaborative session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a shared AR experience using a host-guest approach, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/creating-a-multiuser-ar-experience",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-Collaboration",
+          "level": 2,
+          "text": "Enable Collaboration",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Collaborative sessions are available when your session uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To enable collaboration, set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/isCollaborationEnabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "configuration = ARWorldTrackingConfiguration()",
+            "",
+            "// Enable a collaborative session.",
+            "configuration?.isCollaborationEnabled = true",
+            "",
+            "// Enable realistic reflections.",
+            "configuration?.environmentTexturing = .automatic",
+            "",
+            "// Begin the session.",
+            "arView.session.run(configuration!)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Gather-collaboration-data",
+          "level": 2,
+          "text": "Gather collaboration data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When collaboration is enabled, ARKit periodically invokes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionObserver/session(_:didOutputCollaborationData:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which provides collaboration data that you can share with nearby users. You are responsible for sending collaboration data over the network, including choosing the network framework and implementing the code. The data you send is a serialized version of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/CollaborationData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object provided by your session. Before you send collaboration data over the network, first serialize it using [",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func session(_ session: ARSession, didOutputCollaborationData data: ARSession.CollaborationData) {",
+            "    guard let multipeerSession = multipeerSession else { return }",
+            "    if !multipeerSession.connectedPeers.isEmpty {",
+            "        guard let encodedData = try? NSKeyedArchiver.archivedData(withRootObject: data, requiringSecureCoding: true)",
+            "        else { fatalError(\"Unexpectedly failed to encode collaboration data.\") }",
+            "        // Use reliable mode if the data is critical, and unreliable mode if the data is optional.",
+            "        let dataIsCritical = data.priority == .critical",
+            "        multipeerSession.sendToAllPeers(encodedData, reliably: dataIsCritical)",
+            "    } else {",
+            "        print(\"Deferred sending collaboration to later because there are no peers.\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s safe to ignore the collaboration data if no peers have joined the session. In that case, ARKit outputs the collaboration data later to try again. The alternative approach of enabling collaboration only after peers have joined is not supported, because doing so restarts the session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Send-collaboration-data-to-others",
+          "level": 2,
+          "text": "Send collaboration data to others",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You choose the network protocol with which to share collaboration data. This sample app sends collaboration data using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func sendToPeers(_ data: Data, reliably: Bool, peers: [MCPeerID]) {",
+            "    guard !peers.isEmpty else { return }",
+            "    do {",
+            "        try session.send(data, toPeers: peers, with: reliably ? .reliable : .unreliable)",
+            "    } catch {",
+            "        print(\"error sending data to peers \\(peers): \\(error.localizedDescription)\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Update-your-session-with-collaboration-data",
+          "level": 2,
+          "text": "Update your session with collaboration data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you receive collaboration data from peer users, you instantiate an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/CollaborationData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object with it, and pass the object to your session via ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/update(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func receivedData(_ data: Data, from peer: MCPeerID) {",
+            "    if let collaborationData = try? NSKeyedUnarchiver.unarchivedObject(ofClass: ARSession.CollaborationData.self, from: data) {",
+            "        arView.session.update(with: collaborationData)",
+            "        return",
+            "    }",
+            "    // ..."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Facilitate-world-map-merging",
+          "level": 2,
+          "text": "Facilitate world map merging",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For ARKit to know where two users are with respect to each other, it has to recognize overlap across their respective world maps. When ARKit succeeds in fitting the two world maps together, it can begin sharing those users’ respective locations and any anchors they created with each other.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To aid ARKit with world map merging, a user must point their device near an area that another user has viewed. The sample app accomplishes this by asking the users to hold their devices side by side.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "messageLabel.displayMessage(\"\"\"",
+            "    A peer wants to join the experience.",
+            "    Hold the phones next to each other.",
+            "    \"\"\", duration: 6.0)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Identify-when-ARKit-merges-world-data",
+          "level": 2,
+          "text": "Identify when ARKit merges world data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first time ARKit successfully merges world data from another user, it calls your app’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didAdd:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", passing in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that identifies the other user. This action notifies you of the merging event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {",
+            "    for anchor in anchors {",
+            "        if let participantAnchor = anchor as? ARParticipantAnchor {",
+            "            messageLabel.displayMessage(\"Established joint experience with a peer.\")",
+            "            // ..."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Visualize-users-by-displaying-virtual-content",
+          "level": 2,
+          "text": "Visualize users by displaying virtual content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When ARKit successfully merges two users’ world data, you can then initiate actions to begin the multiuser experience. The sample adds virtual content in the real-world location of newly joined peer users to visualize them in AR.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let anchorEntity = AnchorEntity(anchor: participantAnchor)",
+            "",
+            "let coordinateSystem = MeshResource.generateCoordinateSystemAxes()",
+            "anchorEntity.addChild(coordinateSystem)",
+            "",
+            "let color = participantAnchor.sessionIdentifier?.toRandomColor() ?? .white",
+            "let coloredSphere = ModelEntity(mesh: MeshResource.generateSphere(radius: 0.03),",
+            "                                materials: [SimpleMaterial(color: color, isMetallic: true)])",
+            "anchorEntity.addChild(coloredSphere)",
+            "",
+            "arView.scene.addAnchor(anchorEntity)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The multicolored coordinate system shown in the following illustration represents the real-world pose of a peer user. ARKit periodically refreshes participant anchors to reflect any updates in the real-world location and orientation of the user it tracks. This process is a part of the collaboration data your app shares and uses to update its session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "participant-annotated",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-an-anchors-owner",
+          "level": 2,
+          "text": "Check an anchor’s owner",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When ARKit merges two users’ world data, it collects all the anchors created by both users and calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didAdd:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to notify each user of the collection. To check which user created an anchor, you compare the anchor’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor/sessionIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the active session’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/identifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If the anchor’s session ID is different from the active session’s ID, the other user created the anchor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Color-Virtual-Content-Based-on-the-User",
+          "level": 2,
+          "text": "Color Virtual Content Based on the User",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To distinguish virtual content by user, you choose a different color for each user. The sample app uses the ",
+              "type": "text"
+            },
+            {
+              "code": "toRandomColor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to assign user colors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let color = anchor.sessionIdentifier?.toRandomColor() ?? .white"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The random color function works by applying a modulo operation to the anchor’s session ID, and interpreting the result as an index into a color array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func toRandomColor() -> UIColor {",
+            "    var firstFourUUIDBytesAsUInt32: UInt32 = 0",
+            "    let data = withUnsafePointer(to: self) {",
+            "        return Data(bytes: $0, count: MemoryLayout.size(ofValue: self))",
+            "    }",
+            "    _ = withUnsafeMutableBytes(of: &firstFourUUIDBytesAsUInt32, { data.copyBytes(to: $0) })",
+            "",
+            "    let colors: [UIColor] = [.red, .green, .blue, .yellow, .magenta, .cyan, .purple,",
+            "    .orange, .brown, .lightGray, .gray, .darkGray, .black, .white]",
+            "    ",
+            "    let randomNumber = Int(firstFourUUIDBytesAsUInt32) % colors.count",
+            "    return colors[randomNumber]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Place-virtual-content",
+          "level": 2,
+          "text": "Place virtual content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When ARKit notifies you of a new nonparticipant anchor in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didAdd:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", place a block geometry tinted with the color calculated in the previous section.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let coloredCube = ModelEntity(mesh: MeshResource.generateBox(size: boxLength),",
+            "                              materials: [SimpleMaterial(color: color, isMetallic: true)])",
+            "// Offset the cube by half its length to align its bottom with the real-world surface.",
+            "coloredCube.position = [0, boxLength / 2, 0]",
+            "",
+            "// Attach the cube to the ARAnchor via an AnchorEntity.",
+            "//   World origin -> ARAnchor -> AnchorEntity -> ModelEntity",
+            "let anchorEntity = AnchorEntity(anchor: anchor)",
+            "anchorEntity.addChild(coloredCube)",
+            "arView.scene.addAnchor(anchorEntity)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "place-a-block.jpg",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app uses common ARKit techniques to place virtual objects. For more information about mapping screen touches to real-world locations, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/detecting-images-in-an-ar-experience",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "64b9ddc97bef/CreatingACollaborativeSession.zip": {
+      "checksum": "64b9ddc97bef2dc2ee9237c09ffff854814472ae9ff11be6b8f67ea89380b5ecb636bc17963b1258f15dfc1be4c44fe1b18608190aa976b3b69ae55c2c3e4bba",
+      "identifier": "64b9ddc97bef/CreatingACollaborativeSession.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/64b9ddc97bef/CreatingACollaborativeSession.zip"
+    },
+    "collaboration-annotated": {
+      "alt": "Screenshot of virtual blocks placed in the environment by two different users.",
+      "identifier": "collaboration-annotated",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1d8d887a077a99a0f6110d5274285f26/collaboration-annotated.jpg"
+        }
+      ]
+    },
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARAnchor/sessionIdentifier": {
+      "abstract": [
+        {
+          "text": "The unique identifier of the session that owns this anchor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sessionIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAnchor/sessionIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sessionIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "sessionIdentifier",
+      "type": "topic",
+      "url": "/documentation/arkit/aranchor/sessionidentifier"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARParticipantAnchor": {
+      "abstract": [
+        {
+          "text": "An anchor for another user in multiuser augmented reality experiences.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARParticipantAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARParticipantAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARParticipantAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARParticipantAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/arparticipantanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession/CollaborationData": {
+      "abstract": [
+        {
+          "text": "An object that holds information that a user has collected about the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CollaborationData"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/CollaborationData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CollaborationData"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSession.CollaborationData",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession/collaborationdata"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession/identifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier of the running session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/identifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession/identifier"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession/update(with:)": {
+      "abstract": [
+        {
+          "text": "Updates your session with information about the physical environment that is collected by another user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARCollaborationData",
+          "text": "CollaborationData"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/update(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateWithCollaborationData:"
+        }
+      ],
+      "role": "symbol",
+      "title": "update(with:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession/update(with:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate": {
+      "abstract": [
+        {
+          "text": "Methods you can implement to receive captured video frame images and tracking state from an AR session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSessionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSessionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/arkit/arsessiondelegate"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didAdd:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that one or more anchors have been added to the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAdd"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARAnchor",
+          "text": "ARAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didAdd:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didAddAnchors:"
+        }
+      ],
+      "role": "symbol",
+      "title": "session(_:didAdd:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsessiondelegate/session(_:didadd:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSessionObserver/session(_:didOutputCollaborationData:)": {
+      "abstract": [
+        {
+          "text": "Provides information for nearby users about your perspective in the environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didOutputCollaborationData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARCollaborationData",
+          "text": "CollaborationData"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionObserver/session(_:didOutputCollaborationData:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didOutputCollaborationData:"
+        }
+      ],
+      "role": "symbol",
+      "title": "session(_:didOutputCollaborationData:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsessionobserver/session(_:didoutputcollaborationdata:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that tracks the position of a device in relation to objects in the environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARWorldTrackingConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARWorldTrackingConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARWorldTrackingConfiguration",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/isCollaborationEnabled": {
+      "abstract": [
+        {
+          "text": "A flag that opts you in to a peer-to-peer multiuser AR experience.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isCollaborationEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/isCollaborationEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "collaborationEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isCollaborationEnabled",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/iscollaborationenabled"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios": {
+      "abstract": [
+        {
+          "text": "Integrate iOS device camera and motion features to produce augmented reality experiences in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in iOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-ios"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/creating-a-multiuser-ar-experience": {
+      "abstract": [
+        {
+          "text": "Enable nearby devices to share an AR experience by using a host-guest multiuser strategy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/creating-a-multiuser-ar-experience",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a multiuser AR experience",
+      "type": "topic",
+      "url": "/documentation/arkit/creating-a-multiuser-ar-experience"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/detecting-images-in-an-ar-experience": {
+      "abstract": [
+        {
+          "text": "React to known 2D images in the user’s environment, and use their positions to place AR content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/detecting-images-in-an-ar-experience",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Detecting Images in an AR Experience",
+      "type": "topic",
+      "url": "/documentation/arkit/detecting-images-in-an-ar-experience"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/streaming-an-ar-experience": {
+      "abstract": [
+        {
+          "text": "Control an AR experience remotely by transferring sensor and user input over the network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/streaming-an-ar-experience",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Streaming an AR experience",
+      "type": "topic",
+      "url": "/documentation/arkit/streaming-an-ar-experience"
+    },
+    "doc://com.apple.documentation/documentation/MultipeerConnectivity": {
+      "abstract": [
+        {
+          "text": "Support peer-to-peer connectivity and the discovery of nearby devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MultipeerConnectivity",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Multipeer Connectivity",
+      "type": "topic",
+      "url": "/documentation/MultipeerConnectivity"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver": {
+      "abstract": [
+        {
+          "text": "An encoder that stores an object’s data to an archive referenced by keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSKeyedArchiver"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSKeyedArchiver",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedarchiver"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "participant-annotated": {
+      "alt": "Screenshot of virtual content that represents the real-world position and pose of a peer user.",
+      "identifier": "participant-annotated",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9bfa6bd384ecf724484baaacfa880049/participant-annotated.jpg"
+        }
+      ]
+    },
+    "place-a-block.jpg": {
+      "alt": "Screenshot of virtual content placed by the user.",
+      "identifier": "place-a-block.jpg",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c612eda3b645c5bc727798a83d8af603/place-a-block.jpg"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "64b9ddc97bef/CreatingACollaborativeSession.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Shared-Experiences",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/streaming-an-ar-experience",
+        "doc://com.apple.arkit/documentation/ARKit/creating-a-multiuser-ar-experience",
+        "doc://com.apple.arkit/documentation/ARKit/ARParticipantAnchor",
+        "doc://com.apple.arkit/documentation/ARKit/ARSession/CollaborationData"
+      ],
+      "title": "Shared Experiences"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Shared-Experiences",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/streaming-an-ar-experience",
+                "doc://com.apple.arkit/documentation/ARKit/creating-a-multiuser-ar-experience",
+                "doc://com.apple.arkit/documentation/ARKit/ARParticipantAnchor",
+                "doc://com.apple.arkit/documentation/ARKit/ARSession/CollaborationData"
+              ],
+              "title": "Shared Experiences"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1CollaborationData/title",
+          "value": "ARCollaborationData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1CollaborationData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARCollaborationData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1CollaborationData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARCollaborationData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARParticipantAnchor/title",
+          "value": "ARParticipantAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARParticipantAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARParticipantAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARParticipantAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARParticipantAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate/title",
+          "value": "ARSessionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSessionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSessionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1isCollaborationEnabled/title",
+          "value": "collaborationEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1isCollaborationEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "collaborationEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor~1sessionIdentifier/title",
+          "value": "sessionIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAnchor~1sessionIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sessionIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate~1session(_:didAdd:)/title",
+          "value": "session:didAddAnchors:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate~1session(_:didAdd:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didAddAnchors:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/title",
+          "value": "ARWorldTrackingConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionObserver~1session(_:didOutputCollaborationData:)/title",
+          "value": "session:didOutputCollaborationData:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionObserver~1session(_:didOutputCollaborationData:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didOutputCollaborationData:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1update(with:)/title",
+          "value": "updateWithCollaborationData:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1update(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateWithCollaborationData:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1identifier/title",
+          "value": "identifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1identifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "identifier"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/creating-a-collaborative-session"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/creating-a-collaborative-session"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1601 @@
+{
+  "abstract": [
+    {
+      "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/archives_and_serialization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nscoding"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1411471,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)NSCoding",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "protocol "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSCoding"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "intf",
+    "title": "NSCoding"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSCoding"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSCoding",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol declares the two methods that a class must implement so that instances of that class can be encoded and decoded. This capability provides the basis for archiving (where objects and other structures are stored on disk) and distribution (where objects are copied to different address spaces).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In keeping with object-oriented design principles, an object being encoded or decoded is responsible for encoding and decoding its instance variables. A coder instructs the object to do so by invoking ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding/1413933-encode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapItem/init(coder:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding/1413933-encode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instructs the object to encode its instance variables to the coder provided; an object can receive this method any number of times. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapItem/init(coder:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instructs the object to initialize itself from data in the coder provided; as such, it replaces any other initialization method and is sent only once per object. Any object class that should be codeable must adopt the ",
+              "type": "text"
+            },
+            {
+              "code": "NSCoding",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol and implement its methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It is important to consider the possible types of archiving that a coder supports. In macOS 10.2 and later, keyed archiving is preferred. You may, however, need to support classic archiving. For details, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1695370",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1695370": {
+      "identifier": "devLink-1695370",
+      "title": "Archives and Serializations Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Archiving/Archiving.html#//apple_ref/doc/uid/10000047i"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureViewDelegate": {
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureViewDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RoomCaptureViewDelegate",
+      "type": "topic",
+      "url": "/documentation/roomplan/roomcaptureviewdelegate"
+    },
+    "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication": {
+      "identifier": "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SBApplication",
+      "type": "topic",
+      "url": "/documentation/scriptingbridge/sbapplication"
+    },
+    "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBObject": {
+      "identifier": "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SBObject",
+      "type": "topic",
+      "url": "/documentation/scriptingbridge/sbobject"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAnimation": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAnimation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAnimation",
+      "type": "topic",
+      "url": "/documentation/appkit/nsanimation"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSClickGestureRecognizer": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSClickGestureRecognizer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSClickGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/appkit/nsclickgesturerecognizer"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCollectionViewLayout",
+      "type": "topic",
+      "url": "/documentation/appkit/nscollectionviewlayout"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocumentController": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocumentController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDocumentController",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocumentcontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSEvent": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSEvent",
+      "type": "topic",
+      "url": "/documentation/appkit/nsevent"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFontCollection": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFontCollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFontCollection",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfontcollection"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGridCell": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGridCell",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSGridCell",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgridcell"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGridColumn": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGridColumn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSGridColumn",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgridcolumn"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGridRow": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGridRow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSGridRow",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgridrow"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImageRep": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImageRep",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSImageRep",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimagerep"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutAnchor": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutAnchor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLayoutAnchor",
+      "type": "topic",
+      "url": "/documentation/uikit/nslayoutanchor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutGuide": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutGuide",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLayoutGuide",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutguide"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMenu": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMenu",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmenu"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSMenuItem": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMenuItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMenuItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nsmenuitem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSNib": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSNib",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNib",
+      "type": "topic",
+      "url": "/documentation/appkit/nsnib"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOpenGLPixelFormat": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOpenGLPixelFormat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSOpenGLPixelFormat",
+      "type": "topic",
+      "url": "/documentation/appkit/nsopenglpixelformat"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPDFInfo": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPDFInfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPDFInfo",
+      "type": "topic",
+      "url": "/documentation/appkit/nspdfinfo"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPageController": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPageController",
+      "type": "topic",
+      "url": "/documentation/appkit/nspagecontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPanGestureRecognizer": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPanGestureRecognizer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPanGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/appkit/nspangesturerecognizer"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPredicateEditorRowTemplate",
+      "type": "topic",
+      "url": "/documentation/appkit/nspredicateeditorrowtemplate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPressGestureRecognizer": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPressGestureRecognizer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPressGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/appkit/nspressgesturerecognizer"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPrintInfo",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprintinfo"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPrinter": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPrinter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPrinter",
+      "type": "topic",
+      "url": "/documentation/appkit/nsprinter"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSResponder": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSResponder",
+      "type": "topic",
+      "url": "/documentation/appkit/nsresponder"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSRulerMarker": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSRulerMarker",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRulerMarker",
+      "type": "topic",
+      "url": "/documentation/appkit/nsrulermarker"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSScrubberLayout": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSScrubberLayout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSScrubberLayout",
+      "type": "topic",
+      "url": "/documentation/appkit/nsscrubberlayout"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSScrubberSelectionStyle": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSScrubberSelectionStyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSScrubberSelectionStyle",
+      "type": "topic",
+      "url": "/documentation/appkit/nsscrubberselectionstyle"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSliderAccessory": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSliderAccessory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSliderAccessory",
+      "type": "topic",
+      "url": "/documentation/appkit/nsslideraccessory"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSliderAccessoryBehavior": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSliderAccessoryBehavior",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSliderAccessoryBehavior",
+      "type": "topic",
+      "url": "/documentation/appkit/nsslideraccessorybehavior"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSplitViewItem": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitViewItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSplitViewItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nssplitviewitem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTabViewItem": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTabViewItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTabViewItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nstabviewitem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableColumn": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableColumn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTableColumn",
+      "type": "topic",
+      "url": "/documentation/appkit/nstablecolumn"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextFinder": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextFinder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTextFinder",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextfinder"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextTab": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextTab",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTextTab",
+      "type": "topic",
+      "url": "/documentation/uikit/nstexttab"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTouchBar": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTouchBar",
+      "type": "topic",
+      "url": "/documentation/appkit/nstouchbar"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTouchBarItem": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBarItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTouchBarItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nstouchbaritem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTrackingArea",
+      "type": "topic",
+      "url": "/documentation/appkit/nstrackingarea"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceCompressionOptions": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceCompressionOptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserInterfaceCompressionOptions",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuserinterfacecompressionoptions"
+    },
+    "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownload": {
+      "identifier": "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownload",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BADownload",
+      "type": "topic",
+      "url": "/documentation/backgroundassets/badownload"
+    },
+    "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity": {
+      "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CBIdentity",
+      "type": "topic",
+      "url": "/documentation/collaboration/cbidentity"
+    },
+    "doc://com.apple.collaboration/documentation/Collaboration/CBUserIdentity": {
+      "identifier": "doc://com.apple.collaboration/documentation/Collaboration/CBUserIdentity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CBUserIdentity",
+      "type": "topic",
+      "url": "/documentation/collaboration/cbuseridentity"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSEntityDescription": {
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSEntityDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSEntityDescription",
+      "type": "topic",
+      "url": "/documentation/coredata/nsentitydescription"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSFetchIndexDescription": {
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSFetchIndexDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFetchIndexDescription",
+      "type": "topic",
+      "url": "/documentation/coredata/nsfetchindexdescription"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSFetchIndexElementDescription": {
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSFetchIndexElementDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFetchIndexElementDescription",
+      "type": "topic",
+      "url": "/documentation/coredata/nsfetchindexelementdescription"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest": {
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFetchRequest",
+      "type": "topic",
+      "url": "/documentation/coredata/nsfetchrequest"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext": {
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSManagedObjectContext",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobjectcontext"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectModel": {
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectModel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSManagedObjectModel",
+      "type": "topic",
+      "url": "/documentation/coredata/nsmanagedobjectmodel"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription": {
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPropertyDescription",
+      "type": "topic",
+      "url": "/documentation/coredata/nspropertydescription"
+    },
+    "doc://com.apple.documentation/documentation/appkit/nsimagecell": {
+      "identifier": "doc://com.apple.documentation/documentation/appkit/nsimagecell",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSImageCell",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimagecell"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Archives and Serialization",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types": {
+      "abstract": [
+        {
+          "text": "Make your data types encodable and decodable for compatibility with external representations such as JSON.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types",
+      "kind": "article",
+      "role": "article",
+      "title": "Encoding and Decoding Custom Types",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatter": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Formatter",
+      "type": "topic",
+      "url": "/documentation/foundation/formatter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoding/1413933-encode": {
+      "abstract": [
+        {
+          "text": "Encodes the receiver using a given archiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding/1413933-encode",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "encode(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding/1413933-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdecimalnumberhandler": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdecimalnumberhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDecimalNumberHandler",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdecimalnumberhandler"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptcommand": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSScriptCommand",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptcommand"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptcommanddescription": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommanddescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSScriptCommandDescription",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptcommanddescription"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSScriptObjectSpecifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptobjectspecifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptwhosetest": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptwhosetest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSScriptWhoseTest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptwhosetest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/port": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/port",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Port",
+      "type": "topic",
+      "url": "/documentation/foundation/port"
+    },
+    "doc://com.apple.documentation/documentation/mapkit/mkmapitem/init(coder:)": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/mapkit/mkmapitem/init(coder:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapitem/init(coder:)"
+    },
+    "doc://com.apple.documentation/documentation/swift/codable": {
+      "abstract": [
+        {
+          "text": "A type that can convert itself into and out of an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "Codable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/codable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Codable",
+      "type": "topic",
+      "url": "/documentation/swift/codable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/webkit/webpreferences": {
+      "identifier": "doc://com.apple.documentation/documentation/webkit/webpreferences",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WebPreferences",
+      "type": "topic",
+      "url": "/documentation/webkit/webpreferences"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKAchievement": {
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAchievement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GKAchievement",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkachievement"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKAchievementDescription": {
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKAchievementDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GKAchievementDescription",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkachievementdescription"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKChallenge": {
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKChallenge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GKChallenge",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkchallenge"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardSet": {
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardSet",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GKLeaderboardSet",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkleaderboardset"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKScore": {
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKScore",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GKScore",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkscore"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKView": {
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GLKView",
+      "type": "topic",
+      "url": "/documentation/glkit/glkview"
+    },
+    "doc://com.apple.glkit/documentation/GLKit/GLKViewController": {
+      "identifier": "doc://com.apple.glkit/documentation/GLKit/GLKViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GLKViewController",
+      "type": "topic",
+      "url": "/documentation/glkit/glkviewcontroller"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothDevice": {
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBluetoothDevice",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothdevice"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement": {
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBluetoothSDPDataElement",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpdataelement"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPServiceAttribute": {
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPServiceAttribute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBluetoothSDPServiceAttribute",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpserviceattribute"
+    },
+    "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPServiceRecord": {
+      "identifier": "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPServiceRecord",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBluetoothSDPServiceRecord",
+      "type": "topic",
+      "url": "/documentation/iobluetooth/iobluetoothsdpservicerecord"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKLookAroundViewController": {
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKLookAroundViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKLookAroundViewController",
+      "type": "topic",
+      "url": "/documentation/mapkit/mklookaroundviewcontroller"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapItem/init(coder:)": {
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapItem/init(coder:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapitem/init(coder:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapView": {
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKMapView",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapview"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPVolumeView": {
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPVolumeView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPVolumeView",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpvolumeview"
+    },
+    "doc://com.apple.metalkit/documentation/MetalKit/MTKView": {
+      "identifier": "doc://com.apple.metalkit/documentation/MetalKit/MTKView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTKView",
+      "type": "topic",
+      "url": "/documentation/metalkit/mtkview"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation": {
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PDFAnnotation",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfannotation"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationFreeText": {
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationFreeText",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PDFAnnotationFreeText",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfannotationfreetext"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationInk": {
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationInk",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PDFAnnotationInk",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfannotationink"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationLine": {
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationLine",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PDFAnnotationLine",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfannotationline"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationMarkup": {
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationMarkup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PDFAnnotationMarkup",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfannotationmarkup"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationPopup": {
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationPopup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PDFAnnotationPopup",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfannotationpopup"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationSquare": {
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationSquare",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PDFAnnotationSquare",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfannotationsquare"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationText": {
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationText",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PDFAnnotationText",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfannotationtext"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFBorder": {
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFBorder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PDFBorder",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfborder"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFThumbnailView": {
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFThumbnailView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PDFThumbnailView",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfthumbnailview"
+    },
+    "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastConfiguration": {
+      "identifier": "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastConfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RPBroadcastConfiguration",
+      "type": "topic",
+      "url": "/documentation/replaykit/rpbroadcastconfiguration"
+    },
+    "doc://com.apple.replaykit/documentation/ReplayKit/RPSystemBroadcastPickerView": {
+      "identifier": "doc://com.apple.replaykit/documentation/ReplayKit/RPSystemBroadcastPickerView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RPSystemBroadcastPickerView",
+      "type": "topic",
+      "url": "/documentation/replaykit/rpsystembroadcastpickerview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActivityIndicatorView": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActivityIndicatorView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIActivityIndicatorView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactivityindicatorview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItem": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIBarButtonItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIBarButtonItemGroup",
+      "type": "topic",
+      "url": "/documentation/uikit/uibarbuttonitemgroup"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIBarItem": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIBarItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIBarItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uibaritem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIButton": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIButton",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIButton",
+      "type": "topic",
+      "url": "/documentation/uikit/uibutton"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayout": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICollectionViewLayout",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewlayout"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDatePicker": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDatePicker",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIDatePicker",
+      "type": "topic",
+      "url": "/documentation/uikit/uidatepicker"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIDocumentBrowserViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocumentbrowserviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIImagePickerController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimagepickercontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIKey": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIKey",
+      "type": "topic",
+      "url": "/documentation/uikit/uikey"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILabel": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILabel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UILabel",
+      "type": "topic",
+      "url": "/documentation/uikit/uilabel"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILayoutGuide": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILayoutGuide",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UILayoutGuide",
+      "type": "topic",
+      "url": "/documentation/uikit/uilayoutguide"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILocalNotification": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILocalNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UILocalNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uilocalnotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIMotionEffect": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIMotionEffect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIMotionEffect",
+      "type": "topic",
+      "url": "/documentation/uikit/uimotioneffect"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationBar": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationBar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UINavigationBar",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationbar"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationItem": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UINavigationItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPickerView": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPickerView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIPickerView",
+      "type": "topic",
+      "url": "/documentation/uikit/uipickerview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintInfo": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintInfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIPrintInfo",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintinfo"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIProgressView": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIProgressView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIProgressView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprogressview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIRegion": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIRegion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIRegion",
+      "type": "topic",
+      "url": "/documentation/uikit/uiregion"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIScrollView": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScrollView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIScrollView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscrollview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISegmentedControl": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISegmentedControl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UISegmentedControl",
+      "type": "topic",
+      "url": "/documentation/uikit/uisegmentedcontrol"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISlider": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISlider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UISlider",
+      "type": "topic",
+      "url": "/documentation/uikit/uislider"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISwitch": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISwitch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UISwitch",
+      "type": "topic",
+      "url": "/documentation/uikit/uiswitch"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITabBarController": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITabBarController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITabBarController",
+      "type": "topic",
+      "url": "/documentation/uikit/uitabbarcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableView": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITableView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewCell": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewCell",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITableViewCell",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewcell"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextField": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextField",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITextField",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfield"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITimingCurveProvider": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITimingCurveProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITimingCurveProvider",
+      "type": "topic",
+      "url": "/documentation/uikit/uitimingcurveprovider"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWebView": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWebView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIWebView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwebview"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebArchive": {
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebArchive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WebArchive",
+      "type": "topic",
+      "url": "/documentation/webkit/webarchive"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebResource": {
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebResource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WebResource",
+      "type": "topic",
+      "url": "/documentation/webkit/webresource"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WebUndefined": {
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WebUndefined",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WebUndefined",
+      "type": "topic",
+      "url": "/documentation/webkit/webundefined"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomCaptureViewDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UITimingCurveProvider"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.backgroundassets/documentation/BackgroundAssets/BADownload",
+        "doc://com.apple.collaboration/documentation/Collaboration/CBIdentity",
+        "doc://com.apple.collaboration/documentation/Collaboration/CBUserIdentity",
+        "doc://com.apple.documentation/documentation/foundation/formatter",
+        "doc://com.apple.gamekit/documentation/GameKit/GKAchievement",
+        "doc://com.apple.gamekit/documentation/GameKit/GKAchievementDescription",
+        "doc://com.apple.gamekit/documentation/GameKit/GKChallenge",
+        "doc://com.apple.gamekit/documentation/GameKit/GKLeaderboardSet",
+        "doc://com.apple.gamekit/documentation/GameKit/GKScore",
+        "doc://com.apple.glkit/documentation/GLKit/GLKView",
+        "doc://com.apple.glkit/documentation/GLKit/GLKViewController",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothDevice",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPDataElement",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPServiceAttribute",
+        "doc://com.apple.iobluetooth/documentation/IOBluetooth/IOBluetoothSDPServiceRecord",
+        "doc://com.apple.mapkit/documentation/MapKit/MKLookAroundViewController",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapView",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPVolumeView",
+        "doc://com.apple.metalkit/documentation/MetalKit/MTKView",
+        "doc://com.apple.appkit/documentation/AppKit/NSAnimation",
+        "doc://com.apple.appkit/documentation/AppKit/NSClickGestureRecognizer",
+        "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout",
+        "doc://com.apple.documentation/documentation/foundation/nsdecimalnumberhandler",
+        "doc://com.apple.appkit/documentation/AppKit/NSDocumentController",
+        "doc://com.apple.coredata/documentation/CoreData/NSEntityDescription",
+        "doc://com.apple.appkit/documentation/AppKit/NSEvent",
+        "doc://com.apple.coredata/documentation/CoreData/NSFetchIndexDescription",
+        "doc://com.apple.coredata/documentation/CoreData/NSFetchIndexElementDescription",
+        "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest",
+        "doc://com.apple.appkit/documentation/AppKit/NSFontCollection",
+        "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer",
+        "doc://com.apple.appkit/documentation/AppKit/NSGridCell",
+        "doc://com.apple.appkit/documentation/AppKit/NSGridColumn",
+        "doc://com.apple.appkit/documentation/AppKit/NSGridRow",
+        "doc://com.apple.documentation/documentation/appkit/nsimagecell",
+        "doc://com.apple.appkit/documentation/AppKit/NSImageRep",
+        "doc://com.apple.appkit/documentation/AppKit/NSLayoutAnchor",
+        "doc://com.apple.appkit/documentation/AppKit/NSLayoutGuide",
+        "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectContext",
+        "doc://com.apple.coredata/documentation/CoreData/NSManagedObjectModel",
+        "doc://com.apple.appkit/documentation/AppKit/NSMenu",
+        "doc://com.apple.appkit/documentation/AppKit/NSMenuItem",
+        "doc://com.apple.appkit/documentation/AppKit/NSNib",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification",
+        "doc://com.apple.appkit/documentation/AppKit/NSOpenGLPixelFormat",
+        "doc://com.apple.appkit/documentation/AppKit/NSPDFInfo",
+        "doc://com.apple.appkit/documentation/AppKit/NSPageController",
+        "doc://com.apple.appkit/documentation/AppKit/NSPanGestureRecognizer",
+        "doc://com.apple.appkit/documentation/AppKit/NSPredicateEditorRowTemplate",
+        "doc://com.apple.appkit/documentation/AppKit/NSPressGestureRecognizer",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrintInfo",
+        "doc://com.apple.appkit/documentation/AppKit/NSPrinter",
+        "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription",
+        "doc://com.apple.appkit/documentation/AppKit/NSResponder",
+        "doc://com.apple.appkit/documentation/AppKit/NSRulerMarker",
+        "doc://com.apple.documentation/documentation/foundation/nsscriptcommand",
+        "doc://com.apple.documentation/documentation/foundation/nsscriptcommanddescription",
+        "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier",
+        "doc://com.apple.documentation/documentation/foundation/nsscriptwhosetest",
+        "doc://com.apple.appkit/documentation/AppKit/NSScrubberLayout",
+        "doc://com.apple.appkit/documentation/AppKit/NSScrubberSelectionStyle",
+        "doc://com.apple.appkit/documentation/AppKit/NSSliderAccessory",
+        "doc://com.apple.appkit/documentation/AppKit/NSSliderAccessoryBehavior",
+        "doc://com.apple.appkit/documentation/AppKit/NSSplitViewItem",
+        "doc://com.apple.appkit/documentation/AppKit/NSTabViewItem",
+        "doc://com.apple.appkit/documentation/AppKit/NSTableColumn",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextFinder",
+        "doc://com.apple.appkit/documentation/AppKit/NSTextTab",
+        "doc://com.apple.appkit/documentation/AppKit/NSTouchBar",
+        "doc://com.apple.appkit/documentation/AppKit/NSTouchBarItem",
+        "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea",
+        "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceCompressionOptions",
+        "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation",
+        "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationFreeText",
+        "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationInk",
+        "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationLine",
+        "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationMarkup",
+        "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationPopup",
+        "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationSquare",
+        "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotationText",
+        "doc://com.apple.pdfkit/documentation/PDFKit/PDFBorder",
+        "doc://com.apple.pdfkit/documentation/PDFKit/PDFThumbnailView",
+        "doc://com.apple.documentation/documentation/foundation/port",
+        "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastConfiguration",
+        "doc://com.apple.replaykit/documentation/ReplayKit/RPSystemBroadcastPickerView",
+        "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBApplication",
+        "doc://com.apple.Scripting-Bridge/documentation/ScriptingBridge/SBObject",
+        "doc://com.apple.uikit/documentation/UIKit/UIActivityIndicatorView",
+        "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItem",
+        "doc://com.apple.uikit/documentation/UIKit/UIBarButtonItemGroup",
+        "doc://com.apple.uikit/documentation/UIKit/UIBarItem",
+        "doc://com.apple.uikit/documentation/UIKit/UIButton",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayout",
+        "doc://com.apple.uikit/documentation/UIKit/UIDatePicker",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocumentBrowserViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UIImagePickerController",
+        "doc://com.apple.uikit/documentation/UIKit/UIKey",
+        "doc://com.apple.uikit/documentation/UIKit/UILabel",
+        "doc://com.apple.uikit/documentation/UIKit/UILayoutGuide",
+        "doc://com.apple.uikit/documentation/UIKit/UILocalNotification",
+        "doc://com.apple.uikit/documentation/UIKit/UIMotionEffect",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationBar",
+        "doc://com.apple.uikit/documentation/UIKit/UINavigationItem",
+        "doc://com.apple.uikit/documentation/UIKit/UIPickerView",
+        "doc://com.apple.uikit/documentation/UIKit/UIPrintInfo",
+        "doc://com.apple.uikit/documentation/UIKit/UIProgressView",
+        "doc://com.apple.uikit/documentation/UIKit/UIRegion",
+        "doc://com.apple.uikit/documentation/UIKit/UIScrollView",
+        "doc://com.apple.uikit/documentation/UIKit/UISegmentedControl",
+        "doc://com.apple.uikit/documentation/UIKit/UISlider",
+        "doc://com.apple.uikit/documentation/UIKit/UISwitch",
+        "doc://com.apple.uikit/documentation/UIKit/UITabBarController",
+        "doc://com.apple.uikit/documentation/UIKit/UITableView",
+        "doc://com.apple.uikit/documentation/UIKit/UITableViewCell",
+        "doc://com.apple.uikit/documentation/UIKit/UITextField",
+        "doc://com.apple.uikit/documentation/UIKit/UIView",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+        "doc://com.apple.uikit/documentation/UIKit/UIWebView",
+        "doc://com.apple.webkit/documentation/WebKit/WebArchive",
+        "doc://com.apple.documentation/documentation/webkit/webpreferences",
+        "doc://com.apple.webkit/documentation/WebKit/WebResource",
+        "doc://com.apple.webkit/documentation/WebKit/WebUndefined"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types",
+        "doc://com.apple.documentation/documentation/swift/codable",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "title": "Adopting Codability"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1655830",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/mapkit/mkmapitem/init(coder:)"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializing with a coder"
+    },
+    {
+      "anchor": "1655853",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscoding/1413933-encode"
+      ],
+      "kind": "taskGroup",
+      "title": "Encoding with a coder"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nscoding"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nscoding"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

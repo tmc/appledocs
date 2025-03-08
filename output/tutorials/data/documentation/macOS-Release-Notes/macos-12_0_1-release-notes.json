@@ -1,0 +1,1786 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-12_0_1-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "macOS Monterey 12.0.1 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The macOS 12 SDK provides support to develop apps for Mac computers running macOS Monterey 12.0.1. The SDK comes bundled with Xcode 13.1, available from the Mac App Store. For information on the compatibility requirements for Xcode 13.1, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-13_1-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "AppKit",
+          "level": 3,
+          "text": "AppKit",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/appkit-release-notes-for-macos-12",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Displays-Preferences",
+          "level": 3,
+          "text": "Displays Preferences",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "There might be issues with wakeup when dual monitors are connected. (79839446)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Connect the power adapter that came with the Mac.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "CoreData",
+          "level": 3,
+          "text": "CoreData",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSExpression",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " immediately forbids certain operations that have significant side effects, like creating and destroying objects. Additionally, casting string class names into Class objects with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSConstantValueExpression",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is deprecated. (84017178)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Pass temporary objects to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSExpression",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the context parameter of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1410363-expressionvaluewithobject",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", or with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPredicate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "substitutionVariables",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate/1407759-evaluatewithobject",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". You can create a derived predicate with all the substitution variables replaced (bound), using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate/1413227-withsubstitutionvariables",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " on an existing ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPredicate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " so that code using the object can continue to use a simple ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "evaluate(with object: Any?)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " invocation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "iCloud",
+          "level": 3,
+          "text": "iCloud",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Legacy Contacts has been removed from macOS Monterey 12 beta 5 and will return in a future release. (81292890)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Custom Email Domain addresses that are associated with a separate iTunes account can’t be configured. (82358431)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Mac-Catalyst",
+          "level": 3,
+          "text": "Mac Catalyst",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Setting the title color of a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIButton",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " doesn’t work regardless of whether you use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIButton/Configuration-swift.struct/baseForegroundColor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIButton/titleColor(for:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (76566253)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Maps",
+          "level": 3,
+          "text": "Maps",
+          "type": "heading"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKPinAnnotationView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MapKit/MapPin",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " are deprecated in this beta. (78536295)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Rounded building corners might disappear. (80468151)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Networking",
+          "level": 3,
+          "text": "Networking",
+          "type": "heading"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Support for cleartext HTTP URL schemes for Proxy Automatic Configuration (PAC) is now deprecated. Use only HTTPS URL schemes for PAC. This affects all PAC configurations, including, but not limited to, configurations set via Settings, System Preferences, profiles, and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "URLSession",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " APIs such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411499-connectionproxydictionary",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CFNetwork/CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". If you configure a cleartext HTTP PAC URL, the system may upgrade it to HTTPS during PAC file loads. Web Proxy Auto-Discovery (WPAD) Protocol via DNS isn’t affected. Dynamic Host Configuration Protocol (DHCP) Option 252 WPAD may attempt to upgrade cleartext HTTP URLs to HTTPS during PAC file loads. (61981845)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Python",
+          "level": 3,
+          "text": "Python",
+          "type": "heading"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If an app uses Python 2.7, macOS now triggers an alert indicating that the developer must update the app to ensure it will work in future versions of macOS. (80221011)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "RealityKit",
+          "level": 3,
+          "text": "RealityKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "StreamingInput",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " init on ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/RealityKit/PhotogrammetrySession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " isn’t supported. (78838906)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "SharePlay",
+          "level": 3,
+          "text": "SharePlay",
+          "type": "heading"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "SharePlay development in macOS Monterey beta 6 and upcoming beta releases requires the installation of an updated ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/download/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". This profile enables successful creation and reception of GroupSessions via the Group Activities API in iOS 15, iPadOS 15, and tvOS 15 beta 7, as well as macOS Monterey beta 6. (81900143)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Swift",
+          "level": 3,
+          "text": "Swift",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Applications linking to RealityKit with the iOS 15 or macOS 12 SDKs will fail to launch on a previous OS. (79584511)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Add ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "OTHER_LD_FLAGS = -weak_framework RealityFoundation",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to your Xcode Project settings to allow running RealityKit apps on an older OS.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "SwiftUI",
+          "level": 3,
+          "text": "SwiftUI",
+          "type": "heading"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "controlProminence",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is deprecated. Use the new ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".borderedProminent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ButtonStyle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instead. (78908460)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Fn",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Function",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") shortcut modifier is deprecated and reserved for system usage. (78627099)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/CFNetwork/CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Downloads a proxy autoconfiguration script and executes it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFNetworkExecuteProxyAutoConfigurationURL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "proxyAutoConfigURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "targetURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "cb"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFProxyAutoConfigurationResultCallback",
+          "text": "CFProxyAutoConfigurationResultCallback"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "clientContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CFStreamClientContext",
+          "text": "CFStreamClientContext"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFRunLoopSourceRef",
+          "text": "CFRunLoopSource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CFNetwork/CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/CFNetwork/CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKPinAnnotationView": {
+      "abstract": [
+        {
+          "text": "An annotation view that displays a pin image on the map.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKPinAnnotationView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKPinAnnotationView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKPinAnnotationView",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKPinAnnotationView"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MapPin": {
+      "abstract": [
+        {
+          "text": "A pin-shaped annotation used to indicate a location on a map.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MapPin"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MapPin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MapPin",
+      "type": "topic",
+      "url": "/documentation/MapKit/MapPin"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/PhotogrammetrySession": {
+      "abstract": [
+        {
+          "text": "Manages the creation of a 3D model from a set of images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhotogrammetrySession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/PhotogrammetrySession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PhotogrammetrySession",
+      "type": "topic",
+      "url": "/documentation/RealityKit/PhotogrammetrySession"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ButtonStyle": {
+      "abstract": [
+        {
+          "text": "A type that applies standard interaction behavior and a custom appearance to all buttons within a view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ButtonStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ButtonStyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ButtonStyle",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ButtonStyle"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIButton": {
+      "abstract": [
+        {
+          "text": "A control that executes your custom code in response to user interactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIButton"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIButton",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIButton",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIButton"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIButton/Configuration-swift.struct/baseForegroundColor": {
+      "abstract": [
+        {
+          "text": "The untransformed color for foreground views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "baseForegroundColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIColor",
+          "text": "UIColor"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIButton/Configuration-swift.struct/baseForegroundColor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "baseForegroundColor",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIButton/Configuration-swift.struct/baseForegroundColor"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIButton/titleColor(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the title color used for a state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "titleColor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIControl",
+          "text": "UIControl"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIControlState",
+          "text": "State"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIColor",
+          "text": "UIColor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIButton/titleColor(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "titleColor(for:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIButton/titleColor(for:)"
+    },
+    "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-13_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode-Release-Notes/xcode-13_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 13.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/Xcode-Release-Notes/xcode-13_1-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1410363-expressionvaluewithobject": {
+      "abstract": [
+        {
+          "text": "Evaluates an expression using a specified object and context.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1410363-expressionvaluewithobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "expressionValueWithObject:context:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1410363-expressionvaluewithobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspredicate/1407759-evaluatewithobject": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the specified object matches the conditions that the predicate specifies after substituting in the values from a specified variables dictionary.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate/1407759-evaluatewithobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "evaluateWithObject:substitutionVariables:",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate/1407759-evaluatewithobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspredicate/1413227-withsubstitutionvariables": {
+      "abstract": [
+        {
+          "text": "Returns a copy of the predicate and substitutes the predicates variables with specified values from a specified substitution variables dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "withSubstitutionVariables"
+        },
+        {
+          "kind": "text",
+          "text": "([String : Any]) -> Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate/1413227-withsubstitutionvariables",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withSubstitutionVariables(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate/1413227-withsubstitutionvariables"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411499-connectionproxydictionary": {
+      "abstract": [
+        {
+          "text": "A dictionary containing information about the proxy to use within this session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "connectionProxyDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411499-connectionproxydictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "connectionProxyDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration/1411499-connectionproxydictionary"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/appkit-release-notes-for-macos-12": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/appkit-release-notes-for-macos-12",
+      "kind": "article",
+      "role": "article",
+      "title": "AppKit Release Notes for macOS Monterey 12",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/appkit-release-notes-for-macos-12"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-12_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-12_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Monterey 12.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-12_1-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-12_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-12_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Monterey 12.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-12_2-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-12_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-12_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Monterey 12.3 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-12_3-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-12_4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-12_4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Monterey 12.4 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-12_4-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-12_5-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-12_5-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Monterey 12.5 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-12_5-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the macOS SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "macOS Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes"
+    },
+    "https://developer.apple.com/download/": {
+      "identifier": "https://developer.apple.com/download/",
+      "title": "SharePlay Development Profile",
+      "titleInlineContent": [
+        {
+          "text": "SharePlay Development Profile",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/download/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "macOS-12",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-12_5-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-12_4-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-12_3-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-12_2-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-12_1-release-notes"
+      ],
+      "title": "macOS 12"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIButton/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIButton"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIControl",
+              "text": "UIControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nspredicate~11413227-withsubstitutionvariables/title",
+          "value": "predicateWithSubstitutionVariables:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKPinAnnotationView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKPinAnnotationView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MKAnnotationView",
+              "text": "MKAnnotationView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CFNetwork~1CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)/title",
+          "value": "CFNetworkExecuteProxyAutoConfigurationURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CFNetwork~1CFNetworkExecuteProxyAutoConfigurationURL(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFRunLoopSourceRef",
+              "text": "CFRunLoopSourceRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CFNetworkExecuteProxyAutoConfigurationURL"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFURLRef",
+              "text": "CFURLRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "proxyAutoConfigURL"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFURLRef",
+              "text": "CFURLRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "targetURL"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFProxyAutoConfigurationResultCallback",
+              "text": "CFProxyAutoConfigurationResultCallback"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "cb"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@CFStreamClientContext",
+              "text": "CFStreamClientContext"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "clientContext"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIButton~1titleColor(for:)/title",
+          "value": "titleColorForState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIButton~1titleColor(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIColor",
+              "text": "UIColor"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "titleColorForState:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@UIControlState",
+              "text": "UIControlState"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "state"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nspredicate~11407759-evaluatewithobject/title",
+          "value": "evaluate(with:substitutionVariables:)"
+        },
+        {
+          "op": "add",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nspredicate~11407759-evaluatewithobject/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "func "
+            },
+            {
+              "kind": "identifier",
+              "text": "evaluate"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "identifier",
+              "text": "with"
+            },
+            {
+              "kind": "text",
+              "text": ": Any?, "
+            },
+            {
+              "kind": "identifier",
+              "text": "substitutionVariables"
+            },
+            {
+              "kind": "text",
+              "text": ": [String : Any]?) -> Bool"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsexpression~11410363-expressionvaluewithobject/title",
+          "value": "expressionValue(with:context:)"
+        },
+        {
+          "op": "add",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsexpression~11410363-expressionvaluewithobject/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "func "
+            },
+            {
+              "kind": "identifier",
+              "text": "expressionValue"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "identifier",
+              "text": "with"
+            },
+            {
+              "kind": "text",
+              "text": ": Any?, "
+            },
+            {
+              "kind": "identifier",
+              "text": "context"
+            },
+            {
+              "kind": "text",
+              "text": ": NSMutableDictionary?) -> Any?"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

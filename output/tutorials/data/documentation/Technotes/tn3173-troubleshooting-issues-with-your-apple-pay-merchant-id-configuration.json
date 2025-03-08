@@ -1,0 +1,2024 @@
+{
+  "abstract": [
+    {
+      "text": "Diagnose errors due to invalid Apple Pay merchant identifier configurations by",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "identifying the underlying causes of common errors and explore their",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "potential solutions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.technotes/documentation/Technotes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "TN3173: Troubleshooting issues with your Apple Pay merchant identifier configuration"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This technote covers debugging common issues with your merchant identifier",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(merchant ID) and certificates required for Apple Pay.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about configuring your merchant ID",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and certificates required for Apple Pay,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/apple_pay_on_the_web/configuring_your_environment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This technote does not cover configuring Apple Pay on the Web",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when adopted via a platform integrator such as a third party e-commerce",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "platform or payment service provider (PSP)—",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for instance, if you don’t have access to your own Apple Developer account.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you are experiencing issues with onboarding via your e-commerce platform",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or PSP, talk to these vendors directly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Certificate-Signing-Request-formatting-issues",
+          "level": 2,
+          "text": "Certificate Signing Request formatting issues",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating a merchant identity certificate or payment processing certificate,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you upload a certificate signing request (CSR) in a specific format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you receive an error stating the CSR algorithm/size is incorrect,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "please check that you have created the key-pair and CSR in the correct format",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for each of the specific certificates. As an example, consider the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "following error:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"CSR algorithm/size incorrect. Expected: RSA(2048)\""
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The expected algorithm/size for each certificate is as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Merchant identity certificate:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Use RSA (2048-bit).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Payment processing certificate:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "For processing payments in China mainland, use RSA (2048-bit).",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "For processing payments in all other regions, use ECC (256-bit).",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about generating CSRs for Apple Pay payment processing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "certificates, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/create-certificates/create-a-certificate-signing-request/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Certificate-validation-issues",
+          "level": 2,
+          "text": "Certificate validation issues",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have multiple PSPs, ensure your CSR is uploaded to the corresponding PSP",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the merchant.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Mismatching CSRs causes validation issues.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, for multiple merchant configurations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Match:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Merchant identity certificate #1 is uploaded to PSP #1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Mismatch:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Merchant identity certificate #1 is uploaded to PSP #2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition, for a single merchant process for both RSA and ECC certificates:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Match:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Merchant identity certificate using RSA is uploaded to PSP for RSA.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Mismatch:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Merchant identity certificate using ECC uploaded to PSP for ECC.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Domain-verification-issues",
+          "level": 2,
+          "text": "Domain verification issues",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Domain verification can fail for many reasons.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Here are some common issues and suggestions on how to address them:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Apple domain verification server can’t reach your public server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Apple domain verification server does not trust your server’s TLS",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "implementation, cypher suites, or certificates.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your domain is behind a proxy or in a private network.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your domain verification file is served via a redirect,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "is invalid or expired,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "or is associated with a different domain.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about merchant domain validation, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/apple_pay_on_the_web/setting_up_your_server",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apple-cannot-reach-your-server",
+          "level": 3,
+          "text": "Apple cannot reach your server",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the domain verification request fails, it may be unclear why the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "failure occurred. To debug this scenario:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Review your server’s access logs for any errors or failed connections.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Temporarily set your server logs to be verbose,",
+                              "type": "text"
+                            },
+                            {
+                              "text": " ",
+                              "type": "text"
+                            },
+                            {
+                              "text": "if your default log levels don’t identify an issue.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make sure that the domain verification request is reaching your server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "If the request is not reaching the server,",
+                              "type": "text"
+                            },
+                            {
+                              "text": " ",
+                              "type": "text"
+                            },
+                            {
+                              "text": "then there is an issue with Apple’s domain verification server",
+                              "type": "text"
+                            },
+                            {
+                              "text": " ",
+                              "type": "text"
+                            },
+                            {
+                              "text": "reaching your server.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "If the request is reaching your server, and it is not a TLS issue,",
+                              "type": "text"
+                            },
+                            {
+                              "text": " ",
+                              "type": "text"
+                            },
+                            {
+                              "text": "then your server-side logs should provide more insight into the underlying",
+                              "type": "text"
+                            },
+                            {
+                              "text": " ",
+                              "type": "text"
+                            },
+                            {
+                              "text": "cause of the connection failures to the Apple servers.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Apple-does-not-trust-your-server",
+          "level": 3,
+          "text": "Apple does not trust your server",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Even though your server supports TLS 1.2 and later,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "uses the correct Apple IP ranges in your allowlists,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and leverages the correct cypher suites,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you can still experience domain verification failures.",
+              "type": "text"
+            },
+            {
+              "text": "\n",
+              "type": "text"
+            },
+            {
+              "text": "This typically indicates that you have an untrusted root certificate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the current Apple operating system.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For a complete list of trusted root certificates,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/en-us/103272",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Your-domain-is-behind-a-proxy-or-in-a-private-network",
+          "level": 3,
+          "text": "Your domain is behind a proxy or in a private network",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A network proxy or load balancer might be routing traffic incorrectly.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Apple’s domain verification server not only validates your merchant domain",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "verification file,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "but also reads client-specific information about your TLS certificate.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When this request flows through a proxy it will gather incorrect information",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "about your domain’s certificate because of the proxy. Another issue occurs when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "there is a proxy that your server communicates with and Apple’s domain",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "verification server cannot directly reach the server where the domain is hosted.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In this case, the proxy may need to be removed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Domain verification issues for a server sitting behind a load balancer are",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "uncommon but can happen when the load balancer is routing traffic incorrectly.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you think this is the case for network, double-check the routing algorithm",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on your load balancer to ensure that traffic always makes it to your server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Lastly, if your domain is on a private network and needs to be verified,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "make sure that Apple’s domain verification server IP addresses are allowed",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in your network’s bi-directional firewall rules.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To learn more about these IP address ranges, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/apple_pay_on_the_web/setting_up_your_server",
+              "isActive": true,
+              "overridingTitle": "Setting Up Your Server",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Setting Up Your Server",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Your-domain-verification-file-is-served-via-a-redirect",
+          "level": 3,
+          "text": "Your domain verification file is served via a redirect",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To verify the domain,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Apple domain verification server will make a request to the specific",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file path and will expect the contents of the domain verification file to be",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "returned in the response body,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "alongside a ",
+              "type": "text"
+            },
+            {
+              "code": "200 OK",
+              "type": "codeVoice"
+            },
+            {
+              "text": " HTTP status.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the domain verification file is made available via a redirect,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the domain verification server is unable to verify the domain as Apple cannot confirm the response",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "has come from the same domain that was registered. You should remove any",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "redirects and serve the response directly from the server and domain",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that received the request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Your-domain-verification-file-is-invalid-or-expired",
+          "level": 3,
+          "text": "Your domain verification file is invalid or expired",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The domain verification file is only valid for seven (7) days after generation.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you attempt to verify the domain after this time,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the process will not complete successfully and a new file should be generated",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and verified within another seven (7) days.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It is also worth noting that only the most recently generated file for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "each domain is considered valid. Each time you generate a new domain verification",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file it will invalidate all previously generated files.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Ensure that you also have the most recent file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Your-domain-verification-file-is-associated-to-a-different-domain",
+          "level": 3,
+          "text": "Your domain verification file is associated to a different domain",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The domain verification file generated is specific to the exact domain",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that you register for your Apple Developer account.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This means the value registered must match exactly to the domain where the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "verification file is served from—including any subdomains,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as well as the ",
+              "type": "text"
+            },
+            {
+              "code": "www.",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subdomain.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your domain is available both with and without the ",
+              "type": "text"
+            },
+            {
+              "code": "www.",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subdomain,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it is recommended that you register and verify both variants to ensure all users",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can successfully access Apple Pay,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "regardless of the domain they used to access at your website.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your website uses multiple subdomains (such as ",
+                  "type": "text"
+                },
+                {
+                  "code": "example.com",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ",",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "code": "www.example.com",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", and ",
+                  "type": "text"
+                },
+                {
+                  "code": "shop.example.com",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "),",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "each requires its own entry as a registered merchant domain,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "and each must serve its own domain verification file.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you attempt to verify your domain with a file associated with a different",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "domain, you will not be able to successfully complete verification.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "So ensure you use the file specific to the domain you have registered.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Your-domain-does-not-automatically-re-verify",
+          "level": 3,
+          "text": "Your domain does not automatically re-verify",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Pay periodically re-verifies your domain based on the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "expiration date of your SSL certificate. In most cases, however,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "there are a few things that can affect the success of this automatic",
+              "type": "text"
+            },
+            {
+              "text": "\n",
+              "type": "text"
+            },
+            {
+              "text": "re-verification process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Apple domain verification server attempts domain re-verification thirty (30)",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "days before your SSL certificate expires by making a request to the same path",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "used for the original verification process.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You don’t need to update or replace the file—the domain verification server",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "expects a response with a ",
+              "type": "text"
+            },
+            {
+              "code": "200 OK",
+              "type": "codeVoice"
+            },
+            {
+              "text": " HTTP status at this file path.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In addition, the domain verification server makes a request to your root domain",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(e.g. ",
+              "type": "text"
+            },
+            {
+              "code": "subdomain.example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") and expects a response with a ",
+              "type": "text"
+            },
+            {
+              "code": "200 OK",
+              "type": "codeVoice"
+            },
+            {
+              "text": " HTTP status.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the domain verification server is unable to re-verify your domain,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it will re-attempt verification fifteen (15) days before,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and then once again seven (7) days before,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the SSL certificate expires.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If automatic re-verification fails, you may need to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "manually re-verify the domain again by downloading",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and placing a new verification file on your server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Please confirm the following when automatic re-verification fails:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The domain verification file path returns a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "200 OK",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " HTTP status when a",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "verification request is made.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The root domain returns a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "200 OK",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " HTTP status when a verification request",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "is made.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your SSL certificate has been replaced/updated with a new expiry.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The SSL certificate chain of trust has not changed. The domain expiry",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "extension operation relies on consistency of the domain certificate chain.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Therefore, the certificate chain returned by the domain must match the version",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the domain verification server cached from the original certificate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Revision-History",
+          "level": 2,
+          "text": "Revision History",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2024-06-11",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " First published.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.technotes/documentation/Technotes": {
+      "abstract": [
+        {
+          "text": "Learn about specific development topics through these in-depth technical articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Technotes",
+      "type": "topic",
+      "url": "/documentation/technotes"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview": {
+      "abstract": [
+        {
+          "text": "Explore the various Wi-Fi APIs available on iOS and their expected use cases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3111: iOS Wi-Fi API overview",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3111-ios-wifi-api-overview"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations": {
+      "abstract": [
+        {
+          "text": "Learn techniques to help debug any coordinate space issue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3124: Debugging coordinate space issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3124-debugging-coordinate-transformations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3158-resolving-xcode-15-device-connection-issues": {
+      "abstract": [
+        {
+          "text": "Identify software preventing Xcode 15 from connecting to Apple devices, and modify your configuration to allow these connections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3158-resolving-xcode-15-device-connection-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3158: Resolving Xcode 15 device connection issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3158-resolving-xcode-15-device-connection-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store": {
+      "abstract": [
+        {
+          "text": "Learn how to configure your App Clip to prevent it from being unavailable in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3168: Making your App Clip available in the App Store",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3168-making-your-app-clip-available-app-store"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose errors received while presenting the Apple Pay payment sheet on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your website by identifying the underlying causes of common errors and explore",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "their potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3174: Diagnosing issues with the Apple Pay payment sheet on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose common errors received while displaying the Apple Pay button on your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "website by identifying the underlying causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3175: Diagnosing issues with displaying the Apple Pay button on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues": {
+      "abstract": [
+        {
+          "text": "Diagnose errors that occur when processing Apple Pay payments,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identify common causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3176: Troubleshooting Apple Pay payment processing issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files": {
+      "abstract": [
+        {
+          "text": "Learn how alternate groups collect audio tracks, and how to choose which audio track to use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3177: Understanding alternate audio track groups in movie files",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems": {
+      "abstract": [
+        {
+          "text": "Ensure that every Mach-O image has a UUID, and that every distinct Mach-O image has its own unique UUID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3178: Checking for and resolving build UUID problems",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3178-checking-for-and-resolving-build-uuid-problems"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy": {
+      "abstract": [
+        {
+          "text": "Learn how local network privacy affects your software.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3179: Understanding local network privacy",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1": {
+      "abstract": [
+        {
+          "text": "Migrate from version 2 to version 1 of App Store Server Notifications using the Modify an App endpoint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3180: Reverting to App Store Server Notifications V1",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3180-reverting-app-store-server-notifications-v1"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Identify common configurations that cause unsuccessful privacy manifest validation with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3181: Debugging an invalid privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3181-debugging-invalid-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the tracking domains you use in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3182: Adding privacy tracking keys to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the APIs that can potentially fingerprint devices in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3183: Adding required reason API entries to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the data your app or third-party SDK collects in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3184: Adding data collection details to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest"
+    },
+    "https://developer.apple.com/documentation/apple_pay_on_the_web/configuring_your_environment": {
+      "identifier": "https://developer.apple.com/documentation/apple_pay_on_the_web/configuring_your_environment",
+      "title": "Configuring Your Environment",
+      "titleInlineContent": [
+        {
+          "text": "Configuring Your Environment",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/apple_pay_on_the_web/configuring_your_environment"
+    },
+    "https://developer.apple.com/documentation/apple_pay_on_the_web/setting_up_your_server": {
+      "identifier": "https://developer.apple.com/documentation/apple_pay_on_the_web/setting_up_your_server",
+      "title": "Setting Up Your Server",
+      "titleInlineContent": [
+        {
+          "text": "Setting Up Your Server",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/apple_pay_on_the_web/setting_up_your_server"
+    },
+    "https://developer.apple.com/help/account/create-certificates/create-a-certificate-signing-request/": {
+      "identifier": "https://developer.apple.com/help/account/create-certificates/create-a-certificate-signing-request/",
+      "title": "Create a certificate signing request",
+      "titleInlineContent": [
+        {
+          "text": "Create a certificate signing request",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/create-certificates/create-a-certificate-signing-request/"
+    },
+    "https://support.apple.com/en-us/103272": {
+      "identifier": "https://support.apple.com/en-us/103272",
+      "title": "Available trusted root certificates for Apple operating systems",
+      "titleInlineContent": [
+        {
+          "text": "Available trusted root certificates for Apple operating systems",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/103272"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Latest",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+        "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+        "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+        "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+        "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+        "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+        "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+        "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+        "doc://com.apple.technotes/documentation/Technotes/tn3158-resolving-xcode-15-device-connection-issues"
+      ],
+      "title": "Latest"
+    }
+  ]
+}

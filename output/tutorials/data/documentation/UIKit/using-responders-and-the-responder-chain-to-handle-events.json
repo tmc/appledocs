@@ -1,0 +1,1808 @@
+{
+  "abstract": [
+    {
+      "text": "Learn how to handle events that propagate through your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/using-responders-and-the-responder-chain-to-handle-events"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using responders and the responder chain to handle events"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps receive and handle events using ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "responder objects",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". A responder object is any instance of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class, and common subclasses include ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Responders receive the raw event data and must either handle the event or forward it to another responder object. When your app receives an event, UIKit automatically directs that event to the most appropriate responder object, known as the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "first responder",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unhandled events are passed from responder to responder in the active ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "responder chain",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which is the dynamic configuration of your app’s responder objects. The following image shows the responders in an app whose interface contains a label, a text field, a button, and two background views. The diagram also shows how events move from one responder to the next, following the responder chain.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3004381",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the text field doesn’t handle an event, UIKit sends the event to the text field’s parent ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, followed by the root view of the window. From the root view, the responder chain diverts to the owning view controller before directing the event to the window. If the window can’t handle the event, UIKit delivers the event to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, and possibly to the app delegate if that object is an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and not already part of the responder chain.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-an-events-first-responder",
+          "level": 3,
+          "text": "Determine an event’s first responder",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UIKit designates an object as the first responder to an event based on the type of that event. Event types include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Event type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "First responder",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Touch events",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The view in which the touch occurred.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Press events",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The object that has focus.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Shake-motion events",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The object that you (or UIKit) designate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Remote-control events",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The object that you (or UIKit) designate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Editing menu messages",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The object that you (or UIKit) designate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Motion events related to the accelerometers, gyroscopes, and magnetometer don’t follow the responder chain. Instead, Core Motion delivers those events directly to the designated object. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/library/archive/documentation/Miscellaneous/Conceptual/iPhoneOSTechOverview/CoreServicesLayer/CoreServicesLayer.html#//apple_ref/doc/uid/TP40007898-CH10-SW27",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Controls communicate directly with their associated target object using action messages. When the user interacts with a control, the control sends an action message to its target object. Action messages aren’t events, but they may still take advantage of the responder chain. When the target object of a control is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", UIKit starts from the target object and traverses the responder chain until it finds an object that implements the appropriate action method. For example, the UIKit editing menu uses this behavior to search for responder objects that implement methods with names like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions/cut(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions/copy(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions/paste(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Gesture recognizers receive touch and press events before their view does. If a view’s gesture recognizers fail to recognize a sequence of touches, UIKit sends the touches to the view. If the view doesn’t handle the touches, UIKit passes them up the responder chain. For more information about using gesture recognizer’s to handle events, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-uikit-gestures",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-which-responder-contained-a-touch-event",
+          "level": 3,
+          "text": "Determine which responder contained a touch event",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UIKit uses view-based hit-testing to determine where touch events occur. Specifically, UIKit compares the touch location to the bounds of view objects in the view hierarchy. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/hitTest(_:with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " traverses the view hierarchy, looking for the deepest subview that contains the specified touch, which becomes the first responder for the touch event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If a touch location is outside of a view’s bounds, the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/hitTest(_:with:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method ignores that view and all of its subviews. As a result, when a view’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/clipsToBounds",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property is ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", subviews outside of that view’s bounds aren’t returned even if they happen to contain the touch. For more information about the hit-testing behavior, see the discussion of the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/hitTest(_:with:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a touch occurs, UIKit creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and associates it with a view. As the touch location or other parameters change, UIKit updates the same ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object with the new information. The only property that doesn’t change is the view. (Even when the touch location moves outside the original view, the value in the touch’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch/view",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property doesn’t change). When the touch ends, UIKit releases the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Alter-the-responder-chain",
+          "level": 3,
+          "text": "Alter the responder chain",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can alter the responder chain by overriding the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/next",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of your responder objects. When you do this, the next responder is the object that you return.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many UIKit classes already override this property and return specific objects, including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects. If the view is the root view of a view controller, the next responder is the view controller; otherwise, the next responder is the view’s superview.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the view controller’s view is the root view of a window, the next responder is the window object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the view controller was presented by another view controller, the next responder is the presenting view controller.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWindow",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects. The window’s next responder is the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object. The next responder is the app delegate, but only if the app delegate is an instance of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and isn’t a view, view controller, or the app object itself.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplication": {
+      "abstract": [
+        {
+          "text": "The centralized point of control and coordination for apps running in iOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIApplication",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplication"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIEvent": {
+      "abstract": [
+        {
+          "text": "An object that describes a single user interaction with your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIEvent",
+      "type": "topic",
+      "url": "/documentation/uikit/uievent"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder": {
+      "abstract": [
+        {
+          "text": "An abstract interface for responding to and handling events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIResponder"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIResponder"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIResponder",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder/next": {
+      "abstract": [
+        {
+          "text": "Returns the next responder in the responder chain, or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if there’s no next responder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "next"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIResponder",
+          "text": "UIResponder"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder/next",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nextResponder"
+        }
+      ],
+      "role": "symbol",
+      "title": "next",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder/next"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions/copy(_:)": {
+      "abstract": [
+        {
+          "text": "Copies the selected content to the pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "copy"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions/copy(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "copy:"
+        }
+      ],
+      "role": "symbol",
+      "title": "copy(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponderstandardeditactions/copy(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions/cut(_:)": {
+      "abstract": [
+        {
+          "text": "Removes the selected content and writes the data for it to the pasteboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cut"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions/cut(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cut:"
+        }
+      ],
+      "role": "symbol",
+      "title": "cut(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponderstandardeditactions/cut(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions/paste(_:)": {
+      "abstract": [
+        {
+          "text": "Pastes the current contents of the pasteboard into your app’s interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paste"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponderStandardEditActions/paste(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paste:"
+        }
+      ],
+      "role": "symbol",
+      "title": "paste(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponderstandardeditactions/paste(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITouch": {
+      "abstract": [
+        {
+          "text": "An object representing the location, size, movement, and force of a touch occurring on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITouch"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITouch"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITouch",
+      "type": "topic",
+      "url": "/documentation/uikit/uitouch"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITouch/view": {
+      "abstract": [
+        {
+          "text": "The view to which touches are being delivered, if any.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch/view",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "view"
+        }
+      ],
+      "role": "symbol",
+      "title": "view",
+      "type": "topic",
+      "url": "/documentation/uikit/uitouch/view"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView": {
+      "abstract": [
+        {
+          "text": "An object that manages the content for a rectangular area on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/clipsToBounds": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether subviews are confined to the bounds of the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clipsToBounds"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/clipsToBounds",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "clipsToBounds"
+        }
+      ],
+      "role": "symbol",
+      "title": "clipsToBounds",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/clipstobounds"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView/hitTest(_:with:)": {
+      "abstract": [
+        {
+          "text": "Returns the farthest descendant in the view hierarchy of the current view, including itself, that contains the specified point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hitTest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIEvent",
+          "text": "UIEvent"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView/hitTest(_:with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hitTest:withEvent:"
+        }
+      ],
+      "role": "symbol",
+      "title": "hitTest(_:with:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview/hittest(_:with:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController": {
+      "abstract": [
+        {
+          "text": "An object that manages a view hierarchy for your UIKit app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWindow": {
+      "abstract": [
+        {
+          "text": "The backdrop for your app’s user interface and the object that dispatches events to your views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIWindow"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWindow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIWindow"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIWindow",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwindow"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-uikit-gestures": {
+      "abstract": [
+        {
+          "text": "Use gesture recognizers to simplify touch handling and create a consistent user experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-uikit-gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Handling UIKit gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-uikit-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures": {
+      "abstract": [
+        {
+          "text": "Encapsulate your app’s event-handling logic in gesture recognizers so that you can reuse that code throughout your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Touches, presses, and gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/touches-presses-and-gestures"
+    },
+    "https://developer.apple.com/library/archive/documentation/Miscellaneous/Conceptual/iPhoneOSTechOverview/CoreServicesLayer/CoreServicesLayer.html#//apple_ref/doc/uid/TP40007898-CH10-SW27": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Miscellaneous/Conceptual/iPhoneOSTechOverview/CoreServicesLayer/CoreServicesLayer.html#//apple_ref/doc/uid/TP40007898-CH10-SW27",
+      "title": "Core Motion Framework",
+      "titleInlineContent": [
+        {
+          "text": "Core Motion Framework",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Miscellaneous/Conceptual/iPhoneOSTechOverview/CoreServicesLayer/CoreServicesLayer.html#//apple_ref/doc/uid/TP40007898-CH10-SW27"
+    },
+    "media-3004381": {
+      "alt": "A flow diagram: On the left, a sample app contains a label (UILabel), a text field for the user to input text (UITextField), and a button (UIButton) to  press after entering text in the field. On the right, the flow diagram shows how, after the user pressed the button, the event moves through the responder chain — from UIView, to UIViewController, to UIWindow, UIApplication, and finally to UIApplicationDelegate.",
+      "identifier": "media-3004381",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5c87414d0f580b2563835705a3198449/media-3004381@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIResponder",
+        "doc://com.apple.uikit/documentation/UIKit/UIEvent"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIResponder",
+                "doc://com.apple.uikit/documentation/UIKit/UIEvent"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1next/title",
+          "value": "nextResponder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder~1next/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nextResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindow/title",
+          "value": "UIWindow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWindow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWindow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWindow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/title",
+          "value": "UITouch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITouch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITouch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication/title",
+          "value": "UIApplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEvent/title",
+          "value": "UIEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions~1copy(_:)/title",
+          "value": "copy:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions~1copy(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "copy:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/title",
+          "value": "UIViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions~1paste(_:)/title",
+          "value": "paste:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions~1paste(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "paste:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1clipsToBounds/title",
+          "value": "clipsToBounds"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1clipsToBounds/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "clipsToBounds"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions~1cut(_:)/title",
+          "value": "cut:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponderStandardEditActions~1cut(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "cut:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1hitTest(_:with:)/title",
+          "value": "hitTest:withEvent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView~1hitTest(_:with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "hitTest:withEvent:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch~1view/title",
+          "value": "view"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch~1view/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "view"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder/title",
+          "value": "UIResponder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/title",
+          "value": "UIView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/using-responders-and-the-responder-chain-to-handle-events"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/using-responders-and-the-responder-chain-to-handle-events"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

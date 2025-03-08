@@ -1,0 +1,497 @@
+{
+  "abstract": [
+    {
+      "text": "An indicator of whether an auto-renewable subscription is in the billing retry period.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "deprecated",
+      "platform": "App Store Receipts",
+      "versions": [
+        "1.0",
+        "1.7"
+      ]
+    },
+    "minor": {
+      "change": "deprecated",
+      "platform": "App Store Receipts",
+      "versions": [
+        "1.6",
+        "1.7"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/appstorereceipts",
+        "doc://com.apple.documentation/documentation/appstorereceipts/app_store_receipt_data_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/appstorereceipts/is_in_billing_retry_period"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3193574,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:store_receipts:is_in_billing_retry_period",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "type "
+      },
+      {
+        "kind": "identifier",
+        "text": "is_in_billing_retry_period"
+      }
+    ],
+    "modules": [
+      {
+        "name": "App Store Receipts"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "1.7",
+        "deprecated": true,
+        "deprecatedAt": "1.7",
+        "introducedAt": "1.0",
+        "name": "App Store Receipts"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type",
+    "symbolKind": "tdef",
+    "title": "is_in_billing_retry_period"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "App Store Receipts"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "string is_in_billing_retry_period"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "possibleValues",
+      "values": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The App Store is attempting to renew the subscription.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "1"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The App Store has stopped attempting to renew the subscription.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "0"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This field is returned in the JSON response, in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/pending_renewal_info",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This field indicates whether Apple is attempting to renew an expired subscription automatically. If the customer’s subscription failed to renew because the App Store was unable to complete the transaction, this value reflects whether the App Store is still trying to renew the subscription. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The subscription retry flag is solely indicative of whether a subscription is in a billing retry state. Use this value in conjunction with ",
+              "type": "text"
+            },
+            {
+              "code": "expiration_intent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "expires_date",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "transaction_id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for more insight.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use this field to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Determine that the user has been billed successfully, if this field has been removed and there is a new transaction with a future ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "expires_date",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Inform the user that there may be an issue with their billing information, if the value is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "“1”",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". For example, an expired credit card or insufficient balance could prevent this customer's account from being billed. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement a grace period to improve recovery, if the value is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "“1”",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "expires_date",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is in the past. A grace period is free or limited subscription access while a subscriber is in a billing retry state. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-3230757",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " from WWDC 2018 for more information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/appstorereceipts": {
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Receipts",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/app_store_receipt_data_types": {
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/app_store_receipt_data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App Store receipt data types",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/app_store_receipt_data_types"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/auto_renew_status": {
+      "abstract": [
+        {
+          "text": "The renewal status for the auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "auto_renew_status"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/auto_renew_status",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "auto_renew_status",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/auto_renew_status"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/is_in_billing_retry_period": {
+      "abstract": [
+        {
+          "text": "An indicator of whether an auto-renewable subscription is in the billing retry period.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "is_in_billing_retry_period"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/is_in_billing_retry_period",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "is_in_billing_retry_period",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/is_in_billing_retry_period"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/is_in_intro_offer_period": {
+      "abstract": [
+        {
+          "text": "An indicator of whether an auto-renewable subscription is in the introductory price period.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "is_in_intro_offer_period"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/is_in_intro_offer_period",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "is_in_intro_offer_period",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/is_in_intro_offer_period"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/is_trial_period": {
+      "abstract": [
+        {
+          "text": "An indicator of whether an auto-renewable subscription is in the free trial period.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "is_trial_period"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/is_trial_period",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "is_trial_period",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/is_trial_period"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/pending_renewal_info": {
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/pending_renewal_info",
+      "kind": "symbol",
+      "role": "dictionarySymbol",
+      "title": "responseBody.Pending_renewal_info",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/responsebody/pending_renewal_info"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/status": {
+      "abstract": [
+        {
+          "text": "The status of the app receipt.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "status"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/status",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "status",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/status"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-3230757": {
+      "identifier": "link-3230757",
+      "kind": "article",
+      "role": "link",
+      "title": "Engineering Subscriptions",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2018/705/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/appstorereceipts/status",
+        "doc://com.apple.documentation/documentation/appstorereceipts/auto_renew_status",
+        "doc://com.apple.documentation/documentation/appstorereceipts/is_in_intro_offer_period",
+        "doc://com.apple.documentation/documentation/appstorereceipts/is_trial_period"
+      ],
+      "title": "Receipt and subscription status"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/appstorereceipts/is_in_billing_retry_period"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

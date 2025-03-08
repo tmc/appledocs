@@ -1,0 +1,808 @@
+{
+  "abstract": [
+    {
+      "text": "Build content blocking with declarative net request into your Safari web extension.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safariservices/documentation/SafariServices",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safariservices/documentation/SafariServices/blocking-content-with-your-safari-web-extension"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Blocking content with your Safari web extension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add declarative content blocking that works in Safari, Mac web apps, and other browsers to your Safari web extension. This approach blocks content quickly and ensures privacy for users, because the web extension doesn’t need access to the entire web request to make blocking decisions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Safari web extensions implement declarative content blocking with the Declarative Net Request API common to web extensions on other browsers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Request-permission-to-block-content",
+          "level": 3,
+          "text": "Request permission to block content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use the Declarative Net Request API in your Safari web extension, first request permission. In your Xcode project, add the declarative net request permission to the permissions list in your ",
+              "type": "text"
+            },
+            {
+              "code": "manifest.js",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            " ...",
+            "   \"permissions\": [",
+            "    \"declarativeNetRequest\",",
+            "    \"activeTab\"",
+            "  ],",
+            "  ...",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about permissions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/managing-safari-web-extension-permissions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-rulesets-to-your-extension-and-manifest",
+          "level": 3,
+          "text": "Add rulesets to your extension and manifest",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You specify rules for content blocking in rulesets, which are files with ",
+              "type": "text"
+            },
+            {
+              "code": "json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " describing the content blocking rules. Add references to ruleset files that you create in your ",
+              "type": "text"
+            },
+            {
+              "code": "manifest.js",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to tell Safari to use them. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "   ...",
+            "   \"declarative_net_request\" : {",
+            "    \"rule_resources\" : [{",
+            "      \"id\": \"ruleset_for_images\",",
+            "      \"enabled\": true,",
+            "      \"path\": \"image_rules.json\"",
+            "    }, {",
+            "      \"id\": \"ruleset_for_scripts\",",
+            "      \"enabled\": false,",
+            "      \"path\": \"script_rules.json\"",
+            "    }]",
+            "  },",
+            "  ...",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Build your rules describing how you want to block content, and add them to your ruleset files. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"id\": 1,",
+            "    \"priority\": 1,",
+            "    \"action\": { \"type\": \"block\" },",
+            "    \"condition\": {",
+            "        \"regexFilter\": \".*\",",
+            "        \"resourceTypes\": [ \"script\" ]",
+            "    }",
+            "}",
+            ""
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Review Safari’s support for specifying rules:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Safari supports ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "block",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "allow",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "upgradeScheme",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "allowAllRequests",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " (only for ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "main_frame",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": "). Safari supports ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "redirect",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " in Safari 15.4 or later, and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "modifyHeaders",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " in Safari 16.4 or later. Safari requires the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "declarativeNetRequestWithHostAccess",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " permission for ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "modifyHeaders",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " or ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "redirect",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". Safari requires user permission to add, remove, or append headers. Safari also requires user permission to perform redirect rules for both the originating and destination sites. Set specific match patterns or ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "<all_urls>",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " in the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "host_permissions",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " key in your ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "manifest.js",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " file to request permission.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "RuleActionTypes",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Safari supports ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "main_frame",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "sub_frame",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "stylesheet",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "script",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "image",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "font",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "xmlhttprequest",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "ping",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "media",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "websocket",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "other",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "ResourceType",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Safari supports ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "domainType",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "excludedResourceTypes",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "isUrlFilterCaseSensitive",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "regexFilter",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "resourceTypes.",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "RuleCondition",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Safari supports ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "getEnabledRulesets()",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "isRegexSupported(),",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "updateEnabledRulesets()",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "MAX_NUMBER_OF_STATIC_RULESETS",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "updateDynamicRules()",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "getDynamicRules()",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "updateSessionRules()",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "getSessionRules()",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "getMatchedRules()",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". Safari supports ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "setExtensionActionOptions()",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " in Safari 16.4 or later.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Rule APIs",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Adjust-rules-dynamically-for-the-extension-or-session",
+          "level": 3,
+          "text": "Adjust rules dynamically for the extension or session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After a user installs and uses your extension, adjust content blocking using dynamic rules. Add, change, or remove rules that persist between browser sessions using ",
+              "type": "text"
+            },
+            {
+              "code": "updateDynamicRules",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Add, change, or remove rules that apply only to the current session using ",
+              "type": "text"
+            },
+            {
+              "code": "updateSessionRules",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var rule = {",
+            "    id: 1,",
+            "    priority: 1,",
+            "    action: { type: \"block\" },",
+            "    condition: {",
+            "        urlFilter: \"||example.com\",",
+            "        resourceTypes: [ \"main_frame\", \"script\" ]",
+            "    }",
+            "};",
+            "",
+            "await browser.declarativeNetRequest.updateDynamicRules({ addRules: [ rule ] });",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices": {
+      "abstract": [
+        {
+          "text": "Enable web views and services in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Services",
+      "type": "topic",
+      "url": "/documentation/safariservices"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/adopting-declarative-content-blocking-in-safari-web-extensions": {
+      "abstract": [
+        {
+          "text": "Block web content with your web extension using the declarative net request API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/adopting-declarative-content-blocking-in-safari-web-extensions",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adopting Declarative Content Blocking in Safari Web Extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/adopting-declarative-content-blocking-in-safari-web-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/managing-safari-web-extension-permissions": {
+      "abstract": [
+        {
+          "text": "Respect user privacy by setting appropriate permissions for your Safari web extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/managing-safari-web-extension-permissions",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Safari web extension permissions",
+      "type": "topic",
+      "url": "/documentation/safariservices/managing-safari-web-extension-permissions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions": {
+      "abstract": [
+        {
+          "text": "Create web extensions that work in Safari and other browsers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari web extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-web-extensions"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Blocking-content",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/adopting-declarative-content-blocking-in-safari-web-extensions"
+      ],
+      "title": "Blocking content"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Blocking-content",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/adopting-declarative-content-blocking-in-safari-web-extensions"
+              ],
+              "title": "Blocking content"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safariservices/blocking-content-with-your-safari-web-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safariservices/blocking-content-with-your-safari-web-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,557 @@
+{
+  "abstract": [
+    {
+      "text": "Create API keys to sign JSON Web Tokens (JWTs) and authorize API requests.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/creating-api-keys-for-enterprise-program-api"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Enterprise Program API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating API Keys for Enterprise Program API"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Enterprise Program API requires a JSON Web Token (JWT) to authorize each request you make to the API. You generate JWTs using an API key downloaded from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An API key has two parts: a public portion that Apple keeps, and a private key that you download. You can use the private key to sign tokens that authorize access to your data in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com",
+              "isActive": true,
+              "overridingTitle": "Apple Developer website",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Apple Developer website",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Secure your private keys as you do for other credentials, such as usernames and passwords. If you suspect a private key is compromised, immediately revoke the key in the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com",
+                  "isActive": true,
+                  "overridingTitle": "Apple Developer website",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Apple Developer website",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ". See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/revoking-api-keys",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for details.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Enterprise Program API keys are unique to the Enterprise Program API and you can’t use them for other Apple services.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Generate-a-Enterprise-Program-API-Key-and-Assign-It-a-Role",
+          "level": 3,
+          "text": "Generate a Enterprise Program API Key and Assign It a Role",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create an API key, assign it a role that determines the key’s access to areas of the Enterprise Program API and permissions for performing tasks. For example, keys with the Admin role have broad permissions and can do things like create new users and delete users. The other available role is Developer, which is restricted to provisioning actions, such as creating provisioning profiles and managing development certificates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create an API key, assign it a role that determines the key’s access to areas of the Enterprise Program API and permissions for performing tasks.  To learn more information about user roles and permissions, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/support/roles/#adep",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To generate Enterprise Program API keys, you must have an Admin account for your developer team in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com",
+              "isActive": true,
+              "overridingTitle": "Apple Developer website",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Apple Developer website",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". You can generate multiple API keys with the roles you choose.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To generate a key to use with the Enterprise Program API, log in to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com",
+              "isActive": true,
+              "overridingTitle": "Apple Developer website",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Apple Developer website",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Users and Access, and then select the Integrations tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Generate API Key or the Add (+) button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter a name for the key. The name is for your reference only and isn’t part of the key itself.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Under Access, select the role for the key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Generate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The new key’s name, key ID, a download link, and other information appears on the page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Download-and-Store-a-Enterprise-Program-API-Private-Key",
+          "level": 3,
+          "text": "Download and Store a Enterprise Program API Private Key",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you’ve generated your API key, you can download the private half of the key. The private key is available for download a single time, to begin log in to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com",
+              "isActive": true,
+              "overridingTitle": "Apple Developer website",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Apple Developer website",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Users and Access, and then select the Integrations tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Download link next to the new API key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The download link only appears if you haven’t downloaded the private key. Apple doesn’t keep a copy of the private key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Keep your API keys secure and private. Don’t share your keys, store keys in a code repository, or include keys in client-side code. If the key becomes lost or compromised, remember to revoke it immediately. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/revoking-api-keys",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for more information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Enterprise Program API",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/enterprise-api-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about new features and updates in the Enterprise Program API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/enterprise-api-release-notes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Enterprise Program API Release Notes",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/enterprise-api-release-notes"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/generating-tokens-for-api-requests": {
+      "abstract": [
+        {
+          "text": "Create JSON Web Tokens (JWTs) signed with your private key to authorize API requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/generating-tokens-for-api-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating Tokens for API Requests",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/generating-tokens-for-api-requests"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/identifying-rate-limits": {
+      "abstract": [
+        {
+          "text": "Recognize the rate limits that REST API responses provide and handle them in your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/identifying-rate-limits",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying Rate Limits",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/identifying-rate-limits"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/revoking-api-keys": {
+      "abstract": [
+        {
+          "text": "Revoke unused, lost, or compromised private keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/revoking-api-keys",
+      "kind": "article",
+      "role": "article",
+      "title": "Revoking API Keys",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/revoking-api-keys"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com": {
+      "identifier": "https://developer.apple.com",
+      "title": "Apple Developer website",
+      "titleInlineContent": [
+        {
+          "text": "Apple Developer website",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com"
+    },
+    "https://developer.apple.com/support/roles/#adep": {
+      "identifier": "https://developer.apple.com/support/roles/#adep",
+      "title": "Apple Developer website",
+      "titleInlineContent": [
+        {
+          "text": "Apple Developer website",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/roles/#adep"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/generating-tokens-for-api-requests",
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/revoking-api-keys",
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/identifying-rate-limits",
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/enterprise-api-release-notes"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/enterpriseprogramapi/creating-api-keys-for-enterprise-program-api"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

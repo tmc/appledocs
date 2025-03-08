@@ -1,0 +1,1353 @@
+{
+  "abstract": [
+    {
+      "text": "Present an interface that people can use to search for content in your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Search"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Adding-a-search-interface-to-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding a search interface to your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a search interface to your app by applying one of the searchable view",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifiers — like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:placement:prompt:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " —",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or to a view",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "inside one of these. A search field then appears in the toolbar.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The precise placement and appearance of the search field depends on the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "platform, where you put the modifier in code, and its configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Search-add-0-macOS",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The searchable modifier that creates the field takes a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Binding",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to a string",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that represents the search field’s text. You provide the storage for the string",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "— and optionally for an array of discrete search tokens —",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that you use to conduct the search. To learn about managing the search field’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Performing-a-search-operation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Place-the-search-field-automatically",
+          "level": 3,
+          "text": "Place the search field automatically",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can automatically place the search field by adding the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:placement:prompt:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to a navigation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "element like a navigation split view:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ContentView: View {",
+            "    @State private var departmentId: Department.ID?",
+            "    @State private var productId: Product.ID?",
+            "    @State private var searchText: String = \"\"",
+            "",
+            "    var body: some View {",
+            "        NavigationSplitView {",
+            "            DepartmentList(departmentId: $departmentId)",
+            "        } content: {",
+            "            ProductList(departmentId: departmentId, productId: $productId)",
+            "        } detail: {",
+            "            ProductDetails(productId: productId)",
+            "        }",
+            "        .searchable(text: $searchText) // Adds a search field.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With this configuration, the search field appears on the trailing edge",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the toolbar in macOS. In iOS and iPadOS, the first or second column displays",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the search field in a double or triple column navigation view, respectively.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The above three-column example puts the search field at the top of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "middle column on iPad.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Search-add-1-macOS",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "macOS"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Search-add-1-iPadOS",
+                      "metadata": {
+                        "deviceFrame": "iPadPro12-9"
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "iOS"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Control-the-placement-structurally",
+          "level": 3,
+          "text": "Control the placement structurally",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a search field to a specific column in iOS and iPadOS, add the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "searchable modifier to a view in that column. For example, to indicate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that the search covers departments in the previous example, you could",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "place the search field in the first column by adding the modifier to that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "column’s ",
+              "type": "text"
+            },
+            {
+              "code": "DepartmentList",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view instead of to the navigation split view:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NavigationSplitView {",
+            "    DepartmentList(departmentId: $departmentId)",
+            "        .searchable(text: $searchText)",
+            "} content: {",
+            "    ProductList(departmentId: departmentId, productId: $productId)",
+            "} detail: {",
+            "    ProductDetails(productId: productId)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Search-add-2-iPadOS",
+              "metadata": {
+                "deviceFrame": "iPadPro12-9"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Control-the-placement-programmatically",
+          "level": 3,
+          "text": "Control the placement programmatically",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can alternatively use the ",
+              "type": "text"
+            },
+            {
+              "code": "placement",
+              "type": "codeVoice"
+            },
+            {
+              "text": " input parameter to suggest a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SearchFieldPlacement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value for the search interface. For example, you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "achieve the same results as the previous example in macOS using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SearchFieldPlacement/sidebar",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " placement:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NavigationSplitView {",
+            "    DepartmentList(departmentId: $departmentId)",
+            "} content: {",
+            "    ProductList(departmentId: departmentId, productId: $productId)",
+            "} detail: {",
+            "    ProductDetails(productId: productId)",
+            "}",
+            ".searchable(text: $searchText, placement: .sidebar)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Search-add-3-macOS",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If SwiftUI can’t satisfy the placement request, like when you ask for sidebar",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "placement in a searchable modifier that isn’t applied to a navigation split",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view, SwiftUI relies instead on its automatic placement rules.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-a-prompt-for-the-search-field",
+          "level": 3,
+          "text": "Set a prompt for the search field",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the search field contains Search as the placeholder text, to prompt",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "people on how to use the field. You can customize the prompt by setting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "either a string, a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view, or a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LocalizedStringKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "searchable modifier’s ",
+              "type": "text"
+            },
+            {
+              "code": "prompt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " input parameter. For example, you might use this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to clarify that the search field in the Department column searches",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "among both departments and the products in each department:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "DepartmentList(departmentId: $departmentId)",
+            "    .searchable(text: $searchText, prompt: \"Departments and products\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Search-add-4-iPadOS",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Search-add-0-macOS": {
+      "alt": "A wide rectangle with rounded corners that contains a magnifying glass on the left, followed by the text Search in a gray color.",
+      "identifier": "Search-add-0-macOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f52e89b1ae79d7dcf829d6201267252b/Search-add-0-macOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/419a44b5056a78c058ba4b39e4ef8d6b/Search-add-0-macOS~dark@2x.png"
+        }
+      ]
+    },
+    "Search-add-1-iPadOS": {
+      "alt": "An iPad screen with three navigation panes. The pane on the left lists the items, Produce, Frozen, and Bakery under the title, Department. The middle pane has the placeholder text, Select a Department under the title, Product. The pane on the right has the placeholder text, Select a Product. The toolbar of the middle pane has a search field just below the title that displays the placeholder text, Search.",
+      "identifier": "Search-add-1-iPadOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/819f027b88923ac6e221ff593c1c1735/Search-add-1-iPadOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ad47f74ea230628c88d2645c7d466538/Search-add-1-iPadOS~dark@2x.png"
+        }
+      ]
+    },
+    "Search-add-1-macOS": {
+      "alt": "A macOS window with three navigation panes. The pane on the left lists the items, Produce, Frozen, and Bakery. The middle pane has the placeholder text, Select a Department. The pane on the right has the placeholder text, Select a Product. The toolbar has a search field in the upper-right of the window that has the placeholder text, Search.",
+      "identifier": "Search-add-1-macOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e5af4eeca8efecdc9565bb434acd3431/Search-add-1-macOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5a09c5ed8ad63655c219819d106cf3ac/Search-add-1-macOS~dark@2x.png"
+        }
+      ]
+    },
+    "Search-add-2-iPadOS": {
+      "alt": "An iPad screen with three navigation panes. The pane on the left lists the items, Produce, Frozen, and Bakery under the title, Department. The middle pane has the placeholder text, Select a Department under the title, Product. The pane on the right has the placeholder text, Select a Product. The toolbar of the left-most pane has a search field just below the title that displays the placeholder text, Search.",
+      "identifier": "Search-add-2-iPadOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8db18db9c632f695504a7fa566f117aa/Search-add-2-iPadOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/25f45c4c84a64b7ec102423f614c6bbe/Search-add-2-iPadOS~dark@2x.png"
+        }
+      ]
+    },
+    "Search-add-3-macOS": {
+      "alt": "A macOS window with three navigation panes. The pane on the left lists the items, Produce, Frozen, and Bakery. The middle pane has the placeholder text, Select a Department. The pane on the right has the placeholder text, Select a Product. The left-most pane has a search field above the list of items that has the placeholder text, Search.",
+      "identifier": "Search-add-3-macOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/10ce7a28b40a9710b1bd821108e702c8/Search-add-3-macOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/786bd6ce758adaeed9fc09006d9caa87/Search-add-3-macOS~dark@2x.png"
+        }
+      ]
+    },
+    "Search-add-4-iPadOS": {
+      "alt": "A screenshot that shows the text, Department in title font at the top, a search field below the title, and three items listed below the search field called, Produce, Frozen, and Bakery. The search field has the placeholder text, Departments and products.",
+      "identifier": "Search-add-4-iPadOS",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2d3c92d15a0de2b73ffcfbcc2b45005f/Search-add-4-iPadOS@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e2820fdf4ab02d3dfd99cb81e7ca0435/Search-add-4-iPadOS~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Binding": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that can read and write a value owned by a source of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "truth.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Binding"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Binding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Binding"
+        }
+      ],
+      "role": "symbol",
+      "title": "Binding",
+      "type": "topic",
+      "url": "/documentation/swiftui/binding"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LocalizedStringKey": {
+      "abstract": [
+        {
+          "text": "The key used to look up an entry in a strings file or strings dictionary",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalizedStringKey"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LocalizedStringKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LocalizedStringKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "LocalizedStringKey",
+      "type": "topic",
+      "url": "/documentation/swiftui/localizedstringkey"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitView": {
+      "abstract": [
+        {
+          "text": "A view that presents views in two or three columns, where selections in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "leading columns control presentations in subsequent columns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NavigationSplitView"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NavigationSplitView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NavigationSplitView",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigationsplitview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationStack": {
+      "abstract": [
+        {
+          "text": "A view that displays a root view and enables you to present additional",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "views over the root view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NavigationStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NavigationStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "NavigationStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigationstack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Performing-a-search-operation": {
+      "abstract": [
+        {
+          "text": "Update search results based on search text and optional tokens that you store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Performing-a-search-operation",
+      "kind": "article",
+      "role": "article",
+      "title": "Performing a search operation",
+      "type": "topic",
+      "url": "/documentation/swiftui/performing-a-search-operation"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Search": {
+      "abstract": [
+        {
+          "text": "Enable people to search for text or other content within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Search",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Search",
+      "type": "topic",
+      "url": "/documentation/swiftui/search"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SearchFieldPlacement": {
+      "abstract": [
+        {
+          "text": "The placement of a search field in a view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SearchFieldPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SearchFieldPlacement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SearchFieldPlacement"
+        }
+      ],
+      "role": "symbol",
+      "title": "SearchFieldPlacement",
+      "type": "topic",
+      "url": "/documentation/swiftui/searchfieldplacement"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SearchFieldPlacement/sidebar": {
+      "abstract": [
+        {
+          "text": "The search field appears in the sidebar of a navigation view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sidebar"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20SearchFieldPlacementV",
+          "text": "SearchFieldPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SearchFieldPlacement/sidebar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sidebar",
+      "type": "topic",
+      "url": "/documentation/swiftui/searchfieldplacement/sidebar"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text": {
+      "abstract": [
+        {
+          "text": "A view that displays one or more lines of read-only text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "role": "symbol",
+      "title": "Text",
+      "type": "topic",
+      "url": "/documentation/swiftui/text"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:editableTokens:placement:prompt:token:)": {
+      "abstract": [
+        {
+          "text": "Marks this view as searchable, which configures the display of a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "search field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "searchable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "text"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "editableTokens"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "placement"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "prompt"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "token"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:editableTokens:placement:prompt:token:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "searchable(text:editableTokens:placement:prompt:token:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/searchable(text:editabletokens:placement:prompt:token:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:placement:prompt:)": {
+      "abstract": [
+        {
+          "text": "Marks this view as searchable, which configures the display of a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "search field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "searchable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "text"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "placement"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "prompt"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:placement:prompt:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "searchable(text:placement:prompt:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/searchable(text:placement:prompt:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:tokens:placement:prompt:token:)": {
+      "abstract": [
+        {
+          "text": "Marks this view as searchable with text and tokens.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "searchable"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "text"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "tokens"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "placement"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "prompt"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "token"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:tokens:placement:prompt:token:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "searchable(text:tokens:placement:prompt:token:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/searchable(text:tokens:placement:prompt:token:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Searching-your-apps-data-model",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Performing-a-search-operation",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:placement:prompt:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:tokens:placement:prompt:token:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/searchable(text:editableTokens:placement:prompt:token:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SearchFieldPlacement"
+      ],
+      "title": "Searching your app’s data model"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/adding-a-search-interface-to-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

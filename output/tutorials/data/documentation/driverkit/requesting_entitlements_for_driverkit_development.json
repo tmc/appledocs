@@ -1,0 +1,759 @@
+{
+  "abstract": [
+    {
+      "text": "Request the entitlement for DriverKit development, and request other entitlements your driver needs to interact with specific devices and interfaces.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development"
+  },
+  "kind": "article",
+  "legacy_identifier": 3557196,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "DriverKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Requesting Entitlements for DriverKit Development"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "DriverKit services communicate with sensitive parts of the system, including kernel objects and attached hardware peripherals. To ensure that these interactions don’t compromise the security or integrity of the system, the system loads only drivers that have a valid set of entitlements. The DriverKit entitlements give your driver permission to run as a driver, define the type of hardware your driver supports, and sometimes define the family to which your driver belongs. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you develop a DriverKit extension, you deliver that extension inside in a specific directory of your app bundle. The app handles the activation of your extension, which registers it with the system and makes its services available for use. To perform this installation, your app must have the System Extension entitlement. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3557199",
+          "level": 3,
+          "text": "Gather Information About Your Hardware Devices",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you request entitlements, gather information about the hardware devices for which you’ll need drivers. Specifically, you’ll need the following information:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The transport mechanism for your hardware. DriverKit supports USB, PCI, HID, networking, and serial devices. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your company’s hardware vendor ID for the type of devices.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Brief descriptions of the devices.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A brief description of the app you'll use to install the driver.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "3557197",
+          "level": 3,
+          "text": "Request the DriverKit Entitlements You Need",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you begin developing drivers for your hardware, request the entitlements you need from Apple:  ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Go to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-3557212",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and click the link to request an entitlement.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apply for the DriverKit entitlement and specify the entitlements you need.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide a description of the apps you’ll use to support your hardware.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple ties any requested entitlements to your development team’s profile. When making the request, specify the complete set of entitlements you use to support one product. For example, when developing HID devices, you might ask Apple to create a single group that contains the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.hid",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.eventservice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " entitlements. All of the requested entitlements must belong to the same group. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "While waiting for Apple to grant your entitlement requests, you can continue to develop and test your drivers on your local systems. For information about how to disable the necessary security checks, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "3557195",
+          "level": 3,
+          "text": "Update Your Driver’s Entitlements File",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode provides a default entitlements file for every new DriverKit driver you create. This file is separate from your app's entitlements file, and contains only the entitlements that your driver needs to run. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Edit your driver's entitlements file and add the entitlements that match the services your driver offers. The default driver entitlements file contains only the DriverKit and App Sandbox entitlements. Most drivers require a transport-specific entitlement to tell the system what type of hardware they support. For example, a driver that implements an event service to communicate with a HID device must include the following entitlements in its entitlements file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.hid",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.eventservice",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When activating your driver, the system validates the entitlements in your driver's entitlements file with the information you used to codesign your driver. If the entitlements don't match, the system aborts the activation process. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For infomation about specific entitlements, see the reference documentation. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3557213",
+          "level": 3,
+          "text": "Configure Your Driver’s Provisioning Profile",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To distribute a driver using the entitlements that Apple provides, go to the Certificates, Identifiers & Profiles section of the Apple developer portal (",
+              "type": "text"
+            },
+            {
+              "identifier": "link-3557578",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") and do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "link-3557576",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for your driver, in the Identifiers section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "link-3557579",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for your App ID, in the Profiles section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create the provisioning profile for your driver, the portal prompts you to select any additional entitlements to include with your profile. Select the DriverKit-related entitlements group that Apple added to your development team. You can select only one group, so that group must contain all of the entitlements your driver needs to operate. Download the resulting provisioning profile and configure it as the provisioning profile for your driver. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "During development, you can temporarily disable the normal security checks to simplify the debugging process for your drivers. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "3557198",
+          "level": 3,
+          "text": "Add the System Extension Capability to Your App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app you use to deliver your driver to users must also have specific entitlements to support the activation process. To add these entitlements to your app, enable the System Extension capability for your app target. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open your app project in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your app target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Navigate to the Signing & Capabilities tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "link-3557200",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about how to install drivers, see ",
+              "type": "text"
+            },
+            {
+              "code": "Installing System Extensions and Drivers",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.eventservice": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.eventservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.family.hid.eventservice",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.family.hid.eventservice"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.hid": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.hid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.transport.hid",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.transport.hid"
+    },
+    "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether your extension has permission to run as a user-space driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit"
+    },
+    "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.allow-any-userclient-access": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether a macOS driver accepts user client connections from any application.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.allow-any-userclient-access",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.allow-any-userclient-access",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.allow-any-userclient-access",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.allow-any-userclient-access"
+    },
+    "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.allow-third-party-userclients": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an iPadOS driver accepts calls from third-party user clients.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "DriverKit Allow Third Party User Clients",
+      "identifier": "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.allow-third-party-userclients",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.allow-third-party-userclients",
+      "role": "symbol",
+      "title": "DriverKit Allow Third Party User Clients",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.allow-third-party-userclients"
+    },
+    "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.communicates-with-drivers": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an iPadOS app can communicate with drivers.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Communicates with Drivers",
+      "identifier": "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.communicates-with-drivers",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.communicates-with-drivers",
+      "role": "symbol",
+      "title": "Communicates with Drivers",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.communicates-with-drivers"
+    },
+    "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.userclient-access": {
+      "abstract": [
+        {
+          "text": "An array of strings that represent macOS driver extensions that may communicate with other DriverKit services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.userclient-access",
+      "kind": "symbol",
+      "name": "com.apple.developer.driverkit.userclient-access",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.userclient-access",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.driverkit.userclient-access"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging and testing system extensions",
+      "type": "topic",
+      "url": "/documentation/driverkit/debugging_and_testing_system_extensions"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development": {
+      "abstract": [
+        {
+          "text": "Request the entitlement for DriverKit development, and request other entitlements your driver needs to interact with specific devices and interfaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting Entitlements for DriverKit Development",
+      "type": "topic",
+      "url": "/documentation/driverkit/requesting_entitlements_for_driverkit_development"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-3557200": {
+      "identifier": "link-3557200",
+      "kind": "article",
+      "role": "link",
+      "title": "Add the System Extension capability",
+      "type": "section",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev88ff319e7"
+    },
+    "link-3557212": {
+      "identifier": "link-3557212",
+      "kind": "article",
+      "role": "link",
+      "title": "https://developer.apple.com/system-extensions/",
+      "type": "topic",
+      "url": "https://developer.apple.com/system-extensions/"
+    },
+    "link-3557576": {
+      "identifier": "link-3557576",
+      "kind": "article",
+      "role": "link",
+      "title": "Configure an App ID",
+      "type": "section",
+      "url": "https://help.apple.com/developer-account/#/dev1b35d6f83"
+    },
+    "link-3557578": {
+      "identifier": "link-3557578",
+      "kind": "article",
+      "role": "link",
+      "title": "https://developer.apple.com",
+      "type": "topic",
+      "url": "https://developer.apple.com"
+    },
+    "link-3557579": {
+      "identifier": "link-3557579",
+      "kind": "article",
+      "role": "link",
+      "title": "Configure a provisioning profile",
+      "type": "section",
+      "url": "https://help.apple.com/developer-account/#/devbd904d1a5"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit",
+        "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.userclient-access",
+        "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.allow-any-userclient-access",
+        "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.communicates-with-drivers",
+        "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.driverkit.allow-third-party-userclients"
+      ],
+      "title": "Entitlements"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/driverkit/requesting_entitlements_for_driverkit_development"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/driverkit/requesting_entitlements_for_driverkit_development"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

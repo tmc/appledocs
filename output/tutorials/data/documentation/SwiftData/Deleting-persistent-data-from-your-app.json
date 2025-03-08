@@ -1,0 +1,2203 @@
+{
+  "abstract": [
+    {
+      "text": "Explore different ways to use SwiftData to delete persistent data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftData/documentation/SwiftData"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftData/documentation/SwiftData/Deleting-persistent-data-from-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftData"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Deleting persistent data from your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Data-driven apps typically provide a way for a person to delete data, and this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sample is no exception. It shows three ways to remove data stored in a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftData model container:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Swiping to delete",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Deleting with confirmation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Deleting all",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you want to learn how to add and edit data using SwiftData, see",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Adding-and-editing-persistent-data-in-your-app",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Swipe-to-delete",
+          "level": 2,
+          "text": "Swipe to delete",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app shows a list of animals. A person using the app can delete an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "animal using a swipe gesture. For example, the following code adds the swipe-to-delete option to the ",
+              "type": "text"
+            },
+            {
+              "code": "AnimalList",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view by applying the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/DynamicViewContent/onDelete(perform:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ForEach",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private struct AnimalList: View {",
+            "    @Environment(NavigationContext.self) private var navigationContext",
+            "    @Environment(\\.modelContext) private var modelContext",
+            "    @Query(sort: \\Animal.name) private var animals: [Animal]",
+            "",
+            "    var body: some View {",
+            "        @Bindable var navigationContext = navigationContext",
+            "        List(selection: $navigationContext.selectedAnimal) {",
+            "            ForEach(animals) { animal in",
+            "                NavigationLink(animal.name, value: animal)",
+            "            }",
+            "            .onDelete(perform: removeAnimals)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/DynamicViewContent/onDelete(perform:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier in the previous code calls the custom method ",
+              "type": "text"
+            },
+            {
+              "code": "removeAnimals",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to remove",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "one or more animals from the list. This method receives an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/indexset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which identifies the animals to delete. The method then iterates through the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "index set, deleting each animal using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext/delete(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func removeAnimals(at indexSet: IndexSet) {",
+            "    for index in indexSet {",
+            "        modelContext.delete(animals[index])",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, it’s possible for a person using this sample to delete the selected",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "animal, so the ",
+              "type": "text"
+            },
+            {
+              "code": "removeAnimals",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method needs to unselect the animal before",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "deleting it. The updated version of ",
+              "type": "text"
+            },
+            {
+              "code": "removeAnimals",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/PersistentModel/persistentModelID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine whether the animal to delete",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is also the selected animal. If it is, the method sets the selected animal to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func removeAnimals(at indexSet: IndexSet) {",
+            "    for index in indexSet {",
+            "        let animalToDelete = animals[index]",
+            "        if navigationContext.selectedAnimal?.persistentModelID == animalToDelete.persistentModelID {",
+            "            navigationContext.selectedAnimal = nil",
+            "        }",
+            "        modelContext.delete(animalToDelete)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses the SwiftData autosave feature, which is enabled by default",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when creating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/modelContainer(for:inMemory:isAutosaveEnabled:isUndoEnabled:onSetup:)-18hhy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier. If this feature is disabled, the ",
+              "type": "text"
+            },
+            {
+              "code": "removeAnimals",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method needs",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to explicitly save the change by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext/save()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "; for example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func removeAnimals(at indexSet: IndexSet) {",
+            "    do {",
+            "\t    for index in indexSet {",
+            "\t        let animalToDelete = animals[index]",
+            "\t        if navigationContext.selectedAnimal?.persistentModelID == animalToDelete.persistentModelID {",
+            "\t            navigationContext.selectedAnimal = nil",
+            "\t        }",
+            "\t        modelContext.delete(animalToDelete)",
+            "\t    }",
+            "        try modelContext.save()",
+            "    } catch {",
+            "        // Handle error.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To disable the autosave feature, set the ",
+                  "type": "text"
+                },
+                {
+                  "code": "isAutoSaveEnabled",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "to ",
+                  "type": "text"
+                },
+                {
+                  "code": "false",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " when creating the model container using the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/modelContainer(for:inMemory:isAutosaveEnabled:isUndoEnabled:onSetup:)-18hhy",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "modifier. You can also disable autosave by setting set the model context",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "property ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext/autosaveEnabled",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to ",
+                  "type": "text"
+                },
+                {
+                  "code": "false",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Delete-with-confirmation",
+          "level": 2,
+          "text": "Delete with confirmation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app also lets a person delete the selected animal by clicking the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Trash button that ",
+              "type": "text"
+            },
+            {
+              "code": "AnimalDetailView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " displays in its toolbar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct AnimalDetailView: View {",
+            "    var animal: Animal?",
+            "    @State private var isDeleting = false",
+            "    @Environment(\\.modelContext) private var modelContext",
+            "    @Environment(NavigationContext.self) private var navigationContext",
+            "",
+            "    var body: some View {",
+            "        if let animal {",
+            "            AnimalDetailContentView(animal: animal)",
+            "                .navigationTitle(\"\\(animal.name)\")",
+            "                .toolbar {",
+            "                    Button { isDeleting = true } label: {",
+            "                        Label(\"Delete \\(animal.name)\", systemImage: \"trash\")",
+            "                            .help(\"Delete the animal\")",
+            "                    }",
+            "                }",
+            "        } else {",
+            "            ContentUnavailableView(\"Select an animal\", systemImage: \"pawprint\")",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The action for the button set the state variable ",
+              "type": "text"
+            },
+            {
+              "code": "isDeleting",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "displays the delete confirmation alert described in the following code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".alert(\"Delete \\(animal.name)?\", isPresented: $isDeleting) {",
+            "    Button(\"Yes, delete \\(animal.name)\", role: .destructive) {",
+            "        delete(animal)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After confirming the delete request, the action for the confirmation button",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "calls the custom ",
+              "type": "text"
+            },
+            {
+              "code": "delete",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method. This method sets the selected animal to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", then deletes the animal from the model context by calling the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext/delete(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func delete(_ animal: Animal) {",
+            "    navigationContext.selectedAnimal = nil",
+            "    modelContext.delete(animal)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the SwiftData autosave feature was disabled, the ",
+              "type": "text"
+            },
+            {
+              "code": "delete",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method would need",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to explicitly save the change by calling the ",
+              "type": "text"
+            },
+            {
+              "code": "ModelContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext/save()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "; for example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func delete(_ animal: Animal) {",
+            "    do {",
+            "        navigationContext.selectedAnimal = nil",
+            "        modelContext.delete(animal)",
+            "        try modelContext.save()",
+            "    } catch {",
+            "        // Handle error.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Delete-all",
+          "level": 2,
+          "text": "Delete all",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Deleting all items of a particular model type is less common in data driven",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "apps, but there may be times when having this option is helpful. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the sample apps lets a person reload sample data that comes with the app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Reloading the sample data deletes all animal categories and animals from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "persistent storage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To delete all items of a particular model type, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext/delete(model:where:includeSubclasses:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For example, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "following code deletes all animal categories before reloading the sample data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static func reloadSampleData(modelContext: ModelContext) {",
+            "    do {",
+            "        try modelContext.delete(model: AnimalCategory.self)",
+            "        insertSampleData(modelContext: modelContext)",
+            "    } catch {",
+            "        fatalError(error.localizedDescription)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When deleting all animal categories, SwiftData also deletes all animals within",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "those categories. SwiftData knows to perform this cascading delete because the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "relationship between ",
+              "type": "text"
+            },
+            {
+              "code": "AnimalCategory",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "Animal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Relationship/DeleteRule-swift.enum/cascade",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delete rule. (For a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "complete list of delete rules, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Relationship/DeleteRule-swift.enum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftData",
+            "",
+            "@Model",
+            "final class AnimalCategory {",
+            "    @Attribute(.unique) var name: String",
+            "    // `.cascade` tells SwiftData to delete all animals contained in the ",
+            "    // category when deleting it.",
+            "    @Relationship(deleteRule: .cascade, inverse: \\Animal.category)",
+            "    var animals = [Animal]()",
+            "    ",
+            "    init(name: String) {",
+            "        self.name = name",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To delete all persistent data from your app and not just data of a certain",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "model type, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/deleteAllData()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Adding-and-editing-persistent-data-PageImage-card.png": {
+      "alt": "A black Swift logo above a background of brightly colored binary ones and zeros.",
+      "identifier": "Adding-and-editing-persistent-data-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/55f9d5ea6318d04e82430d30e7408e20/Adding-and-editing-persistent-data-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2cc079c877d85ebed68522b2ec1bd0ff/Adding-and-editing-persistent-data-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData": {
+      "abstract": [
+        {
+          "text": "Write your model code declaratively to add managed persistence and efficient",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "model fetching.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData",
+      "images": [
+        {
+          "identifier": "swiftData-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftData",
+      "type": "topic",
+      "url": "/documentation/swiftdata"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Adding-and-editing-persistent-data-in-your-app": {
+      "abstract": [
+        {
+          "text": "Create a data entry form for collecting and changing data managed by SwiftData.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Adding-and-editing-persistent-data-in-your-app",
+      "images": [
+        {
+          "identifier": "Adding-and-editing-persistent-data-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adding and editing persistent data in your app",
+      "type": "topic",
+      "url": "/documentation/swiftdata/adding-and-editing-persistent-data-in-your-app"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ConcurrencySupport": {
+      "abstract": [
+        {
+          "text": "Types you use to access model attributes and perform storage-related tasks in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a safe and isolated way.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ConcurrencySupport",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Concurrency support",
+      "type": "topic",
+      "url": "/documentation/swiftdata/concurrencysupport"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Fetching-and-filtering-time-based-model-changes": {
+      "abstract": [
+        {
+          "text": "Track all inserts, updates, and deletes that occur in a data store and process",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "them as a series of chronological transactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Fetching-and-filtering-time-based-model-changes",
+      "images": [
+        {
+          "identifier": "fetching-and-filtering-time-based-models-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Fetching and filtering time-based model changes",
+      "type": "topic",
+      "url": "/documentation/swiftdata/fetching-and-filtering-time-based-model-changes"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer": {
+      "abstract": [
+        {
+          "text": "An object that manages an app’s schema and model storage configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelContainer",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontainer"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/deleteAllData()": {
+      "abstract": [
+        {
+          "text": "Removes all persisted model data from the app’s persistent storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deleteAllData"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer/deleteAllData()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deleteAllData()",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontainer/deletealldata()"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext": {
+      "abstract": [
+        {
+          "text": "An object that enables you to fetch, insert, and delete models, and save any",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "changes to disk.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelContext"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelContext",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontext"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext/autosaveEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the context should automatically save",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "any pending changes when certain events occur.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autosaveEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext/autosaveEnabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "autosaveEnabled",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontext/autosaveenabled"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext/delete(_:)": {
+      "abstract": [
+        {
+          "text": "Removes the specified model from the persistent storage during the next save",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delete"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext/delete(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "delete(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontext/delete(_:)"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext/delete(model:where:includeSubclasses:)": {
+      "abstract": [
+        {
+          "text": "Removes each model satisfying the given predicate from the persistent storage",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "during the next save operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delete"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "model"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation9PredicateV",
+          "text": "Predicate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "includeSubclasses"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext/delete(model:where:includeSubclasses:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "delete(model:where:includeSubclasses:)",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontext/delete(model:where:includesubclasses:)"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext/save()": {
+      "abstract": [
+        {
+          "text": "Writes any pending inserts, changes, and deletes to the persistent storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "save"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext/save()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "save()",
+      "type": "topic",
+      "url": "/documentation/swiftdata/modelcontext/save()"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/PersistentModel/persistentModelID": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "persistentModelID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData20PersistentIdentifierV",
+          "text": "PersistentIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/PersistentModel/persistentModelID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "persistentModelID",
+      "type": "topic",
+      "url": "/documentation/swiftdata/persistentmodel/persistentmodelid"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Reverting-data-changes-using-the-undo-manager": {
+      "abstract": [
+        {
+          "text": "Automatically record data change operations that people perform in your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "SwiftUI app, and let them undo and redo those changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Reverting-data-changes-using-the-undo-manager",
+      "kind": "article",
+      "role": "article",
+      "title": "Reverting data changes using the undo manager",
+      "type": "topic",
+      "url": "/documentation/swiftdata/reverting-data-changes-using-the-undo-manager"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Relationship/DeleteRule-swift.enum": {
+      "abstract": [
+        {
+          "text": "Describes the rule to apply when deleting a model containing references to other models.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DeleteRule"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Relationship/DeleteRule-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DeleteRule"
+        }
+      ],
+      "role": "symbol",
+      "title": "Schema.Relationship.DeleteRule",
+      "type": "topic",
+      "url": "/documentation/swiftdata/schema/relationship/deleterule-swift.enum"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Relationship/DeleteRule-swift.enum/cascade": {
+      "abstract": [
+        {
+          "text": "A rule that deletes any related models.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cascade"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Schema/Relationship/DeleteRule-swift.enum/cascade",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Schema.Relationship.DeleteRule.cascade",
+      "type": "topic",
+      "url": "/documentation/swiftdata/schema/relationship/deleterule-swift.enum/cascade"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Syncing-model-data-across-a-persons-devices": {
+      "abstract": [
+        {
+          "text": "Add the required capabilities and define a compatible schema to enable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "SwiftData to automatically sync your app’s model data using iCloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Syncing-model-data-across-a-persons-devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Syncing model data across a person’s devices",
+      "type": "topic",
+      "url": "/documentation/swiftdata/syncing-model-data-across-a-persons-devices"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/DynamicViewContent/onDelete(perform:)": {
+      "abstract": [
+        {
+          "text": "Sets the deletion action for the dynamic view. You must delete the corresponding item within `action`, as it will be called after the row has already been removed from the [`List`](doc://com.apple.SwiftUI/documentation/SwiftUI/List).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onDelete"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sq",
+          "text": "Optional"
+        },
+        {
+          "kind": "text",
+          "text": "<("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation8IndexSetV",
+          "text": "IndexSet"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI18DynamicViewContentP",
+          "text": "DynamicViewContent"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/DynamicViewContent/onDelete(perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onDelete(perform:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/DynamicViewContent/onDelete(perform:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ForEach": {
+      "abstract": [
+        {
+          "text": "A structure that computes views on demand from an underlying collection of identified data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ForEach"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sk",
+          "text": "RandomAccessCollection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ForEach",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ForEach",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ForEach"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/modelContainer(for:inMemory:isAutosaveEnabled:isUndoEnabled:onSetup:)-18hhy": {
+      "abstract": [
+        {
+          "text": "Sets the model container in this view for storing the provided model type, creating a new container if necessary, and also sets a model context for that container in this view’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modelContainer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "modelType"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData15PersistentModelP",
+          "text": "PersistentModel"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "inMemory"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = false, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isAutosaveEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = true, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isUndoEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = false, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "onSetup"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9SwiftData14ModelContainerC",
+          "text": "ModelContainer"
+        },
+        {
+          "kind": "text",
+          "text": ", any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": " = { _ in }) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/modelContainer(for:inMemory:isAutosaveEnabled:isUndoEnabled:onSetup:)-18hhy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "modelContainer(for:inMemory:isAutosaveEnabled:isUndoEnabled:onSetup:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/modelContainer(for:inMemory:isAutosaveEnabled:isUndoEnabled:onSetup:)-18hhy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/indexset": {
+      "abstract": [
+        {
+          "text": "A collection of unique integer values that represent the indexes of elements in another collection. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "IndexSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/indexset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IndexSet",
+      "type": "topic",
+      "url": "/documentation/foundation/indexset"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "f84bac78ac34/SwiftDataAnimals.zip": {
+      "checksum": "f84bac78ac34101864c1da49ccd531f9b0769fe6b9447e44392d450dd43367cdce7c614a177b34e183106bfd560a1d48cdd416f581a865c301dffe9c1fa789a9",
+      "identifier": "f84bac78ac34/SwiftDataAnimals.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/f84bac78ac34/SwiftDataAnimals.zip"
+    },
+    "fetching-and-filtering-time-based-models-PageImage-card.png": {
+      "alt": "A light blue Swift logo above a background of clock icons and binary ones and zeros.",
+      "identifier": "fetching-and-filtering-time-based-models-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/075a7852ebc042773b65c445265171ee/fetching-and-filtering-time-based-models-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/511dbb1cea4900702d613a33524b1ff9/fetching-and-filtering-time-based-models-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "swiftData-PageImage-card.png": {
+      "alt": "A gray and white Swift logo on a swirly blue background.",
+      "identifier": "swiftData-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8f347b5f4b93bb57bf95423987e9a6c9/swiftData-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f0a5e8a43bc94c93e07c48dc59f884ed/swiftData-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "f84bac78ac34/SwiftDataAnimals.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Model-life-cycle",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/ModelContainer",
+        "doc://com.apple.SwiftData/documentation/SwiftData/ModelContext",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Fetching-and-filtering-time-based-model-changes",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Reverting-data-changes-using-the-undo-manager",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Syncing-model-data-across-a-persons-devices",
+        "doc://com.apple.SwiftData/documentation/SwiftData/ConcurrencySupport"
+      ],
+      "title": "Model life cycle"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftdata/deleting-persistent-data-from-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

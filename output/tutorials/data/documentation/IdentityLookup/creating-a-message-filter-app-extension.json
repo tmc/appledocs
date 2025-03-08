@@ -1,0 +1,335 @@
+{
+  "abstract": [
+    {
+      "text": "Create an app extension that helps identify unwanted messages.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.identitylookup/documentation/IdentityLookup",
+        "doc://com.apple.identitylookup/documentation/IdentityLookup/sms-and-mms-message-filtering"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.identitylookup/documentation/IdentityLookup/creating-a-message-filter-app-extension"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SMS and Call Reporting"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a Message Filter App Extension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a Message Filter app extension, add a target that uses the Message Filter Extension template to the Xcode project for your containing app. The principal view controller in your app extension is a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterExtension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterQueryHandling",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have servers that can help your app extension determine how to handle a message, you must add the Associated Domains capability to your Xcode project and specify those domains. Then, you must set up shared credentials as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/shared-web-credentials",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", substituting ",
+              "type": "text"
+            },
+            {
+              "code": "messagefilter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for ",
+              "type": "text"
+            },
+            {
+              "code": "webcredentials",
+              "type": "codeVoice"
+            },
+            {
+              "text": " throughout the steps. Lastly, you must specify the domains in your ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, which should look similar to the dictionary shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>NSExtension</key>",
+            "    <dict>",
+            "        <key>NSExtensionPrincipalClass</key>",
+            "            <string>MessageFilterExtension</string>",
+            "        <key>NSExtensionAttributes</key>",
+            "            <dict>",
+            "                <key>ILMessageFilterExtensionNetworkURL</key>",
+            "                <string>https://www.example-sms-filter-application.com/api</string>",
+            "            </dict>",
+            "        <key>NSExtensionPointIdentifier</key>",
+            "        <string>com.apple.identitylookup.message-filter</string>",
+            "     </dict>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Security/shared-web-credentials": {
+      "abstract": [
+        {
+          "text": "Share credentials between iOS apps and their website counterparts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/shared-web-credentials",
+      "kind": "article",
+      "role": "article",
+      "title": "Shared Web Credentials",
+      "type": "topic",
+      "url": "/documentation/Security/shared-web-credentials"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup": {
+      "abstract": [
+        {
+          "text": "Create app extensions to manage and report unwanted SMS messages and spam calls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SMS and Call Reporting",
+      "type": "topic",
+      "url": "/documentation/identitylookup"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterExtension": {
+      "abstract": [
+        {
+          "text": "The abstract base class for the principal class of a Message Filter app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILMessageFilterExtension",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilmessagefilterextension"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterQueryHandling": {
+      "abstract": [
+        {
+          "text": "A set of methods implemented by a Message Filter app extension to handle query requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterQueryHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/ILMessageFilterQueryHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ILMessageFilterQueryHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "ILMessageFilterQueryHandling",
+      "type": "topic",
+      "url": "/documentation/identitylookup/ilmessagefilterqueryhandling"
+    },
+    "doc://com.apple.identitylookup/documentation/IdentityLookup/sms-and-mms-message-filtering": {
+      "abstract": [
+        {
+          "text": "Create an app extension that identifies and filters unwanted SMS and MMS messages while preserving user privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.identitylookup/documentation/IdentityLookup/sms-and-mms-message-filtering",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SMS and MMS Message Filtering",
+      "type": "topic",
+      "url": "/documentation/identitylookup/sms-and-mms-message-filtering"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterQueryHandling/title",
+          "value": "ILMessageFilterQueryHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterQueryHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageFilterQueryHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterQueryHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageFilterQueryHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterExtension/title",
+          "value": "ILMessageFilterExtension"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterExtension/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageFilterExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.identitylookup~1documentation~1IdentityLookup~1ILMessageFilterExtension/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ILMessageFilterExtension"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

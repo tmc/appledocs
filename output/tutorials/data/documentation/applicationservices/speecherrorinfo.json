@@ -1,0 +1,524 @@
+{
+  "abstract": [
+    {
+      "text": "Defines a speech error information structure.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/speecherrorinfo"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1460489,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@SpeechErrorInfo",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "SpeechErrorInfo"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "SpeechErrorInfo"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SpeechErrorInfo"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/1552220-getspeechinfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function with the ",
+              "type": "text"
+            },
+            {
+              "code": "soErrors",
+              "type": "codeVoice"
+            },
+            {
+              "text": " selector, you can obtain a speech error information structure, which shows what Speech Synthesis Manager errors occurred while processing a text buffer on a given speech channel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Speech error information structures never include errors that are returned by Speech Synthesis Manager functions. Instead, they reflect only errors encountered directly in the processing of text, and, in particular, in the processing of commands embedded within text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The speech error information structure keeps track of only the most recent error and the first error that occurred after the previous call to the ",
+              "type": "text"
+            },
+            {
+              "code": "GetSpeechInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function with the ",
+              "type": "text"
+            },
+            {
+              "code": "soErrors",
+              "type": "codeVoice"
+            },
+            {
+              "text": " selector. If your application needs to keep track of all errors, then you should install an error callback function, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/speecherrorprocptr",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1552220-getspeechinfo": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1552220-getspeechinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetSpeechInfo",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1552220-getspeechinfo"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Speech Synthesis Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speecherrorinfo/1459251-count": {
+      "abstract": [
+        {
+          "text": "The number of errors that have occurred in processing the current text buffer since the last call to the ",
+          "type": "text"
+        },
+        {
+          "code": "GetSpeechInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function with the ",
+          "type": "text"
+        },
+        {
+          "code": "soErrors",
+          "type": "codeVoice"
+        },
+        {
+          "text": " selector. Of these errors, you can find information about only the first and last error that occurred.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": Int16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speecherrorinfo/1459251-count",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "count",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speecherrorinfo/1459251-count"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speecherrorinfo/1460065-oldpos": {
+      "abstract": [
+        {
+          "text": "The character position within the text buffer being processed of the first error that occurred after the previous call to the ",
+          "type": "text"
+        },
+        {
+          "code": "GetSpeechInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function with the ",
+          "type": "text"
+        },
+        {
+          "code": "soErrors",
+          "type": "codeVoice"
+        },
+        {
+          "text": " selector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "oldPos"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speecherrorinfo/1460065-oldpos",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "oldPos",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speecherrorinfo/1460065-oldpos"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speecherrorinfo/1461434-newest": {
+      "abstract": [
+        {
+          "text": "The error code of the most recent error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "newest"
+        },
+        {
+          "kind": "text",
+          "text": ": OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speecherrorinfo/1461434-newest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "newest",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speecherrorinfo/1461434-newest"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speecherrorinfo/1463016-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speecherrorinfo/1463016-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speecherrorinfo/1463016-init"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speecherrorinfo/1463962-oldest": {
+      "abstract": [
+        {
+          "text": "The error code of the first error that occurred after the previous call to the ",
+          "type": "text"
+        },
+        {
+          "code": "GetSpeechInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function with the ",
+          "type": "text"
+        },
+        {
+          "code": "soErrors",
+          "type": "codeVoice"
+        },
+        {
+          "text": " selector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "oldest"
+        },
+        {
+          "kind": "text",
+          "text": ": OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speecherrorinfo/1463962-oldest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "oldest",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speecherrorinfo/1463962-oldest"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speecherrorinfo/1464494-newpos": {
+      "abstract": [
+        {
+          "text": "The character position within the text buffer being processed of the most recent error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "newPos"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speecherrorinfo/1464494-newpos",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "newPos",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speecherrorinfo/1464494-newpos"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speecherrorinfo/1464795-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": Int16, "
+        },
+        {
+          "kind": "identifier",
+          "text": "oldest"
+        },
+        {
+          "kind": "text",
+          "text": ": OSErr, "
+        },
+        {
+          "kind": "identifier",
+          "text": "oldPos"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "newest"
+        },
+        {
+          "kind": "text",
+          "text": ": OSErr, "
+        },
+        {
+          "kind": "identifier",
+          "text": "newPos"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speecherrorinfo/1464795-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(count:oldest:oldPos:newest:newPos:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speecherrorinfo/1464795-init"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speecherrorprocptr": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speecherrorprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechErrorProcPtr",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speecherrorprocptr"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "2974120",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/speecherrorinfo/1463016-init",
+        "doc://com.apple.documentation/documentation/applicationservices/speecherrorinfo/1464795-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "2974121",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/speecherrorinfo/1459251-count",
+        "doc://com.apple.documentation/documentation/applicationservices/speecherrorinfo/1464494-newpos",
+        "doc://com.apple.documentation/documentation/applicationservices/speecherrorinfo/1461434-newest",
+        "doc://com.apple.documentation/documentation/applicationservices/speecherrorinfo/1460065-oldpos",
+        "doc://com.apple.documentation/documentation/applicationservices/speecherrorinfo/1463962-oldest"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/speecherrorinfo"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/applicationservices/speecherrorinfo"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

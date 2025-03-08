@@ -1,0 +1,1171 @@
+{
+  "abstract": [
+    {
+      "text": "Change the system’s interpretation of a color value for display by selecting a color space.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/drawing",
+        "doc://com.apple.uikit/documentation/UIKit/UIColor"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/determining-color-values-with-color-spaces"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Determining color values with color spaces"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIColor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object typically stores its color value as a Core Graphics color (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcolor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") in a Core Graphics color space (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcolorspace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). When creating a custom color, the underlying color space and the range of values for each color component vary based on the iOS version.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-colors-with-color-spaces",
+          "level": 3,
+          "text": "Create colors with color spaces",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For apps running on iOS 9 and earlier, colors use one of two color spaces:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Device-dependent Gray",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Device-dependent RGB",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These device color spaces correspond closely to the display characteristics of the sRGB color space. Component values within these color spaces are in the range ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". When you create a color, the color object clamps values to ensure they fit within this range.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-extended-color-spaces",
+          "level": 3,
+          "text": "Use extended color spaces",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For apps running on iOS 10 or later, colors use the following extended color spaces:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcolorspace/1644736-extendedgray",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcolorspace/1644735-extendedsrgb",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the extended color spaces, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIColor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " doesn’t clamp values to fit inside the color gamut. Component values may be less than ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or greater than ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". On an sRGB display, such colors are outside the gamut and won’t render accurately. However, the extended color spaces are useful when you want a pixel format and representation that extended color spaces can convert into other color spaces. For example, you can still convert color in the display P3 color space to an extended sRGB format, even if that color isn’t within the sRGB color gamut. When you convert such a color, some of its values fall outside the ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " range. However, the color still renders correctly on a device with a P3 display gamut.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When employing custom colors, use extended color spaces to store your color values. When representing a color as closely as possible, convert the color from the extended color space into the target color space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coregraphics/cgcolor": {
+      "abstract": [
+        {
+          "text": "A set of components that define a color, with a color space specifying how to interpret them.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGColor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcolor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGColor",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgcolor"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgcolorspace": {
+      "abstract": [
+        {
+          "text": "A profile that specifies how to interpret a color value for display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGColorSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcolorspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGColorSpace",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgcolorspace"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgcolorspace/1644735-extendedsrgb": {
+      "abstract": [
+        {
+          "text": "The extended sRGB color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class let "
+        },
+        {
+          "kind": "identifier",
+          "text": "extendedSRGB"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcolorspace/1644735-extendedsrgb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "extendedSRGB",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgcolorspace/1644735-extendedsrgb"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgcolorspace/1644736-extendedgray": {
+      "abstract": [
+        {
+          "text": "The extended gray color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class let "
+        },
+        {
+          "kind": "identifier",
+          "text": "extendedGray"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgcolorspace/1644736-extendedgray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "extendedGray",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgcolorspace/1644736-extendedgray"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIColor": {
+      "abstract": [
+        {
+          "text": "An object that stores color data and sometimes opacity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIColor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIColor",
+      "type": "topic",
+      "url": "/documentation/uikit/uicolor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIColor/accessibilityName": {
+      "abstract": [
+        {
+          "text": "A localized description of the color for accessibility attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIColor/accessibilityName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accessibilityName"
+        }
+      ],
+      "role": "symbol",
+      "title": "accessibilityName",
+      "type": "topic",
+      "url": "/documentation/uikit/uicolor/accessibilityname"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIColor/cgColor": {
+      "abstract": [
+        {
+          "text": "The Quartz color that corresponds to the color object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cgColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGColorRef",
+          "text": "CGColor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIColor/cgColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CGColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "cgColor",
+      "type": "topic",
+      "url": "/documentation/uikit/uicolor/cgcolor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIColor/ciColor": {
+      "abstract": [
+        {
+          "text": "The Core Image color that corresponds to the color object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ciColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CIColor",
+          "text": "CIColor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIColor/ciColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CIColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ciColor",
+      "type": "topic",
+      "url": "/documentation/uikit/uicolor/cicolor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIColor/getHue(_:saturation:brightness:alpha:)": {
+      "abstract": [
+        {
+          "text": "Returns the components that form the color in the HSB color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getHue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "saturation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "brightness"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIColor/getHue(_:saturation:brightness:alpha:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getHue:saturation:brightness:alpha:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getHue(_:saturation:brightness:alpha:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicolor/gethue(_:saturation:brightness:alpha:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIColor/getRed(_:green:blue:alpha:)": {
+      "abstract": [
+        {
+          "text": "Returns the components that form the color in the RGB color space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getRed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "green"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "blue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIColor/getRed(_:green:blue:alpha:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getRed:green:blue:alpha:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getRed(_:green:blue:alpha:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicolor/getred(_:green:blue:alpha:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIColor/getWhite(_:alpha:)": {
+      "abstract": [
+        {
+          "text": "Returns the grayscale components of the color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getWhite"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIColor/getWhite(_:alpha:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getWhite:alpha:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getWhite(_:alpha:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicolor/getwhite(_:alpha:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/drawing": {
+      "abstract": [
+        {
+          "text": "Configure your app’s drawing environment using colors, renderers, draw paths, strings, and shadows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/drawing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Drawing",
+      "type": "topic",
+      "url": "/documentation/uikit/drawing"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-the-color-information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIColor/cgColor",
+        "doc://com.apple.uikit/documentation/UIKit/UIColor/ciColor",
+        "doc://com.apple.uikit/documentation/UIKit/UIColor/getHue(_:saturation:brightness:alpha:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIColor/getRed(_:green:blue:alpha:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIColor/getWhite(_:alpha:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIColor/accessibilityName"
+      ],
+      "title": "Getting the color information"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Getting-the-color-information",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIColor/cgColor",
+                "doc://com.apple.uikit/documentation/UIKit/UIColor/ciColor",
+                "doc://com.apple.uikit/documentation/UIKit/UIColor/getHue(_:saturation:brightness:alpha:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIColor/getRed(_:green:blue:alpha:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIColor/getWhite(_:alpha:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIColor/accessibilityName"
+              ],
+              "title": "Getting the color information"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor~1cgColor/title",
+          "value": "CGColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor~1cgColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CGColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor~1getRed(_:green:blue:alpha:)/title",
+          "value": "getRed:green:blue:alpha:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor~1getRed(_:green:blue:alpha:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getRed:green:blue:alpha:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgcolorspace/title",
+          "value": "CGColorSpaceRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor~1getWhite(_:alpha:)/title",
+          "value": "getWhite:alpha:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor~1getWhite(_:alpha:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getWhite:alpha:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor~1ciColor/title",
+          "value": "CIColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor~1ciColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CIColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgcolorspace~11644735-extendedsrgb/title",
+          "value": "kCGColorSpaceExtendedSRGB"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor~1accessibilityName/title",
+          "value": "accessibilityName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor~1accessibilityName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accessibilityName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgcolorspace~11644736-extendedgray/title",
+          "value": "kCGColorSpaceExtendedGray"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgcolor/title",
+          "value": "CGColorRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor/title",
+          "value": "UIColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor~1getHue(_:saturation:brightness:alpha:)/title",
+          "value": "getHue:saturation:brightness:alpha:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIColor~1getHue(_:saturation:brightness:alpha:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getHue:saturation:brightness:alpha:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/determining-color-values-with-color-spaces"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/determining-color-values-with-color-spaces"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

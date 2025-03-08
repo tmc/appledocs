@@ -1,0 +1,1845 @@
+{
+  "abstract": [
+    {
+      "text": "Display large numbers of repeated views efficiently with scroll views, stack",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "views, and lazy stacks.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-fundamentals"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Creating-Performant-Scrollable-Stacks"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating performant scrollable stacks"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your apps often need to display more data within a container view than there is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "space for on a device’s screen. Horizontal and vertical stacks are a good",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "solution for repeating views or groups of views, but they don’t have a built-in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "mechanism for scrolling. You can add scrolling by wrapping stacks inside a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and switch to lazy stacks as performance issues arise.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-groups-of-views-in-a-scrollable-container",
+          "level": 3,
+          "text": "Display groups of views in a scrollable container",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implementing repeating views or groups of views can be as simple as wrapping",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "them in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " inside a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ScrollView(.horizontal) {",
+            "    HStack {",
+            "        ProfileView()",
+            "        ProfileView()",
+            "        ProfileView()",
+            "        ProfileView()",
+            "        ProfileView()",
+            "    }",
+            "}",
+            ".frame(maxWidth: 500)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the ",
+              "type": "text"
+            },
+            {
+              "code": "ProfileView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the example code above has an intrinsic content size of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "200 x 200 points, the maximum width of 500 points that the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(minWidth:idealWidth:maxWidth:minHeight:idealHeight:maxHeight:alignment:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view modifier applies to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " causes the stack to scroll",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "inside it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Creating-Performant-Scrollable-Stacks-1.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an introduction to using stacks to group views together, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-Layouts-with-Stack-Views",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Repeat-views-for-your-data",
+          "level": 3,
+          "text": "Repeat views for your data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ForEach",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to repeat views for the data in your app. From a list of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "profile data in a ",
+              "type": "text"
+            },
+            {
+              "code": "profiles",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ForEach",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create one",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "ProfileView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " per element in the array inside an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ScrollView(.horizontal) {",
+            "    HStack {",
+            "        ForEach(profiles) { profile in",
+            "            ProfileView(profile: profile)",
+            "        }",
+            "    }",
+            "}",
+            ".frame(maxWidth: 500)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When you use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ForEach",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", each element you iterate over must be",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "uniquely identifiable. Either conform elements to the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Swift/Identifiable",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " protocol, or",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "pass a key path to a unique identifier as the ",
+                  "type": "text"
+                },
+                {
+                  "code": "id",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter of",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ForEach/init(_:id:content:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Consider-lazy-stacks-for-large-numbers-of-views",
+          "level": 3,
+          "text": "Consider lazy stacks for large numbers of views",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The three standard stack views, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ZStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", all load their contained view hierarchy when they display,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and loading large numbers of views all at once can result in slow runtime",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the above example, ",
+              "type": "text"
+            },
+            {
+              "code": "ProfileView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a compound view that consists of nested",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "stack views, text labels, and an image view. Loading a large number of profiles",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "all at once causes a noticeable slowdown.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As the number of views inside a stack grows, consider using a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyHStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyVStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Lazy stacks load and render their subviews on-demand,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "providing significant performance gains when loading large numbers of subviews.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Creating-Performant-Scrollable-Stacks-2.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Stack views and lazy stacks have similar functionality, and they may feel",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interchangeable, but they each have strengths in different situations. Stack",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "views load their child views all at once, making layout fast and reliable,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "because the system knows the size and shape of every subview as it loads them.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Lazy stacks trade some degree of layout correctness for performance, because the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system only calculates the geometry for subviews as they become visible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When choosing the type of stack view to use, always start with a standard stack",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view and only switch to a lazy stack if profiling your code shows a worthwhile",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "performance improvement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Profile-to-find-performance-problems",
+          "level": 3,
+          "text": "Profile to find performance problems",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When considering which type of stack to use, use the Instruments tool to profile",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your application to identify the areas of your user interface code where large",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "numbers of views are loading inside a stack.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To profile SwiftUI view loading, open the Instruments tool by selecting Profile",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from the Xcode Product menu and choosing the SwiftUI profiling template. This",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "template loads four instruments: View Body, View Properties, Core Animation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Commits, and Time Profiler. The combination of these instruments provides a good",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "starting point to find opportunities to speed up your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Never profile your code using the iOS simulator. Always use real devices",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "for performance testing.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Creating-Performant-Scrollable-Stacks-3.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When profiling the above code, the View Body instrument shows that 1,000",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "ProfileView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instances load into memory at the same time as the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can also see the same number of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " views",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "load as the system loads each profile.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this case, the solution is to replace the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyHStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the following code shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ScrollView(.horizontal) {",
+            "    LazyHStack {",
+            "        ForEach(profiles) { profile in",
+            "            ProfileView(profile: profile)",
+            "        }",
+            "    }",
+            "}",
+            ".frame(maxWidth: 500)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Running another trace shows a drastic reduction in the number of initially",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "loaded views as only four ",
+              "type": "text"
+            },
+            {
+              "code": "ProfileView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instances start as visible. You can also",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see a corresponding decrease in the Total Duration column.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Creating-Performant-Scrollable-Stacks-4.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about using the Instruments tool, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/metrickit/improving_your_app_s_performance",
+              "type": "text"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Creating-Performant-Scrollable-Stacks-1.png": {
+      "alt": "Five profile views displaying in a row inside a stack view. The scroll view’s maximum width clips its content,  causing the last two-and-a-half profile views in the stack to be outside of the viewport.",
+      "identifier": "Creating-Performant-Scrollable-Stacks-1.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/092be74c3f1836b4abc7798368222642/Creating-Performant-Scrollable-Stacks-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/46c80128cbecdff1e12a64727109aacf/Creating-Performant-Scrollable-Stacks-1~dark@2x.png"
+        }
+      ]
+    },
+    "Creating-Performant-Scrollable-Stacks-2.png": {
+      "alt": "Diagram showing a lazy stack view inside a scroll view container. Loaded views are visible in the viewport in the center, and views that have yet to load are pending on the right.",
+      "identifier": "Creating-Performant-Scrollable-Stacks-2.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/11e35ee58bbcc2fe0e58e4add7ff42d1/Creating-Performant-Scrollable-Stacks-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/96696c972b52f80e3f99d4d8a8d29399/Creating-Performant-Scrollable-Stacks-2~dark@2x.png"
+        }
+      ]
+    },
+    "Creating-Performant-Scrollable-Stacks-3.png": {
+      "alt": "Screenshot from the Instruments tool showing a large amount of views loading all at the same time.",
+      "identifier": "Creating-Performant-Scrollable-Stacks-3.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/73211ab0b4deea3a7b973023327247a1/Creating-Performant-Scrollable-Stacks-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6dc85dc24061724116fb93f7808b8dc7/Creating-Performant-Scrollable-Stacks-3~dark@2x.png"
+        }
+      ]
+    },
+    "Creating-Performant-Scrollable-Stacks-4.png": {
+      "alt": "Screenshot from the Instruments tool showing a small amount of views loading.",
+      "identifier": "Creating-Performant-Scrollable-Stacks-4.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7a0742bb765ecedeb06c7c2997253a04/Creating-Performant-Scrollable-Stacks-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/04b03c16b89ed2f517242ab5159bad4a/Creating-Performant-Scrollable-Stacks-4~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-Layouts-with-Stack-Views": {
+      "abstract": [
+        {
+          "text": "Compose complex layouts from primitive container views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-Layouts-with-Stack-Views",
+      "kind": "article",
+      "role": "article",
+      "title": "Building layouts with stack views",
+      "type": "topic",
+      "url": "/documentation/swiftui/building-layouts-with-stack-views"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ForEach": {
+      "abstract": [
+        {
+          "text": "A structure that computes views on demand from an underlying collection of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identified data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ForEach"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ForEach",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ForEach"
+        }
+      ],
+      "role": "symbol",
+      "title": "ForEach",
+      "type": "topic",
+      "url": "/documentation/swiftui/foreach"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ForEach/init(_:id:content:)": {
+      "abstract": [
+        {
+          "text": "Creates an instance that uniquely identifies and creates map content",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "across updates based on the provided key path to the underlying data’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifier.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Data",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "RandomAccessCollection",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", ",
+            "type": "text"
+          },
+          {
+            "code": "ID",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Hashable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", and ",
+            "type": "text"
+          },
+          {
+            "code": "Content",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "MapContent",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ForEach/init(_:id:content:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(_:id:content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/foreach/init(_:id:content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Grouping-Data-with-Lazy-Stack-Views": {
+      "abstract": [
+        {
+          "text": "Split content into logical sections inside lazy stack views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Grouping-Data-with-Lazy-Stack-Views",
+      "kind": "article",
+      "role": "article",
+      "title": "Grouping data with lazy stack views",
+      "type": "topic",
+      "url": "/documentation/swiftui/grouping-data-with-lazy-stack-views"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack": {
+      "abstract": [
+        {
+          "text": "A view that arranges its subviews in a horizontal line.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "HStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/hstack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Image": {
+      "abstract": [
+        {
+          "text": "A view that displays an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Image"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Image",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Image"
+        }
+      ],
+      "role": "symbol",
+      "title": "Image",
+      "type": "topic",
+      "url": "/documentation/swiftui/image"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-fundamentals": {
+      "abstract": [
+        {
+          "text": "Arrange views inside built-in layout containers like stacks and grids.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Layout fundamentals",
+      "type": "topic",
+      "url": "/documentation/swiftui/layout-fundamentals"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyHStack": {
+      "abstract": [
+        {
+          "text": "A view that arranges its children in a line that grows horizontally,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "creating items only as needed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazyHStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyHStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazyHStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyHStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/lazyhstack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyVStack": {
+      "abstract": [
+        {
+          "text": "A view that arranges its children in a line that grows vertically,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "creating items only as needed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazyVStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyVStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazyVStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyVStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/lazyvstack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PinnedScrollableViews": {
+      "abstract": [
+        {
+          "text": "A set of view types that may be pinned to the bounds of a scroll view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PinnedScrollableViews"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PinnedScrollableViews",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PinnedScrollableViews"
+        }
+      ],
+      "role": "symbol",
+      "title": "PinnedScrollableViews",
+      "type": "topic",
+      "url": "/documentation/swiftui/pinnedscrollableviews"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollView": {
+      "abstract": [
+        {
+          "text": "A scrollable view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollView"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScrollView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScrollView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScrollView",
+      "type": "topic",
+      "url": "/documentation/swiftui/scrollview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VStack": {
+      "abstract": [
+        {
+          "text": "A view that arranges its subviews in a vertical line.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "VStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/vstack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(minWidth:idealWidth:maxWidth:minHeight:idealHeight:maxHeight:alignment:)": {
+      "abstract": [
+        {
+          "text": "Positions this view within an invisible frame having the specified size",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "minWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "idealWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxWidth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "minHeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "idealHeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxHeight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AlignmentV",
+          "text": "Alignment"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(minWidth:idealWidth:maxWidth:minHeight:idealHeight:maxHeight:alignment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frame(minWidth:idealWidth:maxWidth:minHeight:idealHeight:maxHeight:alignment:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/frame(minwidth:idealwidth:maxwidth:minheight:idealheight:maxheight:alignment:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ZStack": {
+      "abstract": [
+        {
+          "text": "A view that overlays its subviews, aligning them in both axes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ZStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ZStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ZStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "ZStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/zstack"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Identifiable": {
+      "abstract": [
+        {
+          "text": "A class of types whose instances hold the value of an entity with stable identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Identifiable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Identifiable",
+      "type": "topic",
+      "url": "/documentation/Swift/Identifiable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Dynamically-arranging-views-in-one-dimension",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Grouping-Data-with-Lazy-Stack-Views",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyHStack",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyVStack",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PinnedScrollableViews"
+      ],
+      "title": "Dynamically arranging views in one dimension"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/creating-performant-scrollable-stacks"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

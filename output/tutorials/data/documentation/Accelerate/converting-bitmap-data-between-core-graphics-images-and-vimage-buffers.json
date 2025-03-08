@@ -1,0 +1,1718 @@
+{
+  "abstract": [
+    {
+      "text": "Pass image data between Core Graphics and vImage to create and manipulate images.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/converting-bitmap-data-between-core-graphics-images-and-vimage-buffers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Converting bitmap data between Core Graphics images and vImage buffers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you work with bitmap images, you typically work with Core Graphics ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances. The vImage library provides functionality that allows you to work with Core Graphics bitmap images. Typically, you convert a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to a vImage buffer, apply operations to the vImage buffer, and convert the transformed data to a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Conversions between Core Graphics-backed images and vImage buffers require a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " format structure. The format describes properties such as the color space, the number of channels and how they’re ordered, and the size, in bits, of the color channels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Initialize-an-8-bit-Core-Graphics-image-format-from-hard-coded-values",
+          "level": 3,
+          "text": "Initialize an 8-bit Core Graphics image format from hard-coded values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure with hard-coded values when you need to perform operations on image data with properties that your app defines at compile time. For example, the code below initializes an 8-bit-per-channel ARGB format that’s suitable for working with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structures with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved8x4",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var format = vImage_CGImageFormat(",
+            "    bitsPerComponent: 8,",
+            "    bitsPerPixel: 8 * 4,",
+            "    colorSpace: CGColorSpace(name: CGColorSpace.displayP3)!,",
+            "    bitmapInfo: .init(rawValue: CGImageAlphaInfo.noneSkipFirst.rawValue))!"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/init(cgImage:cgImageFormat:pixelFormat:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer creates a pixel buffer from a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance and converts the source image data to the format that the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " describes. If you’re working with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structures, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageBuffer_InitWithCGImage(_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function performs the same conversion and creates a buffer that’s suitable for working with ARGB8888 operations, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConvolve_ARGB8888(_:_:_:_:_:_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code below creates a buffer from a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance named ",
+              "type": "text"
+            },
+            {
+              "code": "cgImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and prints the values of the first two pixels. The opaque alpha values (",
+              "type": "text"
+            },
+            {
+              "code": "255",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") are the first value in each pixel as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/noneskipfirst",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " defines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let buf = try vImage.PixelBuffer(",
+            "    cgImage: cgImage,",
+            "    cgImageFormat: &format,",
+            "    pixelFormat: vImage.Interleaved8x4.self)",
+            "",
+            "// Prints:",
+            "// \"[255, 115, 136, 165,  255, 115, 136, 165]\"",
+            "//    A    R    G    B  |  A    R    G    B",
+            "print(buf.array[0 ..< 2 * format.componentCount])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For all the examples in this article, pass the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/makeCGImage(cgImageFormat:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to generate an output image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let result = buf.makeCGImage(cgImageFormat: format)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "result",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a four-channel 8-bit-per-channel image with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/noneskiplast",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " alpha ordering.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4265606",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Initialize-a-32-bit-Core-Graphics-image-format-from-hard-coded-values",
+          "level": 3,
+          "text": "Initialize a 32-bit Core Graphics image format from hard-coded values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/init(cgImage:cgImageFormat:pixelFormat:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer to convert an image’s color model and bit depth. For example, you can specify a grayscale 32-bit format such as the example below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let bitmapInfo = CGBitmapInfo(",
+            "    rawValue: kCGBitmapByteOrder32Host.rawValue |",
+            "    CGBitmapInfo.floatComponents.rawValue |",
+            "    CGImageAlphaInfo.none.rawValue)",
+            "",
+            "var format = vImage_CGImageFormat(bitsPerComponent: 32,",
+            "                                  bitsPerPixel: 32,",
+            "                                  colorSpace: CGColorSpaceCreateDeviceGray(),",
+            "                                  bitmapInfo: bitmapInfo)!"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this case, the initializer uses the Rec. 601 luma coefficients to convert the RGB pixel values (",
+              "type": "text"
+            },
+            {
+              "code": "115, 136, 165",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") to a single grayscale pixel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let buf = try vImage.PixelBuffer(cgImage: cgImage,",
+            "                                 cgImageFormat: &format,",
+            "                                 pixelFormat: vImage.PlanarF.self)",
+            "",
+            "// Prints:",
+            "// \"[133, 133]\"  // (0.299 * 115 + 0.587 * 136 + 0.114 * 165) = 133",
+            "//    Y    Y",
+            "print(buf.array[0 ..< 2 * format.componentCount].map {",
+            "    Pixel_8($0 * 255 )",
+            "})"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As above, pass the 32-bit format to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/makeCGImage(cgImageFormat:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create a single-channel 32-bit-per-channel image with no alpha information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let result = buf.makeCGImage(cgImageFormat: format)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "result",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains a grayscale version of the original image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4265605",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Initialize-a-Core-Graphics-image-format-from-a-Core-Graphics-image",
+          "level": 3,
+          "text": "Initialize a Core Graphics image format from a Core Graphics image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat/init(cgImage:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer creates a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure that describes a Core Graphics image’s properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard var format = vImage_CGImageFormat(cgImage: cgImage) else {",
+            "    NSLog(\"Unable to derive format from image.\")",
+            "    return",
+            "}",
+            "",
+            "print(format.bitsPerComponent)                      // 8",
+            "print(format.componentCount)                        // 4",
+            "print(format.colorSpace.takeRetainedValue().name!)  // kCGColorSpaceDisplayP3",
+            "print (format.bitmapInfo)                           // noneSkipLast"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the image’s inherent channel ordering is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/noneskiplast",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The code below prints the first two pixels and shows that the opaque alpha values (",
+              "type": "text"
+            },
+            {
+              "code": "255",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") are the last two values in each pixel:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let buf = try vImage.PixelBuffer(cgImage: cgImage,",
+            "                                 cgImageFormat: &format,",
+            "                                 pixelFormat: vImage.Interleaved8x4.self)",
+            "",
+            "// Prints:",
+            "// \"[115, 136, 165, 255,  115, 136, 165, 255]\"",
+            "//    R    G    B    A  |  R    G    B    A",
+            "print(buf.array[0 ..< 2 * format.componentCount])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Initialize-a-Core-Graphics-image-format-from-an-image-during-pixel-buffer-initialization",
+          "level": 3,
+          "text": "Initialize a Core Graphics image format from an image during pixel buffer initialization",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can pass an empty ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/init(cgImage:cgImageFormat:pixelFormat:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer to instruct the initializer to populate the format with an image’s properties. In this case, the initializer returns ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the image’s and the pixel buffer’s bit depths aren’t equal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard cgImage.bitsPerComponent == 8,",
+            "      cgImage.bitsPerPixel == 8 * 4 else {",
+            "    fatalError(\"Unsupported `bitsPerComponent` and `bitsPerPixel`.\")",
+            "}",
+            "",
+            "var format = vImage_CGImageFormat()",
+            "",
+            "let buf = try vImage.PixelBuffer(cgImage: cgImage,",
+            "                                 cgImageFormat: &format,",
+            "                                 pixelFormat: vImage.Interleaved8x4.self)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, the mutable format variable contains the image properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "print(format.colorSpace.takeRetainedValue().name!)  // kCGColorSpaceDisplayP3",
+            "print(format.bitmapInfo)                            // noneSkipLast",
+            "",
+            "// Prints:",
+            "// \"[115, 136, 165, 255,  115, 136, 165, 255]\"",
+            "//    R    G    B    A  |  R    G    B    A",
+            "print(buf.array[0 ..< 2 * format.componentCount])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-geometric-transforms-to-images": {
+      "abstract": [
+        {
+          "text": "Reflect, shear, rotate, and scale image buffers using vImage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-geometric-transforms-to-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying geometric transforms to images",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-geometric-transforms-to-images"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest": {
+      "abstract": [
+        {
+          "text": "Limit the effect of vImage operations to rectangular regions of interest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying vImage operations to regions of interest",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-vimage-operations-to-regions-of-interest"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-processing-workflow": {
+      "abstract": [
+        {
+          "text": "Resize an image with vImage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-processing-workflow",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a Basic Image-Processing Workflow",
+      "type": "topic",
+      "url": "/documentation/accelerate/building-a-basic-image-processing-workflow"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-alpha-blending": {
+      "abstract": [
+        {
+          "text": "Combine two images by using alpha blending to create a single output.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-alpha-blending",
+      "kind": "article",
+      "role": "article",
+      "title": "Compositing images with alpha blending",
+      "type": "topic",
+      "url": "/documentation/accelerate/compositing-images-with-alpha-blending"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-vimage-blend-modes": {
+      "abstract": [
+        {
+          "text": "Combine two images by using blend modes to create a single output.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-vimage-blend-modes",
+      "kind": "article",
+      "role": "article",
+      "title": "Compositing images with vImage blend modes",
+      "type": "topic",
+      "url": "/documentation/accelerate/compositing-images-with-vimage-blend-modes"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/creating-a-core-graphics-image-from-a-vimage-buffer": {
+      "abstract": [
+        {
+          "text": "Create displayable representations of vImage buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/creating-a-core-graphics-image-from-a-vimage-buffer",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Core Graphics Image from a vImage Buffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/creating-a-core-graphics-image-from-a-vimage-buffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/creating-and-populating-buffers-from-core-graphics-images": {
+      "abstract": [
+        {
+          "text": "Initialize vImage buffers from Core Graphics images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/creating-and-populating-buffers-from-core-graphics-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating and Populating Buffers from Core Graphics Images",
+      "type": "topic",
+      "url": "/documentation/accelerate/creating-and-populating-buffers-from-core-graphics-images"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance": {
+      "abstract": [
+        {
+          "text": "Improve your app’s performance by converting image buffer formats from interleaved to planar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing image-processing performance",
+      "type": "topic",
+      "url": "/documentation/accelerate/optimizing-image-processing-performance"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved8x4": {
+      "abstract": [
+        {
+          "text": "A four-channel, 8-bit-per-channel interleaved buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Interleaved8x4"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/Interleaved8x4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Interleaved8x4"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.Interleaved8x4",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/interleaved8x4"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer": {
+      "abstract": [
+        {
+          "text": "An image buffer that stores an image’s pixel data, dimensions, bit depth, and number of channels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PixelBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.PixelBuffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/init(cgImage:cgImageFormat:pixelFormat:)": {
+      "abstract": [
+        {
+          "text": "Returns a new pixel buffer initialized from a Core Graphics image.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "InitializableFromCGImage",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "StaticPixelFormat",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "cgImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "cgImageFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_CGImageFormat",
+          "text": "vImage_CGImageFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/init(cgImage:cgImageFormat:pixelFormat:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cgImage:cgImageFormat:pixelFormat:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/init(cgimage:cgimageformat:pixelformat:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/makeCGImage(cgImageFormat:)": {
+      "abstract": [
+        {
+          "text": "Returns a Core Graphics image from the pixel buffer’s contents.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "StaticPixelFormat",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeCGImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "cgImageFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_CGImageFormat",
+          "text": "vImage_CGImageFormat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/makeCGImage(cgImageFormat:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeCGImage(cgImageFormat:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/makecgimage(cgimageformat:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageBuffer_InitWithCGImage(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Initializes a vImage buffer with the contents of a Core Graphics image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageBuffer_InitWithCGImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_CGImageFormat",
+          "text": "vImage_CGImageFormat"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageBuffer_InitWithCGImage(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageBuffer_InitWithCGImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageBuffer_InitWithCGImage(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagebuffer_initwithcgimage(_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageConvolve_ARGB8888(_:_:_:_:_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Convolves an 8-bit-per-channel, 4-channel interleaved image by a 2D kernel and divides the pixel values by a divisor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageConvolve_ARGB8888"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImagePixelCount",
+          "text": "vImagePixelCount"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImagePixelCount",
+          "text": "vImagePixelCount"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int16V",
+          "text": "Int16"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConvolve_ARGB8888(_:_:_:_:_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageConvolve_ARGB8888"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageConvolve_ARGB8888(_:_:_:_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageconvolve_argb8888(_:_:_:_:_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer": {
+      "abstract": [
+        {
+          "text": "An image buffer that stores an image’s pixel data, dimensions, and row stride.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_Buffer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_Buffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_Buffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat": {
+      "abstract": [
+        {
+          "text": "The description of a Core Graphics image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_CGImageFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_CGImageFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_CGImageFormat",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_cgimageformat"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat/init(cgImage:)": {
+      "abstract": [
+        {
+          "text": "Creates a Core Graphics image format of the specified image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "cgImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat/init(cgImage:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cgImage:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_cgimageformat/init(cgimage:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-library": {
+      "abstract": [
+        {
+          "text": "Manipulate large images using the CPU’s vector processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-library"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgimage": {
+      "abstract": [
+        {
+          "text": "A bitmap image or image mask.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImage",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgimage"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/noneskipfirst": {
+      "abstract": [
+        {
+          "text": "There is no alpha channel. If the total size of the pixel is greater than the space required for the number of color components in the color space, the most significant bits are ignored.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "noneSkipFirst"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/noneskipfirst",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImageAlphaInfo.noneSkipFirst",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgimagealphainfo/noneskipfirst"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/noneskiplast": {
+      "abstract": [
+        {
+          "text": "There is no alpha channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "noneSkipLast"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/noneskiplast",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImageAlphaInfo.noneSkipLast",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgimagealphainfo/noneskiplast"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-4265605": {
+      "alt": "A grayscale photograph of a flower.",
+      "identifier": "media-4265605",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ae5f5747dea959308768dc11cf3050ff/media-4265605@2x.png"
+        }
+      ]
+    },
+    "media-4265606": {
+      "alt": "A color photograph of a flower.",
+      "identifier": "media-4265606",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e1dcfd821ae7c4dcc337fc0723d06f84/media-4265606@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Image-Processing-Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/creating-and-populating-buffers-from-core-graphics-images",
+        "doc://com.apple.accelerate/documentation/Accelerate/creating-a-core-graphics-image-from-a-vimage-buffer",
+        "doc://com.apple.accelerate/documentation/Accelerate/building-a-basic-image-processing-workflow",
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-geometric-transforms-to-images",
+        "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-alpha-blending",
+        "doc://com.apple.accelerate/documentation/Accelerate/compositing-images-with-vimage-blend-modes",
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-regions-of-interest",
+        "doc://com.apple.accelerate/documentation/Accelerate/optimizing-image-processing-performance",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library"
+      ],
+      "title": "Image Processing Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgimagealphainfo~1noneskiplast/title",
+          "value": "kCGImageAlphaNoneSkipLast"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvolve_ARGB8888(_:_:_:_:_:_:_:_:_:_:_:)/title",
+          "value": "vImageConvolve_ARGB8888"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvolve_ARGB8888(_:_:_:_:_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConvolve_ARGB8888"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGImageFormat/title",
+          "value": "vImage_CGImageFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGImageFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_CGImageFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGImageFormat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_CGImageFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageBuffer_InitWithCGImage(_:_:_:_:_:)/title",
+          "value": "vImageBuffer_InitWithCGImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageBuffer_InitWithCGImage(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageBuffer_InitWithCGImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer/title",
+          "value": "vImage_Buffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_Buffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_Buffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgimage/title",
+          "value": "CGImageRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1coregraphics~1cgimagealphainfo~1noneskipfirst/title",
+          "value": "kCGImageAlphaNoneSkipFirst"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

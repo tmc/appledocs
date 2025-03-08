@@ -1,0 +1,1679 @@
+{
+  "abstract": [
+    {
+      "text": "Enable people to open and manage documents.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Documents"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Documents"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a user interface for opening and editing documents using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " scene type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "documents-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You initialize the scene with a model that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "describes the organization of the document’s data, and a view hierarchy that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftUI uses to display the document’s contents to the user. You can use either",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a value type model, which you typically store as a structure, that conforms to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, or a reference type model you store in a class",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance that conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. You can also",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use SwiftData-backed documents using an initializer like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroup/init(editing:contentType:editor:prepareDocument:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftUI supports standard behaviors that users expect from a document-based",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app, appropriate for each platform, like multiwindow support, open and save",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "panels, drag and drop, and so on. For related design guidance, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/patterns",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the Human Interface Guidelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Building-a-document-based-app-PageImage-card.png": {
+      "alt": "A screenshot displaying the document launch experience on iPad with a robot and plant accessory to the left and right of the title view, respectively.",
+      "identifier": "Building-a-document-based-app-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e143ff39a1e48efe1ed0000f6e902a5b/Building-a-document-based-app-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6d0365b065cbf4963413da8042cfecf9/Building-a-document-based-app-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/App-extensions": {
+      "abstract": [
+        {
+          "text": "Extend your app’s basic functionality to other parts of the system, like",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "by adding a Widget.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App extensions",
+      "type": "topic",
+      "url": "/documentation/swiftui/app-extensions"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/App-organization": {
+      "abstract": [
+        {
+          "text": "Define the entry point and top-level structure of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App-organization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App organization",
+      "type": "topic",
+      "url": "/documentation/swiftui/app-organization"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-a-document-based-app-using-SwiftData": {
+      "abstract": [
+        {
+          "text": "Code along with the WWDC presenter to transform an app with SwiftData.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-a-document-based-app-using-SwiftData",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a document-based app using SwiftData",
+      "type": "topic",
+      "url": "/documentation/swiftui/building-a-document-based-app-using-swiftdata"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-a-document-based-app-with-SwiftUI": {
+      "abstract": [
+        {
+          "text": "Create, save, and open documents in a multiplatform app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-a-document-based-app-with-SwiftUI",
+      "images": [
+        {
+          "identifier": "Building-a-document-based-app-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a document-based app with SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui/building-a-document-based-app-with-swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DefaultDocumentGroupLaunchActions": {
+      "abstract": [
+        {
+          "text": "The default actions for the document group launch scene and the document launch view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DefaultDocumentGroupLaunchActions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DefaultDocumentGroupLaunchActions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DefaultDocumentGroupLaunchActions"
+        }
+      ],
+      "role": "symbol",
+      "title": "DefaultDocumentGroupLaunchActions",
+      "type": "topic",
+      "url": "/documentation/swiftui/defaultdocumentgrouplaunchactions"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentBaseBox": {
+      "abstract": [
+        {
+          "text": "A Box that allows setting its Document base",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "not requiring the caller to know the exact types of the box and its base.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DocumentBaseBox"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentBaseBox",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DocumentBaseBox"
+        }
+      ],
+      "role": "symbol",
+      "title": "DocumentBaseBox",
+      "type": "topic",
+      "url": "/documentation/swiftui/documentbasebox"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentConfiguration": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DocumentConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DocumentConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "DocumentConfiguration",
+      "type": "topic",
+      "url": "/documentation/swiftui/documentconfiguration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroup": {
+      "abstract": [
+        {
+          "text": "A scene that enables support for opening, creating, and saving documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DocumentGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DocumentGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "DocumentGroup",
+      "type": "topic",
+      "url": "/documentation/swiftui/documentgroup"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroup/init(editing:contentType:editor:prepareDocument:)": {
+      "abstract": [
+        {
+          "text": "Instantiates a document group for creating and editing",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "documents that store a specific model type.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Document",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "ModelDocument",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Content",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "View",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "editing"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "contentType"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "editor"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "prepareDocument"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroup/init(editing:contentType:editor:prepareDocument:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "editing"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "contentType"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "editor"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "prepareDocument"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(editing:contentType:editor:prepareDocument:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/documentgroup/init(editing:contenttype:editor:preparedocument:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroupLaunchScene": {
+      "abstract": [
+        {
+          "text": "A launch scene for document-based applications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DocumentGroupLaunchScene"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroupLaunchScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DocumentGroupLaunchScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "DocumentGroupLaunchScene",
+      "type": "topic",
+      "url": "/documentation/swiftui/documentgrouplaunchscene"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentLaunchGeometryProxy": {
+      "abstract": [
+        {
+          "text": "A proxy for access to the frame of the scene and its title view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DocumentLaunchGeometryProxy"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentLaunchGeometryProxy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DocumentLaunchGeometryProxy"
+        }
+      ],
+      "role": "symbol",
+      "title": "DocumentLaunchGeometryProxy",
+      "type": "topic",
+      "url": "/documentation/swiftui/documentlaunchgeometryproxy"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentLaunchView": {
+      "abstract": [
+        {
+          "text": "A view to present when launching document-related user experience.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DocumentLaunchView"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentLaunchView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DocumentLaunchView"
+        }
+      ],
+      "role": "symbol",
+      "title": "DocumentLaunchView",
+      "type": "topic",
+      "url": "/documentation/swiftui/documentlaunchview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/documentConfiguration": {
+      "abstract": [
+        {
+          "text": "The configuration of a document in a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroup",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "documentConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21DocumentConfigurationV",
+          "text": "DocumentConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/documentConfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "documentConfiguration",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/documentconfiguration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/newDocument": {
+      "abstract": [
+        {
+          "text": "An action in the environment that presents a new document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "newDocument"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17NewDocumentActionV",
+          "text": "NewDocumentAction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/newDocument",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "newDocument",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/newdocument"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/openDocument": {
+      "abstract": [
+        {
+          "text": "An action in the environment that presents an existing document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openDocument"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI18OpenDocumentActionV",
+          "text": "OpenDocumentAction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/openDocument",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "openDocument",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/opendocument"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/rename": {
+      "abstract": [
+        {
+          "text": "An action that activates the standard rename interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rename"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI12RenameActionV",
+          "text": "RenameAction"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/rename",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rename",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/rename"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/undoManager": {
+      "abstract": [
+        {
+          "text": "The undo manager used to register a view’s undo operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "undoManager"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUndoManager",
+          "text": "UndoManager"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/undoManager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "undoManager",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/undomanager"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocument": {
+      "abstract": [
+        {
+          "text": "A type that you use to serialize documents to and from file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FileDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "FileDocument",
+      "type": "topic",
+      "url": "/documentation/swiftui/filedocument"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocumentConfiguration": {
+      "abstract": [
+        {
+          "text": "The properties of an open file document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileDocumentConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocumentConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FileDocumentConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "FileDocumentConfiguration",
+      "type": "topic",
+      "url": "/documentation/swiftui/filedocumentconfiguration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocumentReadConfiguration": {
+      "abstract": [
+        {
+          "text": "The configuration for reading file contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileDocumentReadConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocumentReadConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FileDocumentReadConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "FileDocumentReadConfiguration",
+      "type": "topic",
+      "url": "/documentation/swiftui/filedocumentreadconfiguration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocumentWriteConfiguration": {
+      "abstract": [
+        {
+          "text": "The configuration for serializing file contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileDocumentWriteConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocumentWriteConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FileDocumentWriteConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "FileDocumentWriteConfiguration",
+      "type": "topic",
+      "url": "/documentation/swiftui/filedocumentwriteconfiguration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Immersive-spaces": {
+      "abstract": [
+        {
+          "text": "Display unbounded content in a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Immersive-spaces",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Immersive spaces",
+      "type": "topic",
+      "url": "/documentation/swiftui/immersive-spaces"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Modal-presentations": {
+      "abstract": [
+        {
+          "text": "Present content in a separate view that offers focused interaction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Modal-presentations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Modal presentations",
+      "type": "topic",
+      "url": "/documentation/swiftui/modal-presentations"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Navigation": {
+      "abstract": [
+        {
+          "text": "Enable people to move between different parts of your app’s view hierarchy",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "within a scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Navigation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Navigation",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigation"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NewDocumentAction": {
+      "abstract": [
+        {
+          "text": "An action that presents a new document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NewDocumentAction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NewDocumentAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NewDocumentAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "NewDocumentAction",
+      "type": "topic",
+      "url": "/documentation/swiftui/newdocumentaction"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NewDocumentButton": {
+      "abstract": [
+        {
+          "text": "A button that creates and opens new documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NewDocumentButton"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NewDocumentButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NewDocumentButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "NewDocumentButton",
+      "type": "topic",
+      "url": "/documentation/swiftui/newdocumentbutton"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/OpenDocumentAction": {
+      "abstract": [
+        {
+          "text": "An action that presents an existing document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OpenDocumentAction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/OpenDocumentAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OpenDocumentAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "OpenDocumentAction",
+      "type": "topic",
+      "url": "/documentation/swiftui/opendocumentaction"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument": {
+      "abstract": [
+        {
+          "text": "A type that you use to serialize reference type documents to and from file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReferenceFileDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ReferenceFileDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "ReferenceFileDocument",
+      "type": "topic",
+      "url": "/documentation/swiftui/referencefiledocument"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocumentConfiguration": {
+      "abstract": [
+        {
+          "text": "The properties of an open reference file document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReferenceFileDocumentConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocumentConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ReferenceFileDocumentConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ReferenceFileDocumentConfiguration",
+      "type": "topic",
+      "url": "/documentation/swiftui/referencefiledocumentconfiguration"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/RenameAction": {
+      "abstract": [
+        {
+          "text": "An action that activates a standard rename interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RenameAction"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/RenameAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RenameAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "RenameAction",
+      "type": "topic",
+      "url": "/documentation/swiftui/renameaction"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/RenameButton": {
+      "abstract": [
+        {
+          "text": "A button that triggers a standard rename action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RenameButton"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/RenameButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RenameButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "RenameButton",
+      "type": "topic",
+      "url": "/documentation/swiftui/renamebutton"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scenes": {
+      "abstract": [
+        {
+          "text": "Declare the user interface groupings that make up the parts of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scenes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scenes",
+      "type": "topic",
+      "url": "/documentation/swiftui/scenes"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Search": {
+      "abstract": [
+        {
+          "text": "Enable people to search for text or other content within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Search",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Search",
+      "type": "topic",
+      "url": "/documentation/swiftui/search"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Toolbars": {
+      "abstract": [
+        {
+          "text": "Provide immediate access to frequently used commands and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Toolbars",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Toolbars",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbars"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/renameAction(_:)": {
+      "abstract": [
+        {
+          "text": "Sets a closure to run for the rename action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renameAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/renameAction(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "renameAction(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/renameaction(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Windows": {
+      "abstract": [
+        {
+          "text": "Display user interface content in a window or a collection of windows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Windows",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Windows",
+      "type": "topic",
+      "url": "/documentation/swiftui/windows"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/patterns": {
+      "abstract": [
+        {
+          "text": "Get design guidance for supporting common user actions, tasks, and experiences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/patterns",
+      "images": [
+        {
+          "identifier": "overview.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "patterns.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Patterns",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/patterns"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "documents-hero": {
+      "alt": null,
+      "identifier": "documents-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9f0133f6a85bd81cbf87453f28384847/documents-hero@2x.png"
+        }
+      ]
+    },
+    "overview.svg": {
+      "alt": null,
+      "identifier": "overview.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "overview",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c9d2e563aa23997588edd7b4538f6c5b/overview.svg"
+        }
+      ]
+    },
+    "patterns.png": {
+      "alt": null,
+      "identifier": "patterns.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b525eb2035d429584eda26fb7ca2b3f3/patterns~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/eb615612701e37890e4e41bb22074b49/patterns@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-structure",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/App-organization",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scenes",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Windows",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Immersive-spaces",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Navigation",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Modal-presentations",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Toolbars",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Search",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/App-extensions"
+      ],
+      "title": "App structure"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-document",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-a-document-based-app-with-SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-a-document-based-app-using-SwiftData",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroup"
+      ],
+      "title": "Creating a document"
+    },
+    {
+      "anchor": "Storing-document-data-in-a-structure-instance",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocument",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocumentConfiguration"
+      ],
+      "title": "Storing document data in a structure instance"
+    },
+    {
+      "anchor": "Storing-document-data-in-a-class-instance",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocument",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ReferenceFileDocumentConfiguration",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/undoManager"
+      ],
+      "title": "Storing document data in a class instance"
+    },
+    {
+      "anchor": "Accessing-document-configuration",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/documentConfiguration",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentConfiguration"
+      ],
+      "title": "Accessing document configuration"
+    },
+    {
+      "anchor": "Reading-and-writing-documents",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocumentReadConfiguration",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/FileDocumentWriteConfiguration"
+      ],
+      "title": "Reading and writing documents"
+    },
+    {
+      "anchor": "Opening-a-document-programmatically",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/newDocument",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NewDocumentAction",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/openDocument",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/OpenDocumentAction"
+      ],
+      "title": "Opening a document programmatically"
+    },
+    {
+      "anchor": "Configuring-the-document-launch-experience",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentGroupLaunchScene",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentLaunchView",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentLaunchGeometryProxy",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DefaultDocumentGroupLaunchActions",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NewDocumentButton",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/DocumentBaseBox"
+      ],
+      "title": "Configuring the document launch experience"
+    },
+    {
+      "anchor": "Renaming-a-document",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/RenameButton",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/renameAction(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/rename",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/RenameAction"
+      ],
+      "title": "Renaming a document"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/documents"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

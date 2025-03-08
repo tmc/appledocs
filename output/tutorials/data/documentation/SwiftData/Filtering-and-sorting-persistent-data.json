@@ -1,0 +1,1497 @@
+{
+  "abstract": [
+    {
+      "text": "Manage data store presentation using predicates and dynamic queries.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftData/documentation/SwiftData"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftData/documentation/SwiftData/Filtering-and-sorting-persistent-data"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftData"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Filtering and sorting persistent data"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app displays a list of earthquakes,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "showing the time, location, and size of each earthquake. To help people",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "visualize the list, the app also pinpoints each earthquake on a map.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can select an earthquake in the list to highlight it on the map.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app uses SwiftData to store and manage the earthquake data, and relies",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on dynamic queries to present the data in different ways. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "people can select which day’s earthquakes to display, sort the earthquakes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by magnitude or time in forward or reverse order, and filter by location",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Filtering-and-sorting-persistent-data-1",
+                      "metadata": {
+                        "deviceFrame": "iPhone14Pro"
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Filtering-and-sorting-persistent-data-2",
+                      "metadata": {
+                        "deviceFrame": "iPhone14Pro"
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Filtering-and-sorting-persistent-data-3",
+                      "metadata": {
+                        "deviceFrame": "iPhone14Pro"
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 3,
+          "type": "row"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To learn how the app retrieves and stores earthquake data,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Maintaining-a-local-copy-of-server-data",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Read-the-entire-collection-with-a-simple-query",
+          "level": 3,
+          "text": "Read the entire collection with a simple query",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app’s ",
+              "type": "text"
+            },
+            {
+              "code": "ContentView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fetches a complete list of earthquakes by applying",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Query",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro to its ",
+              "type": "text"
+            },
+            {
+              "code": "quakes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Query private var quakes: [Quake]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The query macro injects code that keeps the array of earthquake instances",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "synchronized with items in the data store. The view uses this list of earthquakes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to configure the navigation bar based on the selected earthquake.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, it sets the title and subtitle in macOS:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            ".navigationTitle(quakes[selectedId]?.location.name ?? \"Earthquakes\")",
+            ".navigationSubtitle(quakes[selectedId]?.fullDate ?? \"\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The above code relies on a subscript method that the app defines",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in an extension of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Array",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension Array where Element: Quake {",
+            "    subscript(id: Quake.ID?) -> Quake? {",
+            "        first { $0.id == id }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The subscript definition relies on the fact that model objects",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "— types attributed with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Model()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " macro, like ",
+              "type": "text"
+            },
+            {
+              "code": "Quake",
+              "type": "codeVoice"
+            },
+            {
+              "text": " — automatically",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Identifiable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol, which means that each earthquake instance has a unique ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When someone selects an earthquake in the list or map view, the app sets ",
+              "type": "text"
+            },
+            {
+              "code": "selectedId",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the selected earthquake’s identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-sort-parameter-to-order-data",
+          "level": 3,
+          "text": "Add a sort parameter to order data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The map view draws circles to represent quakes at particular locations,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using a size for the circle that corresponds to the earthquake’s magnitude.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To keep the circles visible when several overlap, ",
+              "type": "text"
+            },
+            {
+              "code": "MapView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " sorts",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "its query by magnitude so that the map draws larger circles behind",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "smaller ones.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Filtering-and-sorting-persistent-data-4",
+              "metadata": {
+                "deviceFrame": "iPhone14Pro"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It introduces the sorting by adding parameters to the query macro:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Query(sort: \\Quake.magnitude, order: .reverse)",
+            "private var quakes: [Quake]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The output of this query drives the generation of the map content",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "builder’s ",
+              "type": "text"
+            },
+            {
+              "code": "QuakeMarker",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instances, and always appears in the desired",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Map(selection: $selectedIdMap) {",
+            "    ForEach(quakes) { quake in",
+            "        QuakeMarker(",
+            "            quake: quake,",
+            "            selected: quake.id == selectedId)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The app binds ",
+                  "type": "text"
+                },
+                {
+                  "code": "selectedIdMap",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to the map’s selection input and manually",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "synchronizes this with the main ",
+                  "type": "text"
+                },
+                {
+                  "code": "selectedId",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " value that’s used elsewhere in",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "code. Keeping separate selection values enables the app to detect changes",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "driven from the map and then scroll the list to match.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Define-a-filter-using-a-predicate",
+          "level": 3,
+          "text": "Define a filter using a predicate",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure that the app’s interface remains approachable, the app limits",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "how many earthquakes it displays based on:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "A date",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " — To avoid overwhelming the map with too many markers,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the app displays only one day’s worth of earthquakes at a time.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "People can choose which day to view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "A location name",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " — To enable people to focus on specific earthquakes,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "people can enter text in a search field that the app matches against",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "earthquake location names.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To implement this filtering, the app defines a static method that returns a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/predicate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that takes into account both a search date and search text:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static func predicate(",
+            "    searchText: String,",
+            "    searchDate: Date",
+            ") -> Predicate<Quake> {",
+            "    let calendar = Calendar.autoupdatingCurrent",
+            "    let start = calendar.startOfDay(for: searchDate)",
+            "    let end = calendar.date(byAdding: .init(day: 1), to: start) ?? start",
+            "",
+            "    return #Predicate<Quake> { quake in",
+            "        (searchText.isEmpty || quake.location.name.contains(searchText))",
+            "        &&",
+            "        (quake.time > start && quake.time < end)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app applies this predicate to the queries it creates dynamically, as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the next section describes. By defining the predicate once in a central",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "location, queries in multiple views can use it. This makes it easy to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "synchronize related views, like the list and map views, when the views",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "have distinct queries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-a-query-dynamically",
+          "level": 3,
+          "text": "Update a query dynamically",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When someone selects a new date or changes the search text, the app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "needs to update the query to match. The map view achieves this by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "providing an initializer with ",
+              "type": "text"
+            },
+            {
+              "code": "searchDate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "searchText",
+              "type": "codeVoice"
+            },
+            {
+              "text": " inputs,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and rebuilding the stored query using those values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "init(",
+            "    selectedId: Binding<Quake.ID?>,",
+            "    selectedIdMap: Binding<Quake.ID?>,",
+            "    searchDate: Date = .now,",
+            "    searchText: String = \"\"",
+            ") {",
+            "    _selectedId = selectedId",
+            "    _selectedIdMap = selectedIdMap",
+            "",
+            "    _quakes = Query(",
+            "        filter: Quake.predicate(",
+            "            searchText: searchText,",
+            "            searchDate: searchDate),",
+            "        sort: \\.magnitude,",
+            "        order: .reverse",
+            "    )",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because these values are inputs to the view’s initializer, SwiftUI reevaluates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the initializer to produce a new query whenever either value changes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This in turn updates the appearance of the view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The earthquake list view does something similar, although in this case it takes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sort configuration inputs as well:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "init(",
+            "    selectedId: Binding<Quake.ID?>,",
+            "    selectedIdMap: Binding<Quake.ID?>,",
+            "    ",
+            "    searchText: String = \"\",",
+            "    searchDate: Date = .now,",
+            "    sortParameter: SortParameter = .time,",
+            "    sortOrder: SortOrder = .reverse",
+            ") {",
+            "    _selectedId = selectedId",
+            "    _selectedIdMap = selectedIdMap",
+            "",
+            "    let predicate = Quake.predicate(searchText: searchText, searchDate: searchDate)",
+            "    switch sortParameter {",
+            "    case .time: _quakes = Query(filter: predicate, sort: \\.time, order: sortOrder)",
+            "    case .magnitude: _quakes = Query(filter: predicate, sort: \\.magnitude, order: sortOrder)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These two initializers have different sorting constraints to match the needs",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of their respective appearances, but they use the same predicate to ensure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that the set of quakes that appears in the list always matches the set that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "appears on the map.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "5e964e0daa88/SwiftDataLocalDataCacheSample.zip": {
+      "checksum": "5e964e0daa88c63ff8144b9ef4653fc104b8abf076637bb66e87ab8711cad2daab9423cbde2a62f576c096dafddb674c23b164a198205f20741444d18b407dd0",
+      "identifier": "5e964e0daa88/SwiftDataLocalDataCacheSample.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/5e964e0daa88/SwiftDataLocalDataCacheSample.zip"
+    },
+    "Filtering-and-sorting-persistent-data-1": {
+      "alt": "A screenshot of the sample app running on an iPhone 14 Pro. The app's list view shows a list of earthquakes. Text in the bottom toolbar on the left indicates that there are 145 earthquakes in the list out of 9,738 total stored earthquakes. A date picker in the bottom toolbar on the right is activate and displays a calendar for selecting a date. The date August 21, 2023 is currently highlighted in the date picker's calendar. The top toolbar has a sort button and a trash button.",
+      "identifier": "Filtering-and-sorting-persistent-data-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0b52d2772645d45035621de11df2e387/Filtering-and-sorting-persistent-data-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d260df336f96241a6c6f2b02dd4dcc57/Filtering-and-sorting-persistent-data-1~dark@2x.png"
+        }
+      ]
+    },
+    "Filtering-and-sorting-persistent-data-2": {
+      "alt": "A screenshot of the sample app running on an iPhone 14 Pro. The app's list view shows a list of earthquakes. Text in the bottom toolbar on the left indicates that there are 145 earthquakes in the list out of 9,738 total stored earthquakes. A date picker in the bottom toolbar on the right is inactivate and displays the date August 21, 2023. A sort button in the top toolbar on the right is selected and displays a popover with the items Forward, Reverse, Time, and Magnitude. The items Reverse and Time both have a checkmark. The top toolbar also has a trash button.",
+      "identifier": "Filtering-and-sorting-persistent-data-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2a6c4e748fb2209640b9da88793898b0/Filtering-and-sorting-persistent-data-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e365cacf3132a5feec9c323811fa868c/Filtering-and-sorting-persistent-data-2~dark@2x.png"
+        }
+      ]
+    },
+    "Filtering-and-sorting-persistent-data-3": {
+      "alt": "A screenshot of the sample app running on an iPhone 14 Pro. The app's list view shows a list of 3 earthquakes. Text in the bottom toolbar on the left indicates that there are three earthquakes in the list out of 9,738 total stored earthquakes. A date picker in the bottom toolbar on the right is inactivate and displays the date August 21, 2023. A search field appears at the top of the display and contains the text Nevada. All of the items visible in the list have the text Nevada in their location names.",
+      "identifier": "Filtering-and-sorting-persistent-data-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4fc3986c9459e39aa5ac0d470c4fcef7/Filtering-and-sorting-persistent-data-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2c8e8b3496cd4b19dc53946dc4e6eb95/Filtering-and-sorting-persistent-data-3~dark@2x.png"
+        }
+      ]
+    },
+    "Filtering-and-sorting-persistent-data-4": {
+      "alt": "A screenshot of the sample app running on an iPhone 14 Pro.",
+      "identifier": "Filtering-and-sorting-persistent-data-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d4aefb890b159499d09e002f8d7d794b/Filtering-and-sorting-persistent-data-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c70f6d4a4c3d391765ceb705d3f94d7b/Filtering-and-sorting-persistent-data-4~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData": {
+      "abstract": [
+        {
+          "text": "Write your model code declaratively to add managed persistence and efficient",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "model fetching.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData",
+      "images": [
+        {
+          "identifier": "swiftData-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftData",
+      "type": "topic",
+      "url": "/documentation/swiftdata"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/AdditionalQueryMacros": {
+      "abstract": [
+        {
+          "text": "Supplementary macros that enable you to narrow query results and tell SwiftData",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "how to sort and order those results.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/AdditionalQueryMacros",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Additional query macros",
+      "type": "topic",
+      "url": "/documentation/swiftdata/additionalquerymacros"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor": {
+      "abstract": [
+        {
+          "text": "A type that describes the criteria, sort order, and any additional",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "configuration to use when performing a fetch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FetchDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FetchDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "FetchDescriptor",
+      "type": "topic",
+      "url": "/documentation/swiftdata/fetchdescriptor"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Maintaining-a-local-copy-of-server-data": {
+      "abstract": [
+        {
+          "text": "Create and update a persistent store to cache read-only network data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Maintaining-a-local-copy-of-server-data",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Maintaining a local copy of server data",
+      "type": "topic",
+      "url": "/documentation/swiftdata/maintaining-a-local-copy-of-server-data"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Model()": {
+      "abstract": [
+        {
+          "text": "Converts a Swift class into a stored model that’s managed by SwiftData.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Model"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Model()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Model()",
+      "type": "topic",
+      "url": "/documentation/swiftdata/model()"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Query": {
+      "abstract": [
+        {
+          "text": "A type that fetches models using the specified criteria, and manages those",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "models so they remain in sync with the underlying data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Query"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Query",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Query"
+        }
+      ],
+      "role": "symbol",
+      "title": "Query",
+      "type": "topic",
+      "url": "/documentation/swiftdata/query"
+    },
+    "doc://com.apple.SwiftData/documentation/SwiftData/Query()": {
+      "abstract": [
+        {
+          "text": "Fetches all instances of the attached model type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Query"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftData/documentation/SwiftData/Query()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Query()",
+      "type": "topic",
+      "url": "/documentation/swiftdata/query()"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Array": {
+      "abstract": [
+        {
+          "text": "An ordered, random-access collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Array"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Array",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Array",
+      "type": "topic",
+      "url": "/documentation/Swift/Array"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Identifiable": {
+      "abstract": [
+        {
+          "text": "A class of types whose instances hold the value of an entity with stable identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Identifiable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Identifiable",
+      "type": "topic",
+      "url": "/documentation/Swift/Identifiable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicate": {
+      "abstract": [
+        {
+          "text": "A logical condition used to test a set of input values for searching or filtering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Predicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Predicate",
+      "type": "topic",
+      "url": "/documentation/foundation/predicate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "swiftData-PageImage-card.png": {
+      "alt": "A gray and white Swift logo on a swirly blue background.",
+      "identifier": "swiftData-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8f347b5f4b93bb57bf95423987e9a6c9/swiftData-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f0a5e8a43bc94c93e07c48dc59f884ed/swiftData-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "5e964e0daa88/SwiftDataLocalDataCacheSample.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Model-fetch",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftData/documentation/SwiftData/Query()",
+        "doc://com.apple.SwiftData/documentation/SwiftData/AdditionalQueryMacros",
+        "doc://com.apple.SwiftData/documentation/SwiftData/Query",
+        "doc://com.apple.SwiftData/documentation/SwiftData/FetchDescriptor"
+      ],
+      "title": "Model fetch"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftdata/filtering-and-sorting-persistent-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

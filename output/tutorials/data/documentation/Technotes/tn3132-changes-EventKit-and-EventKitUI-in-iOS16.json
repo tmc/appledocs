@@ -1,0 +1,2675 @@
+{
+  "abstract": [
+    {
+      "text": "Test your apps against EventKit and EventKitUI API changes in iOS 16.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.technotes/documentation/Technotes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.technotes/documentation/Technotes/tn3132-changes-EventKit-and-EventKitUI-in-iOS16"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "TN3132: Changes to EventKit and EventKitUI in iOS 16"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The iOS 16 SDK introduces some changes to the EventKit and EventKitUI frameworks.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This document highlights some of the major changes. To learn about related changes in macOS Ventura 13, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3130-changes-to-eventKit-in-macOS13-ventura",
+              "isActive": true,
+              "overridingTitle": "TN3130: Changes to EventKit in macOS Ventura 13",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "TN3130: Changes to EventKit in macOS Ventura 13",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For apps running on systems prior to iOS 16, built with Xcode 13 or earlier and linked against older versions of the iOS",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SDK, the legacy behavior remains in place when using these frameworks. When you run your app on iOS 16, and have",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "built it with Xcode 14 and linked against the iOS 16 SDK, you may see behavior",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that you are unfamiliar with when using EventKit or EventKitUI. To identify these",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "changes in behavior, thoroughly test your app on each major OS version it supports",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on real hardware. Confirm that your implementation of EventKit or EventKitUI behaves as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you expect in each OS version and update your code where needed.",
+              "type": "text"
+            },
+            {
+              "text": "\n",
+              "type": "text"
+            },
+            {
+              "text": "If you notice an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "unexpected behavior in EventKit, report it using ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/bug-reporting/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "EKCalendarChooser",
+          "level": 2,
+          "text": "EKCalendarChooser",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKitUI/EKCalendarChooser/selectedCalendars",
+              "isActive": true,
+              "overridingTitle": "selectedCalendars",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "selectedCalendars",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property of a calendar chooser view controller no longer calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKitUI/EKCalendarChooserDelegate/calendarChooserSelectionDidChange(_:)",
+              "isActive": true,
+              "overridingTitle": "calendarChooserSelectionDidChange(_:)",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "calendarChooserSelectionDidChange(_:)",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " delegate method. ",
+              "type": "text"
+            },
+            {
+              "code": "calendarChooserSelectionDidChange(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is only called when the user selects a calendar in the view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "EKEventStore",
+          "level": 2,
+          "text": "EKEventStore",
+          "type": "heading"
+        },
+        {
+          "anchor": "Committing-changes",
+          "level": 3,
+          "text": "Committing changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKit/EKEventStore/saveCalendar(_:commit:)",
+              "isActive": true,
+              "overridingTitle": "saveCalendar(_:commit:)",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "saveCalendar(_:commit:)",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKit/EKEventStore/removeCalendar(_:commit:)",
+              "isActive": true,
+              "overridingTitle": "removeCalendar(_:commit:)",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "removeCalendar(_:commit:)",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKit/EKEventStore/save(_:span:commit:)",
+              "isActive": true,
+              "overridingTitle": "save(_:span:commit:)",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "save(_:span:commit:)",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKit/EKEventStore/remove(_:span:commit:)",
+              "isActive": true,
+              "overridingTitle": "remove(_:span:commit:)",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "remove(_:span:commit:)",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKit/EKEventStore/save(_:commit:)",
+              "isActive": true,
+              "overridingTitle": "save(_:commit:)",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "save(_:commit:)",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKit/EKEventStore/remove(_:commit:)",
+              "isActive": true,
+              "overridingTitle": "remove(_:commit:)",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "remove(_:commit:)",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " methods with the ",
+              "type": "text"
+            },
+            {
+              "code": "commit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter set to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKit/EKEventStore",
+              "isActive": true,
+              "overridingTitle": "EKEventStore",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "EKEventStore",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " attempts to immediatedly save and commit your changes to the event store. If the commit fails,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "EKEventStore",
+              "type": "codeVoice"
+            },
+            {
+              "text": " automatically rolls back all changes that have been saved but aren’t yet committed to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the event store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the legacy behavior, objects remain saved but uncommitted in the event store when the commit failed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Fetching-events",
+          "level": 3,
+          "text": "Fetching events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKit/EKEventStore/events(matching:)",
+              "isActive": true,
+              "overridingTitle": "events(matching:)",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "events(matching:)",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKit/EKEventStore/enumerateEvents(matching:using:)",
+              "isActive": true,
+              "overridingTitle": "enumerateEvents(matching:using:)",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "enumerateEvents(matching:using:)",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " now return events that have been saved but weren’t yet committed to the event store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the legacy behavior, ",
+              "type": "text"
+            },
+            {
+              "code": "events(matching:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "enumerateEvents(matching:using:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " only return events that have been saved and committed to the event store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Recurring-events",
+          "level": 3,
+          "text": "Recurring events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you are saving a detached occurrence of a recurring event, and you specify ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKit/EKSpan/futureEvents",
+              "isActive": true,
+              "overridingTitle": "futureEvents",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "futureEvents",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " for the ",
+              "type": "text"
+            },
+            {
+              "code": "span",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKit/EKEventStore/save(_:span:commit:)",
+              "isActive": true,
+              "overridingTitle": "save(_:span:commit:)",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "save(_:span:commit:)",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method, your changes apply to all future occurrences of the event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the legacy behavior, your changes only apply to this instance of the recurring event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Revision-History",
+          "level": 2,
+          "text": "Revision History",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2022-08-16",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " First published.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/EventKit/EKEventStore": {
+      "abstract": [
+        {
+          "text": "An object that accesses a person’s calendar events and reminders and supports the scheduling of new events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EKEventStore"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKit/EKEventStore",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EKEventStore",
+      "type": "topic",
+      "url": "/documentation/EventKit/EKEventStore"
+    },
+    "doc://com.apple.documentation/documentation/EventKit/EKEventStore/enumerateEvents(matching:using:)": {
+      "abstract": [
+        {
+          "text": "Finds all events that match a given predicate and calls a given callback for each event found.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateEvents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "matching"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "predicate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "block"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@EKEventSearchCallback",
+          "text": "EKEventSearchCallback"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKit/EKEventStore/enumerateEvents(matching:using:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enumerateEvents(matching:using:)",
+      "type": "topic",
+      "url": "/documentation/EventKit/EKEventStore/enumerateEvents(matching:using:)"
+    },
+    "doc://com.apple.documentation/documentation/EventKit/EKEventStore/events(matching:)": {
+      "abstract": [
+        {
+          "text": "Finds all events that match a given predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "events"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "matching"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "predicate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EKEvent",
+          "text": "EKEvent"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKit/EKEventStore/events(matching:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "events(matching:)",
+      "type": "topic",
+      "url": "/documentation/EventKit/EKEventStore/events(matching:)"
+    },
+    "doc://com.apple.documentation/documentation/EventKit/EKEventStore/remove(_:commit:)": {
+      "abstract": [
+        {
+          "text": "Removes a reminder from the event store by either committing or batching the changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "reminder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EKReminder",
+          "text": "EKReminder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "commit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKit/EKEventStore/remove(_:commit:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remove(_:commit:)",
+      "type": "topic",
+      "url": "/documentation/EventKit/EKEventStore/remove(_:commit:)"
+    },
+    "doc://com.apple.documentation/documentation/EventKit/EKEventStore/remove(_:span:commit:)": {
+      "abstract": [
+        {
+          "text": "Removes an event or recurring events from the event store by either committing or batching the changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "event"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EKEvent",
+          "text": "EKEvent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "span"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@EKSpan",
+          "text": "EKSpan"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "commit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKit/EKEventStore/remove(_:span:commit:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remove(_:span:commit:)",
+      "type": "topic",
+      "url": "/documentation/EventKit/EKEventStore/remove(_:span:commit:)"
+    },
+    "doc://com.apple.documentation/documentation/EventKit/EKEventStore/removeCalendar(_:commit:)": {
+      "abstract": [
+        {
+          "text": "Removes a calendar from the event store by either committing or batching the changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeCalendar"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "calendar"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EKCalendar",
+          "text": "EKCalendar"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "commit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKit/EKEventStore/removeCalendar(_:commit:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeCalendar(_:commit:)",
+      "type": "topic",
+      "url": "/documentation/EventKit/EKEventStore/removeCalendar(_:commit:)"
+    },
+    "doc://com.apple.documentation/documentation/EventKit/EKEventStore/save(_:commit:)": {
+      "abstract": [
+        {
+          "text": "Saves changes to a reminder by either committing or batching the changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "save"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "reminder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EKReminder",
+          "text": "EKReminder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "commit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKit/EKEventStore/save(_:commit:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "save(_:commit:)",
+      "type": "topic",
+      "url": "/documentation/EventKit/EKEventStore/save(_:commit:)"
+    },
+    "doc://com.apple.documentation/documentation/EventKit/EKEventStore/save(_:span:commit:)": {
+      "abstract": [
+        {
+          "text": "Saves an event or recurring events to the event store by either committing or batching the changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "save"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "event"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EKEvent",
+          "text": "EKEvent"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "span"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@EKSpan",
+          "text": "EKSpan"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "commit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKit/EKEventStore/save(_:span:commit:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "save(_:span:commit:)",
+      "type": "topic",
+      "url": "/documentation/EventKit/EKEventStore/save(_:span:commit:)"
+    },
+    "doc://com.apple.documentation/documentation/EventKit/EKEventStore/saveCalendar(_:commit:)": {
+      "abstract": [
+        {
+          "text": "Saves a calendar to the event store by either committing or batching the changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "saveCalendar"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "calendar"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EKCalendar",
+          "text": "EKCalendar"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "commit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKit/EKEventStore/saveCalendar(_:commit:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "saveCalendar(_:commit:)",
+      "type": "topic",
+      "url": "/documentation/EventKit/EKEventStore/saveCalendar(_:commit:)"
+    },
+    "doc://com.apple.documentation/documentation/EventKit/EKSpan/futureEvents": {
+      "abstract": [
+        {
+          "text": "Modifications to this event instance should also affect future instances of this event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "futureEvents"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKit/EKSpan/futureEvents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EKSpan.futureEvents",
+      "type": "topic",
+      "url": "/documentation/EventKit/EKSpan/futureEvents"
+    },
+    "doc://com.apple.documentation/documentation/EventKitUI/EKCalendarChooser/selectedCalendars": {
+      "abstract": [
+        {
+          "text": "The calendars selected by the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedCalendars"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EKCalendar",
+          "text": "EKCalendar"
+        },
+        {
+          "kind": "text",
+          "text": "> { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKitUI/EKCalendarChooser/selectedCalendars",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "selectedCalendars",
+      "type": "topic",
+      "url": "/documentation/EventKitUI/EKCalendarChooser/selectedCalendars"
+    },
+    "doc://com.apple.documentation/documentation/EventKitUI/EKCalendarChooserDelegate/calendarChooserSelectionDidChange(_:)": {
+      "abstract": [
+        {
+          "text": "Sent when a user changes the selection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "calendarChooserSelectionDidChange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "calendarChooser"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EKCalendarChooser",
+          "text": "EKCalendarChooser"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKitUI/EKCalendarChooserDelegate/calendarChooserSelectionDidChange(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "calendarChooserSelectionDidChange(_:)",
+      "type": "topic",
+      "url": "/documentation/EventKitUI/EKCalendarChooserDelegate/calendarChooserSelectionDidChange(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.technotes/documentation/Technotes": {
+      "abstract": [
+        {
+          "text": "Learn about specific development topics through these in-depth technical articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Technotes",
+      "type": "topic",
+      "url": "/documentation/technotes"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview": {
+      "abstract": [
+        {
+          "text": "Explore the various Wi-Fi APIs available on iOS and their expected use cases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3111: iOS Wi-Fi API overview",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3111-ios-wifi-api-overview"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations": {
+      "abstract": [
+        {
+          "text": "Learn techniques to help debug any coordinate space issue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3124: Debugging coordinate space issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3124-debugging-coordinate-transformations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3130-changes-to-eventKit-in-macOS13-ventura": {
+      "abstract": [
+        {
+          "text": "Test your apps against EventKit API changes in macOS Ventura 13.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3130-changes-to-eventKit-in-macOS13-ventura",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3130: Changes to EventKit in macOS Ventura 13",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3130-changes-to-eventkit-in-macos13-ventura"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store": {
+      "abstract": [
+        {
+          "text": "Learn how to configure your App Clip to prevent it from being unavailable in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3168: Making your App Clip available in the App Store",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3168-making-your-app-clip-available-app-store"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration": {
+      "abstract": [
+        {
+          "text": "Diagnose errors due to invalid Apple Pay merchant identifier configurations by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifying the underlying causes of common errors and explore their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3173: Troubleshooting issues with your Apple Pay merchant identifier configuration",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose errors received while presenting the Apple Pay payment sheet on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your website by identifying the underlying causes of common errors and explore",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "their potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3174: Diagnosing issues with the Apple Pay payment sheet on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose common errors received while displaying the Apple Pay button on your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "website by identifying the underlying causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3175: Diagnosing issues with displaying the Apple Pay button on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues": {
+      "abstract": [
+        {
+          "text": "Diagnose errors that occur when processing Apple Pay payments,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identify common causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3176: Troubleshooting Apple Pay payment processing issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files": {
+      "abstract": [
+        {
+          "text": "Learn how alternate groups collect audio tracks, and how to choose which audio track to use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3177: Understanding alternate audio track groups in movie files",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems": {
+      "abstract": [
+        {
+          "text": "Ensure that every Mach-O image has a UUID, and that every distinct Mach-O image has its own unique UUID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3178: Checking for and resolving build UUID problems",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3178-checking-for-and-resolving-build-uuid-problems"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy": {
+      "abstract": [
+        {
+          "text": "Learn how local network privacy affects your software.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3179: Understanding local network privacy",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1": {
+      "abstract": [
+        {
+          "text": "Migrate from version 2 to version 1 of App Store Server Notifications using the Modify an App endpoint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3180: Reverting to App Store Server Notifications V1",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3180-reverting-app-store-server-notifications-v1"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Identify common configurations that cause unsuccessful privacy manifest validation with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3181: Debugging an invalid privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3181-debugging-invalid-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the tracking domains you use in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3182: Adding privacy tracking keys to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the APIs that can potentially fingerprint devices in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3183: Adding required reason API entries to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the data your app or third-party SDK collects in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3184: Adding data collection details to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest"
+    },
+    "https://developer.apple.com/bug-reporting/": {
+      "identifier": "https://developer.apple.com/bug-reporting/",
+      "title": "Feedback Assistant",
+      "titleInlineContent": [
+        {
+          "text": "Feedback Assistant",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/bug-reporting/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Latest",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+        "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+        "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+        "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+        "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+        "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+        "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+        "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+        "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations"
+      ],
+      "title": "Latest"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKit~1EKEventStore~1enumerateEvents(matching:using:)/title",
+          "value": "enumerateEventsMatchingPredicate:usingBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKit~1EKEventStore~1enumerateEvents(matching:using:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "enumerateEventsMatchingPredicate:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSPredicate",
+              "text": "NSPredicate"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "predicate"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "usingBlock:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@EKEventSearchCallback",
+              "text": "EKEventSearchCallback"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "block"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKit~1EKEventStore~1remove(_:span:commit:)/title",
+          "value": "removeEvent:span:commit:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKit~1EKEventStore~1remove(_:span:commit:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeEvent:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)EKEvent",
+              "text": "EKEvent"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "event"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "span:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@EKSpan",
+              "text": "EKSpan"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "span"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "commit:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "commit"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "error:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKit~1EKEventStore~1remove(_:commit:)/title",
+          "value": "removeReminder:commit:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKit~1EKEventStore~1remove(_:commit:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeReminder:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)EKReminder",
+              "text": "EKReminder"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "reminder"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "commit:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "commit"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "error:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKit~1EKEventStore~1removeCalendar(_:commit:)/title",
+          "value": "removeCalendar:commit:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKit~1EKEventStore~1removeCalendar(_:commit:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeCalendar:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)EKCalendar",
+              "text": "EKCalendar"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "calendar"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "commit:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "commit"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "error:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKit~1EKSpan~1futureEvents/title",
+          "value": "EKSpanFutureEvents"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKit~1EKSpan~1futureEvents/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKSpanFutureEvents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKit~1EKEventStore~1save(_:span:commit:)/title",
+          "value": "saveEvent:span:commit:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKit~1EKEventStore~1save(_:span:commit:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "saveEvent:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)EKEvent",
+              "text": "EKEvent"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "event"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "span:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@EKSpan",
+              "text": "EKSpan"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "span"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "commit:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "commit"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "error:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKit~1EKEventStore~1events(matching:)/title",
+          "value": "eventsMatchingPredicate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKit~1EKEventStore~1events(matching:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<EKEvent *>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "eventsMatchingPredicate:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSPredicate",
+              "text": "NSPredicate"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "predicate"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKit~1EKEventStore~1save(_:commit:)/title",
+          "value": "saveReminder:commit:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKit~1EKEventStore~1save(_:commit:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "saveReminder:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)EKReminder",
+              "text": "EKReminder"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "reminder"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "commit:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "commit"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "error:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKitUI~1EKCalendarChooser~1selectedCalendars/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSSet",
+              "text": "NSSet<EKCalendar *>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "selectedCalendars"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKitUI~1EKCalendarChooserDelegate~1calendarChooserSelectionDidChange(_:)/title",
+          "value": "calendarChooserSelectionDidChange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKitUI~1EKCalendarChooserDelegate~1calendarChooserSelectionDidChange(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "calendarChooserSelectionDidChange:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)EKCalendarChooser",
+              "text": "EKCalendarChooser"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "calendarChooser"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKit~1EKEventStore/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "EKEventStore"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKit~1EKEventStore~1saveCalendar(_:commit:)/title",
+          "value": "saveCalendar:commit:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKit~1EKEventStore~1saveCalendar(_:commit:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "saveCalendar:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)EKCalendar",
+              "text": "EKCalendar"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "calendar"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "commit:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "commit"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "error:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

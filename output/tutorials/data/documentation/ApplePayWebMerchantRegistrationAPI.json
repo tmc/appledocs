@@ -1,0 +1,515 @@
+{
+  "abstract": [
+    {
+      "text": "Manage merchant registration through your web platform.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Apple Pay Web Merchant Registration API",
+      "versions": [
+        "1.0 beta 1",
+        "1.0"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "ApplePayWebMerchantRegistrationAPI",
+    "modules": [
+      {
+        "name": "Apple Pay Web Merchant Registration API"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "Apple Pay Web Merchant Registration API"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Web Service",
+    "symbolKind": "module",
+    "title": "Apple Pay Web Merchant Registration API"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Apple Pay Web Merchant Registration API is a REST API that enables platform integrators such as payment-service providers and e-commerce platforms to register web merchants who want to offer Apple Pay on the web.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a platform integrator, you manage Apple Pay configuration on the merchants’ behalf when you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/Register-Merchant",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Merchants aren’t required to set up an Apple Developer account or configure their own keys and certificates — you set up a shared set of keys and certificates for your entire merchant portfolio. Register merchants with their own website domains, or with web pages hosted by your platform.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This API is available in production and in sandbox environments. To use this API in the sandbox environment, call the endpoints using the domain ",
+                  "type": "text"
+                },
+                {
+                  "code": "apple-pay-gateway-cert.apple.com",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".  For example, the sandbox endpoint for ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/Register-Merchant",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " is: ",
+                  "type": "text"
+                },
+                {
+                  "code": "POST https://apple-pay-gateway-cert.apple.com/paymentservices/registerMerchant",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "API-Requirements-for-Use",
+          "level": 3,
+          "text": "API Requirements for Use",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use the Apple Pay Web Merchant Registration API,  you must meet the following requirements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your organization must be enrolled in the Apple Developer program. For more information about enrollment, see the “Enrolling as an Organization” section in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/programs/enroll/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You must apply for access to the API. For more information about applying, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/registering-with-apple-pay-and-applying-to-use-the-api",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your server must call the API using mutual authentication with Transport Layer Security (TLS) 1.2 or later, and one of the supported cipher suites. For a list of supported cipher suites, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI": {
+      "abstract": [
+        {
+          "text": "Manage merchant registration through your web platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Pay Web Merchant Registration API",
+      "type": "topic",
+      "url": "/documentation/applepaywebmerchantregistrationapi"
+    },
+    "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/Get-Merchant": {
+      "abstract": [
+        {
+          "text": "Retrieve information about a registered merchant’s current state by using the merchant’s internal merchant identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/Get-Merchant",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Merchant"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Merchant Details",
+      "type": "topic",
+      "url": "/documentation/applepaywebmerchantregistrationapi/get-merchant"
+    },
+    "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/MerchantDetails": {
+      "abstract": [
+        {
+          "text": "Detailed information for a single registered merchant.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MerchantDetails"
+        }
+      ],
+      "identifier": "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/MerchantDetails",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MerchantDetails"
+        }
+      ],
+      "role": "symbol",
+      "title": "MerchantDetails",
+      "type": "topic",
+      "url": "/documentation/applepaywebmerchantregistrationapi/merchantdetails"
+    },
+    "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/Register-Merchant": {
+      "abstract": [
+        {
+          "text": "Register a merchant and its corresponding set of fully qualified domains.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/Register-Merchant",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Register Merchant"
+        }
+      ],
+      "role": "symbol",
+      "title": "Register Merchant",
+      "type": "topic",
+      "url": "/documentation/applepaywebmerchantregistrationapi/register-merchant"
+    },
+    "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/RegisterMerchantRequest": {
+      "abstract": [
+        {
+          "text": "The request body you use to register merchants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RegisterMerchantRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/RegisterMerchantRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RegisterMerchantRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "RegisterMerchantRequest",
+      "type": "topic",
+      "url": "/documentation/applepaywebmerchantregistrationapi/registermerchantrequest"
+    },
+    "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/Unregister-Merchant": {
+      "abstract": [
+        {
+          "text": "Unregister one or more domains associated with a previously registered merchant.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/Unregister-Merchant",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Unregister Merchant"
+        }
+      ],
+      "role": "symbol",
+      "title": "Unregister Merchant",
+      "type": "topic",
+      "url": "/documentation/applepaywebmerchantregistrationapi/unregister-merchant"
+    },
+    "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/UnregisterMerchantRequest": {
+      "abstract": [
+        {
+          "text": "The request body you use to unregister one or more merchant domains.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnregisterMerchantRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/UnregisterMerchantRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnregisterMerchantRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnregisterMerchantRequest",
+      "type": "topic",
+      "url": "/documentation/applepaywebmerchantregistrationapi/unregistermerchantrequest"
+    },
+    "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/preparing-merchant-domains-for-verification": {
+      "abstract": [
+        {
+          "text": "Host a domain verification file on each domain before requesting registration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/preparing-merchant-domains-for-verification",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing Merchant Domains for Verification",
+      "type": "topic",
+      "url": "/documentation/applepaywebmerchantregistrationapi/preparing-merchant-domains-for-verification"
+    },
+    "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/registering-with-apple-pay-and-applying-to-use-the-api": {
+      "abstract": [
+        {
+          "text": "Register a commerce partner with Apple Pay and apply to use the web service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/registering-with-apple-pay-and-applying-to-use-the-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Registering with Apple Pay and Applying to Use the API",
+      "type": "topic",
+      "url": "/documentation/applepaywebmerchantregistrationapi/registering-with-apple-pay-and-applying-to-use-the-api"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server": {
+      "abstract": [
+        {
+          "text": "Set up your server for secure communications with Apple Pay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/setting_up_your_server",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up Your Server",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/setting_up_your_server"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/programs/enroll/": {
+      "identifier": "https://developer.apple.com/programs/enroll/",
+      "title": "What You Need To Enroll",
+      "titleInlineContent": [
+        {
+          "text": "What You Need To Enroll",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/programs/enroll/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/registering-with-apple-pay-and-applying-to-use-the-api"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Web-Merchant-Registration",
+      "identifiers": [
+        "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/preparing-merchant-domains-for-verification",
+        "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/Register-Merchant",
+        "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/RegisterMerchantRequest"
+      ],
+      "title": "Web Merchant Registration"
+    },
+    {
+      "anchor": "Web-Merchant-Unregistration",
+      "identifiers": [
+        "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/Unregister-Merchant",
+        "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/UnregisterMerchantRequest"
+      ],
+      "title": "Web Merchant Unregistration"
+    },
+    {
+      "anchor": "Web-Merchant-Details",
+      "identifiers": [
+        "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/Get-Merchant",
+        "doc://com.apple.applepaywebmerchantregistrationapi/documentation/ApplePayWebMerchantRegistrationAPI/MerchantDetails"
+      ],
+      "title": "Web Merchant Details"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applepaywebmerchantregistrationapi"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

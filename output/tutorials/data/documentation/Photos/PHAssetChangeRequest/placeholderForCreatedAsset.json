@@ -1,0 +1,1023 @@
+{
+  "abstract": [
+    {
+      "text": "A placeholder object for the asset that the change request creates.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.photokit/documentation/Photos",
+        "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest/placeholderForCreatedAsset"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)PHAssetChangeRequest(py)placeholderForCreatedAsset",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "placeholderForCreatedAsset"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)PHObjectPlaceholder",
+        "text": "PHObjectPlaceholder"
+      },
+      {
+        "kind": "text",
+        "text": "?"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Photos"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "placeholderForCreatedAsset"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "placeholderForCreatedAsset"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "placeholderForCreatedAsset"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHObjectPlaceholder",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)PHObjectPlaceholder",
+              "text": "PHObjectPlaceholder"
+            },
+            {
+              "kind": "text",
+              "text": "? { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this property if you need to reference the asset created by a change request within the same change block. For example, the following code, when included in a photo library change block, creates an asset and then adds it to a collection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let createAssetRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)",
+                    "let assetPlaceholder = createAssetRequest.placeholderForCreatedAsset!",
+                    "let albumChangeRequest = PHAssetCollectionChangeRequest(for: album)",
+                    "albumChangeRequest!.addAssets([assetPlaceholder] as NSFastEnumeration)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "PHAssetChangeRequest *createAssetRequest = [PHAssetChangeRequest creationRequestForAssetFromImage:image];",
+                    "PHObjectPlaceholder *assetPlaceholder = createAssetRequest.placeholderForCreatedAsset;",
+                    "PHAssetCollectionChangeRequest *albumChangeRequest =",
+                    "    [PHAssetCollectionChangeRequest changeRequestForAssetCollection:album];",
+                    "[albumChangeRequest addAssets:@[ assetPlaceholder ]];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For details on change blocks, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.photokit/documentation/Photos": {
+      "abstract": [
+        {
+          "text": "Work with image and video assets that the Photos app manages, including those from iCloud Photos and Live Photos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Photos",
+      "type": "topic",
+      "url": "/documentation/photos"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest": {
+      "abstract": [
+        {
+          "text": "A request to create, delete, change metadata for, or edit the content of a Photos asset, for use in a photo library change block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHAssetChangeRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHAssetChangeRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHAssetChangeRequest",
+      "type": "topic",
+      "url": "/documentation/photos/phassetchangerequest"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest/creationRequestForAsset(from:)": {
+      "abstract": [
+        {
+          "text": "Creates a request for adding a new image asset to the Photos library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "creationRequestForAsset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest/creationRequestForAsset(from:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "creationRequestForAssetFromImage:"
+        }
+      ],
+      "role": "symbol",
+      "title": "creationRequestForAsset(from:)",
+      "type": "topic",
+      "url": "/documentation/photos/phassetchangerequest/creationrequestforasset(from:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest/creationRequestForAssetFromImage(atFileURL:)": {
+      "abstract": [
+        {
+          "text": "Creates a request for adding a new image asset to the Photos library, using the image file at the specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "creationRequestForAssetFromImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atFileURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest/creationRequestForAssetFromImage(atFileURL:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "creationRequestForAssetFromImageAtFileURL:"
+        }
+      ],
+      "role": "symbol",
+      "title": "creationRequestForAssetFromImage(atFileURL:)",
+      "type": "topic",
+      "url": "/documentation/photos/phassetchangerequest/creationrequestforassetfromimage(atfileurl:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest/creationRequestForAssetFromVideo(atFileURL:)": {
+      "abstract": [
+        {
+          "text": "Creates a request for adding a new video asset to the Photos library, using the video file at the specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "creationRequestForAssetFromVideo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atFileURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest/creationRequestForAssetFromVideo(atFileURL:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "creationRequestForAssetFromVideoAtFileURL:"
+        }
+      ],
+      "role": "symbol",
+      "title": "creationRequestForAssetFromVideo(atFileURL:)",
+      "type": "topic",
+      "url": "/documentation/photos/phassetchangerequest/creationrequestforassetfromvideo(atfileurl:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest/placeholderForCreatedAsset": {
+      "abstract": [
+        {
+          "text": "A placeholder object for the asset that the change request creates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "placeholderForCreatedAsset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHObjectPlaceholder",
+          "text": "PHObjectPlaceholder"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest/placeholderForCreatedAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "placeholderForCreatedAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "placeholderForCreatedAsset",
+      "type": "topic",
+      "url": "/documentation/photos/phassetchangerequest/placeholderforcreatedasset"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHObjectPlaceholder": {
+      "abstract": [
+        {
+          "text": "A read-only proxy object that represents a Photos asset or collection to create.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHObjectPlaceholder"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHObjectPlaceholder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHObjectPlaceholder"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHObjectPlaceholder",
+      "type": "topic",
+      "url": "/documentation/photos/phobjectplaceholder"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary": {
+      "abstract": [
+        {
+          "text": "An object that manages access and changes to the user’s photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHPhotoLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHPhotoLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHPhotoLibrary",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Adding-New-Assets",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest/creationRequestForAsset(from:)",
+        "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest/creationRequestForAssetFromImage(atFileURL:)",
+        "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest/creationRequestForAssetFromVideo(atFileURL:)"
+      ],
+      "title": "Adding New Assets"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "placeholderForCreatedAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "placeholderForCreatedAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.photokit/documentation/Photos",
+                "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Adding-New-Assets",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest/creationRequestForAsset(from:)",
+                "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest/creationRequestForAssetFromImage(atFileURL:)",
+                "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest/creationRequestForAssetFromVideo(atFileURL:)"
+              ],
+              "title": "Adding New Assets"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "nonatomic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "strong"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "readonly"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "identifier": "doc://com.apple.photokit/documentation/Photos/PHObjectPlaceholder",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)PHObjectPlaceholder",
+                    "text": "PHObjectPlaceholder"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "placeholderForCreatedAsset"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetChangeRequest~1creationRequestForAssetFromVideo(atFileURL:)/title",
+          "value": "creationRequestForAssetFromVideoAtFileURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetChangeRequest~1creationRequestForAssetFromVideo(atFileURL:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "creationRequestForAssetFromVideoAtFileURL:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetChangeRequest/title",
+          "value": "PHAssetChangeRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetChangeRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAssetChangeRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetChangeRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAssetChangeRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary/title",
+          "value": "PHPhotoLibrary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPhotoLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPhotoLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetChangeRequest~1creationRequestForAsset(from:)/title",
+          "value": "creationRequestForAssetFromImage:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetChangeRequest~1creationRequestForAsset(from:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "creationRequestForAssetFromImage:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetChangeRequest~1creationRequestForAssetFromImage(atFileURL:)/title",
+          "value": "creationRequestForAssetFromImageAtFileURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetChangeRequest~1creationRequestForAssetFromImage(atFileURL:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "creationRequestForAssetFromImageAtFileURL:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetChangeRequest~1placeholderForCreatedAsset/title",
+          "value": "placeholderForCreatedAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetChangeRequest~1placeholderForCreatedAsset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "placeholderForCreatedAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHObjectPlaceholder/title",
+          "value": "PHObjectPlaceholder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHObjectPlaceholder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHObjectPlaceholder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHObjectPlaceholder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHObjectPlaceholder"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/photos/phassetchangerequest/placeholderforcreatedasset"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/photos/phassetchangerequest/placeholderforcreatedasset"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

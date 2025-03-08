@@ -1,0 +1,1773 @@
+{
+  "abstract": [
+    {
+      "text": "Display a view in your tvOS app that lists available iOS, iPadOS, and watchOS devices that the user can connect to over their local network.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/connecting-a-tvos-app-to-other-devices-over-the-local-network"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "DeviceDiscoveryUI"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Connecting a tvOS app to other devices over the local network"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The DeviceDiscoveryUI framework provides a view that shows all the available iOS, iPadOS, and watchOS devices on your local network. Present this view in your tvOS app, to let the user select a device. The framework then creates an encrypted connection between your tvOS app and the selected device. This lets user’s enhance the tvOS experience. For example, they could control a tvOS game from their iPad, or send heart rate data from their watchOS app to the tvOS workout app. It also lets your app connect to devices across the local network, without giving your app access to the entire network.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a network connection, start by defining which devices your app can connect with. Your app defines one or more application services. Each application service represents a different type of connection that can support a different subset of devices. Next display the list of available devices in a device picker view in your tvOS app using one of the application services. If the user selects a device, the device picker view returns an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/NetworkExtension/NWEndpoint",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the selected device. Use this endpoint to create a connection, and then use the connection to communicate with the device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your iOS, iPadOS, or watchOS app, declare that your app listens for DeviceDiscoveryUI connections. Then, as soon as your app launches, create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/NWListener",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When the tvOS app connects to the listener, the listener returns a connection that your app can use to communicate with the tvOS app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use DeviceDiscoveryUI to present the device picker view, and then use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework to create the listeners, create the connections, and send and receive messages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-the-supported-devices-in-tvOS",
+          "level": 3,
+          "text": "Define the supported devices in tvOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start by defining the application service identifiers that your apps use to establish their connections. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSApplicationServices",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key to define the application services for your app. You provide a service identifier, a usage description, and a list of supported devices for each service. You can define more than one application service for your apps. Each service has it’s own identifier, and can connect to a different subset of devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Declare the application services in your app target’s Info tab, or in its ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>NSApplicationServices</key>",
+            "<dict>",
+            "    <key>Browses</key>",
+            "    <array>",
+            "        <dict>",
+            "            <key>NSApplicationServiceIdentifier</key>",
+            "            <string>MyApp-Controller</string>",
+            "            <key>NSApplicationServiceUsageDescription</key>",
+            "            <string>You can control this app using an iOS device.</string>",
+            "            <key>NSApplicationServicePlatformSupport</key>",
+            "            <array>",
+            "                <string>iOS</string>",
+            "                <string>iPadOS</string>",
+            "            </array>",
+            "        </dict>",
+            "        <dict>",
+            "            <key>NSApplicationServiceIdentifier</key>",
+            "            <string>MyApp-Workout</string>",
+            "            <key>NSApplicationServiceUsageDescription</key>",
+            "            <string>Connects to a watchOS app to read heart-rate and active calories burned from a workout session.</string>",
+            "            <key>NSApplicationServicePlatformSupport</key>",
+            "            <array>",
+            "                <string>watchOS</string>",
+            "            </array>",
+            "        </dict>",
+            "    </array>",
+            "</dict>"
+          ],
+          "syntax": "plist",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the human-readable key names in Xcode’s property list editor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4030765",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-the-list-of-available-devices",
+          "level": 3,
+          "text": "Display the list of available devices",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, create and display the device picker view in your tvOS app. The following code creates and displays a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DevicePicker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view using SwiftUI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@State var showDevicePicker = false",
+            "",
+            "var body: some View {",
+            "    VStack {",
+            "        Text(deviceName)",
+            "        Button(\"Connect\") {",
+            "            showDevicePicker = true",
+            "        }",
+            "    }",
+            "    .padding()",
+            "    .fullScreenCover(isPresented: $showDevicePicker) {",
+            "        // Display the device picker view.",
+            "        DevicePicker(",
+            "            .applicationService(name: \"MyAppService\")) { endpoint in",
+            "                myDeviceManager.connectTo(endpoint: endpoint)",
+            "            } label: {",
+            "                Text(\"Connect to a local device.\")",
+            "            } parameters: {",
+            "                // This example uses the default application services parameters;",
+            "                // however, you can add an NWProtocolFramer to provide application-level",
+            "                // messaging.",
+            "                .applicationService",
+            "            }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Display the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DevicePicker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as a modal view that covers the full screen. This example uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/fullScreenCover(isPresented:onDismiss:content:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to display the device picker view when the user clicks the Connect button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create the device picker view, pass an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/NWBrowser/Descriptor-swift.enum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that you created using the ",
+              "type": "text"
+            },
+            {
+              "code": "NWBrowser.Descriptor.applicationService(name:options:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method. Use the identifier that you defined in your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file for the descriptor’s name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, provide an ",
+              "type": "text"
+            },
+            {
+              "code": "onSelect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " closure that takes a single ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/NetworkExtension/NWEndpoint",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value. The system calls this closure after the user selects a device to connect to. Use the closure to set up a connection to the endpoint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then include a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Label",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view to represent your app in the device picker view, and pass the default application service parameters using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/NWParameters/applicationService",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. The default parameters create an encrypted, optimized connection between two devices on your local network. You can also add protocols defined with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/NWProtocolFramer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to these defaults to support application-level messaging in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When presented, the view shows all the supported devices on the local network.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These devices:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Are logged into your local network.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Are logged into the iCloud account (or another account in the iCloud family) of the default user on Apple TV.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Match the device type specified in your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSApplicationServicePlatformSupport",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user selects a device, the system calls your ",
+              "type": "text"
+            },
+            {
+              "code": "onSelect",
+              "type": "codeVoice"
+            },
+            {
+              "text": " closure. If they dismiss the device picker view, control returns to the view that displayed the device picker view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "While you can display the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DevicePicker",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " view in Simulator, it won’t show any devices on the local network. To test connections, run your code on a test device instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DDDevicePickerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to present the device picker view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// This example uses the default application services parameters;",
+            "// however, you can add a NWProtocolFramer to provide application-level",
+            "// messaging.",
+            "let parameters = NWParameters.applicationService",
+            "",
+            "// Create the view controller for the endpoint picker.",
+            "let myEndpointPickerHandler =",
+            "NWEndpointPickerViewController(browseDescriptor: NWBrowser.Descriptor.applicationService(name: \"MyAppService\"),",
+            "                               parameters: parameters)",
+            "",
+            "// Show the network device picker as a full-screen, modal view.",
+            "myEndpointPickerHandler.modalTransitionStyle = .coverVertical",
+            "show(myEndpointPickerHandler, sender: nil)",
+            "",
+            "let endpoint: NWEndpoint",
+            "do {",
+            "    endpoint = try await myEndpointPickerHandler.endpoint",
+            "} catch {",
+            "    // The user canceled the endpoint picker view.",
+            "    return",
+            "}",
+            "",
+            "// Use the endpoint here.",
+            "myDeviceConnectionManager.connectTo(endpoint: endpoint)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This view controller works similarly to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DevicePicker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view. The biggest difference is how your app receives the selected endpoint. In this sample, your app awaits a read on the controller’s ",
+              "type": "text"
+            },
+            {
+              "code": "endpoint",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property. This causes execution to pause at that point. When the user selects a device, the system returns an endpoint for that device, and execution continues. If the user dismisses the view, the controller throws an error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can pass a block to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DDDevicePickerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DDDevicePickerViewController/setDevicePickerCompletionHandler:",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, and the system calls this block when the user selects a device from the device picker view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Connect-to-the-provided-endpoint",
+          "level": 3,
+          "text": "Connect to the provided endpoint",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As soon as the user selects a device, the system passes you an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/NetworkExtension/NWEndpoint",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Use this endpoint to connect to the selected device. Create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/NWConnection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", passing it both the endpoint and the parameters that you used to create the device picker view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func connectTo(endpoint: NWEndpoint) {",
+            "    ",
+            "    // This example uses the default application services parameters;",
+            "    // however, you can add a NWProtocolFramer to provide application-level",
+            "    // messaging.",
+            "    connection = NWConnection(to: endpoint,",
+            "                              using: .applicationService)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can then use this connection to send or receive messages to the connected device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Declare-that-other-devices-listen-for-connections",
+          "level": 3,
+          "text": "Declare that other devices listen for connections",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before a device can appear in the picker view, declare that the iOS, iPadOS, or watchOS version of your app listens for connections.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start by defining the application service in your app target’s Info tab, or in its ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. Make sure the ",
+              "type": "text"
+            },
+            {
+              "code": "NSApplicationServiceIdentifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " matches the value specified in your tvOS app. The following example shows setting up the ",
+              "type": "text"
+            },
+            {
+              "code": "MyApp-Workout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " identifier on a watchOS app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>NSApplicationServices</key>",
+            "<dict>",
+            "    <key>Advertises</key>",
+            "    <array>",
+            "        <dict>",
+            "            <key>NSApplicationServiceIdentifier</key>",
+            "            <string>MyApp-Workout</string>",
+            "        </dict>",
+            "    </array>",
+            "</dict>"
+          ],
+          "syntax": "plist",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the human-readable key names in Xcode’s property list editor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4030764",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-up-the-listeners-on-iOS-iPadOS-or-watchOS",
+          "level": 3,
+          "text": "Set up the listeners on iOS, iPadOS, or watchOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, to connect to your tvOS app, other versions of your app must set up a listener as soon as the app launches. The network picker can then connect to this listener.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a listener, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Network/NWListener/Service-swift.struct/init(applicationService:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer, and pass the same application service name that you used in your tvOS app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set up the listener.",
+            "do {",
+            "    // This example uses the default application services parameters;",
+            "    // however, you can add a NWProtocolFramer to provide application-level",
+            "    // messaging.",
+            "    myListener = try NWListener(using: .applicationService)",
+            "    ",
+            "    // Add your application service.",
+            "    myListener?.service = NWListener.Service(applicationService: \"MyAppService\")",
+            "}",
+            "catch {",
+            "    fatalError(\"*** An error occurred: \\(error.localizedDescription) ***\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, create a connection handler for the listener. The system calls this closure when it creates the connection to your tvOS app. You can use this connection to read and write messages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Respond to new connections.",
+            "myListener?.newConnectionHandler = { connection in",
+            "    myConnectionManager.set(connection: connection)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also define a state change update handler to track changes to the listener’s state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Respond to listener state changes.",
+            "myListener?.stateUpdateHandler = { listenerState in",
+            "    switch(listenerState) {",
+            "    case .setup:",
+            "        myLogger.debug(\"Listener switched to the Setup state.\")",
+            "    case .waiting(let error):",
+            "        myLogger.debug(\"Listener switched to the Waiting state. error \\(error.localizedDescription)\")",
+            "    case .ready:",
+            "        myLogger.debug(\"Listener switched to the Ready state.\")",
+            "    case .failed(let error):",
+            "        myLogger.debug(\"Listener switched to the Failed state. error: \\(error.localizedDescription)\")",
+            "    case .cancelled:",
+            "        myLogger.debug(\"Listener switched to the Cancelled state.\")",
+            "    @unknown default:",
+            "        myLogger.debug(\"Listener switched to an unknown state.\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, start the listener.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Start the listener.",
+            "myListener?.start(queue: myBackgroundQueue)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start the listener as quickly as possible after your app launches. This ensures that the listener is ready and waiting when the tvOS app attempts to connect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI": {
+      "abstract": [
+        {
+          "text": "Display an interface that lets users connect a tvOS app to a mobile device over the local network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DeviceDiscoveryUI",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryui"
+    },
+    "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DDDevicePickerViewController": {
+      "abstract": [
+        {
+          "text": "A UIKit view that displays other devices on the network, and creates an encrypted connection to a copy of your app running on that device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDDevicePickerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DDDevicePickerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDDevicePickerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDDevicePickerViewController",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryui/dddevicepickerviewcontroller"
+    },
+    "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DDDevicePickerViewController/setDevicePickerCompletionHandler:": {
+      "abstract": [
+        {
+          "text": "Sets the completion handler that the system calls when the user selects a device from the picker view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDevicePickerCompletionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DDDevicePickerViewController/setDevicePickerCompletionHandler:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setDevicePickerCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setDevicePickerCompletionHandler:",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryui/dddevicepickerviewcontroller/setdevicepickercompletionhandler:"
+    },
+    "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DevicePicker": {
+      "abstract": [
+        {
+          "text": "A SwiftUI view that displays other devices on the network, and creates an encrypted connection to a copy of your app running on that device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DevicePicker"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DevicePicker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DevicePicker"
+        }
+      ],
+      "role": "symbol",
+      "title": "DevicePicker",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryui/devicepicker"
+    },
+    "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DevicePickerSupportedAction": {
+      "abstract": [
+        {
+          "text": "An environment value that indicates whether the current device supports device discovery.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DevicePickerSupportedAction"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DevicePickerSupportedAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DevicePickerSupportedAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "DevicePickerSupportedAction",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryui/devicepickersupportedaction"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSApplicationServices": {
+      "abstract": [
+        {
+          "text": "A list of service providers and the devices that they support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSApplicationServices",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSApplicationServices",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSApplicationServices"
+    },
+    "doc://com.apple.documentation/documentation/Network": {
+      "abstract": [
+        {
+          "text": "Create network connections to send and receive data using transport and security protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/Network"
+    },
+    "doc://com.apple.documentation/documentation/Network/NWBrowser/Descriptor-swift.enum": {
+      "abstract": [
+        {
+          "text": "A service description used to discover Bonjour services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Descriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/NWBrowser/Descriptor-swift.enum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NWBrowser.Descriptor",
+      "type": "topic",
+      "url": "/documentation/Network/NWBrowser/Descriptor-swift.enum"
+    },
+    "doc://com.apple.documentation/documentation/Network/NWConnection": {
+      "abstract": [
+        {
+          "text": "A bidirectional data connection between a local endpoint and a remote endpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/NWConnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NWConnection",
+      "type": "topic",
+      "url": "/documentation/Network/NWConnection"
+    },
+    "doc://com.apple.documentation/documentation/Network/NWListener": {
+      "abstract": [
+        {
+          "text": "An object you use to listen for incoming network connections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWListener"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/NWListener",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NWListener",
+      "type": "topic",
+      "url": "/documentation/Network/NWListener"
+    },
+    "doc://com.apple.documentation/documentation/Network/NWListener/Service-swift.struct/init(applicationService:)": {
+      "abstract": [
+        {
+          "text": "Creates a listener for apps that listen for connections from a network device picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "applicationService"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/NWListener/Service-swift.struct/init(applicationService:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(applicationService:)",
+      "type": "topic",
+      "url": "/documentation/Network/NWListener/Service-swift.struct/init(applicationService:)"
+    },
+    "doc://com.apple.documentation/documentation/Network/NWParameters/applicationService": {
+      "abstract": [
+        {
+          "text": "The default parameters for connecting with other, local devices that are running your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationService"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Network12NWParametersC",
+          "text": "NWParameters"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/NWParameters/applicationService",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applicationService",
+      "type": "topic",
+      "url": "/documentation/Network/NWParameters/applicationService"
+    },
+    "doc://com.apple.documentation/documentation/Network/NWProtocolFramer": {
+      "abstract": [
+        {
+          "text": "A customizable network protocol for defining application message parsers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWProtocolFramer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/NWProtocolFramer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NWProtocolFramer",
+      "type": "topic",
+      "url": "/documentation/Network/NWProtocolFramer"
+    },
+    "doc://com.apple.documentation/documentation/NetworkExtension/NWEndpoint": {
+      "abstract": [
+        {
+          "text": "An abstract base class, shared by [`NWHostEndpoint`](doc://com.apple.networkextension/documentation/NetworkExtension/NWHostEndpoint) or [`NWBonjourServiceEndpoint`](doc://com.apple.networkextension/documentation/NetworkExtension/NWBonjourServiceEndpoint), that represents the source or destination of a network connection.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWEndpoint"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/NetworkExtension/NWEndpoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NWEndpoint",
+      "type": "topic",
+      "url": "/documentation/NetworkExtension/NWEndpoint"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Label": {
+      "abstract": [
+        {
+          "text": "A standard label for user interface items, consisting of an icon with a title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Title"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Icon"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Title"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Icon"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Label",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Label",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Label"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/fullScreenCover(isPresented:onDismiss:content:)": {
+      "abstract": [
+        {
+          "text": "Presents a modal view that covers as much of the screen as possible when binding to a Boolean value you provide is true.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fullScreenCover"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "isPresented"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "onDismiss"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil, "
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:7SwiftUI11ViewBuilderV",
+          "text": "ViewBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/fullScreenCover(isPresented:onDismiss:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fullScreenCover(isPresented:onDismiss:content:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/fullScreenCover(isPresented:onDismiss:content:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/UIKit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-4030764": {
+      "alt": "A screenshot showing the application services settings in Xcode’s property list editor.",
+      "identifier": "media-4030764",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/caa062010907505ea9fffc771d37efd9/media-4030764@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/230ad5623b42514694bf39e3e7de45d7/media-4030764~dark@2x.png"
+        }
+      ]
+    },
+    "media-4030765": {
+      "alt": "A screenshot showing the Application Services settings in Xcode’s property list editor.",
+      "identifier": "media-4030765",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cf9a6dfa9f67b5902bd2e32c0021352c/media-4030765@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8a9536b1fb4cca77262f670629a2d5f9/media-4030765~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Selecting-nearby-devices",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DevicePicker",
+        "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DDDevicePickerViewController",
+        "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DevicePickerSupportedAction",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSApplicationServices"
+      ],
+      "title": "Selecting nearby devices"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Selecting-nearby-devices",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DDDevicePickerViewController",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSApplicationServices"
+              ],
+              "title": "Selecting nearby devices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1NetworkExtension~1NWEndpoint/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NWEndpoint"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryui~1documentation~1DeviceDiscoveryUI~1DDDevicePickerViewController/title",
+          "value": "DDDevicePickerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryui~1documentation~1DeviceDiscoveryUI~1DDDevicePickerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDevicePickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryui~1documentation~1DeviceDiscoveryUI~1DDDevicePickerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDevicePickerViewController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicediscoveryui/connecting-a-tvos-app-to-other-devices-over-the-local-network"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/devicediscoveryui/connecting-a-tvos-app-to-other-devices-over-the-local-network"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

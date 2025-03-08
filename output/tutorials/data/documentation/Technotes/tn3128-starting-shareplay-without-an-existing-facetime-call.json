@@ -1,0 +1,1219 @@
+{
+  "abstract": [
+    {
+      "text": "Use the share sheet or group activity sharing controller to start SharePlay directly from your app without an existing FaceTime call.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.technotes/documentation/Technotes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.technotes/documentation/Technotes/tn3128-starting-shareplay-without-an-existing-facetime-call"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "TN3128: Starting SharePlay without an existing FaceTime call"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GroupActivities",
+              "isActive": true,
+              "overridingTitle": "GroupActivities",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "GroupActivities",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " framework in iOS 15.4 and iPadOS 15.4 and later, you can use the share sheet to start SharePlay experiences directly from your app without an existing FaceTime call.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can make this same SharePlay experience even better by registering a group activity on an item provider and passing the item provider to the share sheet. Then when you select SharePlay the FaceTime call starts with an activity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t use the share sheet, you can implement a custom user interface to bring up the ",
+              "type": "text"
+            },
+            {
+              "text": "`GroupActivitySharingController`",
+              "type": "text"
+            },
+            {
+              "text": " and start SharePlay directly from your app without a FaceTime call.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-the-SharePlay-button-in-the-share-sheet",
+          "level": 2,
+          "text": "Display the SharePlay button in the share sheet",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app doesn’t need to adopt any special APIs to display the SharePlay button in the share sheet. If the app has the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.group-session",
+              "isActive": true,
+              "overridingTitle": "Group Activities entitlement",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Group Activities entitlement",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " entitlement, the share sheet displays the SharePlay button automatically. Simply present the share sheet as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let shareSheet = UIActivityViewController(activityItemsConfiguration: configuration)",
+            "// Present the share sheet.",
+            "present(shareSheet, animated: true)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "tn3128-share_sheet",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tap the SharePlay button, and select a person in the people-picker. Then tap the FaceTime button to start a FaceTime call with SharePlay directly from within the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Improve-the-SharePlay-experience-in-the-share-sheet",
+          "level": 2,
+          "text": "Improve the SharePlay experience in the share sheet",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Displaying the SharePlay button in the share sheet as just described allows you to initiate a FaceTime call without an activity to start. You must interact with the app again to pick the content to SharePlay.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can improve this same SharePlay experience by using  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/3920459-registergroupactivity",
+              "isActive": true,
+              "overridingTitle": "registerGroupActivity",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "registerGroupActivity",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to register a group activity on the item provider, provide the item provider to the share sheet, and present the share sheet. That way, the FaceTime call starts with an activity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Register your group activity.",
+            "let itemProvider = NSItemProvider()",
+            "itemProvider.registerGroupActivity(WatchTogether())",
+            "",
+            "// Provide the item provider to the share sheet.",
+            "let configuration = UIActivityItemsConfiguration(itemProviders:[itemProvider])",
+            "",
+            "// Present the share sheet.",
+            "let shareSheet = UIActivityViewController(activityItemsConfiguration:configuration)",
+            "present(shareSheet, animated: true)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example implementation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "tn3128-share_sheet_improved",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-the-SharePlay-button-less-prominently",
+          "level": 2,
+          "text": "Display the SharePlay button less prominently",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tune the presentation behavior of the SharePlay button in the share sheet using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController/allowsProminentActivity",
+              "isActive": true,
+              "overridingTitle": "allowsProminentActivity",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "allowsProminentActivity",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property of the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController",
+              "isActive": true,
+              "overridingTitle": "UIActivityViewController",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "UIActivityViewController",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". Just set ",
+              "type": "text"
+            },
+            {
+              "code": "allowsProminentActivity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to display the SharePlay button less prominently in the share sheet actions list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let shareSheet = UIActivityViewController(activityItemsConfiguration: configuration)",
+            "",
+            "// Show the SharePlay button less prominently in the share sheet.",
+            "shareSheet.allowsProminentActivity = false"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s how it looks in the share sheet:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "tn3128-share_sheet_less_prominent",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Hide-the-SharePlay-button-in-the-share-sheet",
+          "level": 2,
+          "text": "Hide the SharePlay button in the share sheet",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have some content that isn’t integrated with SharePlay, hide the SharePlay button in the share sheet. Set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController/excludedActivityTypes",
+              "isActive": true,
+              "overridingTitle": "excludedActivityTypes",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "excludedActivityTypes",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property on the ",
+              "type": "text"
+            },
+            {
+              "code": "UIActivityViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to exclude the SharePlay activity type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let shareSheet = UIActivityViewController(activityItemsConfiguration: configuration)",
+            "",
+            "// Exclude the SharePlay activity in the share sheet.",
+            "shareSheet.excludedActivityTypes = [.sharePlay]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Start-SharePlay-directly-from-your-apps-custom-user-interface",
+          "level": 2,
+          "text": "Start SharePlay directly from your app’s custom user interface",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "GroupActivitySharingController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " presents a view in an app that allows users to start a SharePlay session with selected contacts for a given group activity. For example, a button in an app’s custom user interface can initiate a SharePlay session using the ",
+              "type": "text"
+            },
+            {
+              "code": "GroupActivitySharingController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". When the user presses the button, instantiate a ",
+              "type": "text"
+            },
+            {
+              "code": "GroupActivitySharingController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with a group activity, then present it. The activity starts automatically with the FaceTime call.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a sharing controller for your group activity.",
+            "let controller = GroupActivitySharingController(MyActivity())",
+            "",
+            "// Present the sharing controller.",
+            "present(controller, animated: true)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once the user initiates the in-app experience, and starts a FaceTime or SharePlay session, they can activate the staged group activity. Once activated, the app receives the group session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Revision-History",
+          "level": 2,
+          "text": "Revision History",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2022-09-20",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " First published.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.group-session": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may implement shared group experiences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.group-session",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.group-session",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.group-session"
+    },
+    "doc://com.apple.documentation/documentation/GroupActivities": {
+      "abstract": [
+        {
+          "text": "Create app-specific activities your users can share and experience together.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GroupActivities",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Group Activities",
+      "type": "topic",
+      "url": "/documentation/GroupActivities"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that you use to offer standard services from your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIActivityViewController",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIActivityViewController"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController/allowsProminentActivity": {
+      "abstract": [
+        {
+          "text": "A Boolean value the system uses to elevate a system activity to make it more prominent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsProminentActivity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController/allowsProminentActivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowsProminentActivity",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIActivityViewController/allowsProminentActivity"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController/excludedActivityTypes": {
+      "abstract": [
+        {
+          "text": "The list of services that should not be displayed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "excludedActivityTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIActivity",
+          "text": "UIActivity"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIActivityType",
+          "text": "ActivityType"
+        },
+        {
+          "kind": "text",
+          "text": "]? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIActivityViewController/excludedActivityTypes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "excludedActivityTypes",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIActivityViewController/excludedActivityTypes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider/3920459-registergroupactivity": {
+      "abstract": [
+        {
+          "text": "Registers a group activity instance with the specificed options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerGroupActivity"
+        },
+        {
+          "kind": "text",
+          "text": "<ActivityType>(ActivityType)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider/3920459-registergroupactivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerGroupActivity(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider/3920459-registergroupactivity"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.technotes/documentation/Technotes": {
+      "abstract": [
+        {
+          "text": "Learn about specific development topics through these in-depth technical articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Technotes",
+      "type": "topic",
+      "url": "/documentation/technotes"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview": {
+      "abstract": [
+        {
+          "text": "Explore the various Wi-Fi APIs available on iOS and their expected use cases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3111: iOS Wi-Fi API overview",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3111-ios-wifi-api-overview"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations": {
+      "abstract": [
+        {
+          "text": "Learn techniques to help debug any coordinate space issue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3124: Debugging coordinate space issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3124-debugging-coordinate-transformations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store": {
+      "abstract": [
+        {
+          "text": "Learn how to configure your App Clip to prevent it from being unavailable in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3168: Making your App Clip available in the App Store",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3168-making-your-app-clip-available-app-store"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration": {
+      "abstract": [
+        {
+          "text": "Diagnose errors due to invalid Apple Pay merchant identifier configurations by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifying the underlying causes of common errors and explore their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3173: Troubleshooting issues with your Apple Pay merchant identifier configuration",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose errors received while presenting the Apple Pay payment sheet on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your website by identifying the underlying causes of common errors and explore",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "their potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3174: Diagnosing issues with the Apple Pay payment sheet on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose common errors received while displaying the Apple Pay button on your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "website by identifying the underlying causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3175: Diagnosing issues with displaying the Apple Pay button on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues": {
+      "abstract": [
+        {
+          "text": "Diagnose errors that occur when processing Apple Pay payments,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identify common causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3176: Troubleshooting Apple Pay payment processing issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files": {
+      "abstract": [
+        {
+          "text": "Learn how alternate groups collect audio tracks, and how to choose which audio track to use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3177: Understanding alternate audio track groups in movie files",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems": {
+      "abstract": [
+        {
+          "text": "Ensure that every Mach-O image has a UUID, and that every distinct Mach-O image has its own unique UUID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3178: Checking for and resolving build UUID problems",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3178-checking-for-and-resolving-build-uuid-problems"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy": {
+      "abstract": [
+        {
+          "text": "Learn how local network privacy affects your software.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3179: Understanding local network privacy",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1": {
+      "abstract": [
+        {
+          "text": "Migrate from version 2 to version 1 of App Store Server Notifications using the Modify an App endpoint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3180: Reverting to App Store Server Notifications V1",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3180-reverting-app-store-server-notifications-v1"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Identify common configurations that cause unsuccessful privacy manifest validation with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3181: Debugging an invalid privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3181-debugging-invalid-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the tracking domains you use in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3182: Adding privacy tracking keys to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the APIs that can potentially fingerprint devices in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3183: Adding required reason API entries to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the data your app or third-party SDK collects in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3184: Adding data collection details to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest"
+    },
+    "tn3128-share_sheet": {
+      "alt": "A screenshot of an app that displays the SharePlay button in the share sheet.",
+      "identifier": "tn3128-share_sheet",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fbedfdd155ed9dc3885a86583274631f/tn3128-share_sheet@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4e60c92c3e2492b056daca2d318fad84/tn3128-share_sheet~dark@2x.png"
+        }
+      ]
+    },
+    "tn3128-share_sheet_improved": {
+      "alt": "A screenshot of an app that displays a group activity and the SharePlay button in the share sheet.",
+      "identifier": "tn3128-share_sheet_improved",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bb1be328149c63734d7665c294abaf82/tn3128-share_sheet_improved@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f6a28fbeb3c09597e0ed21dd489e1f38/tn3128-share_sheet_improved~dark@2x.png"
+        }
+      ]
+    },
+    "tn3128-share_sheet_less_prominent": {
+      "alt": "A screenshot of an app that displays the SharePlay button less prominently in the share sheet.",
+      "identifier": "tn3128-share_sheet_less_prominent",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c501f3cd12734c3c4af57a2fcf9a7036/tn3128-share_sheet_less_prominent@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/db55e5c7f9a1905e5c87cad578467db2/tn3128-share_sheet_less_prominent~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Latest",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+        "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+        "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+        "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+        "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+        "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+        "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+        "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+        "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations"
+      ],
+      "title": "Latest"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIActivityViewController~1excludedActivityTypes/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<NSString *>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "excludedActivityTypes"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIActivityViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIActivityViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIActivityViewController~1allowsProminentActivity/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "allowsProminentActivity"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1485 @@
+{
+  "abstract": [
+    {
+      "text": "Test your notification interfaces on watchOS using a notification scheme and payload",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "file.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/notifications"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/testing-custom-notification-interfaces"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Testing custom notification interfaces"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’re ready to test your dynamic interface in the simulator, create a custom",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "build scheme for running your notification interface. To configure the scheme, specify",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the JSON data file containing the test data you want delivered to your interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a new WatchKit App project or add a WatchKit App template to an existing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "project, Xcode adds notification scenes by default. This includes setting up the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scheme and providing ",
+              "type": "text"
+            },
+            {
+              "code": "PushNotificationPayload.apns",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", a file with test JSON data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This file contains most of the keys you need to simulate a remote notification; however,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you can add more keys.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If Xcode added the notification scenes for you, just modify the ",
+              "type": "text"
+            },
+            {
+              "code": "PushNotificationPayload.apns",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file so that it contains test data appropriate for your app. If you added the notification",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scenes yourself, you need to set up the scheme and payload file as well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-scheme",
+          "level": 3,
+          "text": "Add a scheme",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As you add notifications to your app, you also need to add a scheme to test the notifications.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To test multiple notification categories, add a scheme for each category.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a scheme, click the current scheme in Xcode’s toolbar, and select New Scheme.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "testing-custom-notification-interfaces-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the New Scheme sheet, set the Target to your WatchKit app, and give the scheme",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a meaningful name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "testing-custom-notification-interfaces-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Click OK. Xcode adds and selects the scheme. To configure the new scheme, click the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "current scheme again, and select Edit Scheme.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Edit Scheme sheet, set the Watch Interface to Dynamic Notification. Also set",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Notification Payload to the desired payload file. Then click Close.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "testing-custom-notification-interfaces-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-payload-file",
+          "level": 3,
+          "text": "Create a payload file",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test notification interfaces, you can specify a payload file that contains the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "test data for your notification. Payload files are text files with an ",
+              "type": "text"
+            },
+            {
+              "code": ".apns",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "They contain the JSON payload data for your notification. For example, a simple payload file includes the following.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"aps\": {",
+            "        \"alert\": {",
+            "            \"body\": \"Test message\",",
+            "            \"title\": \"Optional title\",",
+            "            \"subtitle\": \"Optional subtitle\"",
+            "        },",
+            "        \"category\": \"myCategory\",",
+            "        \"thread-id\": \"5280\"",
+            "    },",
+            "    ",
+            "    \"Simulator Target Bundle\": \"<iOS or watchOS App Bundle ID>\",",
+            "    ",
+            "    \"customKey\": \"Use this file to define a testing payload for your notifications. The aps dictionary specifies the category, alert text and title. The WatchKit Simulator Actions array can provide info for one or more action buttons in addition to the standard Dismiss button. Any other top level keys are custom payload. If you have multiple such JSON files in your project, you'll be able to select them when choosing to debug the notification interface of your Watch App.\"",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Running a notification scheme sends the corresponding payload to the watch.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can also trigger a notification by dragging and dropping a payload file onto either",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the iPhone or Apple Watch simulator. In this case, you must set the “Simulator Target Bundle” to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the correct target’s bundle ID. Also, your app must have already requested permission to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "receive notifications on that device. Finally, the system doesn’t necessarily deliver the notification",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "immediately. You may have a delay of up to a minute before the notification appears.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a new payload file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select File > New > File.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the file template sheet, make sure the iOS tab is selected, then scroll down",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to the Apple Watch group. Select the Notification Simulation File template and click",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Name the payload file and click Create.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "testing-custom-notification-interfaces-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The template creates a new file with the default JSON payload data. To use this file,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "select it in the Scheme editor when configuring the build scheme for a notification",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interface. You can include multiple payload files in your project and either change",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the build scheme or create multiple build schemes to simplify your testing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Edit-the-JSON-payload",
+          "level": 3,
+          "text": "Edit the JSON payload",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system packages most of the JSON data into a dictionary and delivers it to your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app at runtime. You can modify the contents of the payload file to match the actual",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content of typical notifications sent to your app. At a minimum, change the value",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the ",
+              "type": "text"
+            },
+            {
+              "code": "category",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to match the name of your notification category. For more information",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on creating a notification payload, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications/generating-a-remote-notification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that the payload file includes a WatchKit Simulator Actions key. This key isn’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "part of a normal notification’s payload. The Apple Watch simulator doesn’t have access",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to your iOS app’s registered actions, so you must define the actions in the payload",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file. The WatchKit Simulator Actions key contains an array of dictionaries, each",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of which represents an action button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each dictionary can contain the following keys:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Required) The title of the action button.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "title",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Required) A string that identifies the action selected by the user. When the user taps the button, the system calls your notification center delegate’s ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/UserNotifications/UNUserNotificationCenterDelegate/userNotificationCenter(_:didReceive:withCompletionHandler:)",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " method. The system assigns the value of this key to the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/UserNotifications/UNNotificationResponse/actionIdentifier",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " property of the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/UserNotifications/UNNotificationResponse",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " object passed to this method.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "identifier",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Optional) The only valid value for this key is the string ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "textInput",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". If this key is present, the resulting button triggers text input.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "behavior",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Optional) The value ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "1",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " or ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", where ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "1",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " causes the resulting button to be rendered in a way that indicates it performs a destructive action. The value ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " causes the button to be rendered normally.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "destructive",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Optional) The value ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "1",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " or ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", where ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "1",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " causes the button to launch the app in the background.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "background",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Send-test-notifications-to-the-watch",
+          "level": 3,
+          "text": "Send test notifications to the watch",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the system automatically determines whether to deliver notifications to Apple",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Watch, when testing on the device, you may need to set the devices’ states to make",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sure the system routes the notification to Apple Watch as expected. To test your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "notification interfaces while the device isn’t on your wrist:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Disable Wrist Detection on Apple Watch. You can set this in the Watch app on the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "companion iPhone or in the Settings app on the watch. The option is under Passcode",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "> Wrist Detection.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make sure your Apple Watch isn’t on a charger.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make sure to lock your iPhone.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/UserNotifications/UNNotificationResponse": {
+      "abstract": [
+        {
+          "text": "The user’s response to an actionable notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/UNNotificationResponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UNNotificationResponse",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/UNNotificationResponse"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/UNNotificationResponse/actionIdentifier": {
+      "abstract": [
+        {
+          "text": "The identifier string of the action that the user selected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "actionIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/UNNotificationResponse/actionIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "actionIdentifier",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/UNNotificationResponse/actionIdentifier"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/UNUserNotificationCenterDelegate/userNotificationCenter(_:didReceive:withCompletionHandler:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate to process the user’s response to a delivered notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userNotificationCenter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "center"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UNUserNotificationCenter",
+          "text": "UNUserNotificationCenter"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didReceive"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "response"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UNNotificationResponse",
+          "text": "UNNotificationResponse"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/UNUserNotificationCenterDelegate/userNotificationCenter(_:didReceive:withCompletionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "userNotificationCenter(_:didReceive:withCompletionHandler:)",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/UNUserNotificationCenterDelegate/userNotificationCenter(_:didReceive:withCompletionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/generating-a-remote-notification": {
+      "abstract": [
+        {
+          "text": "Send notifications to the user’s device with a JSON payload.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/generating-a-remote-notification",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating a remote notification",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/generating-a-remote-notification"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that combine complications, notifications, and Siri to create",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a personal experience on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps",
+      "images": [
+        {
+          "identifier": "watchOSApps-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "watchOS apps",
+      "type": "topic",
+      "url": "/documentation/watchos-apps"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/notifications": {
+      "abstract": [
+        {
+          "text": "Communicate with users even when your app isn’t running.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/notifications",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Notifications",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/notifications"
+    },
+    "testing-custom-notification-interfaces-1": {
+      "alt": "A screenshot showing the New Scheme menu item.",
+      "identifier": "testing-custom-notification-interfaces-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/23bc5c43b706661cdd36dfb4c8477f0e/testing-custom-notification-interfaces-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f2eff141b10cb0095b5e0b248d02d59d/testing-custom-notification-interfaces-1~dark@2x.png"
+        }
+      ]
+    },
+    "testing-custom-notification-interfaces-2": {
+      "alt": "A screenshot showing the New Scheme sheet, with the WatchKit App target set.",
+      "identifier": "testing-custom-notification-interfaces-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f91a57797c7f5116ef9f1d34a9f5d609/testing-custom-notification-interfaces-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6d53e7e29aec431524cab27e94f73107/testing-custom-notification-interfaces-2~dark@2x.png"
+        }
+      ]
+    },
+    "testing-custom-notification-interfaces-3": {
+      "alt": "A screenshot showing the Edit Scheme sheet, with the notification interface and test data selected.",
+      "identifier": "testing-custom-notification-interfaces-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1c10ba9ef126e1f438301a9f2143e1ca/testing-custom-notification-interfaces-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c1addde812add5ecd3c12ea7c3fd857d/testing-custom-notification-interfaces-3~dark@2x.png"
+        }
+      ]
+    },
+    "testing-custom-notification-interfaces-4": {
+      "alt": "A screenshot showing the Notification Simulation File in the file template sheet.",
+      "identifier": "testing-custom-notification-interfaces-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d0c5f4d2efce22e41711486d4ca69683/testing-custom-notification-interfaces-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/441e55d886f36df58eb4e9814957ce62/testing-custom-notification-interfaces-4~dark@2x.png"
+        }
+      ]
+    },
+    "watchOSApps-PageImage-card.png": {
+      "alt": "A stylized representation of Apple Watch.",
+      "identifier": "watchOSApps-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5e043ca96ec9c9e5579649124c448c35/watchOSApps-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2e82e5f258fb084d7b684889cabbe515/watchOSApps-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UserNotifications~1UNNotificationResponse~1actionIdentifier/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "actionIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UserNotifications~1UNUserNotificationCenterDelegate~1userNotificationCenter(_:didReceive:withCompletionHandler:)/title",
+          "value": "userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UserNotifications~1UNUserNotificationCenterDelegate~1userNotificationCenter(_:didReceive:withCompletionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "userNotificationCenter:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UNUserNotificationCenter",
+              "text": "UNUserNotificationCenter"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "center"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didReceiveNotificationResponse:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UNNotificationResponse",
+              "text": "UNNotificationResponse"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "response"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "withCompletionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)()) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UserNotifications~1UNNotificationResponse/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UNNotificationResponse"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

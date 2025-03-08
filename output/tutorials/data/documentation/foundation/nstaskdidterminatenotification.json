@@ -1,0 +1,361 @@
+{
+  "abstract": [
+    {
+      "text": "Posted when the task has stopped execution.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports",
+        "doc://com.apple.documentation/documentation/foundation/nstask"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+        "doc://com.apple.documentation/documentation/foundation/nstask"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nstaskdidterminatenotification"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1413681,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@NSTaskDidTerminateNotification",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Global Variable",
+    "symbolKind": "data",
+    "title": "NSTaskDidTerminateNotification"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotificationname",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSNotificationName",
+              "text": "NSNotificationName"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTaskDidTerminateNotification"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The notification object is the ",
+              "type": "text"
+            },
+            {
+              "code": "NSTask",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object that the system terminated. This notification doesn’t contain a ",
+              "type": "text"
+            },
+            {
+              "code": "userInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system posts this notification from the thread in which the ",
+              "type": "text"
+            },
+            {
+              "code": "NSTask",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object called ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1414189-launch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When launching a task from a secondary thread or background queue, you can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1408746-terminationhandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property instead for greater control over the execution context of any operations to be performed after the task finishes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This notification can be posted either when the task has exited normally or as a result of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1409620-terminate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " being sent to the ",
+              "type": "text"
+            },
+            {
+              "code": "NSTask",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. If the ",
+              "type": "text"
+            },
+            {
+              "code": "NSTask",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object gets released, however, this notification won’t get sent, as the port the message would have been sent on was released as part of the task release. The observer method can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1415801-terminationstatus",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine why the task died.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotificationname": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotificationname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotificationName",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotificationname"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTask",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/1408746-terminationhandler": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1408746-terminationhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "terminationHandler",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/1408746-terminationhandler"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/1409620-terminate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "terminate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1409620-terminate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "terminate",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/1409620-terminate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/1414189-launch": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "launch"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1414189-launch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "launch",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/1414189-launch"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstask/1415801-terminationstatus": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstask/1415801-terminationstatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "terminationStatus",
+      "type": "topic",
+      "url": "/documentation/foundation/nstask/1415801-terminationstatus"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstaskdidterminatenotification": {
+      "abstract": [
+        {
+          "text": "Posted when the task has stopped execution.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstaskdidterminatenotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTaskDidTerminateNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nstaskdidterminatenotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/processes_and_threads": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Processes and Threads",
+      "type": "topic",
+      "url": "/documentation/foundation/processes_and_threads"
+    },
+    "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Streams, Sockets, and Ports",
+      "type": "topic",
+      "url": "/documentation/foundation/streams_sockets_and_ports"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nstaskdidterminatenotification"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/process/1413681-didterminatenotification"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

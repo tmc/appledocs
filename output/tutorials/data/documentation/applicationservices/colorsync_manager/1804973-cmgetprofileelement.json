@@ -1,0 +1,733 @@
+{
+  "abstract": [
+    {
+      "text": "Obtains element data from the specified profile based on the specified element tag signature.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804973-cmgetprofileelement"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1804973,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "role": "pseudoSymbol",
+    "symbolKind": "func",
+    "title": "CMGetProfileElement"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "CMError CMGetProfileElement ("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   CMProfileRef prof,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   OSType tag,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   UInt32 *elementSize,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   void *elementData"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A profile reference of type ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmprofileref",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to the profile containing the target element. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "prof"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The tag signature (for example, ‘A2B0’, or constant ",
+                  "type": "text"
+                },
+                {
+                  "code": "cmAToB0Tag",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ") for the element in question. The tag identifies the element. For a complete list of the public tag signatures a profile may contain, including a description of each tag, refer to the International Color Consortium Profile Format Specification. The signatures for profile tags are defined in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "CMICCProfile.h",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " header file. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "tag"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a size value. On input, you specify the size of the element data to copy. Specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to copy the entire element data. To obtain a portion of the element data, specify the number of bytes to copy. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "On return, the size of the data returned.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [],
+              "type": "paragraph"
+            }
+          ],
+          "name": "elementSize"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to memory for element data. On input, you allocate memory. On return, this buffer holds the element data.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "To obtain the element size in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "elementSize",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter without copying the element data to this buffer, specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for this parameter.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [],
+              "type": "paragraph"
+            }
+          ],
+          "name": "elementData"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "CMError",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you call the ",
+              "type": "text"
+            },
+            {
+              "code": "CMGetProfileElement",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to obtain the element data for a specific element, you must know the size in bytes of the element data so you can allocate a buffer to hold the returned data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "CMGetProfileElement",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function serves two purposes: to get an element’s size and to obtain an element’s data. In both instances, you provide a reference to the profile containing the element in the ",
+              "type": "text"
+            },
+            {
+              "code": "prof",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter and the tag signature of the element in the ",
+              "type": "text"
+            },
+            {
+              "code": "tag",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To obtain the element data size, call the ",
+              "type": "text"
+            },
+            {
+              "code": "CMGetProfileElement",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function specifying a pointer to an unsigned long data type in the ",
+              "type": "text"
+            },
+            {
+              "code": "elementSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field and a ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value in the ",
+              "type": "text"
+            },
+            {
+              "code": "elementData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you obtain the element size, you should allocate a buffer large enough to hold the returned element data, then call the ",
+              "type": "text"
+            },
+            {
+              "code": "CMGetProfileElement",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function again, specifying ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "code": "elementSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to copy the entire element data and a pointer to the data buffer in the ",
+              "type": "text"
+            },
+            {
+              "code": "elementData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To copy only a portion of the element data beginning from the first byte, allocate a buffer the size of the number of bytes of element data you want to obtain and specify the number of bytes to copy in the ",
+              "type": "text"
+            },
+            {
+              "code": "elementSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter. In this case, On return the ",
+              "type": "text"
+            },
+            {
+              "code": "elementSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter contains the size in bytes of the element data actually returned.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You cannot use the ",
+              "type": "text"
+            },
+            {
+              "code": "CMGetProfileElement",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to copy a portion of element data beginning from an offset into the data. To copy a portion of the element data beginning from any offset, use the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804984-cmgetpartialprofileelement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You cannot use this function to obtain a portion of the ",
+              "type": "text"
+            },
+            {
+              "code": "CM2Header",
+              "type": "codeVoice"
+            },
+            {
+              "text": " profile header. Instead, you must call the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804879-cmgetprofileheader",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to copy the entire profile header and read its contents. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmprofileref": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmprofileref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMProfileRef",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmprofileref"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ColorSync Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/applicationservices/colorsync_manager#1670295"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804879-cmgetprofileheader": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804879-cmgetprofileheader",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetProfileHeader",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804879-cmgetprofileheader"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804963-cmcountprofileelements": {
+      "abstract": [
+        {
+          "text": "Counts the number of elements in the specified profile.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804963-cmcountprofileelements",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMCountProfileElements",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804963-cmcountprofileelements"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804967-cmprofileelementexists": {
+      "abstract": [
+        {
+          "text": "Tests whether the specified profile contains a specific element based on the element’s tag signature.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804967-cmprofileelementexists",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMProfileElementExists",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804967-cmprofileelementexists"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804973-cmgetprofileelement": {
+      "abstract": [
+        {
+          "text": "Obtains element data from the specified profile based on the specified element tag signature.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804973-cmgetprofileelement",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetProfileElement",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804973-cmgetprofileelement"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804977-cmsetprofileelement": {
+      "abstract": [
+        {
+          "text": "Sets or replaces the element data for a specific tag in the specified profile. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804977-cmsetprofileelement",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMSetProfileElement",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804977-cmsetprofileelement"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804980-cmsetprofileelementsize": {
+      "abstract": [
+        {
+          "text": "Reserves the element data size for a specific tag in the specified profile before setting the element data. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804980-cmsetprofileelementsize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMSetProfileElementSize",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804980-cmsetprofileelementsize"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804984-cmgetpartialprofileelement": {
+      "abstract": [
+        {
+          "text": "Obtains a portion of the element data from the specified profile based on the specified element tag signature.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804984-cmgetpartialprofileelement",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetPartialProfileElement",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804984-cmgetpartialprofileelement"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804989-cmsetpartialprofileelement": {
+      "abstract": [
+        {
+          "text": "Sets part of the element data for a specific tag in the specified profile.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804989-cmsetpartialprofileelement",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMSetPartialProfileElement",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804989-cmsetpartialprofileelement"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804996-cmgetindprofileelementinfo": {
+      "abstract": [
+        {
+          "text": "Obtains the element tag and data size of an element by index from the specified profile. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804996-cmgetindprofileelementinfo",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetIndProfileElementInfo",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804996-cmgetindprofileelementinfo"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805002-cmgetindprofileelement": {
+      "abstract": [
+        {
+          "text": "Obtains the element data corresponding to a particular index from the specified profile. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805002-cmgetindprofileelement",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetIndProfileElement",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805002-cmgetindprofileelement"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805005-cmsetprofileelementreference": {
+      "abstract": [
+        {
+          "text": "Adds a tag to the specified profile to refer to data corresponding to a previously set element. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805005-cmsetprofileelementreference",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMSetProfileElementReference",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805005-cmsetprofileelementreference"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805008-cmremoveprofileelement": {
+      "abstract": [
+        {
+          "text": "Removes an element corresponding to a specific tag from the specified profile. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805008-cmremoveprofileelement",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMRemoveProfileElement",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805008-cmremoveprofileelement"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804963-cmcountprofileelements",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804967-cmprofileelementexists",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804977-cmsetprofileelement",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804980-cmsetprofileelementsize",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804984-cmgetpartialprofileelement",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804989-cmsetpartialprofileelement",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804996-cmgetindprofileelementinfo",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805002-cmgetindprofileelement",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805005-cmsetprofileelementreference",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805008-cmremoveprofileelement"
+      ],
+      "title": "Accessing Profile Elements"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/colorsync_manager/1804973-cmgetprofileelement"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

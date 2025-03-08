@@ -1,0 +1,1481 @@
+{
+  "abstract": [
+    {
+      "text": "The Cocoa interface to speech recognition in macOS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSSpeechRecognizer",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSSpeechRecognizer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSSpeechRecognizer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSSpeechRecognizer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSSpeechRecognizer"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides a “command and control” style of voice recognition system, where the command phrases must be defined prior to listening, in contrast to a dictation system where the recognized text is unconstrained. Through an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance, Cocoa apps can use the speech recognition engine built into macOS to recognize spoken commands. With speech recognition, users can accomplish complex tasks with spoken commands—for example, “Move pawn B2 to B4” and “Take back move.”",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class has a property that lets you specify which spoken words should be recognized as commands (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/commands",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") and methods that let you start and stop listening (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/startListening()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/stopListening()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). When the speech recognition facility recognizes one of the designated commands, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " invokes the delegation method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizerDelegate/speechRecognizer(_:didRecognizeCommand:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", allowing the delegate to perform the command.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Speech recognition is just one of the macOS speech technologies. The speech synthesis technology allows applications to “pronounce” written text in U.S. English and over 25 other languages, with a number of different voices and dialects for each language  (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is the Cocoa interface to this technology). Both speech technologies provide benefits for all users, and are particularly useful to those users who have difficulties seeing the screen or using the mouse and keyboard. By incorporating speech into your application, you can provide a concurrent mode of interaction for your users: In macOS, your software can accept input and provide output without requiring users to change their working context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer": {
+      "abstract": [
+        {
+          "text": "The Cocoa interface to speech recognition in macOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSpeechRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSpeechRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSpeechRecognizer",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechrecognizer"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/blocksOtherRecognizers": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the speech recognizer object should block all other recognizers (that is, other applications attempting to understand spoken commands) when listening.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "blocksOtherRecognizers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/blocksOtherRecognizers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "blocksOtherRecognizers"
+        }
+      ],
+      "role": "symbol",
+      "title": "blocksOtherRecognizers",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechrecognizer/blocksotherrecognizers"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/commands": {
+      "abstract": [
+        {
+          "text": "An array of strings defining the commands for which the speech recognizer object should listen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commands"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/commands",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "commands"
+        }
+      ],
+      "role": "symbol",
+      "title": "commands",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechrecognizer/commands"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/delegate": {
+      "abstract": [
+        {
+          "text": "The delegate for the speech recognizer object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSSpeechRecognizerDelegate",
+          "text": "NSSpeechRecognizerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechrecognizer/delegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/displayedCommandsTitle": {
+      "abstract": [
+        {
+          "text": "The title of the commands section in the Speech Commands window or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if there is no title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayedCommandsTitle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/displayedCommandsTitle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "displayedCommandsTitle"
+        }
+      ],
+      "role": "symbol",
+      "title": "displayedCommandsTitle",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechrecognizer/displayedcommandstitle"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/init()": {
+      "abstract": [
+        {
+          "text": "Initializes and returns an instance of the ",
+          "type": "text"
+        },
+        {
+          "code": "NSSpeechRecognizer",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/init()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechrecognizer/init()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/listensInForegroundOnly": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the speech recognizer object should only enable its commands when its application is the frontmost one.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "listensInForegroundOnly"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/listensInForegroundOnly",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "listensInForegroundOnly"
+        }
+      ],
+      "role": "symbol",
+      "title": "listensInForegroundOnly",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechrecognizer/listensinforegroundonly"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/startListening()": {
+      "abstract": [
+        {
+          "text": "Tells the speech recognition engine to begin listening for commands.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startListening"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/startListening()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startListening"
+        }
+      ],
+      "role": "symbol",
+      "title": "startListening()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechrecognizer/startlistening()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/stopListening()": {
+      "abstract": [
+        {
+          "text": "Tells the speech recognition engine to suspend listening for commands.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopListening"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/stopListening()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopListening"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopListening()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechrecognizer/stoplistening()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizerDelegate": {
+      "abstract": [
+        {
+          "text": "A set of optional methods implemented by delegates of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSpeechRecognizerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSpeechRecognizerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSpeechRecognizerDelegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechrecognizerdelegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizerDelegate/speechRecognizer(_:didRecognizeCommand:)": {
+      "abstract": [
+        {
+          "text": "Invoked when the recognition engine has recognized the application command ",
+          "type": "text"
+        },
+        {
+          "code": "command",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "speechRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSpeechRecognizer",
+          "text": "NSSpeechRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didRecognizeCommand"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizerDelegate/speechRecognizer(_:didRecognizeCommand:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "speechRecognizer:didRecognizeCommand:"
+        }
+      ],
+      "role": "symbol",
+      "title": "speechRecognizer(_:didRecognizeCommand:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechrecognizerdelegate/speechrecognizer(_:didrecognizecommand:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer": {
+      "abstract": [
+        {
+          "text": "The Cocoa interface to speech synthesis in macOS.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSpeechSynthesizer"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSpeechSynthesizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSpeechSynthesizer",
+      "type": "topic",
+      "url": "/documentation/appkit/nsspeechsynthesizer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Speech",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer"
+      ],
+      "title": "Speech"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-Speech-Recognizers",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/init()"
+      ],
+      "title": "Creating Speech Recognizers"
+    },
+    {
+      "anchor": "Handling-the-Recognition-of-a-Spoken-Command",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/delegate",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizerDelegate"
+      ],
+      "title": "Handling the Recognition of a Spoken Command"
+    },
+    {
+      "anchor": "Configuring-Speech-Recognizers",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/commands",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/displayedCommandsTitle",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/listensInForegroundOnly",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/blocksOtherRecognizers"
+      ],
+      "title": "Configuring Speech Recognizers"
+    },
+    {
+      "anchor": "Listening",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/startListening()",
+        "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/stopListening()"
+      ],
+      "title": "Listening"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSSpeechRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-Speech-Recognizers",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/init()"
+              ],
+              "title": "Creating Speech Recognizers"
+            },
+            {
+              "anchor": "Handling-the-Recognition-of-a-Spoken-Command",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/delegate",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizerDelegate"
+              ],
+              "title": "Handling the Recognition of a Spoken Command"
+            },
+            {
+              "anchor": "Configuring-Speech-Recognizers",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/commands",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/displayedCommandsTitle",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/listensInForegroundOnly",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/blocksOtherRecognizers"
+              ],
+              "title": "Configuring Speech Recognizers"
+            },
+            {
+              "anchor": "Listening",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/startListening()",
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechRecognizer/stopListening()"
+              ],
+              "title": "Listening"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Speech",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSSpeechSynthesizer"
+              ],
+              "title": "Speech"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSSpeechRecognizer"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer/title",
+          "value": "NSSpeechSynthesizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechSynthesizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechSynthesizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechSynthesizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizer~1blocksOtherRecognizers/title",
+          "value": "blocksOtherRecognizers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizer~1blocksOtherRecognizers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "blocksOtherRecognizers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizerDelegate/title",
+          "value": "NSSpeechRecognizerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechRecognizerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechRecognizerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizerDelegate~1speechRecognizer(_:didRecognizeCommand:)/title",
+          "value": "speechRecognizer:didRecognizeCommand:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizerDelegate~1speechRecognizer(_:didRecognizeCommand:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "speechRecognizer:didRecognizeCommand:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizer~1stopListening()/title",
+          "value": "stopListening"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizer~1stopListening()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopListening"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizer~1listensInForegroundOnly/title",
+          "value": "listensInForegroundOnly"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizer~1listensInForegroundOnly/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "listensInForegroundOnly"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizer~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizer~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizer~1init()/title",
+          "value": "init"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizer~1init()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "init"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizer~1startListening()/title",
+          "value": "startListening"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizer~1startListening()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startListening"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizer~1commands/title",
+          "value": "commands"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizer~1commands/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "commands"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizer/title",
+          "value": "NSSpeechRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSpeechRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizer~1displayedCommandsTitle/title",
+          "value": "displayedCommandsTitle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSpeechRecognizer~1displayedCommandsTitle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "displayedCommandsTitle"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsspeechrecognizer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsspeechrecognizer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

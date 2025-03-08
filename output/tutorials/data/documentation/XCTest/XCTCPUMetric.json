@@ -1,0 +1,1473 @@
+{
+  "abstract": [
+    {
+      "text": "A metric to record information about CPU activity during a performance test.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.xctest/documentation/XCTest"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.xctest/documentation/XCTest/XCTCPUMetric"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)XCTCPUMetric",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "XCTCPUMetric"
+      }
+    ],
+    "modules": [
+      {
+        "name": "XCTest"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "XCTCPUMetric"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "XCTCPUMetric"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "XCTCPUMetric"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "XCTCPUMetric",
+              "type": "codeVoice"
+            },
+            {
+              "text": " captures the following statistics about CPU activity; each metric is captured while the block argument to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTestCase/measure(metrics:block:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " call runs in a performance test:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "CPU time",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " is the length of time, in seconds, that the CPU is active and executing instructions for the measured target. When the CPU switches context to execute a different process or thread or becomes idle, this value doesn’t increase.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "CPU cycles",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " is the number of clock cycles that occur while the CPU is active and executing instructions for the measured target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "CPU instructions retired",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " is the number of processor instructions that run to completion during execution of the measured target. It’s possible for a CPU to abandon processing an instruction during execution, for example, if the instruction is evaluated out of order and logically follows a branch in the code that the CPU discovers it doesn’t need to take. An abandoned instruction doesn’t contribute to the retired instructions metric.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.xctest/documentation/XCTest": {
+      "abstract": [
+        {
+          "text": "Create and run unit tests, performance tests, and UI tests for your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XCTest",
+      "type": "topic",
+      "url": "/documentation/xctest"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTApplicationLaunchMetric": {
+      "abstract": [
+        {
+          "text": "A metric to record the application launch duration for a performance test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTApplicationLaunchMetric"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTApplicationLaunchMetric",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCTApplicationLaunchMetric"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCTApplicationLaunchMetric",
+      "type": "topic",
+      "url": "/documentation/xctest/xctapplicationlaunchmetric"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTCPUMetric": {
+      "abstract": [
+        {
+          "text": "A metric to record information about CPU activity during a performance test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTCPUMetric"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTCPUMetric",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCTCPUMetric"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCTCPUMetric",
+      "type": "topic",
+      "url": "/documentation/xctest/xctcpumetric"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTCPUMetric/init()": {
+      "abstract": [
+        {
+          "text": "Creates a CPU metric that records data for the current process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTCPUMetric/init()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/xctest/xctcpumetric/init()"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTCPUMetric/init(application:)": {
+      "abstract": [
+        {
+          "text": "Creates a CPU metric that records data for the requested app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCUIApplication",
+          "text": "XCUIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTCPUMetric/init(application:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithApplication:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(application:)",
+      "type": "topic",
+      "url": "/documentation/xctest/xctcpumetric/init(application:)"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTCPUMetric/init(limitingToCurrentThread:)": {
+      "abstract": [
+        {
+          "text": "Creates a CPU metric that optionally records data only for the current thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "limitingToCurrentThread"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTCPUMetric/init(limitingToCurrentThread:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initLimitingToCurrentThread:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(limitingToCurrentThread:)",
+      "type": "topic",
+      "url": "/documentation/xctest/xctcpumetric/init(limitingtocurrentthread:)"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTClockMetric": {
+      "abstract": [
+        {
+          "text": "A metric to record the time that elapses during a performance test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTClockMetric"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTClockMetric",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCTClockMetric"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCTClockMetric",
+      "type": "topic",
+      "url": "/documentation/xctest/xctclockmetric"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTMemoryMetric": {
+      "abstract": [
+        {
+          "text": "A metric to record the physical memory that a performance test uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTMemoryMetric"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTMemoryMetric",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCTMemoryMetric"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCTMemoryMetric",
+      "type": "topic",
+      "url": "/documentation/xctest/xctmemorymetric"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTMetric": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the methods that objects must provide when gathering metrics during performance tests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTMetric"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTMetric",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCTMetric"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCTMetric",
+      "type": "topic",
+      "url": "/documentation/xctest/xctmetric"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTOSSignpostMetric": {
+      "abstract": [
+        {
+          "text": "A metric to record the time that a performance test spends executing a signposted region of code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTOSSignpostMetric"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTOSSignpostMetric",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCTOSSignpostMetric"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCTOSSignpostMetric",
+      "type": "topic",
+      "url": "/documentation/xctest/xctossignpostmetric"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTStorageMetric": {
+      "abstract": [
+        {
+          "text": "A metric to record the amount of data that a performance test logically writes to storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTStorageMetric"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTStorageMetric",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCTStorageMetric"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCTStorageMetric",
+      "type": "topic",
+      "url": "/documentation/xctest/xctstoragemetric"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTestCase/measure(metrics:block:)": {
+      "abstract": [
+        {
+          "text": "Records the selected metrics for a block of code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "measure"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "metrics"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)XCTMetric",
+          "text": "XCTMetric"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "block"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTestCase/measure(metrics:block:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "measureWithMetrics:block:"
+        }
+      ],
+      "role": "symbol",
+      "title": "measure(metrics:block:)",
+      "type": "topic",
+      "url": "/documentation/xctest/xctestcase/measure(metrics:block:)"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.apple.xctest/documentation/XCTest/XCTMetric"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Measurement-Metrics",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.xctest/documentation/XCTest/XCTMetric",
+        "doc://com.apple.xctest/documentation/XCTest/XCTClockMetric",
+        "doc://com.apple.xctest/documentation/XCTest/XCTMemoryMetric",
+        "doc://com.apple.xctest/documentation/XCTest/XCTOSSignpostMetric",
+        "doc://com.apple.xctest/documentation/XCTest/XCTStorageMetric",
+        "doc://com.apple.xctest/documentation/XCTest/XCTApplicationLaunchMetric"
+      ],
+      "title": "Measurement Metrics"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "identifiers": [
+        "doc://com.apple.xctest/documentation/XCTest/XCTCPUMetric/init()",
+        "doc://com.apple.xctest/documentation/XCTest/XCTCPUMetric/init(application:)",
+        "doc://com.apple.xctest/documentation/XCTest/XCTCPUMetric/init(limitingToCurrentThread:)"
+      ],
+      "title": "Initializers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "XCTCPUMetric"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTCPUMetric"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTCPUMetric"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.xctest/documentation/XCTest"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Initializers",
+              "identifiers": [
+                "doc://com.apple.xctest/documentation/XCTest/XCTCPUMetric/init()",
+                "doc://com.apple.xctest/documentation/XCTest/XCTCPUMetric/init(application:)",
+                "doc://com.apple.xctest/documentation/XCTest/XCTCPUMetric/init(limitingToCurrentThread:)"
+              ],
+              "title": "Initializers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.xctest/documentation/XCTest/XCTMetric"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Measurement-Metrics",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.xctest/documentation/XCTest/XCTMetric",
+                "doc://com.apple.xctest/documentation/XCTest/XCTClockMetric",
+                "doc://com.apple.xctest/documentation/XCTest/XCTMemoryMetric",
+                "doc://com.apple.xctest/documentation/XCTest/XCTOSSignpostMetric",
+                "doc://com.apple.xctest/documentation/XCTest/XCTStorageMetric",
+                "doc://com.apple.xctest/documentation/XCTest/XCTApplicationLaunchMetric"
+              ],
+              "title": "Measurement Metrics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "XCTCPUMetric"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTCPUMetric/title",
+          "value": "XCTCPUMetric"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTCPUMetric/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTCPUMetric"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTCPUMetric/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTCPUMetric"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTClockMetric/title",
+          "value": "XCTClockMetric"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTClockMetric/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTClockMetric"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTClockMetric/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTClockMetric"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTCPUMetric~1init(limitingToCurrentThread:)/title",
+          "value": "initLimitingToCurrentThread:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTCPUMetric~1init(limitingToCurrentThread:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initLimitingToCurrentThread:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTStorageMetric/title",
+          "value": "XCTStorageMetric"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTStorageMetric/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTStorageMetric"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTStorageMetric/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTStorageMetric"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTestCase~1measure(metrics:block:)/title",
+          "value": "measureWithMetrics:block:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTestCase~1measure(metrics:block:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "measureWithMetrics:block:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTCPUMetric~1init(application:)/title",
+          "value": "initWithApplication:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTCPUMetric~1init(application:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithApplication:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTCPUMetric~1init()/title",
+          "value": "init"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTCPUMetric~1init()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "init"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTMemoryMetric/title",
+          "value": "XCTMemoryMetric"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTMemoryMetric/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTMemoryMetric"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTMemoryMetric/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTMemoryMetric"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTApplicationLaunchMetric/title",
+          "value": "XCTApplicationLaunchMetric"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTApplicationLaunchMetric/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTApplicationLaunchMetric"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTApplicationLaunchMetric/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTApplicationLaunchMetric"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTMetric/title",
+          "value": "XCTMetric"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTMetric/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTMetric"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTMetric/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTMetric"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTOSSignpostMetric/title",
+          "value": "XCTOSSignpostMetric"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTOSSignpostMetric/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTOSSignpostMetric"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTOSSignpostMetric/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTOSSignpostMetric"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/xctest/xctcpumetric"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/xctest/xctcpumetric"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2007 @@
+{
+  "abstract": [
+    {
+      "text": "An object that can filter the movement of an object and provides haptic feedback when alignment occurs.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSAlignmentFeedbackFilter",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSAlignmentFeedbackFilter"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSAlignmentFeedbackFilter"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSAlignmentFeedbackFilter"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAlignmentFeedbackFilter"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With a Force Touch trackpad, apps can produce tactile feedback to complement user actions. If your app implements alignment features, you can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to filter object movements and provide haptic feedback to the user at appropriate times. As the user drags objects into alignment with a guide or another object, the user actually feels a physical bump as the object snaps into place.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Implementing-Alignment-Feedback",
+          "level": 3,
+          "text": "Implementing Alignment Feedback",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To implement alignment feedback in your custom alignment controller class, set up the class to receive events for tracking the movement of an object. These can be events matching the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/inputEventMask",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value of an ",
+              "type": "text"
+            },
+            {
+              "code": "NSAlignmentFeedbackFilter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object, or events from a gesture recognizer (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). For each event received:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an instance of an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSAlignmentFeedbackFilter",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object. For example:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let self.feedbackFilter = NSAlignmentFeedbackFilter()"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "self.feedbackFilter = [NSAlignmentFeedbackFilter new];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Inform the alignment feedback filter object about the event. To do this, call one of the following methods:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "start": 2,
+          "type": "orderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/update(with:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/update(withPanRecognizer:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Store the location of the object before it moves in response to the event. This is considered the ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "previous",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " location of the object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Move the object to its new location in response to the event. This is the location where the object will reside if no alignment occurs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Store the new location of the object. This is considered the ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "default",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " location of the object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Determine where the object will move to be aligned. This is considered the ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "aligned",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " location of the object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Request a feedback token based on the previous location, default location, and aligned location. To do this, call one of the following methods:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "start": 3,
+          "type": "orderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/alignmentFeedbackTokenForMovement(in:previousPoint:alignedPoint:defaultPoint:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " - If the object will be moved both horizontally and vertically to become aligned.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/alignmentFeedbackTokenForHorizontalMovement(in:previousX:alignedX:defaultX:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " - If the object will be moved horizontally only to become aligned.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/alignmentFeedbackTokenForVerticalMovement(in:previousY:alignedY:defaultY:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " - If the object will be moved vertically only to become aligned.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If a feedback token is successfully prepared, call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/performFeedback(_:performanceTime:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to perform the haptic feedback. Then, move the object to the aligned location.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "start": 8,
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a value of ",
+              "type": "text"
+            },
+            {
+              "code": "null",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is returned, rather than a feedback token, then the system has determined that alignment and feedback are not appropriate. Perhaps the cursor is moving too fast or the distance to the aligned location is not significant enough to produce a visual snap. Move the object to its default location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter": {
+      "abstract": [
+        {
+          "text": "An object that can filter the movement of an object and provides haptic feedback when alignment occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAlignmentFeedbackFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAlignmentFeedbackFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAlignmentFeedbackFilter",
+      "type": "topic",
+      "url": "/documentation/appkit/nsalignmentfeedbackfilter"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/alignmentFeedbackTokenForHorizontalMovement(in:previousX:alignedX:defaultX:)": {
+      "abstract": [
+        {
+          "text": "Requests a feedback token for the alignment of an object requiring horizontal movement only.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alignmentFeedbackTokenForHorizontalMovement"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "previousX"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignedX"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "defaultX"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSAlignmentFeedbackToken",
+          "text": "NSAlignmentFeedbackToken"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/alignmentFeedbackTokenForHorizontalMovement(in:previousX:alignedX:defaultX:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "alignmentFeedbackTokenForHorizontalMovementInView:previousX:alignedX:defaultX:"
+        }
+      ],
+      "role": "symbol",
+      "title": "alignmentFeedbackTokenForHorizontalMovement(in:previousX:alignedX:defaultX:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsalignmentfeedbackfilter/alignmentfeedbacktokenforhorizontalmovement(in:previousx:alignedx:defaultx:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/alignmentFeedbackTokenForMovement(in:previousPoint:alignedPoint:defaultPoint:)": {
+      "abstract": [
+        {
+          "text": "Requests a feedback token for the alignment of an object requiring horizontal and vertical movement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alignmentFeedbackTokenForMovement"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "previousPoint"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignedPoint"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "defaultPoint"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSAlignmentFeedbackToken",
+          "text": "NSAlignmentFeedbackToken"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/alignmentFeedbackTokenForMovement(in:previousPoint:alignedPoint:defaultPoint:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "alignmentFeedbackTokenForMovementInView:previousPoint:alignedPoint:defaultPoint:"
+        }
+      ],
+      "role": "symbol",
+      "title": "alignmentFeedbackTokenForMovement(in:previousPoint:alignedPoint:defaultPoint:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsalignmentfeedbackfilter/alignmentfeedbacktokenformovement(in:previouspoint:alignedpoint:defaultpoint:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/alignmentFeedbackTokenForVerticalMovement(in:previousY:alignedY:defaultY:)": {
+      "abstract": [
+        {
+          "text": "Requests a feedback token for the alignment of an object requiring vertical movement only.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alignmentFeedbackTokenForVerticalMovement"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "previousY"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignedY"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "defaultY"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSAlignmentFeedbackToken",
+          "text": "NSAlignmentFeedbackToken"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/alignmentFeedbackTokenForVerticalMovement(in:previousY:alignedY:defaultY:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "alignmentFeedbackTokenForVerticalMovementInView:previousY:alignedY:defaultY:"
+        }
+      ],
+      "role": "symbol",
+      "title": "alignmentFeedbackTokenForVerticalMovement(in:previousY:alignedY:defaultY:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsalignmentfeedbackfilter/alignmentfeedbacktokenforverticalmovement(in:previousy:alignedy:defaulty:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/inputEventMask": {
+      "abstract": [
+        {
+          "text": "Retrieves the event types the filter accepts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputEventMask"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSEventMask",
+          "text": "EventTypeMask"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/inputEventMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inputEventMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "inputEventMask",
+      "type": "topic",
+      "url": "/documentation/appkit/nsalignmentfeedbackfilter/inputeventmask"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/performFeedback(_:performanceTime:)": {
+      "abstract": [
+        {
+          "text": "Performs the haptic feedback described by one or more alignment feedback tokens.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performFeedback"
+        },
+        {
+          "kind": "text",
+          "text": "([any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSAlignmentFeedbackToken",
+          "text": "NSAlignmentFeedbackToken"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "performanceTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSHapticFeedbackManager",
+          "text": "NSHapticFeedbackManager"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSHapticFeedbackPerformanceTime",
+          "text": "PerformanceTime"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/performFeedback(_:performanceTime:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "performFeedback:performanceTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "performFeedback(_:performanceTime:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsalignmentfeedbackfilter/performfeedback(_:performancetime:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/update(with:)": {
+      "abstract": [
+        {
+          "text": "Informs the feedback filter about a new event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/update(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateWithEvent:"
+        }
+      ],
+      "role": "symbol",
+      "title": "update(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsalignmentfeedbackfilter/update(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/update(withPanRecognizer:)": {
+      "abstract": [
+        {
+          "text": "Informs the feedback filter about a new pan (drag) gesture recognizer event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withPanRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPanGestureRecognizer",
+          "text": "NSPanGestureRecognizer"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/update(withPanRecognizer:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateWithPanRecognizer:"
+        }
+      ],
+      "role": "symbol",
+      "title": "update(withPanRecognizer:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsalignmentfeedbackfilter/update(withpanrecognizer:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackToken": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAlignmentFeedbackToken"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAlignmentFeedbackToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAlignmentFeedbackToken",
+      "type": "topic",
+      "url": "/documentation/appkit/nsalignmentfeedbacktoken"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "An object that monitors events and calls its action method when a predefined sequence of events occur.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/appkit/nsgesturerecognizer"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSHapticFeedbackManager": {
+      "abstract": [
+        {
+          "text": "An object that provides access to the haptic feedback management attributes on a system with a Force Touch trackpad.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHapticFeedbackManager"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSHapticFeedbackManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSHapticFeedbackManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSHapticFeedbackManager",
+      "type": "topic",
+      "url": "/documentation/appkit/nshapticfeedbackmanager"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSHapticFeedbackPerformer": {
+      "abstract": [
+        {
+          "text": "A set of methods and constants that a haptic feedback performer implements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHapticFeedbackPerformer"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSHapticFeedbackPerformer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSHapticFeedbackPerformer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSHapticFeedbackPerformer",
+      "type": "topic",
+      "url": "/documentation/appkit/nshapticfeedbackperformer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Haptics",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSHapticFeedbackManager",
+        "doc://com.apple.appkit/documentation/AppKit/NSHapticFeedbackPerformer",
+        "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackToken"
+      ],
+      "title": "Haptics"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Determining-Event-Types-for-the-Filter",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/inputEventMask"
+      ],
+      "title": "Determining Event Types for the Filter"
+    },
+    {
+      "anchor": "Informing-the-Filter-About-Events",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/update(with:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/update(withPanRecognizer:)"
+      ],
+      "title": "Informing the Filter About Events"
+    },
+    {
+      "anchor": "Preparing-Haptic-Feedback-for-Alignment",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/alignmentFeedbackTokenForMovement(in:previousPoint:alignedPoint:defaultPoint:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/alignmentFeedbackTokenForHorizontalMovement(in:previousX:alignedX:defaultX:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/alignmentFeedbackTokenForVerticalMovement(in:previousY:alignedY:defaultY:)"
+      ],
+      "title": "Preparing Haptic Feedback for Alignment"
+    },
+    {
+      "anchor": "Providing-Feedback-to-the-User",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/performFeedback(_:performanceTime:)"
+      ],
+      "title": "Providing Feedback to the User"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSAlignmentFeedbackFilter"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAlignmentFeedbackFilter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAlignmentFeedbackFilter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Determining-Event-Types-for-the-Filter",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/inputEventMask"
+              ],
+              "title": "Determining Event Types for the Filter"
+            },
+            {
+              "anchor": "Informing-the-Filter-About-Events",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/update(with:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/update(withPanRecognizer:)"
+              ],
+              "title": "Informing the Filter About Events"
+            },
+            {
+              "anchor": "Preparing-Haptic-Feedback-for-Alignment",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/alignmentFeedbackTokenForMovement(in:previousPoint:alignedPoint:defaultPoint:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/alignmentFeedbackTokenForHorizontalMovement(in:previousX:alignedX:defaultX:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/alignmentFeedbackTokenForVerticalMovement(in:previousY:alignedY:defaultY:)"
+              ],
+              "title": "Preparing Haptic Feedback for Alignment"
+            },
+            {
+              "anchor": "Providing-Feedback-to-the-User",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackFilter/performFeedback(_:performanceTime:)"
+              ],
+              "title": "Providing Feedback to the User"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Haptics",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSHapticFeedbackManager",
+                "doc://com.apple.appkit/documentation/AppKit/NSHapticFeedbackPerformer",
+                "doc://com.apple.appkit/documentation/AppKit/NSAlignmentFeedbackToken"
+              ],
+              "title": "Haptics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSAlignmentFeedbackFilter"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAlignmentFeedbackFilter~1performFeedback(_:performanceTime:)/title",
+          "value": "performFeedback:performanceTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAlignmentFeedbackFilter~1performFeedback(_:performanceTime:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "performFeedback:performanceTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAlignmentFeedbackFilter~1alignmentFeedbackTokenForVerticalMovement(in:previousY:alignedY:defaultY:)/title",
+          "value": "alignmentFeedbackTokenForVerticalMovementInView:previousY:alignedY:defaultY:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAlignmentFeedbackFilter~1alignmentFeedbackTokenForVerticalMovement(in:previousY:alignedY:defaultY:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "alignmentFeedbackTokenForVerticalMovementInView:previousY:alignedY:defaultY:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer/title",
+          "value": "NSGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAlignmentFeedbackFilter~1inputEventMask/title",
+          "value": "inputEventMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAlignmentFeedbackFilter~1inputEventMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "inputEventMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAlignmentFeedbackFilter~1alignmentFeedbackTokenForMovement(in:previousPoint:alignedPoint:defaultPoint:)/title",
+          "value": "alignmentFeedbackTokenForMovementInView:previousPoint:alignedPoint:defaultPoint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAlignmentFeedbackFilter~1alignmentFeedbackTokenForMovement(in:previousPoint:alignedPoint:defaultPoint:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "alignmentFeedbackTokenForMovementInView:previousPoint:alignedPoint:defaultPoint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAlignmentFeedbackFilter~1alignmentFeedbackTokenForHorizontalMovement(in:previousX:alignedX:defaultX:)/title",
+          "value": "alignmentFeedbackTokenForHorizontalMovementInView:previousX:alignedX:defaultX:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAlignmentFeedbackFilter~1alignmentFeedbackTokenForHorizontalMovement(in:previousX:alignedX:defaultX:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "alignmentFeedbackTokenForHorizontalMovementInView:previousX:alignedX:defaultX:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAlignmentFeedbackFilter~1update(withPanRecognizer:)/title",
+          "value": "updateWithPanRecognizer:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAlignmentFeedbackFilter~1update(withPanRecognizer:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateWithPanRecognizer:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSHapticFeedbackManager/title",
+          "value": "NSHapticFeedbackManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSHapticFeedbackManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSHapticFeedbackManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSHapticFeedbackManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSHapticFeedbackManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSHapticFeedbackPerformer/title",
+          "value": "NSHapticFeedbackPerformer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSHapticFeedbackPerformer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSHapticFeedbackPerformer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSHapticFeedbackPerformer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSHapticFeedbackPerformer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAlignmentFeedbackToken/title",
+          "value": "NSAlignmentFeedbackToken"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAlignmentFeedbackToken/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAlignmentFeedbackToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAlignmentFeedbackToken/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAlignmentFeedbackToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAlignmentFeedbackFilter/title",
+          "value": "NSAlignmentFeedbackFilter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAlignmentFeedbackFilter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAlignmentFeedbackFilter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAlignmentFeedbackFilter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAlignmentFeedbackFilter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAlignmentFeedbackFilter~1update(with:)/title",
+          "value": "updateWithEvent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAlignmentFeedbackFilter~1update(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateWithEvent:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsalignmentfeedbackfilter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsalignmentfeedbackfilter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

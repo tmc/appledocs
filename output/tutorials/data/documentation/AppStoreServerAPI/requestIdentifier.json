@@ -1,0 +1,491 @@
+{
+  "abstract": [
+    {
+      "text": "A string that contains a unique identifier you provide to track each subscription-renewal-date extension request.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "added",
+      "platform": "App Store Server API",
+      "versions": [
+        "1.0 beta 1",
+        "1.13"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/requestIdentifier"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:app_store_server_api:requestIdentifier",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "type "
+      },
+      {
+        "kind": "identifier",
+        "text": "requestIdentifier"
+      }
+    ],
+    "modules": [
+      {
+        "name": "App Store Server API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "requestIdentifier"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.1",
+        "name": "App Store Server API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type",
+    "symbolKind": "typealias",
+    "title": "requestIdentifier"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: App Store Server API"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "string "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestIdentifier"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "attributes": [
+        {
+          "kind": "maximumLength",
+          "value": "128"
+        }
+      ],
+      "kind": "attributes",
+      "title": "Attributes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You provide a ",
+              "type": "text"
+            },
+            {
+              "code": "requestIdentifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the request body when you call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-subscriptions-extend-mass-",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-subscriptions-extend-_originalTransactionId_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoints.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The API returns the same request identifier in its response, so you can match your request with the related response. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " also include this request identifier in notifications related to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-subscriptions-extend-mass-",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint. For more information, see the ",
+              "type": "text"
+            },
+            {
+              "code": "RENEWAL_EXTENSION",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To resend the same request due to a timeout or other error, use the same request identifier. Otherwise, create a unique request identifer for each different subscription-renewal-date extension request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Provide a ",
+                  "type": "text"
+                },
+                {
+                  "code": "UUID",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " value for the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/requestIdentifier",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " when calling the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-subscriptions-extend-mass-",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " endpoint.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The maximum string length is 128 characters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI": {
+      "abstract": [
+        {
+          "text": "Manage your customers’ App Store transactions from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server API",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-subscriptions-extend-mass-": {
+      "abstract": [
+        {
+          "text": "Uses a subscription’s product identifier to extend the renewal date for all of its eligible active subscribers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/POST-v1-subscriptions-extend-mass-",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/subscriptions/extend/mass/"
+        }
+      ],
+      "role": "symbol",
+      "title": "Extend Subscription Renewal Dates for All Active Subscribers",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/post-v1-subscriptions-extend-mass-"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-subscriptions-extend-_originalTransactionId_": {
+      "abstract": [
+        {
+          "text": "Extends the renewal date of a customer’s active subscription using the original transaction identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/PUT-v1-subscriptions-extend-_originalTransactionId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PUT /v1/subscriptions/extend/{originalTransactionId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Extend a Subscription Renewal Date",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/put-v1-subscriptions-extend-_originaltransactionid_"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/extendByDays": {
+      "abstract": [
+        {
+          "text": "The number of days to extend the subscription renewal date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "extendByDays"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/extendByDays",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "extendByDays"
+        }
+      ],
+      "role": "symbol",
+      "title": "extendByDays",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/extendbydays"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/extendReasonCode": {
+      "abstract": [
+        {
+          "text": "The code that represents the reason for the subscription-renewal-date extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "extendReasonCode"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/extendReasonCode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "extendReasonCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "extendReasonCode",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/extendreasoncode"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/requestIdentifier": {
+      "abstract": [
+        {
+          "text": "A string that contains a unique identifier you provide to track each subscription-renewal-date extension request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/requestIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestIdentifier",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/requestidentifier"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2": {
+      "abstract": [
+        {
+          "text": "Specify your secure server’s URL in App Store Connect to receive version 2 notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App Store Server Notifications V2",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType": {
+      "abstract": [
+        {
+          "text": "The type that describes the in-app purchase or external purchase event for which the App Store sends the version 2 notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "string "
+        },
+        {
+          "kind": "identifier",
+          "text": "notificationType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/notificationType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "notificationType",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/notificationType"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Request-data-types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/extendByDays",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/extendReasonCode"
+      ],
+      "title": "Request data types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreserverapi/requestidentifier"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

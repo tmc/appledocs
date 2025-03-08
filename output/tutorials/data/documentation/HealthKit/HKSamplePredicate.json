@@ -1,0 +1,1972 @@
+{
+  "abstract": [
+    {
+      "text": "A predicate for queries that return a collection of matching sample objects.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:9HealthKit17HKSamplePredicateV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "HKSamplePredicate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "HKSamplePredicate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.4",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.4",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.5",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "HKSamplePredicate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "HKSamplePredicate"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Sample"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Sample"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)HKSample",
+              "text": "HKSample"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure bundles an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSampleType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and an optional ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The structure is generic. You can create it for any ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSampleType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass, and it automatically sets the ",
+              "type": "text"
+            },
+            {
+              "code": "Sample",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type to the matching ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSampleType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subtype. As a result, any query that you build using this structure returns properly typed results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance, call one of its constructor methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let stepType = HKQuantityType(.stepCount)",
+            "let predicate = HKSamplePredicate.quantitySample(type: stepType)",
+            "",
+            "let descriptor = HKSampleQueryDescriptor(",
+            "    predicates:[predicate],",
+            "    sortDescriptors: [],",
+            "    limit: 10)",
+            "",
+            "// The results are an array of HKQuantitySample objects.",
+            "let results = try await descriptor.result(for: store)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nspredicate": {
+      "abstract": [
+        {
+          "text": "A definition of logical conditions for constraining a search for a fetch or for in-memory filtering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPredicate",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKAsyncQuery": {
+      "abstract": [
+        {
+          "text": "A protocol that defines an asynchronous method for running queries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKAsyncQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAsyncQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKAsyncQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKAsyncQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkasyncquery"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKAsyncSequenceQuery": {
+      "abstract": [
+        {
+          "text": "A protocol that defines a method for running queries that returns results using an asynchronous sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKAsyncSequenceQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAsyncSequenceQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKAsyncSequenceQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKAsyncSequenceQuery",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkasyncsequencequery"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSample": {
+      "abstract": [
+        {
+          "text": "A HealthKit sample represents a piece of data associated with a start and end time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKSample"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKSample"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKSample",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksample"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate": {
+      "abstract": [
+        {
+          "text": "A predicate for queries that return a collection of matching sample objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKSamplePredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKSamplePredicate"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKSamplePredicate",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksamplepredicate"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/audiogram(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a sample predicate that matches audiogram samples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "audiogram"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9HealthKit17HKSamplePredicateV",
+          "text": "HKSamplePredicate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKAudiogramSample",
+          "text": "HKAudiogramSample"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/audiogram(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "audiogram(_:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksamplepredicate/audiogram(_:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/categorySample(type:predicate:)": {
+      "abstract": [
+        {
+          "text": "Returns a sample predicate that matches category samples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "categorySample"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKCategoryType",
+          "text": "HKCategoryType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "predicate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9HealthKit17HKSamplePredicateV",
+          "text": "HKSamplePredicate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKCategorySample",
+          "text": "HKCategorySample"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/categorySample(type:predicate:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "categorySample(type:predicate:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksamplepredicate/categorysample(type:predicate:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/clinicalRecord(type:predicate:)": {
+      "abstract": [
+        {
+          "text": "Returns a sample predicate that matches clinical record samples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clinicalRecord"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKClinicalType",
+          "text": "HKClinicalType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "predicate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9HealthKit17HKSamplePredicateV",
+          "text": "HKSamplePredicate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKClinicalRecord",
+          "text": "HKClinicalRecord"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/clinicalRecord(type:predicate:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clinicalRecord(type:predicate:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksamplepredicate/clinicalrecord(type:predicate:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/correlation(type:predicate:)": {
+      "abstract": [
+        {
+          "text": "Returns a sample predicate that matches samples that contain correlated data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "correlation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKCorrelationType",
+          "text": "HKCorrelationType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "predicate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9HealthKit17HKSamplePredicateV",
+          "text": "HKSamplePredicate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKCorrelation",
+          "text": "HKCorrelation"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/correlation(type:predicate:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "correlation(type:predicate:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksamplepredicate/correlation(type:predicate:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/electrocardiogram(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a sample predicate that matches electrocardiogram samples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "electrocardiogram"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9HealthKit17HKSamplePredicateV",
+          "text": "HKSamplePredicate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKElectrocardiogram",
+          "text": "HKElectrocardiogram"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/electrocardiogram(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "electrocardiogram(_:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksamplepredicate/electrocardiogram(_:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/gad7Assessment(_:)": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Sample",
+            "type": "codeVoice"
+          },
+          {
+            "text": " inherits ",
+            "type": "text"
+          },
+          {
+            "code": "HKSample",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gad7Assessment"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9HealthKit17HKSamplePredicateV",
+          "text": "HKSamplePredicate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKGAD7Assessment",
+          "text": "HKGAD7Assessment"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/gad7Assessment(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gad7Assessment(_:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksamplepredicate/gad7assessment(_:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/heartbeatSeries(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a sample predicate that matches heartbeat series samples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "heartbeatSeries"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9HealthKit17HKSamplePredicateV",
+          "text": "HKSamplePredicate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKHeartbeatSeriesSample",
+          "text": "HKHeartbeatSeriesSample"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/heartbeatSeries(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "heartbeatSeries(_:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksamplepredicate/heartbeatseries(_:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/nsPredicate": {
+      "abstract": [
+        {
+          "text": "An optional predicate that further restricts the results that the query returns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nsPredicate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/nsPredicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nsPredicate",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksamplepredicate/nspredicate"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/phq9Assessment(_:)": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Sample",
+            "type": "codeVoice"
+          },
+          {
+            "text": " inherits ",
+            "type": "text"
+          },
+          {
+            "code": "HKSample",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "phq9Assessment"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9HealthKit17HKSamplePredicateV",
+          "text": "HKSamplePredicate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKPHQ9Assessment",
+          "text": "HKPHQ9Assessment"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/phq9Assessment(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "phq9Assessment(_:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksamplepredicate/phq9assessment(_:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/quantitySample(type:predicate:)": {
+      "abstract": [
+        {
+          "text": "Returns a sample predicate that matches quantity samples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "quantitySample"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantityType",
+          "text": "HKQuantityType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "predicate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9HealthKit17HKSamplePredicateV",
+          "text": "HKSamplePredicate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKQuantitySample",
+          "text": "HKQuantitySample"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/quantitySample(type:predicate:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "quantitySample(type:predicate:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksamplepredicate/quantitysample(type:predicate:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/sample(type:predicate:)": {
+      "abstract": [
+        {
+          "text": "Returns a sample predicate that matches samples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sample"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKSampleType",
+          "text": "HKSampleType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "predicate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9HealthKit17HKSamplePredicateV",
+          "text": "HKSamplePredicate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKSample",
+          "text": "HKSample"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/sample(type:predicate:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sample(type:predicate:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksamplepredicate/sample(type:predicate:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/sampleType": {
+      "abstract": [
+        {
+          "text": "The type of samples that the query returns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sampleType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKSampleType",
+          "text": "HKSampleType"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/sampleType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sampleType",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksamplepredicate/sampletype"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/stateOfMind(_:)": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Sample",
+            "type": "codeVoice"
+          },
+          {
+            "text": " inherits ",
+            "type": "text"
+          },
+          {
+            "code": "HKSample",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stateOfMind"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9HealthKit17HKSamplePredicateV",
+          "text": "HKSamplePredicate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKStateOfMind",
+          "text": "HKStateOfMind"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/stateOfMind(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stateOfMind(_:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksamplepredicate/stateofmind(_:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/visionPrescription(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a predicate that matches prescription samples.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Sample",
+            "type": "codeVoice"
+          },
+          {
+            "text": " inherits ",
+            "type": "text"
+          },
+          {
+            "code": "HKSample",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "visionPrescription"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9HealthKit17HKSamplePredicateV",
+          "text": "HKSamplePredicate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKVisionPrescription",
+          "text": "HKVisionPrescription"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/visionPrescription(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "visionPrescription(_:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksamplepredicate/visionprescription(_:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/workout(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a sample predicate that matches workout samples.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "workout"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9HealthKit17HKSamplePredicateV",
+          "text": "HKSamplePredicate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKWorkout",
+          "text": "HKWorkout"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/workout(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "workout(_:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksamplepredicate/workout(_:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/workoutRoute(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a sample predicate that matches samples containing workout route data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "workoutRoute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9HealthKit17HKSamplePredicateV",
+          "text": "HKSamplePredicate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKWorkoutRoute",
+          "text": "HKWorkoutRoute"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/workoutRoute(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "workoutRoute(_:)",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksamplepredicate/workoutroute(_:)"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSampleType": {
+      "abstract": [
+        {
+          "text": "An abstract superclass for all classes that identify a specific type of sample when working with the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKSampleType"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSampleType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKSampleType"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKSampleType",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksampletype"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/running-queries-with-swift-concurrency": {
+      "abstract": [
+        {
+          "text": "Use Swift concurrency to manage one-shot and long-running queries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/running-queries-with-swift-concurrency",
+      "kind": "article",
+      "role": "article",
+      "title": "Running Queries with Swift Concurrency",
+      "type": "topic",
+      "url": "/documentation/healthkit/running-queries-with-swift-concurrency"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Swift-concurrency-support",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/running-queries-with-swift-concurrency",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKAsyncQuery",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKAsyncSequenceQuery"
+      ],
+      "title": "Swift concurrency support"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-Sample-Predicates",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/audiogram(_:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/categorySample(type:predicate:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/clinicalRecord(type:predicate:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/correlation(type:predicate:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/electrocardiogram(_:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/heartbeatSeries(_:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/quantitySample(type:predicate:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/sample(type:predicate:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/visionPrescription(_:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/workout(_:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/workoutRoute(_:)"
+      ],
+      "title": "Creating Sample Predicates"
+    },
+    {
+      "anchor": "Accessing-Sample-Predicate-Data",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/nsPredicate",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/sampleType"
+      ],
+      "title": "Accessing Sample Predicate Data"
+    },
+    {
+      "anchor": "Type-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/gad7Assessment(_:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/phq9Assessment(_:)",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSamplePredicate/stateOfMind(_:)"
+      ],
+      "title": "Type Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample/title",
+          "value": "HKSample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSampleType/title",
+          "value": "HKSampleType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSampleType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKSampleType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSampleType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKSampleType"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/healthkit/hksamplepredicate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1019 @@
+{
+  "abstract": [
+    {
+      "text": "Search your code for text, patterns, and symbols that you can refactor quickly and",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "easily.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/source-editor"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/finding-and-refactoring-code"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Finding and refactoring code"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When writing and analyzing code, you frequently need to look up a symbol to learn",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "how to use it and to determine how other code uses it. Use Xcode’s search capabilities",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to find text and symbols in your code to analyze potential changes, determine current",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "functionality, or debug code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Rename files or symbols to clarify usage with a more descriptive and meaningful name.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Refactor your code when you identify duplicate code or code that you can reuse. Transform",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "existing code into more reusable functions, methods, or variables.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Find-files-by-name-or-included-symbols",
+          "level": 3,
+          "text": "Find files by name or included symbols",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Open a file quickly by pressing Shift-Command-O to bring up the Open Quickly dialog.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Type in part of a filename or symbol name, and the dialog presents a list of potential",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "matches.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "finding-and-refactoring-code-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select an item from the search results to open it and navigate to the matched symbol",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or file. If the file is already open in a tab, Xcode switches to that tab, otherwise,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode opens the file in a new tab.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When there are a lot of files in your project, type part of the filename into the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Filter field at the bottom of the Project navigator. Xcode displays matching group",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "names and filenames with their parent groupings so you can easily see their locations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in your project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "finding-and-refactoring-code-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To find a symbol in your source code, open the Symbol navigator and enter part of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a symbol name into the Filter field at the bottom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode matches the text you enter to the names of the class, structure, enumeration,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "function, method, and variable entities in your code, and displays those results",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the navigator. Click a matching result to navigate directly to the definition",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the symbol in your source code. Use the options in the Filter field to limit or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "expand your search by symbol type, to indicate whether the symbol’s definition is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in your source or in the SDKs, to choose whether to limit the results to containers",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(like classes or structures), or to show members (like variables and functions).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Find-text-or-patterns-in-your-source-code",
+          "level": 3,
+          "text": "Find text or patterns in your source code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To find text in a file, open the file in the Xcode source editor and choose Find > Find",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from the menu bar. Xcode displays the Find bar and its search controls at",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the top of the file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "finding-and-refactoring-code-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Enter a search term. Xcode searches the file, highlights matches, and notes how many",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it finds. Refine your search using the following options:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Find Options menu on the left to display options to replace text, run",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "recent searches, or clear recent search history.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Insert Pattern button (+) to include tabs, line breaks, or special characters",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in your search term.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Toggle the Case Sensitive button to indicate whether you want Xcode to match the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "case of your search term.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Match Style button to customize how Xcode looks for your search term",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in your source code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Navigate between matches using the Next and Previous buttons.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Close the Find bar by clicking the Done button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Find-symbols-in-your-source-code",
+          "level": 3,
+          "text": "Find symbols in your source code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To find a symbol in your code, Control-click the variable or function name, and choose",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Find > Find Selected Symbol in Workspace.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "finding-and-refactoring-code-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode displays the declaration of the symbol in the Find navigator, along with any",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "places where your code references the symbol. Refine your search using the following",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "options:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Find or Replace.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose what you want to search for: text, symbol references, symbol definitions,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "text that matches regular expressions, or call hierarchy.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select a match style to customize how Xcode looks for your search term.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the magnifying glass icon to view recent searches.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Customize the scope of your search: in your project, or in any groups/folders inside",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "your project. If you’re using a workspace, you can search across the workspace, or",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "inside a project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Ignoring Case or Matching Case.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your search returns a large number of matches, narrow the results with another",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "term in the Filter field.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Rename-symbols-throughout-your-project",
+          "level": 3,
+          "text": "Rename symbols throughout your project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To rename a function, method, class, structure, or enumeration in your project, Control-click",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "either the declaration of the symbol or a use of the symbol, and choose Refactor > Rename.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode highlights the symbol, searches your project for its name, and shows",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "everywhere that the symbol appears.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "finding-and-refactoring-code-5",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Type a new name into the highlighted selection and Xcode previews all the changes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Click a proposed renaming instance to toggle whether Xcode renames it. Click Rename",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to complete the changes, or Cancel to not make the changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To rename a local variable or instance variable, Command-click the variable and choose",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Edit All in Scope. Xcode highlights instances of the variable in scope in the source",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "editor. Type a new name and Xcode updates all instances to the same name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Refactor-code-into-functions",
+          "level": 3,
+          "text": "Refactor code into functions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you have code that repeats in a function or code that you can reuse, refactor",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it into a function. Select the lines of code you want to refactor, then Control-click",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and choose Refactor > Extract to Method. Xcode creates a new function, and highlights",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "its name so you can rename it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "finding-and-refactoring-code-6",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the lines of code reference parameters, Xcode includes those in the parameter",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "list for the new function. To rename a parameter, Command-click it and choose Edit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "All in Scope, or Control-click it and choose Refactor > Rename.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/source-editor": {
+      "abstract": [
+        {
+          "text": "Edit your source files, locate issues, and make necessary changes using the Source Editor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/source-editor",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Source Editor",
+      "type": "topic",
+      "url": "/documentation/xcode/source-editor"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "finding-and-refactoring-code-1": {
+      "alt": "Xcode showing the Open Quickly dialog with a search term and matches. The matches include a file and class, a protocol, and several methods and properties.",
+      "identifier": "finding-and-refactoring-code-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/16b9c97597e08bc5f30ac4a7199e46b8/finding-and-refactoring-code-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/aaf76e61e21385c0eca7af8adc91d67d/finding-and-refactoring-code-1~dark@2x.png"
+        }
+      ]
+    },
+    "finding-and-refactoring-code-2": {
+      "alt": "The Project Navigator with a search term in the filter box, and matching entries displayed and highlighted in the navigator’s list of files.",
+      "identifier": "finding-and-refactoring-code-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8c0852682fa31fbc44cd93a83f2f2bdb/finding-and-refactoring-code-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/71384413c2507f7f1a516636fbc37306/finding-and-refactoring-code-2~dark@2x.png"
+        }
+      ]
+    },
+    "finding-and-refactoring-code-3": {
+      "alt": "Xcode showing the source code editor with the find option expanded and a search term. The source editor has several matches to the search term highlighted.",
+      "identifier": "finding-and-refactoring-code-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/87340b136c57a08c1388905fc10b1391/finding-and-refactoring-code-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/42b549c293dfbdce3814ea1d37fed9b6/finding-and-refactoring-code-3~dark@2x.png"
+        }
+      ]
+    },
+    "finding-and-refactoring-code-4": {
+      "alt": "Xcode showing the Find Navigator with a symbol search term and matches in the results list.",
+      "identifier": "finding-and-refactoring-code-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c2e6b0daaa203b88e5aaf0d4a7c9d9f3/finding-and-refactoring-code-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/337eb8c6f9714c783fab2781db8abe9a/finding-and-refactoring-code-4~dark@2x.png"
+        }
+      ]
+    },
+    "finding-and-refactoring-code-5": {
+      "alt": "Xcode showing the rename view for the example class name FruitItem. The view is highlighting the class name in several places in a few files, and the focus is set on the first instance to that you can type in an updated class name.",
+      "identifier": "finding-and-refactoring-code-5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/44615b004d1aa545dd4db4e15802e121/finding-and-refactoring-code-5@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/39898d8ce4a834aace87059b0c79b194/finding-and-refactoring-code-5~dark@2x.png"
+        }
+      ]
+    },
+    "finding-and-refactoring-code-6": {
+      "alt": "Xcode showing the source editor with an extracted function. The call site of the extracted function is highlighted so you can rename it.",
+      "identifier": "finding-and-refactoring-code-6",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fc24a2e7830132a3b735c8e79ae5441a/finding-and-refactoring-code-6@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f3b4b20c25414da1d34d9a7549b3b305/finding-and-refactoring-code-6~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": []
+}

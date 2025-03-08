@@ -1,0 +1,458 @@
+{
+  "abstract": [
+    {
+      "text": "Specifies how an image is displayed.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.TVML/documentation/TVML",
+        "doc://com.apple.TVML/documentation/TVML/image-attributes"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.TVML/documentation/TVML",
+        "doc://com.apple.TVML/documentation/TVML/oneuptemplate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.TVML/documentation/TVML",
+        "doc://com.apple.TVML/documentation/TVML/showcasetemplate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.TVML/documentation/TVML/mode"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "mode"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "mode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute to define how an image is displayed in the ",
+              "type": "text"
+            },
+            {
+              "code": "oneupTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "code": "showcaseTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements. The ",
+              "type": "text"
+            },
+            {
+              "code": "showcaseTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element can only use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "showcase oneup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute value. The ",
+              "type": "text"
+            },
+            {
+              "code": "oneupTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " can only use the ",
+              "type": "text"
+            },
+            {
+              "code": "oneup caption",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "attribute value. Clicking an image alternates between the selected modes. Here’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an example that displays images in ",
+              "type": "text"
+            },
+            {
+              "code": "showcaseTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "code": "showcase",
+              "type": "codeVoice"
+            },
+            {
+              "text": " mode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<document>",
+            "    <showcaseTemplate mode=\"showcase\">",
+            "        <background>",
+            "            <img src=\"path to images on your server/Car_Movie_1920x1080.png\" />",
+            "        </background>",
+            "        <banner>",
+            "            <title>Scenes</title>",
+            "            <row>",
+            "                <button>",
+            "                    <text>Slideshow</text>",
+            "                </button>",
+            "                <button>",
+            "                    <text>Screensaver</text>",
+            "                </button>",
+            "            </row>",
+            "        </banner>",
+            "        <carousel>",
+            "            <section>",
+            "                <lockup>",
+            "                    <img src=\"path to images on your server/Car_Movie_453x255_C.png\" width=\"453\" height=\"255\" />",
+            "                    <title>Scene 1</title>",
+            "                </lockup>",
+            "                <lockup>",
+            "                    <img src=\"path to images on your server/Car_Movie_500x600.png\" width=\"500\" height=\"600\" />",
+            "                    <title>Scene 2</title>",
+            "                </lockup>",
+            "            </section>",
+            "        </carousel>",
+            "    </showcaseTemplate>",
+            "</document>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Values-for-mode",
+          "level": 3,
+          "text": "Values for mode",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Image alternates between the actual image size and a fullscreen image.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "showcase oneup",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Image alternates between a fullscreen image with or without a caption below the image.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "oneup caption",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Elements-that-Use-mode",
+          "level": 3,
+          "text": "Elements that Use mode",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.TVML/documentation/TVML/oneuptemplate",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.TVML/documentation/TVML/showcasetemplate",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.TVML/documentation/TVML": {
+      "abstract": [
+        {
+          "text": "Use Apple TV Markup Language to create individual pages inside of a client-server",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML",
+      "kind": "article",
+      "role": "collection",
+      "title": "TVML",
+      "type": "topic",
+      "url": "/documentation/tvml"
+    },
+    "doc://com.apple.TVML/documentation/TVML/aspectfill": {
+      "abstract": [
+        {
+          "text": "Stretches an image to fill the containing bounding box.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/aspectfill",
+      "kind": "article",
+      "role": "article",
+      "title": "aspectFill",
+      "type": "topic",
+      "url": "/documentation/tvml/aspectfill"
+    },
+    "doc://com.apple.TVML/documentation/TVML/contentsmode": {
+      "abstract": [
+        {
+          "text": "Specifies how an image is expanded to fill its containing element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/contentsmode",
+      "kind": "article",
+      "role": "article",
+      "title": "contentsMode",
+      "type": "topic",
+      "url": "/documentation/tvml/contentsmode"
+    },
+    "doc://com.apple.TVML/documentation/TVML/image-attributes": {
+      "abstract": [
+        {
+          "text": "Retrieve images from a server and specify how they fit into an element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/image-attributes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Image Attributes",
+      "type": "topic",
+      "url": "/documentation/tvml/image-attributes"
+    },
+    "doc://com.apple.TVML/documentation/TVML/oneuptemplate": {
+      "abstract": [
+        {
+          "text": "Creates a page that allows users to navigate between full-screen images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/oneuptemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "oneupTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/oneuptemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/opaque": {
+      "abstract": [
+        {
+          "text": "Indicates whether an image has a transparent background.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/opaque",
+      "kind": "article",
+      "role": "article",
+      "title": "opaque",
+      "type": "topic",
+      "url": "/documentation/tvml/opaque"
+    },
+    "doc://com.apple.TVML/documentation/TVML/showcasetemplate": {
+      "abstract": [
+        {
+          "text": "Displays images the user can navigate between.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/showcasetemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "showcaseTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/showcasetemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/type": {
+      "abstract": [
+        {
+          "text": "Specifies how a badge is drawn.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/type",
+      "kind": "article",
+      "role": "article",
+      "title": "type",
+      "type": "topic",
+      "url": "/documentation/tvml/type"
+    },
+    "doc://com.apple.TVML/documentation/TVML/value": {
+      "abstract": [
+        {
+          "text": "Specifies the value used for a fillable element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/value",
+      "kind": "article",
+      "role": "article",
+      "title": "value",
+      "type": "topic",
+      "url": "/documentation/tvml/value"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Image-Display",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.TVML/documentation/TVML/aspectfill",
+        "doc://com.apple.TVML/documentation/TVML/contentsmode",
+        "doc://com.apple.TVML/documentation/TVML/opaque",
+        "doc://com.apple.TVML/documentation/TVML/type",
+        "doc://com.apple.TVML/documentation/TVML/value"
+      ],
+      "title": "Image Display"
+    }
+  ]
+}

@@ -1,0 +1,1218 @@
+{
+  "abstract": [
+    {
+      "text": "Registers a block of teardown code to run after the current test method ends.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.xctest/documentation/XCTest",
+        "doc://com.apple.xctest/documentation/XCTest/XCTestCase"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.xctest/documentation/XCTest/XCTestCase/addTeardownBlock(_:)-2guon"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "XCTest",
+    "externalID": "s:So10XCTestCaseC0A0E16addTeardownBlockyyyyYaYbKcF",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "addTeardownBlock"
+      },
+      {
+        "kind": "text",
+        "text": "(() "
+      },
+      {
+        "kind": "keyword",
+        "text": "async"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "throws"
+      },
+      {
+        "kind": "text",
+        "text": " -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:s4Voida",
+        "text": "Void"
+      },
+      {
+        "kind": "text",
+        "text": ")"
+      }
+    ],
+    "modules": [
+      {
+        "name": "XCTest"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "addTeardownBlock(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "addTeardownBlock"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "block"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "keyword",
+              "text": "@escaping"
+            },
+            {
+              "kind": "text",
+              "text": " () "
+            },
+            {
+              "kind": "keyword",
+              "text": "async"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            },
+            {
+              "kind": "text",
+              "text": " -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s4Voida",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s4Voida",
+              "text": "Void"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A block of code that cleans up resources after a test run.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "block"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call this method during a test method’s execution to register a block of code to be called when the test method ends. The block of code may contain asynchronous teardown logic; the test system waits until the asynchronous teardown is complete before proceeding.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Registered teardown blocks are called before the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDown()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDownWithError()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDown(completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance methods for their associated test case are executed. Teardown blocks are run on the main thread, but can be registered from any thread. Each registered block is run once, in last-in, first-out order, executed serially.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can register a teardown block within a test case’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/setUp()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/setUpWithError()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/setUp(completion:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instance methods, but not from within its ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDown()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDownWithError()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDown(completion:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instance methods, or from within another teardown block. Teardown blocks always execute before the test system calls the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDown()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDownWithError()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDown(completion:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instance methods.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use teardown blocks to write test-specific teardown code alongside associated setup code. For example, if a test method needs to create a resource that must be deleted when the test completes, write the code to create the resource, followed immediately by code that registers a teardown block to delete the resource.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.xctest/documentation/XCTest": {
+      "abstract": [
+        {
+          "text": "Create and run unit tests, performance tests, and UI tests for your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XCTest",
+      "type": "topic",
+      "url": "/documentation/xctest"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTest/setUp()": {
+      "abstract": [
+        {
+          "text": "Provides an opportunity to reset state before calling each test method in a test case.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setUp"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/setUp()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setUp"
+        }
+      ],
+      "role": "symbol",
+      "title": "setUp()",
+      "type": "topic",
+      "url": "/documentation/xctest/xctest/setup()"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTest/setUp(completion:)": {
+      "abstract": [
+        {
+          "text": "Provides an opportunity to reset state asynchronously and handle errors before calling each test method in a test case.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setUp"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/setUp(completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setUpWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setUp(completion:)",
+      "type": "topic",
+      "url": "/documentation/xctest/xctest/setup(completion:)"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTest/setUpWithError()": {
+      "abstract": [
+        {
+          "text": "Provides an opportunity to reset state and to throw errors before calling each test method in a test case.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setUpWithError"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/setUpWithError()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setUpWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setUpWithError()",
+      "type": "topic",
+      "url": "/documentation/xctest/xctest/setupwitherror()"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDown()": {
+      "abstract": [
+        {
+          "text": "Provides an opportunity to perform cleanup after each test method in a test case ends.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tearDown"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDown()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tearDown"
+        }
+      ],
+      "role": "symbol",
+      "title": "tearDown()",
+      "type": "topic",
+      "url": "/documentation/xctest/xctest/teardown()"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDown(completion:)": {
+      "abstract": [
+        {
+          "text": "Provides an opportunity to perform cleanup asynchronously and handle errors after each test method in a test case ends.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tearDown"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDown(completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tearDownWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tearDown(completion:)",
+      "type": "topic",
+      "url": "/documentation/xctest/xctest/teardown(completion:)"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDownWithError()": {
+      "abstract": [
+        {
+          "text": "Provides an opportunity to perform cleanup and to throw errors after each test method in a test case ends.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tearDownWithError"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTest/tearDownWithError()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tearDownWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tearDownWithError()",
+      "type": "topic",
+      "url": "/documentation/xctest/xctest/teardownwitherror()"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTestCase": {
+      "abstract": [
+        {
+          "text": "The primary class for defining test cases, test methods, and performance tests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTestCase"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTestCase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XCTestCase"
+        }
+      ],
+      "role": "symbol",
+      "title": "XCTestCase",
+      "type": "topic",
+      "url": "/documentation/xctest/xctestcase"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTestCase/addTeardownBlock(_:)-2guon": {
+      "abstract": [
+        {
+          "text": "Registers a block of teardown code to run after the current test method ends.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addTeardownBlock"
+        },
+        {
+          "kind": "text",
+          "text": "(() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTestCase/addTeardownBlock(_:)-2guon",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addTeardownBlock(_:)",
+      "type": "topic",
+      "url": "/documentation/xctest/xctestcase/addteardownblock(_:)-2guon"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTestCase/addTeardownBlock(_:)-5zw6c": {
+      "abstract": [
+        {
+          "text": "Registers a block of teardown code to run after the current test method ends.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addTeardownBlock"
+        },
+        {
+          "kind": "text",
+          "text": "(() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTestCase/addTeardownBlock(_:)-5zw6c",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addTeardownBlock(_:)",
+      "type": "topic",
+      "url": "/documentation/xctest/xctestcase/addteardownblock(_:)-5zw6c"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTestCase/setUp()": {
+      "abstract": [
+        {
+          "text": "Provides an opportunity to customize initial state before a test case begins.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setUp"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTestCase/setUp()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setUp"
+        }
+      ],
+      "role": "symbol",
+      "title": "setUp()",
+      "type": "topic",
+      "url": "/documentation/xctest/xctestcase/setup()"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/XCTestCase/tearDown()": {
+      "abstract": [
+        {
+          "text": "Provides an opportunity to perform cleanup after a test case ends.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tearDown"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/XCTestCase/tearDown()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tearDown"
+        }
+      ],
+      "role": "symbol",
+      "title": "tearDown()",
+      "type": "topic",
+      "url": "/documentation/xctest/xctestcase/teardown()"
+    },
+    "doc://com.apple.xctest/documentation/XCTest/set-up-and-tear-down-state-in-your-tests": {
+      "abstract": [
+        {
+          "text": "Prepare initial state before tests run, and clean up resources after tests complete.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xctest/documentation/XCTest/set-up-and-tear-down-state-in-your-tests",
+      "kind": "article",
+      "role": "article",
+      "title": "Set Up and Tear Down State in Your Tests",
+      "type": "topic",
+      "url": "/documentation/xctest/set-up-and-tear-down-state-in-your-tests"
+    },
+    "doc://com.externally.resolved.symbol/s:s4Voida": {
+      "abstract": [
+        {
+          "text": "The return type of functions that don’t explicitly specify a return type, that is, an empty tuple `()`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": " = ()"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s4Voida",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Void",
+      "type": "topic",
+      "url": "/documentation/Swift/Void"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Customizing-Test-Setup-and-Teardown",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.xctest/documentation/XCTest/set-up-and-tear-down-state-in-your-tests",
+        "doc://com.apple.xctest/documentation/XCTest/XCTestCase/setUp()",
+        "doc://com.apple.xctest/documentation/XCTest/XCTestCase/addTeardownBlock(_:)-5zw6c",
+        "doc://com.apple.xctest/documentation/XCTest/XCTestCase/tearDown()"
+      ],
+      "title": "Customizing Test Setup and Teardown"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTestCase~1tearDown()/title",
+          "value": "tearDown"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTestCase~1tearDown()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "tearDown"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1setUp(completion:)/title",
+          "value": "setUpWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1setUp(completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setUpWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTestCase/title",
+          "value": "XCTestCase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTestCase/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTestCase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTestCase/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "XCTestCase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1setUp()/title",
+          "value": "setUp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1setUp()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setUp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTestCase~1setUp()/title",
+          "value": "setUp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTestCase~1setUp()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "setUp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1setUpWithError()/title",
+          "value": "setUpWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1setUpWithError()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setUpWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1tearDown(completion:)/title",
+          "value": "tearDownWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1tearDown(completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tearDownWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1tearDown()/title",
+          "value": "tearDown"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1tearDown()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tearDown"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1tearDownWithError()/title",
+          "value": "tearDownWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xctest~1documentation~1XCTest~1XCTest~1tearDownWithError()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tearDownWithError:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/xctest/xctestcase/addteardownblock(_:)-2guon"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

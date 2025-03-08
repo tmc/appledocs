@@ -1,0 +1,1298 @@
+{
+  "abstract": [
+    {
+      "text": "A template for displaying a SwiftUI label and up to three rows of text.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/WidgetKit",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " to create complications for watchOS 10 or later. For more information, see Migrating to WidgetKit.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.clockkit/documentation/ClockKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularStandardBodyView"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17_ClockKit_SwiftUI57CLKComplicationTemplateGraphicRectangularStandardBodyViewC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CLKComplicationTemplateGraphicRectangularStandardBodyView"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ClockKit",
+        "relatedModules": [
+          "SwiftUI"
+        ]
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CLKComplicationTemplateGraphicRectangularStandardBodyView"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "9.0",
+        "introducedAt": "7.0",
+        "message": "On watchOS 9.0 or later, use WidgetKit instead",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CLKComplicationTemplateGraphicRectangularStandardBodyView"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "final"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationTemplateGraphicRectangularStandardBodyView"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Label"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Label"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7SwiftUI4ViewP",
+              "text": "View"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This template belongs to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily/graphicRectangular",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " family.  shows the layout of the complication and where it appears on the clock face.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3667290",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table lists the dimensions of the image you use in this template.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apple Watch Size",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Width",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Height",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "40 mm",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "12 points",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "12 points",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "41 mm",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "12.5 points",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "12.5 points",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "44 mm",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "13.5 points",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "13.5 points",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "45 mm",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "14.5 points",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "14.5 points",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.clockkit/documentation/ClockKit": {
+      "abstract": [
+        {
+          "text": "Display app-specific data on the clock face.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClockKit",
+      "type": "topic",
+      "url": "/documentation/clockkit"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily/graphicRectangular": {
+      "abstract": [
+        {
+          "text": "A large rectangular area that ClockKit displays in the center of the Infograph Modular watch face.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "graphicRectangular"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily/graphicRectangular",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationFamilyGraphicRectangular"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationFamily.graphicRectangular",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationfamily/graphicrectangular"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplate": {
+      "abstract": [
+        {
+          "text": "An abstract class that defines the base behavior for all templates.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTemplate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationTemplate",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationtemplate"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularFullView": {
+      "abstract": [
+        {
+          "text": "A template for displaying a SwiftUI view that fills the entire template.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTemplateGraphicRectangularFullView"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularFullView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTemplateGraphicRectangularFullView"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationTemplateGraphicRectangularFullView",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationtemplategraphicrectangularfullview"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularLargeView": {
+      "abstract": [
+        {
+          "text": "A template for displaying a large rectangle containing header text and a SwiftUI view.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTemplateGraphicRectangularLargeView"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularLargeView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTemplateGraphicRectangularLargeView"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationTemplateGraphicRectangularLargeView",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationtemplategraphicrectangularlargeview"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularStandardBodyView": {
+      "abstract": [
+        {
+          "text": "A template for displaying a SwiftUI label and up to three rows of text.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTemplateGraphicRectangularStandardBodyView"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularStandardBodyView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTemplateGraphicRectangularStandardBodyView"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationTemplateGraphicRectangularStandardBodyView",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationtemplategraphicrectangularstandardbodyview"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularStandardBodyView/body1TextProvider": {
+      "abstract": [
+        {
+          "text": "The text provider for the first row of body text.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "body1TextProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKTextProvider",
+          "text": "CLKTextProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularStandardBodyView/body1TextProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "body1TextProvider",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationtemplategraphicrectangularstandardbodyview/body1textprovider"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularStandardBodyView/body2TextProvider": {
+      "abstract": [
+        {
+          "text": "The text provider for the second row of body text.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "body2TextProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKTextProvider",
+          "text": "CLKTextProvider"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularStandardBodyView/body2TextProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "body2TextProvider",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationtemplategraphicrectangularstandardbodyview/body2textprovider"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularStandardBodyView/headerLabel": {
+      "abstract": [
+        {
+          "text": "The SwiftUI view displayed by the template.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "headerLabel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularStandardBodyView/headerLabel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "headerLabel",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationtemplategraphicrectangularstandardbodyview/headerlabel"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularStandardBodyView/headerTextProvider": {
+      "abstract": [
+        {
+          "text": "The text provider for the header text.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "headerTextProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKTextProvider",
+          "text": "CLKTextProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularStandardBodyView/headerTextProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "headerTextProvider",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationtemplategraphicrectangularstandardbodyview/headertextprovider"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularStandardBodyView/init(headerLabel:headerTextProvider:body1TextProvider:body2TextProvider:)": {
+      "abstract": [
+        {
+          "text": "Creates a new template that has a header row with a SwiftUI view and text, and two rows of body text.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "headerLabel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "headerTextProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKTextProvider",
+          "text": "CLKTextProvider"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "body1TextProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKTextProvider",
+          "text": "CLKTextProvider"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "body2TextProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKTextProvider",
+          "text": "CLKTextProvider"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularStandardBodyView/init(headerLabel:headerTextProvider:body1TextProvider:body2TextProvider:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(headerLabel:headerTextProvider:body1TextProvider:body2TextProvider:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationtemplategraphicrectangularstandardbodyview/init(headerlabel:headertextprovider:body1textprovider:body2textprovider:)"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularTextGaugeView": {
+      "abstract": [
+        {
+          "text": "A template for displaying a header row with a SwiftUI view and text, a second row of text, and a gauge.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTemplateGraphicRectangularTextGaugeView"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularTextGaugeView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTemplateGraphicRectangularTextGaugeView"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationTemplateGraphicRectangularTextGaugeView",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationtemplategraphicrectangulartextgaugeview"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Extend the reach of your app by creating widgets, watch complications, Live Activities, and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WidgetKit",
+      "type": "topic",
+      "url": "/documentation/WidgetKit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "media-3667290": {
+      "alt": "A diagram showing the layout of the complication that calls out the content produced by the header label and text providers.",
+      "identifier": "media-3667290",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a136876f538eec43e828b1dc80cde268/media-3667290@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplate"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Rectangular-templates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularTextGaugeView",
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularLargeView",
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularFullView"
+      ],
+      "title": "Rectangular templates"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-the-Template",
+      "identifiers": [
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularStandardBodyView/init(headerLabel:headerTextProvider:body1TextProvider:body2TextProvider:)"
+      ],
+      "title": "Creating the Template"
+    },
+    {
+      "anchor": "Accessing-the-Content",
+      "identifiers": [
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularStandardBodyView/headerLabel",
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularStandardBodyView/headerTextProvider",
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularStandardBodyView/body1TextProvider",
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularStandardBodyView/body2TextProvider"
+      ],
+      "title": "Accessing the Content"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationFamily~1graphicRectangular/title",
+          "value": "CLKComplicationFamilyGraphicRectangular"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationFamily~1graphicRectangular/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationFamilyGraphicRectangular"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationTemplate/title",
+          "value": "CLKComplicationTemplate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationTemplate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationTemplate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationTemplate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/clockkit/clkcomplicationtemplategraphicrectangularstandardbodyview"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

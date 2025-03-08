@@ -1,0 +1,1318 @@
+{
+  "abstract": [
+    {
+      "text": "Animate screen savers, and interact with the screen saver infrastructure.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.screensaver/documentation/ScreenSaver"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "ScreenSaver",
+    "modules": [
+      {
+        "name": "Screen Saver"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Screen Saver"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Screen Saver framework defines the interface for custom modules to interact with the Screen Effects user interface feature. Write screen savers in Objective-C, and implement your module’s user interface using Cocoa. Use the available functions to produce random values and centering rectangles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a screen saver, create a bundle directory with the ",
+              "type": "text"
+            },
+            {
+              "code": ".saver",
+              "type": "codeVoice"
+            },
+            {
+              "text": " suffix and install it in one of the ",
+              "type": "text"
+            },
+            {
+              "code": "Library/Screen Savers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directories on the system. In your bundle’s executable, include a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass. That view defines the interface you use to generate your screen saver content. If your screen saver stores any preference information, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverDefaults",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class instead of the standard ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because screen savers are plug-ins for the screen saver engine, the screen saver binary must support the same hardware architecture of the running engine. As with any application, the screen saver engine uses the native architecture of the host computer. For full compatibility, make sure your screen saver supports both the ",
+              "type": "text"
+            },
+            {
+              "code": "x86_64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "arm64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " architectures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "How-the-system-runs-your-screen-saver",
+          "level": 3,
+          "text": "How the system runs your screen saver",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When macOS starts your screen saver, the system:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fades the screen to black.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Instantiates your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " subclass and calls its ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/init(frame:isPreview:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Creates a window and installs your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " subclass in it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Activates the window and sets its order.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Calls your view’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/draw(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method so you can draw your initial state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fades in the screen to reveal your window in the front.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Calls your view’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/startAnimation()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method, which you use to set up any animation-related state information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Calls your view’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/animateOneFrame()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method repeatedly.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user takes some action, the system calls your view’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/stopAnimation()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to stop your screen saver. Use that method to clean up any state information you establish in your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/startAnimation()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/stopAnimation()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/startAnimation()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " methods don’t immediately start or stop the animations. The system can still call your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/animateOneFrame()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method after calling ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/stopAnimation()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/userdefaults": {
+      "abstract": [
+        {
+          "text": "An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserDefaults"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserDefaults",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver": {
+      "abstract": [
+        {
+          "text": "Animate screen savers, and interact with the screen saver infrastructure.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Screen Saver",
+      "type": "topic",
+      "url": "/documentation/screensaver"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver/SSCenteredRectInRect(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSCenteredRectInRect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/SSCenteredRectInRect(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSCenteredRectInRect"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSCenteredRectInRect(_:_:)",
+      "type": "topic",
+      "url": "/documentation/screensaver/sscenteredrectinrect(_:_:)"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver/SSRandomFloatBetween(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a random float value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSRandomFloatBetween"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/SSRandomFloatBetween(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSRandomFloatBetween"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSRandomFloatBetween(_:_:)",
+      "type": "topic",
+      "url": "/documentation/screensaver/ssrandomfloatbetween(_:_:)"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver/SSRandomIntBetween(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a random integer value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSRandomIntBetween"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/SSRandomIntBetween(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSRandomIntBetween"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSRandomIntBetween(_:_:)",
+      "type": "topic",
+      "url": "/documentation/screensaver/ssrandomintbetween(_:_:)"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver/SSRandomPointForSizeWithinRect(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a random point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSRandomPointForSizeWithinRect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSize",
+          "text": "NSSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/SSRandomPointForSizeWithinRect(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSRandomPointForSizeWithinRect"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSRandomPointForSizeWithinRect(_:_:)",
+      "type": "topic",
+      "url": "/documentation/screensaver/ssrandompointforsizewithinrect(_:_:)"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverDefaults": {
+      "abstract": [
+        {
+          "text": "A class that defines a set of methods for saving and restoring user defaults for screen savers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScreenSaverDefaults"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverDefaults",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScreenSaverDefaults"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScreenSaverDefaults",
+      "type": "topic",
+      "url": "/documentation/screensaver/screensaverdefaults"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView": {
+      "abstract": [
+        {
+          "text": "An abstract class that defines the interface for subclassers to interact with the screen saver infrastructure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScreenSaverView"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScreenSaverView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScreenSaverView",
+      "type": "topic",
+      "url": "/documentation/screensaver/screensaverview"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/animateOneFrame()": {
+      "abstract": [
+        {
+          "text": "Advances the screen saver’s animation by a single frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "animateOneFrame"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/animateOneFrame()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "animateOneFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "animateOneFrame()",
+      "type": "topic",
+      "url": "/documentation/screensaver/screensaverview/animateoneframe()"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/draw(_:)": {
+      "abstract": [
+        {
+          "text": "Draws the screen saver view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "draw"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/draw(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "drawRect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "draw(_:)",
+      "type": "topic",
+      "url": "/documentation/screensaver/screensaverview/draw(_:)"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/init(frame:isPreview:)": {
+      "abstract": [
+        {
+          "text": "Creates a newly allocated screen saver view with the specified frame rectangle and preview information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "frame"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isPreview"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/init(frame:isPreview:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithFrame:isPreview:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(frame:isPreview:)",
+      "type": "topic",
+      "url": "/documentation/screensaver/screensaverview/init(frame:ispreview:)"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/startAnimation()": {
+      "abstract": [
+        {
+          "text": "Activates the periodic timer that animates the screen saver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startAnimation"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/startAnimation()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "startAnimation()",
+      "type": "topic",
+      "url": "/documentation/screensaver/screensaverview/startanimation()"
+    },
+    "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/stopAnimation()": {
+      "abstract": [
+        {
+          "text": "Deactivates the timer that advances the animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopAnimation"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView/stopAnimation()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopAnimation()",
+      "type": "topic",
+      "url": "/documentation/screensaver/screensaverview/stopanimation()"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Interface",
+      "identifiers": [
+        "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView",
+        "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverDefaults"
+      ],
+      "title": "Interface"
+    },
+    {
+      "anchor": "Utilities",
+      "identifiers": [
+        "doc://com.apple.screensaver/documentation/ScreenSaver/SSRandomIntBetween(_:_:)",
+        "doc://com.apple.screensaver/documentation/ScreenSaver/SSRandomFloatBetween(_:_:)",
+        "doc://com.apple.screensaver/documentation/ScreenSaver/SSRandomPointForSizeWithinRect(_:_:)",
+        "doc://com.apple.screensaver/documentation/ScreenSaver/SSCenteredRectInRect(_:_:)"
+      ],
+      "title": "Utilities"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Interface",
+              "identifiers": [
+                "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverView",
+                "doc://com.apple.screensaver/documentation/ScreenSaver/ScreenSaverDefaults"
+              ],
+              "title": "Interface"
+            },
+            {
+              "anchor": "Utilities",
+              "identifiers": [
+                "doc://com.apple.screensaver/documentation/ScreenSaver/SSRandomIntBetween(_:_:)",
+                "doc://com.apple.screensaver/documentation/ScreenSaver/SSRandomFloatBetween(_:_:)",
+                "doc://com.apple.screensaver/documentation/ScreenSaver/SSRandomPointForSizeWithinRect(_:_:)",
+                "doc://com.apple.screensaver/documentation/ScreenSaver/SSCenteredRectInRect(_:_:)"
+              ],
+              "title": "Utilities"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1SSRandomFloatBetween(_:_:)/title",
+          "value": "SSRandomFloatBetween"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1SSRandomFloatBetween(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSRandomFloatBetween"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1SSRandomIntBetween(_:_:)/title",
+          "value": "SSRandomIntBetween"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1SSRandomIntBetween(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSRandomIntBetween"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1userdefaults/title",
+          "value": "NSUserDefaults"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1startAnimation()/title",
+          "value": "startAnimation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1startAnimation()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView/title",
+          "value": "ScreenSaverView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ScreenSaverView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ScreenSaverView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1SSRandomPointForSizeWithinRect(_:_:)/title",
+          "value": "SSRandomPointForSizeWithinRect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1SSRandomPointForSizeWithinRect(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSRandomPointForSizeWithinRect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1SSCenteredRectInRect(_:_:)/title",
+          "value": "SSCenteredRectInRect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1SSCenteredRectInRect(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSCenteredRectInRect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1init(frame:isPreview:)/title",
+          "value": "initWithFrame:isPreview:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1init(frame:isPreview:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithFrame:isPreview:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1stopAnimation()/title",
+          "value": "stopAnimation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1stopAnimation()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopAnimation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1draw(_:)/title",
+          "value": "drawRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1draw(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1animateOneFrame()/title",
+          "value": "animateOneFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverView~1animateOneFrame()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "animateOneFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverDefaults/title",
+          "value": "ScreenSaverDefaults"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverDefaults/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ScreenSaverDefaults"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.screensaver~1documentation~1ScreenSaver~1ScreenSaverDefaults/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ScreenSaverDefaults"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/screensaver"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/screensaver"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

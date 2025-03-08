@@ -1,0 +1,1251 @@
+{
+  "abstract": [
+    {
+      "text": "Learn how to customize the UIKit state restoration process.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+        "doc://com.apple.uikit/documentation/UIKit/preserving-your-app-s-ui-across-launches"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+        "doc://com.apple.uikit/documentation/UIKit/responding-to-the-launch-of-your-app",
+        "doc://com.apple.uikit/documentation/UIKit/preserving-your-app-s-ui-across-launches"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/about-the-ui-restoration-process"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "About the UI restoration process"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following diagram shows the sequence of calls that happens from the time your app launches until the time it’s restored. Restoration occurs during the middle of your app’s initialization, and it proceeds only when a state restoration archive is available and your app delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:shouldRestoreApplicationState:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2934436",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first step in the restoration process is to create the view controller objects (either explicitly or implicitly) for your interface. The second step is to decode and restore the state of those objects. Both steps are needed to recreate your view controller hierarchy. For example, after the creation of a navigation controller and its child view controllers, there’s no immediate connection between those objects. It’s actually the navigation controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring/decodeRestorableState(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method that reestablishes the relationships to its child view controllers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After state restoration finishes, UIKit calls the app delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Use that method to make any last minute changes or additions to your interface. For example, you might add a login screen to the view controller hierarchy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Recreate-your-view-controllers",
+          "level": 3,
+          "text": "Recreate your view controllers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During restoration, UIKit tries to create or locate view controller objects from your preserved interface. UIKit first asks you to provide the view controller object. If you don’t provide the view controller, UIKit looks for it implicitly. Here’s the sequence of steps that UIKit follows to recreate view controllers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Asks the view controller’s restoration class.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " A restoration class knows how to create a specific view controller. You designate a restoration class by assigning that class to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/restorationClass",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property of your view controller. During restoration, UIKit calls the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerRestoration/viewController(withRestorationIdentifierPath:coder:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method of the restoration class to request a new instance of the view controller, which your method then returns. If you return ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", UIKit stops trying to create the view controller and leaves it out of the restoration process.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Asks the app delegate.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " If the view controller had no restoration class, UIKit calls the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:viewControllerWithRestorationIdentifierPath:coder:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method of the app delegate. If you return ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from that method, UIKit continues searching.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Checks for an existing object.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " UIKit looks for an already created view controller with the exact same restoration path.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Instantiates the view controller from your storyboards.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " If it still doesn’t have the view controller, UIKit automatically instantiates it from your app’s storyboards.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before state restoration even begins, UIKit loads your app’s default view controllers from your storyboards. Because UIKit loads these view controllers for free, it’s better not to create them using a restoration class or your app delegate. For all other view controllers, assign a restoration class only if the view controller isn’t defined in your storyboards. You might also assign a restoration class to prevent the creation of your view controller in specific circumstances. For example, you might want to avoid displaying the view controller if the associated restoration archive refers to stale or missing data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When recreating view controllers in code, always reassign a value to the view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/restorationIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property in addition to any other initialization. Also assign a value to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/restorationClass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property as appropriate. Assigning these values at creation time ensures that the view controller will be preserved during the next cycle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func viewController(withRestorationIdentifierPath ",
+            "                    identifierComponents: [Any], ",
+            "                    coder: NSCoder) -> UIViewController? {",
+            "   let vc = MyViewController()",
+            "        ",
+            "   vc.restorationIdentifier = identifierComponents.last as? String",
+            "   vc.restorationClass = MyViewController.self",
+            "        ",
+            "   return vc",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Your restoration class should always return the class expected by UIKit. The restoration archive includes the class of each preserved view controller. If your restoration class returns an instance of a different class, UIKit doesn’t call that view controller’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/decodeRestorableState(with:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the launch process is almost done and the app is almost ready to run.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFinishLaunchingWithOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIApplicationLaunchOptionsKey",
+          "text": "LaunchOptionsKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "application:didFinishLaunchingWithOptions:"
+        }
+      ],
+      "role": "symbol",
+      "title": "application(_:didFinishLaunchingWithOptions:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate/application(_:didfinishlaunchingwithoptions:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:shouldRestoreApplicationState:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate whether to restore the app’s saved state.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "shouldRestoreApplicationState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:shouldRestoreApplicationState:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "application:shouldRestoreApplicationState:"
+        }
+      ],
+      "role": "symbol",
+      "title": "application(_:shouldRestoreApplicationState:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate/application(_:shouldrestoreapplicationstate:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:viewControllerWithRestorationIdentifierPath:coder:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate to provide the specified view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "viewControllerWithRestorationIdentifierPath"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:viewControllerWithRestorationIdentifierPath:coder:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "application:viewControllerWithRestorationIdentifierPath:coder:"
+        }
+      ],
+      "role": "symbol",
+      "title": "application(_:viewControllerWithRestorationIdentifierPath:coder:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate/application(_:viewcontrollerwithrestorationidentifierpath:coder:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring/decodeRestorableState(with:)": {
+      "abstract": [
+        {
+          "text": "Decodes and restores state-related information for the object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeRestorableState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStateRestoring/decodeRestorableState(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "decodeRestorableStateWithCoder:"
+        }
+      ],
+      "role": "symbol",
+      "title": "decodeRestorableState(with:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uistaterestoring/decoderestorablestate(with:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/decodeRestorableState(with:)": {
+      "abstract": [
+        {
+          "text": "Decodes and restores state-related information for the view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeRestorableState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/decodeRestorableState(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "decodeRestorableStateWithCoder:"
+        }
+      ],
+      "role": "symbol",
+      "title": "decodeRestorableState(with:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/decoderestorablestate(with:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/restorationClass": {
+      "abstract": [
+        {
+          "text": "The class responsible for recreating this view controller when restoring the app’s state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restorationClass"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIViewControllerRestoration",
+          "text": "UIViewControllerRestoration"
+        },
+        {
+          "kind": "text",
+          "text": ".Type)?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/restorationClass",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "restorationClass"
+        }
+      ],
+      "role": "symbol",
+      "title": "restorationClass",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/restorationclass"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/restorationIdentifier": {
+      "abstract": [
+        {
+          "text": "The identifier that determines whether the view controller supports state restoration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restorationIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/restorationIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "restorationIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "restorationIdentifier",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/restorationidentifier"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerRestoration/viewController(withRestorationIdentifierPath:coder:)": {
+      "abstract": [
+        {
+          "text": "Requests the view controller that corresponds to the specified identifier information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withRestorationIdentifierPath"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerRestoration/viewController(withRestorationIdentifierPath:coder:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewControllerWithRestorationIdentifierPath:coder:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "viewController(withRestorationIdentifierPath:coder:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollerrestoration/viewcontroller(withrestorationidentifierpath:coder:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/about-the-ui-preservation-process": {
+      "abstract": [
+        {
+          "text": "Learn how to customize the UIKit state preservation process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/about-the-ui-preservation-process",
+      "kind": "article",
+      "role": "article",
+      "title": "About the UI preservation process",
+      "type": "topic",
+      "url": "/documentation/uikit/about-the-ui-preservation-process"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/app-and-environment": {
+      "abstract": [
+        {
+          "text": "Manage life-cycle events and your app’s UI scenes, and get information about traits and the environment in which your app runs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and environment",
+      "type": "topic",
+      "url": "/documentation/uikit/app-and-environment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/preserving-your-app-s-ui-across-launches": {
+      "abstract": [
+        {
+          "text": "Return your app to its previous state after the system terminates it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/preserving-your-app-s-ui-across-launches",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preserving your app’s UI across launches",
+      "type": "topic",
+      "url": "/documentation/uikit/preserving-your-app-s-ui-across-launches"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/responding-to-the-launch-of-your-app": {
+      "abstract": [
+        {
+          "text": "Initialize your app’s data structures, prepare your app to run, and respond to any launch-time requests from the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/responding-to-the-launch-of-your-app",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Responding to the launch of your app",
+      "type": "topic",
+      "url": "/documentation/uikit/responding-to-the-launch-of-your-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/view-controllers": {
+      "abstract": [
+        {
+          "text": "Manage your interface using view controllers and facilitate navigation around your app’s content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View controllers",
+      "type": "topic",
+      "url": "/documentation/uikit/view-controllers"
+    },
+    "media-2934436": {
+      "alt": "Flow diagram of the interface restoration process.",
+      "identifier": "media-2934436",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8ae9ad9ee6c3db2adb3b3d2ed01aa1a6/media-2934436@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Process-details",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/about-the-ui-preservation-process"
+      ],
+      "title": "Process details"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Process-details",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/about-the-ui-preservation-process"
+              ],
+              "title": "Process details"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:shouldRestoreApplicationState:)/title",
+          "value": "application:shouldRestoreApplicationState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:shouldRestoreApplicationState:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:shouldRestoreApplicationState:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1decodeRestorableState(with:)/title",
+          "value": "decodeRestorableStateWithCoder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1decodeRestorableState(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "decodeRestorableStateWithCoder:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring~1decodeRestorableState(with:)/title",
+          "value": "decodeRestorableStateWithCoder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStateRestoring~1decodeRestorableState(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "decodeRestorableStateWithCoder:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1restorationClass/title",
+          "value": "restorationClass"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1restorationClass/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "restorationClass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1restorationIdentifier/title",
+          "value": "restorationIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1restorationIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "restorationIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:viewControllerWithRestorationIdentifierPath:coder:)/title",
+          "value": "application:viewControllerWithRestorationIdentifierPath:coder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:viewControllerWithRestorationIdentifierPath:coder:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:viewControllerWithRestorationIdentifierPath:coder:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:didFinishLaunchingWithOptions:)/title",
+          "value": "application:didFinishLaunchingWithOptions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1application(_:didFinishLaunchingWithOptions:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:didFinishLaunchingWithOptions:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerRestoration~1viewController(withRestorationIdentifierPath:coder:)/title",
+          "value": "viewControllerWithRestorationIdentifierPath:coder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerRestoration~1viewController(withRestorationIdentifierPath:coder:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewControllerWithRestorationIdentifierPath:coder:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/about-the-ui-restoration-process"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/about-the-ui-restoration-process"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1609 @@
+{
+  "abstract": [
+    {
+      "text": "Avoid stalls between CPU and GPU work by using multiple instances of a resource.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/metal-sample-code-library"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/resource-synchronization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/synchronizing-cpu-and-gpu-work"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Synchronizing CPU and GPU Work"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this sample code project, you learn how to manage data dependencies and avoid processor stalls between the CPU and the GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The project continuously renders triangles along a sine wave. In each frame, the sample updates the position of each triangle’s vertices and then renders a new image. These dynamic data updates create an illusion of motion, where the triangles appear to move along the sine wave.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "cpu-gpu-synchronization-1-SampleScreenshot",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample stores the triangle vertices in a buffer that’s shared between the CPU and the GPU. The CPU writes data to the buffer and the GPU reads it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Xcode project contains schemes for running the sample on macOS, iOS, and tvOS. The default scheme is macOS, which runs the sample on your Mac.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Understand-the-Solution-to-Data-Dependencies-and-Processor-Stalls",
+          "level": 3,
+          "text": "Understand the Solution to Data Dependencies and Processor Stalls",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Resource sharing creates a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "data dependency",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " between the processors; the CPU must finish writing to the resource before the GPU reads it. If the GPU reads the resource before the CPU writes to it, the GPU reads undefined resource data. If the GPU reads the resource while the CPU is writing to it, the GPU reads incorrect resource data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "cpu-gpu-synchronization-2-AccessOrder",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These data dependencies create ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "processor stalls",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " between the CPU and the GPU; each processor must wait for the other to finish its work before beginning its own work.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, because the CPU and GPU are separate processors, you can make them work simultaneously by using multiple instances of a resource. Each frame, you must provide the same arguments to your shaders, but this doesn’t mean you need to reference the same resource object. Instead, you create a pool of multiple instances of a resource and use a different one each time you render a frame. For example, as shown below, the CPU can write position data to a buffer used for frame ",
+              "type": "text"
+            },
+            {
+              "code": "n+1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", at the same time that the GPU reads position data from a buffer used for frame ",
+              "type": "text"
+            },
+            {
+              "code": "n",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". By using multiple instances of a buffer, the CPU and the GPU can work continuously and avoid stalls as long as you keep rendering frames.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "cpu-gpu-synchronization-3-ContinuousWork",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Initialize-Data-with-the-CPU",
+          "level": 3,
+          "text": "Initialize Data with the CPU",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Define a custom ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLVertex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure that represents a vertex. Each vertex has a position and a color:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "typedef struct",
+            "{",
+            "    vector_float2 position;",
+            "    vector_float4 color;",
+            "} AAPLVertex;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Define a custom ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLTriangle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class that provides an interface to a default triangle, which is made up of 3 vertices:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "+(const AAPLVertex *)vertices",
+            "{",
+            "    const float TriangleSize = 64;",
+            "    static const AAPLVertex triangleVertices[] =",
+            "    {",
+            "        // Pixel Positions,                          RGBA colors.",
+            "        { { -0.5*TriangleSize, -0.5*TriangleSize },  { 1, 1, 1, 1 } },",
+            "        { {  0.0*TriangleSize, +0.5*TriangleSize },  { 1, 1, 1, 1 } },",
+            "        { { +0.5*TriangleSize, -0.5*TriangleSize },  { 1, 1, 1, 1 } }",
+            "    };",
+            "    return triangleVertices;",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Initialize multiple triangle vertices with a position and a color, and store them in an array of triangles, ",
+              "type": "text"
+            },
+            {
+              "code": "_triangles",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSMutableArray *triangles = [[NSMutableArray alloc] initWithCapacity:NumTriangles];",
+            "",
+            "// Initialize each triangle.",
+            "for(NSUInteger t = 0; t < NumTriangles; t++)",
+            "{",
+            "    vector_float2 trianglePosition;",
+            "",
+            "    // Determine the starting position of the triangle in a horizontal line.",
+            "    trianglePosition.x = ((-((float)NumTriangles) / 2.0) + t) * horizontalSpacing;",
+            "    trianglePosition.y = 0.0;",
+            "",
+            "    // Create the triangle, set its properties, and add it to the array.",
+            "    AAPLTriangle * triangle = [AAPLTriangle new];",
+            "    triangle.position = trianglePosition;",
+            "    triangle.color = Colors[t % NumColors];",
+            "    [triangles addObject:triangle];",
+            "}",
+            "_triangles = triangles;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Allocate-Data-Storage",
+          "level": 3,
+          "text": "Allocate Data Storage",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Calculate the total storage size of your triangle vertices. Your app renders 50 triangles; each triangle has 3 vertices, totaling 150 vertices, and each vertex is the size of ",
+              "type": "text"
+            },
+            {
+              "code": "AAPLVertex",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "const NSUInteger triangleVertexCount = [AAPLTriangle vertexCount];",
+            "_totalVertexCount = triangleVertexCount * _triangles.count;",
+            "const NSUInteger triangleVertexBufferSize = _totalVertexCount * sizeof(AAPLVertex);"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Initialize multiple buffers to store multiple copies of your vertex data. For each buffer, allocate exactly enough memory to store 150 vertices:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for(NSUInteger bufferIndex = 0; bufferIndex < MaxFramesInFlight; bufferIndex++)",
+            "{",
+            "    _vertexBuffers[bufferIndex] = [_device newBufferWithLength:triangleVertexBufferSize",
+            "                                                       options:MTLResourceStorageModeShared];",
+            "    _vertexBuffers[bufferIndex].label = [NSString stringWithFormat:@\"Vertex Buffer #%lu\", (unsigned long)bufferIndex];",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Upon initialization, the contents of the buffer instances in the ",
+              "type": "text"
+            },
+            {
+              "code": "_vertexBuffers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array are empty.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-Data-with-the-CPU",
+          "level": 3,
+          "text": "Update Data with the CPU",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In each frame, at the start of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKViewDelegate/draw(in:)",
+              "isActive": true,
+              "overridingTitle": "drawInMTKView:",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "drawInMTKView:",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " render loop, use the CPU to update the contents of one buffer instance in the ",
+              "type": "text"
+            },
+            {
+              "code": "updateState",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Vertex data for the current triangles.",
+            "AAPLVertex *currentTriangleVertices = _vertexBuffers[_currentBuffer].contents;",
+            "",
+            "// Update each triangle.",
+            "for(NSUInteger triangle = 0; triangle < NumTriangles; triangle++)",
+            "{",
+            "    vector_float2 trianglePosition = _triangles[triangle].position;",
+            "",
+            "    // Displace the y-position of the triangle using a sine wave.",
+            "    trianglePosition.y = (sin(trianglePosition.x/waveMagnitude + _wavePosition) * waveMagnitude);",
+            "",
+            "    // Update the position of the triangle.",
+            "    _triangles[triangle].position = trianglePosition;",
+            "",
+            "    // Update the vertices of the current vertex buffer with the triangle's new position.",
+            "    for(NSUInteger vertex = 0; vertex < triangleVertexCount; vertex++)",
+            "    {",
+            "        NSUInteger currentVertex = vertex + (triangle * triangleVertexCount);",
+            "        currentTriangleVertices[currentVertex].position = triangleVertices[vertex].position + _triangles[triangle].position;",
+            "        currentTriangleVertices[currentVertex].color = _triangles[triangle].color;",
+            "    }",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you update a buffer instance, you don’t access its data with the CPU for the rest of the frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You must finalize all CPU writes to one buffer instance before you commit a command buffer that references it. Otherwise, the GPU may begin reading the buffer instance while the CPU is still writing to it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Encode-GPU-Commands",
+          "level": 3,
+          "text": "Encode GPU Commands",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, you encode commands that reference the buffer instance in a render pass:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[renderEncoder setVertexBuffer:_vertexBuffers[_currentBuffer]",
+            "                        offset:0",
+            "                       atIndex:AAPLVertexInputIndexVertices];",
+            "",
+            "// Set the viewport size.",
+            "[renderEncoder setVertexBytes:&_viewportSize",
+            "                       length:sizeof(_viewportSize)",
+            "                      atIndex:AAPLVertexInputIndexViewportSize];",
+            "",
+            "// Draw the triangle vertices.",
+            "[renderEncoder drawPrimitives:MTLPrimitiveTypeTriangle",
+            "                  vertexStart:0",
+            "                  vertexCount:_totalVertexCount];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Commit-and-Execute-GPU-Commands",
+          "level": 3,
+          "text": "Commit and Execute GPU Commands",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At the end of the render loop, call your command buffer’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/commit()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to submit your work to the GPU:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[commandBuffer commit];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The GPU begins its work and reads from the ",
+              "type": "text"
+            },
+            {
+              "code": "vertices",
+              "type": "codeVoice"
+            },
+            {
+              "text": " buffer in the ",
+              "type": "text"
+            },
+            {
+              "code": "RasterizerData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " vertex shader, which takes the buffer instance as an input argument:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "vertex RasterizerData",
+            "vertexShader(const uint vertexID [[ vertex_id ]],",
+            "             const device AAPLVertex *vertices [[ buffer(AAPLVertexInputIndexVertices) ]],",
+            "             constant vector_uint2 *viewportSizePointer  [[ buffer(AAPLVertexInputIndexViewportSize) ]])"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Reuse-Multiple-Buffer-Instances-in-Your-App",
+          "level": 3,
+          "text": "Reuse Multiple Buffer Instances in Your App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each frame, perform the following steps, as described above. A full frame’s work is finished when both processors have completed their work.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Write data to a buffer instance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Encode commands that reference the buffer instance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Commit a command buffer that contains the encoded commands.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Read data from the buffer instance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a frame’s work is finalized, the CPU and the GPU no longer need the buffer instance used in that frame. However, discarding a used buffer instance and creating a new one for each frame is expensive and wasteful. Instead, as shown below, set up your app to cycle through a first in, first out (FIFO) queue of buffer instances, ",
+              "type": "text"
+            },
+            {
+              "code": "_vertexBuffers",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", that you can reuse. The maximum number of buffer instances in the queue is defined by the value of ",
+              "type": "text"
+            },
+            {
+              "code": "MaxFramesInFlight",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", set to 3:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static const NSUInteger MaxFramesInFlight = 3;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In each frame, at the start of the render loop, you update the next buffer instance from the ",
+              "type": "text"
+            },
+            {
+              "code": "_vertexBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " queue. You cycle through the queue sequentially and update only one buffer instance per frame; at the end of every third frame, you return to the start of the queue:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Iterate through the Metal buffers, and cycle back to the first when you've written to the last.",
+            "_currentBuffer = (_currentBuffer + 1) % MaxFramesInFlight;",
+            "",
+            "// Update buffer data.",
+            "[self updateState];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Core Animation provides optimized displayable resources, commonly referred to as ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "drawables",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": ", for you to render content and display it onscreen. Drawables are efficient yet expensive system resources, so Core Animation limits the number of drawables that you can use simultaneously in your app. The default limit is 3, but you can set it to 2 with the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer/maximumDrawableCount",
+                  "isActive": true,
+                  "overridingTitle": "maximumDrawableCount",
+                  "overridingTitleInlineContent": [
+                    {
+                      "code": "maximumDrawableCount",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": " property (2 and 3 are the only supported values). Because the maximum number of drawables is 3, this sample creates 3 buffer instances. You donʼt need to create more buffer instances than the maximum number of drawables available.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Manage-the-Rate-of-CPU-and-GPU-Work",
+          "level": 3,
+          "text": "Manage the Rate of CPU and GPU Work",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you have multiple instances of a buffer, you can make the CPU start work for frame ",
+              "type": "text"
+            },
+            {
+              "code": "n+1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with one instance, while the GPU finishes work for frame ",
+              "type": "text"
+            },
+            {
+              "code": "n",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with another instance. This implementation improves your app’s efficiency by making the CPU and the GPU work simultaneously. However, you need to manage your app’s rate of work so you don’t exceed the number of buffer instances available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To manage your app’s rate of work, use a semaphore to wait for full frame completions in case the CPU is working much faster than the GPU. A semaphore is a non-Metal object that you use to control access to a resource that’s shared across multiple processors (or threads). The semaphore has an associated counting value, which you decrement or increment, that indicates whether a processor has started or finished accessing a resource. In your app, a semaphore controls CPU and GPU access to buffer instances.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You initialize the semaphore with a counting value of ",
+              "type": "text"
+            },
+            {
+              "code": "MaxFramesInFlight",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", to match the number of buffer instances. This value indicates that your app can simultaneously work on a maximum of 3 frames at any given time:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "_inFlightSemaphore = dispatch_semaphore_create(MaxFramesInFlight);"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At the start of the render loop, you decrement the semaphore’s counting value by 1. This indicates that you’re ready to work on a new frame. However, if the counting value falls below 0, the semaphore makes the CPU wait until you increment the value:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "dispatch_semaphore_wait(_inFlightSemaphore, DISPATCH_TIME_FOREVER);"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At the end of the render loop, you register a command buffer completion handler. When the GPU completes the command buffer’s execution, it calls this completion handler and you increment the semaphore’s counting value by 1. This indicates that you’ve completed all work for a given frame and you can reuse the buffer instance used in that frame:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "__block dispatch_semaphore_t block_semaphore = _inFlightSemaphore;",
+            "[commandBuffer addCompletedHandler:^(id<MTLCommandBuffer> buffer)",
+            " {",
+            "     dispatch_semaphore_signal(block_semaphore);",
+            " }];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/addCompletedHandler(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method registers a block of code that’s called immediately after the GPU has finished executing the associated command buffer. Because you use only one command buffer per frame, receiving the completion callback indicates that the GPU has completed the frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-the-Mutability-of-Your-Buffers",
+          "level": 3,
+          "text": "Set the Mutability of Your Buffers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app performs all per-frame rendering setup on a single thread. First it writes data to a buffer instance with the CPU. After that, it encodes rendering commands that reference the buffer instance. Finally, it commits a command buffer for GPU execution. Because these tasks always happen in this order on a single thread, the app guarantees that it finishes writing data to a buffer instance before it encodes a command that references the buffer instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This order allows you to mark your buffer instances as immutable. When you configure your render pipeline descriptor, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLPipelineBufferDescriptor/mutability",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the vertex buffer at the buffer instance index to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLMutability/immutable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "pipelineStateDescriptor.vertexBuffers[AAPLVertexInputIndexVertices].mutability = MTLMutabilityImmutable;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metal can optimize the performance of immutable buffers, but not mutable buffers. For best results, use immutable buffers as much as possible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "cpu-gpu-synchronization-1-SampleScreenshot": {
+      "alt": "A screenshot of the sample code project, showing colored triangles rendered along a sine wave.",
+      "identifier": "cpu-gpu-synchronization-1-SampleScreenshot",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5e6872f93f029b321bb48ae20cc72ff5/cpu-gpu-synchronization-1-SampleScreenshot.png"
+        }
+      ]
+    },
+    "cpu-gpu-synchronization-2-AccessOrder": {
+      "alt": "A diagram that shows the CPU and the GPU sequentially accessing a buffer in each frame.",
+      "identifier": "cpu-gpu-synchronization-2-AccessOrder",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5f15ee47f49c23cf653705709dac8e42/cpu-gpu-synchronization-2-AccessOrder.png"
+        }
+      ]
+    },
+    "cpu-gpu-synchronization-3-ContinuousWork": {
+      "alt": "A diagram that shows the CPU and the GPU simultaneously accessing multiple copies of a buffer in each frame.",
+      "identifier": "cpu-gpu-synchronization-3-ContinuousWork",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/32b0e436b2811d2b0fe5d32545888bd9/cpu-gpu-synchronization-3-ContinuousWork.png"
+        }
+      ]
+    },
+    "d164bbc24cfd/SynchronizingCPUAndGPUWork.zip": {
+      "checksum": "d164bbc24cfd75fe7f64791cea90da7c2fb62a5f7c86044d92516ab49320a94172c35de57ea293ba0f5573f1b51e8878d03628efbcf872bb1fe5c384bf02950e",
+      "identifier": "d164bbc24cfd/SynchronizingCPUAndGPUWork.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/d164bbc24cfd/SynchronizingCPUAndGPUWork.zip"
+    },
+    "doc://com.apple.documentation/documentation/MetalKit/MTKViewDelegate/draw(in:)": {
+      "abstract": [
+        {
+          "text": "Draws the view’s contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "draw"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTKView",
+          "text": "MTKView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetalKit/MTKViewDelegate/draw(in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "draw(in:)",
+      "type": "topic",
+      "url": "/documentation/MetalKit/MTKViewDelegate/draw(in:)"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer/maximumDrawableCount": {
+      "abstract": [
+        {
+          "text": "The number of Metal drawables in the resource pool managed by Core Animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumDrawableCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CAMetalLayer/maximumDrawableCount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "maximumDrawableCount",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CAMetalLayer/maximumDrawableCount"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/addCompletedHandler(_:)": {
+      "abstract": [
+        {
+          "text": "Registers a completion handler the GPU device calls immediately after the GPU finishes running the commands in the command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addCompletedHandler"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLCommandBufferHandler",
+          "text": "MTLCommandBufferHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/addCompletedHandler(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addCompletedHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "addCompletedHandler(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/addcompletedhandler(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/commit()": {
+      "abstract": [
+        {
+          "text": "Submits the command buffer to run on the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "commit"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/commit()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "commit"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "commit()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/commit()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLMutability/immutable": {
+      "abstract": [
+        {
+          "text": "An option that states that you can’t modify the buffer’s contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "immutable"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLMutability/immutable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLMutabilityImmutable"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLMutability.immutable",
+      "type": "topic",
+      "url": "/documentation/metal/mtlmutability/immutable"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPipelineBufferDescriptor/mutability": {
+      "abstract": [
+        {
+          "text": "A mutability option that determines whether you can update a buffer’s contents before related commands use the buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mutability"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLMutability",
+          "text": "MTLMutability"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPipelineBufferDescriptor/mutability",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mutability"
+        }
+      ],
+      "role": "symbol",
+      "title": "mutability",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpipelinebufferdescriptor/mutability"
+    },
+    "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-events": {
+      "abstract": [
+        {
+          "text": "Use events to synchronize access to resources allocated on a heap.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-events",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing a Multistage Image Filter Using Heaps and Events",
+      "type": "topic",
+      "url": "/documentation/metal/implementing-a-multistage-image-filter-using-heaps-and-events"
+    },
+    "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-fences": {
+      "abstract": [
+        {
+          "text": "Use fences to synchronize access to resources allocated on a heap.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-fences",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing a Multistage Image Filter Using Heaps and Fences",
+      "type": "topic",
+      "url": "/documentation/metal/implementing-a-multistage-image-filter-using-heaps-and-fences"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-sample-code-library": {
+      "abstract": [
+        {
+          "text": "Explore the complete set of Metal samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-sample-code-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Sample Code Library",
+      "type": "topic",
+      "url": "/documentation/metal/metal-sample-code-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/resource-synchronization": {
+      "abstract": [
+        {
+          "text": "Coordinate the contents of data buffers, textures, and other resources that CPUs and GPUs share access to.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/resource-synchronization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resource Synchronization",
+      "type": "topic",
+      "url": "/documentation/metal/resource-synchronization"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "d164bbc24cfd/SynchronizingCPUAndGPUWork.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Synchronization",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-events",
+        "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-fences"
+      ],
+      "title": "Synchronization"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Synchronization",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-events",
+                "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-fences"
+              ],
+              "title": "Synchronization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1addCompletedHandler(_:)/title",
+          "value": "addCompletedHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1addCompletedHandler(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addCompletedHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1commit()/title",
+          "value": "commit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1commit()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "commit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CAMetalLayer~1maximumDrawableCount/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "maximumDrawableCount"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPipelineBufferDescriptor~1mutability/title",
+          "value": "mutability"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPipelineBufferDescriptor~1mutability/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mutability"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKViewDelegate~1draw(in:)/title",
+          "value": "drawInMTKView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MetalKit~1MTKViewDelegate~1draw(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawInMTKView:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MTKView",
+              "text": "MTKView"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "view"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLMutability~1immutable/title",
+          "value": "MTLMutabilityImmutable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLMutability~1immutable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLMutabilityImmutable"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/synchronizing-cpu-and-gpu-work"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/synchronizing-cpu-and-gpu-work"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,542 @@
+{
+  "abstract": [
+    {
+      "text": "Learn how to create a simple app that incorporates predicted touches into its drawing code.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/handling-touches-in-your-view",
+        "doc://com.apple.uikit/documentation/UIKit/minimizing-latency-with-predicted-touches"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/incorporating-predicted-touches-into-an-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Incorporating predicted touches into an app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app Speed Sketch (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/leveraging-touch-input-for-drawing-apps",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") uses predicted touches to minimize latency when drawing using either Apple Pencil or a finger. The key class for gathering touches is the ",
+              "type": "text"
+            },
+            {
+              "code": "StrokeGestureRecognizer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class. Each new sequence of touch events results in the creation of a ",
+              "type": "text"
+            },
+            {
+              "code": "Stroke",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object to the app’s drawing canvas. Stroke objects store the touch data needed to do stylized line drawing and can render that data using a calligraphy pen or a regular pen, or in a special debug mode that draws line segments for each distinct touch event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3004387",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Collect-the-touch-input",
+          "level": 3,
+          "text": "Collect the touch input",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "StrokeGestureRecognizer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class collects drawing-related touch input and uses it to create a ",
+              "type": "text"
+            },
+            {
+              "code": "Stroke",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object representing the path to render. In addition to the touches that actually occurred, the class also gathers any predicted touches. The following code shows the portion of the gesture recognizer’s ",
+              "type": "text"
+            },
+            {
+              "code": "append",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method that’s responsible for gathering the predicted touches. The ",
+              "type": "text"
+            },
+            {
+              "code": "collector",
+              "type": "codeVoice"
+            },
+            {
+              "text": " block called by this code processes each touch event. The parameters to that block indicate whether the touch is an actual touch or a predicted touch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Collect predicted touches only while the gesture is ongoing. ",
+            "if (usesPredictedSamples && stroke.state == .active) {",
+            "   if let predictedTouches = event?.predictedTouches(for: touchToAppend) {",
+            "      for touch in predictedTouches {",
+            "         collector(stroke, touch, view, false, true)",
+            "      }",
+            "   }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The collection of touch input results in the creation of ",
+              "type": "text"
+            },
+            {
+              "code": "StrokeSample",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects, which are then added to the current ",
+              "type": "text"
+            },
+            {
+              "code": "Stroke",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. Stroke objects store predicted touches separately from other touches. Keeping them separate makes it easier to remove them later, and keeps them from being accidentally confused with the real touch input. Each time the app adds a new set of actual touches, it discards the preceding set of predicted samples.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows a portion of the ",
+              "type": "text"
+            },
+            {
+              "code": "Stroke",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class, which represents the touches associated with a single drawn line. For each new set of touches, the class adds the actual touches to its primary list of samples. Any predicted touches are then stored in the ",
+              "type": "text"
+            },
+            {
+              "code": "predictedSamples",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property. Each time ",
+              "type": "text"
+            },
+            {
+              "code": "StrokeGestureRecognizer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " calls the ",
+              "type": "text"
+            },
+            {
+              "code": "Stroke",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method ",
+              "type": "text"
+            },
+            {
+              "code": "add",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the method moves the last set of predicted touches to the ",
+              "type": "text"
+            },
+            {
+              "code": "previousPredictedSamples",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property and are ultimately discarded. Thus, ",
+              "type": "text"
+            },
+            {
+              "code": "Stroke",
+              "type": "codeVoice"
+            },
+            {
+              "text": " maintains only the last set of predicted touches.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class Stroke {",
+            "    static let calligraphyFallbackAzimuthUnitVector = CGVector(dx: 1.0, dy:1.0).normalize! ",
+            "    var samples: [StrokeSample] = []",
+            "    var predictedSamples: [StrokeSample] = []",
+            "    var previousPredictedSamples: [StrokeSample]?",
+            "    var state: StrokeState = .active",
+            "    var sampleIndicesExpectingUpdates = Set<Int>()",
+            "    var expectsAltitudeAzimuthBackfill = false",
+            "    var hasUpdatesFromStartTo: Int?",
+            "    var hasUpdatesAtEndFrom: Int? ",
+            "    var receivedAllNeededUpdatesBlock: (() -> ())?",
+            " ",
+            "    func add(sample: StrokeSample) -> Int {",
+            "        let resultIndex = samples.count",
+            "        if hasUpdatesAtEndFrom == nil {",
+            "            hasUpdatesAtEndFrom = resultIndex",
+            "        }",
+            " ",
+            "        samples.append(sample)",
+            "        if previousPredictedSamples == nil {",
+            "            previousPredictedSamples = predictedSamples",
+            "        }",
+            " ",
+            "        if sample.estimatedPropertiesExpectingUpdates != [] {",
+            "            sampleIndicesExpectingUpdates.insert(resultIndex)",
+            "        }",
+            " ",
+            "        predictedSamples.removeAll()",
+            "        return resultIndex",
+            "    } ",
+            " ",
+            "    func addPredicted(sample: StrokeSample) {",
+            "        predictedSamples.append(sample)",
+            "    } ",
+            " ",
+            "    func clearUpdateInfo() {",
+            "        hasUpdatesFromStartTo = nil",
+            "        hasUpdatesAtEndFrom = nil",
+            "        previousPredictedSamples = nil",
+            "    } ",
+            " ",
+            "    // Other methods...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Render-the-predicted-touches",
+          "level": 3,
+          "text": "Render the predicted touches",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During rendering, the app treats predicted touches like actual touches. It breaks down the contents of each ",
+              "type": "text"
+            },
+            {
+              "code": "Stroke",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object into one or more ",
+              "type": "text"
+            },
+            {
+              "code": "StrokeSegment",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects, which the drawing code fetches using a ",
+              "type": "text"
+            },
+            {
+              "code": "StrokeSegmentIterator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. The following code shows the implementation of this class. As the drawing code iterates over the stroke samples, the ",
+              "type": "text"
+            },
+            {
+              "code": "sampleAt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method returns the samples for the actual touches first. Only after the method returns all of the actual touch samples does the iterator return the samples for any predicted touches. Thus, the predicted touches are always located at the end of the stroked line.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class StrokeSegmentIterator: IteratorProtocol {",
+            "    private let stroke: Stroke",
+            "    private var nextIndex: Int",
+            "    private let sampleCount: Int",
+            "    private let predictedSampleCount: Int",
+            "    private var segment: StrokeSegment!",
+            " ",
+            "    init(stroke: Stroke) {",
+            "        self.stroke = stroke",
+            "        nextIndex = 1",
+            "        sampleCount = stroke.samples.count",
+            "        predictedSampleCount = stroke.predictedSamples.count",
+            "        if (predictedSampleCount + sampleCount > 1) {",
+            "            segment = StrokeSegment(sample: sampleAt(0)!)",
+            "            segment.advanceWithSample(incomingSample: sampleAt(1))",
+            "        }",
+            "    } ",
+            " ",
+            "    func sampleAt(_ index: Int) -> StrokeSample? {",
+            "        if (index < sampleCount) {",
+            "            return stroke.samples[index]",
+            "        }",
+            "        let predictedIndex = index - sampleCount",
+            "        if predictedIndex < predictedSampleCount {",
+            "            return stroke.predictedSamples[predictedIndex]",
+            "        } else {",
+            "            return nil",
+            "        }",
+            "    }",
+            " ",
+            "    func next() -> StrokeSegment? {",
+            "        nextIndex += 1",
+            "        if let segment = self.segment {",
+            "            if segment.advanceWithSample(incomingSample: sampleAt(nextIndex)) {",
+            "                return segment",
+            "            }",
+            "        }",
+            "        return nil",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-touches-in-your-view": {
+      "abstract": [
+        {
+          "text": "Use touch events directly on a view subclass if touch handling is intricately linked to the view’s content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-touches-in-your-view",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Handling touches in your view",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-touches-in-your-view"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/leveraging-touch-input-for-drawing-apps": {
+      "abstract": [
+        {
+          "text": "Capture touches as a series of strokes and render them efficiently on a drawing canvas.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/leveraging-touch-input-for-drawing-apps",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Leveraging touch input for drawing apps",
+      "type": "topic",
+      "url": "/documentation/uikit/leveraging-touch-input-for-drawing-apps"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/minimizing-latency-with-predicted-touches": {
+      "abstract": [
+        {
+          "text": "Create a smooth and responsive drawing experience using UIKit’s predictions for touch locations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/minimizing-latency-with-predicted-touches",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Minimizing latency with predicted touches",
+      "type": "topic",
+      "url": "/documentation/uikit/minimizing-latency-with-predicted-touches"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures": {
+      "abstract": [
+        {
+          "text": "Encapsulate your app’s event-handling logic in gesture recognizers so that you can reuse that code throughout your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Touches, presses, and gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/touches-presses-and-gestures"
+    },
+    "media-3004387": {
+      "alt": "An illustration of the calligraphy, pen, and debug drawing modes in Speed Sketch.",
+      "identifier": "media-3004387",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/281d5cfcb5400af752fb3f0a0d60e69f/media-3004387@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/incorporating-predicted-touches-into-an-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/incorporating-predicted-touches-into-an-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

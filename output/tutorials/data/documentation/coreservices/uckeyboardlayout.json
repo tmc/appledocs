@@ -1,0 +1,554 @@
+{
+  "abstract": [
+    {
+      "text": "Provides header data for a ",
+      "type": "text"
+    },
+    {
+      "code": "'uchr'",
+      "type": "codeVoice"
+    },
+    {
+      "text": " resource.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreservices/uckeyboardlayout"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1390650,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@UCKeyboardLayout",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "UCKeyboardLayout"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "UCKeyboardLayout"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UCKeyboardLayout"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Unicode keyboard-layout ( ",
+              "type": "text"
+            },
+            {
+              "code": "'uchr'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") resource contains the data necessary to map virtual key codes to Unicode character codes for a given keyboard layout. The ",
+              "type": "text"
+            },
+            {
+              "code": "'uchr'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " format consists of a header information section and five key mapping data sections. The ",
+              "type": "text"
+            },
+            {
+              "code": "UCKeyboardLayout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type is used in the ",
+              "type": "text"
+            },
+            {
+              "code": "'uchr'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " resource header. It specifies version and format information, offsets to the various subtables, and an array of ",
+              "type": "text"
+            },
+            {
+              "code": "UCKeyboardTypeHeader",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entries. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You should use low-ASCII (0 - 0x7F) only for the KCHR/uchr resource names and you should use Unicode in the Info.plist file when you specify strings for the user-interface (UI).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/unicode_utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Unicode Utilities",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/unicode_utilities"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeyboardlayout/1390425-keylayoutheaderformat": {
+      "abstract": [
+        {
+          "text": "An unsigned 16-bit integer identifying the format of the structure. Set to ",
+          "type": "text"
+        },
+        {
+          "code": "kUCLayoutHeaderFormat",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyLayoutHeaderFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeyboardlayout/1390425-keylayoutheaderformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keyLayoutHeaderFormat",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeyboardlayout/1390425-keylayoutheaderformat"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeyboardlayout/1390448-keyboardtypecount": {
+      "abstract": [
+        {
+          "text": "An unsigned 32-bit integer specifying the number of ",
+          "type": "text"
+        },
+        {
+          "code": "UCKeyboardTypeHeader",
+          "type": "codeVoice"
+        },
+        {
+          "text": " structures in the ",
+          "type": "text"
+        },
+        {
+          "code": "keyboardTypeList[]",
+          "type": "codeVoice"
+        },
+        {
+          "text": " field’s array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardTypeCount"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeyboardlayout/1390448-keyboardtypecount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keyboardTypeCount",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeyboardlayout/1390448-keyboardtypecount"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeyboardlayout/1390494-keyboardtypelist": {
+      "abstract": [
+        {
+          "text": "A variable-length array containing structures of type ",
+          "type": "text"
+        },
+        {
+          "code": "UCKeyboardTypeHeader",
+          "type": "codeVoice"
+        },
+        {
+          "text": ". Each ",
+          "type": "text"
+        },
+        {
+          "code": "UCKeyboardTypeHeader",
+          "type": "codeVoice"
+        },
+        {
+          "text": " entry specifies a range of physical keyboard types and contains offsets to each of the key mapping sections to be used for that range of keyboard types. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardTypeList"
+        },
+        {
+          "kind": "text",
+          "text": ": UCKeyboardTypeHeader"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeyboardlayout/1390494-keyboardtypelist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keyboardTypeList",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeyboardlayout/1390494-keyboardtypelist"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeyboardlayout/1390597-keylayoutfeatureinfooffset": {
+      "abstract": [
+        {
+          "text": "An unsigned 32-bit integer providing an offset to a structure of type ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeylayoutfeatureinfo",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", if such is used in the resource. May be 0 if no ",
+          "type": "text"
+        },
+        {
+          "code": "UCKeyLayoutFeatureInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " table is included in the resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyLayoutFeatureInfoOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeyboardlayout/1390597-keylayoutfeatureinfooffset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keyLayoutFeatureInfoOffset",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeyboardlayout/1390597-keylayoutfeatureinfooffset"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeyboardlayout/1390626-keylayoutdataversion": {
+      "abstract": [
+        {
+          "text": "An unsigned 16-bit integer identifying the version of the data in the resource, in binary code decimal format. For example, 0x0100 would equal version 1.0.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyLayoutDataVersion"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt16"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeyboardlayout/1390626-keylayoutdataversion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keyLayoutDataVersion",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeyboardlayout/1390626-keylayoutdataversion"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeyboardlayout/1447446-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeyboardlayout/1447446-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeyboardlayout/1447446-init"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeyboardlayout/1448404-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "keyLayoutHeaderFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt16, "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyLayoutDataVersion"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt16, "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyLayoutFeatureInfoOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt32, "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardTypeCount"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt32, "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyboardTypeList"
+        },
+        {
+          "kind": "text",
+          "text": ": UCKeyboardTypeHeader)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeyboardlayout/1448404-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(keyLayoutHeaderFormat:keyLayoutDataVersion:keyLayoutFeatureInfoOffset:keyboardTypeCount:keyboardTypeList:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeyboardlayout/1448404-init"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/uckeylayoutfeatureinfo": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/uckeylayoutfeatureinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UCKeyLayoutFeatureInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/uckeylayoutfeatureinfo"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "2860663",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/uckeyboardlayout/1447446-init",
+        "doc://com.apple.documentation/documentation/coreservices/uckeyboardlayout/1448404-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "2860664",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/uckeyboardlayout/1390626-keylayoutdataversion",
+        "doc://com.apple.documentation/documentation/coreservices/uckeyboardlayout/1390597-keylayoutfeatureinfooffset",
+        "doc://com.apple.documentation/documentation/coreservices/uckeyboardlayout/1390425-keylayoutheaderformat",
+        "doc://com.apple.documentation/documentation/coreservices/uckeyboardlayout/1390448-keyboardtypecount",
+        "doc://com.apple.documentation/documentation/coreservices/uckeyboardlayout/1390494-keyboardtypelist"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/uckeyboardlayout"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreservices/uckeyboardlayout"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

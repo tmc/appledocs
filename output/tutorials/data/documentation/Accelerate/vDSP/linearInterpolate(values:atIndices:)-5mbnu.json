@@ -1,0 +1,2086 @@
+{
+  "abstract": [
+    {
+      "text": "Returns the single-precision linearly interpolated values of a vector at the specified indices.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/linearInterpolate(values:atIndices:)-5mbnu"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "Accelerate",
+    "externalID": "s:10Accelerate4vDSPO17linearInterpolate6values9atIndicesSaySfGx_q_tAA0A6BufferRzAaHR_Sf7ElementRtzSfAIRt_r0_lFZ",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "static"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "linearInterpolate"
+      },
+      {
+        "kind": "text",
+        "text": "<"
+      },
+      {
+        "kind": "genericParameter",
+        "text": "T"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "genericParameter",
+        "text": "U"
+      },
+      {
+        "kind": "text",
+        "text": ">("
+      },
+      {
+        "kind": "externalParam",
+        "text": "values"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "text": "T"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "externalParam",
+        "text": "atIndices"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "text": "U"
+      },
+      {
+        "kind": "text",
+        "text": ") -> ["
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sf",
+        "text": "Float"
+      },
+      {
+        "kind": "text",
+        "text": "]"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "method",
+    "title": "linearInterpolate(values:atIndices:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "linearInterpolate"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "T"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "genericParameter",
+              "text": "U"
+            },
+            {
+              "kind": "text",
+              "text": ">("
+            },
+            {
+              "kind": "externalParam",
+              "text": "values"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "T"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "atIndices"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "indices"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "U"
+            },
+            {
+              "kind": "text",
+              "text": ") -> ["
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sf",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sf",
+              "text": "Float"
+            },
+            {
+              "kind": "text",
+              "text": "] "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "T"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/AccelerateBuffer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Accelerate0A6BufferP",
+              "text": "AccelerateBuffer"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "U"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/AccelerateBuffer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Accelerate0A6BufferP",
+              "text": "AccelerateBuffer"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "T"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/AccelerateBuffer/Element",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Accelerate0A6BufferP7ElementQa",
+              "text": "Element"
+            },
+            {
+              "kind": "text",
+              "text": " == "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sf",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sf",
+              "text": "Float"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "U"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/AccelerateBuffer/Element",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Accelerate0A6BufferP7ElementQa",
+              "text": "Element"
+            },
+            {
+              "kind": "text",
+              "text": " == "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sf",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sf",
+              "text": "Float"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The values to interpolate.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "values"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The indices to the output vector.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "indices"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A vector that contains the linearly interpolated values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.accelerate/documentation/Accelerate/using-linear-interpolation-to-construct-new-data-points"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code creates a five-element vector from two values using linear interpolation. The last index in ",
+              "type": "text"
+            },
+            {
+              "code": "indices",
+              "type": "codeVoice"
+            },
+            {
+              "text": " determines the length of the operation result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let values: [Float] = [0, 100]",
+            "let indices: [Float] = [0, 4]",
+            "",
+            "let result = vDSP.linearInterpolate(values: values,",
+            "                                    atIndices: indices)",
+            "",
+            "// Prints \"[0.0, 25.0, 50.0, 75.0, 100.0]\".",
+            "print(result)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/AccelerateBuffer": {
+      "abstract": [
+        {
+          "text": "A type that represents an immutable buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccelerateBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/AccelerateBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccelerateBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccelerateBuffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/acceleratebuffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/AccelerateBuffer/Element": {
+      "abstract": [
+        {
+          "text": "The buffer’s element type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Element"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/AccelerateBuffer/Element",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Element",
+      "type": "topic",
+      "url": "/documentation/accelerate/acceleratebuffer/element"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/using-linear-interpolation-to-construct-new-data-points": {
+      "abstract": [
+        {
+          "text": "Fill the gaps in arrays of numerical data using linear interpolation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/using-linear-interpolation-to-construct-new-data-points",
+      "kind": "article",
+      "role": "article",
+      "title": "Using linear interpolation to construct new data points",
+      "type": "topic",
+      "url": "/documentation/accelerate/using-linear-interpolation-to-construct-new-data-points"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP": {
+      "abstract": [
+        {
+          "text": "An enumeration that acts as a namespace for Swift overlays to vDSP.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vDSP"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vDSP"
+        }
+      ],
+      "role": "symbol",
+      "title": "vDSP",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/absolute(_:)-5ehc1": {
+      "abstract": [
+        {
+          "text": "Returns the absolute value of each element in the supplied single-precision vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "absolute"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/absolute(_:)-5ehc1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "absolute(_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/absolute(_:)-5ehc1"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/absolute(_:)-9c3ge": {
+      "abstract": [
+        {
+          "text": "Returns the absolute value of each element in the supplied double-precision vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "absolute"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/absolute(_:)-9c3ge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "absolute(_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/absolute(_:)-9c3ge"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/absolute(_:result:)-1wu9x": {
+      "abstract": [
+        {
+          "text": "Calculates the absolute value of each element in the supplied double-precision complex vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "absolute"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@DSPDoubleSplitComplex",
+          "text": "DSPDoubleSplitComplex"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/absolute(_:result:)-1wu9x",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "absolute(_:result:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/absolute(_:result:)-1wu9x"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/absolute(_:result:)-4pigo": {
+      "abstract": [
+        {
+          "text": "Calculates the absolute value of each element in the supplied single-precision vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "absolute"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/absolute(_:result:)-4pigo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "absolute(_:result:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/absolute(_:result:)-4pigo"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/absolute(_:result:)-657bd": {
+      "abstract": [
+        {
+          "text": "Calculates the absolute value of each element in the supplied double-precision vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "absolute"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/absolute(_:result:)-657bd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "absolute(_:result:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/absolute(_:result:)-657bd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/absolute(_:result:)-9x5jn": {
+      "abstract": [
+        {
+          "text": "Calculates the absolute value of each element in the supplied single-precision complex vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "absolute"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@DSPSplitComplex",
+          "text": "DSPSplitComplex"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/absolute(_:result:)-9x5jn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "absolute(_:result:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/absolute(_:result:)-9x5jn"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:)-2ftxc": {
+      "abstract": [
+        {
+          "text": "Returns the double-precision element-wise sum of two vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:)-2ftxc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/add(_:_:)-2ftxc"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:)-53nh9": {
+      "abstract": [
+        {
+          "text": "Returns the single-precision element-wise sum of a vector and a scalar value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:)-53nh9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/add(_:_:)-53nh9"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:)-7swvf": {
+      "abstract": [
+        {
+          "text": "Returns the single-precision element-wise sum of two vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:)-7swvf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/add(_:_:)-7swvf"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:)-9mv1a": {
+      "abstract": [
+        {
+          "text": "Returns the double-precision element-wise sum of a vector and a scalar value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:)-9mv1a",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/add(_:_:)-9mv1a"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:result:)-2531u": {
+      "abstract": [
+        {
+          "text": "Calculates the single-precision element-wise sum of a vector and a scalar value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:result:)-2531u",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(_:_:result:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/add(_:_:result:)-2531u"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:result:)-2w0o9": {
+      "abstract": [
+        {
+          "text": "Calculates the single-precision element-wise sum of a vector and a scalar value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:result:)-2w0o9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(_:_:result:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/add(_:_:result:)-2w0o9"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:result:)-338hl": {
+      "abstract": [
+        {
+          "text": "Calculates the double-precision element-wise sum of two vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:result:)-338hl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(_:_:result:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/add(_:_:result:)-338hl"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:result:)-3vzwi": {
+      "abstract": [
+        {
+          "text": "Calculates the single-precision element-wise sum of two vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:result:)-3vzwi",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(_:_:result:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/add(_:_:result:)-3vzwi"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:to:count:result:)-g1dk": {
+      "abstract": [
+        {
+          "text": "Calculates the single-precision elementwise sum of the supplied complex vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@DSPSplitComplex",
+          "text": "DSPSplitComplex"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@DSPSplitComplex",
+          "text": "DSPSplitComplex"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@DSPSplitComplex",
+          "text": "DSPSplitComplex"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:to:count:result:)-g1dk",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(_:to:count:result:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/add(_:to:count:result:)-g1dk"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/linearInterpolate(values:atIndices:)-5mbnu": {
+      "abstract": [
+        {
+          "text": "Returns the single-precision linearly interpolated values of a vector at the specified indices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "linearInterpolate"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "values"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "atIndices"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/linearInterpolate(values:atIndices:)-5mbnu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "linearInterpolate(values:atIndices:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/linearinterpolate(values:atindices:)-5mbnu"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:Sf": {
+      "abstract": [
+        {
+          "text": "A single-precision, floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Float",
+      "type": "topic",
+      "url": "/documentation/Swift/Float"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Type-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/absolute(_:)-9c3ge",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/absolute(_:)-5ehc1",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/absolute(_:result:)-9x5jn",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/absolute(_:result:)-1wu9x",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/absolute(_:result:)-657bd",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/absolute(_:result:)-4pigo",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:)-9mv1a",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:)-2ftxc",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:)-53nh9",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:)-7swvf",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:result:)-2531u",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:result:)-2w0o9",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:result:)-338hl",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:result:)-3vzwi",
+        "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:to:count:result:)-g1dk"
+      ],
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accelerate/vdsp/linearinterpolate(values:atindices:)-5mbnu"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

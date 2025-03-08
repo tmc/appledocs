@@ -1,0 +1,1020 @@
+{
+  "abstract": [
+    {
+      "text": "Generates a low-density barcode.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage",
+        "doc://com.apple.documentation/documentation/coreimage/generator_filters"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/generator_filters"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/quartz"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/quartz",
+        "doc://com.apple.documentation/documentation/quartz/imagekit",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/generator_filters"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228268-azteccodegenerator"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3228268,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CIFilter(cm)aztecCodeGeneratorFilter",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class func "
+      },
+      {
+        "kind": "identifier",
+        "text": "aztecCodeGenerator"
+      },
+      {
+        "kind": "text",
+        "text": "() -> any CIFilter & CIAztecCodeGenerator"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Image"
+      }
+    ],
+    "parent": {
+      "title": "CIFilter"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.15",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "clm",
+    "title": "aztecCodeGenerator()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "aztecCodeGenerator"
+            },
+            {
+              "kind": "text",
+              "text": "() -> "
+            },
+            {
+              "kind": "text",
+              "text": "any "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CIFilter",
+              "text": "CIFilter"
+            },
+            {
+              "kind": "text",
+              "text": " & "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciazteccodegenerator",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)CIAztecCodeGenerator",
+              "text": "CIAztecCodeGenerator"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The generated image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method generates an Aztec code as an image. The Aztec barcode code is a low-density barcode defined in the ISO/IEC 24778:2008 standard. This code is commonly used for transport ticketing or boarding passes. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Aztec code generator filter uses the following properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The data to be encoded as an Aztec code. An ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " object whose display name is Message.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "message",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "float",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " representing the percentage of redundancy to add to the message data. A higher correction level allows the barcode to be correctly read even when partially damaged.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "correctionLevel",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "float",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " representing the number of concentric squares encoding the barcode data. When the value is zero, Core Image automatically determines the appropriate number of layers to encode the message data at the specified correction level.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "layers",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "float",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " determining the use of compact or full-size Aztec barcode format. The compact format can store up to 44 bytes of message data in up to 4 layers. The full-size format can store up to 1914 bytes of message data in up to 32 layers. Leave unset, or set to 0 for automatic.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "compactStyle",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code creates a filter that generates an Aztec barcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func aztecCode(inputMessage: String) -> CIImage {",
+            "    let aztecCodeGenerator = CIFilter.aztecCodeGenerator()",
+            "    aztecCodeGenerator.correctionLevel = 15",
+            "    aztecCodeGenerator.compactStyle = 0",
+            "    aztecCodeGenerator.message = inputMessage.data(using: .ascii)!",
+            "    aztecCodeGenerator.layers = 10",
+            "    return aztecCodeGenerator.outputImage!",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3546202",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3546310",
+              "metadata": {
+                "anchor": "3546310",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Image",
+      "type": "topic",
+      "url": "/documentation/coreimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciazteccodegenerator": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciazteccodegenerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIAztecCodeGenerator",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciazteccodegenerator"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIFilter",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228261-pdf417barcodegenerator": {
+      "abstract": [
+        {
+          "text": "Generates a high-density linear barcode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "pdf417BarcodeGenerator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIPDF417BarcodeGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228261-pdf417barcodegenerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pdf417BarcodeGenerator()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228261-pdf417barcodegenerator"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228262-qrcodegenerator": {
+      "abstract": [
+        {
+          "text": "Generates a quick response (QR) code image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "qrCodeGenerator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIQRCodeGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228262-qrcodegenerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "qrCodeGenerator()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228262-qrcodegenerator"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228267-attributedtextimagegenerator": {
+      "abstract": [
+        {
+          "text": "Generates an attributed-text image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributedTextImageGenerator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIAttributedTextImageGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228267-attributedtextimagegenerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attributedTextImageGenerator()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228267-attributedtextimagegenerator"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228268-azteccodegenerator": {
+      "abstract": [
+        {
+          "text": "Generates a low-density barcode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "aztecCodeGenerator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIAztecCodeGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228268-azteccodegenerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aztecCodeGenerator()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228268-azteccodegenerator"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228268-azteccodegenerator#3546202": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228268-azteccodegenerator#3546202",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/coreimage/cifilter/3228268-azteccodegenerator#3546202"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228269-barcodegenerator": {
+      "abstract": [
+        {
+          "text": "Generates a barcode as an image from the descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "barcodeGenerator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIBarcodeGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228269-barcodegenerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "barcodeGenerator()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228269-barcodegenerator"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228279-checkerboardgenerator": {
+      "abstract": [
+        {
+          "text": "Generates a checkerboard image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "checkerboardGenerator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CICheckerboardGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228279-checkerboardgenerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "checkerboardGenerator()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228279-checkerboardgenerator"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228281-code128barcodegenerator": {
+      "abstract": [
+        {
+          "text": "Generates a high-density, linear barcode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "code128BarcodeGenerator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CICode128BarcodeGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228281-code128barcodegenerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "code128BarcodeGenerator()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228281-code128barcodegenerator"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228345-lenticularhalogenerator": {
+      "abstract": [
+        {
+          "text": "Generates a lenticular halo image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "lenticularHaloGenerator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CILenticularHaloGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228345-lenticularhalogenerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lenticularHaloGenerator()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228345-lenticularhalogenerator"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228359-meshgenerator": {
+      "abstract": [
+        {
+          "text": "Generates a pattern made from an array of line segments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "meshGenerator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIMeshGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228359-meshgenerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "meshGenerator()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228359-meshgenerator"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228396-randomgenerator": {
+      "abstract": [
+        {
+          "text": "Generates a random filter image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "randomGenerator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIRandomGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228396-randomgenerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "randomGenerator()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228396-randomgenerator"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228415-starshinegenerator": {
+      "abstract": [
+        {
+          "text": "Generates a star-shine image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "starShineGenerator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIStarShineGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228415-starshinegenerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "starShineGenerator()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228415-starshinegenerator"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228417-stripesgenerator": {
+      "abstract": [
+        {
+          "text": "Generates a line of stripes as an image",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "stripesGenerator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIStripesGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228417-stripesgenerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stripesGenerator()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228417-stripesgenerator"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228419-sunbeamsgenerator": {
+      "abstract": [
+        {
+          "text": "Generates an image resembling the sun.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sunbeamsGenerator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CISunbeamsGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228419-sunbeamsgenerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sunbeamsGenerator()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228419-sunbeamsgenerator"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3228422-textimagegenerator": {
+      "abstract": [
+        {
+          "text": "Generates a text image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "textImageGenerator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CITextImageGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3228422-textimagegenerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textImageGenerator()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3228422-textimagegenerator"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/3335007-roundedrectanglegenerator": {
+      "abstract": [
+        {
+          "text": "Generates a rounded rectangle image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "roundedRectangleGenerator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIRoundedRectangleGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/3335007-roundedrectanglegenerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "roundedRectangleGenerator()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/3335007-roundedrectanglegenerator"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/4401849-blurredrectanglegenerator": {
+      "abstract": [
+        {
+          "text": "Generates a blurred rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "blurredRectangleGenerator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIBlurredRectangleGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/4401849-blurredrectanglegenerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "blurredRectangleGenerator()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/4401849-blurredrectanglegenerator"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/4401875-roundedrectanglestrokegenerator": {
+      "abstract": [
+        {
+          "text": "Creates an image containing the outline of a rounded rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "roundedRectangleStrokeGenerator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any CIFilter & CIRoundedRectangleStrokeGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/4401875-roundedrectanglestrokegenerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "roundedRectangleStrokeGenerator()",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/4401875-roundedrectanglestrokegenerator"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifilter/generator_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifilter/generator_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Generator Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifilter/generator_filters"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/generator_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/generator_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Generator Filters",
+      "type": "topic",
+      "url": "/documentation/coreimage/generator_filters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata"
+    },
+    "doc://com.apple.documentation/documentation/quartz": {
+      "identifier": "doc://com.apple.documentation/documentation/quartz",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Quartz",
+      "type": "topic",
+      "url": "/documentation/quartz"
+    },
+    "doc://com.apple.documentation/documentation/quartz/imagekit": {
+      "identifier": "doc://com.apple.documentation/documentation/quartz/imagekit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ImageKit",
+      "type": "topic",
+      "url": "/documentation/quartz/imagekit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-media-3546310": {
+      "identifier": "link-media-3546310",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/coreimage/cifilter/3228268-azteccodegenerator#3546310"
+    },
+    "media-3546310": {
+      "alt": "An image of a black and white Aztec code made of small squares representing the encoded data of: Filter an image, generate a barcode, what else can CoreImage do?",
+      "identifier": "media-3546310",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6599fda96f/rendered2x-1706276966.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228267-attributedtextimagegenerator",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228269-barcodegenerator",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/4401849-blurredrectanglegenerator",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228279-checkerboardgenerator",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228281-code128barcodegenerator",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228345-lenticularhalogenerator",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228359-meshgenerator",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228261-pdf417barcodegenerator",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228262-qrcodegenerator",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228396-randomgenerator",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3335007-roundedrectanglegenerator",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/4401875-roundedrectanglestrokegenerator",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228415-starshinegenerator",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228417-stripesgenerator",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228419-sunbeamsgenerator",
+        "doc://com.apple.documentation/documentation/coreimage/cifilter/3228422-textimagegenerator"
+      ],
+      "title": "Filters"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreimage/cifilter/3228268-azteccodegeneratorfilter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreimage/cifilter/3228268-azteccodegenerator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

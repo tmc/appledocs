@@ -1,0 +1,1074 @@
+{
+  "abstract": [
+    {
+      "text": "Enhance gameplay input by enabling the discovery, configuration, and use of",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "physical game controllers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/capabilities"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/configuring-game-controllers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring game controllers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Game controllers provide physical controls to trigger actions in your game.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Apple specifies the look and behavior of the controls to MFi accessory",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "manufacturers, which means you can rely on a consistent set of high-quality",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "controls in all supported game controllers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A game that supports game controllers enables one or more different",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "game-controller profiles",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " — objects that map physical controls on a device to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the inputs your game requires — such as Extended, Micro, and Directional. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "game also specifies the preferred order of use for these profiles. After",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "retrieving a profile from the connected game controller, your game periodically",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "requests the device’s current values or installs handlers that the system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "invokes when those values change.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can select the profiles your game supports, follow the steps in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-capabilities-to-your-app#Add-a-capability",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to add the Game Controllers capability to your game’s target.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "game-controllers",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you add the Game Controllers capability to your game’s target, Xcode",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "appends the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportsControllerUserInteraction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "key to its ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file with a value of ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to indicate to the system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that your game supports game controllers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Game Controllers capability is only available to games that target",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "iOS, iPadOS, tvOS, and visionOS.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Select-the-supported-game-controller-profiles",
+          "level": 3,
+          "text": "Select the supported game controller profiles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you add support for game controllers to your app, you don’t integrate with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specific hardware. Instead, you integrate one or more of the game-controller",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "profiles that the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "framework provides. Each profile maps to a control layout that Apple defines,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and that profile describes a set of physical controls that the hardware",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "manufacturer guarantees to be available on the controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To indicate to the system which game-controller profiles your game supports,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "perform the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your project in Xcode’s Project navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the game’s target from the Targets list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Signing & Capabilities tab in the project editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Find the Game Controllers capability.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the appropriate game controller profiles by checking their",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "checkboxes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "game-controller-types",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode adds the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportedGameControllers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "array to your game’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, if it’s not already present, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "populates it with names of the selected game-controller profiles. For more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information about each profile, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameController/GCExtendedGamepad",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameController/GCMicroGamepad",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameController/GCDirectionalGamepad",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Hardware controllers can support multiple profiles; if you enable more than one",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "game controller profile, drag the profiles and arrange them in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your preferred order. For example, if your game supports both the Extended and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Micro profiles, but optimizes gameplay for the Micro profile, place that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "profile at the top of the list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see the video ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2021/10081",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the sample code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameController/supporting-game-controllers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-capabilities-to-your-app#Add-a-capability": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-capabilities-to-your-app#Add-a-capability",
+      "kind": "section",
+      "title": "Add a capability",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-capabilities-to-your-app#Add-a-capability"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/capabilities": {
+      "abstract": [
+        {
+          "text": "Enable services that Apple provides, such as In-App Purchase, Push Notifications,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Apple Pay, iCloud, and many others.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/capabilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Capabilities",
+      "type": "topic",
+      "url": "/documentation/xcode/capabilities"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-background-execution-modes": {
+      "abstract": [
+        {
+          "text": "Indicate the background services your app requires to continue executing in the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "background in iOS, iPadOS, tvOS, visionOS, and watchOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-background-execution-modes",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring background execution modes",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-background-execution-modes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-custom-fonts": {
+      "abstract": [
+        {
+          "text": "Register your app as a provider or consumer of systemwide custom fonts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-custom-fonts",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring custom fonts",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-custom-fonts"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-maps-support": {
+      "abstract": [
+        {
+          "text": "Register your iOS routing app to provide point-to-point directions to Maps and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "other apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-maps-support",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Maps support",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-maps-support"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-siri-support": {
+      "abstract": [
+        {
+          "text": "Enable your app and its Intents extension to resolve, confirm, and handle",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "user-driven Siri requests for your app’s services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-siri-support",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Siri support",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-siri-support"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportedGameControllers": {
+      "abstract": [
+        {
+          "text": "The types of game controller profiles that the app supports or requires.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportedGameControllers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCSupportedGameControllers",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/GCSupportedGameControllers"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportsControllerUserInteraction": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the app supports a game controller.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportsControllerUserInteraction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCSupportsControllerUserInteraction",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/GCSupportsControllerUserInteraction"
+    },
+    "doc://com.apple.documentation/documentation/GameController": {
+      "abstract": [
+        {
+          "text": "Support hardware game controllers in your game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GameController",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Game Controller",
+      "type": "topic",
+      "url": "/documentation/GameController"
+    },
+    "doc://com.apple.documentation/documentation/GameController/GCDirectionalGamepad": {
+      "abstract": [
+        {
+          "text": "A profile that supports only the directional pad, without motion or rotation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCDirectionalGamepad"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GameController/GCDirectionalGamepad",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCDirectionalGamepad",
+      "type": "topic",
+      "url": "/documentation/GameController/GCDirectionalGamepad"
+    },
+    "doc://com.apple.documentation/documentation/GameController/GCExtendedGamepad": {
+      "abstract": [
+        {
+          "text": "A controller profile that supports the extended set of gamepad controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCExtendedGamepad"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GameController/GCExtendedGamepad",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCExtendedGamepad",
+      "type": "topic",
+      "url": "/documentation/GameController/GCExtendedGamepad"
+    },
+    "doc://com.apple.documentation/documentation/GameController/GCMicroGamepad": {
+      "abstract": [
+        {
+          "text": "A controller profile that supports the Siri Remote.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCMicroGamepad"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GameController/GCMicroGamepad",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCMicroGamepad",
+      "type": "topic",
+      "url": "/documentation/GameController/GCMicroGamepad"
+    },
+    "doc://com.apple.documentation/documentation/GameController/supporting-game-controllers": {
+      "abstract": [
+        {
+          "text": "Support a physical controller or add a virtual controller to enhance how people interact with your game through haptics, lighting, and motion sensing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GameController/supporting-game-controllers",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting Game Controllers",
+      "type": "topic",
+      "url": "/documentation/GameController/supporting-game-controllers"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "game-controller-types": {
+      "alt": "A screenshot of the Game Controllers capability after you add it to a target. The Extended Gamepad, Micro Gamepad, and Directional Gamepad profiles are in an enabled state.",
+      "identifier": "game-controller-types",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ca459e7915dba4bfc87d56726c0e8b30/game-controller-types@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/93cfc77cb6fc4181fb73ea9013a99ecd/game-controller-types~dark@2x.png"
+        }
+      ]
+    },
+    "game-controllers": {
+      "alt": "A screenshot of Xcode’s Capabilities library with a list of available capabilities on the left and an information pane on the right. The list shows a range of capabilities from Game Controllers to Keychain Sharing, and the Game Controllers capability is in a selected state. The text on the information pane explains that the Game Controllers capability adds supports for game controllers to your app.",
+      "identifier": "game-controllers",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/45e1533715f8be6bb269bff3e898b86b/game-controllers@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f0861cc4fb4d1452b20ae13ebbca35f0/game-controllers~dark@2x.png"
+        }
+      ]
+    },
+    "https://developer.apple.com/videos/play/wwdc2021/10081": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2021/10081",
+      "title": "Tap into virtual and physical game controllers",
+      "titleInlineContent": [
+        {
+          "text": "Tap into virtual and physical game controllers",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2021/10081"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-execution",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-background-execution-modes",
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-custom-fonts",
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-maps-support",
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-siri-support"
+      ],
+      "title": "App execution"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameController~1GCExtendedGamepad/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GCExtendedGamepad"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)GCPhysicalInputProfile",
+              "text": "GCPhysicalInputProfile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameController~1GCMicroGamepad/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GCMicroGamepad"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)GCPhysicalInputProfile",
+              "text": "GCPhysicalInputProfile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameController~1GCDirectionalGamepad/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GCDirectionalGamepad"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)GCMicroGamepad",
+              "text": "GCMicroGamepad"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

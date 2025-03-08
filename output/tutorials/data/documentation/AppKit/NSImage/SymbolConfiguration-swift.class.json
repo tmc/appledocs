@@ -1,0 +1,2187 @@
+{
+  "abstract": [
+    {
+      "text": "An object that contains the specific font, style, and weight attributes to apply to a symbol image.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "AppKit",
+    "externalID": "c:objc(cs)NSImageSymbolConfiguration",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SymbolConfiguration"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SymbolConfiguration"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSImage.SymbolConfiguration"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SymbolConfiguration"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Symbol image configuration objects include details such as the point size, scale, text style, and weight to apply to your symbol image. The system uses these details to determine which variant of the image to use and how to scale or style the image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let image = NSImage(systemSymbolName: \"multiply.circle.fill\",",
+            "                       accessibilityDescription: \"A multiply symbol inside a filled circle.\") {",
+            "        ",
+            "    var config = NSImage.SymbolConfiguration(textStyle: .body,",
+            "                                                     scale: .large)",
+            "    config = config.applying(.init(paletteColors: [.systemTeal, .systemGray]))",
+            "    imageView.image = image.withSymbolConfiguration(config)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects are immutable after you create them. If you use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/applying(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method on the object, the new image attributes replace any previous attributes you supplied. After creating a symbol configuration object, assign it to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImageView/symbolConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImageView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object you use to display the image. If you draw the image directly, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/withSymbolConfiguration(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to create a new image that contains the new attributes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSFont/TextStyle": {
+      "abstract": [
+        {
+          "text": "Constants that specify the preferred text styles you use with fonts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSFont/TextStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFont.TextStyle",
+      "type": "topic",
+      "url": "/documentation/appkit/nsfont/textstyle"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage": {
+      "abstract": [
+        {
+          "text": "A high-level interface for manipulating image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSImage"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSImage",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class": {
+      "abstract": [
+        {
+          "text": "An object that contains the specific font, style, and weight attributes to apply to a symbol image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SymbolConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SymbolConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSImage.SymbolConfiguration",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/symbolconfiguration-swift.class"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/applying(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a configuration object by applying the values from the configuration you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applying"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImage",
+          "text": "NSImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImageSymbolConfiguration",
+          "text": "SymbolConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/applying(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "configurationByApplyingConfiguration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "applying(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/symbolconfiguration-swift.class/applying(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(hierarchicalColor:)": {
+      "abstract": [
+        {
+          "text": "Creates a hierarchical color configuration using the color you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "hierarchicalColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(hierarchicalColor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "configurationWithHierarchicalColor:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(hierarchicalColor:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/symbolconfiguration-swift.class/init(hierarchicalcolor:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(paletteColors:)": {
+      "abstract": [
+        {
+          "text": "Creates a color configuration by specifying a palette of colors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "paletteColors"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSColor",
+          "text": "NSColor"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(paletteColors:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "configurationWithPaletteColors:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(paletteColors:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/symbolconfiguration-swift.class/init(palettecolors:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(pointSize:weight:)": {
+      "abstract": [
+        {
+          "text": "Creates a symbol configuration with the specified point size and font weight.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "pointSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "weight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFont",
+          "text": "NSFont"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSFontWeight",
+          "text": "Weight"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(pointSize:weight:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "configurationWithPointSize:weight:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(pointSize:weight:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/symbolconfiguration-swift.class/init(pointsize:weight:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(pointSize:weight:scale:)": {
+      "abstract": [
+        {
+          "text": "Creates a symbol configuration with the specified point size, font weight, and symbol scale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "pointSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "weight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFont",
+          "text": "NSFont"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSFontWeight",
+          "text": "Weight"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "scale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImage",
+          "text": "NSImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSImageSymbolScale",
+          "text": "SymbolScale"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(pointSize:weight:scale:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "configurationWithPointSize:weight:scale:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(pointSize:weight:scale:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/symbolconfiguration-swift.class/init(pointsize:weight:scale:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(scale:)": {
+      "abstract": [
+        {
+          "text": "Creates a symbol configuration using the scale you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "scale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImage",
+          "text": "NSImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSImageSymbolScale",
+          "text": "SymbolScale"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(scale:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "configurationWithScale:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(scale:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/symbolconfiguration-swift.class/init(scale:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(textStyle:)": {
+      "abstract": [
+        {
+          "text": "Creates a symbol configuration with the specified text style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "textStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFont",
+          "text": "NSFont"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSFontTextStyle",
+          "text": "TextStyle"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(textStyle:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "configurationWithTextStyle:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(textStyle:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/symbolconfiguration-swift.class/init(textstyle:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(textStyle:scale:)": {
+      "abstract": [
+        {
+          "text": "Creates a symbol configuration with the specified text style and symbol scale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "textStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSFont",
+          "text": "NSFont"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSFontTextStyle",
+          "text": "TextStyle"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "scale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImage",
+          "text": "NSImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSImageSymbolScale",
+          "text": "SymbolScale"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(textStyle:scale:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "configurationWithTextStyle:scale:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(textStyle:scale:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/symbolconfiguration-swift.class/init(textstyle:scale:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/preferringHierarchical()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferringHierarchical"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/preferringHierarchical()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "configurationPreferringHierarchical"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferringHierarchical()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/symbolconfiguration-swift.class/preferringhierarchical()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/preferringMonochrome()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferringMonochrome"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/preferringMonochrome()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "configurationPreferringMonochrome"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferringMonochrome()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/symbolconfiguration-swift.class/preferringmonochrome()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/preferringMulticolor()": {
+      "abstract": [
+        {
+          "text": "Creates a configuration that specifies that the symbol should prefer its multicolor variant if one exists.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferringMulticolor"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/preferringMulticolor()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "configurationPreferringMulticolor"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferringMulticolor()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/symbolconfiguration-swift.class/preferringmulticolor()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolScale": {
+      "abstract": [
+        {
+          "text": "Constants that specify which scale variant of a symbol image to use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SymbolScale"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolScale",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SymbolScale"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSImage.SymbolScale",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/symbolscale"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/withSymbolConfiguration(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new symbol image with the specified configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withSymbolConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImage",
+          "text": "NSImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImageSymbolConfiguration",
+          "text": "SymbolConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImage",
+          "text": "NSImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/withSymbolConfiguration(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageWithSymbolConfiguration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "withSymbolConfiguration(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/withsymbolconfiguration(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImageView": {
+      "abstract": [
+        {
+          "text": "A display of image data in a frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSImageView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImageView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSImageView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSImageView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimageview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImageView/symbolConfiguration": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "symbolConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImage",
+          "text": "NSImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImageSymbolConfiguration",
+          "text": "SymbolConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImageView/symbolConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "symbolConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "symbolConfiguration",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimageview/symbolconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/",
+      "title": "Human Interface Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-Symbol-Images",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/withSymbolConfiguration(_:)"
+      ],
+      "title": "Creating Symbol Images"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Symbol-Configuration",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(pointSize:weight:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(pointSize:weight:scale:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(textStyle:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(textStyle:scale:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(scale:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSFont/TextStyle",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolScale"
+      ],
+      "title": "Creating a Symbol Configuration"
+    },
+    {
+      "anchor": "Applying-a-Configuration",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/applying(_:)"
+      ],
+      "title": "Applying a Configuration"
+    },
+    {
+      "anchor": "Creating-a-Color-Configuration",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(paletteColors:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(hierarchicalColor:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/preferringMulticolor()"
+      ],
+      "title": "Creating a Color Configuration"
+    },
+    {
+      "anchor": "Type-Methods",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/preferringHierarchical()",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/preferringMonochrome()"
+      ],
+      "title": "Type Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSImageSymbolConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImageSymbolConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImageSymbolConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Symbol-Configuration",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(pointSize:weight:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(pointSize:weight:scale:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(textStyle:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(textStyle:scale:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(scale:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSFont/TextStyle",
+                "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolScale"
+              ],
+              "title": "Creating a Symbol Configuration"
+            },
+            {
+              "anchor": "Applying-a-Configuration",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/applying(_:)"
+              ],
+              "title": "Applying a Configuration"
+            },
+            {
+              "anchor": "Creating-a-Color-Configuration",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(paletteColors:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/init(hierarchicalColor:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/preferringMulticolor()"
+              ],
+              "title": "Creating a Color Configuration"
+            },
+            {
+              "anchor": "Type-Methods",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/preferringHierarchical()",
+                "doc://com.apple.appkit/documentation/AppKit/NSImage/SymbolConfiguration-swift.class/preferringMonochrome()"
+              ],
+              "title": "Type Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Creating-Symbol-Images",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSImage/withSymbolConfiguration(_:)"
+              ],
+              "title": "Creating Symbol Images"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSImageSymbolConfiguration"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class~1preferringMonochrome()/title",
+          "value": "configurationPreferringMonochrome"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class~1preferringMonochrome()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "configurationPreferringMonochrome"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class~1preferringHierarchical()/title",
+          "value": "configurationPreferringHierarchical"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class~1preferringHierarchical()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "configurationPreferringHierarchical"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage/title",
+          "value": "NSImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class~1init(pointSize:weight:scale:)/title",
+          "value": "configurationWithPointSize:weight:scale:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class~1init(pointSize:weight:scale:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "configurationWithPointSize:weight:scale:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class~1init(hierarchicalColor:)/title",
+          "value": "configurationWithHierarchicalColor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class~1init(hierarchicalColor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "configurationWithHierarchicalColor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class~1preferringMulticolor()/title",
+          "value": "configurationPreferringMulticolor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class~1preferringMulticolor()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "configurationPreferringMulticolor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class/title",
+          "value": "NSImageSymbolConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImageSymbolConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImageSymbolConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class~1applying(_:)/title",
+          "value": "configurationByApplyingConfiguration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class~1applying(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "configurationByApplyingConfiguration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class~1init(paletteColors:)/title",
+          "value": "configurationWithPaletteColors:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class~1init(paletteColors:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "configurationWithPaletteColors:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1withSymbolConfiguration(_:)/title",
+          "value": "imageWithSymbolConfiguration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1withSymbolConfiguration(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "imageWithSymbolConfiguration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class~1init(scale:)/title",
+          "value": "configurationWithScale:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class~1init(scale:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "configurationWithScale:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class~1init(pointSize:weight:)/title",
+          "value": "configurationWithPointSize:weight:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class~1init(pointSize:weight:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "configurationWithPointSize:weight:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class~1init(textStyle:)/title",
+          "value": "configurationWithTextStyle:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class~1init(textStyle:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "configurationWithTextStyle:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class~1init(textStyle:scale:)/title",
+          "value": "configurationWithTextStyle:scale:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolConfiguration-swift.class~1init(textStyle:scale:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "configurationWithTextStyle:scale:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageView/title",
+          "value": "NSImageView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImageView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImageView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolScale/title",
+          "value": "NSImageSymbolScale"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolScale/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImageSymbolScale"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1SymbolScale/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImageSymbolScale"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageView~1symbolConfiguration/title",
+          "value": "symbolConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImageView~1symbolConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "symbolConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFont~1TextStyle/title",
+          "value": "NSFontTextStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFont~1TextStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFontTextStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSFont~1TextStyle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFontTextStyle"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsimage/symbolconfiguration-swift.class"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsimage/symbolconfiguration-swift.class"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

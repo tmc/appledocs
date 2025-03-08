@@ -1,0 +1,523 @@
+{
+  "abstract": [
+    {
+      "text": "Analyze and filter phone numbers from text in live capture by using Vision.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.vision/documentation/Vision",
+        "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.vision/documentation/Vision/extracting-phone-numbers-from-text-in-images"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Vision"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Extracting phone numbers from text in images"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "New in iOS 13, the Vision framework adds improved text-recognition capabilites that enable you to more easily extract text data from images. The sample app shows you how to use these capabilities to detect and display phone numbers scanned by the camera. It highlights the use of the fast recognition level and a reduced scope to provide responsive real-time text recognition.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " encapsulates all the necessary logic to recognize text in an image. There are two recognition levels you can choose from, to prioritize accuracy or speed of recognition. Additional configuration properties enable you to specify the languages to recognize, use language correction during recognition, specify the area of the live video to scan, and more. With all of these capabilities, there are tradeoffs between convenience, accuracy, and performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First the app creates a request to recognize text:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set up the Vision request before letting ViewController set up the camera",
+            "// so it exists when the first buffer is received.",
+            "request = VNRecognizeTextRequest(completionHandler: recognizeTextHandler)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, in the delegate method that Vision calls when it writes a sample buffer, the app configures the request to use fast recognition, disable language correction, and set a small rectangular region of interest. Then, the app performs the request:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Configure for running in real time.",
+            "request.recognitionLevel = .fast",
+            "// Language correction doesn't help in recognizing phone numbers and also",
+            "// slows recognition.",
+            "request.usesLanguageCorrection = false",
+            "// Only run on the region of interest for maximum speed.",
+            "request.regionOfInterest = regionOfInterest",
+            "",
+            "let requestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: textOrientation, options: [:])",
+            "do {",
+            "    try requestHandler.perform([request])",
+            "} catch {",
+            "    print(error)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Disabling language correction improves performance but produces less accurate results. The app includes extensions on ",
+              "type": "text"
+            },
+            {
+              "code": "Character",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "String",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to perform correction optimized for phone-number recognition. See ",
+              "type": "text"
+            },
+            {
+              "code": "StringUtils.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to review this code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run this sample app, you need the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode 11 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iPhone with iOS 13 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Connect the iPhone to the Mac over USB. The first time you run this sample app, the system prompts you to grant the app access to the camera. You must allow the sample app to access the camera for it to function correctly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC19 session 234: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc19/234",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "4272b4b6f36d/ExtractingPhoneNumbersFromTextInImages.zip": {
+      "checksum": "4272b4b6f36d220b192268942fa1912816ada4a7694bc5be0233d181be042fe865deeb47f77ae809aaf2916d050fff706b379f4463fdced158811c8facbee2e0",
+      "identifier": "4272b4b6f36d/ExtractingPhoneNumbersFromTextInImages.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/4272b4b6f36d/ExtractingPhoneNumbersFromTextInImages.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionkit/structuring_recognized_text_on_a_document": {
+      "abstract": [
+        {
+          "text": "Detect, recognize, and structure text on a business card or receipt using Vision and VisionKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionkit/structuring_recognized_text_on_a_document",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Structuring Recognized Text on a Document",
+      "type": "topic",
+      "url": "/documentation/visionkit/structuring_recognized_text_on_a_document"
+    },
+    "doc://com.apple.vision/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request that finds and recognizes text in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNRecognizeTextRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNRecognizeTextRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNRecognizeTextRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vnrecognizetextrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNRecognizedTextObservation": {
+      "abstract": [
+        {
+          "text": "A request that detects and recognizes regions of text in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNRecognizedTextObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizedTextObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNRecognizedTextObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNRecognizedTextObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vnrecognizedtextobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/locating-and-displaying-recognized-text": {
+      "abstract": [
+        {
+          "text": "Perform text recognition on a photo using the Vision framework’s text-recognition request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/locating-and-displaying-recognized-text",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Locating and displaying recognized text",
+      "type": "topic",
+      "url": "/documentation/vision/locating-and-displaying-recognized-text"
+    },
+    "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api": {
+      "abstract": [],
+      "identifier": "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original Objective-C and Swift API",
+      "type": "topic",
+      "url": "/documentation/vision/original-objective-c-and-swift-api"
+    },
+    "doc://com.apple.vision/documentation/Vision/recognizing-text-in-images": {
+      "abstract": [
+        {
+          "text": "Add text-recognition features to your app using the Vision framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/recognizing-text-in-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Recognizing Text in Images",
+      "type": "topic",
+      "url": "/documentation/vision/recognizing-text-in-images"
+    },
+    "https://developer.apple.com/videos/play/wwdc19/234": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc19/234",
+      "title": "Text Recognition in Vision Framework",
+      "titleInlineContent": [
+        {
+          "text": "Text Recognition in Vision Framework",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc19/234"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "4272b4b6f36d/ExtractingPhoneNumbersFromTextInImages.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Text-recognition",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/recognizing-text-in-images",
+        "doc://com.apple.documentation/documentation/visionkit/structuring_recognized_text_on_a_document",
+        "doc://com.apple.vision/documentation/Vision/locating-and-displaying-recognized-text",
+        "doc://com.apple.vision/documentation/Vision/VNRecognizeTextRequest",
+        "doc://com.apple.vision/documentation/Vision/VNRecognizedTextObservation"
+      ],
+      "title": "Text recognition"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizedTextObservation/title",
+          "value": "VNRecognizedTextObservation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizedTextObservation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNRecognizedTextObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizedTextObservation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNRecognizedTextObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizeTextRequest/title",
+          "value": "VNRecognizeTextRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizeTextRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNRecognizeTextRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizeTextRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNRecognizeTextRequest"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/vision/extracting-phone-numbers-from-text-in-images"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

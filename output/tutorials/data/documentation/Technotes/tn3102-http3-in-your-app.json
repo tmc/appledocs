@@ -1,0 +1,990 @@
+{
+  "abstract": [
+    {
+      "text": "Get started with iOS 15’s new HTTP/3 support.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.technotes/documentation/Technotes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.technotes/documentation/Technotes/tn3102-http3-in-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "TN3102: HTTP/3 in your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "HTTP/3 is a major new feature in iOS 15. While you wait for your server to add support for it, here’s how you can test it today in your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make sure your test device is running iOS 15 or later (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "HTTP/3",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is not supported in the simulator).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Settings > Developer, under the Networking group, enable ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "HTTP/3",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Using Xcode 13.0 or later, create a new project from the iOS > App template. Set the Language popup to Swift and the Interface popup to SwiftUI.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "HTTP3App.swift",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ContentView.swift",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " files to the code shown below.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run the app on your device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tap your Test button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "",
+            "// HTTP3App.swift",
+            "",
+            "@main",
+            "struct HTTP3App: App {",
+            "    let networkManager = NetworkManager()",
+            "    var body: some Scene {",
+            "        WindowGroup {",
+            "            ContentView(networkManager: networkManager)",
+            "        }",
+            "    }",
+            "}",
+            "",
+            "// ContentView.swift",
+            "",
+            "import SwiftUI",
+            "import os.log",
+            "",
+            "struct ContentView: View {",
+            "    var networkManager: NetworkManager",
+            "    ",
+            "    var body: some View {",
+            "        VStack(alignment: .leading) {",
+            "            Button(\"Test HTTP3\") {",
+            "                networkManager.testHTTP3Request()",
+            "            }.padding(.vertical, 20)",
+            "        }.padding(40)",
+            "    }",
+            "}",
+            "",
+            "struct ContentView_Previews: PreviewProvider {",
+            "    static var previews: some View {",
+            "        ContentView()",
+            "    }",
+            "}",
+            "",
+            "class NetworkManager: NSObject, URLSessionDataDelegate {",
+            "    ",
+            "    private var session: URLSession!",
+            "    ",
+            "    func testHTTP3Request() {",
+            "        ",
+            "        if self.session == nil {",
+            "            let config = URLSessionConfiguration.default",
+            "            config.requestCachePolicy = .reloadIgnoringLocalCacheData",
+            "            self.session = URLSession(configuration: config, delegate: self, delegateQueue: .main)",
+            "        }",
+            "        ",
+            "        let urlStr = \"https://google.com\"",
+            "        let url = URL(string: urlStr)!",
+            "        var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 60.0)",
+            "        request.assumesHTTP3Capable = true",
+            "        os_log(\"task will start, url: \\(url.absoluteString)\")",
+            "        self.session.dataTask(with: request) { (data, response, error) in",
+            "            if let error = error as NSError? {",
+            "                os_log(\"task transport error \\(error.domain) / \\(error.code)\")",
+            "                return",
+            "            }",
+            "            guard let data = data, let response = response as? HTTPURLResponse else {",
+            "                os_log(\"task response is invalid\")",
+            "                return",
+            "            }",
+            "",
+            "            guard 200 ..< 300 ~= response.statusCode else {",
+            "                print(\"task response status code is invalid; received \\(response.statusCode), but expected 2xx\")",
+            "                return",
+            "            }",
+            "            os_log(\"task finished with status \\(response.statusCode), bytes \\(data.count)\")",
+            "        }.resume()",
+            "        ",
+            "    }",
+            "}",
+            "",
+            "extension NetworkManager {",
+            "    ",
+            "    func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {",
+            "        let protocols = metrics.transactionMetrics.map { $0.networkProtocolName ?? \"-\" }",
+            "        os_log(\"protocols: \\(protocols)\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Testing-notes",
+          "level": 2,
+          "text": "Testing notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After running the code above, your app will print something similar to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "task will start, url: <# Your H3 URL Here #>",
+            "protocols: [\"h3-29\"] // [\"h3\", \"h2\"]",
+            "task finished with status 200, bytes 703"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The protocols array shows the protocol used for each HTTP transaction. In this case there was a single ",
+              "type": "text"
+            },
+            {
+              "code": "HTTP/3",
+              "type": "codeVoice"
+            },
+            {
+              "text": " transaction. In some cases you may see the protocol being returned as ",
+              "type": "text"
+            },
+            {
+              "code": "h2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or even ",
+              "type": "text"
+            },
+            {
+              "code": "http1.1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If this is the case then run the transaction again. This gives URLSession the opportunity to apply the ",
+              "type": "text"
+            },
+            {
+              "code": "HTTP/3",
+              "type": "codeVoice"
+            },
+            {
+              "text": " service discovery option that your server sent back on the previous HTTP response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Service discovery for ",
+              "type": "text"
+            },
+            {
+              "code": "HTTP/3",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is performed in one of the following ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The recommended approach is to configure your DNS server to advertise the HTTPS resource record for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "alpn=\"h3,h2\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Alternatively, configure your server to respond back with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Alt-Svc",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " header that advertises ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "HTTP/3",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". For example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Alt-Srv: h3=\":443\"; ma=2592000",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To attempt to use ",
+              "type": "text"
+            },
+            {
+              "code": "HTTP/3",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on the first transaction, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/foundation/urlrequest/3738175-assumeshttp3capable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/foundation/urlrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " being used to execute the data task in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For cases where ",
+              "type": "text"
+            },
+            {
+              "code": "HTTP/3",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is not supported on the server, or over the network, you will see the protocol fall back to ",
+              "type": "text"
+            },
+            {
+              "code": "h2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "http1.1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For more information on this, please see the WWDC session for ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2021/10094/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Servers that support ",
+                  "type": "text"
+                },
+                {
+                  "code": "HTTP/3",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " need to be based on Draft 29 or later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you experience issues while debugging your network transactions, take a look at these requests in the Network Instruments tool to debug what you are seeing being sent back from your server. For more on this, see the article for ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Revision-History",
+          "level": 2,
+          "text": "Revision History",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2022-05-24",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Made minor editorial changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2022-02-08",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Republished as TN3102.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2021-06-16",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " First published as “HTTP/3 in Your App” on the Apple Developer Forums.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.technotes/documentation/Technotes": {
+      "abstract": [
+        {
+          "text": "Learn about specific development topics through these in-depth technical articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Technotes",
+      "type": "topic",
+      "url": "/documentation/technotes"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview": {
+      "abstract": [
+        {
+          "text": "Explore the various Wi-Fi APIs available on iOS and their expected use cases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3111: iOS Wi-Fi API overview",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3111-ios-wifi-api-overview"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations": {
+      "abstract": [
+        {
+          "text": "Learn techniques to help debug any coordinate space issue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3124: Debugging coordinate space issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3124-debugging-coordinate-transformations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store": {
+      "abstract": [
+        {
+          "text": "Learn how to configure your App Clip to prevent it from being unavailable in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3168: Making your App Clip available in the App Store",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3168-making-your-app-clip-available-app-store"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration": {
+      "abstract": [
+        {
+          "text": "Diagnose errors due to invalid Apple Pay merchant identifier configurations by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifying the underlying causes of common errors and explore their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3173: Troubleshooting issues with your Apple Pay merchant identifier configuration",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose errors received while presenting the Apple Pay payment sheet on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your website by identifying the underlying causes of common errors and explore",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "their potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3174: Diagnosing issues with the Apple Pay payment sheet on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose common errors received while displaying the Apple Pay button on your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "website by identifying the underlying causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3175: Diagnosing issues with displaying the Apple Pay button on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues": {
+      "abstract": [
+        {
+          "text": "Diagnose errors that occur when processing Apple Pay payments,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identify common causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3176: Troubleshooting Apple Pay payment processing issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files": {
+      "abstract": [
+        {
+          "text": "Learn how alternate groups collect audio tracks, and how to choose which audio track to use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3177: Understanding alternate audio track groups in movie files",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems": {
+      "abstract": [
+        {
+          "text": "Ensure that every Mach-O image has a UUID, and that every distinct Mach-O image has its own unique UUID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3178: Checking for and resolving build UUID problems",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3178-checking-for-and-resolving-build-uuid-problems"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy": {
+      "abstract": [
+        {
+          "text": "Learn how local network privacy affects your software.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3179: Understanding local network privacy",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1": {
+      "abstract": [
+        {
+          "text": "Migrate from version 2 to version 1 of App Store Server Notifications using the Modify an App endpoint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3180: Reverting to App Store Server Notifications V1",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3180-reverting-app-store-server-notifications-v1"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Identify common configurations that cause unsuccessful privacy manifest validation with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3181: Debugging an invalid privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3181-debugging-invalid-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the tracking domains you use in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3182: Adding privacy tracking keys to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the APIs that can potentially fingerprint devices in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3183: Adding required reason API entries to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the data your app or third-party SDK collects in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3184: Adding data collection details to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest"
+    },
+    "https://developer.apple.com/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments": {
+      "identifier": "https://developer.apple.com/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments",
+      "title": "Analyzing HTTP Traffic with Instruments",
+      "titleInlineContent": [
+        {
+          "text": "Analyzing HTTP Traffic with Instruments",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/foundation/url_loading_system/analyzing_http_traffic_with_instruments"
+    },
+    "https://developer.apple.com/documentation/foundation/urlrequest": {
+      "identifier": "https://developer.apple.com/documentation/foundation/urlrequest",
+      "title": "URLRequest",
+      "titleInlineContent": [
+        {
+          "text": "URLRequest",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/foundation/urlrequest"
+    },
+    "https://developer.apple.com/documentation/foundation/urlrequest/3738175-assumeshttp3capable": {
+      "identifier": "https://developer.apple.com/documentation/foundation/urlrequest/3738175-assumeshttp3capable",
+      "title": "assumesHTTP3Capable",
+      "titleInlineContent": [
+        {
+          "text": "assumesHTTP3Capable",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/foundation/urlrequest/3738175-assumeshttp3capable"
+    },
+    "https://developer.apple.com/documentation/foundation/urlsession": {
+      "identifier": "https://developer.apple.com/documentation/foundation/urlsession",
+      "title": "URLSession",
+      "titleInlineContent": [
+        {
+          "text": "URLSession",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/foundation/urlsession"
+    },
+    "https://developer.apple.com/videos/play/wwdc2021/10094/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2021/10094/",
+      "title": "Accelerate networking with HTTP/3 and QUIC",
+      "titleInlineContent": [
+        {
+          "text": "Accelerate networking with ",
+          "type": "text"
+        },
+        {
+          "code": "HTTP/3",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and QUIC",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2021/10094/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Latest",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+        "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+        "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+        "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+        "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+        "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+        "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+        "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+        "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations"
+      ],
+      "title": "Latest"
+    }
+  ]
+}

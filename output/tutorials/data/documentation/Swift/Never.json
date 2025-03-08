@@ -1,0 +1,3027 @@
+{
+  "abstract": [
+    {
+      "text": "A type that has no values and can’t be constructed.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/Never"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:s5NeverO",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "enum"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Never"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Never"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration",
+    "symbolKind": "enum",
+    "title": "Never"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@frozen"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Never"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "code": "Never",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the return type of a function",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that doesn’t return normally — for example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "because it runs forever or terminates the program.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// An infinite loop never returns.",
+            "func forever() -> Never {",
+            "    while true {",
+            "        print(\"I will print forever.\")",
+            "    }",
+            "}",
+            "",
+            "// Calling fatalError(_:file:line:) unconditionally stops the program.",
+            "func crashAndBurn() -> Never {",
+            "    fatalError(\"Something very, very bad happened\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A function that returns ",
+              "type": "text"
+            },
+            {
+              "code": "Never",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is called a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "nonreturning",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Closures, methods, computed properties, and subscripts",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can also be nonreturning.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There’s no way to create an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "Never",
+              "type": "codeVoice"
+            },
+            {
+              "text": ";",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this characteristic makes it an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "uninhabited",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " type.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can use an uninhabited type like ",
+              "type": "text"
+            },
+            {
+              "code": "Never",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to represent states in your program",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that are impossible to reach during execution.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Swift’s type system uses this information —",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for example, to reason about control statements",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in cases that are known to be unreachable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let favoriteNumber: Result<Int, Never> = .success(42)",
+            "switch favoriteNumber {",
+            "case .success(let value):",
+            "    print(\"My favorite number is\", value)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the code above,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "favoriteNumber",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has a failure type of ",
+              "type": "text"
+            },
+            {
+              "code": "Never",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "indicating that it always succeeds.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The switch statement is therefore exhaustive,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "even though it doesn’t contain a ",
+              "type": "text"
+            },
+            {
+              "code": ".failure",
+              "type": "codeVoice"
+            },
+            {
+              "text": " case,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "because that case could never be reached.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/BitwiseCopyable": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/BitwiseCopyable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        }
+      ],
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/swift/bitwisecopyable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Comparable": {
+      "abstract": [
+        {
+          "text": "A type that can be compared using the relational operators ",
+          "type": "text"
+        },
+        {
+          "code": "<",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": "<=",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": ">=",
+          "type": "codeVoice"
+        },
+        {
+          "text": ",",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and ",
+          "type": "text"
+        },
+        {
+          "code": ">",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Comparable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Comparable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Comparable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Comparable",
+      "type": "topic",
+      "url": "/documentation/swift/comparable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Copyable": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Copyable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/swift/copyable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Decodable": {
+      "abstract": [
+        {
+          "text": "A type that can decode itself from an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Decodable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/swift/decodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Encodable": {
+      "abstract": [
+        {
+          "text": "A type that can encode itself to an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Encodable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Encodable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/swift/encodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Equatable": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Equatable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/swift/equatable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Error": {
+      "abstract": [
+        {
+          "text": "A type representing an error value that can be thrown.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Error",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "role": "symbol",
+      "title": "Error",
+      "type": "topic",
+      "url": "/documentation/swift/error"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Hashable": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a ",
+          "type": "text"
+        },
+        {
+          "code": "Hasher",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/swift/hashable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Identifiable": {
+      "abstract": [
+        {
+          "text": "A class of types whose instances hold the value of an entity with stable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Identifiable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Identifiable",
+      "type": "topic",
+      "url": "/documentation/swift/identifiable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Never": {
+      "abstract": [
+        {
+          "text": "A type that has no values and can’t be constructed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Never"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Never",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Never"
+        }
+      ],
+      "role": "symbol",
+      "title": "Never",
+      "type": "topic",
+      "url": "/documentation/swift/never"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Never/AppIntent-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Never/AppIntent-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AppIntent Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/never/appintent-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Never/AtomicRepresentable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Never/AtomicRepresentable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AtomicRepresentable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/never/atomicrepresentable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Never/AttachmentContent-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Never/AttachmentContent-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AttachmentContent Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/never/attachmentcontent-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Never/Comparable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Never/Comparable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Comparable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/never/comparable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Never/Decodable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Never/Decodable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Decodable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/never/decodable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Never/Encodable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Never/Encodable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Encodable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/never/encodable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Never/Equatable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Never/Equatable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equatable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/never/equatable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Never/Hashable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Never/Hashable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hashable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/never/hashable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Never/Identifiable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Never/Identifiable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Identifiable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/never/identifiable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Never/IntentResult-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Never/IntentResult-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IntentResult Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/never/intentresult-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Never/MapContentValue": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MapContentValue"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Never/MapContentValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MapContentValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "Never.MapContentValue",
+      "type": "topic",
+      "url": "/documentation/swift/never/mapcontentvalue"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Never/ParameterSummary-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Never/ParameterSummary-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ParameterSummary Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/never/parametersummary-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Never/PersistentlyIdentifiable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Never/PersistentlyIdentifiable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "PersistentlyIdentifiable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/never/persistentlyidentifiable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Never/Specification": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Specification"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Never/Specification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Specification"
+        }
+      ],
+      "role": "symbol",
+      "title": "Never.Specification",
+      "type": "topic",
+      "url": "/documentation/swift/never/specification"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Never/TestScoping-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Never/TestScoping-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "TestScoping Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/never/testscoping-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Never/TransferRepresentation-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Never/TransferRepresentation-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "TransferRepresentation Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/never/transferrepresentation-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Never/Transferable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Never/Transferable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Transferable Implementations",
+      "type": "topic",
+      "url": "/documentation/swift/never/transferable-implementations"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Never/UnwrappedType": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnwrappedType"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Never/UnwrappedType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnwrappedType"
+        }
+      ],
+      "role": "symbol",
+      "title": "Never.UnwrappedType",
+      "type": "topic",
+      "url": "/documentation/swift/never/unwrappedtype"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Never/ValueType": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ValueType"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Never/ValueType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ValueType"
+        }
+      ],
+      "role": "symbol",
+      "title": "Never.ValueType",
+      "type": "topic",
+      "url": "/documentation/swift/never/valuetype"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Never/defaultResolverSpecification": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultResolverSpecification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents26EmptyResolverSpecificationV",
+          "text": "EmptyResolverSpecification"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5NeverO",
+          "text": "Never"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Never/defaultResolverSpecification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultResolverSpecification",
+      "type": "topic",
+      "url": "/documentation/swift/never/defaultresolverspecification"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/fatalError(_:file:line:)": {
+      "abstract": [
+        {
+          "text": "Unconditionally prints a given message and stops execution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fatalError"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "file"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "line"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5NeverO",
+          "text": "Never"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/fatalError(_:file:line:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fatalError(_:file:line:)",
+      "type": "topic",
+      "url": "/documentation/swift/fatalerror(_:file:line:)"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable": {
+      "abstract": [
+        {
+          "text": "A type that supports atomic operations through a separate atomic storage",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AtomicRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AtomicRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "AtomicRepresentable",
+      "type": "topic",
+      "url": "/documentation/synchronization/atomicrepresentable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:10AppIntents0A6IntentP": {
+      "abstract": [
+        {
+          "text": "An interface for providing an app-specific capability that people invoke from system experiences like Siri and the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntent"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents24PersistentlyIdentifiableP",
+          "text": "PersistentlyIdentifiable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "_SupportsAppDependencies"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:10AppIntents0A6IntentP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppIntent",
+      "type": "topic",
+      "url": "/documentation/AppIntents/AppIntent"
+    },
+    "doc://com.externally.resolved.symbol/s:10AppIntents12IntentResultP": {
+      "abstract": [
+        {
+          "text": "A type that contains the result of performing an action, and includes optional information to deliver back to the initiator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntentResult"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:10AppIntents12IntentResultP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IntentResult",
+      "type": "topic",
+      "url": "/documentation/AppIntents/IntentResult"
+    },
+    "doc://com.externally.resolved.symbol/s:10AppIntents16ParameterSummaryP": {
+      "abstract": [
+        {
+          "text": "An interface for defining the visual representation of an app intent’s parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ParameterSummary"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:10AppIntents16ParameterSummaryP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ParameterSummary",
+      "type": "topic",
+      "url": "/documentation/AppIntents/ParameterSummary"
+    },
+    "doc://com.externally.resolved.symbol/s:10AppIntents24PersistentlyIdentifiableP": {
+      "abstract": [
+        {
+          "text": "Defines a string that uniquely identifies a type. This is useful for maintaining the identity of a type, even when its type name is changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PersistentlyIdentifiable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:10AppIntents24PersistentlyIdentifiableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PersistentlyIdentifiable",
+      "type": "topic",
+      "url": "/documentation/AppIntents/PersistentlyIdentifiable"
+    },
+    "doc://com.externally.resolved.symbol/s:10Foundation14SortComparatorP": {
+      "abstract": [
+        {
+          "text": "A comparison algorithm for a specified type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "SortComparator"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:10Foundation14SortComparatorP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SortComparator",
+      "type": "topic",
+      "url": "/documentation/foundation/sortcomparator"
+    },
+    "doc://com.externally.resolved.symbol/s:12ExtensionKit03AppA5SceneP": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the user interface for an application extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppExtensionScene"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:12ExtensionKit03AppA5SceneP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppExtensionScene",
+      "type": "topic",
+      "url": "/documentation/ExtensionKit/AppExtensionScene"
+    },
+    "doc://com.externally.resolved.symbol/s:15_MapKit_SwiftUI0A10SelectableP": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MapSelectable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:15_MapKit_SwiftUI0A10SelectableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MapSelectable",
+      "type": "topic",
+      "url": "/documentation/MapKit/MapSelectable"
+    },
+    "doc://com.externally.resolved.symbol/s:15_MapKit_SwiftUI0A7ContentP": {
+      "abstract": [
+        {
+          "text": "A protocol used to construct map content such as controls, markers, and annotations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MapContent"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:15_MapKit_SwiftUI0A7ContentP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MapContent",
+      "type": "topic",
+      "url": "/documentation/MapKit/MapContent"
+    },
+    "doc://com.externally.resolved.symbol/s:16CoreTransferable0B0P": {
+      "abstract": [
+        {
+          "text": "A protocol that describes how a type interacts with transport APIs such as drag and drop or copy and paste.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transferable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:16CoreTransferable0B0P",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Transferable",
+      "type": "topic",
+      "url": "/documentation/CoreTransferable/Transferable"
+    },
+    "doc://com.externally.resolved.symbol/s:16CoreTransferable22TransferRepresentationP": {
+      "abstract": [
+        {
+          "text": "A declarative description of the process of importing and exporting a transferable item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TransferRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable22TransferRepresentationP4ItemQa",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": "> : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:16CoreTransferable22TransferRepresentationP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TransferRepresentation",
+      "type": "topic",
+      "url": "/documentation/CoreTransferable/TransferRepresentation"
+    },
+    "doc://com.externally.resolved.symbol/s:17_StoreKit_SwiftUI0A7ContentP": {
+      "abstract": [
+        {
+          "text": "A type that represents the content of a store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StoreContent"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:17_StoreKit_SwiftUI0A7ContentP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StoreContent",
+      "type": "topic",
+      "url": "/documentation/StoreKit/StoreContent"
+    },
+    "doc://com.externally.resolved.symbol/s:19_RealityKit_SwiftUI17AttachmentContentP": {
+      "abstract": [
+        {
+          "text": "A type that provides content for an attachment content builder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AttachmentContent"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:19_RealityKit_SwiftUI17AttachmentContentP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttachmentContent",
+      "type": "topic",
+      "url": "/documentation/RealityKit/AttachmentContent"
+    },
+    "doc://com.externally.resolved.symbol/s:6Charts11AxisContentP": {
+      "abstract": [
+        {
+          "text": "A type that represents the elements you use to build a chart’s axes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AxisContent"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:6Charts11AxisContentP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AxisContent",
+      "type": "topic",
+      "url": "/documentation/Charts/AxisContent"
+    },
+    "doc://com.externally.resolved.symbol/s:6Charts12ChartContentP": {
+      "abstract": [
+        {
+          "text": "A type that represents the content that you draw on a chart.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChartContent"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:6Charts12ChartContentP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ChartContent",
+      "type": "topic",
+      "url": "/documentation/Charts/ChartContent"
+    },
+    "doc://com.externally.resolved.symbol/s:6Charts26PrimitivePlottableProtocolP": {
+      "abstract": [
+        {
+          "text": "A type that represents the primitive plottable types supported by the framework. Don’t use this type directly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PrimitivePlottableProtocol"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts9PlottableP",
+          "text": "Plottable"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Charts9PlottableP09PrimitiveB0Qa",
+          "text": "PrimitivePlottable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:6Charts26PrimitivePlottableProtocolP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PrimitivePlottableProtocol",
+      "type": "topic",
+      "url": "/documentation/Charts/PrimitivePlottableProtocol"
+    },
+    "doc://com.externally.resolved.symbol/s:6Charts8AxisMarkP": {
+      "abstract": [
+        {
+          "text": "A type that serves as the basic building block for the elements of an axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AxisMark"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:6Charts8AxisMarkP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AxisMark",
+      "type": "topic",
+      "url": "/documentation/Charts/AxisMark"
+    },
+    "doc://com.externally.resolved.symbol/s:6Charts9PlottableP": {
+      "abstract": [
+        {
+          "text": "A type that can serve as data to plot in a chart.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Plottable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:6Charts9PlottableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Plottable",
+      "type": "topic",
+      "url": "/documentation/Charts/Plottable"
+    },
+    "doc://com.externally.resolved.symbol/s:7SwiftUI10ShapeStyleP": {
+      "abstract": [
+        {
+          "text": "A color or pattern to use when rendering a shape.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShapeStyle"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI10ShapeStyleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ShapeStyle",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ShapeStyle"
+    },
+    "doc://com.externally.resolved.symbol/s:7SwiftUI14ToolbarContentP": {
+      "abstract": [
+        {
+          "text": "Conforming types represent items that can be placed in various locations in a toolbar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ToolbarContent"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI14ToolbarContentP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ToolbarContent",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ToolbarContent"
+    },
+    "doc://com.externally.resolved.symbol/s:7SwiftUI15TableRowContentP": {
+      "abstract": [
+        {
+          "text": "A type used to represent table rows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableRowContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15TableRowContentP0cD5ValueQa",
+          "text": "TableRowValue"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI15TableRowContentP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TableRowContent",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/TableRowContent"
+    },
+    "doc://com.externally.resolved.symbol/s:7SwiftUI17CustomHoverEffectP": {
+      "abstract": [
+        {
+          "text": "A type that represents how a view should change when a pointer hovers over a view, or when someone looks at the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomHoverEffect"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI17CustomHoverEffectP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomHoverEffect",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/CustomHoverEffect"
+    },
+    "doc://com.externally.resolved.symbol/s:7SwiftUI18TableColumnContentP": {
+      "abstract": [
+        {
+          "text": "A type used to represent columns within a table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TableColumnContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI18TableColumnContentP0C8RowValueQa",
+          "text": "TableRowValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI18TableColumnContentP0cD14SortComparatorQa",
+          "text": "TableColumnSortComparator"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI18TableColumnContentP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TableColumnContent",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/TableColumnContent"
+    },
+    "doc://com.externally.resolved.symbol/s:7SwiftUI19WidgetConfigurationP": {
+      "abstract": [
+        {
+          "text": "A type that describes a widget’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetConfiguration"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI19WidgetConfigurationP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetConfiguration",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/WidgetConfiguration"
+    },
+    "doc://com.externally.resolved.symbol/s:7SwiftUI21ControlWidgetTemplateP": {
+      "abstract": [
+        {
+          "text": "A type that describes a control widget’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetTemplate"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI21ControlWidgetTemplateP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ControlWidgetTemplate",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ControlWidgetTemplate"
+    },
+    "doc://com.externally.resolved.symbol/s:7SwiftUI21ImmersiveSpaceContentP": {
+      "abstract": [
+        {
+          "text": "A type that you can use as the content of an immersive space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImmersiveSpaceContent"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI21ImmersiveSpaceContentP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ImmersiveSpaceContent",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ImmersiveSpaceContent"
+    },
+    "doc://com.externally.resolved.symbol/s:7SwiftUI25AccessibilityRotorContentP": {
+      "abstract": [
+        {
+          "text": "Content within an accessibility rotor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessibilityRotorContent"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI25AccessibilityRotorContentP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AccessibilityRotorContent",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/AccessibilityRotorContent"
+    },
+    "doc://com.externally.resolved.symbol/s:7SwiftUI26ControlWidgetConfigurationP": {
+      "abstract": [
+        {
+          "text": "A type that describes a control widget’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetConfiguration"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI26ControlWidgetConfigurationP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ControlWidgetConfiguration",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ControlWidgetConfiguration"
+    },
+    "doc://com.externally.resolved.symbol/s:7SwiftUI26CustomizableToolbarContentP": {
+      "abstract": [
+        {
+          "text": "Conforming types represent items that can be placed in various locations in a customizable toolbar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomizableToolbarContent"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI14ToolbarContentP",
+          "text": "ToolbarContent"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI14ToolbarContentP4BodyQa",
+          "text": "Body"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI26CustomizableToolbarContentP",
+          "text": "CustomizableToolbarContent"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI26CustomizableToolbarContentP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomizableToolbarContent",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/CustomizableToolbarContent"
+    },
+    "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View"
+    },
+    "doc://com.externally.resolved.symbol/s:7SwiftUI5SceneP": {
+      "abstract": [
+        {
+          "text": "A part of an app’s user interface with a life cycle managed by the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Scene"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI5SceneP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Scene",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Scene"
+    },
+    "doc://com.externally.resolved.symbol/s:7SwiftUI7GestureP": {
+      "abstract": [
+        {
+          "text": "An instance that matches a sequence of events to a gesture, and returns a stream of values for each of its states.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Gesture"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7GestureP5ValueQa",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI7GestureP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Gesture",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Gesture"
+    },
+    "doc://com.externally.resolved.symbol/s:7SwiftUI8CommandsP": {
+      "abstract": [
+        {
+          "text": "Conforming types represent a group of related commands that can be exposed to the user via the main menu on macOS and key commands on iOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Commands"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI8CommandsP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Commands",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Commands"
+    },
+    "doc://com.externally.resolved.symbol/s:7SwiftUI9KeyframesP": {
+      "abstract": [
+        {
+          "text": "A type that defines changes to a value over time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Keyframes"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9KeyframesP5ValueQa",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI9KeyframesP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Keyframes",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Keyframes"
+    },
+    "doc://com.externally.resolved.symbol/s:7Testing11TestScopingP": {
+      "abstract": [
+        {
+          "text": "A protocol that allows providing a custom execution scope for a test function (and each of its cases) or a test suite by performing custom code before or after it runs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TestScoping"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7Testing11TestScopingP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TestScoping",
+      "type": "topic",
+      "url": "/documentation/Testing/TestScoping"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:7SwiftUI25AccessibilityRotorContentP",
+        "doc://com.externally.resolved.symbol/s:12ExtensionKit03AppA5SceneP",
+        "doc://com.externally.resolved.symbol/s:10AppIntents0A6IntentP",
+        "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable",
+        "doc://com.externally.resolved.symbol/s:19_RealityKit_SwiftUI17AttachmentContentP",
+        "doc://com.externally.resolved.symbol/s:6Charts11AxisContentP",
+        "doc://com.externally.resolved.symbol/s:6Charts8AxisMarkP",
+        "doc://com.apple.Swift/documentation/Swift/BitwiseCopyable",
+        "doc://com.externally.resolved.symbol/s:6Charts12ChartContentP",
+        "doc://com.externally.resolved.symbol/s:7SwiftUI8CommandsP",
+        "doc://com.apple.Swift/documentation/Swift/Comparable",
+        "doc://com.externally.resolved.symbol/s:7SwiftUI26ControlWidgetConfigurationP",
+        "doc://com.externally.resolved.symbol/s:7SwiftUI21ControlWidgetTemplateP",
+        "doc://com.apple.Swift/documentation/Swift/Copyable",
+        "doc://com.externally.resolved.symbol/s:7SwiftUI17CustomHoverEffectP",
+        "doc://com.externally.resolved.symbol/s:7SwiftUI26CustomizableToolbarContentP",
+        "doc://com.apple.Swift/documentation/Swift/Decodable",
+        "doc://com.apple.Swift/documentation/Swift/Encodable",
+        "doc://com.apple.Swift/documentation/Swift/Equatable",
+        "doc://com.apple.Swift/documentation/Swift/Error",
+        "doc://com.externally.resolved.symbol/s:7SwiftUI7GestureP",
+        "doc://com.apple.Swift/documentation/Swift/Hashable",
+        "doc://com.apple.Swift/documentation/Swift/Identifiable",
+        "doc://com.externally.resolved.symbol/s:7SwiftUI21ImmersiveSpaceContentP",
+        "doc://com.externally.resolved.symbol/s:10AppIntents12IntentResultP",
+        "doc://com.externally.resolved.symbol/s:7SwiftUI9KeyframesP",
+        "doc://com.externally.resolved.symbol/s:15_MapKit_SwiftUI0A7ContentP",
+        "doc://com.externally.resolved.symbol/s:15_MapKit_SwiftUI0A10SelectableP",
+        "doc://com.externally.resolved.symbol/s:10AppIntents16ParameterSummaryP",
+        "doc://com.externally.resolved.symbol/s:10AppIntents24PersistentlyIdentifiableP",
+        "doc://com.externally.resolved.symbol/s:6Charts9PlottableP",
+        "doc://com.externally.resolved.symbol/s:6Charts26PrimitivePlottableProtocolP",
+        "doc://com.externally.resolved.symbol/s:7SwiftUI5SceneP",
+        "doc://com.apple.Swift/documentation/Swift/Sendable",
+        "doc://com.externally.resolved.symbol/s:7SwiftUI10ShapeStyleP",
+        "doc://com.externally.resolved.symbol/s:10Foundation14SortComparatorP",
+        "doc://com.externally.resolved.symbol/s:17_StoreKit_SwiftUI0A7ContentP",
+        "doc://com.externally.resolved.symbol/s:7SwiftUI18TableColumnContentP",
+        "doc://com.externally.resolved.symbol/s:7SwiftUI15TableRowContentP",
+        "doc://com.externally.resolved.symbol/s:7Testing11TestScopingP",
+        "doc://com.externally.resolved.symbol/s:7SwiftUI14ToolbarContentP",
+        "doc://com.externally.resolved.symbol/s:16CoreTransferable22TransferRepresentationP",
+        "doc://com.externally.resolved.symbol/s:16CoreTransferable0B0P",
+        "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP",
+        "doc://com.externally.resolved.symbol/s:7SwiftUI19WidgetConfigurationP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Exiting-a-Program",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/fatalError(_:file:line:)"
+      ],
+      "title": "Exiting a Program"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Never/MapContentValue",
+        "doc://com.apple.Swift/documentation/Swift/Never/Specification",
+        "doc://com.apple.Swift/documentation/Swift/Never/UnwrappedType",
+        "doc://com.apple.Swift/documentation/Swift/Never/ValueType"
+      ],
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "Type-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Never/defaultResolverSpecification"
+      ],
+      "title": "Type Properties"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Never/AppIntent-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Never/AtomicRepresentable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Never/AttachmentContent-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Never/Comparable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Never/Decodable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Never/Encodable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Never/Equatable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Never/Hashable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Never/Identifiable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Never/IntentResult-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Never/ParameterSummary-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Never/PersistentlyIdentifiable-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Never/TestScoping-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Never/TransferRepresentation-Implementations",
+        "doc://com.apple.Swift/documentation/Swift/Never/Transferable-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/never"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2151 @@
+{
+  "abstract": [
+    {
+      "text": "Authenticate users biometrically or with a passphrase they already know.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.localauthentication/documentation/LocalAuthentication"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "LocalAuthentication",
+    "modules": [
+      {
+        "name": "Local Authentication"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "8.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.10",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "9.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Local Authentication"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many users rely on biometric authentication like Face ID, Touch ID, or Optic ID to enable secure, effortless access to their devices. As a fallback option, and for devices without biometry, a passcode or password serves a similar purpose. Use the LocalAuthentication framework to leverage these mechanisms in your app and extend authentication procedures your app already implements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3002744",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To maximize security, your app never gains access to any of the underlying authentication data. You can’t access any fingerprint images, for example. The Secure Enclave, a hardware-based security processor isolated from the rest of the system, manages this data out of reach even of the operating system. Instead, you specify a particular policy and provide messaging that tells the user why you want them to authenticate. The framework then coordinates with the Secure Enclave to carry out the operation. Afterward, you receive only a Boolean result indicating authentication success or failure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication": {
+      "abstract": [
+        {
+          "text": "Authenticate users biometrically or with a passphrase they already know.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Local Authentication",
+      "type": "topic",
+      "url": "/documentation/localauthentication"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAAuthenticationRequirement": {
+      "abstract": [
+        {
+          "text": "A set of requirements that protect a right.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LAAuthenticationRequirement"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAAuthenticationRequirement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LAAuthenticationRequirement"
+        }
+      ],
+      "role": "symbol",
+      "title": "LAAuthenticationRequirement",
+      "type": "topic",
+      "url": "/documentation/localauthentication/laauthenticationrequirement"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LABiometryFallbackRequirement": {
+      "abstract": [
+        {
+          "text": "A set of requirements to fall back on if biometrics aren’t present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LABiometryFallbackRequirement"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LABiometryFallbackRequirement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LABiometryFallbackRequirement"
+        }
+      ],
+      "role": "symbol",
+      "title": "LABiometryFallbackRequirement",
+      "type": "topic",
+      "url": "/documentation/localauthentication/labiometryfallbackrequirement"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LACompanionType": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LACompanionType"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LACompanionType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LACompanionType"
+        }
+      ],
+      "role": "symbol",
+      "title": "LACompanionType",
+      "type": "topic",
+      "url": "/documentation/localauthentication/lacompaniontype"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAContext": {
+      "abstract": [
+        {
+          "text": "A mechanism for evaluating authentication policies and access controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LAContext"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LAContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "LAContext",
+      "type": "topic",
+      "url": "/documentation/localauthentication/lacontext"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LADomainState": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LADomainState"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LADomainState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LADomainState"
+        }
+      ],
+      "role": "symbol",
+      "title": "LADomainState",
+      "type": "topic",
+      "url": "/documentation/localauthentication/ladomainstate"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LADomainStateBiometry": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LADomainStateBiometry"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LADomainStateBiometry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LADomainStateBiometry"
+        }
+      ],
+      "role": "symbol",
+      "title": "LADomainStateBiometry",
+      "type": "topic",
+      "url": "/documentation/localauthentication/ladomainstatebiometry"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LADomainStateCompanion": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LADomainStateCompanion"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LADomainStateCompanion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LADomainStateCompanion"
+        }
+      ],
+      "role": "symbol",
+      "title": "LADomainStateCompanion",
+      "type": "topic",
+      "url": "/documentation/localauthentication/ladomainstatecompanion"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAEnvironment": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LAEnvironment"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAEnvironment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LAEnvironment"
+        }
+      ],
+      "role": "symbol",
+      "title": "LAEnvironment",
+      "type": "topic",
+      "url": "/documentation/localauthentication/laenvironment"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAEnvironment/Mechanism": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Mechanism"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAEnvironment/Mechanism",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Mechanism"
+        }
+      ],
+      "role": "symbol",
+      "title": "LAEnvironment.Mechanism",
+      "type": "topic",
+      "url": "/documentation/localauthentication/laenvironment/mechanism"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAEnvironment/MechanismBiometry": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MechanismBiometry"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAEnvironment/MechanismBiometry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MechanismBiometry"
+        }
+      ],
+      "role": "symbol",
+      "title": "LAEnvironment.MechanismBiometry",
+      "type": "topic",
+      "url": "/documentation/localauthentication/laenvironment/mechanismbiometry"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAEnvironment/MechanismCompanion": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MechanismCompanion"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAEnvironment/MechanismCompanion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MechanismCompanion"
+        }
+      ],
+      "role": "symbol",
+      "title": "LAEnvironment.MechanismCompanion",
+      "type": "topic",
+      "url": "/documentation/localauthentication/laenvironment/mechanismcompanion"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAEnvironment/MechanismUserPassword": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MechanismUserPassword"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAEnvironment/MechanismUserPassword",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MechanismUserPassword"
+        }
+      ],
+      "role": "symbol",
+      "title": "LAEnvironment.MechanismUserPassword",
+      "type": "topic",
+      "url": "/documentation/localauthentication/laenvironment/mechanismuserpassword"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAEnvironment/Observer": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Observer"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAEnvironment/Observer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Observer"
+        }
+      ],
+      "role": "symbol",
+      "title": "LAEnvironment.Observer",
+      "type": "topic",
+      "url": "/documentation/localauthentication/laenvironment/observer"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAEnvironment/State-swift.class": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAEnvironment/State-swift.class",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "role": "symbol",
+      "title": "LAEnvironment.State",
+      "type": "topic",
+      "url": "/documentation/localauthentication/laenvironment/state-swift.class"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAError-swift.struct": {
+      "abstract": [
+        {
+          "text": "Errors issued by the LocalAuthentication framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LAError"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAError-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LAError"
+        }
+      ],
+      "role": "symbol",
+      "title": "LAError",
+      "type": "topic",
+      "url": "/documentation/localauthentication/laerror-swift.struct"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAError-swift.struct/Code": {
+      "abstract": [
+        {
+          "text": "Errors issued by the LocalAuthentication framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAError-swift.struct/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "LAError.Code",
+      "type": "topic",
+      "url": "/documentation/localauthentication/laerror-swift.struct/code"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAErrorDomain": {
+      "abstract": [
+        {
+          "text": "The error domain that the framework uses when issuing errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LAErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LAErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "LAErrorDomain",
+      "type": "topic",
+      "url": "/documentation/localauthentication/laerrordomain"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAPersistedRight": {
+      "abstract": [
+        {
+          "text": "A right that gates access to a key and a secret.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LAPersistedRight"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAPersistedRight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LAPersistedRight"
+        }
+      ],
+      "role": "symbol",
+      "title": "LAPersistedRight",
+      "type": "topic",
+      "url": "/documentation/localauthentication/lapersistedright"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAPrivateKey": {
+      "abstract": [
+        {
+          "text": "The private portion of an asymmetric key pair.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LAPrivateKey"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAPrivateKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LAPrivateKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "LAPrivateKey",
+      "type": "topic",
+      "url": "/documentation/localauthentication/laprivatekey"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAPublicKey": {
+      "abstract": [
+        {
+          "text": "The public portion of an asymmetric key pair.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LAPublicKey"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAPublicKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LAPublicKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "LAPublicKey",
+      "type": "topic",
+      "url": "/documentation/localauthentication/lapublickey"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight": {
+      "abstract": [
+        {
+          "text": "A grouped set of requirements that gate access to a resource or operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LARight"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LARight"
+        }
+      ],
+      "role": "symbol",
+      "title": "LARight",
+      "type": "topic",
+      "url": "/documentation/localauthentication/laright"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight/State-swift.enum": {
+      "abstract": [
+        {
+          "text": "The possible states for a right during authorization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight/State-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "role": "symbol",
+      "title": "LARight.State",
+      "type": "topic",
+      "url": "/documentation/localauthentication/laright/state-swift.enum"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore": {
+      "abstract": [
+        {
+          "text": "A container for data protected by a right.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LARightStore"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LARightStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "LARightStore",
+      "type": "topic",
+      "url": "/documentation/localauthentication/larightstore"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LASecret": {
+      "abstract": [
+        {
+          "text": "Data that’s protected by a persisted right.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LASecret"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LASecret",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LASecret"
+        }
+      ],
+      "role": "symbol",
+      "title": "LASecret",
+      "type": "topic",
+      "url": "/documentation/localauthentication/lasecret"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LA_EXPORT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LA_EXPORT"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LA_EXPORT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LA_EXPORT",
+      "type": "topic",
+      "url": "/documentation/localauthentication/la_export"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LA_EXTERN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "LA_EXTERN"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LA_EXTERN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LA_EXTERN",
+      "type": "topic",
+      "url": "/documentation/localauthentication/la_extern"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/LocalAuthenticationView": {
+      "abstract": [
+        {
+          "text": "A SwiftUI view that displays an authentication interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalAuthenticationView"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/LocalAuthenticationView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LocalAuthenticationView"
+        }
+      ],
+      "role": "symbol",
+      "title": "LocalAuthenticationView",
+      "type": "topic",
+      "url": "/documentation/localauthentication/localauthenticationview"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/accessing-keychain-items-with-face-id-or-touch-id": {
+      "abstract": [
+        {
+          "text": "Protect a keychain item with biometric authentication.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/accessing-keychain-items-with-face-id-or-touch-id",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Accessing Keychain Items with Face ID or Touch ID",
+      "type": "topic",
+      "url": "/documentation/localauthentication/accessing-keychain-items-with-face-id-or-touch-id"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/kLACompanionTypeMac": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLACompanionTypeMac"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/kLACompanionTypeMac",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kLACompanionTypeMac"
+        }
+      ],
+      "role": "symbol",
+      "title": "kLACompanionTypeMac",
+      "type": "topic",
+      "url": "/documentation/localauthentication/klacompaniontypemac"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/kLACompanionTypeWatch": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLACompanionTypeWatch"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/kLACompanionTypeWatch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kLACompanionTypeWatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "kLACompanionTypeWatch",
+      "type": "topic",
+      "url": "/documentation/localauthentication/klacompaniontypewatch"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/kLAErrorCompanionNotAvailable": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLAErrorCompanionNotAvailable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/kLAErrorCompanionNotAvailable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kLAErrorCompanionNotAvailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "kLAErrorCompanionNotAvailable",
+      "type": "topic",
+      "url": "/documentation/localauthentication/klaerrorcompanionnotavailable"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/kLAPolicyDeviceOwnerAuthenticationWithBiometricsOrCompanion": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLAPolicyDeviceOwnerAuthenticationWithBiometricsOrCompanion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/kLAPolicyDeviceOwnerAuthenticationWithBiometricsOrCompanion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kLAPolicyDeviceOwnerAuthenticationWithBiometricsOrCompanion"
+        }
+      ],
+      "role": "symbol",
+      "title": "kLAPolicyDeviceOwnerAuthenticationWithBiometricsOrCompanion",
+      "type": "topic",
+      "url": "/documentation/localauthentication/klapolicydeviceownerauthenticationwithbiometricsorcompanion"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/kLAPolicyDeviceOwnerAuthenticationWithCompanion": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kLAPolicyDeviceOwnerAuthenticationWithCompanion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/kLAPolicyDeviceOwnerAuthenticationWithCompanion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kLAPolicyDeviceOwnerAuthenticationWithCompanion"
+        }
+      ],
+      "role": "symbol",
+      "title": "kLAPolicyDeviceOwnerAuthenticationWithCompanion",
+      "type": "topic",
+      "url": "/documentation/localauthentication/klapolicydeviceownerauthenticationwithcompanion"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/localauthentication-constants": {
+      "abstract": [],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/localauthentication-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "LocalAuthentication Constants",
+      "type": "topic",
+      "url": "/documentation/localauthentication/localauthentication-constants"
+    },
+    "doc://com.apple.localauthentication/documentation/LocalAuthentication/logging-a-user-into-your-app-with-face-id-or-touch-id": {
+      "abstract": [
+        {
+          "text": "Supplement your own authentication scheme with biometric authentication, making it easy for users to access sensitive parts of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.localauthentication/documentation/LocalAuthentication/logging-a-user-into-your-app-with-face-id-or-touch-id",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Logging a User into Your App with Face ID or Touch ID",
+      "type": "topic",
+      "url": "/documentation/localauthentication/logging-a-user-into-your-app-with-face-id-or-touch-id"
+    },
+    "media-3002744": {
+      "alt": "Diagram showing the relationship between your app operating in user space, the LocalAuthentication framework in the operating system, and the Secure Enclave.",
+      "identifier": "media-3002744",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cde4c45af06ae6fcc524c80cf6215e94/media-3002744@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7799af189908ff557a3258a53884a0f7/media-3002744~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/logging-a-user-into-your-app-with-face-id-or-touch-id",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/accessing-keychain-items-with-face-id-or-touch-id"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Authentication-and-access",
+      "identifiers": [
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight/State-swift.enum",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAContext"
+      ],
+      "title": "Authentication and access"
+    },
+    {
+      "anchor": "Persistence",
+      "identifiers": [
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAPersistedRight",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LASecret"
+      ],
+      "title": "Persistence"
+    },
+    {
+      "anchor": "Key-pairs",
+      "identifiers": [
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAPublicKey",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAPrivateKey"
+      ],
+      "title": "Key pairs"
+    },
+    {
+      "anchor": "Requirements",
+      "identifiers": [
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAAuthenticationRequirement",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LABiometryFallbackRequirement"
+      ],
+      "title": "Requirements"
+    },
+    {
+      "anchor": "Authentication-views",
+      "identifiers": [
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LocalAuthenticationView"
+      ],
+      "title": "Authentication views"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAError-swift.struct",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAError-swift.struct/Code",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAErrorDomain"
+      ],
+      "title": "Errors"
+    },
+    {
+      "anchor": "Reference",
+      "identifiers": [
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/localauthentication-constants"
+      ],
+      "title": "Reference"
+    },
+    {
+      "anchor": "Classes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LADomainState",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LADomainStateBiometry",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LADomainStateCompanion",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAEnvironment"
+      ],
+      "title": "Classes"
+    },
+    {
+      "anchor": "Variables",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/kLACompanionTypeMac",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/kLACompanionTypeWatch",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/kLAErrorCompanionNotAvailable",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/kLAPolicyDeviceOwnerAuthenticationWithBiometricsOrCompanion",
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/kLAPolicyDeviceOwnerAuthenticationWithCompanion"
+      ],
+      "title": "Variables"
+    },
+    {
+      "anchor": "Enumerations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.localauthentication/documentation/LocalAuthentication/LACompanionType"
+      ],
+      "title": "Enumerations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/logging-a-user-into-your-app-with-face-id-or-touch-id",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/accessing-keychain-items-with-face-id-or-touch-id"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Authentication-and-access",
+              "identifiers": [
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARight/State-swift.enum",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAContext"
+              ],
+              "title": "Authentication and access"
+            },
+            {
+              "anchor": "Persistence",
+              "identifiers": [
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LARightStore",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAPersistedRight",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LASecret"
+              ],
+              "title": "Persistence"
+            },
+            {
+              "anchor": "Key-pairs",
+              "identifiers": [
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAPublicKey",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAPrivateKey"
+              ],
+              "title": "Key pairs"
+            },
+            {
+              "anchor": "Requirements",
+              "identifiers": [
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAAuthenticationRequirement",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LABiometryFallbackRequirement"
+              ],
+              "title": "Requirements"
+            },
+            {
+              "anchor": "Errors",
+              "identifiers": [
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAError-swift.struct/Code",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAErrorDomain"
+              ],
+              "title": "Errors"
+            },
+            {
+              "anchor": "Reference",
+              "identifiers": [
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/localauthentication-constants"
+              ],
+              "title": "Reference"
+            },
+            {
+              "anchor": "Classes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LADomainState",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LADomainStateBiometry",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LADomainStateCompanion",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAEnvironment",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAEnvironment/Mechanism",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAEnvironment/MechanismBiometry",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAEnvironment/MechanismCompanion",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAEnvironment/MechanismUserPassword",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAEnvironment/State-swift.class"
+              ],
+              "title": "Classes"
+            },
+            {
+              "anchor": "Protocols",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LAEnvironment/Observer"
+              ],
+              "title": "Protocols"
+            },
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LA_EXPORT",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LA_EXTERN",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/kLACompanionTypeMac",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/kLACompanionTypeWatch",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/kLAErrorCompanionNotAvailable",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/kLAPolicyDeviceOwnerAuthenticationWithBiometricsOrCompanion",
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/kLAPolicyDeviceOwnerAuthenticationWithCompanion"
+              ],
+              "title": "Macros"
+            },
+            {
+              "anchor": "Enumerations",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.localauthentication/documentation/LocalAuthentication/LACompanionType"
+              ],
+              "title": "Enumerations"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LADomainState/title",
+          "value": "LADomainState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LADomainState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LADomainState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LADomainState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LADomainState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1kLAPolicyDeviceOwnerAuthenticationWithBiometricsOrCompanion/title",
+          "value": "kLAPolicyDeviceOwnerAuthenticationWithBiometricsOrCompanion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1kLAPolicyDeviceOwnerAuthenticationWithBiometricsOrCompanion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kLAPolicyDeviceOwnerAuthenticationWithBiometricsOrCompanion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LASecret/title",
+          "value": "LASecret"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LASecret/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LASecret"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LASecret/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LASecret"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1kLACompanionTypeMac/title",
+          "value": "kLACompanionTypeMac"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1kLACompanionTypeMac/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kLACompanionTypeMac"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAPersistedRight/title",
+          "value": "LAPersistedRight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAPersistedRight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAPersistedRight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAPersistedRight/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAPersistedRight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LADomainStateBiometry/title",
+          "value": "LADomainStateBiometry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LADomainStateBiometry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LADomainStateBiometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LADomainStateBiometry/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LADomainStateBiometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARight~1State-swift.enum/title",
+          "value": "LARightState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARight~1State-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LARightState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARight~1State-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LARightState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAError-swift.struct~1Code/title",
+          "value": "LAError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAError-swift.struct~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAError-swift.struct~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LADomainStateCompanion/title",
+          "value": "LADomainStateCompanion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LADomainStateCompanion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LADomainStateCompanion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LADomainStateCompanion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LADomainStateCompanion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAEnvironment~1Mechanism/title",
+          "value": "LAEnvironmentMechanism"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAEnvironment~1Mechanism/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAEnvironmentMechanism"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAEnvironment~1Mechanism/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAEnvironmentMechanism"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAPublicKey/title",
+          "value": "LAPublicKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAPublicKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAPublicKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAPublicKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAPublicKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1kLACompanionTypeWatch/title",
+          "value": "kLACompanionTypeWatch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1kLACompanionTypeWatch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kLACompanionTypeWatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAEnvironment~1State-swift.class/title",
+          "value": "LAEnvironmentState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAEnvironment~1State-swift.class/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAEnvironmentState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAEnvironment~1State-swift.class/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAEnvironmentState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARight/title",
+          "value": "LARight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LARight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARight/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LARight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAEnvironment~1Observer/title",
+          "value": "LAEnvironmentObserver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAEnvironment~1Observer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAEnvironmentObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAEnvironment~1Observer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAEnvironmentObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAEnvironment~1MechanismUserPassword/title",
+          "value": "LAEnvironmentMechanismUserPassword"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAEnvironment~1MechanismUserPassword/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAEnvironmentMechanismUserPassword"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAEnvironment~1MechanismUserPassword/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAEnvironmentMechanismUserPassword"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LABiometryFallbackRequirement/title",
+          "value": "LABiometryFallbackRequirement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LABiometryFallbackRequirement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LABiometryFallbackRequirement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LABiometryFallbackRequirement/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LABiometryFallbackRequirement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1kLAErrorCompanionNotAvailable/title",
+          "value": "kLAErrorCompanionNotAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1kLAErrorCompanionNotAvailable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kLAErrorCompanionNotAvailable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAAuthenticationRequirement/title",
+          "value": "LAAuthenticationRequirement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAAuthenticationRequirement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAAuthenticationRequirement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAAuthenticationRequirement/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAAuthenticationRequirement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAPrivateKey/title",
+          "value": "LAPrivateKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAPrivateKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAPrivateKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAPrivateKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAPrivateKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARightStore/title",
+          "value": "LARightStore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARightStore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LARightStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LARightStore/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LARightStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1kLAPolicyDeviceOwnerAuthenticationWithCompanion/title",
+          "value": "kLAPolicyDeviceOwnerAuthenticationWithCompanion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1kLAPolicyDeviceOwnerAuthenticationWithCompanion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kLAPolicyDeviceOwnerAuthenticationWithCompanion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LACompanionType/title",
+          "value": "LACompanionType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LACompanionType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LACompanionType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LACompanionType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LACompanionType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAContext/title",
+          "value": "LAContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAEnvironment~1MechanismCompanion/title",
+          "value": "LAEnvironmentMechanismCompanion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAEnvironment~1MechanismCompanion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAEnvironmentMechanismCompanion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAEnvironment~1MechanismCompanion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAEnvironmentMechanismCompanion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAEnvironment~1MechanismBiometry/title",
+          "value": "LAEnvironmentMechanismBiometry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAEnvironment~1MechanismBiometry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAEnvironmentMechanismBiometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAEnvironment~1MechanismBiometry/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAEnvironmentMechanismBiometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAEnvironment/title",
+          "value": "LAEnvironment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAEnvironment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAEnvironment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAEnvironment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAErrorDomain/title",
+          "value": "LAErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.localauthentication~1documentation~1LocalAuthentication~1LAErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "LAErrorDomain"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/localauthentication"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/localauthentication"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

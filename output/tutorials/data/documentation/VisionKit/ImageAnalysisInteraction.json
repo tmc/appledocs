@@ -1,0 +1,3724 @@
+{
+  "abstract": [
+    {
+      "text": "An interface that enables people to interact with recognized text, barcodes, and other objects in an image.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.VisionKit/documentation/VisionKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@M@VisionKit@objc(cs)ImageAnalysisInteraction",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ImageAnalysisInteraction"
+      }
+    ],
+    "modules": [
+      {
+        "name": "VisionKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ImageAnalysisInteraction"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "ImageAnalysisInteraction"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "attribute",
+              "text": "@objc"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "final"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ImageAnalysisInteraction"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.VisionKit/documentation/VisionKit/enabling-live-text-interactions-with-images"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This class enables people to interact with specific content types (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") that the framework identifies in an image. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Live Text interface enables them to select any text present in the image (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes/textSelection",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "), or invoke a URL (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes/dataDetectors",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "). The text selection UI offers framework-standard buttons for copying selected text, or looking it up on the web for more information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "subject lift",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " feature identifies a wide variety of objects, or ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "subjects",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ", in images with the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes/imageSubject",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " interaction type, and provides your app with an image of the objects with the background removed. The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes/visualLookUp",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " type supplements this feature by adding a button in the bottom corner of the view that people can click or tap for more information about the recognized subjects.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Configure-the-interface-and-begin-interaction",
+          "level": 2,
+          "text": "Configure the interface and begin interaction",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This class conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIInteraction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. To connect the interface with an image that your app displays, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/addInteraction(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on your app’s image view and pass in a new instance of this class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Choose the items that the framework recognizes in an image by configuring the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/preferredInteractionTypes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. To recognize all types of content, specify the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes/automatic",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option, or choose a combination of types by assigning an array:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "interaction.preferredInteractionTypes = [.textSelection, .imageSubject]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To begin interaction, call one of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalyzer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class’s ",
+              "type": "text"
+            },
+            {
+              "code": "analyze",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalyzer/analyze(_:configuration:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and set the result onto this class’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisOverlayView/analysis",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can take more control over the interaction or provide details about your app’s image view by implementing a delegate (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteractionDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") and assigning it to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/delegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. If your image view isn’t an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImageView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", your app needs to define the interactive area within the image by implementing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteractionDelegate/contentsRect(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.VisionKit/documentation/VisionKit": {
+      "abstract": [
+        {
+          "text": "Identify and extract information in the environment using the device’s camera, or in images that your app displays.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "VisionKit",
+      "type": "topic",
+      "url": "/documentation/visionkit"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysis": {
+      "abstract": [
+        {
+          "text": "An object that represents the results of analyzing an image, and provides",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the input for the Live Text interface object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageAnalysis"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysis",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageAnalysis"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageAnalysis",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysis"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction": {
+      "abstract": [
+        {
+          "text": "An interface that enables people to interact with recognized text, barcodes, and other objects in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageAnalysisInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageAnalysisInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageAnalysisInteraction",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes": {
+      "abstract": [
+        {
+          "text": "The types of interactions that people can perform with an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "InteractionTypes"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InteractionTypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageAnalysisInteraction.InteractionTypes",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/interactiontypes"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes/automatic": {
+      "abstract": [
+        {
+          "text": "An option that enables interaction with any type of text, symbols, or subjects that the framework recognizes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automatic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@VisionKit@objc(cs)ImageAnalysisInteraction",
+          "text": "ImageAnalysisInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit24ImageAnalysisInteractionC0E5TypesV",
+          "text": "InteractionTypes"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes/automatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "automatic",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/interactiontypes/automatic"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes/dataDetectors": {
+      "abstract": [
+        {
+          "text": "An option that enables interaction with text of certain formats,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "such as URLs, email addresses, and physical addresses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataDetectors"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@VisionKit@objc(cs)ImageAnalysisInteraction",
+          "text": "ImageAnalysisInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit24ImageAnalysisInteractionC0E5TypesV",
+          "text": "InteractionTypes"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes/dataDetectors",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dataDetectors",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/interactiontypes/datadetectors"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes/imageSubject": {
+      "abstract": [
+        {
+          "text": "An option that enables people to use a long-press gesture on a subject in an image to separate it from the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageSubject"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@VisionKit@objc(cs)ImageAnalysisInteraction",
+          "text": "ImageAnalysisInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit24ImageAnalysisInteractionC0E5TypesV",
+          "text": "InteractionTypes"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes/imageSubject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "imageSubject",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/interactiontypes/imagesubject"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes/textSelection": {
+      "abstract": [
+        {
+          "text": "An option that enables text selection, copying, and translating.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textSelection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@VisionKit@objc(cs)ImageAnalysisInteraction",
+          "text": "ImageAnalysisInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit24ImageAnalysisInteractionC0E5TypesV",
+          "text": "InteractionTypes"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes/textSelection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textSelection",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/interactiontypes/textselection"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes/visualLookUp": {
+      "abstract": [
+        {
+          "text": "An option that presents a button for more information on any subjects the framework recognizes in the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "visualLookUp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@VisionKit@objc(cs)ImageAnalysisInteraction",
+          "text": "ImageAnalysisInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit24ImageAnalysisInteractionC0E5TypesV",
+          "text": "InteractionTypes"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes/visualLookUp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "visualLookUp",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/interactiontypes/visuallookup"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/Subject": {
+      "abstract": [
+        {
+          "text": "An area of interest in an image that the framework identifies as a primary focal point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Subject"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/Subject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Subject"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageAnalysisInteraction.Subject",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/subject"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/SubjectUnavailable": {
+      "abstract": [
+        {
+          "text": "Error conditions that can occur during subject analysis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubjectUnavailable"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/SubjectUnavailable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubjectUnavailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageAnalysisInteraction.SubjectUnavailable",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/subjectunavailable"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/activeInteractionTypes": {
+      "abstract": [
+        {
+          "text": "The types of interactions that a person actively performs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeInteractionTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@VisionKit@objc(cs)ImageAnalysisInteraction",
+          "text": "ImageAnalysisInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit24ImageAnalysisInteractionC0E5TypesV",
+          "text": "InteractionTypes"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/activeInteractionTypes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "activeInteractionTypes",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/activeinteractiontypes"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/allowLongPressForDataDetectorsInTextMode": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether people can press and hold text to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "activate data detectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowLongPressForDataDetectorsInTextMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/allowLongPressForDataDetectorsInTextMode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowLongPressForDataDetectorsInTextMode",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/allowlongpressfordatadetectorsintextmode"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/analysis": {
+      "abstract": [
+        {
+          "text": "The results of analyzing an image for items that people can interact",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "with.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "analysis"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit13ImageAnalysisC",
+          "text": "ImageAnalysis"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/analysis",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "analysis",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/analysis"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/analysisHasText(at:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the analysis finds text",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "at the specified point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "analysisHasText"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/analysisHasText(at:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "analysisHasText(at:)",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/analysishastext(at:)"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/contentsRect": {
+      "abstract": [
+        {
+          "text": "A rectangle, in unit coordinate space, that describes the content area",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of the interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/contentsRect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentsRect",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/contentsrect"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/delegate": {
+      "abstract": [
+        {
+          "text": "The delegate that handles the interaction callbacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit32ImageAnalysisInteractionDelegateP",
+          "text": "ImageAnalysisInteractionDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/delegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/delegate"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/didMove(to:)": {
+      "abstract": [
+        {
+          "text": "Performs an action after the view adds or removes the interaction from",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "its interaction array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didMove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/didMove(to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didMove(to:)",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/didmove(to:)"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/hasActiveTextSelection": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether a person or the app has text selected within the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasActiveTextSelection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/hasActiveTextSelection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasActiveTextSelection",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/hasactivetextselection"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/hasDataDetector(at:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the analysis detects data",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "at the specified point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasDataDetector"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/hasDataDetector(at:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasDataDetector(at:)",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/hasdatadetector(at:)"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/hasInteractiveItem(at:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether active text, data",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "detectors, or supplementary interface objects exist at the specified",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasInteractiveItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/hasInteractiveItem(at:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasInteractiveItem(at:)",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/hasinteractiveitem(at:)"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/hasSupplementaryInterface(at:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether supplementary interface",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "objects exist at the specified point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasSupplementaryInterface"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/hasSupplementaryInterface(at:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasSupplementaryInterface(at:)",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/hassupplementaryinterface(at:)"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/hasText(at:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether active text exists at the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "specified point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasText"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/hasText(at:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasText(at:)",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/hastext(at:)"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/highlightedSubjects": {
+      "abstract": [
+        {
+          "text": "All highlighted subjects in the interaction image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "highlightedSubjects"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@VisionKit@objc(cs)ImageAnalysisInteraction",
+          "text": "ImageAnalysisInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit24ImageAnalysisInteractionC7SubjectV",
+          "text": "Subject"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/highlightedSubjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "highlightedSubjects",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/highlightedsubjects"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/image(for:)": {
+      "abstract": [
+        {
+          "text": "Provides an image asynchronously that contains the given subjects with the background removed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@VisionKit@objc(cs)ImageAnalysisInteraction",
+          "text": "ImageAnalysisInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit24ImageAnalysisInteractionC7SubjectV",
+          "text": "Subject"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/image(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "image(for:)",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/image(for:)"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/init()": {
+      "abstract": [
+        {
+          "text": "Creates an interaction for Live Text actions with items in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/init()"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/init(_:)": {
+      "abstract": [
+        {
+          "text": "Creates an interaction for Live Text actions with the specified",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit32ImageAnalysisInteractionDelegateP",
+          "text": "ImageAnalysisInteractionDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/init(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/init(_:)"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/isSupplementaryInterfaceHidden": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the view hides supplementary",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "interface objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSupplementaryInterfaceHidden"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/isSupplementaryInterfaceHidden",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isSupplementaryInterfaceHidden",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/issupplementaryinterfacehidden"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/liveTextButtonVisible": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the Live Text button appears.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "liveTextButtonVisible"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/liveTextButtonVisible",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "liveTextButtonVisible",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/livetextbuttonvisible"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/preferredInteractionTypes": {
+      "abstract": [
+        {
+          "text": "The types of interactions that people can perform with the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredInteractionTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@VisionKit@objc(cs)ImageAnalysisInteraction",
+          "text": "ImageAnalysisInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit24ImageAnalysisInteractionC0E5TypesV",
+          "text": "InteractionTypes"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/preferredInteractionTypes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preferredInteractionTypes",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/preferredinteractiontypes"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/resetTextSelection()": {
+      "abstract": [
+        {
+          "text": "Removes a person’s text selection from the interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resetTextSelection"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/resetTextSelection()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resetTextSelection()",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/resettextselection()"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/selectableItemsHighlighted": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the interaction highlights",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "actionable text or data the analyzer detects in text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectableItemsHighlighted"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/selectableItemsHighlighted",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "selectableItemsHighlighted",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/selectableitemshighlighted"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/selectedAttributedText": {
+      "abstract": [
+        {
+          "text": "The current selected attributed text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedAttributedText"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation16AttributedStringV",
+          "text": "AttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/selectedAttributedText",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "selectedAttributedText",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/selectedattributedtext"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/selectedRanges": {
+      "abstract": [
+        {
+          "text": "Sets selected text ranges.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedRanges"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/selectedRanges",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "selectedRanges",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/selectedranges"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/selectedText": {
+      "abstract": [
+        {
+          "text": "The current selected text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedText"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/selectedText",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "selectedText",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/selectedtext"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/setContentsRectNeedsUpdate()": {
+      "abstract": [
+        {
+          "text": "Informs the view that contains the image when the layout changes and the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "view needs to reload its content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setContentsRectNeedsUpdate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/setContentsRectNeedsUpdate()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setContentsRectNeedsUpdate()",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/setcontentsrectneedsupdate()"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/setSupplementaryInterfaceHidden(_:animated:)": {
+      "abstract": [
+        {
+          "text": "Hides or shows supplementary interface objects, such as the Live Action",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "button and Quick Actions, depending on the item type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSupplementaryInterfaceHidden"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/setSupplementaryInterfaceHidden(_:animated:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setSupplementaryInterfaceHidden(_:animated:)",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/setsupplementaryinterfacehidden(_:animated:)"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/subject(at:)": {
+      "abstract": [
+        {
+          "text": "Returns the subject at the given point within the interaction’s image, if one exists.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@VisionKit@objc(cs)ImageAnalysisInteraction",
+          "text": "ImageAnalysisInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit24ImageAnalysisInteractionC7SubjectV",
+          "text": "Subject"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/subject(at:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subject(at:)",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/subject(at:)"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/subjects": {
+      "abstract": [
+        {
+          "text": "The set of all subjects the framework identifies in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subjects"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@VisionKit@objc(cs)ImageAnalysisInteraction",
+          "text": "ImageAnalysisInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit24ImageAnalysisInteractionC7SubjectV",
+          "text": "Subject"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/subjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subjects",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/subjects"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/supplementaryInterfaceContentInsets": {
+      "abstract": [
+        {
+          "text": "The distances the edges of content are inset from the supplementary",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supplementaryInterfaceContentInsets"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@UIEdgeInsets",
+          "text": "UIEdgeInsets"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/supplementaryInterfaceContentInsets",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "supplementaryInterfaceContentInsets",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/supplementaryinterfacecontentinsets"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/supplementaryInterfaceFont": {
+      "abstract": [
+        {
+          "text": "The font to use for the supplementary interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supplementaryInterfaceFont"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFont",
+          "text": "UIFont"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/supplementaryInterfaceFont",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "supplementaryInterfaceFont",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/supplementaryinterfacefont"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/text": {
+      "abstract": [
+        {
+          "text": "The text contents of the current image analysis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "text"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/text",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "text",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/text"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/view": {
+      "abstract": [
+        {
+          "text": "The view that uses this interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/view",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "view",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/view"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/willMove(to:)": {
+      "abstract": [
+        {
+          "text": "Performs an action before the view adds or removes the interaction from",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "its interaction array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "willMove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/willMove(to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "willMove(to:)",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteraction/willmove(to:)"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteractionDelegate": {
+      "abstract": [
+        {
+          "text": "A delegate that handles image-analysis and user-interaction callbacks for an interaction object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageAnalysisInteractionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteractionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageAnalysisInteractionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageAnalysisInteractionDelegate",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteractiondelegate"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteractionDelegate/contentsRect(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the rectangle, in unit coordinates, that contains the image within the view.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsRect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@VisionKit@objc(cs)ImageAnalysisInteraction",
+          "text": "ImageAnalysisInteraction"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteractionDelegate/contentsRect(for:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "contentsRect(for:)",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisinteractiondelegate/contentsrect(for:)"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisOverlayView": {
+      "abstract": [
+        {
+          "text": "A view that enables people to interact with recognized text, barcodes, and other objects in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageAnalysisOverlayView"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisOverlayView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageAnalysisOverlayView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageAnalysisOverlayView",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisoverlayview"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisOverlayView/analysis": {
+      "abstract": [
+        {
+          "text": "The results of analyzing an image for items that people can interact with.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "analysis"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit13ImageAnalysisC",
+          "text": "ImageAnalysis"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisOverlayView/analysis",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "analysis",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisoverlayview/analysis"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisOverlayViewDelegate": {
+      "abstract": [
+        {
+          "text": "A delegate that handles image-analysis and user-interaction callbacks for an overlay view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageAnalysisOverlayViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisOverlayViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageAnalysisOverlayViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageAnalysisOverlayViewDelegate",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalysisoverlayviewdelegate"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalyzer": {
+      "abstract": [
+        {
+          "text": "An object that finds items in images that people can interact with, such",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "as subjects, text, and QR codes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageAnalyzer"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalyzer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageAnalyzer"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageAnalyzer",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalyzer"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalyzer/analyze(_:configuration:)": {
+      "abstract": [
+        {
+          "text": "Returns the data for providing a Live Text interaction with an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "analyze"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit13ImageAnalyzerC",
+          "text": "ImageAnalyzer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit13ImageAnalyzerC13ConfigurationV",
+          "text": "Configuration"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9VisionKit13ImageAnalysisC",
+          "text": "ImageAnalysis"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalyzer/analyze(_:configuration:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "analyze(_:configuration:)",
+      "type": "topic",
+      "url": "/documentation/visionkit/imageanalyzer/analyze(_:configuration:)"
+    },
+    "doc://com.apple.VisionKit/documentation/VisionKit/enabling-live-text-interactions-with-images": {
+      "abstract": [
+        {
+          "text": "Add a Live Text interface that enables users to perform actions with text and QR",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "codes that appear in images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.VisionKit/documentation/VisionKit/enabling-live-text-interactions-with-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling Live Text interactions with images",
+      "type": "topic",
+      "url": "/documentation/visionkit/enabling-live-text-interactions-with-images"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIImageView": {
+      "abstract": [
+        {
+          "text": "A view that displays a single image or a sequence of animated images in your interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImageView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImageView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIImageView",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIImageView"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIInteraction": {
+      "abstract": [
+        {
+          "text": "The protocol that an interaction implements to access the view that owns it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIInteraction"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIInteraction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIInteraction",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIInteraction"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIView/addInteraction(_:)": {
+      "abstract": [
+        {
+          "text": "Adds an interaction to the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addInteraction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "interaction"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIInteraction",
+          "text": "UIInteraction"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIView/addInteraction(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addInteraction(_:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIView/addInteraction(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIInteraction": {
+      "abstract": [
+        {
+          "text": "The protocol that an interaction implements to access the view that owns it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIInteraction"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIInteraction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIInteraction",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIInteraction"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIInteraction"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Content-recognition-and-interaction-in-images",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.VisionKit/documentation/VisionKit/enabling-live-text-interactions-with-images",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalyzer",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysis",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteractionDelegate",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisOverlayView",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisOverlayViewDelegate"
+      ],
+      "title": "Content recognition and interaction in images"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-image-interaction",
+      "identifiers": [
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/init()",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/init(_:)"
+      ],
+      "title": "Creating an image interaction"
+    },
+    {
+      "anchor": "Configuring-an-image-interaction",
+      "identifiers": [
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/delegate",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/analysis",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/view",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/preferredInteractionTypes",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/InteractionTypes",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/activeInteractionTypes"
+      ],
+      "title": "Configuring an image interaction"
+    },
+    {
+      "anchor": "Responding-to-view-events",
+      "identifiers": [
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/willMove(to:)",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/didMove(to:)"
+      ],
+      "title": "Responding to view events"
+    },
+    {
+      "anchor": "Accessing-text-information",
+      "identifiers": [
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/text",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/selectedText",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/selectedAttributedText",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/hasText(at:)",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/hasActiveTextSelection",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/analysisHasText(at:)",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/hasDataDetector(at:)"
+      ],
+      "title": "Accessing text information"
+    },
+    {
+      "anchor": "Managing-text-selection",
+      "identifiers": [
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/selectedRanges",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/resetTextSelection()"
+      ],
+      "title": "Managing text selection"
+    },
+    {
+      "anchor": "Accessing-image-subjects",
+      "identifiers": [
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/subjects",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/Subject",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/image(for:)",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/subject(at:)"
+      ],
+      "title": "Accessing image subjects"
+    },
+    {
+      "anchor": "Managing-image-subjects",
+      "identifiers": [
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/highlightedSubjects"
+      ],
+      "title": "Managing image subjects"
+    },
+    {
+      "anchor": "Querying-the-interface-state",
+      "identifiers": [
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/liveTextButtonVisible",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/isSupplementaryInterfaceHidden",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/hasInteractiveItem(at:)",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/hasSupplementaryInterface(at:)",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/selectableItemsHighlighted"
+      ],
+      "title": "Querying the interface state"
+    },
+    {
+      "anchor": "Customizing-the-interface",
+      "identifiers": [
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/allowLongPressForDataDetectorsInTextMode",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/setSupplementaryInterfaceHidden(_:animated:)",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/supplementaryInterfaceContentInsets",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/supplementaryInterfaceFont"
+      ],
+      "title": "Customizing the interface"
+    },
+    {
+      "anchor": "Managing-custom-image-views",
+      "identifiers": [
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/contentsRect",
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/setContentsRectNeedsUpdate()"
+      ],
+      "title": "Managing custom image views"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.VisionKit/documentation/VisionKit/ImageAnalysisInteraction/SubjectUnavailable"
+      ],
+      "title": "Errors"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView~1addInteraction(_:)/title",
+          "value": "addInteraction:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIView~1addInteraction(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "addInteraction:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)UIInteraction",
+              "text": "id<UIInteraction>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "interaction"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIInteraction/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIInteraction"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImageView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIImageView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIInteraction/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIInteraction"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/visionkit/imageanalysisinteraction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

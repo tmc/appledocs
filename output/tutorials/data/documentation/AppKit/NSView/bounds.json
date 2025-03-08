@@ -1,0 +1,1668 @@
+{
+  "abstract": [
+    {
+      "text": "The view’s bounds rectangle, which expresses its location and size in its own coordinate system.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/NSView"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSView/bounds"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSView(py)bounds",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "bounds"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@NSRect",
+        "text": "NSRect"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "bounds"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "bounds"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "bounds"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@NSRect",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSRect",
+              "text": "NSRect"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, this property contains a rectangle whose origin is (0, 0) and whose size matches the size of the view’s frame rectangle (measured in points). In macOS 10.5 and later, if the view is being rendered into an OpenGL graphics context (using an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOpenGLContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object), the default bounds origin is still (0, 0) but the default bounds size is measured in pixels instead of points. Thus, for user space scale factors other than 1.0, the default size of the bounds rectangle may be bigger or smaller than the default size of the frame rectangle when drawing with OpenGL.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Developers of OpenGL applications should not rely on the rectangle in this property to convert coordinates to pixels automatically in future releases. Instead, you should convert coordinates to device space explicitly using the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/convertPointToBase:",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/convertSizeToBase:",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/convertRectToBase:",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " methods or their earlier counterparts ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/convert(_:to:)-6u9ir",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/convert(_:to:)-5nptx",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/convert(_:to:)-3cqqt",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you explicitly change the origin or size of the bounds rectangle, this property saves the rectangle you set. If you add a rotation factor to the view, however, that factor is also reflected in the returned bounds rectangle. You can determine if a rotation factor is in effect by getting the value of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/boundsRotation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Changing the bounds does not mark the view as needing to be displayed. Set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/needsDisplay",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when you want the view to be redisplayed. After changing the bounds rectangle, the view creates an internal transform, a tool for manipulating coordinates, (or appends these changes to an existing internal transform) to convert from frame coordinates to bounds coordinates in your view. As long as the width-to-height ratio of the two coordinate systems remains the same, your content appears normal. If the ratios differ, your content may appear skewed. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Transforms/Transforms.html#//apple_ref/doc/uid/TP40003290-CH204",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003290",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Changing the value of this property results in the posting of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/boundsDidChangeNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the default notification center if the view is configured to do so.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSOpenGLContext": {
+      "abstract": [
+        {
+          "text": "An object that represents an OpenGL graphics context, into which all OpenGL calls are rendered.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSOpenGLContext"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSOpenGLContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSOpenGLContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSOpenGLContext",
+      "type": "topic",
+      "url": "/documentation/appkit/nsopenglcontext"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView": {
+      "abstract": [
+        {
+          "text": "The infrastructure for drawing, printing, and handling events in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/bounds": {
+      "abstract": [
+        {
+          "text": "The view’s bounds rectangle, which expresses its location and size in its own coordinate system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bounds"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/bounds",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bounds"
+        }
+      ],
+      "role": "symbol",
+      "title": "bounds",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/bounds"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/boundsDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "Posted whenever the ",
+          "type": "text"
+        },
+        {
+          "code": "NSView",
+          "type": "codeVoice"
+        },
+        {
+          "text": "‘s bounds rectangle changes to a new value independently of the frame rectangle, but only when the view’s ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/postsBoundsChangedNotifications",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property is ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/swift/true",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "boundsDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/boundsDidChangeNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSViewBoundsDidChangeNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "boundsDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/boundsdidchangenotification"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/boundsRotation": {
+      "abstract": [
+        {
+          "text": "The angle of rotation, measured in degrees, applied to the view’s bounds rectangle relative to its frame rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "boundsRotation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/boundsRotation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "boundsRotation"
+        }
+      ],
+      "role": "symbol",
+      "title": "boundsRotation",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/boundsrotation"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/convert(_:to:)-3cqqt": {
+      "abstract": [
+        {
+          "text": "Converts a rectangle from the view’s coordinate system to that of another view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/convert(_:to:)-3cqqt",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertRect:toView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "convert(_:to:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/convert(_:to:)-3cqqt"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/convert(_:to:)-5nptx": {
+      "abstract": [
+        {
+          "text": "Converts a size from the view’s coordinate system to that of another view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSize",
+          "text": "NSSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSize",
+          "text": "NSSize"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/convert(_:to:)-5nptx",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertSize:toView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "convert(_:to:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/convert(_:to:)-5nptx"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/convert(_:to:)-6u9ir": {
+      "abstract": [
+        {
+          "text": "Converts a point from the view’s coordinate system to that of a given view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/convert(_:to:)-6u9ir",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertPoint:toView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "convert(_:to:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/convert(_:to:)-6u9ir"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/convertPointToBase:": {
+      "abstract": [
+        {
+          "text": "Converts the point from the view’s coordinate system to the base coordinate system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertPointToBase:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/convertPointToBase:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertPointToBase:"
+        }
+      ],
+      "role": "symbol",
+      "title": "convertPointToBase:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/convertpointtobase:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/convertRectToBase:": {
+      "abstract": [
+        {
+          "text": "Converts the rectangle from the view’s coordinate system to the base coordinate system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertRectToBase:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/convertRectToBase:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertRectToBase:"
+        }
+      ],
+      "role": "symbol",
+      "title": "convertRectToBase:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/convertrecttobase:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/convertSizeToBase:": {
+      "abstract": [
+        {
+          "text": "Converts the size from the view’s coordinate system to the base coordinate system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertSizeToBase:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/convertSizeToBase:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertSizeToBase:"
+        }
+      ],
+      "role": "symbol",
+      "title": "convertSizeToBase:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/convertsizetobase:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/frame": {
+      "abstract": [
+        {
+          "text": "The view’s frame rectangle, which defines its position and size in its superview’s coordinate system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frame"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/frame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "frame"
+        }
+      ],
+      "role": "symbol",
+      "title": "frame",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/frame"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/needsDisplay": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the view needs to be redrawn before being displayed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "needsDisplay"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/needsDisplay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "needsDisplay"
+        }
+      ],
+      "role": "symbol",
+      "title": "needsDisplay",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/needsdisplay"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/postsBoundsChangedNotifications": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the view posts notifications when its bounds rectangle changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "postsBoundsChangedNotifications"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/postsBoundsChangedNotifications",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "postsBoundsChangedNotifications"
+        }
+      ],
+      "role": "symbol",
+      "title": "postsBoundsChangedNotifications",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/postsboundschangednotifications"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/setBoundsOrigin(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the origin of the view’s bounds rectangle to a specified point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBoundsOrigin"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/setBoundsOrigin(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setBoundsOrigin:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setBoundsOrigin(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/setboundsorigin(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/setBoundsSize(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the size of the view’s bounds rectangle to specified dimensions, inversely scaling its coordinate system relative to its frame rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBoundsSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSize",
+          "text": "NSSize"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/setBoundsSize(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setBoundsSize:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setBoundsSize(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/setboundssize(_:)"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@NSRect": {
+      "abstract": [
+        {
+          "text": "A rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@NSRect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRect",
+      "type": "topic",
+      "url": "/documentation/foundation/nsrect"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003290": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003290",
+      "title": "Cocoa Drawing Guide",
+      "titleInlineContent": [
+        {
+          "text": "Cocoa Drawing Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003290"
+    },
+    "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Transforms/Transforms.html#//apple_ref/doc/uid/TP40003290-CH204": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Transforms/Transforms.html#//apple_ref/doc/uid/TP40003290-CH204",
+      "title": "Coordinate Systems and Transforms",
+      "titleInlineContent": [
+        {
+          "text": "Coordinate Systems and Transforms",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Transforms/Transforms.html#//apple_ref/doc/uid/TP40003290-CH204"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSView/frame"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Modifying-the-Bounds-Rectangle",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSView/setBoundsOrigin(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/setBoundsSize(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/boundsRotation",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/boundsDidChangeNotification",
+        "doc://com.apple.appkit/documentation/AppKit/NSView/postsBoundsChangedNotifications"
+      ],
+      "title": "Modifying the Bounds Rectangle"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "bounds"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bounds"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit",
+                "doc://com.apple.appkit/documentation/AppKit/NSView"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSView/frame"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Modifying-the-Bounds-Rectangle",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSView/setBoundsOrigin(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/setBoundsSize(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/boundsRotation",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/boundsDidChangeNotification",
+                "doc://com.apple.appkit/documentation/AppKit/NSView/postsBoundsChangedNotifications"
+              ],
+              "title": "Modifying the Bounds Rectangle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@NSRect",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@NSRect",
+                    "text": "NSRect"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "bounds"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1needsDisplay/title",
+          "value": "needsDisplay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1needsDisplay/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "needsDisplay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1convert(_:to:)-6u9ir/title",
+          "value": "convertPoint:toView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1convert(_:to:)-6u9ir/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertPoint:toView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1postsBoundsChangedNotifications/title",
+          "value": "postsBoundsChangedNotifications"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1postsBoundsChangedNotifications/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "postsBoundsChangedNotifications"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1setBoundsOrigin(_:)/title",
+          "value": "setBoundsOrigin:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1setBoundsOrigin(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setBoundsOrigin:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1boundsRotation/title",
+          "value": "boundsRotation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1boundsRotation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "boundsRotation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOpenGLContext/title",
+          "value": "NSOpenGLContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOpenGLContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSOpenGLContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSOpenGLContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSOpenGLContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1setBoundsSize(_:)/title",
+          "value": "setBoundsSize:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1setBoundsSize(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setBoundsSize:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1convert(_:to:)-3cqqt/title",
+          "value": "convertRect:toView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1convert(_:to:)-3cqqt/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertRect:toView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1convert(_:to:)-5nptx/title",
+          "value": "convertSize:toView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1convert(_:to:)-5nptx/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertSize:toView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1bounds/title",
+          "value": "bounds"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1bounds/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bounds"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1boundsDidChangeNotification/title",
+          "value": "NSViewBoundsDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1boundsDidChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewBoundsDidChangeNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1frame/title",
+          "value": "frame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1frame/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "frame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/title",
+          "value": "NSView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsview/bounds"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nsview/bounds"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

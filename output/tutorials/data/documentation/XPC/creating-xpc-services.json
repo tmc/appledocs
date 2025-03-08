@@ -1,0 +1,1078 @@
+{
+  "abstract": [
+    {
+      "text": "Configure a listener, establish a client session, and exchange messages between processes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.xpc/documentation/XPC"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.xpc/documentation/XPC/creating-xpc-services"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "XPC"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating XPC services"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "XPC services have two sides: a listener or server that receives incoming connections and performs tasks, and a client that initiates connections and makes requests. The service in this example performs a task of adding two numbers together. The sections below show:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "How to configure the listener, or server, and prepare to receive messages",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "How the client connects to the listener",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "How the client sends a message to the listener and receives a response",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Add-an-XPC-Service-target-to-your-project",
+          "level": 3,
+          "text": "Add an XPC Service target to your project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The XPC Service template provides a starting point for you to build the listener side of an XPC connection. To add a target, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open your app or framework project in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose File > New > Target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the XPC Service from the Framework & Library section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify the name for the service.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Low Level - libXPC for the API Level popup.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Finish.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Take note of the bundle identifier value shown in the sheet when you enter the name and API level. Clients use this value to connect to the service.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4154694",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Accept-incoming-connection-requests",
+          "level": 3,
+          "text": "Accept incoming connection requests",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When ",
+              "type": "text"
+            },
+            {
+              "code": "launchd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " launches an XPC service, it starts a process that runs the binary of the service. To perform tasks, the service creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/XPCListener",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a service name and a closure to handle incoming session requests. For services in an app bundle or framework, the service name is the XPC service’s bundle identifier. After creating an ",
+              "type": "text"
+            },
+            {
+              "code": "XPCListener",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the service must call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Dispatch/dispatchMain()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to begin processing requests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each time a client initiates a session with the service, the system invokes the listener’s closure, passing an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/XPCListener/IncomingSessionRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The listener either accepts or rejects the request. If it accepts the incoming request, it provides a request-handling closure to receive the message the client sent. In this example, the service passes that message to a custom method, ",
+              "type": "text"
+            },
+            {
+              "code": "performCalculation(with:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", to perform the task.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let serviceName = \"com.example.XPC-Calc-Engine\"",
+            "",
+            "let listener = try XPCListener(service: serviceName) { request in",
+            "    request.accept { message in",
+            "        performCalculation(with: message)",
+            "    }",
+            "}",
+            "",
+            "dispatchMain()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the listener rejects the request, it provides a ",
+              "type": "text"
+            },
+            {
+              "code": "reason",
+              "type": "codeVoice"
+            },
+            {
+              "text": " string to inform the client why it rejected the request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// If a request can't be processed, reject the incoming request.",
+            "request.reject(reason: \"Service unavailable.\")",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Perform-a-task-and-respond-to-messages",
+          "level": 3,
+          "text": "Perform a task and respond to messages",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After creating the listener and accepting an incoming request, the service is ready to perform its defined task. In the example below, clients submit requests by passing an instance of a custom ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Codable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type named ",
+              "type": "text"
+            },
+            {
+              "code": "CalculationRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The request contains two numbers that the service adds together. The service’s response to the request is an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "CalculationResponse",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that contains the result of the addition.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// A codable type that contains two numbers to add together.",
+            "struct CalculationRequest: Codable {",
+            "    let firstNumber: Int",
+            "    let secondNumber: Int",
+            "}",
+            "",
+            "// A codable type that contains the result of the calculation.",
+            "struct CalcuationResponse: Codable {",
+            "    let result: Int",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The listener’s request-handling closure receives an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/XPCReceivedMessage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " parameter that contains the encoded object the client sent. To perform the task, the service decodes the message using the appropriate ",
+              "type": "text"
+            },
+            {
+              "code": "CalculationRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type. To reply to the client, the service creates an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "CalcuationResponse",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", populates it with the result of the calculation, and returns it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func performCalculation(with message: XPCReceivedMessage) -> Encodable? {",
+            "    guard let request = try? message.decode(as: CalculationRequest.self) else { return nil }",
+            "    return CalcuationResponse(result: request.firstNumber + request.secondNumber)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the connection and request-handling code in place, ",
+              "type": "text"
+            },
+            {
+              "code": "launchd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " can now hand off client requests to your XPC service.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Connect-from-the-client-to-the-server-and-make-requests",
+          "level": 3,
+          "text": "Connect from the client to the server and make requests",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a client wants to use an XPC service, it creates a session with the service and then sends it a message. The following code shows how to set up an XPC session. In response to this request, ",
+              "type": "text"
+            },
+            {
+              "code": "launchd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " locates the service, launching it if necessary, and establishes a connection between the client process and the listener’s process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let serviceName = \"com.example.XPC-Calc-Engine\"",
+            "let session = try XPCSession(xpcService: serviceName)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After creating the session, the client can send its request to the service. In the following code, the client creates the ",
+              "type": "text"
+            },
+            {
+              "code": "CalculationRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with two numbers to add. While the client waits for a synchronous reply, the system sends the message to the service, arriving at the listener’s handler, as shown previously.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a request with two numbers for the service to operate on.",
+            "let request = CalculationRequest(firstNumber: 23, secondNumber: 19)",
+            "",
+            "// Send the message to the server, and wait for a synchronous reply.",
+            "let reply = try session.sendSync(request)",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system encodes the response from the listener in an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.xpc/documentation/XPC/XPCReceivedMessage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The client decodes the response using the ",
+              "type": "text"
+            },
+            {
+              "code": "CalculationResponse",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type, and then processes the result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let response = try? reply.decode(as: CalcuationResponse.self) {",
+            "    // Do something with the result, such as display it in the UI.",
+            "    let result = response.result",
+            "}",
+            "            "
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Dispatch/dispatchMain()": {
+      "abstract": [
+        {
+          "text": "Executes blocks submitted to the main queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatchMain"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5NeverO",
+          "text": "Never"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Dispatch/dispatchMain()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatchMain()",
+      "type": "topic",
+      "url": "/documentation/Dispatch/dispatchMain()"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Codable": {
+      "abstract": [
+        {
+          "text": "A type that can convert itself into and out of an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Codable"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Se",
+          "text": "Decodable"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SE",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Codable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Codable",
+      "type": "topic",
+      "url": "/documentation/Swift/Codable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.xpc/documentation/XPC": {
+      "abstract": [
+        {
+          "text": "Access a low-level interprocess communication mechanism.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XPC",
+      "type": "topic",
+      "url": "/documentation/xpc"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPCListener": {
+      "abstract": [
+        {
+          "text": "A type that performs tasks for clients across process boundaries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XPCListener"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPCListener",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XPCListener"
+        }
+      ],
+      "role": "symbol",
+      "title": "XPCListener",
+      "type": "topic",
+      "url": "/documentation/xpc/xpclistener"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPCListener/IncomingSessionRequest": {
+      "abstract": [
+        {
+          "text": "A session request from a client that you accept or reject.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IncomingSessionRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPCListener/IncomingSessionRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IncomingSessionRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "XPCListener.IncomingSessionRequest",
+      "type": "topic",
+      "url": "/documentation/xpc/xpclistener/incomingsessionrequest"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPCReceivedMessage": {
+      "abstract": [
+        {
+          "text": "A type that represents a message sent between a session and a listener.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XPCReceivedMessage"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPCReceivedMessage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XPCReceivedMessage"
+        }
+      ],
+      "role": "symbol",
+      "title": "XPCReceivedMessage",
+      "type": "topic",
+      "url": "/documentation/xpc/xpcreceivedmessage"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPCSession": {
+      "abstract": [
+        {
+          "text": "A type that sends messages to a server process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XPCSession"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPCSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XPCSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "XPCSession",
+      "type": "topic",
+      "url": "/documentation/xpc/xpcsession"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_listener_t": {
+      "abstract": [
+        {
+          "text": "A C type that performs tasks for clients across process boundaries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xpc_listener_t"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_listener_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "xpc_listener_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "xpc_listener_t",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_listener_t"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_session_t-10if0": {
+      "abstract": [
+        {
+          "text": "A C type that sends messages to a server process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xpc_session_t"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_t-10if0",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "xpc_session_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "xpc_session_t",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_session_t-10if0"
+    },
+    "media-4154694": {
+      "alt": "A screenshot showing Xcode’s new target sheet with the macOS XPC Service extension selected.",
+      "identifier": "media-4154694",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cd0a10a9d0b35ca12d27b2c913c1ecd3/media-4154694@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d29418b8c454dac9d9522f793c13fcde/media-4154694~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Interprocess-communication",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.xpc/documentation/XPC/XPCListener",
+        "doc://com.apple.xpc/documentation/XPC/XPCSession",
+        "doc://com.apple.xpc/documentation/XPC/XPCReceivedMessage",
+        "doc://com.apple.xpc/documentation/XPC/xpc_listener_t",
+        "doc://com.apple.xpc/documentation/XPC/xpc_session_t-10if0"
+      ],
+      "title": "Interprocess communication"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Interprocess-communication",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.xpc/documentation/XPC/xpc_listener_t",
+                "doc://com.apple.xpc/documentation/XPC/xpc_session_t-10if0"
+              ],
+              "title": "Interprocess communication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_listener_t/title",
+          "value": "xpc_listener_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_listener_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_listener_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_listener_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_listener_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Dispatch~1dispatchMain()/title",
+          "value": "dispatch_main"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Dispatch~1dispatchMain()/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "dispatch_main"
+            },
+            {
+              "kind": "text",
+              "text": "();"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_session_t-10if0/title",
+          "value": "xpc_session_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_session_t-10if0/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_session_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_session_t-10if0/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_session_t"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/xpc/creating-xpc-services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/xpc/creating-xpc-services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

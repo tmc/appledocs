@@ -1,0 +1,350 @@
+{
+  "abstract": [
+    {
+      "text": "Notifies observers whenever the user changes his or her preferred units.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/notifications",
+        "doc://com.apple.documentation/documentation/foundation/notification",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/notifications",
+        "doc://com.apple.documentation/documentation/foundation/notification",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/healthkit",
+        "doc://com.apple.documentation/documentation/healthkit/hkhealthstore"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1614169-hkuserpreferencesdidchange"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1614169,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@HKUserPreferencesDidChangeNotification",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "static let "
+      },
+      {
+        "kind": "identifier",
+        "text": "HKUserPreferencesDidChange"
+      },
+      {
+        "kind": "text",
+        "text": ": NSNotification.Name"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "parent": {
+      "title": "NSNotification.Name"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "8.2",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "8.2",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "structdata",
+    "title": "HKUserPreferencesDidChange"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "let"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "HKUserPreferencesDidChange"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSNotification",
+              "text": "NSNotification"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSNotificationName",
+              "text": "Name"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The preferred units are the units that the user prefers for a given measurement type. By default, the preferred units are based on the device’s current locale. For example, in the US, the preferred units for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/1615693-bodymass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " identifier are pounds. Other regions may use kilograms or stones. However, users can change their preferred units in the Health app at any time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each ",
+              "type": "text"
+            },
+            {
+              "code": "HKHealthStore",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object posts its own ",
+              "type": "text"
+            },
+            {
+              "code": "HKUserPreferencesDidChangeNotification",
+              "type": "codeVoice"
+            },
+            {
+              "text": " notification. To avoid receiving duplicate notifications, always pass a health store instance to the notification center when adding observers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notification": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Notification",
+      "type": "topic",
+      "url": "/documentation/foundation/notification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notifications": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notifications",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Notifications",
+      "type": "topic",
+      "url": "/documentation/foundation/notifications"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification.Name",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1614169-hkuserpreferencesdidchange": {
+      "abstract": [
+        {
+          "text": "Notifies observers whenever the user changes his or her preferred units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKUserPreferencesDidChange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1614169-hkuserpreferencesdidchange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HKUserPreferencesDidChange",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1614169-hkuserpreferencesdidchange"
+    },
+    "doc://com.apple.documentation/documentation/healthkit": {
+      "identifier": "doc://com.apple.documentation/documentation/healthkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/hkhealthstore": {
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/hkhealthstore",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HKHealthStore",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkhealthstore"
+    },
+    "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/1615693-bodymass": {
+      "identifier": "doc://com.apple.documentation/documentation/healthkit/hkquantitytypeidentifier/1615693-bodymass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bodyMass",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkquantitytypeidentifier/1615693-bodymass"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/healthkit/hkuserpreferencesdidchangenotification"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsnotification/name/1614169-hkuserpreferencesdidchange"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

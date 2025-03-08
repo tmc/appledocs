@@ -1,0 +1,762 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-16_1-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Xcode 16.1 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode 16.1 includes SDKs for iOS 18.1, iPadOS 18.1, tvOS 18.1, watchOS 11.1, macOS Sequoia 15.1, and visionOS 2.1.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Xcode 16.1 release supports on-device debugging in iOS 15 and later, tvOS 15 and later, watchOS 7 and later, and visionOS.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode 16.1 requires a Mac running macOS Sonoma 14.5 or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "General",
+          "level": 3,
+          "text": "General",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Users that upgrade to Xcode 16 after having previously installed Xcode 16 Beta 6 or Xcode 16 RC may experience Developer Disk Image mounting errors when using iPhone 16 or Apple Watch Series 10 devices.  (136364979) (FB15189777)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The simulator runtimes are currently available on the Apple Developer website, but will no longer be posted through the website in future updates.  Please use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcodebuild -downloadPlatform <platform> -exportPath <path>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " command to download the runtime and then ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcodebuild -importPlatform <path/simruntime.dmg>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to install it.  For more details, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/xcode/installing-additional-simulator-runtimes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".  (133776444)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "App-Distribution",
+          "level": 3,
+          "text": "App Distribution",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Some iOS apps built with Xcode 16.1 beta may have their watchOS apps uninstall or fail to launch with an error about needing an iPhone App when one already exists.  (135527507)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Camera-Control",
+          "level": 3,
+          "text": "Camera Control",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Launching app via Camera Control button without Camera permission can result in completely black unlock screen  (133409619)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Installing an app with a Capture Extension while another Camera Control app is already selected might cause a momentary system crash.  (135021680)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Interface-Builder",
+          "level": 3,
+          "text": "Interface Builder",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcodebuild’s download platforms command now supports an optional -buildVersion ",
+                      "type": "text"
+                    },
+                    {
+                      "text": " argument to request a specific released simulator runtime.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "text": " can be a build update number or the release number. Simulator runtime version that are supported versions are iOS 16.0+, watchOS 9.0+, tvOS 16+, visionOS 1.0+.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Example usage, to download, install and export the iOS 16.0 simulator runtime:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "xcodebuild -downloadPlatform iOS -buildVersion 16.0 -exportPath  ./SimRuntimeImages/",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "xcodebuild -downloadPlatform iOS -buildVersion 20A360 -exportPath  ./SimRuntimeImages/  (135989441) (FB15126412)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: New and existing trait variations targeting 42mm watches are only applied on Series 10. Functionality to target Series 3 or older watches is missing.  (136342368) (FB15185073)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Custom app fonts may fail to be listed at the top of the custom fonts list in the Interface Builder inspector.  (100908086) (FB11662082)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Restarting Xcode will force this list to be recreated.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "IBInspectable properties are no longer accessible in Interface Builder. Current values in IB Documents are still compiled into the NIBs and used at runtime.  (135140474) (FB15011501)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Localization",
+          "level": 3,
+          "text": "Localization",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Resolved a hang that could occur in the String Catalog Editor shortly after opening the file or building the project.  (134611283) (FB14906651)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "LockedCameraCapture",
+          "level": 3,
+          "text": "LockedCameraCapture",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Logging does not appear in Xcode when debugging Capture Extensions when using “Attach to Process”.  (129785280)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Use “Attach to Process by PID or Name” in Xcode to debug Capture Extensions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Previews",
+          "level": 3,
+          "text": "Previews",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Previews could have failed when specifying “@” relative paths in linker arguments.  (127267024)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Some complex projects would time out when trying to launch a Preview.  (133734391) (FB14777005)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Previews could fail to find frameworks used by static libraries built with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "libtool",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".  (133937490) (FB14810092)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Previews would periodically fail with PreviewShell crash reports during preview teardown.  (136227462)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Simulator",
+          "level": 3,
+          "text": "Simulator",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On Simulator.app launch with visionOS device, “Simulated Scenes” Control for visionOS can be disabled   (136714857)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Device Restart or Simulator.app restart",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Testing",
+          "level": 3,
+          "text": "Testing",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Screen recordings will not be available when running UI tests using a scheme with a space in its name, or when producing an .xcresult bundle with a space in its path.  (122016656)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Expectation checking in Swift Testing is significantly slower than expected.  (133517028)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Workflows using Swift Testing against Mac Catalyst run destinations will crash on macOS 14.X or below.  (133854987)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Using ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "await confirmation {}",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "await withKnownIssue {}",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with an actor-isolated closure fails to compile.  (134375046)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-16-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-16-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 16 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-16-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-16_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-16_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 16.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-16_2-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-16_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-16_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 16.3 Beta 2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-16_3-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/documentation/xcode/installing-additional-simulator-runtimes": {
+      "identifier": "https://developer.apple.com/documentation/xcode/installing-additional-simulator-runtimes",
+      "title": "Installing and managing Simulator runtimes",
+      "titleInlineContent": [
+        {
+          "text": "Installing and managing Simulator runtimes",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/xcode/installing-additional-simulator-runtimes"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Xcode-16",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-16_3-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-16_2-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-16-release-notes"
+      ],
+      "title": "Xcode 16"
+    }
+  ]
+}

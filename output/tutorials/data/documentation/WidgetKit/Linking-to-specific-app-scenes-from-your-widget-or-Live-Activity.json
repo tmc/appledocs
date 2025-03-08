@@ -1,0 +1,2231 @@
+{
+  "abstract": [
+    {
+      "text": "Add deep links to your widgets and Live Activities that enable people to open a specific scene in your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.WidgetKit/documentation/WidgetKit/Linking-to-specific-app-scenes-from-your-widget-or-Live-Activity"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WidgetKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Linking to specific app scenes from your widget or Live Activity"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People interact with a widget or Live Activity to launch a scene in the corresponding app with matching content and functionality. For example, when people click or tap a Stocks widget, the Stocks app opens to a page that displays information about that stock price.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create widgets and Live Activities, think about how people interact with them. Make sure interactions launch the scene in your app that fits the widget’s content or the Live Activity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Launch-a-specific-screen-in-your-app",
+          "level": 3,
+          "text": "Launch a specific screen in your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, tapping or clicking your widget or Live Activity opens its corresponding app. To provide a good experience and not make people navigate to get to the right place in your app, open the app at a scene that matches the content of the widget or Live Activity. To open a specific screen in your app, add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/widgetURL(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to a view in the view hierarchy of your widget or Live Activity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the view hierarchy includes more than one ",
+                  "type": "text"
+                },
+                {
+                  "code": "widgetURL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " modifier, the behavior is undefined.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the following code snippet from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample code project shows how the small widget uses ",
+              "type": "text"
+            },
+            {
+              "code": "widgetURL(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to allow people to open the app and show a character’s detail information:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct EmojiRangerWidgetEntryView: View {",
+            "    var entry: SimpleEntry",
+            "    ",
+            "    @Environment(\\.widgetFamily) var family",
+            "    ",
+            "    @ViewBuilder",
+            "    var body: some View {",
+            "        switch family {",
+            "        case .systemSmall:",
+            "            AvatarView(entry.hero)",
+            "                .foregroundStyle(.white)",
+            "                .widgetBackground()",
+            "                .widgetURL(entry.hero.url)",
+            "",
+            "        // Code for other widget sizes.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For widgets with enough space for more than one interaction target — ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryRectangular",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemSmall",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and larger system family sizes — add one or more ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Link",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " controls to your view hierarchy. You can use one ",
+              "type": "text"
+            },
+            {
+              "code": "widgetURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and additional ",
+              "type": "text"
+            },
+            {
+              "code": "Link",
+              "type": "codeVoice"
+            },
+            {
+              "text": " controls. If an interaction targets a ",
+              "type": "text"
+            },
+            {
+              "code": "Link",
+              "type": "codeVoice"
+            },
+            {
+              "text": " control, the system uses the URL in that control. For interactions anywhere else in the widget, the system uses the URL you specify in the ",
+              "type": "text"
+            },
+            {
+              "code": "widgetURL(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view modifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the leaderboard widget of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " app displays a list of characters. Each item in the list uses a ",
+              "type": "text"
+            },
+            {
+              "code": "Link",
+              "type": "codeVoice"
+            },
+            {
+              "text": " control to launch the scene in the app for the specific character that the item represents.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When the widget or Live Activity receives an interaction, the system activates the containing app and passes the URL to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onOpenURL(perform:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:open:options:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplicationDelegate/application(_:open:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", depending on the life cycle your app uses.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Detect-the-originating-widget-by-accessing-the-user-activity-object",
+          "level": 3,
+          "text": "Detect the originating widget by accessing the user activity object",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a widget doesn’t specify a deep link URL with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/widgetURL(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Link",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and a person interacts with it, the system opens the containing app and passes an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onContinueUserActivity(_:perform:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:continue:restorationHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplicationDelegate/application(_:continue:restorationHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The user activity’s ",
+              "type": "text"
+            },
+            {
+              "code": "userInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary contains details about the widget the person interacted with. Use the keys in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter/UserInfoKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to access these values from Swift code. To access the ",
+              "type": "text"
+            },
+            {
+              "code": "userInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values from Objective-C, use the keys ",
+              "type": "text"
+            },
+            {
+              "code": "WGWidgetUserInfoKeyKind",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "WGWidgetUserInfoKeyFamily",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instead. Then, update your app’s interface to match the widget so people don’t have to navigate to the right place in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you use an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentConfiguration",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to configure your widget, use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity/4226429-widgetconfigurationintent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function to access the widget’s intent. Similarly, if you use an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentConfiguration",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", the user activity’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity/1690346-interaction",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property contains the associated ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Intents/INIntent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.WidgetKit/documentation/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Extend the reach of your app by creating widgets, watch complications, Live Activities, and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WidgetKit",
+      "type": "topic",
+      "url": "/documentation/widgetkit"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Adding-interactivity-to-widgets-and-Live-Activities": {
+      "abstract": [
+        {
+          "text": "Include buttons or toggles in a widget or Live Activity to offer app functionality without launching the app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Adding-interactivity-to-widgets-and-Live-Activities",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding interactivity to widgets and Live Activities",
+      "type": "topic",
+      "url": "/documentation/widgetkit/adding-interactivity-to-widgets-and-live-activities"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Animating-data-updates-in-widgets-and-live-activities": {
+      "abstract": [
+        {
+          "text": "Use SwiftUI animations to indicate data updates in your widgets and Live Activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Animating-data-updates-in-widgets-and-live-activities",
+      "kind": "article",
+      "role": "article",
+      "title": "Animating data updates in widgets and Live Activities",
+      "type": "topic",
+      "url": "/documentation/widgetkit/animating-data-updates-in-widgets-and-live-activities"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentConfiguration": {
+      "abstract": [
+        {
+          "text": "An object describing the content of a widget that uses a custom intent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to provide user-configurable options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntentConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppIntentConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntentConfiguration",
+      "type": "topic",
+      "url": "/documentation/widgetkit/appintentconfiguration"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentConfiguration": {
+      "abstract": [
+        {
+          "text": "An object describing the content of a widget that uses a custom intent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "definition to provide user-configurable options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntentConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IntentConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "IntentConfiguration",
+      "type": "topic",
+      "url": "/documentation/widgetkit/intentconfiguration"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter/UserInfoKey": {
+      "abstract": [
+        {
+          "text": "An object that defines keys for accessing information in a user info dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserInfoKey"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter/UserInfoKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UserInfoKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetCenter.UserInfoKey",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetcenter/userinfokey"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryRectangular": {
+      "abstract": [
+        {
+          "text": "A rectangular widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryRectangular"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryRectangular",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetFamily.accessoryRectangular",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily/accessoryrectangular"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemSmall": {
+      "abstract": [
+        {
+          "text": "A small widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemSmall"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemSmall",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetFamily.systemSmall",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily/systemsmall"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations": {
+      "abstract": [
+        {
+          "text": "Offer Live Activities, controls, animate data updates, and add interactivity to widgets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Emoji Rangers: Supporting Live Activities, interactivity, and animations",
+      "type": "topic",
+      "url": "/documentation/widgetkit/emoji-rangers-supporting-live-activities-interactivity-and-animations"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSApplicationDelegate/application(_:continue:restorationHandler:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates if the app successfully recreates the specified activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSApplication",
+          "text": "NSApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "continue"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "userActivity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUserActivity",
+          "text": "NSUserActivity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "restorationHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ([any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSUserActivityRestoring",
+          "text": "NSUserActivityRestoring"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplicationDelegate/application(_:continue:restorationHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:continue:restorationHandler:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSApplicationDelegate/application(_:continue:restorationHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSApplicationDelegate/application(_:open:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate to open the resource at the specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSApplication",
+          "text": "NSApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "open"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "urls"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSApplicationDelegate/application(_:open:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:open:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSApplicationDelegate/application(_:open:)"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INIntent": {
+      "abstract": [
+        {
+          "text": "A request to fulfill in your app or Intents extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INIntent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "INIntent",
+      "type": "topic",
+      "url": "/documentation/Intents/INIntent"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Link": {
+      "abstract": [
+        {
+          "text": "A control for navigating to a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Link"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Link",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Link",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Link"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/onContinueUserActivity(_:perform:)": {
+      "abstract": [
+        {
+          "text": "Registers a handler to invoke in response to a user activity that your app receives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onContinueUserActivity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "activityType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUserActivity",
+          "text": "NSUserActivity"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ()) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onContinueUserActivity(_:perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onContinueUserActivity(_:perform:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/onContinueUserActivity(_:perform:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/onOpenURL(perform:)": {
+      "abstract": [
+        {
+          "text": "Registers a handler to invoke in response to a URL that your app receives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onOpenURL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ()) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/onOpenURL(perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onOpenURL(perform:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/onOpenURL(perform:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/widgetURL(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the URL to open in the containing app when the user clicks the widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "widgetURL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/widgetURL(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "widgetURL(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/widgetURL(_:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:continue:restorationHandler:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the data for continuing an activity is available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "continue"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "userActivity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUserActivity",
+          "text": "NSUserActivity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "restorationHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ([any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIUserActivityRestoring",
+          "text": "UIUserActivityRestoring"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:continue:restorationHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:continue:restorationHandler:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/application(_:continue:restorationHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:open:options:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate to open a resource specified by a URL, and provides a dictionary of launch options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "app"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "open"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIApplicationOpenURLOptionsKey",
+          "text": "OpenURLOptionsKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "] = [:]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:open:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:open:options:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/application(_:open:options:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity": {
+      "abstract": [
+        {
+          "text": "A representation of the state of your app at a moment in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivity",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity/1690346-interaction": {
+      "abstract": [
+        {
+          "text": "The SiriKit interaction object to use when configuring your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "interaction"
+        },
+        {
+          "kind": "text",
+          "text": ": INInteraction?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity/1690346-interaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interaction",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity/1690346-interaction"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity/4226429-widgetconfigurationintent": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "widgetConfigurationIntent"
+        },
+        {
+          "kind": "text",
+          "text": "<Intent>("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": Intent.Type) -> Intent?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity/4226429-widgetconfigurationintent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "widgetConfigurationIntent(of:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity/4226429-widgetconfigurationintent"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Interactivity",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Adding-interactivity-to-widgets-and-Live-Activities",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Animating-data-updates-in-widgets-and-live-activities"
+      ],
+      "title": "Interactivity"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Interactivity",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Adding-interactivity-to-widgets-and-Live-Activities",
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Animating-data-updates-in-widgets-and-live-activities"
+              ],
+              "title": "Interactivity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INIntent/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INIntent"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplicationDelegate~1application(_:open:)/title",
+          "value": "application:openURLs:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplicationDelegate~1application(_:open:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSApplication",
+              "text": "NSApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "openURLs:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<NSURL *>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "urls"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:continue:restorationHandler:)/title",
+          "value": "application:continueUserActivity:restorationHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:continue:restorationHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "continueUserActivity:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSUserActivity",
+              "text": "NSUserActivity"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "userActivity"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "restorationHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<id<UIUserActivityRestoring>>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "restorableObjects"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "restorationHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplicationDelegate~1application(_:continue:restorationHandler:)/title",
+          "value": "application:continueUserActivity:restorationHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSApplicationDelegate~1application(_:continue:restorationHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSApplication",
+              "text": "NSApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "continueUserActivity:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSUserActivity",
+              "text": "NSUserActivity"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "userActivity"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "restorationHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<id<NSUserActivityRestoring>>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "restorableObjects"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "restorationHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:open:options:)/title",
+          "value": "application:openURL:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:open:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "app"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "openURL:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURL",
+              "text": "NSURL"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "url"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "options:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+              "text": "NSDictionary<NSString *,id>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "options"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/widgetkit/linking-to-specific-app-scenes-from-your-widget-or-live-activity"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/widgetkit/linking-to-specific-app-scenes-from-your-widget-or-live-activity"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

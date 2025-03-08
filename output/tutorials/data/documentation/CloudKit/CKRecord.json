@@ -1,0 +1,4291 @@
+{
+  "abstract": [
+    {
+      "text": "A collection of key-value pairs that store your app’s data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cloudkit/documentation/CloudKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CKRecord",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CKRecord"
+      }
+    ],
+    "modules": [
+      {
+        "name": "CloudKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CKRecord"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CKRecord"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CKRecord"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/designing-and-creating-a-cloudkit-database",
+        "doc://com.apple.cloudkit/documentation/CloudKit/encrypting-user-data"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Records are the fundamental objects that manage data in CloudKit. You can define any number of record types for your app, with each record type corresponding to a different type of information. Within a record type, you then define one or more fields, each with a name and a value. Records can contain simple data types, such as strings and numbers, or more complex types, such as geographic locations or pointers to other records.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An important step in using CloudKit is defining the record types your app supports. A new record object doesn’t contain any keys or values. During development, you can add new keys and values at any time. The first time you set a value for a key and save the record, the server associates that type with the key for all records of the same type. The ",
+              "type": "text"
+            },
+            {
+              "code": "CKRecord",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class doesn’t impose these type constraints or do any local validation of a record’s contents. CloudKit enforces these constraints when you save the records.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ability to add new keys is only possible during development. When you deploy to a production environment, the server returns an error if you try to specify an unknown record type or try to save a record that contains unknown keys.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although records behave like dictionaries, there are limitations to the types of values you can assign to keys. The following are the object types that the ",
+              "type": "text"
+            },
+            {
+              "code": "CKRecord",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class supports. Attempting to specify objects of any other type results in failure. Fields of all types are searchable unless otherwise noted.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Supported-Data-Types",
+          "level": 3,
+          "text": "Supported Data Types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "CKRecord",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fields support the following data types:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Stores relatively small amounts of text. Although strings themselves can be any length, use a ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKAsset",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " to store large amounts of text.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Stores any numerical information, including integers and floating-point numbers.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Stores arbitrary bytes of data. A typical use for data objects is to map the bytes that they contain to a ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "struct",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". Don’t use data objects for storing large binary data files; use a ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKAsset",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " instead. Data fields aren’t searchable.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Stores day and time information in an accessible form.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Stores one or more objects of any other type in this table. You can store arrays of strings, arrays of numbers, arrays of references, and so on.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Stores geographic coordinate data. You use locations in conjunction with the Core Location framework and any other services that handle location information.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocation",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Associates a disk-based file with the record. Although assets have a close association with records, you manage them separately. For more information about using assets, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKAsset",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKAsset",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Creates a link to a related record. A reference stores the ID of the target record. The advantage of using a reference instead of storing the ID as a string is that references can initiate cascade deletions of dependent records. The disadvantage is that references can only link between records in the same record zone. For more information, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/Reference",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/Reference",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To ensure the speed of fetching and saving records, the data that a record stores must not exceed 1 MB. Assets don’t count toward this limit, but all other data types do.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Defining-Records",
+          "level": 3,
+          "text": "Defining Records",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The process for defining your record types depends entirely on your app and the data you’re trying to represent. It’s best to design records that encapsulate data for one unit of information. For example, you might use one record type to store an employee’s name, job title, and date of hire, and use a separate record type to store the employee’s address information. Using different record types lets you manage, manipulate, and validate the two types of information separately.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use fields that contain ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/Reference",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects to establish relationships between different types of records. After you define your record types, use the iCloud Dashboard to set them up. During development, you can also create new record types programmatically.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Indexing-the-Fields-of-a-Record",
+          "level": 3,
+          "text": "Indexing the Fields of a Record",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Indexes make it possible to search the contents of your records efficiently. During development, the server indexes all fields with data types it can use in the predicate of a query. This automatic indexing makes it easier to experiment with queries during development, but the indexes require space in a database and require time to generate and maintain.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To manage the indexing behavior of your records in the production environment, use CloudKit Dashboard. When migrating your schema from the development environment to the production environment, enable indexing only for the fields that your app uses in queries, and disable it for all other fields.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Customizing-Records",
+          "level": 3,
+          "text": "Customizing Records",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this class as-is to manage data coming from or going to the server, and don’t subclass it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Storing-Records-Locally",
+          "level": 3,
+          "text": "Storing Records Locally",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you store records in a local database, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/encodeSystemFields(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to encode and store the record’s metadata. The metadata contains the record ID and the change tag, which you need later to sync records in a local database with those in CloudKit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cloudkit/documentation/CloudKit": {
+      "abstract": [
+        {
+          "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit",
+      "type": "topic",
+      "url": "/documentation/cloudkit"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKAsset": {
+      "abstract": [
+        {
+          "text": "An external file that belongs to a record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKAsset",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckasset"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord": {
+      "abstract": [
+        {
+          "text": "A collection of key-value pairs that store your app’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKRecord"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKRecord"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKRecord",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/FieldKey": {
+      "abstract": [
+        {
+          "text": "The data type that CloudKit requires for record field names.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FieldKey"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/FieldKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FieldKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKRecord.FieldKey",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/fieldkey"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/ID": {
+      "abstract": [
+        {
+          "text": "An object that uniquely identifies a record in a database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ID"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/ID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ID"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKRecord.ID",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/id"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/RecordType-swift.typealias": {
+      "abstract": [
+        {
+          "text": "The data type that CloudKit requires for record types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RecordType"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/RecordType-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RecordType"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKRecord.RecordType",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/recordtype-swift.typealias"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/Reference": {
+      "abstract": [
+        {
+          "text": "A relationship between two records in a record zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Reference"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/Reference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Reference"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKRecord.Reference",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/reference"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/SystemFieldKey": {
+      "abstract": [
+        {
+          "text": "Possible values for types of system field keys on records.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SystemFieldKey"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/SystemFieldKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SystemFieldKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKRecord.SystemFieldKey",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/systemfieldkey"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/SystemType": {
+      "abstract": [
+        {
+          "text": "Possible values for record types of system records.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SystemType"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/SystemType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SystemType"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKRecord.SystemType",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/systemtype"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/allKeys": {
+      "abstract": [
+        {
+          "text": "Returns an array of the record’s keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "allKeys"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/allKeys",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allKeys"
+        }
+      ],
+      "role": "symbol",
+      "title": "allKeys",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/allkeys"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/allKeys()": {
+      "abstract": [
+        {
+          "text": "Returns an array of the record’s keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allKeys"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So8CKRecordC8CloudKitE8FieldKeya",
+          "text": "FieldKey"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/allKeys()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allKeys()",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/allkeys()"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/allTokens()": {
+      "abstract": [
+        {
+          "text": "Returns an array of strings to use for full-text searches of the field’s string-based values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allTokens"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/allTokens()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allTokens"
+        }
+      ],
+      "role": "symbol",
+      "title": "allTokens()",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/alltokens()"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/changedKeys": {
+      "abstract": [
+        {
+          "text": "Returns an array of keys with recent changes to their values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "changedKeys"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/changedKeys",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "changedKeys"
+        }
+      ],
+      "role": "symbol",
+      "title": "changedKeys",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/changedkeys"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/changedKeys()": {
+      "abstract": [
+        {
+          "text": "Returns an array of keys with recent changes to their values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "changedKeys"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So8CKRecordC8CloudKitE8FieldKeya",
+          "text": "FieldKey"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/changedKeys()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "changedKeys()",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/changedkeys()"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/creationDate": {
+      "abstract": [
+        {
+          "text": "The time when CloudKit first saves the record to the server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "creationDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/creationDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "creationDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "creationDate",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/creationdate"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/creatorUserRecordID": {
+      "abstract": [
+        {
+          "text": "The ID of the user who creates the record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "creatorUserRecordID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecordID",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/creatorUserRecordID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "creatorUserRecordID"
+        }
+      ],
+      "role": "symbol",
+      "title": "creatorUserRecordID",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/creatoruserrecordid"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/encodeSystemFields(with:)": {
+      "abstract": [
+        {
+          "text": "Encodes the record’s system fields using the specified archiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeSystemFields"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCoder",
+          "text": "NSCoder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/encodeSystemFields(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "encodeSystemFieldsWithCoder:"
+        }
+      ],
+      "role": "symbol",
+      "title": "encodeSystemFields(with:)",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/encodesystemfields(with:)"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/encryptedValues": {
+      "abstract": [
+        {
+          "text": "An object that manages the record’s encrypted key-value pairs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encryptedValues"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)CKRecordKeyValueSetting",
+          "text": "CKRecordKeyValueSetting"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/encryptedValues",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "encryptedValues"
+        }
+      ],
+      "role": "symbol",
+      "title": "encryptedValues",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/encryptedvalues"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/init(recordType:recordID:)": {
+      "abstract": [
+        {
+          "text": "Creates a record using an ID that you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "recordType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So8CKRecordC8CloudKitE10RecordTypea",
+          "text": "RecordType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "recordID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecordID",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/init(recordType:recordID:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(recordType:recordID:)",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/init(recordtype:recordid:)"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/init(recordType:zoneID:)": {
+      "abstract": [
+        {
+          "text": "Creates a record in the specified zone.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "recordType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So8CKRecordC8CloudKitE10RecordTypea",
+          "text": "RecordType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "zoneID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecordZone",
+          "text": "CKRecordZone"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecordZoneID",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/init(recordType:zoneID:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(recordType:zoneID:)",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/init(recordtype:zoneid:)"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/initWithRecordType:": {
+      "abstract": [
+        {
+          "text": "Creates a new record of the specified type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithRecordType:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/initWithRecordType:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithRecordType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithRecordType:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/initwithrecordtype:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/initWithRecordType:recordID:": {
+      "abstract": [
+        {
+          "text": "Creates a record using an ID that you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithRecordType:recordID:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/initWithRecordType:recordID:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithRecordType:recordID:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithRecordType:recordID:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/initwithrecordtype:recordid:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/initWithRecordType:zoneID:": {
+      "abstract": [
+        {
+          "text": "Creates a record in the specified zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithRecordType:zoneID:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/initWithRecordType:zoneID:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithRecordType:zoneID:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithRecordType:zoneID:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/initwithrecordtype:zoneid:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/lastModifiedUserRecordID": {
+      "abstract": [
+        {
+          "text": "The ID of the user who most recently modified the record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lastModifiedUserRecordID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecordID",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/lastModifiedUserRecordID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lastModifiedUserRecordID"
+        }
+      ],
+      "role": "symbol",
+      "title": "lastModifiedUserRecordID",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/lastmodifieduserrecordid"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/modificationDate": {
+      "abstract": [
+        {
+          "text": "The most recent time that CloudKit saved the record to the server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modificationDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/modificationDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "modificationDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "modificationDate",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/modificationdate"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/object(forKey:)": {
+      "abstract": [
+        {
+          "text": "Returns the object that the record stores for the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So8CKRecordC8CloudKitE8FieldKeya",
+          "text": "FieldKey"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "__CKRecordObjCValue"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/object(forKey:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "object(forKey:)",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/object(forkey:)"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/objectForKey:": {
+      "abstract": [
+        {
+          "text": "Returns the object that the record stores for the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectForKey:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/objectForKey:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "objectForKey:"
+        }
+      ],
+      "role": "symbol",
+      "title": "objectForKey:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/objectforkey:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/parent": {
+      "abstract": [
+        {
+          "text": "A reference to the record’s parent record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKReference",
+          "text": "Reference"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/parent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "parent"
+        }
+      ],
+      "role": "symbol",
+      "title": "parent",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/parent"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/recordChangeTag": {
+      "abstract": [
+        {
+          "text": "The server change token for the record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recordChangeTag"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/recordChangeTag",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "recordChangeTag"
+        }
+      ],
+      "role": "symbol",
+      "title": "recordChangeTag",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/recordchangetag"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/recordID": {
+      "abstract": [
+        {
+          "text": "The unique ID of the record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recordID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecordID",
+          "text": "ID"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/recordID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "recordID"
+        }
+      ],
+      "role": "symbol",
+      "title": "recordID",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/recordid"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/recordType-6v7au": {
+      "abstract": [
+        {
+          "text": "The value that your app defines to identify the type of record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recordType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So8CKRecordC8CloudKitE10RecordTypea",
+          "text": "RecordType"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/recordType-6v7au",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "recordType",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/recordtype-6v7au"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/recordType-9s09b": {
+      "abstract": [
+        {
+          "text": "The value that your app defines to identify the type of record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "recordType"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/recordType-9s09b",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "recordType",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/recordtype-9s09b"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/setObject(_:forKey:)": {
+      "abstract": [
+        {
+          "text": "Stores an object in the record using the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObject"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "__CKRecordObjCValue"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So8CKRecordC8CloudKitE8FieldKeya",
+          "text": "FieldKey"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/setObject(_:forKey:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setObject(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/setobject(_:forkey:)"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/setObject:forKey:": {
+      "abstract": [
+        {
+          "text": "Stores an object in the record using the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObject:forKey:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/setObject:forKey:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setObject:forKey:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setObject:forKey:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/setobject:forkey:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/setObject:forKeyedSubscript:": {
+      "abstract": [
+        {
+          "text": "Stores an object in the record using the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObject:forKeyedSubscript:"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/setObject:forKeyedSubscript:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setObject:forKeyedSubscript:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setObject:forKeyedSubscript:",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/setobject:forkeyedsubscript:"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/setParent(_:)-23du1": {
+      "abstract": [
+        {
+          "text": "Creates and sets a reference object for a parent from its record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setParent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/setParent(_:)-23du1",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setParentReferenceFromRecord:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setParent(_:)",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/setparent(_:)-23du1"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/setParent(_:)-7egcx": {
+      "abstract": [
+        {
+          "text": "Creates and sets a reference object for a parent from the parent’s record ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setParent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecordID",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/setParent(_:)-7egcx",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setParentReferenceFromRecordID:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setParent(_:)",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/setparent(_:)-7egcx"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/share": {
+      "abstract": [
+        {
+          "text": "A reference to the share object that determines the share status of the record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "share"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKReference",
+          "text": "Reference"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/share",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "share"
+        }
+      ],
+      "role": "symbol",
+      "title": "share",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/share"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/subscript(_:)-4g91i": {
+      "abstract": [
+        {
+          "text": "Returns the object that the record stores for the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CKRecord",
+          "text": "CKRecord"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So8CKRecordC8CloudKitE8FieldKeya",
+          "text": "FieldKey"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "__CKRecordObjCValue"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/subscript(_:)-4g91i",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/subscript(_:)-4g91i"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/subscript(_:)-51whk": {
+      "abstract": [
+        {
+          "text": "Returns the object that the record stores for the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "__CKRecordObjCValue"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/subscript(_:)-51whk",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "objectForKeyedSubscript:"
+        }
+      ],
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/subscript(_:)-51whk"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordCreationDateKey": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKRecordCreationDateKey"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordCreationDateKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKRecordCreationDateKey",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordcreationdatekey"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordCreatorUserRecordIDKey": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKRecordCreatorUserRecordIDKey"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordCreatorUserRecordIDKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKRecordCreatorUserRecordIDKey",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordcreatoruserrecordidkey"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordFieldKey": {
+      "abstract": [
+        {
+          "text": "A data type that CloudKit requires for record field names.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKRecordFieldKey"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordFieldKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKRecordFieldKey",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordfieldkey"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordKeyValueIterator": {
+      "abstract": [
+        {
+          "text": "An iterator of the record’s key-value pairs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKRecordKeyValueIterator"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordKeyValueIterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKRecordKeyValueIterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKRecordKeyValueIterator",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordkeyvalueiterator"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordKeyValueSetting": {
+      "abstract": [
+        {
+          "text": "A protocol for managing the key-value pairs of a CloudKit record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKRecordKeyValueSetting"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordKeyValueSetting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKRecordKeyValueSetting"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKRecordKeyValueSetting",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordkeyvaluesetting"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordLastModifiedUserRecordIDKey": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKRecordLastModifiedUserRecordIDKey"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordLastModifiedUserRecordIDKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKRecordLastModifiedUserRecordIDKey",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordlastmodifieduserrecordidkey"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordModificationDateKey": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKRecordModificationDateKey"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordModificationDateKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKRecordModificationDateKey",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordmodificationdatekey"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordParentKey-2kx8l": {
+      "abstract": [
+        {
+          "text": "The key constant that a record uses for its parent reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKRecordParentKey"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordParentKey-2kx8l",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKRecordParentKey",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordparentkey-2kx8l"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordRecordIDKey": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKRecordRecordIDKey"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordRecordIDKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKRecordRecordIDKey",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordrecordidkey"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordShareKey-rrat": {
+      "abstract": [
+        {
+          "text": "The key constant that a record uses for its share reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKRecordShareKey"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordShareKey-rrat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKRecordShareKey",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordsharekey-rrat"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordType": {
+      "abstract": [
+        {
+          "text": "A data type that CloudKit requires for record types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKRecordType"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKRecordType",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordtype"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordTypeShare-8b6yt": {
+      "abstract": [
+        {
+          "text": "The system type that identifies a share record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKRecordTypeShare"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordTypeShare-8b6yt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKRecordTypeShare",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordtypeshare-8b6yt"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordTypeUserRecord-49k30": {
+      "abstract": [
+        {
+          "text": "The system type that identifies a user record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKRecordTypeUserRecord"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordTypeUserRecord-49k30",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKRecordTypeUserRecord",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordtypeuserrecord-49k30"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordValue-swift.typealias": {
+      "abstract": [
+        {
+          "text": "A data type for objects that CloudKit stores on the server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKRecordValue"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordValue-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKRecordValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKRecordValue",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordvalue-swift.typealias"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordValueProtocol": {
+      "abstract": [
+        {
+          "text": "A description of a CloudKit record value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKRecordValueProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordValueProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKRecordValueProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKRecordValueProtocol",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordvalueprotocol"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordZone": {
+      "abstract": [
+        {
+          "text": "A database partition that contains related records.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKRecordZone"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordZone",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKRecordZone"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKRecordZone",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordzone"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKShare": {
+      "abstract": [
+        {
+          "text": "A specialized record type that manages a collection of shared records.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKShare"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKShare",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKShare"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKShare",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckshare"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/designing-and-creating-a-cloudkit-database": {
+      "abstract": [
+        {
+          "text": "Create a schema to store your app’s objects as records in iCloud using CloudKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/designing-and-creating-a-cloudkit-database",
+      "kind": "article",
+      "role": "article",
+      "title": "Designing and Creating a CloudKit Database",
+      "type": "topic",
+      "url": "/documentation/cloudkit/designing-and-creating-a-cloudkit-database"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/encrypting-user-data": {
+      "abstract": [
+        {
+          "text": "Deploy industry-standard security technologies using CloudKit encryption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/encrypting-user-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Encrypting User Data",
+      "type": "topic",
+      "url": "/documentation/cloudkit/encrypting-user-data"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/integrating-a-text-based-schema-into-your-workflow": {
+      "abstract": [
+        {
+          "text": "Define and update your schema with the CloudKit Schema Language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/integrating-a-text-based-schema-into-your-workflow",
+      "kind": "article",
+      "role": "article",
+      "title": "Integrating a Text-Based Schema into Your Workflow",
+      "type": "topic",
+      "url": "/documentation/cloudkit/integrating-a-text-based-schema-into-your-workflow"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/managing-icloud-containers-with-cloudkit-database-app": {
+      "abstract": [
+        {
+          "text": "Inspect and modify the schema and data for your app’s iCloud container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/managing-icloud-containers-with-cloudkit-database-app",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Managing iCloud Containers with CloudKit Database App",
+      "type": "topic",
+      "url": "/documentation/cloudkit/managing-icloud-containers-with-cloudkit-database-app"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/CLLocation": {
+      "abstract": [
+        {
+          "text": "The latitude, longitude, and course information reported by the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLLocation",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/CLLocation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray": {
+      "abstract": [
+        {
+          "text": "An object representing a static ordered collection, for use instead of an  constant in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata": {
+      "abstract": [
+        {
+          "text": "A static byte buffer that bridges to ; use  when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate": {
+      "abstract": [
+        {
+          "text": "A representation of a specific point in time, for use when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumber": {
+      "abstract": [
+        {
+          "text": "An object wrapper for primitive scalar numeric values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNumber",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumber"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "abstract": [
+        {
+          "text": "A static, plain-text Unicode string object which you use when you need reference semantics or other Foundation-specific behavior. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ST": {
+      "abstract": [
+        {
+          "text": "A type that provides sequential, iterated access to its elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ST",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sequence",
+      "type": "topic",
+      "url": "/documentation/Swift/Sequence"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKShare"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordKeyValueSetting",
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.externally.resolved.symbol/s:ST"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Schemas",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/designing-and-creating-a-cloudkit-database",
+        "doc://com.apple.cloudkit/documentation/CloudKit/managing-icloud-containers-with-cloudkit-database-app",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordZone",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/Reference",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKAsset",
+        "doc://com.apple.cloudkit/documentation/CloudKit/integrating-a-text-based-schema-into-your-workflow"
+      ],
+      "title": "Schemas"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Record",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/init(recordType:recordID:)",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/RecordType-swift.typealias",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/FieldKey",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/init(recordType:zoneID:)"
+      ],
+      "title": "Creating a Record"
+    },
+    {
+      "anchor": "Accessing-the-Records-Fields",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/object(forKey:)",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/subscript(_:)-51whk",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/subscript(_:)-4g91i",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/setObject(_:forKey:)",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/allKeys()",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/changedKeys()",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordKeyValueIterator",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordValueProtocol",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordKeyValueSetting",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordValue-swift.typealias"
+      ],
+      "title": "Accessing the Record’s Fields"
+    },
+    {
+      "anchor": "Accessing-the-Records-Metadata",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/recordID",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/recordType-6v7au",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/SystemType",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/creationDate",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/creatorUserRecordID",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/modificationDate",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/lastModifiedUserRecordID",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/recordChangeTag",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/ID"
+      ],
+      "title": "Accessing the Record’s Metadata"
+    },
+    {
+      "anchor": "Encrypting-the-Records-Values",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/encryptedValues"
+      ],
+      "title": "Encrypting the Record’s Values"
+    },
+    {
+      "anchor": "Getting-Data-for-Full-Text-Searches",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/allTokens()"
+      ],
+      "title": "Getting Data for Full-Text Searches"
+    },
+    {
+      "anchor": "Encoding-the-Records-Metadata",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/encodeSystemFields(with:)"
+      ],
+      "title": "Encoding the Record’s Metadata"
+    },
+    {
+      "anchor": "Sharing-Records",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/parent",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/share",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/Reference",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/setParent(_:)-23du1",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/setParent(_:)-7egcx",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/SystemFieldKey"
+      ],
+      "title": "Sharing Records"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.10",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CKRecord"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.cloudkit/documentation/CloudKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Record",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/initWithRecordType:",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/initWithRecordType:zoneID:",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/initWithRecordType:recordID:",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordType",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordTypeShare-8b6yt",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordTypeUserRecord-49k30",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordFieldKey"
+              ],
+              "title": "Creating a Record"
+            },
+            {
+              "anchor": "Accessing-the-Records-Fields",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/objectForKey:",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/subscript(_:)-51whk",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/setObject:forKey:",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/setObject:forKeyedSubscript:",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/allKeys",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/changedKeys",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordKeyValueSetting",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordCreationDateKey",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordCreatorUserRecordIDKey",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordLastModifiedUserRecordIDKey",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordModificationDateKey",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordRecordIDKey",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordParentKey-2kx8l",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordShareKey-rrat"
+              ],
+              "title": "Accessing the Record’s Fields"
+            },
+            {
+              "anchor": "Accessing-the-Records-Metadata",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/recordID",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/recordType-9s09b",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/creationDate",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/creatorUserRecordID",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/modificationDate",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/lastModifiedUserRecordID",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/recordChangeTag",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/ID"
+              ],
+              "title": "Accessing the Record’s Metadata"
+            },
+            {
+              "anchor": "Encrypting-the-Records-Values",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/encryptedValues"
+              ],
+              "title": "Encrypting the Record’s Values"
+            },
+            {
+              "anchor": "Getting-Data-for-Full-Text-Searches",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/allTokens()"
+              ],
+              "title": "Getting Data for Full-Text Searches"
+            },
+            {
+              "anchor": "Encoding-the-Records-Metadata",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/encodeSystemFields(with:)"
+              ],
+              "title": "Encoding the Record’s Metadata"
+            },
+            {
+              "anchor": "Sharing-Records",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/parent",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/share",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/Reference",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/setParent(_:)-23du1",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/setParent(_:)-7egcx"
+              ],
+              "title": "Sharing Records"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKShare"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordKeyValueSetting",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Schemas",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/designing-and-creating-a-cloudkit-database",
+                "doc://com.apple.cloudkit/documentation/CloudKit/managing-icloud-containers-with-cloudkit-database-app",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordZone",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/Reference",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKAsset",
+                "doc://com.apple.cloudkit/documentation/CloudKit/integrating-a-text-based-schema-into-your-workflow"
+              ],
+              "title": "Schemas"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CKRecord"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsdata/abstract",
+          "value": [
+            {
+              "text": "A static byte buffer in memory.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1setParent(_:)-23du1/title",
+          "value": "setParentReferenceFromRecord:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1setParent(_:)-23du1/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setParentReferenceFromRecord:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1creationDate/title",
+          "value": "creationDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1creationDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "creationDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1recordID/title",
+          "value": "recordID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1recordID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "recordID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1encodeSystemFields(with:)/title",
+          "value": "encodeSystemFieldsWithCoder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1encodeSystemFields(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "encodeSystemFieldsWithCoder:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1subscript(_:)-51whk/title",
+          "value": "objectForKeyedSubscript:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1subscript(_:)-51whk/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "objectForKeyedSubscript:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKShare/title",
+          "value": "CKShare"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKShare/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKShare"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKShare/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKShare"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1encryptedValues/title",
+          "value": "encryptedValues"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1encryptedValues/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "encryptedValues"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1parent/title",
+          "value": "parent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1parent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "parent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKAsset/title",
+          "value": "CKAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKAsset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKAsset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1allTokens()/title",
+          "value": "allTokens"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1allTokens()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "allTokens"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecordZone/title",
+          "value": "CKRecordZone"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecordZone/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKRecordZone"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecordZone/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKRecordZone"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsdate/abstract",
+          "value": [
+            {
+              "text": "A representation of a specific point in time, independent of any calendar or time zone.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecordKeyValueSetting/title",
+          "value": "CKRecordKeyValueSetting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecordKeyValueSetting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKRecordKeyValueSetting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecordKeyValueSetting/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKRecordKeyValueSetting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1Reference/title",
+          "value": "CKReference"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1Reference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKReference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1Reference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKReference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1setParent(_:)-7egcx/title",
+          "value": "setParentReferenceFromRecordID:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1setParent(_:)-7egcx/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setParentReferenceFromRecordID:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1creatorUserRecordID/title",
+          "value": "creatorUserRecordID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1creatorUserRecordID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "creatorUserRecordID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1recordChangeTag/title",
+          "value": "recordChangeTag"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1recordChangeTag/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "recordChangeTag"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord/title",
+          "value": "CKRecord"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1lastModifiedUserRecordID/title",
+          "value": "lastModifiedUserRecordID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1lastModifiedUserRecordID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lastModifiedUserRecordID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1ID/title",
+          "value": "CKRecordID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1ID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKRecordID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1ID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKRecordID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsarray/abstract",
+          "value": [
+            {
+              "text": "A static ordered collection of objects.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1share/title",
+          "value": "share"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1share/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "share"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLLocation/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CLLocation"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1modificationDate/title",
+          "value": "modificationDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1modificationDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "modificationDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsstring/abstract",
+          "value": [
+            {
+              "text": "A static, plain-text Unicode string object.",
+              "type": "text"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cloudkit/ckrecord"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/cloudkit/ckrecord"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

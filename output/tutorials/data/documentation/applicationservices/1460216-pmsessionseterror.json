@@ -1,0 +1,552 @@
+{
+  "abstract": [
+    {
+      "text": "Sets the value of the current result code for the specified printing session.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/core_printing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/1460216-pmsessionseterror"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1460216,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@PMSessionSetError",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "PMSessionSetError"
+      },
+      {
+        "kind": "text",
+        "text": "(PMPrintSession, OSStatus) -> OSStatus"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "PMSessionSetError(_:_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PMSessionSetError"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "printSession"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmprintsession",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@PMPrintSession",
+              "text": "PMPrintSession"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "printError"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "symbol-1480124",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "symbol-1480124",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The printing session whose result code you want to set.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "printSession"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The result code you want to set. This result code is returned by the ",
+                  "type": "text"
+                },
+                {
+                  "code": "PMSessionError",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " function. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "printError"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must call this function between the creation and release of a printing session. See the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463247-pmcreatesession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use this function to terminate a printing session if your application encounters any errors inside the print loop. Typically, this function is used by an application’s idle function. The idle function isn’t called in macOS, so this usage is not available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1458998-pmsessiongetcurrentprinter": {
+      "abstract": [
+        {
+          "text": "Obtains the current printer associated with a printing session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionGetCurrentPrinter"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession, UnsafeMutablePointer<PMPrinter?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1458998-pmsessiongetcurrentprinter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionGetCurrentPrinter(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1458998-pmsessiongetcurrentprinter"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460003-pmsessionerror": {
+      "abstract": [
+        {
+          "text": "Obtains the result code for any error returned by the printing session. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionError"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460003-pmsessionerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionError(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460003-pmsessionerror"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460216-pmsessionseterror": {
+      "abstract": [
+        {
+          "text": "Sets the value of the current result code for the specified printing session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionSetError"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession, OSStatus) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460216-pmsessionseterror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionSetError(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460216-pmsessionseterror"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461096-pmsessionsetcurrentpmprinter": {
+      "abstract": [
+        {
+          "text": "Changes the current printer for a printing session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionSetCurrentPMPrinter"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession, PMPrinter) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461096-pmsessionsetcurrentpmprinter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionSetCurrentPMPrinter(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461096-pmsessionsetcurrentpmprinter"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461902-pmsessionsetdatainsession": {
+      "abstract": [
+        {
+          "text": "Stores your application-specific data in a printing session object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionSetDataInSession"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession, CFString, CFTypeRef) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461902-pmsessionsetdatainsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionSetDataInSession(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461902-pmsessionsetdatainsession"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461952-pmsessiongetcggraphicscontext": {
+      "abstract": [
+        {
+          "text": "Obtains the Quartz graphics context for the current page in a printing session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionGetCGGraphicsContext"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession, UnsafeMutablePointer<Unmanaged<CGContext>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461952-pmsessiongetcggraphicscontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionGetCGGraphicsContext(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461952-pmsessiongetcggraphicscontext"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462964-pmsessiongetdatafromsession": {
+      "abstract": [
+        {
+          "text": "Obtains application-specific data previously stored in a printing session object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSessionGetDataFromSession"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSession, CFString, UnsafeMutablePointer<Unmanaged<CFTypeRef>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462964-pmsessiongetdatafromsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionGetDataFromSession(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462964-pmsessiongetdatafromsession"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1463247-pmcreatesession": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463247-pmcreatesession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMCreateSession(_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1463247-pmcreatesession"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/core_printing": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Core Printing",
+      "type": "topic",
+      "url": "/documentation/applicationservices/core_printing"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/applicationservices/core_printing#1670007"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/pmprintsession": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmprintsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrintSession",
+      "type": "topic",
+      "url": "/documentation/applicationservices/pmprintsession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1462964-pmsessiongetdatafromsession",
+        "doc://com.apple.documentation/documentation/applicationservices/1461902-pmsessionsetdatainsession",
+        "doc://com.apple.documentation/documentation/applicationservices/1458998-pmsessiongetcurrentprinter",
+        "doc://com.apple.documentation/documentation/applicationservices/1461096-pmsessionsetcurrentpmprinter",
+        "doc://com.apple.documentation/documentation/applicationservices/1461952-pmsessiongetcggraphicscontext",
+        "doc://com.apple.documentation/documentation/applicationservices/1460003-pmsessionerror"
+      ],
+      "title": "Accessing Data in Printing Session Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/1460216-pmsessionseterror"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/applicationservices/1460216-pmsessionseterror"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

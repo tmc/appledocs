@@ -1,0 +1,1240 @@
+{
+  "abstract": [
+    {
+      "text": "Allow users to purchase media in the App Store from within your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductViewController"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/offering-media-for-sale-in-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Offering media for sale in your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project shows how to let users purchase media from your app using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class. Additionally, the sample demonstrates how to measure the effectiveness of a cross-promotional campaign for your apps or third-party apps using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterCampaignToken",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterProviderToken",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " keys. When cross-promoting your apps, set ",
+              "type": "text"
+            },
+            {
+              "code": "SKStoreProductParameterProviderToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to your own provider token. When promoting apps for other developers, set it to their provider token.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app in this sample project displays a list of media items that the user can tap to make purchases from the App Store. You can also track advertising and promotions from this interactive list of media items for sale.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app requires an iOS or iPadOS device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project defines a ",
+              "type": "text"
+            },
+            {
+              "code": "Product",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data type to represent media information it saves in the ",
+              "type": "text"
+            },
+            {
+              "code": "Products.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. ",
+              "type": "text"
+            },
+            {
+              "code": "Products.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains a single ",
+              "type": "text"
+            },
+            {
+              "code": "Product",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entry. Before you can run",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this sample on your device, you need to update this entry with your own data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the sample’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "productIdentifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key to your media’s iTunes identifier. For more information about iTunes identifiers, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterITunesItemIdentifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "title",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key to your media’s name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "isApplication",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key to YES if your media is an app, and NO, otherwise.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "campaignToken",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "providerToken",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " keys to the appropriate tokens if you’re cross-promoting apps, and leave them empty if you’re not. For more information about generating campaign and provider tokens, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://help.apple.com/app-store-connect/#/itcfa7936330",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://help.apple.com/app-store-connect/#/itc5e30b4d89",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://help.apple.com/app-store-connect/#/itc1ae92f9ee",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add more data, duplicate and update the ",
+              "type": "text"
+            },
+            {
+              "code": "Product",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entry in ",
+              "type": "text"
+            },
+            {
+              "code": "Products.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as necessary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-media-from-the-App-Store",
+          "level": 3,
+          "text": "Display media from the App Store",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample launches to the ",
+              "type": "text"
+            },
+            {
+              "code": "TableViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which shows a list of media associated with iTunes identifiers in ",
+              "type": "text"
+            },
+            {
+              "code": "Products.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". When the user taps any item in the list, ",
+              "type": "text"
+            },
+            {
+              "code": "TableViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " presents a page where they can purchase the media from the App Store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates a parameters dictionary and sets the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterITunesItemIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key to the media’s iTunes identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var parametersDictionary = [SKStoreProductParameterITunesItemIdentifier: product.productIdentifier]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates an ",
+              "type": "text"
+            },
+            {
+              "code": "SKStoreProductViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object and sets the view controller class as its delegate. Then it passes the dictionary to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductViewController/loadProduct(withParameters:completionBlock:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of the ",
+              "type": "text"
+            },
+            {
+              "code": "SKStoreProductViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a store product view controller.",
+            "let store = SKStoreProductViewController()",
+            "store.delegate = self"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then the sample presents the ",
+              "type": "text"
+            },
+            {
+              "code": "SKStoreProductViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object modally.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/*",
+            "   Attempt to load the selected product from the App Store. Display the",
+            "   store product view controller if successful. Print an error message,",
+            "   otherwise.",
+            "*/",
+            "store.loadProduct(withParameters: parametersDictionary, completionBlock: {[unowned self] (result: Bool, error: Error?) in",
+            "    if result {",
+            "        self.present(store, animated: true, completion: {",
+            "            print(\"The store view controller was presented.\")",
+            "        })",
+            "    } else {",
+            "        if let error = error {",
+            "            print(\"Error: \\(error.localizedDescription)\")",
+            "        }",
+            "    }})"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The delegate needs to dismiss the store view controller when the purchase completes, or if the user cancels it. ",
+              "type": "text"
+            },
+            {
+              "code": "TableViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductViewControllerDelegate/productViewControllerDidFinish(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to dismiss the presented store product view controller. Apps can also use this method to resume any activities that they pause before presenting the store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Track-advertising-and-promotions",
+          "level": 3,
+          "text": "Track advertising and promotions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "SKStoreProductParameterCampaignToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "SKStoreProductParameterProviderToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keys track advertising and promotion for the app. When the user taps an item in the list, ",
+              "type": "text"
+            },
+            {
+              "code": "TableViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " adds these keys and their values to a dictionary, which already contains ",
+              "type": "text"
+            },
+            {
+              "code": "SKStoreProductParameterItunesItemIdentifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the iTunes identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "TableViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " passes the dictionary to a created ",
+              "type": "text"
+            },
+            {
+              "code": "SKStoreProductViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object, and then displays the store product view controller modally.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/*",
+            "    Update `parametersDictionary` with the `campaignToken` and",
+            "    `providerToken` values if they exist and the specified `product`",
+            "    is an app.",
+            "*/",
+            "if product.isApplication, !product.campaignToken.isEmpty, !product.providerToken.isEmpty {",
+            "    parametersDictionary[SKStoreProductParameterCampaignToken] = product.campaignToken",
+            "    parametersDictionary[SKStoreProductParameterProviderToken] = product.providerToken",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKOverlay": {
+      "abstract": [
+        {
+          "text": "A class that displays an overlay you can use to recommend another app or an App Clip’s corresponding full app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKOverlay"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKOverlay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKOverlay"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKOverlay",
+      "type": "topic",
+      "url": "/documentation/storekit/skoverlay"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterCampaignToken": {
+      "abstract": [
+        {
+          "text": "The key representing an App Analytics campaign.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterCampaignToken"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterCampaignToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterCampaignToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKStoreProductParameterCampaignToken",
+      "type": "topic",
+      "url": "/documentation/storekit/skstoreproductparametercampaigntoken"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterITunesItemIdentifier": {
+      "abstract": [
+        {
+          "text": "The key representing the iTunes identifier for the item you want the store to display when the view controller is presented.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterITunesItemIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterITunesItemIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterITunesItemIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKStoreProductParameterITunesItemIdentifier",
+      "type": "topic",
+      "url": "/documentation/storekit/skstoreproductparameteritunesitemidentifier"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterProviderToken": {
+      "abstract": [
+        {
+          "text": "The key representing the provider token for the developer that created the app specified by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterITunesItemIdentifier",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterProviderToken"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductParameterProviderToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductParameterProviderToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKStoreProductParameterProviderToken",
+      "type": "topic",
+      "url": "/documentation/storekit/skstoreproductparameterprovidertoken"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that provides a page where customers can purchase media from the App Store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKStoreProductViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKStoreProductViewController",
+      "type": "topic",
+      "url": "/documentation/storekit/skstoreproductviewcontroller"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductViewController/loadProduct(withParameters:completionBlock:)": {
+      "abstract": [
+        {
+          "text": "Loads a new product screen to display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadProduct"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductViewController/loadProduct(withParameters:completionBlock:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadProductWithParameters:completionBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadProduct(withParameters:completionBlock:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skstoreproductviewcontroller/loadproduct(withparameters:completionblock:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductViewControllerDelegate/productViewControllerDidFinish(_:)": {
+      "abstract": [
+        {
+          "text": "Called when the user dismisses the store screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "productViewControllerDidFinish"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKStoreProductViewController",
+          "text": "SKStoreProductViewController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductViewControllerDelegate/productViewControllerDidFinish(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "productViewControllerDidFinish:"
+        }
+      ],
+      "role": "symbol",
+      "title": "productViewControllerDidFinish(_:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skstoreproductviewcontrollerdelegate/productviewcontrollerdidfinish(_:)"
+    },
+    "f660f80c693a/OfferingMediaForSaleInYourApp.zip": {
+      "checksum": "f660f80c693a7bc08fd1798c7696f0518125cdc2eae851f97b52650b41b68005c428a4d17403923f445acbfcb207eb08078fac3f3c1b2eaab39335563dd0b379",
+      "identifier": "f660f80c693a/OfferingMediaForSaleInYourApp.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/f660f80c693a/OfferingMediaForSaleInYourApp.zip"
+    },
+    "https://help.apple.com/app-store-connect/#/itc1ae92f9ee": {
+      "identifier": "https://help.apple.com/app-store-connect/#/itc1ae92f9ee",
+      "title": "Provider Token",
+      "titleInlineContent": [
+        {
+          "text": "Provider Token",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/app-store-connect/#/itc1ae92f9ee"
+    },
+    "https://help.apple.com/app-store-connect/#/itc5e30b4d89": {
+      "identifier": "https://help.apple.com/app-store-connect/#/itc5e30b4d89",
+      "title": "Campaign Token",
+      "titleInlineContent": [
+        {
+          "text": "Campaign Token",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/app-store-connect/#/itc5e30b4d89"
+    },
+    "https://help.apple.com/app-store-connect/#/itcfa7936330": {
+      "identifier": "https://help.apple.com/app-store-connect/#/itcfa7936330",
+      "title": "Manage campaigns",
+      "titleInlineContent": [
+        {
+          "text": "Manage campaigns",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/app-store-connect/#/itcfa7936330"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "f660f80c693a/OfferingMediaForSaleInYourApp.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Recommendations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductViewController",
+        "doc://com.apple.storekit/documentation/StoreKit/SKOverlay"
+      ],
+      "title": "Recommendations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Recommendations",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/SKStoreProductViewController",
+                "doc://com.apple.storekit/documentation/StoreKit/SKOverlay"
+              ],
+              "title": "Recommendations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductViewControllerDelegate~1productViewControllerDidFinish(_:)/title",
+          "value": "productViewControllerDidFinish:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductViewControllerDelegate~1productViewControllerDidFinish(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "productViewControllerDidFinish:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterProviderToken/title",
+          "value": "SKStoreProductParameterProviderToken"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterProviderToken/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKStoreProductParameterProviderToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductViewController~1loadProduct(withParameters:completionBlock:)/title",
+          "value": "loadProductWithParameters:completionBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductViewController~1loadProduct(withParameters:completionBlock:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadProductWithParameters:completionBlock:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKOverlay/title",
+          "value": "SKOverlay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKOverlay/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKOverlay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKOverlay/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKOverlay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductViewController/title",
+          "value": "SKStoreProductViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKStoreProductViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKStoreProductViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterCampaignToken/title",
+          "value": "SKStoreProductParameterCampaignToken"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterCampaignToken/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKStoreProductParameterCampaignToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterITunesItemIdentifier/title",
+          "value": "SKStoreProductParameterITunesItemIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreProductParameterITunesItemIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKStoreProductParameterITunesItemIdentifier"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/offering-media-for-sale-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/offering-media-for-sale-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

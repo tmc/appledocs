@@ -1,0 +1,474 @@
+{
+  "abstract": [
+    {
+      "text": "Specify your secure server’s URL in App Store Connect to receive version 1 notifications.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V1",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " endpoint and version 1 notifications are deprecated. Implement the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " endpoint on your server to receive version 2 notifications instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "deprecated",
+      "platform": "App Store Server Notifications",
+      "versions": [
+        "2.0",
+        "2.13"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V1"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:store_s2s:post:v1",
+    "modules": [
+      {
+        "name": "App Store Server Notifications"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "App Store Server Notifications V1"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecatedAt": "2.8",
+        "introducedAt": "1.0",
+        "name": "App Store Server Notifications"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "App Store Server Notifications V1"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://example.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The response body for a version 1 notification.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/responseBodyV1",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:store_s2s:responseBodyV1",
+              "text": "responseBodyV1"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/app-store-server-notifications-changelog",
+        "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/receiving-app-store-server-notifications"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To receive server notifications from the App Store, provide your secure server’s HTTPS URL in App Store Connect. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To secure your server and receive notifications, your server must support the Transport Layer Security (TLS) protocol version 1.2 or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Upon receiving a server notification, respond to the App Store with an HTTP status code of ",
+              "type": "text"
+            },
+            {
+              "code": "200",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the post was successful. If the post was unsuccessful, send HTTP ",
+              "type": "text"
+            },
+            {
+              "code": "50x",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "40x",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to have the App Store retry the notification. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/responding-to-app-store-server-notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For version 2 notifications, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications": {
+      "abstract": [
+        {
+          "text": "Monitor In-App Purchase events in real time and learn of unreported external purchase tokens, with server notifications from the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V1": {
+      "abstract": [
+        {
+          "text": "Specify your secure server’s URL in App Store Connect to receive version 1 notifications.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V1",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "App Store Server Notifications V1"
+        }
+      ],
+      "role": "symbol",
+      "title": "App Store Server Notifications V1",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/app-store-server-notifications-v1"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2": {
+      "abstract": [
+        {
+          "text": "Specify your secure server’s URL in App Store Connect to receive version 2 notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "App Store Server Notifications V2"
+        }
+      ],
+      "role": "symbol",
+      "title": "App Store Server Notifications V2",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/app-store-server-notifications-v2"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/app-store-server-notifications-changelog": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the App Store Server Notifications service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/app-store-server-notifications-changelog",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Server Notifications changelog",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/app-store-server-notifications-changelog"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications": {
+      "abstract": [
+        {
+          "text": "Configure your server and provide an HTTPS URL to receive notifications about in-app purchase events and unreported external purchase tokens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/enabling-app-store-server-notifications"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/notification_type": {
+      "abstract": [
+        {
+          "text": "The type that describes the in-app purchase event for which the App Store sends the version 1 notification.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "notification_type"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/notification_type",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "notification_type"
+        }
+      ],
+      "role": "symbol",
+      "title": "notification_type",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/notification_type"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/receiving-app-store-server-notifications": {
+      "abstract": [
+        {
+          "text": "Implement server-side code to receive and parse notification posts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/receiving-app-store-server-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Receiving App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/receiving-app-store-server-notifications"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/responding-to-app-store-server-notifications": {
+      "abstract": [
+        {
+          "text": "Send HTTP status codes to indicate the success of a notification post.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/responding-to-app-store-server-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/responding-to-app-store-server-notifications"
+    },
+    "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/responseBodyV1": {
+      "abstract": [
+        {
+          "text": "The response body containing JSON data that the App Store sends in a version 1 server notification.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "responseBodyV1"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/responseBodyV1",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "responseBodyV1"
+        }
+      ],
+      "role": "symbol",
+      "title": "responseBodyV1",
+      "type": "topic",
+      "url": "/documentation/appstoreservernotifications/responsebodyv1"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Version-1-notifications",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/responseBodyV1",
+        "doc://com.apple.appstoreservernotifications/documentation/AppStoreServerNotifications/notification_type"
+      ],
+      "title": "Version 1 notifications"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreservernotifications/app-store-server-notifications-v1"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

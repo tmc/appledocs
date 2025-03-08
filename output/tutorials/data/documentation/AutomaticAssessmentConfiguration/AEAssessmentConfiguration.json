@@ -1,0 +1,2008 @@
+{
+  "abstract": [
+    {
+      "text": "Configuration information for an assessment session.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AEAssessmentConfiguration",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AEAssessmentConfiguration"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Automatic Assessment Configuration"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AEAssessmentConfiguration"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.4",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15.4",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AEAssessmentConfiguration"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AEAssessmentConfiguration"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a configuration instance and pass it to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/init(configuration:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to create a new assessment session. Before using the configuration, indicate which exceptions you want to allow for the assessment session’s restrictions by setting values on the configuration instance. For example, you can set values to allow dictation and certain aspects of autocorrect:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let config = AEAssessmentConfiguration()",
+                    "",
+                    "#if os(iOS) // These exceptions available only on iOS and iPadOS.",
+                    "config.allowsDictation = true",
+                    "config.autocorrectMode = [.punctuation, .spelling]",
+                    "#endif",
+                    "",
+                    "let session = AEAssessmentSession(configuration: config)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "AEAssessmentConfiguration *config = [AEAssessmentConfiguration new];",
+                    "",
+                    "#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR // These exceptions available only on iOS and iPadOS.",
+                    "config.allowsDictation = YES;",
+                    "config.autocorrectMode = AEAutocorrectModePunctuation | AEAutocorrectModeSpelling;",
+                    "#endif",
+                    "",
+                    "AEAssessmentSession *session = [[AEAssessmentSession alloc] initWithConfiguration:config];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While you provide a configuration instance when creating a session on iOS, iPadOS, and macOS, specific exceptions apply only to certain platforms. In particular, on macOS, you can selectively make specific apps besides your own available during an assessment — for example, to allow users to access a calculator or a dictionary. All other exceptions apply only to iOS and iPadOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration": {
+      "abstract": [
+        {
+          "text": "Enter single-app mode and prevent students from accessing specific system features while taking an exam.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Automatic Assessment Configuration",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication": {
+      "abstract": [
+        {
+          "text": "A representation of an app that users can access during an assessment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEAssessmentApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AEAssessmentApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "AEAssessmentApplication",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentapplication"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration": {
+      "abstract": [
+        {
+          "text": "Configuration information for an assessment session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEAssessmentConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AEAssessmentConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "AEAssessmentConfiguration",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/AutocorrectMode-swift.struct": {
+      "abstract": [
+        {
+          "text": "The set of autocorrect features that you can enable during an assessment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AutocorrectMode"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/AutocorrectMode-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AutocorrectMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AEAssessmentConfiguration.AutocorrectMode",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/autocorrectmode-swift.struct"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsAccessibilitySpeech": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to allow the speech-related accessibility features during an assessment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsAccessibilitySpeech"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsAccessibilitySpeech",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsAccessibilitySpeech"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsAccessibilitySpeech",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/allowsaccessibilityspeech"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsActivityContinuation": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to allow Handoff during an assessment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsActivityContinuation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsActivityContinuation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsActivityContinuation"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsActivityContinuation",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/allowsactivitycontinuation"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsContinuousPathKeyboard": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to allow Slide to Type to operate during an assessment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsContinuousPathKeyboard"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsContinuousPathKeyboard",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsContinuousPathKeyboard"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsContinuousPathKeyboard",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/allowscontinuouspathkeyboard"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsDictation": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to allow the use of dictation during an assessment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsDictation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsDictation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsDictation"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsDictation",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/allowsdictation"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsKeyboardShortcuts": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to allow keyboard shortcuts during an assessment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsKeyboardShortcuts"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsKeyboardShortcuts",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsKeyboardShortcuts"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsKeyboardShortcuts",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/allowskeyboardshortcuts"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsPasswordAutoFill": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to allow password autofill during an assessment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsPasswordAutoFill"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsPasswordAutoFill",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsPasswordAutoFill"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsPasswordAutoFill",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/allowspasswordautofill"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsPredictiveKeyboard": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to enable the predictive keyboard during an assessment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsPredictiveKeyboard"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsPredictiveKeyboard",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsPredictiveKeyboard"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsPredictiveKeyboard",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/allowspredictivekeyboard"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsSpellCheck": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to allow spell check during an assessment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsSpellCheck"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsSpellCheck",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsSpellCheck"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsSpellCheck",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/allowsspellcheck"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/autocorrectMode-swift.property": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to allow Autocorrect during an assessment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autocorrectMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AEAssessmentConfiguration",
+          "text": "AEAssessmentConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AEAutocorrectMode",
+          "text": "AutocorrectMode"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/autocorrectMode-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autocorrectMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "autocorrectMode",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/autocorrectmode-swift.property"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/configurationsByApplication": {
+      "abstract": [
+        {
+          "text": "The collection of apps available during an assessment, along with their associated configurations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "configurationsByApplication"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AEAssessmentApplication",
+          "text": "AEAssessmentApplication"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AEAssessmentParticipantConfiguration",
+          "text": "AEAssessmentParticipantConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/configurationsByApplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "configurationsByApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "configurationsByApplication",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/configurationsbyapplication"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/mainParticipantConfiguration": {
+      "abstract": [
+        {
+          "text": "The app-specific configuration for the app that invokes the assessment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mainParticipantConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AEAssessmentParticipantConfiguration",
+          "text": "AEAssessmentParticipantConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/mainParticipantConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mainParticipantConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "mainParticipantConfiguration",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/mainparticipantconfiguration"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/remove(_:)": {
+      "abstract": [
+        {
+          "text": "Removes the availability of a previously allowed app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AEAssessmentApplication",
+          "text": "AEAssessmentApplication"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/remove(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeApplication:"
+        }
+      ],
+      "role": "symbol",
+      "title": "remove(_:)",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/remove(_:)"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/setConfiguration(_:for:)": {
+      "abstract": [
+        {
+          "text": "Adds an app to the list of apps available during an assessment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AEAssessmentParticipantConfiguration",
+          "text": "AEAssessmentParticipantConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AEAssessmentApplication",
+          "text": "AEAssessmentApplication"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/setConfiguration(_:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setConfiguration:forApplication:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setConfiguration(_:for:)",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/setconfiguration(_:for:)"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentParticipantConfiguration": {
+      "abstract": [
+        {
+          "text": "Configuration information for an app that’s available during an assessment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEAssessmentParticipantConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentParticipantConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AEAssessmentParticipantConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "AEAssessmentParticipantConfiguration",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentparticipantconfiguration"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession": {
+      "abstract": [
+        {
+          "text": "A session that your app uses to protect an assessment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEAssessmentSession"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AEAssessmentSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "AEAssessmentSession",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentsession"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/init(configuration:)": {
+      "abstract": [
+        {
+          "text": "Creates a new assessment session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AEAssessmentConfiguration",
+          "text": "AEAssessmentConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/init(configuration:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithConfiguration:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(configuration:)",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/aeassessmentsession/init(configuration:)"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/build-an-educational-assessment-app": {
+      "abstract": [
+        {
+          "text": "Ensure the academic integrity of your assessment app by using Automatic Assessment Configuration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/build-an-educational-assessment-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Build an Educational Assessment App",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/build-an-educational-assessment-app"
+    },
+    "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/preparing-an-educational-assessment-app-for-distribution": {
+      "abstract": [
+        {
+          "text": "Ensure your app maintains academic integrity by reviewing assessment practices and managing system capabilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/preparing-an-educational-assessment-app-for-distribution",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing an educational assessment app for distribution",
+      "type": "topic",
+      "url": "/documentation/automaticassessmentconfiguration/preparing-an-educational-assessment-app-for-distribution"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sessions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/preparing-an-educational-assessment-app-for-distribution",
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/build-an-educational-assessment-app",
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession"
+      ],
+      "title": "Sessions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Allowing-access-to-other-apps",
+      "identifiers": [
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/setConfiguration(_:for:)",
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/configurationsByApplication",
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/remove(_:)",
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/mainParticipantConfiguration",
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication",
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentParticipantConfiguration"
+      ],
+      "title": "Allowing access to other apps"
+    },
+    {
+      "anchor": "Allowing-accessibility",
+      "identifiers": [
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsAccessibilitySpeech",
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsDictation"
+      ],
+      "title": "Allowing accessibility"
+    },
+    {
+      "anchor": "Allowing-typing-assistance",
+      "identifiers": [
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsContinuousPathKeyboard",
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsKeyboardShortcuts",
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsPredictiveKeyboard",
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsPasswordAutoFill"
+      ],
+      "title": "Allowing typing assistance"
+    },
+    {
+      "anchor": "Allowing-corrections",
+      "identifiers": [
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsSpellCheck",
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/autocorrectMode-swift.property",
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/AutocorrectMode-swift.struct"
+      ],
+      "title": "Allowing corrections"
+    },
+    {
+      "anchor": "Allowing-handoff",
+      "identifiers": [
+        "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsActivityContinuation"
+      ],
+      "title": "Allowing handoff"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.4",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.4",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15.4",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AEAssessmentConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAssessmentConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAssessmentConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Allowing-access-to-other-apps",
+              "identifiers": [
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/setConfiguration(_:for:)",
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/configurationsByApplication",
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/remove(_:)",
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/mainParticipantConfiguration",
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication",
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentParticipantConfiguration"
+              ],
+              "title": "Allowing access to other apps"
+            },
+            {
+              "anchor": "Allowing-accessibility",
+              "identifiers": [
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsAccessibilitySpeech",
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsDictation"
+              ],
+              "title": "Allowing accessibility"
+            },
+            {
+              "anchor": "Allowing-typing-assistance",
+              "identifiers": [
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsContinuousPathKeyboard",
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsKeyboardShortcuts",
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsPredictiveKeyboard",
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsPasswordAutoFill"
+              ],
+              "title": "Allowing typing assistance"
+            },
+            {
+              "anchor": "Allowing-corrections",
+              "identifiers": [
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsSpellCheck",
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/autocorrectMode-swift.property",
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/AutocorrectMode-swift.struct"
+              ],
+              "title": "Allowing corrections"
+            },
+            {
+              "anchor": "Allowing-handoff",
+              "identifiers": [
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/allowsActivityContinuation"
+              ],
+              "title": "Allowing handoff"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Sessions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/preparing-an-educational-assessment-app-for-distribution",
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/build-an-educational-assessment-app",
+                "doc://com.apple.automaticassessmentconfiguration/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession"
+              ],
+              "title": "Sessions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AEAssessmentConfiguration"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1autocorrectMode-swift.property/title",
+          "value": "autocorrectMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1autocorrectMode-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "autocorrectMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1allowsSpellCheck/title",
+          "value": "allowsSpellCheck"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1allowsSpellCheck/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsSpellCheck"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentSession/title",
+          "value": "AEAssessmentSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAssessmentSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAssessmentSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1allowsPredictiveKeyboard/title",
+          "value": "allowsPredictiveKeyboard"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1allowsPredictiveKeyboard/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsPredictiveKeyboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1setConfiguration(_:for:)/title",
+          "value": "setConfiguration:forApplication:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1setConfiguration(_:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setConfiguration:forApplication:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1allowsKeyboardShortcuts/title",
+          "value": "allowsKeyboardShortcuts"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1allowsKeyboardShortcuts/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsKeyboardShortcuts"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1allowsDictation/title",
+          "value": "allowsDictation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1allowsDictation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsDictation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentApplication/title",
+          "value": "AEAssessmentApplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentApplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAssessmentApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentApplication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAssessmentApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration/title",
+          "value": "AEAssessmentConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAssessmentConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAssessmentConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1allowsPasswordAutoFill/title",
+          "value": "allowsPasswordAutoFill"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1allowsPasswordAutoFill/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsPasswordAutoFill"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1allowsContinuousPathKeyboard/title",
+          "value": "allowsContinuousPathKeyboard"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1allowsContinuousPathKeyboard/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsContinuousPathKeyboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1remove(_:)/title",
+          "value": "removeApplication:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1remove(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeApplication:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1configurationsByApplication/title",
+          "value": "configurationsByApplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1configurationsByApplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "configurationsByApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1mainParticipantConfiguration/title",
+          "value": "mainParticipantConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1mainParticipantConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mainParticipantConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentSession~1init(configuration:)/title",
+          "value": "initWithConfiguration:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentSession~1init(configuration:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithConfiguration:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1AutocorrectMode-swift.struct/title",
+          "value": "AEAutocorrectMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1AutocorrectMode-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAutocorrectMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1AutocorrectMode-swift.struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAutocorrectMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentParticipantConfiguration/title",
+          "value": "AEAssessmentParticipantConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentParticipantConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAssessmentParticipantConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentParticipantConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AEAssessmentParticipantConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1allowsAccessibilitySpeech/title",
+          "value": "allowsAccessibilitySpeech"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1allowsAccessibilitySpeech/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsAccessibilitySpeech"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1allowsActivityContinuation/title",
+          "value": "allowsActivityContinuation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.automaticassessmentconfiguration~1documentation~1AutomaticAssessmentConfiguration~1AEAssessmentConfiguration~1allowsActivityContinuation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsActivityContinuation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/automaticassessmentconfiguration/aeassessmentconfiguration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

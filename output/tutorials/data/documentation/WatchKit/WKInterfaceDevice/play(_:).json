@@ -1,0 +1,1005 @@
+{
+  "abstract": [
+    {
+      "text": "Gives haptic feedback to the user.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchkit/documentation/WatchKit",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceDevice"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceDevice/play(_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)WKInterfaceDevice(im)playHaptic:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "play"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@E@WKHapticType",
+        "text": "WKHapticType"
+      },
+      {
+        "kind": "text",
+        "text": ")"
+      }
+    ],
+    "modules": [
+      {
+        "name": "WatchKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "playHaptic:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "play(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "play"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "type"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKHapticType",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@WKHapticType",
+              "text": "WKHapticType"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The type of haptic feedback to play. Always use the defined haptic types for their intended purposes. For a list of possible values, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKHapticType",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "type"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this method to engage the haptic engine in Apple Watch. The type of feedback you specify defines the specific feedback that is delivered.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method has no effect when called while your shared ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtension/applicationState",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationState/background",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationState/inactive",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". By default, you cannot play haptic feedback in the background. The only exception are apps with an active workout session. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/HealthKit/running-workout-sessions#Run-in-the-background",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/HealthKit/HKWorkoutSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Do not call this method multiple times in quick succession. If the haptic engine is already engaged when you call this method, the system stops the current feedback and imposes a minimum delay of 100 milliseconds before engaging the engine to generate the new feedback. Use of the haptic engine also consumes power, and using the engine too much may create a noticeable drain on the Apple Watch battery, as well as a negative user experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Do not call this method while gathering heart rate data using HealthKit. When you engage the haptic engine, HealthKit stops gathering heart rate data until after the haptic engine finishes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/HealthKit/HKWorkoutSession": {
+      "abstract": [
+        {
+          "text": "A session that tracks the user’s workout on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKWorkoutSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HealthKit/HKWorkoutSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HKWorkoutSession",
+      "type": "topic",
+      "url": "/documentation/HealthKit/HKWorkoutSession"
+    },
+    "doc://com.apple.documentation/documentation/HealthKit/running-workout-sessions#Run-in-the-background": {
+      "abstract": [
+        {
+          "text": "Track a workout on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HealthKit/running-workout-sessions#Run-in-the-background",
+      "kind": "article",
+      "role": "article",
+      "title": "Running workout sessions",
+      "type": "topic",
+      "url": "/documentation/HealthKit/running-workout-sessions"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that use features the app delegate monitors or controls, such as background tasks and extended runtime sessions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WatchKit",
+      "type": "topic",
+      "url": "/documentation/watchkit"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationState/background": {
+      "abstract": [
+        {
+          "text": "The Watch app is running in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "background"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationState/background",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKApplicationStateBackground"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKApplicationState.background",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkapplicationstate/background"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationState/inactive": {
+      "abstract": [
+        {
+          "text": "The Watch app is running in the foreground, but is not yet responding to actions from controls or gestures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inactive"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKApplicationState/inactive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKApplicationStateInactive"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKApplicationState.inactive",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkapplicationstate/inactive"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtension": {
+      "abstract": [
+        {
+          "text": "The centralized point of control and coordination for extension-based apps running in watchOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKExtension",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextension"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtension/applicationState": {
+      "abstract": [
+        {
+          "text": "The runtime state of the Watch app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@WKApplicationState",
+          "text": "WKApplicationState"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtension/applicationState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applicationState"
+        }
+      ],
+      "role": "symbol",
+      "title": "applicationState",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextension/applicationstate"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKHapticType": {
+      "abstract": [
+        {
+          "text": "Constant indicating the style of feedback to deliver using haptics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKHapticType"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKHapticType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKHapticType"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKHapticType",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkhaptictype"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceDevice": {
+      "abstract": [
+        {
+          "text": "An object that provides information about the user’s Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKInterfaceDevice",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacedevice"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceDevice/play(_:)": {
+      "abstract": [
+        {
+          "text": "Gives haptic feedback to the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "play"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@WKHapticType",
+          "text": "WKHapticType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceDevice/play(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playHaptic:"
+        }
+      ],
+      "role": "symbol",
+      "title": "play(_:)",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkinterfacedevice/play(_:)"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Playing-Haptic-Feedback",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKHapticType"
+      ],
+      "title": "Playing Haptic Feedback"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "playHaptic:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "playHaptic:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.watchkit/documentation/WatchKit",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceDevice"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Playing-Haptic-Feedback",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKHapticType"
+              ],
+              "title": "Playing Haptic Feedback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "playHaptic:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKHapticType",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@E@WKHapticType",
+                    "text": "WKHapticType"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "type"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The type of haptic feedback to play. Always use the defined haptic types for their intended purposes. For a list of possible values, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKHapticType",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "type"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1HealthKit~1HKWorkoutSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "HKWorkoutSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceDevice~1play(_:)/title",
+          "value": "playHaptic:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceDevice~1play(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "playHaptic:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtension/title",
+          "value": "WKExtension"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtension/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtension/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKHapticType/title",
+          "value": "WKHapticType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKHapticType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKHapticType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKHapticType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKHapticType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceDevice/title",
+          "value": "WKInterfaceDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKInterfaceDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtension~1applicationState/title",
+          "value": "applicationState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtension~1applicationState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "applicationState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplicationState~1background/title",
+          "value": "WKApplicationStateBackground"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplicationState~1background/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKApplicationStateBackground"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplicationState~1inactive/title",
+          "value": "WKApplicationStateInactive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKApplicationState~1inactive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKApplicationStateInactive"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/watchkit/wkinterfacedevice/play(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/watchkit/wkinterfacedevice/play(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

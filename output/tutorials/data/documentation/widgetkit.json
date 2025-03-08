@@ -1,0 +1,3485 @@
+{
+  "abstract": [
+    {
+      "text": "Extend the reach of your app by creating widgets, watch complications, Live Activities, and controls.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.WidgetKit/documentation/WidgetKit"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "WidgetKit",
+    "modules": [
+      {
+        "name": "WidgetKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "9.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "WidgetKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using WidgetKit, you can make your app’s content available in contexts outside the app and extend its reach by building an ecosystem of glanceable, up-to-date experiences.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "widgetkit-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ecosystem that WidgetKit enables consists of:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Widgets elevate a small amount of timely, personally relevant information from your app, display it where people can see it at a glance, and offer specific app functionality without launching the app. On iPhone and iPad, people put widgets in Today View, on the Home Screen, and on the Lock Screen. On the Mac, people put native Mac app widgets on the desktop and in Notification Center. Starting with iOS 17 and macOS 14, people can also place iPhone widgets on the Mac desktop and in Notification Center. On Apple Watch, widgets appear in the Smart Stack.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Widgets",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "strong"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "On iPhone, people stack widgets and create Smart Stacks. In Smart Stacks, WidgetKit uses on-device intelligence and functionality offered by the ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/AppIntents",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " framework for Smart Rotate. Smart Rotate displays the widget at the top of a stack that fits a person’s current context. On Apple Watch, people place widgets in the Smart Stack and can pin them to a fixed position or let the system sort them to best fit a person’s context.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Smart Stacks",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "strong"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "People place watch complications on the Apple Watch face to view timely, relevant information when they lift their wrist. Additionally, the Smart Stack on Apple Watch offers space for up to three complications.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Watch complications",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "strong"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Live Activities display up-to-date content from your app such as event and task information on the Lock Screen or in the Dynamic Island. Live Activities use ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/ActivityKit",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " for updates and optionally the Apple Push Notification service (APNs) to send ActivityKit push notifications. For more information, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/ActivityKit",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Live Activities",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "strong"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Controls allow people to perform actions from your apps in Control Center, the Lock Screen, and from the Action button. You can create a control that acts as a button or a toggle. For example, a button can execute an action from your app or open your app to a specific view, and a toggle can turn a light on and off or open and close a garage door.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Controls",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "strong"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "visionOS doesn’t load WidgetKit extensions found in compatible iPad and iPhone apps.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Develop-glanceable-features-iteratively",
+          "level": 3,
+          "text": "Develop glanceable features iteratively",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "WidgetKit enables features across iPad, iPhone, the Mac, and Apple Watch, but only in a way that best fits a person’s device and personal needs. For example, WidgetKit powers widgets on all platforms in various sizes. It also powers Live Activities and controls, features that are only available on iPhone and iPad.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Even though not every feature that WidgetKit powers is available on every platform or device, widgets, Live Activities, controls, and watch complications share technology and design similarities. This makes it easy to develop features in tandem and to expand usage across contexts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use an iterative approach and start with support for one feature or select sizes of widgets — for example, start with a small widget as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-a-Widget-Extension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", but plan and design additional sizes and features across platforms from the beginning. Then allow people to view your content in as many contexts as possible. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Developing-a-WidgetKit-strategy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-interactivity-and-personalization",
+          "level": 3,
+          "text": "Understand interactivity and personalization",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The WidgetKit ecosystem enables people to view your app content in new contexts and offers specific interactions with your app when and where they need it:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "People tap a widget, watch complication, or Live Activity to launch the corresponding app or the app’s scene with matching information or functionality. For example, tapping an Emoji Ranger widget or watch complication launches the scene in the app that matches the displayed hero. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Linking-to-specific-app-scenes-from-your-widget-or-Live-Activity",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "People use buttons and toggles in widgets, controls, and Live Activities to interact with your app without launching it. For example, the large widget of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " sample code project includes a button that people tap to give the healing capability of their hero a temporary boost.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to offering relevant information and specific interactivity at a glance, people use widgets, watch complications, Live Activities, and controls to personalize their devices:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "People configure widgets and watch complications to display details specific to their needs. For example, a widget of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " sample code project allows people to configure the hero that appears on the widget.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "People arrange widgets and watch complications in the way that works best for them. When they stack widgets and enable Smart Rotate on iPhone or iPad, WidgetKit automatically rotates the most relevant widget to the top, making sure people see the most important details at the right time. On Apple Watch, the Smart Stack displays default widgets or people place widgets at a fixed position in the Smart Stack.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Update-content-with-a-timeline",
+          "level": 3,
+          "text": "Update content with a timeline",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Widgets and watch complications use a special mechanism to update their content: You create a timeline of data updates and hand it to WidgetKit. WidgetKit then makes sure the widget or complication updates its content in an energy-efficient way. For more information on timelines, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Live Activities don’t use timelines to update their content. Instead, they use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ActivityKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the Apple Push Notification service (APNs) to send ActivityKit push notifications. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ActivityKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Controls don’t use timelines to update their content. Instead, your controls update their content when someone uses them, the app reloads them, or the system receives a remote push notification from the Apple Push Notification service (APNs).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-focused-glanceable-design",
+          "level": 3,
+          "text": "Create a focused, glanceable design",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Widgets, watch complications, Live Activities, and controls are small and require a focused, glanceable design. For design guidance, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/widgets",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/complications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/live-activities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/controls",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "ActivityKit-PageImage-card.png": {
+      "alt": "[A hero image of the ActivityKit framework.]",
+      "identifier": "ActivityKit-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2809f67730f457afbeb77d866e20466e/ActivityKit-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5cbca6adfca53a5472c0c9f4b7395c3e/ActivityKit-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "Backyard-Birds-intro.png": {
+      "alt": null,
+      "identifier": "Backyard-Birds-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/308516255a4b167225a334a5a55a1ff3/Backyard-Birds-intro@2x.png"
+        }
+      ]
+    },
+    "Developing-WidgetKit-Strategy-PageImage-card.png": {
+      "alt": "A collection of widgets in different sizes and orientations.",
+      "identifier": "Developing-WidgetKit-Strategy-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3be6cd9e9843fbca08a8c9ac15fcd915/Developing-WidgetKit-Strategy-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/42a248c60d951cca0502f29a151532a0/Developing-WidgetKit-Strategy-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "creating-controls-to-perform-actions-PageImage-card.png": {
+      "alt": "A stylistic representation of various controls in Control Center.",
+      "identifier": "creating-controls-to-perform-actions-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/89b3200777246c98d3bbd28ebaaafe5b/creating-controls-to-perform-actions-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c63a545b551c9c7a56541562a57c11ab/creating-controls-to-perform-actions-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Extend the reach of your app by creating widgets, watch complications, Live Activities, and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WidgetKit",
+      "type": "topic",
+      "url": "/documentation/widgetkit"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Accessing-Location-Information-in-Widgets": {
+      "abstract": [
+        {
+          "text": "Incorporate location information into your widget presentation to make it",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "more relevant and contextual.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Accessing-Location-Information-in-Widgets",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing location information in widgets",
+      "type": "topic",
+      "url": "/documentation/widgetkit/accessing-location-information-in-widgets"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AccessoryWidgetBackground": {
+      "abstract": [
+        {
+          "text": "An adaptive background view that provides a standard appearance based on the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the widget’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessoryWidgetBackground"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AccessoryWidgetBackground",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccessoryWidgetBackground"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccessoryWidgetBackground",
+      "type": "topic",
+      "url": "/documentation/widgetkit/accessorywidgetbackground"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AccessoryWidgetGroup": {
+      "abstract": [
+        {
+          "text": "A view type that has a label at the top and three content views masked with a circle or rounded square.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessoryWidgetGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AccessoryWidgetGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccessoryWidgetGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccessoryWidgetGroup",
+      "type": "topic",
+      "url": "/documentation/widgetkit/accessorywidgetgroup"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AccessoryWidgetGroupStyle": {
+      "abstract": [
+        {
+          "text": "The style for an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AccessoryWidgetGroup",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessoryWidgetGroupStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AccessoryWidgetGroupStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccessoryWidgetGroupStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccessoryWidgetGroupStyle",
+      "type": "topic",
+      "url": "/documentation/widgetkit/accessorywidgetgroupstyle"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/ActivityConfiguration": {
+      "abstract": [
+        {
+          "text": "An object that describes the content of a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActivityConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/ActivityConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActivityConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ActivityConfiguration",
+      "type": "topic",
+      "url": "/documentation/widgetkit/activityconfiguration"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/ActivityFamily": {
+      "abstract": [
+        {
+          "text": "A family that defines the Live Activity’s size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActivityFamily"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/ActivityFamily",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActivityFamily"
+        }
+      ],
+      "role": "symbol",
+      "title": "ActivityFamily",
+      "type": "topic",
+      "url": "/documentation/widgetkit/activityfamily"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/ActivityPreviewViewKind": {
+      "abstract": [
+        {
+          "text": "Values that represent Live Activity presentations for use in Xcode previews.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActivityPreviewViewKind"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/ActivityPreviewViewKind",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActivityPreviewViewKind"
+        }
+      ],
+      "role": "symbol",
+      "title": "ActivityPreviewViewKind",
+      "type": "topic",
+      "url": "/documentation/widgetkit/activitypreviewviewkind"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Adding-interactivity-to-widgets-and-Live-Activities": {
+      "abstract": [
+        {
+          "text": "Include buttons or toggles in a widget or Live Activity to offer app functionality without launching the app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Adding-interactivity-to-widgets-and-Live-Activities",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding interactivity to widgets and Live Activities",
+      "type": "topic",
+      "url": "/documentation/widgetkit/adding-interactivity-to-widgets-and-live-activities"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Adding-refinements-and-configuration-to-controls": {
+      "abstract": [
+        {
+          "text": "Customize the way controls display across the system and offer people the ability to configure them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Adding-refinements-and-configuration-to-controls",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding refinements and configuration to controls",
+      "type": "topic",
+      "url": "/documentation/widgetkit/adding-refinements-and-configuration-to-controls"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Animating-data-updates-in-widgets-and-live-activities": {
+      "abstract": [
+        {
+          "text": "Use SwiftUI animations to indicate data updates in your widgets and Live Activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Animating-data-updates-in-widgets-and-live-activities",
+      "kind": "article",
+      "role": "article",
+      "title": "Animating data updates in widgets and Live Activities",
+      "type": "topic",
+      "url": "/documentation/widgetkit/animating-data-updates-in-widgets-and-live-activities"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentConfiguration": {
+      "abstract": [
+        {
+          "text": "An object describing the content of a widget that uses a custom intent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to provide user-configurable options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntentConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppIntentConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntentConfiguration",
+      "type": "topic",
+      "url": "/documentation/widgetkit/appintentconfiguration"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentControlConfiguration": {
+      "abstract": [
+        {
+          "text": "The description of a control widget that uses a custom intent to provide",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "user-configurable options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntentControlConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentControlConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppIntentControlConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntentControlConfiguration",
+      "type": "topic",
+      "url": "/documentation/widgetkit/appintentcontrolconfiguration"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentControlValueProvider": {
+      "abstract": [
+        {
+          "text": "A type that uses a custom intent to provide a value to a control template.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntentControlValueProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentControlValueProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppIntentControlValueProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntentControlValueProvider",
+      "type": "topic",
+      "url": "/documentation/widgetkit/appintentcontrolvalueprovider"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentRecommendation": {
+      "abstract": [
+        {
+          "text": "An object that describes a recommended intent configuration for a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "user-customizable widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntentRecommendation"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentRecommendation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppIntentRecommendation"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntentRecommendation",
+      "type": "topic",
+      "url": "/documentation/widgetkit/appintentrecommendation"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider": {
+      "abstract": [
+        {
+          "text": "A type that advises WidgetKit when to update a user-configurable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "widget’s display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntentTimelineProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppIntentTimelineProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppIntentTimelineProvider",
+      "type": "topic",
+      "url": "/documentation/widgetkit/appintenttimelineprovider"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlCenter": {
+      "abstract": [
+        {
+          "text": "An object that contains a list of user-configured controls and is used for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "reloading controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlCenter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ControlCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "ControlCenter",
+      "type": "topic",
+      "url": "/documentation/widgetkit/controlcenter"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlInfo": {
+      "abstract": [
+        {
+          "text": "A structure that contains information about user-configured controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ControlInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "ControlInfo",
+      "type": "topic",
+      "url": "/documentation/widgetkit/controlinfo"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlPushHandler": {
+      "abstract": [
+        {
+          "text": "A type that can receive push information about user-configured controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlPushHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlPushHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ControlPushHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "ControlPushHandler",
+      "type": "topic",
+      "url": "/documentation/widgetkit/controlpushhandler"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlPushInfo": {
+      "abstract": [
+        {
+          "text": "A structure that contains information about the push token of a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "user-configured control.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlPushInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlPushInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ControlPushInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "ControlPushInfo",
+      "type": "topic",
+      "url": "/documentation/widgetkit/controlpushinfo"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlValueProvider": {
+      "abstract": [
+        {
+          "text": "A type that provides a value to a control widget template.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlValueProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlValueProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ControlValueProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "ControlValueProvider",
+      "type": "topic",
+      "url": "/documentation/widgetkit/controlvalueprovider"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlWidgetButton": {
+      "abstract": [
+        {
+          "text": "A control template representing a button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetButton"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlWidgetButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "ControlWidgetButton",
+      "type": "topic",
+      "url": "/documentation/widgetkit/controlwidgetbutton"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlWidgetButtonDefaultActionLabel": {
+      "abstract": [
+        {
+          "text": "A view representing the default action label for a ",
+          "type": "text"
+        },
+        {
+          "code": "ControlWidgetButton",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if none",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "is specified.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetButtonDefaultActionLabel"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlWidgetButtonDefaultActionLabel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetButtonDefaultActionLabel"
+        }
+      ],
+      "role": "symbol",
+      "title": "ControlWidgetButtonDefaultActionLabel",
+      "type": "topic",
+      "url": "/documentation/widgetkit/controlwidgetbuttondefaultactionlabel"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlWidgetToggle": {
+      "abstract": [
+        {
+          "text": "A control template representing a toggle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetToggle"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlWidgetToggle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetToggle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ControlWidgetToggle",
+      "type": "topic",
+      "url": "/documentation/widgetkit/controlwidgettoggle"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlWidgetToggleDefaultLabel": {
+      "abstract": [
+        {
+          "text": "A view representing the default label for a ",
+          "type": "text"
+        },
+        {
+          "code": "ControlWidgetToggle",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if none",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "is specified.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetToggleDefaultLabel"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlWidgetToggleDefaultLabel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetToggleDefaultLabel"
+        }
+      ],
+      "role": "symbol",
+      "title": "ControlWidgetToggleDefaultLabel",
+      "type": "topic",
+      "url": "/documentation/widgetkit/controlwidgettoggledefaultlabel"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Converting-A-ClockKit-App": {
+      "abstract": [
+        {
+          "text": "Leverage WidgetKit’s API to create watchOS complications using SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Converting-A-ClockKit-App",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating ClockKit complications to WidgetKit",
+      "type": "topic",
+      "url": "/documentation/widgetkit/converting-a-clockkit-app"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-a-Widget-Extension": {
+      "abstract": [
+        {
+          "text": "Display your app’s content in a convenient, informative widget on various devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-a-Widget-Extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a widget extension",
+      "type": "topic",
+      "url": "/documentation/widgetkit/creating-a-widget-extension"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-accessory-widgets-and-watch-complications": {
+      "abstract": [
+        {
+          "text": "Support accessory widgets that appear on the Lock Screen and as complications on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-accessory-widgets-and-watch-complications",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating accessory widgets and watch complications",
+      "type": "topic",
+      "url": "/documentation/widgetkit/creating-accessory-widgets-and-watch-complications"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-controls-to-perform-actions-across-the-system": {
+      "abstract": [
+        {
+          "text": "Perform your app’s actions from Control Center, the Lock Screen, and the Action button.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-controls-to-perform-actions-across-the-system",
+      "images": [
+        {
+          "identifier": "creating-controls-to-perform-actions-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Creating controls to perform actions across the system",
+      "type": "topic",
+      "url": "/documentation/widgetkit/creating-controls-to-perform-actions-across-the-system"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-views-for-widgets-Live-Activities-and-watch-complications": {
+      "abstract": [
+        {
+          "text": "Implement glanceable views with WidgetKit and SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-views-for-widgets-Live-Activities-and-watch-complications",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating views for widgets, Live Activities, and watch complications",
+      "type": "topic",
+      "url": "/documentation/widgetkit/creating-views-for-widgets-live-activities-and-watch-complications"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Debugging-Widgets": {
+      "abstract": [
+        {
+          "text": "Set environment variables in Xcode to control your widget’s configuration in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Debugging-Widgets",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging Widgets",
+      "type": "topic",
+      "url": "/documentation/widgetkit/debugging-widgets"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Developing-a-WidgetKit-strategy": {
+      "abstract": [
+        {
+          "text": "Explore features, tasks, related frameworks, and constraints as you make a plan to implement widgets, watch complications, and Live Activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Developing-a-WidgetKit-strategy",
+      "images": [
+        {
+          "identifier": "Developing-WidgetKit-Strategy-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Developing a WidgetKit strategy",
+      "type": "topic",
+      "url": "/documentation/widgetkit/developing-a-widgetkit-strategy"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/DynamicIsland": {
+      "abstract": [
+        {
+          "text": "The layout and configuration for a Live Activity that appears in the Dynamic Island.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DynamicIsland"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/DynamicIsland",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DynamicIsland"
+        }
+      ],
+      "role": "symbol",
+      "title": "DynamicIsland",
+      "type": "topic",
+      "url": "/documentation/widgetkit/dynamicisland"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentConfiguration": {
+      "abstract": [
+        {
+          "text": "An object describing the content of a widget that uses a custom intent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "definition to provide user-configurable options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntentConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IntentConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "IntentConfiguration",
+      "type": "topic",
+      "url": "/documentation/widgetkit/intentconfiguration"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentRecommendation": {
+      "abstract": [
+        {
+          "text": "An object that describes a recommended intent configuration for a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "user-customizable widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntentRecommendation"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentRecommendation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IntentRecommendation"
+        }
+      ],
+      "role": "symbol",
+      "title": "IntentRecommendation",
+      "type": "topic",
+      "url": "/documentation/widgetkit/intentrecommendation"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentTimelineProvider": {
+      "abstract": [
+        {
+          "text": "A type that advises WidgetKit when to update a user-configurable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "widget’s display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntentTimelineProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentTimelineProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IntentTimelineProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "IntentTimelineProvider",
+      "type": "topic",
+      "url": "/documentation/widgetkit/intenttimelineprovider"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date": {
+      "abstract": [
+        {
+          "text": "Plan your widget’s timeline to show timely, relevant information using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "dynamic views, and update the timeline when things change.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date",
+      "kind": "article",
+      "role": "article",
+      "title": "Keeping a widget up to date",
+      "type": "topic",
+      "url": "/documentation/widgetkit/keeping-a-widget-up-to-date"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Linking-to-specific-app-scenes-from-your-widget-or-Live-Activity": {
+      "abstract": [
+        {
+          "text": "Add deep links to your widgets and Live Activities that enable people to open a specific scene in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Linking-to-specific-app-scenes-from-your-widget-or-Live-Activity",
+      "kind": "article",
+      "role": "article",
+      "title": "Linking to specific app scenes from your widget or Live Activity",
+      "type": "topic",
+      "url": "/documentation/widgetkit/linking-to-specific-app-scenes-from-your-widget-or-live-activity"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-a-Configurable-Widget": {
+      "abstract": [
+        {
+          "text": "Give people the option to customize their widgets by adding a custom app intent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to your project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-a-Configurable-Widget",
+      "kind": "article",
+      "role": "article",
+      "title": "Making a configurable widget",
+      "type": "topic",
+      "url": "/documentation/widgetkit/making-a-configurable-widget"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-network-requests-in-a-widget-extension": {
+      "abstract": [
+        {
+          "text": "Update your widget with new information you fetch with a network request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-network-requests-in-a-widget-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Making network requests in a widget extension",
+      "type": "topic",
+      "url": "/documentation/widgetkit/making-network-requests-in-a-widget-extension"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Migrating-from-SiriKit-Intents-to-App-Intents": {
+      "abstract": [
+        {
+          "text": "Configure your widgets for backward compatibility.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Migrating-from-SiriKit-Intents-to-App-Intents",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating widgets from SiriKit Intents to App Intents",
+      "type": "topic",
+      "url": "/documentation/widgetkit/migrating-from-sirikit-intents-to-app-intents"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/NSUserActivityTypeLiveActivity": {
+      "abstract": [
+        {
+          "text": "A string that the system passes to the app on launch from a Live Activity that doesn’t provide",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityTypeLiveActivity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/NSUserActivityTypeLiveActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityTypeLiveActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserActivityTypeLiveActivity",
+      "type": "topic",
+      "url": "/documentation/widgetkit/nsuseractivitytypeliveactivity"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Preparing-widgets-for-additional-contexts-and-appearances": {
+      "abstract": [
+        {
+          "text": "Create widgets that support additional platforms and adapt to their context.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Preparing-widgets-for-additional-contexts-and-appearances",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing widgets for additional platforms, contexts, and appearances",
+      "type": "topic",
+      "url": "/documentation/widgetkit/preparing-widgets-for-additional-contexts-and-appearances"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview-macros": {
+      "abstract": [
+        {
+          "text": "Use Swift macros to create widget previews in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview-macros",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preview macros",
+      "type": "topic",
+      "url": "/documentation/widgetkit/preview-macros"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Previewing-widgets-and-live-activities-in-xcode": {
+      "abstract": [
+        {
+          "text": "Use Xcode previews to iteratively develop, fine-tune, and troubleshoot widgets and Live Activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Previewing-widgets-and-live-activities-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Previewing widgets and Live Activities in Xcode",
+      "type": "topic",
+      "url": "/documentation/widgetkit/previewing-widgets-and-live-activities-in-xcode"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/StaticConfiguration": {
+      "abstract": [
+        {
+          "text": "An object describing the content of a widget that has no user-configurable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StaticConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/StaticConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StaticConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "StaticConfiguration",
+      "type": "topic",
+      "url": "/documentation/widgetkit/staticconfiguration"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/StaticControlConfiguration": {
+      "abstract": [
+        {
+          "text": "The description of a control widget that has no user-configurable options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StaticControlConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/StaticControlConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StaticControlConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "StaticControlConfiguration",
+      "type": "topic",
+      "url": "/documentation/widgetkit/staticcontrolconfiguration"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Supporting-additional-widget-sizes": {
+      "abstract": [
+        {
+          "text": "Offer widgets in additional contexts by adding support for various widget sizes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Supporting-additional-widget-sizes",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting additional widget sizes",
+      "type": "topic",
+      "url": "/documentation/widgetkit/supporting-additional-widget-sizes"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/SwiftUI-Views": {
+      "abstract": [
+        {
+          "text": "Present your app’s content in widgets with SwiftUI views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/SwiftUI-Views",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SwiftUI views for widgets",
+      "type": "topic",
+      "url": "/documentation/widgetkit/swiftui-views"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Timeline": {
+      "abstract": [
+        {
+          "text": "An object that specifies a date for WidgetKit to update a widget’s view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Timeline"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Timeline",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Timeline"
+        }
+      ],
+      "role": "symbol",
+      "title": "Timeline",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timeline"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntry": {
+      "abstract": [
+        {
+          "text": "A type that specifies the date to display a widget, and, optionally,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "indicates the current relevance of the widget’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimelineEntry"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimelineEntry"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimelineEntry",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineentry"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntryRelevance": {
+      "abstract": [
+        {
+          "text": "An object that describes the relative importance of a timeline entry",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "compared to other entries in the current and past timelines.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimelineEntryRelevance"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntryRelevance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimelineEntryRelevance"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimelineEntryRelevance",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineentryrelevance"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider": {
+      "abstract": [
+        {
+          "text": "A type that advises WidgetKit when to update a widget’s display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimelineProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimelineProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimelineProvider",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineprovider"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProviderContext": {
+      "abstract": [
+        {
+          "text": "An object that contains details about how a widget is rendered, including",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "its size and whether it appears in the widget gallery.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimelineProviderContext"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProviderContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimelineProviderContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimelineProviderContext",
+      "type": "topic",
+      "url": "/documentation/widgetkit/timelineprovidercontext"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Updating-controls-locally-and-remotely": {
+      "abstract": [
+        {
+          "text": "Update and reload controls from your app or using push notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Updating-controls-locally-and-remotely",
+      "kind": "article",
+      "role": "article",
+      "title": "Updating controls locally and remotely",
+      "type": "topic",
+      "url": "/documentation/widgetkit/updating-controls-locally-and-remotely"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WGWidgetUserInfoKeyActivityID": {
+      "abstract": [
+        {
+          "text": "A key you use to access the activity ID if the widget represents a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "WGWidgetUserInfoKeyActivityID"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WGWidgetUserInfoKeyActivityID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WGWidgetUserInfoKeyActivityID",
+      "type": "topic",
+      "url": "/documentation/widgetkit/wgwidgetuserinfokeyactivityid"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WGWidgetUserInfoKeyFamily": {
+      "abstract": [
+        {
+          "text": "A key you use to access the widget’s family.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "WGWidgetUserInfoKeyFamily"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WGWidgetUserInfoKeyFamily",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WGWidgetUserInfoKeyFamily",
+      "type": "topic",
+      "url": "/documentation/widgetkit/wgwidgetuserinfokeyfamily"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WGWidgetUserInfoKeyKind": {
+      "abstract": [
+        {
+          "text": "A key you use to access the widget’s kind. The value matches the ",
+          "type": "text"
+        },
+        {
+          "code": "kind",
+          "type": "codeVoice"
+        },
+        {
+          "text": " property specified in the widget’s configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "WGWidgetUserInfoKeyKind"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WGWidgetUserInfoKeyKind",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WGWidgetUserInfoKeyKind",
+      "type": "topic",
+      "url": "/documentation/widgetkit/wgwidgetuserinfokeykind"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Widget-Suggestions-In-Smart-Stacks": {
+      "abstract": [
+        {
+          "text": "Donate intents and indicate relevance to automatically show your widget in Smart Stacks when it has useful information to display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Widget-Suggestions-In-Smart-Stacks",
+      "kind": "article",
+      "role": "article",
+      "title": "Increasing the visibility of widgets in Smart Stacks",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widget-suggestions-in-smart-stacks"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetAccentedRenderingMode": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the rendering mode for an ",
+          "type": "text"
+        },
+        {
+          "code": "Image",
+          "type": "codeVoice"
+        },
+        {
+          "text": " in when displayed in a widget",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/accented",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetAccentedRenderingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetAccentedRenderingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetAccentedRenderingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetAccentedRenderingMode",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetaccentedrenderingmode"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter": {
+      "abstract": [
+        {
+          "text": "An object that contains a list of user-configured widgets and is used for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "reloading widget timelines.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetCenter",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetcenter"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily": {
+      "abstract": [
+        {
+          "text": "Values that define the widget’s size and shape.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetFamily"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetFamily"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetFamily",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetInfo": {
+      "abstract": [
+        {
+          "text": "A structure that contains information about user-configured widgets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetInfo",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetinfo"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetLocation": {
+      "abstract": [
+        {
+          "text": "Values that indicate different widget locations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetLocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetLocation",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetlocation"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetPreviewContext": {
+      "abstract": [
+        {
+          "text": "A specification for the context of a widget preview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetPreviewContext"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetPreviewContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetPreviewContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetPreviewContext",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetpreviewcontext"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRelevance": {
+      "abstract": [
+        {
+          "text": "A type collecting the relevances for a widget kind.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetRelevance"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRelevance",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetRelevance"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetRelevance",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetrelevance"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRelevanceAttribute": {
+      "abstract": [
+        {
+          "text": "A type describing when a specific widget could be relevant.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetRelevanceAttribute"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRelevanceAttribute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetRelevanceAttribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetRelevanceAttribute",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetrelevanceattribute"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRelevanceGroup": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetRelevanceGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRelevanceGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetRelevanceGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetRelevanceGroup",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetrelevancegroup"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the rendering mode for a widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetRenderingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WidgetRenderingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "WidgetRenderingMode",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetrenderingmode"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/accented": {
+      "abstract": [
+        {
+          "text": "The system divides the widget’s view hierarchy into an accent group and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a default group, applying a different color to each group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accented"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit0A13RenderingModeV",
+          "text": "WidgetRenderingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode/accented",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accented",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetrenderingmode/accented"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations": {
+      "abstract": [
+        {
+          "text": "Offer Live Activities, controls, animate data updates, and add interactivity to widgets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Emoji Rangers: Supporting Live Activities, interactivity, and animations",
+      "type": "topic",
+      "url": "/documentation/widgetkit/emoji-rangers-supporting-live-activities-interactivity-and-animations"
+    },
+    "doc://com.apple.documentation/documentation/ActivityKit": {
+      "abstract": [
+        {
+          "text": "Share live updates from your app as Live Activities in the Dynamic Island, on the Lock Screen, and on the Smart Stack in watchOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ActivityKit",
+      "images": [
+        {
+          "identifier": "ActivityKit-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ActivityKit",
+      "type": "topic",
+      "url": "/documentation/ActivityKit"
+    },
+    "doc://com.apple.documentation/documentation/ActivityKit/adding-accessible-descriptions-to-widgets-and-live-activities": {
+      "abstract": [
+        {
+          "text": "Describe the interface elements of your widgets and Live Activities to help people understand what they represent.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ActivityKit/adding-accessible-descriptions-to-widgets-and-live-activities",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding accessible descriptions to widgets and Live Activities",
+      "type": "topic",
+      "url": "/documentation/ActivityKit/adding-accessible-descriptions-to-widgets-and-live-activities"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents": {
+      "abstract": [
+        {
+          "text": "Make your app’s content and actions discoverable with system experiences like Spotlight, widgets, and enhanced action capabilities of Siri, powered by Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Intents",
+      "type": "topic",
+      "url": "/documentation/AppIntents"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Backyard-birds-sample": {
+      "abstract": [
+        {
+          "text": "Create an app with persistent data, interactive widgets, and an all new in-app purchase experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Backyard-birds-sample",
+      "images": [
+        {
+          "identifier": "Backyard-Birds-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Backyard Birds: Building an app with SwiftData and widgets",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Backyard-birds-sample"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Widget": {
+      "abstract": [
+        {
+          "text": "The configuration and content of a widget to display on the Home screen or in Notification Center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Widget"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Widget",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Widget",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Widget"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/WidgetBundle": {
+      "abstract": [
+        {
+          "text": "A container used to expose multiple widgets from a single widget extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WidgetBundle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/WidgetBundle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetBundle",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/WidgetBundle"
+    },
+    "doc://com.apple.documentation/documentation/Updates/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes in WidgetKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Updates/WidgetKit",
+      "kind": "article",
+      "role": "article",
+      "title": "WidgetKit updates",
+      "type": "topic",
+      "url": "/documentation/Updates/WidgetKit"
+    },
+    "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui": {
+      "abstract": [
+        {
+          "text": "Create a shared codebase to build a multiplatform app that offers widgets and an App Clip.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Fruta: Building a Feature-Rich App with SwiftUI",
+      "type": "topic",
+      "url": "/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/widgetkit/building_widgets_using_widgetkit_and_swiftui": {
+      "abstract": [
+        {
+          "text": "Create widgets to show your app’s content on the Home screen, with custom intents for user-customizable settings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/widgetkit/building_widgets_using_widgetkit_and_swiftui",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building Widgets Using WidgetKit and SwiftUI",
+      "type": "topic",
+      "url": "/documentation/widgetkit/building_widgets_using_widgetkit_and_swiftui"
+    },
+    "doc://com.apple.documentation/tutorials/SwiftUI": {
+      "abstract": [
+        {
+          "text": "SwiftUI is a modern way to declare user interfaces for any Apple platform. Create beautiful, dynamic apps faster than ever before.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/tutorials/SwiftUI",
+      "kind": "overview",
+      "role": "overview",
+      "title": "Introducing SwiftUI",
+      "type": "topic",
+      "url": "/tutorials/SwiftUI"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/complications": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/complications",
+      "title": "Human Interface Guidelines > Complications",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines > Complications",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/complications"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/live-activities": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/live-activities",
+      "title": "Human Interface Guidelines > Live Activities",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines > Live Activities",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/live-activities"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/widgets": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/widgets",
+      "title": "Human Interface Guidelines > Widgets",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines > Widgets",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/widgets"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/controls": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/controls",
+      "title": "Human Interface Guidelines > Controls",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines > Controls",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/controls"
+    },
+    "widgetkit-hero": {
+      "alt": "A conceptual image that shows a small widget on iPhone, a rectangular widget on Apple Watch, and a small widget on the Mac desktop.",
+      "identifier": "widgetkit-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/273bac77dde0ed1da3f887a44dd0a092/widgetkit-hero@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Developing-a-WidgetKit-strategy",
+        "doc://com.apple.documentation/documentation/Updates/WidgetKit"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Widget-creation",
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-a-Widget-Extension",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Supporting-additional-widget-sizes",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-accessory-widgets-and-watch-complications",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Converting-A-ClockKit-App",
+        "doc://com.apple.documentation/documentation/widgetkit/building_widgets_using_widgetkit_and_swiftui",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+        "doc://com.apple.documentation/documentation/SwiftUI/Backyard-birds-sample",
+        "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui",
+        "doc://com.apple.documentation/documentation/SwiftUI/Widget",
+        "doc://com.apple.documentation/documentation/SwiftUI/WidgetBundle",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/StaticConfiguration",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRenderingMode",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetAccentedRenderingMode"
+      ],
+      "title": "Widget creation"
+    },
+    {
+      "anchor": "Presentation",
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-views-for-widgets-Live-Activities-and-watch-complications",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Preparing-widgets-for-additional-contexts-and-appearances",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/SwiftUI-Views",
+        "doc://com.apple.documentation/tutorials/SwiftUI",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/AccessoryWidgetBackground",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetLocation"
+      ],
+      "title": "Presentation"
+    },
+    {
+      "anchor": "Interactivity",
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Adding-interactivity-to-widgets-and-Live-Activities",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Animating-data-updates-in-widgets-and-live-activities",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Linking-to-specific-app-scenes-from-your-widget-or-Live-Activity"
+      ],
+      "title": "Interactivity"
+    },
+    {
+      "anchor": "Configurable-widgets",
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-a-Configurable-Widget",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Migrating-from-SiriKit-Intents-to-App-Intents",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentConfiguration",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetInfo",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentRecommendation",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentConfiguration",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentRecommendation"
+      ],
+      "title": "Configurable widgets"
+    },
+    {
+      "anchor": "Timeline-management",
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProvider",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/IntentTimelineProvider",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineProviderContext",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntry",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Timeline",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetCenter",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentTimelineProvider"
+      ],
+      "title": "Timeline management"
+    },
+    {
+      "anchor": "Accessibility",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/ActivityKit/adding-accessible-descriptions-to-widgets-and-live-activities"
+      ],
+      "title": "Accessibility"
+    },
+    {
+      "anchor": "Location-services-in-widgets",
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Accessing-Location-Information-in-Widgets"
+      ],
+      "title": "Location services in widgets"
+    },
+    {
+      "anchor": "Networking",
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-network-requests-in-a-widget-extension"
+      ],
+      "title": "Networking"
+    },
+    {
+      "anchor": "Smart-Stacks",
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Widget-Suggestions-In-Smart-Stacks",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/TimelineEntryRelevance"
+      ],
+      "title": "Smart Stacks"
+    },
+    {
+      "anchor": "Widget-preview-and-debugging",
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Previewing-widgets-and-live-activities-in-xcode",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Debugging-Widgets",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetPreviewContext",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview-macros"
+      ],
+      "title": "Widget preview and debugging"
+    },
+    {
+      "anchor": "Live-Activities",
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/ActivityConfiguration",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/DynamicIsland",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/NSUserActivityTypeLiveActivity",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/ActivityPreviewViewKind",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/ActivityFamily"
+      ],
+      "title": "Live Activities"
+    },
+    {
+      "anchor": "Controls",
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-controls-to-perform-actions-across-the-system",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Adding-refinements-and-configuration-to-controls",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlWidgetToggle",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlWidgetButton",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlCenter"
+      ],
+      "title": "Controls"
+    },
+    {
+      "anchor": "Control-values-and-previews",
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlValueProvider",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentControlValueProvider"
+      ],
+      "title": "Control values and previews"
+    },
+    {
+      "anchor": "Control-configuration",
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/StaticControlConfiguration",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/AppIntentControlConfiguration",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlInfo"
+      ],
+      "title": "Control configuration"
+    },
+    {
+      "anchor": "Control-updates",
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Updating-controls-locally-and-remotely",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlPushHandler",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlPushInfo"
+      ],
+      "title": "Control updates"
+    },
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/AccessoryWidgetGroup",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/AccessoryWidgetGroupStyle",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlWidgetButtonDefaultActionLabel",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlWidgetToggleDefaultLabel",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRelevance",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRelevanceAttribute",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetRelevanceGroup"
+      ],
+      "title": "Structures"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Developing-a-WidgetKit-strategy",
+                "doc://com.apple.documentation/documentation/Updates/WidgetKit"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Widget-creation",
+              "identifiers": [
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-a-Widget-Extension",
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Supporting-additional-widget-sizes",
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-accessory-widgets-and-watch-complications",
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Converting-A-ClockKit-App",
+                "doc://com.apple.documentation/documentation/widgetkit/building_widgets_using_widgetkit_and_swiftui",
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+                "doc://com.apple.documentation/documentation/SwiftUI/Backyard-birds-sample",
+                "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui"
+              ],
+              "title": "Widget creation"
+            },
+            {
+              "anchor": "Presentation",
+              "identifiers": [
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-views-for-widgets-Live-Activities-and-watch-complications",
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Preparing-widgets-for-additional-contexts-and-appearances",
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/SwiftUI-Views",
+                "doc://com.apple.documentation/tutorials/SwiftUI"
+              ],
+              "title": "Presentation"
+            },
+            {
+              "anchor": "Interactivity",
+              "identifiers": [
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Adding-interactivity-to-widgets-and-Live-Activities",
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Animating-data-updates-in-widgets-and-live-activities",
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Linking-to-specific-app-scenes-from-your-widget-or-Live-Activity"
+              ],
+              "title": "Interactivity"
+            },
+            {
+              "anchor": "Configurable-widgets",
+              "identifiers": [
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-a-Configurable-Widget",
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Migrating-from-SiriKit-Intents-to-App-Intents"
+              ],
+              "title": "Configurable widgets"
+            },
+            {
+              "anchor": "Timeline-management",
+              "identifiers": [
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date"
+              ],
+              "title": "Timeline management"
+            },
+            {
+              "anchor": "Accessibility",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/ActivityKit/adding-accessible-descriptions-to-widgets-and-live-activities"
+              ],
+              "title": "Accessibility"
+            },
+            {
+              "anchor": "Location-services-in-widgets",
+              "identifiers": [
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Accessing-Location-Information-in-Widgets"
+              ],
+              "title": "Location services in widgets"
+            },
+            {
+              "anchor": "Networking",
+              "identifiers": [
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-network-requests-in-a-widget-extension"
+              ],
+              "title": "Networking"
+            },
+            {
+              "anchor": "Smart-Stacks",
+              "identifiers": [
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Widget-Suggestions-In-Smart-Stacks"
+              ],
+              "title": "Smart Stacks"
+            },
+            {
+              "anchor": "Widget-preview-and-debugging",
+              "identifiers": [
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Previewing-widgets-and-live-activities-in-xcode",
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Debugging-Widgets",
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Preview-macros"
+              ],
+              "title": "Widget preview and debugging"
+            },
+            {
+              "anchor": "Live-Activities",
+              "identifiers": [
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/NSUserActivityTypeLiveActivity"
+              ],
+              "title": "Live Activities"
+            },
+            {
+              "anchor": "Controls",
+              "identifiers": [
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-controls-to-perform-actions-across-the-system",
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Adding-refinements-and-configuration-to-controls"
+              ],
+              "title": "Controls"
+            },
+            {
+              "anchor": "Control-updates",
+              "identifiers": [
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Updating-controls-locally-and-remotely"
+              ],
+              "title": "Control updates"
+            },
+            {
+              "anchor": "Variables",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/WGWidgetUserInfoKeyActivityID",
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/WGWidgetUserInfoKeyFamily",
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/WGWidgetUserInfoKeyKind"
+              ],
+              "title": "Variables"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.WidgetKit~1documentation~1WidgetKit~1NSUserActivityTypeLiveActivity/title",
+          "value": "NSUserActivityTypeLiveActivity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.WidgetKit~1documentation~1WidgetKit~1NSUserActivityTypeLiveActivity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserActivityTypeLiveActivity"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/widgetkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/widgetkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

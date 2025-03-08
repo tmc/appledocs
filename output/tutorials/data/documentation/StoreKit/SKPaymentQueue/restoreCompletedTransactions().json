@@ -1,0 +1,1359 @@
+{
+  "abstract": [
+    {
+      "text": "Asks the payment queue to restore previously completed purchases.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use AppStore.sync()",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/restoreCompletedTransactions()"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SKPaymentQueue(im)restoreCompletedTransactions",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "restoreCompletedTransactions"
+      },
+      {
+        "kind": "text",
+        "text": "()"
+      }
+    ],
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "restoreCompletedTransactions"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "18.0",
+        "introducedAt": "3.0",
+        "message": "Use AppStore.sync()",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "18.0",
+        "introducedAt": "3.0",
+        "message": "Use AppStore.sync()",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "18.0",
+        "introducedAt": "13.1",
+        "message": "Use AppStore.sync()",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "15.0",
+        "introducedAt": "10.7",
+        "message": "Use AppStore.sync()",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "18.0",
+        "introducedAt": "9.0",
+        "message": "Use AppStore.sync()",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "2.0",
+        "introducedAt": "1.0",
+        "message": "Use AppStore.sync()",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "11.0",
+        "introducedAt": "6.2",
+        "message": "Use AppStore.sync()",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "restoreCompletedTransactions()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "restoreCompletedTransactions"
+            },
+            {
+              "kind": "text",
+              "text": "()"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.storekit/documentation/StoreKit/choosing-a-receipt-validation-technique",
+        "doc://com.apple.storekit/documentation/StoreKit/validating-receipts-with-the-app-store",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-in-xcode",
+        "doc://com.apple.storekit/documentation/StoreKit/restoring-purchased-products"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this method to restore finished transactions—that is, transactions for which you have already called ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/finishTransaction(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You call this method in one of the following situations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To install purchases on additional devices",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To restore purchases for an application that the user deleted and reinstalled",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a new product to be sold in your store, you choose whether that product can be restored or not. See the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/StoreKitGuide/Introduction.html#//apple_ref/doc/uid/TP40008267",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The payment queue delivers a new transaction for each previously completed transaction that can be restored. Each transaction includes a copy of the original transaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the transactions are delivered, the payment queue calls the observer’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver/paymentQueueRestoreCompletedTransactionsFinished(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. If an error occurred while restoring transactions, the observer will be notified through its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver/paymentQueue(_:restoreCompletedTransactionsFailedWithError:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method has no effect in the following situations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "All transactions are unfinished.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user did not purchase anything that is restorable.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You tried to restore items that are not restorable, such as a non-renewing subscription or a consumable product.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app’s build version does not meet the guidelines for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CFBundleVersion",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you are using the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " API and managing transactions using the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " API, use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/currentEntitlements",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to determine which in-app purchases the customer is currently entitled to. The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/restoreCompletedTransactions()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function doesn’t affect transactions in the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " API. In rare cases when a user suspects the app isn’t showing all the transactions, call ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppStore/sync()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in response to an explicit user action, like tapping a button.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/AppStore/sync()": {
+      "abstract": [
+        {
+          "text": "Synchronizes your app’s transaction information and subscription status with information from the App Store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sync"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppStore/sync()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sync()",
+      "type": "topic",
+      "url": "/documentation/storekit/appstore/sync()"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue": {
+      "abstract": [
+        {
+          "text": "A queue of payment transactions for the App Store to process.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPaymentQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPaymentQueue"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPaymentQueue",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentqueue"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/finishTransaction(_:)": {
+      "abstract": [
+        {
+          "text": "Notifies the App Store that the app finished processing the transaction.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "finishTransaction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKPaymentTransaction",
+          "text": "SKPaymentTransaction"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/finishTransaction(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "finishTransaction:"
+        }
+      ],
+      "role": "symbol",
+      "title": "finishTransaction(_:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentqueue/finishtransaction(_:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/restoreCompletedTransactions()": {
+      "abstract": [
+        {
+          "text": "Asks the payment queue to restore previously completed purchases.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restoreCompletedTransactions"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/restoreCompletedTransactions()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "restoreCompletedTransactions"
+        }
+      ],
+      "role": "symbol",
+      "title": "restoreCompletedTransactions()",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentqueue/restorecompletedtransactions()"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/restoreCompletedTransactions(withApplicationUsername:)": {
+      "abstract": [
+        {
+          "text": "Asks the payment queue to restore previously completed purchases, providing an opaque identifier for the user’s account.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restoreCompletedTransactions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withApplicationUsername"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/restoreCompletedTransactions(withApplicationUsername:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "restoreCompletedTransactionsWithApplicationUsername:"
+        }
+      ],
+      "role": "symbol",
+      "title": "restoreCompletedTransactions(withApplicationUsername:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentqueue/restorecompletedtransactions(withapplicationusername:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver/paymentQueue(_:restoreCompletedTransactionsFailedWithError:)": {
+      "abstract": [
+        {
+          "text": "Tells the observer that an error occurred while restoring transactions.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentQueue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKPaymentQueue",
+          "text": "SKPaymentQueue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "restoreCompletedTransactionsFailedWithError"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver/paymentQueue(_:restoreCompletedTransactionsFailedWithError:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentQueue:restoreCompletedTransactionsFailedWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentQueue(_:restoreCompletedTransactionsFailedWithError:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymenttransactionobserver/paymentqueue(_:restorecompletedtransactionsfailedwitherror:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver/paymentQueueRestoreCompletedTransactionsFinished(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the observer that the payment queue has finished sending restored transactions.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentQueueRestoreCompletedTransactionsFinished"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKPaymentQueue",
+          "text": "SKPaymentQueue"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver/paymentQueueRestoreCompletedTransactionsFinished(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentQueueRestoreCompletedTransactionsFinished:"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentQueueRestoreCompletedTransactionsFinished(_:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymenttransactionobserver/paymentqueuerestorecompletedtransactionsfinished(_:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction": {
+      "abstract": [
+        {
+          "text": "Information that represents the customer’s purchase of a product in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transaction"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Transaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "Transaction",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Transaction/currentEntitlements": {
+      "abstract": [
+        {
+          "text": "A sequence of the latest transactions that entitle a customer to In-App Purchases and subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentEntitlements"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV12TransactionsV",
+          "text": "Transactions"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Transaction/currentEntitlements",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentEntitlements",
+      "type": "topic",
+      "url": "/documentation/storekit/transaction/currententitlements"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/choosing-a-receipt-validation-technique": {
+      "abstract": [
+        {
+          "text": "Select the type of receipt validation, on the device or on your server, that works for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/choosing-a-receipt-validation-technique",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing a receipt validation technique",
+      "type": "topic",
+      "url": "/documentation/storekit/choosing-a-receipt-validation-technique"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/restoring-purchased-products": {
+      "abstract": [
+        {
+          "text": "Give customers functionality that restores their purchases in your app to maintain access to purchased content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/restoring-purchased-products",
+      "kind": "article",
+      "role": "article",
+      "title": "Restoring purchased products",
+      "type": "topic",
+      "url": "/documentation/storekit/restoring-purchased-products"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-in-xcode": {
+      "abstract": [
+        {
+          "text": "Use locally configured product data to test and debug your In-App Purchases implementation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing In-App Purchases in Xcode",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-in-app-purchases-in-xcode"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/validating-receipts-with-the-app-store": {
+      "abstract": [
+        {
+          "text": "Verify transactions with the App Store on a secure server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/validating-receipts-with-the-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "Validating receipts with the App Store",
+      "type": "topic",
+      "url": "/documentation/storekit/validating-receipts-with-the-app-store"
+    },
+    "https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/StoreKitGuide/Introduction.html#//apple_ref/doc/uid/TP40008267": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/StoreKitGuide/Introduction.html#//apple_ref/doc/uid/TP40008267",
+      "title": "In-App Purchase Programming Guide",
+      "titleInlineContent": [
+        {
+          "text": "In-App Purchase Programming Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/StoreKitGuide/Introduction.html#//apple_ref/doc/uid/TP40008267"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Restoring-Purchases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/restoreCompletedTransactions(withApplicationUsername:)"
+      ],
+      "title": "Restoring Purchases"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "18.0",
+              "introducedAt": "3.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "18.0",
+              "introducedAt": "3.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "18.0",
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "15.0",
+              "introducedAt": "10.7",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "18.0",
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "2.0",
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "11.0",
+              "introducedAt": "6.2",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "restoreCompletedTransactions"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "restoreCompletedTransactions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.storekit/documentation/StoreKit",
+                "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Restoring-Purchases",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/restoreCompletedTransactions(withApplicationUsername:)"
+              ],
+              "title": "Restoring Purchases"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "restoreCompletedTransactions"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use AppStore.sync()",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionObserver~1paymentQueueRestoreCompletedTransactionsFinished(_:)/title",
+          "value": "paymentQueueRestoreCompletedTransactionsFinished:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionObserver~1paymentQueueRestoreCompletedTransactionsFinished(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentQueueRestoreCompletedTransactionsFinished:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1restoreCompletedTransactions(withApplicationUsername:)/title",
+          "value": "restoreCompletedTransactionsWithApplicationUsername:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1restoreCompletedTransactions(withApplicationUsername:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "restoreCompletedTransactionsWithApplicationUsername:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1finishTransaction(_:)/title",
+          "value": "finishTransaction:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1finishTransaction(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "finishTransaction:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionObserver~1paymentQueue(_:restoreCompletedTransactionsFailedWithError:)/title",
+          "value": "paymentQueue:restoreCompletedTransactionsFailedWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionObserver~1paymentQueue(_:restoreCompletedTransactionsFailedWithError:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentQueue:restoreCompletedTransactionsFailedWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue/title",
+          "value": "SKPaymentQueue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1restoreCompletedTransactions()/title",
+          "value": "restoreCompletedTransactions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1restoreCompletedTransactions()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "restoreCompletedTransactions"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/skpaymentqueue/restorecompletedtransactions()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/skpaymentqueue/restorecompletedtransactions()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

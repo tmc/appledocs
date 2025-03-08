@@ -1,0 +1,913 @@
+{
+  "abstract": [
+    {
+      "text": "Authorize your app to provide parental controls on a device.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.FamilyControls/documentation/FamilyControls"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "FamilyControls",
+    "modules": [
+      {
+        "name": "FamilyControls"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "FamilyControls"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To authorize your parental controls app,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use a shared ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can authorize parental controls on any device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "family-controls-overview",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You must add the Family Controls capability to your app before you call",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/requestAuthorization(for:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/revokeAuthorization(completionHandler:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " methods.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This capability adds the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.family-controls",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "entitlement to your app. Before submitting your app to the App Store,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "you must ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/contact/request/family-controls-distribution",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "to use the entitlement. For more information, see",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Authorizing parental controls for a child requires approval from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a parent or guardian in the same Family Sharing group.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system displays an authentication sheet on the child’s device, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the parent or guardian approves or denies the authorization request.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system sends the result to your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "AuthorizationCenter",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Authorizing parental controls for an individual requires approval from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the owner of the device.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system displays a biometric authentication alert on the individual’s device",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "after the individual approves or denies the authorization request.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system sends the result to your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "AuthorizationCenter",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Family Controls framework prevents child users, authorized by a parent or guardian,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from performing actions that might circumvent the parental controls settings.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, authorizing an app prevents the child user from deleting the app that provides parental controls.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In addition, while a device has at least one app authorized for parental controls by a parent or guardian,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the user can’t sign out of iCloud.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a compatible iPad or iPhone app running in visionOS, authorization attempts",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "always fail.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.FamilyControls/documentation/FamilyControls": {
+      "abstract": [
+        {
+          "text": "Authorize your app to provide parental controls on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "FamilyControls",
+      "type": "topic",
+      "url": "/documentation/familycontrols"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter": {
+      "abstract": [
+        {
+          "text": "The center for requesting authorization to provide parental controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationCenter",
+      "type": "topic",
+      "url": "/documentation/familycontrols/authorizationcenter"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/requestAuthorization(for:)": {
+      "abstract": [
+        {
+          "text": "Requests authorization to provide parental controls for a child or individual.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@FamilyControls@E@FamilyControlsMember",
+          "text": "FamilyControlsMember"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/requestAuthorization(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestAuthorization(for:)",
+      "type": "topic",
+      "url": "/documentation/familycontrols/authorizationcenter/requestauthorization(for:)"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/revokeAuthorization(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Revokes authorization to provide parental controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "revokeAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/revokeAuthorization(completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "revokeAuthorization(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/familycontrols/authorizationcenter/revokeauthorization(completionhandler:)"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationStatus": {
+      "abstract": [
+        {
+          "text": "The status of your app’s authorization to provide parental controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationStatus",
+      "type": "topic",
+      "url": "/documentation/familycontrols/authorizationstatus"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/DisplayingActivityLabels": {
+      "abstract": [
+        {
+          "text": "Provide users with a read-only, visual representation of an application, category, or web domain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/DisplayingActivityLabels",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Displaying Activity Labels",
+      "type": "topic",
+      "url": "/documentation/familycontrols/displayingactivitylabels"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker": {
+      "abstract": [
+        {
+          "text": "A view in which users specify applications, web domains,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and categories without revealing their choices to the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FamilyActivityPicker"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FamilyActivityPicker"
+        }
+      ],
+      "role": "symbol",
+      "title": "FamilyActivityPicker",
+      "type": "topic",
+      "url": "/documentation/familycontrols/familyactivitypicker"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivitySelection": {
+      "abstract": [
+        {
+          "text": "A collection of applications, categories, and web domains selected by the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FamilyActivitySelection"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivitySelection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FamilyActivitySelection"
+        }
+      ],
+      "role": "symbol",
+      "title": "FamilyActivitySelection",
+      "type": "topic",
+      "url": "/documentation/familycontrols/familyactivityselection"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyControlsError": {
+      "abstract": [
+        {
+          "text": "Errors the Family Controls framework reports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FamilyControlsError"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyControlsError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FamilyControlsError"
+        }
+      ],
+      "role": "symbol",
+      "title": "FamilyControlsError",
+      "type": "topic",
+      "url": "/documentation/familycontrols/familycontrolserror"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyControlsMember": {
+      "abstract": [
+        {
+          "text": "The type of account that Family Controls is currently managing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FamilyControlsMember"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyControlsMember",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FamilyControlsMember"
+        }
+      ],
+      "role": "symbol",
+      "title": "FamilyControlsMember",
+      "type": "topic",
+      "url": "/documentation/familycontrols/familycontrolsmember"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.family-controls": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app can request or revoke authorization to provide parental controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.family-controls",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Family Controls",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.family-controls"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app": {
+      "abstract": [
+        {
+          "text": "Configure your target to include and customize capabilities that provide access to Apple’s app services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding capabilities to your app",
+      "type": "topic",
+      "url": "/documentation/Xcode/adding-capabilities-to-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "family-controls-overview": {
+      "alt": "A figure labeled allow activity. It shows an arrow from a Family Sharing logo",
+      "identifier": "family-controls-overview",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e21e1d0eba4c9be965970c6eb2fabd82/family-controls-overview@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/05a6398c5e049288d3479ec237f95826/family-controls-overview~dark@2x.png"
+        }
+      ]
+    },
+    "https://developer.apple.com/contact/request/family-controls-distribution": {
+      "identifier": "https://developer.apple.com/contact/request/family-controls-distribution",
+      "title": "request permission",
+      "titleInlineContent": [
+        {
+          "text": "request permission",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/contact/request/family-controls-distribution"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Authorizations",
+      "identifiers": [
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter",
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationStatus",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.family-controls"
+      ],
+      "title": "Authorizations"
+    },
+    {
+      "anchor": "Account-Types",
+      "identifiers": [
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyControlsMember"
+      ],
+      "title": "Account Types"
+    },
+    {
+      "anchor": "User-Selected-Apps-and-Web-Domains",
+      "identifiers": [
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivityPicker",
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyActivitySelection"
+      ],
+      "title": "User-Selected Apps and Web Domains"
+    },
+    {
+      "anchor": "Activity-Labels",
+      "identifiers": [
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/DisplayingActivityLabels"
+      ],
+      "title": "Activity Labels"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/FamilyControlsError"
+      ],
+      "title": "Errors"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/familycontrols"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

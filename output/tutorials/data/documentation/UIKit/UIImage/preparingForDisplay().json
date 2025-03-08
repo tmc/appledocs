@@ -1,0 +1,1132 @@
+{
+  "abstract": [
+    {
+      "text": "Decodes an image synchronously and provides a new one for display in views and animations.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/UIImage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIImage/preparingForDisplay()"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UIImage(im)imageByPreparingForDisplay",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "preparingForDisplay"
+      },
+      {
+        "kind": "text",
+        "text": "() -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)UIImage",
+        "text": "UIImage"
+      },
+      {
+        "kind": "text",
+        "text": "?"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "imageByPreparingForDisplay"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "preparingForDisplay()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "preparingForDisplay"
+            },
+            {
+              "kind": "text",
+              "text": "() -> "
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIImage",
+              "text": "UIImage"
+            },
+            {
+              "kind": "text",
+              "text": "?"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A new version of the image object for display. If the system can’t decode the image, this method returns ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Animation Hitches instrument measures system performance for multiple stages of preparing views for display. It can show you the exact cause of an animation hitch, which appears to the user as an interruption or jump in an animation that should be smooth. If Animation Hitches indicates that decoding an image takes too long and causes hitches, use this method to move the decoding work to the background. For more information on using Instruments, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/instruments/mac/current/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Avoid using this method on the main thread unless you previously started preparing an image with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/prepareForDisplay(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If you’re decoding many images, such as with a collection view, calling this method from a concurrent queue can degrade performance by demanding too many system threads. Use a serial queue instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method returns a new image object for efficient display by an image view. Assign the image object created by this method to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImageView/image",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the image view. If ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImageView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " can render the image without decoding, this method returns a valid image without further processing. If the system can’t decode the image, such as an image created from a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the method returns ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UIKit doesn’t associate the prepared image with the original, or with any related variants from an asset catalog. If your app environment dynamically changes display traits, listen for changes in the trait environment and prepare new images when the environment changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {",
+            "    guard let imageCell = cell as? ImageCell else {",
+            "        fatalError(\"Expected `\\(ImageCell.self)` type for reuseIdentifier \\(reuseIdentifier). Check the configuration in Main.storyboard.\")",
+            "    }",
+            "    let item = models[indexPath.item]",
+            "    if let image = preparedImageCache.object(forKey: item.id), imageCell.itemIdentifier == item.id {",
+            "        // Use a cached prepared image.",
+            "        imageCell.imageView.image = image",
+            "    } else {",
+            "        // If the data source didn't prefetch the cell, prepare the image on a serial dispatch queue.",
+            "        serialQueue.async { [weak preparedImageCache, placeholderImage] in",
+            "            item.loadAsset()",
+            "            let preparedImage: UIImage = item.image.preparingForDisplay() ?? placeholderImage",
+            "            preparedImageCache?.setObject(preparedImage, forKey: item.id)",
+            "            DispatchQueue.main.async {",
+            "                if imageCell.itemIdentifier == item.id {",
+            "                    imageCell.imageView.image = preparedImage",
+            "                }",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreimage/ciimage": {
+      "abstract": [
+        {
+          "text": "A representation of an image to be processed or produced by Core Image filters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIImage",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImage": {
+      "abstract": [
+        {
+          "text": "An object that manages image data in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImage",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimage"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImage/prepareForDisplay(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Decodes an image asynchronously and provides a new one for display in views and animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareForDisplay"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/prepareForDisplay(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "prepareForDisplayWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "prepareForDisplay(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimage/preparefordisplay(completionhandler:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImage/prepareThumbnail(of:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Creates a thumbnail image at the specified size asynchronously on a background thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareThumbnail"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/prepareThumbnail(of:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "prepareThumbnailOfSize:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "prepareThumbnail(of:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimage/preparethumbnail(of:completionhandler:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImage/preparingForDisplay()": {
+      "abstract": [
+        {
+          "text": "Decodes an image synchronously and provides a new one for display in views and animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preparingForDisplay"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/preparingForDisplay()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageByPreparingForDisplay"
+        }
+      ],
+      "role": "symbol",
+      "title": "preparingForDisplay()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimage/preparingfordisplay()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImage/preparingThumbnail(of:)": {
+      "abstract": [
+        {
+          "text": "Returns a new thumbnail image at the specified size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preparingThumbnail"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage/preparingThumbnail(of:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "imageByPreparingThumbnailOfSize:"
+        }
+      ],
+      "role": "symbol",
+      "title": "preparingThumbnail(of:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimage/preparingthumbnail(of:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImageView": {
+      "abstract": [
+        {
+          "text": "A view that displays a single image or a sequence of animated images in your interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImageView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImageView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIImageView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImageView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimageview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImageView/image": {
+      "abstract": [
+        {
+          "text": "The image displayed in the image view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImage",
+          "text": "UIImage"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImageView/image",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "image"
+        }
+      ],
+      "role": "symbol",
+      "title": "image",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimageview/image"
+    },
+    "https://help.apple.com/instruments/mac/current/": {
+      "identifier": "https://help.apple.com/instruments/mac/current/",
+      "title": "Instruments Help",
+      "titleInlineContent": [
+        {
+          "text": "Instruments Help",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/instruments/mac/current/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Loading-images-for-display",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIImage/prepareForDisplay(completionHandler:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIImage/preparingThumbnail(of:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIImage/prepareThumbnail(of:completionHandler:)"
+      ],
+      "title": "Loading images for display"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "imageByPreparingForDisplay"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "imageByPreparingForDisplay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit",
+                "doc://com.apple.uikit/documentation/UIKit/UIImage"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Loading-images-for-display",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIImage/prepareForDisplay(completionHandler:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIImage/preparingThumbnail(of:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIImage/prepareThumbnail(of:completionHandler:)"
+              ],
+              "title": "Loading images for display"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImage",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)UIImage",
+                    "text": "UIImage"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "imageByPreparingForDisplay"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "content": [
+              {
+                "anchor": "return-value",
+                "level": 2,
+                "text": "Return Value",
+                "type": "heading"
+              },
+              {
+                "inlineContent": [
+                  {
+                    "text": "A new version of the image object for display. If the system can’t decode the image, this method returns ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "nil",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": ".",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "kind": "content"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1preparingForDisplay()/title",
+          "value": "imageByPreparingForDisplay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1preparingForDisplay()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "imageByPreparingForDisplay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage/title",
+          "value": "UIImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1prepareForDisplay(completionHandler:)/title",
+          "value": "prepareForDisplayWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1prepareForDisplay(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "prepareForDisplayWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImageView/title",
+          "value": "UIImageView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImageView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImageView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImageView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImageView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1preparingThumbnail(of:)/title",
+          "value": "imageByPreparingThumbnailOfSize:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1preparingThumbnail(of:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "imageByPreparingThumbnailOfSize:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImageView~1image/title",
+          "value": "image"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImageView~1image/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "image"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1prepareThumbnail(of:completionHandler:)/title",
+          "value": "prepareThumbnailOfSize:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImage~1prepareThumbnail(of:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "prepareThumbnailOfSize:completionHandler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uiimage/preparingfordisplay()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uiimage/preparingfordisplay()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

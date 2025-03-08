@@ -1,0 +1,352 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_2_1-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Xcode 13.2.1 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "type": "thematicBreak"
+        },
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode 13.2.1 includes SDKs for iOS 15.2, iPadOS 15.2, tvOS 15.2, watchOS 8.3, and macOS Monterey 12.1.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Xcode 13.2.1 release supports on-device debugging for iOS 9 and later, tvOS 9 and later, and watchOS 2 and later.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode 13.2.1 requires a Mac running macOS 11.3 Big Sur or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "General",
+          "level": 3,
+          "text": "General",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resolved an issue where the Mac App Store version of Xcode failed during package resolution with the error ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Internal error: missingPackageDescriptionModule",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " when using Swift packages either standalone or as dependencies in an Xcode project or workspace. (86435800) (FB9807887)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode contains a copy of the log4j library that has the CVE-2021-44228 security vulnerability. Xcode automatically downloads an updated version of this library and installs it into ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "~/Library/Caches/com.apple.amp.itmstransporter",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". When submitting apps to the App Store, Xcode uses the updated version of the library. (86390060)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Apple-Clang-Compiler",
+          "level": 3,
+          "text": "Apple Clang Compiler",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where apps built with Xcode 13 or Xcode 13.1 sometimes crashed at launch with an error reporting that the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "libswift_Concurrency.dylib",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " library was not loaded. This only affected apps that used Swift Concurrency features (such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "async",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "/",
+                      "type": "text"
+                    },
+                    {
+                      "code": "await",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "), deployed to iOS prior to 15, tvOS prior to 15, or watchOS prior to 8, and had bitcode enabled. (86349088)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 13 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-13-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 13.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-13_1-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 13.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-13_2-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 13.3 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-13_3-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_3_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_3_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 13.3.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-13_3_1-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 13.4 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-13_4-release-notes"
+    },
+    "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_4_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_4_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode 13.4.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/xcode-release-notes/xcode-13_4_1-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Xcode-13",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_4_1-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_4-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_3_1-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_3-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_2-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13_1-release-notes",
+        "doc://com.apple.Xcode-Release-Notes/documentation/Xcode-Release-Notes/xcode-13-release-notes"
+      ],
+      "title": "Xcode 13"
+    }
+  ]
+}

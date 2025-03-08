@@ -1,0 +1,447 @@
+{
+  "abstract": [
+    {
+      "text": "A Boolean value that indicates whether a custom accessibility object sends a notification when its corresponding UI element is destroyed.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/objectivec",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/appkit",
+        "doc://com.apple.documentation/documentation/appkit/deprecated-symbols",
+        "doc://com.apple.documentation/documentation/appkit/nsaccessibility"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/objectivec/nsobject/1534050-accessibilitynotifieswhendestroy"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1534050,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSObject(py)accessibilityNotifiesWhenDestroyed",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "var "
+      },
+      {
+        "kind": "identifier",
+        "text": "accessibilityNotifiesWhenDestroyed"
+      },
+      {
+        "kind": "text",
+        "text": ": Bool"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "parent": {
+      "title": "NSObject"
+    },
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.9",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "accessibilityNotifiesWhenDestroyed"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "accessibilityNotifiesWhenDestroyed"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Bool",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sb",
+              "text": "Bool"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS 10.9 and later, a custom accessibility object that is an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass can post accessibility notifications if it meets the following criteria:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The lifetime of the custom accessibility object must match the lifetime of the corresponding element in the app's UI.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Typically, a custom accessibility object that acts as a proxy for an onscreen UI element gets autoreleased and deallocated immediately after the app responds to an accessibility request. Such an object can’t post accessibility notifications, because all registered observers get removed as soon as the object is deallocated. To correct this, an app must guarantee that a custom accessibility object remains allocated for as long as its corresponding UI element remains visible.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The object must post the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/appkit/nsaccessibility/notification/1530862-uielementdestroyed",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "  notification at the appropriate time. The appropriate time is most likely to be when the corresponding UI element is removed from the screen, but it can also be when the object itself is deallocated. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The object must implement ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "accessibilityNotifiesWhenDestroyed",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and return ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Bool": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Bool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/swift/bool"
+    },
+    "doc://com.apple.documentation/documentation/appkit": {
+      "identifier": "doc://com.apple.documentation/documentation/appkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.documentation/documentation/appkit/deprecated-symbols": {
+      "identifier": "doc://com.apple.documentation/documentation/appkit/deprecated-symbols",
+      "kind": "article",
+      "role": "article",
+      "title": "Deprecated Symbols",
+      "type": "topic",
+      "url": "/documentation/appkit/deprecated-symbols"
+    },
+    "doc://com.apple.documentation/documentation/appkit/nsaccessibility": {
+      "identifier": "doc://com.apple.documentation/documentation/appkit/nsaccessibility",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "NSAccessibility",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility"
+    },
+    "doc://com.apple.documentation/documentation/appkit/nsaccessibility/notification/1530862-uielementdestroyed": {
+      "identifier": "doc://com.apple.documentation/documentation/appkit/nsaccessibility/notification/1530862-uielementdestroyed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uiElementDestroyed",
+      "type": "topic",
+      "url": "/documentation/appkit/nsaccessibility/notification/1530862-uielementdestroyed"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/objectivec": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Objective-C Runtime",
+      "type": "topic",
+      "url": "/documentation/objectivec"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1526100-accessibilityfocuseduielement": {
+      "abstract": [
+        {
+          "text": "The deepest descendant of the accessibility hierarchy that has the focus.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityFocusedUIElement"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1526100-accessibilityfocuseduielement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityFocusedUIElement",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1526100-accessibilityfocuseduielement"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1526136-accessibilityhittest": {
+      "abstract": [
+        {
+          "text": "Returns the deepest descendant of the accessibility hierarchy that contains the specified point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityHitTest"
+        },
+        {
+          "kind": "text",
+          "text": "(NSPoint) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1526136-accessibilityhittest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityHitTest(_:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1526136-accessibilityhittest"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1534050-accessibilitynotifieswhendestroy": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether a custom accessibility object sends a notification when its corresponding UI element is destroyed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityNotifiesWhenDestroyed"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1534050-accessibilitynotifieswhendestroy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityNotifiesWhenDestroyed",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1534050-accessibilitynotifieswhendestroy"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1526100-accessibilityfocuseduielement",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1526136-accessibilityhittest"
+      ],
+      "title": "Available Methods and Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/objectivec/nsobject/1534050-accessibilitynotifieswhendestroy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/objectivec/nsobject/1534050-accessibilitynotifieswhendestroy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

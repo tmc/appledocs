@@ -1,0 +1,1544 @@
+{
+  "abstract": [
+    {
+      "text": "Coordinate when publishers start sending elements to subscribers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Combine/documentation/Combine"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Combine/documentation/Combine/controlling-publishing-with-connectable-publishers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Combine"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Controlling Publishing with Connectable Publishers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sometimes, you want to configure a publisher before it starts producing elements,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as when a publisher has properties that affect its behavior. But commonly used",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "subscribers like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/sink(receiveValue:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " demand",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "unlimited elements immediately, which might prevent you from setting up the publisher",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the way you like. A publisher that produces values before you’re ready for them can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "also be a problem when the publisher has two or more subscribers. This multi-subscriber",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scenario creates a race condition: the publisher can send elements to the first subscriber",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "before the second even exists.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider the scenario in the following figure. You create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/datataskpublisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and attach a sink subscriber to it (Subscriber 1) which causes the data task to start",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "fetching the URL’s data. At some later point, you attach a second subscriber (Subscriber",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "2). If the data task completes its download before the second subscriber attaches,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the second subscriber misses the data and only sees the completion.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3544462",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Hold-Publishing-by-Using-a-Connectable-Publisher",
+          "level": 3,
+          "text": "Hold Publishing by Using a Connectable Publisher",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To prevent a publisher from sending elements before you’re ready, Combine provides",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. A connectable publisher",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "produces no elements until you call its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher/connect()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method. Even if it’s ready to produce elements and has unsatisfied demand, a connectable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "publisher doesn’t deliver any elements to subscribers until you explicitly call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher/connect()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/datataskpublisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scenario from above, but with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ahead",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the subscribers. By waiting to call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher/connect()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "until both subscribers attach, the data task doesn’t start downloading until then.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This eliminates the race condition and guarantees both subscribers can receive the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3544463",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in your own Combine code,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/makeConnectable()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " operator to wrap an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "existing publisher with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publishers/MakeConnectable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following code shows how ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/makeConnectable()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "fixes the data task publisher race condition described above. Typically, attaching",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a sink — identified here by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/AnyCancellable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " it returns,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "cancellable1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " — would cause the data task to start immediately. In this scenario,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the second sink, identified as ",
+              "type": "text"
+            },
+            {
+              "code": "cancellable2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", doesn’t attach until one second later,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the data task publisher might complete before the second sink attaches. Instead,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "explicitly using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " causes the data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "task to start only after the app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher/connect()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which it does after a two-second delay.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let url = URL(string: \"https://example.com/\")!",
+            "let connectable = URLSession.shared",
+            "    .dataTaskPublisher(for: url)",
+            "    .map() { $0.data }",
+            "    .catch() { _ in Just(Data() )}",
+            "    .share()",
+            "    .makeConnectable()",
+            "",
+            "cancellable1 = connectable",
+            "    .sink(receiveCompletion: { print(\"Received completion 1: \\($0).\") },",
+            "          receiveValue: { print(\"Received data 1: \\($0.count) bytes.\") })",
+            "",
+            "DispatchQueue.main.asyncAfter(deadline: .now() + 1) {",
+            "    self.cancellable2 = connectable",
+            "        .sink(receiveCompletion: { print(\"Received completion 2: \\($0).\") },",
+            "              receiveValue: { print(\"Received data 2: \\($0.count) bytes.\") })",
+            "}",
+            "",
+            "DispatchQueue.main.asyncAfter(deadline: .now() + 2) {",
+            "    self.connection = connectable.connect()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher/connect()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " returns a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Combine/documentation/Combine/Cancellable",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instance that you need to retain. You can use this instance to cancel publishing, either by explicitly calling ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Combine/documentation/Combine/Cancellable/cancel()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or allowing it to deinitialize.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Use-the-Autoconnect-Operator-If-You-Dont-Need-to-Explicitly-Connect",
+          "level": 3,
+          "text": "Use the Autoconnect Operator If You Don’t Need to Explicitly Connect",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some Combine publishers already implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publishers/Multicast",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/timer/timerpublisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Using these publishers can cause the opposite problem: having to explicitly ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher/connect()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "could be burdensome if you don’t need to configure the publisher or attach multiple",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "subscribers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For cases like these, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher/autoconnect()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " operator. This operator",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "immediately calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher/connect()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Subscriber",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attaches to the publisher with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/subscribe(_:)-3fk20",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher/autoconnect()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", so a subscriber immediately receives",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "elements from a once-a-second ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/timer/timerpublisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Without ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher/autoconnect()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the example",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "would need to explicitly start the timer publisher by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher/connect()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "at some point.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let cancellable = Timer.publish(every: 1, on: .main, in: .default)",
+            "    .autoconnect()",
+            "    .sink() { date in",
+            "        print (\"Date now: \\(date)\")",
+            "     }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Combine-PageImage-card.png": {
+      "alt": "The Swift language logo, overlaid by a graph of interconnected lines and points.",
+      "identifier": "Combine-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ba2aa5f2e9d9ae5b196c642a6cf121dd/Combine-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8df9b2bdcd94118827dd29f28f3915d7/Combine-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Combine/documentation/Combine": {
+      "abstract": [
+        {
+          "text": "Customize handling of asynchronous events by combining event-processing operators.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine",
+      "images": [
+        {
+          "identifier": "Combine-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Combine",
+      "type": "topic",
+      "url": "/documentation/combine"
+    },
+    "doc://com.apple.Combine/documentation/Combine/AnyCancellable": {
+      "abstract": [
+        {
+          "text": "A type-erasing cancellable object that executes a provided closure when canceled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnyCancellable"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/AnyCancellable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnyCancellable"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnyCancellable",
+      "type": "topic",
+      "url": "/documentation/combine/anycancellable"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Cancellable": {
+      "abstract": [
+        {
+          "text": "A protocol indicating that an activity or action supports cancellation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Cancellable"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Cancellable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Cancellable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Cancellable",
+      "type": "topic",
+      "url": "/documentation/combine/cancellable"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Cancellable/cancel()": {
+      "abstract": [
+        {
+          "text": "Cancel the activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancel"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Cancellable/cancel()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "cancel()",
+      "type": "topic",
+      "url": "/documentation/combine/cancellable/cancel()"
+    },
+    "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher": {
+      "abstract": [
+        {
+          "text": "A publisher that provides an explicit means of connecting and canceling publication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ConnectablePublisher"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ConnectablePublisher"
+        }
+      ],
+      "role": "symbol",
+      "title": "ConnectablePublisher",
+      "type": "topic",
+      "url": "/documentation/combine/connectablepublisher"
+    },
+    "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher/autoconnect()": {
+      "abstract": [
+        {
+          "text": "Automates the process of connecting or disconnecting from this connectable publisher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autoconnect"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO",
+          "text": "Publishers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO11AutoconnectC",
+          "text": "Autoconnect"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher/autoconnect()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "autoconnect()",
+      "type": "topic",
+      "url": "/documentation/combine/connectablepublisher/autoconnect()"
+    },
+    "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher/connect()": {
+      "abstract": [
+        {
+          "text": "Connects to the publisher, allowing it to produce elements, and returns an instance with which to cancel publishing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "connect"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine11CancellableP",
+          "text": "Cancellable"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher/connect()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "connect()",
+      "type": "topic",
+      "url": "/documentation/combine/connectablepublisher/connect()"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/makeConnectable()": {
+      "abstract": [
+        {
+          "text": "Creates a connectable wrapper around the publisher.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Failure",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Never",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeConnectable"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO",
+          "text": "Publishers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO15MakeConnectableV",
+          "text": "MakeConnectable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/makeConnectable()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeConnectable()",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/makeconnectable()"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/sink(receiveValue:)": {
+      "abstract": [
+        {
+          "text": "Attaches a subscriber with closure-based behavior to a publisher that never fails.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Failure",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Never",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sink"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "receiveValue"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublisherP6OutputQa",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine14AnyCancellableC",
+          "text": "AnyCancellable"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/sink(receiveValue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sink(receiveValue:)",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/sink(receivevalue:)"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/subscribe(_:)-3fk20": {
+      "abstract": [
+        {
+          "text": "Attaches the specified subject to this publisher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscribe"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine14AnyCancellableC",
+          "text": "AnyCancellable"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/subscribe(_:)-3fk20",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscribe(_:)",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/subscribe(_:)-3fk20"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publishers/MakeConnectable": {
+      "abstract": [
+        {
+          "text": "A publisher that provides explicit connectability to another publisher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MakeConnectable"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publishers/MakeConnectable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MakeConnectable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Publishers.MakeConnectable",
+      "type": "topic",
+      "url": "/documentation/combine/publishers/makeconnectable"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publishers/Multicast": {
+      "abstract": [
+        {
+          "text": "A publisher that uses a subject to deliver elements to multiple subscribers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Multicast"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publishers/Multicast",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Multicast"
+        }
+      ],
+      "role": "symbol",
+      "title": "Publishers.Multicast",
+      "type": "topic",
+      "url": "/documentation/combine/publishers/multicast"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Subscriber": {
+      "abstract": [
+        {
+          "text": "A protocol that declares a type that can receive input from a publisher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Subscriber"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Subscriber",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Subscriber"
+        }
+      ],
+      "role": "symbol",
+      "title": "Subscriber",
+      "type": "topic",
+      "url": "/documentation/combine/subscriber"
+    },
+    "doc://com.apple.documentation/documentation/foundation/timer/timerpublisher": {
+      "abstract": [
+        {
+          "text": "A publisher that repeatedly emits the current date on a given interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Timer.TimerPublisher"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/timer/timerpublisher",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Timer.TimerPublisher",
+      "type": "topic",
+      "url": "/documentation/foundation/timer/timerpublisher"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/datataskpublisher": {
+      "abstract": [
+        {
+          "text": "A publisher that delivers the results of performing URL session data tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession.DataTaskPublisher"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/datataskpublisher",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession.DataTaskPublisher",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/datataskpublisher"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3544462": {
+      "alt": "Figure 1",
+      "identifier": "media-3544462",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/56c066751f9c763ea643de91574ebea8/media-3544462.png"
+        }
+      ]
+    },
+    "media-3544463": {
+      "alt": "Figure 2",
+      "identifier": "media-3544463",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7e1022a16c19ee9121f9e86ecbad7474/media-3544463.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Connectable-Publishers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Combine/documentation/Combine/ConnectablePublisher"
+      ],
+      "title": "Connectable Publishers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/combine/controlling-publishing-with-connectable-publishers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

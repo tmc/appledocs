@@ -1,0 +1,1357 @@
+{
+  "abstract": [
+    {
+      "text": "A Boolean value that indicates whether the location-manager object may pause location updates.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corelocation/documentation/CoreLocation",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/pausesLocationUpdatesAutomatically"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CLLocationManager(py)pausesLocationUpdatesAutomatically",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "pausesLocationUpdatesAutomatically"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sb",
+        "text": "Bool"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Location"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "pausesLocationUpdatesAutomatically"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "pausesLocationUpdatesAutomatically"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "pausesLocationUpdatesAutomatically"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sb",
+              "text": "Bool"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/getting-the-current-location-of-a-device"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Allowing the location manager to pause updates can improve battery life on the target device without sacrificing location data. Setting this property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " causes the location manager to pause updates (and powers down the appropriate hardware) at times when the location data is unlikely to change. For example, if the user stops for food while using a navigation app, the location manager might pause updates for a period of time. You can help the determination of when to pause location updates by assigning a value to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/activityType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After a pause occurs, it’s your responsibility to restart location services again when you determine that they’re needed. Core Location calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManagerDidPauseLocationUpdates(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of your location manager’s delegate to let you know that a pause has occurred. In that method configure a local notification that has a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications/UNLocationNotificationTrigger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to notify when the user exits the current region. The message for the local notification should prompt the user to launch your app again so that it can resume updates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For apps that have in-use authorization, a pause to location updates ends access to location changes until the app launches again and is able to restart those updates. To prevent location updates from stopping entirely, consider disabling this property and changing location accuracy to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/kCLLocationAccuracyThreeKilometers",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " when your app moves to the background. This allows your app to continue receiving location updates in a power-friendly manner.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On supported platforms the default value of this property is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "; otherwise the default value is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and is immutable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corelocation/documentation/CoreLocation": {
+      "abstract": [
+        {
+          "text": "Obtain the geographic location and orientation of a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Location",
+      "type": "topic",
+      "url": "/documentation/corelocation"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLActivityType": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the type of activity associated with location updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLActivityType"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLActivityType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLActivityType"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLActivityType",
+      "type": "topic",
+      "url": "/documentation/corelocation/clactivitytype"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager": {
+      "abstract": [
+        {
+          "text": "The object you use to start and stop the delivery of location-related events to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocationManager"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLLocationManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLLocationManager",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanager"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/activityType": {
+      "abstract": [
+        {
+          "text": "The type of activity the app expects the user to typically perform while in the app’s location session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activityType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CLActivityType",
+          "text": "CLActivityType"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/activityType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activityType"
+        }
+      ],
+      "role": "symbol",
+      "title": "activityType",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanager/activitytype"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/allowsBackgroundLocationUpdates": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app receives location updates when running in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsBackgroundLocationUpdates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/allowsBackgroundLocationUpdates",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsBackgroundLocationUpdates"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsBackgroundLocationUpdates",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanager/allowsbackgroundlocationupdates"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/pausesLocationUpdatesAutomatically": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the location-manager object may pause location updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pausesLocationUpdatesAutomatically"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/pausesLocationUpdatesAutomatically",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pausesLocationUpdatesAutomatically"
+        }
+      ],
+      "role": "symbol",
+      "title": "pausesLocationUpdatesAutomatically",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanager/pauseslocationupdatesautomatically"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/requestLocation()": {
+      "abstract": [
+        {
+          "text": "Requests the one-time delivery of the user’s current location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestLocation"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/requestLocation()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestLocation()",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanager/requestlocation()"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/showsBackgroundLocationIndicator": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the status bar changes its appearance when an app uses location services in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showsBackgroundLocationIndicator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/showsBackgroundLocationIndicator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showsBackgroundLocationIndicator"
+        }
+      ],
+      "role": "symbol",
+      "title": "showsBackgroundLocationIndicator",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanager/showsbackgroundlocationindicator"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/startUpdatingLocation()": {
+      "abstract": [
+        {
+          "text": "Starts the generation of updates that report the user’s current location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startUpdatingLocation"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/startUpdatingLocation()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startUpdatingLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "startUpdatingLocation()",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanager/startupdatinglocation()"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/stopUpdatingLocation()": {
+      "abstract": [
+        {
+          "text": "Stops the generation of location updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopUpdatingLocation"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/stopUpdatingLocation()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopUpdatingLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopUpdatingLocation()",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanager/stopupdatinglocation()"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManagerDidPauseLocationUpdates(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that location updates were paused.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locationManagerDidPauseLocationUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocationManager",
+          "text": "CLLocationManager"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManagerDelegate/locationManagerDidPauseLocationUpdates(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationManagerDidPauseLocationUpdates:"
+        }
+      ],
+      "role": "symbol",
+      "title": "locationManagerDidPauseLocationUpdates(_:)",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanagerdelegate/locationmanagerdidpauselocationupdates(_:)"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/getting-the-current-location-of-a-device": {
+      "abstract": [
+        {
+          "text": "Start location services and provide information the system needs to optimize power usage for those services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/getting-the-current-location-of-a-device",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting the current location of a device",
+      "type": "topic",
+      "url": "/documentation/corelocation/getting-the-current-location-of-a-device"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/kCLLocationAccuracyThreeKilometers": {
+      "abstract": [
+        {
+          "text": "Accurate to the nearest three kilometers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCLLocationAccuracyThreeKilometers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationAccuracy",
+          "text": "CLLocationAccuracy"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/kCLLocationAccuracyThreeKilometers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kCLLocationAccuracyThreeKilometers"
+        }
+      ],
+      "role": "symbol",
+      "title": "kCLLocationAccuracyThreeKilometers",
+      "type": "topic",
+      "url": "/documentation/corelocation/kcllocationaccuracythreekilometers"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/UNLocationNotificationTrigger": {
+      "abstract": [
+        {
+          "text": "A trigger condition that causes the system to deliver a notification when the user’s device enters or exits a geographic region you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNLocationNotificationTrigger"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/UNLocationNotificationTrigger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UNLocationNotificationTrigger",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/UNLocationNotificationTrigger"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@BOOL": {
+      "abstract": [
+        {
+          "text": "Type to represent a Boolean value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BOOL",
+      "type": "topic",
+      "url": "/documentation/objectivec/bool"
+    },
+    "doc://com.externally.resolved.symbol/s:Sb": {
+      "abstract": [
+        {
+          "text": "A value type whose instances are either `true` or `false`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/Swift/Bool"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Running-the-standard-location-service",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/startUpdatingLocation()",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/stopUpdatingLocation()",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/requestLocation()",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/allowsBackgroundLocationUpdates",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/showsBackgroundLocationIndicator",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/activityType",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLActivityType"
+      ],
+      "title": "Running the standard location service"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "pausesLocationUpdatesAutomatically"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pausesLocationUpdatesAutomatically"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.corelocation/documentation/CoreLocation",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Running-the-standard-location-service",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/startUpdatingLocation()",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/stopUpdatingLocation()",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/requestLocation()",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/allowsBackgroundLocationUpdates",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/showsBackgroundLocationIndicator",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/activityType",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLActivityType"
+              ],
+              "title": "Running the standard location service"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "nonatomic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "assign"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@BOOL",
+                    "text": "BOOL"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "pausesLocationUpdatesAutomatically"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManagerDidPauseLocationUpdates(_:)/title",
+          "value": "locationManagerDidPauseLocationUpdates:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManagerDelegate~1locationManagerDidPauseLocationUpdates(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationManagerDidPauseLocationUpdates:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1pausesLocationUpdatesAutomatically/title",
+          "value": "pausesLocationUpdatesAutomatically"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1pausesLocationUpdatesAutomatically/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pausesLocationUpdatesAutomatically"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1kCLLocationAccuracyThreeKilometers/title",
+          "value": "kCLLocationAccuracyThreeKilometers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1kCLLocationAccuracyThreeKilometers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCLLocationAccuracyThreeKilometers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLActivityType/title",
+          "value": "CLActivityType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLActivityType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLActivityType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLActivityType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLActivityType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1requestLocation()/title",
+          "value": "requestLocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1requestLocation()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestLocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager/title",
+          "value": "CLLocationManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1activityType/title",
+          "value": "activityType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1activityType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activityType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1showsBackgroundLocationIndicator/title",
+          "value": "showsBackgroundLocationIndicator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1showsBackgroundLocationIndicator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "showsBackgroundLocationIndicator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UserNotifications~1UNLocationNotificationTrigger/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UNLocationNotificationTrigger"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UNNotificationTrigger",
+              "text": "UNNotificationTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1startUpdatingLocation()/title",
+          "value": "startUpdatingLocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1startUpdatingLocation()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startUpdatingLocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1allowsBackgroundLocationUpdates/title",
+          "value": "allowsBackgroundLocationUpdates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1allowsBackgroundLocationUpdates/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsBackgroundLocationUpdates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1stopUpdatingLocation()/title",
+          "value": "stopUpdatingLocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1stopUpdatingLocation()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopUpdatingLocation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corelocation/cllocationmanager/pauseslocationupdatesautomatically"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corelocation/cllocationmanager/pauseslocationupdatesautomatically"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

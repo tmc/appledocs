@@ -1,0 +1,1755 @@
+{
+  "abstract": [
+    {
+      "text": "Add app icon variations to represent your app in places such as Settings, search",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "results, and the App Store.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/asset-management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/configuring-your-app-icon"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring your app icon"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every app has a distinct app icon that communicates the app’s purpose and makes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it easy to recognize throughout the system. Apps require multiple variations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the app icon to look great in different contexts. Xcode can help generate these",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variations for you using a single high-resolution image, or you can configure your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app icon variations by using an app icon’s image set in your project’s asset catalog.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "visionOS and tvOS app icons are made up of multiple stacked image layers you configure in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your project’s asset catalog. iOS and iPadOS app icons support additional dark and tinted styles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance on app icons, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/app-icons",
+              "isActive": true,
+              "overridingTitle": "Human Interface Guidelines > App icons",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Human Interface Guidelines > App icons",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-an-app-icon",
+          "level": 3,
+          "text": "Create an app icon",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create your project from a template, it automatically includes a default asset",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "catalog (",
+              "type": "text"
+            },
+            {
+              "code": "Assets.xcassets",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") that contains the ",
+              "type": "text"
+            },
+            {
+              "code": "AppIcon",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If you don’t have a default",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "asset catalog or existing ",
+              "type": "text"
+            },
+            {
+              "code": "AppIcon",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or you want to provide an alternate, you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "add an app icon to an asset catalog manually:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Project navigator, select an asset catalog.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button (+) at the bottom of the outline view.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the pop-up menu, choose ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "OS variant",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " > ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "OS variant",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " App Icon. Xcode creates",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "a new app icon set or image stack with the name ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AppIcon",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Specify-app-icon-variations",
+          "level": 3,
+          "text": "Specify app icon variations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Variations of your app icon appear throughout the system in places like the Home",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "View, Settings, and search results:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS, iPadOS, tvOS, and watchOS apps can auto-generate all icon variations from a single 1024×1024 pixel image. This is the default behavior when you create a new iOS, iPadOS, tvOS, and watchOS app, or a new icon in the asset catalog. If you have an existing project that provides multiple variants,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "consider providing a single size when that is all your icon requires. However, if you want to customize your app’s icon variants, such as to show more detail at a larger size, you can provide individual assets for the variations.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For macOS and tvOS, you need to supply an asset for each size.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For visionOS, you need to supply a single 1024x1024 pixel asset.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each platform your app supports, choose between using a single size and providing all sizes in the Asset Catalog:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "configuring-your-app-icon-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Project navigator, select an asset catalog.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Asset Catalog, select the icon.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To view and edit attributes, select Inspectors > Attributes from Xcode’s View menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Single Size or All Sizes from the pop-up menu for the platform you want to change.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each platform your app supports, add a single image that Xcode can use to generate your icon variations, or add an image for each icon variation of an icon set in the Asset Catalog:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "configuring-your-app-icon-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Project navigator, select an asset catalog.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Asset Catalog, select the icon.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From the Finder, drag image variations of the app icon to the image wells in the detail area of the Asset Catalog in Xcode that match their resolutions and use cases.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "visionOS and tvOS app icons combine a stack of multiple image layers to create a sense of depth. For tvOS apps, the asset catalog contains an App Icon & Top Shelf Image folder with the different app icon and launch image sets.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Add-dark-and-tinted-icon-variants-to-iOS-and-iPadOS",
+          "level": 3,
+          "text": "Add dark and tinted icon variants to iOS and iPadOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iOS and iPadOS support three stylistic variations for app icons: Light, Dark, and Tinted. You can create your own variations to ensure that each one looks exactly the way you way you want.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "configuring-your-app-icon-5",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add these icon variations to your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Project navigator, select an asset catalog.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Asset Catalog, select the icon.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select View > Inspectors > Attributes from the Xcode menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Single Size from the iOS pop-up menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Then select Any, Dark, or Tinted from the Appearance pop-up menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you select the Appearance from the pop-up menu, two image wells appear. Drag your dark and tinted app icons into the appropriate image well. Provide your tinted app icon as a grayscale image. Provide your dark app icon with a transparent background so the system-provided background can show through.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you prefer, you can take advantage of the system’s automatically generated treatment that is applied to all app icons. It is crafted intelligently to preserve design intent and maintain legibility. This also helps maintain a consistent visual experience across the Home Screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance specific to iOS and iPadOS, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/app-icons#iOS-iPadOS",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-layers-of-an-image-stack",
+          "level": 3,
+          "text": "Configure the layers of an image stack",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, visionOS and tvOS app icons are constructed with three layers. This is the maximum number of layers visionOS icons support but you can use up to five layers when constructing tvOS icons. To add a layer, Click the Add button (+), choose ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "OS variant",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " > ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "OS variant",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " App Icon Layer. To remove a layer, select the layer and click the Remove button (-).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "configuring-your-app-icon-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add images to each layer by dragging them from the Finder into the image wells in the detail area of the Asset Catalog in Xcode. For information on the use of layers, see App icons ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/app-icons#visionOS",
+              "isActive": true,
+              "overridingTitle": "visionOS",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "visionOS",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/app-icons#tvOS",
+              "isActive": true,
+              "overridingTitle": "tvOS",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "tvOS",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can use Parallax Previewer app or Parallax Exporter plug-in to create and preview Layer Source Representation (.lsr and .xlsr) files that you can import into your Asset Catalog in Xcode. Save your file in the LSR file format to import a tvOS icon into Xcode, and save in the XLSR file format to import a visionOS icon. Download these from the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/design/resources",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " site.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Specify-an-App-Store-icon",
+          "level": 3,
+          "text": "Specify an App Store icon",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you distribute your app through the App Store, you must provide app icon imagery to use in the App Store. In the Project navigator, select an asset catalog and add icon images to the appropriate image wells in an app icon set or image stack. The App Store image well location varies by platform.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Platform",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "App Store icon location",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag an icon image to the iOS 1,024pt image well.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iMessage",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For the iOS target, drag an icon image to the iOS 1,024pt image well in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AppIcon",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " set. For the iMessage Extension target, drag an icon to the Messages App Store image well in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "iMessage App Icon",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " set.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sticker Pack",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag an icon image to the iOS 1,024pt image well and the Messages App Store image well.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag an icon image to the App Store - 2x image well.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "tvOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag images to the image wells for the layers of your App Icon - App Store stack in the App Icon & Top Shelf Image folder. The App Store generates an icon from the layers of the image stack.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "visionOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag images to the image wells for the layers of your visionOS App Icon stack. The App Store generates an icon from the layers of the image stack.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "watchOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For the iOS target, drag an icon image to the iOS 1,024pt image well. For the WatchKit App target, drag an icon image to the watchOS image well.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Change-the-default-app-icon-set",
+          "level": 3,
+          "text": "Change the default app icon set",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t create your project from a template, or you want to change your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "default app icon set, specify which one to use in your target’s build settings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Project navigator, select the project and in the project editor, select",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the App Icons and Launch Images section of the General pane, choose the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "app icon set from the App Icons Source pop-up menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "configuring-your-app-icon-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t select the Include all app icon assets option, Xcode only includes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the app icon set you specify in the App Icons Source pop-up menu when it builds your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You might leave this option unselected if you want to use a different icon for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Debug and Release builds of your app without including the Debug icon in your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Release app bundle.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can specialize the app icon for the Debug and Release configurations by modifying",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Primary App Icon Set Name build setting in the Build Settings tab.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode also includes any additional app icon sets you specify under the Alternate App Icon Sets",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "build setting. Include any icon sets your app can select using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/setAlternateIconName(_:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or use in App Store product pages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on configuring tests that use icons in App Store Connect, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-store/product-page-optimization",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "app-icons.svg": {
+      "alt": null,
+      "identifier": "app-icons.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "app-icons",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fe2a86283eab29ab76732e955802ab1d/app-icons.svg"
+        }
+      ]
+    },
+    "configuring-your-app-icon-1": {
+      "alt": "Screenshot of an asset catalog in Xcode. In the outline view, an app icon set with the name AppIcon is selected. The inspector area shows multiple image wells with labels that describe the required image dimensions, resolutions, and usages.",
+      "identifier": "configuring-your-app-icon-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/60bda3e29a3e0ef837fa9090387bb980/configuring-your-app-icon-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3e28002fa0526cb99895316eb610fc64/configuring-your-app-icon-1~dark@2x.png"
+        }
+      ]
+    },
+    "configuring-your-app-icon-2": {
+      "alt": "Screenshot of an asset catalog in Xcode. In the outline view, an app icon set with the name AppIcon is selected. The detail area shows multiple image wells with labels that describe the required image dimensions, resolutions, and usages.",
+      "identifier": "configuring-your-app-icon-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/499364dc68d2a0b800e392c8c0b123b6/configuring-your-app-icon-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ddfd69f9868a9ffc8d28d220d0f627a1/configuring-your-app-icon-2~dark@2x.png"
+        }
+      ]
+    },
+    "configuring-your-app-icon-3": {
+      "alt": "Screenshot of an asset catalog in Xcode. In the outline view, an app icon stack with the name AppIcon is selected. The detail area shows image wells for each layer of the stack with labels.",
+      "identifier": "configuring-your-app-icon-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f83d49f055d93a97e77b6e445dc0a9a6/configuring-your-app-icon-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3794a3383c029a0190957ee9ee601ab2/configuring-your-app-icon-3~dark@2x.png"
+        }
+      ]
+    },
+    "configuring-your-app-icon-4": {
+      "alt": "Screenshot of target settings with the General tab selected. The App Icons and Launch Images section shows a field with the name App Icons Source that lists the name of the app icon set to use from the asset catalog.",
+      "identifier": "configuring-your-app-icon-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7f8ca1d3b817399313a5f211452716ca/configuring-your-app-icon-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e7c5991b91509e3fca0ff3d69d20fb70/configuring-your-app-icon-4~dark@2x.png"
+        }
+      ]
+    },
+    "configuring-your-app-icon-5": {
+      "alt": "Screenshot of an asset catalog in Xcode. In the outline view, an app icon set with the name AppIcon is selected. The inspector area shows multiple image wells with labels that describe the Any, Dark, and Tinted icon appearances.",
+      "identifier": "configuring-your-app-icon-5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/95e7712fe79245cdc1cd52f581ad484f/configuring-your-app-icon-5@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/39d725cbd298dd9dee078e5a389ff412/configuring-your-app-icon-5~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/asset-management": {
+      "abstract": [
+        {
+          "text": "Add images, strings, data files, and other resources to your projects, and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "manage how you load them at runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/asset-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Asset management",
+      "type": "topic",
+      "url": "/documentation/xcode/asset-management"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/specifying-your-apps-launch-screen": {
+      "abstract": [
+        {
+          "text": "Make your iOS app launch experience faster and more responsive by customizing a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "launch screen.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/specifying-your-apps-launch-screen",
+      "kind": "article",
+      "role": "article",
+      "title": "Specifying your app’s launch screen",
+      "type": "topic",
+      "url": "/documentation/xcode/specifying-your-apps-launch-screen"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/app-icons": {
+      "abstract": [
+        {
+          "text": "A unique, memorable icon communicates the purpose and personality of your app or game and can help people recognize your product at a glance in the App Store and on their devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/app-icons",
+      "images": [
+        {
+          "identifier": "app-icons.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "foundations-app-icons-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "App icons",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/app-icons"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/app-icons#tvOS": {
+      "abstract": [
+        {
+          "text": "A unique, memorable icon communicates the purpose and personality of your app or game and can help people recognize your product at a glance in the App Store and on their devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/app-icons#tvOS",
+      "images": [
+        {
+          "identifier": "app-icons.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "foundations-app-icons-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "App icons",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/app-icons"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/app-icons#visionOS": {
+      "abstract": [
+        {
+          "text": "A unique, memorable icon communicates the purpose and personality of your app or game and can help people recognize your product at a glance in the App Store and on their devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/app-icons#visionOS",
+      "images": [
+        {
+          "identifier": "app-icons.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "foundations-app-icons-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "App icons",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/app-icons"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplication/setAlternateIconName(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Changes the icon the system displays for the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAlternateIconName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "alternateIconName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplication/setAlternateIconName(_:completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAlternateIconName(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplication/setAlternateIconName(_:completionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/xcode/configuring_your_app_to_use_alternate_app_icons": {
+      "abstract": [
+        {
+          "text": "Add alternate app icons to your app, and let people choose which icon to display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/xcode/configuring_your_app_to_use_alternate_app_icons",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Configuring Your App to Use Alternate App Icons",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring_your_app_to_use_alternate_app_icons"
+    },
+    "foundations-app-icons-thumbnail.png": {
+      "alt": null,
+      "identifier": "foundations-app-icons-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/345382ad96e4a8a995ad037f2776f978/foundations-app-icons-thumbnail@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a72b4cc3198df94f503a3a7434b37b92/foundations-app-icons-thumbnail~dark@2x.png"
+        }
+      ]
+    },
+    "https://developer.apple.com/app-store/product-page-optimization": {
+      "identifier": "https://developer.apple.com/app-store/product-page-optimization",
+      "title": "Product Page Optimization",
+      "titleInlineContent": [
+        {
+          "text": "Product Page Optimization",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/product-page-optimization"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/app-icons#iOS-iPadOS": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/app-icons#iOS-iPadOS",
+      "title": "Human Interface Guidelines > App Icons",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines > App Icons",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/app-icons#iOS-iPadOS"
+    },
+    "https://developer.apple.com/design/resources": {
+      "identifier": "https://developer.apple.com/design/resources",
+      "title": "Apple Design Resources",
+      "titleInlineContent": [
+        {
+          "text": "Apple Design Resources",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/resources"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-icons-and-launch-screen",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/xcode/configuring_your_app_to_use_alternate_app_icons",
+        "doc://com.apple.Xcode/documentation/Xcode/specifying-your-apps-launch-screen"
+      ],
+      "title": "App icons and launch screen"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplication~1setAlternateIconName(_:completionHandler:)/title",
+          "value": "setAlternateIconName:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplication~1setAlternateIconName(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "setAlternateIconName:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "alternateIconName"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

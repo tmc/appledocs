@@ -1,0 +1,410 @@
+{
+  "abstract": [
+    {
+      "text": "Implement ray-traced rendering using GPU-based parallel processing.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/metal-sample-code-library"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/ray-tracing-with-acceleration-structures"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/accelerating-ray-tracing-using-metal"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Accelerating ray tracing using Metal"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC22 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc22/10105/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and WWDC20 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc20/10012/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample requires the following system and software configuration:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS 11 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS 14 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode 12 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "aad7ca128ff9/AcceleratingRayTracingUsingMetal.zip": {
+      "checksum": "aad7ca128ff98f28033fc1a68bcccb06fbe118c8618e7e14c3397faff855cc6f833adaa2d954ccb247d8a4ffd19f2879aac44f1204a335da76d6d8bcd40d30e8",
+      "identifier": "aad7ca128ff9/AcceleratingRayTracingUsingMetal.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/aad7ca128ff9/AcceleratingRayTracingUsingMetal.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/accelerating-ray-tracing-and-motion-blur-using-metal": {
+      "abstract": [
+        {
+          "text": "Generate ray-traced images with motion blur using GPU-based parallel processing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/accelerating-ray-tracing-and-motion-blur-using-metal",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Accelerating ray tracing and motion blur using Metal",
+      "type": "topic",
+      "url": "/documentation/metal/accelerating-ray-tracing-and-motion-blur-using-metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/control-the-ray-tracing-process-using-intersection-queries": {
+      "abstract": [
+        {
+          "text": "Explicitly enumerate a ray’s intersections with acceleration structures by creating an intersection query object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/control-the-ray-tracing-process-using-intersection-queries",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Control the Ray Tracing Process Using Intersection Queries",
+      "type": "topic",
+      "url": "/documentation/metal/control-the-ray-tracing-process-using-intersection-queries"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-sample-code-library": {
+      "abstract": [
+        {
+          "text": "Explore the complete set of Metal samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-sample-code-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Sample Code Library",
+      "type": "topic",
+      "url": "/documentation/metal/metal-sample-code-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/ray-tracing-with-acceleration-structures": {
+      "abstract": [
+        {
+          "text": "Build a representation of your scene’s geometry using triangles and bounding volumes to quickly trace rays through the scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/ray-tracing-with-acceleration-structures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Ray Tracing with Acceleration Structures",
+      "type": "topic",
+      "url": "/documentation/metal/ray-tracing-with-acceleration-structures"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-a-curve-primitive-in-a-ray-tracing-scene": {
+      "abstract": [
+        {
+          "text": "Implement ray traced rendering using GPU-based parallel processing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-a-curve-primitive-in-a-ray-tracing-scene",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rendering a curve primitive in a ray tracing scene",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-a-curve-primitive-in-a-ray-tracing-scene"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-reflections-in-real-time-using-ray-tracing": {
+      "abstract": [
+        {
+          "text": "Implement realistic real-time lighting by dynamically generating reflection maps",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "by encoding a ray-tracing compute pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-reflections-in-real-time-using-ray-tracing",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rendering reflections in real time using ray tracing",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-reflections-in-real-time-using-ray-tracing"
+    },
+    "https://developer.apple.com/wwdc20/10012/": {
+      "identifier": "https://developer.apple.com/wwdc20/10012/",
+      "title": "10012: Discover ray tracing with Metal",
+      "titleInlineContent": [
+        {
+          "text": "10012: Discover ray tracing with Metal",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc20/10012/"
+    },
+    "https://developer.apple.com/wwdc22/10105/": {
+      "identifier": "https://developer.apple.com/wwdc22/10105/",
+      "title": "10105: Maximize your Metal ray tracing performance",
+      "titleInlineContent": [
+        {
+          "text": "10105: Maximize your Metal ray tracing performance",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc22/10105/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "aad7ca128ff9/AcceleratingRayTracingUsingMetal.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Ray-Tracing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/rendering-reflections-in-real-time-using-ray-tracing",
+        "doc://com.apple.metal/documentation/Metal/control-the-ray-tracing-process-using-intersection-queries",
+        "doc://com.apple.metal/documentation/Metal/accelerating-ray-tracing-and-motion-blur-using-metal",
+        "doc://com.apple.metal/documentation/Metal/rendering-a-curve-primitive-in-a-ray-tracing-scene"
+      ],
+      "title": "Ray Tracing"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Ray-Tracing",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/rendering-reflections-in-real-time-using-ray-tracing",
+                "doc://com.apple.metal/documentation/Metal/control-the-ray-tracing-process-using-intersection-queries",
+                "doc://com.apple.metal/documentation/Metal/accelerating-ray-tracing-and-motion-blur-using-metal",
+                "doc://com.apple.metal/documentation/Metal/rendering-a-curve-primitive-in-a-ray-tracing-scene"
+              ],
+              "title": "Ray Tracing"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/accelerating-ray-tracing-using-metal"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/accelerating-ray-tracing-using-metal"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

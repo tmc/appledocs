@@ -1,0 +1,503 @@
+{
+  "abstract": [
+    {
+      "text": "Adds the rows of another data frame that has the same column names and types.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.TabularData/documentation/TabularData",
+        "doc://com.apple.TabularData/documentation/TabularData/DataFrame"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.TabularData/documentation/TabularData/DataFrame/append(rowsOf:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:11TabularData0B5FrameV6append6rowsOfyAC_tF",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "append"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "rowsOf"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:11TabularData0B5FrameV",
+        "text": "DataFrame"
+      },
+      {
+        "kind": "text",
+        "text": ")"
+      }
+    ],
+    "modules": [
+      {
+        "name": "TabularData"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "append(rowsOf:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "mutating"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "append"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "rowsOf"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "other"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.TabularData/documentation/TabularData/DataFrame",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:11TabularData0B5FrameV",
+              "text": "DataFrame"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Another data frame that has the same number of columns.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The columns in ",
+                  "type": "text"
+                },
+                {
+                  "code": "other",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " must have the same names and types as the columns in the data frame.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "other"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method raises a fatal error if the data frame columns don’t match.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following code shows how to check that the columns match.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let sameColumns = left.columns.count == right.columns.count && zip(left.columns, right.columns).allSatisfy {",
+            "    $0.name == $1.name && $0.wrappedElementType == $1.wrappedElementType",
+            "}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.TabularData/documentation/TabularData": {
+      "abstract": [
+        {
+          "text": "Import, organize, and prepare a table of data to train a machine learning model.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TabularData/documentation/TabularData",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TabularData",
+      "type": "topic",
+      "url": "/documentation/tabulardata"
+    },
+    "doc://com.apple.TabularData/documentation/TabularData/DataFrame": {
+      "abstract": [
+        {
+          "text": "A collection that arranges data in rows and columns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.TabularData/documentation/TabularData/DataFrame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "DataFrame",
+      "type": "topic",
+      "url": "/documentation/tabulardata/dataframe"
+    },
+    "doc://com.apple.TabularData/documentation/TabularData/DataFrame/append(_:)-36sor": {
+      "abstract": [
+        {
+          "text": "Adds the rows of another data frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "append"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabularData0B5FrameV",
+          "text": "DataFrame"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.TabularData/documentation/TabularData/DataFrame/append(_:)-36sor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "append(_:)",
+      "type": "topic",
+      "url": "/documentation/tabulardata/dataframe/append(_:)-36sor"
+    },
+    "doc://com.apple.TabularData/documentation/TabularData/DataFrame/append(_:)-5l4c5": {
+      "abstract": [
+        {
+          "text": "Adds the rows of a slice from a data frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "append"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabularData0B5FrameV",
+          "text": "DataFrame"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabularData0B5FrameV5SliceV",
+          "text": "Slice"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.TabularData/documentation/TabularData/DataFrame/append(_:)-5l4c5",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "append(_:)",
+      "type": "topic",
+      "url": "/documentation/tabulardata/dataframe/append(_:)-5l4c5"
+    },
+    "doc://com.apple.TabularData/documentation/TabularData/DataFrame/append(rowsOf:)": {
+      "abstract": [
+        {
+          "text": "Adds the rows of another data frame that has the same column names and types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "append"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "rowsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabularData0B5FrameV",
+          "text": "DataFrame"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.TabularData/documentation/TabularData/DataFrame/append(rowsOf:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "append(rowsOf:)",
+      "type": "topic",
+      "url": "/documentation/tabulardata/dataframe/append(rowsof:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Adding-Multiple-Rows-from-a-Data-Frame",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.TabularData/documentation/TabularData/DataFrame/append(_:)-36sor",
+        "doc://com.apple.TabularData/documentation/TabularData/DataFrame/append(_:)-5l4c5"
+      ],
+      "title": "Adding Multiple Rows from a Data Frame"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/tabulardata/dataframe/append(rowsof:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

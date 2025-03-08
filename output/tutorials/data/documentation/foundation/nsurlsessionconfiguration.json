@@ -1,0 +1,1310 @@
+{
+  "abstract": [
+    {
+      "text": "A configuration object that defines behavior and policies for a URL session.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsession"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1411548,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSURLSessionConfiguration",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.9",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSURLSessionConfiguration"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSURLSessionConfiguration"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object defines the behavior and policies to use when uploading and downloading data using an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. When uploading or downloading data, creating a configuration object is always the first step you must take. You use this object to configure the timeout values, caching policies, connection requirements, and other types of information that you intend to use with your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It is important to configure your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object appropriately before using it to initialize a session object. Session objects make a copy of the configuration settings you provide and use those settings to configure the session. Once configured, the session object ignores any changes you make to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object. If you need to modify your transfer policies, you must update the session configuration object and use it to create a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In some cases, the policies defined in this configuration may be overridden by policies specified by an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object provided for a task. Any policy specified on the request object is respected unless the session’s policy is more restrictive. For example, if the session configuration specifies that cellular networking should not be allowed, the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object cannot request cellular networking.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about using configuration objects to create sessions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2934753",
+          "level": 3,
+          "text": "Types of session configurations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The behavior and capabilities of a URL session are largely determined by the kind of configuration used to create the session. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The singleton shared session (which has no configuration object) is for basic requests. It’s not as customizable as sessions that you create, but it serves as a good starting point if you have very limited requirements. You access this session by calling the shared class method. See that method’s discussion for more information about its limitations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Default sessions behave much like the shared session (unless you customize them further), but let you obtain data incrementally using a delegate. You can create a default session configuration by calling the default method on the URLSessionConfiguration class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ephemeral sessions are similar to default sessions, but they don’t write caches, cookies, or credentials to disk. You can create an ephemeral session configuration by calling the ephemeral method on the URLSessionConfiguration class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Background sessions let you perform uploads and downloads of content in the background while your app isn’t running. You can create a background session configuration by calling the backgroundSessionConfiguration(_:) method on the URLSessionConfiguration class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.networking.multipath": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether your app may use Multipath protocols to seamlessly transition between Wi-Fi and cellular networks.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Multipath Entitlement",
+      "identifier": "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.networking.multipath",
+      "kind": "symbol",
+      "name": "com.apple.developer.networking.multipath",
+      "role": "symbol",
+      "title": "Multipath Entitlement",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.networking.multipath"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshttpcookie": {
+      "abstract": [
+        {
+          "text": "A representation of an HTTP cookie.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshttpcookie",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHTTPCookie",
+      "type": "topic",
+      "url": "/documentation/foundation/nshttpcookie"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshttpcookiestorage": {
+      "abstract": [
+        {
+          "text": "A container that manages the storage of cookies. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshttpcookiestorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHTTPCookieStorage",
+      "type": "topic",
+      "url": "/documentation/foundation/nshttpcookiestorage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocol": {
+      "abstract": [
+        {
+          "text": "An abstract class that handles the loading of protocol-specific URL data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLProtocol",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411474-sessionwithconfiguration": {
+      "abstract": [
+        {
+          "text": "Creates a session with the specified session configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "sessionWithConfiguration:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411474-sessionwithconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sessionWithConfiguration:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession/1411474-sessionwithconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411477-configuration": {
+      "abstract": [
+        {
+          "text": "A copy of the configuration object for this session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411477-configuration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configuration",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession/1411477-configuration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411597-sessionwithconfiguration": {
+      "abstract": [
+        {
+          "text": "Creates a session with the specified session configuration, delegate, and operation queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "sessionWithConfiguration:delegate:delegateQueue:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411597-sessionwithconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sessionWithConfiguration:delegate:delegateQueue:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession/1411597-sessionwithconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration object that defines behavior and policies for a URL session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSessionConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1407496-backgroundsessionconfigurationwi": {
+      "abstract": [
+        {
+          "text": "Creates a session configuration object that allows HTTP and HTTPS uploads or downloads to be performed in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "backgroundSessionConfigurationWithIdentifier:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1407496-backgroundsessionconfigurationwi",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "backgroundSessionConfigurationWithIdentifier:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1407496-backgroundsessionconfigurationwi"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1407597-httpmaximumconnectionsperhost": {
+      "abstract": [
+        {
+          "text": "The maximum number of simultaneous connections to make to a given host.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1407597-httpmaximumconnectionsperhost",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HTTPMaximumConnectionsPerHost",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1407597-httpmaximumconnectionsperhost"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1408153-timeoutintervalforresource": {
+      "abstract": [
+        {
+          "text": "The maximum amount of time that a resource request should be allowed to take.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1408153-timeoutintervalforresource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeoutIntervalForResource",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1408153-timeoutintervalforresource"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1408259-timeoutintervalforrequest": {
+      "abstract": [
+        {
+          "text": "The timeout interval to use when waiting for additional data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1408259-timeoutintervalforrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeoutIntervalForRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1408259-timeoutintervalforrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1408933-httpcookieacceptpolicy": {
+      "abstract": [
+        {
+          "text": "A policy constant that determines when cookies should be accepted.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1408933-httpcookieacceptpolicy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HTTPCookieAcceptPolicy",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1408933-httpcookieacceptpolicy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1408987-identifier": {
+      "abstract": [
+        {
+          "text": "The background session identifier of the configuration object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1408987-identifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1408987-identifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1409076-tlsmaximumsupportedprotocol": {
+      "abstract": [
+        {
+          "text": "The maximum TLS protocol version that the client should request when making connections in this session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1409076-tlsmaximumsupportedprotocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TLSMaximumSupportedProtocol",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1409076-tlsmaximumsupportedprotocol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1409406-allowscellularaccess": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether connections should be made over a cellular network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1409406-allowscellularaccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowsCellularAccess",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1409406-allowscellularaccess"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1409450-sharedcontaineridentifier": {
+      "abstract": [
+        {
+          "text": "The identifier for the shared container into which files in background URL sessions should be downloaded.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1409450-sharedcontaineridentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sharedContainerIdentifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1409450-sharedcontaineridentifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1409517-shoulduseextendedbackgroundidlem": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether TCP connections should be kept open when the app moves to the background.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1409517-shoulduseextendedbackgroundidlem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shouldUseExtendedBackgroundIdleMode",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1409517-shoulduseextendedbackgroundidlem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1410148-urlcache": {
+      "abstract": [
+        {
+          "text": "The URL cache for providing cached responses to requests within the session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1410148-urlcache",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLCache",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1410148-urlcache"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1410529-ephemeralsessionconfiguration": {
+      "abstract": [
+        {
+          "text": "A session configuration that uses no persistent storage for caches, cookies, or credentials.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1410529-ephemeralsessionconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ephemeralSessionConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1410529-ephemeralsessionconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1410947-urlcredentialstorage": {
+      "abstract": [
+        {
+          "text": "A credential store that provides credentials for authentication.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1410947-urlcredentialstorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLCredentialStorage",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1410947-urlcredentialstorage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411050-protocolclasses": {
+      "abstract": [
+        {
+          "text": "An array of extra protocol subclasses that handle requests in a session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411050-protocolclasses",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "protocolClasses",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1411050-protocolclasses"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411499-connectionproxydictionary": {
+      "abstract": [
+        {
+          "text": "A dictionary containing information about the proxy to use within this session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411499-connectionproxydictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "connectionProxyDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1411499-connectionproxydictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411521-backgroundsessionconfiguration": {
+      "abstract": [
+        {
+          "text": "Returns a session configuration object that allows HTTP and HTTPS uploads or downloads to be performed in the background.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "backgroundSessionConfiguration:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411521-backgroundsessionconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "backgroundSessionConfiguration:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1411521-backgroundsessionconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411526-tlsminimumsupportedprotocol": {
+      "abstract": [
+        {
+          "text": "The minimum TLS protocol to accept during protocol negotiation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411526-tlsminimumsupportedprotocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TLSMinimumSupportedProtocol",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1411526-tlsminimumsupportedprotocol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411532-httpadditionalheaders": {
+      "abstract": [
+        {
+          "text": "A dictionary of additional headers to send with requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411532-httpadditionalheaders",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HTTPAdditionalHeaders",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1411532-httpadditionalheaders"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411552-discretionary": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether background tasks can be scheduled at the discretion of the system for optimal performance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411552-discretionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "discretionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1411552-discretionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411560-defaultsessionconfiguration": {
+      "abstract": [
+        {
+          "text": "A default session configuration object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411560-defaultsessionconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultSessionConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1411560-defaultsessionconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411589-httpshouldsetcookies": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether requests should contain cookies from the cookie store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411589-httpshouldsetcookies",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HTTPShouldSetCookies",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1411589-httpshouldsetcookies"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411599-httpcookiestorage": {
+      "abstract": [
+        {
+          "text": "The cookie store for storing cookies within this session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411599-httpcookiestorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HTTPCookieStorage",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1411599-httpcookiestorage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411606-networkservicetype": {
+      "abstract": [
+        {
+          "text": "The type of network service for all tasks within network sessions to enable Cellular Network Slicing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411606-networkservicetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "networkServiceType",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1411606-networkservicetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411655-requestcachepolicy": {
+      "abstract": [
+        {
+          "text": "A predefined constant that determines when to return a response from the cache.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411655-requestcachepolicy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestCachePolicy",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1411655-requestcachepolicy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411657-httpshouldusepipelining": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the session should use HTTP pipelining.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411657-httpshouldusepipelining",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HTTPShouldUsePipelining",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1411657-httpshouldusepipelining"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1617174-sessionsendslaunchevents": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app should be resumed or launched in the background when transfers finish.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1617174-sessionsendslaunchevents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sessionSendsLaunchEvents",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/1617174-sessionsendslaunchevents"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/2875967-multipathservicetype": {
+      "abstract": [
+        {
+          "text": "A service type that specifies the Multipath TCP connection policy for transmitting data over Wi-Fi and cellular interfaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/2875967-multipathservicetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "multipathServiceType",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/2875967-multipathservicetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/2908812-waitsforconnectivity": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the session should wait for connectivity to become available, or fail immediately.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/2908812-waitsforconnectivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "waitsForConnectivity",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/2908812-waitsforconnectivity"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/3235751-allowsconstrainednetworkaccess": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether connections may use the network when the user has specified Low Data Mode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/3235751-allowsconstrainednetworkaccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowsConstrainedNetworkAccess",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/3235751-allowsconstrainednetworkaccess"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/3235752-allowsexpensivenetworkaccess": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether connections may use a network interface that the system considers expensive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/3235752-allowsexpensivenetworkaccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowsExpensiveNetworkAccess",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/3235752-allowsexpensivenetworkaccess"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/3240616-init": {
+      "abstract": [
+        {
+          "text": "Creates an empty session configuration.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/3240616-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/3240616-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/3240617-new": {
+      "abstract": [
+        {
+          "text": "Creates an empty session configuration.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "new"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/3240617-new",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "new",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/3240617-new"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/3362532-tlsmaximumsupportedprotocolversi": {
+      "abstract": [
+        {
+          "text": "The maximum TLS protocol version that the client should request when making connections in this session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/3362532-tlsmaximumsupportedprotocolversi",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TLSMaximumSupportedProtocolVersion",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/3362532-tlsmaximumsupportedprotocolversi"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/3362533-tlsminimumsupportedprotocolversi": {
+      "abstract": [
+        {
+          "text": "The minimum TLS protocol version that the client should accept when making connections in this session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/3362533-tlsminimumsupportedprotocolversi",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TLSMinimumSupportedProtocolVersion",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/3362533-tlsminimumsupportedprotocolversi"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/4018381-requiresdnssecvalidation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/4018381-requiresdnssecvalidation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requiresDNSSECValidation",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/4018381-requiresdnssecvalidation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/4172960-proxyconfigurations": {
+      "abstract": [
+        {
+          "text": "An array of proxy configuration objects containing information about the proxies to use within this session. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/4172960-proxyconfigurations",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "proxyConfigurations",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/4172960-proxyconfigurations"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/improving_network_reliability_using_multipath_tcp": {
+      "abstract": [
+        {
+          "text": "Use the available radios in iOS devices to improve your app’s network reliability and performance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/improving_network_reliability_using_multipath_tcp",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving network reliability using Multipath TCP",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/improving_network_reliability_using_multipath_tcp"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionmultipathservicetype": {
+      "abstract": [
+        {
+          "text": "Constants that specify the type of service that Multipath TCP uses.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionmultipathservicetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSessionMultipathServiceType",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionmultipathservicetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418956-nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411474-sessionwithconfiguration",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411597-sessionwithconfiguration",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsession/1411477-configuration"
+      ],
+      "title": "Creating a session"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1660412",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411560-defaultsessionconfiguration",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1410529-ephemeralsessionconfiguration",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1407496-backgroundsessionconfigurationwi",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/3240616-init",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/3240617-new"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a session configuration object"
+    },
+    {
+      "anchor": "1660468",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1408987-identifier",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411532-httpadditionalheaders",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411606-networkservicetype",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1409406-allowscellularaccess",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1408259-timeoutintervalforrequest",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1408153-timeoutintervalforresource",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1409450-sharedcontaineridentifier",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/2908812-waitsforconnectivity"
+      ],
+      "kind": "taskGroup",
+      "title": "Setting general properties"
+    },
+    {
+      "anchor": "1660560",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1408933-httpcookieacceptpolicy",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411589-httpshouldsetcookies",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411599-httpcookiestorage",
+        "doc://com.apple.documentation/documentation/foundation/nshttpcookiestorage",
+        "doc://com.apple.documentation/documentation/foundation/nshttpcookie"
+      ],
+      "kind": "taskGroup",
+      "title": "Setting cookie policies"
+    },
+    {
+      "anchor": "1660607",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/3362533-tlsminimumsupportedprotocolversi",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/3362532-tlsmaximumsupportedprotocolversi",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1410947-urlcredentialstorage",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411526-tlsminimumsupportedprotocol",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1409076-tlsmaximumsupportedprotocol"
+      ],
+      "kind": "taskGroup",
+      "title": "Setting security policies"
+    },
+    {
+      "anchor": "1660658",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1410148-urlcache",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411655-requestcachepolicy"
+      ],
+      "kind": "taskGroup",
+      "title": "Setting caching policies"
+    },
+    {
+      "anchor": "1660707",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1617174-sessionsendslaunchevents",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411552-discretionary",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1409517-shoulduseextendedbackgroundidlem"
+      ],
+      "kind": "taskGroup",
+      "title": "Supporting background transfers"
+    },
+    {
+      "anchor": "1660757",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411050-protocolclasses",
+        "doc://com.apple.documentation/documentation/foundation/nsurlprotocol"
+      ],
+      "kind": "taskGroup",
+      "title": "Supporting custom protocols"
+    },
+    {
+      "anchor": "2888288",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/improving_network_reliability_using_multipath_tcp",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/2875967-multipathservicetype",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionmultipathservicetype",
+        "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.networking.multipath"
+      ],
+      "kind": "taskGroup",
+      "title": "Supporting Multipath TCP"
+    },
+    {
+      "anchor": "1660788",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1407597-httpmaximumconnectionsperhost",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411657-httpshouldusepipelining",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/4172960-proxyconfigurations",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411499-connectionproxydictionary"
+      ],
+      "kind": "taskGroup",
+      "title": "Setting HTTP policy and proxy properties"
+    },
+    {
+      "anchor": "2919265",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/2908812-waitsforconnectivity"
+      ],
+      "kind": "taskGroup",
+      "title": "Supporting connectivity changes"
+    },
+    {
+      "anchor": "3376559",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/3235751-allowsconstrainednetworkaccess",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/3235752-allowsexpensivenetworkaccess"
+      ],
+      "kind": "taskGroup",
+      "title": "Supporting limited modes"
+    },
+    {
+      "anchor": "1674389",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/1411521-backgroundsessionconfiguration"
+      ],
+      "kind": "taskGroup",
+      "title": "Deprecated methods"
+    },
+    {
+      "anchor": "4309181",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/4018381-requiresdnssecvalidation"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsurlsessionconfiguration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/urlsessionconfiguration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

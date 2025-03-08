@@ -1,0 +1,892 @@
+{
+  "abstract": [
+    {
+      "text": "Set the range of mipmap levels that a sampler can access.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/textures"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/restricting-access-to-specific-mipmaps"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Restricting Access to Specific Mipmaps"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sometimes, you want to control the specific mipmap levels that the sampler can read from. For example, you might do this when you haven’t provided texture data for all of the mipmaps, and you want to constrain access to the mipmaps that have data. You can configure a sampler to read from a subset of the texture’s mipmaps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Limit-the-Sampler-When-You-Create-It-in-Your-Metal-App",
+          "level": 3,
+          "text": "Limit the Sampler When You Create It in Your Metal App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you configure the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLSamplerDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLSamplerDescriptor/lodMinClamp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLSamplerDescriptor/lodMaxClamp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties to the range of permitted values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let descriptor = MTLSamplerDescriptor()",
+                    "descriptor.minFilter = MTLSamplerMinMagFilter.linear",
+                    "descriptor.magFilter = MTLSamplerMinMagFilter.linear",
+                    "descriptor.mipFilter = MTLSamplerMipFilter.linear",
+                    "",
+                    "descriptor.lodMinClamp = 3.0",
+                    "descriptor.lodMaxClamp = 5.0",
+                    "",
+                    "let sampler = device.makeSamplerState(descriptor: descriptor)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "MTLSamplerDescriptor *descriptor = [MTLSamplerDescriptor new];",
+                    "descriptor.minFilter = MTLSamplerMinMagFilterLinear;",
+                    "descriptor.magFilter = MTLSamplerMinMagFilterLinear;",
+                    "descriptor.mipFilter = MTLSamplerMipFilterLinear;",
+                    "",
+                    "descriptor.lodMinClamp = 3.0f;",
+                    "descriptor.lodMaxClamp = 5.0f;",
+                    "",
+                    "id<MTLSamplerState> sampler = [device newSamplerStateWithDescriptor: descriptor];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example creates a sampler that ignores mipmaps ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Limit-the-Sampler-When-You-Create-It-in-Your-Shader",
+          "level": 3,
+          "text": "Limit the Sampler When You Create It in Your Shader",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you create your sampler in your shader, specify the range of mipmap levels that it can access:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "constexpr sampler s(filter::linear, mip_filter::linear, lod_clamp(3.0f, MAXFLOAT))"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Control-Mipmap-Selection-When-You-Sample-the-Texture",
+          "level": 3,
+          "text": "Control Mipmap Selection When You Sample the Texture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some GPUs can apply additional constraints on the sample operation itself, passing in dynamic information about which mipmap levels the GPU can sample.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Not all GPUs support clamping at the moment it samples a texture. Verify that GPU’s device instance supports clamping to a minimum level-of-detail (LOD) by checking whether it supports one of the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/mac2",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " feature set.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/apple6",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " feature set.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let macFamily2Support = device.supportsFamily(MTLGPUFamily.mac2)",
+                    "let appleFamily6Support = device.supportsFamily(MTLGPUFamily.apple6)",
+                    "let supportsMinLevelOfDetailClamp = macFamily2Support || appleFamily6Support"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "Boolean macFamily2Support = [device supportsFamily:MTLGPUFamilyMac2];",
+                    "Boolean appleFamily6Support = [device supportsFamily:MTLGPUFamilyApple6];",
+                    "Boolean supportsMinLevelOfDetailClamp = macFamily2Support || appleFamily6Support;"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your shader, call one of the variants of the ",
+              "type": "text"
+            },
+            {
+              "code": "sample",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function that takes additional LOD parameters. For example, the following code limits sampling to a specific level or lower in the mipmap chain. The shader has a minimum level parameter that it uses to sample the texture:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "fragment float4",
+            "samplingShader(RasterizerData in [[stage_in]],",
+            "               texture2d<half> colorTexture [[ texture(0) ]],",
+            "               constant float &minimumLOD [[buffer(0)]])",
+            "{",
+            "    constexpr sampler textureSampler (mag_filter::linear,",
+            "                                      min_filter::linear,",
+            "                                      mip_filter::linear);",
+            "",
+            "    const half4 colorSample = colorTexture.sample(textureSampler,",
+            "                                                  in.textureCoordinate,",
+            "                                                  min_lod_clamp(minimumLOD));",
+            "    ",
+            "    return float4(colorSample);",
+            "}"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example limits sampling to a specific level or lower in the mipmap chain. The shader has a minimum level parameter, ",
+              "type": "text"
+            },
+            {
+              "code": "minimumLOD",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", that it uses to sample the texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Metal/Reference/MetalShadingLanguageGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40014364",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " describes other options for controlling mipmap selection. You can choose to sample a specific mipmap level, specify a minimum mipmap level, bias the selection process that the hardware chooses, or use some combination of these options.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/apple6": {
+      "abstract": [
+        {
+          "text": "Represents the Apple family 6 GPU features that correspond to the Apple A13 GPUs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "apple6"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/apple6",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLGPUFamilyApple6"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLGPUFamily.apple6",
+      "type": "topic",
+      "url": "/documentation/metal/mtlgpufamily/apple6"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/mac2": {
+      "abstract": [
+        {
+          "text": "Represents the Mac family 2 GPU features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mac2"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/mac2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLGPUFamilyMac2"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLGPUFamily.mac2",
+      "type": "topic",
+      "url": "/documentation/metal/mtlgpufamily/mac2"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSamplerDescriptor": {
+      "abstract": [
+        {
+          "text": "An object that you use to configure a texture sampler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLSamplerDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSamplerDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLSamplerDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLSamplerDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsamplerdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSamplerDescriptor/lodMaxClamp": {
+      "abstract": [
+        {
+          "text": "The maximum level of detail (LOD) to use when sampling from a texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lodMaxClamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSamplerDescriptor/lodMaxClamp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lodMaxClamp"
+        }
+      ],
+      "role": "symbol",
+      "title": "lodMaxClamp",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsamplerdescriptor/lodmaxclamp"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSamplerDescriptor/lodMinClamp": {
+      "abstract": [
+        {
+          "text": "The minimum level of detail (LOD) to use when sampling from a texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lodMinClamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSamplerDescriptor/lodMinClamp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lodMinClamp"
+        }
+      ],
+      "role": "symbol",
+      "title": "lodMinClamp",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsamplerdescriptor/lodminclamp"
+    },
+    "doc://com.apple.metal/documentation/Metal/adding-mipmap-filtering-to-samplers": {
+      "abstract": [
+        {
+          "text": "Specify how the GPU samples mipmaps in your textures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/adding-mipmap-filtering-to-samplers",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Mipmap Filtering to Samplers",
+      "type": "topic",
+      "url": "/documentation/metal/adding-mipmap-filtering-to-samplers"
+    },
+    "doc://com.apple.metal/documentation/Metal/copying-data-into-or-out-of-mipmaps": {
+      "abstract": [
+        {
+          "text": "Specify which mipmaps that the data transfer affects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/copying-data-into-or-out-of-mipmaps",
+      "kind": "article",
+      "role": "article",
+      "title": "Copying Data into or out of Mipmaps",
+      "type": "topic",
+      "url": "/documentation/metal/copying-data-into-or-out-of-mipmaps"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-a-mipmapped-texture": {
+      "abstract": [
+        {
+          "text": "Decide whether a texture that you’re creating needs mipmaps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-a-mipmapped-texture",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Mipmapped Texture",
+      "type": "topic",
+      "url": "/documentation/metal/creating-a-mipmapped-texture"
+    },
+    "doc://com.apple.metal/documentation/Metal/dynamically-adjusting-texture-level-of-detail": {
+      "abstract": [
+        {
+          "text": "Defer generating or loading larger mipmaps until that level of detail is needed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/dynamically-adjusting-texture-level-of-detail",
+      "kind": "article",
+      "role": "article",
+      "title": "Dynamically Adjusting Texture Level of Detail",
+      "type": "topic",
+      "url": "/documentation/metal/dynamically-adjusting-texture-level-of-detail"
+    },
+    "doc://com.apple.metal/documentation/Metal/generating-mipmap-data": {
+      "abstract": [
+        {
+          "text": "Create your mipmaps either when you author content or at runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/generating-mipmap-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating Mipmap Data",
+      "type": "topic",
+      "url": "/documentation/metal/generating-mipmap-data"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-texture-sampling-quality-and-performance-with-mipmaps": {
+      "abstract": [
+        {
+          "text": "Avoid texture-rendering artifacts and reduce the GPU’s workload by creating smaller versions of a texture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-texture-sampling-quality-and-performance-with-mipmaps",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving Texture Sampling Quality and Performance with Mipmaps",
+      "type": "topic",
+      "url": "/documentation/metal/improving-texture-sampling-quality-and-performance-with-mipmaps"
+    },
+    "doc://com.apple.metal/documentation/Metal/predicting-which-mips-the-gpu-samples-with-level-of-detail-queries": {
+      "abstract": [
+        {
+          "text": "Determine in advance which mipmap levels the GPU requires to sample a texture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/predicting-which-mips-the-gpu-samples-with-level-of-detail-queries",
+      "kind": "article",
+      "role": "article",
+      "title": "Predicting Which Mips the GPU Samples with Level-of-Detail Queries",
+      "type": "topic",
+      "url": "/documentation/metal/predicting-which-mips-the-gpu-samples-with-level-of-detail-queries"
+    },
+    "doc://com.apple.metal/documentation/Metal/textures": {
+      "abstract": [
+        {
+          "text": "Create and manage typed data your app uses to exchange information with its shader functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/textures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Textures",
+      "type": "topic",
+      "url": "/documentation/metal/textures"
+    },
+    "https://developer.apple.com/library/archive/documentation/Metal/Reference/MetalShadingLanguageGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40014364": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Metal/Reference/MetalShadingLanguageGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40014364",
+      "title": "Metal Shading Language Guide",
+      "titleInlineContent": [
+        {
+          "text": "Metal Shading Language Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Metal/Reference/MetalShadingLanguageGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40014364"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Texture-Mipmapping",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/improving-texture-sampling-quality-and-performance-with-mipmaps",
+        "doc://com.apple.metal/documentation/Metal/creating-a-mipmapped-texture",
+        "doc://com.apple.metal/documentation/Metal/copying-data-into-or-out-of-mipmaps",
+        "doc://com.apple.metal/documentation/Metal/generating-mipmap-data",
+        "doc://com.apple.metal/documentation/Metal/adding-mipmap-filtering-to-samplers",
+        "doc://com.apple.metal/documentation/Metal/predicting-which-mips-the-gpu-samples-with-level-of-detail-queries",
+        "doc://com.apple.metal/documentation/Metal/dynamically-adjusting-texture-level-of-detail"
+      ],
+      "title": "Texture Mipmapping"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Texture-Mipmapping",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/improving-texture-sampling-quality-and-performance-with-mipmaps",
+                "doc://com.apple.metal/documentation/Metal/creating-a-mipmapped-texture",
+                "doc://com.apple.metal/documentation/Metal/copying-data-into-or-out-of-mipmaps",
+                "doc://com.apple.metal/documentation/Metal/generating-mipmap-data",
+                "doc://com.apple.metal/documentation/Metal/adding-mipmap-filtering-to-samplers",
+                "doc://com.apple.metal/documentation/Metal/predicting-which-mips-the-gpu-samples-with-level-of-detail-queries",
+                "doc://com.apple.metal/documentation/Metal/dynamically-adjusting-texture-level-of-detail"
+              ],
+              "title": "Texture Mipmapping"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSamplerDescriptor~1lodMaxClamp/title",
+          "value": "lodMaxClamp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSamplerDescriptor~1lodMaxClamp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lodMaxClamp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLGPUFamily~1apple6/title",
+          "value": "MTLGPUFamilyApple6"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLGPUFamily~1apple6/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLGPUFamilyApple6"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSamplerDescriptor/title",
+          "value": "MTLSamplerDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSamplerDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSamplerDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSamplerDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSamplerDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLGPUFamily~1mac2/title",
+          "value": "MTLGPUFamilyMac2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLGPUFamily~1mac2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLGPUFamilyMac2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSamplerDescriptor~1lodMinClamp/title",
+          "value": "lodMinClamp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSamplerDescriptor~1lodMinClamp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lodMinClamp"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/restricting-access-to-specific-mipmaps"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/restricting-access-to-specific-mipmaps"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

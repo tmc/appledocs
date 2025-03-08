@@ -1,0 +1,750 @@
+{
+  "abstract": [
+    {
+      "text": "The priority of the constraint.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint/priority-swift.property"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSLayoutConstraint(py)priority",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "priority"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+        "text": "NSLayoutConstraint"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@NSLayoutPriority",
+        "text": "Priority"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "priority"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.7",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "priority"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "priority"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+              "text": "NSLayoutConstraint"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint/Priority-swift.struct",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSLayoutPriority",
+              "text": "Priority"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, all constraints are required; this property is set to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint/Priority-swift.struct/required",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in macOS or ",
+              "type": "text"
+            },
+            {
+              "code": "UILayoutPriorityRequired",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in iOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a constraint’s priority level is less than ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint/Priority-swift.struct/required",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in macOS or ",
+              "type": "text"
+            },
+            {
+              "code": "UILayoutPriorityRequired",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in iOS, then it is optional. Higher priority constraints are satisfied before lower priority constraints; however, optional constraint satisfaction is not all or nothing. If a constraint ",
+              "type": "text"
+            },
+            {
+              "code": "a == b",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is optional, the constraint-based layout system will attempt to minimize ",
+              "type": "text"
+            },
+            {
+              "code": "abs(a-b)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Priorities may not change from nonrequired to required, or from required to nonrequired. An exception will be thrown if a priority of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint/Priority-swift.struct/required",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in macOS or ",
+              "type": "text"
+            },
+            {
+              "code": "UILayoutPriorityRequired",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in iOS is changed to a lower priority, or if a lower priority is changed to a required priority after the constraints is added to a view. Changing from one optional priority to another optional priority is allowed even after the constraint is installed on a view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Priorities must be greater than 0 and less than or equal to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint/Priority-swift.struct/required",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in macOS or ",
+              "type": "text"
+            },
+            {
+              "code": "UILayoutPriorityRequired",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in iOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint": {
+      "abstract": [
+        {
+          "text": "The relationship between two user interface objects that must be satisfied by the constraint-based layout system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLayoutConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLayoutConstraint"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLayoutConstraint",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutconstraint"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint/Priority-swift.struct": {
+      "abstract": [
+        {
+          "text": "Layout priority used to indicate the relative importance of constraints, allowing Auto Layout to make appropriate tradeoffs when satisfying the constraints of the system as a whole.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Priority"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint/Priority-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Priority"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLayoutConstraint.Priority",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutconstraint/priority-swift.struct"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint/Priority-swift.struct/required": {
+      "abstract": [
+        {
+          "text": "A required constraint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "required"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSLayoutPriority",
+          "text": "Priority"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint/Priority-swift.struct/required",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLayoutPriorityRequired"
+        }
+      ],
+      "role": "symbol",
+      "title": "required",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutconstraint/priority-swift.struct/required"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint/priority-swift.property": {
+      "abstract": [
+        {
+          "text": "The priority of the constraint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "priority"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSLayoutConstraint",
+          "text": "NSLayoutConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSLayoutPriority",
+          "text": "Priority"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint/priority-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "priority"
+        }
+      ],
+      "role": "symbol",
+      "title": "priority",
+      "type": "topic",
+      "url": "/documentation/appkit/nslayoutconstraint/priority-swift.property"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-the-layout-priority",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint/Priority-swift.struct"
+      ],
+      "title": "Getting the layout priority"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.7",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "priority"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "priority"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit",
+                "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Getting-the-layout-priority",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint/Priority-swift.struct"
+              ],
+              "title": "Getting the layout priority"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLayoutConstraint/Priority-swift.struct",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@NSLayoutPriority",
+                    "text": "NSLayoutPriority"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "priority"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutConstraint~1Priority-swift.struct/title",
+          "value": "NSLayoutPriority"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutConstraint~1Priority-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutPriority"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutConstraint~1Priority-swift.struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutPriority"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutConstraint~1priority-swift.property/title",
+          "value": "priority"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutConstraint~1priority-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "priority"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutConstraint~1Priority-swift.struct~1required/title",
+          "value": "NSLayoutPriorityRequired"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutConstraint~1Priority-swift.struct~1required/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutPriorityRequired"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutConstraint/title",
+          "value": "NSLayoutConstraint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutConstraint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSLayoutConstraint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLayoutConstraint"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nslayoutconstraint/priority-swift.property"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nslayoutconstraint/priority-swift.property"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

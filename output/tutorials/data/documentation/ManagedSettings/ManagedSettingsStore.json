@@ -1,0 +1,1913 @@
+{
+  "abstract": [
+    {
+      "text": "A data store that applies settings to the current user or device.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:15ManagedSettings0aB5StoreC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ManagedSettingsStore"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ManagedSettings"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ManagedSettingsStore"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "ManagedSettingsStore"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ManagedSettingsStore"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ReadingMedia"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Managed Settings data store groups settings according to function.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each group contains relevant data about its associated settings,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for example, a default value and minimum and maximum possible values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-Settings",
+          "level": 3,
+          "text": "Configure Settings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the settings objects to inspect your application’s current configurations as well as apply new configurations.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Changing the value of a setting to ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " deletes your app’s configuration for that setting from the device.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system doesn’t guarantee that the settings you specify govern the device’s behavior.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system is responsible for determining its effective state based on all the settings it receives.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Examine-Effective-Settings",
+          "level": 3,
+          "text": "Examine Effective Settings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a few cases, you can also access the effective settings.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, a media app can access the effective rating settings to filter the content it offers,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "even though it doesn’t provide configurations for these or any other settings.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Subscribe to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/$effectiveMaximumTVShowRating",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/$effectiveMaximumMovieRating",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine what TV shows or movies to offer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings": {
+      "abstract": [
+        {
+          "text": "Access and change settings with your app while maintaining user privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ManagedSettings",
+      "type": "topic",
+      "url": "/documentation/managedsettings"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/AccountSettings": {
+      "abstract": [
+        {
+          "text": "An object that configures whether a user can modify their device’s account settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccountSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/AccountSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccountSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccountSettings",
+      "type": "topic",
+      "url": "/documentation/managedsettings/accountsettings"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/AppStoreSettings": {
+      "abstract": [
+        {
+          "text": "Constraints on a user’s App Store settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppStoreSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/AppStoreSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppStoreSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppStoreSettings",
+      "type": "topic",
+      "url": "/documentation/managedsettings/appstoresettings"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ApplicationSettings": {
+      "abstract": [
+        {
+          "text": "Constraints on the apps and categories of apps a user can run on their device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ApplicationSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ApplicationSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ApplicationSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "ApplicationSettings",
+      "type": "topic",
+      "url": "/documentation/managedsettings/applicationsettings"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/BoundedSettingMetadata": {
+      "abstract": [
+        {
+          "text": "Additional information about a bounded setting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BoundedSettingMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/BoundedSettingMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BoundedSettingMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "BoundedSettingMetadata",
+      "type": "topic",
+      "url": "/documentation/managedsettings/boundedsettingmetadata"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/CellularSettings": {
+      "abstract": [
+        {
+          "text": "Constraints on the user’s cellular networking settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CellularSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/CellularSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CellularSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "CellularSettings",
+      "type": "topic",
+      "url": "/documentation/managedsettings/cellularsettings"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/DateAndTimeSettings": {
+      "abstract": [
+        {
+          "text": "Constraints on the device’s date and time settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DateAndTimeSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/DateAndTimeSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DateAndTimeSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "DateAndTimeSettings",
+      "type": "topic",
+      "url": "/documentation/managedsettings/dateandtimesettings"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/GameCenterSettings": {
+      "abstract": [
+        {
+          "text": "Constraints on the user’s Game Center settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GameCenterSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/GameCenterSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GameCenterSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "GameCenterSettings",
+      "type": "topic",
+      "url": "/documentation/managedsettings/gamecentersettings"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsGroup": {
+      "abstract": [
+        {
+          "text": "A group of settings to manage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ManagedSettingsGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ManagedSettingsGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "ManagedSettingsGroup",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsgroup"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore": {
+      "abstract": [
+        {
+          "text": "A data store that applies settings to the current user or device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ManagedSettingsStore"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ManagedSettingsStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "ManagedSettingsStore",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/$effectiveMaximumMovieRating": {
+      "abstract": [
+        {
+          "text": "The movie rating constraint that is active on this device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "$effectiveMaximumMovieRating"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublishedV",
+          "text": "Published"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublishedV9PublisherV",
+          "text": "Publisher"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/$effectiveMaximumMovieRating",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "$effectiveMaximumMovieRating",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/$effectivemaximummovierating"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/$effectiveMaximumTVShowRating": {
+      "abstract": [
+        {
+          "text": "The television show rating constraint that is active on this device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "$effectiveMaximumTVShowRating"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublishedV",
+          "text": "Published"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublishedV9PublisherV",
+          "text": "Publisher"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/$effectiveMaximumTVShowRating",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "$effectiveMaximumTVShowRating",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/$effectivemaximumtvshowrating"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/Name": {
+      "abstract": [
+        {
+          "text": "The unique name of a store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/Name",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Name"
+        }
+      ],
+      "role": "symbol",
+      "title": "ManagedSettingsStore.Name",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/name"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/ObjectWillChangePublisher": {
+      "abstract": [
+        {
+          "text": "The type of publisher that emits before the object has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ObjectWillChangePublisher"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/ObjectWillChangePublisher",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ObjectWillChangePublisher"
+        }
+      ],
+      "role": "symbol",
+      "title": "ManagedSettingsStore.ObjectWillChangePublisher",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/objectwillchangepublisher"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/ObservableObject-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/ObservableObject-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ObservableObject Implementations",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/observableobject-implementations"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/account": {
+      "abstract": [
+        {
+          "text": "Settings that affect accounts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "account"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ManagedSettings07AccountB0V",
+          "text": "AccountSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/account",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "account",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/account"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/appStore": {
+      "abstract": [
+        {
+          "text": "Settings that affect the App Store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appStore"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ManagedSettings08AppStoreB0V",
+          "text": "AppStoreSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/appStore",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appStore",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/appstore"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/application": {
+      "abstract": [
+        {
+          "text": "Settings that affect applications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ManagedSettings011ApplicationB0V",
+          "text": "ApplicationSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/application",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/application"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/cellular": {
+      "abstract": [
+        {
+          "text": "Settings that affect cellular networking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cellular"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ManagedSettings08CellularB0V",
+          "text": "CellularSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/cellular",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cellular",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/cellular"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/clearAllSettings()": {
+      "abstract": [
+        {
+          "text": "Clears all settings for this store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clearAllSettings"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/clearAllSettings()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clearAllSettings()",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/clearallsettings()"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/dateAndTime": {
+      "abstract": [
+        {
+          "text": "Settings that affect the date and time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dateAndTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ManagedSettings011DateAndTimeB0V",
+          "text": "DateAndTimeSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/dateAndTime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dateAndTime",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/dateandtime"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/effectiveMaximumMovieRating": {
+      "abstract": [
+        {
+          "text": "The movie rating constraint that is active on this device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "effectiveMaximumMovieRating"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/effectiveMaximumMovieRating",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "effectiveMaximumMovieRating",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/effectivemaximummovierating"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/effectiveMaximumTVShowRating": {
+      "abstract": [
+        {
+          "text": "The TV rating constraint that is active on this device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "effectiveMaximumTVShowRating"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/effectiveMaximumTVShowRating",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "effectiveMaximumTVShowRating",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/effectivemaximumtvshowrating"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/gameCenter": {
+      "abstract": [
+        {
+          "text": "Settings that affect Game Center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gameCenter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ManagedSettings010GameCenterB0V",
+          "text": "GameCenterSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/gameCenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gameCenter",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/gamecenter"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/init()": {
+      "abstract": [
+        {
+          "text": "Creates a new instance of a store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/init()"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/init(named:)": {
+      "abstract": [
+        {
+          "text": "Creates a new instance of a store with a custom name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ManagedSettings0aB5StoreC",
+          "text": "ManagedSettingsStore"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ManagedSettings0aB5StoreC4NameV",
+          "text": "Name"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/init(named:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(named:)",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/init(named:)"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/media": {
+      "abstract": [
+        {
+          "text": "Settings that affect media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "media"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ManagedSettings05MediaB0V",
+          "text": "MediaSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/media",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "media",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/media"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/objectWillChange": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "ObjectWillChangePublisher",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "ObservableObjectPublisher",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectWillChange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine25ObservableObjectPublisherC",
+          "text": "ObservableObjectPublisher"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/objectWillChange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objectWillChange",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/objectwillchange"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/passcode": {
+      "abstract": [
+        {
+          "text": "Settings that affect the device passcode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "passcode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ManagedSettings08PasscodeB0V",
+          "text": "PasscodeSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/passcode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "passcode",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/passcode"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/safari": {
+      "abstract": [
+        {
+          "text": "Settings that affect Safari’s search results and cookie policies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "safari"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ManagedSettings06SafariB0V",
+          "text": "SafariSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/safari",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "safari",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/safari"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/shield": {
+      "abstract": [
+        {
+          "text": "Settings that affect what activities the system covers with a shielding view on this device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shield"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ManagedSettings06ShieldB0V",
+          "text": "ShieldSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/shield",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shield",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/shield"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/siri": {
+      "abstract": [
+        {
+          "text": "Settings that affect Siri.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "siri"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ManagedSettings04SiriB0V",
+          "text": "SiriSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/siri",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "siri",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/siri"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/webContent": {
+      "abstract": [
+        {
+          "text": "Settings that affect web content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "webContent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15ManagedSettings010WebContentB0V",
+          "text": "WebContentSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/webContent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "webContent",
+      "type": "topic",
+      "url": "/documentation/managedsettings/managedsettingsstore/webcontent"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/MediaSettings": {
+      "abstract": [
+        {
+          "text": "Constraints on the media content the user can access.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MediaSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/MediaSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MediaSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "MediaSettings",
+      "type": "topic",
+      "url": "/documentation/managedsettings/mediasettings"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/PasscodeSettings": {
+      "abstract": [
+        {
+          "text": "Constraints on a user’s ability to change their device’s passcode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PasscodeSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/PasscodeSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PasscodeSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "PasscodeSettings",
+      "type": "topic",
+      "url": "/documentation/managedsettings/passcodesettings"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ReadingMedia": {
+      "abstract": [
+        {
+          "text": "Read the media rating on a device and determine what media to display on your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ReadingMedia",
+      "kind": "article",
+      "role": "article",
+      "title": "Confirming the Effective TV and Movie Ratings",
+      "type": "topic",
+      "url": "/documentation/managedsettings/readingmedia"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/SafariSettings": {
+      "abstract": [
+        {
+          "text": "Constraints on Safari’s AutoFill and cookie behaviors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SafariSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/SafariSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SafariSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "SafariSettings",
+      "type": "topic",
+      "url": "/documentation/managedsettings/safarisettings"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/SettingMetadata": {
+      "abstract": [
+        {
+          "text": "Additional information about a configurable setting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SettingMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/SettingMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SettingMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "SettingMetadata",
+      "type": "topic",
+      "url": "/documentation/managedsettings/settingmetadata"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ShieldSettings": {
+      "abstract": [
+        {
+          "text": "Constraints that indicate what apps and websites to cover with a shielding view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShieldSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ShieldSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShieldSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "ShieldSettings",
+      "type": "topic",
+      "url": "/documentation/managedsettings/shieldsettings"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/SiriSettings": {
+      "abstract": [
+        {
+          "text": "Constraints on the device’s Siri settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SiriSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/SiriSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SiriSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "SiriSettings",
+      "type": "topic",
+      "url": "/documentation/managedsettings/sirisettings"
+    },
+    "doc://com.apple.ManagedSettings/documentation/ManagedSettings/WebContentSettings": {
+      "abstract": [
+        {
+          "text": "An object that configures which websites a user can access.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WebContentSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedSettings/documentation/ManagedSettings/WebContentSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WebContentSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "WebContentSettings",
+      "type": "topic",
+      "url": "/documentation/managedsettings/webcontentsettings"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:7Combine16ObservableObjectP": {
+      "abstract": [
+        {
+          "text": "A type of object with a publisher that emits before the object has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ObservableObject"
+        },
+        {
+          "kind": "text",
+          "text": " : AnyObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7Combine16ObservableObjectP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ObservableObject",
+      "type": "topic",
+      "url": "/documentation/Combine/ObservableObject"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:7Combine16ObservableObjectP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Creating-the-Store",
+      "identifiers": [
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/init()"
+      ],
+      "title": "Creating the Store"
+    },
+    {
+      "anchor": "Managing-a-Settings-Group",
+      "identifiers": [
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsGroup"
+      ],
+      "title": "Managing a Settings Group"
+    },
+    {
+      "anchor": "Restricting-Device-Settings",
+      "identifiers": [
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/account",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/AccountSettings",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/cellular",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/CellularSettings",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/dateAndTime",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/DateAndTimeSettings",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/passcode",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/PasscodeSettings",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/shield",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ShieldSettings",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/siri",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/SiriSettings"
+      ],
+      "title": "Restricting Device Settings"
+    },
+    {
+      "anchor": "Filtering-Media-Content",
+      "identifiers": [
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/appStore",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/AppStoreSettings",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/application",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ApplicationSettings",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/effectiveMaximumMovieRating",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/effectiveMaximumTVShowRating",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/gameCenter",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/GameCenterSettings",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/media",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/MediaSettings"
+      ],
+      "title": "Filtering Media Content"
+    },
+    {
+      "anchor": "Restricting-Web-Content",
+      "identifiers": [
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/safari",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/SafariSettings",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/webContent",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/WebContentSettings"
+      ],
+      "title": "Restricting Web Content"
+    },
+    {
+      "anchor": "Accessing-Metadata",
+      "identifiers": [
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/BoundedSettingMetadata",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/SettingMetadata"
+      ],
+      "title": "Accessing Metadata"
+    },
+    {
+      "anchor": "Observing-Current-Settings",
+      "identifiers": [
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/objectWillChange",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/$effectiveMaximumMovieRating",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/$effectiveMaximumTVShowRating",
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/ObjectWillChangePublisher"
+      ],
+      "title": "Observing Current Settings"
+    },
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/Name"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/init(named:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/clearAllSettings()"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ManagedSettings/documentation/ManagedSettings/ManagedSettingsStore/ObservableObject-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/managedsettings/managedsettingsstore"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

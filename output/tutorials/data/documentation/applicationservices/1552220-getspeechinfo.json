@@ -1,0 +1,504 @@
+{
+  "abstract": [
+    {
+      "text": "Gets information about a designated speech channel.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/1552220-getspeechinfo"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1552220,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@GetSpeechInfo",
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "10.8",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "GetSpeechInfo"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSErr",
+              "text": "OSErr"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GetSpeechInfo"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechchannel",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SpeechChannel",
+              "text": "SpeechChannel"
+            },
+            {
+              "kind": "text",
+              "text": " chan, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ostype",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSType",
+              "text": "OSType"
+            },
+            {
+              "kind": "text",
+              "text": " selector, "
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " *speechInfo);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The speech channel about which information is being requested.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "chan"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A speech information selector that indicates the type of information being requested.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "For a complete list of speech information selectors, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/applicationservices/1552228-speech-channel_information_constants",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". This list indicates how your application should set the ",
+                  "type": "text"
+                },
+                {
+                  "code": "speechInfo",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter for each selector.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "selector"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer whose meaning depends on the speech information selector specified in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "selector",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "speechInfo"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A resultcode. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager#1659745",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "GetSpeechInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functionreturns, in the data structure pointed to by the ",
+              "type": "text"
+            },
+            {
+              "code": "speechInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter,the type of information requested by the ",
+              "type": "text"
+            },
+            {
+              "code": "selector",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameteras it applies to the speech channel specified in the ",
+              "type": "text"
+            },
+            {
+              "code": "chan",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The format of the data structure specified by the ",
+              "type": "text"
+            },
+            {
+              "code": "speechInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameterdepends on the selector you choose. For example, a selector mightrequire that your application allocate a block of memory of a certainsize and pass a pointer to that block. Another selector might requirethat ",
+              "type": "text"
+            },
+            {
+              "code": "speechInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " be setto the address of a handle variable. In this case, the ",
+              "type": "text"
+            },
+            {
+              "code": "GetSpeechInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functionwould allocate a relocatable block of memory and change the handlevariable specified to reference the block. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459075-copyspeechproperty": {
+      "abstract": [
+        {
+          "text": "Gets the value associated with the specified property of a speech channel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459075-copyspeechproperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CopySpeechProperty",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459075-copyspeechproperty"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460113-speechbusysystemwide": {
+      "abstract": [
+        {
+          "text": "Determines if any speech is currently being synthesizedin your application or elsewhere on the computer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460113-speechbusysystemwide",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechBusySystemWide",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460113-speechbusysystemwide"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460797-getspeechrate": {
+      "abstract": [
+        {
+          "text": "Gets a speech channel’s current speech rate.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460797-getspeechrate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetSpeechRate",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460797-getspeechrate"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462334-speechmanagerversion": {
+      "abstract": [
+        {
+          "text": "Determines the current version of the Speech SynthesisManager installed in the system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462334-speechmanagerversion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechManagerVersion",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462334-speechmanagerversion"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1464581-speechbusy": {
+      "abstract": [
+        {
+          "text": "Determines whether any channels of speech are currentlysynthesizing speech.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1464581-speechbusy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechBusy",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1464581-speechbusy"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1464774-getspeechpitch": {
+      "abstract": [
+        {
+          "text": "Gets a speech channel’s current speech pitch.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1464774-getspeechpitch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetSpeechPitch",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1464774-getspeechpitch"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1552220-getspeechinfo": {
+      "abstract": [
+        {
+          "text": "Gets information about a designated speech channel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1552220-getspeechinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetSpeechInfo",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1552220-getspeechinfo"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1552228-speech-channel_information_constants": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1552228-speech-channel_information_constants",
+      "kind": "symbol",
+      "role": "containerSymbol",
+      "title": "Speech-Channel Information Constants",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1552228-speech-channel_information_constants"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Speech Synthesis Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speech_synthesis_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager#1659745": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speech_synthesis_manager#1659745",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/applicationservices/speech_synthesis_manager#1659745"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/speechchannel": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/speechchannel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpeechChannel",
+      "type": "topic",
+      "url": "/documentation/applicationservices/speechchannel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ostype": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ostype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSType",
+      "type": "topic",
+      "url": "/documentation/kernel/ostype"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1459075-copyspeechproperty",
+        "doc://com.apple.documentation/documentation/applicationservices/1464774-getspeechpitch",
+        "doc://com.apple.documentation/documentation/applicationservices/1460797-getspeechrate",
+        "doc://com.apple.documentation/documentation/applicationservices/1464581-speechbusy",
+        "doc://com.apple.documentation/documentation/applicationservices/1460113-speechbusysystemwide",
+        "doc://com.apple.documentation/documentation/applicationservices/1462334-speechmanagerversion"
+      ],
+      "title": "Obtaining Information About Speech and Speech Channels"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/1552220-getspeechinfo"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1869 @@
+{
+  "abstract": [
+    {
+      "text": "Represents an SBP2 normal command ORB. Supplies the APIs for configuring normal command ORBs. This includes setting the command block and writing the page tables for I/O. The ORBs are executed using the submitORB method in IOFireWireSBP2Login.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/firewire"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1457305,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOFireWireSBP2ORB",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOFireWireSBP2ORB"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOFireWireSBP2ORB"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iocommand",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOCommand",
+              "text": "IOCommand"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2fetchagentwritecallback": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2fetchagentwritecallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2FetchAgentWriteCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2fetchagentwritecallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2logincallback": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2logincallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2LoginCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2logincallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2logincompleteparams": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2logincompleteparams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2LoginCompleteParams",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2logincompleteparams"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2logincompleteparamsptr": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2logincompleteparamsptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2LoginCompleteParamsPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2logincompleteparamsptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2loginresponse": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2loginresponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2LoginResponse",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2loginresponse"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2loginresponseptr": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2loginresponseptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2LoginResponsePtr",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2loginresponseptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcallback": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2LogoutCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2logoutcallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcompleteparams": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcompleteparams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2LogoutCompleteParams",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2logoutcompleteparams"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcompleteparamsptr": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcompleteparamsptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2LogoutCompleteParamsPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2logoutcompleteparamsptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2managementcallback": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2managementcallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2ManagementCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2managementcallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2notifycallback": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2notifycallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2NotifyCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2notifycallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2notifyparams": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2notifyparams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2NotifyParams",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2notifyparams"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2notifyparamsptr": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2notifyparamsptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2NotifyParamsPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2notifyparamsptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2reconnectparams": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2reconnectparams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2ReconnectParams",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2reconnectparams"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2reconnectparamsptr": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2reconnectparamsptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2ReconnectParamsPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2reconnectparamsptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2statusblock": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2statusblock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2StatusBlock",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2statusblock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/fwsbp2statuscallback": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/fwsbp2statuscallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FWSBP2StatusCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/fwsbp2statuscallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/firewire": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/firewire",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "FireWire",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/firewire"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommand": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login": {
+      "abstract": [
+        {
+          "text": "Supplies the login maintenance and Normal Command ORB execution portions of the API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireSBP2Login",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2login"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2managementorb": {
+      "abstract": [
+        {
+          "text": "Supplies non login related management ORBs. Management ORBs can be executed independent of a login, if necessary. Management ORBs are created using the IOFireWireSBP2LUN interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2managementorb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireSBP2ManagementORB",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2managementorb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb": {
+      "abstract": [
+        {
+          "text": "Represents an SBP2 normal command ORB. Supplies the APIs for configuring normal command ORBs. This includes setting the command block and writing the page tables for I/O. The ORBs are executed using the submitORB method in IOFireWireSBP2Login.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOFireWireSBP2ORB",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569065-setcommandtimeout": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCommandTimeout"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569065-setcommandtimeout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCommandTimeout",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569065-setcommandtimeout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569066-preparebufferaddressspace": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareBufferAddressSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569066-preparebufferaddressspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepareBufferAddressSpace",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569066-preparebufferaddressspace"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569067-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569067-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569067-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569068-setcommandbuffersasranges64": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCommandBuffersAsRanges64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569068-setcommandbuffersasranges64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCommandBuffersAsRanges64",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569068-setcommandbuffersasranges64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569069-setfetchagentwriteretryinterval": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFetchAgentWriteRetryInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569069-setfetchagentwriteretryinterval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setFetchAgentWriteRetryInterval",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569069-setfetchagentwriteretryinterval"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569070-allocateresources": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocateResources"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569070-allocateresources",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocateResources",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569070-allocateresources"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569071-sendtimeoutnotification": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendTimeoutNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569071-sendtimeoutnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendTimeoutNotification",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569071-sendtimeoutnotification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569072-getcommandbufferdescriptor": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCommandBufferDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569072-getcommandbufferdescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCommandBufferDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569072-getcommandbufferdescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569073-setbufferconstraints": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBufferConstraints"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569073-setbufferconstraints",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setBufferConstraints",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569073-setbufferconstraints"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569074-setfetchagentwriteretries": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFetchAgentWriteRetries"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569074-setfetchagentwriteretries",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setFetchAgentWriteRetries",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569074-setfetchagentwriteretries"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569076-setcommandbuffersasranges": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCommandBuffersAsRanges"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569076-setcommandbuffersasranges",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCommandBuffersAsRanges",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569076-setcommandbuffersasranges"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569077-setcommandflags": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCommandFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569077-setcommandflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCommandFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569077-setcommandflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569078-getfetchagentwriteretryinterval": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getFetchAgentWriteRetryInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569078-getfetchagentwriteretryinterval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getFetchAgentWriteRetryInterval",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569078-getfetchagentwriteretryinterval"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569079-getorbaddress": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getORBAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569079-getorbaddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getORBAddress",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569079-getorbaddress"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569080-completebufferaddressspace": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "completeBufferAddressSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569080-completebufferaddressspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "completeBufferAddressSpace",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569080-completebufferaddressspace"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569081-getcommandgeneration": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCommandGeneration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569081-getcommandgeneration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCommandGeneration",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569081-getcommandgeneration"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569082-calculatetransfersizelog": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "calculateTransferSizeLog"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569082-calculatetransfersizelog",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "calculateTransferSizeLog",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569082-calculatetransfersizelog"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569083-allocatetimer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocateTimer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569083-allocatetimer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocateTimer",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569083-allocatetimer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569084-getfetchagentwriteretries": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getFetchAgentWriteRetries"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569084-getfetchagentwriteretries",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getFetchAgentWriteRetries",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569084-getfetchagentwriteretries"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569085-getcommandflags": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCommandFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569085-getcommandflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCommandFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569085-getcommandflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569087-setcommandblock": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCommandBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569087-setcommandblock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCommandBlock",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569087-setcommandblock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569088-setrefcon": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setRefCon"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569088-setrefcon",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setRefCon",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569088-setrefcon"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569089-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569089-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569089-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569090-getlogin": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getLogin"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569090-getlogin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getLogin",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569090-getlogin"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569091-release": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "release"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569091-release",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "release",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569091-release"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569092-allocatepagetable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocatePageTable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569092-allocatepagetable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocatePageTable",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569092-allocatepagetable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569093-getfirewireunit": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getFireWireUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569093-getfirewireunit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getFireWireUnit",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569093-getfirewireunit"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569094-setrefcon64": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setRefCon64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569094-setrefcon64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setRefCon64",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569094-setrefcon64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569095-releasecommandbuffers": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "releaseCommandBuffers"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569095-releasecommandbuffers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "releaseCommandBuffers",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569095-releasecommandbuffers"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569097-prepareorbforexecution": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareORBForExecution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569097-prepareorbforexecution",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepareORBForExecution",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569097-prepareorbforexecution"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569098-starttimer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "startTimer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569098-starttimer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startTimer",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569098-starttimer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569099-istimerset": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isTimerSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569099-istimerset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isTimerSet",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569099-istimerset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569101-setcommandbuffers": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCommandBuffers"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569101-setcommandbuffers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCommandBuffers",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569101-setcommandbuffers"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569103-canceltimer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancelTimer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569103-canceltimer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cancelTimer",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569103-canceltimer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569107-getrefcon": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getRefCon"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569107-getrefcon",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getRefCon",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569107-getrefcon"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569108-deallocatepagetable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deallocatePageTable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569108-deallocatepagetable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deallocatePageTable",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569108-deallocatepagetable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569109-setnextorbaddress": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setNextORBAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569109-setnextorbaddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setNextORBAddress",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569109-setnextorbaddress"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569110-allocateorb": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocateORB"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569110-allocateorb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocateORB",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569110-allocateorb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569112-preparefaststartpacket": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepareFastStartPacket"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569112-preparefaststartpacket",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepareFastStartPacket",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569112-preparefaststartpacket"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569113-orbtimeout": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "orbTimeout"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569113-orbtimeout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "orbTimeout",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569113-orbtimeout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569114-setisappended": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setIsAppended"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569114-setisappended",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setIsAppended",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569114-setisappended"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569115-deallocatebufferaddressspace": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deallocateBufferAddressSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569115-deallocatebufferaddressspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deallocateBufferAddressSpace",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569115-deallocatebufferaddressspace"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569116-getfirewirelun": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getFireWireLUN"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569116-getfirewirelun",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getFireWireLUN",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569116-getfirewirelun"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569117-getrefcon64": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getRefCon64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569117-getrefcon64",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getRefCon64",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569117-getrefcon64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569119-removeorb": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeORB"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569119-removeorb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeORB",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569119-removeorb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569122-setcommandgeneration": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCommandGeneration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569122-setcommandgeneration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCommandGeneration",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569122-setcommandgeneration"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569123-setmaxpayloadsize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMaxPayloadSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569123-setmaxpayloadsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setMaxPayloadSize",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569123-setmaxpayloadsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569124-deallocatetimer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deallocateTimer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569124-deallocatetimer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deallocateTimer",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569124-deallocatetimer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569125-orbtimeoutstatic": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "orbTimeoutStatic"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569125-orbtimeoutstatic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "orbTimeoutStatic",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569125-orbtimeoutstatic"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569126-isappended": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAppended"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569126-isappended",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isAppended",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569126-isappended"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569127-getcommandtimeout": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCommandTimeout"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569127-getcommandtimeout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCommandTimeout",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569127-getcommandtimeout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569129-settodummy": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setToDummy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569129-settodummy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setToDummy",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569129-settodummy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569130-deallocateorb": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "deallocateORB"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569130-deallocateorb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deallocateORB",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569130-deallocateorb"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569131-initwithlogin": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithLogin"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569131-initwithlogin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithLogin",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569131-initwithlogin"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569132-getmaxpayloadsize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMaxPayloadSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569132-getmaxpayloadsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMaxPayloadSize",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1569132-getmaxpayloadsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1812982-allocatepagetable": {
+      "abstract": [
+        {
+          "text": "Allocates memory for the page table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1812982-allocatepagetable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "allocatePageTable",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1812982-allocatepagetable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1812989-deallocatepagetable": {
+      "abstract": [
+        {
+          "text": "Frees up memory allocated for the page table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1812989-deallocatepagetable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "deallocatePageTable",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1812989-deallocatepagetable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1812997-getcommandbufferdescriptor": {
+      "abstract": [
+        {
+          "text": "Returns the memory descriptor representing the command buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1812997-getcommandbufferdescriptor",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCommandBufferDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1812997-getcommandbufferdescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813002-getcommandflags": {
+      "abstract": [
+        {
+          "text": "Sets configuration flags for the ORB.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813002-getcommandflags",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCommandFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813002-getcommandflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813010-getcommandgeneration": {
+      "abstract": [
+        {
+          "text": "Gets the command generation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813010-getcommandgeneration",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCommandGeneration",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813010-getcommandgeneration"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813017-getcommandtimeout": {
+      "abstract": [
+        {
+          "text": "Gets the timeout of the ORB.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813017-getcommandtimeout",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCommandTimeout",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813017-getcommandtimeout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813023-getlogin": {
+      "abstract": [
+        {
+          "text": "Gets the login associated with this ORB.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813023-getlogin",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getLogin",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813023-getlogin"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813031-getmaxpayloadsize": {
+      "abstract": [
+        {
+          "text": "Gets max payload size for the ORB.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813031-getmaxpayloadsize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getMaxPayloadSize",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813031-getmaxpayloadsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813039-getorbaddress": {
+      "abstract": [
+        {
+          "text": "Returns the FireWire address of this ORB.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813039-getorbaddress",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getORBAddress",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813039-getorbaddress"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813049-getrefcon": {
+      "abstract": [
+        {
+          "text": "Returns the refCon set with setRefCon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813049-getrefcon",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getRefCon",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813049-getrefcon"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813059-getrefcon64": {
+      "abstract": [
+        {
+          "text": "Returns the 64 bit refCon set with setRefCon64.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813059-getrefcon64",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getRefCon64",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813059-getrefcon64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813072-release": {
+      "abstract": [
+        {
+          "text": "Primary implementation of the release mechanism.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813072-release",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "release",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813072-release"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813085-releasecommandbuffers": {
+      "abstract": [
+        {
+          "text": "Releases SBP2's reference to the command buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813085-releasecommandbuffers",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "releaseCommandBuffers",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813085-releasecommandbuffers"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813096-setbufferconstraints": {
+      "abstract": [
+        {
+          "text": "Configures page table generation parameters",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813096-setbufferconstraints",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setBufferConstraints",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813096-setbufferconstraints"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813109-setcommandblock": {
+      "abstract": [
+        {
+          "text": "Sets the command block portion of the ORB.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813109-setcommandblock",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCommandBlock(IOMemoryDescriptor *)",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813109-setcommandblock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813121-setcommandblock": {
+      "abstract": [
+        {
+          "text": "Sets the command block portion of the ORB.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813121-setcommandblock",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCommandBlock(void *, UInt32)",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813121-setcommandblock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813129-setcommandbuffers": {
+      "abstract": [
+        {
+          "text": "Creates a page table from a list of ranges.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813129-setcommandbuffers",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCommandBuffers",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813129-setcommandbuffers"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813141-setcommandbuffersasranges": {
+      "abstract": [
+        {
+          "text": "Creates a page table from a list of ranges.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813141-setcommandbuffersasranges",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCommandBuffersAsRanges(IOMemoryDescriptor *, UInt32, UInt32)",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813141-setcommandbuffersasranges"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813149-setcommandbuffersasranges": {
+      "abstract": [
+        {
+          "text": "Creates a page table from a list of ranges.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813149-setcommandbuffersasranges",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCommandBuffersAsRanges(IOVirtualRange *, UInt32, IODirection, task_t, UInt32, UInt32)",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813149-setcommandbuffersasranges"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813162-setcommandbuffersasranges64": {
+      "abstract": [
+        {
+          "text": "Creates a page table from a list of 64 bit ranges.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813162-setcommandbuffersasranges64",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCommandBuffersAsRanges64",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813162-setcommandbuffersasranges64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813178-setcommandflags": {
+      "abstract": [
+        {
+          "text": "Sets configuration flags for the ORB.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813178-setcommandflags",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCommandFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813178-setcommandflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813197-setcommandgeneration": {
+      "abstract": [
+        {
+          "text": "Sets the command generation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813197-setcommandgeneration",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCommandGeneration",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813197-setcommandgeneration"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813211-setcommandtimeout": {
+      "abstract": [
+        {
+          "text": "Sets the timeout of the ORB.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813211-setcommandtimeout",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCommandTimeout",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813211-setcommandtimeout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813231-setmaxpayloadsize": {
+      "abstract": [
+        {
+          "text": "Sets max payload size for the ORB.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813231-setmaxpayloadsize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setMaxPayloadSize",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813231-setmaxpayloadsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813244-setrefcon": {
+      "abstract": [
+        {
+          "text": "Sets the ORB refCon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813244-setrefcon",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setRefCon",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813244-setrefcon"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813262-setrefcon64": {
+      "abstract": [
+        {
+          "text": "Sets the ORB refCon as a 64 bit value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813262-setrefcon64",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setRefCon64",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/1813262-setrefcon64"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/3516727-setcommandblock": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCommandBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/3516727-setcommandblock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCommandBlock",
+      "type": "topic",
+      "url": "/documentation/kernel/iofirewiresbp2orb/3516727-setcommandblock"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iocommand"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2login",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2managementorb",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2fetchagentwritecallback",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2logincallback",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2logincompleteparams",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2logincompleteparamsptr",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2loginresponse",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2loginresponseptr",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcallback",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcompleteparams",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2logoutcompleteparamsptr",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2managementcallback",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2notifycallback",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2notifyparams",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2notifyparamsptr",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2reconnectparams",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2reconnectparamsptr",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2statusblock",
+        "doc://com.apple.documentation/documentation/kernel/fwsbp2statuscallback"
+      ],
+      "title": "Serial Bus Protocol 2"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1676018",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1812982-allocatepagetable",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1812989-deallocatepagetable",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1812997-getcommandbufferdescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813002-getcommandflags",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813010-getcommandgeneration",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813017-getcommandtimeout",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813023-getlogin",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813031-getmaxpayloadsize",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813039-getorbaddress",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813049-getrefcon",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813059-getrefcon64",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813072-release",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813085-releasecommandbuffers",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813096-setbufferconstraints",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813109-setcommandblock",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813121-setcommandblock",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813129-setcommandbuffers",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813141-setcommandbuffersasranges",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813149-setcommandbuffersasranges",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813162-setcommandbuffersasranges64",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813178-setcommandflags",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813197-setcommandgeneration",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813211-setcommandtimeout",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813231-setmaxpayloadsize",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813244-setrefcon",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1813262-setrefcon64"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "2860258",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569110-allocateorb",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569092-allocatepagetable",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569070-allocateresources",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569083-allocatetimer",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569082-calculatetransfersizelog",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569103-canceltimer",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569080-completebufferaddressspace",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569115-deallocatebufferaddressspace",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569130-deallocateorb",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569108-deallocatepagetable",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569124-deallocatetimer",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569089-free",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569072-getcommandbufferdescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569085-getcommandflags",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569081-getcommandgeneration",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569127-getcommandtimeout",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569084-getfetchagentwriteretries",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569078-getfetchagentwriteretryinterval",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569116-getfirewirelun",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569093-getfirewireunit",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569090-getlogin",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569132-getmaxpayloadsize",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569067-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569079-getorbaddress",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569107-getrefcon",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569117-getrefcon64",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569131-initwithlogin",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569126-isappended",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569099-istimerset",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569113-orbtimeout",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569066-preparebufferaddressspace",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569112-preparefaststartpacket",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569097-prepareorbforexecution",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569091-release",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569095-releasecommandbuffers",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569119-removeorb",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569071-sendtimeoutnotification",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569073-setbufferconstraints",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569087-setcommandblock",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/3516727-setcommandblock",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569101-setcommandbuffers",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569076-setcommandbuffersasranges",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569068-setcommandbuffersasranges64",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569077-setcommandflags",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569122-setcommandgeneration",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569065-setcommandtimeout",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569074-setfetchagentwriteretries",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569069-setfetchagentwriteretryinterval",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569114-setisappended",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569123-setmaxpayloadsize",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569109-setnextorbaddress",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569088-setrefcon",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569094-setrefcon64",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569129-settodummy",
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569098-starttimer"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "2860259",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iofirewiresbp2orb/1569125-orbtimeoutstatic"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iofirewiresbp2orb"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

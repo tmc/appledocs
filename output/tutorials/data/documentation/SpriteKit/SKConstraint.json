@@ -1,0 +1,2408 @@
+{
+  "abstract": [
+    {
+      "text": "A specification for constraining a node’s position or rotation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SKConstraint",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SKConstraint"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SKConstraint"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SKConstraint"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SKConstraint"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/working-with-inverse-kinematics"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object describes a mathematical constraint on a node’s position or orientation. You attach constraints to nodes; after a scene processes any actions and physics interactions, it applies constraints attached to nodes in its node tree. Use constraints to ensure that certain relationships are true before the system renders a scene. For example, you might use a constraint to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change a node’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/zRotation",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property so that it always points at another node or a position in the scene.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Keep a node within a specified distance of another node or a point in the scene.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Keep a node inside a specified rectangle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Restrict the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/zRotation",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property of a node so that it has a more limited rotation range of motion.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use constraints, create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that contains one or more constraint objects and assign the array to a node’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/constraints",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. When the system evaluates a scene, it executes the constraints on a node in the order they appear in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/constraints",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can’t change a constraint after you create it. However, you can selectively disable or enable a constraint by setting its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/enabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. You can also use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/referenceNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to convert positions to the referenced coordinate system before applying the constraint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nsarray": {
+      "abstract": [
+        {
+          "text": "An object representing a static ordered collection, for use instead of an  constant in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint": {
+      "abstract": [
+        {
+          "text": "A specification for constraining a node’s position or rotation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKConstraint"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKConstraint"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKConstraint",
+      "type": "topic",
+      "url": "/documentation/spritekit/skconstraint"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/distance(_:to:)-6507j": {
+      "abstract": [
+        {
+          "text": "Creates a constraint that keeps a node within a certain distance of another node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "distance"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKRange",
+          "text": "SKRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKNode",
+          "text": "SKNode"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/distance(_:to:)-6507j",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "distance:toNode:"
+        }
+      ],
+      "role": "symbol",
+      "title": "distance(_:to:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skconstraint/distance(_:to:)-6507j"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/distance(_:to:)-7yk7n": {
+      "abstract": [
+        {
+          "text": "Creates a constraint that keeps a node within a certain distance of a point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "distance"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKRange",
+          "text": "SKRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/distance(_:to:)-7yk7n",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "distance:toPoint:"
+        }
+      ],
+      "role": "symbol",
+      "title": "distance(_:to:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skconstraint/distance(_:to:)-7yk7n"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/distance(_:to:in:)": {
+      "abstract": [
+        {
+          "text": "Creates a constraint that keeps a node within a certain distance of a point in another node’s coordinate system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "distance"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKRange",
+          "text": "SKRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKNode",
+          "text": "SKNode"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/distance(_:to:in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "distance:toPoint:inNode:"
+        }
+      ],
+      "role": "symbol",
+      "title": "distance(_:to:in:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skconstraint/distance(_:to:in:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/enabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that specifies whether the constraint is applied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/enabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "enabled",
+      "type": "topic",
+      "url": "/documentation/spritekit/skconstraint/enabled"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/orient(to:in:offset:)": {
+      "abstract": [
+        {
+          "text": "Creates a constraint that forces a node to rotate to face a point in another node’s coordinate system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "orient"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKNode",
+          "text": "SKNode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKRange",
+          "text": "SKRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/orient(to:in:offset:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "orientToPoint:inNode:offset:"
+        }
+      ],
+      "role": "symbol",
+      "title": "orient(to:in:offset:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skconstraint/orient(to:in:offset:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/orient(to:offset:)-1h1tw": {
+      "abstract": [
+        {
+          "text": "Creates a constraint that forces a node to rotate to face another node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "orient"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKNode",
+          "text": "SKNode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKRange",
+          "text": "SKRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/orient(to:offset:)-1h1tw",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "orientToNode:offset:"
+        }
+      ],
+      "role": "symbol",
+      "title": "orient(to:offset:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skconstraint/orient(to:offset:)-1h1tw"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/orient(to:offset:)-9lq3h": {
+      "abstract": [
+        {
+          "text": "Creates a constraint that forces a node to rotate to face a fixed point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "orient"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKRange",
+          "text": "SKRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/orient(to:offset:)-9lq3h",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "orientToPoint:offset:"
+        }
+      ],
+      "role": "symbol",
+      "title": "orient(to:offset:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skconstraint/orient(to:offset:)-9lq3h"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/positionX(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a constraint that restricts the x-coordinate of a node’s position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "positionX"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKRange",
+          "text": "SKRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/positionX(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "positionX:"
+        }
+      ],
+      "role": "symbol",
+      "title": "positionX(_:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skconstraint/positionx(_:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/positionX(_:y:)": {
+      "abstract": [
+        {
+          "text": "Creates a constraint that restricts both coordinates of a node’s position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "positionX"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKRange",
+          "text": "SKRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKRange",
+          "text": "SKRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/positionX(_:y:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "positionX:Y:"
+        }
+      ],
+      "role": "symbol",
+      "title": "positionX(_:y:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skconstraint/positionx(_:y:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/positionY(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a constraint that restricts the y-coordinate of a node’s position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "positionY"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKRange",
+          "text": "SKRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/positionY(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "positionY:"
+        }
+      ],
+      "role": "symbol",
+      "title": "positionY(_:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skconstraint/positiony(_:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/referenceNode": {
+      "abstract": [
+        {
+          "text": "The node whose coordinate system should be used to apply the constraint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "referenceNode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKNode",
+          "text": "SKNode"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/referenceNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "referenceNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "referenceNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skconstraint/referencenode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/zRotation(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a constraint that limits the orientation of a node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zRotation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKRange",
+          "text": "SKRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/zRotation(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "zRotation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "zRotation(_:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skconstraint/zrotation(_:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/constraints": {
+      "abstract": [
+        {
+          "text": "A list of constraints to apply to the node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "constraints"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKConstraint",
+          "text": "SKConstraint"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/constraints",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "constraints"
+        }
+      ],
+      "role": "symbol",
+      "title": "constraints",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/constraints"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/zRotation": {
+      "abstract": [
+        {
+          "text": "The Euler rotation about the z axis (in radians).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zRotation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode/zRotation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "zRotation"
+        }
+      ],
+      "role": "symbol",
+      "title": "zRotation",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode/zrotation"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKReachConstraints": {
+      "abstract": [
+        {
+          "text": "A specification of the degree of freedom when solving inverse kinematics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKReachConstraints"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKReachConstraints",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKReachConstraints"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKReachConstraints",
+      "type": "topic",
+      "url": "/documentation/spritekit/skreachconstraints"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/creating-a-look-at-constraint": {
+      "abstract": [
+        {
+          "text": "Make a node automatically rotate itself based on the changing position of another node, by using orientation constraints.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/creating-a-look-at-constraint",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Look-At Constraint",
+      "type": "topic",
+      "url": "/documentation/spritekit/creating-a-look-at-constraint"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/creating-position-constraints": {
+      "abstract": [
+        {
+          "text": "Create a position constraint and add it to a node.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/creating-position-constraints",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating Position Constraints",
+      "type": "topic",
+      "url": "/documentation/spritekit/creating-position-constraints"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/working-with-inverse-kinematics": {
+      "abstract": [
+        {
+          "text": "Gain fine-tuned control of objects that are connected by joints.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/working-with-inverse-kinematics",
+      "kind": "article",
+      "role": "article",
+      "title": "Working with Inverse Kinematics",
+      "type": "topic",
+      "url": "/documentation/spritekit/working-with-inverse-kinematics"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Constraints",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKReachConstraints"
+      ],
+      "title": "Constraints"
+    }
+  ],
+  "topicSections": [
+    {
+      "abstract": [
+        {
+          "text": "Limit a node’s movement in one axis or both.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Creating-Position-Constraints",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/creating-position-constraints",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/positionX(_:y:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/positionX(_:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/positionY(_:)"
+      ],
+      "title": "Creating Position Constraints"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Provide limitations on a node’s rotation, or create rules the system uses to update a node’s rotation for you.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Creating-Orientation-Constraints",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/creating-a-look-at-constraint",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/orient(to:offset:)-1h1tw",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/orient(to:offset:)-9lq3h",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/orient(to:in:offset:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/zRotation(_:)"
+      ],
+      "title": "Creating Orientation Constraints"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Create a rule the system uses to update a node’s position relative to another node in the scene.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Creating-Distance-Constraints",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/distance(_:to:)-6507j",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/distance(_:to:)-7yk7n",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/distance(_:to:in:)"
+      ],
+      "title": "Creating Distance Constraints"
+    },
+    {
+      "anchor": "Controlling-the-Coordinate-System-Where-a-Constraint-is-Applied",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/referenceNode"
+      ],
+      "title": "Controlling the Coordinate System Where a Constraint is Applied"
+    },
+    {
+      "anchor": "Enabling-and-Disabling-a-Constraint",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/enabled"
+      ],
+      "title": "Enabling and Disabling a Constraint"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.10",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SKConstraint"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.spritekit/documentation/SpriteKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "abstract": [
+                {
+                  "text": "Limit a node’s movement in one axis or both.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Creating-Position-Constraints",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/creating-position-constraints",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/positionX(_:y:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/positionX(_:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/positionY(_:)"
+              ],
+              "title": "Creating Position Constraints"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Provide limitations on a node’s rotation, or create rules the system uses to update a node’s rotation for you.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Creating-Orientation-Constraints",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/creating-a-look-at-constraint",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/orient(to:offset:)-1h1tw",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/orient(to:offset:)-9lq3h",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/orient(to:in:offset:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/zRotation(_:)"
+              ],
+              "title": "Creating Orientation Constraints"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Create a rule the system uses to update a node’s position relative to another node in the scene.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Creating-Distance-Constraints",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/distance(_:to:)-6507j",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/distance(_:to:)-7yk7n",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/distance(_:to:in:)"
+              ],
+              "title": "Creating Distance Constraints"
+            },
+            {
+              "anchor": "Controlling-the-Coordinate-System-Where-a-Constraint-is-Applied",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/referenceNode"
+              ],
+              "title": "Controlling the Coordinate System Where a Constraint is Applied"
+            },
+            {
+              "anchor": "Enabling-and-Disabling-a-Constraint",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKConstraint/enabled"
+              ],
+              "title": "Enabling and Disabling a Constraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Constraints",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKReachConstraints"
+              ],
+              "title": "Constraints"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SKConstraint"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsarray/abstract",
+          "value": [
+            {
+              "text": "A static ordered collection of objects.",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1enabled/title",
+          "value": "enabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1enabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "enabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1positionX(_:y:)/title",
+          "value": "positionX:Y:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1positionX(_:y:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "positionX:Y:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1constraints/title",
+          "value": "constraints"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1constraints/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "constraints"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1zRotation/title",
+          "value": "zRotation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode~1zRotation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "zRotation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint/title",
+          "value": "SKConstraint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKConstraint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1distance(_:to:)-6507j/title",
+          "value": "distance:toNode:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1distance(_:to:)-6507j/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "distance:toNode:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1distance(_:to:)-7yk7n/title",
+          "value": "distance:toPoint:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1distance(_:to:)-7yk7n/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "distance:toPoint:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1distance(_:to:in:)/title",
+          "value": "distance:toPoint:inNode:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1distance(_:to:in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "distance:toPoint:inNode:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKReachConstraints/title",
+          "value": "SKReachConstraints"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKReachConstraints/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKReachConstraints"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKReachConstraints/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKReachConstraints"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1orient(to:offset:)-9lq3h/title",
+          "value": "orientToPoint:offset:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1orient(to:offset:)-9lq3h/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "orientToPoint:offset:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1orient(to:in:offset:)/title",
+          "value": "orientToPoint:inNode:offset:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1orient(to:in:offset:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "orientToPoint:inNode:offset:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1referenceNode/title",
+          "value": "referenceNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1referenceNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "referenceNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1zRotation(_:)/title",
+          "value": "zRotation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1zRotation(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "zRotation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1orient(to:offset:)-1h1tw/title",
+          "value": "orientToNode:offset:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1orient(to:offset:)-1h1tw/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "orientToNode:offset:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1positionX(_:)/title",
+          "value": "positionX:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1positionX(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "positionX:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1positionY(_:)/title",
+          "value": "positionY:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKConstraint~1positionY(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "positionY:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/skconstraint"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/skconstraint"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3241 @@
+{
+  "abstract": [
+    {
+      "text": "Configure and display your app’s communication notifications by using intents.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.usernotifications/documentation/UserNotifications"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.usernotifications/documentation/UserNotifications/implementing-communication-notifications"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "User Notifications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Implementing communication notifications"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Communication notifications provide a rich experience for direct communications. These notifications have a distinct user experience that features prominent avatars and group names. Communication notifications are unique in their ability to break through the scheduled notification summary by default, and can also break through a Focus.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Enable the Communication Notifications capability in your app and include the activity types that your app supports in its ",
+              "type": "text"
+            },
+            {
+              "code": "NSUserActivityTypes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array. Your app initializes relevant participants of the communication, configures an intent object that describes the communication taking place, and then donates the interaction. Siri uses these donations to refine suggestions given to the user. After your app donates the interaction, your app updates the incoming notification’s content and displays a communication notification. To learn more about SiriKit interaction donations, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SiriKit/donating-shortcuts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-communication-notifications",
+          "level": 3,
+          "text": "Enable communication notifications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Enable the Communication Notifications capability in your app target before you implement communication notifications. To learn more about enabling capabilities, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Add the class name of each intent that your app supports to the ",
+              "type": "text"
+            },
+            {
+              "code": "NSUserActivityTypes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array in your ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". To support ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INSendMessageIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " donations, for example, ensure the ",
+              "type": "text"
+            },
+            {
+              "code": "NSUserActivityTypes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array includes the string ",
+              "type": "text"
+            },
+            {
+              "code": "INSendMessageIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you enable the Communications Notifications capability, begin updating the content of notifications that your app receives so it can display communication notifications. Implement this functionality wherever your app can receive notifications, including your app’s Notification Service Extension (NSE), which you use to modify the content of incoming notifications when your app is in the background. For more information about handling notifications in the background, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/modifying-content-in-newly-delivered-notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-the-participants",
+          "level": 3,
+          "text": "Identify the participants",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must include relevant participants in communication notifications to ensure correct display and breakthrough behavior. Create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INPerson",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object for each relevant participant of a communication when your app receives a communication notification. The current user is always a recipient of an incoming communication notification. Don’t include the current user as a participant of the communication for your app’s intent donations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a person in your app matches a contact in address book, provide the contact identifier when initializing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INPerson",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. If your app has access to a person’s email address or phone number, provide a person handle type of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INPersonHandleType/emailAddress",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INPersonHandleType/phoneNumber",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " respectively, and also specify the person’s suggestion type as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INPersonSuggestionType/none",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Providing both of these types ensures an exact match for the corresponding email address or phone number in the user’s contacts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the information necessary to ensure an exact match isn’t available, create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INPersonHandle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " specific to your app. Set the person’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INPersonSuggestionType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to whichever type it most closely resembles, which provides a contact suggestion to the user if a matching contact isn’t found.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-a-message-intent",
+          "level": 3,
+          "text": "Configure a message intent",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user receives a message, you create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INSendMessageIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INSendMessageIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " has a single sender and one or more recipients. For incoming communication notification donations, the system includes the current user as a recipient in addition to those your app provides in the ",
+              "type": "text"
+            },
+            {
+              "code": "recipients",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array. Provide a unique ",
+              "type": "text"
+            },
+            {
+              "code": "conversationIdentifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that represents the conversation. Use the same identifier for each message that the user receives in the same conversation. This is especially important for group conversations where the group name and membership can change for each message.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below represents a direct message. There are no recipients other than the current user in this case. The ",
+              "type": "text"
+            },
+            {
+              "code": "image",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of the sender becomes the avatar for the notification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Initialize only the sender for a one-to-one message intent.",
+            "let handle = INPersonHandle(value: \"unique-user-id-1\", type: .unknown)",
+            "let avatar = INImage(named: \"profilepicture.png\")",
+            "let sender = INPerson(personHandle: handle,",
+            "                      nameComponents: nil,",
+            "                      displayName: \"Example\",",
+            "                      image: avatar,",
+            "                      contactIdentifier: nil,",
+            "                      customIdentifier: nil)",
+            "",
+            "// Because this communication is incoming, you can infer that the current user is",
+            "// a recipient. Don't include the current user when initializing the intent.",
+            "let intent = INSendMessageIntent(recipients: nil,",
+            "                                 outgoingMessageType: .outgoingMessageText,",
+            "                                 content: \"Message content\",",
+            "                                 speakableGroupName: nil,",
+            "                                 conversationIdentifier: \"unique-conversation-id-1\",",
+            "                                 serviceName: nil,",
+            "                                 sender: sender,",
+            "                                 attachments: nil)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For group message intents, provide an array that contains the other participants of the message for the ",
+              "type": "text"
+            },
+            {
+              "code": "recipients",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter. For example, in a group of three participants that includes the current user, the ",
+              "type": "text"
+            },
+            {
+              "code": "sender",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of the message and the current user are already represented. The ",
+              "type": "text"
+            },
+            {
+              "code": "recipients",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array contains one object — the other recipient. Group conversations can also provide a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INSendMessageIntent/speakableGroupName",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if the conversation has a name. The notification shows a summary of the recipients if your app doesn’t provide one. Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/intents/inintent/2976224-setimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the intent using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INSendMessageIntent/speakableGroupName",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " parameter to provide an avatar for a group message. Set the avatar image prior to donating the interaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-a-call-intent",
+          "level": 3,
+          "text": "Configure a call intent",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user receives an incoming call, you create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INStartCallIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INStartCallIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " has an array of one or more contacts that are participants of the call. For incoming communication notification donations, the system includes the current user as a recipient in addition to those added to the ",
+              "type": "text"
+            },
+            {
+              "code": "contacts",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array. Provide the most accurate additional information available about the call, including a callback record to use in the event of a missed call. The example below represents a call between ",
+              "type": "text"
+            },
+            {
+              "code": "caller",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the current user. The caller’s image becomes the avatar for the notification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Initialize only the caller for a one-to-one call intent.",
+            "let handle = INPersonHandle(value: \"unique-user-id-1\", type: .unknown)",
+            "let avatar = INImage(named: \"profilepicture.png\")",
+            "let caller = INPerson(personHandle: handle,",
+            "                      nameComponents: nil,",
+            "                      displayName: \"Example\",",
+            "                      image: avatar,",
+            "                      contactIdentifier: nil,",
+            "                      customIdentifier: nil)",
+            "",
+            "// Include the other participants of the call in the contacts array.",
+            "// Because this communication is incoming, you can infer that the current user is",
+            "// a participant of the call. Don't include the user in the contacts array.",
+            "let intent = INStartCallIntent(callRecordFilter: nil,",
+            "                               callRecordToCallBack: callRecordToCallBack,",
+            "                               audioRoute: .bluetoothAudioRoute,",
+            "                               destinationType: .normal,",
+            "                               contacts: [caller],",
+            "                               callCapability: .audioCall)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For group call intents, add the other participants to the ",
+              "type": "text"
+            },
+            {
+              "code": "contacts",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter array. In a group of three participants that includes the current user, for example, only include the caller and the third participant in the ",
+              "type": "text"
+            },
+            {
+              "code": "contacts",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array. Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/intents/inintent/2976224-setimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the intent using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INStartCallIntent/callRecordToCallBack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " parameter to provide an avatar for a group call. Set the avatar image prior to donating the interaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Donate-an-interaction-and-update-the-notification",
+          "level": 3,
+          "text": "Donate an interaction and update the notification",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you configure a communication intent, donate an interaction for the intent. Initialize an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INInteraction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object from the previously configured message or call intent. Set the interaction’s direction to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INInteractionDirection/incoming",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This indicates the user is the recipient of an interaction — the incoming communication. Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INInteraction/donate(completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the interaction and handle errors that may occur in its completion handler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the donation completes successfully, update the content of a received notification to display a communication notification. Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationContent/updating(from:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the received notification content. Use the updated notification content to display a communication notification. In the example below, the handling of this process happens in an NSE. Call the ",
+              "type": "text"
+            },
+            {
+              "code": "contentHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the updated notification content to display a communication notification before returning from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension/didReceive(_:withContentHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func didReceive(_ request: UNNotificationRequest,",
+            "                withContentHandler contentHandler:",
+            "                @escaping (UNNotificationContent) -> Void) async {",
+            "",
+            "    // Create an intent as shown in previous code listings.",
+            "    // For an incoming message, refer to the first code listing.",
+            "    // For an incoming call, refer to the second code listing.",
+            "    let intent: INSendMessageIntent = sendMessageIntent()",
+            "",
+            "    // Use the intent to initialize the interaction.",
+            "    let interaction = INInteraction(intent: intent, response: nil)",
+            "",
+            "    // Interaction direction is incoming because the user is",
+            "    // receiving this message.",
+            "    interaction.direction = .incoming",
+            "",
+            "    // Donate the interaction before updating notification content.",
+            "    do {",
+            "        try await interaction.donate()",
+            "    } catch {",
+            "        // Handle errors that may occur during donation.",
+            "        return",
+            "    }",
+            "        ",
+            "    // After donation, update the notification content.",
+            "    let content = request.content",
+            "    ",
+            "    do {",
+            "        // Update notification content before displaying the",
+            "        // communication notification.",
+            "        let updatedContent = try content.updating(from: intent)",
+            "        ",
+            "        // Call the content handler with the updated content",
+            "        // to display the communication notification.",
+            "        contentHandler(updatedContent)",
+            "        ",
+            "    } catch {",
+            "        // Handle errors that may occur while updating content.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Donate-outgoing-interactions",
+          "level": 3,
+          "text": "Donate outgoing interactions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Outgoing interactions are important to enable proper breakthrough behavior. An outgoing interaction represents a decision or action that the user initiates. Siri uses outgoing intent donations to refine suggestions to the user in a variety of ways, including Share Sheet recommendations and contact suggestions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Initializing an outgoing interaction is similar to initializing an incoming interaction. Set the ",
+              "type": "text"
+            },
+            {
+              "code": "direction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of an outgoing interaction to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INInteractionDirection/outgoing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " prior to donating. The process to donate an outgoing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INStartCallIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " interaction is identical to the process to donate incoming interactions. When donating an outgoing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INSendMessageIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " interaction, however, the current user becomes the sender. Therefore, leave the ",
+              "type": "text"
+            },
+            {
+              "code": "sender",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter of an outgoing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INSendMessageIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and provide the recipients of the message, and any other metadata available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Additional-donation-metadata",
+          "level": 3,
+          "text": "Additional donation metadata",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can provide optional donation metadata for message intent donations in the form of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INSendMessageIntentDonationMetadata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. This additional metadata changes the behavior of the interaction donation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can manually specify the recipient count and initialize a partial list of relevant recipients when the full list of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INSendMessageIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " recipients is prohibitively large. Supply an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INSendMessageIntentDonationMetadata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to the intent and specify the full ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INSendMessageIntentDonationMetadata/recipientCount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This recipient count overrides the count of the recipients array on the intent. You must either provide the full recipient list to the intent, or instead provide an accurate recipient count on the intent’s donation metadata.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also use a donation metadata object when the user receives messages that explicity mention that user, or reply messages to previous conversations. Use a donation metadata object to specify this behavior. Set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INSendMessageIntentDonationMetadata/mentionsCurrentUser",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INSendMessageIntentDonationMetadata/isReplyToCurrentUser",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to enable these behaviors, respectively, on the communication notification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Someone can choose to notify a user even when the other user has Focus enabled. Your app requires authorization to access the user’s Focus status for this functionality to work.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Request authorization by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Intents/INFocusStatusCenter/requestAuthorization(completionHandler:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " on the default ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Intents/INFocusStatusCenter",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure the user has authorized your app before continuing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Intents/INSendMessageIntentDonationMetadata/notifyRecipientAnyway",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " on the donation metadata object when the notification should break through Focus and interrupt them.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reserve this functionality for instances where the sender has explicitly chosen to notify the user anyway. Users only expect an interruption like this after they’ve received a communication notification for a message that Focus silenced on their behalf.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "UserNotifications-PageImage-card.png": {
+      "alt": "[A notification interface displayed on the lock screen of an iOS device.]",
+      "identifier": "UserNotifications-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/074de9a9213bf2905d67fae5eb46e4f8/UserNotifications-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5733742e1c084fc202b3c92df9083686/UserNotifications-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/Intents/INFocusStatusCenter": {
+      "abstract": [
+        {
+          "text": "An object that maintains the user’s current focus status and your app’s ability to access it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INFocusStatusCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INFocusStatusCenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "INFocusStatusCenter",
+      "type": "topic",
+      "url": "/documentation/Intents/INFocusStatusCenter"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INFocusStatusCenter/requestAuthorization(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Asks the system for access to the user’s focus status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@INFocusStatusAuthorizationStatus",
+          "text": "INFocusStatusAuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INFocusStatusCenter/requestAuthorization(completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestAuthorization(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/Intents/INFocusStatusCenter/requestAuthorization(completionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INInteraction": {
+      "abstract": [
+        {
+          "text": "An interaction between the user and your app involving an intent object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INInteraction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "INInteraction",
+      "type": "topic",
+      "url": "/documentation/Intents/INInteraction"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INInteraction/donate(completion:)": {
+      "abstract": [
+        {
+          "text": "Donates this interaction object to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "donate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INInteraction/donate(completion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "donate(completion:)",
+      "type": "topic",
+      "url": "/documentation/Intents/INInteraction/donate(completion:)"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INInteractionDirection/incoming": {
+      "abstract": [
+        {
+          "text": "An interaction in which information is received on the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "incoming"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INInteractionDirection/incoming",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "INInteractionDirection.incoming",
+      "type": "topic",
+      "url": "/documentation/Intents/INInteractionDirection/incoming"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INInteractionDirection/outgoing": {
+      "abstract": [
+        {
+          "text": "An interaction in which information is sent from the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outgoing"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INInteractionDirection/outgoing",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "INInteractionDirection.outgoing",
+      "type": "topic",
+      "url": "/documentation/Intents/INInteractionDirection/outgoing"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INPerson": {
+      "abstract": [
+        {
+          "text": "Information about a person participating in a SiriKit interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPerson"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INPerson",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "INPerson",
+      "type": "topic",
+      "url": "/documentation/Intents/INPerson"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INPersonHandle": {
+      "abstract": [
+        {
+          "text": "The identifying information for a user of your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPersonHandle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INPersonHandle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "INPersonHandle",
+      "type": "topic",
+      "url": "/documentation/Intents/INPersonHandle"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INPersonHandleType/emailAddress": {
+      "abstract": [
+        {
+          "text": "An email address.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "emailAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INPersonHandleType/emailAddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "INPersonHandleType.emailAddress",
+      "type": "topic",
+      "url": "/documentation/Intents/INPersonHandleType/emailAddress"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INPersonHandleType/phoneNumber": {
+      "abstract": [
+        {
+          "text": "A phone number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "phoneNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INPersonHandleType/phoneNumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "INPersonHandleType.phoneNumber",
+      "type": "topic",
+      "url": "/documentation/Intents/INPersonHandleType/phoneNumber"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INPersonSuggestionType": {
+      "abstract": [
+        {
+          "text": "Constants indicating how to display the person’s identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPersonSuggestionType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INPersonSuggestionType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "INPersonSuggestionType",
+      "type": "topic",
+      "url": "/documentation/Intents/INPersonSuggestionType"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INPersonSuggestionType/none": {
+      "abstract": [
+        {
+          "text": "No contact information to donate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "none"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INPersonSuggestionType/none",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "INPersonSuggestionType.none",
+      "type": "topic",
+      "url": "/documentation/Intents/INPersonSuggestionType/none"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INSendMessageIntent": {
+      "abstract": [
+        {
+          "text": "A request to send a message to the designated recipients.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSendMessageIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INSendMessageIntent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "INSendMessageIntent",
+      "type": "topic",
+      "url": "/documentation/Intents/INSendMessageIntent"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INSendMessageIntent/speakableGroupName": {
+      "abstract": [
+        {
+          "text": "The name of the group to receive the message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@NSCopying"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "speakableGroupName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INSpeakableString",
+          "text": "INSpeakableString"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INSendMessageIntent/speakableGroupName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "speakableGroupName",
+      "type": "topic",
+      "url": "/documentation/Intents/INSendMessageIntent/speakableGroupName"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INSendMessageIntentDonationMetadata": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSendMessageIntentDonationMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INSendMessageIntentDonationMetadata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "INSendMessageIntentDonationMetadata",
+      "type": "topic",
+      "url": "/documentation/Intents/INSendMessageIntentDonationMetadata"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INSendMessageIntentDonationMetadata/isReplyToCurrentUser": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isReplyToCurrentUser"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INSendMessageIntentDonationMetadata/isReplyToCurrentUser",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isReplyToCurrentUser",
+      "type": "topic",
+      "url": "/documentation/Intents/INSendMessageIntentDonationMetadata/isReplyToCurrentUser"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INSendMessageIntentDonationMetadata/mentionsCurrentUser": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mentionsCurrentUser"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INSendMessageIntentDonationMetadata/mentionsCurrentUser",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mentionsCurrentUser",
+      "type": "topic",
+      "url": "/documentation/Intents/INSendMessageIntentDonationMetadata/mentionsCurrentUser"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INSendMessageIntentDonationMetadata/notifyRecipientAnyway": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notifyRecipientAnyway"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INSendMessageIntentDonationMetadata/notifyRecipientAnyway",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "notifyRecipientAnyway",
+      "type": "topic",
+      "url": "/documentation/Intents/INSendMessageIntentDonationMetadata/notifyRecipientAnyway"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INSendMessageIntentDonationMetadata/recipientCount": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recipientCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INSendMessageIntentDonationMetadata/recipientCount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "recipientCount",
+      "type": "topic",
+      "url": "/documentation/Intents/INSendMessageIntentDonationMetadata/recipientCount"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INStartCallIntent": {
+      "abstract": [
+        {
+          "text": "A request to start an audio or video call with one or more users.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INStartCallIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INStartCallIntent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "INStartCallIntent",
+      "type": "topic",
+      "url": "/documentation/Intents/INStartCallIntent"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INStartCallIntent/callRecordToCallBack": {
+      "abstract": [
+        {
+          "text": "Details about a call to redial a missed call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@NSCopying"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "callRecordToCallBack"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)INCallRecord",
+          "text": "INCallRecord"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INStartCallIntent/callRecordToCallBack",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "callRecordToCallBack",
+      "type": "topic",
+      "url": "/documentation/Intents/INStartCallIntent/callRecordToCallBack"
+    },
+    "doc://com.apple.documentation/documentation/SiriKit/donating-shortcuts": {
+      "abstract": [
+        {
+          "text": "Tell Siri about shortcuts to actions that the user performed in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SiriKit/donating-shortcuts",
+      "kind": "article",
+      "role": "article",
+      "title": "Donating Shortcuts",
+      "type": "topic",
+      "url": "/documentation/SiriKit/donating-shortcuts"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app": {
+      "abstract": [
+        {
+          "text": "Configure your target to include and customize capabilities that provide access to Apple’s app services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding capabilities to your app",
+      "type": "topic",
+      "url": "/documentation/Xcode/adding-capabilities-to-your-app"
+    },
+    "doc://com.apple.documentation/documentation/intents/inintent/2976224-setimage": {
+      "abstract": [
+        {
+          "text": "Sets the image to use for the specified parameter.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/intents/inintent/2976224-setimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setImage:forParameterNamed:",
+      "type": "topic",
+      "url": "/documentation/intents/inintent/2976224-setimage"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications": {
+      "abstract": [
+        {
+          "text": "Push user-facing notifications to the user’s device from a server, or generate them locally from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications",
+      "images": [
+        {
+          "identifier": "UserNotifications-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "User Notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNMutableNotificationContent": {
+      "abstract": [
+        {
+          "text": "The editable content for a notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNMutableNotificationContent"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNMutableNotificationContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNMutableNotificationContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNMutableNotificationContent",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unmutablenotificationcontent"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationActionIcon": {
+      "abstract": [
+        {
+          "text": "An icon associated with an action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationActionIcon"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationActionIcon",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationActionIcon"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationActionIcon",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationactionicon"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationAttachment": {
+      "abstract": [
+        {
+          "text": "A media file associated with a notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationAttachment"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationAttachment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationAttachment"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationAttachment",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationattachment"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationContent": {
+      "abstract": [
+        {
+          "text": "The uneditable content of a notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationContent"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationContent",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationcontent"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationContent/updating(from:)": {
+      "abstract": [
+        {
+          "text": "Returns a copy of the notification that includes content from the specified provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updating"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UNNotificationContentProviding",
+          "text": "UNNotificationContentProviding"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UNNotificationContent",
+          "text": "UNNotificationContent"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationContent/updating(from:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentByUpdatingWithProvider:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "updating(from:)",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationcontent/updating(from:)"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationContentProviding": {
+      "abstract": [
+        {
+          "text": "A protocol the system uses to provide context relevant to user notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationContentProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationContentProviding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationContentProviding"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationContentProviding",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationcontentproviding"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension/didReceive(_:withContentHandler:)": {
+      "abstract": [
+        {
+          "text": "Asks you to make any needed changes to the notification and notify the system when you’re done.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didReceive"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UNNotificationRequest",
+          "text": "UNNotificationRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withContentHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UNNotificationContent",
+          "text": "UNNotificationContent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension/didReceive(_:withContentHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didReceiveNotificationRequest:withContentHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "didReceive(_:withContentHandler:)",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationserviceextension/didreceive(_:withcontenthandler:)"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSound": {
+      "abstract": [
+        {
+          "text": "The sound played upon delivery of a notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationSound"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSound",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationSound"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationSound",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationsound"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSoundName": {
+      "abstract": [
+        {
+          "text": "A string providing the name of a sound file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationSoundName"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSoundName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationSoundName"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationSoundName",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationsoundname"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/modifying-content-in-newly-delivered-notifications": {
+      "abstract": [
+        {
+          "text": "Modify the payload of a remote notification before it’s displayed on the user’s iOS device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/modifying-content-in-newly-delivered-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Modifying content in newly delivered notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications/modifying-content-in-newly-delivered-notifications"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Notification-content",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationContentProviding",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationActionIcon",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNMutableNotificationContent",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationContent",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationAttachment",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSound",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSoundName"
+      ],
+      "title": "Notification content"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Notification-content",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationContentProviding",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationActionIcon",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNMutableNotificationContent",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationContent",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationAttachment",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSound",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSoundName"
+              ],
+              "title": "Notification content"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INSendMessageIntentDonationMetadata/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INSendMessageIntentDonationMetadata"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)INIntentDonationMetadata",
+              "text": "INIntentDonationMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INFocusStatusCenter/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INFocusStatusCenter"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationActionIcon/title",
+          "value": "UNNotificationActionIcon"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationActionIcon/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationActionIcon"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationActionIcon/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationActionIcon"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INPersonHandleType~1emailAddress/title",
+          "value": "INPersonHandleTypeEmailAddress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INPersonHandleType~1emailAddress/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPersonHandleTypeEmailAddress"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INStartCallIntent/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INStartCallIntent"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)INIntent",
+              "text": "INIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INSendMessageIntentDonationMetadata~1notifyRecipientAnyway/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "atomic"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "notifyRecipientAnyway"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationContent/title",
+          "value": "UNNotificationContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationContent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationContent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INStartCallIntent~1callRecordToCallBack/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "atomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)INCallRecord",
+              "text": "INCallRecord"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "callRecordToCallBack"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INSendMessageIntent/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INSendMessageIntent"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)INIntent",
+              "text": "INIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INInteraction/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INInteraction"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationAttachment/title",
+          "value": "UNNotificationAttachment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationAttachment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationAttachment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationAttachment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationAttachment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INPerson/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INPerson"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSound/title",
+          "value": "UNNotificationSound"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSound/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationSound"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSound/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationSound"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INPersonSuggestionType~1none/title",
+          "value": "INPersonSuggestionTypeNone"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INPersonSuggestionType~1none/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPersonSuggestionTypeNone"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INPersonSuggestionType/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INPersonSuggestionType"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSInteger",
+              "text": "NSInteger"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INInteractionDirection~1incoming/title",
+          "value": "INInteractionDirectionIncoming"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INInteractionDirection~1incoming/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INInteractionDirectionIncoming"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INInteraction~1donate(completion:)/title",
+          "value": "donateInteractionWithCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INInteraction~1donate(completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "donateInteractionWithCompletion:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completion"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationContentProviding/title",
+          "value": "UNNotificationContentProviding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationContentProviding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationContentProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationContentProviding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationContentProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INSendMessageIntent~1speakableGroupName/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)INSpeakableString",
+              "text": "INSpeakableString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "speakableGroupName"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INSendMessageIntentDonationMetadata~1mentionsCurrentUser/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "atomic"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "mentionsCurrentUser"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INInteractionDirection~1outgoing/title",
+          "value": "INInteractionDirectionOutgoing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INInteractionDirection~1outgoing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INInteractionDirectionOutgoing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationServiceExtension~1didReceive(_:withContentHandler:)/title",
+          "value": "didReceiveNotificationRequest:withContentHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationServiceExtension~1didReceive(_:withContentHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didReceiveNotificationRequest:withContentHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationContent~1updating(from:)/title",
+          "value": "contentByUpdatingWithProvider:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationContent~1updating(from:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "contentByUpdatingWithProvider:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INPersonHandle/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INPersonHandle"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INSendMessageIntentDonationMetadata~1isReplyToCurrentUser/title",
+          "value": "replyToCurrentUser"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INSendMessageIntentDonationMetadata~1isReplyToCurrentUser/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "atomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "getter"
+            },
+            {
+              "kind": "text",
+              "text": "="
+            },
+            {
+              "kind": "identifier",
+              "text": "isReplyToCurrentUser"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "replyToCurrentUser"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSoundName/title",
+          "value": "UNNotificationSoundName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSoundName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationSoundName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSoundName/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationSoundName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INSendMessageIntentDonationMetadata~1recipientCount/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "recipientCount"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INFocusStatusCenter~1requestAuthorization(completionHandler:)/title",
+          "value": "requestAuthorizationWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INFocusStatusCenter~1requestAuthorization(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestAuthorizationWithCompletionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@INFocusStatusAuthorizationStatus",
+              "text": "INFocusStatusAuthorizationStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "status"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INPersonHandleType~1phoneNumber/title",
+          "value": "INPersonHandleTypePhoneNumber"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INPersonHandleType~1phoneNumber/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPersonHandleTypePhoneNumber"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNMutableNotificationContent/title",
+          "value": "UNMutableNotificationContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNMutableNotificationContent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNMutableNotificationContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNMutableNotificationContent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNMutableNotificationContent"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/usernotifications/implementing-communication-notifications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/usernotifications/implementing-communication-notifications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

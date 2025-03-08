@@ -1,0 +1,1984 @@
+{
+  "abstract": [
+    {
+      "text": "An object the framework uses to control helper executables that live inside an app’s main bundle.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.servicemanagement/documentation/ServiceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SMAppService",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SMAppService"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Service Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SMAppService"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SMAppService"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SMAppService"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS 13 and later, use ",
+              "type": "text"
+            },
+            {
+              "code": "SMAppService",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to register and control ",
+              "type": "text"
+            },
+            {
+              "code": "LoginItems",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "LaunchAgents",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "LaunchDaemons",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as helper executables for your app. When converting code from earlier versions of macOS, use an ",
+              "type": "text"
+            },
+            {
+              "code": "SMAppService",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object and select one of the following methods depending on the type of service your helper executable provides:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SMAppServices",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " initialized as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "LoginItems",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/register()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/unregister()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " APIs provide a replacement for ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMLoginItemSetEnabled(_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SMAppServices",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " initialized as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "LaunchAgents",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/register()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/unregister()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " methods provide a replacement for installing property lists in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "~/Library/LaunchAgents",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/Library/LaunchAgents",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SMAppServices",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " initialized as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "LaunchDaemons",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/register()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/unregister()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " methods provide a replacement for installing property lists in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/Library/LaunchDaemons",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement": {
+      "abstract": [
+        {
+          "text": "Manage startup items, launch agents, and launch daemons from within an app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Service Management",
+      "type": "topic",
+      "url": "/documentation/servicemanagement"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService": {
+      "abstract": [
+        {
+          "text": "An object the framework uses to control helper executables that live inside an app’s main bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SMAppService"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SMAppService"
+        }
+      ],
+      "role": "symbol",
+      "title": "SMAppService",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/smappservice"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/Status-swift.enum": {
+      "abstract": [
+        {
+          "text": "Constants that describe the registration or authorization status of a helper executable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Status"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/Status-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Status"
+        }
+      ],
+      "role": "symbol",
+      "title": "SMAppService.Status",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/smappservice/status-swift.enum"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/agent(plistName:)": {
+      "abstract": [
+        {
+          "text": "Initializes an app service object with a launch agent with the property list name you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "agent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "plistName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/agent(plistName:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "agentServiceWithPlistName:"
+        }
+      ],
+      "role": "symbol",
+      "title": "agent(plistName:)",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/smappservice/agent(plistname:)"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/daemon(plistName:)": {
+      "abstract": [
+        {
+          "text": "Initializes an app service object with a launch daemon with the property list name you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "daemon"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "plistName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/daemon(plistName:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "daemonServiceWithPlistName:"
+        }
+      ],
+      "role": "symbol",
+      "title": "daemon(plistName:)",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/smappservice/daemon(plistname:)"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/loginItem(identifier:)": {
+      "abstract": [
+        {
+          "text": "Initializes an app service object for a login item corresponding to the bundle with the identifier you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loginItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/loginItem(identifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loginItemServiceWithIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loginItem(identifier:)",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/smappservice/loginitem(identifier:)"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/mainApp": {
+      "abstract": [
+        {
+          "text": "An app service object that corresponds to the main application as a login item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mainApp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SMAppService",
+          "text": "SMAppService"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/mainApp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mainAppService"
+        }
+      ],
+      "role": "symbol",
+      "title": "mainApp",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/smappservice/mainapp"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/openSystemSettingsLoginItems()": {
+      "abstract": [
+        {
+          "text": "Opens System Settings to the Login Items control panel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openSystemSettingsLoginItems"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/openSystemSettingsLoginItems()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "openSystemSettingsLoginItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "openSystemSettingsLoginItems()",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/smappservice/opensystemsettingsloginitems()"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/register()": {
+      "abstract": [
+        {
+          "text": "Registers the service so it can begin launching subject to user approval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "register"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/register()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "registerAndReturnError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "register()",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/smappservice/register()"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/status-swift.property": {
+      "abstract": [
+        {
+          "text": "A property that describes registration or authorization state of the service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "status"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SMAppService",
+          "text": "SMAppService"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SMAppServiceStatus",
+          "text": "Status"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/status-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "status"
+        }
+      ],
+      "role": "symbol",
+      "title": "status",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/smappservice/status-swift.property"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/statusForLegacyPlist(at:)": {
+      "abstract": [
+        {
+          "text": "Check the authorization status of an earlier OS version login item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "statusForLegacyPlist"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SMAppService",
+          "text": "SMAppService"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SMAppServiceStatus",
+          "text": "Status"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/statusForLegacyPlist(at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "statusForLegacyURL:"
+        }
+      ],
+      "role": "symbol",
+      "title": "statusForLegacyPlist(at:)",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/smappservice/statusforlegacyplist(at:)"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/unregister()": {
+      "abstract": [
+        {
+          "text": "Unregisters the service so the system no longer launches it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unregister"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/unregister()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unregisterAndReturnError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "unregister()",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/smappservice/unregister()"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/unregister(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Unregisters the service so the system no longer launches it and calls a completion handler you provide with the resulting error value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unregister"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/unregister(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unregisterWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "unregister(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/smappservice/unregister(completionhandler:)"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMJobBless(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Submits the executable for the given label as a job to ",
+          "type": "text"
+        },
+        {
+          "code": "launchd",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SMJobBless"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AuthorizationRef",
+          "text": "AuthorizationRef"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMJobBless(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SMJobBless"
+        }
+      ],
+      "role": "symbol",
+      "title": "SMJobBless(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/smjobbless(_:_:_:_:)"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMLoginItemSetEnabled(_:_:)": {
+      "abstract": [
+        {
+          "text": "Enables a helper executable in the main app-bundle directory.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SMLoginItemSetEnabled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMLoginItemSetEnabled(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SMLoginItemSetEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "SMLoginItemSetEnabled(_:_:)",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/smloginitemsetenabled(_:_:)"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/authorization-constants": {
+      "abstract": [
+        {
+          "text": "Constants that describe the ability to authorize helper executables or modify daemon applications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/authorization-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Authorization Constants",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/authorization-constants"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/property-list-keys": {
+      "abstract": [
+        {
+          "text": "Property list keys that describe the kinds of applications, daemons, and helper executables the framework manages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/property-list-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Property List Keys",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/property-list-keys"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMJobBless(_:_:_:_:)",
+        "doc://com.apple.servicemanagement/documentation/ServiceManagement/authorization-constants",
+        "doc://com.apple.servicemanagement/documentation/ServiceManagement/property-list-keys"
+      ],
+      "title": "Management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Registering-services",
+      "identifiers": [
+        "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/register()",
+        "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/unregister()",
+        "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/unregister(completionHandler:)"
+      ],
+      "title": "Registering services"
+    },
+    {
+      "anchor": "Managing-apps",
+      "identifiers": [
+        "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/mainApp",
+        "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/agent(plistName:)",
+        "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/daemon(plistName:)",
+        "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/loginItem(identifier:)"
+      ],
+      "title": "Managing apps"
+    },
+    {
+      "anchor": "Interacting-with-System-Settings",
+      "identifiers": [
+        "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/openSystemSettingsLoginItems()"
+      ],
+      "title": "Interacting with System Settings"
+    },
+    {
+      "anchor": "Getting-the-state-of-the-service",
+      "identifiers": [
+        "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/status-swift.property",
+        "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/Status-swift.enum"
+      ],
+      "title": "Getting the state of the service"
+    },
+    {
+      "anchor": "Checking-authorization-for-earlier-OS-version-login-items",
+      "identifiers": [
+        "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/statusForLegacyPlist(at:)"
+      ],
+      "title": "Checking authorization for earlier OS version login items"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SMAppService"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SMAppService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SMAppService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.servicemanagement/documentation/ServiceManagement"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Registering-services",
+              "identifiers": [
+                "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/register()",
+                "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/unregister()",
+                "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/unregister(completionHandler:)"
+              ],
+              "title": "Registering services"
+            },
+            {
+              "anchor": "Managing-apps",
+              "identifiers": [
+                "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/mainApp",
+                "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/agent(plistName:)",
+                "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/daemon(plistName:)",
+                "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/loginItem(identifier:)"
+              ],
+              "title": "Managing apps"
+            },
+            {
+              "anchor": "Interacting-with-System-Settings",
+              "identifiers": [
+                "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/openSystemSettingsLoginItems()"
+              ],
+              "title": "Interacting with System Settings"
+            },
+            {
+              "anchor": "Getting-the-state-of-the-service",
+              "identifiers": [
+                "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/status-swift.property",
+                "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/Status-swift.enum"
+              ],
+              "title": "Getting the state of the service"
+            },
+            {
+              "anchor": "Checking-authorization-for-earlier-OS-version-login-items",
+              "identifiers": [
+                "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/statusForLegacyPlist(at:)"
+              ],
+              "title": "Checking authorization for earlier OS version login items"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Management",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMJobBless(_:_:_:_:)",
+                "doc://com.apple.servicemanagement/documentation/ServiceManagement/authorization-constants",
+                "doc://com.apple.servicemanagement/documentation/ServiceManagement/property-list-keys"
+              ],
+              "title": "Management"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SMAppService"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService/title",
+          "value": "SMAppService"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SMAppService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SMAppService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMJobBless(_:_:_:_:)/title",
+          "value": "SMJobBless"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMJobBless(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SMJobBless"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1register()/title",
+          "value": "registerAndReturnError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1register()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerAndReturnError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1mainApp/title",
+          "value": "mainAppService"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1mainApp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mainAppService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1loginItem(identifier:)/title",
+          "value": "loginItemServiceWithIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1loginItem(identifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "loginItemServiceWithIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1Status-swift.enum/title",
+          "value": "SMAppServiceStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1Status-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SMAppServiceStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1Status-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SMAppServiceStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1unregister(completionHandler:)/title",
+          "value": "unregisterWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1unregister(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unregisterWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1unregister()/title",
+          "value": "unregisterAndReturnError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1unregister()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unregisterAndReturnError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1agent(plistName:)/title",
+          "value": "agentServiceWithPlistName:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1agent(plistName:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "agentServiceWithPlistName:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMLoginItemSetEnabled(_:_:)/title",
+          "value": "SMLoginItemSetEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMLoginItemSetEnabled(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SMLoginItemSetEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1status-swift.property/title",
+          "value": "status"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1status-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "status"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1openSystemSettingsLoginItems()/title",
+          "value": "openSystemSettingsLoginItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1openSystemSettingsLoginItems()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "openSystemSettingsLoginItems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1statusForLegacyPlist(at:)/title",
+          "value": "statusForLegacyURL:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1statusForLegacyPlist(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "statusForLegacyURL:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1daemon(plistName:)/title",
+          "value": "daemonServiceWithPlistName:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1daemon(plistName:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "daemonServiceWithPlistName:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/servicemanagement/smappservice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/servicemanagement/smappservice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1514 @@
+{
+  "abstract": [
+    {
+      "text": "Returns a fixed-width font from the same family as the base font.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Font"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/monospaced()"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "SwiftUI",
+    "externalID": "s:7SwiftUI4FontV10monospacedACyF",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "monospaced"
+      },
+      {
+        "kind": "text",
+        "text": "() -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:7SwiftUI4FontV",
+        "text": "Font"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "monospaced()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "monospaced"
+            },
+            {
+              "kind": "text",
+              "text": "() -> "
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7SwiftUI4FontV",
+              "text": "Font"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A fixed-width font from the same family as the base font,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "if one is available, and a default fixed-width font otherwise.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If there’s no suitable font face in the same family, SwiftUI",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "returns a default fixed-width font.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example adds the ",
+              "type": "text"
+            },
+            {
+              "code": "monospaced()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier to the default",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system font, then applies this font to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ContentView: View {",
+            "    let myFont = Font",
+            "        .system(size: 24)",
+            "        .monospaced()",
+            "",
+            "    var body: some View {",
+            "        Text(\"Hello, world!\")",
+            "            .font(myFont)",
+            "            .padding()",
+            "            .navigationTitle(\"Monospaced\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Environment-Font-monospaced-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftUI may provide different fixed-width replacements for standard",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "user interface fonts (such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/title",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or a system font created",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/system(_:design:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") than for those same fonts when created",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by name with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/custom(_:size:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/font(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier applies the font to all text within",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the view. To mix fixed-width text with other styles in the same",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "Text",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(_:)-1a4oh",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer to use an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "appropropriately-styled",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the text view’s content. You can use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/3796160-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "initializer to provide a Markdown-formatted string containing the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "backtick-syntax (`…`) to apply code voice to specific ranges",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the attributed string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Environment-Font-monospaced-1": {
+      "alt": "A macOS window showing the text Hello, world in a 24-point",
+      "identifier": "Environment-Font-monospaced-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fe6495d1d5d860442569b8e417b11198/Environment-Font-monospaced-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/450d2723eec4e3171d2e8e61214dc9b8/Environment-Font-monospaced-1~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Font": {
+      "abstract": [
+        {
+          "text": "An environment-dependent font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Font"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Font"
+        }
+      ],
+      "role": "symbol",
+      "title": "Font",
+      "type": "topic",
+      "url": "/documentation/swiftui/font"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/Leading": {
+      "abstract": [
+        {
+          "text": "A line spacing adjustment that you can apply to a font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Leading"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/Leading",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Leading"
+        }
+      ],
+      "role": "symbol",
+      "title": "Font.Leading",
+      "type": "topic",
+      "url": "/documentation/swiftui/font/leading"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/Width": {
+      "abstract": [
+        {
+          "text": "A width to use for fonts that have multiple widths.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Width"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/Width",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Width"
+        }
+      ],
+      "role": "symbol",
+      "title": "Font.Width",
+      "type": "topic",
+      "url": "/documentation/swiftui/font/width"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/bold()": {
+      "abstract": [
+        {
+          "text": "Adds bold styling to the font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bold"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/bold()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bold()",
+      "type": "topic",
+      "url": "/documentation/swiftui/font/bold()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/custom(_:size:)": {
+      "abstract": [
+        {
+          "text": "Create a custom font with the given ",
+          "type": "text"
+        },
+        {
+          "code": "name",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "code": "size",
+          "type": "codeVoice"
+        },
+        {
+          "text": " that scales with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the body text style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "custom"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/custom(_:size:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "custom(_:size:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/font/custom(_:size:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/italic()": {
+      "abstract": [
+        {
+          "text": "Adds italics to the font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "italic"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/italic()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "italic()",
+      "type": "topic",
+      "url": "/documentation/swiftui/font/italic()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/leading(_:)": {
+      "abstract": [
+        {
+          "text": "Adjusts the line spacing of a font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "leading"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV7LeadingO",
+          "text": "Leading"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/leading(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "leading(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/font/leading(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/lowercaseSmallCaps()": {
+      "abstract": [
+        {
+          "text": "Adjusts the font to enable lowercase small capitals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lowercaseSmallCaps"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/lowercaseSmallCaps()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lowercaseSmallCaps()",
+      "type": "topic",
+      "url": "/documentation/swiftui/font/lowercasesmallcaps()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/monospaced()": {
+      "abstract": [
+        {
+          "text": "Returns a fixed-width font from the same family as the base font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "monospaced"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/monospaced()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "monospaced()",
+      "type": "topic",
+      "url": "/documentation/swiftui/font/monospaced()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/monospacedDigit()": {
+      "abstract": [
+        {
+          "text": "Returns a modified font that uses fixed-width digits, while leaving",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "other characters proportionally spaced.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "monospacedDigit"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/monospacedDigit()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "monospacedDigit()",
+      "type": "topic",
+      "url": "/documentation/swiftui/font/monospaceddigit()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/smallCaps()": {
+      "abstract": [
+        {
+          "text": "Adjusts the font to enable all small capitals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "smallCaps"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/smallCaps()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "smallCaps()",
+      "type": "topic",
+      "url": "/documentation/swiftui/font/smallcaps()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/system(_:design:)": {
+      "abstract": [
+        {
+          "text": "Gets a system font with the given text style and design.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "system"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV9TextStyleO",
+          "text": "TextStyle"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "design"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV6DesignO",
+          "text": "Design"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/system(_:design:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "system(_:design:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/font/system(_:design:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/title": {
+      "abstract": [
+        {
+          "text": "A font with the title text style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/title",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/swiftui/font/title"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/uppercaseSmallCaps()": {
+      "abstract": [
+        {
+          "text": "Adjusts the font to enable uppercase small capitals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uppercaseSmallCaps"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/uppercaseSmallCaps()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uppercaseSmallCaps()",
+      "type": "topic",
+      "url": "/documentation/swiftui/font/uppercasesmallcaps()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/weight(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the weight of the font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "weight"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV6WeightV",
+          "text": "Weight"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/weight(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "weight(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/font/weight(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/width(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the width of the font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV5WidthV",
+          "text": "Width"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/width(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "width(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/font/width(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text": {
+      "abstract": [
+        {
+          "text": "A view that displays one or more lines of read-only text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "role": "symbol",
+      "title": "Text",
+      "type": "topic",
+      "url": "/documentation/swiftui/text"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(_:)-1a4oh": {
+      "abstract": [
+        {
+          "text": "Creates a text view that displays styled attributed content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation16AttributedStringV",
+          "text": "AttributedString"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/init(_:)-1a4oh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/init(_:)-1a4oh"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/font(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the default font for text in this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "font"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/font(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "font(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/font(_:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring": {
+      "abstract": [
+        {
+          "text": "A value type for a string with associated attributes for portions of its text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "AttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring/3796160-init": {
+      "abstract": [
+        {
+          "text": "Creates an attributed string from a Markdown-formatted string using the provided options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "markdown"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": AttributedString.MarkdownParsingOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "baseURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/3796160-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(markdown:options:baseURL:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring/3796160-init"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Styling-a-font",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/bold()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/italic()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/monospacedDigit()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/smallCaps()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/lowercaseSmallCaps()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/uppercaseSmallCaps()",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/weight(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/width(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/Width",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/leading(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/Leading"
+      ],
+      "title": "Styling a font"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/font/monospaced()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

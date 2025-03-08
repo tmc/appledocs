@@ -1,0 +1,1968 @@
+{
+  "abstract": [
+    {
+      "text": "Incorporate the system text-selection experience into your custom text UI in UIKit.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/keyboards-and-input"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/adopting-system-selection-ui-in-custom-text-views"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adopting system selection UI in custom text views"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People can enter text into your app in a variety of ways, such as typing, copy and paste, or dictation. iOS 17 introduces changes to the system UI for inserting and selecting text to provide a more seamless text experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app handles text input through standard UIKit views such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextField",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", your app automatically uses the system UI for inserting and selecting text. This system selection UI includes the following elements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The text cursor that indicates the insertion point of the text",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The highlight behind the selected text",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Selection handles for selecting ranges of text",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The loupe for placing the text cursor in large bodies of text",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have a highly customized UI for displaying text, you can adopt this system selection UI in your UIKit app. In most cases involving text selection display and interaction, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInteraction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which includes the system selection UI and standard gesture recognizers to let people modify the selection state in your custom text view. If you want to implement the selection gestures yourself, but still want to indicate text selection using the standard system UI, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead. This article describes the steps for adopting ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-the-system-selection-UI-to-a-custom-text-view",
+          "level": 3,
+          "text": "Add the system selection UI to a custom text view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app handles text input through a custom text view that builds on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can display the system selection UI manually. Create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " interaction and add it to your custom text view that adopts ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set up the interaction.",
+            "let selectionDisplayInteraction = UITextSelectionDisplayInteraction(textInput: documentView,",
+            "                                                     delegate: self)",
+            "documentView.addInteraction(selectionDisplayInteraction)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your custom text view becomes active or becomes first responder, activate the interaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Activate the interaction when the text view becomes active.",
+            "func didBecomeActive() {",
+            "    selectionDisplayInteraction.isActivated = true",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Update-the-text-selection",
+          "level": 3,
+          "text": "Update the text selection",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a person interacts with text in your custom text view, notify the interaction as the state of the text selection changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Notify the interaction when the text selection changes.",
+            "func didChangeSelection() {",
+            "    selectionDisplayInteraction.setNeedsSelectionUpdate()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction/setNeedsSelectionUpdate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the interaction retrieves the latest information about the current text selection from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction/textInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " so it can redraw the selection UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Customize-the-system-selection-UI-elements",
+          "level": 3,
+          "text": "Customize the system selection UI elements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You might want further customization to the system selection UI to match your custom text view’s style and behavior. You can customize various properties on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction/cursorView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property represents the text cursor. You can customize the state of the text cursor’s blinking animation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction/highlightView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property represents the highlight behind the selected text. You can customize the shape of the selection to draw a custom highlight.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction/handleViews",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property represents the selection handles for selecting ranges of text. You can customize the appearance of the handles by defining a custom shape or specifying the orientation of the handles.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Enhance-text-cursor-placement-with-the-text-loupe",
+          "level": 3,
+          "text": "Enhance text-cursor placement with the text loupe",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your custom text view can also display the system UI for the loupe, which people use for placing the text cursor in large bodies of text. When a person interacts with your custom text view in a way that you want to display the loupe, such as a pan gesture, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextLoupeSession/begin(at:fromSelectionWidgetView:in:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextLoupeSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. The system animates the presentation and placement of the loupe according to the starting point you provide. Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextLoupeSession/move(to:withCaretRect:trackingCaret:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to track the movement of the loupe as a person moves the text cursor, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextLoupeSession/invalidate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to hide the loupe and end the session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows how to show the loupe using a pan gesture recognizer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Show a loupe with a pan gesture.",
+            "var loupeSession: UITextLoupeSession?",
+            "",
+            "func didRecognizePanGesture(_ gesture: UIPanGestureRecognizer) {",
+            "    let location = gesture.location(in: view)",
+            "    let cursorView = selectionDisplayInteraction.cursorView",
+            "    switch gesture.state {",
+            "    case .began:",
+            "        loupeSession = UITextLoupeSession.begin(at: location,",
+            "                                                fromSelectionWidgetView: cursorView,",
+            "                                                in: view)",
+            "    case .changed:",
+            "        loupeSession?.move(to: location, withCaretRect: cursorView.frame,",
+            "                           trackingCaret: true)",
+            "    case .ended, .cancelled, .failed:",
+            "        loupeSession?.invalidate()",
+            "        loupeSession = nil",
+            "    default:",
+            "        break",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Hide-the-system-selection-UI",
+          "level": 3,
+          "text": "Hide the system selection UI",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your custom text view becomes inactive or resigns first responder status, make sure to deactivate the interaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Deactivate the interaction when the text view becomes inactive.",
+            "func didBecomeInactive() {",
+            "    selectionDisplayInteraction.isActivated = false",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you implement custom text UI in an AppKit app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/adopting-the-system-text-cursor-in-custom-text-views",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Session 10058: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2023/10058/",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related sessions from WWDC23",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/adopting-the-system-text-cursor-in-custom-text-views": {
+      "abstract": [
+        {
+          "text": "Incorporate the system text cursor into your custom text UI in AppKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/adopting-the-system-text-cursor-in-custom-text-views",
+      "kind": "article",
+      "role": "article",
+      "title": "Adopting the system text cursor in custom text views",
+      "type": "topic",
+      "url": "/documentation/AppKit/adopting-the-system-text-cursor-in-custom-text-views"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIStandardTextCursorView": {
+      "abstract": [
+        {
+          "text": "A view that draws the standard system insertion point in a piece of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIStandardTextCursorView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIStandardTextCursorView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIStandardTextCursorView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIStandardTextCursorView",
+      "type": "topic",
+      "url": "/documentation/uikit/uistandardtextcursorview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextCursorDropPositionAnimator": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextCursorDropPositionAnimator"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextCursorDropPositionAnimator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextCursorDropPositionAnimator"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextCursorDropPositionAnimator",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextcursordroppositionanimator"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextCursorView": {
+      "abstract": [
+        {
+          "text": "An interface you use to draw the insertion point in a piece of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextCursorView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextCursorView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextCursorView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextCursorView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextcursorview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextField": {
+      "abstract": [
+        {
+          "text": "An object that displays an editable text area in your interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextField"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextField",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextField"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextField",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextfield"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInput": {
+      "abstract": [
+        {
+          "text": "A set of methods for interacting with the text input system and enabling features in documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextInput"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextInput",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinput"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInteraction": {
+      "abstract": [
+        {
+          "text": "An interaction that provides text selection gestures and UI to custom text views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextInteraction",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinteraction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextLoupeSession": {
+      "abstract": [
+        {
+          "text": "An object that manages the presentation of the system magnifier at the location you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextLoupeSession"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextLoupeSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextLoupeSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextLoupeSession",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextloupesession"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextLoupeSession/begin(at:fromSelectionWidgetView:in:)": {
+      "abstract": [
+        {
+          "text": "Creates a new loupe session and displays the loupe at the specified location in your view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "begin"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromSelectionWidgetView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextLoupeSession/begin(at:fromSelectionWidgetView:in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "beginLoupeSessionAtPoint:fromSelectionWidgetView:inView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "begin(at:fromSelectionWidgetView:in:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextloupesession/begin(at:fromselectionwidgetview:in:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextLoupeSession/invalidate()": {
+      "abstract": [
+        {
+          "text": "Hides the loupe and cleans up any session-related state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextLoupeSession/invalidate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "invalidate"
+        }
+      ],
+      "role": "symbol",
+      "title": "invalidate()",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextloupesession/invalidate()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextLoupeSession/move(to:withCaretRect:trackingCaret:)": {
+      "abstract": [
+        {
+          "text": "Moves the loupe to the specified point in the session’s associated view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "move"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withCaretRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "trackingCaret"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextLoupeSession/move(to:withCaretRect:trackingCaret:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "moveToPoint:withCaretRect:trackingCaret:"
+        }
+      ],
+      "role": "symbol",
+      "title": "move(to:withCaretRect:trackingCaret:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextloupesession/move(to:withcaretrect:trackingcaret:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction": {
+      "abstract": [
+        {
+          "text": "An object that provides the system UI for displaying text selection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextSelectionDisplayInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextSelectionDisplayInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextSelectionDisplayInteraction",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextselectiondisplayinteraction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction/cursorView": {
+      "abstract": [
+        {
+          "text": "The view that draws the caret at the text insertion point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cursorView"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UITextCursorView",
+          "text": "UITextCursorView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction/cursorView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cursorView"
+        }
+      ],
+      "role": "symbol",
+      "title": "cursorView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextselectiondisplayinteraction/cursorview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction/handleViews": {
+      "abstract": [
+        {
+          "text": "The view that draws the selection handles for the selected text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleViews"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UITextSelectionHandleView",
+          "text": "UITextSelectionHandleView"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction/handleViews",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleViews"
+        }
+      ],
+      "role": "symbol",
+      "title": "handleViews",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextselectiondisplayinteraction/handleviews"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction/highlightView": {
+      "abstract": [
+        {
+          "text": "The view that draws the selection highlight behind the rendered text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "highlightView"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UITextSelectionHighlightView",
+          "text": "UITextSelectionHighlightView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction/highlightView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "highlightView"
+        }
+      ],
+      "role": "symbol",
+      "title": "highlightView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextselectiondisplayinteraction/highlightview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction/setNeedsSelectionUpdate()": {
+      "abstract": [
+        {
+          "text": "Tells the system to update the selection UI to match the current selection state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setNeedsSelectionUpdate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction/setNeedsSelectionUpdate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setNeedsSelectionUpdate"
+        }
+      ],
+      "role": "symbol",
+      "title": "setNeedsSelectionUpdate()",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextselectiondisplayinteraction/setneedsselectionupdate()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction/textInput": {
+      "abstract": [
+        {
+          "text": "The text input object that manages the selection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textInput"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UITextInput",
+          "text": "UITextInput"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction/textInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "textInput",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextselectiondisplayinteraction/textinput"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHandleView": {
+      "abstract": [
+        {
+          "text": "An interface you use to draw custom the selection handles for ranges of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextSelectionHandleView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHandleView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextSelectionHandleView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextSelectionHandleView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextselectionhandleview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHighlightView": {
+      "abstract": [
+        {
+          "text": "An interface you use to provide a custom highlight UI behind the selected text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextSelectionHighlightView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHighlightView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextSelectionHighlightView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextSelectionHighlightView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextselectionhighlightview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextView": {
+      "abstract": [
+        {
+          "text": "A scrollable, multiline text region.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/keyboards-and-input": {
+      "abstract": [
+        {
+          "text": "Configure the system keyboard, create your own keyboards to handle input, or detect key presses on a physical keyboard.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/keyboards-and-input",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keyboards and input",
+      "type": "topic",
+      "url": "/documentation/uikit/keyboards-and-input"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10058/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10058/",
+      "title": "What’s new with text and text interactions",
+      "titleInlineContent": [
+        {
+          "text": "What’s new with text and text interactions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10058/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Custom-text-selection",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction",
+        "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHighlightView",
+        "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHandleView",
+        "doc://com.apple.uikit/documentation/UIKit/UITextCursorView",
+        "doc://com.apple.uikit/documentation/UIKit/UIStandardTextCursorView",
+        "doc://com.apple.uikit/documentation/UIKit/UITextCursorDropPositionAnimator",
+        "doc://com.apple.uikit/documentation/UIKit/UITextLoupeSession"
+      ],
+      "title": "Custom text selection"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Custom-text-selection",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UITextSelectionDisplayInteraction",
+                "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHighlightView",
+                "doc://com.apple.uikit/documentation/UIKit/UITextSelectionHandleView",
+                "doc://com.apple.uikit/documentation/UIKit/UITextCursorView",
+                "doc://com.apple.uikit/documentation/UIKit/UIStandardTextCursorView",
+                "doc://com.apple.uikit/documentation/UIKit/UITextCursorDropPositionAnimator",
+                "doc://com.apple.uikit/documentation/UIKit/UITextLoupeSession"
+              ],
+              "title": "Custom text selection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextCursorDropPositionAnimator/title",
+          "value": "UITextCursorDropPositionAnimator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextCursorDropPositionAnimator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextCursorDropPositionAnimator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextCursorDropPositionAnimator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextCursorDropPositionAnimator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField/title",
+          "value": "UITextField"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextField/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextField"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionDisplayInteraction~1cursorView/title",
+          "value": "cursorView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionDisplayInteraction~1cursorView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cursorView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStandardTextCursorView/title",
+          "value": "UIStandardTextCursorView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStandardTextCursorView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStandardTextCursorView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIStandardTextCursorView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIStandardTextCursorView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionDisplayInteraction~1handleViews/title",
+          "value": "handleViews"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionDisplayInteraction~1handleViews/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "handleViews"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionHighlightView/title",
+          "value": "UITextSelectionHighlightView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionHighlightView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextSelectionHighlightView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionHighlightView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextSelectionHighlightView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextLoupeSession~1move(to:withCaretRect:trackingCaret:)/title",
+          "value": "moveToPoint:withCaretRect:trackingCaret:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextLoupeSession~1move(to:withCaretRect:trackingCaret:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "moveToPoint:withCaretRect:trackingCaret:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextLoupeSession/title",
+          "value": "UITextLoupeSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextLoupeSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextLoupeSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextLoupeSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextLoupeSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextLoupeSession~1begin(at:fromSelectionWidgetView:in:)/title",
+          "value": "beginLoupeSessionAtPoint:fromSelectionWidgetView:inView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextLoupeSession~1begin(at:fromSelectionWidgetView:in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "beginLoupeSessionAtPoint:fromSelectionWidgetView:inView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInput/title",
+          "value": "UITextInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionDisplayInteraction~1highlightView/title",
+          "value": "highlightView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionDisplayInteraction~1highlightView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "highlightView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionDisplayInteraction~1textInput/title",
+          "value": "textInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionDisplayInteraction~1textInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "textInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionDisplayInteraction/title",
+          "value": "UITextSelectionDisplayInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionDisplayInteraction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextSelectionDisplayInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionDisplayInteraction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextSelectionDisplayInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextCursorView/title",
+          "value": "UITextCursorView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextCursorView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextCursorView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextCursorView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextCursorView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInteraction/title",
+          "value": "UITextInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInteraction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInteraction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionDisplayInteraction~1setNeedsSelectionUpdate()/title",
+          "value": "setNeedsSelectionUpdate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionDisplayInteraction~1setNeedsSelectionUpdate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setNeedsSelectionUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextView/title",
+          "value": "UITextView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextLoupeSession~1invalidate()/title",
+          "value": "invalidate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextLoupeSession~1invalidate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "invalidate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionHandleView/title",
+          "value": "UITextSelectionHandleView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionHandleView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextSelectionHandleView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextSelectionHandleView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextSelectionHandleView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/adopting-system-selection-ui-in-custom-text-views"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/adopting-system-selection-ui-in-custom-text-views"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

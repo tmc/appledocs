@@ -1,0 +1,762 @@
+{
+  "abstract": [
+    {
+      "text": "Define an order by creating the directory structure, and adding source files and images.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.walletorders/documentation/WalletOrders"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.walletorders/documentation/WalletOrders/creating-the-source-for-an-order"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Wallet Orders"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating the source for an order"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An order is a self-contained package that represents a purchase a user makes, and the current state of any fulfillments and tracking metadata. The source for your order includes all the information the system needs to show it to the user, such as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Product images for line items and your merchant logo.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "order.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file that contains the strings the system displays to describe the order, and the current state of any fulfillments and tracking metadata.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optional localization information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create the source in a directory that you use to create the final distributable order package. For information about building the order package and donating to Wallet, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/building-a-distributable-order-package",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-directory-and-add-files-and-images",
+          "level": 3,
+          "text": "Create the directory and add files and images",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a directory to hold all the source files. Add the ",
+              "type": "text"
+            },
+            {
+              "code": "order.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file that contains the information and metadata for the order. For more information about the contents of this file, see the top-level ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Order",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a visually rich order by providing product images of line items and a merchant logo to represent your company or brand. The system displays product images in notifications, including on the Lock Screen, when you publish relevant updates to the order.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-localization",
+          "level": 3,
+          "text": "Add localization",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can expand your audience by localizing the strings and images of your order for different languages and regions. Add a directory at the top-level source directory of each order for each localization. The name of the directory identifies the language and an optional region.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[language identifier]-[region identifier].lproj"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the name for the French localization directory is ",
+              "type": "text"
+            },
+            {
+              "code": "fr.lproj",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the name for the Simplified Chinese directory is ",
+              "type": "text"
+            },
+            {
+              "code": "zh-Hans.lproj",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For more information about language identifiers, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/choosing-localization-regions-and-scripts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Localize an image by adding the location-specific image files to each localization directory. For example, to add localized versions of a merchant logo, add the English version of ",
+              "type": "text"
+            },
+            {
+              "code": "logo@2x.png",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "logo@3x.png",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files to the ",
+              "type": "text"
+            },
+            {
+              "code": "en.lprojfolder",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the Simplified Chinese version of the ",
+              "type": "text"
+            },
+            {
+              "code": "logo@2x.png",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "logo@3x.png",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files to the ",
+              "type": "text"
+            },
+            {
+              "code": "zh-Hans.lproj",
+              "type": "codeVoice"
+            },
+            {
+              "text": " folder. Reference your image in the ",
+              "type": "text"
+            },
+            {
+              "code": "order.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by the filename ",
+              "type": "text"
+            },
+            {
+              "code": "logo",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Be sure to provide the same number of resolutions for each localization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Adding an image of the same name to the top-level folder of the order file overrides any localized versions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Localize-the-strings",
+          "level": 3,
+          "text": "Localize the strings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system localizes the strings in your order using a strings file that contains a list of keys and associated localized strings. For more information about fields that are localizable, see the top-level ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Order",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add localized strings to your order using the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the value of a displayed string in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "order.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to a key, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "LineItemTitle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for the title of a line item.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "order.strings",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file to the localization folder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a line to each ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "order.strings",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file that sets a key you create in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "order.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to the localized term.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to localize a line item from English to German, set the value of the strings in the ",
+              "type": "text"
+            },
+            {
+              "code": "order.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to keys.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "...  ",
+            "\"lineItems\": [",
+            "    {",
+            "        \"title\": \"LineItemTitle\", ",
+            "        \"subtitle\": \"LineItemSubtitle\",",
+            "        \"quantity\": \"2\" ",
+            "    }",
+            "]",
+            "..."
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Define the values for the keys in the English strings in ",
+              "type": "text"
+            },
+            {
+              "code": "en.lproj/order.strings",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/* English Localization */",
+            "\"LineItemTitle\" = \"Water Bowl\";",
+            "\"LineItemSubtitle\" = \"Green\";"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then define the values for the keys in the German strings in ",
+              "type": "text"
+            },
+            {
+              "code": "de.lproj/order.strings",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/* German Localization */",
+            "\"LineItemTitle\" = \"Wasserschale\";",
+            "\"LineItemSubtitle\" = \"Grün\";"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Use UTF-16 encoding for non-ASCII characters.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system localizes fields that contain dates and times that use standard formats in the ",
+              "type": "text"
+            },
+            {
+              "code": "order.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. The system always displays localized versions of these values, even when your order doesn’t contain localization folders for the language.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The system doesn’t perform currency conversion on fields that contain monetary values. Monetary values display in the provided currency.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Xcode/choosing-localization-regions-and-scripts": {
+      "abstract": [
+        {
+          "text": "Add a language-only localization or localizations specific to regional variants and scripts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/choosing-localization-regions-and-scripts",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing localization regions and scripts",
+      "type": "topic",
+      "url": "/documentation/Xcode/choosing-localization-regions-and-scripts"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders": {
+      "abstract": [
+        {
+          "text": "Create, distribute, and update orders in Wallet.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Wallet Orders",
+      "type": "topic",
+      "url": "/documentation/walletorders"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Order": {
+      "abstract": [
+        {
+          "text": "The order’s details, including information about the products or services rendered, customer service, and fulfillment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Order"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Order",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Order"
+        }
+      ],
+      "role": "symbol",
+      "title": "Order",
+      "type": "topic",
+      "url": "/documentation/walletorders/order"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Retrieve-the-Latest-Version-of-an-Order": {
+      "abstract": [
+        {
+          "text": "Retrieves the latest signed and compressed version of an order.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Retrieve-the-Latest-Version-of-an-Order",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Retrieve the Latest Version of an Order"
+        }
+      ],
+      "role": "symbol",
+      "title": "Retrieve the latest version of an order",
+      "type": "topic",
+      "url": "/documentation/walletorders/retrieve-the-latest-version-of-an-order"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Retrieve-the-Registrations-for-a-Device": {
+      "abstract": [
+        {
+          "text": "Retrieves the identifiers of the orders that the device registered for.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Retrieve-the-Registrations-for-a-Device",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Retrieve the Registrations for a Device"
+        }
+      ],
+      "role": "symbol",
+      "title": "Retrieve the registrations for a device",
+      "type": "topic",
+      "url": "/documentation/walletorders/retrieve-the-registrations-for-a-device"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/building-a-distributable-order-package": {
+      "abstract": [
+        {
+          "text": "Prepare an order for distribution by building, signing, and compressing the source files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/building-a-distributable-order-package",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a distributable order package",
+      "type": "topic",
+      "url": "/documentation/walletorders/building-a-distributable-order-package"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/example-order-packages": {
+      "abstract": [
+        {
+          "text": "Edit, build, and add example order packages to Wallet.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/example-order-packages",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Example Order Packages",
+      "type": "topic",
+      "url": "/documentation/walletorders/example-order-packages"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.walletorders/documentation/WalletOrders/building-a-distributable-order-package",
+        "doc://com.apple.walletorders/documentation/WalletOrders/Retrieve-the-Registrations-for-a-Device",
+        "doc://com.apple.walletorders/documentation/WalletOrders/Retrieve-the-Latest-Version-of-an-Order",
+        "doc://com.apple.walletorders/documentation/WalletOrders/Order",
+        "doc://com.apple.walletorders/documentation/WalletOrders/example-order-packages"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/walletorders/creating-the-source-for-an-order"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

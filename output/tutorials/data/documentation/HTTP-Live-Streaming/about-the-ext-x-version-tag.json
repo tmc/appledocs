@@ -1,0 +1,3788 @@
+{
+  "abstract": [
+    {
+      "text": "Find the protocol version that corresponds with the HLS features your app supports.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/about-the-ext-x-version-tag"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "About the EXT-X-VERSION tag"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-VERSION",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag indicates the compatibility version of the Playlist file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This file, its associated media, and its server must comply with all provisions of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the IETF Internet-Draft of ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/draft-pantos-hls-rfc8216bis",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (or earlier specifications)",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "describing the protocol version indicated by the tag value. A Playlist file that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "doesn’t contain an ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-VERSION",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag must comply with version 1 of this protocol.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Support for M3U8 Playlists was introduced with iOS 3.0, Mac OS X 10.6, and Safari",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "4.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "High-level-features",
+          "level": 3,
+          "text": "High-level features",
+          "type": "heading"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "EXT-X-VERSION",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Features and usage notes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "IV attribute of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-KEY",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " tag",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "3",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Floating-point ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXTINF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " duration values",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "EXT-X-BYTERANGE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-I-FRAME-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ",",
+                      "type": "text"
+                    },
+                    {
+                      "code": " EXT-X-I-FRAMES-ONLY",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-MEDIA",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AUDIO",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "VIDEO",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attributes of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " tag",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "5",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "KEYFORMAT",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "KEYFORMATVERSIONS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attributes of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-KEY",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " tag. The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-MAP",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " tag. ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SUBTITLES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " media type. ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SAMPLE-AES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " encryption method ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-KEY",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "6",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "CLOSED-CAPTIONS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " media type. Allow",
+                      "type": "text"
+                    },
+                    {
+                      "code": " EXT-X-MAP",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for subtitle playlists",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "7",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "EXT-X-SESSION-DATA",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-SESSION-KEY",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-DATERANGE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SERVICE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "n",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "strong"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " values of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "INSTREAM-ID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AVERAGE-BANDWIDTH",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "FRAME-RATE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CHANNELS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "HDCP-LEVEL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attributes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "8",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "EXT-X-GAP",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-DEFINE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", Variable Substitution, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "VIDEO-RANGE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "9",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "EXT-X-SKIP",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "10",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "EXT-X-SERVER-CONTROL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-PART-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-PRELOAD-HINT",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-RENDITION-REPORT",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CUE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-DATERANGE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "STABLE-RENDITION-ID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-MEDIA",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SUPPLEMENTAL-CODECS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SCORE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "STABLE-VARIANT-ID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attributes of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-I-FRAME-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " tags",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "11",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "QUERYPARAM",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-DEFINE",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "12",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attributes starting with ‘",
+                      "type": "text"
+                    },
+                    {
+                      "code": "REQ-",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "’",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Backward-compatibility",
+          "level": 3,
+          "text": "Backward compatibility",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Older clients ignore backward-compatible features and will still play",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "back the content in some form. Specify only the protocol version that’s required",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "for backward compatibility in a given feature. For example, you don’t have to specify",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "protocol version 5 if you’ve just added SUBTITLES.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following features aren’t backward compatible. Older clients may fail to play",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the content if you use these features but don’t specify the protocol version where",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "they were introduced:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You must use at least protocol version 2 if you have ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "IV",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-KEY",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You must use at least protocol version 3 if you have floating point ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXTINF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " duration",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You must use at least protocol version 4 if you have ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-BYTERANG",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "E or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-IFRAME-ONLY",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You must use at least protocol version 5 if you specify the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SAMPLE-AES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " encryption",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "method in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-KEY",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or if you have ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "KEYFORMAT",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "KEYFORMATVERSIONS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attributes",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-KEY",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or if you have ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-MAP",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You must use at least protocol version 6 if you have ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-MAP",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in a Media Playlist",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "that does not contain ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-I-FRAMES-ONLY",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You must use at least protocol version 7 if you specify ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SERVICE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "n",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "strong"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " values for",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "INSTREAM-ID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-MEDIA",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You must use at least protocol version 8 if you use variable substitution.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You must use at least protocol version 9 if you have ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-SKIP",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You must use at least protocol version 10 if you have ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-SKIP",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " that replaces ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-DATERANGE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " tags in a Playlist",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Delta Update.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You must use at least protocol version 11 if you have ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "QUERYPARAM",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-DEFINE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You must use at least protocol version 12 if you have attributes that start with  “",
+                      "type": "text"
+                    },
+                    {
+                      "code": "REQ-",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Specifications",
+          "level": 3,
+          "text": "Specifications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following tables list the versions of specifications where specific features",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are described, along with the corresponding iOS release that supports those features.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Over time, HLS has been described by different documents: draft-pantos-http-live-streaming, which became ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://datatracker.ietf.org/doc/html/rfc8216",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", and now ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://datatracker.ietf.org/doc/html/draft-pantos-hls-rfc8216bis",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "draft-pantos-http-live-streaming-and-RFC-8216",
+          "level": 3,
+          "text": "draft-pantos-http-live-streaming and RFC 8216",
+          "type": "heading"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Revision",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS Version",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "00, 01",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "3.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Protocol version 1",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". Initial version.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "02",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "3.1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-DISCONTINUITY",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Changed Content-Type. Added redundant streams.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "03, 04",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "3.2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Protocol version 2",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-VERSION",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Added IV attribute to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-KEY",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "RESOLUTION",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Corrected ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CODECS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "—",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added timed metadata APIs, custom protocols for keys.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "05",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4.2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Protocol version 3",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXTINF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " floating point durations. Support for CEA-608 Closed captions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "—",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4.3",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AccessLog",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " & ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ErrorLog",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " objects to APIs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "06",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4.3.2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-PLAYLIST-TYPE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "07, 08",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "5.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Protocol version 4",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-I-FRAMES-ONLY",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-I-FRAME-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-MEDIA",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-BYTERANGE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AUDIO",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "VIDEO",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attributes to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "09, 10, 11",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "6.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Protocol version 5",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-MAP",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "KEYFORMAT",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "KEYFORMATVERSIONS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attributes to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-KEY",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SUBTITLES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "FORCED",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CHARACTERISTICS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attributes to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-MEDIA",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SUBTITLES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "TYPE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute of",
+                      "type": "text"
+                    },
+                    {
+                      "code": " EXT-X-MEDIA",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SAMPLE-AES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "METHOD",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-KEY",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "X-TIMESTAMP-MAP",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to WebVTT. Added AC-3 support.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "12",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "7.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Protocol version 6",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-DISCONTINUITY-SEQUENCE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-START",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ASSOC-LANGUAGE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "INSTREAM-ID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attributes to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-MEDIA",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CLOSED-CAPTIONS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Removed ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PROGRAM-ID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-I-FRAME-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CLOSED-CAPTIONS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "TYPE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-MEDIA",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Allow ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-MAP",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to be used in subtitle playlists.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "13",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "7.1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-INDEPENDENT-SEGMENTS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "14, 15, 16",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "8.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "P",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "rotocol version 7",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". Major re-write of spec. Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-SESSION-DATA",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Removed ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-ALLOW-CACHE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AVERAGE-BANDWIDTH",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-I-FRAME-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SERVICE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "n",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "strong"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " values to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "INSTREAM-ID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-MEDIA",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Added support for Enhanced AC-3. Support for CEA-708 Closed captions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "17, 18",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "9.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-SESSION-KEY",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "FRAME-RATE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-IFRAME-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". New peak bit-rate calculation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "19",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "9.3",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-DATERANGE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "20",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "10.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CHANNELS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-MEDIA",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "HDCP-LEVEL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-I-FRAME-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Added fMP4 support.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "21, 22, 23",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "10.3.1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Clarified ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AUTOSELECT=YES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " uniqueness. Added mention of CMAF.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "RFC8216",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "10.3.1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Wording changes and clarifications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "draft-pantos-hls-rfc8216bis",
+          "level": 3,
+          "text": "draft-pantos-hls-rfc8216bis",
+          "type": "heading"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Revision",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS Version",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "00",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "11.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Protocol version 8",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-GAP",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-DEFINE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and Variable Substitution. Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "VIDEO-RANGE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-I-FRAME-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "TYPE-1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "HDCP-LEVEL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute. Support for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "IMSC1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " subtitles.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "01",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Clarified the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "X-TIMESTAMP-MAP",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for non-MPEG-2 content. Added semantic change for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-TARGETDURATION",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " tag. Updated the JSON RFC format requirement.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "02",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "12.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added second ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CHANNELS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter. Added unrecognized ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CHANNELS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameters guidance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "03",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-BITRATE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " tag. Minor clarification about the use of Movie Extends Box in Fragmented MPEG-4 files.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "04",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add note about PES timestamp wraps.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "05",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "13.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Revise definition of peak segment bit rate. Add ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ALLOWED-CPC",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-I-FRAME-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Allow Media Metadata tags to be removed from playlists.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "06",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Rearranged Playlist Tags subsections. Minor rewording.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "07",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "13.5",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Protocol version 10",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". Support for Low-Latency HLS, including Partial Segments, Delivery Directives, Playlist Delta Updates, and the Low-Latency Server Configuration Profile. Adds tags: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-PART-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-SERVER-CONTROL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-PART",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-SKIP",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-PRELOAD-HINT",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-RENDITION-REPORT",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Adds ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "HLG",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " enum value to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "VIDEO-RANGE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute. Reserves query parameters that begin with “",
+                      "type": "text"
+                    },
+                    {
+                      "code": "_HLS_",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "08",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "14.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SCORE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "STABLE-VARIANT-ID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attributes to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-I-FRAME-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Add ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "STABLE-RENDITION-ID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-MEDIA",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CHARACTERISTICS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " values are Media Characteristic Tags, not Uniform Type Identifiers. A few minor clarifications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "09",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "-",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Minor clarifications. Preload hint request should use 2^53-1 for unknown byte range length.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "10",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "15.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Rename to “Multivariant Playlist”. Add Content Steering (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-CONTENT-STEERING",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " tag, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "PATHWAY-ID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute, and fetching Steering Manifests). Add Interstitials (specialized ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-DATERANGE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " tags, asset list interstitial JSON files, and the enumerated-string-list type). Minor clarifications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "11",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "15.5",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Update Content Steering to add Pathway Cloning. Add ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CUE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-DATERANGE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Add ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SUPPLEMENTAL-CODECS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-I-FRAME-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Minor clarifications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "12",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "16.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Document ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "_HLS_start_offset",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Modify rules for Partial Segments near ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "GAP",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "s. Relax ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-DATERANGE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " rules for Renditions. Minor clarifications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "13",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "16.5",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Protocol version 12",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". Add ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "QUERYPARAM",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attibute to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X_DEFINE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Add ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "FORMAT",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-SESSION-DATA",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Add special behavior for attributes with a prefix of “",
+                      "type": "text"
+                    },
+                    {
+                      "code": "REQ-",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "”. Some clarifications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "14",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "17.0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "BIT-DEPTH",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SAMPLE-RATE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attributes to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-MEDIA",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".  Extended ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CHANNELS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-MEDIA",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to allow a third parameter.  Added ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "REQ-VIDEO-LAYOUT",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-I-FRAME-STREAM-INF",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".  Added mention of the extensible priority scheme.  Added appendix on “Displaying Rendition Names”. Minor clarifications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "15",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "17.5",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added mention of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SAMPLE-AES-CTR",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " method of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "EXT-X-KEY",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".  Some clarifications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Always use the most recent version of the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/go/?id=http-live-streaming-tools",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "to generate or test your HTTP Live Streams.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming": {
+      "abstract": [
+        {
+          "text": "Send audio and video to iOS, tvOS, and macOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming",
+      "kind": "article",
+      "role": "collection",
+      "title": "HTTP Live Streaming",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/example-playlists-for-http-live-streaming": {
+      "abstract": [
+        {
+          "text": "View and compare playlists for different HLS applications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/example-playlists-for-http-live-streaming",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Example playlists for HTTP Live Streaming",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/example-playlists-for-http-live-streaming"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://datatracker.ietf.org/doc/html/draft-pantos-hls-rfc8216bis": {
+      "identifier": "https://datatracker.ietf.org/doc/html/draft-pantos-hls-rfc8216bis",
+      "title": "draft-pantos-hls-rfc8216bis",
+      "titleInlineContent": [
+        {
+          "text": "draft-pantos-hls-rfc8216bis",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://datatracker.ietf.org/doc/html/draft-pantos-hls-rfc8216bis"
+    },
+    "https://datatracker.ietf.org/doc/html/rfc8216": {
+      "identifier": "https://datatracker.ietf.org/doc/html/rfc8216",
+      "title": "RFC 8216",
+      "titleInlineContent": [
+        {
+          "text": "RFC 8216",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://datatracker.ietf.org/doc/html/rfc8216"
+    },
+    "https://developer.apple.com/go/?id=http-live-streaming-tools": {
+      "identifier": "https://developer.apple.com/go/?id=http-live-streaming-tools",
+      "title": "HTTP Live Streaming tools",
+      "titleInlineContent": [
+        {
+          "text": "HTTP Live Streaming tools",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/go/?id=http-live-streaming-tools"
+    },
+    "https://tools.ietf.org/html/draft-pantos-hls-rfc8216bis": {
+      "identifier": "https://tools.ietf.org/html/draft-pantos-hls-rfc8216bis",
+      "title": "HTTP Live Streaming 2nd Edition",
+      "titleInlineContent": [
+        {
+          "text": "HTTP Live Streaming 2nd Edition",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/draft-pantos-hls-rfc8216bis"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Stream-creation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/example-playlists-for-http-live-streaming"
+      ],
+      "title": "Stream creation"
+    }
+  ]
+}

@@ -1,0 +1,673 @@
+{
+  "abstract": [
+    {
+      "text": "Ensure the validity of a postback you receive after an ad conversion by verifying its cryptographic signature.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/verifying-a-postback"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AdAttributionKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Verifying a postback"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Postbacks contain data that validate an ad conversion. You need to verify the postback signature to make sure that Apple signed it before you count the conversion. Follow these steps to validate the postback:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Receive the postback at a URL you configure.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Respond to the postback request when you receive it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Validate the JSON Web Signature (JWS) by verifying its signature.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Count only unique postbacks with signatures you verify. Check the did-win parameter to learn whether the postback represents a winning attribution.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Receive-the-postback",
+          "level": 2,
+          "text": "Receive the postback",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Devices send postbacks to ad networks and developers within a defined timeframe after a conversion event occurs and the advertised app updates the conversion value at least once. Ad networks receive postbacks at the URL they provide when they register to use AdAttributionKit. Developers who opt in receive copies of winning postbacks at the URL they configure in the app’s property list key, ",
+              "type": "text"
+            },
+            {
+              "code": "AttributionCopyEndpoint",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For more information about setting up your postback URL, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/registering-an-ad-network",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/configuring-an-advertised-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about the timeframe for receiving attribution, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/receiving-ad-attributions-and-postbacks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You may receive postbacks in three conversion windows. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/receiving-postbacks-in-multiple-conversion-windows",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Verify-Apples-signature",
+          "level": 2,
+          "text": "Verify Apple’s signature",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Copy Apple’s public key, below, which you need for the remaining steps. Apple’s NIST P-256 public key that you use to verify signatures for production AdAttributionKit JWS postbacks is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEWdp8GPcGqmhgzEFj9Z2nSpQVddayaPe4FMzqM9wib1+aHaaIzoHoLN9zW4K8y4SPykE3YVK3sVqW6Af0lfx3gg==",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To verify a signature, complete these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Decode Apple’s public key, which appears as a Base64-encoded string above. The result is a byte array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an X.509 standard public key from the byte array.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the public key to verify the signature of the JWS using the process outlined in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://datatracker.ietf.org/doc/html/rfc7515#section-5.2",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your verification passes, the postback is valid.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The system signs development postbacks with a different key to distinguish them from production postbacks. For more information about verifying development postbacks, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/testing-adattributionkit-with-developer-mode",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the signature fails your verification, consider the postback message invalid. Don’t use it to count a conversion.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Verify-the-JWS-components",
+          "level": 2,
+          "text": "Verify the JWS components",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The JWS components include the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A header that has ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "alg",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "kid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameters.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A payload that contains the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "impression-type",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ad-network-identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "source-identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "advertised-item-identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "conversion-type",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "postback-identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "did-win",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "postback-sequence-index",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " properties, and the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "marketplace-identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "publisher-item-identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " properties, both of which are optional.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The signature that Apple generates, which is the last component of the JWS.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Respond-to-the-postback",
+          "level": 2,
+          "text": "Respond to the postback",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you receive a postback, respond with an HTTP status code 200 OK. If the device receives a 500 status code, it attempts to send the postback up to nine times over a maximum of 9 days.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Count-unique-messages-only",
+          "level": 2,
+          "text": "Count unique messages only",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "postback-identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value to ensure that you’re counting unique ad conversions. If you receive more than one postback with the same ",
+              "type": "text"
+            },
+            {
+              "code": "postback-identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", discard the duplicate report.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit": {
+      "abstract": [
+        {
+          "text": "Present, process, and register postbacks for in-app ads in the App Store and alternative app marketplaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AdAttributionKit",
+      "type": "topic",
+      "url": "/documentation/adattributionkit"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/configuring-an-advertised-app": {
+      "abstract": [
+        {
+          "text": "Prepare an advertised app to participate in ad campaigns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/configuring-an-advertised-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring an advertised app",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/configuring-an-advertised-app"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/identifying-the-parameters-in-a-postback": {
+      "abstract": [
+        {
+          "text": "Interpret postback properties to understand the attribution report.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/identifying-the-parameters-in-a-postback",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying the parameters in a postback",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/identifying-the-parameters-in-a-postback"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/receiving-ad-attributions-and-postbacks": {
+      "abstract": [
+        {
+          "text": "Understand timeframes and priorities for ad impressions that result in ad attributions, and how impressions qualify for postbacks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/receiving-ad-attributions-and-postbacks",
+      "kind": "article",
+      "role": "article",
+      "title": "Receiving ad attributions and postbacks",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/receiving-ad-attributions-and-postbacks"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/receiving-postbacks-in-multiple-conversion-windows": {
+      "abstract": [
+        {
+          "text": "Learn about the data that postbacks can contain in each conversion window.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/receiving-postbacks-in-multiple-conversion-windows",
+      "kind": "article",
+      "role": "article",
+      "title": "Receiving postbacks in multiple conversion windows",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/receiving-postbacks-in-multiple-conversion-windows"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/registering-an-ad-network": {
+      "abstract": [
+        {
+          "text": "Use the AdAttributionKit APIs for your ad campaigns after registering your ad network with Apple.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/registering-an-ad-network",
+      "kind": "article",
+      "role": "article",
+      "title": "Registering an ad network",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/registering-an-ad-network"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/testing-adattributionkit-with-developer-mode": {
+      "abstract": [
+        {
+          "text": "Reduce the time-window for ad attributions and inspect postbacks using a proxy during testing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/testing-adattributionkit-with-developer-mode",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing ad attributions with Developer Mode",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/testing-adattributionkit-with-developer-mode"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://datatracker.ietf.org/doc/html/rfc7515#section-5.2": {
+      "identifier": "https://datatracker.ietf.org/doc/html/rfc7515#section-5.2",
+      "title": "Section 5.2 of RFC 7515",
+      "titleInlineContent": [
+        {
+          "text": "Section 5.2 of RFC 7515",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://datatracker.ietf.org/doc/html/rfc7515#section-5.2"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Postback-verification-and-parameter-identification",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/identifying-the-parameters-in-a-postback"
+      ],
+      "title": "Postback verification and parameter identification"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/adattributionkit/verifying-a-postback"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

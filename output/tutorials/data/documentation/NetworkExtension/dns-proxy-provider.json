@@ -1,0 +1,763 @@
+{
+  "abstract": [
+    {
+      "text": "Create an on-device DNS proxy using a custom protocol.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkextension/documentation/NetworkExtension"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.networkextension/documentation/NetworkExtension/dns-proxy-provider"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Network Extension"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "DNS proxy provider"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A DNS proxy provider is an app extension that implements DNS proxying. You should create a DNS proxy provider if you want to take responsibility for resolving all DNS queries on the system. Typically this involves forwarding the queries in a way that improves performance, reliability or security. For example, a DNS proxy provider might:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Forward DNS queries to a well-known Internet-wide DNS server",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Talk to a DNS proxying service using DNS over HTTPS (DoH) or DNS over TLS (DoT)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement a completely custom DNS proxying protocol",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For detailed information about DNS proxy provider deployment options, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3134-network-extension-provider-deployment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.networkextension": {
+      "abstract": [
+        {
+          "text": "The APIs an app can use to customize networking features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.networkextension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Network Extensions Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.networking.networkextension"
+    },
+    "doc://com.apple.documentation/documentation/Technotes/tn3134-network-extension-provider-deployment": {
+      "abstract": [
+        {
+          "text": "Explore the platforms, packaging, OS versions, and device configurations for Network Extension provider deployment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3134-network-extension-provider-deployment",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3134: Network Extension provider deployment",
+      "type": "topic",
+      "url": "/documentation/Technotes/tn3134-network-extension-provider-deployment"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension": {
+      "abstract": [
+        {
+          "text": "Customize and extend core networking features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network Extension",
+      "type": "topic",
+      "url": "/documentation/networkextension"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow": {
+      "abstract": [
+        {
+          "text": "An abstract base class shared by NEAppProxyTCPFlow and NEAppProxyUDPFlow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyFlow"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyFlow"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppProxyFlow",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyflow"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyTCPFlow": {
+      "abstract": [
+        {
+          "text": "An object for reading and writing data to and from a TCP connection being proxied by the provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyTCPFlow"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyTCPFlow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyTCPFlow"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppProxyTCPFlow",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxytcpflow"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyUDPFlow": {
+      "abstract": [
+        {
+          "text": "An object for reading and writing data to and from a UDP conversation being proxied by the provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyUDPFlow"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyUDPFlow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyUDPFlow"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppProxyUDPFlow",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyudpflow"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSProxyManager": {
+      "abstract": [
+        {
+          "text": "An object to create and manage an DNS proxy provider’s configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEDNSProxyManager"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSProxyManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEDNSProxyManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEDNSProxyManager",
+      "type": "topic",
+      "url": "/documentation/networkextension/nednsproxymanager"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSProxyProvider": {
+      "abstract": [
+        {
+          "text": "The principal class for a DNS proxy provider app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEDNSProxyProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSProxyProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEDNSProxyProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEDNSProxyProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/nednsproxyprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSProxyProviderProtocol": {
+      "abstract": [
+        {
+          "text": "Configuration parameters for a DNS proxy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEDNSProxyProviderProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSProxyProviderProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEDNSProxyProviderProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEDNSProxyProviderProtocol",
+      "type": "topic",
+      "url": "/documentation/networkextension/nednsproxyproviderprotocol"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSSettings": {
+      "abstract": [
+        {
+          "text": "The DNS resolver settings of a network tunnel or a system-wide configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEDNSSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEDNSSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEDNSSettings",
+      "type": "topic",
+      "url": "/documentation/networkextension/nednssettings"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/dns-settings": {
+      "abstract": [
+        {
+          "text": "Create and manage a system-wide DNS configuration that uses built-in encrypted DNS protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/dns-settings",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "DNS settings",
+      "type": "topic",
+      "url": "/documentation/networkextension/dns-settings"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "DNS-configurations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/dns-settings"
+      ],
+      "title": "DNS configurations"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.networkextension"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Provider",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSProxyProvider",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSSettings"
+      ],
+      "title": "Provider"
+    },
+    {
+      "anchor": "Handling-flows",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyTCPFlow",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyUDPFlow",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow"
+      ],
+      "title": "Handling flows"
+    },
+    {
+      "anchor": "Configuration",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSProxyManager",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSProxyProviderProtocol"
+      ],
+      "title": "Configuration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.networkextension"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Provider",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSProxyProvider",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSSettings"
+              ],
+              "title": "Provider"
+            },
+            {
+              "anchor": "Handling-flows",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyTCPFlow",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyUDPFlow",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyFlow"
+              ],
+              "title": "Handling flows"
+            },
+            {
+              "anchor": "Configuration",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSProxyManager",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEDNSProxyProviderProtocol"
+              ],
+              "title": "Configuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "DNS-configurations",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/dns-settings"
+              ],
+              "title": "DNS configurations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEDNSProxyManager/title",
+          "value": "NEDNSProxyManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEDNSProxyManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEDNSProxyManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEDNSProxyManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEDNSProxyManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyFlow/title",
+          "value": "NEAppProxyFlow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyFlow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyFlow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyTCPFlow/title",
+          "value": "NEAppProxyTCPFlow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyTCPFlow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyTCPFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyTCPFlow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyTCPFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEDNSProxyProviderProtocol/title",
+          "value": "NEDNSProxyProviderProtocol"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEDNSProxyProviderProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEDNSProxyProviderProtocol"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEDNSProxyProviderProtocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEDNSProxyProviderProtocol"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyUDPFlow/title",
+          "value": "NEAppProxyUDPFlow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyUDPFlow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyUDPFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyUDPFlow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyUDPFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEDNSProxyProvider/title",
+          "value": "NEDNSProxyProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEDNSProxyProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEDNSProxyProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEDNSProxyProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEDNSProxyProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEDNSSettings/title",
+          "value": "NEDNSSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEDNSSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEDNSSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEDNSSettings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEDNSSettings"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/networkextension/dns-proxy-provider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/networkextension/dns-proxy-provider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,906 @@
+{
+  "abstract": [
+    {
+      "text": "A 3D Worley noise generator.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Worley-Noise-3D"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "Shader_ND_worleynoise3d_float",
+    "images": [
+      {
+        "identifier": "purple.circle.hexagongrid.png",
+        "type": "icon"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ShaderGraph"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "ShaderGraph Node",
+    "symbolKind": "subscript",
+    "title": "Worley Noise 3D"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Parameter-Types",
+          "level": 2,
+          "text": "Parameter Types",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Input",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Position",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector3f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Jitter",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Output",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Out",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Worley Noise 3D (float)"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Input",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Position",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector3f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Jitter",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Output",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Out",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Worley Noise 3D (vector2f)"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Input",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Position",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector3f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Jitter",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Output",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Out",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector3f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Worley Noise 3D (vector3f)"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Parameter-descriptions",
+          "level": 2,
+          "text": "Parameter descriptions",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The 3D coordinates at which the node reads the data in order to map the texture onto a surface. The default uses the current 3D object-space coordinates.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Position",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The amount of ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "jitter",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " or shift the center of each cell experiences. The default value is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "1.0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". A smaller value creates a more regular pattern, and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " creates perfect squares.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Jitter",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Worley Noise 3D node procedurally generates nonuniform cellular regions. The node creates a finite number of center points, and each region is a polygon that surrounds the points closest to each center point.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because this node generates noise in 3D, the texture doesn’t repeat in the Z direction but rather continues as depth changes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Below is an example of a simple node graph that uses the Worley Noise 3D node to generate a black and white pattern procedurally.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "WorleyNoise3dGraph",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Multiply the incoming texture coordinates with a constant float, which changes the frequency of the generated noise. A higher value corresponds to the pattern repeating more often.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then run the output through a convert node to change it to a black and white color value.",
+              "type": "text"
+            },
+            {
+              "text": "\n",
+              "type": "text"
+            },
+            {
+              "text": "Below, the resulting texture applies to a cube.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "WorleyNoise3dMaterial",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "WorleyNoise3dGraph": {
+      "alt": null,
+      "identifier": "WorleyNoise3dGraph",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/93e069365411ee3b9980bbaac0872c99/WorleyNoise3dGraph.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5fda07042bf6d00e096daca2304afca1/WorleyNoise3dGraph~dark.png"
+        }
+      ]
+    },
+    "WorleyNoise3dMaterial": {
+      "alt": null,
+      "identifier": "WorleyNoise3dMaterial",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bdf0fcb2dbd86638217094fcc5ebedc6/WorleyNoise3dMaterial.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a80738ee960f571108f7f5390eef7e90/WorleyNoise3dMaterial~dark.png"
+        }
+      ]
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph": {
+      "abstract": [
+        {
+          "text": "Create custom materials and effects for 3D content in Reality Composer Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ShaderGraph",
+      "type": "topic",
+      "url": "/documentation/shadergraph"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural": {
+      "abstract": [
+        {
+          "text": "Generate 3D noise patterns programmatically for your material.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "3D-Procedural",
+      "type": "topic",
+      "url": "/documentation/shadergraph/3d-procedural"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Cellular-Noise-3D": {
+      "abstract": [
+        {
+          "text": "A 3D cellular noise generator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Cellular-Noise-3D",
+      "images": [
+        {
+          "identifier": "purple.circle.hexagongrid.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Cellular Noise 3D",
+      "type": "topic",
+      "url": "/documentation/shadergraph/3d-procedural/cellular-noise-3d"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Fractal-Noise-3D": {
+      "abstract": [
+        {
+          "text": "Zero-centered 3D fractal noise created by summing several octaves of 3D Perlin noise.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Fractal-Noise-3D",
+      "images": [
+        {
+          "identifier": "purple.seal.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Fractal Noise 3D",
+      "type": "topic",
+      "url": "/documentation/shadergraph/3d-procedural/fractal-noise-3d"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Noise-3D": {
+      "abstract": [
+        {
+          "text": "A 3D Perlin noise generator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Noise-3D",
+      "images": [
+        {
+          "identifier": "purple.circle.hexagongrid.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Noise 3D",
+      "type": "topic",
+      "url": "/documentation/shadergraph/3d-procedural/noise-3d"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Worley-Noise-3D": {
+      "abstract": [
+        {
+          "text": "A 3D Worley noise generator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Worley-Noise-3D",
+      "images": [
+        {
+          "identifier": "purple.circle.hexagongrid.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Worley Noise 3D",
+      "type": "topic",
+      "url": "/documentation/shadergraph/3d-procedural/worley-noise-3d"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "purple.circle.hexagongrid.png": {
+      "alt": "nil",
+      "identifier": "purple.circle.hexagongrid.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d607f1a1f5add7da3fd22982133e27d5/purple.circle.hexagongrid.png"
+        }
+      ]
+    },
+    "purple.seal.png": {
+      "alt": "nil",
+      "identifier": "purple.seal.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a0c4f6dd53807e31d634935648388951/purple.seal.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Nodes",
+      "generated": true,
+      "identifiers": [
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Noise-3D",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Fractal-Noise-3D",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Cellular-Noise-3D"
+      ],
+      "title": "Nodes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/shadergraph/3d-procedural/worley-noise-3d"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

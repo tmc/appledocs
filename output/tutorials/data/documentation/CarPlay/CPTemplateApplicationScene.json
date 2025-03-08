@@ -1,0 +1,2057 @@
+{
+  "abstract": [
+    {
+      "text": "A CarPlay scene that controls your app’s user interface.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.carplay/documentation/CarPlay"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CPTemplateApplicationScene",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CPTemplateApplicationScene"
+      }
+    ],
+    "modules": [
+      {
+        "name": "CarPlay"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CPTemplateApplicationScene"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CPTemplateApplicationScene"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationScene"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A scene manages your app’s user interface, including the window that CarPlay displays from that scene. Only navigation apps have access to that window, and use it for drawing map content. All other categories of apps use the scene’s interface controller exclusively for constructing their user interfaces.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The scene manages the display of the window on the vehicle’s CarPlay screen, and the life cycle of that scene as CarPlay and the user interact with it. The scene notifies its delegate—an object that conforms to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationSceneDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "—about various state changes and user actions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t create scenes directly. Instead, you specify the name of the appropriate scene class as part of the CarPlay scene configuration you add to your ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file—see the example below—or that you return from your app delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:configurationForConnecting:options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>CPTemplateApplicationSceneSessionRoleApplication</key>",
+            "<array> ",
+            "    <dict>",
+            "        <!-- Specify the name of the scene class. -->",
+            "        <key>UISceneClassName</key>",
+            "        <string>CPTemplateApplicationScene</string>",
+            "        <key>UISceneConfigurationName</key>",
+            "        <string>MyCarPlaySceneConfiguration</string> ",
+            "        <key>UISceneDelegateClassName</key>",
+            "        <string>MyCarPlaySceneDelegate</string> ",
+            "    </dict>",
+            "</array>",
+            ""
+          ],
+          "syntax": "plist",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.carplay/documentation/CarPlay": {
+      "abstract": [
+        {
+          "text": "Integrate CarPlay in apps related to audio, communication, navigation, parking, EV charging, food ordering, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CarPlay",
+      "type": "topic",
+      "url": "/documentation/carplay"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPInterfaceController": {
+      "abstract": [
+        {
+          "text": "A controller that manages the templates for constructing a scene’s user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPInterfaceController"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPInterfaceController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPInterfaceController"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPInterfaceController",
+      "type": "topic",
+      "url": "/documentation/carplay/cpinterfacecontroller"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPSessionConfiguration": {
+      "abstract": [
+        {
+          "text": "An object that provides vehicle properties and configuration for the CarPlay environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPSessionConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPSessionConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPSessionConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPSessionConfiguration",
+      "type": "topic",
+      "url": "/documentation/carplay/cpsessionconfiguration"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene": {
+      "abstract": [
+        {
+          "text": "A CarPlay scene that controls your app’s user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPTemplateApplicationScene"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPTemplateApplicationScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPTemplateApplicationScene",
+      "type": "topic",
+      "url": "/documentation/carplay/cptemplateapplicationscene"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene/carWindow": {
+      "abstract": [
+        {
+          "text": "The window that belongs to the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "carWindow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CPWindow",
+          "text": "CPWindow"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene/carWindow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "carWindow"
+        }
+      ],
+      "role": "symbol",
+      "title": "carWindow",
+      "type": "topic",
+      "url": "/documentation/carplay/cptemplateapplicationscene/carwindow"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene/contentStyle": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIUserInterfaceStyle",
+          "text": "UIUserInterfaceStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene/contentStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contentStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "contentStyle",
+      "type": "topic",
+      "url": "/documentation/carplay/cptemplateapplicationscene/contentstyle"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene/delegate": {
+      "abstract": [
+        {
+          "text": "The object that receives the scene’s life-cycle events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)CPTemplateApplicationSceneDelegate",
+          "text": "CPTemplateApplicationSceneDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/carplay/cptemplateapplicationscene/delegate"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene/interfaceController": {
+      "abstract": [
+        {
+          "text": "The controller that manages the scene’s user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interfaceController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CPInterfaceController",
+          "text": "CPInterfaceController"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene/interfaceController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "interfaceController"
+        }
+      ],
+      "role": "symbol",
+      "title": "interfaceController",
+      "type": "topic",
+      "url": "/documentation/carplay/cptemplateapplicationscene/interfacecontroller"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationSceneDelegate": {
+      "abstract": [
+        {
+          "text": "The methods for responding to the life cycle events of your app’s scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPTemplateApplicationSceneDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationSceneDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPTemplateApplicationSceneDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPTemplateApplicationSceneDelegate",
+      "type": "topic",
+      "url": "/documentation/carplay/cptemplateapplicationscenedelegate"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/CPWindow": {
+      "abstract": [
+        {
+          "text": "A window that displays its content on the CarPlay screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CPWindow"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/CPWindow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CPWindow"
+        }
+      ],
+      "role": "symbol",
+      "title": "CPWindow",
+      "type": "topic",
+      "url": "/documentation/carplay/cpwindow"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/displaying-content-in-carplay": {
+      "abstract": [
+        {
+          "text": "Use scenes to present your app’s content on the vehicle’s built-in screen.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/displaying-content-in-carplay",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying Content in CarPlay",
+      "type": "topic",
+      "url": "/documentation/carplay/displaying-content-in-carplay"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/requesting-carplay-entitlements": {
+      "abstract": [
+        {
+          "text": "Configure your CarPlay-enabled app with the entitlements it requires.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/requesting-carplay-entitlements",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting CarPlay Entitlements",
+      "type": "topic",
+      "url": "/documentation/carplay/requesting-carplay-entitlements"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/supporting-previous-versions-of-ios": {
+      "abstract": [
+        {
+          "text": "Make your CarPlay-enabled apps compatible with older system versions, such as iOS 13 and earlier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/supporting-previous-versions-of-ios",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Previous Versions of iOS",
+      "type": "topic",
+      "url": "/documentation/carplay/supporting-previous-versions-of-ios"
+    },
+    "doc://com.apple.carplay/documentation/CarPlay/using-the-carplay-simulator": {
+      "abstract": [
+        {
+          "text": "Configure Simulator to run and debug your CarPlay-enabled app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.carplay/documentation/CarPlay/using-the-carplay-simulator",
+      "kind": "article",
+      "role": "article",
+      "title": "Using the CarPlay Simulator",
+      "type": "topic",
+      "url": "/documentation/carplay/using-the-carplay-simulator"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:configurationForConnecting:options:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the configuration data for UIKit to use when creating a new scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "configurationForConnecting"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "connectingSceneSession"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISceneSession",
+          "text": "UISceneSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIScene",
+          "text": "UIScene"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISceneConnectionOptions",
+          "text": "ConnectionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISceneConfiguration",
+          "text": "UISceneConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:configurationForConnecting:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:configurationForConnecting:options:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/application(_:configurationForConnecting:options:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)UIScene": {
+      "abstract": [
+        {
+          "text": "An object that represents one instance of your app’s user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIScene"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)UIScene",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIScene",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIScene"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTouchBarProvider"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIActivityItemsConfigurationProviding": {
+      "abstract": [
+        {
+          "text": "An interface that provides a source for shareable content to fulfill user requests to share current content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemsConfigurationProviding"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIActivityItemsConfigurationProviding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIActivityItemsConfigurationProviding",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIActivityItemsConfigurationProviding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIPasteConfigurationSupporting": {
+      "abstract": [
+        {
+          "text": "The interface that determines whether a responder object supports paste configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPasteConfigurationSupporting"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIPasteConfigurationSupporting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIPasteConfigurationSupporting",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPasteConfigurationSupporting"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIResponderStandardEditActions": {
+      "abstract": [
+        {
+          "text": "A set of standard methods that apps can adopt to support editing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIResponderStandardEditActions"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIResponderStandardEditActions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIResponderStandardEditActions",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIResponderStandardEditActions"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "The protocol you adopt to restore an object’s state from a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIUserActivityRestoring"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIUserActivityRestoring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIUserActivityRestoring"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)UIScene"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIActivityItemsConfigurationProviding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIPasteConfigurationSupporting",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIResponderStandardEditActions",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIUserActivityRestoring"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "CarPlay-Integration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.carplay/documentation/CarPlay/requesting-carplay-entitlements",
+        "doc://com.apple.carplay/documentation/CarPlay/displaying-content-in-carplay",
+        "doc://com.apple.carplay/documentation/CarPlay/supporting-previous-versions-of-ios",
+        "doc://com.apple.carplay/documentation/CarPlay/using-the-carplay-simulator",
+        "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationSceneDelegate",
+        "doc://com.apple.carplay/documentation/CarPlay/CPSessionConfiguration"
+      ],
+      "title": "CarPlay Integration"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Responding-to-the-Scene-Life-Cycle",
+      "identifiers": [
+        "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene/delegate",
+        "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationSceneDelegate"
+      ],
+      "title": "Responding to the Scene Life Cycle"
+    },
+    {
+      "anchor": "Accessing-the-Interface-Controller",
+      "identifiers": [
+        "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene/interfaceController",
+        "doc://com.apple.carplay/documentation/CarPlay/CPInterfaceController"
+      ],
+      "title": "Accessing the Interface Controller"
+    },
+    {
+      "anchor": "Accessing-the-Window",
+      "identifiers": [
+        "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene/carWindow",
+        "doc://com.apple.carplay/documentation/CarPlay/CPWindow"
+      ],
+      "title": "Accessing the Window"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "identifiers": [
+        "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene/contentStyle"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CPTemplateApplicationScene"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.carplay/documentation/CarPlay"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Responding-to-the-Scene-Life-Cycle",
+              "identifiers": [
+                "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene/delegate",
+                "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationSceneDelegate"
+              ],
+              "title": "Responding to the Scene Life Cycle"
+            },
+            {
+              "anchor": "Accessing-the-Interface-Controller",
+              "identifiers": [
+                "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene/interfaceController",
+                "doc://com.apple.carplay/documentation/CarPlay/CPInterfaceController"
+              ],
+              "title": "Accessing the Interface Controller"
+            },
+            {
+              "anchor": "Accessing-the-Window",
+              "identifiers": [
+                "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene/carWindow",
+                "doc://com.apple.carplay/documentation/CarPlay/CPWindow"
+              ],
+              "title": "Accessing the Window"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "identifiers": [
+                "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationScene/contentStyle"
+              ],
+              "title": "Instance Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)UIScene"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "CarPlay-Integration",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.carplay/documentation/CarPlay/requesting-carplay-entitlements",
+                "doc://com.apple.carplay/documentation/CarPlay/displaying-content-in-carplay",
+                "doc://com.apple.carplay/documentation/CarPlay/supporting-previous-versions-of-ios",
+                "doc://com.apple.carplay/documentation/CarPlay/using-the-carplay-simulator",
+                "doc://com.apple.carplay/documentation/CarPlay/CPTemplateApplicationSceneDelegate",
+                "doc://com.apple.carplay/documentation/CarPlay/CPSessionConfiguration"
+              ],
+              "title": "CarPlay Integration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "Mac Catalyst"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CPTemplateApplicationScene"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)UIScene",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)UIScene",
+                    "text": "UIScene"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationScene/title",
+          "value": "CPTemplateApplicationScene"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationScene/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationScene/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(cs)UIScene/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIScene"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIResponder",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPInterfaceController/title",
+          "value": "CPInterfaceController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPInterfaceController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPInterfaceController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPInterfaceController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPInterfaceController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationScene~1interfaceController/title",
+          "value": "interfaceController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationScene~1interfaceController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "interfaceController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPWindow/title",
+          "value": "CPWindow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPWindow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPWindow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPWindow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPWindow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIResponderStandardEditActions/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIResponderStandardEditActions"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationSceneDelegate/title",
+          "value": "CPTemplateApplicationSceneDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationSceneDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationSceneDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPTemplateApplicationSceneDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:configurationForConnecting:options:)/title",
+          "value": "application:configurationForConnectingSceneSession:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:configurationForConnecting:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UISceneConfiguration",
+              "text": "UISceneConfiguration"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "configurationForConnectingSceneSession:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UISceneSession",
+              "text": "UISceneSession"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "connectingSceneSession"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "options:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UISceneConnectionOptions",
+              "text": "UISceneConnectionOptions"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "options"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIPasteConfigurationSupporting/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIPasteConfigurationSupporting"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationScene~1carWindow/title",
+          "value": "carWindow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationScene~1carWindow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "carWindow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPSessionConfiguration/title",
+          "value": "CPSessionConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPSessionConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPSessionConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPSessionConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CPSessionConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIActivityItemsConfigurationProviding/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemsConfigurationProviding"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationScene~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationScene~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationScene~1contentStyle/title",
+          "value": "contentStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.carplay~1documentation~1CarPlay~1CPTemplateApplicationScene~1contentStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contentStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIUserActivityRestoring"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/carplay/cptemplateapplicationscene"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/carplay/cptemplateapplicationscene"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

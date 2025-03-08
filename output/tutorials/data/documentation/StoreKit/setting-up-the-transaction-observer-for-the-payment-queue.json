@@ -1,0 +1,993 @@
+{
+  "abstract": [
+    {
+      "text": "Enable your app to receive and handle transactions by adding an observer.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/setting-up-the-transaction-observer-for-the-payment-queue"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Setting up the transaction observer for the payment queue"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To process transactions in your app, you need to create and add an observer to the payment queue. The observer object responds to new transactions and synchronizes the queue of pending transactions with the App Store, and the payment queue prompts users to authorize payment. It’s important to add the transaction observer at app launch to ensure you don’t miss payment queue notifications that the system may send when the app launches.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-an-observer",
+          "level": 3,
+          "text": "Create an observer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create and build a custom observer class to handle changes to the payment queue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class StoreObserver: NSObject, SKPaymentTransactionObserver {",
+            "                ....",
+            "    //Initialize the store observer.",
+            "    override init() {",
+            "        super.init()",
+            "        //Other initialization here.",
+            "    }",
+            "",
+            "    //Observe transaction updates.",
+            "    func paymentQueue(_ queue: SKPaymentQueue,updatedTransactions transactions: [SKPaymentTransaction]) {",
+            "        //Handle transaction states here.",
+            "    }",
+            "                ....",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an instance of this observer class to act as the observer of changes to the payment queue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let iapObserver = StoreObserver()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Consider creating your observer as a shared instance of the class for global reference in any other class. A shared instance also ensures the lifetime of the object, so that the same instance handles callbacks for the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " protocol.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you create the transaction observer, you can add it to the payment queue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-an-observer",
+          "level": 3,
+          "text": "Add an observer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "StoreKit attaches your observer to the queue when your app calls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "SKPaymentQueue.default().add(iapObserver)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "StoreKit can notify your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance automatically when the content of the payment queue changes upon resuming or while running your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement the transaction observer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import UIKit",
+            "import StoreKit",
+            "",
+            "class AppDelegate: UIResponder, UIApplicationDelegate {",
+            "                ....",
+            "    // Attach an observer to the payment queue.",
+            "    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {",
+            "        SKPaymentQueue.default().add(iapObserver)",
+            "        return true",
+            "    }",
+            "",
+            "    // The system calls this when the app is about to terminate.",
+            "    func applicationWillTerminate(_ application: UIApplication) {",
+            "        // Remove the observer.",
+            "        SKPaymentQueue.default().remove(iapObserver)",
+            "    }",
+            "                ....",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s important to add the observer at launch, in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to ensure that it persists during all launches of your app, receives all payment queue notifications, and continues transactions that may initiate outside the app, such as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Promoted in-app purchases. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/promoting-in-app-purchases",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Background subscription renewals",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Interrupted purchases",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The observer needs to be persistent so the system doesn’t deallocate it when it sends the app to the background. Only a persistent observer can receive transactions that may occur while your app is in the background, such as a renewal transaction for an auto-renewable subscription.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the launch process is almost done and the app is almost ready to run.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFinishLaunchingWithOptions"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "launchOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIApplicationLaunchOptionsKey",
+          "text": "LaunchOptionsKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]? = nil) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:didFinishLaunchingWithOptions:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue": {
+      "abstract": [
+        {
+          "text": "A queue of payment transactions for the App Store to process.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPaymentQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPaymentQueue"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPaymentQueue",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentqueue"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/add(_:)-5ciz2": {
+      "abstract": [
+        {
+          "text": "Adds an observer to the payment queue.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SKPaymentTransactionObserver",
+          "text": "SKPaymentTransactionObserver"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/add(_:)-5ciz2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addTransactionObserver:"
+        }
+      ],
+      "role": "symbol",
+      "title": "add(_:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentqueue/add(_:)-5ciz2"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueueDelegate": {
+      "abstract": [
+        {
+          "text": "The protocol that provides information needed to complete transactions.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPaymentQueueDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueueDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPaymentQueueDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPaymentQueueDelegate",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentqueuedelegate"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver": {
+      "abstract": [
+        {
+          "text": "A set of methods that process transactions, unlock purchased functionality, and continue promoted In-App Purchases.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPaymentTransactionObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPaymentTransactionObserver"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPaymentTransactionObserver",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymenttransactionobserver"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKRequest": {
+      "abstract": [
+        {
+          "text": "An abstract class that represents a request to the App Store.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKRequest",
+      "type": "topic",
+      "url": "/documentation/storekit/skrequest"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/offering-completing-and-restoring-in-app-purchases": {
+      "abstract": [
+        {
+          "text": "Fetch, display, purchase, validate, and finish transactions in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/offering-completing-and-restoring-in-app-purchases",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Offering, completing, and restoring in-app purchases",
+      "type": "topic",
+      "url": "/documentation/storekit/offering-completing-and-restoring-in-app-purchases"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer additional content and services in your app using the Original In-App Purchase API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original API for In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/original-api-for-in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/promoting-in-app-purchases": {
+      "abstract": [
+        {
+          "text": "Show promoted In-App Purchases on your product page and handle purchases that customers initiate on the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/promoting-in-app-purchases",
+      "kind": "article",
+      "role": "article",
+      "title": "Promoting In-App Purchases",
+      "type": "topic",
+      "url": "/documentation/storekit/promoting-in-app-purchases"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/add(_:)-5ciz2"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/offering-completing-and-restoring-in-app-purchases",
+        "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue",
+        "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver",
+        "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueueDelegate",
+        "doc://com.apple.storekit/documentation/StoreKit/SKRequest"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/add(_:)-5ciz2"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/offering-completing-and-restoring-in-app-purchases",
+                "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue",
+                "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionObserver",
+                "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueueDelegate",
+                "doc://com.apple.storekit/documentation/StoreKit/SKRequest"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueueDelegate/title",
+          "value": "SKPaymentQueueDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueueDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentQueueDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueueDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentQueueDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:didFinishLaunchingWithOptions:)/title",
+          "value": "application:didFinishLaunchingWithOptions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:didFinishLaunchingWithOptions:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didFinishLaunchingWithOptions:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+              "text": "NSDictionary<NSString *,id>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "launchOptions"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionObserver/title",
+          "value": "SKPaymentTransactionObserver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionObserver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentTransactionObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionObserver/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentTransactionObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1add(_:)-5ciz2/title",
+          "value": "addTransactionObserver:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1add(_:)-5ciz2/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addTransactionObserver:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue/title",
+          "value": "SKPaymentQueue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKRequest/title",
+          "value": "SKRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKRequest"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/setting-up-the-transaction-observer-for-the-payment-queue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/setting-up-the-transaction-observer-for-the-payment-queue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

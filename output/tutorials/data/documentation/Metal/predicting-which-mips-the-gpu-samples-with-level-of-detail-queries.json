@@ -1,0 +1,560 @@
+{
+  "abstract": [
+    {
+      "text": "Determine in advance which mipmap levels the GPU requires to sample a texture.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/textures"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/predicting-which-mips-the-gpu-samples-with-level-of-detail-queries"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Predicting Which Mips the GPU Samples with Level-of-Detail Queries"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you sample a texture, the GPU automatically chooses which mipmaps to access and fetches pixels from them. Each mipmap represents a different level-of-detail (LOD).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sometimes, you want to know which mipmaps the GPU would read from. For example, if only some of your mipmaps have data, you might use a clamp operation to limit the range of mipmaps the GPU can sample from, but want to know when the GPU requires sampling higher mipmaps. Metal Shading Language provides texture functions that you can use to determine which mipmaps your shader would access if it were to sample the texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-for-Level-of-Detail-Support",
+          "level": 3,
+          "text": "Check for Level-of-Detail Support",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before loading any shaders that use LOD queries, make sure the GPU supports them by checking if it supports one of the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/mac2",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " feature set.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/apple7",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " feature set.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let macFamily2Support = device.supportsFamily(MTLGPUFamily.mac2)",
+                    "let appleFamily7Support = device.supportsFamily(MTLGPUFamily.apple7)",
+                    "let supportsCalculateLevelOfDetail = macFamily2Support || appleFamily7Support"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "Boolean macFamily2Support = [device supportsFamily: MTLGPUFamilyMac2];",
+                    "Boolean appleFamily7Support = [device supportsFamily: MTLGPUFamilyApple7];",
+                    "Boolean supportsCalculateLevelOfDetail = macFamily2Support || appleFamily7Support;"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Determine-Level-of-Detail",
+          "level": 3,
+          "text": "Determine Level of Detail",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your shader, the functions that return LOD information have signatures that are similar to those of functions used to sample textures. There are two kinds of these functions: clamped and unclamped. The clamped kind restricts LOD selection by applying the sampler’s range of permitted values, the range of mipmaps provided in the texture, and the sampler’s anisotropy settings. The unclamped kind returns the raw calculation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "float clampedLOD = texture.calculate_clamped_lod(mySampler, coords);",
+            "float unclampedLOD = texture.calculate_unclamped_lod(mySampler, coords);"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A fractional part in a returned value indicates that the value is between two mipmaps. The fractional part of the number is the blending weight between the two mipmaps if you’ve specified linear mipmap blending.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-Level-of-Detail-When-Shader-Support-is-Unavailable",
+          "level": 3,
+          "text": "Determine Level of Detail When Shader Support is Unavailable",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can get the LOD by performing the calculation yourself, based on the size of the model object and its distance from the camera. For an example of this technique, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/using-function-specialization-to-build-pipeline-variants",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/apple7": {
+      "abstract": [
+        {
+          "text": "Represents the Apple family 7 GPU features that correspond to the Apple A14 and M1 GPUs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "apple7"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/apple7",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLGPUFamilyApple7"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLGPUFamily.apple7",
+      "type": "topic",
+      "url": "/documentation/metal/mtlgpufamily/apple7"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/mac2": {
+      "abstract": [
+        {
+          "text": "Represents the Mac family 2 GPU features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mac2"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/mac2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLGPUFamilyMac2"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLGPUFamily.mac2",
+      "type": "topic",
+      "url": "/documentation/metal/mtlgpufamily/mac2"
+    },
+    "doc://com.apple.metal/documentation/Metal/adding-mipmap-filtering-to-samplers": {
+      "abstract": [
+        {
+          "text": "Specify how the GPU samples mipmaps in your textures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/adding-mipmap-filtering-to-samplers",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Mipmap Filtering to Samplers",
+      "type": "topic",
+      "url": "/documentation/metal/adding-mipmap-filtering-to-samplers"
+    },
+    "doc://com.apple.metal/documentation/Metal/copying-data-into-or-out-of-mipmaps": {
+      "abstract": [
+        {
+          "text": "Specify which mipmaps that the data transfer affects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/copying-data-into-or-out-of-mipmaps",
+      "kind": "article",
+      "role": "article",
+      "title": "Copying Data into or out of Mipmaps",
+      "type": "topic",
+      "url": "/documentation/metal/copying-data-into-or-out-of-mipmaps"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-a-mipmapped-texture": {
+      "abstract": [
+        {
+          "text": "Decide whether a texture that you’re creating needs mipmaps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-a-mipmapped-texture",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Mipmapped Texture",
+      "type": "topic",
+      "url": "/documentation/metal/creating-a-mipmapped-texture"
+    },
+    "doc://com.apple.metal/documentation/Metal/dynamically-adjusting-texture-level-of-detail": {
+      "abstract": [
+        {
+          "text": "Defer generating or loading larger mipmaps until that level of detail is needed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/dynamically-adjusting-texture-level-of-detail",
+      "kind": "article",
+      "role": "article",
+      "title": "Dynamically Adjusting Texture Level of Detail",
+      "type": "topic",
+      "url": "/documentation/metal/dynamically-adjusting-texture-level-of-detail"
+    },
+    "doc://com.apple.metal/documentation/Metal/generating-mipmap-data": {
+      "abstract": [
+        {
+          "text": "Create your mipmaps either when you author content or at runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/generating-mipmap-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating Mipmap Data",
+      "type": "topic",
+      "url": "/documentation/metal/generating-mipmap-data"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-texture-sampling-quality-and-performance-with-mipmaps": {
+      "abstract": [
+        {
+          "text": "Avoid texture-rendering artifacts and reduce the GPU’s workload by creating smaller versions of a texture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-texture-sampling-quality-and-performance-with-mipmaps",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving Texture Sampling Quality and Performance with Mipmaps",
+      "type": "topic",
+      "url": "/documentation/metal/improving-texture-sampling-quality-and-performance-with-mipmaps"
+    },
+    "doc://com.apple.metal/documentation/Metal/restricting-access-to-specific-mipmaps": {
+      "abstract": [
+        {
+          "text": "Set the range of mipmap levels that a sampler can access.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/restricting-access-to-specific-mipmaps",
+      "kind": "article",
+      "role": "article",
+      "title": "Restricting Access to Specific Mipmaps",
+      "type": "topic",
+      "url": "/documentation/metal/restricting-access-to-specific-mipmaps"
+    },
+    "doc://com.apple.metal/documentation/Metal/textures": {
+      "abstract": [
+        {
+          "text": "Create and manage typed data your app uses to exchange information with its shader functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/textures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Textures",
+      "type": "topic",
+      "url": "/documentation/metal/textures"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-function-specialization-to-build-pipeline-variants": {
+      "abstract": [
+        {
+          "text": "Create pipelines for different levels of detail from a common shader source.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-function-specialization-to-build-pipeline-variants",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using Function Specialization to Build Pipeline Variants",
+      "type": "topic",
+      "url": "/documentation/metal/using-function-specialization-to-build-pipeline-variants"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Texture-Mipmapping",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/improving-texture-sampling-quality-and-performance-with-mipmaps",
+        "doc://com.apple.metal/documentation/Metal/creating-a-mipmapped-texture",
+        "doc://com.apple.metal/documentation/Metal/copying-data-into-or-out-of-mipmaps",
+        "doc://com.apple.metal/documentation/Metal/generating-mipmap-data",
+        "doc://com.apple.metal/documentation/Metal/adding-mipmap-filtering-to-samplers",
+        "doc://com.apple.metal/documentation/Metal/restricting-access-to-specific-mipmaps",
+        "doc://com.apple.metal/documentation/Metal/dynamically-adjusting-texture-level-of-detail"
+      ],
+      "title": "Texture Mipmapping"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Texture-Mipmapping",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/improving-texture-sampling-quality-and-performance-with-mipmaps",
+                "doc://com.apple.metal/documentation/Metal/creating-a-mipmapped-texture",
+                "doc://com.apple.metal/documentation/Metal/copying-data-into-or-out-of-mipmaps",
+                "doc://com.apple.metal/documentation/Metal/generating-mipmap-data",
+                "doc://com.apple.metal/documentation/Metal/adding-mipmap-filtering-to-samplers",
+                "doc://com.apple.metal/documentation/Metal/restricting-access-to-specific-mipmaps",
+                "doc://com.apple.metal/documentation/Metal/dynamically-adjusting-texture-level-of-detail"
+              ],
+              "title": "Texture Mipmapping"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLGPUFamily~1mac2/title",
+          "value": "MTLGPUFamilyMac2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLGPUFamily~1mac2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLGPUFamilyMac2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLGPUFamily~1apple7/title",
+          "value": "MTLGPUFamilyApple7"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLGPUFamily~1apple7/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLGPUFamilyApple7"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/predicting-which-mips-the-gpu-samples-with-level-of-detail-queries"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/predicting-which-mips-the-gpu-samples-with-level-of-detail-queries"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

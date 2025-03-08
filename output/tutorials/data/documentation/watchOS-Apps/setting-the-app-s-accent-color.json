@@ -1,0 +1,626 @@
+{
+  "abstract": [
+    {
+      "text": "Set your app’s accent color.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-the-app-s-accent-color"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Setting the app’s accent color"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every Apple Watch app has an accent color that the system applies to the following UI elements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app’s title string in the status bar",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app’s name in short-look notifications",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can access the accent color from the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Color/accentColor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If your accent color is dark, your text may not be legible against the black",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "background. Consider lightening or saturating your accent color to improve the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "contrast.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Set-the-accent-color",
+          "level": 3,
+          "text": "Set the accent color",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode automatically configures an asset catalog that includes the accent color",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when you create a new project.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To set the color, open the WatchKit App’s ",
+              "type": "text"
+            },
+            {
+              "code": "Assets.xcassets",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "select the AccentColor color set, and then select the AccentColor cell.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can then change the color using the Color section of the Attributes inspector.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, to specify the RGB values for a color, change the Content to sRGB",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and then modify the values using the sliders.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "setting-the-app-s-accent-color-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can click the Show Color Panel button, and select a color from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system color panel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-existing-projects",
+          "level": 3,
+          "text": "Update existing projects",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re updating an older project, you can manually set up the asset catalog.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set the accent color:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the WatchKit App’s asset catalog.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Editor > Add New Asset > Color Set menu item to add a new color",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "set to the asset catalog.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the WatchKit app’s Build Settings, set the Global Accent Color Name to your",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "color set’s name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "setting-the-app-s-accent-color-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Support-older-operating-systems",
+          "level": 3,
+          "text": "Support older operating systems",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In watchOS 6 and earlier, set the Global Tint property instead of the Global Accent Color.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To set this property, open the storyboard, and select the File inspector.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "setting-the-app-s-accent-color-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Click the Global Tint pop-up button to display a menu with several preexisting colors,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "plus the option to open a color picker and specify a custom color.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/SwiftUI/Color/accentColor": {
+      "abstract": [
+        {
+          "text": "A color that reflects the accent color of the system or app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accentColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ColorV",
+          "text": "Color"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Color/accentColor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accentColor",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Color/accentColor"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/watchos-apps/building_a_productivity_app_for_apple_watch": {
+      "abstract": [
+        {
+          "text": "Create a watch app to manage and share a task list and visualize the status with a chart.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/watchos-apps/building_a_productivity_app_for_apple_watch",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a productivity app for Apple Watch",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/building_a_productivity_app_for_apple_watch"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that combine complications, notifications, and Siri to create",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a personal experience on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps",
+      "images": [
+        {
+          "identifier": "watchOSApps-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "watchOS apps",
+      "type": "topic",
+      "url": "/documentation/watchos-apps"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/designing-your-app-for-the-always-on-state": {
+      "abstract": [
+        {
+          "text": "Customize your watchOS app’s user interface for continuous display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/designing-your-app-for-the-always-on-state",
+      "kind": "article",
+      "role": "article",
+      "title": "Designing your app for the Always On state",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/designing-your-app-for-the-always-on-state"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/supporting-multiple-watch-sizes": {
+      "abstract": [
+        {
+          "text": "Customize the layout of your user interface to support all Apple Watch sizes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/supporting-multiple-watch-sizes",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting multiple watch sizes",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/supporting-multiple-watch-sizes"
+    },
+    "setting-the-app-s-accent-color-1": {
+      "alt": "A screenshot showing how to set the accent color using the sRGB controls.",
+      "identifier": "setting-the-app-s-accent-color-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/83ee257cfcf8a8fa85aac7ef02171352/setting-the-app-s-accent-color-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/52aa9e8752b846e1200924dfca859d26/setting-the-app-s-accent-color-1~dark@2x.png"
+        }
+      ]
+    },
+    "setting-the-app-s-accent-color-2": {
+      "alt": "An Xcode screenshot that shows the Global Accent Color Name in the WatchKit app’s Build Settings.",
+      "identifier": "setting-the-app-s-accent-color-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a3a6378b5dcb6a455adfc38d68b13da8/setting-the-app-s-accent-color-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/47571f9659d0e29cd5daca4013f4b154/setting-the-app-s-accent-color-2~dark@2x.png"
+        }
+      ]
+    },
+    "setting-the-app-s-accent-color-3": {
+      "alt": "An Xcode screenshot that shows the Global Tint property in the storyboard’s File inspector.",
+      "identifier": "setting-the-app-s-accent-color-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d3ec257de01ef104571965a076d5c94c/setting-the-app-s-accent-color-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9de03d989846ca03d53eab45868998ed/setting-the-app-s-accent-color-3~dark@2x.png"
+        }
+      ]
+    },
+    "watchOSApps-PageImage-card.png": {
+      "alt": "A stylized representation of Apple Watch.",
+      "identifier": "watchOSApps-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5e043ca96ec9c9e5579649124c448c35/watchOSApps-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2e82e5f258fb084d7b684889cabbe515/watchOSApps-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-interface",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/watchos-apps/building_a_productivity_app_for_apple_watch",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/supporting-multiple-watch-sizes",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/designing-your-app-for-the-always-on-state"
+      ],
+      "title": "User interface"
+    }
+  ]
+}

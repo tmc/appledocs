@@ -1,0 +1,824 @@
+{
+  "abstract": [
+    {
+      "text": "A representation of an individual host on the network.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/host"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1410527,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSHost",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "Host"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "12.0",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "Host"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Host"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/host",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class provides methods to access the network name and address information for a host. Instances of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/host",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class represent individual ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "hosts",
+                  "type": "text"
+                }
+              ],
+              "type": "newTerm"
+            },
+            {
+              "text": " on a network. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/host",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects  to get the current host’s names and addresses and to look up other hosts by name or by address.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/host",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/host/1408946-current",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/host/1416437-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/host/1409654-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class methods (don’t use ",
+              "type": "text"
+            },
+            {
+              "code": "alloc",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "init",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). These methods use available network administration services to discover all names and addresses for the host requested. They don’t attempt to contact the host itself, however. This approach avoids untimely delays due to a host being unavailable, but it may result in incomplete information about the host.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/host",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object contains all of the network addresses and names discovered for a given host by the network administration services. Each ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/host",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object may contain several addresses and have more than one name. If an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/host",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object has more than one name, the additional names are variations on the same name, typically the basic host name plus the fully qualified domain name. For example, with a host name ",
+              "type": "text"
+            },
+            {
+              "code": "\"sales\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the domain ",
+              "type": "text"
+            },
+            {
+              "code": "\"anycorp.com\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/host",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object can hold both the names ",
+              "type": "text"
+            },
+            {
+              "code": "\"sales\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "\"sales.anycorp.com\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/host",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " methods are thread-safe.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/host": {
+      "abstract": [
+        {
+          "text": "A representation of an individual host on the network.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Host"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/host",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Host",
+      "type": "topic",
+      "url": "/documentation/foundation/host"
+    },
+    "doc://com.apple.documentation/documentation/foundation/host/1408946-current": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSHost",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object representing the host the process is running on.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "current"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/host/1408946-current",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "current()",
+      "type": "topic",
+      "url": "/documentation/foundation/host/1408946-current"
+    },
+    "doc://com.apple.documentation/documentation/foundation/host/1409624-localizedname": {
+      "abstract": [
+        {
+          "text": "Returns the name used as by default when publishing ",
+          "type": "text"
+        },
+        {
+          "code": "NSNetServices",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedName"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/host/1409624-localizedname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedName",
+      "type": "topic",
+      "url": "/documentation/foundation/host/1409624-localizedname"
+    },
+    "doc://com.apple.documentation/documentation/foundation/host/1409654-init": {
+      "abstract": [
+        {
+          "text": "Returns a host with a specific name.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": String?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/host/1409654-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(name:)",
+      "type": "topic",
+      "url": "/documentation/foundation/host/1409654-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/host/1412418-address": {
+      "abstract": [
+        {
+          "text": "Returns one of the network addresses of the receiver.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "address"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/host/1412418-address",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "address",
+      "type": "topic",
+      "url": "/documentation/foundation/host/1412418-address"
+    },
+    "doc://com.apple.documentation/documentation/foundation/host/1414786-isequal": {
+      "abstract": [
+        {
+          "text": "Indicates whether the receiver represents the same host as another ",
+          "type": "text"
+        },
+        {
+          "code": "NSHost",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqual"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": Host) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/host/1414786-isequal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqual(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/host/1414786-isequal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/host/1416026-names": {
+      "abstract": [
+        {
+          "text": "Returns all the hostnames of the receiver.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "names"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/host/1416026-names",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "names",
+      "type": "topic",
+      "url": "/documentation/foundation/host/1416026-names"
+    },
+    "doc://com.apple.documentation/documentation/foundation/host/1416437-init": {
+      "abstract": [
+        {
+          "text": "Returns the ",
+          "type": "text"
+        },
+        {
+          "code": "NSHost",
+          "type": "codeVoice"
+        },
+        {
+          "text": " with the Internet address ",
+          "type": "text"
+        },
+        {
+          "code": "address",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "address"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/host/1416437-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(address:)",
+      "type": "topic",
+      "url": "/documentation/foundation/host/1416437-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/host/1416949-name": {
+      "abstract": [
+        {
+          "text": "Returns one of the hostnames of the receiver.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/host/1416949-name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/foundation/host/1416949-name"
+    },
+    "doc://com.apple.documentation/documentation/foundation/host/1417599-addresses": {
+      "abstract": [
+        {
+          "text": "Returns all the network addresses of the receiver.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "addresses"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/host/1417599-addresses",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addresses",
+      "type": "topic",
+      "url": "/documentation/foundation/host/1417599-addresses"
+    },
+    "doc://com.apple.documentation/documentation/foundation/port": {
+      "abstract": [
+        {
+          "text": "An abstract class that represents a communication channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Port"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/port",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Port",
+      "type": "topic",
+      "url": "/documentation/foundation/port"
+    },
+    "doc://com.apple.documentation/documentation/foundation/socketport": {
+      "abstract": [
+        {
+          "text": "A port that represents a BSD socket.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "SocketPort"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/socketport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SocketPort",
+      "type": "topic",
+      "url": "/documentation/foundation/socketport"
+    },
+    "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Streams, Sockets, and Ports",
+      "type": "topic",
+      "url": "/documentation/foundation/streams_sockets_and_ports"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/port",
+        "doc://com.apple.documentation/documentation/foundation/socketport"
+      ],
+      "title": "Sockets"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1651125",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/host/1408946-current",
+        "doc://com.apple.documentation/documentation/foundation/host/1416437-init",
+        "doc://com.apple.documentation/documentation/foundation/host/1409654-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Hosts"
+    },
+    {
+      "anchor": "1651160",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/host/1412418-address",
+        "doc://com.apple.documentation/documentation/foundation/host/1417599-addresses",
+        "doc://com.apple.documentation/documentation/foundation/host/1416949-name",
+        "doc://com.apple.documentation/documentation/foundation/host/1409624-localizedname",
+        "doc://com.apple.documentation/documentation/foundation/host/1416026-names"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Host Information"
+    },
+    {
+      "anchor": "1651232",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/host/1414786-isequal"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing Hosts"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nshost"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/host"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

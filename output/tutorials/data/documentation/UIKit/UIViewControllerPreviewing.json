@@ -1,0 +1,1543 @@
+{
+  "abstract": [
+    {
+      "text": "A set of methods that define the interface for configuring a previewing view controller on devices that support 3D Touch.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContextMenuInteraction",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewing"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)UIViewControllerPreviewing",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UIViewControllerPreviewing"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIViewControllerPreviewing"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "UIViewControllerPreviewing"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerPreviewing"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system returns a context object conforming to this protocol when you call a view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/registerForPreviewing(with:sourceView:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. This method registers the view controller to participate in 3D Touch preview (peek) and commit (pop) behaviors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The end-user terminology for the views presented during the phases of force-based touches includes ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "peek",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "pop",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": ". For clarity here, and to align with the API names, this document uses the corresponding terms ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "preview",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "commit view",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Terminology Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn about 3D Touch, read ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/Adopting3DTouchOniPhone/index.html#//apple_ref/doc/uid/TP40016543",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Don’t adopt this protocol in custom classes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccelerometerDelegate": {
+      "abstract": [
+        {
+          "text": "The interface for receiving acceleration-related data from the system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAccelerometerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccelerometerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccelerometerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAccelerometerDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccelerometerdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate": {
+      "abstract": [
+        {
+          "text": "The interface for the delegate of an action sheet object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActionSheetDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIActionSheetDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIActionSheetDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiactionsheetdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAlertViewDelegate": {
+      "abstract": [
+        {
+          "text": "The interface for the delegate of an alert view object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAlertViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAlertViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAlertViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAlertViewDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uialertviewdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIContextMenuInteraction": {
+      "abstract": [
+        {
+          "text": "An interaction object that you use to display relevant actions for your content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIContextMenuInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContextMenuInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIContextMenuInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIContextMenuInteraction",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontextmenuinteraction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPopoverControllerDelegate": {
+      "abstract": [
+        {
+          "text": "The interface for the delegate of a popover controller object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPopoverControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPopoverControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPopoverControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPopoverControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uipopovercontrollerdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISearchDisplayDelegate": {
+      "abstract": [
+        {
+          "text": "The interface for the delegate of a search display controller.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISearchDisplayDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISearchDisplayDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISearchDisplayDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISearchDisplayDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uisearchdisplaydelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/registerForPreviewing(with:sourceView:)": {
+      "abstract": [
+        {
+          "text": "Registers a view controller to participate with 3D Touch preview (peek) and commit (pop).",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerForPreviewing"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIViewControllerPreviewingDelegate",
+          "text": "UIViewControllerPreviewingDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": ") -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIViewControllerPreviewing",
+          "text": "UIViewControllerPreviewing"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/registerForPreviewing(with:sourceView:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "registerForPreviewingWithDelegate:sourceView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "registerForPreviewing(with:sourceView:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/registerforpreviewing(with:sourceview:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewing": {
+      "abstract": [
+        {
+          "text": "A set of methods that define the interface for configuring a previewing view controller on devices that support 3D Touch.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerPreviewing"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerPreviewing"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewControllerPreviewing",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollerpreviewing"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewing/delegate": {
+      "abstract": [
+        {
+          "text": "The previewing view controller’s delegate for managing preview (peek) and commit (pop) view controllers.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIViewControllerPreviewingDelegate",
+          "text": "UIViewControllerPreviewingDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewing/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollerpreviewing/delegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewing/previewingGestureRecognizerForFailureRelationship": {
+      "abstract": [
+        {
+          "text": "A gesture recognizer suitable for setting up failure requirements for a preview’s (peek’s) gestures.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "previewingGestureRecognizerForFailureRelationship"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIGestureRecognizer",
+          "text": "UIGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewing/previewingGestureRecognizerForFailureRelationship",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "previewingGestureRecognizerForFailureRelationship"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "previewingGestureRecognizerForFailureRelationship",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollerpreviewing/previewinggesturerecognizerforfailurerelationship"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewing/sourceRect": {
+      "abstract": [
+        {
+          "text": "The rectangle, in the source view’s coordinate system, that responds to a 3D Touch by a user and remains visually sharp while surrounding content blurs.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewing/sourceRect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sourceRect"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "sourceRect",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollerpreviewing/sourcerect"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewing/sourceView": {
+      "abstract": [
+        {
+          "text": "A source view, in a previewing view controller’s view hierarchy, responds to a 3D Touch by the user.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewing/sourceView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sourceView"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "sourceView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollerpreviewing/sourceview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewingDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods used by the delegate to respond, with a preview view controller and a commit view controller, to the user pressing a view object on the screen of a device that supports 3D Touch.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerPreviewingDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewingDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerPreviewingDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewControllerPreviewingDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontrollerpreviewingdelegate"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/Adopting3DTouchOniPhone/index.html#//apple_ref/doc/uid/TP40016543": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/Adopting3DTouchOniPhone/index.html#//apple_ref/doc/uid/TP40016543",
+      "title": "Adopting 3D Touch on iPhone",
+      "titleInlineContent": [
+        {
+          "text": "Adopting 3D Touch on iPhone",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/Adopting3DTouchOniPhone/index.html#//apple_ref/doc/uid/TP40016543"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Deprecated-protocols",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIAccelerometerDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UIAlertViewDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UIPopoverControllerDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UISearchDisplayDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewingDelegate"
+      ],
+      "title": "Deprecated protocols"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Configuring-a-source-view-for-a-3D-Touch-previewing-view-controller",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewing/sourceRect",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewing/previewingGestureRecognizerForFailureRelationship"
+      ],
+      "title": "Configuring a source view for a 3D Touch previewing view controller"
+    },
+    {
+      "anchor": "Accessing-properties-of-a-3D-Touch-previewing-view-controller",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewing/delegate",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewing/sourceView"
+      ],
+      "title": "Accessing properties of a 3D Touch previewing view controller"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UIViewControllerPreviewing"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerPreviewing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerPreviewing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Configuring-a-source-view-for-a-3D-Touch-previewing-view-controller",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewing/sourceRect",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewing/previewingGestureRecognizerForFailureRelationship"
+              ],
+              "title": "Configuring a source view for a 3D Touch previewing view controller"
+            },
+            {
+              "anchor": "Accessing-properties-of-a-3D-Touch-previewing-view-controller",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewing/delegate",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewing/sourceView"
+              ],
+              "title": "Accessing properties of a 3D Touch previewing view controller"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Deprecated-protocols",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIAccelerometerDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UIActionSheetDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UIAlertViewDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UIPopoverControllerDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UISearchDisplayDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewControllerPreviewingDelegate"
+              ],
+              "title": "Deprecated protocols"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UIViewControllerPreviewing"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContextMenuInteraction",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewing~1previewingGestureRecognizerForFailureRelationship/title",
+          "value": "previewingGestureRecognizerForFailureRelationship"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewing~1previewingGestureRecognizerForFailureRelationship/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "previewingGestureRecognizerForFailureRelationship"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewingDelegate/title",
+          "value": "UIViewControllerPreviewingDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewingDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerPreviewingDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewingDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerPreviewingDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchDisplayDelegate/title",
+          "value": "UISearchDisplayDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchDisplayDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchDisplayDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISearchDisplayDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISearchDisplayDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewing~1sourceView/title",
+          "value": "sourceView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewing~1sourceView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sourceView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPopoverControllerDelegate/title",
+          "value": "UIPopoverControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPopoverControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPopoverControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPopoverControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPopoverControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccelerometerDelegate/title",
+          "value": "UIAccelerometerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccelerometerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccelerometerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccelerometerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccelerometerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewing~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewing~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1registerForPreviewing(with:sourceView:)/title",
+          "value": "registerForPreviewingWithDelegate:sourceView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1registerForPreviewing(with:sourceView:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerForPreviewingWithDelegate:sourceView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContextMenuInteraction/title",
+          "value": "UIContextMenuInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContextMenuInteraction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContextMenuInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContextMenuInteraction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContextMenuInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewing~1sourceRect/title",
+          "value": "sourceRect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewing~1sourceRect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sourceRect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActionSheetDelegate/title",
+          "value": "UIActionSheetDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActionSheetDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActionSheetDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIActionSheetDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIActionSheetDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAlertViewDelegate/title",
+          "value": "UIAlertViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAlertViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAlertViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAlertViewDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAlertViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewing/title",
+          "value": "UIViewControllerPreviewing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewing/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerPreviewing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewControllerPreviewing/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewControllerPreviewing"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uiviewcontrollerpreviewing"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uiviewcontrollerpreviewing"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

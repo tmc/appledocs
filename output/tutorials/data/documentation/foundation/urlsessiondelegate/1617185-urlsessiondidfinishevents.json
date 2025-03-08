@@ -1,0 +1,434 @@
+{
+  "abstract": [
+    {
+      "text": "Tells the delegate that all messages enqueued for a session have been delivered.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/urlsession",
+        "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate/1617185-urlsessiondidfinishevents"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1617185,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)NSURLSessionDelegate(im)URLSessionDidFinishEventsForBackgroundURLSession:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "urlSessionDidFinishEvents"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "identifier",
+        "text": "forBackgroundURLSession"
+      },
+      {
+        "kind": "text",
+        "text": ": URLSession)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "URLSessionDelegate"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "11.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "intfm",
+    "title": "urlSessionDidFinishEvents(forBackgroundURLSession:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "optional"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "urlSessionDidFinishEvents"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "forBackgroundURLSession"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "session"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURLSession",
+              "text": "URLSession"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The session that no longer has any outstanding requests.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "session"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS, when a background transfer completes or requires credentials, if your app is no longer running, your app is automatically relaunched in the background, and the app’s ",
+              "type": "text"
+            },
+            {
+              "code": "UIApplicationDelegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is sent an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:handleEventsForBackgroundURLSession:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " message. This call contains the identifier of the session that caused your app to be launched. You should then store that completion handler before creating a background configuration object with the same identifier, and creating a session with that configuration. The newly created session is automatically reassociated with ongoing background activity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app later receives a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate/1617185-urlsessiondidfinishevents",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " message, this indicates that all messages previously enqueued for this session have been delivered, and that it is now safe to invoke the previously stored completion handler or to begin any internal updates that may result in invoking the completion handler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Because the provided completion handler is part of UIKit, you must call it on your main thread.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that defines methods that URL session instances call on their delegates to handle session-level events, like session life cycle changes. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate/1407776-urlsession": {
+      "abstract": [
+        {
+          "text": "Tells the URL session that the session has been invalidated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "urlSession"
+        },
+        {
+          "kind": "text",
+          "text": "(URLSession, "
+        },
+        {
+          "kind": "identifier",
+          "text": "didBecomeInvalidWithError"
+        },
+        {
+          "kind": "text",
+          "text": ": (any Error)?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate/1407776-urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlSession(_:didBecomeInvalidWithError:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondelegate/1407776-urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate/1617185-urlsessiondidfinishevents": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that all messages enqueued for a session have been delivered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "urlSessionDidFinishEvents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forBackgroundURLSession"
+        },
+        {
+          "kind": "text",
+          "text": ": URLSession)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate/1617185-urlsessiondidfinishevents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "urlSessionDidFinishEvents(forBackgroundURLSession:)",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessiondelegate/1617185-urlsessiondidfinishevents"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:handleEventsForBackgroundURLSession:completionHandler:)": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/application(_:handleEventsForBackgroundURLSession:completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:handleEventsForBackgroundURLSession:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate/application(_:handleeventsforbackgroundurlsession:completionhandler:)"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/urlsessiondelegate/1407776-urlsession"
+      ],
+      "title": "Handling session life cycle changes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsurlsessiondelegate/1617185-urlsessiondidfinisheventsforback"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/urlsessiondelegate/1617185-urlsessiondidfinishevents"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2496 @@
+{
+  "abstract": [
+    {
+      "text": "Register your app as a provider or consumer of systemwide custom fonts.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/capabilities"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/configuring-custom-fonts"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring custom fonts"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 13 and later, your iOS app can contribute fonts for systemwide use and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "leverage fonts that other apps install.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an app attempts the install one or more fonts systemwide, iOS prompts the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "user for their permission. If the user agrees, the installed fonts become",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "accessible in Settings > General > Fonts. If your app provides installable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "fonts, include a UI that allows the user to browse those fonts and manage their",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "registration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must store installable fonts in the app bundle or deliver them using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "On-Demand Resources, because the system prohibits an app from installing arbitrary",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "fonts. Provide fonts in the TTF, OTF, or TTC formats or any of their modern",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variants, and package large font libraries as asset catalogs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system limits the number of installed fonts, and it derives that limit from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the available system resources. If the user deletes your app, the system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "automatically removes any of the app’s installed fonts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To register your app as a provider or consumer of systemwide custom fonts,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "follow the steps in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-capabilities-to-your-app#Add-a-capability",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "add the Fonts capability to your app’s target.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "fonts",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Fonts capability is only available to use with iOS apps that target",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "iOS 13 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Select-the-required-privileges",
+          "level": 3,
+          "text": "Select the required privileges",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before your iOS app can install one or more custom fonts or use fonts that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "other apps provide, you must enable the necessary privileges by performing the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your project in Xcode’s Project navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the iOS app’s target from the Targets list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Signing & Capabilities tab in the project editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Find the Fonts capability.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the required privileges using the corresponding checkboxes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "fonts-consumer-provider",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Fonts privileges aren’t exclusive; your iOS app can provide fonts for",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "use in other apps and consume fonts that other apps install systemwide.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode adds the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.developer.user-fonts",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array to your app’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entitlements file, if not already present, and uses the privileges you enable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to populate that array with the corresponding values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After enabling the required privileges, update your app to perform one or more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Register fonts systemwide using one of these registration methods:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/CoreText/CTFontManagerRegisterFontURLs(_:_:_:_:)",
+                              "isActive": true,
+                              "type": "reference"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/CoreText/CTFontManagerRegisterFontDescriptors(_:_:_:_:)",
+                              "isActive": true,
+                              "type": "reference"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/CoreText/CTFontManagerRegisterFontsWithAssetNames(_:_:_:_:_:)",
+                              "isActive": true,
+                              "type": "reference"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Remove installed fonts using one of these unregister methods:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/CoreText/CTFontManagerUnregisterFontURLs(_:_:_:)",
+                              "isActive": true,
+                              "type": "reference"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "identifier": "doc://com.apple.documentation/documentation/CoreText/CTFontManagerUnregisterFontDescriptors(_:_:_:)",
+                              "isActive": true,
+                              "type": "reference"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Query all installed fonts using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreText/CTFontManagerRequestFonts(_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Listen for font change notifications using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreText/kCTFontManagerRegisteredFontsChangedNotification",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see the WWDC session video ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2019/227",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-capabilities-to-your-app#Add-a-capability": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-capabilities-to-your-app#Add-a-capability",
+      "kind": "section",
+      "title": "Add a capability",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-capabilities-to-your-app#Add-a-capability"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/capabilities": {
+      "abstract": [
+        {
+          "text": "Enable services that Apple provides, such as In-App Purchase, Push Notifications,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Apple Pay, iCloud, and many others.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/capabilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Capabilities",
+      "type": "topic",
+      "url": "/documentation/xcode/capabilities"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-background-execution-modes": {
+      "abstract": [
+        {
+          "text": "Indicate the background services your app requires to continue executing in the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "background in iOS, iPadOS, tvOS, visionOS, and watchOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-background-execution-modes",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring background execution modes",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-background-execution-modes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-game-controllers": {
+      "abstract": [
+        {
+          "text": "Enhance gameplay input by enabling the discovery, configuration, and use of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "physical game controllers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-game-controllers",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring game controllers",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-game-controllers"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-maps-support": {
+      "abstract": [
+        {
+          "text": "Register your iOS routing app to provide point-to-point directions to Maps and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "other apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-maps-support",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Maps support",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-maps-support"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-siri-support": {
+      "abstract": [
+        {
+          "text": "Enable your app and its Intents extension to resolve, confirm, and handle",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "user-driven Siri requests for your app’s services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-siri-support",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Siri support",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-siri-support"
+    },
+    "doc://com.apple.documentation/documentation/CoreText/CTFontManagerRegisterFontDescriptors(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Registers font descriptors with the font manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTFontManagerRegisterFontDescriptors"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "fontDescriptors"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "scope"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CTFontManagerScope",
+          "text": "CTFontManagerScope"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "enabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "registrationHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreText/CTFontManagerRegisterFontDescriptors(_:_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CTFontManagerRegisterFontDescriptors(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/CoreText/CTFontManagerRegisterFontDescriptors(_:_:_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreText/CTFontManagerRegisterFontURLs(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Registers fonts from the specified font URLs with the font manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTFontManagerRegisterFontURLs"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "fontURLs"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "scope"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CTFontManagerScope",
+          "text": "CTFontManagerScope"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "enabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "registrationHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreText/CTFontManagerRegisterFontURLs(_:_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CTFontManagerRegisterFontURLs(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/CoreText/CTFontManagerRegisterFontURLs(_:_:_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreText/CTFontManagerRegisterFontsWithAssetNames(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Registers named font assets in the specified bundle with the font manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTFontManagerRegisterFontsWithAssetNames"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "fontAssetNames"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "bundle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFBundleRef",
+          "text": "CFBundle"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "scope"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CTFontManagerScope",
+          "text": "CTFontManagerScope"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "enabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "registrationHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreText/CTFontManagerRegisterFontsWithAssetNames(_:_:_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CTFontManagerRegisterFontsWithAssetNames(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/CoreText/CTFontManagerRegisterFontsWithAssetNames(_:_:_:_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreText/CTFontManagerRequestFonts(_:_:)": {
+      "abstract": [
+        {
+          "text": "Resolves font descriptors specified on input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTFontManagerRequestFonts"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "fontDescriptors"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreText/CTFontManagerRequestFonts(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CTFontManagerRequestFonts(_:_:)",
+      "type": "topic",
+      "url": "/documentation/CoreText/CTFontManagerRequestFonts(_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreText/CTFontManagerUnregisterFontDescriptors(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Unregisters font descriptors with the font manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTFontManagerUnregisterFontDescriptors"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "fontDescriptors"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "scope"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CTFontManagerScope",
+          "text": "CTFontManagerScope"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "registrationHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreText/CTFontManagerUnregisterFontDescriptors(_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CTFontManagerUnregisterFontDescriptors(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/CoreText/CTFontManagerUnregisterFontDescriptors(_:_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreText/CTFontManagerUnregisterFontURLs(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Unregisters fonts from the specified font URLs with the font manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTFontManagerUnregisterFontURLs"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "fontURLs"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "scope"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CTFontManagerScope",
+          "text": "CTFontManagerScope"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "registrationHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreText/CTFontManagerUnregisterFontURLs(_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CTFontManagerUnregisterFontURLs(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/CoreText/CTFontManagerUnregisterFontURLs(_:_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreText/kCTFontManagerRegisteredFontsChangedNotification": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCTFontManagerRegisteredFontsChangedNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreText/kCTFontManagerRegisteredFontsChangedNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCTFontManagerRegisteredFontsChangedNotification",
+      "type": "topic",
+      "url": "/documentation/CoreText/kCTFontManagerRegisteredFontsChangedNotification"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "fonts": {
+      "alt": "A screenshot of Xcode’s Capabilities library with a list of available capabilities on the left and an information pane on the right. The list shows a range of capabilities from Fonts to In-App Purchase, and the Fonts capability is in a selected state. The text on the information pane explains that the Fonts capability allows your app, with the user’s permission, to install and make use of custom fonts.",
+      "identifier": "fonts",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e2e14e643f2606c5d2ceb0f8501dc351/fonts@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2be92aa103fa85a9d3baafeb45b903dd/fonts~dark@2x.png"
+        }
+      ]
+    },
+    "fonts-consumer-provider": {
+      "alt": "A screenshot of the Fonts capability after you add it to an iOS target. The Install Fonts and Use Installed Fonts privileges are in an enabled state.",
+      "identifier": "fonts-consumer-provider",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7537b87aaffa33681a478a748a9bf357/fonts-consumer-provider@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f34a795f92d1edf028a0a8ade76b2dfd/fonts-consumer-provider~dark@2x.png"
+        }
+      ]
+    },
+    "https://developer.apple.com/videos/play/wwdc2019/227": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2019/227",
+      "title": "Font Management and Text Scaling",
+      "titleInlineContent": [
+        {
+          "text": "Font Management and Text Scaling",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2019/227"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-execution",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-background-execution-modes",
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-game-controllers",
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-maps-support",
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-siri-support"
+      ],
+      "title": "App execution"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreText~1CTFontManagerRequestFonts(_:_:)/title",
+          "value": "CTFontManagerRequestFonts"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreText~1CTFontManagerRequestFonts(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CTFontManagerRequestFonts"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFArrayRef",
+              "text": "CFArrayRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "fontDescriptors"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^"
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ")("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFArrayRef",
+              "text": "CFArrayRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "unresolvedFontDescriptors"
+            },
+            {
+              "kind": "text",
+              "text": "));"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreText~1CTFontManagerRegisterFontDescriptors(_:_:_:_:)/title",
+          "value": "CTFontManagerRegisterFontDescriptors"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreText~1CTFontManagerRegisterFontDescriptors(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CTFontManagerRegisterFontDescriptors"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFArrayRef",
+              "text": "CFArrayRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "fontDescriptors"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@CTFontManagerScope",
+              "text": "CTFontManagerScope"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "scope"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:b",
+              "text": "bool"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "enabled"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:b",
+              "text": "bool"
+            },
+            {
+              "kind": "text",
+              "text": " (^"
+            },
+            {
+              "kind": "internalParam",
+              "text": "registrationHandler"
+            },
+            {
+              "kind": "text",
+              "text": ")("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFArrayRef",
+              "text": "CFArrayRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "errors"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:b",
+              "text": "bool"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "done"
+            },
+            {
+              "kind": "text",
+              "text": "));"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreText~1CTFontManagerUnregisterFontURLs(_:_:_:)/title",
+          "value": "CTFontManagerUnregisterFontURLs"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreText~1CTFontManagerUnregisterFontURLs(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CTFontManagerUnregisterFontURLs"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFArrayRef",
+              "text": "CFArrayRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "fontURLs"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@CTFontManagerScope",
+              "text": "CTFontManagerScope"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "scope"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:b",
+              "text": "bool"
+            },
+            {
+              "kind": "text",
+              "text": " (^"
+            },
+            {
+              "kind": "internalParam",
+              "text": "registrationHandler"
+            },
+            {
+              "kind": "text",
+              "text": ")("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFArrayRef",
+              "text": "CFArrayRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "errors"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:b",
+              "text": "bool"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "done"
+            },
+            {
+              "kind": "text",
+              "text": "));"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreText~1CTFontManagerUnregisterFontDescriptors(_:_:_:)/title",
+          "value": "CTFontManagerUnregisterFontDescriptors"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreText~1CTFontManagerUnregisterFontDescriptors(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CTFontManagerUnregisterFontDescriptors"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFArrayRef",
+              "text": "CFArrayRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "fontDescriptors"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@CTFontManagerScope",
+              "text": "CTFontManagerScope"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "scope"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:b",
+              "text": "bool"
+            },
+            {
+              "kind": "text",
+              "text": " (^"
+            },
+            {
+              "kind": "internalParam",
+              "text": "registrationHandler"
+            },
+            {
+              "kind": "text",
+              "text": ")("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFArrayRef",
+              "text": "CFArrayRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "errors"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:b",
+              "text": "bool"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "done"
+            },
+            {
+              "kind": "text",
+              "text": "));"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreText~1CTFontManagerRegisterFontURLs(_:_:_:_:)/title",
+          "value": "CTFontManagerRegisterFontURLs"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreText~1CTFontManagerRegisterFontURLs(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CTFontManagerRegisterFontURLs"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFArrayRef",
+              "text": "CFArrayRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "fontURLs"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@CTFontManagerScope",
+              "text": "CTFontManagerScope"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "scope"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:b",
+              "text": "bool"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "enabled"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:b",
+              "text": "bool"
+            },
+            {
+              "kind": "text",
+              "text": " (^"
+            },
+            {
+              "kind": "internalParam",
+              "text": "registrationHandler"
+            },
+            {
+              "kind": "text",
+              "text": ")("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFArrayRef",
+              "text": "CFArrayRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "errors"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:b",
+              "text": "bool"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "done"
+            },
+            {
+              "kind": "text",
+              "text": "));"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreText~1kCTFontManagerRegisteredFontsChangedNotification/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCTFontManagerRegisteredFontsChangedNotification"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreText~1CTFontManagerRegisterFontsWithAssetNames(_:_:_:_:_:)/title",
+          "value": "CTFontManagerRegisterFontsWithAssetNames"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreText~1CTFontManagerRegisterFontsWithAssetNames(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CTFontManagerRegisterFontsWithAssetNames"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFArrayRef",
+              "text": "CFArrayRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "fontAssetNames"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFBundleRef",
+              "text": "CFBundleRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "bundle"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@CTFontManagerScope",
+              "text": "CTFontManagerScope"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "scope"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:b",
+              "text": "bool"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "enabled"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:b",
+              "text": "bool"
+            },
+            {
+              "kind": "text",
+              "text": " (^"
+            },
+            {
+              "kind": "internalParam",
+              "text": "registrationHandler"
+            },
+            {
+              "kind": "text",
+              "text": ")("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFArrayRef",
+              "text": "CFArrayRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "errors"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:b",
+              "text": "bool"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "done"
+            },
+            {
+              "kind": "text",
+              "text": "));"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

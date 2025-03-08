@@ -1,0 +1,1781 @@
+{
+  "abstract": [
+    {
+      "text": "A sample that stores a clinical record.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)HKClinicalRecord",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "HKClinicalRecord"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "HKClinicalRecord"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "HKClinicalRecord"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "HKClinicalRecord"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.healthkit/documentation/HealthKit/accessing-health-records",
+        "doc://com.apple.healthkit/documentation/HealthKit/accessing-sample-data-in-the-simulator"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The clinical record stores information about a single condition, procedure, or result. While the record’s properties expose some high-level information, the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord/fhirResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property contains the underlying data from the user’s healthcare institution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that the record inherits the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample/startDate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample/endDate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties. However, the system does not populate these properties with information from the FHIR data; instead, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample/startDate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample/endDate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " reflect the time and date when the system downloaded the FHIR data to the device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKCDADocumentSample": {
+      "abstract": [
+        {
+          "text": "A Clinical Document Architecture (CDA) sample that stores a single document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKCDADocumentSample"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKCDADocumentSample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKCDADocumentSample"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKCDADocumentSample",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkcdadocumentsample"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord": {
+      "abstract": [
+        {
+          "text": "A sample that stores a clinical record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKClinicalRecord"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKClinicalRecord"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKClinicalRecord",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkclinicalrecord"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord/clinicalType": {
+      "abstract": [
+        {
+          "text": "An identifier that indicates the type of record, such as an allergic reaction, a lab result, or a medical procedure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clinicalType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKClinicalType",
+          "text": "HKClinicalType"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord/clinicalType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "clinicalType"
+        }
+      ],
+      "role": "symbol",
+      "title": "clinicalType",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkclinicalrecord/clinicaltype"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord/displayName": {
+      "abstract": [
+        {
+          "text": "The primary display name as shown in the Health app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord/displayName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "displayName"
+        }
+      ],
+      "role": "symbol",
+      "title": "displayName",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkclinicalrecord/displayname"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord/fhirResource": {
+      "abstract": [
+        {
+          "text": "The Fast Healthcare Interoperability Resources (FHIR) data for this record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fhirResource"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKFHIRResource",
+          "text": "HKFHIRResource"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord/fhirResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FHIRResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "fhirResource",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkclinicalrecord/fhirresource"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalType": {
+      "abstract": [
+        {
+          "text": "A type that identifies samples that contain clinical record data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKClinicalType"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKClinicalType"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKClinicalType",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkclinicaltype"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentSample": {
+      "abstract": [
+        {
+          "text": "An abstract class that represents a health document in the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKDocumentSample"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentSample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKDocumentSample"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKDocumentSample",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkdocumentsample"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentType": {
+      "abstract": [
+        {
+          "text": "A sample type used to create queries for documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKDocumentType"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKDocumentType"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKDocumentType",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkdocumenttype"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentTypeIdentifier/CDA": {
+      "abstract": [
+        {
+          "text": "The CDA Document type identifier, used when requesting permission to read or share CDA documents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CDA"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@HKDocumentTypeIdentifier",
+          "text": "HKDocumentTypeIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentTypeIdentifier/CDA",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKDocumentTypeIdentifierCDA"
+        }
+      ],
+      "role": "symbol",
+      "title": "CDA",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkdocumenttypeidentifier/cda"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResource": {
+      "abstract": [
+        {
+          "text": "An object containing Fast Healthcare Interoperability Resources (FHIR) data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKFHIRResource"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKFHIRResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKFHIRResource",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkfhirresource"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSample": {
+      "abstract": [
+        {
+          "text": "A HealthKit sample represents a piece of data associated with a start and end time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKSample"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKSample"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKSample",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksample"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSample/endDate": {
+      "abstract": [
+        {
+          "text": "The sample’s end date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample/endDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "endDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "endDate",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksample/enddate"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKSample/startDate": {
+      "abstract": [
+        {
+          "text": "The sample’s start date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample/startDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "startDate",
+      "type": "topic",
+      "url": "/documentation/healthkit/hksample/startdate"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKVerifiableClinicalRecord": {
+      "abstract": [
+        {
+          "text": "A sample that represents the contents of a SMART Health Card or EU Digital COVID Certificate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKVerifiableClinicalRecord"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKVerifiableClinicalRecord",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKVerifiableClinicalRecord"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKVerifiableClinicalRecord",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkverifiableclinicalrecord"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKVerifiableClinicalRecordSubject": {
+      "abstract": [
+        {
+          "text": "The subject associated with a signed clinical record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKVerifiableClinicalRecordSubject"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKVerifiableClinicalRecordSubject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKVerifiableClinicalRecordSubject"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKVerifiableClinicalRecordSubject",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkverifiableclinicalrecordsubject"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/accessing-a-user-s-clinical-records": {
+      "abstract": [
+        {
+          "text": "Request authorization to query HealthKit for a user’s clinical records and display them in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/accessing-a-user-s-clinical-records",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Accessing a User’s Clinical Records",
+      "type": "topic",
+      "url": "/documentation/healthkit/accessing-a-user-s-clinical-records"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/accessing-data-from-a-smart-health-card": {
+      "abstract": [
+        {
+          "text": "Query for and validate a verifiable clinical record.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/accessing-data-from-a-smart-health-card",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Accessing Data from a SMART Health Card",
+      "type": "topic",
+      "url": "/documentation/healthkit/accessing-data-from-a-smart-health-card"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/accessing-health-records": {
+      "abstract": [
+        {
+          "text": "Read clinical record data from the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/accessing-health-records",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing Health Records",
+      "type": "topic",
+      "url": "/documentation/healthkit/accessing-health-records"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/accessing-sample-data-in-the-simulator": {
+      "abstract": [
+        {
+          "text": "Set up sample accounts to build and test your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/accessing-sample-data-in-the-simulator",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing Sample Data in the Simulator",
+      "type": "topic",
+      "url": "/documentation/healthkit/accessing-sample-data-in-the-simulator"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKSample"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalType"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Medical-records",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/accessing-health-records",
+        "doc://com.apple.healthkit/documentation/HealthKit/accessing-sample-data-in-the-simulator",
+        "doc://com.apple.healthkit/documentation/HealthKit/accessing-a-user-s-clinical-records",
+        "doc://com.apple.healthkit/documentation/HealthKit/accessing-data-from-a-smart-health-card",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResource",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKVerifiableClinicalRecord",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKVerifiableClinicalRecordSubject",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKCDADocumentSample",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentSample",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentTypeIdentifier/CDA",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentType"
+      ],
+      "title": "Medical records"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Accessing-Clinical-Record-Data",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord/clinicalType",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord/displayName",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord/fhirResource"
+      ],
+      "title": "Accessing Clinical Record Data"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "HKClinicalRecord"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKClinicalRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKClinicalRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.healthkit/documentation/HealthKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Accessing-Clinical-Record-Data",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord/clinicalType",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord/displayName",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalRecord/fhirResource"
+              ],
+              "title": "Accessing Clinical Record Data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKSample"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKClinicalType"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Medical-records",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.healthkit/documentation/HealthKit/HKFHIRResource",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKVerifiableClinicalRecord",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKVerifiableClinicalRecordSubject",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKCDADocumentSample",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentSample",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentTypeIdentifier/CDA",
+                "doc://com.apple.healthkit/documentation/HealthKit/HKDocumentType"
+              ],
+              "title": "Medical records"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "HKClinicalRecord"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKSample",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)HKSample",
+                    "text": "HKSample"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVerifiableClinicalRecordSubject/title",
+          "value": "HKVerifiableClinicalRecordSubject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVerifiableClinicalRecordSubject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKVerifiableClinicalRecordSubject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVerifiableClinicalRecordSubject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKVerifiableClinicalRecordSubject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample/title",
+          "value": "HKSample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalRecord/title",
+          "value": "HKClinicalRecord"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalRecord/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKClinicalRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalRecord/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKClinicalRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample~1endDate/title",
+          "value": "endDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample~1endDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "endDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentSample/title",
+          "value": "HKDocumentSample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentSample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKDocumentSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentSample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKDocumentSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResource/title",
+          "value": "HKFHIRResource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKFHIRResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKFHIRResource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKFHIRResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCDADocumentSample/title",
+          "value": "HKCDADocumentSample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCDADocumentSample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKCDADocumentSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKCDADocumentSample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKCDADocumentSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalRecord~1clinicalType/title",
+          "value": "clinicalType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalRecord~1clinicalType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "clinicalType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentTypeIdentifier~1CDA/title",
+          "value": "HKDocumentTypeIdentifierCDA"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentTypeIdentifier~1CDA/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKDocumentTypeIdentifierCDA"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVerifiableClinicalRecord/title",
+          "value": "HKVerifiableClinicalRecord"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVerifiableClinicalRecord/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKVerifiableClinicalRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKVerifiableClinicalRecord/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKVerifiableClinicalRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalType/title",
+          "value": "HKClinicalType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKClinicalType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKClinicalType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalRecord~1displayName/title",
+          "value": "displayName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalRecord~1displayName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "displayName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample~1startDate/title",
+          "value": "startDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKSample~1startDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "startDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalRecord~1fhirResource/title",
+          "value": "FHIRResource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKClinicalRecord~1fhirResource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FHIRResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentType/title",
+          "value": "HKDocumentType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKDocumentType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKDocumentType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKDocumentType"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/healthkit/hkclinicalrecord"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/healthkit/hkclinicalrecord"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,793 @@
+{
+  "abstract": [
+    {
+      "text": "A handler called shortly before the task’s background time expires.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.backgroundtasks/documentation/BackgroundTasks",
+        "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGTask"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGTask/expirationHandler"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)BGTask(py)expirationHandler",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "expirationHandler"
+      },
+      {
+        "kind": "text",
+        "text": ": (() -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:s4Voida",
+        "text": "Void"
+      },
+      {
+        "kind": "text",
+        "text": ")?"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Background Tasks"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "expirationHandler"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "expirationHandler"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "expirationHandler"
+            },
+            {
+              "kind": "text",
+              "text": ": (() -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s4Voida",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s4Voida",
+              "text": "Void"
+            },
+            {
+              "kind": "text",
+              "text": ")? { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The expiration handler takes no arguments and has no return value. Use the handler to cancel any ongoing work and to do any required cleanup in as short a time as possible.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The handler may be called before the background process uses the full amount of its allocated time.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "expirationHandler"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The time allocated by the system for expiration handlers doesn’t vary with the number of background tasks. All expiration handlers must complete before the allocated time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Not setting an expiration handler results in the system marking your task as complete and unsuccessful instead of sending a warning.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The manager sets the value ",
+              "type": "text"
+            },
+            {
+              "code": "expirationHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " after the handler completes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.backgroundtasks/documentation/BackgroundTasks": {
+      "abstract": [
+        {
+          "text": "Request the system to launch your app in the background to run tasks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Background Tasks",
+      "type": "topic",
+      "url": "/documentation/backgroundtasks"
+    },
+    "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGTask": {
+      "abstract": [
+        {
+          "text": "An abstract class representing a task that’s run while the app is in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BGTask"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGTask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BGTask"
+        }
+      ],
+      "role": "symbol",
+      "title": "BGTask",
+      "type": "topic",
+      "url": "/documentation/backgroundtasks/bgtask"
+    },
+    "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGTask/expirationHandler": {
+      "abstract": [
+        {
+          "text": "A handler called shortly before the task’s background time expires.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "expirationHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGTask/expirationHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "expirationHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "expirationHandler",
+      "type": "topic",
+      "url": "/documentation/backgroundtasks/bgtask/expirationhandler"
+    },
+    "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGTask/setTaskCompleted(success:)": {
+      "abstract": [
+        {
+          "text": "Informs the background task scheduler that the task is complete.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTaskCompleted"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "success"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGTask/setTaskCompleted(success:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setTaskCompletedWithSuccess:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setTaskCompleted(success:)",
+      "type": "topic",
+      "url": "/documentation/backgroundtasks/bgtask/settaskcompleted(success:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s4Voida": {
+      "abstract": [
+        {
+          "text": "The return type of functions that don’t explicitly specify a return type, that is, an empty tuple `()`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": " = ()"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s4Voida",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Void",
+      "type": "topic",
+      "url": "/documentation/Swift/Void"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-a-Task",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGTask/setTaskCompleted(success:)"
+      ],
+      "title": "Configuring a Task"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "expirationHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "expirationHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.backgroundtasks/documentation/BackgroundTasks",
+                "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGTask"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Configuring-a-Task",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGTask/setTaskCompleted(success:)"
+              ],
+              "title": "Configuring a Task"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "atomic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "strong"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "readwrite"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "nullable"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:BFv()",
+                    "text": "void (^)(void)"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "expirationHandler"
+                  }
+                ]
+              },
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "strong"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:v",
+                    "text": "void"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " (^"
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "expirationHandler"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ")();"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGTask~1expirationHandler/title",
+          "value": "expirationHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGTask~1expirationHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "expirationHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGTask/title",
+          "value": "BGTask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGTask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BGTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGTask/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BGTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGTask~1setTaskCompleted(success:)/title",
+          "value": "setTaskCompletedWithSuccess:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGTask~1setTaskCompleted(success:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setTaskCompletedWithSuccess:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/backgroundtasks/bgtask/expirationhandler"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/backgroundtasks/bgtask/expirationhandler"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

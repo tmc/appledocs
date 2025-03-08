@@ -1,0 +1,3269 @@
+{
+  "abstract": [
+    {
+      "text": "Configure your VPN to include and exclude some network traffic.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkextension/documentation/NetworkExtension"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.networkextension/documentation/NetworkExtension/routing-your-vpn-network-traffic"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Network Extension"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Routing your VPN network traffic"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can control some of the network traffic that the system routes to and from a personal VPN, packet tunnel provider, or app proxy provider. The Network Extension framework provides routing settings for all VPN types, and some settings specific to personal VPNs and packet tunnel providers. You can configure the routing of packets to per-app VPNs using rules, and make exceptions to always-on VPNs on MDM supervised devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the complete APIs to create the different types of VPNs, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/personal-vpn",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/packet-tunnel-provider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/app-proxy-provider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-traffic-for-a-packet-tunnel-provider",
+          "level": 3,
+          "text": "Configure traffic for a packet tunnel provider",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You configure a packet tunnel provider’s virtual interface by passing an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEPacketTunnelNetworkSettings",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider/setTunnelNetworkSettings(_:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system uses the routing settings you provide in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEPacketTunnelNetworkSettings",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance by default.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To route traffic through the packet tunnel provider, create a homogenous array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEIPv4Route",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEIPv6Route",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " elements",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and assign it to the corresponding settings property, either:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEIPv4Settings/includedRoutes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/ipv4Settings",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEIPv6Settings/includedRoutes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/ipv6Settings",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEIPv4Route",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEIPv6Route",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects that you pass in these arrays specify the types of traffic that the VPN includes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, the following code specifies the traffic for internet protocol version 4:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create an internet protocol settings object.",
+            "let ipv4Settings = NEIPv4Settings(addresses: [ \"192.168.3.4\" ],",
+            "                                  subnetMasks: [ \"255.255.0.0\" ])",
+            "",
+            "// Specify the types of traffic to include and exclude.",
+            "ipv4Settings.includedRoutes = [ NEIPv4Route(destinationAddress: \"192.168.0.0\",",
+            "                                            subnetMask: \"255.255.0.0\") ]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you include the default route (",
+              "type": "text"
+            },
+            {
+              "code": "0.0.0.0/0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "::/0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEIPv6Settings/includedRoutes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property, the system routes network traffic that doesn’t match some other more specific rule in the system routing table through the VPN.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To exclude traffic from the VPN, create a homogenous array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEIPv4Route",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEIPv6Route",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " elements",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and assign it to the corresponding settings property, either:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEIPv4Settings/excludedRoutes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/ipv4Settings",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEIPv6Settings/excludedRoutes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/ipv6Settings",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The route instances specify the types of traffic that the VPN excludes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Specify the types of traffic to exclude.",
+            "ipv4Settings.excludedRoutes = [ NEIPv4Route(destinationAddress: \"192.168.5.6\",",
+            "                                            subnetMask: \"255.255.255.255\")]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then set the packet tunnel provider’s settings to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEPacketTunnelNetworkSettings",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that contains the internet protocol settings using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider/setTunnelNetworkSettings(_:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a network settings object with the internet protocol settings.",
+            "let networkSettings = NEPacketTunnelNetworkSettings(tunnelRemoteAddress: \"127.0.0.1\")",
+            "networkSettings.ipv4Settings = ipv4Settings",
+            "",
+            "// Set the packet tunnel provider's settings.",
+            "setTunnelNetworkSettings(networkSettings) { error in",
+            "    completionHandler(error)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that the system routing table supersedes the ",
+              "type": "text"
+            },
+            {
+              "code": "includedRoutes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "excludedRoutes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties. For example, if a table routes traffic to hosts on the local network, those routes supersede these properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Also, if an app creates a network connection that routes traffic over a specific network interface, called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "scoping",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", then it supersedes the system routing table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Route-additional-traffic-through-a-personal-VPN-or-packet-tunnel-provider",
+          "level": 3,
+          "text": "Route additional traffic through a personal VPN or packet tunnel provider",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To route network traffic that’s not related to designated system services necessary",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for maintaining expected device functionality through a personal VPN or packet tunnel provider,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNProtocol/includeAllNetworks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create the tunnel provider configuration.",
+            "let protocolConfiguration = NETunnelProviderProtocol()",
+            "protocolConfiguration.serverAddress = \"https://127.0.0.1\"",
+            "",
+            "// Include network traffic.",
+            "protocolConfiguration.includeAllNetworks = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then the system scopes network connections, with certain exceptions, to the VPN tunnel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Also, after the VPN transitions from the disconnected (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNStatus/disconnected",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") to the connecting (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNStatus/connecting",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") state, the system doesn’t close TCP connections, but drops subsequent packets that previously established network connections send or receive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the VPN transitions away from the connected state, the system drops network traffic. For example, the system drops the network traffic when a device transitions from a Wi-Fi network to a cellular network, and while the VPN is in the process of reconnecting to the VPN server over the cellular network.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system always excludes the following traffic from the VPN, and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNProtocol/includeAllNetworks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property has no impact on it:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Network control plane traffic that maintains a device’s connection to the local network, such as DHCP traffic, or that communicates directly with the VPN server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Captive portal negotiation network traffic that authorizes a device with a Wi-Fi hotspot. For example, a coffee shop Wi-Fi hotspot may require that the user accept legal terms and conditions before the hotspot grants the device access to the internet.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Certain cellular services traffic that uses the cellular network only, such as VoLTE.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Traffic that communicates with a companion device, such as an Apple Watch.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Exclude-some-traffic-from-a-personal-VPN-or-packet-tunnel-provider",
+          "level": 3,
+          "text": "Exclude some traffic from a personal VPN or packet tunnel provider",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can make other exceptions when routing network traffic through a VPN using other ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNProtocol",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties. If you set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNProtocol/includeAllNetworks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you can exclude specific types of traffic from the VPN.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To exclude network connections to hosts on the local network — such as AirPlay, AirDrop, and CarPlay — set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNProtocol/excludeLocalNetworks",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To exclude cellular services network traffic — such as Wi-Fi Calling, MMS, SMS, and Visual Voicemail — set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNProtocol/excludeCellularServices",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This property doesn’t impact services that use the cellular network only — such as VoLTE — which the system automatically excludes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To exclude Apple Push Notification services (APNs) traffic, set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNProtocol/excludeAPNs",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Many system and app features use APNs, which may not work reliably when you route APNs through the VPN, resulting in missed or delayed push notifications and iMessages.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "// Include network traffic.",
+            "protocolConfiguration.includeAllNetworks = true",
+            "",
+            "// Except for local network, APNs, and cellular traffic.",
+            "protocolConfiguration.excludeLocalNetworks = true",
+            "protocolConfiguration.excludeAPNs = true",
+            "protocolConfiguration.excludeCellularServices = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Enforce-the-inclusions-and-exclusions-for-a-packet-tunnel-provider",
+          "level": 3,
+          "text": "Enforce the inclusions and exclusions for a packet tunnel provider",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enforce the ",
+              "type": "text"
+            },
+            {
+              "code": "includedRoutes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "excludedRoutes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties, set the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNProtocol/enforceRoutes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "protocolConfiguration.enforceRoutes = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system scopes the included routes to the VPN and the excluded routes to the current primary network interface, such as a Wi-Fi or a cellular network. This property supersedes the system routing table and scoping operations by apps. It’s also mutually exclusive from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNProtocol/includeAllNetworks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. If you set ",
+              "type": "text"
+            },
+            {
+              "code": "includeAllNetworks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the system ignores the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNProtocol/enforceRoutes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you set both the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNProtocol/enforceRoutes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNProtocol/excludeLocalNetworks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the system excludes network connections to hosts on the local network from the enforce routes behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "protocolConfiguration.excludeLocalNetworks = true",
+            "protocolConfiguration.enforceRoutes = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEIPv4Settings/includedRoutes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property contains the ",
+              "type": "text"
+            },
+            {
+              "code": "10.0.0.0/8",
+              "type": "codeVoice"
+            },
+            {
+              "text": " address and the local network subnet is ",
+              "type": "text"
+            },
+            {
+              "code": "10.10.0.0/16",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the system scopes network connections to hosts in the ",
+              "type": "text"
+            },
+            {
+              "code": "10.0.0.0/8",
+              "type": "codeVoice"
+            },
+            {
+              "text": " network to the VPN, but not those in the ",
+              "type": "text"
+            },
+            {
+              "code": "10.10.0.0/16",
+              "type": "codeVoice"
+            },
+            {
+              "text": " network.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Route-network-traffic-to-and-from-specific-apps",
+          "level": 3,
+          "text": "Route network traffic to and from specific apps",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use two types of per-app VPN features in the Network Extension framework to control network traffic to and from specific apps. You can use a packet tunnel provider to scope network connections from an app to the VPN, or use an app proxy to divert network connections from an app to a transparent proxy. To programmatically configure a per-app VPN, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEPacketTunnelProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class for packet tunnels, and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProviderManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class for app proxies.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For packet tunnel providers, use the per-app VPN rules to override any scoping operations that apps perform.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For macOS apps, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderManager/appRules",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property to associate",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "MDM-managed apps with the per-app VPN configuration.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Then configure exclusions using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderManager/excludedDomains",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Set this property to a list of domain names that you want to exclude from the per-app VPN.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For iOS apps, create rules using the MDM system and access the rules in your code using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderManager/copyAppRules()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system honors your disconnect on-demand rules.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you enable the on-demand feature",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNManager/isOnDemandEnabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ")",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and provide a disconnect app rule, the system bypasses the per-app VPN for devices",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on the network that match the on-demand rule criteria.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that the apps generally can’t communicate over the network at all unless the VPN is in the connected state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on per-app VPN features, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class overview.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Exclude-traffic-from-an-always-on-VPN",
+          "level": 3,
+          "text": "Exclude traffic from an always-on VPN",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS, you can exclude some network traffic from an always-on VPN device configuration. An always-on VPN acts as the only connection to the internet for an iOS device. You enable this feature by installing an always-on VPN profile on an MDM-supervised device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then the system routes network traffic on the device through the VPN with some exclusions. When the VPN isn’t in a connected state, and while the device starts up before the VPN starts, the system drops network traffic. For example, the VPN disconnects when the system transitions from a Wi-Fi network or the user disables the VPN.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system always excludes network control plane traffic — such as DHCP — but only excludes captive portal negotiation traffic, if you enable the ",
+              "type": "text"
+            },
+            {
+              "code": "AllowAllCaptiveNetworkPlugins",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "AllowCaptiveWebSheet",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "AllowedCaptiveNetworkPlugins",
+              "type": "codeVoice"
+            },
+            {
+              "text": " payload keys in the profile.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can exclude other traffic using the following keys in the always-on VPN profile:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ApplicationExceptions",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/devicemanagement/vpn/alwayson/applicationexceptionelement",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") — specifies apps to exclude from an always-on VPN.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ServiceExceptions",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/devicemanagement/vpn/alwayson/serviceexceptionelement",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") — specifies services to exclude from an always-on VPN. Possible values are ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "VoiceMail",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AirPrint",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CellularServices",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on MDM and configuring always-on VPNs, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DeviceManagement/configuring-multiple-devices-using-profiles",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DeviceManagement/profile-specific-payload-keys",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/DeviceManagement/configuring-multiple-devices-using-profiles": {
+      "abstract": [
+        {
+          "text": "Create and deploy configuration profiles to users within your organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DeviceManagement/configuring-multiple-devices-using-profiles",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Multiple Devices Using Profiles",
+      "type": "topic",
+      "url": "/documentation/DeviceManagement/configuring-multiple-devices-using-profiles"
+    },
+    "doc://com.apple.documentation/documentation/DeviceManagement/profile-specific-payload-keys": {
+      "abstract": [
+        {
+          "text": "Use the appropriate payload for your configuration needs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DeviceManagement/profile-specific-payload-keys",
+      "kind": "article",
+      "role": "article",
+      "title": "Profile-Specific Payload Keys",
+      "type": "topic",
+      "url": "/documentation/DeviceManagement/profile-specific-payload-keys"
+    },
+    "doc://com.apple.documentation/documentation/devicemanagement/vpn/alwayson/applicationexceptionelement": {
+      "abstract": [
+        {
+          "text": "The dictionary that defines which applications can have traffic outside the VPN tunnel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.AlwaysOn.ApplicationExceptionElement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/devicemanagement/vpn/alwayson/applicationexceptionelement",
+      "kind": "article",
+      "role": "symbol",
+      "title": "VPN.AlwaysOn.ApplicationExceptionElement",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/alwayson/applicationexceptionelement"
+    },
+    "doc://com.apple.documentation/documentation/devicemanagement/vpn/alwayson/serviceexceptionelement": {
+      "abstract": [
+        {
+          "text": "The dictionary that defines service exceptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.AlwaysOn.ServiceExceptionElement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/devicemanagement/vpn/alwayson/serviceexceptionelement",
+      "kind": "article",
+      "role": "symbol",
+      "title": "VPN.AlwaysOn.ServiceExceptionElement",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/alwayson/serviceexceptionelement"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension": {
+      "abstract": [
+        {
+          "text": "Customize and extend core networking features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network Extension",
+      "type": "topic",
+      "url": "/documentation/networkextension"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProviderManager": {
+      "abstract": [
+        {
+          "text": "An object to create and manage the app proxy provider’s VPN configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyProviderManager"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEAppProxyProviderManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEAppProxyProviderManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEAppProxyProviderManager",
+      "type": "topic",
+      "url": "/documentation/networkextension/neappproxyprovidermanager"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEIPv4Route": {
+      "abstract": [
+        {
+          "text": "The settings for an IPv4 route.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEIPv4Route"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEIPv4Route",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEIPv4Route"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEIPv4Route",
+      "type": "topic",
+      "url": "/documentation/networkextension/neipv4route"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEIPv4Settings/excludedRoutes": {
+      "abstract": [
+        {
+          "text": "The IPv4 network traffic that the system routes to the primary physical interface, not the TUN interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "excludedRoutes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NEIPv4Route",
+          "text": "NEIPv4Route"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEIPv4Settings/excludedRoutes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "excludedRoutes"
+        }
+      ],
+      "role": "symbol",
+      "title": "excludedRoutes",
+      "type": "topic",
+      "url": "/documentation/networkextension/neipv4settings/excludedroutes"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEIPv4Settings/includedRoutes": {
+      "abstract": [
+        {
+          "text": "The IPv4 network traffic that the system routes to the TUN interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "includedRoutes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NEIPv4Route",
+          "text": "NEIPv4Route"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEIPv4Settings/includedRoutes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "includedRoutes"
+        }
+      ],
+      "role": "symbol",
+      "title": "includedRoutes",
+      "type": "topic",
+      "url": "/documentation/networkextension/neipv4settings/includedroutes"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEIPv6Route": {
+      "abstract": [
+        {
+          "text": "The settings for an IPv6 route.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEIPv6Route"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEIPv6Route",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEIPv6Route"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEIPv6Route",
+      "type": "topic",
+      "url": "/documentation/networkextension/neipv6route"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEIPv6Settings/excludedRoutes": {
+      "abstract": [
+        {
+          "text": "The IPv6 network traffic that the system routes to the primary physical interface, not the TUN interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "excludedRoutes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NEIPv6Route",
+          "text": "NEIPv6Route"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEIPv6Settings/excludedRoutes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "excludedRoutes"
+        }
+      ],
+      "role": "symbol",
+      "title": "excludedRoutes",
+      "type": "topic",
+      "url": "/documentation/networkextension/neipv6settings/excludedroutes"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEIPv6Settings/includedRoutes": {
+      "abstract": [
+        {
+          "text": "The IPv6 network traffic that the system routes to the TUN interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "includedRoutes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NEIPv6Route",
+          "text": "NEIPv6Route"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEIPv6Settings/includedRoutes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "includedRoutes"
+        }
+      ],
+      "role": "symbol",
+      "title": "includedRoutes",
+      "type": "topic",
+      "url": "/documentation/networkextension/neipv6settings/includedroutes"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEPacketTunnelNetworkSettings": {
+      "abstract": [
+        {
+          "text": "The configuration for a packet tunnel provider’s virtual interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEPacketTunnelNetworkSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEPacketTunnelNetworkSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEPacketTunnelNetworkSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEPacketTunnelNetworkSettings",
+      "type": "topic",
+      "url": "/documentation/networkextension/nepackettunnelnetworksettings"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/ipv4Settings": {
+      "abstract": [
+        {
+          "text": "The tunnel IP version 4 settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ipv4Settings"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NEIPv4Settings",
+          "text": "NEIPv4Settings"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/ipv4Settings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IPv4Settings"
+        }
+      ],
+      "role": "symbol",
+      "title": "ipv4Settings",
+      "type": "topic",
+      "url": "/documentation/networkextension/nepackettunnelnetworksettings/ipv4settings"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/ipv6Settings": {
+      "abstract": [
+        {
+          "text": "The tunnel IP version 6 settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ipv6Settings"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NEIPv6Settings",
+          "text": "NEIPv6Settings"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/ipv6Settings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IPv6Settings"
+        }
+      ],
+      "role": "symbol",
+      "title": "ipv6Settings",
+      "type": "topic",
+      "url": "/documentation/networkextension/nepackettunnelnetworksettings/ipv6settings"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEPacketTunnelProvider": {
+      "abstract": [
+        {
+          "text": "The principal class for a packet tunnel provider app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEPacketTunnelProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEPacketTunnelProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEPacketTunnelProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEPacketTunnelProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/nepackettunnelprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider": {
+      "abstract": [
+        {
+          "text": "An abstract base class shared by NEPacketTunnelProvider and NEAppProxyProvider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NETunnelProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NETunnelProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NETunnelProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/netunnelprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider/setTunnelNetworkSettings(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Specify the network settings for the current tunneling session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTunnelNetworkSettings"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NETunnelNetworkSettings",
+          "text": "NETunnelNetworkSettings"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProvider/setTunnelNetworkSettings(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setTunnelNetworkSettings:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setTunnelNetworkSettings(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/netunnelprovider/settunnelnetworksettings(_:completionhandler:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderManager": {
+      "abstract": [
+        {
+          "text": "An object to create and manage the tunnel provider’s VPN configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NETunnelProviderManager"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NETunnelProviderManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NETunnelProviderManager",
+      "type": "topic",
+      "url": "/documentation/networkextension/netunnelprovidermanager"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderManager/appRules": {
+      "abstract": [
+        {
+          "text": "The rules for specific apps in a per-app VPN.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appRules"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NEAppRule",
+          "text": "NEAppRule"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderManager/appRules",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "appRules"
+        }
+      ],
+      "role": "symbol",
+      "title": "appRules",
+      "type": "topic",
+      "url": "/documentation/networkextension/netunnelprovidermanager/apprules"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderManager/copyAppRules()": {
+      "abstract": [
+        {
+          "text": "Returns a copy of the app rules currently set in the configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyAppRules"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NEAppRule",
+          "text": "NEAppRule"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderManager/copyAppRules()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "copyAppRules"
+        }
+      ],
+      "role": "symbol",
+      "title": "copyAppRules()",
+      "type": "topic",
+      "url": "/documentation/networkextension/netunnelprovidermanager/copyapprules()"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderManager/excludedDomains": {
+      "abstract": [
+        {
+          "text": "The domains that the system excludes from a per-app VPN.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "excludedDomains"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NETunnelProviderManager/excludedDomains",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "excludedDomains"
+        }
+      ],
+      "role": "symbol",
+      "title": "excludedDomains",
+      "type": "topic",
+      "url": "/documentation/networkextension/netunnelprovidermanager/excludeddomains"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNManager/isOnDemandEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean used to toggle the Connect On Demand capability.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isOnDemandEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNManager/isOnDemandEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "onDemandEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isOnDemandEnabled",
+      "type": "topic",
+      "url": "/documentation/networkextension/nevpnmanager/isondemandenabled"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNProtocol": {
+      "abstract": [
+        {
+          "text": "Settings common to both IKEv2 and IPsec VPN configurations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEVPNProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEVPNProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEVPNProtocol",
+      "type": "topic",
+      "url": "/documentation/networkextension/nevpnprotocol"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNProtocol/enforceRoutes": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether route rules for the tunnel take precedence over any locally defined routes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enforceRoutes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNProtocol/enforceRoutes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enforceRoutes"
+        }
+      ],
+      "role": "symbol",
+      "title": "enforceRoutes",
+      "type": "topic",
+      "url": "/documentation/networkextension/nevpnprotocol/enforceroutes"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNProtocol/excludeAPNs": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the system excludes all APNs network traffic from the tunnel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "excludeAPNs"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNProtocol/excludeAPNs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "excludeAPNs"
+        }
+      ],
+      "role": "symbol",
+      "title": "excludeAPNs",
+      "type": "topic",
+      "url": "/documentation/networkextension/nevpnprotocol/excludeapns"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNProtocol/excludeCellularServices": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the system excludes all cellular services network traffic from the tunnel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "excludeCellularServices"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNProtocol/excludeCellularServices",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "excludeCellularServices"
+        }
+      ],
+      "role": "symbol",
+      "title": "excludeCellularServices",
+      "type": "topic",
+      "url": "/documentation/networkextension/nevpnprotocol/excludecellularservices"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNProtocol/excludeLocalNetworks": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the system excludes all traffic destined for local networks from the tunnel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "excludeLocalNetworks"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNProtocol/excludeLocalNetworks",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "excludeLocalNetworks"
+        }
+      ],
+      "role": "symbol",
+      "title": "excludeLocalNetworks",
+      "type": "topic",
+      "url": "/documentation/networkextension/nevpnprotocol/excludelocalnetworks"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNProtocol/includeAllNetworks": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the system sends most network traffic over the tunnel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "includeAllNetworks"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNProtocol/includeAllNetworks",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "includeAllNetworks"
+        }
+      ],
+      "role": "symbol",
+      "title": "includeAllNetworks",
+      "type": "topic",
+      "url": "/documentation/networkextension/nevpnprotocol/includeallnetworks"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNStatus/connecting": {
+      "abstract": [
+        {
+          "text": "The VPN is in the process of connecting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "connecting"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNStatus/connecting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEVPNStatusConnecting"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEVPNStatus.connecting",
+      "type": "topic",
+      "url": "/documentation/networkextension/nevpnstatus/connecting"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNStatus/disconnected": {
+      "abstract": [
+        {
+          "text": "The VPN is disconnected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "disconnected"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEVPNStatus/disconnected",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEVPNStatusDisconnected"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEVPNStatus.disconnected",
+      "type": "topic",
+      "url": "/documentation/networkextension/nevpnstatus/disconnected"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/app-proxy-provider": {
+      "abstract": [
+        {
+          "text": "Implement a VPN client for a flow-oriented, custom VPN protocol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/app-proxy-provider",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App proxy provider",
+      "type": "topic",
+      "url": "/documentation/networkextension/app-proxy-provider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/packet-tunnel-provider": {
+      "abstract": [
+        {
+          "text": "Implement a VPN client for a packet-oriented, custom VPN protocol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/packet-tunnel-provider",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Packet tunnel provider",
+      "type": "topic",
+      "url": "/documentation/networkextension/packet-tunnel-provider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/personal-vpn": {
+      "abstract": [
+        {
+          "text": "Create and manage a VPN configuration that uses one of the built-in VPN protocols (IPsec or IKEv2).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/personal-vpn",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Personal VPN",
+      "type": "topic",
+      "url": "/documentation/networkextension/personal-vpn"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Virtual-private-networks",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/personal-vpn",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/packet-tunnel-provider",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/app-proxy-provider"
+      ],
+      "title": "Virtual private networks"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Virtual-private-networks",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/personal-vpn",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/packet-tunnel-provider",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/app-proxy-provider"
+              ],
+              "title": "Virtual private networks"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNProtocol~1excludeCellularServices/title",
+          "value": "excludeCellularServices"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNProtocol~1excludeCellularServices/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "excludeCellularServices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNProtocol~1includeAllNetworks/title",
+          "value": "includeAllNetworks"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNProtocol~1includeAllNetworks/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "includeAllNetworks"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNStatus~1disconnected/title",
+          "value": "NEVPNStatusDisconnected"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNStatus~1disconnected/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEVPNStatusDisconnected"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProviderManager~1copyAppRules()/title",
+          "value": "copyAppRules"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProviderManager~1copyAppRules()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "copyAppRules"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEIPv6Settings~1excludedRoutes/title",
+          "value": "excludedRoutes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEIPv6Settings~1excludedRoutes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "excludedRoutes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEIPv6Route/title",
+          "value": "NEIPv6Route"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEIPv6Route/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEIPv6Route"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEIPv6Route/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEIPv6Route"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProviderManager/title",
+          "value": "NEAppProxyProviderManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProviderManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyProviderManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEAppProxyProviderManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEAppProxyProviderManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEPacketTunnelProvider/title",
+          "value": "NEPacketTunnelProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEPacketTunnelProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEPacketTunnelProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEPacketTunnelProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEPacketTunnelProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNProtocol/title",
+          "value": "NEVPNProtocol"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEVPNProtocol"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNProtocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEVPNProtocol"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProviderManager~1appRules/title",
+          "value": "appRules"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProviderManager~1appRules/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "appRules"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProvider/title",
+          "value": "NETunnelProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETunnelProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETunnelProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEPacketTunnelNetworkSettings/title",
+          "value": "NEPacketTunnelNetworkSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEPacketTunnelNetworkSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEPacketTunnelNetworkSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEPacketTunnelNetworkSettings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEPacketTunnelNetworkSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNProtocol~1enforceRoutes/title",
+          "value": "enforceRoutes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNProtocol~1enforceRoutes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "enforceRoutes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEIPv4Settings~1excludedRoutes/title",
+          "value": "excludedRoutes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEIPv4Settings~1excludedRoutes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "excludedRoutes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEIPv4Route/title",
+          "value": "NEIPv4Route"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEIPv4Route/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEIPv4Route"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEIPv4Route/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEIPv4Route"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEPacketTunnelNetworkSettings~1ipv6Settings/title",
+          "value": "IPv6Settings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEPacketTunnelNetworkSettings~1ipv6Settings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IPv6Settings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProvider~1setTunnelNetworkSettings(_:completionHandler:)/title",
+          "value": "setTunnelNetworkSettings:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProvider~1setTunnelNetworkSettings(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setTunnelNetworkSettings:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEIPv4Settings~1includedRoutes/title",
+          "value": "includedRoutes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEIPv4Settings~1includedRoutes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "includedRoutes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEPacketTunnelNetworkSettings~1ipv4Settings/title",
+          "value": "IPv4Settings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEPacketTunnelNetworkSettings~1ipv4Settings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IPv4Settings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNProtocol~1excludeAPNs/title",
+          "value": "excludeAPNs"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNProtocol~1excludeAPNs/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "excludeAPNs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNProtocol~1excludeLocalNetworks/title",
+          "value": "excludeLocalNetworks"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNProtocol~1excludeLocalNetworks/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "excludeLocalNetworks"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNStatus~1connecting/title",
+          "value": "NEVPNStatusConnecting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNStatus~1connecting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEVPNStatusConnecting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEIPv6Settings~1includedRoutes/title",
+          "value": "includedRoutes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEIPv6Settings~1includedRoutes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "includedRoutes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProviderManager/title",
+          "value": "NETunnelProviderManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProviderManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETunnelProviderManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProviderManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NETunnelProviderManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProviderManager~1excludedDomains/title",
+          "value": "excludedDomains"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NETunnelProviderManager~1excludedDomains/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "excludedDomains"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNManager~1isOnDemandEnabled/title",
+          "value": "onDemandEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEVPNManager~1isOnDemandEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "onDemandEnabled"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/networkextension/routing-your-vpn-network-traffic"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/networkextension/routing-your-vpn-network-traffic"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

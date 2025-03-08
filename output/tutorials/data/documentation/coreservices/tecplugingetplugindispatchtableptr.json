@@ -1,0 +1,554 @@
+{
+  "abstract": [
+    {
+      "text": "Defines a pointer to a function that returnsa pointer to a plug-in dispatch table.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coreservices/tecplugingetplugindispatchtableptr"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1498366,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@TECPluginGetPluginDispatchTablePtr",
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.1",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "tdef",
+    "title": "TECPluginGetPluginDispatchTablePtr"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/tecplugindispatchtable",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@TECPluginDispatchTable",
+              "text": "TECPluginDispatchTable"
+            },
+            {
+              "kind": "text",
+              "text": " *(*"
+            },
+            {
+              "kind": "identifier",
+              "text": "TECPluginGetPluginDispatchTablePtr"
+            },
+            {
+              "kind": "text",
+              "text": ")("
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A pointer to the functiondispatch table for the plug-in. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You need this callback only for OS X plug-ins. When youcreate a TEC plug-in in OS X you must export a function named ",
+              "type": "text"
+            },
+            {
+              "code": "ConverterPluginGetPluginDispatchTable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " withthe following prototype:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "extern TECPluginDispatchTable *ConverterPluginGetPluginDispatchTable(void)",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function must return a pointer to the function dispatchtable for the plug-in. It is important you name the function ",
+              "type": "text"
+            },
+            {
+              "code": "ConverterPluginGetPluginDispatchTable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " because ",
+              "type": "text"
+            },
+            {
+              "code": "TECPluginGetPluginDispatchTablePtr",
+              "type": "codeVoice"
+            },
+            {
+              "text": " isa function pointer to a function of this exact name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Text Encoding Conversion Manager",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/text_encoding_conversion_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecpluginclearcontextinfoptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that resets aconverter object to its initial state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecpluginclearcontextinfoptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginClearContextInfoPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecpluginclearcontextinfoptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecpluginclearsniffercontextinfoptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that resets asniffer object to its initial settings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecpluginclearsniffercontextinfoptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginClearSnifferContextInfoPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecpluginclearsniffercontextinfoptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecpluginconverttextencodingptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that convertsstream of text from a source encoding to a destination encoding,using the conversion path specified by the converter object you supply.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecpluginconverttextencodingptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginConvertTextEncodingPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecpluginconverttextencodingptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecplugindispatchtable": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecplugindispatchtable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginDispatchTable",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecplugindispatchtable"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecplugindisposeencodingconverterptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that disposesof a converter object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecplugindisposeencodingconverterptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginDisposeEncodingConverterPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecplugindisposeencodingconverterptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecplugindisposeencodingsnifferptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that disposesof a sniffer object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecplugindisposeencodingsnifferptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginDisposeEncodingSnifferPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecplugindisposeencodingsnifferptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecpluginflushconversionptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that flushesout any data in a converter object’s temporary buffers and resetsthe converter object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecpluginflushconversionptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginFlushConversionPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecpluginflushconversionptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountavailablesniffersptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that counts andreturns the number of sniffers available in all installed plug-ins.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountavailablesniffersptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginGetCountAvailableSniffersPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecplugingetcountavailablesniffersptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountavailabletextencodingpairsptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that obtainsthe available text encoding pairs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountavailabletextencodingpairsptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginGetCountAvailableTextEncodingPairsPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecplugingetcountavailabletextencodingpairsptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountavailabletextencodingsptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that obtainsthe available text encodings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountavailabletextencodingsptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginGetCountAvailableTextEncodingsPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecplugingetcountavailabletextencodingsptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountdestinationtextencodingsptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that counts andreturns the number of destination encodings to which a specifiedsource encoding can be converted in one step.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountdestinationtextencodingsptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginGetCountDestinationTextEncodingsPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecplugingetcountdestinationtextencodingsptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountmailencodingsptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that obtainsthe text encodings available for email.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountmailencodingsptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginGetCountMailEncodingsPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecplugingetcountmailencodingsptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountsubtextencodingsptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that obtainsthe text encoding specifications for the subencodings the encodingscheme supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountsubtextencodingsptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginGetCountSubTextEncodingsPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecplugingetcountsubtextencodingsptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountwebencodingsptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that obtainsthe available web text encodings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountwebencodingsptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginGetCountWebEncodingsPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecplugingetcountwebencodingsptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecplugingetplugindispatchtableptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that returnsa pointer to a plug-in dispatch table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecplugingetplugindispatchtableptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginGetPluginDispatchTablePtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecplugingetplugindispatchtableptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecplugingettextencodingfrominternetnameptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that obtainsthe text encoding for an Internet text encoding name.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecplugingettextencodingfrominternetnameptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginGetTextEncodingFromInternetNamePtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecplugingettextencodingfrominternetnameptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecplugingettextencodinginternetnameptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that obtainsthe Internet text encoding name for a text encoding specification.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecplugingettextencodinginternetnameptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginGetTextEncodingInternetNamePtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecplugingettextencodinginternetnameptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecpluginnewencodingconverterptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that determinesa conversion path for a source and destination encoding, then createsa text encoding converter object and returns a pointer to it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecpluginnewencodingconverterptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginNewEncodingConverterPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecpluginnewencodingconverterptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecpluginnewencodingsnifferptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that createsa sniffer object and returns a reference to it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecpluginnewencodingsnifferptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginNewEncodingSnifferPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecpluginnewencodingsnifferptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/tecpluginsnifftextencodingptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer toa function that analyzes a text stream and returns the probable encodingsin a ranked list, based on an array of possible encodings you supply;it also returns the number of errors and features for each encoding. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/tecpluginsnifftextencodingptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TECPluginSniffTextEncodingPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/tecpluginsnifftextencodingptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/unicodetotextfallbackprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that convertsa Unicode text element for which there is no destination encodingequivalent in the appropriate mapping table to the fallback character sequencedefined by your fallback handler, and returns the converted charactersequence to the Unicode Converter.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/unicodetotextfallbackprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnicodeToTextFallbackProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/unicodetotextfallbackprocptr"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/unicodetotextfallbackprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecpluginnewencodingconverterptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecpluginclearcontextinfoptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecpluginconverttextencodingptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecpluginflushconversionptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecplugindisposeencodingconverterptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecpluginnewencodingsnifferptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecpluginclearsniffercontextinfoptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecpluginsnifftextencodingptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecplugindisposeencodingsnifferptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountavailabletextencodingsptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountavailabletextencodingpairsptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountdestinationtextencodingsptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountsubtextencodingsptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountavailablesniffersptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountwebencodingsptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecplugingetcountmailencodingsptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecplugingettextencodinginternetnameptr",
+        "doc://com.apple.documentation/documentation/coreservices/tecplugingettextencodingfrominternetnameptr"
+      ],
+      "title": "Callbacks"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/tecplugingetplugindispatchtableptr"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

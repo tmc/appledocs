@@ -1,0 +1,727 @@
+{
+  "abstract": [
+    {
+      "text": "Change the frequency response of an audio signal using a cascaded biquadratic filter.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/single-channel-biquadratic-filters"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/applying-biquadratic-filters-to-a-music-loop"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Applying biquadratic filters to a music loop"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can shape the output of an audio signal, such as by boosting or cutting the bass or treble of a music track, with the single-channel and multichannel biquadratic filters that the vDSP library provides.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vDSP library defines a biquadratic filter from a set of five coefficients for each section. This sample code app calculates those coefficients from a set of properties that it displays as controls in the user interface. The user interface provides controls to select the filter type (such as low-pass or high-pass), the center frequency of the filter, and the Q value that controls the width of the filter’s frequency band.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code app displays the magnitude response of the selected section, the magnitude response of the entire filter, the frequency-domain representation of the input signal, and the frequency-domain representation of the filtered, output signal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "biquad-demo-overview.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before exploring the code, try building and running the app to familiarize yourself with the effect of the different parameters on the music loop.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Initialize-the-biquadratic-filter",
+          "level": 3,
+          "text": "Initialize the biquadratic filter",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "biquadSectionCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " constant defines the number of sections that the biquadratic filter implements. The sample code app sets this to ",
+              "type": "text"
+            },
+            {
+              "code": "3",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by default.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "public let biquadSectionCount = vDSP_Length(3)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquad_CreateSetup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function returns a new biquadratic filter structure that contains ",
+              "type": "text"
+            },
+            {
+              "code": "biquadSectionCount",
+              "type": "codeVoice"
+            },
+            {
+              "text": " sections. The sample code app defines the coefficients to produce a filter that returns an output that’s identical to the input.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let coefficients = [[Float]](",
+            "    repeating: BiquadCoefficientCalculator.passthroughCoefficients.array,",
+            "    count: Int(biquadSectionCount)).flatMap {",
+            "        $0",
+            "}",
+            "",
+            "biquadSetup = vDSP_biquad_CreateSetup(vDSP.floatToDouble(coefficients),",
+            "                                      biquadSectionCount)!"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-the-biquadratic-coefficients",
+          "level": 3,
+          "text": "Define the biquadratic coefficients",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Five coefficients define each section of a biquadratic filter. The following formula describes the underlying math of the biquadratic filter, with ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "z",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " referring to the complex frequency-domain representation of the signal:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "biquad_formula.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code app includes the ",
+              "type": "text"
+            },
+            {
+              "code": "BiquadCoefficientCalculator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure that provides the ",
+              "type": "text"
+            },
+            {
+              "code": "static BiquadCoefficientCalculator.coefficients(for:sampleRate:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function. This function returns the five coefficients for a filter type, center frequency, Q, and sample rate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each filter type uses the same shared values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let omega = 2.0 * .pi * frequency / Float(sampleRate)",
+            "let sinOmega = sin(omega)",
+            "let alpha = sinOmega / (2 * Q)",
+            "let cosOmega = cos(omega)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "switch",
+              "type": "codeVoice"
+            },
+            {
+              "text": " statement calculates the coefficients for each filter type case. For example, the following code calculates the coefficients for a low-pass filter (that reduces high frequencies):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "case .lowpass:",
+            "    b0 = (1 - cosOmega) / 2",
+            "    b1 = 1 - cosOmega",
+            "    b2 = (1 - cosOmega) / 2",
+            "    a0 = 1 + alpha",
+            "    a1 = -2 * cosOmega",
+            "    a2 = 1 - alpha"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-the-biquadratic-coefficients",
+          "level": 3,
+          "text": "Set the biquadratic coefficients",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquad_SetCoefficientsSingle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function sets the coefficients for a section of the biquadratic filter. The sample code app defines ",
+              "type": "text"
+            },
+            {
+              "code": "selectedSectionIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the index of the currently selected section, and the ",
+              "type": "text"
+            },
+            {
+              "code": "BiquadCoefficientCalculator.SectionCoefficients",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure provides an ",
+              "type": "text"
+            },
+            {
+              "code": "array",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable that returns ",
+              "type": "text"
+            },
+            {
+              "code": "[b0, b1, b2, a1, a2]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "vDSP_biquad_SetCoefficientsSingle(biquadSetup,",
+            "                                  selectedSectionCoefficients.array,",
+            "                                  vDSP_Length(selectedSectionIndex),",
+            "                                  1)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Apply-the-biquadratic-filter-to-the-audio-sample",
+          "level": 3,
+          "text": "Apply the biquadratic filter to the audio sample",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquad",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function applies the biquadratic filter to a page of input samples and writes the result to the ",
+              "type": "text"
+            },
+            {
+              "code": "outputSignal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array. The ",
+              "type": "text"
+            },
+            {
+              "code": "delay",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array contains the past state for each section of the biquadratic filter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "vDSP_biquad(biquadSetup,",
+            "            &delay,",
+            "            page, 1,",
+            "            &outputSignal, 1,",
+            "            vDSP_Length(Self.sampleCount))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "outputSignal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the filtered version of ",
+              "type": "text"
+            },
+            {
+              "code": "page",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "delay",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the final state data of the filter. The sample code app passes ",
+              "type": "text"
+            },
+            {
+              "code": "delay",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the next call of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquad",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "ac30234bee3b/ApplyingBiquadraticFiltersToAMusicLoop.zip": {
+      "checksum": "ac30234bee3b95caefdc76af9237e7997e021d33679717fef8b29673f7a5799fbabaa1ebe1b0f0d588c4ca9abb3a67772061e5f1b9ec289ca03612f0a30e6315",
+      "identifier": "ac30234bee3b/ApplyingBiquadraticFiltersToAMusicLoop.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/ac30234bee3b/ApplyingBiquadraticFiltersToAMusicLoop.zip"
+    },
+    "biquad-demo-overview.png": {
+      "alt": "A screenshot of the sample app that includes four graphs. A dashed line graph indicates the magnitude response of the selected section. A solid line graph indicates the frequency-domain representation of the original signal. A background filled line graph indicates the magnitude response of the biquadratic filter. A foreground filled line graph indicates the frequency-domain representation of the filtered output.",
+      "identifier": "biquad-demo-overview.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fd595f0c3a982d73941d7cd90e668f73/biquad-demo-overview.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6cbb81f9afb713aca1c0a9b24e77bbdd/biquad-demo-overview~dark.png"
+        }
+      ]
+    },
+    "biquad_formula.png": {
+      "alt": "A mathematical formula that describes the transfer function that the vDSP library uses for biquadratic filtering. Cap H open parentheses z close parentheses equals b sub zero, plus b sub 1 times z to the power of minus one, plus b sub 2 times z to the power of minus two, over one plus a sub 1 times z to the power of minus one, plus a sub 2 times z to the power of minus 2.",
+      "identifier": "biquad_formula.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/32e8bf0cf46675e9b64513a51ac73ecf/biquad_formula.png"
+        }
+      ]
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/biquadratic-iir-filters": {
+      "abstract": [
+        {
+          "text": "Apply biquadratic filters to single-channel and multichannel data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/biquadratic-iir-filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Biquadratic IIR filters",
+      "type": "topic",
+      "url": "/documentation/accelerate/biquadratic-iir-filters"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/discrete-cosine-transforms": {
+      "abstract": [
+        {
+          "text": "Transform vectors of temporal and spatial domain real values to the frequency domain, and vice versa.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/discrete-cosine-transforms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Discrete Cosine transforms",
+      "type": "topic",
+      "url": "/documentation/accelerate/discrete-cosine-transforms"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/equalizing-audio-with-discrete-cosine-transforms-dcts": {
+      "abstract": [
+        {
+          "text": "Change the frequency response of an audio signal by manipulating frequency-domain data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/equalizing-audio-with-discrete-cosine-transforms-dcts",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Equalizing audio with discrete cosine transforms (DCTs)",
+      "type": "topic",
+      "url": "/documentation/accelerate/equalizing-audio-with-discrete-cosine-transforms-dcts"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/single-channel-biquadratic-filters": {
+      "abstract": [
+        {
+          "text": "Filter a single-channel signal with a cascade of biquadratic sections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/single-channel-biquadratic-filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Single-channel biquadratic filters",
+      "type": "topic",
+      "url": "/documentation/accelerate/single-channel-biquadratic-filters"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquad": {
+      "abstract": [
+        {
+          "text": "Applies a single-precision single-channel biquadratic IIR filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquad"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquad",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_biquad",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_biquad"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquad_CreateSetup": {
+      "abstract": [
+        {
+          "text": "Builds a data structure that contains precalculated data for use by a single-precision cascaded biquadratic filter function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquad_CreateSetup"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquad_CreateSetup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_biquad_CreateSetup",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_biquad_createsetup"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquad_SetCoefficientsSingle": {
+      "abstract": [
+        {
+          "text": "Sets single-precision coefficients of the specified single-channel biquadratic filter setup object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_biquad_SetCoefficientsSingle"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_biquad_SetCoefficientsSingle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_biquad_SetCoefficientsSingle",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_biquad_setcoefficientssingle"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library": {
+      "abstract": [
+        {
+          "text": "Perform basic arithmetic operations and common digital signal processing (DSP) routines on large vectors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vDSP",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp-library"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/visualizing-sound-as-an-audio-spectrogram": {
+      "abstract": [
+        {
+          "text": "Share image data between vDSP and vImage to visualize audio that a device microphone captures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/visualizing-sound-as-an-audio-spectrogram",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Visualizing sound as an audio spectrogram",
+      "type": "topic",
+      "url": "/documentation/accelerate/visualizing-sound-as-an-audio-spectrogram"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "ac30234bee3b/ApplyingBiquadraticFiltersToAMusicLoop.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Audio-Processing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/visualizing-sound-as-an-audio-spectrogram",
+        "doc://com.apple.accelerate/documentation/Accelerate/equalizing-audio-with-discrete-cosine-transforms-dcts",
+        "doc://com.apple.accelerate/documentation/Accelerate/biquadratic-iir-filters",
+        "doc://com.apple.accelerate/documentation/Accelerate/discrete-cosine-transforms"
+      ],
+      "title": "Audio Processing"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

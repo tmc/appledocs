@@ -1,0 +1,3269 @@
+{
+  "abstract": [
+    {
+      "text": "Increase the performance of common mathematical tasks with vDSP vector-vector and vector-scalar operations.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/using-vdsp-for-vector-based-arithmetic"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using vDSP for vector-based arithmetic"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "vDSP provides a suite of general-purpose, high-performance arithmetic functions that are alternatives to ",
+              "type": "text"
+            },
+            {
+              "code": "for",
+              "type": "codeVoice"
+            },
+            {
+              "text": " loops and ",
+              "type": "text"
+            },
+            {
+              "code": "map",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when applying operations on collections of floating-point values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the code below multiplies the element-wise sum of two arrays by a scalar value:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let a: [Float] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",
+            "let b: [Float] = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]",
+            "let c: Float = 2",
+            "",
+            "let d = zip(a, b).map {",
+            "    ($0.0 + $0.1) * c",
+            "}",
+            "",
+            "// d = [22.0, 44.0, 66.0, 88.0, 110.0, 132.0, 154.0, 176.0, 198.0, 220.0]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vDSP version of the same operation runs significantly faster.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let d = [Float](unsafeUninitializedCapacity: a.count) {",
+            "    buffer, initializedCount in",
+            "    ",
+            "    vDSP.multiply(addition: (a, b),",
+            "                  c,",
+            "                  result: &buffer)",
+            "    ",
+            "    initializedCount = a.count",
+            "}",
+            "",
+            "// d = [22.0, 44.0, 66.0, 88.0, 110.0, 132.0, 154.0, 176.0, 198.0, 220.0]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many vDSP functions have a variant that returns the result.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let a: [Float] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",
+            "let b: [Float] = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]",
+            "let c: Float = 2",
+            "",
+            "let d = vDSP.multiply(addition: (a, b),",
+            "                      c)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Available-arithmetic-functions",
+          "level": 3,
+          "text": "Available arithmetic functions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table summarizes the basic arithmetic functions available in vDSP. All functions are available in single- and double-precision variants.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Operation",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " column, a subscript (for example, ",
+              "type": "text"
+            },
+            {
+              "code": "a[i]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicates a vector, and no subscript (for example, ",
+              "type": "text"
+            },
+            {
+              "code": "a",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicates a scalar value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Operation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Function",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "c[i] = a[i] + b",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:)-53nh9",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "c[i] = a[i] + b[i]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:)-7swvf",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "c[i] = a[i] - b[i]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/subtract(_:_:)-9xmo8",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "c[i] = a[i] * b",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(_:_:)-993yp",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "c[i] = a[i] * b[i]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(_:_:)-9zgw",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "c[i] = a[i] / b",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/divide(_:_:)-1uqmz",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "c[i] = a / b[i]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/divide(_:_:)-70npt",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "o0[i] = i1[i] + i0[i]",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "o1[i] = i1[i] - i0[i]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/addSubtract(_:_:addResult:subtractResult:)-avzd",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "c[i] = a[i] / b[i]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/divide(_:_:)-6nfsi",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "d[i] = (a[i] + b[i]) * c",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(addition:_:)-4fnbx",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "d[i] = (a[i] + b[i]) * c[i]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(addition:_:)-7t59",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "d[i] = (a[i] - b[i]) * c",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(subtraction:_:)-106pt",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "d[i] = (a[i] - b[i]) * c[i]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(subtraction:_:)-6y7g6",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "d[i] = (a[i] * b[i]) + c",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(multiplication:_:)-36vhq",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "d[i] = (a[i] * b) + c[i]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(multiplication:_:)-7aut1",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "d[i] = (a[i] * b[i]) + c[i]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(multiplication:_:)-9bgb2",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "d[i] = (a[i] * b[i]) - c[i]",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/subtract(multiplication:_:)-6u3sp",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "e[i] = (a[i] * b) + (c[i] * d)",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(multiplication:multiplication:)-8rjh8",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "e[i] = (a[i] + b[i]) * (c[i] + d[i])",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(addition:addition:)-1voy8",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "e[i] = (a[i] * b[i]) - (c[i] * d[i])",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/subtract(multiplication:multiplication:)-1ghyu",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "e[i] = (a[i] - b[i]) * (c[i] - d[i])",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(subtraction:subtraction:)-1rnom",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "e[i] = (a[i] + b[i]) * (c[i] - d[i])",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(addition:subtraction:)-6h89l",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/controlling-vdsp-operations-with-stride": {
+      "abstract": [
+        {
+          "text": "Operate selectively on the elements of a vector at regular intervals.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/controlling-vdsp-operations-with-stride",
+      "kind": "article",
+      "role": "article",
+      "title": "Controlling vDSP operations with stride",
+      "type": "topic",
+      "url": "/documentation/accelerate/controlling-vdsp-operations-with-stride"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/resampling-a-signal-with-decimation": {
+      "abstract": [
+        {
+          "text": "Reduce the sample rate of a signal by specifying a decimation factor and applying a custom antialiasing filter.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/resampling-a-signal-with-decimation",
+      "kind": "article",
+      "role": "article",
+      "title": "Resampling a signal with decimation",
+      "type": "topic",
+      "url": "/documentation/accelerate/resampling-a-signal-with-decimation"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/using-linear-interpolation-to-construct-new-data-points": {
+      "abstract": [
+        {
+          "text": "Fill the gaps in arrays of numerical data using linear interpolation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/using-linear-interpolation-to-construct-new-data-points",
+      "kind": "article",
+      "role": "article",
+      "title": "Using linear interpolation to construct new data points",
+      "type": "topic",
+      "url": "/documentation/accelerate/using-linear-interpolation-to-construct-new-data-points"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:)-53nh9": {
+      "abstract": [
+        {
+          "text": "Returns the single-precision element-wise sum of a vector and a scalar value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:)-53nh9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/add(_:_:)-53nh9"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:)-7swvf": {
+      "abstract": [
+        {
+          "text": "Returns the single-precision element-wise sum of two vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(_:_:)-7swvf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/add(_:_:)-7swvf"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(multiplication:_:)-36vhq": {
+      "abstract": [
+        {
+          "text": "Returns the single-precision element-wise sum of the product of two vectors, and a scalar value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "multiplication"
+        },
+        {
+          "kind": "text",
+          "text": ": (a"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", b"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": "), "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(multiplication:_:)-36vhq",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(multiplication:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/add(multiplication:_:)-36vhq"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(multiplication:_:)-7aut1": {
+      "abstract": [
+        {
+          "text": "Returns the single-precision element-wise addition of the product of a vector and a scalar value, and a vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "multiplication"
+        },
+        {
+          "kind": "text",
+          "text": ": (a"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", b"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "), "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(multiplication:_:)-7aut1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(multiplication:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/add(multiplication:_:)-7aut1"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(multiplication:_:)-9bgb2": {
+      "abstract": [
+        {
+          "text": "Returns the single-precision element-wise sum of a vector and the product of two vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "multiplication"
+        },
+        {
+          "kind": "text",
+          "text": ": (a"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", b"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "), "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(multiplication:_:)-9bgb2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(multiplication:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/add(multiplication:_:)-9bgb2"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(multiplication:multiplication:)-8rjh8": {
+      "abstract": [
+        {
+          "text": "Returns the single-precision element-wise addition of two vector-scalar products.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "multiplication"
+        },
+        {
+          "kind": "text",
+          "text": ": (a"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", b"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "), "
+        },
+        {
+          "kind": "externalParam",
+          "text": "multiplication"
+        },
+        {
+          "kind": "text",
+          "text": ": (c"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", d"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/add(multiplication:multiplication:)-8rjh8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(multiplication:multiplication:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/add(multiplication:multiplication:)-8rjh8"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/addSubtract(_:_:addResult:subtractResult:)-avzd": {
+      "abstract": [
+        {
+          "text": "Calculates the double-precision element-wise sum and subtraction of two vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addSubtract"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "addResult"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "subtractResult"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/addSubtract(_:_:addResult:subtractResult:)-avzd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addSubtract(_:_:addResult:subtractResult:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/addsubtract(_:_:addresult:subtractresult:)-avzd"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/divide(_:_:)-1uqmz": {
+      "abstract": [
+        {
+          "text": "Calculates the single-precision element-wise division of a vector and a scalar value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "divide"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/divide(_:_:)-1uqmz",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "divide(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/divide(_:_:)-1uqmz"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/divide(_:_:)-6nfsi": {
+      "abstract": [
+        {
+          "text": "Returns the single-precision element-wise division of two vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "divide"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/divide(_:_:)-6nfsi",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "divide(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/divide(_:_:)-6nfsi"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/divide(_:_:)-70npt": {
+      "abstract": [
+        {
+          "text": "Returns the single-precision element-wise division of a scalar value and a vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "divide"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/divide(_:_:)-70npt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "divide(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/divide(_:_:)-70npt"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(_:_:)-993yp": {
+      "abstract": [
+        {
+          "text": "Returns the single-precision element-wise product of a vector and a scalar value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "multiply"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(_:_:)-993yp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "multiply(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/multiply(_:_:)-993yp"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(_:_:)-9zgw": {
+      "abstract": [
+        {
+          "text": "Returns the single-precision element-wise product of two vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "multiply"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(_:_:)-9zgw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "multiply(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/multiply(_:_:)-9zgw"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(addition:_:)-4fnbx": {
+      "abstract": [
+        {
+          "text": "Returns the single-precision element-wise product of the sum of two vectors and a scalar value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "multiply"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "addition"
+        },
+        {
+          "kind": "text",
+          "text": ": (a"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", b"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": "), "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(addition:_:)-4fnbx",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "multiply(addition:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/multiply(addition:_:)-4fnbx"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(addition:_:)-7t59": {
+      "abstract": [
+        {
+          "text": "Returns the single-precision element-wise product of a vector and the sum of two vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "multiply"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "addition"
+        },
+        {
+          "kind": "text",
+          "text": ": (a"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", b"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "), "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(addition:_:)-7t59",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "multiply(addition:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/multiply(addition:_:)-7t59"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(addition:addition:)-1voy8": {
+      "abstract": [
+        {
+          "text": "Returns the single-precision element-wise product of the sums of two pairs of vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "multiply"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "addition"
+        },
+        {
+          "kind": "text",
+          "text": ": (a"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", b"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "), "
+        },
+        {
+          "kind": "externalParam",
+          "text": "addition"
+        },
+        {
+          "kind": "text",
+          "text": ": (c"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", d"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ")) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(addition:addition:)-1voy8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "multiply(addition:addition:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/multiply(addition:addition:)-1voy8"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(addition:subtraction:)-6h89l": {
+      "abstract": [
+        {
+          "text": "Returns the single-precision element-wise product of the sum of two vectors and the difference of two vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "multiply"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "addition"
+        },
+        {
+          "kind": "text",
+          "text": ": (a"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ", b"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": "), "
+        },
+        {
+          "kind": "externalParam",
+          "text": "subtraction"
+        },
+        {
+          "kind": "text",
+          "text": ": (c"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", d"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ")) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(addition:subtraction:)-6h89l",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "multiply(addition:subtraction:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/multiply(addition:subtraction:)-6h89l"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(subtraction:_:)-106pt": {
+      "abstract": [
+        {
+          "text": "Returns the single-precision element-wise product of the difference of two vectors and a scalar value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "multiply"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "subtraction"
+        },
+        {
+          "kind": "text",
+          "text": ": (a"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", b"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": "), "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(subtraction:_:)-106pt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "multiply(subtraction:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/multiply(subtraction:_:)-106pt"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(subtraction:_:)-6y7g6": {
+      "abstract": [
+        {
+          "text": "Returns the single-precision element-wise product of a vector and the differences of two vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "multiply"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "subtraction"
+        },
+        {
+          "kind": "text",
+          "text": ": (a"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", b"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": "), "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(subtraction:_:)-6y7g6",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "multiply(subtraction:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/multiply(subtraction:_:)-6y7g6"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(subtraction:subtraction:)-1rnom": {
+      "abstract": [
+        {
+          "text": "Returns the single-precision element-wise product of the differences of two pairs of vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "multiply"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "subtraction"
+        },
+        {
+          "kind": "text",
+          "text": ": (a"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ", b"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": "), "
+        },
+        {
+          "kind": "externalParam",
+          "text": "subtraction"
+        },
+        {
+          "kind": "text",
+          "text": ": (c"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", d"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ")) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/multiply(subtraction:subtraction:)-1rnom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "multiply(subtraction:subtraction:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/multiply(subtraction:subtraction:)-1rnom"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/subtract(_:_:)-9xmo8": {
+      "abstract": [
+        {
+          "text": "Returns the single-precision element-wise subtraction of two vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subtract"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/subtract(_:_:)-9xmo8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subtract(_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/subtract(_:_:)-9xmo8"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/subtract(multiplication:_:)-6u3sp": {
+      "abstract": [
+        {
+          "text": "Returns the single-precision element-wise difference of a vector and the product of two vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subtract"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "multiplication"
+        },
+        {
+          "kind": "text",
+          "text": ": (a"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", b"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": "), "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/subtract(multiplication:_:)-6u3sp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subtract(multiplication:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/subtract(multiplication:_:)-6u3sp"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP/subtract(multiplication:multiplication:)-1ghyu": {
+      "abstract": [
+        {
+          "text": "Returns the single-precision element-wise difference of the products of two pairs of vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subtract"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "multiplication"
+        },
+        {
+          "kind": "text",
+          "text": ": (a"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", b"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "U"
+        },
+        {
+          "kind": "text",
+          "text": "), "
+        },
+        {
+          "kind": "externalParam",
+          "text": "multiplication"
+        },
+        {
+          "kind": "text",
+          "text": ": (c"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "R"
+        },
+        {
+          "kind": "text",
+          "text": ", d"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ")) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP/subtract(multiplication:multiplication:)-1ghyu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subtract(multiplication:multiplication:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp/subtract(multiplication:multiplication:)-1ghyu"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library": {
+      "abstract": [
+        {
+          "text": "Perform basic arithmetic operations and common digital signal processing (DSP) routines on large vectors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vDSP",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp-library"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Signal-Processing-Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/controlling-vdsp-operations-with-stride",
+        "doc://com.apple.accelerate/documentation/Accelerate/using-linear-interpolation-to-construct-new-data-points",
+        "doc://com.apple.accelerate/documentation/Accelerate/resampling-a-signal-with-decimation",
+        "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library"
+      ],
+      "title": "Signal Processing Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

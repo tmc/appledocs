@@ -1,0 +1,937 @@
+{
+  "abstract": [
+    {
+      "text": "Learn the recommended steps to migrate your code.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/migrating-your-objective-c-code-to-swift"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Migrating Your Objective-C Code to Swift"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can improve the architecture, logic, and performance of one of your Objective-C",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "apps by replacing pieces of it in Swift.  Interoperability makes it possible to integrate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "features migrated to Swift into Objective-C code with no hassle. You don’t need to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "rewrite your entire app in Swift at once.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Clean-Up-Your-Code",
+          "level": 3,
+          "text": "Clean Up Your Code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make sure that your Objective-C code and Swift code have optimal compatibility by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tidying up and modernizing your existing Objective-C codebase. For example, if there",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are parts of your codebase to which you haven’t added nullability annotations, now’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the time to add them. Make sure your code follows modern coding practices so that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it interacts more effectively with Swift.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Migrate-Your-Code",
+          "level": 3,
+          "text": "Migrate Your Code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The most effective approach for migrating code to Swift is on a per-file basis—that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is, one class at a time. Because you can’t subclass Swift classes in Objective-C,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it’s best to choose a class in your app that doesn’t have any subclasses. You’ll",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "replace the ",
+              "type": "text"
+            },
+            {
+              "code": ".m",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": ".h",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files for that class with a single ",
+              "type": "text"
+            },
+            {
+              "code": ".swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. Everything",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from your implementation and interface goes directly into this single Swift file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You won’t create a header file; Xcode generates a header automatically in case you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "need to reference it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a Swift class for your corresponding Objective-C .m and .h files by choosing",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "File > New > File > (iOS, watchOS, tvOS, or macOS) > Source > Swift",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "File. You can use the same or a different name than your Objective-C class. Class",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "prefixes are optional in Swift.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Import relevant system frameworks.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fill out an Objective-C bridging header if you need to access Objective-C code",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "from the same app target in your Swift file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To make your Swift class accessible and usable back in Objective-C, make it a",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "descendant of an Objective-C class. To specify a particular name for the class to",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "use in Objective-C, mark it with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@objc(",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "name",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "code": ")",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", where name is the name that your",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Objective-C code uses to reference the Swift class.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "As-You-Work",
+          "level": 4,
+          "text": "As You Work",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can set up your Swift class to integrate Objective-C behavior by subclassing",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Objective-C classes, adopting Objective-C protocols, and more.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "As you work with Objective-C APIs, you’ll need to know how Swift translates certain",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Objective-C language features. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Swift/documentation/Swift/objective-c-and-c-code-customization",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@objc(",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "name",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "code": ")",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute to provide Objective-C names for properties",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and methods when necessary.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Denote instance (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") and class (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "+",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") methods with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "func",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "class func",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", respectively.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Declare simple macros as global constants, and translate complex macros into functions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "After-You-Finish",
+          "level": 4,
+          "text": "After You Finish",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Update import statements in your Objective-C code (to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "#import \"ProductModuleName-Swift.h\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to refer to your new Swift code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Remove the original Objective-C ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".m",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file from the target by deselecting the target",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "membership checkbox. Don’t delete the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".m",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".h",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " files immediately; use them to",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "troubleshoot.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Update your code to use the Swift class name instead of the Objective-C name if",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "you gave the Swift class a different name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Troubleshooting-Tips-and-Reminders",
+          "level": 3,
+          "text": "Troubleshooting Tips and Reminders",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Migration experiences differ depending on your existing codebase, but here are some",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "general steps and tools to help you troubleshoot the process:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Remember that you can’t subclass a Swift class in Objective-C. Therefore, the class",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "you migrate can’t have any Objective-C subclasses.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Once you migrate a class to Swift, you must remove the corresponding ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".m",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "from the target before building to avoid a duplicate symbol error.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To make a Swift class available in Objective-C, make it a descendant of an Objective-C",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "class.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Command-click a Swift class name to see its generated header.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Option-click a symbol to see implicit information about it, like its type, attributes,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and documentation comments.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/calling-objective-c-apis-asynchronously": {
+      "abstract": [
+        {
+          "text": "Learn how functions and methods that take a completion handler are converted to Swift",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "asynchronous functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/calling-objective-c-apis-asynchronously",
+      "kind": "article",
+      "role": "article",
+      "title": "Calling Objective-C APIs Asynchronously",
+      "type": "topic",
+      "url": "/documentation/swift/calling-objective-c-apis-asynchronously"
+    },
+    "doc://com.apple.Swift/documentation/Swift/cocoa-design-patterns": {
+      "abstract": [
+        {
+          "text": "Adopt and interoperate with Cocoa design patterns in your Swift apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/cocoa-design-patterns",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Cocoa Design Patterns",
+      "type": "topic",
+      "url": "/documentation/swift/cocoa-design-patterns"
+    },
+    "doc://com.apple.Swift/documentation/Swift/handling-dynamically-typed-methods-and-objects-in-swift": {
+      "abstract": [
+        {
+          "text": "Cast instances of the Objective-C ",
+          "type": "text"
+        },
+        {
+          "code": "id",
+          "type": "codeVoice"
+        },
+        {
+          "text": " type to a specific Swift type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/handling-dynamically-typed-methods-and-objects-in-swift",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Dynamically Typed Methods and Objects in Swift",
+      "type": "topic",
+      "url": "/documentation/swift/handling-dynamically-typed-methods-and-objects-in-swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/imported-c-and-objective-c-apis": {
+      "abstract": [
+        {
+          "text": "Use native Swift syntax to interoperate with types and functions in C and Objective-C.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/imported-c-and-objective-c-apis",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Imported C and Objective-C APIs",
+      "type": "topic",
+      "url": "/documentation/swift/imported-c-and-objective-c-apis"
+    },
+    "doc://com.apple.Swift/documentation/Swift/objective-c-and-c-code-customization": {
+      "abstract": [
+        {
+          "text": "Apply macros to your Objective-C APIs to customize how they’re imported into Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/objective-c-and-c-code-customization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Objective-C and C Code Customization",
+      "type": "topic",
+      "url": "/documentation/swift/objective-c-and-c-code-customization"
+    },
+    "doc://com.apple.Swift/documentation/Swift/using-objective-c-runtime-features-in-swift": {
+      "abstract": [
+        {
+          "text": "Use selectors and key paths to interact with dynamic Objective-C APIs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/using-objective-c-runtime-features-in-swift",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Objective-C Runtime Features in Swift",
+      "type": "topic",
+      "url": "/documentation/swift/using-objective-c-runtime-features-in-swift"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Language-Interoperability-with-Objective-C-and-C",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/objective-c-and-c-code-customization",
+        "doc://com.apple.Swift/documentation/Swift/cocoa-design-patterns",
+        "doc://com.apple.Swift/documentation/Swift/handling-dynamically-typed-methods-and-objects-in-swift",
+        "doc://com.apple.Swift/documentation/Swift/using-objective-c-runtime-features-in-swift",
+        "doc://com.apple.Swift/documentation/Swift/imported-c-and-objective-c-apis",
+        "doc://com.apple.Swift/documentation/Swift/calling-objective-c-apis-asynchronously"
+      ],
+      "title": "Language Interoperability with Objective-C and C"
+    }
+  ]
+}

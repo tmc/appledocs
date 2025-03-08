@@ -1,0 +1,3103 @@
+{
+  "abstract": [
+    {
+      "text": "A region of a view that generates mouse-tracking and cursor-update events when the pointer is over that region.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSTrackingArea",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSTrackingArea"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSTrackingArea"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.5",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSTrackingArea"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTrackingArea"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating a tracking-area object, you specify a rectangle (in the view’s coordinate system), an owning object, and one or more options, along with (optionally) a dictionary of data. After it’s created, you add the tracking-area object to a view using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/addTrackingArea(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Depending on the options specified, the owner of the tracking area receives ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseEntered(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseExited(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseMoved(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/cursorUpdate(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " messages when the mouse cursor enters, moves within, and leaves the tracking area. Currently the tracking area is restricted to rectangles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object belongs to its view rather than to its window. Consequently, you can add and remove tracking rectangles without needing to worry if the view has been added to a window. In addition, this design makes it possible for the AppKit to compute the geometry of tracking areas automatically when a view moves and, in some cases, when a view changes size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can configure the scope of activity for mouse tracking. There are four options:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The tracking area is active only when the view is first responder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The tracking area is active when the view is in the key window.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The tracking area is active when the application is active.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The tracking area is active always (even when the application is inactive).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Other options for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects include specifying that the tracking area should be synchronized with the visible rectangle of the view (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/visibleRect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") and for generating ",
+              "type": "text"
+            },
+            {
+              "code": "mouseEntered:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "mouseExited",
+              "type": "codeVoice"
+            },
+            {
+              "text": ": events when the mouse is dragged.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Other ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods related to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects (in addition to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/addTrackingArea(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") include ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/removeTrackingArea(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/updateTrackingAreas()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Views can override the latter method to recompute and replace their ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects in certain situations, such as a change in the size of the ",
+              "type": "text"
+            },
+            {
+              "code": "visibleRect",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSCursor": {
+      "abstract": [
+        {
+          "text": "A pointer (also called a cursor).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCursor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSCursor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCursor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCursor",
+      "type": "topic",
+      "url": "/documentation/appkit/nscursor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSResponder/cursorUpdate(with:)": {
+      "abstract": [
+        {
+          "text": "Informs the receiver that the mouse cursor has moved into a cursor rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cursorUpdate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/cursorUpdate(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cursorUpdate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "cursorUpdate(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsresponder/cursorupdate(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseEntered(with:)": {
+      "abstract": [
+        {
+          "text": "Informs the receiver that the cursor has entered a tracking rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mouseEntered"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseEntered(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mouseEntered:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mouseEntered(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsresponder/mouseentered(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseExited(with:)": {
+      "abstract": [
+        {
+          "text": "Informs the receiver that the cursor has exited a tracking rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mouseExited"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseExited(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mouseExited:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mouseExited(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsresponder/mouseexited(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseMoved(with:)": {
+      "abstract": [
+        {
+          "text": "Informs the receiver that the mouse has moved.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mouseMoved"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEvent",
+          "text": "NSEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseMoved(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mouseMoved:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mouseMoved(with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsresponder/mousemoved(with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea": {
+      "abstract": [
+        {
+          "text": "A region of a view that generates mouse-tracking and cursor-update events when the pointer is over that region.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTrackingArea"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTrackingArea"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTrackingArea",
+      "type": "topic",
+      "url": "/documentation/appkit/nstrackingarea"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct": {
+      "abstract": [
+        {
+          "text": "The data type defined for the constants specified in the ",
+          "type": "text"
+        },
+        {
+          "code": "options",
+          "type": "codeVoice"
+        },
+        {
+          "text": " parameter of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/init(rect:options:owner:userInfo:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ". These constants are described below; you can specify multiple constants by performing a bitwise-OR operation with them. In particular, you must supply one or more of the tracking-type constants (that is, ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/mouseEnteredAndExited",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/mouseMoved",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/cursorUpdate",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ") and one of the active constants (that is, ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/activeWhenFirstResponder",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/activeInKeyWindow",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/activeInActiveApp",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/activeAlways",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": "). In addition, you may specify any of the behavior constants (that is, ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/assumeInside",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/inVisibleRect",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/enabledDuringMouseDrag",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ").",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Options"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Options"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTrackingArea.Options",
+      "type": "topic",
+      "url": "/documentation/appkit/nstrackingarea/options-swift.struct"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/activeAlways": {
+      "abstract": [
+        {
+          "text": "The owner receives messages regardless of first-responder status, window status, or application status. The ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/cursorUpdate(with:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " message is ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "not",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": " sent when the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/cursorUpdate",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " option is specified along with this constant. This value specifies when the tracking area defined by an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object is active.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeAlways"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTrackingArea",
+          "text": "NSTrackingArea"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSTrackingAreaOptions",
+          "text": "Options"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/activeAlways",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTrackingActiveAlways"
+        }
+      ],
+      "role": "symbol",
+      "title": "activeAlways",
+      "type": "topic",
+      "url": "/documentation/appkit/nstrackingarea/options-swift.struct/activealways"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/activeInActiveApp": {
+      "abstract": [
+        {
+          "text": "The owner receives messages when the application is active. This value specifies when the tracking area defined by an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object is active.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeInActiveApp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTrackingArea",
+          "text": "NSTrackingArea"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSTrackingAreaOptions",
+          "text": "Options"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/activeInActiveApp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTrackingActiveInActiveApp"
+        }
+      ],
+      "role": "symbol",
+      "title": "activeInActiveApp",
+      "type": "topic",
+      "url": "/documentation/appkit/nstrackingarea/options-swift.struct/activeinactiveapp"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/activeInKeyWindow": {
+      "abstract": [
+        {
+          "text": "The owner receives messages when the view is in the key window. This value specifies when the tracking area defined by an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object is active.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeInKeyWindow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTrackingArea",
+          "text": "NSTrackingArea"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSTrackingAreaOptions",
+          "text": "Options"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/activeInKeyWindow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTrackingActiveInKeyWindow"
+        }
+      ],
+      "role": "symbol",
+      "title": "activeInKeyWindow",
+      "type": "topic",
+      "url": "/documentation/appkit/nstrackingarea/options-swift.struct/activeinkeywindow"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/activeWhenFirstResponder": {
+      "abstract": [
+        {
+          "text": "The owner receives messages when the view is the first responder. This value specifies when the tracking area defined by an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object is active.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activeWhenFirstResponder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTrackingArea",
+          "text": "NSTrackingArea"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSTrackingAreaOptions",
+          "text": "Options"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/activeWhenFirstResponder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTrackingActiveWhenFirstResponder"
+        }
+      ],
+      "role": "symbol",
+      "title": "activeWhenFirstResponder",
+      "type": "topic",
+      "url": "/documentation/appkit/nstrackingarea/options-swift.struct/activewhenfirstresponder"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/assumeInside": {
+      "abstract": [
+        {
+          "text": "The first event is generated when the cursor leaves the tracking area, regardless if the cursor is inside the area when the ",
+          "type": "text"
+        },
+        {
+          "code": "NSTrackingArea",
+          "type": "codeVoice"
+        },
+        {
+          "text": " is added to a view.  If this option is not specified, the first event is generated when the cursor leaves the tracking area if the cursor is initially inside the area, or when the cursor enters the area if the cursor is initially outside it. Generally, you do not want to request this behavior. This value specifies a behavior of the tracking area defined by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "assumeInside"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTrackingArea",
+          "text": "NSTrackingArea"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSTrackingAreaOptions",
+          "text": "Options"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/assumeInside",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTrackingAssumeInside"
+        }
+      ],
+      "role": "symbol",
+      "title": "assumeInside",
+      "type": "topic",
+      "url": "/documentation/appkit/nstrackingarea/options-swift.struct/assumeinside"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/cursorUpdate": {
+      "abstract": [
+        {
+          "text": "A tracking option that receives events when the mouse cursor enters and exits the tracking area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cursorUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTrackingArea",
+          "text": "NSTrackingArea"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSTrackingAreaOptions",
+          "text": "Options"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/cursorUpdate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTrackingCursorUpdate"
+        }
+      ],
+      "role": "symbol",
+      "title": "cursorUpdate",
+      "type": "topic",
+      "url": "/documentation/appkit/nstrackingarea/options-swift.struct/cursorupdate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/enabledDuringMouseDrag": {
+      "abstract": [
+        {
+          "text": "The owner receives ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSMouseEntered",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " events when the mouse cursor is dragged into the tracking area. If this option is not specified, the owner receives mouse-entered events when the mouse is moved (no buttons pressed) into the tracking area and on ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSLeftMouseUp",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " events after a mouse drag.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enabledDuringMouseDrag"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTrackingArea",
+          "text": "NSTrackingArea"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSTrackingAreaOptions",
+          "text": "Options"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/enabledDuringMouseDrag",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTrackingEnabledDuringMouseDrag"
+        }
+      ],
+      "role": "symbol",
+      "title": "enabledDuringMouseDrag",
+      "type": "topic",
+      "url": "/documentation/appkit/nstrackingarea/options-swift.struct/enabledduringmousedrag"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/inVisibleRect": {
+      "abstract": [
+        {
+          "text": "Mouse tracking occurs only in the visible rectangle of the view—in other words, that region of the tracking rectangle that is unobscured. Otherwise, the entire tracking area is active regardless of overlapping views. The ",
+          "type": "text"
+        },
+        {
+          "code": "NSTrackingArea",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object is automatically synchronized with changes in the view’s visible area (",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/visibleRect",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ") and the value returned from ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/rect",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " is ignored. This value specifies a behavior of the tracking area defined by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inVisibleRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTrackingArea",
+          "text": "NSTrackingArea"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSTrackingAreaOptions",
+          "text": "Options"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/inVisibleRect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTrackingInVisibleRect"
+        }
+      ],
+      "role": "symbol",
+      "title": "inVisibleRect",
+      "type": "topic",
+      "url": "/documentation/appkit/nstrackingarea/options-swift.struct/invisiblerect"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/mouseEnteredAndExited": {
+      "abstract": [
+        {
+          "text": "The owner of the tracking area receives ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseEntered(with:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " when the mouse cursor enters the area and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseExited(with:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " events when the mouse leaves the area. This value specifies a type of tracking area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mouseEnteredAndExited"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTrackingArea",
+          "text": "NSTrackingArea"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSTrackingAreaOptions",
+          "text": "Options"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/mouseEnteredAndExited",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTrackingMouseEnteredAndExited"
+        }
+      ],
+      "role": "symbol",
+      "title": "mouseEnteredAndExited",
+      "type": "topic",
+      "url": "/documentation/appkit/nstrackingarea/options-swift.struct/mouseenteredandexited"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/mouseMoved": {
+      "abstract": [
+        {
+          "text": "The owner of the tracking area receives ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/mouseMoved(with:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " messages while the mouse cursor is within the area. This value specifies a type of tracking area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mouseMoved"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTrackingArea",
+          "text": "NSTrackingArea"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSTrackingAreaOptions",
+          "text": "Options"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct/mouseMoved",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTrackingMouseMoved"
+        }
+      ],
+      "role": "symbol",
+      "title": "mouseMoved",
+      "type": "topic",
+      "url": "/documentation/appkit/nstrackingarea/options-swift.struct/mousemoved"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/init(rect:options:owner:userInfo:)": {
+      "abstract": [
+        {
+          "text": "Initializes and returns an object defining a region of a view to receive mouse-tracking events, mouse-moved events, cursor-update events, or possibly all these events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "rect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTrackingArea",
+          "text": "NSTrackingArea"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSTrackingAreaOptions",
+          "text": "Options"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "owner"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/init(rect:options:owner:userInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithRect:options:owner:userInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(rect:options:owner:userInfo:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstrackingarea/init(rect:options:owner:userinfo:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/options-swift.property": {
+      "abstract": [
+        {
+          "text": "The options specified for the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTrackingArea",
+          "text": "NSTrackingArea"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSTrackingAreaOptions",
+          "text": "Options"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/options-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "options"
+        }
+      ],
+      "role": "symbol",
+      "title": "options",
+      "type": "topic",
+      "url": "/documentation/appkit/nstrackingarea/options-swift.property"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/owner": {
+      "abstract": [
+        {
+          "text": "The object owning the receiver, which is the recipient of mouse-tracking, mouse-movement, and cursor-update messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "owner"
+        },
+        {
+          "kind": "text",
+          "text": ": AnyObject?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/owner",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "owner"
+        }
+      ],
+      "role": "symbol",
+      "title": "owner",
+      "type": "topic",
+      "url": "/documentation/appkit/nstrackingarea/owner"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/rect": {
+      "abstract": [
+        {
+          "text": "The rectangle defining the area encompassed by the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/rect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rect"
+        }
+      ],
+      "role": "symbol",
+      "title": "rect",
+      "type": "topic",
+      "url": "/documentation/appkit/nstrackingarea/rect"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/userInfo": {
+      "abstract": [
+        {
+          "text": "The dictionary containing the data associated with the receiver when it was created.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/userInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "userInfo",
+      "type": "topic",
+      "url": "/documentation/appkit/nstrackingarea/userinfo"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView": {
+      "abstract": [
+        {
+          "text": "The infrastructure for drawing, printing, and handling events in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/addTrackingArea(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a given tracking area to the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addTrackingArea"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTrackingArea",
+          "text": "NSTrackingArea"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/addTrackingArea(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addTrackingArea:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addTrackingArea(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/addtrackingarea(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/removeTrackingArea(_:)": {
+      "abstract": [
+        {
+          "text": "Removes a given tracking area from the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeTrackingArea"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTrackingArea",
+          "text": "NSTrackingArea"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/removeTrackingArea(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeTrackingArea:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeTrackingArea(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/removetrackingarea(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/updateTrackingAreas()": {
+      "abstract": [
+        {
+          "text": "Invoked automatically when the view’s geometry changes such that its tracking areas need to be recalculated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateTrackingAreas"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/updateTrackingAreas()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateTrackingAreas"
+        }
+      ],
+      "role": "symbol",
+      "title": "updateTrackingAreas()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/updatetrackingareas()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView/visibleRect": {
+      "abstract": [
+        {
+          "text": "The portion of the view that isn’t clipped by its superviews.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "visibleRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView/visibleRect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "visibleRect"
+        }
+      ],
+      "role": "symbol",
+      "title": "visibleRect",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview/visiblerect"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Cursors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSCursor"
+      ],
+      "title": "Cursors"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializing-the-Tracking-Area-Object",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/init(rect:options:owner:userInfo:)"
+      ],
+      "title": "Initializing the Tracking-Area Object"
+    },
+    {
+      "anchor": "Getting-Object-Attributes",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/options-swift.property",
+        "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/owner",
+        "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/rect",
+        "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/userInfo"
+      ],
+      "title": "Getting Object Attributes"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.5",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSTrackingArea"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTrackingArea"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTrackingArea"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Initializing-the-Tracking-Area-Object",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/init(rect:options:owner:userInfo:)"
+              ],
+              "title": "Initializing the Tracking-Area Object"
+            },
+            {
+              "anchor": "Getting-Object-Attributes",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/options-swift.property",
+                "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/owner",
+                "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/rect",
+                "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/userInfo"
+              ],
+              "title": "Getting Object Attributes"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTrackingArea/Options-swift.struct"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Cursors",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSCursor"
+              ],
+              "title": "Cursors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSTrackingArea"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1mouseExited(with:)/title",
+          "value": "mouseExited:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1mouseExited(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mouseExited:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1init(rect:options:owner:userInfo:)/title",
+          "value": "initWithRect:options:owner:userInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1init(rect:options:owner:userInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithRect:options:owner:userInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1Options-swift.struct~1mouseMoved/title",
+          "value": "NSTrackingMouseMoved"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1Options-swift.struct~1mouseMoved/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTrackingMouseMoved"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1Options-swift.struct~1activeAlways/title",
+          "value": "NSTrackingActiveAlways"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1Options-swift.struct~1activeAlways/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTrackingActiveAlways"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1Options-swift.struct~1enabledDuringMouseDrag/title",
+          "value": "NSTrackingEnabledDuringMouseDrag"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1Options-swift.struct~1enabledDuringMouseDrag/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTrackingEnabledDuringMouseDrag"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1owner/title",
+          "value": "owner"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1owner/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "owner"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1updateTrackingAreas()/title",
+          "value": "updateTrackingAreas"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1updateTrackingAreas()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateTrackingAreas"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1Options-swift.struct~1cursorUpdate/title",
+          "value": "NSTrackingCursorUpdate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1Options-swift.struct~1cursorUpdate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTrackingCursorUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1userInfo/title",
+          "value": "userInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1userInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea/title",
+          "value": "NSTrackingArea"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTrackingArea"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTrackingArea"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1Options-swift.struct~1activeInActiveApp/title",
+          "value": "NSTrackingActiveInActiveApp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1Options-swift.struct~1activeInActiveApp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTrackingActiveInActiveApp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCursor/title",
+          "value": "NSCursor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCursor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCursor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSCursor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCursor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1mouseMoved(with:)/title",
+          "value": "mouseMoved:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1mouseMoved(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mouseMoved:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1visibleRect/title",
+          "value": "visibleRect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1visibleRect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "visibleRect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1Options-swift.struct~1mouseEnteredAndExited/title",
+          "value": "NSTrackingMouseEnteredAndExited"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1Options-swift.struct~1mouseEnteredAndExited/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTrackingMouseEnteredAndExited"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1Options-swift.struct/title",
+          "value": "NSTrackingAreaOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1Options-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTrackingAreaOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1Options-swift.struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTrackingAreaOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1options-swift.property/title",
+          "value": "options"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1options-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "options"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/title",
+          "value": "NSView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1rect/title",
+          "value": "rect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1rect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1Options-swift.struct~1activeWhenFirstResponder/title",
+          "value": "NSTrackingActiveWhenFirstResponder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1Options-swift.struct~1activeWhenFirstResponder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTrackingActiveWhenFirstResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1addTrackingArea(_:)/title",
+          "value": "addTrackingArea:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1addTrackingArea(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addTrackingArea:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1Options-swift.struct~1activeInKeyWindow/title",
+          "value": "NSTrackingActiveInKeyWindow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1Options-swift.struct~1activeInKeyWindow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTrackingActiveInKeyWindow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1Options-swift.struct~1inVisibleRect/title",
+          "value": "NSTrackingInVisibleRect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1Options-swift.struct~1inVisibleRect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTrackingInVisibleRect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1mouseEntered(with:)/title",
+          "value": "mouseEntered:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1mouseEntered(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mouseEntered:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1cursorUpdate(with:)/title",
+          "value": "cursorUpdate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1cursorUpdate(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "cursorUpdate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1Options-swift.struct~1assumeInside/title",
+          "value": "NSTrackingAssumeInside"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTrackingArea~1Options-swift.struct~1assumeInside/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTrackingAssumeInside"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1removeTrackingArea(_:)/title",
+          "value": "removeTrackingArea:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView~1removeTrackingArea(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeTrackingArea:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nstrackingarea"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nstrackingarea"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

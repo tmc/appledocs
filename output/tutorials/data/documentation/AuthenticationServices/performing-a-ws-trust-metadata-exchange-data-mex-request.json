@@ -1,0 +1,537 @@
+{
+  "abstract": [
+    {
+      "text": "Send and process a WS-Trust MEX request to determine the version and URLs for authentication.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/platform-single-sign-on-sso",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authentication-process"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-a-ws-trust-metadata-exchange-data-mex-request"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Authentication Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Performing a WS-Trust metadata exchange data (MEX) request"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After receiving a preauthentication response from the identity provider (IdP), the next step the system performs for federated authentication with WS-Trust, meaning between security domains, is to send a WS-Trust MEX request to the federated IdP.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system sends a WS-Trust MEX request to determine the WS-Trust version and URLs to use for authentication. It sends this request when the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/federationType-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/FederationType-swift.enum/wsTrust",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or when the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/federationType-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/FederationType-swift.enum/dynamicWSTrust",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the MEX URL is parsed from the preauthentication response. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-a-preauthentication-request",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-WS-Trust-MEX-network-request",
+          "level": 3,
+          "text": "Create the WS-Trust MEX network request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The request is an HTTP GET to the URL in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/federationMEXURL",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or to the URL received from the pre-authentication request, as shown here:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GET /wstrust/mex HTTP/1.1",
+            "Host: auth.example.com"
+          ],
+          "syntax": "http",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Receive-the-WS-Trust-MEX-network-response",
+          "level": 3,
+          "text": "Receive the WS-Trust MEX network response",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the http status is ",
+              "type": "text"
+            },
+            {
+              "code": "200",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the response body loads as XML. The system parses the XML to determine the WSTrust endpoint and version to use. The system supports WS-Trust versions 2005 and 1.3; however, version 1.3 is preferred. The system only supports https as the transport.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices": {
+      "abstract": [
+        {
+          "text": "Make it easy for users to log into apps and services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Authentication Services",
+      "type": "topic",
+      "url": "/documentation/authenticationservices"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/FederationType-swift.enum/dynamicWSTrust": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dynamicWSTrust"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/FederationType-swift.enum/dynamicWSTrust",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProviderExtensionFederationTypeDynamicWSTrust"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationProviderExtensionLoginConfiguration.FederationType.dynamicWSTrust",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/federationtype-swift.enum/dynamicwstrust"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/FederationType-swift.enum/wsTrust": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wsTrust"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/FederationType-swift.enum/wsTrust",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAuthorizationProviderExtensionFederationTypeWSTrust"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAuthorizationProviderExtensionLoginConfiguration.FederationType.wsTrust",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/federationtype-swift.enum/wstrust"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/federationMEXURL": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "federationMEXURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/federationMEXURL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "federationMEXURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "federationMEXURL",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/federationmexurl"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/federationType-swift.property": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "federationType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationProviderExtensionLoginConfiguration",
+          "text": "ASAuthorizationProviderExtensionLoginConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ASAuthorizationProviderExtensionFederationType",
+          "text": "FederationType"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASAuthorizationProviderExtensionLoginConfiguration/federationType-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "federationType"
+        }
+      ],
+      "role": "symbol",
+      "title": "federationType",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/federationtype-swift.property"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authentication-process": {
+      "abstract": [
+        {
+          "text": "Use a system-supported method to authenticate with an identity provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authentication-process",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Authentication process",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/authentication-process"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/obtaining-a-server-nonce": {
+      "abstract": [
+        {
+          "text": "Request and process a server nonce to verify communication and detect replays.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/obtaining-a-server-nonce",
+      "kind": "article",
+      "role": "article",
+      "title": "Obtaining a server nonce",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/obtaining-a-server-nonce"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-a-preauthentication-request": {
+      "abstract": [
+        {
+          "text": "Request and process a preauthentication for dynamic WS-Trust authentication.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-a-preauthentication-request",
+      "kind": "article",
+      "role": "article",
+      "title": "Performing a preauthentication request",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/performing-a-preauthentication-request"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/platform-single-sign-on-sso": {
+      "abstract": [
+        {
+          "text": "Use credentials from macOS login to perform single sign-on with an identity provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/platform-single-sign-on-sso",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Platform single sign-on (SSO)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/platform-single-sign-on-sso"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Pre-login",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/obtaining-a-server-nonce",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-a-preauthentication-request"
+      ],
+      "title": "Pre-login"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Pre-login",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/obtaining-a-server-nonce",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/performing-a-preauthentication-request"
+              ],
+              "title": "Pre-login"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration~1FederationType-swift.enum~1wsTrust/title",
+          "value": "ASAuthorizationProviderExtensionFederationTypeWSTrust"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration~1FederationType-swift.enum~1wsTrust/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProviderExtensionFederationTypeWSTrust"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration~1federationMEXURL/title",
+          "value": "federationMEXURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration~1federationMEXURL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "federationMEXURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration~1FederationType-swift.enum~1dynamicWSTrust/title",
+          "value": "ASAuthorizationProviderExtensionFederationTypeDynamicWSTrust"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration~1FederationType-swift.enum~1dynamicWSTrust/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAuthorizationProviderExtensionFederationTypeDynamicWSTrust"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration~1federationType-swift.property/title",
+          "value": "federationType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASAuthorizationProviderExtensionLoginConfiguration~1federationType-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "federationType"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/authenticationservices/performing-a-ws-trust-metadata-exchange-data-mex-request"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/authenticationservices/performing-a-ws-trust-metadata-exchange-data-mex-request"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

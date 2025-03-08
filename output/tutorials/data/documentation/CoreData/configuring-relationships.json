@@ -1,0 +1,898 @@
+{
+  "abstract": [
+    {
+      "text": "Specify how entities relate and how change propagates between them.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coredata/documentation/CoreData",
+        "doc://com.apple.coredata/documentation/CoreData/modeling-data"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coredata/documentation/CoreData/configuring-relationships"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Data"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring Relationships"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you define at least two entities as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/configuring-entities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can add a relationship between the entities.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A relationship describes how an entity affects another entity. At minimum, a relationship specifies a name, a destination entity, a delete rule, a cardinality type (To One or To Many), settings for whether the relationship must be saved in the store (transient), and whether it is required to have a value when saved (optional). You must also configure every relationship with an inverse relationship.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-Relationships",
+          "level": 3,
+          "text": "Add Relationships",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a relationship, do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the graph editor style to view all your app’s entities.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control-drag from one entity to another to create a pair of relationships. An arrow appears between the entities to indicate a relationship, and the editor creates a placeholder relationship with the name ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "newRelationship",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in each entity.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3842670",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-Relationships",
+          "level": 3,
+          "text": "Configure Relationships",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After creating a pair of relationships, configure each relationship as indicated in the screenshot and the steps that follow:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3845726",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the table editor style to edit one entity at a time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the Data Model inspector (choose View > Inspectors > Show Data Model Inspector).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the source entity from the Entities list, then select the new relationship in the Relationships list. Use the Data Model inspector to configure its name, destination, inverse, delete rule, and cardinality type, and to indicate if it is transient or optional.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the destination entity from the Entities list, then select the new relationship in the Relationships list. Use the Data Model inspector to configure its name, destination, inverse, delete rule, and cardinality type, and to indicate if it is transient or optional.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3839160",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The above example shows a ",
+              "type": "text"
+            },
+            {
+              "code": "Quake",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entity’s ",
+              "type": "text"
+            },
+            {
+              "code": "countries",
+              "type": "codeVoice"
+            },
+            {
+              "text": " relationship, referring to one or more countries a given earthquake affects. It has an inverse relationship on the ",
+              "type": "text"
+            },
+            {
+              "code": "Country",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entity called ",
+              "type": "text"
+            },
+            {
+              "code": "quakes",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", referring to any earthquakes affecting that country.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Transient relationships aren’t saved to the persistent store. So transient relationships are useful to temporarily store calculated or derived values. Core Data does track changes to transient property values for undo purposes.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Transient",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Optional relationships aren’t required to have any instances of their destination type. A required relationship must point to one or more instances of the destination type.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Optional",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Each relationship points from a source entity (the entity whose relationships you’re editing) to a destination entity. The destination entity is a related type that affects and is affected by the source type.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Destination",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Setting the same source and destination types creates a reflexive relationship. For example, an ",
+              "type": "text"
+            },
+            {
+              "code": "Employee",
+              "type": "codeVoice"
+            },
+            {
+              "text": " may manage another ",
+              "type": "text"
+            },
+            {
+              "code": "Employee",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Inverse relationships enable Core Data to propagate change in both directions when an instance of either the source or destination type changes. Every relationship must have an inverse.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Inverse",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating relationships in the Graph editor, you add inverse relationships between entities in a single step. When creating relationships in the Table editor, you add inverse relationships to each entity individually.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A relationship’s delete rule specifies how changes propagate across relationships when Core Data deletes a source instance.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Delete Rule",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select No Action to delete the source object instance, but leave references to it in any destination object instances, which you update manually.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select** **Nullify to delete the source object instance, and nullify references to it in any destination object instances.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select Cascade to delete the source object instance, and with it, all of the destination object instances.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Select Deny to delete the source object only if it doesn’t point to any destination object instances.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Specify a relationship as being To One or To Many, which is known as its cardinality.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Cardinality Type",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use To One relationships to connect the source with a single instance of the destination type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use To Many relationships to connect the source with a mutable set of the destination type, and to optionally specify an arrangement and count:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Arrangement—Select the Ordered checkbox to specify that the relationship has an inherent ordering, and to generate an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "ordered",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " mutable set.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Count—You can also place upper and lower limits on the number of destination instances. For optional relationships, the number of instances can be zero or within these bounds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Includes the field in the Spotlight index. For more information, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/CoreSpotlight",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Index in Spotlight",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coredata/documentation/CoreData": {
+      "abstract": [
+        {
+          "text": "Persist or cache data on a single device, or sync data to multiple devices with CloudKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Data",
+      "type": "topic",
+      "url": "/documentation/coredata"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSDeleteRule": {
+      "abstract": [
+        {
+          "text": "Constants that determine what happens when you delete a relationship’s owning managed object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDeleteRule"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSDeleteRule",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDeleteRule"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDeleteRule",
+      "type": "topic",
+      "url": "/documentation/coredata/nsdeleterule"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/configuring-attributes": {
+      "abstract": [
+        {
+          "text": "Describe the properties that compose an entity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/configuring-attributes",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Attributes",
+      "type": "topic",
+      "url": "/documentation/coredata/configuring-attributes"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/configuring-entities": {
+      "abstract": [
+        {
+          "text": "Model your app’s objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/configuring-entities",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Entities",
+      "type": "topic",
+      "url": "/documentation/coredata/configuring-entities"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/generating-code": {
+      "abstract": [
+        {
+          "text": "Automatically or manually generate managed object subclasses from entities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/generating-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating code",
+      "type": "topic",
+      "url": "/documentation/coredata/generating-code"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/modeling-data": {
+      "abstract": [
+        {
+          "text": "Configure the data model file to contain your app’s object graph.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/modeling-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Modeling data",
+      "type": "topic",
+      "url": "/documentation/coredata/modeling-data"
+    },
+    "doc://com.apple.documentation/documentation/CoreSpotlight": {
+      "abstract": [
+        {
+          "text": "Add search capabilities to your app, and index your content so people can find it from Spotlight and Safari.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreSpotlight",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Spotlight",
+      "type": "topic",
+      "url": "/documentation/CoreSpotlight"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3839160": {
+      "alt": "A screenshot showing the countries relationship in the Data Model inspector. The destination is Country, the inverse is quakes, the delete rule is Nullify, and the relationship type is To Many.",
+      "identifier": "media-3839160",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6e71bb7023524882df35f6b029c6f390/media-3839160@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fdf3664cc00e47476f4211997213ef6d/media-3839160~dark@2x.png"
+        }
+      ]
+    },
+    "media-3842670": {
+      "alt": "A screenshot showing two entities side-by-side in the Data Model editor when the Graph editor style is in a selected state. An arrow that represents a relationship joins the two entities.",
+      "identifier": "media-3842670",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a68ba0a099550c5f72d44874c93df11b/media-3842670@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f4e4c8c7bc7339b2b63a8da4009055f2/media-3842670~dark@2x.png"
+        }
+      ]
+    },
+    "media-3845726": {
+      "alt": "A screenshot of Xcode’s Data model editor. The Quake entity is in a selected state, and the screenshot highlights the entity’s relationships. The Data Model inspector shows the attributes of a relationship with the name countries.",
+      "identifier": "media-3845726",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/53dc5402512f6561f90b48591ea5a0c3/media-3845726@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ac3d63fcd033f7c638ace928af829e10/media-3845726~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/NSDeleteRule"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Configuring-a-Core-Data-Model",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/configuring-entities",
+        "doc://com.apple.coredata/documentation/CoreData/configuring-attributes",
+        "doc://com.apple.coredata/documentation/CoreData/generating-code"
+      ],
+      "title": "Configuring a Core Data Model"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/NSDeleteRule"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Configuring-a-Core-Data-Model",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/configuring-entities",
+                "doc://com.apple.coredata/documentation/CoreData/configuring-attributes",
+                "doc://com.apple.coredata/documentation/CoreData/generating-code"
+              ],
+              "title": "Configuring a Core Data Model"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSDeleteRule/title",
+          "value": "NSDeleteRule"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSDeleteRule/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDeleteRule"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSDeleteRule/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDeleteRule"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coredata/configuring-relationships"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coredata/configuring-relationships"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

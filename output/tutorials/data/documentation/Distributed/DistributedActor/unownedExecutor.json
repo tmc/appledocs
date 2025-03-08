@@ -1,0 +1,517 @@
+{
+  "abstract": [
+    {
+      "text": "Retrieve the executor for this distributed actor as an optimized,",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "unowned reference. This API is equivalent to ",
+      "type": "text"
+    },
+    {
+      "code": "Actor/unownedExecutor",
+      "type": "codeVoice"
+    },
+    {
+      "text": ",",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "however, by default, it intentionally returns ",
+      "type": "text"
+    },
+    {
+      "code": "nil",
+      "type": "codeVoice"
+    },
+    {
+      "text": " if this actor is a reference",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "to a remote distributed actor, because the executor for remote references",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "is effectively never g",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Distributed",
+        "doc://com.apple.Swift/documentation/Distributed/DistributedActor"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/unownedExecutor"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:11Distributed0A5ActorP15unownedExecutorScevp",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "unownedExecutor"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Sce",
+        "text": "UnownedSerialExecutor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Distributed"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "required": true,
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "unownedExecutor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "nonisolated"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "unownedExecutor"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/UnownedSerialExecutor",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sce",
+              "text": "UnownedSerialExecutor"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Custom-implementation-requirements",
+          "level": 2,
+          "text": "Custom implementation requirements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This property must always evaluate to the same executor for a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "given actor instance, and holding on to the actor must keep the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "executor alive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This property will be implicitly accessed when work needs to be",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scheduled onto this actor.  These accesses may be merged,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "eliminated, and rearranged with other work, and they may even",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "be introduced when not strictly required.  Visible side effects",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are therefore strongly discouraged within this property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Distributed": {
+      "abstract": [
+        {
+          "text": "Build systems that run distributed code across multiple processes and devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Distributed",
+      "type": "topic",
+      "url": "/documentation/distributed"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActor": {
+      "abstract": [
+        {
+          "text": "Common protocol to which all distributed actors conform implicitly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DistributedActor"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DistributedActor"
+        }
+      ],
+      "role": "symbol",
+      "title": "DistributedActor",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactor"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActor/unownedExecutor": {
+      "abstract": [
+        {
+          "text": "Retrieve the executor for this distributed actor as an optimized,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "unowned reference. This API is equivalent to ",
+          "type": "text"
+        },
+        {
+          "code": "Actor/unownedExecutor",
+          "type": "codeVoice"
+        },
+        {
+          "text": ",",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "however, by default, it intentionally returns ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if this actor is a reference",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to a remote distributed actor, because the executor for remote references",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "is effectively never g",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unownedExecutor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sce",
+          "text": "UnownedSerialExecutor"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/unownedExecutor",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "unownedExecutor",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactor/unownedexecutor"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnownedSerialExecutor": {
+      "abstract": [
+        {
+          "text": "An unowned reference to a serial executor (a ",
+          "type": "text"
+        },
+        {
+          "code": "SerialExecutor",
+          "type": "codeVoice"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "value).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnownedSerialExecutor"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnownedSerialExecutor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnownedSerialExecutor"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnownedSerialExecutor",
+      "type": "topic",
+      "url": "/documentation/swift/unownedserialexecutor"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/distributed/distributedactor/unownedexecutor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

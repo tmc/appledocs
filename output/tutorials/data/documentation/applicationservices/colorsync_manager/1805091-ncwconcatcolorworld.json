@@ -1,0 +1,533 @@
+{
+  "abstract": [
+    {
+      "text": "Defines a color world for color transformations among a series of concatenated profiles. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805091-ncwconcatcolorworld"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1805091,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "role": "pseudoSymbol",
+    "symbolKind": "func",
+    "title": "NCWConcatColorWorld"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "CMError NCWConcatColorWorld ("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   CMWorldRef *cw,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   NCMConcatProfileSet *profileSet,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   CMConcatCallBackUPP proc,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   void *refCon"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A reference to a color world that the ColorSync Manager returns if the function completes successfully. You pass this reference to other functions that use the color world for color-matching and color-checking sessions. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "cw"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of profiles describing the processing to be carried out. The array is in processing order source through destination. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "profileSet"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A calling-program-supplied callback function that allows your application to monitor progress or abort the operation. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "proc"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A reference constant containing data specified by the          calling application program. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "refCon"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "CMError",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The caller can override the color management module (CMM) that would normally be selected by ColorSync by providing a CMM identifier in the ",
+              "type": "text"
+            },
+            {
+              "code": "NCMConcatProfileSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure, or pass 0 to accept ColorSync's CMM selection (note that this could either be the user's preferred CMM selection or the CMM called for in the profile). The ",
+              "type": "text"
+            },
+            {
+              "code": "flags",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and k parameters are provided to allow easy customization of such attributes as quality and gamut-checking, while preserving the other settings. Each profile in the set can be customized by overriding the intent, and the selection of the transform tag. Together with other profiles, a custom-rendering environment can be set up to transform to or from device-dependent spaces with a minimum of gamut compression and/or unnecessary transformations to and from connection spaces. This flexibility comes at the price of specific knowledge of the profile contents and how device gamuts overlap. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that for standard input and output device profiles, A2B and B2A tags represent transforms from data space to connection space and from connection space to data space, respectively. Under these circumstances, the caller would not normally be able to use the same transform tags (e.g., ",
+              "type": "text"
+            },
+            {
+              "code": "kUseAtoB",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ) consecutively, since a connection space would not be the same as the subsequent data space. If the spaces aren't the same, the caller will get ",
+              "type": "text"
+            },
+            {
+              "code": "a cmCantConcatenateError",
+              "type": "codeVoice"
+            },
+            {
+              "text": " error returned. For profiles of type ",
+              "type": "text"
+            },
+            {
+              "code": "cmLinkClass",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "cmAbstractClass",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "cmColorSpaceClass",
+              "type": "codeVoice"
+            },
+            {
+              "text": " , and ",
+              "type": "text"
+            },
+            {
+              "code": "cmNamedColorClass",
+              "type": "codeVoice"
+            },
+            {
+              "text": " , these constants are not always meaningful, and the caller is encouraged to think in terms of the actual tags present in the profiles (e.g., A2B0 or B2A0 ). Under these conditions, it may well be appropriate to specify two transform tags of the same type consecutively, as long as the actual color spaces align in between tags. If this is not the case, a c",
+              "type": "text"
+            },
+            {
+              "code": "mCantConcatenateError",
+              "type": "codeVoice"
+            },
+            {
+              "text": " error is returned.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The callback proc is provided as protection against the appearance of a stalled machine during lengthy color world processing. If a CMM takes more than several          seconds to process the information and create a color world, it will call the callback proc, if one is provided, and pass it the ",
+              "type": "text"
+            },
+            {
+              "code": "refCon",
+              "type": "codeVoice"
+            },
+            {
+              "text": " provided. This is also true for ",
+              "type": "text"
+            },
+            {
+              "code": "NCWNewLinkProfile",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ColorSync Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/applicationservices/colorsync_manager#1670295"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805079-ncwnewcolorworld": {
+      "abstract": [
+        {
+          "text": "Creates a color world for color matching based on the specified source and destination profiles. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805079-ncwnewcolorworld",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "NCWNewColorWorld",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805079-ncwnewcolorworld"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805087-cwconcatcolorworld": {
+      "abstract": [
+        {
+          "text": "Sets up a color world that includes a set of profiles for various color transformations among devices in a sequence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805087-cwconcatcolorworld",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CWConcatColorWorld",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805087-cwconcatcolorworld"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805091-ncwconcatcolorworld": {
+      "abstract": [
+        {
+          "text": "Defines a color world for color transformations among a series of concatenated profiles. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805091-ncwconcatcolorworld",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "NCWConcatColorWorld",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805091-ncwconcatcolorworld"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805097-cmgetcwinfo": {
+      "abstract": [
+        {
+          "text": "Obtains information about the color management modules (CMMs) used for a specific color world.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805097-cmgetcwinfo",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetCWInfo",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805097-cmgetcwinfo"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805102-cwdisposecolorworld": {
+      "abstract": [
+        {
+          "text": "Releases the private storage associated with a color world when your application has finished using the color world. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805102-cwdisposecolorworld",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CWDisposeColorWorld",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805102-cwdisposecolorworld"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805108-cwmatchcolors": {
+      "abstract": [
+        {
+          "text": "Matches colors in a color list, using the specified color world.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805108-cwmatchcolors",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CWMatchColors",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805108-cwmatchcolors"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805111-cwcheckcolors": {
+      "abstract": [
+        {
+          "text": "Tests a list of colors using a specified color world to see if they fall within the gamut of a destination device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805111-cwcheckcolors",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CWCheckColors",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805111-cwcheckcolors"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805116-cwmatchbitmap": {
+      "abstract": [
+        {
+          "text": "Matches the colors of a bitmap to the gamut of a destination device using the profiles specified by a color world.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805116-cwmatchbitmap",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CWMatchBitmap",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805116-cwmatchbitmap"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805121-cwcheckbitmap": {
+      "abstract": [
+        {
+          "text": "Tests the colors of the pixel data of a bitmap to determine whether the colors map to the gamut of the destination device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805121-cwcheckbitmap",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CWCheckBitmap",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805121-cwcheckbitmap"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805126-cwfilllookuptexture": {
+      "abstract": [
+        {
+          "text": "Fills a 3-D lookup texture from a color world.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805126-cwfilllookuptexture",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CWFillLookupTexture",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1805126-cwfilllookuptexture"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805079-ncwnewcolorworld",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805087-cwconcatcolorworld",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805097-cmgetcwinfo",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805102-cwdisposecolorworld",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805108-cwmatchcolors",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805111-cwcheckcolors",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805116-cwmatchbitmap",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805121-cwcheckbitmap",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1805126-cwfilllookuptexture"
+      ],
+      "title": "Working With ColorWorlds"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/colorsync_manager/1805091-ncwconcatcolorworld"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

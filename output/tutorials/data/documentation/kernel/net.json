@@ -1,0 +1,606 @@
+{
+  "abstract": [
+    {
+      "text": "Access network-related utilities.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/net"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3570934,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "net"
+  },
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1397885-ether_add_proto": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1397885-ether_add_proto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ether_add_proto",
+      "type": "topic",
+      "url": "/documentation/kernel/1397885-ether_add_proto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1397887-ether_del_proto": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1397887-ether_del_proto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ether_del_proto",
+      "type": "topic",
+      "url": "/documentation/kernel/1397887-ether_del_proto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1397889-ether_family_init": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1397889-ether_family_init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ether_family_init",
+      "type": "topic",
+      "url": "/documentation/kernel/1397889-ether_family_init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1397890-ether_ioctl": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1397890-ether_ioctl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ether_ioctl",
+      "type": "topic",
+      "url": "/documentation/kernel/1397890-ether_ioctl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1397892-ether_frameout": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1397892-ether_frameout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ether_frameout",
+      "type": "topic",
+      "url": "/documentation/kernel/1397892-ether_frameout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1397894-ether_check_multi": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1397894-ether_check_multi",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ether_check_multi",
+      "type": "topic",
+      "url": "/documentation/kernel/1397894-ether_check_multi"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1397896-ether_demux": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1397896-ether_demux",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ether_demux",
+      "type": "topic",
+      "url": "/documentation/kernel/1397896-ether_demux"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1584163-inet_arp_init_ifaddr": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1584163-inet_arp_init_ifaddr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inet_arp_init_ifaddr",
+      "type": "topic",
+      "url": "/documentation/kernel/1584163-inet_arp_init_ifaddr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1584164-inet_arp_handle_input": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1584164-inet_arp_handle_input",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inet_arp_handle_input",
+      "type": "topic",
+      "url": "/documentation/kernel/1584164-inet_arp_handle_input"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1584165-inet_arp_lookup": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1584165-inet_arp_lookup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inet_arp_lookup",
+      "type": "topic",
+      "url": "/documentation/kernel/1584165-inet_arp_lookup"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1589467-bpfattach": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1589467-bpfattach",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bpfattach",
+      "type": "topic",
+      "url": "/documentation/kernel/1589467-bpfattach"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1589470-bpf_tap_in": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1589470-bpf_tap_in",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bpf_tap_in",
+      "type": "topic",
+      "url": "/documentation/kernel/1589470-bpf_tap_in"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1589576-bpf_tap_out": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1589576-bpf_tap_out",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bpf_tap_out",
+      "type": "topic",
+      "url": "/documentation/kernel/1589576-bpf_tap_out"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1589700-bpf_attach": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1589700-bpf_attach",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bpf_attach",
+      "type": "topic",
+      "url": "/documentation/kernel/1589700-bpf_attach"
+    },
+    "doc://com.apple.documentation/documentation/kernel/architecture": {
+      "abstract": [
+        {
+          "text": "Access machine-level and architectural information about the current platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/architecture",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "architecture",
+      "type": "topic",
+      "url": "/documentation/kernel/architecture"
+    },
+    "doc://com.apple.documentation/documentation/kernel/bsm": {
+      "abstract": [
+        {
+          "text": "Audit resource usage on the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/bsm",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "bsm",
+      "type": "topic",
+      "url": "/documentation/kernel/bsm"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hfs": {
+      "abstract": [
+        {
+          "text": "Access HFS file-system data structures. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hfs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "hfs",
+      "type": "topic",
+      "url": "/documentation/kernel/hfs"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ifnet_add_proto_func": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_add_proto_func",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ifnet_add_proto_func",
+      "type": "topic",
+      "url": "/documentation/kernel/ifnet_add_proto_func"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ifnet_attach_proto_param": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_attach_proto_param",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ifnet_attach_proto_param",
+      "type": "topic",
+      "url": "/documentation/kernel/ifnet_attach_proto_param"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ifnet_attach_proto_param_v2": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_attach_proto_param_v2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ifnet_attach_proto_param_v2",
+      "type": "topic",
+      "url": "/documentation/kernel/ifnet_attach_proto_param_v2"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ifnet_check_multi": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_check_multi",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ifnet_check_multi",
+      "type": "topic",
+      "url": "/documentation/kernel/ifnet_check_multi"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ifnet_del_proto_func": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_del_proto_func",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ifnet_del_proto_func",
+      "type": "topic",
+      "url": "/documentation/kernel/ifnet_del_proto_func"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ifnet_demux_desc": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_demux_desc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ifnet_demux_desc",
+      "type": "topic",
+      "url": "/documentation/kernel/ifnet_demux_desc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ifnet_demux_func": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_demux_func",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ifnet_demux_func",
+      "type": "topic",
+      "url": "/documentation/kernel/ifnet_demux_func"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ifnet_detached_func": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_detached_func",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ifnet_detached_func",
+      "type": "topic",
+      "url": "/documentation/kernel/ifnet_detached_func"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ifnet_event_func": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_event_func",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ifnet_event_func",
+      "type": "topic",
+      "url": "/documentation/kernel/ifnet_event_func"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ifnet_family_t": {
+      "abstract": [
+        {
+          "text": "Storage type for the interface family.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_family_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ifnet_family_t",
+      "type": "topic",
+      "url": "/documentation/kernel/ifnet_family_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ifnet_framer_func": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_framer_func",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ifnet_framer_func",
+      "type": "topic",
+      "url": "/documentation/kernel/ifnet_framer_func"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ifnet_init_params": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_init_params",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ifnet_init_params",
+      "type": "topic",
+      "url": "/documentation/kernel/ifnet_init_params"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ifnet_ioctl_func": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_ioctl_func",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ifnet_ioctl_func",
+      "type": "topic",
+      "url": "/documentation/kernel/ifnet_ioctl_func"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ifnet_offload_t": {
+      "abstract": [
+        {
+          "text": "Flags indicating the offload support of the interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_offload_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ifnet_offload_t",
+      "type": "topic",
+      "url": "/documentation/kernel/ifnet_offload_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ifnet_output_func": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_output_func",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ifnet_output_func",
+      "type": "topic",
+      "url": "/documentation/kernel/ifnet_output_func"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ifnet_set_bpf_tap": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_set_bpf_tap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ifnet_set_bpf_tap",
+      "type": "topic",
+      "url": "/documentation/kernel/ifnet_set_bpf_tap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ifnet_stat_increment_param": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_stat_increment_param",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ifnet_stat_increment_param",
+      "type": "topic",
+      "url": "/documentation/kernel/ifnet_stat_increment_param"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ifnet_stats_param": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_stats_param",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ifnet_stats_param",
+      "type": "topic",
+      "url": "/documentation/kernel/ifnet_stats_param"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ifnet_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ifnet_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ifnet_t",
+      "type": "topic",
+      "url": "/documentation/kernel/ifnet_t"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kern": {
+      "abstract": [
+        {
+          "text": "Access kernel-level interfaces including clock, task, kernel extension, lock, and compression utilities.  ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kern",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "kern",
+      "type": "topic",
+      "url": "/documentation/kernel/kern"
+    },
+    "doc://com.apple.documentation/documentation/kernel/math": {
+      "abstract": [
+        {
+          "text": "Perform mathematical operations and manipulate integer, float, and double values.  ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/math",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Math",
+      "type": "topic",
+      "url": "/documentation/kernel/math"
+    },
+    "doc://com.apple.documentation/documentation/kernel/miscfs": {
+      "abstract": [
+        {
+          "text": "Access device nodes and other file-system entities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/miscfs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "miscfs",
+      "type": "topic",
+      "url": "/documentation/kernel/miscfs"
+    },
+    "doc://com.apple.documentation/documentation/kernel/net": {
+      "abstract": [
+        {
+          "text": "Access network-related utilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/net",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "net",
+      "type": "topic",
+      "url": "/documentation/kernel/net"
+    },
+    "doc://com.apple.documentation/documentation/kernel/strings": {
+      "abstract": [
+        {
+          "text": "Compare, convert, and catenate strings and access the resulting content of those strings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/strings",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Strings",
+      "type": "topic",
+      "url": "/documentation/kernel/strings"
+    },
+    "doc://com.apple.documentation/documentation/kernel/sys": {
+      "abstract": [
+        {
+          "text": "Access general system utilities for time, file systems, and system information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/sys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "sys",
+      "type": "topic",
+      "url": "/documentation/kernel/sys"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vfs": {
+      "abstract": [
+        {
+          "text": "Access the virtual file-system interfaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vfs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vfs",
+      "type": "topic",
+      "url": "/documentation/kernel/vfs"
+    },
+    "doc://com.apple.documentation/documentation/kernel/vm": {
+      "abstract": [
+        {
+          "text": "Interact with the virtual memory system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/vm",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vm",
+      "type": "topic",
+      "url": "/documentation/kernel/vm"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/architecture",
+        "doc://com.apple.documentation/documentation/kernel/bsm",
+        "doc://com.apple.documentation/documentation/kernel/hfs",
+        "doc://com.apple.documentation/documentation/kernel/kern",
+        "doc://com.apple.documentation/documentation/kernel/math",
+        "doc://com.apple.documentation/documentation/kernel/miscfs",
+        "doc://com.apple.documentation/documentation/kernel/strings",
+        "doc://com.apple.documentation/documentation/kernel/sys",
+        "doc://com.apple.documentation/documentation/kernel/vfs",
+        "doc://com.apple.documentation/documentation/kernel/vm"
+      ],
+      "title": "BSD"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3572408",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1584164-inet_arp_handle_input",
+        "doc://com.apple.documentation/documentation/kernel/1584163-inet_arp_init_ifaddr",
+        "doc://com.apple.documentation/documentation/kernel/1584165-inet_arp_lookup"
+      ],
+      "kind": "taskGroup",
+      "title": "Address Resolution"
+    },
+    {
+      "anchor": "3570928",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1589700-bpf_attach",
+        "doc://com.apple.documentation/documentation/kernel/1589470-bpf_tap_in",
+        "doc://com.apple.documentation/documentation/kernel/1589576-bpf_tap_out",
+        "doc://com.apple.documentation/documentation/kernel/1589467-bpfattach"
+      ],
+      "kind": "taskGroup",
+      "title": "bpf"
+    },
+    {
+      "anchor": "3572387",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/1397889-ether_family_init",
+        "doc://com.apple.documentation/documentation/kernel/1397885-ether_add_proto",
+        "doc://com.apple.documentation/documentation/kernel/1397887-ether_del_proto",
+        "doc://com.apple.documentation/documentation/kernel/1397896-ether_demux",
+        "doc://com.apple.documentation/documentation/kernel/1397892-ether_frameout",
+        "doc://com.apple.documentation/documentation/kernel/1397890-ether_ioctl",
+        "doc://com.apple.documentation/documentation/kernel/1397894-ether_check_multi"
+      ],
+      "kind": "taskGroup",
+      "title": "ether"
+    },
+    {
+      "anchor": "3572799",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ifnet_add_proto_func",
+        "doc://com.apple.documentation/documentation/kernel/ifnet_attach_proto_param",
+        "doc://com.apple.documentation/documentation/kernel/ifnet_attach_proto_param_v2",
+        "doc://com.apple.documentation/documentation/kernel/ifnet_check_multi",
+        "doc://com.apple.documentation/documentation/kernel/ifnet_del_proto_func",
+        "doc://com.apple.documentation/documentation/kernel/ifnet_demux_desc",
+        "doc://com.apple.documentation/documentation/kernel/ifnet_demux_func",
+        "doc://com.apple.documentation/documentation/kernel/ifnet_detached_func",
+        "doc://com.apple.documentation/documentation/kernel/ifnet_event_func",
+        "doc://com.apple.documentation/documentation/kernel/ifnet_family_t",
+        "doc://com.apple.documentation/documentation/kernel/ifnet_framer_func",
+        "doc://com.apple.documentation/documentation/kernel/ifnet_init_params",
+        "doc://com.apple.documentation/documentation/kernel/ifnet_ioctl_func",
+        "doc://com.apple.documentation/documentation/kernel/ifnet_offload_t",
+        "doc://com.apple.documentation/documentation/kernel/ifnet_output_func",
+        "doc://com.apple.documentation/documentation/kernel/ifnet_set_bpf_tap",
+        "doc://com.apple.documentation/documentation/kernel/ifnet_stat_increment_param",
+        "doc://com.apple.documentation/documentation/kernel/ifnet_stats_param",
+        "doc://com.apple.documentation/documentation/kernel/ifnet_t"
+      ],
+      "kind": "taskGroup",
+      "title": "ifnet"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/net"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,758 @@
+{
+  "abstract": [
+    {
+      "text": "Implement best practices for prompting users to review your app in the App Store.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/requesting-app-store-reviews"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Requesting App Store reviews"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Present your users with a request for an App Store review using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/RequestReviewAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to get feedback on your app. Be aware that the system displays the review prompt to a user a maximum of three times within a 365-day period. You can determine when and where your app displays the prompt to request a review.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Consider the best places and conditions in your app to show the request, and when it might be appropriate to delay it. Here are some best practices:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make the request at a time that doesn’t interrupt what someone is trying to achieve in your app, for example, at the end of a sequence of events that they successfully complete.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Avoid showing a request for a review immediately when a user launches your app, even if it isn’t the first time it launches.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Avoid requesting a review as the result of a user action.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Also, remember that people can disable requests for reviews from ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "ever",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " appearing on their device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Present-the-review-request",
+          "level": 3,
+          "text": "Present the review request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample project demonstrates a simulated three-step process. A person taps the Start Process button, and then taps Continue Process twice, after which the app presents a Process Completed scene. The request for review appears from this scene only.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition, the app and its use meets the following conditions before displaying the prompt:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app hasn’t shown a review prompt for a version of the app bundle that matches the current bundle version. This ensures that a person doesn’t receive a prompt to review the same version of an app multiple times.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The person successfully completes the three-step process at least four times. This number is arbitrary and developers can choose something that fits well with how many times someone is likely to complete a process in their apps.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A person must pause on the Process Completed scene for a few seconds. This requirement limits the possibility of the prompt interrupting them before they move to a different task in the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To present a review request, the app reads the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/requestReview",
+              "isActive": true,
+              "overridingTitle": "requestReview",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "requestReview",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " environment value",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to get an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "RequestReviewAction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and calls it as a function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Environment(\\.requestReview) private var requestReview"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The conditions above exist purely to delay the call to ",
+              "type": "text"
+            },
+            {
+              "code": "requestReview",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", so days, weeks, or even months can elapse without the app prompting a user for a review.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Presents the rating and review request view after a two-second delay.",
+            "private func presentReview() {",
+            "    Task {",
+            "        // Delay for two seconds to avoid interrupting the person using the app.",
+            "        try await Task.sleep(for: .seconds(2))",
+            "        await requestReview()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Techniques to delay the call are valuable because they cause an app to show a review request when people are more experienced at using the app and can provide better feedback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/*",
+            "    The lastVersionPromptedForReview property stores the version of the app that last prompts for a review.",
+            "    The app presents the rating and review request view if the person completed the three-step process at least four times and",
+            "    its current version is different from the version that last prompted them for review.",
+            "*/",
+            "if processCompletedCount >= 4, currentAppVersion != lastVersionPromptedForReview {",
+            "    presentReview()",
+            "        ",
+            "    // The app already displayed the rating and review request view. Store this current version.",
+            "    lastVersionPromptedForReview = currentAppVersion",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following code, the app stores the usage data that delays the review request in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/AppStorage",
+              "isActive": true,
+              "overridingTitle": "AppStorage",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AppStorage",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// An identifier for the three-step process the person completes before this app chooses to request a review.",
+            "@AppStorage(\"processCompletedCount\") var processCompletedCount = 0",
+            "",
+            "/// The most recent app version that prompts for a review.",
+            "@AppStorage(\"lastVersionPromptedForReview\") var lastVersionPromptedForReview = \"\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In other apps, there might be more appropriate on-device storage options. For more information about best practices for requesting reviews, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/ratings-and-reviews",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in Human Interface Guidelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Manually-request-a-review",
+          "level": 3,
+          "text": "Manually request a review",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable a person to initiate a review as a result of an action in the UI, the sample code uses a deep link to the App Store page for the app with the query parameter ",
+              "type": "text"
+            },
+            {
+              "code": "action=write-review",
+              "type": "codeVoice"
+            },
+            {
+              "text": " appended to the URL:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Replace the YOURAPPSTOREID value below with the App Store ID for your app.",
+            "// You can find the App Store ID in your app's product URL.",
+            "let url = \"https://apps.apple.com/app/idYOURAPPSTOREID?action=write-review\"",
+            "",
+            "guard let writeReviewURL = URL(string: url) else {",
+            "    fatalError(\"Expected a valid URL\")",
+            "}",
+            "",
+            "openURL(writeReviewURL)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "69ecd4d189bf/RequestingAppStoreReviews.zip": {
+      "checksum": "69ecd4d189bfa05a9a2491ac973f9e03e0e56117a6c76d8130dc57b5ed88eff65cb8b44b7505684916af3de62c4aef602c2b00a49cd0bef313fb872a3f63d770",
+      "identifier": "69ecd4d189bf/RequestingAppStoreReviews.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/69ecd4d189bf/RequestingAppStoreReviews.zip"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/AppStorage": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that reflects a value from `UserDefaults` and invalidates a view on a change in value in that user default.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@propertyWrapper"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppStorage"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/AppStorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppStorage",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/AppStorage"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/requestReview": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestReview"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17_StoreKit_SwiftUI19RequestReviewActionV",
+          "text": "RequestReviewAction"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/requestReview",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestReview",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/requestReview"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/RequestReviewAction": {
+      "abstract": [
+        {
+          "text": "An instance that tells StoreKit to request an App Store rating or review, if appropriate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RequestReviewAction"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/RequestReviewAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RequestReviewAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "RequestReviewAction",
+      "type": "topic",
+      "url": "/documentation/storekit/requestreviewaction"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKStoreReviewController": {
+      "abstract": [
+        {
+          "text": "An object that controls the process of requesting App Store ratings and reviews from customers.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKStoreReviewController"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKStoreReviewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKStoreReviewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKStoreReviewController",
+      "type": "topic",
+      "url": "/documentation/storekit/skstorereviewcontroller"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/ratings-and-reviews": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/ratings-and-reviews",
+      "title": "Ratings and reviews",
+      "titleInlineContent": [
+        {
+          "text": "Ratings and reviews",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/ratings-and-reviews"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "69ecd4d189bf/RequestingAppStoreReviews.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Reviews",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/RequestReviewAction",
+        "doc://com.apple.storekit/documentation/StoreKit/SKStoreReviewController"
+      ],
+      "title": "Reviews"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Reviews",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/SKStoreReviewController"
+              ],
+              "title": "Reviews"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreReviewController/title",
+          "value": "SKStoreReviewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreReviewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKStoreReviewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKStoreReviewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKStoreReviewController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/requesting-app-store-reviews"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/requesting-app-store-reviews"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

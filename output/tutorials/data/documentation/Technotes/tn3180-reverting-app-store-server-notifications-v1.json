@@ -1,0 +1,1151 @@
+{
+  "abstract": [
+    {
+      "text": "Migrate from version 2 to version 1 of App Store Server Notifications using the Modify an App endpoint.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.technotes/documentation/Technotes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "TN3180: Reverting to App Store Server Notifications V1"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you enable your server to receive App Store Server Notifications, you configure your settings in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "App Store Connect. You select the version of App Store Server Notifications you want to receive, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provide your server URL, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/enter-server-urls-for-app-store-server-notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V1",
+                  "isActive": true,
+                  "overridingTitle": "App Store Server Notifications V1",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "App Store Server Notifications V1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": " endpoint and version 1 notifications are deprecated.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Implement the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+                  "isActive": true,
+                  "overridingTitle": "App Store Server Notifications V2",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "App Store Server Notifications V2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": " endpoint on your server to receive version 2 notifications instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the unusual case that you need to revert from version 2 to version 1 of App Store Server Notifications, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/PATCH-v1-apps-_id_",
+              "isActive": true,
+              "overridingTitle": "Modify an App",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Modify an App",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " endpoint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-app-modification-request",
+          "level": 2,
+          "text": "Create the app modification request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Modify an App endpoint updates app information including the URL and version you use for App",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Store Notifications. To use this endpoint, create a object that includes the ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "type",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "attributes",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "properties detailed in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/AppUpdateRequest/Data-data.dictionary",
+              "isActive": true,
+              "overridingTitle": "AppUpdateRequest.Data",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AppUpdateRequest.Data",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To revert to version 1 of App Store Server Notifications, add the following attributes to the request body of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the endpoint:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attribute",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "subscriptionStatusUrl",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your server’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V1",
+                      "isActive": true,
+                      "overridingTitle": "App Store Server Notifications V1",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "App Store Server Notifications V1",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint URL.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "subscriptionStatusUrlVersion",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "V1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to indicate you’re using version 1 of App Store Server Notifications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows an example of a modification request that changes only the app’s App Store",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Server Notifications URL and version:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "https://api.appstoreconnect.apple.com/v1/apps/6446998023 -d",
+                    "\"{",
+                    "    \"data\": {",
+                    "        \"type\": \"apps\",",
+                    "        \"id\": \"6446998023\",",
+                    "        \"attributes\": {",
+                    "            \"subscriptionStatusUrl\": \"https://myserver.example.com\",",
+                    "            \"subscriptionStatusUrlVersion\": \"V1\"",
+                    "        }",
+                    "    }",
+                    "}\"",
+                    ""
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "    \"data\": {",
+                    "        \"type\": \"apps\",",
+                    "        \"id\": \"6446998023\",",
+                    "        \"attributes\": {",
+                    "            \"name\": \"Your Next Cortado\",",
+                    "            \"bundleId\": \"com.bdt.ync\",",
+                    "            \"sku\": \"YNC\",",
+                    "            \"primaryLocale\": \"en-US\",",
+                    "            \"isOrEverWasMadeForKids\": false,",
+                    "            \"subscriptionStatusUrl\": \"https://myserver.example.com\",",
+                    "            \"subscriptionStatusUrlVersion\": \"V1\",",
+                    "            \"subscriptionStatusUrlForSandbox\": null,",
+                    "            \"subscriptionStatusUrlVersionForSandbox\": null,",
+                    "            \"availableInNewTerritories\": true,",
+                    "            \"contentRightsDeclaration\": \"DOES_NOT_USE_THIRD_PARTY_CONTENT\"",
+                    "        },",
+                    "        \"relationships\": {",
+                    "            \"ciProduct\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/ciProduct\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/ciProduct\"",
+                    "                }",
+                    "            },",
+                    "            \"betaTesters\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/betaTesters\"",
+                    "                }",
+                    "            },",
+                    "            \"betaGroups\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/betaGroups\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/betaGroups\"",
+                    "                }",
+                    "            },",
+                    "            \"appStoreVersions\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/appStoreVersions\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/appStoreVersions\"",
+                    "                }",
+                    "            },",
+                    "            \"preReleaseVersions\": {",
+                    "                \"links\": {",
+                    "                     \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/preReleaseVersions\",",
+                    "                     \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/preReleaseVersions\"",
+                    "                }",
+                    "            },",
+                    "            \"betaAppLocalizations\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/betaAppLocalizations\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/betaAppLocalizations\"",
+                    "                }",
+                    "            },",
+                    "            \"builds\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/builds\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/builds\"",
+                    "                }",
+                    "            },",
+                    "            \"betaLicenseAgreement\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/betaLicenseAgreement\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/betaLicenseAgreement\"",
+                    "                }",
+                    "            },",
+                    "            \"betaAppReviewDetail\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/betaAppReviewDetail\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/betaAppReviewDetail\"",
+                    "                }",
+                    "            },",
+                    "            \"appInfos\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/appInfos\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/appInfos\"",
+                    "                }",
+                    "            },",
+                    "            \"appClips\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/appClips\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/appClips\"",
+                    "                }",
+                    "            },",
+                    "            \"appPricePoints\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/appPricePoints\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/appPricePoints\"",
+                    "                }",
+                    "            },",
+                    "            \"pricePoints\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/pricePoints\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/pricePoints\"",
+                    "                }",
+                    "            },",
+                    "            \"endUserLicenseAgreement\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/endUserLicenseAgreement\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/endUserLicenseAgreement\"",
+                    "                }",
+                    "            },",
+                    "            \"preOrder\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/preOrder\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/preOrder\"",
+                    "                }",
+                    "            },",
+                    "            \"prices\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/prices\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/prices\"",
+                    "                }",
+                    "            },",
+                    "            \"appPriceSchedule\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/appPriceSchedule\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/appPriceSchedule\"",
+                    "                }",
+                    "            },",
+                    "            \"availableTerritories\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/availableTerritories\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/availableTerritories\"",
+                    "                }",
+                    "            },",
+                    "            \"appAvailability\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/appAvailability\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/appAvailability\"",
+                    "                }",
+                    "            },",
+                    "            \"inAppPurchases\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/inAppPurchases\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/inAppPurchases\"",
+                    "                }",
+                    "            },",
+                    "            \"subscriptionGroups\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/subscriptionGroups\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/subscriptionGroups\"",
+                    "                }",
+                    "            },",
+                    "            \"gameCenterEnabledVersions\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/gameCenterEnabledVersions\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/gameCenterEnabledVersions\"",
+                    "                }",
+                    "            },",
+                    "            \"perfPowerMetrics\": {",
+                    "                \"links\": {",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/perfPowerMetrics\"",
+                    "                }",
+                    "            },",
+                    "            \"appCustomProductPages\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/appCustomProductPages\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/appCustomProductPages\"",
+                    "                }",
+                    "            },",
+                    "            \"inAppPurchasesV2\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/inAppPurchasesV2\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/inAppPurchasesV2\"",
+                    "                }",
+                    "            },",
+                    "            \"promotedPurchases\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/promotedPurchases\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/promotedPurchases\"",
+                    "                }",
+                    "            },",
+                    "            \"appEvents\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/appEvents\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/appEvents\"",
+                    "                }",
+                    "            },",
+                    "            \"reviewSubmissions\": {",
+                    "                \"links\": {",
+                    "                \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/reviewSubmissions\",",
+                    "                \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/reviewSubmissions\"",
+                    "                }",
+                    "            },",
+                    "            \"subscriptionGracePeriod\": {",
+                    "            \"links\": {",
+                    "                \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/subscriptionGracePeriod\",",
+                    "                \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/subscriptionGracePeriod\"",
+                    "                }",
+                    "            },",
+                    "            \"customerReviews\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/relationships/customerReviews\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023/customerReviews\"",
+                    "                }",
+                    "            }",
+                    "        },",
+                    "        \"links\": {",
+                    "            \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023\"",
+                    "        }",
+                    "    },",
+                    "    \"links\": {",
+                    "        \"self\": \"https://api.appstoreconnect.apple.com/v1/apps/6446998023\"",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To change your server’s URL for receiving App Store Server Notifications in the sandbox environment,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "add the following attributes to the request body of the endpoint:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attribute",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "subscriptionStatusUrlForSandbox",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your server’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V1",
+                      "isActive": true,
+                      "overridingTitle": "App Store Server Notifications V1",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "App Store Server Notifications V1",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint URL for the sandbox environment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "subscriptionStatusUrlVersionForSandbox",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "V1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to indicate you’re using version 1 of App Store Server Notifications in the sandbox environment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Revision-History",
+          "level": 2,
+          "text": "Revision History",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2024-11-12",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " First published.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/AppUpdateRequest/Data-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The data element of the request body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppUpdateRequest.Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/AppUpdateRequest/Data-data.dictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppUpdateRequest.Data",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/AppUpdateRequest/Data-data.dictionary"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/PATCH-v1-apps-_id_": {
+      "abstract": [
+        {
+          "text": "Update app information, including bundle ID, primary locale, price schedule, and global availability.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/PATCH-v1-apps-_id_",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Modify an App",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/PATCH-v1-apps-_id_"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V1": {
+      "abstract": [
+        {
+          "text": "Specify your secure server’s URL in App Store Connect to receive version 1 notifications.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App Store Server Notifications V1",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V1"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2": {
+      "abstract": [
+        {
+          "text": "Specify your secure server’s URL in App Store Connect to receive version 2 notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App Store Server Notifications V2",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/App-Store-Server-Notifications-V2"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.technotes/documentation/Technotes": {
+      "abstract": [
+        {
+          "text": "Learn about specific development topics through these in-depth technical articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Technotes",
+      "type": "topic",
+      "url": "/documentation/technotes"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview": {
+      "abstract": [
+        {
+          "text": "Explore the various Wi-Fi APIs available on iOS and their expected use cases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3111: iOS Wi-Fi API overview",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3111-ios-wifi-api-overview"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations": {
+      "abstract": [
+        {
+          "text": "Learn techniques to help debug any coordinate space issue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3124: Debugging coordinate space issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3124-debugging-coordinate-transformations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3158-resolving-xcode-15-device-connection-issues": {
+      "abstract": [
+        {
+          "text": "Identify software preventing Xcode 15 from connecting to Apple devices, and modify your configuration to allow these connections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3158-resolving-xcode-15-device-connection-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3158: Resolving Xcode 15 device connection issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3158-resolving-xcode-15-device-connection-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store": {
+      "abstract": [
+        {
+          "text": "Learn how to configure your App Clip to prevent it from being unavailable in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3168: Making your App Clip available in the App Store",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3168-making-your-app-clip-available-app-store"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration": {
+      "abstract": [
+        {
+          "text": "Diagnose errors due to invalid Apple Pay merchant identifier configurations by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifying the underlying causes of common errors and explore their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3173: Troubleshooting issues with your Apple Pay merchant identifier configuration",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose errors received while presenting the Apple Pay payment sheet on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your website by identifying the underlying causes of common errors and explore",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "their potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3174: Diagnosing issues with the Apple Pay payment sheet on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose common errors received while displaying the Apple Pay button on your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "website by identifying the underlying causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3175: Diagnosing issues with displaying the Apple Pay button on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues": {
+      "abstract": [
+        {
+          "text": "Diagnose errors that occur when processing Apple Pay payments,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identify common causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3176: Troubleshooting Apple Pay payment processing issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files": {
+      "abstract": [
+        {
+          "text": "Learn how alternate groups collect audio tracks, and how to choose which audio track to use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3177: Understanding alternate audio track groups in movie files",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems": {
+      "abstract": [
+        {
+          "text": "Ensure that every Mach-O image has a UUID, and that every distinct Mach-O image has its own unique UUID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3178: Checking for and resolving build UUID problems",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3178-checking-for-and-resolving-build-uuid-problems"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy": {
+      "abstract": [
+        {
+          "text": "Learn how local network privacy affects your software.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3179: Understanding local network privacy",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Identify common configurations that cause unsuccessful privacy manifest validation with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3181: Debugging an invalid privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3181-debugging-invalid-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the tracking domains you use in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3182: Adding privacy tracking keys to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the APIs that can potentially fingerprint devices in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3183: Adding required reason API entries to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the data your app or third-party SDK collects in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3184: Adding data collection details to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest"
+    },
+    "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/enter-server-urls-for-app-store-server-notifications": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/enter-server-urls-for-app-store-server-notifications",
+      "title": "Enter server URLs for App Store Server Notifications",
+      "titleInlineContent": [
+        {
+          "text": "Enter server URLs for App Store Server Notifications",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/enter-server-urls-for-app-store-server-notifications"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Latest",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+        "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+        "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+        "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+        "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+        "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+        "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+        "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+        "doc://com.apple.technotes/documentation/Technotes/tn3158-resolving-xcode-15-device-connection-issues"
+      ],
+      "title": "Latest"
+    }
+  ]
+}

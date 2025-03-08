@@ -1,0 +1,601 @@
+{
+  "abstract": [
+    {
+      "text": "Free up memory when asked to do so by the system.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+        "doc://com.apple.uikit/documentation/UIKit/managing-your-app-s-life-cycle"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/responding-to-memory-warnings"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Responding to memory warnings"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the system runs low on free memory and is unable to reclaim memory by terminating suspended apps, UIKit sends a low-memory warning to running apps. UIKit delivers low-memory warnings in the following ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It calls the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationDidReceiveMemoryWarning(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method of your app delegate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It calls the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/didReceiveMemoryWarning()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method of any active ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " classes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It posts a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication/didReceiveMemoryWarningNotification",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object to any registered observers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It delivers a warning to dispatch queues of type ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Dispatch/DISPATCH_SOURCE_TYPE_MEMORYPRESSURE",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app receives a low-memory warning, free up as much memory as possible, as quickly as possible. Remove references to images, media files, or any large data files that already have an on-disk representation and can be reloaded later. Remove references to any temporary objects that you no longer need. If active tasks might consume significant amounts of memory, pause dispatch queues or restrict the number of simultaneous operations that your app performs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Failure to reduce your app’s memory usage may result in your app’s termination. Therefore, consider writing any unsaved data to disk as part of your cleanup efforts.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test your app’s response to a low-memory warning, use the Simulate Memory Warning command in iOS Simulator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Dispatch/DISPATCH_SOURCE_TYPE_MEMORYPRESSURE": {
+      "abstract": [
+        {
+          "text": "A type of dispatch source for monitoring memory pressure events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "#define"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DISPATCH_SOURCE_TYPE_MEMORYPRESSURE"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Dispatch/DISPATCH_SOURCE_TYPE_MEMORYPRESSURE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DISPATCH_SOURCE_TYPE_MEMORYPRESSURE",
+      "type": "topic",
+      "url": "/documentation/Dispatch/DISPATCH_SOURCE_TYPE_MEMORYPRESSURE"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplication/didReceiveMemoryWarningNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts when the app receives a warning from the operating system about low memory availability.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didReceiveMemoryWarningNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication/didReceiveMemoryWarningNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIApplicationDidReceiveMemoryWarningNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "didReceiveMemoryWarningNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplication/didreceivememorywarningnotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationDidReceiveMemoryWarning(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the app receives a memory warning from the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationDidReceiveMemoryWarning"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationDidReceiveMemoryWarning(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applicationDidReceiveMemoryWarning:"
+        }
+      ],
+      "role": "symbol",
+      "title": "applicationDidReceiveMemoryWarning(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate/applicationdidreceivememorywarning(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController": {
+      "abstract": [
+        {
+          "text": "An object that manages a view hierarchy for your UIKit app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/didReceiveMemoryWarning()": {
+      "abstract": [
+        {
+          "text": "Sent to the view controller when the app receives a memory warning.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didReceiveMemoryWarning"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/didReceiveMemoryWarning()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didReceiveMemoryWarning"
+        }
+      ],
+      "role": "symbol",
+      "title": "didReceiveMemoryWarning()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/didreceivememorywarning()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/app-and-environment": {
+      "abstract": [
+        {
+          "text": "Manage life-cycle events and your app’s UI scenes, and get information about traits and the environment in which your app runs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and environment",
+      "type": "topic",
+      "url": "/documentation/uikit/app-and-environment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/managing-your-app-s-life-cycle": {
+      "abstract": [
+        {
+          "text": "Respond to system notifications when your app is in the foreground or background, and handle other significant system-related events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/managing-your-app-s-life-cycle",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Managing your app’s life cycle",
+      "type": "topic",
+      "url": "/documentation/uikit/managing-your-app-s-life-cycle"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1applicationDidReceiveMemoryWarning(_:)/title",
+          "value": "applicationDidReceiveMemoryWarning:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationDelegate~1applicationDidReceiveMemoryWarning(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "applicationDidReceiveMemoryWarning:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication~1didReceiveMemoryWarningNotification/title",
+          "value": "UIApplicationDidReceiveMemoryWarningNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplication~1didReceiveMemoryWarningNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationDidReceiveMemoryWarningNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1didReceiveMemoryWarning()/title",
+          "value": "didReceiveMemoryWarning"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1didReceiveMemoryWarning()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didReceiveMemoryWarning"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/title",
+          "value": "UIViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/responding-to-memory-warnings"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/responding-to-memory-warnings"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

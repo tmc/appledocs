@@ -1,0 +1,759 @@
+{
+  "abstract": [
+    {
+      "text": "Report download progress to the system to keep your networking extension active.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/downloading-files-in-a-web-browser"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "BrowserEngineKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Downloading files in a web browser with an alternative browser engine"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Maintaining a long-running network connection to download a large file requires your browser app’s networking extension to remain active in the background for a long period of time. Register your browser’s downloads with the system and report progress so that the system keeps your networking extension active. When the download completes, the system can optionally move the downloaded file to the person’s Downloads folder.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-download-progress-access-token",
+          "level": 3,
+          "text": "Create a download progress access token",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your browser app, when someone starts a download, create a URL bookmark for the URL that represents the destination for the download, and an access token for the download progress API:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let destinationURL = URL(...)",
+            "let destinationData = try destinationURL.bookmarkData()",
+            "let tokenData = DownloadMonitor.createAccessToken()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pass both the bookmark data and access token to your networking extension. For information about using XPC to communicate between a browser app and its extensions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/using-xpc-to-communicate-with-browser-extensions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Register-download-progress-with-the-system",
+          "level": 3,
+          "text": "Register download progress with the system",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your networking extension, receive the bookmark data and resolve the download’s destination URL. Initialize a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDownloadMonitor-9bwls",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object with the download source URL, destination URL, access token, and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/progress",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that you use to report the download’s progress to the system:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let destinationURL = try! URL(resolvingBookmarkData: destinationData)",
+            "let progress = Progress()",
+            "let downloadMonitor = BEDownloadMonitor(sourceURL: sourceURL, destinationURL: destinationURL, observedProgress: progress, liveActivityAccessToken: tokenData)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Request-that-the-system-move-the-file-to-the-persons-Downloads-folder",
+          "level": 3,
+          "text": "Request that the system move the file to the person’s Downloads folder",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the system should create a placeholder file in the person’s Downloads folder that shows the state of the download, call the download monitor’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDownloadMonitor-9bwls/useDownloadsFolder(placeholderType:finalFileCreatedHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the completion handler to receive the location to which the system moves the completed downloads, as both a URL and bookmark data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "downloadMonitor.useDownloadsFolder() { finalLocation in",
+            "    // Send the final location's URL and bookmark back to the browser app.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The bookmark you get in the completion handler isn’t suitable for storing to resolve later, if you need to do this then create your own bookmark with security scope. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1417795-bookmarkdata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Download-the-file-and-report-progress-to-the-system",
+          "level": 3,
+          "text": "Download the file and report progress to the system",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your network extension is ready to commence the download, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDownloadMonitor-9bwls/beginMonitoring()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you requested that the system use the person’s Downloads folder, this method returns the placeholder location that the system creates to host the downloaded content, as both a URL and bookmark data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Make a network connection to download the content, for example using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", store data in the file at the download’s destination URL, and update the ",
+              "type": "text"
+            },
+            {
+              "code": "Progress",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object that you passed to the ",
+              "type": "text"
+            },
+            {
+              "code": "BEDownloadMonitor",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var downloadCompletedWithoutError = false",
+            "let placeholderURLWithBookmark = try await downloadMonitor.beginMonitoring()",
+            "",
+            "// Send the placeholder URL and bookmark back to the browser app.",
+            "",
+            "// Download the file using networking APIs, and",
+            "// update progress.completedUnitCount as you write content to disk.",
+            "",
+            "if (downloadCompletedWithoutError) {",
+            "    // Indicate to the system that the download is complete.",
+            "    progress.completedUnitCount = progress.totalUnitCount",
+            "} else {",
+            "    // Indicate to the system that the download is canceled.",
+            "    progress.cancel()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you indicate that the progress is complete, if you asked the system to create a placeholder file in the person’s Downloads folder, the system calls the completion handler you passed to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDownloadMonitor-9bwls/useDownloadsFolder(placeholderType:finalFileCreatedHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to inform your browser of the downloaded file’s location in the Downloads folder.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you don’t tell the system to use the Downloads folder, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDownloadMonitor-9bwls/beginMonitoring()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You still download the file to a location in your app’s container using networking APIs, but the system doesn’t show a placeholder in the Downloads folder.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit": {
+      "abstract": [
+        {
+          "text": "Create a browser that renders content using an alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BrowserEngineKit",
+      "type": "topic",
+      "url": "/documentation/browserenginekit"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDownloadMonitor-9bwls": {
+      "abstract": [
+        {
+          "text": "An object that reports the status of web downloads to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BEDownloadMonitor"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDownloadMonitor-9bwls",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEDownloadMonitor"
+        }
+      ],
+      "role": "symbol",
+      "title": "BEDownloadMonitor",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bedownloadmonitor-9bwls"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDownloadMonitor-9bwls/beginMonitoring()": {
+      "abstract": [
+        {
+          "text": "Informs the system to start monitoring the download.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginMonitoring"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@BrowserEngineKit@objc(cs)BEDownloadMonitor",
+          "text": "BEDownloadMonitor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16BrowserEngineKit17BEDownloadMonitorC8LocationC",
+          "text": "Location"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDownloadMonitor-9bwls/beginMonitoring()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginMonitoring()",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bedownloadmonitor-9bwls/beginmonitoring()"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDownloadMonitor-9bwls/useDownloadsFolder(placeholderType:finalFileCreatedHandler:)": {
+      "abstract": [
+        {
+          "text": "Asks the system to create a placeholder for the downloaded file in the person’s Downloads folder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useDownloadsFolder"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "placeholderType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:22UniformTypeIdentifiers6UTTypeV",
+          "text": "UTType"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "finalFileCreatedHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@BrowserEngineKit@objc(cs)BEDownloadMonitor",
+          "text": "BEDownloadMonitor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16BrowserEngineKit17BEDownloadMonitorC8LocationC",
+          "text": "Location"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDownloadMonitor-9bwls/useDownloadsFolder(placeholderType:finalFileCreatedHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "useDownloadsFolder(placeholderType:finalFileCreatedHandler:)",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bedownloadmonitor-9bwls/usedownloadsfolder(placeholdertype:finalfilecreatedhandler:)"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDownloadMonitor-9y4hu": {
+      "abstract": [
+        {
+          "text": "An object that reports the status of web downloads to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "BEDownloadMonitor"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDownloadMonitor-9y4hu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BEDownloadMonitor",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bedownloadmonitor-9y4hu"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/using-xpc-to-communicate-with-browser-extensions": {
+      "abstract": [
+        {
+          "text": "Build interprocess communication between your host app and extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/using-xpc-to-communicate-with-browser-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Using XPC to communicate with browser extensions",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/using-xpc-to-communicate-with-browser-extensions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/1417795-bookmarkdata": {
+      "abstract": [
+        {
+          "text": "Returns a bookmark for the URL, created with specified options and resource values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "bookmarkData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSURL.BookmarkCreationOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "includingResourceValuesForKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": [URLResourceKey]?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "relativeTo"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?) -> Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1417795-bookmarkdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bookmarkData(options:includingResourceValuesForKeys:relativeTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/1417795-bookmarkdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/progress": {
+      "abstract": [
+        {
+          "text": "An object that conveys ongoing progress to the user for a specified task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/progress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Progress",
+      "type": "topic",
+      "url": "/documentation/foundation/progress"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "abstract": [
+        {
+          "text": "Interact with URLs and communicate with servers using standard Internet protocols. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "article",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Downloads",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDownloadMonitor-9bwls"
+      ],
+      "title": "Downloads"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Downloads",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDownloadMonitor-9y4hu"
+              ],
+              "title": "Downloads"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1progress/title",
+          "value": "NSProgress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsurl~11417795-bookmarkdata/title",
+          "value": "bookmarkDataWithOptions:includingResourceValuesForKeys:relativeToURL:error:"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/browserenginekit/downloading-files-in-a-web-browser"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/browserenginekit/downloading-files-in-a-web-browser"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

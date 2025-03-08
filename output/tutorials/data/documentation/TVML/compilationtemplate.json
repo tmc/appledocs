@@ -1,0 +1,1056 @@
+{
+  "abstract": [
+    {
+      "text": "Displays information about a single media item and its components.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.TVML/documentation/TVML"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.TVML/documentation/TVML/compilationtemplate"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "collectionGroup",
+    "title": "compilationTemplate"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "compilationTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element to display information about one product that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is made up of several distinct pieces; for example, an album and all of the songs",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that it contains. The header area on the left side of the screen contains general",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "product information. Directly underneath the header area are several section areas",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that group like types of information; for example, one section can contain all of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the songs on the album. The related content on the right side of the screen contains",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "any images associated with the product and buttons that the user can use to interact",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the product, such as Play and Buy buttons. The following figure shows the basic",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "layout for a ",
+              "type": "text"
+            },
+            {
+              "code": "compilationTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " page. The theme for the compilation template defaults",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the system preference.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "compilationtemplate-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Main-Elements",
+          "level": 3,
+          "text": "Main Elements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following listing shows the main elements of the ",
+              "type": "text"
+            },
+            {
+              "code": "compilationTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in TVML format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<compilationTemplate>",
+            "    <background>",
+            "        …",
+            "    </background>",
+            "    <list>",
+            "        <relatedContent>",
+            "            <itemBanner>",
+            "                …",
+            "            </itemBanner>",
+            "        </relatedContent>",
+            "        <header>",
+            "            …",
+            "        </header>",
+            "        <section>",
+            "            <header>",
+            "                <title>Title</title>",
+            "            </header>",
+            "            <listItemLockup>",
+            "                …",
+            "            </listItemLockup>",
+            "        </section>",
+            "    </list>",
+            "</compilationTemplate>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Element-Descriptions",
+          "level": 4,
+          "text": "Element Descriptions",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Background elements, such as audio.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.TVML/documentation/TVML/background",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Information describing what a section of the list contains.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.TVML/documentation/TVML/header",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Product information and row elements, such as button information, that are displayed along the right side of the screen.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.TVML/documentation/TVML/itembanner",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Element containing all the content in the template (except background).",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.TVML/documentation/TVML/list",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Elements containing elements used to create one item in a list.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.TVML/documentation/TVML/listitemlockup",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Element containing all elements displayed along the right side of the screen.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.TVML/documentation/TVML/relatedcontent",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An area of the page that groups related elements for layout purposes.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.TVML/documentation/TVML/section",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following listing shows the TVML for a ",
+              "type": "text"
+            },
+            {
+              "code": "compilationTemplate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " example. The example",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "displays a list on the left side that contains information about the album and a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "list of available songs. The right side of the display contains an image of the album",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and buttons prompting the user to buy, rate, or shuffle the music.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<document>",
+            "    <compilationTemplate theme=\"light\">",
+            "        <list>",
+            "            <relatedContent>",
+            "                <itemBanner>",
+            "                    <heroImg src=\"path to images on your server/Car_Movie_720x1080\" />",
+            "                    <row>",
+            "                        <buttonLockup>",
+            "                            <badge src=\"resource://button-add\"/>",
+            "                            <title>Add</title>",
+            "                        </buttonLockup>",
+            "                        <buttonLockup>",
+            "                            <badge src=\"resource://button-rate\"/>",
+            "                            <title>Rate</title>",
+            "                        </buttonLockup>",
+            "                        <buttonLockup>",
+            "                            <badge src=\"resource://button-shuffle\"/>",
+            "                            <title>Shuffle</title>",
+            "                        </buttonLockup>",
+            "                    </row>",
+            "                </itemBanner>",
+            "            </relatedContent>",
+            "            <header>",
+            "                <title>WWDC Roadtrip Soundtrack</title>",
+            "                <subtitle>Various Artists</subtitle>",
+            "                <row>",
+            "                    <text>Instrumental</text>",
+            "                    <text>5 Songs</text>",
+            "                    <text>2015</text>",
+            "                </row>",
+            "            </header>",
+            "            <section>",
+            "                <description>Songs from your favorite movie</description>",
+            "            </section>",
+            "            <section>",
+            "                <listItemLockup>",
+            "                    <ordinal minLength=\"2\">1</ordinal>",
+            "                    <title>Opening sequence</title>",
+            "                    <decorationLabel>11:14</decorationLabel>",
+            "                </listItemLockup>",
+            "                <listItemLockup>",
+            "                    <ordinal minLength=\"2\">2</ordinal>",
+            "                    <title>Fight song</title>",
+            "                    <decorationLabel>3:47</decorationLabel>",
+            "                </listItemLockup>",
+            "                <listItemLockup>",
+            "                    <ordinal minLength=\"2\">3</ordinal>",
+            "                    <title>Love theme</title>",
+            "                    <decorationLabel>6:48</decorationLabel>",
+            "                </listItemLockup>",
+            "                <listItemLockup>",
+            "                    <ordinal minLength=\"2\">4</ordinal>",
+            "                    <title>Car chase</title>",
+            "                    <decorationLabel>5:21</decorationLabel>",
+            "                </listItemLockup>",
+            "                <listItemLockup>",
+            "                    <ordinal minLength=\"2\">5</ordinal>",
+            "                    <title>End credit theme</title>",
+            "                    <decorationLabel>8:03</decorationLabel>",
+            "                </listItemLockup>",
+            "            </section>",
+            "        </list>",
+            "    </compilationTemplate>",
+            "</document>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows the output for the above example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "compilationtemplate-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "compilationtemplate-1": {
+      "alt": "Layout diagram showing header and section areas on the left side and related content on the right.",
+      "identifier": "compilationtemplate-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/038d4cfbdd4e4065318720e7f1975cda/compilationtemplate-1.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c5690aa8089a1839847213800543d7eb/compilationtemplate-1@2x.png"
+        }
+      ]
+    },
+    "compilationtemplate-2": {
+      "alt": "Screenshot showing a sample album listing. Title and song list are on the left side and cover art and buttons are on the right.",
+      "identifier": "compilationtemplate-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/97c1a91a3026859c77097789c56a66af/compilationtemplate-2.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/48d9da8a0d17eee6ed41534b91400b88/compilationtemplate-2@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.TVML/documentation/TVML": {
+      "abstract": [
+        {
+          "text": "Use Apple TV Markup Language to create individual pages inside of a client-server",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML",
+      "kind": "article",
+      "role": "collection",
+      "title": "TVML",
+      "type": "topic",
+      "url": "/documentation/tvml"
+    },
+    "doc://com.apple.TVML/documentation/TVML/alerttemplate": {
+      "abstract": [
+        {
+          "text": "Displays important information to the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/alerttemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "alertTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/alerttemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/autohighlight": {
+      "abstract": [
+        {
+          "text": "Specifies that the element should initially be in focus.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/autohighlight",
+      "kind": "article",
+      "role": "article",
+      "title": "autoHighlight",
+      "type": "topic",
+      "url": "/documentation/tvml/autohighlight"
+    },
+    "doc://com.apple.TVML/documentation/TVML/background": {
+      "abstract": [
+        {
+          "text": "Displays an image or plays audio in the background of a channel app page.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/background",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "background",
+      "type": "topic",
+      "url": "/documentation/tvml/background"
+    },
+    "doc://com.apple.TVML/documentation/TVML/binding": {
+      "abstract": [
+        {
+          "text": "Associates information in a data item with an element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/binding",
+      "kind": "article",
+      "role": "article",
+      "title": "binding",
+      "type": "topic",
+      "url": "/documentation/tvml/binding"
+    },
+    "doc://com.apple.TVML/documentation/TVML/catalogtemplate": {
+      "abstract": [
+        {
+          "text": "Displays groups of items along one side of a page and images of a group’s contents",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "on the other side.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/catalogtemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "catalogTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/catalogtemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/descriptivealerttemplate": {
+      "abstract": [
+        {
+          "text": "Displays large amounts of important information to the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/descriptivealerttemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "descriptiveAlertTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/descriptivealerttemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/divtemplate": {
+      "abstract": [
+        {
+          "text": "Provides the ability to create pages that don’t conform to a layout defined by another",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/divtemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "divTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/divtemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/formtemplate": {
+      "abstract": [
+        {
+          "text": "Provides the ability to gather information from the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/formtemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "formTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/formtemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/header": {
+      "abstract": [
+        {
+          "text": "Contains information displayed at the bottom of an element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/header",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "header",
+      "type": "topic",
+      "url": "/documentation/tvml/header"
+    },
+    "doc://com.apple.TVML/documentation/TVML/itembanner": {
+      "abstract": [
+        {
+          "text": "Displays information associated with an element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/itembanner",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "itemBanner",
+      "type": "topic",
+      "url": "/documentation/tvml/itembanner"
+    },
+    "doc://com.apple.TVML/documentation/TVML/layoutdirection": {
+      "abstract": [
+        {
+          "text": "Specifies the direction in which text is displayed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/layoutdirection",
+      "kind": "article",
+      "role": "article",
+      "title": "layoutDirection",
+      "type": "topic",
+      "url": "/documentation/tvml/layoutdirection"
+    },
+    "doc://com.apple.TVML/documentation/TVML/list": {
+      "abstract": [
+        {
+          "text": "Creates a generic container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/list",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "list",
+      "type": "topic",
+      "url": "/documentation/tvml/list"
+    },
+    "doc://com.apple.TVML/documentation/TVML/listitemlockup": {
+      "abstract": [
+        {
+          "text": "Contains a new list item.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/listitemlockup",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "listItemLockup",
+      "type": "topic",
+      "url": "/documentation/tvml/listitemlockup"
+    },
+    "doc://com.apple.TVML/documentation/TVML/listtemplate": {
+      "abstract": [
+        {
+          "text": "Displays a list of items along one side of a page and the corresponding image on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the other side.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/listtemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "listTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/listtemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/loadingtemplate": {
+      "abstract": [
+        {
+          "text": "Displays a spinner and description on the screen.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/loadingtemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "loadingTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/loadingtemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/maintemplate": {
+      "abstract": [
+        {
+          "text": "Displays user options for a media item.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/maintemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "mainTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/maintemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/menubartemplate": {
+      "abstract": [
+        {
+          "text": "Creates a page with items along the top and related information below.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/menubartemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "menuBarTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/menubartemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/oneuptemplate": {
+      "abstract": [
+        {
+          "text": "Creates a page that allows users to navigate between full-screen images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/oneuptemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "oneupTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/oneuptemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/paradetemplate": {
+      "abstract": [
+        {
+          "text": "Displays a groups of items along one side of a page and scrolling images on the other",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "side.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/paradetemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "paradeTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/paradetemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/productbundletemplate": {
+      "abstract": [
+        {
+          "text": "Displays information for a group of related media items.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/productbundletemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "productBundleTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/productbundletemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/producttemplate": {
+      "abstract": [
+        {
+          "text": "Displays detailed information about a single product.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/producttemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "productTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/producttemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/prototype": {
+      "abstract": [
+        {
+          "text": "Associates a data item type with an element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/prototype",
+      "kind": "article",
+      "role": "article",
+      "title": "prototype",
+      "type": "topic",
+      "url": "/documentation/tvml/prototype"
+    },
+    "doc://com.apple.TVML/documentation/TVML/ratingtemplate": {
+      "abstract": [
+        {
+          "text": "Displays a rating for an item.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/ratingtemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ratingTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/ratingtemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/relatedcontent": {
+      "abstract": [
+        {
+          "text": "Contains elements that are related to another element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/relatedcontent",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "relatedContent",
+      "type": "topic",
+      "url": "/documentation/tvml/relatedcontent"
+    },
+    "doc://com.apple.TVML/documentation/TVML/searchtemplate": {
+      "abstract": [
+        {
+          "text": "Searches for a media item based on user input.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/searchtemplate",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "searchTemplate",
+      "type": "topic",
+      "url": "/documentation/tvml/searchtemplate"
+    },
+    "doc://com.apple.TVML/documentation/TVML/section": {
+      "abstract": [
+        {
+          "text": "Combines elements and acts as a single element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/section",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "section",
+      "type": "topic",
+      "url": "/documentation/tvml/section"
+    },
+    "doc://com.apple.TVML/documentation/TVML/theme": {
+      "abstract": [
+        {
+          "text": "Sets the color scheme for an element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TVML/documentation/TVML/theme",
+      "kind": "article",
+      "role": "article",
+      "title": "theme",
+      "type": "topic",
+      "url": "/documentation/tvml/theme"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Full-Page-Templates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.TVML/documentation/TVML/alerttemplate",
+        "doc://com.apple.TVML/documentation/TVML/catalogtemplate",
+        "doc://com.apple.TVML/documentation/TVML/descriptivealerttemplate",
+        "doc://com.apple.TVML/documentation/TVML/divtemplate",
+        "doc://com.apple.TVML/documentation/TVML/formtemplate",
+        "doc://com.apple.TVML/documentation/TVML/listtemplate",
+        "doc://com.apple.TVML/documentation/TVML/loadingtemplate",
+        "doc://com.apple.TVML/documentation/TVML/maintemplate",
+        "doc://com.apple.TVML/documentation/TVML/menubartemplate",
+        "doc://com.apple.TVML/documentation/TVML/oneuptemplate",
+        "doc://com.apple.TVML/documentation/TVML/paradetemplate",
+        "doc://com.apple.TVML/documentation/TVML/productbundletemplate",
+        "doc://com.apple.TVML/documentation/TVML/producttemplate",
+        "doc://com.apple.TVML/documentation/TVML/ratingtemplate",
+        "doc://com.apple.TVML/documentation/TVML/searchtemplate"
+      ],
+      "title": "Full-Page Templates"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Valid-TVML-Attributes",
+      "identifiers": [
+        "doc://com.apple.TVML/documentation/TVML/autohighlight",
+        "doc://com.apple.TVML/documentation/TVML/binding",
+        "doc://com.apple.TVML/documentation/TVML/layoutdirection",
+        "doc://com.apple.TVML/documentation/TVML/prototype",
+        "doc://com.apple.TVML/documentation/TVML/theme"
+      ],
+      "title": "Valid TVML Attributes"
+    }
+  ]
+}

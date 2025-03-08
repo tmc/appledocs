@@ -1,0 +1,600 @@
+{
+  "abstract": [
+    {
+      "text": "Reduce the time-window for ad attributions and inspect postbacks using a proxy during testing.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/testing-adattributionkit-with-developer-mode"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AdAttributionKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Testing ad attributions with Developer Mode"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For devices running OS versions earlier than iOS 18, use the AdAttributionKit testing profile on your test device. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/testing-ad-attributions-with-a-downloaded-profile",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 18 and later, you can reduce the time-window for receiving AdAttributionKit postbacks by enabling Developer Mode on your test device. Developer Mode is compatible with both AdAttributionKit and SKAdNetwork. To enable Developer Mode, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/enabling-developer-mode-on-a-device",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After enabling Developer Mode, access the developer settings in Settings on your test device. Then, scroll down to the Ad Attribution Testing section and enable the AdAttributionKit Developer Mode switch, as the screenshot below shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "AdAttributionKit-DevMode-on.png",
+              "metadata": {
+                "deviceFrame": "iPhone14Pro"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Enabling Developer Mode reduces the privacy protections the system provides. Use this mode only during development or testing. This setting automatically turns off after 2 weeks.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test ad attributions, you need to log in to the device with a production Apple ID. AdAttributionKit doesn’t support sandbox Apple IDs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-development-impressions-and-postbacks",
+          "level": 2,
+          "text": "Create development impressions and postbacks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 18 and later, you sign development impressions to receive development postbacks. Development impressions allow you to test your integration with reduced time-windows using Developer Mode. After a conversion event occurs using a development impression, the system creates development postbacks. Development postbacks aren’t subject to the rate limits that reengagement in AdAttributionKit imposes, and they generate postbacks with the highest data tier that crowd anonymity allows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AdAttributionKit and SKAdNetwork both support development impressions and postbacks. Configuring development impressions can vary based on the ad framework you’re using, as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In AdAttributionKit, you create development impressions by specifying a publisher item identifier of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the impression’s JSON web signature (JWS).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Similarly, in SKAdNetwork for ads that apps show, you create development impressions by setting a source App Store identifier of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In SKAdNetwork for web ads, the system registers development impressions for all web ads as long as Developer Mode is in an enabled state at the time of the click.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AdAttributionKit and SKAdNetwork 4 create a winning set of three development postbacks as part of multiple conversion windows. SKAdNetwork 3 and earlier create a single winning postback. For more information about multiple conversion windows, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/receiving-postbacks-in-multiple-conversion-windows",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can test development postbacks using the production time-windows, or reduce their time-windows by enabling Developer Mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The system prioritizes production impressions over development impressions for any conversion event. If production and development impressions are present during a conversion, the system ignores development impressions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Verify-development-postbacks",
+          "level": 3,
+          "text": "Verify development postbacks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system signs development postbacks with a different private key from production postbacks to help distinguish them. Apple’s NIST P-256 public key that you use to verify signatures of development postbacks is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAELeEDzpJEP+/qRSE5hJVC1p1J0ssUnQGMzBBbvnACBok8OVGGLgxL0myrKiy6lvRtSlLRsWit87i+vftD8AEqeQ==",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The steps for verifying development postback signatures are identical to the steps for production postbacks, with the exception of the key you use. For more information on verifying a postback’s JWS signature, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/verifying-a-postback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Reduce-time-windows-using-Developer-Mode",
+          "level": 2,
+          "text": "Reduce time-windows using Developer Mode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Enabling Developer Mode reduces the time-window for receiving development postbacks from the device. Developer Mode only affects the time-windows of development postbacks. Postbacks that the system generates from production impressions use the full time-windows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you enable Developer Mode, the framework reduces each development postback’s conversion window to 3 minutes instead of the full duration to allow for faster testing. The conversion window begins when the installed app first updates the conversion value. The first window spans 0 to 3 minutes, the second window spans 3 to 6 minutes, and the third window spans 6 to 9 minutes. Developer Mode reduces the postback delay from 24 to 48 hours to 5 to 10 minutes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inspect-postbacks-using-an-HTTP-proxy",
+          "level": 2,
+          "text": "Inspect postbacks using an HTTP proxy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you enable Developer Mode, the system can send AdAttributionKit postbacks through an HTTP proxy that you configure. By using an HTTP proxy, you can monitor the HTTP traffic between your device and the network, including AdAttributionKit postbacks.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To configure the HTTP proxy, follow these steps on a testing device:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Settings > Wi-Fi and select the Wi-Fi network you’re connected to.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Under the HTTP Proxy heading, select Configure Proxy.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Manual to configure the Server, Port, and Authentication settings for your proxy, or select Automatic to provide a URL for your proxy.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tap Save.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you enable developer mode, the AdAttributionKit postbacks that the device sends go through the proxy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "AdAttributionKit-DevMode-on.png": {
+      "alt": "An iOS screenshot of the developer settings showing the AdAttributionKit Developer Mode toggle in an enabled state.",
+      "identifier": "AdAttributionKit-DevMode-on.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/74e3c728e155bc4f74e2383eeda88608/AdAttributionKit-DevMode-on@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/63614165dc71809dac45d25052b6ccaf/AdAttributionKit-DevMode-on~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit": {
+      "abstract": [
+        {
+          "text": "Present, process, and register postbacks for in-app ads in the App Store and alternative app marketplaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AdAttributionKit",
+      "type": "topic",
+      "url": "/documentation/adattributionkit"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/adattributionkit-skadnetwork-interoperability": {
+      "abstract": [
+        {
+          "text": "Learn how attribution APIs interact to deliver ad impressions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/adattributionkit-skadnetwork-interoperability",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding AdAttributionKit and SKAdNetwork interoperability",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/adattributionkit-skadnetwork-interoperability"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/presenting-ads-in-your-app": {
+      "abstract": [
+        {
+          "text": "Render different ad styles in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/presenting-ads-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Presenting ads in your app",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/presenting-ads-in-your-app"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/receiving-ad-attributions-and-postbacks": {
+      "abstract": [
+        {
+          "text": "Understand timeframes and priorities for ad impressions that result in ad attributions, and how impressions qualify for postbacks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/receiving-ad-attributions-and-postbacks",
+      "kind": "article",
+      "role": "article",
+      "title": "Receiving ad attributions and postbacks",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/receiving-ad-attributions-and-postbacks"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/receiving-postbacks-in-multiple-conversion-windows": {
+      "abstract": [
+        {
+          "text": "Learn about the data that postbacks can contain in each conversion window.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/receiving-postbacks-in-multiple-conversion-windows",
+      "kind": "article",
+      "role": "article",
+      "title": "Receiving postbacks in multiple conversion windows",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/receiving-postbacks-in-multiple-conversion-windows"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/testing-ad-attributions-with-a-downloaded-profile": {
+      "abstract": [
+        {
+          "text": "Reduce the time-window for ad attributions and inspect postbacks using a proxy during testing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/testing-ad-attributions-with-a-downloaded-profile",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing ad attributions with a downloaded profile",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/testing-ad-attributions-with-a-downloaded-profile"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/verifying-a-postback": {
+      "abstract": [
+        {
+          "text": "Ensure the validity of a postback you receive after an ad conversion by verifying its cryptographic signature.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/verifying-a-postback",
+      "kind": "article",
+      "role": "article",
+      "title": "Verifying a postback",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/verifying-a-postback"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/enabling-developer-mode-on-a-device": {
+      "abstract": [
+        {
+          "text": "Grant or deny permission for locally installed apps to run on iOS, iPadOS, visionOS, and watchOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/enabling-developer-mode-on-a-device",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling Developer Mode on a device",
+      "type": "topic",
+      "url": "/documentation/Xcode/enabling-developer-mode-on-a-device"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/adattributionkit-skadnetwork-interoperability",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/testing-ad-attributions-with-a-downloaded-profile",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/presenting-ads-in-your-app",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/receiving-ad-attributions-and-postbacks"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/adattributionkit/testing-adattributionkit-with-developer-mode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

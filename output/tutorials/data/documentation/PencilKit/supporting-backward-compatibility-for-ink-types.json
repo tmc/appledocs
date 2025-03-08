@@ -1,0 +1,1015 @@
+{
+  "abstract": [
+    {
+      "text": "Leverage the latest PencilKit features while providing a good user experience in earlier versions of the OS that don’t support those features.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.pencilkit/documentation/PencilKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.pencilkit/documentation/PencilKit/supporting-backward-compatibility-for-ink-types"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "PencilKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Supporting backward compatibility for ink types"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iPadOS 17, PencilKit becomes even more expressive by introducing the monoline, fountain pen, watercolor, and crayon inks. Earlier versions of the OS can’t render ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKDrawing-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects that use these inks because the system doesn’t contain a version of PencilKit that supports them. As a result, earlier versions of the OS throw an error when attempting to load a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKDrawing-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that contains these inks from data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can handle this situation in your app in one of two ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Support backward compatibility. Let people use the new inks when your app runs in the latest version of the OS. Before you save a drawing and sync the data to other devices, check its required content version to determine if it uses the new inks. If it does, provide a good fallback experience for devices that can’t load that drawing, like syncing a fallback drawing that’s compatible with the earlier version of PencilKit.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Restrict the use of new features. Limit which inks are available when your app runs in any version of the OS. This approach ensures that the PencilKit data your app saves is compatible with the earlier version of PencilKit, but it doesn’t let people take advantage of the new inks.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Support-backward-compatibility-using-the-required-content-version",
+          "level": 3,
+          "text": "Support backward compatibility using the required content version",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support backward compatibility, PencilKit introduces content versioning through ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKContentVersion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Data model types like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKDrawing-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKStroke-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKInkingTool-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKInk-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " contain a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKInk-swift.struct/requiredContentVersion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property that PencilKit populates automatically. The value of this property indicates which version of PencilKit is required to load the underlying data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKContentVersion/version1",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " indicates that the data only contains inks introduced in iPadOS 14, and requires the device to run iPadOS 14 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKContentVersion/version2",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " indicates that the data contains inks introduced in iPadOS 17, and requires the device to run iPadOS 17 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you save these data model types, check their ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKInk-swift.struct/requiredContentVersion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to avoid syncing incompatible data to devices with earlier versions of the OS. For example, instead of syncing a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKDrawing-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that features new inks, you can sync a fallback drawing and show a message that suggests updating the device’s OS to edit the latest drawing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func updateDrawing(_ drawing: PKDrawing, at index: Int) {",
+            "    if #available(iOS 17.0, *) {",
+            "        // Before saving, check if this drawing uses new inks and requires a later",
+            "        // version of PencilKit than might be available on a person’s other devices.",
+            "        switch drawing.requiredContentVersion {",
+            "        case .version2:",
+            "            // This drawing is incompatible with the earlier version of PencilKit.",
+            "            // Sync a backward-compatible drawing to display on devices with earlier OS versions.",
+            "            dataModel.drawings[index] = fallbackDrawing",
+            "        default:",
+            "            // This drawing is compatible with the earlier version of PencilKit.",
+            "            // Sync the current drawing since there's no need to provide a ",
+            "            // backward-compatible drawing instead.",
+            "            dataModel.drawings[index] = drawing",
+            "        }",
+            "    } else {",
+            "        dataModel.drawings[index] = drawing",
+            "    }",
+            "    saveDataModel()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Limit-available-inks-using-the-maximum-supported-content-version",
+          "level": 3,
+          "text": "Limit available inks using the maximum supported content version",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app is unable to support backward compatibility for different versions of the OS, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/maximumSupportedContentVersion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to limit which inks are available in your app. This limitation ensures that the data your app saves is compatible with the earlier version of PencilKit so you can load it on devices with earlier versions of the OS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you take this approach, you need to set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/maximumSupportedContentVersion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on both ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For example, set this property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKContentVersion/version1",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to limit which kinds of edits the canvas views offers and which tools are available for a person to select when they create PencilKit content in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set the maximum supported content version for the canvas view and any tool pickers.",
+            "@IBOutlet weak var canvasView: PKCanvasView!",
+            "var toolPicker = PKToolPicker()",
+            "",
+            "// The canvas view limits the edits that a person can make so they’re compatible with the ",
+            "// the earlier version of PencilKit.",
+            "canvasView.maximumSupportedContentVersion = .version1",
+            "",
+            "// The tool picker limits the tools that are available so they’re compatible with  ",
+            "// the earlier version of PencilKit.",
+            "toolPicker.maximumSupportedContentVersion = .version1"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Session 10055: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2023/10055/",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related sessions from WWDC23",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit": {
+      "abstract": [
+        {
+          "text": "Capture touch and Apple Pencil input as a drawing, and display that content from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PencilKit",
+      "type": "topic",
+      "url": "/documentation/pencilkit"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView": {
+      "abstract": [
+        {
+          "text": "A view that captures Apple Pencil input and displays the rendered results in an iOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKCanvasView"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKCanvasView"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKCanvasView",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkcanvasview"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKContentVersion": {
+      "abstract": [
+        {
+          "text": "Constants that represent versions of PencilKit for backward compatibility.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKContentVersion"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKContentVersion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKContentVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKContentVersion",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkcontentversion"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKContentVersion/version1": {
+      "abstract": [
+        {
+          "text": "The PencilKit version that supports inks from iPadOS 14 and earlier, including marker, pen, and pencil.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "version1"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKContentVersion/version1",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKContentVersion1"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKContentVersion.version1",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkcontentversion/version1"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKContentVersion/version2": {
+      "abstract": [
+        {
+          "text": "The PencilKit version that supports inks from iPadOS 17 and earlier, including marker, pen, pencil, monoline, fountain pen, watercolor, and crayon.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "version2"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKContentVersion/version2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKContentVersion2"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKContentVersion.version2",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkcontentversion/version2"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKDrawing-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure representing the drawing information captured by a canvas view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKDrawing"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKDrawing-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKDrawing"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKDrawing",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkdrawing-swift.struct"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKInk-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure that represents an ink that specifies its type, color, and width.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKInk"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKInk-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKInk"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKInk",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkink-swift.struct"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKInk-swift.struct/requiredContentVersion": {
+      "abstract": [
+        {
+          "text": "The version of PencilKit necessary to use the ink.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requiredContentVersion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PKContentVersion",
+          "text": "PKContentVersion"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKInk-swift.struct/requiredContentVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requiredContentVersion",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkink-swift.struct/requiredcontentversion"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKInkingTool-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure that defines the drawing characteristics (width, color, pen style) to use when drawing lines on a canvas view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKInkingTool"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKInkingTool-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKInkingTool"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKInkingTool",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkinkingtool-swift.struct"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKStroke-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure that represents the paths, boundaries, and other properties of a stroke drawn on a canvas.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKStroke"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKStroke-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKStroke"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKStroke",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkstroke-swift.struct"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker": {
+      "abstract": [
+        {
+          "text": "A tool palette that displays a selection of drawing tools and colors for tools that a person can choose from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKToolPicker"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKToolPicker"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKToolPicker",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/maximumSupportedContentVersion": {
+      "abstract": [
+        {
+          "text": "The maximum version of PencilKit to support.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumSupportedContentVersion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PKContentVersion",
+          "text": "PKContentVersion"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/maximumSupportedContentVersion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumSupportedContentVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "maximumSupportedContentVersion",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker/maximumsupportedcontentversion"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10055/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10055/",
+      "title": "What’s new in UIKit",
+      "titleInlineContent": [
+        {
+          "text": "What’s new in UIKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10055/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Backward-compatibility",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKContentVersion"
+      ],
+      "title": "Backward compatibility"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Backward-compatibility",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKContentVersion"
+              ],
+              "title": "Backward compatibility"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKContentVersion~1version1/title",
+          "value": "PKContentVersion1"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKContentVersion~1version1/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKContentVersion1"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKContentVersion~1version2/title",
+          "value": "PKContentVersion2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKContentVersion~1version2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKContentVersion2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker/title",
+          "value": "PKToolPicker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPicker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPicker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1maximumSupportedContentVersion/title",
+          "value": "maximumSupportedContentVersion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1maximumSupportedContentVersion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maximumSupportedContentVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKContentVersion/title",
+          "value": "PKContentVersion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKContentVersion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKContentVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKContentVersion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKContentVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView/title",
+          "value": "PKCanvasView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKCanvasView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKCanvasView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/pencilkit/supporting-backward-compatibility-for-ink-types"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/pencilkit/supporting-backward-compatibility-for-ink-types"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

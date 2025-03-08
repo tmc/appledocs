@@ -1,0 +1,781 @@
+{
+  "abstract": [
+    {
+      "text": "Detect and classify human activity in real time using computer vision and machine learning.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.vision/documentation/Vision",
+        "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.vision/documentation/Vision/building-a-feature-rich-app-for-sports-analysis"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Vision"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Building a feature-rich app for sports analysis"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Action & Vision sample app leverages several capabilities available in Vision and Core ML in iOS 14 and later. The app provides an example of how you can use these technologies together to help players improve their bean-bag tossing performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gamescreen.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with the WWDC20 session 10099: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2020/10099/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app analyzes player performance in a game of bean bag toss. In this easy-to-learn game, you throw bean bags at a 4 x 2-foot board that has a 6-inch hole in one end. You stand 25 feet away from the center hole of the board, and score points if you toss the bean bag onto the board, and score additional points if it goes through the hole. To make gameplay more interesting, the app adds a style dimension to the scoring. It analyzes your throw and adds additional points based on your throw style, including overhand, underhand, or underleg.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "dimensions.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After each throw, the app also provides real-time feedback that indicates your throw’s type, speed, and trajectory, along with your score.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-project-and-prepare-your-environment",
+          "level": 3,
+          "text": "Configure the project and prepare your environment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You need to run the sample app on a physical device with an A12 processor or later, running iOS 14.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some Vision algorithms require a stable scene with a fixed camera position and stationary background. To analyze your own gameplay, mount your iOS device to a tripod and keep it fixed on the field of play. Alternatively, try the app by downloading and analyzing ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/sample-code/ml/sample.mov",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of a bean bag toss player in action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Analyze-the-field-of-play",
+          "level": 3,
+          "text": "Analyze the field of play",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before gameplay can begin, the app analyzes the scene to find the location of the gameboard. It detects its location by using an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vncoremlrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to run inference on a custom object-detection model created using ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/createml",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The app has a model trained using photos of gameboards, taken from various angles and distances, in both indoor and outdoor environments. To further improve the model’s accuracy, the training included images with people in the frame, and bean bags on and around the board. The app performs the request and retrieves its top observation to find the gameboard’s bounding rectangle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, the app performs a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vndetectcontoursrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to detect the contours of the gameboard’s edges and uses them to determine the normalized pixel dimensions of the board, and the location of the hole. Because the app previously calculated the bounding rectangle of the detected board, it sets the bounding rectangle as the request’s region of interest, which helps the request significantly reduce noise and improve performance. Because the app knows the real-world size of the gameboard, it accurately determines the pixel dimensions of the field of play.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about about contour detection, see the WWDC20 session 10673: ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2020/10673",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-scene-stability",
+          "level": 3,
+          "text": "Determine scene stability",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some Vision algorithms require a stable scene to produce accurate results. To determine scene stability, the app uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vntranslationalimageregistrationrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", a request that compares two images to calculate the x-axis and y-axis shift between them. The app analyzes video frames until the shift reaches a minimum difference threshold, at which point the app considers the scene stable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-the-player",
+          "level": 3,
+          "text": "Identify the player",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the field of play established, the app is ready to start the game when a player enters the scene. To detect a player entering the frame, the app performs ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vndetecthumanbodyposerequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", a request available in iOS 14, that detects key body points of the face, torso, arms, and legs. The app performs this request on each video frame, and uses the data points it produces to draw a bounding box around the player. The app also uses the detected body points to determine the throw type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about using human body-pose detection, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/detecting_human_body_poses_in_images",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the WWDC20 session ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2020/10653",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Detect-the-players-throw-trajectory",
+          "level": 3,
+          "text": "Detect the player’s throw trajectory",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app uses Vision’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to analyze the player’s throw. This request follows objects moving on a parabolic path. Detecting a parabola requires more than a single data point, so this is a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "stateful",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " request that builds evidence of the object’s movement over time. The app creates a single instance of the request and performs it multiple times over a sequence of video frames. After the request collects enough data points to recognize the trajectory, it calls its completion handler, and passes it the observations that contain the trajectory coordinates and timestamps. The app provides a data visualization by progressively drawing a line that traces the bag’s trajectory. When the request stops producing observations for more than 20 frames, the app considers the throw complete, and calculates the points that the player scored.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app knows the pixel dimensions of the gameboard, and uses them as a reference to determine the distance of the player’s throw. Because the request also provides the detected trajectory’s duration, the app uses the time and distance to measure the throw’s speed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about using ",
+              "type": "text"
+            },
+            {
+              "code": "VNDetectTrajectoriesRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/identifying_trajectories_in_video",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "code": "VNDetectTrajectoriesRequest",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " detects multiple, concurrent trajectories, so an app needs to apply its own business logic to filter the trajectories to only those of interest. For example, the sample app knows the location of the gameboard, and it discards any trajectories that move in the opposite direction.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Determine-the-throw-type",
+          "level": 3,
+          "text": "Determine the throw type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine the throw type, the app uses another custom Core ML model, one trained using the Action Classification template available in Create ML. The app’s model training used video clips of people performing overhand, underhand, and underleg throws, and also included a negative training set with players performing actions other than throwing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As discussed previously, the app uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vndetecthumanbodyposerequest",
+              "isActive": true,
+              "overridingTitle": "VNDetectHumanBodyPoseRequest",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "VNDetectHumanBodyPoseRequest",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to detect the player’s location. In each of the observations the request returns, the request also provides the normalized coordinates for various detected body points. The app retrieves these points from the request as a Core ML ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/coreml/mlmultiarray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and passes them as inputs to the Action Classifier. The model runs its predictions and returns the labeled results, which indicate the throw type, and a confidence value in the accuracy of the prediction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about Action Classification, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/createml/creating-an-action-classifier-model",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "84b9ca3f588f/BuildingAFeatureRichAppForSportsAnalysis.zip": {
+      "checksum": "84b9ca3f588f64222e28c148ca52ee2da4709563daf85f51b8c67f1c4f16d2a72ac8f637b9937454ee81aee04db4a4279793333b467ecf8de0358894b9f40cf6",
+      "identifier": "84b9ca3f588f/BuildingAFeatureRichAppForSportsAnalysis.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/84b9ca3f588f/BuildingAFeatureRichAppForSportsAnalysis.zip"
+    },
+    "dimensions.png": {
+      "alt": "A diagram of the dimensions of the bean bag toss game. A human figure stands 25 feet from a 2 x 4-foot board. A dotted line indicates the movement of a bean bag tossed toward a 6-inch opening in the board.",
+      "identifier": "dimensions.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2e1863dff96a5d5bb4598e628024d1a2/dimensions.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.vision/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api": {
+      "abstract": [],
+      "identifier": "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original Objective-C and Swift API",
+      "type": "topic",
+      "url": "/documentation/vision/original-objective-c-and-swift-api"
+    },
+    "gamescreen.png": {
+      "alt": "A diagram of a human figure tossing a bean bag toward a board with a small opening. Above the figure is a running score tally, and below are elements that display the player’s throw type, trajectory, speed, and score for each throw.",
+      "identifier": "gamescreen.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cf82c42b040fd9d2aed3b4c488594534/gamescreen.png"
+        }
+      ]
+    },
+    "https://developer.apple.com/documentation/coreml/mlmultiarray": {
+      "identifier": "https://developer.apple.com/documentation/coreml/mlmultiarray",
+      "title": "MLMultiArray",
+      "titleInlineContent": [
+        {
+          "text": "MLMultiArray",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/coreml/mlmultiarray"
+    },
+    "https://developer.apple.com/documentation/createml": {
+      "identifier": "https://developer.apple.com/documentation/createml",
+      "title": "Create ML",
+      "titleInlineContent": [
+        {
+          "text": "Create ML",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/createml"
+    },
+    "https://developer.apple.com/documentation/createml/creating-an-action-classifier-model": {
+      "identifier": "https://developer.apple.com/documentation/createml/creating-an-action-classifier-model",
+      "title": "Creating an Action Classifier Model",
+      "titleInlineContent": [
+        {
+          "text": "Creating an Action Classifier Model",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/createml/creating-an-action-classifier-model"
+    },
+    "https://developer.apple.com/documentation/vision/detecting_human_body_poses_in_images": {
+      "identifier": "https://developer.apple.com/documentation/vision/detecting_human_body_poses_in_images",
+      "title": "Detecting Human Body Poses in Images",
+      "titleInlineContent": [
+        {
+          "text": "Detecting Human Body Poses in Images",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/detecting_human_body_poses_in_images"
+    },
+    "https://developer.apple.com/documentation/vision/identifying_trajectories_in_video": {
+      "identifier": "https://developer.apple.com/documentation/vision/identifying_trajectories_in_video",
+      "title": "Identifying Trajectories in Video",
+      "titleInlineContent": [
+        {
+          "text": "Identifying Trajectories in Video",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/identifying_trajectories_in_video"
+    },
+    "https://developer.apple.com/documentation/vision/vncoremlrequest": {
+      "identifier": "https://developer.apple.com/documentation/vision/vncoremlrequest",
+      "title": "VNCoreMLRequest",
+      "titleInlineContent": [
+        {
+          "text": "VNCoreMLRequest",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vncoremlrequest"
+    },
+    "https://developer.apple.com/documentation/vision/vndetectcontoursrequest": {
+      "identifier": "https://developer.apple.com/documentation/vision/vndetectcontoursrequest",
+      "title": "VNDetectContoursRequest",
+      "titleInlineContent": [
+        {
+          "text": "VNDetectContoursRequest",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vndetectcontoursrequest"
+    },
+    "https://developer.apple.com/documentation/vision/vndetecthumanbodyposerequest": {
+      "identifier": "https://developer.apple.com/documentation/vision/vndetecthumanbodyposerequest",
+      "title": "VNDetectHumanBodyPoseRequest",
+      "titleInlineContent": [
+        {
+          "text": "VNDetectHumanBodyPoseRequest",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vndetecthumanbodyposerequest"
+    },
+    "https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest": {
+      "identifier": "https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest",
+      "title": "VNDetectTrajectoriesRequest",
+      "titleInlineContent": [
+        {
+          "text": "VNDetectTrajectoriesRequest",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest"
+    },
+    "https://developer.apple.com/documentation/vision/vntranslationalimageregistrationrequest": {
+      "identifier": "https://developer.apple.com/documentation/vision/vntranslationalimageregistrationrequest",
+      "title": "VNTranslationalImageRegistrationRequest",
+      "titleInlineContent": [
+        {
+          "text": "VNTranslationalImageRegistrationRequest",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vntranslationalimageregistrationrequest"
+    },
+    "https://developer.apple.com/sample-code/ml/sample.mov": {
+      "identifier": "https://developer.apple.com/sample-code/ml/sample.mov",
+      "title": "a prerecorded video",
+      "titleInlineContent": [
+        {
+          "text": "a prerecorded video",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/sample-code/ml/sample.mov"
+    },
+    "https://developer.apple.com/videos/play/wwdc2020/10099/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10099/",
+      "title": "Explore the Action & Vision App",
+      "titleInlineContent": [
+        {
+          "text": "Explore the Action & Vision App",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10099/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2020/10653": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10653",
+      "title": "10653: Detect Body and Hand Pose with Vision",
+      "titleInlineContent": [
+        {
+          "text": "10653: Detect Body and Hand Pose with Vision",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10653"
+    },
+    "https://developer.apple.com/videos/play/wwdc2020/10673": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10673",
+      "title": "Explore Computer Vision APIs",
+      "titleInlineContent": [
+        {
+          "text": "Explore Computer Vision APIs",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10673"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "84b9ca3f588f/BuildingAFeatureRichAppForSportsAnalysis.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/vision/building-a-feature-rich-app-for-sports-analysis"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/vision/building-a-feature-rich-app-for-sports-analysis"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

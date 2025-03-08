@@ -1,0 +1,284 @@
+{
+  "abstract": [
+    {
+      "text": "Create dynamic movies with modifier tracks that send data to another track.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Modifier_tracks"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Modifier tracks"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The addition of modifier tracks in QuickTime 2.1 introduced the capability for creating dynamic movies. (A modifier track sends data to another track; by comparison, a track reference is an association.) For example, instead of playing video in a normal way, a video track could send its image data to a sprite track. The sprite track then could use that video data to replace the image of one of its sprites. When the movie is played, the video track appears as a sprite.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Modifier tracks are not a new type of track. Instead, they are a new way of using the data in existing tracks. A modifier track does not present its data, but sends it to another track that uses the data to modify how it presents its own data. Any track can be either a sender or a presenter, but not both. Previously, all tracks were presenters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Another use of modifier tracks is to store a series of sound volume levels, which is what occurs when you work with a tween track. These sound levels can be sent to a sound track as it plays to dynamically adjust the volume. A similar use of modifier tracks is to store location and size information. This data can be sent to a video track to cause it to move and resize as it plays.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because a modifier track can send its data to more than one track, you can easily synchronize actions between multiple tracks. For example, a single modifier track containing matrices as its samples can make two separate video tracks follow the same path.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_movies_with_modifier_tracks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information about using modifier tracks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Limitations-of-Spatial-Modifier-Tracks",
+          "level": 2,
+          "text": "Limitations of Spatial Modifier Tracks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A modifier track may cause a track to move outside of its original boundary regions. This may present problems, since applications do not expect the dimensions or location of a QuickTime movie to change over time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure that a movie maintains a constant location and size, the Movie Toolbox limits the area in which a spatially modified track can be displayed. A movie’s “natural” shape is defined by the region returned by the ",
+              "type": "text"
+            },
+            {
+              "code": "GetMovieBoundsRgn",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function. The toolbox clips all spatially modified tracks against the region returned by ",
+              "type": "text"
+            },
+            {
+              "code": "GetMovieBoundsRgn",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This means that a track can move outside of its initial boundary regions, but it cannot move beyond the combined initial boundary regions of all tracks in the movie. Areas uncovered by a moving track are handled by the toolbox in the same way as areas uncovered by tracks with empty edits.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a track has to move through a larger area than that defined by the movie’s boundary region, the movie’s boundary region can be enlarged to any desired size by creating a spatial track (such as a video track) of the desired size but with no data. As long as the track is enabled, it contributes to the boundary regions of the movie.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Chapter_lists": {
+      "abstract": [
+        {
+          "text": "A chapter list provides a set of named entry points into a movie.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Chapter_lists",
+      "kind": "article",
+      "role": "article",
+      "title": "Chapter lists",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/chapter_lists"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_movies_with_modifier_tracks": {
+      "abstract": [
+        {
+          "text": "Send data to another media handler instead of presenting media directly.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_movies_with_modifier_tracks",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating movies with modifier tracks",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/creating_movies_with_modifier_tracks"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types": {
+      "abstract": [
+        {
+          "text": "Store different types of media data, including video, sound, subtitles, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media data atom types",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/media_data_atom_types"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Streaming_media": {
+      "abstract": [
+        {
+          "text": "Store streaming data in a streaming media track for QuickTime movies.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Streaming_media",
+      "kind": "article",
+      "role": "article",
+      "title": "Streaming media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/streaming_media"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_references": {
+      "abstract": [
+        {
+          "text": "Relate a movie’s tracks to one another with track references.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_references",
+      "kind": "article",
+      "role": "article",
+      "title": "Track references",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_references"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Track-features",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Creating_movies_with_modifier_tracks",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Track_references",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Chapter_lists",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Streaming_media"
+      ],
+      "title": "Track features"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/modifier_tracks"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

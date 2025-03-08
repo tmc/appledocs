@@ -1,0 +1,463 @@
+{
+  "abstract": [
+    {
+      "text": "Information the client provides about a sequence of requests and responses to process an intent.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Session"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:sirikit_media_api:Session",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "Session"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SiriKit Cloud Media"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Session"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0.2",
+        "name": "SiriKit Cloud Media"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "Session"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: SiriKit Cloud Media"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "Session"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "minimumLength",
+              "value": "1"
+            },
+            {
+              "kind": "maximumLength",
+              "value": "128"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A stable identifier for all requests and responses relating to a specific intent.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "identifier",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Client limitations on content quantity and type that apply to all responses your service makes for this session.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "constraints",
+          "required": true,
+          "type": [
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Constraints",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:sirikit_media_api:Constraints",
+              "text": "Constraints"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The time the user initiates the request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "requested",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "date-time"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The time by which the client expects a response from your service to provide a real-time interaction with the user.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "deadline",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "date-time"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Information about content the client is playing, if any.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "playerContext",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayerContext",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:sirikit_media_api:PlayerContext",
+              "text": "PlayerContext"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "/[0-9]+\\.[0-9]+\\.[0-9]+/"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The version of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "SiriKitMediaAPI",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " library the client is using.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "version",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia": {
+      "abstract": [
+        {
+          "text": "Stream music directly to HomePod speakers from your media service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SiriKit Cloud Media",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Constraints": {
+      "abstract": [
+        {
+          "text": "Client-originated limitations on how to process a request, such as including explicit content and how much content the client device can receive in a response.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Constraints"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Constraints",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Constraints"
+        }
+      ],
+      "role": "symbol",
+      "title": "Constraints",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/constraints"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Invocation": {
+      "abstract": [
+        {
+          "text": "Properties that clients include in requests to all intent endpoints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Invocation"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Invocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Invocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "Invocation",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/invocation"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/InvocationResponse": {
+      "abstract": [
+        {
+          "text": "Properties to include in responses from all intent endpoints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvocationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/InvocationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvocationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "InvocationResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/invocationresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayerContext": {
+      "abstract": [
+        {
+          "text": "Information about the current playback content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayerContext"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayerContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayerContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayerContext",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playercontext"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Session": {
+      "abstract": [
+        {
+          "text": "Information the client provides about a sequence of requests and responses to process an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Session"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Session",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Session"
+        }
+      ],
+      "role": "symbol",
+      "title": "Session",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/session"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Requests",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Invocation",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Constraints",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayerContext",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/InvocationResponse"
+      ],
+      "title": "Requests"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/sirikitcloudmedia/session"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

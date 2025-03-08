@@ -1,0 +1,1622 @@
+{
+  "abstract": [
+    {
+      "text": "Display visually rich content on watch faces.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.clockkit/documentation/ClockKit",
+        "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.clockkit/documentation/ClockKit/graphic"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ClockKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Graphic"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use graphic templates to display multicolor text, full-color images, and gauges with color gradients on a variety of watch faces, including the Infograph, Infograph Modular, and Solar Dial.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Watch faces that support graphic templates are available only on Apple Watch Series 4 or later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ClockKit further divides graphic templates into five different families:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily/graphicCorner",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily/graphicCircular",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily/graphicBezel",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily/graphicRectangular",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily/graphicExtraLarge",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each family appears in a different location on the supported watch face. For example, the corner templates can be used in all four corners of the Infographic or Solar Dial watch faces. While the circular templates appear in the center of the Infographic watch face, and along the bottom of the Infographic Modular face.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The graphic families also provide templates that support SwiftUI. These templates use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to draw some or all of the complication’s content. Every graphic template that takes a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKImageProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " parameter has a variant that takes a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularFullView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicCircularView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicExtraLargeCircularView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provide the most flexibility. In these templates, the SwiftUI view fills the entire complication—giving you a blank canvas that you can use to create your content. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/building-complications-with-swiftui",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-Tinted-Complications",
+          "level": 3,
+          "text": "Display Tinted Complications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A watch face that supports graphic complications can display a low-color version of the complication in tinted mode, which makes the following changes to the template:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Gauges display a solid color instead of a color gradient. The system bases this color on the watch face color the user selected.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Text displays a color based on the user’s watch face color. Multicolor text providers display only a single color.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The system automatically desaturates images by default; however, you can use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKFullColorImageProvider",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKFullColorImageProvider/tintedImageProvider",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property to provide a tinted version for the image. Note that the complication ignores the tinted image provider’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKImageProvider/tintColor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property, using a color based on the user’s watch-face color instead.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2019/253/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.clockkit/documentation/ClockKit": {
+      "abstract": [
+        {
+          "text": "Display app-specific data on the clock face.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClockKit",
+      "type": "topic",
+      "url": "/documentation/clockkit"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily": {
+      "abstract": [
+        {
+          "text": "Constants indicating the template groups.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationFamily"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationFamily"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationFamily",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationfamily"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily/graphicBezel": {
+      "abstract": [
+        {
+          "text": "A circular area with optional curved text that ClockKit displays along the bezel of the Infograph watch face.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "graphicBezel"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily/graphicBezel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationFamilyGraphicBezel"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationFamily.graphicBezel",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationfamily/graphicbezel"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily/graphicCircular": {
+      "abstract": [
+        {
+          "text": "A circular area that ClockKit displays on the Infograph and Infograph Modular watch faces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "graphicCircular"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily/graphicCircular",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationFamilyGraphicCircular"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationFamily.graphicCircular",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationfamily/graphiccircular"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily/graphicCorner": {
+      "abstract": [
+        {
+          "text": "A curved area that fills the corners in the Infograph watch face.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "graphicCorner"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily/graphicCorner",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationFamilyGraphicCorner"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationFamily.graphicCorner",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationfamily/graphiccorner"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily/graphicExtraLarge": {
+      "abstract": [
+        {
+          "text": "A large square area that ClockKit displays on the X-Large watch face.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "graphicExtraLarge"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily/graphicExtraLarge",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationFamilyGraphicExtraLarge"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationFamily.graphicExtraLarge",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationfamily/graphicextralarge"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily/graphicRectangular": {
+      "abstract": [
+        {
+          "text": "A large rectangular area that ClockKit displays in the center of the Infograph Modular watch face.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "graphicRectangular"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily/graphicRectangular",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationFamilyGraphicRectangular"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationFamily.graphicRectangular",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationfamily/graphicrectangular"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplate": {
+      "abstract": [
+        {
+          "text": "An abstract class that defines the base behavior for all templates.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTemplate"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTemplate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationTemplate",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationtemplate"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicBezelCircularText": {
+      "abstract": [
+        {
+          "text": "A template for displaying a circular complication with text along the bezel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTemplateGraphicBezelCircularText"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicBezelCircularText",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTemplateGraphicBezelCircularText"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationTemplateGraphicBezelCircularText",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationtemplategraphicbezelcirculartext"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicCircularView": {
+      "abstract": [
+        {
+          "text": "A template for displaying a circular view.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTemplateGraphicCircularView"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicCircularView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTemplateGraphicCircularView"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationTemplateGraphicCircularView",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationtemplategraphiccircularview"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicExtraLargeCircularView": {
+      "abstract": [
+        {
+          "text": "A template for displaying a circular SwiftUI view.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTemplateGraphicExtraLargeCircularView"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicExtraLargeCircularView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTemplateGraphicExtraLargeCircularView"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationTemplateGraphicExtraLargeCircularView",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationtemplategraphicextralargecircularview"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularFullView": {
+      "abstract": [
+        {
+          "text": "A template for displaying a SwiftUI view that fills the entire template.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTemplateGraphicRectangularFullView"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicRectangularFullView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationTemplateGraphicRectangularFullView"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationTemplateGraphicRectangularFullView",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationtemplategraphicrectangularfullview"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKFullColorImageProvider": {
+      "abstract": [
+        {
+          "text": "A full-color image displayed by a complication.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKFullColorImageProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKFullColorImageProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKFullColorImageProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKFullColorImageProvider",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkfullcolorimageprovider"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKFullColorImageProvider/tintedImageProvider": {
+      "abstract": [
+        {
+          "text": "An image provider that produces alternative images for tinted graphic complications.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tintedImageProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKImageProvider",
+          "text": "CLKImageProvider"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKFullColorImageProvider/tintedImageProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tintedImageProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "tintedImageProvider",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkfullcolorimageprovider/tintedimageprovider"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKImageProvider": {
+      "abstract": [
+        {
+          "text": "An image displayed by a complication.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKImageProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKImageProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKImageProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKImageProvider",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkimageprovider"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKImageProvider/tintColor": {
+      "abstract": [
+        {
+          "text": "The tint color to apply to the image in a multicolor clock face.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tintColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIColor",
+          "text": "UIColor"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKImageProvider/tintColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tintColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "tintColor",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkimageprovider/tintcolor"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/ComplicationRenderingMode": {
+      "abstract": [
+        {
+          "text": "The complication’s appearance, as specified by the watch face.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComplicationRenderingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/ComplicationRenderingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComplicationRenderingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComplicationRenderingMode",
+      "type": "topic",
+      "url": "/documentation/clockkit/complicationrenderingmode"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/building-complications-with-swiftui": {
+      "abstract": [
+        {
+          "text": "Design the appearance of a graphic complication using SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/building-complications-with-swiftui",
+      "kind": "article",
+      "role": "article",
+      "title": "Building complications with SwiftUI",
+      "type": "topic",
+      "url": "/documentation/clockkit/building-complications-with-swiftui"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/circular-complication-templates": {
+      "abstract": [
+        {
+          "text": "Display graphical data in a compact circle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/circular-complication-templates",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Circular complication templates",
+      "type": "topic",
+      "url": "/documentation/clockkit/circular-complication-templates"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/circular-small": {
+      "abstract": [
+        {
+          "text": "Display small, circular content in the corners of the Color watch face.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/circular-small",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Circular small",
+      "type": "topic",
+      "url": "/documentation/clockkit/circular-small"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/corner-complication-templates": {
+      "abstract": [
+        {
+          "text": "Display graphically rich data in the watch face’s corner.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/corner-complication-templates",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Corner complication templates",
+      "type": "topic",
+      "url": "/documentation/clockkit/corner-complication-templates"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/data-providers": {
+      "abstract": [
+        {
+          "text": "Feed data to a complication template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/data-providers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data providers",
+      "type": "topic",
+      "url": "/documentation/clockkit/data-providers"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols": {
+      "abstract": [],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated articles and symbols",
+      "type": "topic",
+      "url": "/documentation/clockkit/deprecated-articles-and-symbols"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/displaying-essential-information-on-a-watch-face": {
+      "abstract": [
+        {
+          "text": "Implement complications in a watch app to display essential information on a watch face.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/displaying-essential-information-on-a-watch-face",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Displaying essential information on a watch face",
+      "type": "topic",
+      "url": "/documentation/clockkit/displaying-essential-information-on-a-watch-face"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/extra-large": {
+      "abstract": [
+        {
+          "text": "Display content on the X-Large watch face.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/extra-large",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Extra large",
+      "type": "topic",
+      "url": "/documentation/clockkit/extra-large"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/extra-large-circular-templates": {
+      "abstract": [
+        {
+          "text": "Display large, easy-to-read content on the X-Large watch face.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/extra-large-circular-templates",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Extra large circular templates",
+      "type": "topic",
+      "url": "/documentation/clockkit/extra-large-circular-templates"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/modular-large": {
+      "abstract": [
+        {
+          "text": "Display multiple rows of content in the large, central complication on the Modular watch face.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/modular-large",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Modular large",
+      "type": "topic",
+      "url": "/documentation/clockkit/modular-large"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/modular-small": {
+      "abstract": [
+        {
+          "text": "Display content in the smaller spaces of the Modular watch face.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/modular-small",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Modular small",
+      "type": "topic",
+      "url": "/documentation/clockkit/modular-small"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/rectangular-complication-templates": {
+      "abstract": [
+        {
+          "text": "Displays large, rectangular complications for charts, images, or multiple lines of text.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/rectangular-complication-templates",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Rectangular complication templates.",
+      "type": "topic",
+      "url": "/documentation/clockkit/rectangular-complication-templates"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/swiftui-templates": {
+      "abstract": [
+        {
+          "text": "Design complication templates using SwiftUI views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/swiftui-templates",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SwiftUI templates",
+      "type": "topic",
+      "url": "/documentation/clockkit/swiftui-templates"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/utilitarian": {
+      "abstract": [
+        {
+          "text": "Use the utilitarian templates to display content on a variety of watch faces, including the Utility, Chronograph, Simple, and character watch faces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/utilitarian",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Utilitarian",
+      "type": "topic",
+      "url": "/documentation/clockkit/utilitarian"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CLKComplicationSupportedFamilies": {
+      "abstract": [
+        {
+          "text": "The complication families for which the app can provide data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CLKComplicationSupportedFamilies",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLKComplicationSupportedFamilies",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/CLKComplicationSupportedFamilies"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/videos/play/wwdc2019/253/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2019/253/",
+      "title": "Exploring Tinted Graphic Complications",
+      "titleInlineContent": [
+        {
+          "text": "Exploring Tinted Graphic Complications",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2019/253/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Templates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.clockkit/documentation/ClockKit/swiftui-templates",
+        "doc://com.apple.clockkit/documentation/ClockKit/ComplicationRenderingMode",
+        "doc://com.apple.clockkit/documentation/ClockKit/data-providers",
+        "doc://com.apple.clockkit/documentation/ClockKit/circular-small",
+        "doc://com.apple.clockkit/documentation/ClockKit/extra-large",
+        "doc://com.apple.clockkit/documentation/ClockKit/modular-small",
+        "doc://com.apple.clockkit/documentation/ClockKit/modular-large",
+        "doc://com.apple.clockkit/documentation/ClockKit/utilitarian",
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplate",
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CLKComplicationSupportedFamilies"
+      ],
+      "title": "Templates"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Graphic-data",
+      "identifiers": [
+        "doc://com.apple.clockkit/documentation/ClockKit/displaying-essential-information-on-a-watch-face"
+      ],
+      "title": "Graphic data"
+    },
+    {
+      "anchor": "Graphic-template-families",
+      "identifiers": [
+        "doc://com.apple.clockkit/documentation/ClockKit/circular-complication-templates",
+        "doc://com.apple.clockkit/documentation/ClockKit/corner-complication-templates",
+        "doc://com.apple.clockkit/documentation/ClockKit/rectangular-complication-templates",
+        "doc://com.apple.clockkit/documentation/ClockKit/extra-large-circular-templates",
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicBezelCircularText"
+      ],
+      "title": "Graphic template families"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Graphic-data",
+              "identifiers": [
+                "doc://com.apple.clockkit/documentation/ClockKit/displaying-essential-information-on-a-watch-face"
+              ],
+              "title": "Graphic data"
+            },
+            {
+              "anchor": "Graphic-template-families",
+              "identifiers": [
+                "doc://com.apple.clockkit/documentation/ClockKit/circular-complication-templates",
+                "doc://com.apple.clockkit/documentation/ClockKit/corner-complication-templates",
+                "doc://com.apple.clockkit/documentation/ClockKit/rectangular-complication-templates",
+                "doc://com.apple.clockkit/documentation/ClockKit/extra-large-circular-templates",
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplateGraphicBezelCircularText"
+              ],
+              "title": "Graphic template families"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Templates",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.clockkit/documentation/ClockKit/swiftui-templates",
+                "doc://com.apple.clockkit/documentation/ClockKit/data-providers",
+                "doc://com.apple.clockkit/documentation/ClockKit/circular-small",
+                "doc://com.apple.clockkit/documentation/ClockKit/extra-large",
+                "doc://com.apple.clockkit/documentation/ClockKit/modular-small",
+                "doc://com.apple.clockkit/documentation/ClockKit/modular-large",
+                "doc://com.apple.clockkit/documentation/ClockKit/utilitarian",
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationTemplate",
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationFamily",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CLKComplicationSupportedFamilies"
+              ],
+              "title": "Templates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationTemplate/title",
+          "value": "CLKComplicationTemplate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationTemplate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationTemplate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationFamily/title",
+          "value": "CLKComplicationFamily"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationFamily/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationFamily"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationFamily/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationFamily"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationFamily~1graphicCircular/title",
+          "value": "CLKComplicationFamilyGraphicCircular"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationFamily~1graphicCircular/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationFamilyGraphicCircular"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationFamily~1graphicRectangular/title",
+          "value": "CLKComplicationFamilyGraphicRectangular"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationFamily~1graphicRectangular/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationFamilyGraphicRectangular"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationFamily~1graphicBezel/title",
+          "value": "CLKComplicationFamilyGraphicBezel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationFamily~1graphicBezel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationFamilyGraphicBezel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKImageProvider/title",
+          "value": "CLKImageProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKImageProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKImageProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKImageProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKImageProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKFullColorImageProvider~1tintedImageProvider/title",
+          "value": "tintedImageProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKFullColorImageProvider~1tintedImageProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tintedImageProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationFamily~1graphicExtraLarge/title",
+          "value": "CLKComplicationFamilyGraphicExtraLarge"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationFamily~1graphicExtraLarge/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationFamilyGraphicExtraLarge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKImageProvider~1tintColor/title",
+          "value": "tintColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKImageProvider~1tintColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tintColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationTemplateGraphicBezelCircularText/title",
+          "value": "CLKComplicationTemplateGraphicBezelCircularText"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationTemplateGraphicBezelCircularText/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationTemplateGraphicBezelCircularText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationTemplateGraphicBezelCircularText/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationTemplateGraphicBezelCircularText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationFamily~1graphicCorner/title",
+          "value": "CLKComplicationFamilyGraphicCorner"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationFamily~1graphicCorner/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationFamilyGraphicCorner"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKFullColorImageProvider/title",
+          "value": "CLKFullColorImageProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKFullColorImageProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKFullColorImageProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKFullColorImageProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKFullColorImageProvider"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/clockkit/graphic"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/clockkit/graphic"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

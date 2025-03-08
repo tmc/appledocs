@@ -1,0 +1,3429 @@
+{
+  "abstract": [
+    {
+      "text": "Update your SharePlay activities to support spatial Personas and",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "the shared context when running in visionOS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.GroupActivities/documentation/GroupActivities/adding-spatial-persona-support-to-an-activity"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Group Activities"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding spatial Persona support to an activity"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A person who participates in SharePlay activities on Apple Vision Pro",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "has the option to participate using their spatial Persona. The system arranges",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "spatial Personas around the activity content, giving each person a clear",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view of the content and each other. Each person sees the facial expressions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of other participants, what they’re looking at, and where they’re pointing.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This experience creates the feeling that they’re in the same physical space",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interacting with shared content and each other.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To maintain the experience when spatial Personas are visible, apps share",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "additional information to maintain the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "shared context",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " for the activity.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because participants can see where others are looking, your app’s content",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "must look the same for everyone. Share any additional information you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "need to keep everyone’s content in sync visually. For example, synchronize your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "window’s scroll position to ensure everyone sees the same portion of that window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t need to define new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupActivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " types specifically to support",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "spatial Personas. The system automatically displays spatial Personas for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "existing activities that take place in a window or volume. However, if you support",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "activities in a Full Space, you need to do additional work to support",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "spatial Personas for your experience. For information about how to define",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "activities in your app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/defining-your-apps-shareplay-activities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Associate-SharePlay-activities-with-your-apps-scenes",
+          "level": 3,
+          "text": "Associate SharePlay activities with your app’s scenes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use scenes to manage the content for your app’s windows, volumes, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "immersive spaces. You also use scenes to display any activity-related",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content. When a participant joins an activity, the system selects or opens",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the scene that supports the activity. If your app has only one scene and one",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "window, the system has only one choice. However, if your app has multiple",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scenes, you need to help the system choose the correct one.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each of your app’s scenes, activation conditions tell the system how to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "handle your app’s SharePlay activities. You also use activation conditions to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specify how to handle ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "objects, and other incoming events. To specify activation conditions for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "one of your scenes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For SwiftUI, add the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/handlesExternalEvents(preferring:allowing:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " modifier to your scene type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For UIKit, configure the scene’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIScene/activationConditions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UISceneDelegate/scene(_:willConnectTo:options:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method of your scene delegate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you add an activation condition to a scene, you specify a string",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that uniquely identifies your SharePlay activity. The string can be",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "anything you want, as long as it creates a unique connection between the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "activity and the specific scene. When there is a one-to-one correspondence",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "between an activity and scene, the string in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupActivity/activityIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property of your activity object is a good choice. When there isn’t a one-to-one",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "correspondence between scene and activity, you must create a string that uniquely",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "identifies the scene. For example, in a document-based app, you might specify",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the name of a document to direct the system to the scene that contains the document.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code defines a SwiftUI scene for a window, and associates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "two activities with that window. Because the app uses the same scene to display",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content for two different activities, the activation conditions contain the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "identifiers for the two ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupActivity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " types. When either activity starts,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system directs the activity to the window containing the scene. If no such",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "window is open, the system launches the app and creates the window as needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let activationConditions : Set = [\"com.mycompany.MySharePlayActivity\",",
+            "                                  \"com.mycompany.MyUserActivity\"]",
+            "var body: some Scene {",
+            "    WindowGroup {",
+            "        ContentView()",
+            "            .handlesExternalEvents(preferring: [], allowing: activationConditions)",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to configuring your scene, you need to update your activity",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object’s metadata with the appropriate string. Specify the string using",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupActivityMetadata/sceneAssociationBehavior",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of your activity object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupActivityMetadata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure. Assign",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SceneAssociationBehavior/default",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value to this property if you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use the activity identifier as the string. For any custom strings, assign",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SceneAssociationBehavior/content(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value and specify your string.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To disable scene association for the activity and handle the presentation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of activity-related UI yourself, specify the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SceneAssociationBehavior/none",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-your-apps-support-for-spatial-Personas",
+          "level": 3,
+          "text": "Configure your app’s support for spatial Personas",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system provides some default behaviors to make it easier for you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to adopt spatial Personas in your app. For activities that take place",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in a window or volume, the system chooses a default arrangement of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "spatial Personas around your scene. The system also adorns the scene",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with a Share menu, which provides a visual indication when sharing is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "active and contains controls to start activities. The system doesn’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "display spatial Personas in a Full Space by default.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To change the default behavior of your app, update the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before you call the session’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/join()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify a different arrangement for spatial Personas.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify whether your app supports spatial Personas when a Full Space is visible.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example changes the arrangement of spatial Personas",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to be side by side facing the app’s content. The code also tells",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system that the app supports spatial Personas when a Full Space is open.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let coordinator = await newSession.systemCoordinator {",
+            "    var config = SystemCoordinator.Configuration()",
+            "    config.spatialTemplatePreference = .sideBySide.contentExtent(200)",
+            "    config.supportsGroupImmersiveSpace = true",
+            "    coordinator.configuration = config",
+            "}",
+            "",
+            "// Join the session.",
+            "newSession.join()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Spatial template preferences tell the system whether to arrange",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "participants side by side, in a circle, or in an arrangement that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "supports conversation. For each template, the system uses the size",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of your content to determine how far away to place spatial Personas.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, the system moves them farther away when your content is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "larger, and brings them closer together when your content is small.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To override this distance, add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplatePreference/contentExtent(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "modifier to your template preference. That modifier tells the system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to use the distance you specify, instead of the content size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you enable support for spatial Personas in a Full Space, you must",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "do additional work to support that experience. When an activity moves",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to a Full Space, the system creates a shared coordinate system for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "all participants and the content. In this new coordinate system, participants",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are no longer at the center of the coordinate system, which might",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "require you to update the position of your content. For more information,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/adding-spatial-persona-support-to-an-activity#Place-content-relative-to-a-participant-in-an-immersive-space",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Synchronize-additional-data-when-spatial-Personas-are-visible",
+          "level": 3,
+          "text": "Synchronize additional data when spatial Personas are visible",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When spatial Personas are visible, it’s your responsibility to maintain",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the shared context for your activity. The shared context includes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "both the content you display and how that content appears to each",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "participant. People can gesture or look at content using their spatial",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Persona, so it’s important that everyone sees the same thing when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that happens. For example, Freeform synchronizes both the page content",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the current scroll position to ensure everyone sees the same",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "portion of the page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When defining an activity, define additional data messages to synchronize",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "any information you need to maintain the shared context. When the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "current participant shows their spatial Persona, send the extra",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "messages when the participant makes relevant changes to the activity.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, send them when the person scrolls the activity window.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Similarly, receive those messages and incorporate the results into",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app when the spatial Persona is visible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Make sure you separate the messages that all participants",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "require from the ones that only make sense when spatial Personas are",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "visible. Maintaining the shared context is necessary when spatial",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Personas are visible, but isn’t always necessary at other times.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For example, Freeform doesn’t synchronize the scroll position for",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "someone without a spatial Persona.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine when someone’s spatial Persona is visible, monitor the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/localParticipantStates",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of your session’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/AsyncSequence",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in this property reports participant-related state changes, including",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "changes to the visibility of their spatial Persona. Get the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/ParticipantState/isSpatial",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the returned",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/ParticipantState",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure and use it to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "configure your app’s behavior. The following example uses a task to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "update the game state to accommodate spatial Personas. When the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "current participant is spatial, the game sends additional messages",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to maintain the shared context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Task.detached { @MainActor in",
+            "    for await state in coordinator.localParticipantStates {",
+            "        if state.isSpatial {",
+            "            // Synchronize additional data for the shared context.",
+            "            gameModel.isSpatial = true",
+            "        } else {",
+            "            // Don't synchronize additional data.",
+            "            gameModel.isSpatial = false",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Update-the-immersion-level-automatically-for-a-Full-Space",
+          "level": 3,
+          "text": "Update the immersion level automatically for a Full Space",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If one participant opens an immersive space as part of an activity,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system doesn’t automatically open the same immersive space for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "other participants. Making a transition to an immersive space is a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "significant change, and some participants might not want to make",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the transition right away. For example, if a participant is on a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "phone call, they might not want another app to open an immersive",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "space and hide their call. Instead, the system reports when transitions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to immersive spaces occur, and lets you decide when to transition",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "other participants automatically.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine when any participant transitions to an immersive space,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "monitor the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/groupImmersionStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. This property contains an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/AsyncSequence",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "reports the most recent immersion style that a participant adopts.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When a participant presents an immersive space, or when they change",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the immersion style of the current space, the system updates the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sequence with the new value. The following example shows a task that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "opens the immersive space with the same style as the group immersion",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "style.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Task.detached {",
+            "    for await immersionStyle in systemCoordinator.groupImmersionStyle {",
+            "        if let immersionStyle {",
+            "            // Open an immersive space with the same style.",
+            "        }",
+            "        else {",
+            "            // Dismiss the immersive space.",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system reports ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the immersion style when a participant",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dismisses their open immersive space. Use that option to dismiss the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "space for other participants and return to a window or volume.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If a participant presses the Digital Crown while an immersive",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "space is open, the system dismisses the space without notifying the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "rest of the group. Someone might use this feature to temporarily leave",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the activity and perform another task. After they perform that task,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "they can use the system-provided UI to rejoin the activity and return",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "to the group immersive space.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Place-content-relative-to-a-participant-in-an-immersive-space",
+          "level": 3,
+          "text": "Place content relative to a participant in an immersive space",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an activity takes place in an immersive space, the system creates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a shared coordinate system for the participants and content. In this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "new coordinate space, the origin of the coordinate space is not the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "same as the origin of any of the participants. If an activity-related",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "window or volume is visible, the system places the window or volume",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "at the new origin. If the activity doesn’t use a window or volume, the system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "arranges the participants in a circle and sets the origin of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "coordinate space to the circle’s center. The following figure shows the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "origin of the shared coordinate system for a window, volume, and immersive space",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "relative to several spatial Personas.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "grid-side-by-side-template.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In a side-by-side arrangement with a window, the origin is under the window.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "grid-surround-template-area.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In a surround arrangement with a volume, the origin is under the volume.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "grid-surround-template-point.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When no window or volume is present, the system uses the surround presentation style and places the origin at the center of the group.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 3,
+          "type": "row"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you place content directly into your immersive space, you must adjust",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the position of that content to account for the modified coordinate space.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To do that, you first determine the person’s location in the new",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "coordinate system. Read the person’s location in the scene using a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/GeometryProxy3D",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The proxy for this reader contains a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/swiftui/geometryproxy3d/immersivespacedisplacement(in:)",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method, which you can use to locate the origin of the shared coordinate space.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Call the method using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/CoordinateSpaceProtocol/global",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "value as a parameter to get the displacement of the coordinate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "space’s origin, relative to the person’s location. Invert that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "displacement value to get the location of the participant relative",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the new coordinate space. The following example shows how to use a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/GeometryProxy3D",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to get the offset to the current participant and use that information",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to place a custom view:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var body: some Scene {",
+            "    ImmersiveSpace(id:\"earth\") {",
+            "        GeometryReader3D { proxy in",
+            "            let displacement = ",
+            "                proxy.immersiveSpaceDisplacement(in: .global).inverse",
+            "                ",
+            "            CustomView()",
+            "                .offset(displacement.position)",
+            "                .rotation3DEffect(displacement.rotation)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The displacement between a person and the origin of the scene doesn’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "change during the course of your activity even when the participant",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "moves. The system sets the origin of an immersive space when you first",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "present it, and updates it only once when changing it to a shared",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "coordinate space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.GroupActivities/documentation/GroupActivities": {
+      "abstract": [
+        {
+          "text": "Create app-specific activities your users can share and experience together.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Group Activities",
+      "type": "topic",
+      "url": "/documentation/groupactivities"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupActivity": {
+      "abstract": [
+        {
+          "text": "A type that can advertise your app’s activities to other participants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroupActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GroupActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupActivity",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupactivity"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupActivity/activityIdentifier": {
+      "abstract": [
+        {
+          "text": "An app-defined string that uniquely identifies the activity.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activityIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupActivity/activityIdentifier",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "activityIdentifier",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupactivity/activityidentifier"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupActivityMetadata": {
+      "abstract": [
+        {
+          "text": "Text and image content that describes an activity to potential participants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroupActivityMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupActivityMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GroupActivityMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupActivityMetadata",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupactivitymetadata"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupActivityMetadata/sceneAssociationBehavior": {
+      "abstract": [
+        {
+          "text": "Criteria the system uses to direct an activity to a specific scene",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sceneAssociationBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities24SceneAssociationBehaviorV",
+          "text": "SceneAssociationBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupActivityMetadata/sceneAssociationBehavior",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sceneAssociationBehavior",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupactivitymetadata/sceneassociationbehavior"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession": {
+      "abstract": [
+        {
+          "text": "A session for an in-progress activity that synchronizes content among participant devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroupSession"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GroupSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupSession",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/join()": {
+      "abstract": [
+        {
+          "text": "Starts the shared activity on the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "join"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession/join()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "join()",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession/join()"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SceneAssociationBehavior/content(_:)": {
+      "abstract": [
+        {
+          "text": "A behavior that matches the activity to a scene using a custom",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "string that you supply.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities24SceneAssociationBehaviorV",
+          "text": "SceneAssociationBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SceneAssociationBehavior/content(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "content(_:)",
+      "type": "topic",
+      "url": "/documentation/groupactivities/sceneassociationbehavior/content(_:)"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SceneAssociationBehavior/default": {
+      "abstract": [
+        {
+          "text": "A behavior that matches the activity to a scene using the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifier of your activity object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "`default`"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities24SceneAssociationBehaviorV",
+          "text": "SceneAssociationBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SceneAssociationBehavior/default",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "default",
+      "type": "topic",
+      "url": "/documentation/groupactivities/sceneassociationbehavior/default"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SceneAssociationBehavior/none": {
+      "abstract": [
+        {
+          "text": "A behavior that doesn’t match any scenes to the activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "none"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities24SceneAssociationBehaviorV",
+          "text": "SceneAssociationBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SceneAssociationBehavior/none",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "none",
+      "type": "topic",
+      "url": "/documentation/groupactivities/sceneassociationbehavior/none"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplatePreference/contentExtent(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the distance between the app’s content and any participants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentExtent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities25SpatialTemplatePreferenceV",
+          "text": "SpatialTemplatePreference"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SpatialTemplatePreference/contentExtent(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentExtent(_:)",
+      "type": "topic",
+      "url": "/documentation/groupactivities/spatialtemplatepreference/contentextent(_:)"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator": {
+      "abstract": [
+        {
+          "text": "A type you use to coordinate your interface’s behavior when an",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "active SharePlay session supports spatial placement of content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SystemCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SystemCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "SystemCoordinator",
+      "type": "topic",
+      "url": "/documentation/groupactivities/systemcoordinator"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/ParticipantState": {
+      "abstract": [
+        {
+          "text": "A structure that tells you whether a participant supports",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a shared simulation space for the current activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ParticipantState"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/ParticipantState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ParticipantState"
+        }
+      ],
+      "role": "symbol",
+      "title": "SystemCoordinator.ParticipantState",
+      "type": "topic",
+      "url": "/documentation/groupactivities/systemcoordinator/participantstate"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/ParticipantState/isSpatial": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the person supports being",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in a shared simulation space for an activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSpatial"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/ParticipantState/isSpatial",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isSpatial",
+      "type": "topic",
+      "url": "/documentation/groupactivities/systemcoordinator/participantstate/isspatial"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/groupImmersionStyle": {
+      "abstract": [
+        {
+          "text": "The presentation style to apply to an immersive space for the current activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "groupImmersionStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities17SystemCoordinatorC",
+          "text": "SystemCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities17SystemCoordinatorC01_aB8_SwiftUIE0A15ImmersionStylesV",
+          "text": "GroupImmersionStyles"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/groupImmersionStyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "groupImmersionStyle",
+      "type": "topic",
+      "url": "/documentation/groupactivities/systemcoordinator/groupimmersionstyle"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/localParticipantStates": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence that reports changes to the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "local participant’s state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localParticipantStates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities17SystemCoordinatorC",
+          "text": "SystemCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities17SystemCoordinatorC17ParticipantStatesV",
+          "text": "ParticipantStates"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/localParticipantStates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localParticipantStates",
+      "type": "topic",
+      "url": "/documentation/groupactivities/systemcoordinator/localparticipantstates"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/adding-spatial-persona-support-to-an-activity#Place-content-relative-to-a-participant-in-an-immersive-space": {
+      "abstract": [],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/adding-spatial-persona-support-to-an-activity#Place-content-relative-to-a-participant-in-an-immersive-space",
+      "kind": "section",
+      "title": "Place content relative to a participant in an immersive space",
+      "type": "topic",
+      "url": "/documentation/groupactivities/adding-spatial-persona-support-to-an-activity#Place-content-relative-to-a-participant-in-an-immersive-space"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/defining-your-apps-shareplay-activities": {
+      "abstract": [
+        {
+          "text": "Configure your app’s SharePlay support and define the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "activities that people can perform from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/defining-your-apps-shareplay-activities",
+      "kind": "article",
+      "role": "article",
+      "title": "Defining your app’s SharePlay activities",
+      "type": "topic",
+      "url": "/documentation/groupactivities/defining-your-apps-shareplay-activities"
+    },
+    "doc://com.apple.documentation/documentation/Swift/AsyncSequence": {
+      "abstract": [
+        {
+          "text": "A type that provides asynchronous, sequential, iterated access to its elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AsyncSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sci7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sci7FailureQa",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/AsyncSequence",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AsyncSequence",
+      "type": "topic",
+      "url": "/documentation/Swift/AsyncSequence"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/CoordinateSpaceProtocol/global": {
+      "abstract": [
+        {
+          "text": "The global coordinate space at the root of the view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "global"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI21GlobalCoordinateSpaceV",
+          "text": "GlobalCoordinateSpace"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/CoordinateSpaceProtocol/global",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "global",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/CoordinateSpaceProtocol/global"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/GeometryProxy3D": {
+      "abstract": [
+        {
+          "text": "A proxy for access to the size and coordinate space of the container view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GeometryProxy3D"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/GeometryProxy3D",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GeometryProxy3D",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/GeometryProxy3D"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/handlesExternalEvents(preferring:allowing:)": {
+      "abstract": [
+        {
+          "text": "Specifies the external events that the view’s scene handles if the scene is already open.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handlesExternalEvents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "preferring"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "allowing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/handlesExternalEvents(preferring:allowing:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handlesExternalEvents(preferring:allowing:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/handlesExternalEvents(preferring:allowing:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIScene/activationConditions": {
+      "abstract": [
+        {
+          "text": "The conditions that define when UIKit activates the scene object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activationConditions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISceneActivationConditions",
+          "text": "UISceneActivationConditions"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIScene/activationConditions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "activationConditions",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIScene/activationConditions"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UISceneDelegate/scene(_:willConnectTo:options:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate about the addition of a scene to the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIScene",
+          "text": "UIScene"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "willConnectTo"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISceneSession",
+          "text": "UISceneSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "connectionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIScene",
+          "text": "UIScene"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISceneConnectionOptions",
+          "text": "ConnectionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UISceneDelegate/scene(_:willConnectTo:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scene(_:willConnectTo:options:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UISceneDelegate/scene(_:willConnectTo:options:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity": {
+      "abstract": [
+        {
+          "text": "A representation of the state of your app at a moment in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivity",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "grid-side-by-side-template.png": {
+      "alt": "An illustration showing a vertical window at the origin of a space, with participants placed side by side in front of the window.",
+      "identifier": "grid-side-by-side-template.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ed5d57cad9f88c3bb832df959267d3f1/grid-side-by-side-template@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e1954b3532121cb64bd4f446633fd8e7/grid-side-by-side-template~dark@2x.png"
+        }
+      ]
+    },
+    "grid-surround-template-area.png": {
+      "alt": "An illustration showing a box at the origin of a space, with participants placed at equal distances around it.",
+      "identifier": "grid-surround-template-area.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ad3ee1d1430046f27364c6b73110fc7f/grid-surround-template-area@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77d0dc7e2016aafeb5b41151e3aeb44f/grid-surround-template-area~dark@2x.png"
+        }
+      ]
+    },
+    "grid-surround-template-point.png": {
+      "alt": "An illustration showing participants arranged in a circle facing each other, with no content visible.",
+      "identifier": "grid-surround-template-point.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/69fade2c01edb5ae1a1d2642e62491fc/grid-surround-template-point@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/798453da4d7f25592be03fcfe36f2381/grid-surround-template-point~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Spatial-activities",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/SystemCoordinator/ParticipantState"
+      ],
+      "title": "Spatial activities"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIScene~1activationConditions/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "strong"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UISceneActivationConditions",
+              "text": "UISceneActivationConditions"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "activationConditions"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UISceneDelegate~1scene(_:willConnectTo:options:)/title",
+          "value": "scene:willConnectToSession:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UISceneDelegate~1scene(_:willConnectTo:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "scene:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIScene",
+              "text": "UIScene"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "scene"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "willConnectToSession:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UISceneSession",
+              "text": "UISceneSession"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "session"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "options:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UISceneConnectionOptions",
+              "text": "UISceneConnectionOptions"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "connectionOptions"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

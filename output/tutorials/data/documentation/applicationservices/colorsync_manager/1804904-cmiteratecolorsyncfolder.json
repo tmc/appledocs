@@ -1,0 +1,681 @@
+{
+  "abstract": [
+    {
+      "text": "Iterates over the available profiles.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804904-cmiteratecolorsyncfolder"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1804904,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "role": "pseudoSymbol",
+    "symbolKind": "func",
+    "title": "CMIterateColorSyncFolder"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "CMError CMIterateColorSyncFolder ("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   CMProfileIterateUPP proc,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   UInt32 *seed,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   UInt32 *count,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   void *refCon"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A universal procedure pointer of type ",
+                  "type": "text"
+                },
+                {
+                  "code": "CMProfileIterateUPP",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", which is described in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmprofileiteratedata",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". If you do not wish to receive callbacks, pass ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for this parameter. Otherwise, pass a pointer to your callback routine. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "proc"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a value of type ",
+                  "type": "text"
+                },
+                {
+                  "code": "long",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". The first time you call ",
+                  "type": "text"
+                },
+                {
+                  "code": "CMIterateColorSyncFolder",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", you typically set the value to 0. In subsequent calls, you set the value to the seed value obtained from the previous call. ColorSync uses the value in determining whether to call your callback routine, as described in the discussion for this function.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "On return, the value is the current seed for the profile cache (unless you pass ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", as described in the discussion).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [],
+              "type": "paragraph"
+            }
+          ],
+          "name": "seed"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a value of type ",
+                  "type": "text"
+                },
+                {
+                  "code": "long",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". On return, the value is the number of available profiles. ",
+                  "type": "text"
+                },
+                {
+                  "code": "CMIterateColorSyncFolder",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " provides the number of profiles even when no iteration occurs (unless you pass ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", as described in the discussion below). To determine the count alone, without iteration, call ",
+                  "type": "text"
+                },
+                {
+                  "code": "CMIterateColorSyncFolder",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and pass a value of ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for all parameters except ",
+                  "type": "text"
+                },
+                {
+                  "code": "count",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "count"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An untyped pointer to arbitrary data supplied by your application. ",
+                  "type": "text"
+                },
+                {
+                  "code": "CMIterateColorSyncFolder",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " passes this data to your callback routine. If you pass ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for the ",
+                  "type": "text"
+                },
+                {
+                  "code": "refCon",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter, ",
+                  "type": "text"
+                },
+                {
+                  "code": "CMIterateColorSyncFolder",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " passes ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to your callback routine. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "refCon"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "CMError",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting with ColorSync version 2.5, when your application needs information about the profiles currently available in the ColorSync Profiles folder, it can call the ",
+              "type": "text"
+            },
+            {
+              "code": "CMIterateColorSyncFolder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " routine, which in turn calls your callback routine once for each profile.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Even though there may be many profiles available, ",
+              "type": "text"
+            },
+            {
+              "code": "CMIterateColorSyncFolder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " can take advantage of ColorSync’s profile cache to return profile information quickly, and (if the cache is valid) without having to open any profiles. For each profile, ",
+              "type": "text"
+            },
+            {
+              "code": "CMIterateColorSyncFolder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " supplies your routine with the profile header, script code, name, and location, in a structure of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmprofileiteratedata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". As a result, your routine may be able to perform its function, such as building a list of profiles to display in a pop-up menu, without further effort (such as opening each file-based profile).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Only 2.x profiles are included in the profile search result. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before calling ",
+              "type": "text"
+            },
+            {
+              "code": "CMIterateColorSyncFolder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the first time, you typically set ",
+              "type": "text"
+            },
+            {
+              "code": "seed",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to 0. ColorSync compares 0 to its current seed for the profile cache. It is not likely they will match—the odds are roughly one in two billion against it. If the values do not match, the routine iterates through all the profiles in the cache, calling your callback routine once for each profile. ",
+              "type": "text"
+            },
+            {
+              "code": "CMIterateColorSyncFolder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " then returns the actual seed value in ",
+              "type": "text"
+            },
+            {
+              "code": "seed ",
+              "type": "codeVoice"
+            },
+            {
+              "text": "  (unless you passed ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for that parameter).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you pass the returned seed value in a subsequent call, and if there has been no change in the available profiles, the passed seed will match the stored cache seed and no iteration will take place.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that you can pass a ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " pointer for the ",
+              "type": "text"
+            },
+            {
+              "code": "seed",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter without harm. The result is the same as if you passed a pointer to 0, in that the function iterates through the available profiles, calling your callback routine once for each profile. However, the function does not return a seed value, since you have not passed a valid pointer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can force ColorSync to call your callback routine (if any profiles are available) by passing a ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " pointer or by passing 0 for the seed value. But suppose you have an operation, such as building a pop-up menu, that you only want to perform if the available profiles have changed. In that case, you pass the seed value from a previous call to ",
+              "type": "text"
+            },
+            {
+              "code": "CMIterateColorSyncFolder",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If the profile folder has not changed, ColorSync will not call your callback routine.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that if there are no profiles available, ColorSync does not call your callback routine.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can safely pass ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for any or all of the parameters to the ",
+              "type": "text"
+            },
+            {
+              "code": "CMIterateColorSyncFolder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function. If you pass ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for all of the parameters, calling the function merely forces rebuilding of the profile cache, if necessary. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1819325",
+          "level": 3,
+          "text": "Version-Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting with version 2.5, the name and location of the profile folder changed. In addition, the folder can now contain profiles within nested folders, as well as aliases to profiles or aliases to folders containing profiles. There are limits on the nesting of folders and aliases.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmprofileiteratedata": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmprofileiteratedata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMProfileIterateData",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmprofileiteratedata"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ColorSync Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager#1670295",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/applicationservices/colorsync_manager#1670295"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804904-cmiteratecolorsyncfolder": {
+      "abstract": [
+        {
+          "text": "Iterates over the available profiles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804904-cmiteratecolorsyncfolder",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMIterateColorSyncFolder",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804904-cmiteratecolorsyncfolder"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804907-cmgetcolorsyncfolderspec": {
+      "abstract": [
+        {
+          "text": "Obtains the volume reference number and the directory ID for a ColorSync Profiles folder.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804907-cmgetcolorsyncfolderspec",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetColorSyncFolderSpec",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804907-cmgetcolorsyncfolderspec"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804907-cmgetcolorsyncfolderspec"
+      ],
+      "title": "Iterating Installed Profiles"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/colorsync_manager/1804904-cmiteratecolorsyncfolder"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

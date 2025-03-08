@@ -1,0 +1,547 @@
+{
+  "abstract": [
+    {
+      "text": "The type ID that will be assigned to any distributed actor managed by this actor system.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Distributed",
+        "doc://com.apple.Swift/documentation/Distributed/LocalTestingDistributedActorSystem"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Distributed/LocalTestingDistributedActorSystem/ActorID"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:11Distributed012LocalTestingA11ActorSystemC0D2IDa",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "typealias"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ActorID"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Distributed"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ActorID"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "typealias",
+    "title": "LocalTestingDistributedActorSystem.ActorID"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typealias"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ActorID"
+            },
+            {
+              "kind": "text",
+              "text": " = "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Distributed/LocalTestingActorID",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:11Distributed19LocalTestingActorIDV",
+              "text": "LocalTestingActorID"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "A-note-on-Codable-IDs",
+          "level": 3,
+          "text": "A note on Codable IDs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If this type is ",
+              "type": "text"
+            },
+            {
+              "code": "Codable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", then any ",
+              "type": "text"
+            },
+            {
+              "code": "distributed actor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " using this ",
+              "type": "text"
+            },
+            {
+              "code": "ActorID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as its ",
+              "type": "text"
+            },
+            {
+              "code": "DistributedActor/ID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "will gain a synthesized ",
+              "type": "text"
+            },
+            {
+              "code": "Codable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conformance which is implemented by encoding the ",
+              "type": "text"
+            },
+            {
+              "code": "ID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The decoding counter part of the ",
+              "type": "text"
+            },
+            {
+              "code": "Codable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conformance is implemented by decoding the ",
+              "type": "text"
+            },
+            {
+              "code": "ID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and passing it to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/resolve(id:using:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Distributed": {
+      "abstract": [
+        {
+          "text": "Build systems that run distributed code across multiple processes and devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Distributed",
+      "type": "topic",
+      "url": "/documentation/distributed"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActor/resolve(id:using:)": {
+      "abstract": [
+        {
+          "text": "Resolves the passed in ",
+          "type": "text"
+        },
+        {
+          "code": "id",
+          "type": "codeVoice"
+        },
+        {
+          "text": " against the ",
+          "type": "text"
+        },
+        {
+          "code": "system",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", returning",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "either a local or remote actor reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolve"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Distributed0A5ActorP0B6SystemQa",
+          "text": "ActorSystem"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor/resolve(id:using:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "resolve(id:using:)",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactor/resolve(id:using:)"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/LocalTestingActorID": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalTestingActorID"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/LocalTestingActorID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LocalTestingActorID"
+        }
+      ],
+      "role": "symbol",
+      "title": "LocalTestingActorID",
+      "type": "topic",
+      "url": "/documentation/distributed/localtestingactorid"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/LocalTestingDistributedActorSystem": {
+      "abstract": [
+        {
+          "text": "A ",
+          "type": "text"
+        },
+        {
+          "code": "DistributedActorSystem",
+          "type": "codeVoice"
+        },
+        {
+          "text": " designed for local only testing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalTestingDistributedActorSystem"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/LocalTestingDistributedActorSystem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LocalTestingDistributedActorSystem"
+        }
+      ],
+      "role": "symbol",
+      "title": "LocalTestingDistributedActorSystem",
+      "type": "topic",
+      "url": "/documentation/distributed/localtestingdistributedactorsystem"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/LocalTestingDistributedActorSystem/ActorID": {
+      "abstract": [
+        {
+          "text": "The type ID that will be assigned to any distributed actor managed by this actor system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActorID"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/LocalTestingDistributedActorSystem/ActorID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActorID"
+        }
+      ],
+      "role": "symbol",
+      "title": "LocalTestingDistributedActorSystem.ActorID",
+      "type": "topic",
+      "url": "/documentation/distributed/localtestingdistributedactorsystem/actorid"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/distributed/localtestingdistributedactorsystem/actorid"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

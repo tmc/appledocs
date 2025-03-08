@@ -1,0 +1,1013 @@
+{
+  "abstract": [
+    {
+      "text": "Use crash reports and device logs to debug app issues.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "collectionGroup",
+    "title": "Diagnosing issues using crash reports and device logs"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Customers expect apps to be stable, free of bugs, and use system resources efficiently.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The operating system helps you meet these expectations by collecting different log",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "types you can use to diagnose issues in your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Crash reports describe how your app terminated, and document the code running on",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "each thread at the time of the crash.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Jetsam event reports describe the system-memory conditions under which the operating",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "system terminated an app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Device console logs contain detailed information on operations that occur in both",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the operating system and apps.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Distribution builds of your app, such as for the App Store, an enterprise environment,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or a testing team, require you to use crash reports and device logs to diagnose issues",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "encountered by your customers. Distribution builds don’t contain the necessary entitlements",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for debugging in Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Address-stability-issues-using-crash-reports",
+          "level": 3,
+          "text": "Address stability issues using crash reports",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Crash reports are the most common type of log you’ll use when diagnosing an issue.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When receiving crash reports for your app, use them to understand the stability problems",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the app is having. A crash report describes how your app terminated, and also contains",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the complete backtrace of each thread, which shows the code running at the time of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the crash.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To debug a problem using a crash report:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/building-your-app-to-include-debugging-information#Build-your-app-with-symbol-information",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and retain the Xcode archive before distributing the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Retrieve a crash report for an issue. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/acquiring-crash-reports-and-diagnostic-logs",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "for the different ways you can retrieve crash reports.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Convert the hexadecimal addresses into symbol names for your app, as described",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Determine if the crash fits any of the patterns in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Consult ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "for additional insight on the issue.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Update your code to fix the issue.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add tests with the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/XCTest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " framework",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to ensure the issue doesn’t reoccur in the future.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Uncover-memory-inefficiencies-using-jetsam-event-reports",
+          "level": 3,
+          "text": "Uncover memory inefficiencies using jetsam event reports",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ensure that your apps use memory efficiently. When an app on iOS, iPadOS, tvOS, visionOS, or watchOS uses memory inefficiently, less memory is available for other apps to remain",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in memory in the background. This lower available memory limits how quickly a user",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can switch between apps, because apps can’t resume from memory and must first complete",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a full app launch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the operating system experiences low-memory conditions, and requires more memory",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "than is currently free, the device’s operating system can terminate apps to reclaim",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the memory they’re using. A jetsam event report describes the system-memory conditions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "under which the operating system  terminated an app. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/acquiring-crash-reports-and-diagnostic-logs#Locate-crash-reports-and-memory-logs-on-the-device",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for how to access these logs and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-high-memory-use-with-jetsam-event-reports",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for information on intrepreting a jetsam event report.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Jetsam event reports don’t contain stack traces of executing threads in an app, but",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "they do contain additional system information about memory use. When your app crashes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "due to memory pressure, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/gathering-information-about-memory-use",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to understand your app’s memory use patterns, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/responding-to-low-memory-warnings",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to learn when to lower your memory use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Diagnose-problems-using-device-console-logs",
+          "level": 3,
+          "text": "Diagnose problems using device console logs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple devices maintain a continuous in-memory transcript of operations in the operating",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system and individual apps. These logs can be reviewed after an issue occurs. Some",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "issues, such as problems installing an app, can be diagnosed by reviewing the operating",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system logs using the Console app on macOS. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/acquiring-crash-reports-and-diagnostic-logs#Access-device-console-logs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for instructions on accessing a device’s console log.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add log messages for your app to the operating system’s log with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/os/logging",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "framework. The logs you provide can contain additional grouping and labeling information",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to assist with tracing an issue from the original user action. This information is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "useful for diagnosing complex interactions, such as debugging the interaction between",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app and one of its app extensions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Don’t include privacy-sensitive information in your logs.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/acquiring-crash-reports-and-diagnostic-logs": {
+      "abstract": [
+        {
+          "text": "Gather crash reports and device logs from the App Store, TestFlight, and directly",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/acquiring-crash-reports-and-diagnostic-logs",
+      "kind": "article",
+      "role": "article",
+      "title": "Acquiring crash reports and diagnostic logs",
+      "type": "topic",
+      "url": "/documentation/xcode/acquiring-crash-reports-and-diagnostic-logs"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/acquiring-crash-reports-and-diagnostic-logs#Access-device-console-logs": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/acquiring-crash-reports-and-diagnostic-logs#Access-device-console-logs",
+      "kind": "section",
+      "title": "Access device console logs",
+      "type": "topic",
+      "url": "/documentation/xcode/acquiring-crash-reports-and-diagnostic-logs#Access-device-console-logs"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/acquiring-crash-reports-and-diagnostic-logs#Locate-crash-reports-and-memory-logs-on-the-device": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/acquiring-crash-reports-and-diagnostic-logs#Locate-crash-reports-and-memory-logs-on-the-device",
+      "kind": "section",
+      "title": "Locate crash reports and memory logs on the device",
+      "type": "topic",
+      "url": "/documentation/xcode/acquiring-crash-reports-and-diagnostic-logs#Locate-crash-reports-and-memory-logs-on-the-device"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report": {
+      "abstract": [
+        {
+          "text": "Replace hexadecimal addresses in a crash report with function names and line numbers",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that correspond to your app’s code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding identifiable symbol names to a crash report",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-identifiable-symbol-names-to-a-crash-report"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report": {
+      "abstract": [
+        {
+          "text": "Identify clues in a crash report that help you diagnose problems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing a crash report",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-a-crash-report"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/building-your-app-to-include-debugging-information": {
+      "abstract": [
+        {
+          "text": "Configure Xcode to produce the symbol information for debugging and crash reports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/building-your-app-to-include-debugging-information",
+      "kind": "article",
+      "role": "article",
+      "title": "Building your app to include debugging information",
+      "type": "topic",
+      "url": "/documentation/xcode/building-your-app-to-include-debugging-information"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/building-your-app-to-include-debugging-information#Build-your-app-with-symbol-information": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/building-your-app-to-include-debugging-information#Build-your-app-with-symbol-information",
+      "kind": "section",
+      "title": "Build your app with symbol information",
+      "type": "topic",
+      "url": "/documentation/xcode/building-your-app-to-include-debugging-information#Build-your-app-with-symbol-information"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report": {
+      "abstract": [
+        {
+          "text": "Understand the structure of a crash report and the information each field contains.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report",
+      "kind": "article",
+      "role": "article",
+      "title": "Examining the fields in a crash report",
+      "type": "topic",
+      "url": "/documentation/xcode/examining-the-fields-in-a-crash-report"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/gathering-information-about-memory-use": {
+      "abstract": [
+        {
+          "text": "Identify memory-use inefficiencies by measuring and profiling your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/gathering-information-about-memory-use",
+      "kind": "article",
+      "role": "article",
+      "title": "Gathering information about memory use",
+      "type": "topic",
+      "url": "/documentation/xcode/gathering-information-about-memory-use"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/identifying-high-memory-use-with-jetsam-event-reports": {
+      "abstract": [
+        {
+          "text": "Discover why the operating system terminated your app when available memory was low.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-high-memory-use-with-jetsam-event-reports",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying high-memory use with jetsam event reports",
+      "type": "topic",
+      "url": "/documentation/xcode/identifying-high-memory-use-with-jetsam-event-reports"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes": {
+      "abstract": [
+        {
+          "text": "Find patterns in crash reports that identify common problems, and investigate the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "issue based on the pattern.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Identifying the cause of common crashes",
+      "type": "topic",
+      "url": "/documentation/xcode/identifying-the-cause-of-common-crashes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report": {
+      "abstract": [
+        {
+          "text": "Understand the structure and properties of the objects the system includes in the JSON of a crash report.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report",
+      "kind": "article",
+      "role": "article",
+      "title": "Interpreting the JSON format of a crash report",
+      "type": "topic",
+      "url": "/documentation/xcode/interpreting-the-json-format-of-a-crash-report"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/responding-to-low-memory-warnings": {
+      "abstract": [
+        {
+          "text": "Detect when your app is using excessive memory, and bring memory use under control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/responding-to-low-memory-warnings",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to low-memory warnings",
+      "type": "topic",
+      "url": "/documentation/xcode/responding-to-low-memory-warnings"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/understanding-the-exception-types-in-a-crash-report": {
+      "abstract": [
+        {
+          "text": "Learn what the exception type tells you about why your app crashed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-the-exception-types-in-a-crash-report",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Understanding the exception types in a crash report",
+      "type": "topic",
+      "url": "/documentation/xcode/understanding-the-exception-types-in-a-crash-report"
+    },
+    "doc://com.apple.documentation/documentation/XCTest": {
+      "abstract": [
+        {
+          "text": "Create and run unit tests, performance tests, and UI tests for your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XCTest",
+      "type": "topic",
+      "url": "/documentation/XCTest"
+    },
+    "doc://com.apple.documentation/documentation/os/logging": {
+      "abstract": [
+        {
+          "text": "Capture telemetry from your app for debugging and performance analysis using the unified logging system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/os/logging",
+      "kind": "article",
+      "role": "article",
+      "title": "Logging",
+      "type": "topic",
+      "url": "/documentation/os/logging"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Reports",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/building-your-app-to-include-debugging-information"
+      ],
+      "title": "Reports"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/acquiring-crash-reports-and-diagnostic-logs"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Crash-reports",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report",
+        "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes",
+        "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report",
+        "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report",
+        "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report",
+        "doc://com.apple.Xcode/documentation/Xcode/understanding-the-exception-types-in-a-crash-report"
+      ],
+      "title": "Crash reports"
+    },
+    {
+      "anchor": "Device-logs",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/identifying-high-memory-use-with-jetsam-event-reports",
+        "doc://com.apple.documentation/documentation/os/logging"
+      ],
+      "title": "Device logs"
+    }
+  ]
+}

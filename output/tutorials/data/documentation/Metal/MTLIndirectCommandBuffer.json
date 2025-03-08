@@ -1,0 +1,1539 @@
+{
+  "abstract": [
+    {
+      "text": "A command buffer containing reusable commands, encoded either on the CPU or GPU.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MTLIndirectCommandBuffer",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MTLIndirectCommandBuffer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MTLIndirectCommandBuffer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.14",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "MTLIndirectCommandBuffer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectCommandBuffer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)MTLResource",
+              "text": "MTLResource"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use an indirect command buffer to encode commands once and reuse them, and to encode commands on multiple CPU or GPU threads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t implement this protocol yourself; instead, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBufferDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, configure its properties, and tell the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create the indirect command buffer. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/creating-an-indirect-command-buffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAllocation": {
+      "abstract": [
+        {
+          "text": "A memory allocation from a Metal GPU device, such as a memory heap, texture, or data buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAllocation"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAllocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAllocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAllocation",
+      "type": "topic",
+      "url": "/documentation/metal/mtlallocation"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice": {
+      "abstract": [
+        {
+          "text": "The main Metal interface to a GPU that apps use to draw graphics and run computations in parallel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDevice",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer": {
+      "abstract": [
+        {
+          "text": "A command buffer containing reusable commands, encoded either on the CPU or GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectCommandBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectCommandBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIndirectCommandBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlindirectcommandbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer/gpuResourceID": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gpuResourceID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@MTLResourceID",
+          "text": "MTLResourceID"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer/gpuResourceID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "gpuResourceID"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "gpuResourceID",
+      "type": "topic",
+      "url": "/documentation/metal/mtlindirectcommandbuffer/gpuresourceid"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer/indirectComputeCommand(at:)": {
+      "abstract": [
+        {
+          "text": "Gets the compute command at the given index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "indirectComputeCommand"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIndirectComputeCommand",
+          "text": "MTLIndirectComputeCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer/indirectComputeCommand(at:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "indirectComputeCommand(at:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlindirectcommandbuffer/indirectcomputecommand(at:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer/indirectComputeCommandAt(_:)": {
+      "abstract": [
+        {
+          "text": "Gets the compute command at the given index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "indirectComputeCommandAt"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIndirectComputeCommand",
+          "text": "MTLIndirectComputeCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer/indirectComputeCommandAt(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "indirectComputeCommandAtIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "indirectComputeCommandAt(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlindirectcommandbuffer/indirectcomputecommandat(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer/indirectRenderCommandAt(_:)": {
+      "abstract": [
+        {
+          "text": "Gets the render command at the given index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "indirectRenderCommandAt"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIndirectRenderCommand",
+          "text": "MTLIndirectRenderCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer/indirectRenderCommandAt(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "indirectRenderCommandAtIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "indirectRenderCommandAt(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlindirectcommandbuffer/indirectrendercommandat(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer/reset(_:)": {
+      "abstract": [
+        {
+          "text": "Resets a range of commands to their default state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer/reset(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reset(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlindirectcommandbuffer/reset(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer/resetWithRange:": {
+      "abstract": [
+        {
+          "text": "Resets a range of commands to their default state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "resetWithRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer/resetWithRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resetWithRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "resetWithRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlindirectcommandbuffer/resetwithrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer/size": {
+      "abstract": [
+        {
+          "text": "The number of commands contained in the indirect command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer/size",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "size"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "size",
+      "type": "topic",
+      "url": "/documentation/metal/mtlindirectcommandbuffer/size"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBufferDescriptor": {
+      "abstract": [
+        {
+          "text": "A configuration you create to customize an indirect command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectCommandBufferDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBufferDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectCommandBufferDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIndirectCommandBufferDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlindirectcommandbufferdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBufferExecutionRange": {
+      "abstract": [
+        {
+          "text": "A range of commands in an indirect command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectCommandBufferExecutionRange"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBufferExecutionRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectCommandBufferExecutionRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIndirectCommandBufferExecutionRange",
+      "type": "topic",
+      "url": "/documentation/metal/mtlindirectcommandbufferexecutionrange"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBufferExecutionRangeMake(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a command execution range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectCommandBufferExecutionRangeMake"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLIndirectCommandBufferExecutionRange",
+          "text": "MTLIndirectCommandBufferExecutionRange"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBufferExecutionRangeMake(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectCommandBufferExecutionRangeMake"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIndirectCommandBufferExecutionRangeMake(_:_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlindirectcommandbufferexecutionrangemake(_:_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandType": {
+      "abstract": [
+        {
+          "text": "The types of commands that you can encode into the indirect command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectCommandType"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectCommandType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIndirectCommandType",
+      "type": "topic",
+      "url": "/documentation/metal/mtlindirectcommandtype"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResource": {
+      "abstract": [
+        {
+          "text": "An allocation of memory accessible to a GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLResource"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLResource",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresource"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-an-indirect-command-buffer": {
+      "abstract": [
+        {
+          "text": "Configure a descriptor to specify the properties of an indirect command buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-an-indirect-command-buffer",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Indirect Command Buffer",
+      "type": "topic",
+      "url": "/documentation/metal/creating-an-indirect-command-buffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu": {
+      "abstract": [
+        {
+          "text": "Reduce CPU overhead and simplify your command execution by reusing commands.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encoding Indirect Command Buffers on the CPU",
+      "type": "topic",
+      "url": "/documentation/metal/encoding-indirect-command-buffers-on-the-cpu"
+    },
+    "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-gpu": {
+      "abstract": [
+        {
+          "text": "Maximize CPU to GPU parallelization by generating render commands on the GPU.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-gpu",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encoding Indirect Command Buffers on the GPU",
+      "type": "topic",
+      "url": "/documentation/metal/encoding-indirect-command-buffers-on-the-gpu"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Optimize your app’s performance by grouping your resources into argument buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving CPU Performance by Using Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/improving-cpu-performance-by-using-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/specifying-drawing-and-dispatch-arguments-indirectly": {
+      "abstract": [
+        {
+          "text": "Use indirect commands if you don’t know your draw or dispatch call arguments when you encode the command.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/specifying-drawing-and-dispatch-arguments-indirectly",
+      "kind": "article",
+      "role": "article",
+      "title": "Specifying Drawing and Dispatch Arguments Indirectly",
+      "type": "topic",
+      "url": "/documentation/metal/specifying-drawing-and-dispatch-arguments-indirectly"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLAllocation",
+        "doc://com.apple.metal/documentation/Metal/MTLResource",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Indirect-Command-Buffers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/creating-an-indirect-command-buffer",
+        "doc://com.apple.metal/documentation/Metal/specifying-drawing-and-dispatch-arguments-indirectly",
+        "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu",
+        "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-gpu",
+        "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBufferDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandType",
+        "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBufferExecutionRange",
+        "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBufferExecutionRangeMake(_:_:)"
+      ],
+      "title": "Indirect Command Buffers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Determining-the-Maximum-Number-of-Commands",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer/size"
+      ],
+      "title": "Determining the Maximum Number of Commands"
+    },
+    {
+      "anchor": "Retrieving-Commands",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer/indirectRenderCommandAt(_:)",
+        "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer/indirectComputeCommandAt(_:)",
+        "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer/indirectComputeCommand(at:)"
+      ],
+      "title": "Retrieving Commands"
+    },
+    {
+      "anchor": "Resetting-Commands",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer/reset(_:)"
+      ],
+      "title": "Resetting Commands"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer/gpuResourceID"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.14",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MTLIndirectCommandBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.metal/documentation/Metal"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Determining-the-Maximum-Number-of-Commands",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer/size"
+              ],
+              "title": "Determining the Maximum Number of Commands"
+            },
+            {
+              "anchor": "Retrieving-Commands",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer/indirectRenderCommandAt(_:)",
+                "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer/indirectComputeCommandAt(_:)"
+              ],
+              "title": "Retrieving Commands"
+            },
+            {
+              "anchor": "Resetting-Commands",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer/resetWithRange:"
+              ],
+              "title": "Resetting Commands"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer/gpuResourceID"
+              ],
+              "title": "Instance Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLResource"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Indirect-Command-Buffers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/creating-an-indirect-command-buffer",
+                "doc://com.apple.metal/documentation/Metal/specifying-drawing-and-dispatch-arguments-indirectly",
+                "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu",
+                "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-gpu",
+                "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBufferDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandType",
+                "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBufferExecutionRange",
+                "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBufferExecutionRangeMake(_:_:)"
+              ],
+              "title": "Indirect Command Buffers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MTLIndirectCommandBuffer"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)MTLResource",
+                    "text": "MTLResource"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBuffer/title",
+          "value": "MTLIndirectCommandBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource/title",
+          "value": "MTLResource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBuffer~1indirectRenderCommandAt(_:)/title",
+          "value": "indirectRenderCommandAtIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBuffer~1indirectRenderCommandAt(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "indirectRenderCommandAtIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAllocation/title",
+          "value": "MTLAllocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAllocation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAllocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAllocation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAllocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBuffer~1gpuResourceID/title",
+          "value": "gpuResourceID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBuffer~1gpuResourceID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "gpuResourceID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBuffer~1size/title",
+          "value": "size"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBuffer~1size/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "size"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/title",
+          "value": "MTLDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBufferExecutionRange/title",
+          "value": "MTLIndirectCommandBufferExecutionRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBufferExecutionRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectCommandBufferExecutionRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBufferExecutionRange/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectCommandBufferExecutionRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBuffer~1indirectComputeCommandAt(_:)/title",
+          "value": "indirectComputeCommandAtIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBuffer~1indirectComputeCommandAt(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "indirectComputeCommandAtIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBufferExecutionRangeMake(_:_:)/title",
+          "value": "MTLIndirectCommandBufferExecutionRangeMake"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBufferExecutionRangeMake(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectCommandBufferExecutionRangeMake"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBufferDescriptor/title",
+          "value": "MTLIndirectCommandBufferDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBufferDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectCommandBufferDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBufferDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectCommandBufferDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandType/title",
+          "value": "MTLIndirectCommandType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectCommandType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectCommandType"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mtlindirectcommandbuffer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/mtlindirectcommandbuffer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

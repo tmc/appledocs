@@ -1,0 +1,932 @@
+{
+  "abstract": [
+    {
+      "text": "A list of the accelerometer data recorded by the system.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremotion/documentation/CoreMotion"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremotion/documentation/CoreMotion/CMSensorDataList"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CMSensorDataList",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CMSensorDataList"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Motion"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CMSensorDataList"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CMSensorDataList"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CMSensorDataList"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You do not create instances of this class directly. Instead, you receive one as the result of a query for accelerometer data from a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMSensorRecorder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use a sensor data list object to enumerate over the accelerometer data as shown in the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "-(void)processSamplesFromDate:(NSDate*)start toDate:(NSDate)end {",
+            "   CMSensorRecorder* recorder = [[CMSensorRecorder alloc] init];",
+            "   CMSensorDataList* list = [recorder accelerometerDataFrom:start to:end];",
+            " ",
+            "   for (CMRecordedAccelerometerData* data in list) {",
+            "      // Process the data.",
+            "      NSLog(@\"Sample: (%f, %f, %f)\", data.acceleration.x,",
+            "              data.acceleration.y, data.acceleration.z);",
+            "   }",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremotion/documentation/CoreMotion": {
+      "abstract": [
+        {
+          "text": "Process accelerometer, gyroscope, pedometer, and environment-related events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Motion",
+      "type": "topic",
+      "url": "/documentation/coremotion"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAccelerometerData": {
+      "abstract": [
+        {
+          "text": "A data sample from the device’s three accelerometers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMAccelerometerData"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAccelerometerData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMAccelerometerData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMAccelerometerData",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmaccelerometerdata"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMRecordedAccelerometerData": {
+      "abstract": [
+        {
+          "text": "A single piece of accelerometer data that was recorded by the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMRecordedAccelerometerData"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMRecordedAccelerometerData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMRecordedAccelerometerData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMRecordedAccelerometerData",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmrecordedaccelerometerdata"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMSensorDataList": {
+      "abstract": [
+        {
+          "text": "A list of the accelerometer data recorded by the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSensorDataList"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMSensorDataList",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSensorDataList"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSensorDataList",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmsensordatalist"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMSensorRecorder": {
+      "abstract": [
+        {
+          "text": "An object that gathers and retrieves accelerometer data from a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSensorRecorder"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMSensorRecorder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMSensorRecorder"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMSensorRecorder",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmsensorrecorder"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/getting-raw-accelerometer-events": {
+      "abstract": [
+        {
+          "text": "Retrieve data from the onboard accelerometers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/getting-raw-accelerometer-events",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting raw accelerometer events",
+      "type": "topic",
+      "url": "/documentation/coremotion/getting-raw-accelerometer-events"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSFastEnumeration": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to support fast enumeration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFastEnumeration"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSFastEnumeration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFastEnumeration",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfastenumeration"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSFastEnumeration",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Accelerometers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/getting-raw-accelerometer-events",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMAccelerometerData",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMRecordedAccelerometerData",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMSensorRecorder"
+      ],
+      "title": "Accelerometers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CMSensorDataList"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSensorDataList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSensorDataList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.coremotion/documentation/CoreMotion"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSFastEnumeration"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Accelerometers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/getting-raw-accelerometer-events",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMAccelerometerData",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMRecordedAccelerometerData",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMSensorRecorder"
+              ],
+              "title": "Accelerometers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CMSensorDataList"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMRecordedAccelerometerData/title",
+          "value": "CMRecordedAccelerometerData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMRecordedAccelerometerData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMRecordedAccelerometerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMRecordedAccelerometerData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMRecordedAccelerometerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMSensorRecorder/title",
+          "value": "CMSensorRecorder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMSensorRecorder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSensorRecorder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMSensorRecorder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSensorRecorder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAccelerometerData/title",
+          "value": "CMAccelerometerData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAccelerometerData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAccelerometerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAccelerometerData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAccelerometerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMSensorDataList/title",
+          "value": "CMSensorDataList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMSensorDataList/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSensorDataList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMSensorDataList/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMSensorDataList"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremotion/cmsensordatalist"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremotion/cmsensordatalist"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

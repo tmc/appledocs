@@ -1,0 +1,1465 @@
+{
+  "abstract": [
+    {
+      "text": "Scale text in your interface automatically using Dynamic Type.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/text-display-and-fonts"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/text-display-and-fonts",
+        "doc://com.apple.uikit/documentation/UIKit/UIFont"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/text-display-and-fonts",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontMetrics"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/scaling-fonts-automatically"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Scaling Fonts Automatically"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Dynamic Type feature allows users to choose the size of textual content displayed on the screen. It helps users who need larger text for better readability. It also accomodates those who can read smaller text, allowing more information to appear on the screen. Apps that support Dynamic Type also provide a more consistent reading experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add support for Dynamic Type in your app, you use ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "text styles",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". A text style describes the use of the text, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont/TextStyle/headline",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont/TextStyle/body",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont/TextStyle/title1",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and lets the system know how best to adjust its size. You can configure text styles in either Interface Builder or your source code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although custom fonts are supported in Dynamic Type, the preferred font is designed to look good at any size (for more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/OSXHIGuidelines/VisualDesign.html#//apple_ref/doc/uid/20000957-CH106-SW8",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). Also, using the preferred font ensures consistency within the system and with other apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configuring-Text-Styles-Using-Interface-Builder",
+          "level": 3,
+          "text": "Configuring Text Styles Using Interface Builder",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Interface Builder, select the text style from the Font menu, then select the Automatically Adjust Font checkbox to the right of Dynamic Type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2940106",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configuring-Text-Styles-in-Source-Code",
+          "level": 3,
+          "text": "Configuring Text Styles in Source Code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your source code, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont/preferredFont(forTextStyle:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. This method returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that you can assign to a label, text field, or text view. Next, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContentSizeCategoryAdjusting/adjustsFontForContentSizeCategory",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property on the text control to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This setting tells the text control to adjust the text size based on the Dynamic Type setting provided by the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "label.font = UIFont.preferredFont(forTextStyle: .body)",
+            "label.adjustsFontForContentSizeCategory = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContentSizeCategoryAdjusting/adjustsFontForContentSizeCategory",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is set to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the font will initially be the right size, but it won’t respond to text-size changes the user makes in Settings or Control Center. To detect such changes, override the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment/traitCollectionDidChange(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method in your view or view controller, and check for changes to the content size category trait. You can also observe ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContentSizeCategory/didChangeNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and update the font when the notification arrives.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use a custom font in your app and want to let the user control the text size, you must create a scaled instance of the font in your source code. Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontMetrics/scaledFont(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", passing in a reference to the custom font that’s at a point size suitable for use with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContentSizeCategory/large",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This is the default value for the Dynamic Type setting. You can use this call on the default font metrics, or you can specify a text style, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont/TextStyle/headline",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let customFont = UIFont(name: \"CustomFont-Light\", size: UIFont.labelFontSize) else {",
+            "    fatalError(\"\"\"",
+            "        Failed to load the \"CustomFont-Light\" font.",
+            "        Make sure the font file is included in the project and the font name is spelled correctly.",
+            "        \"\"\"",
+            "    )",
+            "}",
+            "label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: customFont)",
+            "label.adjustsFontForContentSizeCategory = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In Interface Builder, the Dynamic Type option to automatically adjust fonts applies only to text styles or scaled fonts returned by ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontMetrics",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". It has no effect on custom fonts set in Interface Builder.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Fonts created through ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontMetrics",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " behave the same as the preferred fonts the system provides. The system scales to match the user’s selected text size in a manner that’s similar to the way the text style you supply is scaled.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIContentSizeCategory/didChangeNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts when the user changes the preferred content size setting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContentSizeCategory/didChangeNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIContentSizeCategoryDidChangeNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "didChangeNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontentsizecategory/didchangenotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIContentSizeCategory/large": {
+      "abstract": [
+        {
+          "text": "A large font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "large"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIContentSizeCategory",
+          "text": "UIContentSizeCategory"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContentSizeCategory/large",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIContentSizeCategoryLarge"
+        }
+      ],
+      "role": "symbol",
+      "title": "large",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontentsizecategory/large"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIContentSizeCategoryAdjusting/adjustsFontForContentSizeCategory": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the object automatically updates its font when the device’s content size category changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "adjustsFontForContentSizeCategory"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIContentSizeCategoryAdjusting/adjustsFontForContentSizeCategory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "adjustsFontForContentSizeCategory"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "adjustsFontForContentSizeCategory",
+      "type": "topic",
+      "url": "/documentation/uikit/uicontentsizecategoryadjusting/adjustsfontforcontentsizecategory"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFont": {
+      "abstract": [
+        {
+          "text": "An object that provides access to the font’s characteristics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFont"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFont"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFont",
+      "type": "topic",
+      "url": "/documentation/uikit/uifont"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFont/TextStyle/body": {
+      "abstract": [
+        {
+          "text": "The font for body text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFont",
+          "text": "UIFont"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIFontTextStyle",
+          "text": "TextStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont/TextStyle/body",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFontTextStyleBody"
+        }
+      ],
+      "role": "symbol",
+      "title": "body",
+      "type": "topic",
+      "url": "/documentation/uikit/uifont/textstyle/body"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFont/TextStyle/headline": {
+      "abstract": [
+        {
+          "text": "The font for headings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "headline"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFont",
+          "text": "UIFont"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIFontTextStyle",
+          "text": "TextStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont/TextStyle/headline",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFontTextStyleHeadline"
+        }
+      ],
+      "role": "symbol",
+      "title": "headline",
+      "type": "topic",
+      "url": "/documentation/uikit/uifont/textstyle/headline"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFont/TextStyle/title1": {
+      "abstract": [
+        {
+          "text": "The font for first-level hierarchical headings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "title1"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFont",
+          "text": "UIFont"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIFontTextStyle",
+          "text": "TextStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont/TextStyle/title1",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFontTextStyleTitle1"
+        }
+      ],
+      "role": "symbol",
+      "title": "title1",
+      "type": "topic",
+      "url": "/documentation/uikit/uifont/textstyle/title1"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFont/preferredFont(forTextStyle:)": {
+      "abstract": [
+        {
+          "text": "Returns an instance of the system font for the specified text style with scaling for the user’s selected content size category.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredFont"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forTextStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFont",
+          "text": "UIFont"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIFontTextStyle",
+          "text": "TextStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFont",
+          "text": "UIFont"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFont/preferredFont(forTextStyle:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredFontForTextStyle:"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredFont(forTextStyle:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uifont/preferredfont(fortextstyle:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor": {
+      "abstract": [
+        {
+          "text": "A collection of attributes that describes a font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFontDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFontDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFontDescriptor",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/SymbolicTraits-swift.struct": {
+      "abstract": [
+        {
+          "text": "Constants that describe the stylistic aspects of a font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SymbolicTraits"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/SymbolicTraits-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SymbolicTraits"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFontDescriptor.SymbolicTraits",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontdescriptor/symbolictraits-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontMetrics": {
+      "abstract": [
+        {
+          "text": "A utility object for obtaining custom fonts that scale to support Dynamic Type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFontMetrics"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontMetrics",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFontMetrics"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFontMetrics",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontmetrics"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFontMetrics/scaledFont(for:)": {
+      "abstract": [
+        {
+          "text": "Returns a version of the specified font that adopts the current font metrics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scaledFont"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFont",
+          "text": "UIFont"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIFont",
+          "text": "UIFont"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFontMetrics/scaledFont(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scaledFontForFont:"
+        }
+      ],
+      "role": "symbol",
+      "title": "scaledFont(for:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uifontmetrics/scaledfont(for:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment/traitCollectionDidChange(_:)": {
+      "abstract": [
+        {
+          "text": "Reports changes in the iOS interface environment.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "traitCollectionDidChange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITraitCollection",
+          "text": "UITraitCollection"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITraitEnvironment/traitCollectionDidChange(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "traitCollectionDidChange:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "traitCollectionDidChange(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitraitenvironment/traitcollectiondidchange(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/adding-a-custom-font-to-your-app": {
+      "abstract": [
+        {
+          "text": "Add a custom font to your app and use it in your app’s interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/adding-a-custom-font-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Custom Font to Your App",
+      "type": "topic",
+      "url": "/documentation/uikit/adding-a-custom-font-to-your-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/text-display-and-fonts": {
+      "abstract": [
+        {
+          "text": "Display text, manage fonts, and check spelling.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/text-display-and-fonts",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Text display and fonts",
+      "type": "topic",
+      "url": "/documentation/uikit/text-display-and-fonts"
+    },
+    "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/OSXHIGuidelines/VisualDesign.html#//apple_ref/doc/uid/20000957-CH106-SW8": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/OSXHIGuidelines/VisualDesign.html#//apple_ref/doc/uid/20000957-CH106-SW8",
+      "title": "Typography",
+      "titleInlineContent": [
+        {
+          "text": "Typography",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/OSXHIGuidelines/VisualDesign.html#//apple_ref/doc/uid/20000957-CH106-SW8"
+    },
+    "media-2940106": {
+      "alt": "A partial screenshot of Interface Builder showing the text style “Body” as the selected font in the Attribute Inspector for the selected label.",
+      "identifier": "media-2940106",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1155f9d1bacca7ec495b06afc802f2f4/media-2940106@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Fonts",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/adding-a-custom-font-to-your-app",
+        "doc://com.apple.uikit/documentation/UIKit/UIFont",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/SymbolicTraits-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UIFontMetrics"
+      ],
+      "title": "Fonts"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Fonts",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/adding-a-custom-font-to-your-app",
+                "doc://com.apple.uikit/documentation/UIKit/UIFont",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontDescriptor/SymbolicTraits-swift.struct",
+                "doc://com.apple.uikit/documentation/UIKit/UIFontMetrics"
+              ],
+              "title": "Fonts"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment~1traitCollectionDidChange(_:)/title",
+          "value": "traitCollectionDidChange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITraitEnvironment~1traitCollectionDidChange(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "traitCollectionDidChange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentSizeCategory~1large/title",
+          "value": "UIContentSizeCategoryLarge"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentSizeCategory~1large/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContentSizeCategoryLarge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentSizeCategory~1didChangeNotification/title",
+          "value": "UIContentSizeCategoryDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentSizeCategory~1didChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIContentSizeCategoryDidChangeNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1SymbolicTraits-swift.struct/title",
+          "value": "UIFontDescriptorSymbolicTraits"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1SymbolicTraits-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontDescriptorSymbolicTraits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor~1SymbolicTraits-swift.struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontDescriptorSymbolicTraits"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor/title",
+          "value": "UIFontDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont/title",
+          "value": "UIFont"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFont"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFont"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1TextStyle~1body/title",
+          "value": "UIFontTextStyleBody"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1TextStyle~1body/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontTextStyleBody"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontMetrics~1scaledFont(for:)/title",
+          "value": "scaledFontForFont:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontMetrics~1scaledFont(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "scaledFontForFont:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontMetrics/title",
+          "value": "UIFontMetrics"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontMetrics/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontMetrics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFontMetrics/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontMetrics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1TextStyle~1title1/title",
+          "value": "UIFontTextStyleTitle1"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1TextStyle~1title1/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontTextStyleTitle1"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1preferredFont(forTextStyle:)/title",
+          "value": "preferredFontForTextStyle:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1preferredFont(forTextStyle:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "preferredFontForTextStyle:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1TextStyle~1headline/title",
+          "value": "UIFontTextStyleHeadline"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFont~1TextStyle~1headline/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFontTextStyleHeadline"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentSizeCategoryAdjusting~1adjustsFontForContentSizeCategory/title",
+          "value": "adjustsFontForContentSizeCategory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIContentSizeCategoryAdjusting~1adjustsFontForContentSizeCategory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "adjustsFontForContentSizeCategory"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/scaling-fonts-automatically"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/scaling-fonts-automatically"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

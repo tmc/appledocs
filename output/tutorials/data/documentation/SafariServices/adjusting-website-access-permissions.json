@@ -1,0 +1,757 @@
+{
+  "abstract": [
+    {
+      "text": "Set website access permissions in a Safari app extension using information property list keys.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safariservices/documentation/SafariServices",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extension-information-property-list-keys"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safariservices/documentation/SafariServices/adjusting-website-access-permissions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adjusting website access permissions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Safari 16 and earlier, set permissions for the webpages and domains your app extension accesses in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. In Safari 17 and later, users also grant and manage access to webpages and domains that your app extension specifies in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Setting-permissions",
+          "level": 3,
+          "text": "Setting permissions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the webpages and domains your app extension has access to using the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. Adding the ",
+              "type": "text"
+            },
+            {
+              "code": "SFSafariWebsiteAccess",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary to the ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtension",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element in the file specifies the webpages your app extension has access to. The system only injects your app extension’s content into the webpages you specify, and your app extension can only manipulate the webpages you specify with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariPageProperties",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object in your app extension. For website access, specify the available subkeys.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Subkey",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Level",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A string that specifies the extent of the app extension’s website access. Available values are ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "All",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "None",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Some",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Allowed Domains",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Array",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use this subkey only if ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Level",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Some",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Allowed Domains",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " subkey lists the allowed domains. Each domain in the array is specified as a string.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "Level",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subkey to restrict your extension’s website access. Available values are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "None",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "—Your app extension can’t access any webpage by injecting scripts or style sheets, and most page properties are undefined.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "All",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "—Your app extension has access to all webpages and domains.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Some",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "—Your app extension can access webpages from a list of domains.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you specify the value ",
+              "type": "text"
+            },
+            {
+              "code": "Some",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you must also add the ",
+              "type": "text"
+            },
+            {
+              "code": "Allowed Domains",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to the dictionary. The value for this key is an array specifying the domains that the app extension can access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you set your access to ",
+              "type": "text"
+            },
+            {
+              "code": "Some",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and you don’t specify any domain patterns, your app extension can’t access any webpages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each domain is specified as a string, such as ",
+              "type": "text"
+            },
+            {
+              "code": "developer.apple.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "www.example.org.jp",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Don’t include a scheme, such as ",
+              "type": "text"
+            },
+            {
+              "code": "http://,",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the domain pattern.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A leading asterisk (*) character matches all subdomains of the allowed domain. For example, ",
+              "type": "text"
+            },
+            {
+              "code": "*.apple.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " matches ",
+              "type": "text"
+            },
+            {
+              "code": "www.apple.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "developer.apple.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or any host name in the ",
+              "type": "text"
+            },
+            {
+              "code": "apple.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " domain. Similarly, ",
+              "type": "text"
+            },
+            {
+              "code": "*.co.jp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " matches all ",
+              "type": "text"
+            },
+            {
+              "code": "co.jp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " domains, and ",
+              "type": "text"
+            },
+            {
+              "code": "*.jp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " matches all ",
+              "type": "text"
+            },
+            {
+              "code": ".jp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " domains.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Grant-and-manage-permissions",
+          "level": 3,
+          "text": "Grant and manage permissions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Safari 17 and later, the first time the user visits a page where they haven’t granted access to your Safari app extension, Safari shows a badge next to your toolbar button that indicates the user needs to interact with the extension to grant it permission. The user clicks the toolbar button and selects an option to grant permission: for 24 hours on this website, always for this website, or always for all websites.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The user may then manage permissions for your extension. Choose Safari > Settings and click the Extensions tab to see a summary of permission statuses for each extension. Then they can click the Websites tab and select the extension to see which websites have been configured for it. They can also change the permission status for a selected website to Ask, Allow, or Deny.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you grant access to an extension for a specific web site, that grants the extension access to the site across all profiles, private browsing, and browsing without a profile.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices": {
+      "abstract": [
+        {
+          "text": "Enable web views and services in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Services",
+      "type": "topic",
+      "url": "/documentation/safariservices"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/SFSafariPageProperties": {
+      "abstract": [
+        {
+          "text": "An object that captures information about a webpage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariPageProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/SFSafariPageProperties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSafariPageProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSafariPageProperties",
+      "type": "topic",
+      "url": "/documentation/safariservices/sfsafaripageproperties"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extension-information-property-list-keys": {
+      "abstract": [
+        {
+          "text": "Specify keys in your information property list file that provide information about your Safari app extension, UI, and permissions to the operating system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extension-information-property-list-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari app extension information property list keys",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-app-extension-information-property-list-keys"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions": {
+      "abstract": [
+        {
+          "text": "Learn how Safari app extensions extend the web-browsing experience in Safari by leveraging web technologies and native code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari app extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-app-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/setting-safari-app-extension-feature-keys": {
+      "abstract": [
+        {
+          "text": "Set keys for permissions, scripts, style sheets, contextual menu items, and toolbar items in the information property list file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/setting-safari-app-extension-feature-keys",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Safari app extension feature keys",
+      "type": "topic",
+      "url": "/documentation/safariservices/setting-safari-app-extension-feature-keys"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/using-permissions-for-scripts-and-style-sheets": {
+      "abstract": [
+        {
+          "text": "Learn about URL permissions for scripts and style sheets in a Safari app extension using information property list keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/using-permissions-for-scripts-and-style-sheets",
+      "kind": "article",
+      "role": "article",
+      "title": "Using permissions for scripts and style sheets",
+      "type": "topic",
+      "url": "/documentation/safariservices/using-permissions-for-scripts-and-style-sheets"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Access-and-permissions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/setting-safari-app-extension-feature-keys",
+        "doc://com.apple.safariservices/documentation/SafariServices/using-permissions-for-scripts-and-style-sheets"
+      ],
+      "title": "Access and permissions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Access-and-permissions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/setting-safari-app-extension-feature-keys",
+                "doc://com.apple.safariservices/documentation/SafariServices/using-permissions-for-scripts-and-style-sheets"
+              ],
+              "title": "Access and permissions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariPageProperties/title",
+          "value": "SFSafariPageProperties"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariPageProperties/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariPageProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.safariservices~1documentation~1SafariServices~1SFSafariPageProperties/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSafariPageProperties"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safariservices/adjusting-website-access-permissions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safariservices/adjusting-website-access-permissions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

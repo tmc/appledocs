@@ -1,0 +1,492 @@
+{
+  "abstract": [
+    {
+      "text": "Use ",
+      "type": "text"
+    },
+    {
+      "code": "a",
+      "type": "codeVoice"
+    },
+    {
+      "text": " macro to denote the availability of an Objective-C API.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift",
+        "doc://com.apple.Swift/documentation/Swift/objective-c-and-c-code-customization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/marking-api-availability-in-objective-c"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Marking API Availability in Objective-C"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Swift, you use the ",
+              "type": "text"
+            },
+            {
+              "code": "@available",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute to control whether a declaration is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "available to use when building an app for a particular target platform. Similarly,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you use the availability condition ",
+              "type": "text"
+            },
+            {
+              "code": "#available",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to execute code conditionally based",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on required platform and version conditions. Both kinds of availability specifier",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are also available in Objective-C.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For detailed information about specifying platform availability, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://docs.swift.org/swift-book/ReferenceManual/Attributes.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://docs.swift.org/swift-book/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Mark-Availability",
+          "level": 3,
+          "text": "Mark Availability",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "API_AVAILABLE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macro to add availability information in Objective-C:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@interface MyViewController : UIViewController",
+            "- (void) newMethod API_AVAILABLE(ios(11), macosx(10.13));",
+            "@end"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This is equivalent to using the ",
+              "type": "text"
+            },
+            {
+              "code": "@available",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute on a declaration in Swift:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@available(iOS 11, macOS 10.13, *)",
+            "func newMethod() {",
+            "    // Use iOS 11 APIs.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Check-Availability",
+          "level": 3,
+          "text": "Check Availability",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "@available()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keyword to check availability information in a conditional",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "statement in Objective-C:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if (@available(iOS 11, *)) {",
+            "    // Use iOS 11 APIs.",
+            "} else {",
+            "    // Alternative code for earlier versions of iOS.",
+            "}"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This is equivalent to the following conditional in Swift:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if #available(iOS 11, *) {",
+            "    // Use iOS 11 APIs.",
+            "} else {",
+            "    // Alternative code for earlier versions of iOS.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/designating-nullability-in-objective-c-apis": {
+      "abstract": [
+        {
+          "text": "Use nullability annotations or mark regions as annotated to control how Objective-C",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "declarations are imported into Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/designating-nullability-in-objective-c-apis",
+      "kind": "article",
+      "role": "article",
+      "title": "Designating Nullability in Objective-C APIs",
+      "type": "topic",
+      "url": "/documentation/swift/designating-nullability-in-objective-c-apis"
+    },
+    "doc://com.apple.Swift/documentation/Swift/grouping-related-objective-c-constants": {
+      "abstract": [
+        {
+          "text": "Add macros to your Objective-C types to group their values in Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/grouping-related-objective-c-constants",
+      "kind": "article",
+      "role": "article",
+      "title": "Grouping Related Objective-C Constants",
+      "type": "topic",
+      "url": "/documentation/swift/grouping-related-objective-c-constants"
+    },
+    "doc://com.apple.Swift/documentation/Swift/improving-objective-c-api-declarations-for-swift": {
+      "abstract": [
+        {
+          "text": "Use the ",
+          "type": "text"
+        },
+        {
+          "code": "NS_REFINED_FOR_SWIFT",
+          "type": "codeVoice"
+        },
+        {
+          "text": " macro to change how an API is imported into Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/improving-objective-c-api-declarations-for-swift",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving Objective-C API Declarations for Swift",
+      "type": "topic",
+      "url": "/documentation/swift/improving-objective-c-api-declarations-for-swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/making-objective-c-apis-unavailable-in-swift": {
+      "abstract": [
+        {
+          "text": "Use the ",
+          "type": "text"
+        },
+        {
+          "code": "NS_SWIFT_UNAVAILABLE",
+          "type": "codeVoice"
+        },
+        {
+          "text": " macro to prevent an API from being used in Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/making-objective-c-apis-unavailable-in-swift",
+      "kind": "article",
+      "role": "article",
+      "title": "Making Objective-C APIs Unavailable in Swift",
+      "type": "topic",
+      "url": "/documentation/swift/making-objective-c-apis-unavailable-in-swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/objective-c-and-c-code-customization": {
+      "abstract": [
+        {
+          "text": "Apply macros to your Objective-C APIs to customize how they’re imported into Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/objective-c-and-c-code-customization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Objective-C and C Code Customization",
+      "type": "topic",
+      "url": "/documentation/swift/objective-c-and-c-code-customization"
+    },
+    "doc://com.apple.Swift/documentation/Swift/renaming-objective-c-apis-for-swift": {
+      "abstract": [
+        {
+          "text": "Use the ",
+          "type": "text"
+        },
+        {
+          "code": "NS_SWIFT_NAME",
+          "type": "codeVoice"
+        },
+        {
+          "text": " macro to customize API names for Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/renaming-objective-c-apis-for-swift",
+      "kind": "article",
+      "role": "article",
+      "title": "Renaming Objective-C APIs for Swift",
+      "type": "topic",
+      "url": "/documentation/swift/renaming-objective-c-apis-for-swift"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs.swift.org/swift-book/": {
+      "identifier": "https://docs.swift.org/swift-book/",
+      "title": "The Swift Programming Language",
+      "titleInlineContent": [
+        {
+          "text": "The Swift Programming Language",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/"
+    },
+    "https://docs.swift.org/swift-book/ReferenceManual/Attributes.html": {
+      "identifier": "https://docs.swift.org/swift-book/ReferenceManual/Attributes.html",
+      "title": "Declaration Attributes",
+      "titleInlineContent": [
+        {
+          "text": "Declaration",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Attributes",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/ReferenceManual/Attributes.html"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Customizing-Objective-C-APIs",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/designating-nullability-in-objective-c-apis",
+        "doc://com.apple.Swift/documentation/Swift/renaming-objective-c-apis-for-swift",
+        "doc://com.apple.Swift/documentation/Swift/improving-objective-c-api-declarations-for-swift",
+        "doc://com.apple.Swift/documentation/Swift/grouping-related-objective-c-constants",
+        "doc://com.apple.Swift/documentation/Swift/making-objective-c-apis-unavailable-in-swift"
+      ],
+      "title": "Customizing Objective-C APIs"
+    }
+  ]
+}

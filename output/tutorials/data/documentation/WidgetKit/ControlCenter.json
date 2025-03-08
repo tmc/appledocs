@@ -1,0 +1,907 @@
+{
+  "abstract": [
+    {
+      "text": "An object that contains a list of user-configured controls and is used for",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "reloading controls.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlCenter"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:9WidgetKit13ControlCenterC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ControlCenter"
+      }
+    ],
+    "modules": [
+      {
+        "name": "WidgetKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ControlCenter"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "ControlCenter"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ControlCenter"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ControlCenter provides information about user-configured controls, such as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "their push information. For controls that use ",
+              "type": "text"
+            },
+            {
+              "text": "doc:IntentConfigurableControl",
+              "type": "text"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you can retrieve the user-edited values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Getting-Configured-Control-Information",
+          "level": 3,
+          "text": "Getting Configured Control Information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get a list of user-configured controls, use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlCenter/currentControls()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This property provides an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects containing the following information:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ControlInfo {",
+            "    public let kind: String",
+            "    public func configurationIntent<Intent: ControlConfigurationIntent>(of intentType: Intent.Type = Intent.self) -> Intent?",
+            "    public var pushInfo: ControlPushInfo?",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "kind",
+              "type": "codeVoice"
+            },
+            {
+              "text": " string matches the parameter you use when defining the control",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type. If your control uses ",
+              "type": "text"
+            },
+            {
+              "text": "doc:IntentConfigurableControl",
+              "type": "text"
+            },
+            {
+              "text": ", the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "configurationIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function provides the custom intent containing the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "user-customized values for each individual control. If your control",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "returns ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for ",
+              "type": "text"
+            },
+            {
+              "code": "supportsPushUpdates",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "pushInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " will return the latest",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "push info for this individual control.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Requesting-a-Reload-of-Your-Controls",
+          "level": 3,
+          "text": "Requesting a Reload of Your Controls",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Changes in your app’s state may affect a control’s state. When this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "happens, you can tell ControlCenter to reload the template for either a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specific kind of control or all controls. For example, your user might",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "press a button in your app that changes state shared by a control. The app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "should reload that control for its display to reflect the new state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You do not need to reload controls in response to push notifications. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system will reload any controls configured for push notifications on your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "behalf.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you only need to reload a certain kind of control, you can request a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "reload for only that kind. For example, in response to the user toggling an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "appliance on or off, you could request a reload for only the appliance",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "widgets:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ControlCenter.shared.reloadControls(ofKind: \"com.myhome.appliancepower\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To request a reload for all of your controls:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ControlCenter.shared.reloadAllControls()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "creating-controls-to-perform-actions-PageImage-card.png": {
+      "alt": "A stylistic representation of various controls in Control Center.",
+      "identifier": "creating-controls-to-perform-actions-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/89b3200777246c98d3bbd28ebaaafe5b/creating-controls-to-perform-actions-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c63a545b551c9c7a56541562a57c11ab/creating-controls-to-perform-actions-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Extend the reach of your app by creating widgets, watch complications, Live Activities, and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WidgetKit",
+      "type": "topic",
+      "url": "/documentation/widgetkit"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Adding-refinements-and-configuration-to-controls": {
+      "abstract": [
+        {
+          "text": "Customize the way controls display across the system and offer people the ability to configure them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Adding-refinements-and-configuration-to-controls",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding refinements and configuration to controls",
+      "type": "topic",
+      "url": "/documentation/widgetkit/adding-refinements-and-configuration-to-controls"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlCenter": {
+      "abstract": [
+        {
+          "text": "An object that contains a list of user-configured controls and is used for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "reloading controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlCenter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ControlCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "ControlCenter",
+      "type": "topic",
+      "url": "/documentation/widgetkit/controlcenter"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlCenter/currentControls()": {
+      "abstract": [
+        {
+          "text": "Retrieves information about user-configured controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentControls"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit11ControlInfoV",
+          "text": "ControlInfo"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlCenter/currentControls()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentControls()",
+      "type": "topic",
+      "url": "/documentation/widgetkit/controlcenter/currentcontrols()"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlCenter/reloadAllControls()": {
+      "abstract": [
+        {
+          "text": "Reloads the templates for all configured controls belonging to the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "containing app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reloadAllControls"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlCenter/reloadAllControls()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reloadAllControls()",
+      "type": "topic",
+      "url": "/documentation/widgetkit/controlcenter/reloadallcontrols()"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlCenter/reloadControls(ofKind:)": {
+      "abstract": [
+        {
+          "text": "Reloads the templates for all controls of a particular kind.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reloadControls"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ofKind"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlCenter/reloadControls(ofKind:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reloadControls(ofKind:)",
+      "type": "topic",
+      "url": "/documentation/widgetkit/controlcenter/reloadcontrols(ofkind:)"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlCenter/shared": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9WidgetKit13ControlCenterC",
+          "text": "ControlCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlCenter/shared",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shared",
+      "type": "topic",
+      "url": "/documentation/widgetkit/controlcenter/shared"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlInfo": {
+      "abstract": [
+        {
+          "text": "A structure that contains information about user-configured controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ControlInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "ControlInfo",
+      "type": "topic",
+      "url": "/documentation/widgetkit/controlinfo"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlWidgetButton": {
+      "abstract": [
+        {
+          "text": "A control template representing a button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetButton"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlWidgetButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "ControlWidgetButton",
+      "type": "topic",
+      "url": "/documentation/widgetkit/controlwidgetbutton"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlWidgetToggle": {
+      "abstract": [
+        {
+          "text": "A control template representing a toggle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetToggle"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlWidgetToggle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ControlWidgetToggle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ControlWidgetToggle",
+      "type": "topic",
+      "url": "/documentation/widgetkit/controlwidgettoggle"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-controls-to-perform-actions-across-the-system": {
+      "abstract": [
+        {
+          "text": "Perform your app’s actions from Control Center, the Lock Screen, and the Action button.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-controls-to-perform-actions-across-the-system",
+      "images": [
+        {
+          "identifier": "creating-controls-to-perform-actions-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Creating controls to perform actions across the system",
+      "type": "topic",
+      "url": "/documentation/widgetkit/creating-controls-to-perform-actions-across-the-system"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Controls",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Creating-controls-to-perform-actions-across-the-system",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Adding-refinements-and-configuration-to-controls",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlWidgetToggle",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlWidgetButton"
+      ],
+      "title": "Controls"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlCenter/currentControls()",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlCenter/reloadAllControls()",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlCenter/reloadControls(ofKind:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Type-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/ControlCenter/shared"
+      ],
+      "title": "Type Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/widgetkit/controlcenter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

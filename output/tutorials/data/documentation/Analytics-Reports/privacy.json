@@ -1,0 +1,1542 @@
+{
+  "abstract": [
+    {
+      "text": "Understand measures that help protect user privacy.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devpubs.analytics-reports/documentation/analytics-reports"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/privacy"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Protecting user privacy in report data"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The data reports in the Analytics Reports framework help you manage and run your apps. In some reports, Apple applies specific privacy measures to protect individual user identities. This article provides details about these privacy measures and lists the reports to which they apply.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Data in the framework’s reports is aggregated, and similar users are in groups, which means individual user data is not easily identifiable. To balance data privacy with usability, the framework applies two approaches as needed to specific reports:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Omits values with data from fewer than 5 users or 5 unique devices.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Thresholding",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Adds a small random number to metrics.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Noise",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These privacy measures maximize utility as the volume of data increases, while also helping protect users identities. The framework applies the same privacy measures across daily, weekly, and monthly reports for the same type of content, ensuring that utility increases as more data is collected over longer periods of time. To maintain stability, the threshold and random noise that the framework initially applies remains constant across multiple requests for the same report.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For privacy information for reports not listed in this article, see the Privacy section in each report.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Understand-standard-and-detailed-report-types",
+          "level": 2,
+          "text": "Understand standard and detailed report types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In some reports, data might be more sensitive than it is in others. To help protect user privacy, the framework provides two types of reports:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Does not include sensitive fields easily relatable to user data.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Standard",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Includes all fields and applies threshold and noise measures to help protect uniquely identifiable user data.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Detailed",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Detailed reports provide values with a small amount of noise and omit data from values that have fewer than 5 users or 5 unique devices. Except for the specific cases detailed below, metrics in the detailed reports are noised so that, approximately:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "68.2% of values are expected to be within +/- 2 of the true values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "95% of values are expected be within +/- 4 of the true values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "99.7% of values are expected to be within +/- 6 of the true values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if a specific row in a report has a true count value of 500,000, then 99.7% of the time the noised count is somewhere between 499,994 and 500,006. In reports with multiple different metrics, these are noised independently as appropriate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here is an example that shows noised and not noised installation and deletion data, where the amount of noise applied to the Counts and Unique Devices is 2 and 1, respectively:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Noised state",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Counts",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Unique Devices",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Not noised",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "5000",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2000",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Noised",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "5002",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2001",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following report groups have both standard and detailed reports:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-clip-usage",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-sessions",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-discovery-and-engagement",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-download",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-installs",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-pre-order",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-purchase",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Understand-App-usage-report-privacy-approach",
+          "level": 2,
+          "text": "Understand App usage report privacy approach",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users who opt in to share app usage data with Apple and developers do so with the understanding that they share their data in a non-personally identiﬁable way. To help ensure user privacy, the framework only generates both standard and detailed app usage reports when events exist from at least ﬁve users for the respective report. If fewer than ﬁve users contribute to a usage metric for a specific day, week, or month, then the relevant report does not generate. Additionally, for detailed reports, individual rows only populate if they have a value from 5 or more devices.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "These reports use this privacy approach:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-clip-usage",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-crashes",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-sessions",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-installs",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Understand-App-Store-Purchases-detailed-report",
+          "level": 2,
+          "text": "Understand App Store Purchases detailed report",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-purchase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " report contains several metrics that are highly relatable, for example, paying users, purchases, sales in USD, and proceeds in USD, the detailed report calculates noise once and applies it to all metrics. This approach ensures that the report has internal consistency across metrics, even with noise applied:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Paying users, purchases, sales in USD, and proceeds in USD",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Metrics",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Adds a small random number to paying users and purchases metric values then uses this number to calculate the noised sales and proceeds.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Noise",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Paying user data is noised so that, approximately:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "68.2% of values are expected be within +/- 2 of the true values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "95% of values are expected be within +/- 4 of the true values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "99.7% of values are expected to be within +/- 6 of the true values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if a specific row in a report has 5,000 true paying users, then 99.7% of the time the report shows a value somewhere between 4,994 and 5,006.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The framework then proportionally applies this noise to the purchases, sales in USD, and proceeds in USD metrics.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here is an example showing true and noised data, where the amount of noise applied to paying users is -3. The noised price is 30 dollars less than the true as it is computed as the noise value (-3) * purchase price ($10):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Noised state",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paying users",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Purchases",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sales in USD",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Proceeds in USD",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Not Noised",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "5,000 paying users",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "10,000 purchases",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "$100,000 sales in USD",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "$10 purchase price",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Noised",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4,997 paying users",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "9,997 purchases",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "$99,970 sales in USD",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "$10 purchase price",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following report has dollar-valued metrics:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-purchase",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Understand-session-duration-in-specific-detailed-report-types",
+          "level": 2,
+          "text": "Understand session duration in specific detailed report types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-sessions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-clip-usage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " detailed reports, the total session duration metric can be more variable with user data when you compare it to other metrics such as unique devices.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The framework calculates session duration noise accordingly while ensuring data usability. Other metrics in these reports are noised as previously described. The framework calculates a tailored level of noise for the session duration metric for each detailed report row. This approach reflects how different users use your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Total session duration",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Metrics",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Standard deviation calculated by dividing the average session duration for each detailed report row by 4",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Noise",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each detailed report row, the total session duration is noised so that, approximately:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "68.2% of the time the reported value is expected to be within +/- the corresponding deviation of the true value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "95% of time the reported value is expected to be within +/- twice that deviation of the true.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "99.7% of time the reported value is expected to be within +/- three times that deviation of the true value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example noise deviation calculation: If a specific report row has 100,000 true total duration seconds and 5,000 sessions, then the average session duration is 20 seconds. The framework divides 20 seconds by 4 (noise divisor) to get 5 seconds, and uses this value as the standard deviation of the applied integer noise. In summary:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "100,000 (duration in seconds) / 5000 (sessions) = 20 (average session duration in seconds)",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "20 (average session duration in seconds) / 4 (noise divisor) = 5 (seconds of noise deviation)",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example that shows noised and not noised sessions data using the calculated noise deviation. With this deviation, the amount of noise the framework applies to session duration is 10. Sessions is separately noised with 1:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Noised state",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sessions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Total session duration (seconds)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Not Noised",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "5,000",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "100,000",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Noised",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "5,001",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "100,010",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the report row with 100,000 true total duration seconds, approximately:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "68.2% of the time the reported value appears within +/- 5 seconds (between 99,995 and 100,005).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "95% of the time the reported value is within +/- 10 seconds (between 99,990 and 100,010).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "99.7% of the time the reported value is expected to be within +/- 15 seconds (between 99,985 and 100,015).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following reports have a session duration metric:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-clip-usage",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-crashes",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-installs-performance",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-sessions",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-clip-usage": {
+      "abstract": [
+        {
+          "text": "Analyze how users engage with your App Clips.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-clip-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "App Clip Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-clip-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-crashes": {
+      "abstract": [
+        {
+          "text": "Review crashes for your App Store apps based on app version and device type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-crashes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Crashes",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-crashes"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-download": {
+      "abstract": [
+        {
+          "text": "Analyze how many times people download your app on the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-download",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Downloads",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-download"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-installs": {
+      "abstract": [
+        {
+          "text": "Analyze details on the number of times users install and delete your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-installs",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Installations and Deletions",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-installs"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-installs-performance": {
+      "abstract": [
+        {
+          "text": "Analyze details about installation success and failure rates for your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-installs-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "App Installs Performance",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-installs-performance"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-sessions": {
+      "abstract": [
+        {
+          "text": "Analyze how often people open your App Store apps, and the average session duration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-sessions",
+      "kind": "article",
+      "role": "article",
+      "title": "App Sessions",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-sessions"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-discovery-and-engagement": {
+      "abstract": [
+        {
+          "text": "Analyze how users interact with your app on the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-discovery-and-engagement",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Discovery and Engagement",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-store-discovery-and-engagement"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-pre-order": {
+      "abstract": [
+        {
+          "text": "Analyze details on the number of pre-orders that people place and cancel for your app on the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-pre-order",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Pre-orders",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-store-pre-order"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-purchase": {
+      "abstract": [
+        {
+          "text": "Analyze total revenue generated by your apps on the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-purchase",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Purchases",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-store-purchase"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/data-completeness-corrections": {
+      "abstract": [
+        {
+          "text": "Understand how the Analytics Reports API provides complete data sets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/data-completeness-corrections",
+      "kind": "article",
+      "role": "article",
+      "title": "Data Completeness and Corrections",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/data-completeness-corrections"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/analytics-reports": {
+      "abstract": [
+        {
+          "text": "A list of app development reports, their field descriptions, and glossaries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/analytics-reports",
+      "kind": "article",
+      "role": "collection",
+      "title": "Analytics Reports",
+      "type": "topic",
+      "url": "/documentation/analytics-reports"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/data-completeness-corrections"
+      ],
+      "title": "Essentials"
+    }
+  ]
+}

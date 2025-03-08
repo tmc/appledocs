@@ -1,0 +1,926 @@
+{
+  "abstract": [
+    {
+      "text": "Install and update your extension in Safari as you make changes in development.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safariservices/documentation/SafariServices",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Running your Safari web extension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Install your web extension in Safari, then update it as you add features and fix bugs so you can run and test it in Safari.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can temporarily install your extension folder in macOS Safari for testing without setting up an Xcode project. Use this approach to quickly evaluate your extension in Safari or to complete your initial development work. Then, when you’re ready to test your extension in iOS or distribute your extension, follow the instructions in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/converting-a-web-extension-for-safari",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create an Xcode project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Temporarily-install-a-web-extension-folder-in-macOS-Safari",
+          "level": 3,
+          "text": "Temporarily install a web extension folder in macOS Safari",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To temporarily install your web extension folder in macOS Safari, first locate the folder or zip file containing your web extension’s files in Finder, then open Safari.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Safari menu, choose Safari > Settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Developer tab. If it’s not visible, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension#Configure-Safari-in-macOS-to-run-unsigned-extensions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " below to enable it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click “Add Temporary Extension…”, then respond to Safari’s unsigned extension authentication prompt, if you haven’t already selected the “Allow unsigned extensions” option.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the folder or zip file containing your web extension files, and click Select.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your folder contains a valid web extension, Safari switches to the Extensions tab and adds your extension to the Temporary list. Use the options to uninstall the extension, adjust the extension’s settings, show the extension in Finder, or reload the extension in Safari.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Safari removes temporary extensions after 24 hours or when you quit Safari.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Set up your extension in an Xcode project to test your web extension in iOS, send messages between the extension and your app, or distribute your extension. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.safariservices/documentation/SafariServices/converting-a-web-extension-for-safari",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Install-your-Safari-web-extension-in-iOS",
+          "level": 3,
+          "text": "Install your Safari web extension in iOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re working in iOS, you deploy a Safari web extension in Safari with an iOS app. If you are testing on a device, attach your development iOS device to your computer, then run the containing iOS app to install your web extension in Safari:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the iOS app in the Scheme menu next to the Run and Stop buttons in Xcode’s main toolbar.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your development device or preferred iOS simulator in the Device menu next to the Scheme menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Run button, or choose Product > Run to build and run your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode builds your Safari web extension first, then embeds it inside the finished app bundle. Xcode then deploys the app to your development device or selected simulator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you install the app in iOS for the first time, enable the web extension in Safari before you run it. In Safari, tap the More menu, then tap Extensions to select and enable your extension. Alternatively, open the Settings app, then select Safari > Extensions. Find your extension in the list, tap it, then tap the switch to enable the extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You must be a member of the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/programs/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to test on a device. You can test in the iOS simulators before you join the Apple Developer Program.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Install-your-Safari-web-extension-in-macOS",
+          "level": 3,
+          "text": "Install your Safari web extension in macOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re working in macOS, you use a macOS app to deploy a Safari web extension. Run the containing macOS app to install your web extension in Safari:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the macOS app in the Scheme menu next to the Run and Stop buttons in Xcode’s main toolbar.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Run button, or choose Product > Run to build and run your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you build your app, Xcode builds your Safari web extension first, then embeds it inside the finished app bundle. As soon as your app runs, your extension is ready for use in Safari.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-Safari-in-macOS-to-run-unsigned-extensions",
+          "level": 3,
+          "text": "Configure Safari in macOS to run unsigned extensions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re not part of the Apple Developer Program, or if you haven’t yet configured a developer identity for your existing Xcode project, your Safari web extension won’t be signed with a development certificate. For security purposes, Safari ignores unsigned extensions by default, so your extension won’t show up in Safari Extensions preferences.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To develop without a certificate, allow unsigned extensions in Safari. First, enable the Develop menu in Safari:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Safari > Settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Advanced tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check the “Show Develop menu in menu bar” box, or the “Show features for web developers” box in Safari 17 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, in Safari 16 and earlier, choose Develop > Allow Unsigned Extensions. In Safari 17 or later, use the Developer tab in Settings:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Safari > Settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Developer tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check the “Allow unsigned extensions” box.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The “Allow unsigned extensions” setting for Safari resets when you quit Safari; set it again the next time you launch Safari.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a Mac web app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Settings from the Mac web app’s menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Extensions tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check the “Allow unsigned extensions” box.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The “Allow unsigned extensions” setting resets for the web app when you quit that web app; set it again the next time you launch the web app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now enable your extension:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Safari > Settings, or Settings from the Mac web app’s menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Extensions tab.  This tab shows the localized description, display name, and version number for the selected extension. It also provides more information about the permissions claimed by the extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Find your new extension in the list on the left, and enable it by selecting the checkbox.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Close Settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have profiles set up in Safari 17 or later, manage your extension for a specific profile:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Safari > Settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Profiles tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select a profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Extensions tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you built the default template extension without modifying it, Safari adds a button in the toolbar after you complete the steps above. When you click this button, Safari displays the pop-up webpage from your web extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have trouble getting your extension to work, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-web-extension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-your-Safari-web-extension-in-iOS",
+          "level": 3,
+          "text": "Update your Safari web extension in iOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To deploy changes to your extension after installing it the first time, choose Product > Run. Xcode packages the most recent changes to your extension files in the iOS app. As soon as the build completes and Xcode installs the app on your device or selected simulator, your extension updates are ready to use in Safari.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-your-Safari-web-extension-in-macOS",
+          "level": 3,
+          "text": "Update your Safari web extension in macOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To deploy changes to your extension after installing it the first time, choose Product > Build. Xcode packages the most recent changes to your extension files in the macOS app. As soon as the build completes, your extension updates are ready to use in Safari.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices": {
+      "abstract": [
+        {
+          "text": "Enable web views and services in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Services",
+      "type": "topic",
+      "url": "/documentation/safariservices"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/converting-a-web-extension-for-safari": {
+      "abstract": [
+        {
+          "text": "Convert your existing extension to a Safari web extension using Xcode’s command-line tool.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/converting-a-web-extension-for-safari",
+      "kind": "article",
+      "role": "article",
+      "title": "Converting a web extension for Safari",
+      "type": "topic",
+      "url": "/documentation/safariservices/converting-a-web-extension-for-safari"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/distributing-your-safari-web-extension": {
+      "abstract": [
+        {
+          "text": "Get feedback on your extension from beta testers, then share your extension with customers in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/distributing-your-safari-web-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing your Safari web extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/distributing-your-safari-web-extension"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension#Configure-Safari-in-macOS-to-run-unsigned-extensions": {
+      "abstract": [],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension#Configure-Safari-in-macOS-to-run-unsigned-extensions",
+      "kind": "section",
+      "title": "Configure Safari in macOS to run unsigned extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/running-your-safari-web-extension#Configure-Safari-in-macOS-to-run-unsigned-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions": {
+      "abstract": [
+        {
+          "text": "Create web extensions that work in Safari and other browsers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari web extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-web-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-web-extension": {
+      "abstract": [
+        {
+          "text": "Use developer resources to investigate and resolve common problems with Safari web extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-web-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Troubleshooting your Safari web extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/troubleshooting-your-safari-web-extension"
+    },
+    "https://developer.apple.com/programs/": {
+      "identifier": "https://developer.apple.com/programs/",
+      "title": "Apple Developer Program",
+      "titleInlineContent": [
+        {
+          "text": "Apple Developer Program",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/programs/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Installation-and-distribution",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/distributing-your-safari-web-extension"
+      ],
+      "title": "Installation and distribution"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Installation-and-distribution",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/distributing-your-safari-web-extension"
+              ],
+              "title": "Installation and distribution"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safariservices/running-your-safari-web-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safariservices/running-your-safari-web-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

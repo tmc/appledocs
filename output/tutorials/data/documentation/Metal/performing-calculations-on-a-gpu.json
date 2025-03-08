@@ -1,0 +1,2947 @@
+{
+  "abstract": [
+    {
+      "text": "Use Metal to find GPUs and perform calculations on them.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/compute-passes"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/metal-sample-code-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/performing-calculations-on-a-gpu"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "10.14",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Performing Calculations on a GPU"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this sample, you’ll learn essential tasks that are used in all Metal apps.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You’ll see how to convert a simple function written in C to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Metal Shading Language (MSL) so that it can be run on a GPU.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You’ll find a GPU, prepare the MSL function to run on it by creating a pipeline,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and create data objects accessible to the GPU.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To execute the pipeline against your data, create a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "command buffer",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "write commands into it, and commit the buffer to a command queue.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Metal sends the commands to the GPU to be executed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Write-a-GPU-Function-to-Perform-Calculations",
+          "level": 3,
+          "text": "Write a GPU Function to Perform Calculations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To illustrate GPU programming, this app adds corresponding elements of two arrays together,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "writing the results to a third array.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Listing 1 shows a function that performs this calculation on the CPU, written in C.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It loops over the index, calculating one value per iteration of the loop.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Listing 1",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Array addition, written in C",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "void add_arrays(const float* inA,",
+            "                const float* inB,",
+            "                float* result,",
+            "                int length)",
+            "{",
+            "    for (int index = 0; index < length ; index++)",
+            "    {",
+            "        result[index] = inA[index] + inB[index];",
+            "    }",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each value is calculated independently, so the values can be safely calculated concurrently.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To perform the calculation on the GPU, you need to rewrite this function in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Metal Shading Language (MSL).",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "MSL is a variant of C++ designed for GPU programming.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In Metal, code that runs on GPUs is called a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "shader",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", because historically",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "they were first used to calculate colors in 3D graphics.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Listing 2 shows a shader in MSL that performs the same calculation as Listing 1.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample project defines this function in the ",
+              "type": "text"
+            },
+            {
+              "code": "add.metal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode builds all ",
+              "type": "text"
+            },
+            {
+              "code": ".metal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files in the application target and creates a default Metal library,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which it embeds in your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You’ll see how to load the default library later in this sample.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Listing 2",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Array addition, written in MSL",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "kernel void add_arrays(device const float* inA,",
+            "                       device const float* inB,",
+            "                       device float* result,",
+            "                       uint index [[thread_position_in_grid]])",
+            "{",
+            "    // the for-loop is replaced with a collection of threads, each of which",
+            "    // calls this function.",
+            "    result[index] = inA[index] + inB[index];",
+            "}"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 1 and Listing 2 are similar, but there are some important differences in the MSL version.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Take a closer look at Listing 2.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, the function adds the ",
+              "type": "text"
+            },
+            {
+              "code": "kernel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keyword, which declares that the function is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "public GPU function",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Public functions are the only functions that your app can see.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Public functions also can’t be called by other shader functions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "compute function",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " (also known as a compute kernel), which performs a parallel calculation using a grid of threads.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to learn the other function keywords used to declare public graphics functions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "add_arrays",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function declares three of its arguments with the ",
+              "type": "text"
+            },
+            {
+              "code": "device",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keyword, which says that these pointers are in the ",
+              "type": "text"
+            },
+            {
+              "code": "device",
+              "type": "codeVoice"
+            },
+            {
+              "text": " address space.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "MSL defines several disjoint address spaces for memory.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Whenever you declare a pointer in MSL, you must supply a keyword to declare its address space.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "device",
+              "type": "codeVoice"
+            },
+            {
+              "text": " address space to declare persistent memory that the GPU can read from and write to.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Listing 2 removes the for-loop from Listing 1, because the function is now going to be called by multiple threads in the compute grid.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This sample creates a 1D grid of threads that exactly matches the array’s dimensions, so that each entry in the array is calculated by a different thread.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To replace the index previously provided by the for-loop, the function takes a new ",
+              "type": "text"
+            },
+            {
+              "code": "index",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument, with another MSL keyword, ",
+              "type": "text"
+            },
+            {
+              "code": "thread_position_in_grid",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", specified using C++ attribute syntax.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This keyword declares that Metal should calculate a unique index for each thread and pass that index in this argument.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because ",
+              "type": "text"
+            },
+            {
+              "code": "add_arrays",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses a 1D grid, the index is defined as a scalar integer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Even though the loop was removed, Listing 1 and Listing 2 use the same line of code to add the two numbers together.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you want to convert similar code from C or C++ to MSL, replace the loop logic with a grid in the same way.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Find-a-GPU",
+          "level": 3,
+          "text": "Find a GPU",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your app, a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object is a thin abstraction for a GPU; you use it to communicate with a GPU.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Metal creates a ",
+              "type": "text"
+            },
+            {
+              "code": "MTLDevice",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for each GPU.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You get the default device object by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCreateSystemDefaultDevice()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In macOS, where a Mac can have multiple GPUs, Metal chooses one of the GPUs as the default and returns that GPU’s device object.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In macOS, Metal provides other APIs that you can use to retrieve all of the device objects, but this sample just uses the default.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "id<MTLDevice> device = MTLCreateSystemDefaultDevice();"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Initialize-Metal-Objects",
+          "level": 3,
+          "text": "Initialize Metal Objects",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metal represents other GPU-related entities, like compiled shaders, memory buffers and textures, as objects.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To create these GPU-specific objects, you call methods on a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or you call methods on objects created by a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "All objects created directly or indirectly by a device object are usable only with that device object.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Apps that use multiple GPUs will use multiple device objects and create a similar hierarchy of Metal objects for each.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app uses a custom ",
+              "type": "text"
+            },
+            {
+              "code": "MetalAdder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class to manage the objects it needs to communicate with the GPU.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The class’s initializer creates these objects and stores them in its properties.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app creates an instance of this class, passing in the Metal device object to use to create the secondary objects.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "MetalAdder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object keeps strong references to the Metal objects until it finishes executing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MetalAdder* adder = [[MetalAdder alloc] initWithDevice:device];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Metal, expensive initialization tasks can be run once and the results retained and used inexpensively.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You rarely need to run such tasks in performance-sensitive code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Get-a-Reference-to-the-Metal-Function",
+          "level": 3,
+          "text": "Get a Reference to the Metal Function",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first thing the initializer does is load the function and prepare it to run on the GPU.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you build the app, Xcode compiles the ",
+              "type": "text"
+            },
+            {
+              "code": "add_arrays",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function and adds it to a default Metal library that it embeds in the app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLLibrary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects to get information about Metal libraries and the functions contained in them.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To get an object representing the ",
+              "type": "text"
+            },
+            {
+              "code": "add_arrays",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function, ask the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLLibrary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object for the default library, and then ask the library for a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that represents the shader function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (instancetype) initWithDevice: (id<MTLDevice>) device",
+            "{",
+            "    self = [super init];",
+            "    if (self)",
+            "    {",
+            "        _mDevice = device;",
+            "",
+            "        NSError* error = nil;",
+            "",
+            "        // Load the shader files with a .metal file extension in the project",
+            "",
+            "        id<MTLLibrary> defaultLibrary = [_mDevice newDefaultLibrary];",
+            "        if (defaultLibrary == nil)",
+            "        {",
+            "            NSLog(@\"Failed to find the default library.\");",
+            "            return nil;",
+            "        }",
+            "",
+            "        id<MTLFunction> addFunction = [defaultLibrary newFunctionWithName:@\"add_arrays\"];",
+            "        if (addFunction == nil)",
+            "        {",
+            "            NSLog(@\"Failed to find the adder function.\");",
+            "            return nil;",
+            "        }"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Prepare-a-Metal-Pipeline",
+          "level": 3,
+          "text": "Prepare a Metal Pipeline",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The function object is a proxy for the MSL function, but it’s not executable code.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You convert the function into executable code by creating a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "pipeline",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A pipeline specifies the steps that the GPU performs to complete a specific task.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In Metal, a pipeline is represented by a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "pipeline state object",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because this sample uses a compute function, the app creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputePipelineState",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "_mAddFunctionPSO = [_mDevice newComputePipelineStateWithFunction: addFunction error:&error];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A compute pipeline runs a single compute function, optionally manipulating the input data before running the function, and the output data afterwards.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a pipeline state object, the device object finishes compiling the function for this specific GPU.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This sample creates the pipeline state object synchronously and returns it directly to the app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because compiling does take a while, avoid creating pipeline state objects synchronously in performance-sensitive code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "All of the objects returned by Metal in the code you’ve seen so far are returned as objects that conform to protocols.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Metal defines most GPU-specific objects using protocols to abstract away the underlying implementation classes, which may vary for different GPUs.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Metal defines GPU-independent objects using classes.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The reference documentation for any given Metal protocol make it clear whether you can implement that protocol in your app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-a-Command-Queue",
+          "level": 3,
+          "text": "Create a Command Queue",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To send work to the GPU, you need a command queue.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Metal uses command queues to schedule commands.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Create a command queue by asking the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for one.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "_mCommandQueue = [_mDevice newCommandQueue];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-Data-Buffers-and-Load-Data",
+          "level": 3,
+          "text": "Create Data Buffers and Load Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After initializing the basic Metal objects, you load data for the GPU to execute.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This task is less performance critical, but still useful to do early in your app’s launch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A GPU can have its own dedicated memory, or it can share memory with the operating system.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Metal and the operating system kernel need to perform additional work to let you store data in memory and make that data available to the GPU.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Metal abstracts this memory management using ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "resource",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " objects.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A resource is an allocation of memory that the GPU can access when running commands.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create resources for its GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app creates three buffers and fills the first two with random data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The third buffer is where ",
+              "type": "text"
+            },
+            {
+              "code": "add_arrays",
+              "type": "codeVoice"
+            },
+            {
+              "text": " will store its results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "_mBufferA = [_mDevice newBufferWithLength:bufferSize options:MTLResourceStorageModeShared];",
+            "_mBufferB = [_mDevice newBufferWithLength:bufferSize options:MTLResourceStorageModeShared];",
+            "_mBufferResult = [_mDevice newBufferWithLength:bufferSize options:MTLResourceStorageModeShared];",
+            "",
+            "[self generateRandomFloatData:_mBufferA];",
+            "[self generateRandomFloatData:_mBufferB];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The resources in this sample are (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") objects, which are allocations of memory without a predefined format.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Metal manages each buffer as an opaque collection of bytes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, you specify the format when you use a buffer in a shader.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This means that your shaders and your app need to agree on the format of any data being passed back and forth.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you allocate a buffer, you provide a storage mode to determine some of its performance characteristics and whether the CPU or GPU can access it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample app uses shared memory (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLResourceOptions/storageModeShared",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), which both the CPU and GPU can access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To fill a buffer with random data, the app gets a pointer to the buffer’s memory and writes data to it on the CPU.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "add_arrays",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function in Listing 2 declared its arguments as arrays of floating-point numbers, so you provide buffers in the same format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (void) generateRandomFloatData: (id<MTLBuffer>) buffer",
+            "{",
+            "    float* dataPtr = buffer.contents;",
+            "",
+            "    for (unsigned long index = 0; index < arrayLength; index++)",
+            "    {",
+            "        dataPtr[index] = (float)rand()/(float)(RAND_MAX);",
+            "    }",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-Command-Buffer",
+          "level": 3,
+          "text": "Create a Command Buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ask the command queue to create a command buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "id<MTLCommandBuffer> commandBuffer = [_mCommandQueue commandBuffer];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-Command-Encoder",
+          "level": 3,
+          "text": "Create a Command Encoder",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To write commands into a command buffer, you use a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "command encoder",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " for the specific kind of commands you want to code.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This sample creates a compute command encoder, which encodes a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "compute pass",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A compute pass holds a list of commands that execute compute pipelines.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each compute command causes the GPU to create a grid of threads to execute on the GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "id<MTLComputeCommandEncoder> computeEncoder = [commandBuffer computeCommandEncoder];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To encode a command, you make a series of method calls on the encoder.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Some methods set state information, like the pipeline state object (PSO) or the arguments to be passed to the pipeline.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After you make those state changes, you encode a command to execute the pipeline.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The encoder writes all of the state changes and command parameters into the command buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "performing-calculations-on-a-gpu",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-Pipeline-State-and-Argument-Data",
+          "level": 3,
+          "text": "Set Pipeline State and Argument Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the pipeline state object of the pipeline you want the command to execute.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then set data for any arguments that the pipeline needs to send into the ",
+              "type": "text"
+            },
+            {
+              "code": "add_arrays",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For this pipeline, that means providing references to three buffers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Metal automatically assigns indices for the buffer arguments in the order that the arguments appear in the function declaration in Listing 2, starting with ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You provide arguments using the same indices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[computeEncoder setComputePipelineState:_mAddFunctionPSO];",
+            "[computeEncoder setBuffer:_mBufferA offset:0 atIndex:0];",
+            "[computeEncoder setBuffer:_mBufferB offset:0 atIndex:1];",
+            "[computeEncoder setBuffer:_mBufferResult offset:0 atIndex:2];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You also specify an offset for each argument.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "An offset of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " means the command will access the data from the beginning of a buffer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, you could use one buffer to store multiple arguments, specifying an offset for each argument.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t specify any data for the index argument because the ",
+              "type": "text"
+            },
+            {
+              "code": "add_arrays",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function defined its values as being provided by the GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-Thread-Count-and-Organization",
+          "level": 3,
+          "text": "Specify Thread Count and Organization",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, decide how many threads to create and how to organize those threads.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Metal can create 1D, 2D, or 3D grids.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "add_arrays",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function uses a 1D array, so the sample creates a 1D grid of size (",
+              "type": "text"
+            },
+            {
+              "code": "dataSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " x 1 x 1), from which Metal generates indices between 0 and ",
+              "type": "text"
+            },
+            {
+              "code": "dataSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": "-1.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MTLSize gridSize = MTLSizeMake(arrayLength, 1, 1);"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Specify-Threadgroup-Size",
+          "level": 3,
+          "text": "Specify Threadgroup Size",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metal subdivides the grid into smaller grids called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "threadgroups",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each threadgroup is calculated separately.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Metal can dispatch threadgroups to different processing elements on the GPU to speed up processing.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You also need to decide how large to make the threadgroups for your command.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSUInteger threadGroupSize = _mAddFunctionPSO.maxTotalThreadsPerThreadgroup;",
+            "if (threadGroupSize > arrayLength)",
+            "{",
+            "    threadGroupSize = arrayLength;",
+            "}",
+            "MTLSize threadgroupSize = MTLSizeMake(threadGroupSize, 1, 1);"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app asks the pipeline state object for the largest possible threadgroup and shrinks it if that size is larger than the size of the data set.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputePipelineState/maxTotalThreadsPerThreadgroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property gives the maximum number of threads allowed in the threadgroup, which varies depending on the complexity of the function used to create the pipeline state object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Encode-the-Compute-Command-to-Execute-the-Threads",
+          "level": 3,
+          "text": "Encode the Compute Command to Execute the Threads",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, encode the command to dispatch the grid of threads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[computeEncoder dispatchThreads:gridSize",
+            "          threadsPerThreadgroup:threadgroupSize];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the GPU executes this command, it uses the state you previously set and the command’s parameters to dispatch threads to perform the computation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can follow the same steps using the encoder to encode multiple compute commands into the compute pass without performing any redundant steps.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, you might set the pipeline state object once, and then set arguments and encode a command for each collection of buffers to process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "End-the-Compute-Pass",
+          "level": 3,
+          "text": "End the Compute Pass",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you have no more commands to add to the compute pass, you end the encoding process to close out the compute pass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[computeEncoder endEncoding];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Commit-the-Command-Buffer-to-Execute-Its-Commands",
+          "level": 3,
+          "text": "Commit the Command Buffer to Execute Its Commands",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Run the commands in the command buffer by committing the command buffer to the queue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[commandBuffer commit];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The command queue created the command buffer, so committing the buffer always places it on that queue.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After you commit the command buffer, Metal asynchronously prepares the commands for execution and then schedules the command buffer to execute on the GPU.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After the GPU executes all the commands in the command buffer, Metal marks the command buffer as complete.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Wait-for-the-Calculation-to-Complete",
+          "level": 3,
+          "text": "Wait for the Calculation to Complete",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can do other work while the GPU is processing your commands.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This sample doesn’t need to do any additional work, so it simply waits until the command buffer is complete.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[commandBuffer waitUntilCompleted];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, to be notified when Metal has processed all of the commands, add a completion handler to the command buffer (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/addCompletedHandler(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), or check the status of a command buffer by reading its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/status",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Read-the-Results-From-the-Buffer",
+          "level": 3,
+          "text": "Read the Results From the Buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the command buffer completes, the GPU’s calculations are stored in the output buffer and Metal performs any necessary steps to make sure the CPU can see them.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In a real app, you would read the results from the buffer and do something with them, such as displaying the results onscreen or writing them to a file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because the calculations are only used to illustrate the process of creating a Metal app, the sample reads the values stored in the output buffer and tests to make sure the CPU and the GPU calculated the same results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (void) verifyResults",
+            "{",
+            "    float* a = _mBufferA.contents;",
+            "    float* b = _mBufferB.contents;",
+            "    float* result = _mBufferResult.contents;",
+            "",
+            "    for (unsigned long index = 0; index < arrayLength; index++)",
+            "    {",
+            "        if (result[index] != (a[index] + b[index]))",
+            "        {",
+            "            printf(\"Compute ERROR: index=%lu result=%g vs %g=a+b\\n\",",
+            "                   index, result[index], a[index] + b[index]);",
+            "            assert(result[index] == (a[index] + b[index]));",
+            "        }",
+            "    }",
+            "    printf(\"Compute results as expected\\n\");",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "7eae88b1a5ea/PerformingCalculationsOnAGPU.zip": {
+      "checksum": "7eae88b1a5ea5337fb7a03327945e3415fcb3a3f9beb865c9279e2f44c2c9ba8b4b56e51fb43cbd6e8ddaab40589ad039cb196f30c6982a058986d5e20b70593",
+      "identifier": "7eae88b1a5ea/PerformingCalculationsOnAGPU.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/7eae88b1a5ea/PerformingCalculationsOnAGPU.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer": {
+      "abstract": [
+        {
+          "text": "A resource that stores data in a format defined by your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/addCompletedHandler(_:)": {
+      "abstract": [
+        {
+          "text": "Registers a completion handler the GPU device calls immediately after the GPU finishes running the commands in the command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addCompletedHandler"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLCommandBufferHandler",
+          "text": "MTLCommandBufferHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/addCompletedHandler(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addCompletedHandler:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "addCompletedHandler(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/addcompletedhandler(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/status": {
+      "abstract": [
+        {
+          "text": "The command buffer’s current state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "status"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLCommandBufferStatus",
+          "text": "MTLCommandBufferStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer/status",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "status"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "status",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer/status"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputePipelineState": {
+      "abstract": [
+        {
+          "text": "An interface that represents a GPU pipeline configuration for running kernels in a compute pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLComputePipelineState"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputePipelineState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLComputePipelineState"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLComputePipelineState",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputepipelinestate"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputePipelineState/maxTotalThreadsPerThreadgroup": {
+      "abstract": [
+        {
+          "text": "The maximum number of threads in a threadgroup that you can dispatch to the pipeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maxTotalThreadsPerThreadgroup"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputePipelineState/maxTotalThreadsPerThreadgroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maxTotalThreadsPerThreadgroup"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "maxTotalThreadsPerThreadgroup",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputepipelinestate/maxtotalthreadsperthreadgroup"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCreateSystemDefaultDevice()": {
+      "abstract": [
+        {
+          "text": "Returns the device instance Metal selects as the default.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCreateSystemDefaultDevice"
+        },
+        {
+          "kind": "text",
+          "text": "() -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDevice",
+          "text": "MTLDevice"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCreateSystemDefaultDevice()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCreateSystemDefaultDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCreateSystemDefaultDevice()",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcreatesystemdefaultdevice()"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice": {
+      "abstract": [
+        {
+          "text": "The main Metal interface to a GPU that apps use to draw graphics and run computations in parallel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDevice",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunction": {
+      "abstract": [
+        {
+          "text": "An object that represents a public shader function in a Metal library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFunction",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunction"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLLibrary": {
+      "abstract": [
+        {
+          "text": "A collection of Metal shader functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLLibrary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLLibrary",
+      "type": "topic",
+      "url": "/documentation/metal/mtllibrary"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResource": {
+      "abstract": [
+        {
+          "text": "An allocation of memory accessible to a GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLResource"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLResource",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresource"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResourceOptions/storageModeShared": {
+      "abstract": [
+        {
+          "text": "The CPU and GPU share access to the resource, allocated in system memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storageModeShared"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLResourceOptions",
+          "text": "MTLResourceOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResourceOptions/storageModeShared",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLResourceStorageModeShared"
+        }
+      ],
+      "role": "symbol",
+      "title": "storageModeShared",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresourceoptions/storagemodeshared"
+    },
+    "doc://com.apple.metal/documentation/Metal/compute-passes": {
+      "abstract": [
+        {
+          "text": "Encode a compute pass that runs computations in parallel on a thread grid, processing and manipulating Metal resource data on multiple cores of a GPU.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/compute-passes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Compute Passes",
+      "type": "topic",
+      "url": "/documentation/metal/compute-passes"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-sample-code-library": {
+      "abstract": [
+        {
+          "text": "Explore the complete set of Metal samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-sample-code-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Sample Code Library",
+      "type": "topic",
+      "url": "/documentation/metal/metal-sample-code-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives": {
+      "abstract": [
+        {
+          "text": "Render a simple 2D triangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using a Render Pipeline to Render Primitives",
+      "type": "topic",
+      "url": "/documentation/metal/using-a-render-pipeline-to-render-primitives"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents": {
+      "abstract": [
+        {
+          "text": "Create a MetalKit view and a render pass to draw the view’s contents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using Metal to Draw a View’s Contents",
+      "type": "topic",
+      "url": "/documentation/metal/using-metal-to-draw-a-view's-contents"
+    },
+    "performing-calculations-on-a-gpu": {
+      "alt": "Command Encoding",
+      "identifier": "performing-calculations-on-a-gpu",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ec94660b320c7fbdcdc5c53327507e16/performing-calculations-on-a-gpu@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/843ccc9076d1166734075d61f967e27c/performing-calculations-on-a-gpu~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "7eae88b1a5ea/PerformingCalculationsOnAGPU.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents",
+        "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents",
+                "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1status/title",
+          "value": "status"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1status/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "status"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineState~1maxTotalThreadsPerThreadgroup/title",
+          "value": "maxTotalThreadsPerThreadgroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineState~1maxTotalThreadsPerThreadgroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maxTotalThreadsPerThreadgroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource/title",
+          "value": "MTLResource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction/title",
+          "value": "MTLFunction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/title",
+          "value": "MTLDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/title",
+          "value": "MTLBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1addCompletedHandler(_:)/title",
+          "value": "addCompletedHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCommandBuffer~1addCompletedHandler(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addCompletedHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCreateSystemDefaultDevice()/title",
+          "value": "MTLCreateSystemDefaultDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCreateSystemDefaultDevice()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCreateSystemDefaultDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceOptions~1storageModeShared/title",
+          "value": "MTLResourceStorageModeShared"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceOptions~1storageModeShared/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResourceStorageModeShared"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineState/title",
+          "value": "MTLComputePipelineState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputePipelineState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLComputePipelineState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLibrary/title",
+          "value": "MTLLibrary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLibrary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLibrary/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLLibrary"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/performing-calculations-on-a-gpu"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/performing-calculations-on-a-gpu"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2016 @@
+{
+  "abstract": [
+    {
+      "text": "Adopt draggable API to provide items for drag-and-drop operations.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Drag-and-drop"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Making-a-view-into-a-drag-source"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Making a view into a drag source"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When someone drags an onscreen visual representation of an item in your app, such as a photo,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a Maps location, a Calendar event, or a text selection, the drag operation has some data associated with it,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as well as a preview of the data that the system displays.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/draggable(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to enable the view to function as a drag source,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and provide a value that conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/Transferable",
+              "isActive": true,
+              "overridingTitle": "Transferable",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Transferable",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Transferable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol describes how you can serialize and deserialize your model object for sharing and data transfer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It provides a transfer representation by composing one or more of the Core Transferable framework’s built-in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/TransferRepresentation",
+              "isActive": true,
+              "overridingTitle": "TransferRepresentation",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "TransferRepresentation",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-a-view-as-a-drag-source",
+          "level": 3,
+          "text": "Enable a view as a drag source",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "draggable(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier to send or receive ",
+              "type": "text"
+            },
+            {
+              "code": "Transferable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " items within an app, among a collection of your own apps,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or between your apps and other apps that support the import or export of a specified data format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MyView: View {",
+            "    let name = \"Mei Chen\"",
+            "    ",
+            "    var body: some View {",
+            "        Text(name)",
+            "            .draggable(name)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/draggable(_:preview:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to define a custom preview for the dragged item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    Text(name)",
+            "        .draggable(name) {",
+            "            ZStack {",
+            "                RoundedRectangle(cornerRadius: 10)",
+            "                    .frame(width: 300, height: 300)",
+            "                    .foregroundStyle(.yellow.gradient)",
+            "                Text(\"Drop \\(name)\")",
+            "                    .font(.title)",
+            "                    .foregroundStyle(.red)",
+            "            }",
+            "        }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To customize the lift preview that the system shows as it transitions to displaying your custom ",
+              "type": "text"
+            },
+            {
+              "code": "preview",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "apply a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contentShape(_:_:eoFill:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ContentShapeKinds/dragPreview",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " kind.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, you can change the preview’s corner radius, as in the following code example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    Text(name)",
+            "        .contentShape(.dragPreview, RoundedRectangle(cornerRadius: 7))",
+            "        .draggable(name) {",
+            "            ZStack {",
+            "                RoundedRectangle(cornerRadius: 20)",
+            "                    .frame(width: 300, height: 300)",
+            "                    .foregroundStyle(.yellow.gradient)",
+            "                Text(\"Drop \\(name)\")",
+            "                    .font(.title)",
+            "                    .foregroundStyle(.red)",
+            "            }",
+            "        }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-transferable-item-for-drag-and-drop-operations",
+          "level": 3,
+          "text": "Create a transferable item for drag-and-drop operations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support drag operations of model objects, conform a model to the ",
+              "type": "text"
+            },
+            {
+              "code": "Transferable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol to create a transferable item,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/TransferRepresentation",
+              "isActive": true,
+              "overridingTitle": "transferRepresentation",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "transferRepresentation",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " static property.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Types like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/String",
+              "isActive": true,
+              "overridingTitle": "String",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "String",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/data",
+              "isActive": true,
+              "overridingTitle": "Data",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Data",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+              "isActive": true,
+              "overridingTitle": "URL",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "URL",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Image",
+              "isActive": true,
+              "overridingTitle": "Image",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Image",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " already conform to ",
+              "type": "text"
+            },
+            {
+              "code": "Transferable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", making them easy to use in drag-and-drop operations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Define a data model, representing a user profile, that is a type conforming to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Codable",
+              "isActive": true,
+              "overridingTitle": "Codable",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Codable",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " with the properties ",
+              "type": "text"
+            },
+            {
+              "code": "name",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "phoneNumber",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Profile: Codable, Identifiable {",
+            "    var id: UUID = UUID()",
+            "    var name: String",
+            "    var phoneNumber: String",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Extend ",
+              "type": "text"
+            },
+            {
+              "code": "Profile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to conform to the ",
+              "type": "text"
+            },
+            {
+              "code": "Transferable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol to compose a transfer representation,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and add ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/CodableRepresentation",
+              "isActive": true,
+              "overridingTitle": "CodableRepresentation",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CodableRepresentation",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the custom uniform type identifier ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.profile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to represent the ",
+              "type": "text"
+            },
+            {
+              "code": "Profile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension Profile: Transferable {",
+            "    static var transferRepresentation: some TransferRepresentation {",
+            "        CodableRepresentation(contentType: .profile)",
+            "        ProxyRepresentation(exporting: \\.name)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make sure to include the custom uniform type identifier in the app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UniformTypeIdentifiers/defining-file-and-data-types-for-your-app",
+              "isActive": true,
+              "overridingTitle": "Defining file and data types for your app",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Defining file and data types for your app",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Declare new uniform type identifiers as convenience variables on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UniformTypeIdentifiers/UTType-swift.struct",
+              "isActive": true,
+              "overridingTitle": "UTType",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "UTType",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For an exported declaration, use the following code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension UTType {",
+            "    static var profile = UTType(exportedAs: \"com.example.profile\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The other type of transfer representation in the previous code example is a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/ProxyRepresentation",
+              "isActive": true,
+              "overridingTitle": "ProxyRepresentation",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "ProxyRepresentation",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", which uses the ",
+              "type": "text"
+            },
+            {
+              "code": "String",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure’s built-in ",
+              "type": "text"
+            },
+            {
+              "code": "Transferable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conformance.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "ProxyRepresentation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " serves as an alternative that lets people drag and drop the profile item in any text editor",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that doesn’t support the ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.profile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " content type, but works with text formats.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add more transfer representations to a draggable item, specify one or more additional representations in order of preference.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This ensures that the system uses the most suitable representation, depending on the content type that the receiver can accept for drag-and-drop operations.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/choosing-a-transfer-representation-for-a-model-type",
+              "isActive": true,
+              "overridingTitle": "Choosing a transfer representation for a model type",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Choosing a transfer representation for a model type",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use the ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.profile",
+              "type": "codeVoice"
+            },
+            {
+              "text": " content type for drag operations, pass in the profiles to the ",
+              "type": "text"
+            },
+            {
+              "code": "draggable(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ContentView: View {",
+            "    @State private var profiles = [",
+            "        Profile(name: \"Juan Chavez\", phoneNumber: \"(408) 555-4301\"),",
+            "        Profile(name: \"Mei Chen\", phoneNumber: \"(919) 555-2481\")",
+            "    ]",
+            "    ",
+            "    var body: some View {",
+            "        List {",
+            "            ForEach(profiles) { profile in",
+            "                Text(profile.name)",
+            "                    .draggable(profile)",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Enable-list-reordering",
+          "level": 3,
+          "text": "Enable list reordering",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Within a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/List",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can use the ",
+              "type": "text"
+            },
+            {
+              "code": "onMove(perform:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier to enable reordering.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The modifier allows you to reorder list items by using a long press on a row, and then dragging it to a new location.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Add the ",
+              "type": "text"
+            },
+            {
+              "code": "onMove(perform:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " modifier to a ",
+              "type": "text"
+            },
+            {
+              "code": "List",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to enable the interaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    List {",
+            "        ForEach(profiles) { profile in",
+            "            Text(profile.name)",
+            "        }",
+            "        .onMove { indices, newOffset in",
+            "            // Update the items array based on source and destination indices.",
+            "            profiles.move(fromOffsets: indices, toOffset: newOffset)",
+            "        }",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To conditionally disable item reordering on a specific row, set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/moveDisabled(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Adopting-drag-and-drop-using-SwiftUI": {
+      "abstract": [
+        {
+          "text": "Enable drag-and-drop interactions in lists, tables and custom views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Adopting-drag-and-drop-using-SwiftUI",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adopting drag and drop using SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui/adopting-drag-and-drop-using-swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ContentShapeKinds/dragPreview": {
+      "abstract": [
+        {
+          "text": "The kind for drag and drop previews.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dragPreview"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17ContentShapeKindsV",
+          "text": "ContentShapeKinds"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ContentShapeKinds/dragPreview",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dragPreview",
+      "type": "topic",
+      "url": "/documentation/swiftui/contentshapekinds/dragpreview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Drag-and-drop": {
+      "abstract": [
+        {
+          "text": "Enable people to move or duplicate items by dragging them from one location to another.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Drag-and-drop",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Drag and drop",
+      "type": "topic",
+      "url": "/documentation/swiftui/drag-and-drop"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/List": {
+      "abstract": [
+        {
+          "text": "A container that presents rows of data arranged in a single column,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "optionally providing the ability to select one or more members.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "List"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/List",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "List"
+        }
+      ],
+      "role": "symbol",
+      "title": "List",
+      "type": "topic",
+      "url": "/documentation/swiftui/list"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contentShape(_:_:eoFill:)": {
+      "abstract": [
+        {
+          "text": "Sets the content shape for this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentShape"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17ContentShapeKindsV",
+          "text": "ContentShapeKinds"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "eoFill"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contentShape(_:_:eoFill:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentShape(_:_:eoFill:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/contentshape(_:_:eofill:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/draggable(_:)": {
+      "abstract": [
+        {
+          "text": "Activates this view as the source of a drag and drop operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "draggable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/draggable(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "draggable(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/draggable(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/draggable(_:preview:)": {
+      "abstract": [
+        {
+          "text": "Activates this view as the source of a drag and drop operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "draggable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "preview"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/draggable(_:preview:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "draggable(_:preview:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/draggable(_:preview:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/moveDisabled(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a condition for whether the view’s view hierarchy is movable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "moveDisabled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/moveDisabled(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "moveDisabled(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/movedisabled(_:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreTransferable/CodableRepresentation": {
+      "abstract": [
+        {
+          "text": "A transfer representation for types that participate in Swift’s protocols for encoding and decoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CodableRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Encoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Decoder"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable0B0P",
+          "text": "Transferable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Se",
+          "text": "Decodable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SE",
+          "text": "Encodable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Encoder"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine15TopLevelEncoderP",
+          "text": "TopLevelEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Decoder"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine15TopLevelDecoderP",
+          "text": "TopLevelDecoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Encoder"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine15TopLevelEncoderP6OutputQa",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Decoder"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine15TopLevelDecoderP5InputQa",
+          "text": "Input"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/CodableRepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CodableRepresentation",
+      "type": "topic",
+      "url": "/documentation/CoreTransferable/CodableRepresentation"
+    },
+    "doc://com.apple.documentation/documentation/CoreTransferable/ProxyRepresentation": {
+      "abstract": [
+        {
+          "text": "A transfer representation that uses another type’s transfer representation as its own.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProxyRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "ProxyRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable0B0P",
+          "text": "Transferable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ProxyRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable0B0P",
+          "text": "Transferable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/ProxyRepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ProxyRepresentation",
+      "type": "topic",
+      "url": "/documentation/CoreTransferable/ProxyRepresentation"
+    },
+    "doc://com.apple.documentation/documentation/CoreTransferable/TransferRepresentation": {
+      "abstract": [
+        {
+          "text": "A declarative description of the process of importing and exporting a transferable item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TransferRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable22TransferRepresentationP4ItemQa",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": "> : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/TransferRepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TransferRepresentation",
+      "type": "topic",
+      "url": "/documentation/CoreTransferable/TransferRepresentation"
+    },
+    "doc://com.apple.documentation/documentation/CoreTransferable/Transferable": {
+      "abstract": [
+        {
+          "text": "A protocol that describes how a type interacts with transport APIs such as drag and drop or copy and paste.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transferable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/Transferable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Transferable",
+      "type": "topic",
+      "url": "/documentation/CoreTransferable/Transferable"
+    },
+    "doc://com.apple.documentation/documentation/CoreTransferable/choosing-a-transfer-representation-for-a-model-type": {
+      "abstract": [
+        {
+          "text": "Define a custom representation for your data using a combination of built-in types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/choosing-a-transfer-representation-for-a-model-type",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing a transfer representation for a model type",
+      "type": "topic",
+      "url": "/documentation/CoreTransferable/choosing-a-transfer-representation-for-a-model-type"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Codable": {
+      "abstract": [
+        {
+          "text": "A type that can convert itself into and out of an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Codable"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Se",
+          "text": "Decodable"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SE",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Codable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Codable",
+      "type": "topic",
+      "url": "/documentation/Swift/Codable"
+    },
+    "doc://com.apple.documentation/documentation/Swift/String": {
+      "abstract": [
+        {
+          "text": "A Unicode string value that is a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/String",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/Swift/String"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Image": {
+      "abstract": [
+        {
+          "text": "A view that displays an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Image"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Image",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Image",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Image"
+    },
+    "doc://com.apple.documentation/documentation/UniformTypeIdentifiers/UTType-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure that represents a type of data to load, send, or receive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UTType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UniformTypeIdentifiers/UTType-swift.struct",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTType",
+      "type": "topic",
+      "url": "/documentation/UniformTypeIdentifiers/UTType-swift.struct"
+    },
+    "doc://com.apple.documentation/documentation/UniformTypeIdentifiers/defining-file-and-data-types-for-your-app": {
+      "abstract": [
+        {
+          "text": "Declare uniform type identifiers to support your app’s proprietary data formats.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UniformTypeIdentifiers/defining-file-and-data-types-for-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Defining file and data types for your app",
+      "type": "topic",
+      "url": "/documentation/UniformTypeIdentifiers/defining-file-and-data-types-for-your-app"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data": {
+      "abstract": [
+        {
+          "text": "A byte buffer in memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Data",
+      "type": "topic",
+      "url": "/documentation/foundation/data"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url": {
+      "abstract": [
+        {
+          "text": "A value that identifies the location of a resource, such as an item on a remote server or the path to a local file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL",
+      "type": "topic",
+      "url": "/documentation/foundation/url"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Adopting-drag-and-drop-using-SwiftUI"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/making-a-view-into-a-drag-source"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

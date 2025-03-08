@@ -1,0 +1,1149 @@
+{
+  "abstract": [
+    {
+      "text": "Prevent unintentional loss of subscribers due to billing issues.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/subscriptions-and-offers"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/reducing-involuntary-subscriber-churn"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Reducing Involuntary Subscriber Churn"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After acquiring new customers for your subscription service, you can minimize subscriber loss, known as churn, by keeping them engaged as active subscribers. However, irregular billing events can occur throughout the lifecycle of a subscription that can impact your customer’s subscription status.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Involuntary churn occurs when users do not intend to leave your service but their subscription fails to renew, usually due to billing issues. Because involuntary churn is not related to customer satisfaction, consider creating a user experience that avoids subscriber loss due to a failed renewal. For business guidance on retaining subscribers, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-store/subscriptions/#keeping-subscribers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Billing-related issues trigger a subscription to automatically enter a billing retry state, where the App Store attempts to recover the subscription. While the App Store tries to recover these customers, you have the option to prompt users to update their billing information or implement a grace period, or both, to assist in recovery efforts. Enabling a grace period and providing uninterrupted service provides a great customer experience, and avoids interrupting your days of paid service and revenue loss if Apple is able to recover the subscription within the grace period. For information on auto-renewable subscription proceeds and days of paid service, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-store/subscriptions/#revenue-after-one-year",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "React-to-Billing-Issues",
+          "level": 3,
+          "text": "React to Billing Issues",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the customer’s billing is invalid, the renewal fails and the user’s subscription enters a billing retry state, where the App Store attempts to collect payment for up to 60 days. This billing retry lowers the rate of involuntary churn and prevents the need to re-acquire subscribers if they churned. If the user is recovered within the 60 days, the new billing date is established on the date of recovery and subsequent renewal dates are based on this new billing date, as shown in the figure below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3382824",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if the user’s payment information is no longer valid, the first renewal attempt fails. If you have server-to-server notifications enabled, you receive a server notification of type ",
+              "type": "text"
+            },
+            {
+              "code": "DID_FAIL_TO_RENEW",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You can check the ",
+              "type": "text"
+            },
+            {
+              "code": "expiration_intent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "is_in_billing_retry_period",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " response or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/unified_receipt",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object in the server notification to validate the reason for the subscription to lapse and monitor the retry status of the subscription. If the user is recovered during this period, you receive a server notification of types ",
+              "type": "text"
+            },
+            {
+              "code": "RENEWAL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "DID_RECOVER",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when the retry is successful. For more information on server-to-server notifications, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "RENEWAL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " notification type is scheduled for deprecation. Update any existing code to rely on the identical ",
+                  "type": "text"
+                },
+                {
+                  "code": "DID_RECOVER",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " notification type instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app may optionally present in-app messaging that informs users they can avoid losing access to paid service by taking action and resolving their billing error. If you choose to prompt the user, ensure your app’s subscription logic can handle different values of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/expiration_intent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " along with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/expires_date_ms",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to show the appropriate message. An invalid payment method could be due to a number of things, such as a low balance on a stored value card or an expired credit card. Your app should be ready to react immediately to a billing information update. Your app can deep link customers to the Manage Payments page on their account settings by opening this URL:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "https://apps.apple.com/account/billing"
+          ],
+          "syntax": "http",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This URL is only supported for iOS and macOS.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more general guidance on handling subscriptions that enter a billing retry state, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2018/705/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can also agree to provide a grace period for subscribers in a billing retry state. Billing error recoveries made within the set grace period automatically recover subscribers onto their current billing cycle, also providing revenue continuity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-Billing-Grace-Period",
+          "level": 3,
+          "text": "Enable Billing Grace Period",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To avoid interrupting days of paid service, you can enable Billing Grace Period in App Store Connect, which allows subscribers to retain full access to your app’s paid content while Apple attempts to collect payment. For guidance on opting in to enable Billing Grace Period for your app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/app-store-connect/#/dev58bda3212",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Billing Grace Period is applied at the time of a billing error when it’s enabled for subscriptions in the app, and cannot be altered once assigned to a user. Grace period durations are dependent on the subscription period length as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "6 days for a weekly subscription",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "16 days for monthly and longer subscriptions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you choose to enable Billing Grace Period, ensure that you provide full service for the subscription throughout the grace period. You can check the ",
+              "type": "text"
+            },
+            {
+              "code": "grace_period_expires_date_ms",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/pending_renewal_info",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array of the ",
+              "type": "text"
+            },
+            {
+              "code": "verifyReceipt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " response or ",
+              "type": "text"
+            },
+            {
+              "code": "unified_receipt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object in the server notification to determine the end of this grace period duration. For more information on reducing involuntary churn using a grace period, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2019/302/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user is recovered within this grace period, neither the subscriber’s days of paid service, nor your revenue for auto-renewable subscriptions will be interrupted. Billing error recoveries made after the grace period expires, but within the overall billing retry period, will maintain existing behavior and renew on the recovery date, starting a new billing cycle. Payment for the provided full service during the grace period would not be collected.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3382825",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When implementing Billing Grace Period, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " JSON response and server-to-server notifications. Consider using ",
+              "type": "text"
+            },
+            {
+              "code": "expiration_intent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "is_in_billing_retry_period",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "grace_period_expires_date_ms",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of the ",
+              "type": "text"
+            },
+            {
+              "code": "unified_receipt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object in the server notifications of type ",
+              "type": "text"
+            },
+            {
+              "code": "RENEWAL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "DID_RECOVER",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to identify whether the subscription is in a grace period.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "expiration_intent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value can tell you if a subscription renewal failed due to a billing error, or simply because the user chose to cancel service. You can also see if the App Store is actively trying to recover a subscription by looking for an active ",
+              "type": "text"
+            },
+            {
+              "code": "is_in_billing_retry_period flag",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider all scenarios for subscription recovery:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the subscription renews before the time specified in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "grace_period_expires_date_ms",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "grace_period_expires_date",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " fields are removed along with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "is_in_billing_retry_period",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " indicator. You can look up a past transaction’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "purchase_date_ms",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "expires_date_ms",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " values to determine if a user’s subscription renewed after a lapse.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the subscription renews after the time specified in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "grace_period_expires_date_ms",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " while still in the billing retry state, the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "grace_period_expires_date",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " fields are removed along with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "is_in_billing_retry_period",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " indicator. You can use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "expires_date_ms",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value for a past transaction to determine the lapse period.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If attempts to renew the subscription fail, the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "grace_period_expires_date",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " fields persist along with a value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "auto_renew_status",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "is_in_billing_retry_period",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " indicators.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Restore-Service",
+          "level": 3,
+          "text": "Restore Service",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When users update their payment information, the App Store immediately attempts to renew the payment. Once the App Store successfully bills the customer in a billing retry state, the App Store notifies your server with notifications of types ",
+              "type": "text"
+            },
+            {
+              "code": "RENEWAL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "DID_RECOVER",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and a new receipt is generated for the successful transaction. A new value appears in the ",
+              "type": "text"
+            },
+            {
+              "code": "expires_date_ms",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field in the app transaction receipt, based on the date of recovery, to mark the next renewal date of the subscription.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "StoreKit adds a new transaction for the renewal to the transaction queue on the device. Your app can check the transaction queue on launch and handle the renewal the same way as any other transaction. If your app is already running when the subscription renews, the transaction observer is not called; your app finds out about the renewal the next time the app launches. Restore service once the subscription is renewed if needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications": {
+      "abstract": [
+        {
+          "text": "Monitor In-App Purchase events in real time and learn of unreported external purchase tokens, with server notifications from the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/unified_receipt": {
+      "abstract": [
+        {
+          "text": "An object that contains information about the most recent in-app purchase transactions for the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "unified_receipt"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/unified_receipt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unified_receipt",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/unified_receipt"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/expiration_intent": {
+      "abstract": [
+        {
+          "text": "The reason a subscription expires.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "expiration_intent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/expiration_intent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "expiration_intent",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/expiration_intent"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/expires_date_ms": {
+      "abstract": [
+        {
+          "text": "The time, in milliseconds, a subscription expires or renews.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "expires_date_ms"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/expires_date_ms",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "expires_date_ms",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/expires_date_ms"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/pending_renewal_info": {
+      "abstract": [
+        {
+          "text": "An array of elements that refers to open or failed auto-renewable subscription renewals.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "responseBody.Pending_renewal_info"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/responsebody/pending_renewal_info",
+      "kind": "article",
+      "role": "symbol",
+      "title": "responseBody.Pending_renewal_info",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/responsebody/pending_renewal_info"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt": {
+      "abstract": [
+        {
+          "text": "Send a receipt to the App Store for verification.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt",
+      "kind": "article",
+      "role": "symbol",
+      "title": "verifyReceipt",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/verifyreceipt"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/enabling-app-store-server-notifications": {
+      "abstract": [
+        {
+          "text": "Configure your server and provide an HTTPS URL to receive notifications about in-app purchase events and unreported external purchase tokens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/enabling-app-store-server-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/storekit/enabling-app-store-server-notifications"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/handling-subscriptions-billing": {
+      "abstract": [
+        {
+          "text": "Build logic around the date and time constraints of subscription products, while planning for all scenarios where you control access to content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/handling-subscriptions-billing",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Subscriptions Billing",
+      "type": "topic",
+      "url": "/documentation/storekit/handling-subscriptions-billing"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/offering-a-subscription-across-multiple-apps": {
+      "abstract": [
+        {
+          "text": "Support a single auto-renewable subscription across multiple apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/offering-a-subscription-across-multiple-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Offering a Subscription Across Multiple Apps",
+      "type": "topic",
+      "url": "/documentation/storekit/offering-a-subscription-across-multiple-apps"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer additional content and services in your app using the Original In-App Purchase API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original API for In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/original-api-for-in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/subscriptions-and-offers": {
+      "abstract": [
+        {
+          "text": "Offer customers additional time-based content and services through purchases they make within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/subscriptions-and-offers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Subscriptions and offers",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptions-and-offers"
+    },
+    "https://developer.apple.com/app-store/subscriptions/#keeping-subscribers": {
+      "identifier": "https://developer.apple.com/app-store/subscriptions/#keeping-subscribers",
+      "title": "Keeping Subscribers",
+      "titleInlineContent": [
+        {
+          "text": "Keeping Subscribers",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/subscriptions/#keeping-subscribers"
+    },
+    "https://developer.apple.com/app-store/subscriptions/#revenue-after-one-year": {
+      "identifier": "https://developer.apple.com/app-store/subscriptions/#revenue-after-one-year",
+      "title": "Net Revenue After a Year",
+      "titleInlineContent": [
+        {
+          "text": "Net Revenue After a Year",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/subscriptions/#revenue-after-one-year"
+    },
+    "https://developer.apple.com/videos/play/wwdc2018/705/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2018/705/",
+      "title": "WWDC 2018 > Engineering Subscriptions",
+      "titleInlineContent": [
+        {
+          "text": "WWDC 2018 > Engineering Subscriptions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2018/705/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2019/302/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2019/302/",
+      "title": "WWDC 2019 > In-App Purchases and Using Server-to-Server Notifications",
+      "titleInlineContent": [
+        {
+          "text": "WWDC 2019 > In-App Purchases and Using Server-to-Server Notifications",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2019/302/"
+    },
+    "https://help.apple.com/app-store-connect/#/dev58bda3212": {
+      "identifier": "https://help.apple.com/app-store-connect/#/dev58bda3212",
+      "title": "Enable Billing Grace Period for Auto-Renewable Subscriptions",
+      "titleInlineContent": [
+        {
+          "text": "Enable Billing Grace Period for Auto-Renewable Subscriptions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/app-store-connect/#/dev58bda3212"
+    },
+    "media-3382824": {
+      "alt": "An example timeline for a monthly subscription that goes into a billing retry state and is recovered within 60 days. When the user is recovered, the next subscription renewal date shifts to the date the customer is billed.",
+      "identifier": "media-3382824",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1abf7b156aad7a0ae8faaa7a5ff75e02/media-3382824@2x.png"
+        }
+      ]
+    },
+    "media-3382825": {
+      "alt": "Two example timelines for a monthly subscription that enters a billing retry state, in an app for which Billing Grace Period is enabled. In the first scenario, the user is recovered within the grace period, the developer is paid for providing full service, and the following renewal date is preserved. In the second scenario, the user is recovered not within the grace period but within 60 days, so the next renewal date shifts to the date the customer is billed.",
+      "identifier": "media-3382825",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/626752edf7753d191d64d721ad92c84b/media-3382825@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/handling-subscriptions-billing",
+        "doc://com.apple.storekit/documentation/StoreKit/enabling-app-store-server-notifications",
+        "doc://com.apple.storekit/documentation/StoreKit/offering-a-subscription-across-multiple-apps"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/handling-subscriptions-billing",
+                "doc://com.apple.storekit/documentation/StoreKit/enabling-app-store-server-notifications",
+                "doc://com.apple.storekit/documentation/StoreKit/offering-a-subscription-across-multiple-apps"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/reducing-involuntary-subscriber-churn"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/reducing-involuntary-subscriber-churn"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

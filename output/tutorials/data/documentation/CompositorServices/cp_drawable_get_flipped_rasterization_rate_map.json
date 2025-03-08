@@ -1,0 +1,409 @@
+{
+  "abstract": [
+    {
+      "text": "Returns the flipped rasterization rate map at the specified index in the drawable.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.compositorservices/documentation/CompositorServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_flipped_rasterization_rate_map"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@cp_drawable_get_flipped_rasterization_rate_map",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "cp_drawable_get_flipped_rasterization_rate_map"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Compositor Services"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "cp_drawable_get_flipped_rasterization_rate_map"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "cp_drawable_get_flipped_rasterization_rate_map"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)MTLRasterizationRateMap",
+              "text": "id<MTLRasterizationRateMap>"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "cp_drawable_get_flipped_rasterization_rate_map"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@cp_drawable_t",
+              "text": "cp_drawable_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "drawable"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@size_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@size_t",
+              "text": "size_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "index"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The drawable for a frame.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "drawable"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The index of the flipped rasterization rate map you want. The index must be greater than or equal to ",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and less than the value that ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_rasterization_rate_map_count",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " returns.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "index"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The flipped rasterization rate map at the specified index.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this function to retrieve a rasterization rate map flipped around the y-axis. Apply a flipped rasterization rate map to your render descriptor when you set up your drawing environment. Rasterization rate maps define how the GPU scales different parts of the texture to fill the display. You use them to save time and render less important parts of your scene at lower resolutions. For example, the drawable includes a rasterization rate map to render the portions of the texture in someone’s peripheral vision at a lower resolution. Flipped rasterization rate maps are available only when foveation is enabled and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_generate_flipped_rasterization_rate_maps",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function of your layer configuration returns ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.compositorservices/documentation/CompositorServices": {
+      "abstract": [
+        {
+          "text": "Take control of the drawing environment and render your own content using Metal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Compositor Services",
+      "type": "topic",
+      "url": "/documentation/compositorservices"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_flipped_rasterization_rate_map": {
+      "abstract": [
+        {
+          "text": "Returns the flipped rasterization rate map at the specified index in the drawable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_get_flipped_rasterization_rate_map"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_flipped_rasterization_rate_map",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_drawable_get_flipped_rasterization_rate_map",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_drawable_get_flipped_rasterization_rate_map"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_rasterization_rate_map": {
+      "abstract": [
+        {
+          "text": "Returns the rasterization rate map at the specified index in the drawable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_get_rasterization_rate_map"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_rasterization_rate_map",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_drawable_get_rasterization_rate_map",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_drawable_get_rasterization_rate_map"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_rasterization_rate_map_count": {
+      "abstract": [
+        {
+          "text": "Returns the number of rasterization rate maps associated with the drawable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_get_rasterization_rate_map_count"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_rasterization_rate_map_count",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_drawable_get_rasterization_rate_map_count",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_drawable_get_rasterization_rate_map_count"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_t": {
+      "abstract": [
+        {
+          "text": "A type that provides the textures and information you need to draw a frame of content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_drawable_t"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_drawable_t",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_drawable_t"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_generate_flipped_rasterization_rate_maps": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the layer renderer provides rasterization rate maps flipped around the y-axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cp_layer_renderer_configuration_get_generate_flipped_rasterization_rate_maps"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/cp_layer_renderer_configuration_get_generate_flipped_rasterization_rate_maps",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cp_layer_renderer_configuration_get_generate_flipped_rasterization_rate_maps",
+      "type": "topic",
+      "url": "/documentation/compositorservices/cp_layer_renderer_configuration_get_generate_flipped_rasterization_rate_maps"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@size_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@size_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "size_t",
+      "type": "topic",
+      "url": "/documentation/kernel/size_t"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-the-rasterization-rate-map",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_rasterization_rate_map_count",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/cp_drawable_get_rasterization_rate_map"
+      ],
+      "title": "Getting the rasterization rate map"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/compositorservices/cp_drawable_get_flipped_rasterization_rate_map"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

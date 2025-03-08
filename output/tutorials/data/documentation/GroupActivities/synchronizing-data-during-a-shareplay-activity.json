@@ -1,0 +1,1978 @@
+{
+  "abstract": [
+    {
+      "text": "Send custom messages and data between devices to synchronize content for",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "your activity, and incorporate messages your app receives from other",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "participants.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.GroupActivities/documentation/GroupActivities/synchronizing-data-during-a-shareplay-activity"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Group Activities"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Synchronizing data during a SharePlay activity"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During a typical activity, you want the content one participant sees on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "their device to match the content other participants see. To make",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this happen, share data between devices to keep those",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "devices in sync. For example, a drawing app might share the tool",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "state and coordinate points for pen strokes. You then incorporate that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "shared data into your app, recreating the content that other participants",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "created on their devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an activity-related session is active, share data among participants",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using the objects of the Group Activities framework. You can share data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with all participants or a subset of participants. For example, a quiz",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "game might share different information with contestants and the people",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "asking the questions. For time-sensitive messages, send small amounts",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of data using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. When the amount of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data is larger and the arrival time is less important, share that data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionJournal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AVFoundation",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "framework supports the synchronization of movie playback without custom",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "messages. For more information, see",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AVFoundation/supporting-coordinated-media-playback",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Define-the-messages-to-send",
+          "level": 3,
+          "text": "Define the messages to send",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During the creation of an activity, think about what information you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "need to share among participants:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A drawing app might share the state of the tools and the points for line segments.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A movie-playback app might share commands to start and stop playback and synchronize the current frame.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A shopping app might share the ID of the current product page and synchronize items in the shared shopping cart.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A workout app might share workout stats for each participant and which track to play.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you identify the information you want to send, design data types to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "encapsulate the relevant details. You can send the details using a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/data",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or design your own custom types that adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Codable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol. The following example shows a message structure for a drawing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "activity. Each message incorporates the next point in the line segment",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the color of the segment. When someone draws, the app sends one",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "message for each new point it receives. Small messages can include up",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to 256 kilobytes of data, but keep the total size as small as possible",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to minimize the time it takes to send and process the data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct PenStrokeMessage: Codable {",
+            "    let id: UUID",
+            "    let color: Stroke.Color",
+            "    let point: CGPoint",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you need to send photos, videos, audio, or other large data types,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "encode that information into a type that adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/Transferable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionJournal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object requires this protocol",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when sending types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Send-a-message-to-one-or-more-participants",
+          "level": 3,
+          "text": "Send a message to one or more participants",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the person running your app on their device makes activity-related",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "changes, send those changes to other affected participants using a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. When you send data, you’re actually",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sending it from one instance of your app to another instance of your app on a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "different device. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object delivers the data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "over the network to the part of your app configured to receive that data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, determine whether you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "need reliable or unreliable delivery for messages. Choose",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/DeliveryMode-swift.enum/reliable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " messaging for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "crucial data that all participants must have. With reliable messaging, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system performs additional checks to verify the delivery of messages, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "resends them as needed. By contrast, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/DeliveryMode-swift.enum/unreliable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "messaging is generally faster, and is appropriate when the delivery time",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is more important than the guarantee of delivery. For example, for a movie-watching",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "activity, you might send the name of the movie using reliable messaging,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "but send the emoji reactions of participants during the movie using unreliable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "messaging. All participants need to know which movie to watch, but the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "emoji reactions are time-critical and less important.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After creating your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, send your messages",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using one of the available methods. The following example sends a custom",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data type to all members of the group:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Task {",
+            "    try? await messenger.send(PenStrokeMessage(id: stroke.id, ",
+            "                color: stroke.color, point: point))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To send a message to a subset of participants, include the list of participants",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when calling the send method. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object maintains a set of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/Participant",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "structures, each of which identifies a member taking part in the activity.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/uuid",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of each",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "participant to differentiate them within your app. For example, a quiz game",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app randomly chooses a subset of participants to take the quiz and share their",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "unique IDs with the group. The person giving the quiz then sends only the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "questions to the people taking the quiz, and sends the questions and answers",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to everyone else. The following example subtracts the current participant",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from the set of all participants and sends a ready message to that subset of people:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let everyoneElse = session.activeParticipants.subtracting([session.localParticipant])",
+            "            ",
+            "messenger.send(ReadyStateMessage(ready: true), to: .only(everyoneElse)) { error in",
+            "    if let error = error { print(\"Message failure:\", error) }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Receive-messages-from-other-participants",
+          "level": 3,
+          "text": "Receive messages from other participants",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Messages targeting the current participant can arrive at any time, so it’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "best to use a separate task to listen for them. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object delivers messages using an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/AsyncSequence",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which makes it easy to receive those messages asynchronously. Respond to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "incoming messages as quickly as possible by updating your app’s data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "structures to include the new information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When configuring your session, define a task to receive incoming messages",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for your activity. Inside the task, use a ",
+              "type": "text"
+            },
+            {
+              "code": "for..in",
+              "type": "codeVoice"
+            },
+            {
+              "text": " loop to wait on the messages",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property of your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. Specify which message",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you want to receive as a parameter to the messages method. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the code below shows how to process incoming pen stroke messages. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "function returns a tuple for each element, with each tuple containing the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "incoming message and any related contextual information. The message is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the data structure you defined previously. The contextual information is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/MessageContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure with additional details,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as the participant who sent the message.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var task = Task {",
+            "    for await (message, context) in messenger.messages(of: PenStrokeMessage.self) {",
+            "        print(\"Participant ID: \\(context.source.id)\")",
+            "        handle(message)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create separate tasks to monitor each distinct message type your activity",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "supports. If you have multiple activities, and each one has multiple messages,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this results in multiple separate tasks. However, each task runs only when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "messages are available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Share-files-among-participants",
+          "level": 3,
+          "text": "Share files among participants",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To share files and other large data objects with participants of an activity,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionJournal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object instead of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionJournal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object lets you associate multiple data objects or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "files with the activity as attachments to the session. The size limit for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "attachments is 100 megabytes, and the system provides end-to-end encryption",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for your data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Attachments are ideal when you need to send more than just a few kilobytes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of information to other participants, and want to do so as efficiently as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "possible. Use them to send images or large data objects that the group creates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or adds to the activity. The Group Activities framework efficiently manages",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the transfer of attachments among devices, avoiding multiple downloads of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the same data to each device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Don’t use a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionJournal",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object to store files larger",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "than 100 megabytes, or when you need to protect or validate content before",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "someone downloads it. Instead, store those files on your company’s server",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "and let participants download them from there.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionJournal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object delivers attachments to your app using an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/AsyncSequence",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type. To",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "receive attachments, configure a task and use a ",
+              "type": "text"
+            },
+            {
+              "code": "for..in",
+              "type": "codeVoice"
+            },
+            {
+              "text": " loop and wait on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the attachments property of your journal object, as shown in the following",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example. When attachments are available for your device, the system wakes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "up your task and delivers an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionJournal/Attachment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "structures for you to process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "task = Task {",
+            "    for await images in journal.attachments {",
+            "        await handleImages(images)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionJournal/Attachment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structures your app receives to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "download the attachment data and fetch any related metadata. You can then",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use that data to create any local data structures you need to update the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "state of your activity. The following example shows how to iterate over the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "attachments you receive and fetch the data for each one. The ",
+              "type": "text"
+            },
+            {
+              "code": "ImageMetadataMessage",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type is a custom structure the activity uses to store extra information",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "about the image data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func handleImages(_ attachments: GroupSessionJournal.Attachments.Element) async {",
+            "    attachments.forEach { attachment in",
+            "        let metadata = try await attachment.loadMetadata(of: ",
+            "            ImageMetadataMessage.self)",
+            "        let imageData = try await attachment.load(Data.self)",
+            "            ",
+            "        // Use the data to create app-specific structures and",
+            "        // update the activity.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about storing files and data attachments, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionJournal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.GroupActivities/documentation/GroupActivities": {
+      "abstract": [
+        {
+          "text": "Create app-specific activities your users can share and experience together.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Group Activities",
+      "type": "topic",
+      "url": "/documentation/groupactivities"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession": {
+      "abstract": [
+        {
+          "text": "A session for an in-progress activity that synchronizes content among participant devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroupSession"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GroupSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupSession",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionJournal": {
+      "abstract": [
+        {
+          "text": "An object that manages file and data transfers between participants",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "joined in a group session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroupSessionJournal"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionJournal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GroupSessionJournal"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupSessionJournal",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionjournal"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionJournal/Attachment": {
+      "abstract": [
+        {
+          "text": "A container for the data you download.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Attachment"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionJournal/Attachment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Attachment"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupSessionJournal.Attachment",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionjournal/attachment"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger": {
+      "abstract": [
+        {
+          "text": "An object that transfers app-specific data between the devices joined in a group session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroupSessionMessenger"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GroupSessionMessenger"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupSessionMessenger",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionmessenger"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/DeliveryMode-swift.enum/reliable": {
+      "abstract": [
+        {
+          "text": "An attempt to ensure the delivery of messages to known participants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reliable"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/DeliveryMode-swift.enum/reliable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GroupSessionMessenger.DeliveryMode.reliable",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionmessenger/deliverymode-swift.enum/reliable"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/DeliveryMode-swift.enum/unreliable": {
+      "abstract": [
+        {
+          "text": "A best-effort attempt to deliver the message to known participants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unreliable"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/DeliveryMode-swift.enum/unreliable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GroupSessionMessenger.DeliveryMode.unreliable",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionmessenger/deliverymode-swift.enum/unreliable"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/MessageContext": {
+      "abstract": [
+        {
+          "text": "A structure that contains additional information about an incoming message, such as which device sent it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MessageContext"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/MessageContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MessageContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupSessionMessenger.MessageContext",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionmessenger/messagecontext"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/Participant": {
+      "abstract": [
+        {
+          "text": "An active participant in a group session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Participant"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/Participant",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Participant"
+        }
+      ],
+      "role": "symbol",
+      "title": "Participant",
+      "type": "topic",
+      "url": "/documentation/groupactivities/participant"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/AVFoundation"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/supporting-coordinated-media-playback": {
+      "abstract": [
+        {
+          "text": "Create synchronized media experiences that enable users to watch and listen across devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/supporting-coordinated-media-playback",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting Coordinated Media Playback",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/supporting-coordinated-media-playback"
+    },
+    "doc://com.apple.documentation/documentation/CoreTransferable/Transferable": {
+      "abstract": [
+        {
+          "text": "A protocol that describes how a type interacts with transport APIs such as drag and drop or copy and paste.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transferable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/Transferable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Transferable",
+      "type": "topic",
+      "url": "/documentation/CoreTransferable/Transferable"
+    },
+    "doc://com.apple.documentation/documentation/Swift/AsyncSequence": {
+      "abstract": [
+        {
+          "text": "A type that provides asynchronous, sequential, iterated access to its elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AsyncSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sci7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sci7FailureQa",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/AsyncSequence",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AsyncSequence",
+      "type": "topic",
+      "url": "/documentation/Swift/AsyncSequence"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Codable": {
+      "abstract": [
+        {
+          "text": "A type that can convert itself into and out of an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Codable"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Se",
+          "text": "Decodable"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SE",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Codable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Codable",
+      "type": "topic",
+      "url": "/documentation/Swift/Codable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data": {
+      "abstract": [
+        {
+          "text": "A byte buffer in memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Data",
+      "type": "topic",
+      "url": "/documentation/foundation/data"
+    },
+    "doc://com.apple.documentation/documentation/foundation/uuid": {
+      "abstract": [
+        {
+          "text": "A universally unique value to identify types, interfaces, and other items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "UUID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/uuid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UUID",
+      "type": "topic",
+      "url": "/documentation/foundation/uuid"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "File-and-data-transfer",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionJournal"
+      ],
+      "title": "File and data transfer"
+    }
+  ]
+}

@@ -1,0 +1,477 @@
+{
+  "abstract": [
+    {
+      "text": "Add visual effects to the user’s environment in an AR experience through the front or rear camera.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/choosing-which-camera-feed-to-augment"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Choosing Which Camera Feed to Augment"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iOS devices come equipped with multiple cameras, and for each ARKit session you need to choose which camera’s feed to augment. ARKit 3 and later provide simultaneous anchors from all cameras (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/combining-user-face-tracking-and-world-tracking",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), but you still must choose one camera feed to show to the user at a time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Augmented-Reality-with-the-Rear-Camera",
+          "level": 3,
+          "text": "Augmented Reality with the Rear Camera",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The most common kinds of AR experience display a view from the device’s rear camera, augmented by other visual content, giving the user a new way to see and interact with the world around them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides this kind of experience: ARKit tracks the real-world the user inhabits, and matches it with a coordinate space for you to place virtual content. World tracking also offers features to make AR experiences more immersive, like the ability to recognize objects and images in the user’s environment and respond to real-world lighting conditions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Augmented-Reality-with-the-Front-Camera",
+          "level": 3,
+          "text": "Augmented Reality with the Front Camera",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For iOS devices that have a TrueDepth camera, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " enables you to augment the front-camera feed, while providing you with real-time tracking for the pose and expression of faces. With that information,  that you might, for example, choose to overlay realistic virtual masks. Or, you might omit the camera view and use facial expression data to animate virtual characters, as in the Animoji app for iMessage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that tracks facial movement and expressions using the front camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARFaceTrackingConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFaceTrackingConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARFaceTrackingConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARFaceTrackingConfiguration",
+      "type": "topic",
+      "url": "/documentation/arkit/arfacetrackingconfiguration"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession": {
+      "abstract": [
+        {
+          "text": "The object that manages the major tasks associated with every AR experience, such as motion tracking, camera passthrough, and image analysis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSession"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSession",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that tracks the position of a device in relation to objects in the environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARWorldTrackingConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARWorldTrackingConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARWorldTrackingConfiguration",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios": {
+      "abstract": [
+        {
+          "text": "Integrate iOS device camera and motion features to produce augmented reality experiences in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in iOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-ios"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/combining-user-face-tracking-and-world-tracking": {
+      "abstract": [
+        {
+          "text": "Track the user’s face in an app that displays an AR experience with the rear camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/combining-user-face-tracking-and-world-tracking",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Combining user face-tracking and world tracking",
+      "type": "topic",
+      "url": "/documentation/arkit/combining-user-face-tracking-and-world-tracking"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/configuration-objects": {
+      "abstract": [
+        {
+          "text": "Configure your augmented reality session to detect and track specific types of content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/configuration-objects",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Configuration Objects",
+      "type": "topic",
+      "url": "/documentation/arkit/configuration-objects"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/displaying-an-ar-experience-with-metal": {
+      "abstract": [
+        {
+          "text": "Control rendering of your app’s virtual content on top of a camera feed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/displaying-an-ar-experience-with-metal",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying an AR Experience with Metal",
+      "type": "topic",
+      "url": "/documentation/arkit/displaying-an-ar-experience-with-metal"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/managing-session-life-cycle-and-tracking-quality": {
+      "abstract": [
+        {
+          "text": "Keep the user informed on the current session state and recover from interruptions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/managing-session-life-cycle-and-tracking-quality",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Session Life Cycle and Tracking Quality",
+      "type": "topic",
+      "url": "/documentation/arkit/managing-session-life-cycle-and-tracking-quality"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Setup",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/managing-session-life-cycle-and-tracking-quality",
+        "doc://com.apple.arkit/documentation/ARKit/displaying-an-ar-experience-with-metal",
+        "doc://com.apple.arkit/documentation/ARKit/ARSession",
+        "doc://com.apple.arkit/documentation/ARKit/configuration-objects"
+      ],
+      "title": "Setup"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Setup",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/managing-session-life-cycle-and-tracking-quality",
+                "doc://com.apple.arkit/documentation/ARKit/displaying-an-ar-experience-with-metal",
+                "doc://com.apple.arkit/documentation/ARKit/ARSession",
+                "doc://com.apple.arkit/documentation/ARKit/configuration-objects"
+              ],
+              "title": "Setup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/title",
+          "value": "ARWorldTrackingConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/title",
+          "value": "ARSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceTrackingConfiguration/title",
+          "value": "ARFaceTrackingConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceTrackingConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFaceTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFaceTrackingConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFaceTrackingConfiguration"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/choosing-which-camera-feed-to-augment"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/choosing-which-camera-feed-to-augment"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,684 @@
+{
+  "abstract": [
+    {
+      "text": "Generate a signature using your private key and lightweight cryptography libraries.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/subscriptions-and-offers"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/generating-a-promotional-offer-signature-on-the-server"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Generating a Promotional Offer Signature on the Server"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC 2019 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc19/305/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code is a simple server written using JavaScript and Node.js. It demonstrates how to generate a signature for promotional offers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample demonstrates:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Receiving a request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Generating a cryptographic signature using your private key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sending back a response with the signature.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All of the work is done in ",
+              "type": "text"
+            },
+            {
+              "code": "routes/index.js",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You set up environment variables for your key ID and your private key in the ",
+              "type": "text"
+            },
+            {
+              "code": "start-server",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Install the latest stable version of Node.js.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open Terminal.app and navigate to the sample code directory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "npm install",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from the command line, and make sure it completes successfully.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "start-server",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file contains a key ID and private key PEM string. The values provided in the sample are for example purposes only and will not generate signatures that are valid for your apps.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "You can optionally open ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "start-server",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with a text editor and replace the example key ID and private key PEM string with your own key ID and private key PEM string that you received from App Store Connect.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Run-a-Test-on-Your-Local-Server",
+          "level": 3,
+          "text": "Run a Test on Your Local Server",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test the code on your local machine, from the command line:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Navigate to the sample code source folder and run ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "./start-server",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from the command line. The server is now running locally and is ready to accept connections on port 3000.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open another terminal window and use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "curl",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " command to send a request. This example command uses the same data listed in the JSON example below:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "curl -X GET -H \"Content-type: application/json\" -d '{\"appBundleID\": \"com.example.yourapp\", \"productIdentifier\": \"com.example.yoursubscription\", \"offerID\": \"your_offer_id\", \"applicationUsername\": \"8E3DC5F16E13537ADB45FB0F980ACDB6B55839870DBCE7E346E1826F5B0296CA\"}' http://127.0.0.1:3000/offer"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You will get a response that includes the signature.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Send-a-Request",
+          "level": 3,
+          "text": "Send a Request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run this sample code, send a request to this URL: ",
+              "type": "text"
+            },
+            {
+              "code": "GET http://<yourdomain>/offer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", where ",
+              "type": "text"
+            },
+            {
+              "code": "<yourdomain>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the domain name or IP address of the server this sample code is running on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The request must have a ",
+              "type": "text"
+            },
+            {
+              "code": "Content-type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header of ",
+              "type": "text"
+            },
+            {
+              "code": "application/json",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and JSON body data with the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"appBundleID\": \"com.example.yourapp\",",
+            "    \"productIdentifier\": \"com.example.yoursubscription\",",
+            "    \"offerID\": \"your_offer_id\",",
+            "    \"applicationUsername\": \"8E3DC5F16E13537ADB45FB0F980ACDB6B55839870DBCE7E346E1826F5B0296CA\"",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "6c875bdd27a7/GeneratingAPromotionalOfferSignatureOnTheServer.zip": {
+      "checksum": "6c875bdd27a770fd56a1ce649aafa5c42b01d2419e3ac989c3f24ab64962525d3896e55b2b3a81225cd46577fcffdd146179ee790020f0d19952f7eceb0cf46b",
+      "identifier": "6c875bdd27a7/GeneratingAPromotionalOfferSignatureOnTheServer.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/6c875bdd27a7/GeneratingAPromotionalOfferSignatureOnTheServer.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentDiscount": {
+      "abstract": [
+        {
+          "text": "The signed discount to apply to a payment.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPaymentDiscount"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentDiscount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPaymentDiscount"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPaymentDiscount",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentdiscount"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/generating-a-signature-for-promotional-offers": {
+      "abstract": [
+        {
+          "text": "Create a signature to validate a promotional offer using your private key.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/generating-a-signature-for-promotional-offers",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating a signature for promotional offers",
+      "type": "topic",
+      "url": "/documentation/storekit/generating-a-signature-for-promotional-offers"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/implementing-promotional-offers-in-your-app": {
+      "abstract": [
+        {
+          "text": "Offer discounted pricing for auto-renewable subscription products to eligible subscribers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/implementing-promotional-offers-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing promotional offers in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/implementing-promotional-offers-in-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer additional content and services in your app using the Original In-App Purchase API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original API for In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/original-api-for-in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/setting-up-promotional-offers": {
+      "abstract": [
+        {
+          "text": "Generate a key and configure offers for auto-renewable subscriptions in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/setting-up-promotional-offers",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up promotional offers",
+      "type": "topic",
+      "url": "/documentation/storekit/setting-up-promotional-offers"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/subscriptions-and-offers": {
+      "abstract": [
+        {
+          "text": "Offer customers additional time-based content and services through purchases they make within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/subscriptions-and-offers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Subscriptions and offers",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptions-and-offers"
+    },
+    "https://developer.apple.com/videos/play/wwdc19/305/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc19/305/",
+      "title": "305: Subscription Offers Best Practices",
+      "titleInlineContent": [
+        {
+          "text": "305: Subscription Offers Best Practices",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc19/305/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "6c875bdd27a7/GeneratingAPromotionalOfferSignatureOnTheServer.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Promotional-offers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/setting-up-promotional-offers",
+        "doc://com.apple.storekit/documentation/StoreKit/implementing-promotional-offers-in-your-app",
+        "doc://com.apple.storekit/documentation/StoreKit/generating-a-signature-for-promotional-offers",
+        "doc://com.apple.storekit/documentation/StoreKit/SKPaymentDiscount"
+      ],
+      "title": "Promotional offers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Promotional-offers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/setting-up-promotional-offers",
+                "doc://com.apple.storekit/documentation/StoreKit/implementing-promotional-offers-in-your-app",
+                "doc://com.apple.storekit/documentation/StoreKit/generating-a-signature-for-promotional-offers",
+                "doc://com.apple.storekit/documentation/StoreKit/SKPaymentDiscount"
+              ],
+              "title": "Promotional offers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentDiscount/title",
+          "value": "SKPaymentDiscount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentDiscount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentDiscount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentDiscount/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentDiscount"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/generating-a-promotional-offer-signature-on-the-server"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/generating-a-promotional-offer-signature-on-the-server"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

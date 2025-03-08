@@ -1,0 +1,1474 @@
+{
+  "abstract": [
+    {
+      "text": "An object that reports the status code and errors for a payment authorization request.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.passkit/documentation/PassKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)PKPaymentAuthorizationResult",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PKPaymentAuthorizationResult"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PassKit (Apple Pay and Wallet)"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PKPaymentAuthorizationResult"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "PKPaymentAuthorizationResult"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationResult"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the Apple Pay sheet contains errors, you provide a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationStatus/failure",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " status to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and include the errors in the errors array. If there are no errors, you provide a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationStatus/success",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " status and leave the error array empty.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code example shows a failure result with two errors in the postal code and street fields.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result that reports two errors:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Error in postal code field.",
+            "let shippingInvalidZip =",
+            "PKPaymentRequest.paymentShippingAddressInvalidError(withKey:CNPostalAddressPostalCodeKey,",
+            "                                                    localizedDescription: \"Invalid ZIP code\")",
+            "// Error in street address field.",
+            "let shippingInvalidStreet = PKPaymentRequest.paymentShippingAddressInvalidError(withKey:CNPostalAddressStreetKey,",
+            "                                                    localizedDescription: \"Missing street name\")",
+            "// Result with failure status and errors.",
+            "let result = PKPaymentAuthorizationResult(status: .failure, ",
+            "                                          errors: [shippingInvalidZip, shippingInvalidStreet])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.passkit/documentation/PassKit": {
+      "abstract": [
+        {
+          "text": "Process Apple Pay payments in your app, and create and distribute passes for the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PassKit (Apple Pay and Wallet)",
+      "type": "topic",
+      "url": "/documentation/passkit"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPayment": {
+      "abstract": [
+        {
+          "text": "Represents the result of authorizing a payment request and contains payment information, encrypted in the payment token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPayment"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPayment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPayment"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPayment",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpayment"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationController": {
+      "abstract": [
+        {
+          "text": "An object that presents a sheet that prompts the user to authorize a payment request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentAuthorizationController"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentAuthorizationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentAuthorizationController",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationcontroller"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult": {
+      "abstract": [
+        {
+          "text": "An object that reports the status code and errors for a payment authorization request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentAuthorizationResult"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentAuthorizationResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentAuthorizationResult",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationresult"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult/errors": {
+      "abstract": [
+        {
+          "text": "List of errors in the Apple Pay sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errors"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": "]!"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult/errors",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "errors"
+        }
+      ],
+      "role": "symbol",
+      "title": "errors",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationresult/errors"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult/init(status:errors:)": {
+      "abstract": [
+        {
+          "text": "Initializes the result with the status code and list of errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "status"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PKPaymentAuthorizationStatus",
+          "text": "PKPaymentAuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "errors"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult/init(status:errors:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithStatus:errors:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(status:errors:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationresult/init(status:errors:)"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult/orderDetails": {
+      "abstract": [
+        {
+          "text": "Optional metadata with order details for the placed order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "orderDetails"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentOrderDetails",
+          "text": "PKPaymentOrderDetails"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult/orderDetails",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "orderDetails"
+        }
+      ],
+      "role": "symbol",
+      "title": "orderDetails",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationresult/orderdetails"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult/status": {
+      "abstract": [
+        {
+          "text": "Payment authorization general status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "status"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PKPaymentAuthorizationStatus",
+          "text": "PKPaymentAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult/status",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "status"
+        }
+      ],
+      "role": "symbol",
+      "title": "status",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationresult/status"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationStatus": {
+      "abstract": [
+        {
+          "text": "General success and failure status for payment authorization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentAuthorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentAuthorizationStatus",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationstatus"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationStatus/failure": {
+      "abstract": [
+        {
+          "text": "Merchant failed to authorize the transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "failure"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationStatus/failure",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentAuthorizationStatusFailure"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentAuthorizationStatus.failure",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationstatus/failure"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationStatus/success": {
+      "abstract": [
+        {
+          "text": "Merchant successfully authorized the transaction, or the transaction is expected to succeed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "success"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationStatus/success",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentAuthorizationStatusSuccess"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentAuthorizationStatus.success",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationstatus/success"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewController": {
+      "abstract": [
+        {
+          "text": "An object that presents a sheet that prompts the user to authorize a payment request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentAuthorizationViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentAuthorizationViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentAuthorizationViewController",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationviewcontroller"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentOrderDetails": {
+      "abstract": [
+        {
+          "text": "Optional metadata with payment order details for the placed order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentOrderDetails"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentOrderDetails",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentOrderDetails"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentOrderDetails",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentorderdetails"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Payment-sheet-interactions-and-authorization",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentOrderDetails",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationController",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewController",
+        "doc://com.apple.passkit/documentation/PassKit/PKPayment"
+      ],
+      "title": "Payment sheet interactions and authorization"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializing-a-payment-authorization-result",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult/init(status:errors:)"
+      ],
+      "title": "Initializing a payment authorization result"
+    },
+    {
+      "anchor": "Setting-order-details",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult/orderDetails",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentOrderDetails"
+      ],
+      "title": "Setting order details"
+    },
+    {
+      "anchor": "Setting-payment-authorization-status-and-errors",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult/errors",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult/status",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationStatus"
+      ],
+      "title": "Setting payment authorization status and errors"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "PKPaymentAuthorizationResult"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.passkit/documentation/PassKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Initializing-a-payment-authorization-result",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult/init(status:errors:)"
+              ],
+              "title": "Initializing a payment authorization result"
+            },
+            {
+              "anchor": "Setting-order-details",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult/orderDetails",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentOrderDetails"
+              ],
+              "title": "Setting order details"
+            },
+            {
+              "anchor": "Setting-payment-authorization-status-and-errors",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult/errors",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationResult/status",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationStatus"
+              ],
+              "title": "Setting payment authorization status and errors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Payment-sheet-interactions-and-authorization",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentOrderDetails",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationController",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationViewController",
+                "doc://com.apple.passkit/documentation/PassKit/PKPayment"
+              ],
+              "title": "Payment sheet interactions and authorization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PKPaymentAuthorizationResult"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationStatus~1success/title",
+          "value": "PKPaymentAuthorizationStatusSuccess"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationStatus~1success/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationStatusSuccess"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewController/title",
+          "value": "PKPaymentAuthorizationViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationResult~1orderDetails/title",
+          "value": "orderDetails"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationResult~1orderDetails/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "orderDetails"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationResult/title",
+          "value": "PKPaymentAuthorizationResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentOrderDetails/title",
+          "value": "PKPaymentOrderDetails"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentOrderDetails/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentOrderDetails"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentOrderDetails/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentOrderDetails"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationStatus/title",
+          "value": "PKPaymentAuthorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPayment/title",
+          "value": "PKPayment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPayment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPayment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPayment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPayment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationResult~1errors/title",
+          "value": "errors"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationResult~1errors/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "errors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationStatus~1failure/title",
+          "value": "PKPaymentAuthorizationStatusFailure"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationStatus~1failure/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationStatusFailure"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationResult~1init(status:errors:)/title",
+          "value": "initWithStatus:errors:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationResult~1init(status:errors:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithStatus:errors:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationController/title",
+          "value": "PKPaymentAuthorizationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationResult~1status/title",
+          "value": "status"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationResult~1status/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "status"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/passkit/pkpaymentauthorizationresult"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/passkit/pkpaymentauthorizationresult"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

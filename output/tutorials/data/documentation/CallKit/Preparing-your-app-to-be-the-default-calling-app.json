@@ -1,0 +1,907 @@
+{
+  "abstract": [
+    {
+      "text": "Configure your CallKit or LiveCommunicationKit app so people can set it as the default calling app on their device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.callkit/documentation/CallKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.callkit/documentation/CallKit/Preparing-your-app-to-be-the-default-calling-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "CallKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Preparing your app to be the default calling app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS and iPadOS 18.2 and later, a person may select an app other than the Phone app or FaceTime to handle calls. A calling app handles ",
+              "type": "text"
+            },
+            {
+              "code": "tel:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " URLs the system sends to it. For example, when someone selects your app as the default calling app, tapping on a telephone number in a contact card initiates an attempt to place the call using your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app places phone calls and you wish to optionally become the default calling app, there are several steps you need to take.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-the-Default-Calling-App-entitlement-to-your-project",
+          "level": 3,
+          "text": "Add the Default Calling App entitlement to your project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.developer.calling-app",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement to the ",
+              "type": "text"
+            },
+            {
+              "code": ".entitlements",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file in your app’s Xcode project. For instructions on how to add this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entitlement, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.calling-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-the-fallback-URL-scheme-in-your-app",
+          "level": 3,
+          "text": "Apply the fallback URL scheme in your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In cases where your app can’t handle the provided phone number, you may wish to have the call fall back to the operating system to handle it as a cellular phone call. Your app can do this by adopting the ",
+              "type": "text"
+            },
+            {
+              "code": "telephony:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " URL scheme as the fallback handler for the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UISceneDelegate/scene(_:continue:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate callback. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    let handle = userActivity.startCallHandle // The `UserActivity` structure the system provides; the `startCallHandle` property is the phone number the system is passing to your app.",
+            "    var urlComponents = URLComponents()",
+            "    urlComponents.scheme = \"telephony\"",
+            "    urlComponents.path = handle  ",
+            "",
+            "    guard let url = urlComponents.url else { return } ",
+            "",
+            "    UIApplication.shared.open(url)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Only use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "telephony:",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " URL scheme as a fallback behavior in response to a person’s explicit action in your app, such as clicking a call button after your app presents the proposed number to call.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on VoIP calling related intents, see ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/sirikit/instartcallintent/",
+              "type": "text"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prepare-your-app-for-submission-to-App-Store-Connect",
+          "level": 3,
+          "text": "Prepare your app for submission to App Store Connect",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To submit your app to App Store Connect, your app needs to meet the following criteria:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.apple.developer.calling-app",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " entitlement is in its ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".entitlements",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, and it’s set to a value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file has the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UIBackgroundModes",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property array and contains an entry with the string ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "voip",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app links to either the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.callkit/documentation/CallKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/LiveCommunicationKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " frameworks.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To add a ",
+                  "type": "text"
+                },
+                {
+                  "code": "voip",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " entry in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "UIBackgroundModes",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " property array, select the “App provides Voice over IP services” option from the dropdown menu.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.callkit/documentation/CallKit": {
+      "abstract": [
+        {
+          "text": "Display the system-calling UI for your app’s VoIP services, and coordinate your calling services with other apps and the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CallKit",
+      "type": "topic",
+      "url": "/documentation/callkit"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXProvider": {
+      "abstract": [
+        {
+          "text": "An object that represents a telephony provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CXProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CXProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "CXProvider",
+      "type": "topic",
+      "url": "/documentation/callkit/cxprovider"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXProviderConfiguration": {
+      "abstract": [
+        {
+          "text": "An encapsulation of the configuration of a provider object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CXProviderConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXProviderConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CXProviderConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "CXProviderConfiguration",
+      "type": "topic",
+      "url": "/documentation/callkit/cxproviderconfiguration"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/CXProviderDelegate": {
+      "abstract": [
+        {
+          "text": "A collection of methods that a telephony provider object calls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CXProviderDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/CXProviderDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CXProviderDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CXProviderDelegate",
+      "type": "topic",
+      "url": "/documentation/callkit/cxproviderdelegate"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/making-and-receiving-voip-calls": {
+      "abstract": [
+        {
+          "text": "Initiate outgoing calls with VoIP and configure your app to receive incoming calls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/making-and-receiving-voip-calls",
+      "kind": "article",
+      "role": "article",
+      "title": "Making and receiving VoIP calls",
+      "type": "topic",
+      "url": "/documentation/callkit/making-and-receiving-voip-calls"
+    },
+    "doc://com.apple.callkit/documentation/CallKit/voip-calling-with-callkit": {
+      "abstract": [
+        {
+          "text": "Use the CallKit framework to integrate native VoIP calling.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.callkit/documentation/CallKit/voip-calling-with-callkit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "VoIP calling with CallKit",
+      "type": "topic",
+      "url": "/documentation/callkit/voip-calling-with-callkit"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.calling-app": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an app can be the default calling app on someone’s device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.calling-app",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Default Calling App",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.calling-app"
+    },
+    "doc://com.apple.documentation/documentation/LiveCommunicationKit": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/LiveCommunicationKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "LiveCommunicationKit",
+      "type": "topic",
+      "url": "/documentation/LiveCommunicationKit"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UISceneDelegate/scene(_:continue:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate to handle the specified Handoff-related activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIScene",
+          "text": "UIScene"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "continue"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "userActivity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUserActivity",
+          "text": "NSUserActivity"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UISceneDelegate/scene(_:continue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scene(_:continue:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UISceneDelegate/scene(_:continue:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.callkit/documentation/CallKit/CXProvider",
+        "doc://com.apple.callkit/documentation/CallKit/CXProviderDelegate",
+        "doc://com.apple.callkit/documentation/CallKit/CXProviderConfiguration",
+        "doc://com.apple.callkit/documentation/CallKit/making-and-receiving-voip-calls",
+        "doc://com.apple.callkit/documentation/CallKit/voip-calling-with-callkit"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.callkit/documentation/CallKit/CXProvider",
+                "doc://com.apple.callkit/documentation/CallKit/CXProviderDelegate",
+                "doc://com.apple.callkit/documentation/CallKit/CXProviderConfiguration",
+                "doc://com.apple.callkit/documentation/CallKit/making-and-receiving-voip-calls"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UISceneDelegate~1scene(_:continue:)/title",
+          "value": "scene:continueUserActivity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UISceneDelegate~1scene(_:continue:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "scene:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIScene",
+              "text": "UIScene"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "scene"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "continueUserActivity:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSUserActivity",
+              "text": "NSUserActivity"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "userActivity"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXProvider/title",
+          "value": "CXProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXProviderConfiguration/title",
+          "value": "CXProviderConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXProviderConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXProviderConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXProviderConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXProviderConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXProviderDelegate/title",
+          "value": "CXProviderDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXProviderDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXProviderDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.callkit~1documentation~1CallKit~1CXProviderDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CXProviderDelegate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/callkit/preparing-your-app-to-be-the-default-calling-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/callkit/preparing-your-app-to-be-the-default-calling-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

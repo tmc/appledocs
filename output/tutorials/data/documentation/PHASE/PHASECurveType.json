@@ -1,0 +1,2015 @@
+{
+  "abstract": [
+    {
+      "text": "Options that apply a mathematical function to an input value.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.phase/documentation/PHASE"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.phase/documentation/PHASE/PHASECurveType"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@E@PHASECurveType",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "enum"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PHASECurveType"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PHASE"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PHASECurveType"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration",
+    "symbolKind": "enum",
+    "title": "PHASECurveType"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PHASECurveType"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "PHASE applies curves in several places across the framework:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEnvelopeSegment",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object represents one curved portion of an envelope’s graph.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGroup",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class applies a curve type to its sounds by fading its volume with the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGroup/fadeGain(gain:duration:curveType:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " function, and to its rate, with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGroup/fadeRate(rate:duration:curveType:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Each ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGroupPresetSetting",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " applies a curve to control a setting’s rate of change.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Apply-a-Curve-as-a-Rate-of-Change",
+          "level": 3,
+          "text": "Apply a Curve as a Rate of Change",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In most cases, PHASE applies curves to output a rate of change. For example, an  envelope segment’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEnvelopeSegment/curveType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " determines where along the segment’s domain the y-value changes more quickly. The following figure compares all the curves’ rate of change by plotting their input over the range ",
+              "type": "text"
+            },
+            {
+              "code": "(0,0)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "(1,1)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3887371",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.phase/documentation/PHASE": {
+      "abstract": [
+        {
+          "text": "Create dynamic audio experiences in your game or app that react to events and cues in the environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PHASE",
+      "type": "topic",
+      "url": "/documentation/phase"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASECurveType": {
+      "abstract": [
+        {
+          "text": "Options that apply a mathematical function to an input value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASECurveType"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASECurveType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASECurveType"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASECurveType",
+      "type": "topic",
+      "url": "/documentation/phase/phasecurvetype"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASECurveType/cubed": {
+      "abstract": [
+        {
+          "text": "A curve that increases at a rate that cubes its input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cubed"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASECurveType/cubed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASECurveTypeCubed"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASECurveType.cubed",
+      "type": "topic",
+      "url": "/documentation/phase/phasecurvetype/cubed"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASECurveType/holdStartValue": {
+      "abstract": [
+        {
+          "text": "A curve that equals its start value for the entire duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "holdStartValue"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASECurveType/holdStartValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASECurveTypeHoldStartValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASECurveType.holdStartValue",
+      "type": "topic",
+      "url": "/documentation/phase/phasecurvetype/holdstartvalue"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASECurveType/init(rawValue:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "rawValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASECurveType/init(rawValue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(rawValue:)",
+      "type": "topic",
+      "url": "/documentation/phase/phasecurvetype/init(rawvalue:)"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASECurveType/inverseCubed": {
+      "abstract": [
+        {
+          "text": "A curve that increases at a rate of one divided by the input’s cube.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inverseCubed"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASECurveType/inverseCubed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASECurveTypeInverseCubed"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASECurveType.inverseCubed",
+      "type": "topic",
+      "url": "/documentation/phase/phasecurvetype/inversecubed"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASECurveType/inverseSigmoid": {
+      "abstract": [
+        {
+          "text": "An inverse sigmoid curve.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inverseSigmoid"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASECurveType/inverseSigmoid",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASECurveTypeInverseSigmoid"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASECurveType.inverseSigmoid",
+      "type": "topic",
+      "url": "/documentation/phase/phasecurvetype/inversesigmoid"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASECurveType/inverseSine": {
+      "abstract": [
+        {
+          "text": "An inverse sine curve.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inverseSine"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASECurveType/inverseSine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASECurveTypeInverseSine"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASECurveType.inverseSine",
+      "type": "topic",
+      "url": "/documentation/phase/phasecurvetype/inversesine"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASECurveType/inverseSquared": {
+      "abstract": [
+        {
+          "text": "A curve that increases at a rate of one divided by the input’s square.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inverseSquared"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASECurveType/inverseSquared",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASECurveTypeInverseSquared"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASECurveType.inverseSquared",
+      "type": "topic",
+      "url": "/documentation/phase/phasecurvetype/inversesquared"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASECurveType/jumpToEndValue": {
+      "abstract": [
+        {
+          "text": "A curve that equals its end value for the entire duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "jumpToEndValue"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASECurveType/jumpToEndValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASECurveTypeJumpToEndValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASECurveType.jumpToEndValue",
+      "type": "topic",
+      "url": "/documentation/phase/phasecurvetype/jumptoendvalue"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASECurveType/linear": {
+      "abstract": [
+        {
+          "text": "A curve that increases uniformly with its input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "linear"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASECurveType/linear",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASECurveTypeLinear"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASECurveType.linear",
+      "type": "topic",
+      "url": "/documentation/phase/phasecurvetype/linear"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASECurveType/sigmoid": {
+      "abstract": [
+        {
+          "text": "A sigmoid curve.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sigmoid"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASECurveType/sigmoid",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASECurveTypeSigmoid"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASECurveType.sigmoid",
+      "type": "topic",
+      "url": "/documentation/phase/phasecurvetype/sigmoid"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASECurveType/sine": {
+      "abstract": [
+        {
+          "text": "A sine curve.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sine"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASECurveType/sine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASECurveTypeSine"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASECurveType.sine",
+      "type": "topic",
+      "url": "/documentation/phase/phasecurvetype/sine"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASECurveType/squared": {
+      "abstract": [
+        {
+          "text": "A curve that increases at a rate that squares its input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "squared"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASECurveType/squared",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASECurveTypeSquared"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASECurveType.squared",
+      "type": "topic",
+      "url": "/documentation/phase/phasecurvetype/squared"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEEnvelope": {
+      "abstract": [
+        {
+          "text": "A collection of segments that connect to graph a complex curve over a linear input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEEnvelope"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEnvelope",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEEnvelope"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEEnvelope",
+      "type": "topic",
+      "url": "/documentation/phase/phaseenvelope"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEEnvelopeSegment": {
+      "abstract": [
+        {
+          "text": "A curved portion of an envelope.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEEnvelopeSegment"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEnvelopeSegment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEEnvelopeSegment"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEEnvelopeSegment",
+      "type": "topic",
+      "url": "/documentation/phase/phaseenvelopesegment"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEEnvelopeSegment/curveType": {
+      "abstract": [
+        {
+          "text": "A curve along the envelope that shapes the segment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "curveType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHASECurveType",
+          "text": "PHASECurveType"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEEnvelopeSegment/curveType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "curveType"
+        }
+      ],
+      "role": "symbol",
+      "title": "curveType",
+      "type": "topic",
+      "url": "/documentation/phase/phaseenvelopesegment/curvetype"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEGroup": {
+      "abstract": [
+        {
+          "text": "A container that shares audio parameters with a collection of sounds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEGroup",
+      "type": "topic",
+      "url": "/documentation/phase/phasegroup"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEGroup/fadeGain(gain:duration:curveType:)": {
+      "abstract": [
+        {
+          "text": "Adjusts the volume of the sounds in a group gradually.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fadeGain"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "gain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "curveType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHASECurveType",
+          "text": "PHASECurveType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGroup/fadeGain(gain:duration:curveType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fadeGain:duration:curveType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fadeGain(gain:duration:curveType:)",
+      "type": "topic",
+      "url": "/documentation/phase/phasegroup/fadegain(gain:duration:curvetype:)"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEGroup/fadeRate(rate:duration:curveType:)": {
+      "abstract": [
+        {
+          "text": "Adjusts the playback speed of the sounds in a group gradually.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fadeRate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "rate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "curveType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHASECurveType",
+          "text": "PHASECurveType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGroup/fadeRate(rate:duration:curveType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fadeRate:duration:curveType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fadeRate(rate:duration:curveType:)",
+      "type": "topic",
+      "url": "/documentation/phase/phasegroup/faderate(rate:duration:curvetype:)"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASEGroupPresetSetting": {
+      "abstract": [
+        {
+          "text": "Settings for group presets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASEGroupPresetSetting"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASEGroupPresetSetting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASEGroupPresetSetting"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASEGroupPresetSetting",
+      "type": "topic",
+      "url": "/documentation/phase/phasegrouppresetsetting"
+    },
+    "doc://com.apple.phase/documentation/PHASE/PHASENumericPair": {
+      "abstract": [
+        {
+          "text": "An ordered pair that defines a bounding box for an envelope.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHASENumericPair"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/PHASENumericPair",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHASENumericPair"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHASENumericPair",
+      "type": "topic",
+      "url": "/documentation/phase/phasenumericpair"
+    },
+    "doc://com.apple.phase/documentation/PHASE/playback-parameterization": {
+      "abstract": [
+        {
+          "text": "Change the characteristics of in-flight audio by adjusting its properties at runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.phase/documentation/PHASE/playback-parameterization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Playback Parameterization",
+      "type": "topic",
+      "url": "/documentation/phase/playback-parameterization"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:SY": {
+      "abstract": [
+        {
+          "text": "A type that can be converted to and from an associated raw value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RawRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SY8RawValueQa",
+          "text": "RawValue"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SY",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RawRepresentable",
+      "type": "topic",
+      "url": "/documentation/Swift/RawRepresentable"
+    },
+    "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Escapable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/Swift/BitwiseCopyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "media-3887371": {
+      "alt": "A certesian graph plots all curve types for comparison. The graph encompases the first cartesian quadrant, where each curve begins at coordinate (0,0) and ends at coordinate (1,1). The linear curve plots in a straight line between the two coordinates. An arc that occupies the furthest area from the linear line to the upper left is the inverse cube curve. The next furthest arc from the linear line to the upper left is the inverse squared curve. And the third-furthest arc from the linear line to the upper left is the inverse sine curve. An arc that occupies the furthest area from the linear line to the lower right is the cube curve. The next furthest arc from the linear line to the lower right is the squared curve. And the third-furthest arc from the linear line to the lower right is the sine curve. The sigmoid and inverse sigmoid curves occupy the central area of the graph and center on top of the linear line. The sigmoid curve shapes like the letter S and begins by extending more quickly in the X direction. The inverse sigmoid curve shapes like an inverted letter S and begins by extending more quickly in the Y direction.",
+      "identifier": "media-3887371",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/028d81d5ddeb5d8960e44a5222c95d85/media-3887371@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/10d1d3d8e233a948de19c4367d7ff78b/media-3887371~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:SY",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Dynamic-Sound-Control",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASEEnvelope",
+        "doc://com.apple.phase/documentation/PHASE/PHASEEnvelopeSegment",
+        "doc://com.apple.phase/documentation/PHASE/PHASENumericPair",
+        "doc://com.apple.phase/documentation/PHASE/playback-parameterization"
+      ],
+      "title": "Dynamic Sound Control"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Types",
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASECurveType/linear",
+        "doc://com.apple.phase/documentation/PHASE/PHASECurveType/squared",
+        "doc://com.apple.phase/documentation/PHASE/PHASECurveType/inverseSquared",
+        "doc://com.apple.phase/documentation/PHASE/PHASECurveType/cubed",
+        "doc://com.apple.phase/documentation/PHASE/PHASECurveType/inverseCubed",
+        "doc://com.apple.phase/documentation/PHASE/PHASECurveType/sine",
+        "doc://com.apple.phase/documentation/PHASE/PHASECurveType/inverseSine",
+        "doc://com.apple.phase/documentation/PHASE/PHASECurveType/sigmoid",
+        "doc://com.apple.phase/documentation/PHASE/PHASECurveType/inverseSigmoid",
+        "doc://com.apple.phase/documentation/PHASE/PHASECurveType/holdStartValue",
+        "doc://com.apple.phase/documentation/PHASE/PHASECurveType/jumpToEndValue"
+      ],
+      "title": "Types"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.phase/documentation/PHASE/PHASECurveType/init(rawValue:)"
+      ],
+      "title": "Initializers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Enumeration"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "PHASECurveType"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "enum"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASECurveType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASECurveType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.phase/documentation/PHASE"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Types",
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASECurveType/linear",
+                "doc://com.apple.phase/documentation/PHASE/PHASECurveType/squared",
+                "doc://com.apple.phase/documentation/PHASE/PHASECurveType/inverseSquared",
+                "doc://com.apple.phase/documentation/PHASE/PHASECurveType/cubed",
+                "doc://com.apple.phase/documentation/PHASE/PHASECurveType/inverseCubed",
+                "doc://com.apple.phase/documentation/PHASE/PHASECurveType/sine",
+                "doc://com.apple.phase/documentation/PHASE/PHASECurveType/inverseSine",
+                "doc://com.apple.phase/documentation/PHASE/PHASECurveType/sigmoid",
+                "doc://com.apple.phase/documentation/PHASE/PHASECurveType/inverseSigmoid",
+                "doc://com.apple.phase/documentation/PHASE/PHASECurveType/holdStartValue",
+                "doc://com.apple.phase/documentation/PHASE/PHASECurveType/jumpToEndValue"
+              ],
+              "title": "Types"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Dynamic-Sound-Control",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.phase/documentation/PHASE/PHASEEnvelope",
+                "doc://com.apple.phase/documentation/PHASE/PHASEEnvelopeSegment",
+                "doc://com.apple.phase/documentation/PHASE/PHASENumericPair",
+                "doc://com.apple.phase/documentation/PHASE/playback-parameterization"
+              ],
+              "title": "Dynamic Sound Control"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "enum"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PHASECurveType"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@NSInteger",
+                    "text": "NSInteger"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECurveType/title",
+          "value": "PHASECurveType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECurveType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASECurveType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECurveType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASECurveType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEnvelopeSegment~1curveType/title",
+          "value": "curveType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEnvelopeSegment~1curveType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "curveType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1fadeGain(gain:duration:curveType:)/title",
+          "value": "fadeGain:duration:curveType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1fadeGain(gain:duration:curveType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fadeGain:duration:curveType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECurveType~1jumpToEndValue/title",
+          "value": "PHASECurveTypeJumpToEndValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECurveType~1jumpToEndValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASECurveTypeJumpToEndValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1fadeRate(rate:duration:curveType:)/title",
+          "value": "fadeRate:duration:curveType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup~1fadeRate(rate:duration:curveType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fadeRate:duration:curveType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECurveType~1inverseSigmoid/title",
+          "value": "PHASECurveTypeInverseSigmoid"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECurveType~1inverseSigmoid/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASECurveTypeInverseSigmoid"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEnvelopeSegment/title",
+          "value": "PHASEEnvelopeSegment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEnvelopeSegment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEEnvelopeSegment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEnvelopeSegment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEEnvelopeSegment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup/title",
+          "value": "PHASEGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECurveType~1holdStartValue/title",
+          "value": "PHASECurveTypeHoldStartValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECurveType~1holdStartValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASECurveTypeHoldStartValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroupPresetSetting/title",
+          "value": "PHASEGroupPresetSetting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroupPresetSetting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEGroupPresetSetting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEGroupPresetSetting/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEGroupPresetSetting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECurveType~1squared/title",
+          "value": "PHASECurveTypeSquared"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECurveType~1squared/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASECurveTypeSquared"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEnvelope/title",
+          "value": "PHASEEnvelope"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEnvelope/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEEnvelope"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASEEnvelope/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASEEnvelope"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECurveType~1inverseSquared/title",
+          "value": "PHASECurveTypeInverseSquared"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECurveType~1inverseSquared/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASECurveTypeInverseSquared"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECurveType~1sine/title",
+          "value": "PHASECurveTypeSine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECurveType~1sine/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASECurveTypeSine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECurveType~1inverseSine/title",
+          "value": "PHASECurveTypeInverseSine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECurveType~1inverseSine/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASECurveTypeInverseSine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECurveType~1inverseCubed/title",
+          "value": "PHASECurveTypeInverseCubed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECurveType~1inverseCubed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASECurveTypeInverseCubed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECurveType~1sigmoid/title",
+          "value": "PHASECurveTypeSigmoid"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECurveType~1sigmoid/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASECurveTypeSigmoid"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASENumericPair/title",
+          "value": "PHASENumericPair"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASENumericPair/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASENumericPair"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASENumericPair/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASENumericPair"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECurveType~1cubed/title",
+          "value": "PHASECurveTypeCubed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECurveType~1cubed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASECurveTypeCubed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECurveType~1linear/title",
+          "value": "PHASECurveTypeLinear"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.phase~1documentation~1PHASE~1PHASECurveType~1linear/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHASECurveTypeLinear"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/phase/phasecurvetype"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/phase/phasecurvetype"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

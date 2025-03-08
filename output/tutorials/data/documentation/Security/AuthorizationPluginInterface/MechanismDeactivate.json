@@ -1,0 +1,490 @@
+{
+  "abstract": [
+    {
+      "text": "Deactivates an authorization mechanism.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismDeactivate"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@AuthorizationPluginInterface@FI@MechanismDeactivate",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "MechanismDeactivate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MechanismDeactivate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "10.4",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "MechanismDeactivate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:*FI(#*v)",
+              "text": "int (*)(void *)"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MechanismDeactivate"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An authorization mechanism reference that you returned when your ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismCreate",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function was called to create the mechanism.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "inMechanism"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. Return ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/errAuthorizationSuccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (no error) if the function completes successfully and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/errAuthorizationInternal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (Security Server internal error) if any error occurs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The authorization engine calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismDeactivate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function of each active mechanism when you call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/RequestInterrupt",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. To deactivate your mechanism, you must stop any processing that is currently underway; for example, you should terminate any threads or UI processes that you initiated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you have terminated all processing, you must call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/DidDeactivate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function; the authorization engine waits for you to call this function before it resumes operation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/DidDeactivate": {
+      "abstract": [
+        {
+          "text": "Reports the successful deactivation of an authorization mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DidDeactivate"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/DidDeactivate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DidDeactivate",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks/diddeactivate"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/RequestInterrupt": {
+      "abstract": [
+        {
+          "text": "Requests the authorization engine to interrupt the currently active authorization mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "RequestInterrupt"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationCallbacks/RequestInterrupt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RequestInterrupt",
+      "type": "topic",
+      "url": "/documentation/security/authorizationcallbacks/requestinterrupt"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface": {
+      "abstract": [
+        {
+          "text": "The interface that must be implemented by your plug-in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationPluginInterface"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationPluginInterface",
+      "type": "topic",
+      "url": "/documentation/security/authorizationplugininterface"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismCreate": {
+      "abstract": [
+        {
+          "text": "Creates an authorization mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MechanismCreate"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismCreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MechanismCreate",
+      "type": "topic",
+      "url": "/documentation/security/authorizationplugininterface/mechanismcreate"
+    },
+    "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismDeactivate": {
+      "abstract": [
+        {
+          "text": "Deactivates an authorization mechanism.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MechanismDeactivate"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/AuthorizationPluginInterface/MechanismDeactivate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MechanismDeactivate",
+      "type": "topic",
+      "url": "/documentation/security/authorizationplugininterface/mechanismdeactivate"
+    },
+    "doc://com.apple.security/documentation/Security/errAuthorizationInternal": {
+      "abstract": [
+        {
+          "text": "An unrecognized internal error occurred.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errAuthorizationInternal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/errAuthorizationInternal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "errAuthorizationInternal"
+        }
+      ],
+      "role": "symbol",
+      "title": "errAuthorizationInternal",
+      "type": "topic",
+      "url": "/documentation/security/errauthorizationinternal"
+    },
+    "doc://com.apple.security/documentation/Security/errAuthorizationSuccess": {
+      "abstract": [
+        {
+          "text": "The operation completed successfully.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "errAuthorizationSuccess"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/errAuthorizationSuccess",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "errAuthorizationSuccess"
+        }
+      ],
+      "role": "symbol",
+      "title": "errAuthorizationSuccess",
+      "type": "topic",
+      "url": "/documentation/security/errauthorizationsuccess"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errAuthorizationSuccess/title",
+          "value": "errAuthorizationSuccess"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errAuthorizationSuccess/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "errAuthorizationSuccess"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errAuthorizationInternal/title",
+          "value": "errAuthorizationInternal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1errAuthorizationInternal/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "errAuthorizationInternal"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/authorizationplugininterface/mechanismdeactivate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

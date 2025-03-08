@@ -1,0 +1,703 @@
+{
+  "abstract": [
+    {
+      "text": "Declare your app’s intention to use HomeKit, and get permission from the user to access home automation accessories.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.homekit/documentation/HomeKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.homekit/documentation/HomeKit/enabling-homekit-in-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "HomeKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Enabling HomeKit in your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To access the devices in the user’s home automation network, you enable the HomeKit capability for your app. You also provide a usage description that explains to the user why the app needs access, and handle the case where the user denies access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-the-HomeKit-capability",
+          "level": 3,
+          "text": "Enable the HomeKit capability",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ready your app to work with HomeKit, enable the HomeKit capability for your app in Xcode. Open your project, select the app target, and choose the Signing & Capabilities pane. Then click the + button. In the window that appears, choose HomeKit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3369803",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you enable the HomeKit capability, Xcode automatically adds the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.homekit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to your entitlements file. It also adds the corresponding feature to your App ID and links the HomeKit framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "HomeKit supports independent Apple Watch apps in watchOS 7 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Explain-why-your-app-needs-access-to-the-users-home-network",
+          "level": 3,
+          "text": "Explain why your app needs access to the user’s home network",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A user’s home automation network is a sensitive resource. Apps with access can collect sensor data and change the state of physical objects in the real world. To protect users, the first time your app uses the HomeKit framework—typically, when you create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance—the system prompts the user for permission.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You provide a message for this prompt called a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "purpose string",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " or a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "usage description",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " by setting a string value for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHomeKitUsageDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that you add to your app’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " file. Find and select your project’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in Xcode’s project navigator. Modify the file using the property list editor built into Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3369804",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system automatically generates the prompt’s title, which includes the name of your app. Your usage description—in this case, “Configure accessories from Kilgo Devices, Inc.”—indicates the reason that your app needs the access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3369805",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Accurately and concisely explaining to the user why your app needs access to the home network, typically in one complete sentence, lets the user make an informed decision and improves the chances that they’ll grant access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you don’t include a purpose string, your app crashes when you first try to use HomeKit.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Handle-permission-denial-gracefully",
+          "level": 3,
+          "text": "Handle permission denial gracefully",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user grants permission, the system remembers the user’s choice and doesn’t prompt again. If the user denies permission, the access attempt that initiated the prompt and any further attempts fail. Look for a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMError/homeAccessNotAuthorized",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " error in your completion handlers to detect this condition. Alternatively, you can inspect the home manager’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager/authorizationStatus",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Be aware that even if the user allows the initial access, they can revoke permission at any time in the Settings app. Your app should handle both initial and subsequent access denials gracefully.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If home automation is a secondary function of your app—like an alarm app that plays an audible alert on the device and can also turn the house lights on when the alarm triggers—respect the user’s choice and work around denied access. For example, you can omit unavailable features from the user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app can’t provide meaningful functionality without HomeKit access, you can display a message to the user saying so, directing them to change the privacy setting for your app to continue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.homekit": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether users of the app may manage HomeKit-compatible accessories.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.homekit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HomeKit Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.homekit"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List": {
+      "abstract": [
+        {
+          "text": "A resource containing key-value pairs that identify and configure a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Information Property List",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHomeKitUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s HomeKit configuration data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHomeKitUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHomeKitUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSHomeKitUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit": {
+      "abstract": [
+        {
+          "text": "Configure, control, and communicate with home automation accessories.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HomeKit",
+      "type": "topic",
+      "url": "/documentation/homekit"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMError/homeAccessNotAuthorized": {
+      "abstract": [
+        {
+          "text": "An error indicating access to the home is not authorized.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "homeAccessNotAuthorized"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11HMErrorCodeLeV",
+          "text": "HMError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HMErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMError/homeAccessNotAuthorized",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "homeAccessNotAuthorized",
+      "type": "topic",
+      "url": "/documentation/homekit/hmerror/homeaccessnotauthorized"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager": {
+      "abstract": [
+        {
+          "text": "The manager for a collection of one or more of a user’s homes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMHomeManager"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMHomeManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMHomeManager",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomemanager"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager/authorizationStatus": {
+      "abstract": [
+        {
+          "text": "The current state of the app’s access to home data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@HMHomeManagerAuthorizationStatus",
+          "text": "HMHomeManagerAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHomeManager/authorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationStatus",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhomemanager/authorizationstatus"
+    },
+    "media-3369803": {
+      "alt": "Screenshot showing how you enable the HomeKit capability in Xcode’s Signing and Capabilities pane.",
+      "identifier": "media-3369803",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c19faddf8332772f46ff4f6fee8768a5/media-3369803@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0f413b94c67250309e8e00de6e4516fb/media-3369803~dark@2x.png"
+        }
+      ]
+    },
+    "media-3369804": {
+      "alt": "Screenshot showing the HomeKit Usage Description key in the app’s Info.plist file.",
+      "identifier": "media-3369804",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c996e82ebce0724fd2a41595e2c469e6/media-3369804@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/01af0657b08746bc3df7c52e31ec9ca6/media-3369804~dark@2x.png"
+        }
+      ]
+    },
+    "media-3369805": {
+      "alt": "Screenshot of the prompt from which the user chooses to either accept or disallow access to home data for the app.",
+      "identifier": "media-3369805",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0e48748f524d23fd547cbe00ab5f9710/media-3369805@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.homekit",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHomeKitUsageDescription"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.homekit",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHomeKitUsageDescription"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManager~1authorizationStatus/title",
+          "value": "authorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManager~1authorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "authorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManager/title",
+          "value": "HMHomeManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHomeManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHomeManager"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/homekit/enabling-homekit-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/homekit/enabling-homekit-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

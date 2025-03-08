@@ -1,0 +1,616 @@
+{
+  "abstract": [
+    {
+      "text": "The optimal time to start the frame submission process.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.compositorservices/documentation/CompositorServices",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame",
+        "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing/optimalInputTime"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "CompositorServices",
+    "externalID": "s:So17cp_frame_timing_tV18CompositorServicesE16optimalInputTimeSo010CP_OBJECT_A15_layer_rendererCACE5ClockV7InstantVvp",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "optimalInputTime"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)CP_OBJECT_cp_layer_renderer",
+        "text": "LayerRenderer"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:So27CP_OBJECT_cp_layer_rendererC18CompositorServicesE5ClockV",
+        "text": "Clock"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "text": "Instant"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Compositor Services"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "optimalInputTime"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "optimalInputTime"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CP_OBJECT_cp_layer_renderer",
+              "text": "LayerRenderer"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Clock",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:So27CP_OBJECT_cp_layer_rendererC18CompositorServicesE5ClockV",
+              "text": "Clock"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Instant"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The optimal input time is the time at which to call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/startSubmission()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function and begin encoding your Metal command buffers. Use the time before the input time to update your app’s data structures and prepare for rendering. Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Clock/wait(until:tolerance:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to suspend your app until the optimal time arrives. When it does, fetch the current device pose and finish rendering and the frame and commit your Metal command buffers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.compositorservices/documentation/CompositorServices": {
+      "abstract": [
+        {
+          "text": "Take control of the drawing environment and render your own content using Metal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Compositor Services",
+      "type": "topic",
+      "url": "/documentation/compositorservices"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer": {
+      "abstract": [
+        {
+          "text": "A type that provides the Metal types and timing information you need to draw your content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LayerRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LayerRenderer"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Clock": {
+      "abstract": [
+        {
+          "text": "A type that supports operations that require a precise time measurement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Clock"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Clock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Clock"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer.Clock",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/clock"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Clock/wait(until:tolerance:)": {
+      "abstract": [
+        {
+          "text": "Blocks the current thread until the specified time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wait"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "until"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CP_OBJECT_cp_layer_renderer",
+          "text": "LayerRenderer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So27CP_OBJECT_cp_layer_rendererC18CompositorServicesE5ClockV",
+          "text": "Clock"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Instant"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "tolerance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Clock/wait(until:tolerance:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "wait(until:tolerance:)",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/clock/wait(until:tolerance:)"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame": {
+      "abstract": [
+        {
+          "text": "A type that provides access to the timing information and data types you need to render a single frame of content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Frame"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Frame"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer.Frame",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing": {
+      "abstract": [
+        {
+          "text": "A type that stores information about a frame’s encoding, rendering, and presentation deadlines.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Timing"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Timing"
+        }
+      ],
+      "role": "symbol",
+      "title": "LayerRenderer.Frame.Timing",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/timing"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing/optimalInputTime": {
+      "abstract": [
+        {
+          "text": "The optimal time to start the frame submission process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "optimalInputTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CP_OBJECT_cp_layer_renderer",
+          "text": "LayerRenderer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So27CP_OBJECT_cp_layer_rendererC18CompositorServicesE5ClockV",
+          "text": "Clock"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Instant"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/Timing/optimalInputTime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "optimalInputTime",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/timing/optimalinputtime"
+    },
+    "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/startSubmission()": {
+      "abstract": [
+        {
+          "text": "Notifies Compositor Services that you’re ready to generate the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Metal commands to render the specified frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startSubmission"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.compositorservices/documentation/CompositorServices/LayerRenderer/Frame/startSubmission()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cp_frame_start_submission"
+        }
+      ],
+      "role": "symbol",
+      "title": "startSubmission()",
+      "type": "topic",
+      "url": "/documentation/compositorservices/layerrenderer/frame/startsubmission()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer/title",
+          "value": "CP_OBJECT_cp_layer_renderer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CP_OBJECT_cp_layer_renderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CP_OBJECT_cp_layer_renderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1startSubmission()/title",
+          "value": "cp_frame_start_submission"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.compositorservices~1documentation~1CompositorServices~1LayerRenderer~1Frame~1startSubmission()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cp_frame_start_submission"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/compositorservices/layerrenderer/frame/timing/optimalinputtime"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1761 @@
+{
+  "abstract": [
+    {
+      "text": "A collection of textures optimized for storage and drawing performance.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SKTextureAtlas",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SKTextureAtlas"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SKTextureAtlas"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SKTextureAtlas"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SKTextureAtlas"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/about-texture-atlases",
+        "doc://com.apple.spritekit/documentation/SpriteKit/maximizing-node-drawing-performance",
+        "doc://com.apple.spritekit/documentation/SpriteKit/maximizing-texture-performance"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "SKTextureAtlas",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a collection of textures that were either created from an ",
+              "type": "text"
+            },
+            {
+              "code": ".atlas",
+              "type": "codeVoice"
+            },
+            {
+              "text": " folder in the app bundle, or created at runtime. Texture atlases improve memory usage and rendering performance by reducing draw calls. Whenever you have textures that are always used together, store them in an atlas for best results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SpriteKit implicitly loads an atlas when one of the atlas’s textures is accessed. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/textureNamed(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when you want to explicitly access a texture atlas’s contents.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The preferred place to create a texture atlas is within an asset catalog (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/about-texture-atlases#Creating-a-Sprite-Atlas",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), but you can also put your source textures in an ",
+              "type": "text"
+            },
+            {
+              "code": ".atlas",
+              "type": "codeVoice"
+            },
+            {
+              "text": " folder in the app bundle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKMutableTexture": {
+      "abstract": [
+        {
+          "text": "A texture whose contents can be dynamically updated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKMutableTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKMutableTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKMutableTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKMutableTexture",
+      "type": "topic",
+      "url": "/documentation/spritekit/skmutabletexture"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture": {
+      "abstract": [
+        {
+          "text": "An image, decoded on the GPU, that can be used to render various SpriteKit objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKTexture",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktexture"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas": {
+      "abstract": [
+        {
+          "text": "A collection of textures optimized for storage and drawing performance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKTextureAtlas"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKTextureAtlas"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKTextureAtlas",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktextureatlas"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/customPlaygroundQuickLook": {
+      "abstract": [
+        {
+          "text": "A custom playground quick look for this instance.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "customPlaygroundQuickLook"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "PlaygroundQuickLook"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/customPlaygroundQuickLook",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "customPlaygroundQuickLook",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktextureatlas/customplaygroundquicklook"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/init(dictionary:)": {
+      "abstract": [
+        {
+          "text": "Creates a texture atlas from a set of image files.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "dictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/init(dictionary:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "atlasWithDictionary:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(dictionary:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktextureatlas/init(dictionary:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/init(named:)": {
+      "abstract": [
+        {
+          "text": "Creates a texture atlas from data stored in the app bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/init(named:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "atlasNamed:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(named:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktextureatlas/init(named:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/preload(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Loads an atlas object’s textures into memory, calling a completion handler after the task completes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preload"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/preload(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preloadWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "preload(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktextureatlas/preload(completionhandler:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/preloadTextureAtlases(_:withCompletionHandler:)": {
+      "abstract": [
+        {
+          "text": "Loads the textures of multiple atlas objects into memory, calling a completion handler after the task completes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preloadTextureAtlases"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTextureAtlas",
+          "text": "SKTextureAtlas"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/preloadTextureAtlases(_:withCompletionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preloadTextureAtlases:withCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "preloadTextureAtlases(_:withCompletionHandler:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktextureatlas/preloadtextureatlases(_:withcompletionhandler:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/preloadTextureAtlasesNamed(_:withCompletionHandler:)": {
+      "abstract": [
+        {
+          "text": "Loads the textures of multiple atlases into memory, calling a completion handler after the task completes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preloadTextureAtlasesNamed"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?, ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTextureAtlas",
+          "text": "SKTextureAtlas"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/preloadTextureAtlasesNamed(_:withCompletionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preloadTextureAtlasesNamed:withCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "preloadTextureAtlasesNamed(_:withCompletionHandler:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktextureatlas/preloadtextureatlasesnamed(_:withcompletionhandler:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/textureNamed(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a texture from data stored in the texture atlas.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureNamed"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTexture",
+          "text": "SKTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/textureNamed(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureNamed:"
+        }
+      ],
+      "role": "symbol",
+      "title": "textureNamed(_:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktextureatlas/texturenamed(_:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/textureNames": {
+      "abstract": [
+        {
+          "text": "The names of the texture images stored in the atlas.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureNames"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/textureNames",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textureNames"
+        }
+      ],
+      "role": "symbol",
+      "title": "textureNames",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktextureatlas/texturenames"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/about-texture-atlases": {
+      "abstract": [
+        {
+          "text": "Learn about the benefits of having a texture atlas, and the process for using it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/about-texture-atlases",
+      "kind": "article",
+      "role": "article",
+      "title": "About Texture Atlases",
+      "type": "topic",
+      "url": "/documentation/spritekit/about-texture-atlases"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/about-texture-atlases#Creating-a-Sprite-Atlas": {
+      "abstract": [],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/about-texture-atlases#Creating-a-Sprite-Atlas",
+      "kind": "section",
+      "title": "Creating a Sprite Atlas",
+      "type": "topic",
+      "url": "/documentation/spritekit/about-texture-atlases#Creating-a-Sprite-Atlas"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/maximizing-node-drawing-performance": {
+      "abstract": [
+        {
+          "text": "Structure your nodes for maximum performance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/maximizing-node-drawing-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Maximizing Node Drawing Performance",
+      "type": "topic",
+      "url": "/documentation/spritekit/maximizing-node-drawing-performance"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/maximizing-texture-performance": {
+      "abstract": [
+        {
+          "text": "Speed up image display and enable more images to be displayed at one time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/maximizing-texture-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Maximizing Texture Performance",
+      "type": "topic",
+      "url": "/documentation/spritekit/maximizing-texture-performance"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Textures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/maximizing-texture-performance",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKMutableTexture"
+      ],
+      "title": "Textures"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "First-Steps",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/about-texture-atlases"
+      ],
+      "title": "First Steps"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Retrieve textures from an atlas by the textures’ filenames.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Accessing-Textures",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/textureNamed(_:)"
+      ],
+      "title": "Accessing Textures"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Create an atlas in code.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Creating-a-Texture-Atlas-Programmatically",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/init(named:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/init(dictionary:)"
+      ],
+      "title": "Creating a Texture Atlas Programmatically"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Gain fine-tuned control over when an atlas is decoded.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Preloading-Textures",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/preload(completionHandler:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/preloadTextureAtlases(_:withCompletionHandler:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/preloadTextureAtlasesNamed(_:withCompletionHandler:)"
+      ],
+      "title": "Preloading Textures"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Determine whether an atlas contains a particular source image.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Reading-Source-Image-Filenames",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/textureNames"
+      ],
+      "title": "Reading Source Image Filenames"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/customPlaygroundQuickLook"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SKTextureAtlas"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTextureAtlas"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTextureAtlas"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.spritekit/documentation/SpriteKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "First-Steps",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/about-texture-atlases"
+              ],
+              "title": "First Steps"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Retrieve textures from an atlas by the textures’ filenames.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Accessing-Textures",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/textureNamed(_:)"
+              ],
+              "title": "Accessing Textures"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Create an atlas in code.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Creating-a-Texture-Atlas-Programmatically",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/init(named:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/init(dictionary:)"
+              ],
+              "title": "Creating a Texture Atlas Programmatically"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Gain fine-tuned control over when an atlas is decoded.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Preloading-Textures",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/preload(completionHandler:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/preloadTextureAtlases(_:withCompletionHandler:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/preloadTextureAtlasesNamed(_:withCompletionHandler:)"
+              ],
+              "title": "Preloading Textures"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Determine whether an atlas contains a particular source image.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Reading-Source-Image-Filenames",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTextureAtlas/textureNames"
+              ],
+              "title": "Reading Source Image Filenames"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Textures",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/maximizing-texture-performance",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTexture",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKMutableTexture"
+              ],
+              "title": "Textures"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SKTextureAtlas"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas~1textureNames/title",
+          "value": "textureNames"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas~1textureNames/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "textureNames"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas~1preloadTextureAtlasesNamed(_:withCompletionHandler:)/title",
+          "value": "preloadTextureAtlasesNamed:withCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas~1preloadTextureAtlasesNamed(_:withCompletionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "preloadTextureAtlasesNamed:withCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas~1preloadTextureAtlases(_:withCompletionHandler:)/title",
+          "value": "preloadTextureAtlases:withCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas~1preloadTextureAtlases(_:withCompletionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "preloadTextureAtlases:withCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas~1preload(completionHandler:)/title",
+          "value": "preloadWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas~1preload(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "preloadWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture/title",
+          "value": "SKTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTexture/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas~1init(dictionary:)/title",
+          "value": "atlasWithDictionary:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas~1init(dictionary:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "atlasWithDictionary:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas~1init(named:)/title",
+          "value": "atlasNamed:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas~1init(named:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "atlasNamed:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas/title",
+          "value": "SKTextureAtlas"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTextureAtlas"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTextureAtlas"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas~1textureNamed(_:)/title",
+          "value": "textureNamed:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTextureAtlas~1textureNamed(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textureNamed:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKMutableTexture/title",
+          "value": "SKMutableTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKMutableTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKMutableTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKMutableTexture/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKMutableTexture"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/sktextureatlas"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/sktextureatlas"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}
